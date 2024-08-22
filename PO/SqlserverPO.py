@@ -1441,14 +1441,13 @@ class SqlServerPO:
                     print("- - " * 20)
                     Color_PO.consoleColor(
                         "31",
-                        "35",
-                        "[Result] => "
-                        + str(k)
-                        + " ("
+                        "36",
+                        str(k)
+                        + "("
                         + str(d_tableComment[k])
-                        + ") , "
+                        + ") "
                         + str(len(l_table_field_type_size_isNull_comment))
-                        + "个字段",
+                        + "字段",
                         "",
                     )
 
@@ -1472,9 +1471,7 @@ class SqlServerPO:
                     )
 
                     for i in range(len(l_field)):
-                        print(
-                            l_field[i], l_type[i], l_isKey[i], l_isnull[i], l_comment[i]
-                        )
+                        print(l_field[i], l_type[i], l_isKey[i], l_isnull[i], l_comment[i])
 
                 l_field = []
                 l_type = []
@@ -1559,7 +1556,7 @@ class SqlServerPO:
 
                         if len(l_result) != 0:
                             print("--" * 50)
-                            Color_PO.consoleColor("31", "36", "[result] => " + str(varValue) + " => " + tbl + " => " + l_field[i] + " => " + str(len(l_result)) + "条 ", "")
+                            Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
 
                             for j in range(len(l_result)):
                                 print(l_result[j])

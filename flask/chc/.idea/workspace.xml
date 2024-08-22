@@ -40,16 +40,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/linghuchong/Downloads/51/Python/project/flask/chc/templates",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/linghuchong/Downloads/51/Python/project/flask/chc/templates&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/templates" />
@@ -59,15 +59,18 @@
       <recent name="$PROJECT_DIR$/instance" />
     </key>
   </component>
-  <component name="RunManager" selected="Flask server.Flask (app.py)">
+  <component name="RunManager" selected="JavaScript Debug.test.html">
     <configuration name="demo.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/chc/templates/demo.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="index3.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/chc/templates/index3.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="flask_chc" type="PythonConfigurationType" factoryName="Python">
-      <module name="flask_chc" />
+    <configuration name="test.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/chc/templates/test.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="chc" type="PythonConfigurationType" factoryName="Python">
+      <module name="chc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -88,20 +91,20 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="main_chcRule" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="flaskProject" />
+    <configuration name="flask_chc" type="PythonConfigurationType" factoryName="Python">
+      <module name="flask_chc" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/instance/zyjk/CHC/rule" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/instance/zyjk/CHC/rule/main_chcRule.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -160,18 +163,19 @@
     <list>
       <item itemvalue="Flask server.Flask (app.py) (1)" />
       <item itemvalue="Flask server.Flask (app.py)" />
+      <item itemvalue="JavaScript Debug.test.html" />
       <item itemvalue="JavaScript Debug.demo.html" />
       <item itemvalue="JavaScript Debug.index3.html" />
+      <item itemvalue="Python.chc" />
       <item itemvalue="Python.flask_chc" />
-      <item itemvalue="Python.main_chcRule" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.test.html" />
         <item itemvalue="Flask server.Flask (app.py)" />
         <item itemvalue="Flask server.Flask (app.py) (1)" />
         <item itemvalue="JavaScript Debug.demo.html" />
         <item itemvalue="JavaScript Debug.index3.html" />
-        <item itemvalue="Python.main_chcRule" />
       </list>
     </recent_temporary>
   </component>
@@ -206,6 +210,7 @@
       <workItem from="1724286684565" duration="7295000" />
       <workItem from="1724294659133" duration="196000" />
       <workItem from="1724302721146" duration="222000" />
+      <workItem from="1724316602550" duration="287000" />
     </task>
     <servers />
   </component>

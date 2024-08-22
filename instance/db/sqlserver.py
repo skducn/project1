@@ -12,8 +12,8 @@ from PO.SqlserverPO import *
 # todo 公卫
 # Sqlserver_PO = SqlServerPO("192.168.180.237", "PHUR_TEST", "testPH@2023", "zyconfig_pprod", "GBK")  # 预发布，通过VPN访问
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
-Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "ZYCONFIG", "GBK")
-Sqlserver_PO.dbRecord('*', 'varchar', 'sj')
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "ZYCONFIG", "GBK")
+# Sqlserver_PO.dbRecord('*', 'varchar', 'sj')
 # Sqlserver_PO.dbDesc()  # 表名中带有UpmsUser字符的表中Birthday字段的结构
 # Sqlserver_PO.dbDesc('a_%')  # 5，查看所有tb开头的表中id字段的结构（通配符*）
 # Sqlserver_PO.dbDesc(0, ['ORG_CODE'])  # 5，查看所有tb开头的表中id字段的结构（通配符*）
@@ -63,8 +63,10 @@ Sqlserver_PO.dbRecord('*', 'varchar', 'sj')
 
 
 # todo 社区健康平台（静安）
-# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
-# Sqlserver_PO.dbDesc()
+Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
+# Sqlserver_PO.dbDesc('QYYH')
+Sqlserver_PO.dbRecord('*', 'varchar', '测试儿童')
+
 
 
 # todo 老年人体检

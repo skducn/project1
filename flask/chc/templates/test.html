@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<script type="text/javascript">
+		window.οnlοad=function (){
+			var oBox=document.getElementById('box');
+			var oSon=document.getElementById('son');
+			var disY=0;
+//----------------鼠标拖动滚动条效果-----------------------------------------
+			oSon.οnmοusedοwn=function (ev){
+				var iEvent=ev||event;
+				var disY=iEvent.clientY-oSon.offsetTop;//鼠标按下位置与oSon上边的距离
+				document.οnmοusemοve=function (ev){
+					var iEvent=ev||event;
+					var t=iEvent.clientY-disY;//鼠标的位置减去disY计算oSon的top的值
+//					判断让top的值不超出边界
+					if(t<0){
+						t=0;
+					}else if(t>oBox.offsetHeight-oSon.offsetHeight){
+						t=oBox.offsetHeight-oSon.offsetHeight;
+					}
+//---------------------------------------------------------------------
+					oSon.style.top=t+'px';
+				};
+				document.οnmοuseup=function (){
+					document.οnmοusedοwn=document.οnmοusemοve=null;
+				};
+				return false;
+			};
+//---------------------------------------------------------------------
+//----------------鼠标滚动效果--------------------------------------------
+			oBox.onmousewheel=fn;
+//----------Firefox不兼容onmousewheel，DOMMouseScroll要用必须用addEventListener绑定事件
+			if(oBox.addEventListener){
+				oBox.addEventListener('DOMMouseScroll',fn,false);
+			}
+
+			function fn(ev){
+				var iEvent=ev||event;
+				var t=oSon.offsetTop;//获取当前的top的值
+				if(iEvent.wheelDelta<0||iEvent.detail>0){
+/*--------------IE和其它浏览器滚动事件中有wheelDelta属性，向上滚动值为120，向下滚动值为-120-----------*/
+/*--------------Firefox滚动事件中有detail属性，向上滚动值为-3，向下滚动值为3-----------------------*/
+//				兼容性处理，只要Firefox中的detail属性大于0，或者IE中的wheelDelta属性小于0，就是向下滚动
+					if(t>=oBox.offsetHeight-oSon.offsetHeight-11){
+//				top加11大于最大的距离，就使top为最大值
+						oSon.style.top=oBox.offsetHeight-oSon.offsetHeight+'px';
+					}else{
+						oSon.style.top=oSon.offsetTop+11+'px';
+					}
+
+				}else{//else向上滚动
+					if(t<=11){//如果top值小于变小的速度值，top的值就为0
+						oSon.style.top=0;
+					}else{
+						oSon.style.top=oSon.offsetTop-11+'px';
+					}
+				}
+//				阻止默认浏览器滚动条滚动
+				return false;
+			}
+		};
+	</script>
+
+
+	<style type="text/css">
+			#box{width: 20px;height: 580px;background-color: #999;position: relative;margin: 0 auto;}
+			#son{width: 20px;height: 80px;background-color: #f00;position: absolute;top: 0;left: 0;}
+		</style>
+	<body style="height: 2000px;">
+		<div id="box">
+			<div id="son">
+
+			</div>
+		</div>
+	</body>
+</html>
