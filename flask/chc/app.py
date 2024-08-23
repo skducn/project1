@@ -109,8 +109,12 @@ def testRule():
             # result = result.stdout.replace("<br>", '')
             result = result.stdout
             print(result)
-            print(type(result))
-            return render_template('result.html', output_testRule={"ruleName": ruleName, "id": id, "ruleCode": ruleCode, "result": result['result']}, debugRuleParam_testRule=l_testRule)
+            d_result = {}
+            if '[OK]' in result:
+                d_result['result'] = result
+            else:
+                d_result = eval(result)
+            return render_template('result.html', output_testRule={"ruleName": ruleName, "id": id, "ruleCode": ruleCode, "result": d_result}, debugRuleParam_testRule=l_testRule)
         except:
             return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
     else:

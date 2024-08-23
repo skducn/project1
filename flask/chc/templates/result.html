@@ -29,6 +29,9 @@
 <li class="active"><span>&nbsp;&nbsp;测试结果</span> </li>
 <li><span>&nbsp;&nbsp;编辑规则参数</span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
+<li><span><button onclick="goHome()" >&nbsp;&nbsp;返回首页</button></span></li>
+
+
 </ul>
 </div>
 
@@ -50,32 +53,29 @@
 
 
 {% if output_testRule %}
-    <label for class="al a25 aR a1j dark:a1k a2j">状态:</label>
-    <pre1> {{output_testRule['result']['result']}}</pre1> <br><br>
-    <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-    <pre1> {{output_testRule['result']['step']}} </pre1>
-    <label for class="al a25 aR a1j dark:a1k a2j">规则编码:</label>
-    <pre1> {{output_testRule['result']['rule']}}</pre1> <br><br>
-    <label for class="al a25 aR a1j dark:a1k a2j">规则参数:</label>
-    <pre1> {{output_testRule['result']['ruleParam']}}</pre1> <br><br>
+    {% if '[OK]' in output_testRule['result']['result'] %}
+        <label for class="al a25 aR a1j dark:a1k a2j">状态:</label>
+        <pre1> {{output_testRule['result']['result']}}</pre1> <br><br>
 
-{% elif error %}
-    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
-    <pre>{{ error }}</pre>
-{% endif %}
-<br>
-
-<div class="a6 a1K ac">
-
-
-
-<div class="a5 af"><div class="a2g">
-    <p class="a25 aR aT">
-    <button onclick="goHome()" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">返回首页</button>
-    </p>
-</div></div>
-
+        <div class="a6 a1K ac">
+    <div class="a5 af"><div class="a2g">
+        <p class="a25 aR aT">
+        <button onclick="goHome()" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">返回首页</button>
+        </p>
+    </div></div>
 </div>
+
+    {% else %}
+        <label for class="al a25 aR a1j dark:a1k a2j">状态:</label>
+        <pre1> {{output_testRule['result']['result']}}</pre1> <br><br>
+        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+        <pre1> {{output_testRule['result']['step']}} </pre1>
+        <label for class="al a25 aR a1j dark:a1k a2j">规则编码:</label>
+        <pre1> {{output_testRule['result']['rule']}}</pre1> <br><br>
+        <label for class="al a25 aR a1j dark:a1k a2j">规则参数:</label>
+        <pre1> {{output_testRule['result']['ruleParam']}}</pre1> <br><br>
+
+
 
 
 {% if '[OK]' not in output_testRule['result'] %}
@@ -91,7 +91,7 @@
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
 <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">编辑规则参数</h3>
-<p class="a25 aR aT">只能修改规则编码或规则参数</p>
+<p class="a25 aR aT">可修改规则编码或规则参数</p>
 </div>
 </div>
 </div>
@@ -152,6 +152,12 @@
 
 
 
+    {%endif%}
+{% elif error %}
+    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
+    <pre>{{ error }}</pre>
+{% endif %}
+<br>
 
 
 
