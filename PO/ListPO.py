@@ -56,7 +56,25 @@ todo：【统计】
 6 获取重复的元素数量 print(List_PO.getDuplicationCount([2, 1, 13, 6, 2, 1]))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
 
 todo：【其他】
-7 对齐列表的键值对格式 alignKeyValue(['key1,value1', 'key1,value1'], ","))
+todo：【应用】
+7.1 对齐列表的键值对格式 alignKeyValue(['key1,value1', 'key1,value1'], ","))
+7.2 需要计算每个产品的纳税额，税率为10%。并将纳税额作为第三个元素添加到每个产品信息中".center(100, "-"))
+carts = [['SmartPhone', 400],
+         ['Tablet', 450],
+         ['Laptop', 700]]
+print(list(map(lambda item: [item[0], item[1], item[1] * 0.1], carts)))  # [['SmartPhone', 400, 40.0], ['Tablet', 450, 45.0], ['Laptop', 700, 70.0]]
+7.3 将列表中每个元素首字母进行大写转换".center(100, "-"))
+names = ['david', 'peter', 'jenifer']
+new_names = map(lambda name: name.capitalize(), names)
+print(list(new_names))  # ['David', 'Peter', 'Jenifer']
+7.4 整数转数字列表
+# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
+# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
+7.5 两列表相乘
+b1 = [100, 200, 300]
+b2 = [1, 2, 3]
+iterator = map(lambda x,y : x*y, b1, b2)
+print(list(iterator))  # 输出：[100, 400, 900]
 """
 
 

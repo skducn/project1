@@ -16,9 +16,7 @@ print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
 1.5 列表中配对转字典（后覆盖） print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
 1.6 列表中键值对格式转字典（后覆盖） print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
 1.7 列表转字符串 print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
-1.8 整数转数字列表
-# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
-# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
+
 
 todo：【操作元素】
 2.1 生成元素索引 list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1))
@@ -32,6 +30,7 @@ todo：【操作元素】
 from iteration_utilities import deepflatten
 print(list(deepflatten([[1,2,3],[4,[5],[6,7]],[8,[9,[10]]]], depth=3)))  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  //多层递归
 print([i for sublist in [[1,2,3],[3]] for i in sublist])  # [1, 2, 3, 3]  # 一层递归
+2.9 列表元素计算后增加元素
 
 todo：【比较】
 3.1 删除两列表交集元素 print(List_PO.delIntersection(['01', '02', '03'], ['02', '05']))  # (['01', '03'], ['05'])
@@ -55,9 +54,20 @@ todo：【删除】
 todo：【统计】
 6 获取重复的元素数量 print(List_PO.getDuplicationCount([2, 1, 13, 6, 2, 1]))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
 
-todo：【其他】
-7 对齐列表的键值对格式 alignKeyValue(['key1,value1', 'key1,value1'], ","))
+todo：【应用】
+7.1 对齐列表的键值对格式 alignKeyValue(['key1,value1', 'key1,value1'], ","))
+7.2 需要计算每个产品的纳税额，税率为10%。并将纳税额作为第三个元素添加到每个产品信息中".center(100, "-"))
+7.3 将列表中每个元素首字母进行大写转换
+7.4 整数转数字列表
+# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
+# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
+7.5 两列表相乘
+b1 = [100, 200, 300]
+b2 = [1, 2, 3]
+iterator = map(lambda x,y : x*y, b1, b2)
+print(list(iterator))  # 输出：[100, 400, 900]
 """
+
 
 from PO.ListPO import *
 List_PO = ListPO()
@@ -94,9 +104,6 @@ List_PO = ListPO()
 # # print("1.7 列表转字符串".center(100, "-"))
 # print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
 #
-# # # print("1.8 整数转数字列表".center(100, "-"))
-# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
-# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
 
 
 """[操作元素]"""
@@ -141,8 +148,6 @@ List_PO = ListPO()
 
 # print("2.7 随机获取列表元素".center(100, "-"))
 # print(List_PO.getRandomOne(['111', 222, [5, 6, '888'], {"a": 1, 2: "test"}]))
-
-
 
 
 """[比较]"""
@@ -206,9 +211,9 @@ List_PO = ListPO()
 # print(List_PO.getDuplicationCount(['a', 'b', 'c', 'a']))  # [('a', 2), ('b', 1), ('c', 1)]
 #
 #
-"""[其他]"""
+"""[应用]"""
 #
-# # print("7 对齐列表的键值对格式".center(100, "-"))
+# # print("7.1 对齐列表的键值对格式".center(100, "-"))
 # list11 = List_PO.alignKeyValue(
 #     ['1234567890,john', '123456,666', '123,baibai', '600065,', '600064,234j2po4j2oi34'], ",")
 # for i in range(len(list11)):
@@ -220,3 +225,24 @@ List_PO = ListPO()
 # # # # 600064    : 234jpo4j2oi34
 
 
+# # print("7.2 需要计算每个产品的纳税额，税率为10%。并将纳税额作为第三个元素添加到每个产品信息中".center(100, "-"))
+# carts = [['SmartPhone', 400],
+#          ['Tablet', 450],
+#          ['Laptop', 700]]
+# print(list(map(lambda item: [item[0], item[1], item[1] * 0.1], carts)))  # [['SmartPhone', 400, 40.0], ['Tablet', 450, 45.0], ['Laptop', 700, 70.0]]
+#
+#
+# # print("7.3 将列表中每个元素首字母进行大写转换".center(100, "-"))
+# names = ['david', 'peter', 'jenifer']
+# new_names = map(lambda name: name.capitalize(), names)
+# print(list(new_names))  # ['David', 'Peter', 'Jenifer']
+
+# # # print("7.4 整数转数字列表".center(100, "-"))
+# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
+# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
+
+# # # print("7.5 两列表相乘".center(100, "-"))
+b1 = [100, 200, 300]
+b2 = [1, 2, 3]
+iterator = map(lambda x,y : x*y, b1, b2)
+print(list(iterator))  # 输出：[100, 400, 900]
