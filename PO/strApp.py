@@ -6,11 +6,10 @@
 # *********************************************************************
 """
 # todo 转换
-
 1.1 字符串转列表
 1.2 字符串转元组
 1.3 字符串转字典
-1.4 字符串转换日期 str2date()
+1.4 字符串转换日期 formatDate()
 
 # todo 判断
 2.0 判断字符串是否为浮点数 isFloat()
@@ -38,29 +37,37 @@
 from PO.StrPO import *
 Str_PO = StrPO()
 
-# print("1.1，字符串转列表".center(100, "-"))
-# print(list("123"))  # ['1', '2', '3']
-# print([eval(i) for i in list("123")])  # [1, 2, 3]    //必须是数字型字符串
-# print(list(map(int, "123")))  # [1, 2, 3]
+# print("1.1.1，字符串转列表之打散".center(100, "-"))
+print(list("123"))  # ['1', '2', '3']
+# print("1.1.2，eval或map处理数字字符串转列表之打散".center(100, "-"))
+print([eval(i) for i in list("123")])  # [1, 2, 3]    //必须是数字型字符串
+print(list(map(int, "123")))  # [1, 2, 3]
+# map()返回值是迭代器
+for i in map(int, "456"):
+    print(i)
+# 4
+# 5
+# 6
+# print("1.1.3，split字符串转列表".center(100, "-"))
+print("123".split())  # ['123']
+# print("1.1.4，eval及split处理数字字符串转列表".center(100, "-"))
+print([eval(i) for i in "123".split()])  # [123]  //必须是数字型字符串
 
-# print("123".split())  # ['123']
-# print([eval(i) for i in "123".split()])  # [123]  //必须是数字型字符串
-#
-# print("1.2，字符串转元组".center(100, "-"))
-# print(tuple("123"))  # ('1', '2', '3')
-# print(tuple(int(i) for i in "123"))  # (1, 2, 3)
-#
-# print("1.3，字符串转字典".center(100, "-"))
-# print(dict(eval("{'a':'1', 'b':2}")))  # {'a': '1', 'b': 2}
-#
-# print("1.4，字符串转换成日期".center(100, "-"))
-# print(Str_PO.str2date('2020年11月23日'))
-# print(Str_PO.str2date('2020-11-23'))
-# print(Str_PO.str2date('2020/11/23'))
-# print(Str_PO.str2date('二零二零年十一月二十三日'))
-# print(Str_PO.str2date('二零年十一月二三日'))
-# print(Str_PO.str2date('20年1月5日'))
-# print(Str_PO.str2date('20年01月05日'))
+# print("1.2，字符串转元组之打散".center(100, "-"))
+print(tuple("123"))  # ('1', '2', '3')
+# print("1.2，数字字符串转元组之打散".center(100, "-"))
+print(tuple(int(i) for i in "123"))  # (1, 2, 3)
+
+print("1.3，字典字符串转字典".center(100, "-"))
+print(eval("{'a':'1', 'b':2}"))  # {'a': '1', 'b': 2}
+
+# print("1.4，日期字符串格式化".center(100, "-"))
+print(Str_PO.formatDate('2020年11月23日'))  # 2020-11-23
+print(Str_PO.formatDate('2020/11/23'))  # 2020-11-23
+print(Str_PO.formatDate('二零二零年十一月二十三日'))  # 2020-11-23
+print(Str_PO.formatDate('二零年十一月二三日'))  # 2020-11-23
+print(Str_PO.formatDate('20年11月23日'))  # 2020-11-23
+print(Str_PO.formatDate('20年01月05日'))  # 2020-01-05
 
 
 # print("2.1，判断字符串是否为数字".center(100, "-"))

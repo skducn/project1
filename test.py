@@ -8,34 +8,91 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
-123
-13
-13
 
-import time
-import threading
-from multiprocessing import Pool
-from tqdm import tqdm
+l1 =  ['John', 'Doe', 'Jack', 'Bob', 'Smith']
+print("-".join(l1))
 
-def do_work(x):
-    time.sleep(x)
-    return x
+d1 = {'Name': 'John', 'Age': 25}
+print(d1['Name'])
+print(d1.get('Name1', -1))
 
-def progress():
-    time.sleep(3)  # 3秒后查进度
-    print(f'任务有: {pbar.total} 已完成:{pbar.n}')
-tasks = range(10)
-pbar = tqdm(total=len(tasks))
+int = d1.setdefault("Name1", 100)
+print(int)
+print(d1)
 
-if __name__ == '__main__':
-    thread = threading.Thread(target=progress)
-    thread.start()
-    results = []
-    with Pool(processes=5) as pool:
-        for result in pool.imap_unordered(do_work, tasks):
-            results.append(result)
-            pbar.update(1)
-    print(results)
+
+for i,name in enumerate(l1, start=1):
+    print(i,name)
+
+a = 1000000000
+b = f'{a:,}'
+print(type(b),b)
+
+foods = ['Apples', 'Oranges', 'Bananas']
+# 可指定任意分隔符
+print(*foods)
+print(*foods[1][1])
+print(*foods, sep=', ', end='.\n')
+print(*foods, sep=' -- ', end='.\n')
+
+
+
+people= ['John', 'Doe', 'James', 'Bob', 'Smith', 'Stefan']
+first_person, *_, last_person = people
+print(first_person, last_person)    # Output: John Stefan
+print(_)    # ['Doe', 'James', 'Bob', 'Smith']
+print((_)[1])    # James
+print((_)[1][2])    # m
+print(*_)    # Doe James Bob Smith
+print((*_,)[1])    # James
+print((*_,)[1][2])    # m
+
+print(people[1:-1])
+
+
+# age =22
+# print(f'{age=}')  # age=22
+# print(f'{5+10=}')  # 5+10=15
+#
+# n = 1314521.56789
+# print(round(n,2))  # 1314521.57
+# print(round(n,-1))  # 1314520.0
+# print(round(n,-3))  # 1315000.0
+
+
+#
+# s = "abc"
+# print(s.split(','))
+# print(list(eval(s)))
+
+# 123
+# 13
+# 13
+#
+# import time
+# import threading
+# from multiprocessing import Pool
+# from tqdm import tqdm
+#
+# def do_work(x):
+#     time.sleep(x)
+#     return x
+#
+# def progress():
+#     time.sleep(3)  # 3秒后查进度
+#     print(f'任务有: {pbar.total} 已完成:{pbar.n}')
+# tasks = range(10)
+# pbar = tqdm(total=len(tasks))
+#
+# if __name__ == '__main__':
+#     thread = threading.Thread(target=progress)
+#     thread.start()
+#     results = []
+#     with Pool(processes=5) as pool:
+#         for result in pool.imap_unordered(do_work, tasks):
+#             results.append(result)
+#             pbar.update(1)
+#     print(results)
 
 
 

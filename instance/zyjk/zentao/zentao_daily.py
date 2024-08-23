@@ -123,7 +123,7 @@ def getRecord(varStartDate, varEndDate, l_varWho):
 # getRecord("2024-5-24", "2024-5-30", ['郭斐'])
 # getRecord("2024-5-24", "2024-5-30", ['陈晓东'])
 # df = getRecord("2024-7-16", "2024-7-16", ['舒阳阳'])
-df = getRecord("2024-8-17", "2024-8-21", ['舒阳阳','陈晓东'])
+df = getRecord("2024-8-12", "2024-8-23", ['舒阳阳','陈晓东'])
 
 
 title = "工作日志"

@@ -6,31 +6,26 @@
 # *********************************************************************
 """
 todo：【转换】
-1.1 列表生成同值字典（fromkeys）
-    => dict.fromkeys(['a',5], 1) # {'a':1, 5:1}
-    => dict.fromkeys(['a', 5]) # {'a': None, 5: None}
-1.2 列表生成序列字典 print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
-1.3 列表转字典（键值对,覆盖update）list2dictBySerial([key1, value1, key2, value2])  # {key1: value1, key2: value2}
-1.4 列表转字典（键值对格式,覆盖update）list2dictByKeyValue(['key1:value1', 'key2:value2']))  # {key1: value1, key2: value2}
-1.5 列表转字典（元组格式,覆盖update） print(dict([(1, 'a'), ('b', 2), ((1, 2), 444)]))  => {1: 'a', 'b': 2, (1, 2): 444}
-1.6 列表转字符串  return "".join(list(map(str, [1,'a'])))  => 1a
-1.7 两列表合成字典(覆盖update) print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
 
-todo：【类型转换】
-2.1 数字字符串与数字互相转换 convertNumericStr([123]))  # ['123']
-    # print(List_PO.convertNumericStr(['123'], "numeric"))  # [123]
+1.1 两列表合并字典（后覆盖） print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
+1.2 enumerate索引列表转字典 print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
+1.3 fromkeys列表多对一值转字典
+print(dict.fromkeys(['a', 5], 1))  # {'a':1, 5:1}
+print(dict.fromkeys(['a', 5, 'tt'], "100"))  # {'a': '100', 5: '100', 'tt': '100'}
+print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
+1.4 列表内两元组转字典（后覆盖） print(dict([('a', '123'), ('b', '456')]))  # {'a': '123', 'b': '456'}
+1.5 列表中配对转字典（后覆盖） print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
+1.6 列表中键值对格式转字典（后覆盖） print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
+1.7 列表转字符串 print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
 
-todo：【分离、拆分、合并与分开】
-2.1 列表数组分离   print(numpy.array_split([1, 2, 3, 4, 5], 2)) //元素奇数时，前多后少
-    print(numpy.array_split([1, 2, 3, 4, 5], 2)[0])  # [1 2 3]
-    print(numpy.array_split([1, 2, 3, 4, 5], 2)[1])  # [4 5]
-2.2 列表拆分 resolveList(['1', '2', '3', '4', '5', '6'], 5))  # [['1', '2', '3', '4', '5'], ['6']]
-2.3 切片列表 sliceList([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
+todo：【操作元素】
 
-2.4 列表元素合并与分开 closeOpenElement(["a", "b", "c", "d"], 4))  # ['abcd']
-2.5 两列表元素相加或连接 addTwoList([1, [111], "a", 0.01], [2, [222], "b", 0.07 , 66]))  # [3, [111, 222], 'ab', 0.08]
-2.6 生成元素索引 setIndex(['Spring', 'Summer', 'Fall', 'Winter']))  #  [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
-               setIndex(['Spring', 'Summer', 'Fall', 'Winter'], 2))  #  [(2, 'Spring'), (3, 'Summer'), (4, 'Fall'), (5, 'Winter')]
+2.1 生成元素索引 list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1))
+2.2 数字字符串与数字互相转换 list(map(int,['1','2','3'])))  # [1, 2, 3]
+2.3 列表分裂 List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
+2.4 列表分组 List_PO.group(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
+2.5 列表元素合成 List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素合成一个元素
+2.6 两列表元素相加或连接 joint([1, [111], "a", 0.01], [2, [222], "b", 0.07 , 66]))  # [3, [111, 222], 'ab', 0.08]
 
 todo：【比较】
 3.1 获取两列表差异元素 twoListGetDiff(['张三', '王五', '老二'], ['张三', '老二', '王七']))  # (['王五'], ['王七'])
@@ -63,90 +58,83 @@ todo：【删除】
 
 """
 
-
 from PO.ListPO import *
 List_PO = ListPO()
 
+"""【转换】"""
 
-a = [('YLJGDM', 'VARCHAR2'), ('GRDAID', 'VARCHAR2')]
-# print(dict(a))  # {'YLJGDM': 'VARCHAR2', 'GRDAID': 'VARCHAR2'}
-
-
-
-
-
-# print("1.2 列表转字典之相邻元素键值对（覆盖update）".center(100, "-"))
-# print(List_PO.list2dictBySerial(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
-# print(List_PO.list2dictBySerial(["a", "1", "a", "2"]))  # {'a': '2'}   //如遇到重复key，则取后面的key值
-# print(List_PO.list2dictBySerial(["a", "1", "b", "2", "c"]))  # {'a': '1', 'b': '2'}  //如果元素个数是奇数，则忽略最后一个元素
-#
-# print("1.3 列表转字典之键值对格式（覆盖update）".center(100, "-"))
-# print(List_PO.list2dictByKeyValue(['a:1', 'b:2']))  # {'a': '1', 'b': '2'}
-# print(List_PO.list2dictByKeyValue(['a,3', 'b,4'], ","))  # {'a': '3', 'b': '4'}
-# print(List_PO.list2dictByKeyValue(['a:1', 'b:2', 'a:133']))  # {'a': '133', 'b': '2'}  //转换后如果有重复的key，则后面的key替代前面的key
-# print(List_PO.list2dictByKeyValue(['a:1', '123b456', 'c:3']))  # {'a': '1', 'c': '3'}   //不符合键值对格式的字符串被删除
-#
-
-# print("1.5 覆盖两列表转字典".center(100, "-"))
+# # print("1.1 两列表合并字典（后覆盖）".center(100, "-"))
 # print(dict(zip([1, 2], ['skducn', 'yoyo'])))  # {1: 'skducn', 2: 'yoyo'}
 # print(dict(zip([1, 1], ['skducn', 'yoyo'])))  # {1: 'yoyo'}
 #
-
-"""[变换]"""
-
-# print("2.1 数字字符串与数字互相转换".center(100, "-"))
-# print(List_PO.convertNumericStr([123]))  # ['123']
-# print(List_PO.convertNumericStr([123], "str"))  # ['123']
-# print(List_PO.convertNumericStr(["a", 123.56, 0.12], "str"))  # ['a', '123.56', '0.12']
-# print(List_PO.convertNumericStr(['123'], "numeric"))  # [123]
-# print(List_PO.convertNumericStr(["a", "123", "555"], "numeric"))  # ['a', 123, 555]
-# print(List_PO.convertNumericStr([1, 3, '13', "一", 20], "numeric"))  # [1, 3, 13, '一', 20]
-# print(List_PO.convertNumericStr(["a", "0.123", "123.00", "56.0", "555.455678"], "numeric"))  # ['a', 0.123, 123.0, 56.0, 555.455678]
+# # print("1.2 enumerate索引列表转字典".center(100, "-"))
+# print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
 #
-# # print("2.2 列表元素合并与分开".center(100, "-"))
-# print(List_PO.closeOpenElement(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素链接在一起组成一个元素
-# print(List_PO.closeOpenElement(["a", "b", "c"], 4))  # ['abc']
-# print(List_PO.closeOpenElement(["a", "b", "c", "d", "e", "f"], 4))  # ['abcd', 'ef']
-# print(List_PO.closeOpenElement(["a", "b", 123, "d", "e", "f"], 4))  # None  //元素必须是字符串，否则返回None
+# # print("1.3 fromkeys列表多对一值转字典".center(100, "-"))
+# print(dict.fromkeys(['a', 5], 1))  # {'a':1, 5:1}
+# print(dict.fromkeys(['a', 5, 'tt'], "100"))  # {'a':1, 5:1}
+# print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
 #
-# print("2.3 两列表元素相加或连接".center(100, "-"))
+# # print("1.4 列表内两元组转字典（后覆盖）".center(100, "-"))
+# print(dict([('a', '123'), ('b', '456'), ('a', '100')]))  # {'a': '100', 'b': '456'}
+#
+# # print("1.5 列表中配对转字典（后覆盖）".center(100, "-"))
+# print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
+# print(List_PO.listPair2dict(["a", "1", "a", "2"]))  # {'a': '2'}   //如遇重复key则取后面的key值
+# print(List_PO.listPair2dict(["a", "1", "b", "2", "c"]))  # {'a': '1', 'b': '2'}  //如果元素个数是奇数，则忽略最后一个元素
+#
+# # print("1.6 列表中键值对格式转字典（后覆盖）".center(100, "-"))
+# print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
+# print(List_PO.listKeyValue2dict(['a , 3', 'b , 4'], ","))  # {'a': '3', 'b': '4'}
+# print(List_PO.listKeyValue2dict(['a : 1', 'b : 2', 'a : 133']))  # {'a': '133', 'b': '2'}  //如遇重复key则取后面的key值
+# print(List_PO.listKeyValue2dict(['a : 1', '123b456', 'c : 3']))  # {'a': '1', 'c': '3'}   ////忽略不符合键值对格式
+#
+# # print("1.7 列表转字符串".center(100, "-"))
+# print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
+#
+#
+"""[操作元素]"""
+
+# print("2.1 生成元素索引".center(100, "-"))
+# print(list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1)))
+
+# print("2.2 数字字符串与数字互相转换".center(100, "-"))
+# print(list(map(int,['1','2','3'])))  # [1, 2, 3]
+# print(list(map(str,[1,2,3])))  # ['1', '2', '3']
+# print(list(map(str,[123, "a"])))  # ['123', 'a']
+
+# print("2.3 列表分裂".center(100, "-"))
+# print(List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
+# print(List_PO.split([1, 2, 3, '测试', 4, 5, 6], '测试', 1))  # [4,5,6]
+# print(List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
+
+# print("2.4 列表分组".center(100, "-"))
+# print(List_PO.group(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
+# print(List_PO.group(['1', '2', '3', '4', '5', '6'], 3))  # [['1', '2', '3'], ['4', '5', '6']]
+# print(List_PO.group(['1', '2', '3', '4', '5', '6'], 5))  # [['1', '2', '3', '4', '5'], ['6']]  // 一个列表拆分成5个一组，不足5个元素可组成子列表。
+# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[0])
+# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[1])
+# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)) # [array(['1', '2'], dtype='<U1'), array(['3'], dtype='<U1'), array(['4'], dtype='<U1'), array(['5'], dtype='<U1'), array(['6'], dtype='<U1')]
+# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[0][1])  # 取0得['1', '2'] ，取1得 2
+# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[1])  # 取0得['1', '2'] ，取1得['3']
+
+# print("2.5 列表元素合成".center(100, "-"))
+# print(List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素合成一个元素
+# print(List_PO.merge(["a", "b", "c", "d"], 2))  # ['ab', 'cd']  //列表中每2个元素合成一个元素
+# print(List_PO.merge(["a", "b", "c", "d", "e", "f"], 4))  # ['abcd', 'ef']  //列表中每4个元素合成一个元素，其余不足4个元素合成一个元素
+# print(List_PO.merge(["a", "b", 123, "d", "e", "f"], 4))  # None  //列表元素必须是字符串，否则返回None
+#
+# print("2.6 两列表元素相加或连接".center(100, "-"))
 # list1 = [1, [111], "a", 0.01]
 # list2 = [2, [222], "b", 0.07 ,66]
 # list3 = [-25, [222], "b", -0.07]
 # list4 = [2, [222], "b", "111"]
-# print(
-#     List_PO.addTwoList([1, [111], "a", 0.01], [2, [222], "b", 0.07, 66]))  # [3, [111, 222], 'ab', 0.08]  //多余的元素被忽略
+# print(List_PO.joint([1, [111], "a", 0.01], [2, [222], "b", 0.07, 66]))  # [3, [111, 222], 'ab', 0.08]  //多余的元素被忽略
 # print(List_PO.addTwoList(list1, list3))  # [-24, [111, 222], 'ab', -0.060000000000000005]   //注意浮点数负数计算出现问题，未知
 # print(List_PO.addTwoList(list1, list4))  # None
 #
-# print("2.4 生成元素索引".center(100, "-"))
-# print(List_PO.setIndex(['Spring', 'Summer', 'Fall', 'Winter']))  #  [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]  //默认编号从0开始
-# print(List_PO.setIndex(['Spring', 'Summer', 'Fall', 'Winter'], 2))  #  [(2, 'Spring'), (3, 'Summer'), (4, 'Fall'), (5, 'Winter')]    //指定编号从2开始
-# for i, j in enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1):
-#     print(i, j)
-# # 1 Spring
-# # 2 Summer
-# # 3 Fall
-# # 4 Winter
-#
 
-#
-# print("2.5 打散列表".center(100, "-"))
-# print(
-#     List_PO.resolveList(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
-# print(List_PO.resolveList(['1', '2', '3', '4', '5', '6'], 3))  # [['1', '2', '3'], ['4', '5', '6']]
-# print(List_PO.resolveList(['1', '2', '3', '4', '5', '6'],
-#                           5))  # [['1', '2', '3', '4', '5'], ['6']]  // 一个列表拆分成5个一组，不足5个元素可组成子列表。
-#
-# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[0])
-# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[1])
-# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[0][1])
-# print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[1])
 
-# print("2.6 切片列表".center(100, "-"))
-# print(List_PO.sliceList([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
-# print(List_PO.sliceList([1, 2, 3, '测试', 4, 5, 6], '测试', 1))  # [4,5,6]
-# print(List_PO.sliceList([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
 
 """[比较]"""
 
@@ -224,12 +212,12 @@ a = [('YLJGDM', 'VARCHAR2'), ('GRDAID', 'VARCHAR2')]
 # # # # 600064    : 234jpo4j2oi34
 
 # 将整数转化成数字列表
-print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
-print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
-
-# 递归展开列表
-from iteration_utilities import deepflatten
-l = [[1,2,3],[4,[5],[6,7]],[8,[9,[10]]]]
-print(list(deepflatten(l, depth=3)))  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-print([i for sublist in [[1,2,3],[3]] for i in sublist])  # [1, 2, 3, 3]
+# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
+# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
+#
+# # 递归展开列表
+# from iteration_utilities import deepflatten
+# l = [[1,2,3],[4,[5],[6,7]],[8,[9,[10]]]]
+# print(list(deepflatten(l, depth=3)))  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+#
+# print([i for sublist in [[1,2,3],[3]] for i in sublist])  # [1, 2, 3, 3]

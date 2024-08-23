@@ -10,7 +10,7 @@
 1.1 字符串转列表
 1.2 字符串转元组
 1.3 字符串转字典
-1.4 字符串转换日期 str2date()
+1.4 字符串转换日期 formatDate()
 
 # todo 判断
 2.0 判断字符串是否为浮点数 isFloat()
@@ -68,7 +68,7 @@ class StrPO:
 
         return dict(eval(varStr))
 
-    def str2date(self, datestr):
+    def formatDate(self, datestr):
 
         """1.4 字符串转换成日期"""
 

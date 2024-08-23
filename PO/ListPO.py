@@ -6,32 +6,26 @@
 # *********************************************************************
 """
 todo：【转换】
-1.1 列表生成同值字典（fromkeys）
-    => dict.fromkeys(['a',5], 1) # {'a':1, 5:1}
-    => dict.fromkeys(['a', 5]) # {'a': None, 5: None}
-1.2 列表生成序列字典 print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
-    键值互转 {v:k for k:v in dict.items()}  # {1: 'a', 2: 'b', 3: 'c'} => # {'a':1, 'b':2, 'c':3}
-1.3 列表转字典（键值对,覆盖update）list2dictBySerial([key1, value1, key2, value2])  # {key1: value1, key2: value2}
-1.4 列表转字典（键值对格式,覆盖update）list2dictByKeyValue(['key1:value1', 'key2:value2']))  # {key1: value1, key2: value2}
-1.5 列表转字典（元组格式,覆盖update） print(dict([(1, 'a'), ('b', 2), ((1, 2), 444)]))  => {1: 'a', 'b': 2, (1, 2): 444}
-1.6 列表转字符串  return "".join(list(map(str, [1,'a'])))  => 1a
-1.7 两列表合成字典(覆盖update) print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
 
-todo：【类型转换】
-2.1 数字字符串与数字互相转换 interconversion([123]))  # ['123']
-    # print(List_PO.interconversion(['123'], "numeric"))  # [123]
+1.1 两列表合并字典（后覆盖） print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
+1.2 enumerate索引列表转字典 print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
+1.3 fromkeys列表多对一值转字典
+print(dict.fromkeys(['a', 5], 1))  # {'a':1, 5:1}
+print(dict.fromkeys(['a', 5, 'tt'], "100"))  # {'a': '100', 5: '100', 'tt': '100'}
+print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
+1.4 列表内两元组转字典（后覆盖） print(dict([('a', '123'), ('b', '456')]))  # {'a': '123', 'b': '456'}
+1.5 列表中配对转字典（后覆盖） print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
+1.6 列表中键值对格式转字典（后覆盖） print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
+1.7 列表转字符串 print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
 
-todo：【分离、拆分、合并与分开】
-2.1 列表数组分离   print(numpy.array_split([1, 2, 3, 4, 5], 2)) //元素奇数时，前多后少
-    print(numpy.array_split([1, 2, 3, 4, 5], 2)[0])  # [1 2 3]
-    print(numpy.array_split([1, 2, 3, 4, 5], 2)[1])  # [4 5]
-2.2 列表拆分 split(['1', '2', '3', '4', '5', '6'], 5))  # [['1', '2', '3', '4', '5'], ['6']]
-2.3 切片列表 sliceList([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
+todo：【操作元素】
 
-2.4 列表元素合并 merge(["a", "b", "c", "d"], 4))  # ['abcd']
-2.5 两列表元素相加或连接 joint([1, [111], "a", 0.01], [2, [222], "b", 0.07 , 66]))  # [3, [111, 222], 'ab', 0.08]
-2.6 生成元素索引 index(['Spring', 'Summer', 'Fall', 'Winter']))  #  [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]
-               index(['Spring', 'Summer', 'Fall', 'Winter'], 2))  #  [(2, 'Spring'), (3, 'Summer'), (4, 'Fall'), (5, 'Winter')]
+2.1 生成元素索引 list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1))
+2.2 数字字符串与数字互相转换 list(map(int,['1','2','3'])))  # [1, 2, 3]
+2.3 列表分裂 List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
+2.4 列表分组 List_PO.group(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
+2.5 列表元素合成 List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素合成一个元素
+2.6 两列表元素相加或连接 joint([1, [111], "a", 0.01], [2, [222], "b", 0.07 , 66]))  # [3, [111, 222], 'ab', 0.08]
 
 todo：【比较】
 3.1 比较两组列表，各自去掉交集元素 delIntersection(['张三', '王五', '老二'], ['张三', '老二', '王七']))  # (['王五'], ['王七'])
@@ -77,15 +71,18 @@ Str_PO = StrPO()
 
 
 class ListPO:
+
     def __init__(self):
         pass
 
     """[转换]"""
 
-    def list2dictBySerial(self, varList):
+    def listPair2dict(self, varList):
 
-        # 1.2 列表转字典之相邻元素键值对（update）
-        # list2dictBySerial([key1, value1, key2, value2])  # {key1: value1, key2: value2}
+        # 1.5 列表中配对转字典（覆盖update）
+        # print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
+        # print(List_PO.listPair2dict(["a", "1", "a", "2"]))  # {'a': '2'}   //如遇重复key则取后面的key值
+        # print(List_PO.listPair2dict(["a", "1", "b", "2", "c"]))  # {'a': '1', 'b': '2'}  //如果元素个数是奇数，则忽略最后一个元素
 
         dict4 = {}
         if len(varList) < 2:
@@ -99,65 +96,89 @@ class ListPO:
                 dict4.update({varList[i]: varList[i + 1]})
             return dict4
 
-    def list2dictByKeyValue(self, varList, varSign=":"):
+    def listKeyValue2dict(self, varList, varSign=":"):
 
-        # 1.3 列表转字典之键值对格式（覆盖update）
-        # list2dictByKeyValue(['key1:value1', 'key2:value2']))  # {key1: value1, key2: value2}
-        # print(List_PO.list2dictByKeyValue(['a:1', 'b:2']))  # {'a': '1', 'b': '2'}
-        # print(List_PO.list2dictByKeyValue(['a,3', 'b,4'], ","))  # {'a': '3', 'b': '4'}
-        # print(List_PO.list2dictByKeyValue(['a:1', 'b:2', 'a:133']))  # {'a': '133', 'b': '2'}  //转换后如果有重复的key，则后面的key替代前面的key
-        # print(List_PO.list2dictByKeyValue(['a:1', '123b456', 'c:3']))  # {'a': '1', 'c': '3'}   //不符合键值对格式的字符串被删除
+        # 1.6 列表中键值对格式转字典（覆盖update）
+        # print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
+        # print(List_PO.listKeyValue2dict(['a , 3', 'b , 4'], ","))  # {'a': '3', 'b': '4'}
+        # print(List_PO.listKeyValue2dict(['a : 1', 'b : 2', 'a : 133']))  # {'a': '133', 'b': '2'}  //如遇重复key则取后面的key值
+        # print(List_PO.listKeyValue2dict(['a : 1', '123b456', 'c : 3']))  # {'a': '1', 'c': '3'}   ////忽略不符合键值对格式
 
         dict3 = {}
         try:
             for item in varList:
                 if varSign in item:
                     keys = item.split(varSign)
-                    dict3.update({keys[0]: keys[1]})
+                    dict3.update({keys[0].strip(): keys[1].strip()})
             return dict3
         except:
             return None
 
-    """[变换]"""
 
+    """【操作元素】"""
 
-    def interconversion(self, varList, varMode="str"):
+    def split(self, varList, varElement, varMode):
 
-        # 2.1 数字字符串与数字互相转换
-        # 忽略非数字字符的转换
-        # print(List_PO.interconversion([123]))  # ['123']
-        # print(List_PO.interconversion([123], "str"))  # ['123']
-        # print(List_PO.interconversion(["a", 123.56, 0.12], "str"))  # ['a', '123.56', '0.12']
-        # print(List_PO.interconversion(['123'], "numeric"))  # [123]
-        # print(List_PO.interconversion(["a", "123", "555"], "numeric"))  # ['a', 123, 555]
-        # print(List_PO.interconversion([1, 3, '13', "一", 20], "numeric"))  # [1, 3, 13, '一', 20]
-        # print(List_PO.interconversion(["a", "0.123", "123.00", "56.0", "555.455678"], "numeric"))  # ['a', 0.123, 123.0, 56.0, 555.455678]
+        # 2.3 列表分裂
+        # print(List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
+        # print(List_PO.split([1, 2, 3, '测试', 4, 5, 6], '测试', 1))  # [4,5,6]
+        # print(List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
 
-        new_numbers = []
-        if varMode == "digit":
-            for i in range(len(varList)):
-                if Char_PO.isComplex((varList[i])):
-                    if str(varList[i]).isdigit():
-                        new_numbers.append(int(varList[i]))
-                    else:
-                        new_numbers.append(float(varList[i]))
-                else:
-                    new_numbers.append(varList[i])
-            return new_numbers
-        else:
-            return [str(i) for i in varList]
+        if varMode == 1:
+            list3 = []
+            a = ""
+            for i in varList:
+                if i == varElement:
+                    a = 1
+                if a == 1:
+                    list3.append(i)
+            list3.pop(0)
+            return list3
+        elif varMode == 0:
+            # 将列表中某个元素之前的元素组成一个新的列表， 如 [1,2,3,'审核信息',4,5,6] 变为 [1,2,3]
+            list4 = []
+            for i in varList:
+                if varElement == i:
+                    break
+                list4.append(i)
+            return list4
 
+    def group(self, varList, varNum):
+
+        # 2.4 列表分组
+        # print(List_PO.group(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
+        # print(List_PO.group(['1', '2', '3', '4', '5', '6'], 3))  # [['1', '2', '3'], ['4', '5', '6']]
+        # print(List_PO.group(['1', '2', '3', '4', '5', '6'], 5))  # [['1', '2', '3', '4', '5'], ['6']]  // 一个列表拆分成5个一组，不足5个元素可组成子列表。
+        # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[0])
+        # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[1])
+        # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)) # [array(['1', '2'], dtype='<U1'), array(['3'], dtype='<U1'), array(['4'], dtype='<U1'), array(['5'], dtype='<U1'), array(['6'], dtype='<U1')]
+        # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[0][1])  # 取0得['1', '2'] ，取1得 2
+        # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[1])  # 取0得['1', '2'] ，取1得['3']
+
+        try:
+            list_of_groups = zip(*(iter(varList),) * varNum)
+            end_list = [list(i) for i in list_of_groups]
+            count = len(varList) % varNum
+            end_list.append(varList[-count:]) if count != 0 else end_list
+            return end_list
+
+            # 方法2：通过切片可以一次append添加多个元素，如 list.append(varList[0:2]),即一条命令可以添加2个元素
+            # l_valueAll = []
+            # for i in range(0, len(varList), varNum):
+            #     l_valueAll.append(varList[i:i+varNum])
+            # return (l_valueAll)
+        except:
+            return None
 
     def merge(self, varList, varNum):
 
-        # 2.2 列表元素合并
+        # 2.5 列表元素合并
 
         # 列表元素必须是字符串，不支持数字或内嵌子列表。
-        # print(List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素链接在一起组成一个元素
-        # print(List_PO.merge(["a", "b", "c"], 4))  # ['abc']
-        # print(List_PO.merge(["a", "b", "c", "d", "e", "f"], 4))  # ['abcd', 'ef']
-        # print(List_PO.merge(["www.", "baidu.", "com"], len(["www.", "baidu.", "com"])))  # ['www.baidu.com']
-        # print(List_PO.merge(["a", "b", 123, "d", "e", "f"], 4))  # None  //元素必须是字符串，否则返回None
+        # print(List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素合成一个元素
+        # print(List_PO.merge(["a", "b", "c", "d"], 2))  # ['ab', 'cd']  //列表中每2个元素合成一个元素
+        # print(List_PO.merge(["a", "b", "c", "d", "e", "f"], 4))  # ['abcd', 'ef']  //列表中每4个元素合成一个元素，其余不足4个元素合成一个元素
+        # print(List_PO.merge(["a", "b", 123, "d", "e", "f"], 4))  # None  //列表元素必须是字符串，否则返回None
 
         list1 = []
         str1 = ""
@@ -182,69 +203,12 @@ class ListPO:
 
     def joint(self, varList1, varList2):
 
-        """2.3 两列表元素相加或连接
+        """2.6 两列表元素相加或连接
         将两个列表中的对应元素相加，并返回结果列表。
         相加结果列表。如果两个列表长度不一致或元素类型不一致，则返回None。
         """
         return [i + j for i, j in zip(varList1, varList2)]
 
-    
-    def index(self, varList, varStart=0):
-        
-        """
-        # 2.4 生成元素索引
-        默认编号从0开始，或指定从N开始
-        如：['Spring', 'Summer', 'Fall', 'Winter'] = > [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'),(3, 'Winter')]
-        """
-        return list(enumerate(varList, start=varStart))
-
-    
-    def split(self, varList, varNum):
-
-        # 2.5 列表元素打散
-        # print(List_PO.split(['1', '2', '3', '4', '5', '6'],2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
-        # print(List_PO.split(['1', '2', '3', '4', '5', '6'], 3))  # [['1', '2', '3'], ['4', '5', '6']]
-        # print(List_PO.split(['1', '2', '3', '4', '5', '6'],5))  # [['1', '2', '3', '4', '5'], ['6']]  // 一个列表拆分成5个一组，不足5个元素可组成子列表。
-        
-        try:
-            list_of_groups = zip(*(iter(varList),) * varNum)
-            end_list = [list(i) for i in list_of_groups]
-            count = len(varList) % varNum
-            end_list.append(varList[-count:]) if count != 0 else end_list
-            return end_list
-
-            # 方法2：通过切片可以一次append添加多个元素，如 list.append(varList[0:2]),即一条命令可以添加2个元素
-            # l_valueAll = []
-            # for i in range(0, len(varList), varNum):
-            #     l_valueAll.append(varList[i:i+varNum])
-            # return (l_valueAll)
-        except:
-            return None
-
-    
-    def sliceList(self, varList, varElement, varMode):
-        
-        # 2.6 切片列表
-        # 如：[1,2,3,'测试',4,5,6] ，获取测试之前的元素，或获取测试之后的元素。
-        
-        if varMode == 1:
-            list3 = []
-            a = ""
-            for i in varList:
-                if i == varElement:
-                    a = 1
-                if a == 1:
-                    list3.append(i)
-            list3.pop(0)
-            return list3
-        elif varMode == 0:
-            # 将列表中某个元素之前的元素组成一个新的列表， 如 [1,2,3,'审核信息',4,5,6] 变为 [1,2,3]
-            list4 = []
-            for i in varList:
-                if varElement == i:
-                    break
-                list4.append(i)
-            return list4
 
     """[比较]"""
 
