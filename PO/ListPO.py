@@ -6,7 +6,6 @@
 # *********************************************************************
 """
 todo：【转换】
-
 1.1 两列表合并字典（后覆盖） print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
 1.2 enumerate索引列表转字典 print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
 1.3 fromkeys列表多对一值转字典
@@ -17,56 +16,53 @@ print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
 1.5 列表中配对转字典（后覆盖） print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
 1.6 列表中键值对格式转字典（后覆盖） print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
 1.7 列表转字符串 print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
+1.8 整数转数字列表
+# print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
+# print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
 
 todo：【操作元素】
-
 2.1 生成元素索引 list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1))
 2.2 数字字符串与数字互相转换 list(map(int,['1','2','3'])))  # [1, 2, 3]
 2.3 列表分裂 List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
 2.4 列表分组 List_PO.group(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
 2.5 列表元素合成 List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素合成一个元素
 2.6 两列表元素相加或连接 joint([1, [111], "a", 0.01], [2, [222], "b", 0.07 , 66]))  # [3, [111, 222], 'ab', 0.08]
+2.7 随机获取列表元素 print(List_PO.getRandomOne(['111', 222, [5, 6, '888'], {"a": 1, 2: "test"}]))
+2.8 递归列表
+from iteration_utilities import deepflatten
+print(list(deepflatten([[1,2,3],[4,[5],[6,7]],[8,[9,[10]]]], depth=3)))  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  //多层递归
+print([i for sublist in [[1,2,3],[3]] for i in sublist])  # [1, 2, 3, 3]  # 一层递归
 
 todo：【比较】
-3.1 比较两组列表，各自去掉交集元素 delIntersection(['张三', '王五', '老二'], ['张三', '老二', '王七']))  # (['王五'], ['王七'])
-3.2 获取两表交集元素 getIntersection(['张三', '李四', '王五', '老二'], ['张三', '李四', '老二', '王七']))  # ['张三', '李四', '老二']
-3.3 保留左边差异数据 keepTheDifferenceOnTheLeft(['张三', '李四', '王五', '老二', 'test'], ['张三', '李四', '老二', '王七']))  # ['王五', 'test'] //返回list1中的哪些元素不在list2中，并以列表方式返回
-3.4 获取两表交集元素的索引号 getIntersectionIndex(['a', 'b', 'c', 'd'], ['a', 'k', 'c', 'z']))  # [1, 3]
+3.1 删除两列表交集元素 print(List_PO.delIntersection(['01', '02', '03'], ['02', '05']))  # (['01', '03'], ['05'])
+3.2 获取两列表相同元素 print(List_PO.getIntersection(['a', 'b', 'c', 'd'], ['b', 'c', 'kk', 'z']))  # ['b', 'c']
+3.3 获取两列表中在list1且不在list2的元素 print([x for x in [1,2,3] if x not in [1,5,6]])
+3.4 获取两列表相同元素的索引号 twoListGetSameIndex(['a', 'b', 'c', 'd'], ['a', 'k', 'c', 'z']))  # [1, 3]
 
 todo：【替换】
-4.1 替换元素一对多 rplsOne2More(["1", 2, "3", ":"], 2, ""))  # ['1', '', '3', ':']
-4.2 替换元素多对一 rplsMore2one(["1", 2, "3", ":"], [":", 2], 7))  # ['1', 7, '3', 7]
-4.3 替换元素多对多 rplsMore2more(["1", 2, "3", ":"], {":": 12, 2: 77}))  # ['1', 77, '3', 12]
-4.4 替换元素首字母大写且其余小写 rplsCaptain(['adam', 'LISA', 'barT'])  # ['Adam', 'Lisa', 'Bart']
+4.1 批量替换1个到列表 print(List_PO.replaceOne(["1", 2, "3", "2", 2], 2, ""))  # ['1', '', '3', '2', '']
+4.2 批量替换N个到列表 print(List_PO.replaceMore(["1", 2, "3", ":"], [":", 2], 7))  # ['1', 7, '3', 7]
+4.3 批量替换N个到列表2 print(List_PO.replaceMore2(["1", 2, "3", ":"], {":": 12, 2: 77}))  # ['1', 77, '3', 12]
+4.4 替换元素首字母大写且其余小写 replaceCapital(['adam', 'LISA', 'barT'])  # ['Adam', 'Lisa', 'Bart']
 
 todo：【删除】
-5.1 删除元素左右空格 strip(['   glass', 'apple   ', '  greenleaf  ']))  # ['glass', 'apple', 'greenleaf']
-5.2 删除特殊字符（\n\t\r\xa0等）delSpecialChar(['0\n编号', '1\n既往史', 444, '2\n既\r往    史\t\n逻\xa0辑', 'abc'], "abc", ":"))   #  ['0编号规则', '1既往史记录逻辑错误', '444', '2既往史逻辑错误', ':']
-5.3 删除列表中指定的（或模糊的）元素 dels(['0', "错误", '1', 222, "错误"], "错误", "-like"))  # ['0', '1', 222]
-5.4 删除列表中重复的元素 delDuplicateElement([2, "a", 1, "\n", "\n", 13, "", "test", 6, 2, "", "", 1, "a"]))  # [13, 'test', 6]
-5.5 列表元素去重 deduplication([2, 1, 13, 6, 2, 1]))  # [2, 1, 13, 6]
-5.6 删除第N个之后元素。如列表有10个元素，只要前4个，即删除从第五个开始到最后的元素。
+5.1 删除元素左右空格 print(List_PO.strip(['   glass', 'apple   ', '  greenleaf  ']))  # ['glass', 'apple', 'greenleaf']
+5.2 删除特殊字符（\n\t\r\xa0等）print(List_PO.delSpecialChar(['0\n编号', '1\n既往史', 444, '2\n既\r往    史\t\n逻\xa0辑', 'abc']))   #  ['0编号', '1既往史', '444', '2既往史逻辑', 'abc']
+5.3 删除指定的或模糊的元素 print(List_PO.dels(['0', "错误", '1', 123, "错误"], "错误"))  # ['0', '1', 123]  // 删除“错误”元素
+5.4 删除重复的元素 print(List_PO.delDuplicateElement([2, "a", 1, "\n", "\n", 13, "", "test", 6, 2, "", "", 1, "a"]))  # [13, 'test', 6]
+5.5 列表元素去重 print(List_PO.deduplication([2, 1, 13, 6, 2, 1]))  # [2, 1, 13, 6]
 
-6 获取重复的元素数量 getDuplicationCount()
+todo：【统计】
+6 获取重复的元素数量 print(List_PO.getDuplicationCount([2, 1, 13, 6, 2, 1]))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
 
-7 随机获取列表元素 getRandomOne()
-
-8 对齐列表的键值对格式 alignKeyValue(['key1,value1', 'key1,value1'], ","))
-
-# todo 应用
-整数转列表
-
-
+todo：【其他】
+7 对齐列表的键值对格式 alignKeyValue(['key1,value1', 'key1,value1'], ","))
 """
 
-import numpy
+
 from random import choice
 from collections import Counter
-from PO.CharPO import *
-
-Char_PO = CharPO()
 from PO.StrPO import *
-
 Str_PO = StrPO()
 
 
@@ -222,21 +218,11 @@ class ListPO:
             y for y in (varList2) if y not in a
         ]  # 两个列表中的不同元素
 
-    
     def getIntersection(self, varList1, varList2):
         
         # 3.2 获取两表交集元素
         
         return [x for x in varList1 if x in varList2]  # 两个列表中都存在
-
-    
-    def keepTheDifferenceOnTheLeft(self, varList1, varList2):
-
-        # 3.3 保留左边差异数据
-        
-        return [x for x in varList1 if x not in varList2]
-
-
     
     def getIntersectionIndex(self, varList1, varList2):
 
@@ -258,20 +244,20 @@ class ListPO:
         else:
             return "error, 两列表元素数量不一致"
 
+
     """[替换]"""
 
 
-    def rplsOne2More(self, varList, varSource, varDest):
+    def replaceOne(self, varList, varSource, varDest):
 
         # 4.1 一对多替换原列表中元素
         
         return [varDest if i == varSource else i for i in varList]
 
 
+    def replaceMore(self, varList, varSourceList, varDest):
 
-    def rplsMore2one(self, varList, varSourceList, varDest):
-
-        # 4.2 替多对一替换原列表中元素
+        # 4.2 批量替换N个到列表
         # 多对一，多个元素被一个元素替换，影响原列表。
         # print(List_PO.listReplaceElements(["1", 2, "3", ":"], [":", 2], 7))  # ['1', 7, '3', 7]
 
@@ -279,15 +265,15 @@ class ListPO:
 
 
 
-    def rplsMore2more(self, varList, varDict):
+    def replaceMore2(self, varList, varDict):
 
-        # 4.3 多对多替换原列表中元素
+        # 4.3 批量替换N个到列表2
 
         return [varDict[i] if i in varDict else i for i in varList]
 
 
 
-    def rplsCaptain(self, varList):
+    def replaceCapital(self, varList):
 
         # 4.4 替换元素首字母大写且其余小写
         
@@ -430,156 +416,3 @@ class ListPO:
                 + "'"
             )
 
-
-if __name__ == "__main__":
-
-    # todo main
-    List_PO = ListPO()
-
-    """[转换]"""
-
-    a = [('YLJGDM', 'VARCHAR2'), ('GRDAID', 'VARCHAR2')]
-    # print(dict(a))  # {'YLJGDM': 'VARCHAR2', 'GRDAID': 'VARCHAR2'}
-
-
-    # print("1.2 列表转字典之相邻元素键值对（覆盖update）".center(100, "-"))
-    # print(List_PO.list2dictBySerial(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
-    # print(List_PO.list2dictBySerial(["a", "1", "a", "2"]))  # {'a': '2'}   //如遇到重复key，则取后面的key值
-    # print(List_PO.list2dictBySerial(["a", "1", "b", "2", "c"]))  # {'a': '1', 'b': '2'}  //如果元素个数是奇数，则忽略最后一个元素
-    #
-    # print("1.3 列表转字典之键值对格式（覆盖update）".center(100, "-"))
-    # print(List_PO.list2dictByKeyValue(['a:1', 'b:2']))  # {'a': '1', 'b': '2'}
-    # print(List_PO.list2dictByKeyValue(['a,3', 'b,4'], ","))  # {'a': '3', 'b': '4'}
-    # print(List_PO.list2dictByKeyValue(['a:1', 'b:2', 'a:133']))  # {'a': '133', 'b': '2'}  //转换后如果有重复的key，则后面的key替代前面的key
-    # print(List_PO.list2dictByKeyValue(['a:1', '123b456', 'c:3']))  # {'a': '1', 'c': '3'}   //不符合键值对格式的字符串被删除
-    #
-
-    # print("1.5 覆盖两列表转字典".center(100, "-"))
-    # print(dict(zip([1, 2], ['skducn', 'yoyo'])))  # {1: 'skducn', 2: 'yoyo'}
-    # print(dict(zip([1, 1], ['skducn', 'yoyo'])))  # {1: 'yoyo'}
-    #
-
-    """[变换]"""
-
-    # print("2.1 数字字符串与数字互相转换".center(100, "-"))
-    # print(List_PO.interconversion([123]))  # ['123']
-    # print(List_PO.interconversion([123], "str"))  # ['123']
-    # print(List_PO.interconversion(["a", 123.56, 0.12], "str"))  # ['a', '123.56', '0.12']
-    # print(List_PO.interconversion(['123'], "numeric"))  # [123]
-    # print(List_PO.interconversion(["a", "123", "555"], "numeric"))  # ['a', 123, 555]
-    # print(List_PO.interconversion([1, 3, '13', "一", 20], "numeric"))  # [1, 3, 13, '一', 20]
-    # print(List_PO.interconversion(["a", "0.123", "123.00", "56.0", "555.455678"], "numeric"))  # ['a', 0.123, 123.0, 56.0, 555.455678]
-    #
-    # # print("2.2 列表元素合并".center(100, "-"))
-    # print(List_PO.merge(["a", "b", "c", "d"], 4))  # ['abcd']   //列表中每4个元素链接在一起组成一个元素
-    # print(List_PO.merge(["a", "b", "c"], 4))  # ['abc']
-    # print(List_PO.merge(["a", "b", "c", "d", "e", "f"], 4))  # ['abcd', 'ef']
-    # print(List_PO.merge(["a", "b", 123, "d", "e", "f"], 4))  # None  //元素必须是字符串，否则返回None
-    #
-    # print("2.3 列表元素相加或连接".center(100, "-"))
-    # list1 = [1, [111], "a", 0.01]
-    # list3 = [-25, [222], "b", -0.07]
-    # print(List_PO.joint([1, [111], "a", 0.01], [2, [222], "b", 0.07, 66]))  # [3, [111, 222], 'ab', 0.08]  //多余的元素被忽略
-    # print(List_PO.joint(list1, list3))  # [-24, [111, 222], 'ab', -0.060000000000000005]   //注意浮点数负数计算出现问题，未知
-    #
-    # print("2.4 生成元素索引".center(100, "-"))
-    # print(List_PO.index(['Spring', 'Summer', 'Fall', 'Winter']))  #  [(0, 'Spring'), (1, 'Summer'), (2, 'Fall'), (3, 'Winter')]  //默认编号从0开始
-    # print(List_PO.index(['Spring', 'Summer', 'Fall', 'Winter'], 2))  #  [(2, 'Spring'), (3, 'Summer'), (4, 'Fall'), (5, 'Winter')]    //指定编号从2开始
-    # for i, j in enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1):
-    #     print(i, j)
-    # # 1 Spring
-    # # 2 Summer
-    # # 3 Fall
-    # # 4 Winter
-    #
-
-    #
-    # print("2.5 列表元素拆分".center(100, "-"))
-    print(List_PO.split(['1', '2', '3', '4', '5', '6'], 2))  # [['1', '2'], ['3', '4'], ['5', '6']]  // 一个列表拆分成2个一组。
-    # print(List_PO.split(['1', '2', '3', '4', '5', '6'], 3))  # [['1', '2', '3'], ['4', '5', '6']]
-    # print(List_PO.split(['1', '2', '3', '4', '5', '6'],
-    #                           5))  # [['1', '2', '3', '4', '5'], ['6']]  // 一个列表拆分成5个一组，不足5个元素可组成子列表。
-    #
-    # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[0])
-    # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 2)[1])
-    # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[0][1])
-    # print(numpy.array_split(['1', '2', '3', '4', '5', '6'], 5)[1])
-
-    # print("2.6 切片列表".center(100, "-"))
-    # print(List_PO.sliceList([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
-    # print(List_PO.sliceList([1, 2, 3, '测试', 4, 5, 6], '测试', 1))  # [4,5,6]
-    # print(List_PO.sliceList([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
-
-    """[比较]"""
-
-    # print("3.1 比较两组列表，各自去掉交集元素".center(100, "-"))
-    # print(List_PO.delIntersection(['01', '02', '03'], ['02', '05']))  # (['01', '03'], ['05'])
-    # print(List_PO.delIntersection(['张三', '12', '33'], ['张三', '12']))  # (['33'], [])
-    # #
-    # print("3.2 获取两表交集元素".center(100, "-"))
-    # print(List_PO.getIntersection(['1', '2', '3', '4'], ['3', '4', '5', '6']))  # ['3', '4']
-    # #
-    # print("3.3 保留左边差异数据".center(100, "-"))
-    # print(List_PO.keepTheDifferenceOnTheLeft(['01', '02', '03'], ['01',"03"]))  # ['02'] //返回list1中的哪些元素不在list2中，并以列表方式返回
-    # #
-    # print("3.4 获取交集元素的索引号".center(100, "-"))
-    # print(List_PO.getIntersectionIndex(['a', 'b', 'c', 'd'], ['a', 'k', 'c', 'z']))  # [1, 3]
-
-    """[替换]"""
-
-    # print("4.1 一对多替换原列表中元素".center(100, "-"))
-    # print(List_PO.rplsOne2More(["1", 2, "3", "2", 2], 2, ""))  # ['1', '', '3', '2', '']
-    # print(List_PO.rplsOne2More(["1", 2, "3", ":"], "3", 88))  # ['1', 2, 88, ':']
-    # print(List_PO.rplsOne2More(["1", 2, "3", 2, 2, 2], 2, "j"))  # ['1', 'j', '3', 'j', 'j', 'j']  //把所有2替换成j
-
-    # print("4.2 替换元素多对一".center(100, "-"))
-    # print(List_PO.rplsMore2one(["1", 2, "3", ":"], [":", 2], 7))  # ['1', 7, '3', 7]
-    # print(List_PO.rplsMore2one(["1", 2, "3", ":"], [":", "2"], 7))  # ['1', 2, '3', 7]  //原列表中没有找到“2”所以不做替换。
-    #
-    # print("4.3 替换元素多对多".center(100, "-"))
-    # print(List_PO.rplsMore2more(["1", 2, "3", ":"], {":": 12, 2: 77}))  # ['1', 77, '3', 12]
-    # print(List_PO.rplsMore2more(["1", 2, "3", ":"], {":": 12, 1222: 77}))  # ['1', 2, '3', 12]   //如果某个key不存在，则忽略。
-
-    # print("4.4 替换元素首字母大写且其余小写".center(100, "-"))
-    # print(List_PO.rplsCaptain(['adam', 'LISA', 'barT']))  # ['Adam', 'Lisa', 'Bart']
-
-    """[删除]"""
-
-    # print("5.1 删除元素左右空格".center(100, "-"))
-    # print(List_PO.strip(['   glass', 'apple   ', '  greenleaf  ']))  # ['glass', 'apple', 'greenleaf']
-    #
-    # print("5.2 删除特殊字符".center(100, "-"))
-    # print(List_PO.delSpecialChar(['0\n编号', '1\n既往史', '2\n既\r往       史\t\n逻\xa0辑']))   #  ['0编号', '1既往史', '2既往史逻辑']
-    # print(List_PO.delSpecialChar(['\n\t\t\tCHF\xa0\r\n\r\n  \t64.90', '\n\t\tCHF\xa0\r\n\t58.40','\n\t\tCHF\xa0\r\t48.70']))  # ['CHF64.90', 'CHF58.40', 'CHF48.70']
-    #
-    # print("5.3 删除指定的（或模糊的）元素".center(100, "-"))
-    # print(List_PO.dels(['0', "错误", '1', 123, "错误"], "错误"))  # ['0', '1', 123]  // 删除“错误”元素
-    # print(List_PO.dels(['0', "错误", '1', 22, "错误内容"], "错误", "-like"))  # ['0', '1', 22]  //关键字vague表示模糊删除，删除包含“错误”的元素。
-    # print(List_PO.dels(['首页', '', '', '', '', '', '', '', '建档耗时统计', '档案更新监控'], ""))  # ['首页', '建档耗时统计', '档案更新监控']
-    #
-    # print("5.4 删除重复的元素".center(100, "-"))
-    # print(List_PO.delDuplicateElement([2, "a", 1, "\n", "\n", 13, "", "test", 6, 2, "", "", 1, "a"]))  # [13, 'test', 6]
-    # #
-    # # print("5.5 列表去重".center(100, "-"))
-    # print(List_PO.deduplication([2, 1, 13, 6, 2, 1]))  # [2, 1, 13, 6]
-    # #
-    # #
-    # print("6 获取重复的元素数量".center(100, "-"))
-    # print(List_PO.getDuplicationCount([2, 1, 13, 6, 2, 1]))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
-    # print(List_PO.getDuplicationCount(['a', 'b', 'c', 'a']))  # [('a', 2), ('b', 1), ('c', 1)]
-    #
-    #
-    # print("7 随机获取一个元素".center(100, "-"))
-    # print(List_PO.getRandomOne(['111', 222, [5, 6, '888'], {"a": 1, 2: "test"}]))
-    #
-    #
-    # print("8 对齐列表的键值对格式".center(100, "-"))
-    # list11 = List_PO.alignKeyValue(
-    #     ['1234567890,john', '123456,666', '123,baibai', '600065,', '600064,234j2po4j2oi34'], ",")
-    # for i in range(len(list11)):
-    #     print(list11[i])
-    # # # # 1234567890: john
-    # # # # 123456    : 666
-    # # # # 123       : baibai
-    # # # # 600065    :
-    # # # # 600064    : 234jpo4j2oi34
