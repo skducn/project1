@@ -4,7 +4,7 @@
 # Date       : 2020-3-19
 # Description: numpy (Numerical Python) 高性能科学计算和数据分析的基础包
 # NumPy 是一个运行速度非常快的数学库，部分功能如下：
-# ndarray（N-dimensional array），一个具有矢量算术运算和复杂广播能力的快速且节省 空间的多维数组
+# ndarray（N-dimensional array），一个具有矢量算术运算和复杂广播能力的快速且节省空间的多维数组
 # 用于对整组数据进行快速运算的标准数学函数
 # 用于读写磁盘数据的工具以及用于操作内存映射文件的工具
 # 线性代数、随机数生成以及傅里叶变换功能。
@@ -15,7 +15,7 @@
 # 常用的数组算法，如排序、唯一化、集合运算等。
 # 高效的描述统计和数据聚合/摘要运算。
 # 用于异构数据集的合并/连接运算的数据对齐和关系型数据运算。
-# 将条件逻辑表述为数组表达式(而不是带有if-elif-else分支的循 环)。
+# 将条件逻辑表述为数组表达式(而不是带有if-elif-else分支的循环)。
 # 数据的分组运算(聚合、转换、函数应用等)。
 
 # NumPy 通常与 SciPy（Scientific Python）和 Matplotlib（绘图库）一起使用， 这种组合广泛用于替代 MatLab，是一个强大的科学计算环境，有助于我们通过 Python 学习数据科学或者机器学习。
@@ -40,27 +40,129 @@ import pandas as pd
 import sys
 
 # ndarray是一个通用的同构数据多维容器
-# 创建ndarray
-data1 = [6, 7.5, 8, 0, 1]
-arr1 = np.array(data1)
-print(arr1)  # [6.  7.5 8.  0.  1. ]
-print(arr1.shape)  # (5,)   // 维度大小的元组
-print(arr1.dtype)  # flat64  //数据类型的对象
+# 1、ndarray的本质是：对象
+# 2、ndarray是numpy中的数据结构（叫做：n维数组），是同构数据多维容器，所有元素必须是相同类型
+# 3、面向数组的编程和思维方式：用简洁的数组表达式代替循环写法，通常叫做 --‘矢量化’
 
-# 嵌套序列
-data2 = [[1, 2, 3, 4], [5, 6, 7, 8]]
-arr2 = np.array(data2)
-print(arr2)
-# [[1 2 3 4]
-#  [5 6 7 8]]
-print(arr2.dtype)  # int64
-print(arr2.ndim)  # 2  // 二维数组
+# 创建ndarray对象
+# 3种方式： （1）从python的基础数据对象转化； （2）通过numpy内置函数生成 ； （3）从硬盘（文件）中直接读取
 
+# # 方法1：从python的基础数据对象转化， 直接从list对象创建
+# print(np.array([6, 7.5, 8, 0, 1])) # [6.  7.5 8.  0.  1. ]
+# print(np.array([6, 7.5, 8, 0, 1], dtype=np.int64))  # [6 7 8 0 1]   // 创建时直接转换数据类型
+# print(np.array([6, 7.5, 8, 0, 1]).astype(np.int64))  # [6 7 8 0 1]   // 创建后，通过内置的astype() 函数，转换数据类型
+#
+# # 嵌套序列
+# data2 = [[1, 2, 3, 4], [5, 6, 7, 8]]
+# arr2 = np.array(data2)
+# print(arr2)
+# # [[1 2 3 4]
+# #  [5 6 7 8]]
+# print(arr2.dtype)  # int64
+# print(arr2.ndim)  # 2  // 二维数组
+# print(arr2.shape)  # (2, 4)
+
+a1 = np.array([1,2,3,4,5])
+a2 = np.array([0,1,2,3,4,5])
+a3 = np.array([0, False, 0])
+a4 = np.array([[1, 20, 30, 40], [5, 6, 7, 88]])
+
+# ndarrya.ptp() 返回数组的最大值-最小值  或者 某一个轴的最大值-最小值
+print(a1.ptp(axis=None,out=None))  # 4
+print(a4.ptp(axis=None,out=None))  # 87
+print(a4.ptp(axis=1,out=None))  # [39 83]
+print(a4.ptp(axis=0,out=None))  # [ 4 14 23 48]
+
+# ndarry.clip() 小于a_min的替换成a_min值；大于a_max的替换成a_max值
+a_min = 21
+a_max = 66
+print(a4.clip(a_min, a_max,out=None))
+# [[21 21 30 40]
+#  [21 21 21 66]]
+
+# ndarray.all() 如果所有元素都为真，那么返回真；否则，返回假
+print(a1.all()) # True
+print(a2.all())  # False
+
+# ndarray.any() #如果所有元素有任何一个真，则返回真
+print(a1.any()) # True
+print(a3.any())  # False
+
+# ndarray.swapaxes(axis1,axis2)  # 交换两个轴的元素，  轴用数字表示，0,1,2......
+a4 = np.array([[1, 20, 30, 40], [5, 6, 7, 88]])
+print(a4.swapaxes(0,1))  # print(a4.T)
+# [[ 1  5]
+#  [20  6]
+#  [30  7]
+#  [40 88]]
+
+# 下面为改变数组维度和大小的方法
+print(a4.reshape(4,2))
+# [[ 1 20]
+#  [30 40]
+#  [ 5  6]
+#  [ 7 88]]
+print(a4.reshape(1,8))  # [[ 1 20 30 40  5  6  7 88]]
+
+# ndarray.flatten() # 将原矩阵转换为一维数组
+print(a4.flatten())  # [ 1 20 30 40  5  6  7 88]   //观察reshape(1,8) 它任然是二维数组
+
+# ndarray.tolist()  #  将数组转化为列表
+print(a4.tolist())  # [[1, 20, 30, 40], [5, 6, 7, 88]]
+print(a4.tolist()[1][2])  # 7
+
+# ndarray.take(indices,axis=None,out = None,mode = 'raise') # 获得数组的指定索引的数据
+print(a4.take([0,3],axis=1,out = None,mode = 'raise'))
+# [[ 1 40]
+#  [ 5 88]]
+
+
+print("-------------------------------")
+# 随机生成3*4 12个数字
+a = np.random.randint(12, size=(3,4))
+print(a)
+# [[11 11  5  9]
+#  [10  7 10  7]
+#  [ 9  5 10  2]]
+
+# 获取第七个元素
+print(a.item(7))
+
+# 修改第七个元素
+a.itemset(7,99)
+print(a)
+
+# 转list
+print(a.tolist())
+
+# 构建一个包含ndarray的原始字节数据的字节字符串
+print(a.tobytes())
+
+a.fill(9)
+print(a)
+# [[9 9 9 9]
+#  [9 9 9 9]
+#  [9 9 9 9]]
+
+
+
+# 方法2：通过numpy内置函数生成
+# 2.1 array 转换输入数据到一个ndarray，可设置dtype，默认拷贝输入数据。（如上方法1）
+# 2.2 asarray 转换输入为一个ndarray，当输入已经是ndarray时就不拷贝。
+# 2.2 arange 类似range函数，单不返回列表而是一个ndarray
+# 2。3 ones、ones_like 根据shape和dtype产生一个全1的数组，asarray()根据输入数据类型返回一个全1的数组。
+# 2.3 zeros、zeros_like 根据shape和dtype产生一个全0的数组，asarray()根据输入数据类型返回一个全0的数组。
+# 2.4 empty、empty_like 根据shape和dtype产生一个随机的数组，asarray()根据输入数据类型返回一个随机的数组。
+# 2.5 full、full_like 根据shape和dtype产生一个全指定值的数组，asarray()根据输入数据类型返回一个全指定值的数组。
 
 
 
 
 sys.exit(0)
+
+
+
+
 
 
 #
