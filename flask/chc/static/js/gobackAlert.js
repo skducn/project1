@@ -1,7 +1,7 @@
 //<!-- 返回首页 -->
 
 function goBack() {
-window.history.back(); // 或者使用 window.history.go(-1);
+window.history.back(); // 或者使用 window.history.go(-1)
 return false; // 阻止表单提交
 }
 function goHome() {window.location.href = '/';}

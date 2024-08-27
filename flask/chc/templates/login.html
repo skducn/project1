@@ -1,166 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>CHC测试结果</title>
+<title>CHC规则</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
 <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-
-<!--浮动锚点-->
-<script src="{{ url_for('static', filename='js/js.js') }}"></script>
-
-<script src="{{ url_for('static', filename='js/chc.js') }}"></script>
-<script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
-
-
-
 
 </head>
 <body>
 
-<!-- 锚点 -->
-<div id="loutinav">
-<ul>
-<li class="active"><span>&nbsp;&nbsp;测试结果</span> </li>
-<li><span>&nbsp;&nbsp;编辑规则参数</span> </li>
-<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
-<li><span><button onclick="goBack()" >&nbsp;&nbsp;返回首页</button></span></li>
 
-
-</ul>
-</div>
 
 
 <section id="contact" class="av[100px] a1M">
 
 <div id="main">
-<div class="louti"></div>
-
-<!-- CHC测试结果 -->
+    <div class="louti"></div>
 
 <div class="aJ[770px] a2f a4t a4d ae a0 dark:a1 a2d wow fadeInUp" data-wow-delay=".3s">
 <div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w">
 
-<div class="a6 a1p ac"><div class="a5 af"><div class="aJ[710px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h2 class="a1X a3q sm:a2_ a1j dark:a1k a28">测试结果</h2>
-    <p class="a25 aR aT"><a href="https://docs.qq.com/doc/DYktZSGxrd01kUEp4?_t=1723704134963&u=0ca68067b0d749f28acf0587e58d23a8" target="_blank">使用文档v1.2</a></p>
-</div></div></div>
+
+    <!-- 登录 -->
+
+    <div class="item" id="item1"></div>
+    <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
+        <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">登录</h3>
+    </div></div></div>
 
 
-{% if output_testRule %}
-    {% if '[OK]' in output_testRule['result']['result'] %}
-        <label for class="al a25 aR a1j dark:a1k a2j">状态:</label>
-        <pre1> {{output_testRule['result']['result']}}</pre1> <br><br>
+    <form action="{{ url_for('login')}}" method="post">
+    <div class="a6 a1K ac">
 
-        <div class="a6 a1K ac">
-    <div class="a5 af"><div class="a2g">
-        <p class="a25 aR aT">
-        <button onclick="goHome()" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">返回首页</button>
-        </p>
+    <div class="a5 md:a2u/2 af"><div class="a3u">
+        <label for class="al a25 aR a1j dark:a1k a2j">账号</label>
+        <input type="text" name="username" maxlength="22" id="cacu_value" placeholder="请输入" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
     </div></div>
-</div>
 
-    {% else %}
-        <label for class="al a25 aR a1j dark:a1k a2j">状态:</label>
-        <pre1> {{output_testRule['result']['result']}}</pre1> <br><br>
-        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-        <pre1> {{output_testRule['result']['step']}} </pre1>
-        <label for class="al a25 aR a1j dark:a1k a2j">规则编码:</label>
-        <pre1> {{output_testRule['result']['rule']}}</pre1> <br><br>
-        <label for class="al a25 aR a1j dark:a1k a2j">规则参数:</label>
-        <pre1> {{output_testRule['result']['ruleParam']}}</pre1> <br><br>
+    <div class="a5 md:a2u/2 af"><div class="a3u">
+        <label for class="al a25 aR a1j dark:a1k a2j">密码</label>
+        <input type="password" name="password" maxlength="22" id="cacu_value" placeholder="请输入" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+    </div></div>
 
+    <div class="a5 af"><div class="a2g">
+        <input type="submit" value="提交" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u" />
+        <br><br>
+    </div></div>
 
-
-
-{% if '[OK]' not in output_testRule['result'] %}
-<div class="louti"></div>
-
-<!-- 编辑规则参数 -->
-
-<br>
-<hr class="separator">
-<br>
-
-<div class="a6 a1p ac">
-<div class="a5 af">
-<div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">编辑规则参数</h3>
-<p class="a25 aR aT">可修改规则编码或规则参数</p>
-</div>
-</div>
-</div>
-
-<form action="{{ url_for('debugParam')}}" method="post">
-<div class="a6 a1K ac">
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-<input type="text" readonly name="ruleName" value="{{ output_testRule['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div>
-</div>
-
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">id</label>
-<input type="text" readonly name="id" value="{{ output_testRule['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div>
-</div>
-
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">规则编码</label>
-{#<input type="text" name="rule" maxlength="10" id="cacu_value" placeholder="请输入rule" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
-    <select name="ruleCode" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-<option value="{{ output_testRule['ruleCode'] }}" selected>{{ output_testRule['ruleCode'] }}</option>
-{% for s in debugRuleParam_testRule[1:] %}
-    <option value="{{s}}">{{s}}</option>
-{% endfor %}
-</select>
-</div>
-</div>
-
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">规则参数*</label>
-<input type="text" name="ruleParam" maxlength="100" id="cacu_value" placeholder="请输入ruleParam" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div>
-</div>
-
-
-<div class="a5 af"><div class="a2g">
-<button class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">提交</button>
-</div></div>
-</div>
-</form>
-
-    <br>
-<!-- loading... -->
-<div id="loading" style="display:none;">
-<div class="a5 af">
-<div class="aJ[510px] a2f a2g a3p wow fadeInUp" data-wow-delay=".2s">
-<div class="a25 aR aT">执行中，请耐心等待...</div>
-</div>
-</div>
-</div>
-{% endif %}
-
-
-
-    {%endif%}
-{% elif error %}
-    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
+    {% if output_login %}
+    <pre>{{ output_login }}</pre>
+    {% elif error %}
+    <h2>Error:</h2>
     <pre>{{ error }}</pre>
-{% endif %}
-<br>
+    {% endif %}
+    <br>
+
+    </div>
+    </form>
 
 
 
+
+<!-- 两球 -->
 
 <div>
 <span class="ao a2K a4z a2i">
@@ -239,12 +144,14 @@
 </span>
 </div>
 
+</div>
+</div>
+</div>
 
-</div>
-</div>
-
-</div>
 </section>
+
+
+
 
 
 </body>

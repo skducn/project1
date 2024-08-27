@@ -19,6 +19,8 @@
 
 # # 局域网ip`
 # /Users/linghuchong/miniconda3/envs/py308/bin/python -m flask run --host=0.0.0.0 --port=5001
+
+# https://max.book118.com/html/2024/0712/7005163005006133.shtm  flask用户认证与权限管理
 #***************************************************************
 
 
@@ -34,6 +36,11 @@ from sqlalchemy import create_engine
 # from sqlalchemy.orm import sessionmaker
 from apscheduler.schedulers.background import BackgroundScheduler
 
+# from flask_login import LoginManager
+# from flask_login import UserMixin
+# from flask_login import login_user, logout_user, current_user
+from flask import request
+
 sys.path.append(os.getcwd())
 from PO.TimePO import *
 Time_PO = TimePO()
@@ -44,12 +51,14 @@ app = Flask(__name__)
 # app.config.from_object(settings)  # 加载配置文件
 # print(app.config)
 
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pymssql://sa:Zy_123456789@192.168.0.234:1433/CHC'
+# db = SQLAlchemy(app)
 
+# 数据库
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
 d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu", '儿童健康干预': "a_ertongjiankangganyu"}
 l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预']
-
 # 获取测试规则
 cursor.execute("select distinct [rule] from a_ceshiguize")
 l_t_rows = cursor.fetchall()
@@ -58,6 +67,66 @@ l_testRule = []
 for i in l_t_rows:
     l_testRule.append(i[0])
 
+
+# 登录
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# app.secret_key = '12345678900'
+# users = {"jinhao":{'password': 'jinhao123'},"chenxiaodong":{'password': '123456'}, "shuyangyang":{'password': '666666'}}
+
+# class User(UserMixin):
+#     def __init__(self, id):
+#         self.id = id
+#
+# @login_manager.user_loader
+# def load_user(user_id):
+#     if user_id in users:
+#         return User(user_id)
+#     return None
+
+@app.route('/')
+def index():
+    # todo 获取访问者ip
+    # ip_address = request.remote_addr
+    # print(ip_address)
+    # ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    # print(ip_address)
+    # if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+    #     print(request.environ['REMOTE_ADDR'])
+    # else:
+    #     print(request.environ['HTTP_X_FORWARDED_FOR'])  # if behind a proxy
+    # client_ip = request.headers.get('X-Forwarded-For', None)
+    # print(client_ip)
+    # return render_template('login.html')
+    return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
+
+
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#         print(username,password)
+#         if username in users and users[username]['password'] == password:
+#             user = User(username)
+#             login_user(user)
+#             # return redirect(url_for('protected'))
+#             return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
+#         else:
+#             return render_template('login.html', output_login='error，账号或密码有误！')
+#
+#             # return "Invalid username or password"
+#     return render_template('login.html')
+
+# @app.route('/protected')
+# # @login_required
+# def protected():
+#     return f"Hello, {current_user.id}! This is a protected page."
+#
+# @app.route('/logout')
+# def logout():
+#     logout_user()
+#     return redirect(url_for('login'))
 
 # # todo [定时任务，每天凌晨2点执行]
 # def my_job():
@@ -74,20 +143,6 @@ for i in l_t_rows:
 
 
 
-@app.route('/')
-def index():
-    # todo 获取访问者ip
-    # ip_address = request.remote_addr
-    # print(ip_address)
-    # ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
-    # print(ip_address)
-    # if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
-    #     print(request.environ['REMOTE_ADDR'])
-    # else:
-    #     print(request.environ['HTTP_X_FORWARDED_FOR'])  # if behind a proxy
-    # client_ip = request.headers.get('X-Forwarded-For', None)
-    # print(client_ip)
-    return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
 
 
 
@@ -126,12 +181,14 @@ def testRule():
 def get_queryErrorRuleId():
     ruleName = request.args.get('value')
     if ruleName != "none":
-        print(d_ruleName[ruleName])
+        print(d_ruleName[ruleName])  # a_jibingpinggu
         cursor.execute("select id,updateDate from %s where result != 'ok'" % d_ruleName[ruleName])
         rows = cursor.fetchall()
+        print(rows)
+        # print(rows[0][0], rows[0][1])
         data = ""
         for row in rows:
-            data = data + str(row) + "\n"
+            data = data + "(" + str(row[0]) + ", " + str(row[1]) + ") "
         print(data)
         if data == '':
             response_data = {'text': '全部正确。'}
