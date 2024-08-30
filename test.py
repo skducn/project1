@@ -9,45 +9,54 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-l1 =  ['John', 'Doe', 'Jack', 'Bob', 'Smith']
-print("-".join(l1))
+# a = eval(assert "LMP"=='LMP')
 
-d1 = {'Name': 'John', 'Age': 25}
-print(d1['Name'])
-print(d1.get('Name1', -1))
+a= (eval('1'=='1'))
+print(a)
+# import pandas as pd
+#
+#
+# pd.read_csv("")
 
-int = d1.setdefault("Name1", 100)
-print(int)
-print(d1)
-
-
-for i,name in enumerate(l1, start=1):
-    print(i,name)
-
-a = 1000000000
-b = f'{a:,}'
-print(type(b),b)
-
-foods = ['Apples', 'Oranges', 'Bananas']
-# 可指定任意分隔符
-print(*foods)
-print(*foods[1][1])
-print(*foods, sep=', ', end='.\n')
-print(*foods, sep=' -- ', end='.\n')
-
-
-
-people= ['John', 'Doe', 'James', 'Bob', 'Smith', 'Stefan']
-first_person, *_, last_person = people
-print(first_person, last_person)    # Output: John Stefan
-print(_)    # ['Doe', 'James', 'Bob', 'Smith']
-print((_)[1])    # James
-print((_)[1][2])    # m
-print(*_)    # Doe James Bob Smith
-print((*_,)[1])    # James
-print((*_,)[1][2])    # m
-
-print(people[1:-1])
+# l1 =  ['John', 'Doe', 'Jack', 'Bob', 'Smith']
+# print("-".join(l1))
+#
+# d1 = {'Name': 'John', 'Age': 25}
+# print(d1['Name'])
+# print(d1.get('Name1', -1))
+#
+# int = d1.setdefault("Name1", 100)
+# print(int)
+# print(d1)
+#
+#
+# for i,name in enumerate(l1, start=1):
+#     print(i,name)
+#
+# a = 1000000000
+# b = f'{a:,}'
+# print(type(b),b)
+#
+# foods = ['Apples', 'Oranges', 'Bananas']
+# # 可指定任意分隔符
+# print(*foods)
+# print(*foods[1][1])
+# print(*foods, sep=', ', end='.\n')
+# print(*foods, sep=' -- ', end='.\n')
+#
+#
+#
+# people= ['John', 'Doe', 'James', 'Bob', 'Smith', 'Stefan']
+# first_person, *_, last_person = people
+# print(first_person, last_person)    # Output: John Stefan
+# print(_)    # ['Doe', 'James', 'Bob', 'Smith']
+# print((_)[1])    # James
+# print((_)[1][2])    # m
+# print(*_)    # Doe James Bob Smith
+# print((*_,)[1])    # James
+# print((*_,)[1][2])    # m
+#
+# print(people[1:-1])
 
 
 # age =22

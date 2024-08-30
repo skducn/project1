@@ -39,5 +39,6 @@ ChcRule_PO = ChcRulePO()
 # # ChcRule_PO.importFull('temporaryTable')
 
 
+ChcRule_PO.importFull('评估因素取值')
 
 

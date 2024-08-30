@@ -1609,8 +1609,19 @@ if __name__ == "__main__":
 
 
     # todo 公卫
-    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
+    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
 
+    # 社区
+    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    a = Sqlserver_PO.select("select ruleParam from a_test123 where result='john'")
+    print(a)
+    print(a[0]['ruleParam'])
+
+    b = a[0]['ruleParam'].split("\n")
+    print(b)
+
+    for i,v in enumerate(b,start=1):
+        print(i,v)
 
     # a = Sqlserver_PO.selectParam("select * from a_test where id=%s", 3)
     # print(a)
@@ -1791,7 +1802,7 @@ if __name__ == "__main__":
 
     # print("6.3 数据库sql导出字典".center(100, "-"))
     # print(Sqlserver_PO.db2dict("SELECT * FROM a_phs_auth")) # {'index': [0, 1], 'name': ['1', 'a'], 'age': ['2', 'b'], 'sex': ['3', 'c']}
-    print(Sqlserver_PO.db2dict2("SELECT * FROM a_phs_auth")) # {'index': [0, 1], 'name': ['1', 'a'], 'age': ['2', 'b'], 'sex': ['3', 'c']}
+    # print(Sqlserver_PO.db2dict2("SELECT * FROM a_phs_auth")) # {'index': [0, 1], 'name': ['1', 'a'], 'age': ['2', 'b'], 'sex': ['3', 'c']}
     # print(Sqlserver_PO.db2dict("SELECT * FROM test99", 'series'))
     # {'index': 0    0
     # 1    1

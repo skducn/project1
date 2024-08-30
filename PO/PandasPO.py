@@ -26,7 +26,7 @@
 
 将df输出html
 """
-
+import pandas as pd
 
 from PO.MysqlPO import *
 from sqlalchemy import create_engine
@@ -217,6 +217,11 @@ if __name__ == "__main__":
     # Pandas_PO = PandasPO("192.168.0.234", "root", "Zy123456", "mcis", 3306)
 
     Pandas_PO = PandasPO()
+
+    df = pd.read_excel("./data/1.xlsx")
+    print(df)
+    print(df[1])
+
     #
     # # print("1 执行sql".center(100, "-"))
     # # 查询
@@ -239,7 +244,7 @@ if __name__ == "__main__":
     # Pandas_PO.xlsx2db("./data/xlsx2db.xlsx", 'test2')
 
     # print("2.2 字典转数据库".center(100, "-"))
-    Pandas_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test33", "")
+    # Pandas_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test33", "")
     # Pandas_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test33", "False")
 
     # print("2.3 列表转数据库".center(100, "-"))
@@ -247,7 +252,7 @@ if __name__ == "__main__":
     # Pandas_PO.list2db([[1,2,3],['a','b','c']], "test44", "False")  # 不生成index
 
     # print("3.1 数据库转xlsx(含字段或不含字段)".center(100, "-"))
-    Pandas_PO.db2xlsx("SELECT * FROM t_pregnancy_evaluate_advice", './data/db2xlsx.xlsx')
+    # Pandas_PO.db2xlsx("SELECT * FROM t_pregnancy_evaluate_advice", './data/db2xlsx.xlsx')
     # Pandas_PO.db2xlsx("SELECT * FROM t_pregnancy_evaluate_advic1e", './data/db2xlsx_notitle.xlsx', None)  # 不导出字段名
 
     # print("3.2 字典转xlsx".center(100, "-"))

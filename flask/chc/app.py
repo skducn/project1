@@ -57,8 +57,8 @@ app = Flask(__name__)
 # 数据库
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
-d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu", '儿童健康干预': "a_ertongjiankangganyu"}
-l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预']
+d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu", '儿童健康干预': "a_ertongjiankangganyu", "评估因素取值": "a_pingguyinsuquzhi"}
+l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预', '评估因素取值']
 # 获取测试规则
 cursor.execute("select distinct [rule] from a_ceshiguize")
 l_t_rows = cursor.fetchall()
@@ -154,24 +154,43 @@ def testRule():
         id = request.form['id']
         print(ruleName, id)
     if id != '':
-        try:
-            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            # print(result.stdout)
+        if ruleName == "评估因素取值":
+            try:
+                result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                print(result.stdout)
+                # result = result.stdout
+                # print(type(result))
+                # result = result.replace("\n", '\n\r')
 
-            ruleCode = str(result.stdout).split("(r")[1].split(")")[0]
-            ruleCode = "r" + str(ruleCode)
+                d_result = {}
+                d_result = eval(result.stdout)
+                # d_result['result'] = result
+                # if '[OK]' in result:
+                #     d_result['result'] = result
+                # else:
 
-            # result = result.stdout.replace("<br>", '')
-            result = result.stdout
-            print(result)
-            d_result = {}
-            if '[OK]' in result:
-                d_result['result'] = result
-            else:
-                d_result = eval(result)
-            return render_template('result.html', output_testRule={"ruleName": ruleName, "id": id, "ruleCode": ruleCode, "result": d_result}, debugRuleParam_testRule=l_testRule)
-        except:
-            return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+                return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "result": d_result}, debugRuleParam_testRule=l_testRule)
+            except:
+                return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+        else:
+            try:
+                result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                print(result.stdout)
+
+                ruleCode = str(result.stdout).split("(r")[1].split(")")[0]
+                ruleCode = "r" + str(ruleCode)
+
+                # result = result.stdout.replace("<br>", '')
+                result = result.stdout
+                print(result)
+                d_result = {}
+                if '[OK]' in result:
+                    d_result['result'] = result
+                else:
+                    d_result = eval(result)
+                return render_template('result.html', output_testRule={"ruleName": ruleName, "id": id, "ruleCode": ruleCode, "result": d_result}, debugRuleParam_testRule=l_testRule)
+            except:
+                return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
     else:
         return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，id不能为空！', queryErrorRuleId=l_ruleName)
 
@@ -191,7 +210,7 @@ def get_queryErrorRuleId():
             data = data + "(" + str(row[0]) + ", " + str(row[1]) + ") "
         print(data)
         if data == '':
-            response_data = {'text': '全部正确。'}
+            response_data = {'text': '未找到error'}
         else:
             response_data = {'text': data}
     else:
@@ -199,7 +218,7 @@ def get_queryErrorRuleId():
     return jsonify(response_data)
 
 
-# todo 查询错误结果语句
+# todo 查询错误结果结果
 # @app.route('/get_queryRuleResult', methods=['POST'])
 # def get_queryRuleResult():
 #     if request.method == 'POST':
@@ -228,7 +247,7 @@ def get_queryRuleResult():
             record = rows[0][0]
             record = record.replace("\n", '<br>')
         except:
-            record = 'error，id不存在！'
+            record = 'error，id不存在或无result！'
     else:
         record = 'error，id不能为空！'
 
@@ -306,6 +325,29 @@ def debugParam():
         return render_template('result.html', output_testRule={"ruleName":ruleName, "id": id, "ruleCode":ruleCode, "ruleParam": ruleParam, "result":result}, debugRuleParam_testRule=l_testRule)
 
 
+# todo 编辑步骤
+@app.route('/step', methods=['POST'])
+def step():
+    if request.method == 'POST':
+        ruleName = request.form['ruleName']
+        id = request.form['id']
+        step = request.form['step']
+        print(1,step)
+        if step != "":
+            step = step.replace("'","''").replace("\r","")
+        # print(step)
+        # sys.exit(0)
+        # cursor.execute('update %s set step="%s" where id=%s' % (d_ruleName[ruleName], step, id))
+            cursor.execute("update %s set step='%s' where id=%s" % (d_ruleName[ruleName], step, id))
+            conn.commit()
+            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            # result = result.stdout.replace("<br>", '')
+            result = result.stdout
+            d_result = eval(result)
+            # return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "step": step, "result":result}, debugRuleParam_testRule=l_testRule)
+            return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "result": d_result}, debugRuleParam_testRule=l_testRule)
+        else:
+            return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
 
 
 @app.route('/swagger', methods=['POST'])

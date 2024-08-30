@@ -49,7 +49,10 @@ class ChcRulePO_flask():
 
     def __init__(self, sheetName=''):
 
-        self.TOKEN = self.getToken(Configparser_PO.USER("user"), Configparser_PO.USER("password"))
+        if sheetName == "评估因素取值":
+            self.TOKEN = self.getToken(Configparser_PO.USER("user2"), Configparser_PO.USER("password2"))
+        else:
+            self.TOKEN = self.getToken(Configparser_PO.USER("user"), Configparser_PO.USER("password"))
         self.dbTable = Char_PO.chinese2pinyin(sheetName)
         self.dbTable = "a_" + self.dbTable
         self.sheetName = sheetName
@@ -61,6 +64,52 @@ class ChcRulePO_flask():
         # 读取测试规则对应的表(a_ceshiguize)
         self.csgz = "a_" + Char_PO.chinese2pinyin(Configparser_PO.FILE("csgz"))
         # print(self.csgz)
+
+
+    def runStep(self, varId):
+
+        d_result = {}
+        s = ""
+        l_d_step = Sqlserver_PO.select("select step,tester from %s where id = '%s'" % (self.dbTable, varId))
+        l_step = l_d_step[0]['step'].split("\n")
+        tester = l_d_step[0]['tester']
+        # print(l_step)
+        # print(l_step)  # ["update TB_PREGNANT_MAIN_INFO set MCYJ='2024-08-06' where ZJHM = '31010520161202008X'", "self.i_startAssess2('31010520161202008X','6','0000001')", 'select LMP from T_ASSESS_MATERNAL where ASSESS_ID={ASSESS_ID}']
+
+
+        for i, v in enumerate(l_step, start=1):
+            if 'self.' in v:
+                self.ASSESS_ID = eval(v)
+                # print(i, v)
+                # d_result["step"] = d_result["step"] + str(i, v)
+                # s = s + " " + str(i) + " " + v + "\n"
+                s = s + v + "\n"
+            else:
+                if "{ASSESS_ID}" in v:
+                    v = v.replace('{ASSESS_ID}', str(self.ASSESS_ID))
+                s = s + v + "\n"
+
+                varPrefix = v.split(" ")[0]
+                varPrefix = varPrefix.lower()
+                # if varPrefix == 'select':
+                if "select " in v:
+                    self.selectResult = eval('Sqlserver_PO.select("' + v + '")')
+                # elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
+                elif "update " in v or "insert " in v or "delete " in v:
+                    eval('Sqlserver_PO.execute("' + v + '")')
+                else:
+                    if "==" in v:
+                        if str(self.selectResult[0][v.split("==")[0]]) == v.split("==")[1]:
+                            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
+                            # print("[OK] => " + str(self.sheetName) + " => " + str(varId) + " => " + tester)
+                            d_result['result'] = "[OK] => " + str(self.sheetName) + " => " + str(varId) + " => " + tester
+                        else:
+                            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
+                            # print("[ERROR] => " + str(self.sheetName) + " => " + str(varId) + " => " + tester)
+                            d_result['result'] = "[ERROR] => " + str(self.sheetName) + " => " + str(varId) + " => " + tester
+                        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
+            d_result['step'] = s
+        print(d_result)
 
     def getToken(self, varUser, varPass):
 
@@ -77,7 +126,60 @@ class ChcRulePO_flask():
             print(d_r['data']['access_token'])
         return d_r['data']['access_token']
 
+    def importFull(self, sheetName):
 
+        # 全量更新
+
+        # 中文转拼音
+        dbTable = Char_PO.chinese2pinyin(sheetName)
+        dbTable = "a_" + dbTable
+        # print(dbTable)
+
+        # 删除旧表
+        Sqlserver_PO.execute("drop table if exists " + dbTable)
+
+        # xlsx导入数据库，并转换字段类型
+        Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dbTable, {"idcard": str}, sheetName)
+
+        # 修改其他规则表的字段类型
+        if sheetName != "测试规则" and sheetName != "疾病身份证" and sheetName != "评估疾病表":
+            Sqlserver_PO.execute(
+                "ALTER table %s alter column result varchar(8000)" % (dbTable))  # 此列没数据，创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dbTable))  # 设置主id不能为Null
+            Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dbTable))  # 设置主键（条件是id不能为Null）
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dbTable))  # 将float改为char类型
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (
+                dbTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+
+        Sqlserver_PO.execute(
+            "ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id) " % (dbTable))  # 新增id自增主键
+        # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
+
+        # 添加表注释
+        Sqlserver_PO.execute(
+            "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (
+            '(测试用例)' + sheetName, dbTable))  # sheetName=注释，dbTable=表名
+
+        # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
+        Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）全量数据导入成功。"}, ])
+
+    def importIncremental(self, sheetName):
+
+        # 增量导入
+
+        # 中文转拼音
+        dbTable = Char_PO.chinese2pinyin(sheetName)
+        dbTable = "a_" + dbTable
+
+        # 获取id最大值
+        max = Sqlserver_PO.getPrimaryKeyMaxValue(dbTable)
+        # print(max['id'])
+
+        # 增量导入
+        Sqlserver_PO.xlsx2dbAppendById(Configparser_PO.FILE("case"), dbTable, max['id'], sheetName)
+
+        # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
+        Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）增量导入成功。"}, ])
 
     def importDB(self, sheetName):
 
@@ -199,6 +301,51 @@ class ChcRulePO_flask():
             self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
             return ([{'name':'重新评估', 'value': "[ERROR => 重新评估(i_rerunExecuteRule) => " + str(str_r) + "]"}])
+
+    def i_startAssess2(self, varIdcard, categoryCode, orgCode):
+
+        '''
+        新增评估
+        :param varIdcard:
+        :param token:
+        :return:
+        '''
+
+        self.verifyIdcard(varIdcard)
+        command = "curl -X POST \"" + Configparser_PO.HTTP("url") + ":8014/tAssessInfo/startAssess\" -H \"token:" + \
+                  self.TOKEN + "\" -H \"Request-Origion:SwaggerBootstrapUi\" -H \"accept:*/*\" -H \"Authorization:\" " \
+                               "-H \"Content-Type:application/json\" -d \"{\\\"categoryCode\\\":\\\"" + str(
+            categoryCode) + "\\\",\\\"idCard\\\":\\\"" + str(varIdcard) + "\\\",\\\"orgCode\\\":\\\"" + str(
+            orgCode) + "\\\",\\\"assessDocId\\\":" + str(0) + "}\""
+
+        if Configparser_PO.SWITCH("interface") == "on":
+            print(command)
+        p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = p.communicate()
+        str_r = bytes.decode(out)
+        d_r = json.loads(str_r)
+        sleep(1)
+
+        if Configparser_PO.SWITCH("interface") == "on":
+            Color_PO.consoleColor("31", "33", str_r, "")
+
+        if 'code' in d_r:
+            if d_r['code'] != 200:
+                if Configparser_PO.SWITCH("SQL") == "on":
+                    Color_PO.consoleColor("31", "31", str_r, "")
+                self.log = self.log + "\n" + str_r
+                return ([{'name': '新增评估', 'value': "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
+            else:
+                return d_r['data']
+                # if Configparser_PO.SWITCH("SQL") == "on":
+                #     Color_PO.consoleColor("31", "33", "新增评估(i_startAssess) =>  => " + str_r, "")
+                # return ([{'name':'新增评估', 'value': 200}])
+        else:
+            if Configparser_PO.SWITCH("SQL") == "on":
+                Color_PO.consoleColor("31", "31", str_r, "")
+            self.log = self.log + "\n" + str_r
+            # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
+            return ([{'name': '新增评估', 'value': "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
 
     def i_startAssess(self, varIdcard):
 
@@ -354,6 +501,21 @@ class ChcRulePO_flask():
         print(l_d_id)  # [{'id': 2}, {'id': 3}]
         for i in range(len(l_d_id)):
             self.run(l_d_id[i]['id'])
+
+    def runResult2(self, varResult):
+
+        # 按result执行
+        # r.runResult2("error")  # 执行result为error的规则
+        # r.runResult2("all")  # 执行所有的规则(谨慎)
+
+        if varResult == "all":
+            l_d_id = Sqlserver_PO.select("select id from %s" % (self.dbTable))
+            for i in range(len(l_d_id)):
+                self.runStep(l_d_id[i]['id'])
+        elif varResult != "ok":
+            l_d_id = Sqlserver_PO.select("select id from %s where result <> 'ok'" % (self.dbTable))
+            for i in range(len(l_d_id)):
+                self.runStep(l_d_id[i]['id'])
 
     def runResult(self, varResult):
 

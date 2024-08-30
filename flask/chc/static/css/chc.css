@@ -21,7 +21,16 @@ pre1{
 white-space: pre-wrap;
 font-family: Arial, Helvetica, sans-serif;
 font-size:15px;
-color:#666;
+color: #0167ff;
+text-align: left;
+line-height: 2rem;
+}
+
+pre2{
+white-space: pre-wrap;
+font-family: Arial, Helvetica, sans-serif;
+font-size:15px;
+color: #ff0000;
 text-align: left;
 line-height: 2rem;
 }

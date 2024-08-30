@@ -57,6 +57,46 @@ class ChcRulePO():
         self.csgz = "a_" + Char_PO.chinese2pinyin(Configparser_PO.FILE("csgz"))
         # print(self.csgz)
 
+
+    def runStep(self, varId):
+
+        d_result = {}
+        s = ""
+        l_d_step = Sqlserver_PO.select("select step,tester from %s where id = '%s'" % (self.dbTable, varId))
+        l_step = l_d_step[0]['step'].split("\n")
+        tester = l_d_step[0]['tester']
+        # print(l_step)  # ["update TB_PREGNANT_MAIN_INFO set MCYJ='2024-08-06' where ZJHM = '31010520161202008X'", "self.i_startAssess2('31010520161202008X','6','0000001')", 'select LMP from T_ASSESS_MATERNAL where ASSESS_ID={ASSESS_ID}']
+
+        for i,v in enumerate(l_step, start=1):
+            if 'self.' in v:
+                self.ASSESS_ID = eval(v)
+                print(i, v)
+                s = s + v + "\n"
+            else:
+                if "{ASSESS_ID}" in v:
+                    v = v.replace('{ASSESS_ID}', str(self.ASSESS_ID))
+                print(i, v)
+                s = s + v + "\n"
+                varPrefix = v.split(" ")[0]
+                varPrefix = varPrefix.lower()
+                if varPrefix == 'select':
+                    # print(v)
+                    self.selectResult = eval('Sqlserver_PO.select("' + v + '")')
+                    # print(12,self.selectResult)
+                elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
+                    eval('Sqlserver_PO.execute("' + v + '")')
+                else:
+                    if "==" in v:
+                        if str(self.selectResult[0][v.split("==")[0]]) == v.split("==")[1]:
+                            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
+                        else:
+                            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
+                        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
+
+            d_result['step'] = s
+        print(d_result)
+
+
     def getToken(self, varUser, varPass):
 
         # 获取登录用户的token
@@ -71,7 +111,6 @@ class ChcRulePO():
         if Configparser_PO.SWITCH("token") == "on":
             print(d_r['data']['access_token'])
         return d_r['data']['access_token']
-
 
 
     def importFull(self, sheetName):
@@ -215,6 +254,49 @@ class ChcRulePO():
             self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
             return ([{'name':'重新评估', 'value': "[ERROR => 重新评估(i_rerunExecuteRule) => " + str(str_r) + "]"}])
+
+    def i_startAssess2(self, varIdcard, categoryCode, orgCode):
+
+        '''
+        新增评估
+        :param varIdcard:
+        :param token:
+        :return:
+        '''
+
+        self.verifyIdcard(varIdcard)
+        command = "curl -X POST \"" + Configparser_PO.HTTP("url") + ":8014/tAssessInfo/startAssess\" -H \"token:" + \
+                  self.TOKEN + "\" -H \"Request-Origion:SwaggerBootstrapUi\" -H \"accept:*/*\" -H \"Authorization:\" " \
+                               "-H \"Content-Type:application/json\" -d \"{\\\"categoryCode\\\":\\\"" + str(categoryCode) + "\\\",\\\"idCard\\\":\\\"" + str(varIdcard) + "\\\",\\\"orgCode\\\":\\\"" + str(orgCode) + "\\\",\\\"assessDocId\\\":" + str(0) + "}\""
+
+        if Configparser_PO.SWITCH("interface") == "on":
+            print(command)
+        p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = p.communicate()
+        str_r = bytes.decode(out)
+        d_r = json.loads(str_r)
+        sleep(1)
+
+        if Configparser_PO.SWITCH("interface") == "on":
+            Color_PO.consoleColor("31", "33", str_r, "")
+
+        if 'code' in d_r:
+            if d_r['code'] != 200:
+                if Configparser_PO.SWITCH("SQL") == "on":
+                    Color_PO.consoleColor("31", "31", str_r, "")
+                self.log = self.log + "\n" + str_r
+                return ([{'name':'新增评估', 'value' : "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
+            else:
+                return d_r['data']
+                # if Configparser_PO.SWITCH("SQL") == "on":
+                #     Color_PO.consoleColor("31", "33", "新增评估(i_startAssess) =>  => " + str_r, "")
+                # return ([{'name':'新增评估', 'value': 200}])
+        else:
+            if Configparser_PO.SWITCH("SQL") == "on":
+                Color_PO.consoleColor("31", "31", str_r, "")
+            self.log = self.log + "\n" + str_r
+            # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
+            return ([{'name':'新增评估', 'value': "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
 
     def i_startAssess(self, varIdcard):
 
