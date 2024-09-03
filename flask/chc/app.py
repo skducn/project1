@@ -158,18 +158,13 @@ def testRule():
             try:
                 result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 print(result.stdout)
-                # result = result.stdout
-                # print(type(result))
-                # result = result.replace("\n", '\n\r')
-
                 d_result = {}
                 d_result = eval(result.stdout)
-                # d_result['result'] = result
-                # if '[OK]' in result:
-                #     d_result['result'] = result
-                # else:
 
-                return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "result": d_result}, debugRuleParam_testRule=l_testRule)
+                cursor.execute("select step from %s where id = %s" % (d_ruleName[ruleName], id))
+                rows = cursor.fetchall()
+                print(rows[0][0])
+                return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": rows[0][0], "result":d_result})
             except:
                 return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
         else:
@@ -282,9 +277,9 @@ def get_queryRecord():
         if 'where' not in sql:
             rows = 'error，缺少where条件！'
         else:
+            data = ""
             cursor.execute(sql)
             rows = cursor.fetchall()
-            data = ""
             for row in rows:
                 data = data + str(row) + "<br>"
             print(data)
@@ -345,7 +340,7 @@ def step():
             result = result.stdout
             d_result = eval(result)
             # return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "step": step, "result":result}, debugRuleParam_testRule=l_testRule)
-            return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "result": d_result}, debugRuleParam_testRule=l_testRule)
+            return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": step, "result": d_result}, debugRuleParam_testRule=l_testRule)
         else:
             return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
 

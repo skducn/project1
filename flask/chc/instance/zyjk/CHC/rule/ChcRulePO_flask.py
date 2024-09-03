@@ -76,9 +76,8 @@ class ChcRulePO_flask():
         # print(l_step)
         # print(l_step)  # ["update TB_PREGNANT_MAIN_INFO set MCYJ='2024-08-06' where ZJHM = '31010520161202008X'", "self.i_startAssess2('31010520161202008X','6','0000001')", 'select LMP from T_ASSESS_MATERNAL where ASSESS_ID={ASSESS_ID}']
 
-
         for i, v in enumerate(l_step, start=1):
-            if 'self.' in v:
+            if 'self.i_startAssess2' in v:
                 self.ASSESS_ID = eval(v)
                 # print(i, v)
                 # d_result["step"] = d_result["step"] + str(i, v)
@@ -89,13 +88,14 @@ class ChcRulePO_flask():
                     v = v.replace('{ASSESS_ID}', str(self.ASSESS_ID))
                 s = s + v + "\n"
 
+                v = v.strip()
                 varPrefix = v.split(" ")[0]
                 varPrefix = varPrefix.lower()
-                # if varPrefix == 'select':
-                if "select " in v:
+                if varPrefix == 'select':
+                # if "select " in v:
                     self.selectResult = eval('Sqlserver_PO.select("' + v + '")')
-                # elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
-                elif "update " in v or "insert " in v or "delete " in v:
+                elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
+                # elif "update " in v or "insert " in v or "delete " in v:
                     eval('Sqlserver_PO.execute("' + v + '")')
                 else:
                     if "==" in v:

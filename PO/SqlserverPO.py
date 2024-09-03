@@ -368,30 +368,32 @@ class SqlServerPO:
 
         r = self.select(
             "SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0")
-        # print(r)  # [{'name': 'aaa', 'value': None}, {'name': 'bbb', 'value': None}...]
+        # print(r)  # [{'name': 'ASSESS_DIAGNOSIS', 'value': b'\xc3\xc5\xd5\xef\xca\xfd\xbe\xdd'},...
         l_table = []
         l_comment = []
-        try:
-            if varTable == "all":
-                for i in range(len(r)):
+        # try:
+        if varTable == "all":
+            for i in range(len(r)):
+                l_table.append(r[i]['name'])
+                if r[i]['value'] == None:
+                    l_comment.append(r[i]['value'])
+                else:
+                    # l_comment.append(r[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
+                    l_comment.append(r[i]['value'].decode(encoding="GBK", errors="strict"))  # encoding="utf-8"
+            return dict(zip(l_table, l_comment))
+        else:
+            for i in range(len(r)):
+                if r[i]['name'] == varTable:
                     l_table.append(r[i]['name'])
                     if r[i]['value'] == None:
                         l_comment.append(r[i]['value'])
                     else:
-                        l_comment.append(r[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
-                return dict(zip(l_table, l_comment))
-            else:
-                for i in range(len(r)):
-                    if r[i]['name'] == varTable:
-                        l_table.append(r[i]['name'])
-                        if r[i]['value'] == None:
-                            l_comment.append(r[i]['value'])
-                        else:
-                            l_comment.append(r[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
-                return dict(zip(l_table, l_comment))
-        except Exception as e:
-            print(e, ",[error], SqlserverPO.getTableAndComment()异常!")
-            self.conn.close()
+                        # l_comment.append(r[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
+                        l_comment.append(r[i]['value'].decode(encoding="GBK", errors="strict"))  # encoding="utf-8"
+            return dict(zip(l_table, l_comment))
+        # except Exception as e:
+        #     print(e, ",[error], SqlserverPO.getTableAndComment()异常!")
+        #     self.conn.close()
 
 
     def getStructure(self, varTable="all"):
@@ -1530,10 +1532,15 @@ class SqlServerPO:
                 # 遍历所有表
                 l_d_tbl = self.select("SELECT NAME FROM SYSOBJECTS WHERE TYPE='U'")
                 # print(l_d_tbl)  # [{'NAME': 'TB_RIS_REPORT2'}, {'NAME': 'jh_jkpg'}, {'NAME': 'jh_jkgy'},,...]
-
                 for b in range(len(l_d_tbl)):
-                    # 遍历所有表的 列名称、列类别、类注释
+
+                    # 获取表的Name和Type
                     tbl = l_d_tbl[b]['NAME']
+
+                    # 获取表注释
+                    d_tbl_comment= self.getTableAndComment(tbl)  # {'ASSESS_DIAGNOSIS': '门诊数据',...
+                    # print(d_tbl_comment[tbl])
+
                     l_d_field_type = self.select(
                         "select syscolumns.name as field,systypes.name as type from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
                         % (tbl)
@@ -1556,7 +1563,8 @@ class SqlServerPO:
 
                         if len(l_result) != 0:
                             print("--" * 50)
-                            Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
+                            # Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
+                            Color_PO.consoleColor("31", "36", str(l_field[i]) + " = "+ str(varValue) + " >> " + tbl+ "(" + d_tbl_comment[tbl] + ")" + " >> " + str(len(l_result)) + "条 ", "")
 
                             for j in range(len(l_result)):
                                 print(l_result[j])
@@ -1607,21 +1615,23 @@ class SqlServerPO:
 
 if __name__ == "__main__":
 
+    # todo 社区健康平台（静安）
+    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
     # todo 公卫
     # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
 
     # 社区
-    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
-    a = Sqlserver_PO.select("select ruleParam from a_test123 where result='john'")
-    print(a)
-    print(a[0]['ruleParam'])
-
-    b = a[0]['ruleParam'].split("\n")
-    print(b)
-
-    for i,v in enumerate(b,start=1):
-        print(i,v)
+    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    # a = Sqlserver_PO.select("select ruleParam from a_test123 where result='john'")
+    # print(a)
+    # print(a[0]['ruleParam'])
+    #
+    # b = a[0]['ruleParam'].split("\n")
+    # print(b)
+    #
+    # for i,v in enumerate(b,start=1):
+    #     print(i,v)
 
     # a = Sqlserver_PO.selectParam("select * from a_test where id=%s", 3)
     # print(a)
@@ -1670,8 +1680,8 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getViewsQTY())  # 42
 
     # # print("2.5 获取所有表和表注释".center(100, "-"))
-    # print(Sqlserver_PO.getTableAndComment())  # {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表',...}
-    # print(Sqlserver_PO.getTableAndComment('a_compare_gw_spt'))  # {'a_compare_gw_spt': '测试省平台上报字段对应表'}
+    print(Sqlserver_PO.getTableAndComment())  # {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表',...}
+    # print(Sqlserver_PO.getTableAndComment('T_HEALTH_ASSESS'))  # {'a_compare_gw_spt': '测试省平台上报字段对应表'}
 
     # print("2.6 获取表结构信息".center(100, "-"))
     # print(Sqlserver_PO.getStructure('a_test'))

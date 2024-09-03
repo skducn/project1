@@ -9,6 +9,15 @@
 # *****************************************************************
 from PO.SqlserverPO import *
 
+# todo 社区健康平台（静安）
+Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG_JINGAN", "GBK")
+# Sqlserver_PO.dbDesc('QYYH')
+Sqlserver_PO.dbRecord('*', 'varchar', '测试预评估医生%')
+# Sqlserver_PO.dbRecord('*', 'datetime', '%2024-09-03%')
+
+
+
 # todo 公卫
 # Sqlserver_PO = SqlServerPO("192.168.180.237", "PHUR_TEST", "testPH@2023", "zyconfig_pprod", "GBK")  # 预发布，通过VPN访问
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
@@ -62,10 +71,7 @@ from PO.SqlserverPO import *
 # Sqlserver_PO.dbRecord('*', 'money', '%34.5%')
 
 
-# todo 社区健康平台（静安）
-Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
-# Sqlserver_PO.dbDesc('QYYH')
-Sqlserver_PO.dbRecord('*', 'varchar', '测试儿童')
+
 
 
 
