@@ -9,12 +9,14 @@
 # *****************************************************************
 from PO.SqlserverPO import *
 
-# todo 社区健康平台（静安）
-Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
-# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG_JINGAN", "GBK")
+# todo 社区健康平台
+Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")  # （静安）
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG_JINGAN", "GBK") # （静安）
 # Sqlserver_PO.dbDesc('QYYH')
-Sqlserver_PO.dbRecord('*', 'varchar', '测试预评估医生%')
-# Sqlserver_PO.dbRecord('*', 'datetime', '%2024-09-03%')
+Sqlserver_PO.dbRecord('*', 'varchar', '310101202308070020')
+# Sqlserver_PO.dbRecord('*', 'datetime', '%2024-09-09%')
 
 
 

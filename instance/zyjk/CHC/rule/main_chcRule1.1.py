@@ -10,6 +10,7 @@ from ChcRulePO import *
 
 r = ChcRulePO("评估因素取值")
 r.runStep(4)
+r.runStep(5)
 
 
 #

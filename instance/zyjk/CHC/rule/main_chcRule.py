@@ -9,10 +9,9 @@ from ChcRulePO import *
 
 # todo 2, 从db中执行规则用例
 # 健康评估,健康干预,中医体质辨识,疾病评估,儿童健康干预
-r = ChcRulePO("疾病评估")
-# #
+r = ChcRulePO("健康干预")
 # # # 按id执行
-r.runId([2])
+r.runId([3])
 
 # 按id区间执行
 # r.runIdArea([1,5])

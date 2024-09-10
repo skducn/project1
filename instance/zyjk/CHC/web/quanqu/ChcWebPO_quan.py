@@ -25,8 +25,14 @@ from PO.HttpPO import *
 Http_PO = HttpPO()
 import ddddocr
 
-class ChcWebJinganPO():
+class ChcWebPO_quan():
 
+    def __init__(self):
+
+        from ConfigparserPO import *
+        Configparser_PO = ConfigparserPO('config.ini')
+
+        self.varUrl = Configparser_PO.HTTP("url")
     def clsApp(self, varApp):
 
         '''
@@ -52,21 +58,16 @@ class ChcWebJinganPO():
         Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
         Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
 
-        # 关闭验证码
-        Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "11")
-        Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
-
-        # # 验证码识别
-        # for i in range(10):
-        #     dataURI = Web_PO.getAttrValueByX(u"//img[@class='login-code-img']", "src")  # getValueByAttr
-        #     imgFile = Base64_PO.base64ToImg(dataURI)
-        #     captcha = Captcha_PO.getCaptchaByDdddOcr(imgFile)
-        #     File_PO.removeFile('', imgFile)
-        #     # print(captcha)
-        #     Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", captcha)
-        #     Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
-        #     if Web_PO.isBooleanByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button") == False:
-        #         break
+        for i in range(10):
+            dataURI = Web_PO.getAttrValueByX(u"//img[@class='login-code-img']", "src")  # getValueByAttr
+            imgFile = Base64_PO.base64ToImg(dataURI)
+            captcha = Captcha_PO.getCaptchaByDdddOcr(imgFile)
+            File_PO.removeFile('', imgFile)
+            # print(captcha)
+            Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", captcha)
+            Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
+            if Web_PO.isBooleanByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button") == False:
+                break
 
     def clkMenu(self, html_source, varMenuName, t=2):
         """点击菜单"""
@@ -87,7 +88,7 @@ class ChcWebJinganPO():
         for k,v in d_menuUrl.items():
             if k == varMenuName:
                 # print("http://192.168.0.243:8010/" + d_menuUrl[varMenuName])
-                Web_PO.opn("http://192.168.0.243:8010/" + d_menuUrl[varMenuName])
+                Web_PO.opn(self.varUrl + d_menuUrl[varMenuName])
         sleep(t)
 
     def getTechnicalTarget(self):

@@ -486,7 +486,7 @@ class SqlServerPO:
 
         try:
             r = self.select("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
-            print(r)  # [{'COLUMN_NAME': 'id'}, {'COLUMN_NAME': 'name'}, {'COLUMN_NAME': 'salesrep'}]
+            # print(r)  # [{'COLUMN_NAME': 'id'}, {'COLUMN_NAME': 'name'}, {'COLUMN_NAME': 'salesrep'}]
             l_fields = []
             for i in range(len(r)):
                 l_fields.append(r[i]['COLUMN_NAME'])
@@ -501,11 +501,16 @@ class SqlServerPO:
         ''' 2.8 获取字段及字段注释 '''
 
         try:
+            # r = self.select(
+            #     "SELECT B.name as name, C.value as comment FROM sys.tables A INNER JOIN sys.columns B ON B.object_id = A.object_id LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id inner join systypes d on B.user_type_id=d.xusertype WHERE A.name ='%s'"
+            #     % (varTable)
+            # )
             r = self.select(
-                "SELECT B.name as name, C.value as comment FROM sys.tables A INNER JOIN sys.columns B ON B.object_id = A.object_id LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id inner join systypes d on B.user_type_id=d.xusertype WHERE A.name ='%s'"
+                "SELECT B.name as name FROM sys.tables A INNER JOIN sys.columns B ON B.object_id = A.object_id LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id inner join systypes d on B.user_type_id=d.xusertype WHERE A.name ='%s'"
                 % (varTable)
             )
-            # print(r)  # [{'name': 'GHRQ', 'comment': b'\xe6\x8c\x8...]
+            print(r)  # [{'name': 'GHRQ', 'comment': b'\xe6\x8c\x8...]
+            print(len(r))
             l_field = []
             l_comment = []
             for i in range(len(r)):
@@ -513,8 +518,8 @@ class SqlServerPO:
                 if r[i]['comment'] == None:
                     l_comment.append(r[i]['comment'])
                 else:
-                    # l_comment.append(r[i]['comment'].decode(encoding="GBK", errors="strict"))
-                    l_comment.append(r[i]['comment'].decode(encoding="utf-8", errors="strict"))
+                    l_comment.append(r[i]['comment'].decode(encoding="GBK", errors="strict"))
+                    # l_comment.append(r[i]['comment'].decode(encoding="utf-8", errors="strict"))
             return dict(zip(l_field, l_comment))
         except Exception as e:
             print(e, ",[error], SqlserverPO.getFields()异常!")
@@ -1680,7 +1685,7 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getViewsQTY())  # 42
 
     # # print("2.5 获取所有表和表注释".center(100, "-"))
-    print(Sqlserver_PO.getTableAndComment())  # {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表',...}
+    # print(Sqlserver_PO.getTableAndComment())  # {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表',...}
     # print(Sqlserver_PO.getTableAndComment('T_HEALTH_ASSESS'))  # {'a_compare_gw_spt': '测试省平台上报字段对应表'}
 
     # print("2.6 获取表结构信息".center(100, "-"))
@@ -1688,10 +1693,10 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getStructure())
 
     # print("2.7 获取字段名".center(100, "-"))
-    # print(Sqlserver_PO.getFields('a_test'))  # ['id', 'name', 'age']
+    print(Sqlserver_PO.getFields('QYYH'))  # ['id', 'name', 'age']
 
     # print("2.8 获取字段和字段注释".center(100, "-"))
-    # print(Sqlserver_PO.getFieldAndComment('a_test'))  # {'id': '编号', 'name': None, 'salesrep': None}
+    print(Sqlserver_PO.getFieldAndComment('QYYH'))  # {'id': '编号', 'name': None, 'salesrep': None}
     #
 
     # print("2.9 获取记录数".center(100, "-"))

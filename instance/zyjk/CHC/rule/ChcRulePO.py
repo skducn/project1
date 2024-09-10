@@ -45,6 +45,7 @@ class ChcRulePO():
     def __init__(self, sheetName=''):
 
         self.TOKEN = self.getToken(Configparser_PO.USER("user"), Configparser_PO.USER("password"))
+        print(self.TOKEN)
         self.dbTable = Char_PO.chinese2pinyin(sheetName)
         self.dbTable = "a_" + self.dbTable
         self.sheetName = sheetName
@@ -70,12 +71,12 @@ class ChcRulePO():
         for i,v in enumerate(l_step, start=1):
             if 'self.' in v:
                 self.ASSESS_ID = eval(v)
-                print(i, v)
+                # print(i, v)
                 s = s + v + "\n"
             else:
                 if "{ASSESS_ID}" in v:
                     v = v.replace('{ASSESS_ID}', str(self.ASSESS_ID))
-                print(i, v)
+                # print(i, v)
                 s = s + v + "\n"
                 varPrefix = v.split(" ")[0]
                 varPrefix = varPrefix.lower()
@@ -89,12 +90,23 @@ class ChcRulePO():
                     if "==" in v:
                         if str(self.selectResult[0][v.split("==")[0]]) == v.split("==")[1]:
                             Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
+                            Color_PO.outColor([{"36": "[OK] => " + self.sheetName + " => " + str(varId)}])
+                            l_tmp = List_PO.dels(s.split("\n"), '')
+                            if Configparser_PO.SWITCH("step") == "on":
+                                for j, v in enumerate(l_tmp, start=1):
+                                    print(j, v)
                         else:
                             Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
-                        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
+                            Color_PO.outColor([{"31": "[ERROR] => " + self.sheetName + " => " + str(varId)}])
+                            l_tmp = List_PO.dels(s.split("\n"), '')
+                            for j, v in enumerate(l_tmp, start=1):
+                                print(j, v)
 
+                        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
             d_result['step'] = s
-        print(d_result)
+
+        if Configparser_PO.SWITCH("step") == "on":
+            print(d_result)
 
 
     def getToken(self, varUser, varPass):
@@ -115,35 +127,45 @@ class ChcRulePO():
 
     def importFull(self, sheetName):
 
-        # 全量更新
+        # 全量更新表（删除旧表，插入新表）
 
         # 中文转拼音
-        dbTable = Char_PO.chinese2pinyin(sheetName)
-        dbTable = "a_" + dbTable
-        # print(dbTable)
+        dboTable = Char_PO.chinese2pinyin(sheetName)
+        dboTable = "a_" + dboTable
+        # print(dboTable)
 
         # 删除旧表
-        Sqlserver_PO.execute("drop table if exists " + dbTable)
+        Sqlserver_PO.execute("drop table if exists " + dboTable)
 
-        # xlsx导入数据库，并转换字段类型
-        Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dbTable, {"idcard": str}, sheetName)
+        # sheetName导入数据库，并将身份证数字型转字段型
+        Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
 
         # 修改其他规则表的字段类型
-        if sheetName != "测试规则" and sheetName != "疾病身份证" and sheetName != "评估疾病表":
-            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dbTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dbTable))  # 设置主id不能为Null
-            Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dbTable))  # 设置主键（条件是id不能为Null）
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dbTable))  # 将float改为char类型
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dbTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+        if sheetName == "健康评估" or sheetName == "健康干预" or sheetName == "中医体质辨识":
+            # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
+            # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
+            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+            # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
 
-        Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id) " % (dbTable))  # 新增id自增主键
-        # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
+        if sheetName != "测试规则":
+            # 判断导入的表是否已有主键，没有主键则自动生成id自增主键
+            isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
+            if isExistPrimaryKey == None:
+                l_ = Sqlserver_PO.select("select name from sys.columns where object_id = OBJECT_ID('%s') " % (dboTable))
+                for i in l_:
+                    if i['name'] == 'id' or i['name'] == 'ID':
+                        Sqlserver_PO.execute("ALTER TABLE %s DROP COLUMN id" % (dboTable))
+                        break
+                # 新增id自增主键（如果表中已存在id，则无法新增）
+                Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id)" % (dboTable))
 
         # 添加表注释
-        Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用例)' + sheetName, dbTable))  # sheetName=注释，dbTable=表名
+        Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用)' + sheetName, dboTable))  # sheetName=注释，dboTable=表名
 
         # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
-        Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）全量数据导入成功。"}, ])
+        Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dboTable + "）全量数据导入成功。"}, ])
 
     def importIncremental(self, sheetName):
 
@@ -163,54 +185,65 @@ class ChcRulePO():
         # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
         Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）增量导入成功。"}, ])
 
-    def initDiseaseIdcardAll(self, varTable):
+    def genIdcard(self, sheetName):
 
-        # 初始化全部疾病身份证
+        # 生成身份证(评估疾病表)
 
-        # 读取疾病身份证对应的表(a_jibingshenfenzheng)
-        varTable = "a_" + Char_PO.chinese2pinyin(varTable)
-        # print(varTable)
+        # 中文转拼音
+        dboTable = Char_PO.chinese2pinyin(sheetName)
+        dboTable = "a_" + dboTable
+        # print(dboTable)
 
-        l_d_param = Sqlserver_PO.select("select idcard from %s " % (varTable))
-        for i in range(len(l_d_param)):
-            self._initDiseaseIdcard(varTable, str(l_d_param[i]['idcard']))
+        l_d_ = Sqlserver_PO.select("select idcard from %s " % (dboTable))
+        # print(l_d_)  # [{'idcard': '310101202308070001'}, {'idcard': '310101202308070002'},
+        # sys.exit(0)
+        for i in range(len(l_d_)):
+            self._genIdcard(dboTable, str(l_d_[i]['idcard']))
 
-    def _initDiseaseIdcard(self, varTable, varIdcard):
+    def _genIdcard(self, varTable, varIdcard):
 
-        # 初始化单个疾病身份证
+        # 生成单个疾病身份证
         # 对三张表进行先删除后插入操作
 
-        l_d_param = Sqlserver_PO.select("select diseaseName,diseaseRuleCode from %s where [idcard]='%s'" % (varTable, str(varIdcard)))
-        # print(l_d_param) # [{'diseaseName': '慢性支气管炎', 'diseaseRuleCode': 'JB020', 'sql1': "DELETE from [dbo].[HRPERSONBASICINFO] WHERE [ARCHIVENUM] ='310101202308070020';...
-        # print(l_d_param[0]['diseaseName'])  # 慢性支气管炎
+        l_d_ = Sqlserver_PO.select("select diseaseName,diseaseCode from %s where [idcard]='%s'" % (varTable, str(varIdcard)))
+        # print(l_d_) # [{'diseaseName': '慢性支气管炎', 'diseaseRuleCode': 'JB020', 'sql1': "DELETE from [dbo].[HRPERSONBASICINFO] WHERE [ARCHIVENUM] ='310101202308070020';...
+        diseaseName = l_d_[0]['diseaseName']  # 慢性支气管炎
+        diseaseCode = l_d_[0]['diseaseCode']  # JB020
 
-        # 1.1 删除基本信息表
+        # 1.1 删除, HRPERSONBASICINFO(基本信息表)
         Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (varIdcard))
-        # 1.2 插入基本信息表
+        # 1.2 插入, HRPERSONBASICINFO(基本信息表)
         Sqlserver_PO.execute('set identity_insert HRPERSONBASICINFO on')
         r = Sqlserver_PO.select('select max(ID) as qty from HRPERSONBASICINFO')
         a = r[0]['qty'] + 1
-        Sqlserver_PO.execute("insert into HRPERSONBASICINFO(ARCHIVENUM,NAME,sex,IDCARD,CREATETIME,ID,ISGOVERNANCE) values ('%s', '%s', '1', '%s','%s', %s, '0')" % (varIdcard, Data_PO.getChineseName(), varIdcard, time.strftime("%Y-%m-%d %H:%M:%S.000"), str(a)))
+        Sqlserver_PO.execute("insert into HRPERSONBASICINFO(ARCHIVENUM,NAME,sex,IDCARD,CREATETIME,ID,ISGOVERNANCE) "
+                             "values ('%s', '%s', '1', '%s','%s', %s, '0')"
+                             % (varIdcard, Data_PO.getChineseName(), varIdcard, time.strftime("%Y-%m-%d %H:%M:%S.000"), str(a)))
         Sqlserver_PO.execute('set identity_insert HRPERSONBASICINFO off')
         Color_PO.outColor([{"35": "基本信息表 => select * from HRPERSONBASICINFO where ARCHIVENUM = '" + str(varIdcard) + "'"}])
 
-        # 2.1 删除签约信息表
+        # 2.1 删除, QYYH(1+1+1签约信息表)
         Sqlserver_PO.execute("delete from QYYH where SFZH = '%s'" % (varIdcard))
-        # 2.2 插入签约信息表
+        # 2.2 插入, QYYH(1+1+1签约信息表)
         Sqlserver_PO.execute('set identity_insert QYYH on')
         r = Sqlserver_PO.select('select max(ID) as qty from QYYH')
         a = r[0]['qty'] + 1
-        Sqlserver_PO.execute("insert into QYYH(CZRYBM, CZRYXM, JMXM, SJHM, SFZH, JJDZ, ARCHIVEUNITCODE, ARCHIVEUNITNAME, DISTRICTORGCODE, DISTRICTORGNAME, TERTIARYORGCODE, TERTIARYORGNAME, SIGNSTATUS, SIGNDATE, ID, CATEGORY_CODE, CATEGORY_NAME, SEX_CODE, SEX_NAME) values ('%s', '%s','%s', '13817261777', '%s', '上海浦东100号', '0000001', '彭浦新村街道社区健康管理中心', '310118000000', '青浦区', '12345', '上海人民医院', 1, '2020-03-23', %s, '4', N'老年人', '2', N'女')" % (l_d_param[0]['diseaseRuleCode'], l_d_param[0]['diseaseName'], Data_PO.getChineseName(), varIdcard, a))
+        Sqlserver_PO.execute("insert into QYYH(CZRYBM, CZRYXM, JMXM, SJHM, SFZH, JJDZ, ARCHIVEUNITCODE, ARCHIVEUNITNAME, "
+                             "DISTRICTORGCODE, DISTRICTORGNAME, TERTIARYORGCODE, TERTIARYORGNAME, SIGNSTATUS, SIGNDATE, ID, "
+                             "CATEGORY_CODE, CATEGORY_NAME, SEX_CODE, SEX_NAME) "
+                             "values ('%s', '%s','%s', '13817261777', '%s', '上海浦东100号', '0000001', '彭浦新村街道社区健康管理中心', "
+                             "'310118000000', '青浦区', '12345', '上海人民医院', 1, '2020-03-23', %s, '4', N'老年人', '2', N'女')"
+                             % (diseaseCode, diseaseName, Data_PO.getChineseName(), varIdcard, a))
         Sqlserver_PO.execute('set identity_insert QYYH off')
         Color_PO.outColor([{"35": "签约信息表 => select * from QYYH where SFZH = '" + str(varIdcard) + "'"}])
 
-        # 3.1 删除患者主索引表
+        # 3.1 删除, TB_EMPI_INDEX_ROOT(患者主索引表)
         Sqlserver_PO.execute("delete from TB_EMPI_INDEX_ROOT where IDCARDNO = '%s'" % (varIdcard))
-        # 3.2 插入患者主索引表
-        Sqlserver_PO.execute("insert into TB_EMPI_INDEX_ROOT(GUID, NAME, IDCARDNO) values('%s', '%s', '%s')" % (l_d_param[0]['diseaseRuleCode'], Data_PO.getChineseName(), varIdcard))
+        # 3.2 插入, TB_EMPI_INDEX_ROOT(患者主索引表)
+        Sqlserver_PO.execute("insert into TB_EMPI_INDEX_ROOT(GUID, NAME, IDCARDNO) values('%s', '%s', '%s')" % (diseaseCode, Data_PO.getChineseName(), varIdcard))
         Color_PO.outColor([{"35": "患者主索引表 => select * from TB_EMPI_INDEX_ROOT where IDCARDNO = '" + str(varIdcard) + "'"}])
 
-        Color_PO.outColor([{"36": "[OK] => " + l_d_param[0]['diseaseName'] + "（" + varIdcard + "）创建成功。"}])
+        Color_PO.outColor([{"36": "[OK] => " + diseaseName + "（" + varIdcard + "）创建成功。\n"}])
 
 
 
@@ -876,7 +909,7 @@ class ChcRulePO():
             if self.log == "":
                 self.log = str(i + 1) + ", " + l_sql[i]
             else:
-                self.log = self.log + "<br>\n" + str(i + 1) + ", " + l_sql[i]
+                self.log = self.log + "\n" + str(i + 1) + ", " + l_sql[i]
 
             # todo 执行sql
             a = self.runSql(l_sql[i])

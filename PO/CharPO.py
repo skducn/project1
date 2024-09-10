@@ -135,6 +135,7 @@ if __name__ == "__main__":
     #
     # print("1.2 字节码转中文字符串".center(100, "-"))
     # print(Char_PO.byte2chinese(b"\xe9\x87\x91\xe6\xb5\xa9", "utf-8"))  # 金浩
+    print(Char_PO.byte2chinese(b"\xb2\xfa\xb8\xbe", "GBK"))  # 金浩
     # print(Char_PO.byte2chinese(b"\xbd\xf0\xba\xc6", "gbk"))  # 金浩
     #
     # print("1.3 中文转拼音".center(100, "-"))

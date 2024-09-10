@@ -2,7 +2,9 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Author :John
 # Created on : 2023-7-25
-# Description:
+# Description: 社区健康管理中心
+# 测试环境 http://192.168.0.202:22080/
+# 'cs', '12345678'
 # https://chromedriver.storage.googleapis.com/index.html
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -25,7 +27,14 @@ from PO.HttpPO import *
 Http_PO = HttpPO()
 import ddddocr
 
-class ChcWebQuanquPO():
+class ChcWebPO_ja():
+
+    def __init__(self):
+
+        from ConfigparserPO import *
+        Configparser_PO = ConfigparserPO('config.ini')
+
+        self.varUrl = Configparser_PO.HTTP("url")
 
     def clsApp(self, varApp):
 
@@ -52,16 +61,21 @@ class ChcWebQuanquPO():
         Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
         Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
 
-        for i in range(10):
-            dataURI = Web_PO.getAttrValueByX(u"//img[@class='login-code-img']", "src")  # getValueByAttr
-            imgFile = Base64_PO.base64ToImg(dataURI)
-            captcha = Captcha_PO.getCaptchaByDdddOcr(imgFile)
-            File_PO.removeFile('', imgFile)
-            # print(captcha)
-            Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", captcha)
-            Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
-            if Web_PO.isBooleanByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button") == False:
-                break
+        # 关闭验证码
+        Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "11")
+        Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
+
+        # # 验证码识别
+        # for i in range(10):
+        #     dataURI = Web_PO.getAttrValueByX(u"//img[@class='login-code-img']", "src")  # getValueByAttr
+        #     imgFile = Base64_PO.base64ToImg(dataURI)
+        #     captcha = Captcha_PO.getCaptchaByDdddOcr(imgFile)
+        #     File_PO.removeFile('', imgFile)
+        #     # print(captcha)
+        #     Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", captcha)
+        #     Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
+        #     if Web_PO.isBooleanByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button") == False:
+        #         break
 
     def clkMenu(self, html_source, varMenuName, t=2):
         """点击菜单"""
@@ -81,8 +95,8 @@ class ChcWebQuanquPO():
 
         for k,v in d_menuUrl.items():
             if k == varMenuName:
-                # print("http://192.168.0.243:8010/" + d_menuUrl[varMenuName])
-                Web_PO.opn("http://192.168.0.243:8010/" + d_menuUrl[varMenuName])
+                # print("http://192.168.0.202:22080/" + d_menuUrl[varMenuName])
+                Web_PO.opn(self.varUrl + d_menuUrl[varMenuName])
         sleep(t)
 
     def getTechnicalTarget(self):

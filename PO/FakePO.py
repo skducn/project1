@@ -270,7 +270,7 @@ if __name__ == "__main__":
     # print(Fake_PO.genEmail(5))  # ['yanjun@example.net', 'fren@example.org', 'gang65@example.org', 'xzhang@example.net', 'qjia@example.net']
     #
     # print("5，生成N个地址".center(100, "-"))
-    # print(Fake_PO.genAddress('zh_CN', 5))  # ['上海市杭州市长寿白路C座 570538', '山西省潜江县东丽巢湖街u座 213982', '黑龙江省海门县怀柔张路u座 159680', '云南省上海县金平郑路o座 699256', '香港特别行政区拉萨县朝阳张家港路K座 667767']
+    print(Fake_PO.genAddress('zh_CN', 5))  # ['上海市杭州市长寿白路C座 570538', '山西省潜江县东丽巢湖街u座 213982', '黑龙江省海门县怀柔张路u座 159680', '云南省上海县金平郑路o座 699256', '香港特别行政区拉萨县朝阳张家港路K座 667767']
     # print(Fake_PO.genAddress('ja_JP', 5))  # ['徳島県川崎市高津区前弥六41丁目6番8号', '秋田県横浜市中区日光27丁目23番7号 六番町コート328', '兵庫県大田区鳥越3丁目10番18号', '静岡県新島村鍛冶ケ沢11丁目27番19号', '富山県台東区所野28丁目25番6号 平須賀シティ865']
     # print(Fake_PO.genAddress('zh_TW', 5))  # ['76220 八德縣仁愛巷9號5樓', '26059 苗栗市南路1號7樓', '32821 馬公縣永寧街77號3樓', '47049 屏東五福街292號7樓', '96189 頭份自由路3號2樓']
     # print(Fake_PO.genAddress('ko_KR', 5))  # ['전라북도 진천군 삼성로', '인천광역시 성동구 역삼213가', '경상남도 광명시 도산대가 (성호손박동)', '제주특별자치도 청주시 서원구 선릉길', '경상남도 용인시 기흥구 개포가 (지훈이동)']
@@ -316,42 +316,42 @@ if __name__ == "__main__":
 
     # print("13，生成10条测试数据并写入数据库test55".center(100, "-"))
     # # 1）随机生成列表数据
-    import datetime
-
-    date_start = pd.to_datetime(
-        datetime.datetime.now()
-    )  # Timestamp('2021-05-19 08:06:08.683355')
-
-    list1 = Fake_PO.genTest(
-        [
-            "genName",
-            "genSsn",
-            "genPhone_number",
-            "genEmail",
-            "genAddress",
-            "genPostcode",
-            "genCompany",
-            "genUrl",
-            "genIpv4",
-            "genText",
-        ],
-        100000,
-    )
-    # 2）将列表数据保存到数据库表test55
-    Pandas_PO = PandasPO("192.168.0.234", "root", "Zy123456", "mcis", 3306)
-    Pandas_PO.list2db(list1, "test55", "")
-    # 3）批量修改字段名和字段类型
-    Pandas_PO.execute(
-        "alter table test55 change `index` id int(100), change `0` `name` varchar(30) ,change `1` ssn char(30), change `2` phone_number char(30), change `3` genEmail varchar(30),"
-        " change `4` genAddress varchar(50), change `5` genPostcode char(30), change `6` genCompany varchar(30), change `7` genUrl char(50), "
-        "change `8` genIpv4 char(30),change `9` genText text(330)"
-    )
-    # 4）设置id主键
-    Pandas_PO.execute("alter table test55 add primary key(id)")
-
-    date_end = pd.to_datetime(
-        datetime.datetime.now()
-    )  # Timestamp('2021-05-19 08:06:08.683355')
-    print(date_end - date_start)  # 0 days 00:00:07.272859
+    # import datetime
+    #
+    # date_start = pd.to_datetime(
+    #     datetime.datetime.now()
+    # )  # Timestamp('2021-05-19 08:06:08.683355')
+    #
+    # list1 = Fake_PO.genTest(
+    #     [
+    #         "genName",
+    #         "genSsn",
+    #         "genPhone_number",
+    #         "genEmail",
+    #         "genAddress",
+    #         "genPostcode",
+    #         "genCompany",
+    #         "genUrl",
+    #         "genIpv4",
+    #         "genText",
+    #     ],
+    #     100000,
+    # )
+    # # 2）将列表数据保存到数据库表test55
+    # Pandas_PO = PandasPO("192.168.0.234", "root", "Zy123456", "mcis", 3306)
+    # Pandas_PO.list2db(list1, "test55", "")
+    # # 3）批量修改字段名和字段类型
+    # Pandas_PO.execute(
+    #     "alter table test55 change `index` id int(100), change `0` `name` varchar(30) ,change `1` ssn char(30), change `2` phone_number char(30), change `3` genEmail varchar(30),"
+    #     " change `4` genAddress varchar(50), change `5` genPostcode char(30), change `6` genCompany varchar(30), change `7` genUrl char(50), "
+    #     "change `8` genIpv4 char(30),change `9` genText text(330)"
+    # )
+    # # 4）设置id主键
+    # Pandas_PO.execute("alter table test55 add primary key(id)")
+    #
+    # date_end = pd.to_datetime(
+    #     datetime.datetime.now()
+    # )  # Timestamp('2021-05-19 08:06:08.683355')
+    # print(date_end - date_start)  # 0 days 00:00:07.272859
 
     # 测试结果：生成1万条数据需要7秒，10万条数据需要83秒
