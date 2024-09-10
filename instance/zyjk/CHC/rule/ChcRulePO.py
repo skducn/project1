@@ -45,7 +45,7 @@ class ChcRulePO():
     def __init__(self, sheetName=''):
 
         self.TOKEN = self.getToken(Configparser_PO.USER("user"), Configparser_PO.USER("password"))
-        print(self.TOKEN)
+        # print(self.TOKEN)
         self.dbTable = Char_PO.chinese2pinyin(sheetName)
         self.dbTable = "a_" + self.dbTable
         self.sheetName = sheetName
