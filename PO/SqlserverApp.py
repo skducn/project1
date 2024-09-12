@@ -216,8 +216,9 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # print(Sqlserver_PO.getViewsQTY())  # 42
 
 # # print("2.5 获取所有表和表注释".center(100, "-"))
-# print(Sqlserver_PO.getTableAndComment())  # {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表',...}
-# print(Sqlserver_PO.getTableAndComment('T_HEALTH_ASSESS'))  # {'a_compare_gw_spt': '测试省平台上报字段对应表'}
+# print(Sqlserver_PO.getTableComment())  # {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表',...}    #
+# print(Sqlserver_PO.getTableComment('a_test%'))
+# print(Sqlserver_PO.getTableComment('QYYH'))  # {'QYYH': '1+1+1签约信息表'}
 
 # print("2.6 获取表结构信息".center(100, "-"))
 # print(Sqlserver_PO.getStructure('a_test'))
@@ -370,17 +371,24 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # df.style.highlight_max(color='lime').highlight_min().to_excel('hello1.xlsx', index=False)  # 输出到excel带颜色
 
 
-print("7.3 插入记录".center(100, "-"))
+# print("7.1 查看表结构".center(100, "-"))
+# Sqlserver_PO.desc()
+# Sqlserver_PO.desc(['id', 'page'])
+# Sqlserver_PO.desc('a_c%')
+# Sqlserver_PO.desc({'a_%':['id','sql']})
+# Sqlserver_PO.desc('QYYH')
+# Sqlserver_PO.desc({'a_test':['number', 'rule1']})
 
-# Sqlserver_PO.desc("a_test")
-Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'createDate': Time_PO.getDateTimeByPeriod(0), 'ruleParam': 'param'})
+# print("7.2 查找记录".center(100, "-"))
+# Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
+# Sqlserver_PO.record('*', 'varchar', '%海鹰居委会%')
+# Sqlserver_PO.record('*', 'money', '%34.5%')
+# Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
+# Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。
 
-# 获取没有默认值值的字段，字典
-# 获取每个字段重复值最多（大于一半）的那个值，更新此值
+# print("7.3 插入记录".center(100, "-"))
+# Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'createDate': Time_PO.getDateTimeByPeriod(0), 'ruleParam': 'param'})
 
 
-
-# a = Sqlserver_PO.select("SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH, NUMERIC_PRECISION, NUMERIC_SCALE, DATETIME_PRECISION, COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'a_test' AND TABLE_CATALOG = 'CHC' ORDER BY ORDINAL_POSITION")
-# print(a)
 
 

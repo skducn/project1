@@ -8,29 +8,46 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
-from collections import Counter
+
+# a = {'tb%':['id', 'page']}
+# print(list(a.keys())[0])
+
+a = [{'COLUMN_NAME': 'id', 'DATETIME_PRECISION': "55"},{'name': 'jin', 'age': "525"}]
+b = [{'test': '77', 'hello': "123"},{'yellow': '727', 'color': "4545"}]
+
+print(len(a))
+
+for i in range(len(a)):
+    print(a[i])
+    a[i].update(b[i])
+print(a)
+
+
+
 #
-# counts = Counter([1,1,1,5,6,7,8,9,9,9,9,9,9])
-# print(counts.most_common())
-# print(counts.most_common(1)[0][0])
-
-
-l_d_ = [{'a': 17, 'b': 2},{'a': 13, 'b': 5},{'a': 15, 'b': 5},{'a': 17, 'b': 5}]
-l_partFields = ['a','b']
-
-l_tmp = []
-d = {}
-for field in l_partFields:
-    for i in range(len(l_d_)):
-        l_tmp.append(l_d_[i][field])
-    d[field] = l_tmp
-    l_tmp = []
+# from collections import Counter
+# #
+# # counts = Counter([1,1,1,5,6,7,8,9,9,9,9,9,9])
+# # print(counts.most_common())
+# # print(counts.most_common(1)[0][0])
+#
+#
+# l_d_ = [{'a': 17, 'b': 2},{'a': 13, 'b': 5},{'a': 15, 'b': 5},{'a': 17, 'b': 5}]
+# l_partFields = ['a','b']
+#
+# l_tmp = []
+# d = {}
+# for field in l_partFields:
+#     for i in range(len(l_d_)):
+#         l_tmp.append(l_d_[i][field])
+#     d[field] = l_tmp
+#     l_tmp = []
+# # print(d)
+# for k,v in d.items():
+#     counts = Counter(v)
+#     print(counts.most_common(1)[0][0])
+#     d[k] = counts.most_common(1)[0][0]
 # print(d)
-for k,v in d.items():
-    counts = Counter(v)
-    print(counts.most_common(1)[0][0])
-    d[k] = counts.most_common(1)[0][0]
-print(d)
 
 
 # d = {}
