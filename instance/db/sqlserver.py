@@ -6,6 +6,10 @@
 # 查看表结构（字段、类型、大小、可空、注释），注意，表名区分大小写  dbDesc()
 # 查找记录  dbRecord('*', 'money', '%34.5%')
 # 创建、删除表，插入、删除记录
+
+# 7.1 查看表结构（字段、类型、大小、可空、注释），注意，表名区分大小写  desc()   //实例请参考 instance/db/sqlserver.py
+# 7.2 查找记录 record('*', 'money', '%34.5%')  //实例请参考 instance/db/sqlserver.py
+# 7.3 插入记录 insert()
 # *****************************************************************
 from PO.SqlserverPO import *
 
@@ -14,9 +18,29 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")  # （静安）
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG_JINGAN", "GBK") # （静安）
-# Sqlserver_PO.dbDesc('QYYH')
-Sqlserver_PO.dbRecord('*', 'varchar', '310101202308070020')
-# Sqlserver_PO.dbRecord('*', 'datetime', '%2024-09-09%')
+
+# Sqlserver_PO.desc('SYS_USER')
+
+# Sqlserver_PO.record('*', 'varchar', 'auto')
+# Sqlserver_PO.record('*', 'varchar', 'auto', False)
+# Sqlserver_PO.record('SYS_USER', 'varchar', 'auto')
+# Sqlserver_PO.record('*', 'datetime', '%2024-09-09%')
+
+# print("7.3 插入记录".center(100, "-"))
+# Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'updateDate': '2010-11-12', 'ruleParam': 'param'})
+
+
+# 人群分类
+# print(d_category)  # {1: '0-6岁儿童', 2: '学生（7-17岁）', 3: '普通人群', 4: '老年人', 5: '未分类', 6: '孕妇', 7: '产妇'}
+Sqlserver_PO.insert({"ARCHIVEUNITCODE":varORG_CODE, "ARCHIVEUNITNAME":d_hospital[varORG_CODE],"SIGNSTATUS":1,"SIGNDATE":"2024-01-01",
+        "CATEGORY_CODE":'4',"CATEGORY_NAME":d_category[4],"LAST_SERVICE_DATE":"2024-03-03","KEY_POPULATION":1, "REPORT_STATUS":0,
+        "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
+
+
+Sqlserver_PO.close()
+
+
+
 
 
 

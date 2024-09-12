@@ -8,11 +8,83 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
+from collections import Counter
+#
+# counts = Counter([1,1,1,5,6,7,8,9,9,9,9,9,9])
+# print(counts.most_common())
+# print(counts.most_common(1)[0][0])
+
+
+l_d_ = [{'a': 17, 'b': 2},{'a': 13, 'b': 5},{'a': 15, 'b': 5},{'a': 17, 'b': 5}]
+l_partFields = ['a','b']
+
+l_tmp = []
+d = {}
+for field in l_partFields:
+    for i in range(len(l_d_)):
+        l_tmp.append(l_d_[i][field])
+    d[field] = l_tmp
+    l_tmp = []
+# print(d)
+for k,v in d.items():
+    counts = Counter(v)
+    print(counts.most_common(1)[0][0])
+    d[k] = counts.most_common(1)[0][0]
+print(d)
+
+
+# d = {}
+# l2 = []
+# for i in l1:
+#     # print(i)
+#     for k,v in i.items():
+#         print(k,v)
+#         if k in d:
+#             print("```````````")
+#             l2.append(v)
+#         else:
+#             # l2.append(v)
+#             d[k] = list(str(v))
+#         print(d)
+#     # break
+# print(d)
+#
+# print("``````````````````````````````")
+# dd = {}
+# for i in l1:
+#     if dd != {}:
+#         dd = {k: (dd.get(k), i.get(k)) for k in dd.keys() & i.keys()}
+#         # print(dd)
+#     else:
+#         dd = i
+# print(dd)
+# print(dd['a'],type(dd['a']))
+#
+# print(len(dd['a']))
+
+
+# dict1 = {'a': 1, 'b': 2}
+# dict2 = {'a': 1, 'b': 20, 'c': 30}
+#
+# # 使用字典推导式
+# combined_dict = {k: (dict1.get(k), dict2.get(k)) for k in dict1.keys() & dict2.keys()}
+# print(combined_dict)
+#
+# # 或者使用循环
+# combined_dict = {}
+# for k in dict1.keys() & dict2.keys():
+#     combined_dict[k] = (dict1.get(k), dict2.get(k))
+#
+# print(combined_dict)
+
+
+
+
 
 # a = eval(assert "LMP"=='LMP')
 
-a= (eval('1'=='1'))
-print(a)
+# a= (eval('1'=='1'))
+# print(a)
 # import pandas as pd
 #
 #

@@ -11,13 +11,16 @@ from ChcRulePO import *
 ChcRule_PO = ChcRulePO()
 
 # 【chcRuleCase1.11.xlsx】
-# ChcRule_PO.importFull('评估疾病表')  # 将"评估疾病表"导入数据库
+ChcRule_PO.importFull('评估疾病表')  # 将"评估疾病表"导入数据库
 # 生成"评估疾病表"中身份证
-# ChcRule_PO.genIdcard('评估疾病表')
+ChcRule_PO.genIdcard('评估疾病表')
 
 
-# ChcRule_PO.importFull('测试规则')
-ChcRule_PO.importFull('健康评估')
+ChcRule_PO.genIdcard2('310101198004110014')
+
+
+ChcRule_PO.importFull('测试规则')
+# ChcRule_PO.importFull('健康评估')
 # ChcRule_PO.importFull('健康干预')
 # ChcRule_PO.importFull("中医体质辨识")
 # # ChcRule_PO.importFull('疾病评估')

@@ -3,6 +3,7 @@
 # Author     : John
 # Created on : 2024-3-8
 # Description: CHC规则主程序
+# http://192.168.0.243:8010/
 #***************************************************************
 from ChcRulePO import *
 
@@ -10,8 +11,12 @@ from ChcRulePO import *
 # todo 2, 从db中执行规则用例
 # 健康评估,健康干预,中医体质辨识,疾病评估,儿童健康干预
 r = ChcRulePO("健康干预")
+
+# r.i_startAssess("231221193811225896")
+# r.i_rerunExecuteRule(503018)
+
 # # # 按id执行
-r.runId([3])
+r.runId([89])
 
 # 按id区间执行
 # r.runIdArea([1,5])

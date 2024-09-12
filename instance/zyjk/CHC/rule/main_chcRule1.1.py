@@ -5,6 +5,8 @@
 # Description: CHC规则主程序 1.1
 # 【腾讯文档】社区健康规则自动化v1.11
 # https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl
+
+# http://192.168.0.243:8010/
 #***************************************************************
 from ChcRulePO import *
 

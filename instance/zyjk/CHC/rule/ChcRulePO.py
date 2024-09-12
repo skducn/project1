@@ -3,6 +3,7 @@
 # Author :John
 # Created on : 2024-3-8
 # Description: CHC规则包
+# http://192.168.0.243:8010/
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 import subprocess
@@ -185,6 +186,51 @@ class ChcRulePO():
         # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
         Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）增量导入成功。"}, ])
 
+    # def genIdcard2(self, varIdcard):
+    #
+    #     # 生成身份证,用于测试
+    #
+    #     # 1.1 删除, HRPERSONBASICINFO(基本信息表)
+    #     Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (varIdcard))
+    #     # 1.2 插入, HRPERSONBASICINFO(基本信息表)
+    #     Sqlserver_PO.execute('set identity_insert HRPERSONBASICINFO on')
+    #     r = Sqlserver_PO.select('select max(ID) as qty from HRPERSONBASICINFO')
+    #     id = r[0]['qty'] + 1
+    #
+    #     Sqlserver_PO.execute("insert into HRPERSONBASICINFO(ARCHIVENUM,NAME,SEX,IDCARD,PHONE,CREATETIME,UPDATENAME,TELEPHONE, ID,ISGOVERNANCE) "
+    #                          "values ('%s', '%s', '1', '%s','%s', '%s','%s', %s, '0')"
+    #                          % (varIdcard, Data_PO.getChineseName(), varIdcard, Data_PO.getPhone(),
+    #                             time.strftime("%Y-%m-%d %H:%M:%S.000"),time.strftime("%Y-%m-%d %H:%M:%S.000"),str(id)))
+    #     Sqlserver_PO.execute('set identity_insert HRPERSONBASICINFO off')
+    #     Color_PO.outColor(
+    #         [{"35": "基本信息表 => select * from HRPERSONBASICINFO where ARCHIVENUM = '" + str(varIdcard) + "'"}])
+    #
+    #     # 2.1 删除, QYYH(1+1+1签约信息表)
+    #     Sqlserver_PO.execute("delete from QYYH where SFZH = '%s'" % (varIdcard))
+    #     # 2.2 插入, QYYH(1+1+1签约信息表)
+    #     Sqlserver_PO.execute('set identity_insert QYYH on')
+    #     r = Sqlserver_PO.select('select max(ID) as qty from QYYH')
+    #     a = r[0]['qty'] + 1
+    #     Sqlserver_PO.execute(
+    #         "insert into QYYH(CZRYBM, CZRYXM, JMXM, SJHM, SFZH, JJDZ, ARCHIVEUNITCODE, ARCHIVEUNITNAME, "
+    #         "DISTRICTORGCODE, DISTRICTORGNAME, TERTIARYORGCODE, TERTIARYORGNAME, SIGNSTATUS, SIGNDATE, ID, "
+    #         "CATEGORY_CODE, CATEGORY_NAME, SEX_CODE, SEX_NAME) "
+    #         "values ('%s', '%s','%s', '13817261777', '%s', '上海浦东100号', '0000001', '彭浦新村街道社区健康管理中心', "
+    #         "'310118000000', '青浦区', '12345', '上海人民医院', 1, '2020-03-23', %s, '4', N'老年人', '2', N'女')"
+    #         % (diseaseCode, diseaseName, Data_PO.getChineseName(), varIdcard, a))
+    #     Sqlserver_PO.execute('set identity_insert QYYH off')
+    #     Color_PO.outColor([{"35": "签约信息表 => select * from QYYH where SFZH = '" + str(varIdcard) + "'"}])
+    #
+    #     # 3.1 删除, TB_EMPI_INDEX_ROOT(患者主索引表)
+    #     Sqlserver_PO.execute("delete from TB_EMPI_INDEX_ROOT where IDCARDNO = '%s'" % (varIdcard))
+    #     # 3.2 插入, TB_EMPI_INDEX_ROOT(患者主索引表)
+    #     Sqlserver_PO.execute("insert into TB_EMPI_INDEX_ROOT(GUID, NAME, IDCARDNO) values('%s', '%s', '%s')" % (
+    #     diseaseCode, Data_PO.getChineseName(), varIdcard))
+    #     Color_PO.outColor(
+    #         [{"35": "患者主索引表 => select * from TB_EMPI_INDEX_ROOT where IDCARDNO = '" + str(varIdcard) + "'"}])
+    #
+    #     Color_PO.outColor([{"36": "[OK] => " + diseaseName + "（" + varIdcard + "）创建成功。\n"}])
+
     def genIdcard(self, sheetName):
 
         # 生成身份证(评估疾病表)
@@ -206,9 +252,9 @@ class ChcRulePO():
         # 对三张表进行先删除后插入操作
 
         l_d_ = Sqlserver_PO.select("select diseaseName,diseaseCode from %s where [idcard]='%s'" % (varTable, str(varIdcard)))
-        # print(l_d_) # [{'diseaseName': '慢性支气管炎', 'diseaseRuleCode': 'JB020', 'sql1': "DELETE from [dbo].[HRPERSONBASICINFO] WHERE [ARCHIVENUM] ='310101202308070020';...
-        diseaseName = l_d_[0]['diseaseName']  # 慢性支气管炎
-        diseaseCode = l_d_[0]['diseaseCode']  # JB020
+        # print(l_d_) # [{'diseaseName': '高血压', 'diseaseRuleCode': 'JB001', 'sql1': "DELETE from [dbo].[HRPERSONBASICINFO] WHERE [ARCHIVENUM] ='310101202308070020';...
+        diseaseName = l_d_[0]['diseaseName']  # 高血压
+        diseaseCode = l_d_[0]['diseaseCode']  # JB001
 
         # 1.1 删除, HRPERSONBASICINFO(基本信息表)
         Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (varIdcard))
@@ -224,6 +270,7 @@ class ChcRulePO():
 
         # 2.1 删除, QYYH(1+1+1签约信息表)
         Sqlserver_PO.execute("delete from QYYH where SFZH = '%s'" % (varIdcard))
+
         # 2.2 插入, QYYH(1+1+1签约信息表)
         Sqlserver_PO.execute('set identity_insert QYYH on')
         r = Sqlserver_PO.select('select max(ID) as qty from QYYH')
@@ -261,32 +308,31 @@ class ChcRulePO():
 
         command = "curl -X GET \"" + Configparser_PO.HTTP("url") + ":8011/server/tAssessInfo/rerunExecuteRule/" + str(varId) + "\" -H \"accept: */*\" -H \"Content-Type: application/json\" -H \"Authorization:" + str(self.TOKEN) + "\""
         if Configparser_PO.SWITCH("interface") == "on":
-            print(command)
+            Color_PO.consoleColor2({"34": command})
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         str_r = bytes.decode(out)
         d_r = json.loads(str_r)
-        sleep(1)
-        if Configparser_PO.SWITCH("interface") == "on":
-            Color_PO.consoleColor("31", "33", d_r, "")
+        sleep(2)
+        l_msg = [{'name':'重新评估', 'value' : "[ERROR => 重新评估(i_rerunExecuteRule) => " + str(str_r) + "]"}]
+
 
         if 'code' in d_r:
             if d_r['code'] != 200:
-                if Configparser_PO.SWITCH("SQL") == "on":
-                    Color_PO.consoleColor("31", "31", str_r, "")
+                if Configparser_PO.SWITCH("interface") == "on":
+                    Color_PO.consoleColor2({"31": str_r})
                 self.log = self.log + "\n" + str_r
-                return ([{'name':'重新评估', 'value' : "[ERROR => 重新评估(i_rerunExecuteRule) => " + str(str_r) + "]"}])
+                return (l_msg)
             else:
+                if Configparser_PO.SWITCH("interface") == "on":
+                    Color_PO.consoleColor2({"34": d_r})
                 return None
-                # if Configparser_PO.SWITCH("SQL") == "on":
-                #     Color_PO.consoleColor("31", "33", "重新评估(i_rerunExecuteRule) => " + str_r, "")
-                # return ([{'name':'重新评估', 'value': 200}])
         else:
-            if Configparser_PO.SWITCH("SQL") == "on":
-                Color_PO.consoleColor("31", "31", str_r, "")
+            if Configparser_PO.SWITCH("interface") == "on":
+                Color_PO.consoleColor2({"31": str_r})
             self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
-            return ([{'name':'重新评估', 'value': "[ERROR => 重新评估(i_rerunExecuteRule) => " + str(str_r) + "]"}])
+            return (l_msg)
 
     def i_startAssess2(self, varIdcard, categoryCode, orgCode):
 
@@ -341,38 +387,38 @@ class ChcRulePO():
         '''
 
         self.verifyIdcard(varIdcard)
+
         command = "curl -X POST \"" + Configparser_PO.HTTP("url") + ":8014/tAssessInfo/startAssess\" -H \"token:" + \
                   self.TOKEN + "\" -H \"Request-Origion:SwaggerBootstrapUi\" -H \"accept:*/*\" -H \"Authorization:\" " \
                                "-H \"Content-Type:application/json\" -d \"{\\\"categoryCode\\\":\\\"\\\",\\\"idCard\\\":\\\"" + str(varIdcard) + "\\\",\\\"orgCode\\\":\\\"\\\"}\""
+
         if Configparser_PO.SWITCH("interface") == "on":
-            print(command)
+            Color_PO.consoleColor2({"34": command})
+
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         str_r = bytes.decode(out)
         d_r = json.loads(str_r)
-        sleep(1)
-
-        if Configparser_PO.SWITCH("interface") == "on":
-            Color_PO.consoleColor("31", "33", str_r, "")
+        sleep(2)
+        l_msg = [{'name':'新增评估', 'value' : "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}]
 
         if 'code' in d_r:
             if d_r['code'] != 200:
-                if Configparser_PO.SWITCH("SQL") == "on":
-                    Color_PO.consoleColor("31", "31", str_r, "")
+                if Configparser_PO.SWITCH("interface") == "on":
+                    Color_PO.consoleColor2({"31": str_r})
                 self.log = self.log + "\n" + str_r
-                return ([{'name':'新增评估', 'value' : "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
+                return (l_msg)
             else:
+                if Configparser_PO.SWITCH("interface") == "on":
+                    Color_PO.consoleColor2({"34": str_r})
                 return None
-                # if Configparser_PO.SWITCH("SQL") == "on":
-                #     Color_PO.consoleColor("31", "33", "新增评估(i_startAssess) =>  => " + str_r, "")
                 # return ([{'name':'新增评估', 'value': 200}])
         else:
-            if Configparser_PO.SWITCH("SQL") == "on":
-                Color_PO.consoleColor("31", "31", str_r, "")
+            if Configparser_PO.SWITCH("interface") == "on":
+                Color_PO.consoleColor2({"31": str_r})
             self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
-            return ([{'name':'新增评估', 'value': "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
-
+            return (l_msg)
     def runSql(self, varSql):
 
         # 执行sql
@@ -580,9 +626,11 @@ class ChcRulePO():
 
         # todo 输出第一行
         if self.tester == self.successor:
+            Color_PO.consoleColor2({"35": str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester})
             print(str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester)  # [健康评估 => 9(r1)]
         else:
-            print(str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester + " => " + self.successor )
+            Color_PO.consoleColor2({"35": str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester + " => " + self.successor})
+            # print(str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester + " => " + self.successor )
         # Color_PO.consoleColor("31", "33", (("[" + str(self.dbTable) + " => " + str(self.dbId) + "(" + rule + ")]").center(100, '-')), "")
 
         l_0 = Sqlserver_PO.select("select sql from %s where [rule]='%s'" %(self.csgz, self.rule))
