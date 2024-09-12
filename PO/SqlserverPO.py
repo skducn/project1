@@ -1539,7 +1539,7 @@ class SqlServerPO:
                     if k == d['COLUMN_NAME']:
                         if v == 'varchar' or v == 'date' or v == 'nvarchar' or v=='datetime2' :
                             dd[d['COLUMN_NAME']] = ''
-                        elif v == 'int' or v =='decimal':
+                        elif v == 'int' or v =='decimal' or v =='tinyint':
                             dd[d['COLUMN_NAME']] = 0
             else:
                 if d['COLUMN_DEFAULT'] == "('')":
@@ -1553,8 +1553,10 @@ class SqlServerPO:
                             # 注意：不获取时间的默认值，因为可能是函数结构
                             # elif v == 'date' or v == 'datetime2':
                             #     dd[d['COLUMN_NAME']] = ''
-                            elif v == 'int' or v == 'decimal':
+                            elif v == 'int' or v == 'decimal' or v =='tinyint':
                                 dd[d['COLUMN_NAME']] = int(COLUMN_DEFAULT)
+        print(dd)
+        # sys.exit(0)
 
         # 3,获取没有默认值的字段列表
         l_noDefault = []
@@ -1583,9 +1585,18 @@ class SqlServerPO:
             if counts.most_common(1)[0][0] != None:
                 d_tmp[k] = counts.most_common(1)[0][0]
             else:
-                d_tmp[k] = ''
+                # 错误，？？？需要判断 d_tmp[k]的类型，如果字符型d_tmp[k] = ''， 如果是数字型d_tmp[k] = 0
+                d_tmp[k] = 0
+                # for k1, v1 in d_fieldType.items():
+                #     if k == k1:
+                #         if v1 == 'varchar' or v1 == 'nvarchar' or v1 == 'date' or v1 == 'datetime2':
+                #             d_tmp[k] = ''
+                #         elif v1 == 'int' or v1 =='decimal' or v1 =='tinyint':
+                #             d_tmp[k] = 0
         print("无默认值字段中取值优先顺序（重复最多、重复相同取最早的、不重复取最早的）=>", d_tmp)
+        print(dd)
         dd.update(d_tmp)
+        print(dd)
 
         # 5,主键最大值+1
         l_d_PK = self.getPrimaryKey(varTable)  # 获取主键

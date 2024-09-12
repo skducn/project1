@@ -110,6 +110,8 @@ def insert_TB_EMPI_INDEX_ROOT(varIdcard):
     Sqlserver_PO.execute("insert into TB_EMPI_INDEX_ROOT(GUID, NAME, IDCARDNO) values('%s', '%s', '%s')" % (Data_PO.getFigures(8), Data_PO.getChineseName(), varIdcard))
 
     Color_PO.outColor([{"35": "患者主索引表 => select * from TB_EMPI_INDEX_ROOT where IDCARDNO = '" + str(varIdcard) + "'"}])
+
+
 def insert_HRPERSONBASICINFO(varIdcard):
 
     # 1.1 删除, HRPERSONBASICINFO(基本信息表)
@@ -128,6 +130,13 @@ def insert_HRPERSONBASICINFO(varIdcard):
     Color_PO.outColor([{"35": "基本信息表 => select * from HRPERSONBASICINFO where ARCHIVENUM = '" + str(varIdcard) + "'"}])
 
 
+# 1.1 删除, HRPERSONBASICINFO(基本信息表)
+# Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (varIdcard))
+
+# 插入HRPERSONBASICINFO(基本信息表)
+Sqlserver_PO.insert("HRPERSONBASICINFO",{"ARCHIVENUM":varIdcard, "NAME":Data_PO.getChineseName(), "IDCARD":varIdcard,
+                                         "CREATETIME":time.strftime("%Y-%m-%d %H:%M:%S.000")})
+
 
 # 人群分类
 # # print(d_category)  # {1: '0-6岁儿童', 2: '学生（7-17岁）', 3: '普通人群', 4: '老年人', 5: '未分类', 6: '孕妇', 7: '产妇'}
@@ -136,10 +145,10 @@ def insert_HRPERSONBASICINFO(varIdcard):
 #         "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
 
 # 插入记录
-Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":Fake_PO.genName('Zh_CN', 1), "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
-        "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":varORG_CODE, "ARCHIVEUNITNAME":d_hospital[varORG_CODE],
-        "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":categoryKey,"CATEGORY_NAME":d_category[categoryKey],"LAST_SERVICE_DATE":"2023-05-06",
-        "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
+# Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":Fake_PO.genName('Zh_CN', 1), "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
+#         "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":varORG_CODE, "ARCHIVEUNITNAME":d_hospital[varORG_CODE],
+#         "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":categoryKey,"CATEGORY_NAME":d_category[categoryKey],"LAST_SERVICE_DATE":"2023-05-06",
+#         "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
 
 
 # insert_TB_EMPI_INDEX_ROOT(varIdcard)

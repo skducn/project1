@@ -8,24 +8,26 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
+from collections import Counter
+
+
 
 # a = {'tb%':['id', 'page']}
 # print(list(a.keys())[0])
-
-a = [{'COLUMN_NAME': 'id', 'DATETIME_PRECISION': "55"},{'name': 'jin', 'age': "525"}]
-b = [{'test': '77', 'hello': "123"},{'yellow': '727', 'color': "4545"}]
-
-print(len(a))
-
-for i in range(len(a)):
-    print(a[i])
-    a[i].update(b[i])
-print(a)
+#
+# a = [{'COLUMN_NAME': 'id', 'DATETIME_PRECISION': "55"},{'name': 'jin', 'age': "525"}]
+# b = [{'test': '77', 'hello': "123"},{'yellow': '727', 'color': "4545"}]
+#
+# print(len(a))
+#
+# for i in range(len(a)):
+#     print(a[i])
+#     a[i].update(b[i])
+# print(a)
 
 
 
 #
-# from collections import Counter
 # #
 # # counts = Counter([1,1,1,5,6,7,8,9,9,9,9,9,9])
 # # print(counts.most_common())
