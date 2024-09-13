@@ -57,8 +57,9 @@ app = Flask(__name__)
 # 数据库
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
-d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu", '儿童健康干预': "a_ertongjiankangganyu", "评估因素取值": "a_pingguyinsuquzhi"}
-l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预', '评估因素取值']
+d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu",'儿童健康干预': "a_ertongjiankangganyu",
+              "评估因素取值": "a_pingguyinsuquzhi", "健康干预_已患疾病单病":"a_jiankangganyu_yihuanjibingdanbing"}
+l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预', '评估因素取值','健康干预_已患疾病单病']
 # 获取测试规则
 cursor.execute("select distinct [rule] from a_ceshiguize")
 l_t_rows = cursor.fetchall()
@@ -154,19 +155,19 @@ def testRule():
         id = request.form['id']
         print(ruleName, id)
     if id != '':
-        if ruleName == "评估因素取值":
-            try:
-                result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-                print(result.stdout)
-                d_result = {}
-                d_result = eval(result.stdout)
+        if ruleName == "评估因素取值" or ruleName == "健康干预_已患疾病单病":
+            # try:
+            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            print(result.stdout)
+            d_result = {}
+            d_result = eval(result.stdout)
 
-                cursor.execute("select step from %s where id = %s" % (d_ruleName[ruleName], id))
-                rows = cursor.fetchall()
-                print(rows[0][0])
-                return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": rows[0][0], "result":d_result})
-            except:
-                return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+            cursor.execute("select step from %s where id = %s" % (d_ruleName[ruleName], id))
+            rows = cursor.fetchall()
+            print(rows[0][0])
+            return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": rows[0][0], "result":d_result})
+            # except:
+            #     return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
         else:
             try:
                 result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -330,11 +331,14 @@ def step():
         print(1,step)
         if step != "":
             step = step.replace("'","''").replace("\r","")
+            # step = step.replace("\r","")
+            # step = step.replace('&apos;', "'").replace("\r","")
         # print(step)
         # sys.exit(0)
         # cursor.execute('update %s set step="%s" where id=%s' % (d_ruleName[ruleName], step, id))
             cursor.execute("update %s set step='%s' where id=%s" % (d_ruleName[ruleName], step, id))
             conn.commit()
+            step = step.replace("''", "'")
             result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             # result = result.stdout.replace("<br>", '')
             result = result.stdout

@@ -105,7 +105,7 @@
 2.8 获取{字段:注释}字典映射 getFieldComment(varTable)
 2.9 获取记录数 getRecordQty(varTable)
 2.10 获取所有字段及类型 getFieldType(varTable)
-2.11 获取字段及类型 getFieldAndType(varTable, varField)
+2.11 获取字段及类型 getPartFieldType(varTable, varField)
 2.12 获取必填项字段及类型 getNotNullFieldAndType（varTable）
 2.13 获取自增主键 getIdentityPrimaryKey(varTable)
 2.14 获取主键  getPrimaryKey（self, varTable）
@@ -554,7 +554,7 @@ class SqlServerPO:
             raise e
         return d_fields
 
-    def getFieldAndType(self, varTable, l_field):
+    def getPartFieldType(self, varTable, l_field):
 
         ''' 2.11 获取N个字段和类型 '''
 
@@ -1537,9 +1537,9 @@ class SqlServerPO:
             if d['COLUMN_DEFAULT'] == None:
                 for k,v in d_fieldType.items():
                     if k == d['COLUMN_NAME']:
-                        if v == 'varchar' or v == 'date' or v == 'nvarchar' or v=='datetime2' :
+                        if v == 'varchar' or v == 'nvarchar' or v == 'date' or v=='datetime2' or v=='datetime' :
                             dd[d['COLUMN_NAME']] = ''
-                        elif v == 'int' or v =='decimal' or v =='tinyint':
+                        elif v == 'int' or v =='decimal' or v =='tinyint' or v =='float':
                             dd[d['COLUMN_NAME']] = 0
             else:
                 if d['COLUMN_DEFAULT'] == "('')":
@@ -1548,14 +1548,14 @@ class SqlServerPO:
                     COLUMN_DEFAULT = d['COLUMN_DEFAULT'].replace("(","").replace(")","")
                     for k, v in d_fieldType.items():
                         if k == d['COLUMN_NAME']:
-                            if v == 'varchar' or v == 'nvarchar' or v == 'date' or v == 'datetime2':
+                            if v == 'varchar' or v == 'nvarchar':
                                 dd[d['COLUMN_NAME']] = COLUMN_DEFAULT
                             # 注意：不获取时间的默认值，因为可能是函数结构
-                            # elif v == 'date' or v == 'datetime2':
-                            #     dd[d['COLUMN_NAME']] = ''
-                            elif v == 'int' or v == 'decimal' or v =='tinyint':
+                            elif v == 'date' or v == 'datetime' or v == 'datetime2':
+                                dd[d['COLUMN_NAME']] = ''
+                            elif v == 'int' or v == 'decimal' or v =='tinyint' or v =='float':
                                 dd[d['COLUMN_NAME']] = int(COLUMN_DEFAULT)
-        print(dd)
+        # print(dd)
         # sys.exit(0)
 
         # 3,获取没有默认值的字段列表
@@ -1564,9 +1564,10 @@ class SqlServerPO:
             # print(d_tmp)
             if d_tmp['COLUMN_DEFAULT'] == None:
                 l_noDefault.append(d_tmp['COLUMN_NAME'])
-        print("无默认值字段 =>", l_noDefault)  # ['ruleParam', 'id', 'createDate', 'number']
+        # print("无默认值字段 =>", l_noDefault)  # ['ruleParam', 'id', 'createDate', 'number']
         s_fields = ",".join(l_noDefault)
         # print(s_fields)  # updateDate,ruleParam,id,createDate,number
+        # sys.exit(0)
 
         # 4,获取没有默认值的字段列表中字段重复值最多（最多，相等，1个）的那个值，更新此值
         l_d_ = self.select("select %s from %s" % (s_fields, varTable))
@@ -1584,60 +1585,94 @@ class SqlServerPO:
             # print(counts.most_common(1)[0][0])
             if counts.most_common(1)[0][0] != None:
                 d_tmp[k] = counts.most_common(1)[0][0]
+                d_tmp6 = self.getPartFieldType(varTable, [k])
+                # print(d_tmp6)  # {'DOWNLOADSTATUS': 'tinyint'}
+                if d_tmp6[k] == 'datetime' or d_tmp6[k] == 'date' or d_tmp6[k] == 'datetime2':
+                    d_tmp[k] = ''
             else:
-                # 错误，？？？需要判断 d_tmp[k]的类型，如果字符型d_tmp[k] = ''， 如果是数字型d_tmp[k] = 0
-                d_tmp[k] = 0
-                # for k1, v1 in d_fieldType.items():
-                #     if k == k1:
-                #         if v1 == 'varchar' or v1 == 'nvarchar' or v1 == 'date' or v1 == 'datetime2':
-                #             d_tmp[k] = ''
-                #         elif v1 == 'int' or v1 =='decimal' or v1 =='tinyint':
-                #             d_tmp[k] = 0
-        print("无默认值字段中取值优先顺序（重复最多、重复相同取最早的、不重复取最早的）=>", d_tmp)
-        print(dd)
+                # 获取字段和类型
+                d_tmp6 = self.getPartFieldType(varTable, [k])
+                # print(d_tmp6)  # {'DOWNLOADSTATUS': 'tinyint'}
+                if d_tmp6[k] == 'int' or d_tmp6[k] == 'tinyint' or d_tmp6[k] == 'decimal' or d_tmp6[k] == 'float':
+                    d_tmp[k] = 0
+                else:
+                    d_tmp[k] = ''
+        # print("无默认值字段中取值优先顺序（重复最多、相同数量取最早的、不重复取最早的）=>", d_tmp)
+        # print(dd)
+        # sys.exit(0)
         dd.update(d_tmp)
-        print(dd)
+        # print(dd)
 
         # 5,主键最大值+1
         l_d_PK = self.getPrimaryKey(varTable)  # 获取主键
         # print(l_d_PK) # # [{'COLUMN_NAME': 'ID'}]
-        # print(len(l_d_PK))
         if len(l_d_PK) == 1:
-            # print(l_d_PK[0]['COLUMN_NAME'])    # ID
-            varPK_max = self.getPrimaryKeyMaxValue(varTable)  # 获取主键最大值
-            # print(varPK_max) # {'ID': 503135}
-            # print(varPK_max[l_d_PK[0]['COLUMN_NAME']])  # 503136
-            dd[l_d_PK[0]['COLUMN_NAME']] = varPK_max[l_d_PK[0]['COLUMN_NAME']] + 1  # 主键最大值+1
-            # 移除参数中的主键
-            for k,v in d_param.items():
-                if l_d_PK[0]['COLUMN_NAME'] == k:
-                    d_param.pop(k)
-                    break
+            # 获取主键的类型
+            d_PK = self.getPartFieldType(varTable, [l_d_PK[0]['COLUMN_NAME']])
+            # print(d_PK)  # {'GUID': 'varchar'}
+            # print(list(d_PK.values())[0])  #  'varchar'
+            s_PK_type = list(d_PK.values())[0]
+            if s_PK_type == 'int':
+                # print(l_d_PK[0]['COLUMN_NAME'])    # ID
+                d_PK_maxValue = self.getPrimaryKeyMaxValue(varTable)  # 获取主键最大值
+                # print(d_PK_maxValue) # {'ID': 503135}
+                # print(d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']])  # 503136
+                dd[l_d_PK[0]['COLUMN_NAME']] = d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']] + 1  # 主键最大值+1
+                # 移除参数中的主键
+                for k,v in d_param.items():
+                    if l_d_PK[0]['COLUMN_NAME'] == k:
+                        d_param.pop(k)
+                        break
+            # else:
+
+
         # 组合键（未处理）
-        # elif len(l_d_PK) == 2:
+        elif len(l_d_PK) > 1:
+            print("[warning], 组合键（未处理）")
+            sys.exit(0)
 
 
         # 6,更新字段值（覆盖默认值）
         dd.update(d_param)
-        print("实际数据 => ", dd)
+        Color_PO.outColor([{"35": "插入数据 => " + str(dd)}])
+        # print("插入数据 => ", dd)
 
         # 7,插入数据
-        self.execute('set identity_insert %s on' % (varTable))
-        # 字段，列表转字符串
-        l_fields = list(ChainMap(dd))
-        # print(l_fields)  # ['result', 'updateDate', 'rule1', 'ruleParam', 'id']
-        s_fields = ",".join(l_fields)
-        # s_fields = s_fields.replace(',rule,',',[rule],')  # //转义关键字
-        # print(s_fields)  # result,updateDate,[rule],ruleParam,id
-        # 值，列表转元祖
-        l_values = list(dd.values())
-        # print(l_values)  # ['15104020755', '2010-11-12', '12', 'param', 9]
-        t_values = tuple(l_values)
-        # print(t_values)  # ('14598577279', '2010-11-12', '12', 'param', 10)
-        self.execute("insert into %s(%s) values %s" % (varTable, s_fields, t_values))
-        self.execute('set identity_insert %s off' % (varTable))
-        Color_PO.outColor([{"36": "[OK] => " + varTable + " => 记录创建成功。"}])
+        try:
+            if self.getIdentityPrimaryKey(varTable) != None:
+                self.execute('set identity_insert %s on' % (varTable))
+            # 字段，列表转字符串
+            l_fields = list(ChainMap(dd))
+            # print(l_fields)  # ['result', 'updateDate', 'rule1', 'ruleParam', 'id']
+            s_fields = ",".join(l_fields)
+            # s_fields = s_fields.replace(',rule,',',[rule],')  # //转义关键字
+            # print(s_fields)  # result,updateDate,[rule],ruleParam,id
+            # 值，列表转元祖
+            l_values = list(dd.values())
+            # print(l_values)  # ['15104020755', '2010-11-12', '12', 'param', 9]
+            t_values = tuple(l_values)
+            # print(t_values)  # ('14598577279', '2010-11-12', '12', 'param', 10)
+            self.execute("insert into %s(%s) values %s" % (varTable, s_fields, t_values))
+            if self.getIdentityPrimaryKey(varTable) != None:
+                self.execute('set identity_insert %s off' % (varTable))
 
+            # print(d_param)
+            # a = {"CZRYBM": 123, "CZRYXM": 456}
+            for i, v in enumerate(list(d_param.keys())):
+                if 'SFZH' == v:
+                    # print(list(a.values())[i])
+                    Color_PO.outColor([{"36": "[OK] => " + varTable + " => select * from " + varTable + " where SFZH = '" + str(list(d_param.values())[i]) + "'\n"}])
+
+                elif 'IDCARDNO' == v:
+                    # print(list(a.values())[i])
+                    Color_PO.outColor([{"36": "[OK] => " + varTable + " => select * from " + varTable + " where IDCARDNO = '" + str(list(d_param.values())[i]) + "'\n"}])
+
+                elif 'IDCARD' == v:
+                    # print(list(a.values())[i])
+                    Color_PO.outColor([{"36": "[OK] => " + varTable + " => select * from " + varTable + " where IDCARD = '" + str(list(d_param.values())[i]) + "'\n"}])
+
+        except:
+            Color_PO.outColor([{"31": "[ERROR] => " + varTable + " => 创建记录失败!"}])
 
 
 
@@ -1730,8 +1765,8 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getFieldType("a_test"))  # {'ID': 'int', 'NAME': 'text', 'AGE': 'int', 'ADDRESS': 'char', 'SALARY': 'float'}
     #
     # print("2.11 获取字段及类型".center(100, "-"))
-    # print(Sqlserver_PO.getFieldAndType("a_test", ["id"]))  # {'ID': 'int'}
-    # print(Sqlserver_PO.getFieldAndType("a_test", ["id", 'name']))  # {'ID': 'int', 'AGE': 'int'}
+    # print(Sqlserver_PO.getPartFieldType("a_test", ["id"]))  # {'ID': 'int'}
+    # print(Sqlserver_PO.getPartFieldType("a_test", ["id", 'name']))  # {'ID': 'int', 'AGE': 'int'}
 
 
     # print("2.12 获取必填项字段及类型".center(100, "-"))
@@ -1874,7 +1909,7 @@ if __name__ == "__main__":
 
     # print("7.2 查找记录".center(100, "-"))
     # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
-    # Sqlserver_PO.record('*', 'varchar', '%海鹰居委会%')
+    Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
     # Sqlserver_PO.record('*', 'money', '%34.5%')
     # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
     # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。

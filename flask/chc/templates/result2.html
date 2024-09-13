@@ -78,7 +78,7 @@
         </p>
         </div></div>
         </div>
-{% if '[OK]' not in output_testRule['result'] %}
+    {% endif %}
 <div class="louti"></div>
 
 <!-- 编辑步骤 -->
@@ -91,7 +91,7 @@
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
 <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">编辑步骤</h3>
-<p class="a25 aR aT">步骤中每行之间不要留有空行或空格！！！</p>
+<p class="a25 aR aT">步骤之间不留空行</p>
 </div>
 </div>
 </div>
@@ -137,11 +137,11 @@
 </div>
 </div>
 </div>
-{% endif %}
 
 
 
-    {%endif%}
+
+
 {% elif error %}
     <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
     <pre>{{ error }}</pre>

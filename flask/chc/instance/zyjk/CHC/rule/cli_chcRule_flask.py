@@ -53,6 +53,26 @@ if sys.argv[1] == "评估因素取值":
         else:
             r.runStep(sys.argv[2])
 
+elif sys.argv[1] == "健康干预_已患疾病单病":
+    if sys.argv[2] == "error":
+        r.runResult2("error")
+    elif sys.argv[2] == "ok":
+        r.runResult2("ok")
+    elif sys.argv[2] == "all":
+        r.runResult("all")
+    else:
+        if "-" in (sys.argv[2]):
+            start = int((sys.argv[2]).split("-")[0])
+            end = int((sys.argv[2]).split("-")[1])
+            if start < end:
+                for i in range(start, end + 1):
+                    r.runStep2(i)
+            else:
+                for i in range(end, start + 1):
+                    r.runStep2(i)
+        else:
+            r.runStep2(sys.argv[2])
+
 else:
     # 步骤2, 默认off
     if len(sys.argv) == 3 :

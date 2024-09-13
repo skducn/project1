@@ -10,7 +10,16 @@
 # ***************************************************************u**
 from collections import Counter
 
+d_param = {'CZRYBM': '1100', 'CZRYXM': '自动化', 'JMXM': '杨莹'}
+for i, v in enumerate(list(d_param.keys())):
+    if 'CZRYXM' == v:
+        print(list(d_param.values())[i])
 
+#         break
+# a = {"CZRYBM":123, "CZRYXM":456}
+# for i,v in enumerate(list(a.keys())):
+#     if 'CZRYXM' == v :
+#         print(list(a.values())[i])
 
 # a = {'tb%':['id', 'page']}
 # print(list(a.keys())[0])

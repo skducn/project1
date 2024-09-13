@@ -69,6 +69,10 @@ class ChcRulePO():
         tester = l_d_step[0]['tester']
         # print(l_step)  # ["update TB_PREGNANT_MAIN_INFO set MCYJ='2024-08-06' where ZJHM = '31010520161202008X'", "self.i_startAssess2('31010520161202008X','6','0000001')", 'select LMP from T_ASSESS_MATERNAL where ASSESS_ID={ASSESS_ID}']
 
+        varQty1 = 0
+        varQty2 = 0
+        varQty = 0
+
         for i,v in enumerate(l_step, start=1):
             if 'self.' in v:
                 self.ASSESS_ID = eval(v)
@@ -89,23 +93,36 @@ class ChcRulePO():
                     eval('Sqlserver_PO.execute("' + v + '")')
                 else:
                     if "==" in v:
-                        if str(self.selectResult[0][v.split("==")[0]]) == v.split("==")[1]:
-                            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
-                            Color_PO.outColor([{"36": "[OK] => " + self.sheetName + " => " + str(varId)}])
-                            l_tmp = List_PO.dels(s.split("\n"), '')
-                            if Configparser_PO.SWITCH("step") == "on":
-                                for j, v in enumerate(l_tmp, start=1):
-                                    print(j, v)
-                        else:
-                            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
-                            Color_PO.outColor([{"31": "[ERROR] => " + self.sheetName + " => " + str(varId)}])
-                            l_tmp = List_PO.dels(s.split("\n"), '')
-                            for j, v in enumerate(l_tmp, start=1):
-                                print(j, v)
+                        # print(v.split("==")[0])
+                        if 'qty1' == v.split("==")[0]:
+                            if str(self.selectResult[0][v.split("==")[0]]) == v.split("==")[1]:
+                                varQty1 = 1
+                            else:
+                                varQty1 = 0
+                                Color_PO.outColor([{"31": "[ERROR] => varQty1 = 0"}])
+                        if  'qty2' == v.split("==")[0]:
+                            if str(self.selectResult[0][v.split("==")[0]]) == v.split("==")[1]:
+                                varQty2 = 1
+                            else:
+                                varQty2 = 0
+                                Color_PO.outColor([{"31": "[ERROR] => varQty2 = 0"}])
 
-                        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
-            d_result['step'] = s
-
+        varQty = varQty1 + varQty2
+        if varQty == 2:
+            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
+            Color_PO.outColor([{"36": "[OK] => " + self.sheetName + " => " + str(varId)}])
+            # l_tmp = List_PO.dels(s.split("\n"), '')
+            # if Configparser_PO.SWITCH("step") == "on":
+            #     for j, v in enumerate(l_tmp, start=1):
+            #         print(j, v)
+        else:
+            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
+            Color_PO.outColor([{"31": "[ERROR] => " + self.sheetName + " => " + str(varId)}])
+            l_tmp = List_PO.dels(s.split("\n"), '')
+            for j, v in enumerate(l_tmp, start=1):
+                print(j, v)
+        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
+        d_result['step'] = s
         if Configparser_PO.SWITCH("step") == "on":
             print(d_result)
 
@@ -142,7 +159,7 @@ class ChcRulePO():
         Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
 
         # 修改其他规则表的字段类型
-        if sheetName == "健康评估" or sheetName == "健康干预" or sheetName == "中医体质辨识":
+        if sheetName == "健康评估" or sheetName == "健康干预" or sheetName == "评估因素取值" or sheetName == "健康干预_已患疾病单病":
             # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
             # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
             Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
@@ -334,7 +351,7 @@ class ChcRulePO():
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
             return (l_msg)
 
-    def i_startAssess2(self, varIdcard, categoryCode, orgCode):
+    def i_startAssess2(self, varIdcard):
 
         '''
         新增评估
@@ -344,10 +361,20 @@ class ChcRulePO():
         '''
 
         self.verifyIdcard(varIdcard)
-        command = "curl -X POST \"" + Configparser_PO.HTTP("url") + ":8014/tAssessInfo/startAssess\" -H \"token:" + \
-                  self.TOKEN + "\" -H \"Request-Origion:SwaggerBootstrapUi\" -H \"accept:*/*\" -H \"Authorization:\" " \
-                               "-H \"Content-Type:application/json\" -d \"{\\\"categoryCode\\\":\\\"" + str(categoryCode) + "\\\",\\\"idCard\\\":\\\"" + str(varIdcard) + "\\\",\\\"orgCode\\\":\\\"" + str(orgCode) + "\\\",\\\"assessDocId\\\":" + str(0) + "}\""
 
+        l_d_ = Sqlserver_PO.select("select ARCHIVEUNITCODE,CATEGORY_CODE from QYYH where SFZH='%s'" % (varIdcard))
+        # print(l_d_)
+        # print(l_d_[0]['ARCHIVEUNITCODE'])
+        # print(l_d_[0]['CATEGORY_CODE'])
+        # sys.exit(0)
+        command = "curl -X POST \"" + Configparser_PO.HTTP("url") + ":8014/tAssessInfo/startAssess\" " \
+                    "-H \"Request-Origion:SwaggerBootstrapUi\" -H \"accept:*/*\" -H \"Authorization:" + self.TOKEN + "\" " + \
+                               "-H \"Content-Type:application/json\" " \
+                               "-d \"{\\\"assessDocName\\\":\\\"\\\",\\\"assessThirdNo\\\":\\\"\\\", " \
+                               "\\\"categoryCode\\\":\\\"" + str(l_d_[0]['CATEGORY_CODE']) + "\\\",\\\"idCard\\\":\\\"" + str(varIdcard) + "\\\",\\\"orgCode\\\":\\\"" + str(l_d_[0]['ARCHIVEUNITCODE']) + "\\\",\\\"assessDocId\\\":" + str(0) + "}\""
+
+                                # "{\"assessDocId\":0,
+        # \"assessDocName\":\"\",\"assessThirdNo\":\"\",\"categoryCode\":\"4\",\"idCard\":\"310110194304210023\",\"orgCode\":\"0000001\"}"
         if Configparser_PO.SWITCH("interface") == "on":
             print(command)
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -363,7 +390,7 @@ class ChcRulePO():
             if d_r['code'] != 200:
                 if Configparser_PO.SWITCH("SQL") == "on":
                     Color_PO.consoleColor("31", "31", str_r, "")
-                self.log = self.log + "\n" + str_r
+                # self.log = self.log + "\n" + str_r
                 return ([{'name':'新增评估', 'value' : "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
             else:
                 return d_r['data']
@@ -373,7 +400,7 @@ class ChcRulePO():
         else:
             if Configparser_PO.SWITCH("SQL") == "on":
                 Color_PO.consoleColor("31", "31", str_r, "")
-            self.log = self.log + "\n" + str_r
+            # self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
             return ([{'name':'新增评估', 'value': "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
 

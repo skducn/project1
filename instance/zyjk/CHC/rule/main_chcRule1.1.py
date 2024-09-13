@@ -10,9 +10,13 @@
 #***************************************************************
 from ChcRulePO import *
 
-r = ChcRulePO("评估因素取值")
-r.runStep(4)
-r.runStep(5)
+# r = ChcRulePO("评估因素取值")
+r = ChcRulePO("健康干预_已患疾病单病")
+
+# r.i_startAssess2("513434195806074844")
+
+r.runStep(1)
+# r.runStep(5)
 
 
 #
