@@ -31,6 +31,9 @@ varSex = Data_PO.getSex(varIdcard)
 d_sex = {'男': 1, '女':2, '未知性别':3}
 
 # todo QYYH（签约信息表）
+# Sqlserver_PO.desc('QYYH')
+# print(Sqlserver_PO.getTableComment('QYYH'))
+
 # 1，获取医院信息表字典（机构）
 d_hospital = {}
 l_ = Sqlserver_PO2.select("select ORG_CODE,ORG_NAME from SYS_hospital")
@@ -64,6 +67,9 @@ randomCategoryKey = random.sample(list(d_category.keys()), 1)[0]
 
 
 # todo HRPERSONBASICINFO(基本信息表)
+# Sqlserver_PO.desc('HRPERSONBASICINFO')
+# print(Sqlserver_PO.getTableComment('HRPERSONBASICINFO'))
+
 def insert_HRPERSONBASICINFO():
     # 删除记录
     Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (varIdcard))
@@ -75,6 +81,9 @@ def insert_HRPERSONBASICINFO():
 varGUID = Data_PO.getFigures(8)
 
 # todo TB_EMPI_INDEX_ROOT(患者主索引表)
+# Sqlserver_PO.desc('TB_EMPI_INDEX_ROOT')
+# print(Sqlserver_PO.getTableComment('TB_EMPI_INDEX_ROOT'))
+
 def insert_TB_EMPI_INDEX_ROOT():
     # 删除记录
     Sqlserver_PO.execute("delete from TB_EMPI_INDEX_ROOT where IDCARDNO = '%s'" % (varIdcard))
@@ -84,15 +93,20 @@ def insert_TB_EMPI_INDEX_ROOT():
 
 
 # todo TB_DC_CHRONIC_MAIN(慢心病防治随访主表)
+# Sqlserver_PO.desc('TB_DC_CHRONIC_MAIN')
+# print(Sqlserver_PO.getTableComment('TB_DC_CHRONIC_MAIN'))
+
 def insert_TB_DC_CHRONIC_MAIN():
     # 删除记录
-    # Sqlserver_PO.execute("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '%s'" % (varGUID))
+    Sqlserver_PO.execute("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '%s'" % (varGUID))
     # 插入记录
     varGUID2 = Data_PO.getFigures(11)
     Sqlserver_PO.insert("TB_DC_CHRONIC_MAIN",{"GUID":varGUID2, "MANAGENUM":varIdcard, "ORGCODE":"0000001", "EMPIGUID":varGUID})
 
 
 # todo T_HIS_DIAGNOSIS(诊断疾病表)
+# Sqlserver_PO.desc('T_HIS_DIAGNOSIS')
+# print(Sqlserver_PO.getTableComment('T_HIS_DIAGNOSIS'))
 def insert_T_HIS_DIAGNOSIS():
     # 删除记录
     Sqlserver_PO.execute("delete from T_HIS_DIAGNOSIS where IDCARD = '%s'" % (varIdcard))
@@ -101,23 +115,116 @@ def insert_T_HIS_DIAGNOSIS():
 
 
 
-# 5, 插入QYYH（签约信息表）
-# 人群分类 CATEGORY_CODE":'4',"CATEGORY_NAME":d_category[4]
+# todo TB_PREGNANT_MAIN_INFO(孕产妇信息表)
+Sqlserver_PO.desc('TB_PREGNANT_MAIN_INFO')
+# print(Sqlserver_PO.getTableComment('TB_PREGNANT_MAIN_INFO'))
+def insert_TB_PREGNANT_MAIN_INFO(varIdcard):
+    # 删除记录
+    Sqlserver_PO.execute("delete from TB_PREGNANT_MAIN_INFO where ZJHM = '%s'" % (varIdcard))
+    varYCFID = Data_PO.getFigures(8)
+    # 插入记录
+    Sqlserver_PO.insert("TB_PREGNANT_MAIN_INFO", {"YCFID":varYCFID, "JCH":"13", "XM":varJMXM, "ZJHM":varIdcard})
+
+
+# todo TB_CHILDBIRTH_RECORD(分娩记录表)
+# Sqlserver_PO.desc('TB_CHILDBIRTH_RECORD')
+# print(Sqlserver_PO.getTableComment('TB_CHILDBIRTH_RECORD'))
+def insert_TB_CHILDBIRTH_RECORD():
+    # 删除记录
+    Sqlserver_PO.execute("delete from TB_CHILDBIRTH_RECORD where ZJHM = '%s'" % (varIdcard))
+    # 插入记录
+    # Sqlserver_PO.insert("TB_CHILDBIRTH_RECORD", {"YCFID":?, "ZJHM":varIdcard, "XM":varJMXM})
+
+
+# todo TB_POSTPARTUM_VISIT_RECORD(产后访视记录表)
+# Sqlserver_PO.desc('TB_POSTPARTUM_VISIT_RECORD')
+# print(Sqlserver_PO.getTableComment('TB_POSTPARTUM_VISIT_RECORD'))
+def insert_TB_POSTPARTUM_VISIT_RECORD():
+    # 删除记录
+    # Sqlserver_PO.execute("delete from TB_POSTPARTUM_VISIT_RECORD where YCFID = '%s'" % (varYCFID))
+    Sqlserver_PO.execute("delete from TB_POSTPARTUM_VISIT_RECORD WHERE YCFID in (SELECT YCFID FROM TB_PREGNANT_MAIN_INFO WHERE ZJHM = '%s'" % (varIdcard))
+    # 插入记录
+    # Sqlserver_PO.insert("TB_POSTPARTUM_VISIT_RECORD", {"YCFID":?, "JGCODE":"0000001", "XM":varJMXM})
+
+
+
+# todo TB_DC_EXAMINATION_INFO(体检信息表)
+# Sqlserver_PO.desc('TB_DC_EXAMINATION_INFO')
+# print(Sqlserver_PO.getTableComment('TB_DC_EXAMINATION_INFO'))
+def insert_TB_DC_EXAMINATION_INFO():
+    # 删除记录
+    Sqlserver_PO.execute("delete from TB_DC_EXAMINATION_INFO where GUID = '%s'" % (varGUID))
+    # 插入记录
+    # Sqlserver_PO.insert("TB_DC_EXAMINATION_INFO", {"GUID":varGUID, "ORGCODE":"0000001", "NAME":varJMXM})
+
+
+# todo TB_DC_HTN_VISIT(高血压随访表)
+# Sqlserver_PO.desc('TB_DC_HTN_VISIT')
+# print(Sqlserver_PO.getTableComment('TB_DC_HTN_VISIT'))
+def insert_TB_DC_HTN_VISIT():
+    # 删除记录
+    Sqlserver_PO.execute("delete from TB_DC_HTN_VISIT where GUID = '%s'" % (varGUID))
+    # 插入记录
+    # Sqlserver_PO.insert("TB_DC_HTN_VISIT", {"GUID":varGUID, "CARDID":varGUID, "ORGCODE":"0000001", "VISITDATE":?, "SBP":?, "DBP":?})
+
+
+
+# todo TB_DC_DM_VISIT(糖尿病随访表)
+# Sqlserver_PO.desc('TB_DC_DM_VISIT')
+# print(Sqlserver_PO.getTableComment('TB_DC_DM_VISIT'))
+def insert_TB_DC_DM_VISIT():
+    # 删除记录
+    Sqlserver_PO.execute("delete from TB_DC_DM_VISIT where GUID = '%s'" % (varGUID))
+    # 插入记录
+    # Sqlserver_PO.insert("TB_DC_DM_VISIT", {"GUID":varGUID, "CARDID":varGUID, "ORGCODE":"0000001", "VISITDATE":?, "SBP":?, "DBP":?})
+
+
+# 签约信息表
+# # 人群分类 CATEGORY_CODE":'4',"CATEGORY_NAME":d_category[4]
 # Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":varJMXM, "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
 #         "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":"0000001", "ARCHIVEUNITNAME":d_hospital["0000001"],
 #         "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":4,"CATEGORY_NAME":d_category[4],"LAST_SERVICE_DATE":"2023-05-06",
 #         "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
-#
+
+
+# Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":varJMXM, "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
+#         "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":"0000001", "ARCHIVEUNITNAME":d_hospital["0000001"],
+#         "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":7,"CATEGORY_NAME":d_category[7],"LAST_SERVICE_DATE":"2023-05-06",
+#         "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
+
+# 基本信息表
 # insert_HRPERSONBASICINFO()
+
+# 患者主索引表
 # insert_TB_EMPI_INDEX_ROOT()
+
+# 慢心病防治随访主表
 # insert_TB_DC_CHRONIC_MAIN()
+
+# 诊断疾病表
 # insert_T_HIS_DIAGNOSIS()
 
-# print(Sqlserver_PO.getTableComment('T_HIS_DIAGNOSIS'))
+# 孕产妇信息表
+# insert_TB_PREGNANT_MAIN_INFO('150200195611167392')
+
+print(Sqlserver_PO.select("select * from TB_PREGNANT_MAIN_INFO WHERE ZJHM='150200195611167392'"))
 
 
+# a = Sqlserver_PO.select("SELECT COLUMN_NAME FROM information_schema.key_column_usage where table_name='TB_PREGNANT_MAIN_INFO'")
+# print(a)
 
-a = Sqlserver_PO.select("select step,tester from  a_jiankangganyu_yihuanjibingdanbing where id = 2")
-print(a)
-print(a[0]['step'])
+# 分娩记录表
+# insert_TB_CHILDBIRTH_RECORD()
+
+# 体检信息表
+# insert_TB_DC_EXAMINATION_INFO()
+
+# 高血压随访表
+# insert_TB_DC_HTN_VISIT()
+
+# 糖尿病随访表
+# insert_TB_DC_DM_VISIT()
+
+# Sqlserver_PO.insert('TB_DC_CHRONIC_MAIN',{'GUID': '14449029827','VISITTYPECODE':'31','MANAGENUM':'32070719470820374X','ORGCODE':'0000001','EMPIGUID': '65209815'})
+
 

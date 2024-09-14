@@ -599,7 +599,7 @@ class SqlServerPO:
 
         ''' 2.11 获取主键或组合键 '''
 
-        l_d_PK= self.select("SELECT COLUMN_NAME FROM information_schema.key_column_usage where table_name='" + varTable + "'")
+        l_d_PK = self.select("SELECT COLUMN_NAME FROM information_schema.key_column_usage where table_name='" + varTable + "'")
         # print(l_d_PK)  # [{'COLUMN_NAME': 'ADDRESS'}, {'COLUMN_NAME': 'ID'}]
         if l_d_PK == [] :
             return None
@@ -1606,30 +1606,29 @@ class SqlServerPO:
         # 5,主键最大值+1
         l_d_PK = self.getPrimaryKey(varTable)  # 获取主键
         # print(l_d_PK) # # [{'COLUMN_NAME': 'ID'}]
-        if len(l_d_PK) == 1:
-            # 获取主键的类型
-            d_PK = self.getPartFieldType(varTable, [l_d_PK[0]['COLUMN_NAME']])
-            # print(d_PK)  # {'GUID': 'varchar'}
-            # print(list(d_PK.values())[0])  #  'varchar'
-            s_PK_type = list(d_PK.values())[0]
-            if s_PK_type == 'int':
-                # print(l_d_PK[0]['COLUMN_NAME'])    # ID
-                d_PK_maxValue = self.getPrimaryKeyMaxValue(varTable)  # 获取主键最大值
-                # print(d_PK_maxValue) # {'ID': 503135}
-                # print(d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']])  # 503136
-                dd[l_d_PK[0]['COLUMN_NAME']] = d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']] + 1  # 主键最大值+1
-                # 移除参数中的主键
-                for k,v in d_param.items():
-                    if l_d_PK[0]['COLUMN_NAME'] == k:
-                        d_param.pop(k)
-                        break
-            # else:
-
-
-        # 组合键（未处理）
-        elif len(l_d_PK) > 1:
-            print("[warning], 组合键（未处理）")
-            sys.exit(0)
+        if l_d_PK != None:
+            if len(l_d_PK) == 1:
+                # 获取主键的类型
+                d_PK = self.getPartFieldType(varTable, [l_d_PK[0]['COLUMN_NAME']])
+                # print(d_PK)  # {'GUID': 'varchar'}
+                # print(list(d_PK.values())[0])  #  'varchar'
+                s_PK_type = list(d_PK.values())[0]
+                if s_PK_type == 'int':
+                    # print(l_d_PK[0]['COLUMN_NAME'])    # ID
+                    d_PK_maxValue = self.getPrimaryKeyMaxValue(varTable)  # 获取主键最大值
+                    # print(d_PK_maxValue) # {'ID': 503135}
+                    # print(d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']])  # 503136
+                    dd[l_d_PK[0]['COLUMN_NAME']] = d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']] + 1  # 主键最大值+1
+                    # 移除参数中的主键
+                    for k,v in d_param.items():
+                        if l_d_PK[0]['COLUMN_NAME'] == k:
+                            d_param.pop(k)
+                            break
+                # else:
+            # 组合键（未处理）
+            elif len(l_d_PK) > 1:
+                print("[warning], 组合键（未处理）")
+                sys.exit(0)
 
 
         # 6,更新字段值（覆盖默认值）

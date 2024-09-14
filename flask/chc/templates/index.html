@@ -25,10 +25,10 @@
 <div id="loutinav">
 <ul>
 <li class="active"><span>&nbsp;&nbsp;测试记录</span> </li>
-<li><span>&nbsp;&nbsp;查询错误结果id</span> </li>
-<li><span>&nbsp;&nbsp;查询错误结果语句</span> </li>
+<li><span>&nbsp;&nbsp;查询错误规则记录</span> </li>
+<li><span>&nbsp;&nbsp;查询step语句</span> </li>
 <li><span>&nbsp;&nbsp;查询完整记录</span> </li>
-<li><span>&nbsp;&nbsp;查询规则语句</span> </li>
+<li><span>&nbsp;&nbsp;查询sql语句</span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 </ul>
 </div>
@@ -98,13 +98,13 @@
 </div>
 </div>
 
-<!-- 查询错误结果id -->
+<!-- 查询错误规则记录 -->
 <div class="louti"></div>
 
 <br><hr class="separator"><br>
 <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询错误结果id</h3>
-    <p class="a25 aR aT">显示id和最后执行日期，格式：(id, updateDate) </p>
+    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询错误规则记录</h3>
+    <p class="a25 aR aT">返回值显示id和最后执行日期，格式：(id, updateDate) </p>
 </div></div></div>
 
 <div class="a6 a1K ac">
@@ -121,14 +121,14 @@
 
 <div id="get_queryErrorRuleId"></div>
 
-<!-- 查询错误结果语句 -->
+<!-- 查询step语句 -->
 
 <div class="louti"></div>
 
 <br><hr class="separator"><br>
 
 <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询错误结果语句</h3>
+    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询step语句</h3>
     <p class="a25 aR aT">如：输入错误规则的id</p>
 </div></div></div>
 
@@ -209,7 +209,7 @@
 <div class="a6 a1p ac">
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询规则语句</h3>
+<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询sql语句</h3>
 <p class="a25 aR aT">请检查语句顺序与参数</p>
 
 </div>
@@ -219,7 +219,7 @@
 <div class="a6 a1K ac">
 <div class="a5 md:a2u af">
 <div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">规则编码</label>
+<label for class="al a25 aR a1j dark:a1k a2j">sql</label>
 
     <select id="queryTestRule" name="queryTestRule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
  <option value="none" selected>请选择</option>

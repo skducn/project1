@@ -66,12 +66,12 @@ elif sys.argv[1] == "健康干预_已患疾病单病":
             end = int((sys.argv[2]).split("-")[1])
             if start < end:
                 for i in range(start, end + 1):
-                    r.runStep2(i)
+                    r.run11(i)
             else:
                 for i in range(end, start + 1):
-                    r.runStep2(i)
+                    r.run11(i)
         else:
-            r.runStep2(sys.argv[2])
+            r.run11(sys.argv[2])
 
 else:
     # 步骤2, 默认off

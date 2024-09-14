@@ -155,9 +155,9 @@ def testRule():
         id = request.form['id']
         print(ruleName, id)
     if id != '':
-        if ruleName == "评估因素取值" or ruleName == "健康干预_已患疾病单病":
+        if ruleName == "评估因素取值":
             # try:
-            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             print(result.stdout)
             d_result = {}
             d_result = eval(result.stdout)
@@ -168,6 +168,16 @@ def testRule():
             return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": rows[0][0], "result":d_result})
             # except:
             #     return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+
+        elif ruleName == "健康干预_已患疾病单病":
+            try:
+                subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                cursor.execute("select result,step,[rule],ruleParam from %s where id = %s" % (d_ruleName[ruleName], id))
+                rows = cursor.fetchall()
+                return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rows[0][2], "ruleParam": rows[0][3]})
+            except:
+                return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+
         else:
             try:
                 result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
@@ -206,7 +216,7 @@ def get_queryErrorRuleId():
             data = data + "(" + str(row[0]) + ", " + str(row[1]) + ") "
         print(data)
         if data == '':
-            response_data = {'text': '未找到error'}
+            response_data = {'text': 'no error'}
         else:
             response_data = {'text': data}
     else:
@@ -215,60 +225,25 @@ def get_queryErrorRuleId():
 
 
 # todo 查询错误结果结果
-# @app.route('/get_queryRuleResult', methods=['POST'])
-# def get_queryRuleResult():
-#     if request.method == 'POST':
-#         ruleName = request.form['ruleName']
-#         id = request.form['id']
-#         print(ruleName, id)
-#         if id !='':
-#             try:
-#                 cursor.execute("select result from %s where id=%s" %(d_ruleName[ruleName], id))
-#                 rows = cursor.fetchall()
-#                 record = rows[0][0]
-#                 # return redirect('/', code=302, ruleName=l_ruleName, mySelect=l_testRule, output_queryStatus=record, output_queryStatus_sql=[d_ruleName[ruleName],id])
-#                 return render_template('index.html', ruleName=l_ruleName, mySelect=l_testRule, output_queryStatus=record, output_queryStatus_sql=[d_ruleName[ruleName],id])
-#             except:
-#                 return render_template('index.html', ruleName=l_ruleName, mySelect=l_testRule, output_queryStatus='error，非法id！')
-#         else:
-#             return render_template('index.html', ruleName=l_ruleName, mySelect=l_testRule, output_queryStatus='error，id不能为空！')
 @app.route("/get_queryRuleResult", methods=["POST"])
 def get_queryRuleResult():
     ruleName = request.form.get("ruleName")
     id = request.form.get("id")
     if id != '':
         try:
-            cursor.execute("select result from %s where id=%s" % (d_ruleName[ruleName], id))
+            cursor.execute("select step from %s where id=%s" % (d_ruleName[ruleName], id))
             rows = cursor.fetchall()
             record = rows[0][0]
             record = record.replace("\n", '<br>')
         except:
-            record = 'error，id不存在或无result！'
+            record = '无结果或id不存在！'
     else:
-        record = 'error，id不能为空！'
+        record = 'id不能为空！'
 
     return record
 
 
 # todo 查询完整记录
-# @app.route('/get_queryRecord', methods=['POST'])
-# def get_queryRecord():
-#     if request.method == 'POST':
-#         sql = request.form['sql']
-#         print(sql)
-#         if 'update ' in sql or 'delete from' in sql:
-#             return render_template('index.html', ruleName=l_ruleName, mySelect=l_testRule, output_querySQL='error，非查询语句！')
-#         else:
-#             try:
-#                 cursor.execute(sql)
-#                 rows = cursor.fetchall()
-#                 record = rows
-#                 return render_template('index.html', ruleName=l_ruleName, mySelect=l_testRule, output_querySQL=record)
-#             except:
-#                 return render_template('index.html', ruleName=l_ruleName, mySelect=l_testRule, output_querySQL='error，非法语句！')
-#     # if request.method == 'GET':
-#     #     sql = request.args.get('id')
-#     #     print(sql)
 @app.route("/get_queryRecord", methods=["POST"])
 def get_queryRecord():
     sql = request.form.get("sql")
@@ -327,24 +302,20 @@ def step():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
         id = request.form['id']
-        step = request.form['step']
-        print(1,step)
-        if step != "":
-            step = step.replace("'","''").replace("\r","")
-            # step = step.replace("\r","")
-            # step = step.replace('&apos;', "'").replace("\r","")
-        # print(step)
-        # sys.exit(0)
-        # cursor.execute('update %s set step="%s" where id=%s' % (d_ruleName[ruleName], step, id))
-            cursor.execute("update %s set step='%s' where id=%s" % (d_ruleName[ruleName], step, id))
+        rule = request.form['rule']
+        ruleParam = request.form['ruleParam']
+        print(ruleName, id, rule, ruleParam)  # 健康干预_已患疾病单病 1 s1 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G46'}
+        if ruleParam != "":
+            ruleParam = ruleParam.replace("'","''").replace("\r","")
+            # ruleParam = ruleParam.replace("\r","")
+            # ruleParam = ruleParam.replace('&apos;', "'").replace("\r","")
+            cursor.execute("update %s set ruleParam='%s' where id=%s" % (d_ruleName[ruleName], ruleParam, id))
             conn.commit()
-            step = step.replace("''", "'")
-            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            # result = result.stdout.replace("<br>", '')
-            result = result.stdout
-            d_result = eval(result)
-            # return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "step": step, "result":result}, debugRuleParam_testRule=l_testRule)
-            return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": step, "result": d_result}, debugRuleParam_testRule=l_testRule)
+            ruleParam = ruleParam.replace("''", "'")
+            subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            cursor.execute("select result,step from %s where id = %s" % (d_ruleName[ruleName], id))
+            rows = cursor.fetchall()
+            return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
         else:
             return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
 

@@ -47,6 +47,7 @@ if __name__ == "__main__":
                             "40":"40redBlack", "41":"41redred", "42":"42redGreen", "43":"43redYellow", "44":"44redBlue", "45":"45redPurple", "46":"46redAzure", "47":"44redGrey"})
 
     Color_PO.outColor([{"31": "30red"}, {"32": "32green"}, {"33": "33yellow"}])
+    Color_PO.outColor([{"31": "30red"}])
 
 
     # print("\033[1;31;41m [1], 红底红字 \033[0m")
