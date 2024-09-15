@@ -3,6 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Data Table</title>
+    <title>CHC规则</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+
+<style>
+    {font-size: 11pt; font-family: Arial;
+        border-collapse: collapse;
+        border: 1px silver;}
+    td, th
+    {    padding: 5px;}
+    tr:nth-child(even)
+    {    background: #E0E0E0;}
+    tr:hover
+    {    background: silver;    cursor: pointer;}
+
+</style>
+
 </head>
 <body>
     <table border="1">
@@ -21,10 +37,10 @@
         {% for item in data %}
         <tr>
             <td>{{ item.id }}</td>
-            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.result }}</a></td>
+            <td>{{ item.result }}</td>
             <td>{{ item.updateDate }}</td>
-            <td>{{ item.rule }}</td>
-            <td>{{ item.ruleParam }}</td>
+            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.rule }}</a></td>
+            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.ruleParam }}</a></td>
             <td>{{ item.ruleCode }}</td>
             <td>{{ item.diseaseRuleCode }}</td>
             <td>{{ item.tester }}</td>

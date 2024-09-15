@@ -150,7 +150,7 @@ def index():
 def a_jiankangganyu_yihuanjibingdanbing():
     # d_ruleName['健康干预_已患疾病单病']
     cursor.execute(
-        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where result != 'ok'" % (d_ruleName['健康干预_已患疾病单病']))
+        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName['健康干预_已患疾病单病']))
     l_t_rows = cursor.fetchall()
     # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
     l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'tester', 'id']
