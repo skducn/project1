@@ -143,8 +143,37 @@ def index():
 # scheduler.start()
 
 
+# 获取测试规则
 
 
+@app.route('/a_jiankangganyu_yihuanjibingdanbing')
+def a_jiankangganyu_yihuanjibingdanbing():
+    # d_ruleName['健康干预_已患疾病单病']
+    cursor.execute(
+        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where result != 'ok'" % (d_ruleName['健康干预_已患疾病单病']))
+    l_t_rows = cursor.fetchall()
+    # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+    l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'tester', 'id']
+    l_tmp = []
+    for i, l_v in enumerate(l_t_rows):
+        # print(i,l_v)
+        # print(dict(zip(l_key,list(l_v))))
+        d_ = dict(zip(l_key, list(l_v)))
+        d_['ruleName'] = '健康干预_已患疾病单病'
+        l_tmp.append(d_)
+
+    return render_template('about.html', data=l_tmp)
+
+@app.route('/about3')
+def about3():
+    # return render_template('result2.html',
+    result = request.args.get('result')
+    step = request.args.get('step')
+    ruleName = request.args.get('ruleName')
+    id = request.args.get('id')
+    rule = request.args.get('rule')
+    ruleParam = request.args.get('ruleParam')
+    return render_template('result2.html', output_testRule={"ruleName":ruleName, "result": result, "step":step, "id": id,"rule": rule, "ruleParam": ruleParam})
 
 
 # todo 测试记录

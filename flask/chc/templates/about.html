@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Table</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <th>id</th>
+            <th>result</th>
+            <th>updateDate</th>
+            <th>rule</th>
+            <th>ruleParam</th>
+            <th>ruleCode</th>
+            <th>diseaseRuleCode</th>
+            <th>tester</th>
+
+        </tr>
+
+        {% for item in data %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.result }}</a></td>
+            <td>{{ item.updateDate }}</td>
+            <td>{{ item.rule }}</td>
+            <td>{{ item.ruleParam }}</td>
+            <td>{{ item.ruleCode }}</td>
+            <td>{{ item.diseaseRuleCode }}</td>
+            <td>{{ item.tester }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
