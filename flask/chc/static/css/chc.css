@@ -101,7 +101,7 @@ line-height: 2rem;
     }
 
     #loutinav {
-        width: 111px;
+        width: 122px;
         position: fixed;
         top: 30px;
         left: 50px;
@@ -113,7 +113,7 @@ line-height: 2rem;
     }
 
     #loutinav ul li {
-        width: 111px;
+        width: 122px;
         height: 32px;
         border-bottom: 1px dotted #F8F8FF;
         list-style: none;
@@ -128,7 +128,7 @@ line-height: 2rem;
     }
 
     #loutinav ul li span {
-        width: 111px;
+        width: 122px;
         height: 32px;
         padding: 10px 0;
         position: absolute;

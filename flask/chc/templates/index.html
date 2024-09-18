@@ -17,6 +17,8 @@
 <script src="{{ url_for('static', filename='js/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
 
+
+
 </head>
 <body>
 
@@ -24,25 +26,26 @@
 <!-- 锚点 -->
 <div id="loutinav">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;测试记录</span> </li>
-<li><span>&nbsp;&nbsp;查询错误规则记录</span> </li>
-<li><span>&nbsp;&nbsp;查询step语句</span> </li>
-<li><span>&nbsp;&nbsp;查询完整记录</span> </li>
-<li><span>&nbsp;&nbsp;查询sql语句</span> </li>
+<li class="active"><span>&nbsp;&nbsp;1 测试记录</span> </li>
+<li><span>&nbsp;&nbsp;2 查询错误规则记录</span> </li>
+<li><span>&nbsp;&nbsp;3 查询step</span> </li>
+<li><span>&nbsp;&nbsp;4 查询sql</span> </li>
+<li><span>&nbsp;&nbsp;5 查询规则集</span> </li>
+<li><span>&nbsp;&nbsp;6 更新规则集</span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 </ul>
 </div>
 
+<!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;回顶部</span> </li>
-
-    <li><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing') }}">健康干预_已患疾病单病</a></span> </li>
+<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
+<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 </ul>
 </div>
 
-<section id="contact" class="av[100px] a1M">
 
+<section id="contact" class="av[100px] a1M">
 <div id="main">
 <div class="louti"></div>
 
@@ -50,11 +53,11 @@
 <div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w">
 
 
-<!-- 测试CHC规则 -->
+<!-- 测试记录 -->
 
 <div class="item" id="item1"></div>
 <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">测试记录</h3>
+    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">1 测试记录</h3>
     <p class="a25 aR aT"><a href="https://docs.qq.com/doc/DYktZSGxrd01kUEp4?_t=1723704134963&u=0ca68067b0d749f28acf0587e58d23a8" target="_blank">使用文档v1.2</a></p>
 </div></div></div>
 
@@ -104,12 +107,14 @@
 </div>
 </div>
 
-<!-- 查询错误规则记录 -->
+
+
+<!-- 2 查询错误规则记录 -->
 <div class="louti"></div>
 
 <br><hr class="separator"><br>
 <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询错误规则记录</h3>
+    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">2 查询错误规则记录</h3>
     <p class="a25 aR aT">返回值显示id和最后执行日期，格式：(id, updateDate) </p>
 </div></div></div>
 
@@ -127,18 +132,21 @@
 
 <div id="get_queryErrorRuleId"></div>
 
-<!-- 查询step语句 -->
+
+
+<!-- 3 查询step -->
 
 <div class="louti"></div>
 
-<br><hr class="separator"><br>
+<br>
+<hr class="separator">
+<br>
 
 <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询step语句</h3>
+    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">3 查询step</h3>
     <p class="a25 aR aT">如：输入错误规则的id</p>
 </div></div></div>
 
-{#<form id="queryStatus" action="{{ url_for('queryStatus')}}" method="post">#}
 <div class="a6 a1K ac">
     <div class="a5 md:a2u/2 af"><div class="a3u">
         <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
@@ -159,10 +167,10 @@
 <div class="a5 af"><div class="a2g">
     <button id="queryRuleResult" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">查询</button>
 </div></div>
-{#</form>#}
 
 
-<!-- 查询完整记录 -->
+
+<!-- 4 查询sql -->
 
 <div class="louti"></div>
 
@@ -173,41 +181,31 @@
 <div class="a6 a1p ac">
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询完整记录</h3>
+<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">4 查询sql</h3>
 <p class="a25 aR aT">如：select step from a_pingguyinsuquzhi where id=4</p>
 </div>
 </div>
 </div>
 
-{#<form id="querySQL" action="{{ url_for('querySQL')}}" method="post">#}
 <div class="a6 a1K ac">
 <div class="a5 md:a2u af">
 <div class="a3u">
-<input type="text" name="sql" maxlength="88" id="sql" placeholder="请输入sql语句" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+    <label for class="al a25 aR a1j dark:a1k a2j">sql语句</label>
+<input type="text" name="querySql" id="querySql" maxlength="88" placeholder="请输入sql语句" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 </div>
-{#<br>#}
-{#    {% if output_querySQL %}#}
-{#        <pre>{{ output_querySQL }}</pre>#}
-{#    {% elif error %}#}
-{#        <h2>Error:</h2>#}
-{#        <pre>{{ error }}</pre>#}
-{#    {% endif %}#}
-{#<br>#}
-
 <div class="a5 af">
 <div class="a2g">
 <button id="queryRecord" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">查询</button>
 </div>
 </div>
-{#</form>#}
 
 
-<!-- 查询规则语句 -->
+
+<!-- 5 查询规则集 -->
 
 <div class="louti"></div>
-
 <br>
 <hr class="separator">
 <br>
@@ -215,7 +213,7 @@
 <div class="a6 a1p ac">
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">查询sql语句</h3>
+<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">5 查询规则集</h3>
 <p class="a25 aR aT">请检查语句顺序与参数</p>
 
 </div>
@@ -225,11 +223,10 @@
 <div class="a6 a1K ac">
 <div class="a5 md:a2u af">
 <div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">sql</label>
-
-    <select id="queryTestRule" name="queryTestRule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
+    <select id="queryRuleCollection" name="queryRuleCollection" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
  <option value="none" selected>请选择</option>
-{% for s in queryTestRule[0:] %}
+{% for s in queryRuleCollection[0:] %}
     <option value="{{s}}">{{s}}</option>
 {% endfor %}
 </select>
@@ -238,8 +235,59 @@
 </div>
 
 <div class="box3">
-<div id="get_queryTestRule"></div>
+<div id="get_queryRuleCollection"></div>
 </div>
+
+
+
+<!-- 6 更新规则集 -->
+
+<div class="louti"></div>
+<br>
+<hr class="separator">
+<br>
+
+<div class="a6 a1p ac">
+<div class="a5 af">
+<div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
+<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">6 更新规则集</h3>
+<p class="a25 aR aT">注意：如原规则集存在则覆盖，否则创建规则集，请谨慎使用，如 规则集：s1</p>
+</div>
+</div>
+</div>
+
+<form action="{{ url_for('updateRuleCollection')}}" method="post">
+<div class="a6 a1K ac">
+
+<div class="a5 md:a2u af">
+<div class="a3u">
+<label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
+<input type="text"  name="ruleCollection" maxlength="10"  id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+</div>
+</div>
+
+<div class="a5 md:a2u af">
+<div class="a3u">
+<label for class="al a25 aR a1j dark:a1k a2j">sql*</label>
+<textarea name="sql" rows="15" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+</div>
+</div>
+
+
+<div class="a5 af"><div class="a2g">
+<button class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">提交</button>
+</div></div>
+</div>
+</form>
+
+{% if output_testRule3 %}
+    <pre>{{ output_testRule3 }}</pre>
+{% elif error %}
+    <h2>Error:</h2>
+    <pre>{{ error }}</pre>
+{% endif %}
+<br>
+
 
 
 </div>

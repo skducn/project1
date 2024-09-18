@@ -10,10 +10,21 @@
 # ***************************************************************u**
 from collections import Counter
 
-d_param = {'CZRYBM': '1100', 'CZRYXM': '自动化', 'JMXM': '杨莹'}
-for i, v in enumerate(list(d_param.keys())):
-    if 'CZRYXM' == v:
-        print(list(d_param.values())[i])
+l = ['     jinhao\r', '\r', 'yoyo\r', '\r', '\r', '\r', '\r', '\r', '     ///     \r', '\r', '\r', '\r', '\r', 'titi\r', '\r', '']
+print([i.replace('\r', '') for i in l])
+
+l2 = [i.replace('\r', '') for i in l]
+l3 = [i.strip() for i in l2 if i != '']
+print(l3)
+
+# print( [l2.remove(i) for i in l2 if i == ''])
+
+
+
+# d_param = {'CZRYBM': '1100', 'CZRYXM': '自动化', 'JMXM': '杨莹'}
+# for i, v in enumerate(list(d_param.keys())):
+#     if 'CZRYXM' == v:
+#         print(list(d_param.values())[i])
 
 #         break
 # a = {"CZRYBM":123, "CZRYXM":456}

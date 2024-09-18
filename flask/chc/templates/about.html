@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Data Table</title>
+    <title>{{ ruleName }} </title>
     <title>CHC规则</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 
@@ -36,15 +36,14 @@
 
         {% for item in data %}
         <tr>
-            <td>{{ item.id }}</td>
+            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.id }}</a></td>
             <td>{{ item.result }}</td>
             <td>{{ item.updateDate }}</td>
-            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.rule }}</a></td>
+            <td>{{ item.rule }}</td>
             <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.ruleParam }}</a></td>
             <td>{{ item.ruleCode }}</td>
             <td>{{ item.diseaseRuleCode }}</td>
             <td>{{ item.tester }}</td>
-
         </tr>
         {% endfor %}
     </table>

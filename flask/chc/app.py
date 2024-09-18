@@ -99,7 +99,7 @@ def index():
     # client_ip = request.headers.get('X-Forwarded-For', None)
     # print(client_ip)
     # return render_template('login.html')
-    return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
+    return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
 
 
 # @app.route('/login', methods=['GET', 'POST'])
@@ -143,14 +143,13 @@ def index():
 # scheduler.start()
 
 
+
 # 获取测试规则
-
-
 @app.route('/a_jiankangganyu_yihuanjibingdanbing')
 def a_jiankangganyu_yihuanjibingdanbing():
-    # d_ruleName['健康干预_已患疾病单病']
+    ruleName = '健康干预_已患疾病单病'
     cursor.execute(
-        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName['健康干预_已患疾病单病']))
+        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
     l_t_rows = cursor.fetchall()
     # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
     l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'tester', 'id']
@@ -159,10 +158,10 @@ def a_jiankangganyu_yihuanjibingdanbing():
         # print(i,l_v)
         # print(dict(zip(l_key,list(l_v))))
         d_ = dict(zip(l_key, list(l_v)))
-        d_['ruleName'] = '健康干预_已患疾病单病'
+        d_['ruleName'] = ruleName
         l_tmp.append(d_)
 
-    return render_template('about.html', data=l_tmp)
+    return render_template('about.html', data=l_tmp, ruleName=ruleName)
 
 @app.route('/about3')
 def about3():
@@ -176,7 +175,7 @@ def about3():
     return render_template('result2.html', output_testRule={"ruleName":ruleName, "result": result, "step":step, "id": id,"rule": rule, "ruleParam": ruleParam})
 
 
-# todo 测试记录
+# todo 1 测试记录
 @app.route('/testRule', methods=['POST'])
 def testRule():
     if request.method == 'POST':
@@ -196,7 +195,7 @@ def testRule():
             print(rows[0][0])
             return render_template('result2.html', output_testRule={"ruleName": ruleName, "id": id, "step": rows[0][0], "result":d_result})
             # except:
-            #     return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+            #     return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
 
         elif ruleName == "健康干预_已患疾病单病":
             try:
@@ -205,7 +204,7 @@ def testRule():
                 rows = cursor.fetchall()
                 return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rows[0][2], "ruleParam": rows[0][3]})
             except:
-                return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+                return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
 
         else:
             try:
@@ -225,12 +224,12 @@ def testRule():
                     d_result = eval(result)
                 return render_template('result.html', output_testRule={"ruleName": ruleName, "id": id, "ruleCode": ruleCode, "result": d_result}, debugRuleParam_testRule=l_testRule)
             except:
-                return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+                return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
     else:
-        return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, output_testRule='error，id不能为空！', queryErrorRuleId=l_ruleName)
+        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，id不能为空！', queryErrorRuleId=l_ruleName)
 
 
-# todo 查询错误结果id
+# todo 2 查询错误规则的记录
 @app.route('/get_queryErrorRuleId')
 def get_queryErrorRuleId():
     ruleName = request.args.get('value')
@@ -253,7 +252,8 @@ def get_queryErrorRuleId():
     return jsonify(response_data)
 
 
-# todo 查询错误结果结果
+
+# todo 3 查询step
 @app.route("/get_queryRuleResult", methods=["POST"])
 def get_queryRuleResult():
     ruleName = request.form.get("ruleName")
@@ -272,18 +272,19 @@ def get_queryRuleResult():
     return record
 
 
-# todo 查询完整记录
+
+# todo 4 查询sql
 @app.route("/get_queryRecord", methods=["POST"])
 def get_queryRecord():
-    sql = request.form.get("sql")
-    if 'select ' not in sql :
+    querySql = request.form.get("querySql")
+    if 'select ' not in querySql :
         rows='error，非查询语句！'
     else:
-        if 'where' not in sql:
+        if 'where' not in querySql:
             rows = 'error，缺少where条件！'
         else:
             data = ""
-            cursor.execute(sql)
+            cursor.execute(querySql)
             rows = cursor.fetchall()
             for row in rows:
                 data = data + str(row) + "<br>"
@@ -291,13 +292,14 @@ def get_queryRecord():
     return data
 
 
-# todo 查询规则语句
-@app.route('/get_queryTestRule')
-def get_queryTestRule():
+
+# todo 5 查询规则集
+@app.route('/get_queryRuleCollection')
+def get_queryRuleCollection():
     selected_value = request.args.get('value')
-    # print(selected_value)
     cursor.execute("select * from a_ceshiguize where [rule]='%s'" % selected_value)
     rows = cursor.fetchall()
+    # print(rows)
     data = ""
     for row in rows:
         data = data + str(row) + "\n\n"
@@ -306,6 +308,50 @@ def get_queryTestRule():
         'text': data
     }
     return jsonify(response_data)
+
+
+
+# todo 6 更新规则集
+@app.route('/updateRuleCollection', methods=['POST'])
+def updateRuleCollection():
+    if request.method == 'POST':
+        ruleCollection = request.form['ruleCollection']
+        sql = request.form['sql']
+
+        print(ruleCollection, sql)
+
+        if ruleCollection != '' and sql != '':
+            l_ = sql.split("\n")
+            l2 = [i.replace('\r', '') for i in l_]
+            l3 = [i.strip() for i in l2 if i != '']
+            # print(l3)  # ['jinhao', 'yoyo', '///', 'titi']
+
+            cursor.execute("select count([rule]) as [rule] from a_ceshiguize where [rule]='%s'" % (ruleCollection))
+            l_t_count = cursor.fetchall()
+            # print(l_t_count[0][0])
+
+            if l_t_count[0][0] == 0:
+                for index, sql in enumerate(l3, start=1):
+                    sql = sql.replace("'", "''").replace("\r", "")
+                    cursor.execute("insert into a_ceshiguize([rule],[seq],sql) values ('%s',%s,'%s')" % (ruleCollection, index, sql))
+                    conn.commit()
+            else:
+                cursor.execute("delete from a_ceshiguize where [rule]='%s'" % (ruleCollection))
+                for index, sql in enumerate(l3, start=1):
+                    cursor.execute("insert into a_ceshiguize([rule],[seq],sql) values ('%s',%s,'%s')" % (ruleCollection, index, sql))
+                    conn.commit()
+
+            # 获取更新后的规则集
+            cursor.execute("select distinct [rule] from a_ceshiguize")
+            l_t_rows = cursor.fetchall()
+            # print(l_t_rows)
+            l_testRule1 = []
+            for i in l_t_rows:
+                l_testRule1.append(i[0])
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName)
+        else:
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule3='error，rule集或sql不能为空！', queryErrorRuleId=l_ruleName)
+
 
 
 # todo 编辑规则参数
@@ -346,7 +392,8 @@ def step():
             rows = cursor.fetchall()
             return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
         else:
-            return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+
 
 
 @app.route('/swagger', methods=['POST'])

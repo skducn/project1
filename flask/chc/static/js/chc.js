@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-    <!-- 1，查询错误规则的id -->
+    <!-- 1，查询错误规则的记录 -->
 
 $(document).ready(function() {
     $('#queryErrorRuleId').change(function() {
@@ -43,15 +43,15 @@ $("#queryRuleResult").click(function() {
 });
 
 
-    <!-- 3，查询记录 -->
+    <!-- 4，查询sql -->
 
 $("#queryRecord").click(function() {
     // 获取输入框的内容
-    var sql = $("#sql").val();
+    var querySql = $("#querySql").val();
     $.ajax({
         url: "/get_queryRecord",
         type: "POST",
-        data: {sql: sql},
+        data: {querySql: querySql},
         success: function(response) {
             alert(response);
         },
@@ -62,18 +62,18 @@ $("#queryRecord").click(function() {
 });
 
 
-    <!-- 4，查询测试规则 -->
+    <!-- 5 查询规则集 -->
 
 $(document).ready(function() {
-    $('#queryTestRule').change(function() {
+    $('#queryRuleCollection').change(function() {
         var selectedValue = $(this).val();
         $.ajax({
-            url: '/get_queryTestRule',
+            url: '/get_queryRuleCollection',
             type: 'GET',
             data: {'value': selectedValue},
             success: function(data) {
                 var textWithNewLines = data.text.replace(/\n/g, "<br/>");
-                $('#get_queryTestRule').html(textWithNewLines);
+                $('#get_queryRuleCollection').html(textWithNewLines);
                 // {#alert(textWithNewLines);#}
             },
             error: function(error) {
@@ -81,6 +81,9 @@ $(document).ready(function() {
             }
         });
     });
+
+
+
 });
 
 });

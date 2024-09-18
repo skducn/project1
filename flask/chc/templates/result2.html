@@ -27,14 +27,18 @@
 <div id="loutinav">
 <ul>
 <li class="active"><span>&nbsp;&nbsp;结果</span> </li>
-<li><span>&nbsp;&nbsp;编辑</span> </li>
+<li><span>&nbsp;&nbsp;编辑ruleParam</span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 <li><span><button onclick="goHome()" >&nbsp;&nbsp;返回首页</button></span></li>
-
-
 </ul>
 </div>
 
+<div id="loutinav2">
+<ul>
+<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing') }}" target = "_blank" >健康干预_已患疾病单病</a></span> </li>
+<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
+</ul>
+</div>
 
 <section id="contact" class="av[100px] a1M">
 
@@ -87,8 +91,8 @@
 <div class="a6 a1p ac">
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">编辑</h3>
-<p class="a25 aR aT">只能修改ruleParam</p>
+<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">编辑ruleParam</h3>
+<p class="a25 aR aT">注意：文本域前后无回车！</p>
 </div>
 </div>
 </div>
@@ -112,7 +116,7 @@
 
 <div class="a5 md:a2u af">
 <div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">rule</label>
+<label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
 <input type="text" readonly name="rule" value="{{ output_testRule['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
