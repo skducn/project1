@@ -12,6 +12,7 @@ import pyperclip as pc
 # 2、粘贴剪贴板里的内容
 
 from ConfigparserPO import *
+import random
 Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
@@ -491,6 +492,10 @@ class ChcRulePO():
             Sqlserver_PO.execute("INSERT INTO [dbo].[QYYH] ([CZRYBM], [CZRYXM], [JMXM], [SJHM], [SFZH], [JJDZ], [SFJD], [SIGNORGID], [ARCHIVEUNITCODE], [ARCHIVEUNITNAME], [DISTRICTORGCODE], [DISTRICTORGNAME], [TERTIARYORGCODE], [TERTIARYORGNAME], [PRESENTADDRDIVISIONCODE], [PRESENTADDRPROVCODE], [PRESENTADDRPROVVALUE], [PRESENTADDRCITYCODE], [PRESENTADDRCITYVALUE], [PRESENTADDRDISTCODE], [PRESENTADDDISTVALUE], [PRESENTADDRTOWNSHIPCODE], [PRESENTADDRTOWNSHIPVALUE], [PRESENTADDRNEIGHBORHOODCODE], [PRESENTADDRNEIGHBORHOODVALUE], [SIGNSTATUS], [SIGNDATE],[CATEGORY_CODE], [CATEGORY_NAME], [SEX_CODE], [SEX_NAME], [LAST_SERVICE_DATE], [ASSISTANT_DOC_ID], [ASSISTANT_DOC_NAME], [HEALTH_MANAGER_ID], [HEALTH_MANAGER_NAME], [ASSISTANT_DOC_PHONE], [HEALTH_MANAGER_PHONE]) VALUES ('" + str(guid) + "', N'姚皎情', N'肝癌高危', NULL, '" + str(varIdcard) + "', N'平安街道16号', NULL, NULL, '0000001', '静安精神病院', '310118000000', '青浦区', '12345', '上海人民医院', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, '2020-06-01', 166, '4', N'1',N'男', NULL, NULL, NULL, NULL, NULL, NULL, NULL)")
 
 
+    def getVISITTYPECODE(self, varDiease):
+        ...
+
+
     def run11(self, dbId):
 
         # 按id执行
@@ -500,17 +505,27 @@ class ChcRulePO():
         else:
             print(12121212)
             sys.exit(0)
+
+        # 获取字段值
         l_d_rows = Sqlserver_PO.select("select * from %s where id=%s" % (self.dbTable, self.dbId))
         # print(l_d_rows[0]) # {'id': 1, 'result': 'ok', 'updateDate': datetime.datetime(2023, 11, 7, 10, 4, 15), 'rule': 'r1', 'ruleParam': "AGE=55 .and. CATEGORY_CODE='2'", 'ruleCode': 'PG_Age001', '分类': '年龄', '规则名称': '年龄≥55岁', '评估规则详细描述': '年龄≥55岁', '评估因素判断规则': '年龄>=55', 'tester': '刘斌龙', 'var': ''}
 
         self.rule = l_d_rows[0]['rule']
-        self.ruleParam = l_d_rows[0]['ruleParam']
-        self.ruleParam = dict(eval(self.ruleParam))
+        # try:
+        # print(111,l_d_rows[0]['ruleParam'] )
+        if l_d_rows[0]['ruleParam'] != None:
+            self.ruleParam = dict(eval(l_d_rows[0]['ruleParam']))
+        else:
+            self.ruleParam = None
+        # except:
+        #     print("ruleParam必须是字典或为空")
         self.ruleCode = l_d_rows[0]['ruleCode']
         if 'diseaseRuleCode' in l_d_rows[0].keys():
             self.diseaseRuleCode = l_d_rows[0]['diseaseRuleCode']
         else:
             self.diseaseRuleCode = ""
+
+        self.diseaseCodeDesc = l_d_rows[0]['diseaseCodeDesc']
         self.tester = l_d_rows[0]['tester']
 
         d = {}
@@ -518,6 +533,7 @@ class ChcRulePO():
         d['ruleParam'] = self.ruleParam
         d['ruleCode'] = self.ruleCode
         d['diseaseRuleCode'] = self.diseaseRuleCode
+        d['diseaseCodeDesc'] = self.diseaseCodeDesc
 
         self.outResult2(self.testRule11(d))
 
@@ -629,7 +645,6 @@ class ChcRulePO():
 
         # print(d)  # {'rule': ['select top(1) ID,ID_CARD from T_ASSESS_INFO order by ID desc', "UPDATE T_ASSESS_INFO set {测试规则参数} where ID_CARD = '{varIdcard}'", "delete from T_ASSESS_RULE_RECORD where ASSESS_ID = {varID} and RULE_CODE = '{规则编码}'", 'self.i_rerunExecuteRule({varID})', "select count(*) QTY from T_ASSESS_RULE_RECORD where ASSESS_ID = {varID} and RULE_CODE= '{规则编码}'"], 'ruleParam': "AGE=55 , CATEGORY_CODE='2'", 'ruleCode': 'PG_Age001'}
         self.log = ""
-        d_ruleParam = self.ruleParam
 
         l_sql = d['sql']
         for i in range(len(l_sql)):
@@ -643,9 +658,79 @@ class ChcRulePO():
                 l_sql[i] = str(l_sql[i]).replace("{ruleCode}", d['ruleCode'])
             if "{随机11}" in l_sql[i]:
                 l_sql[i] = str(l_sql[i]).replace("{随机11}", Data_PO.getFigures(11))
-            for k,v in d_ruleParam.items():
-                if '{' + k + '}' in l_sql[i]:
-                    l_sql[i] = str(l_sql[i]).replace('{' + k + '}' , d_ruleParam[k])
+            if d['ruleParam'] != None:
+                for k,v in d['ruleParam'].items():
+                    if '{' + k + '}' in l_sql[i]:
+                        l_sql[i] = str(l_sql[i]).replace('{' + k + '}' , d['ruleParam'][k])
+            if '{VISITTYPECODE}' in l_sql[i]:
+                if d['diseaseCodeDesc'] != None and isinstance(d['diseaseCodeDesc'], str):
+                    l_d_ = Sqlserver_PO.select("select visitTypeCode from a_jibingquzhipanduan where diseaseName='%s'" % (d['diseaseCodeDesc']))
+                    # print(l[0]['visitTypeCode'])
+                    l_sql[i] = str(l_sql[i]).replace('{VISITTYPECODE}', str(l_d_[0]['visitTypeCode']))
+                    # print(l_sql[i])
+                    # sys.exit(0)
+            # s1
+            if '{DIAGNOSIS_CODE}' in l_sql[i]:
+                l_ = []
+                # 遍历a_jiankangganyu_yihuanjibingzuhe diseaseCodeDesc 是否包含，和高血压
+                l_d_ = Sqlserver_PO.select(
+                    "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % ('%' + d['diseaseCodeDesc'] +'%'))
+                # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
+                for d_ in l_d_:
+                    if ',' in d_['diseaseCodeDesc']:
+                        # print(len(d_['diseaseCodeDesc'].split(',')))
+                        # for j in range(len(d_['diseaseCodeDesc'].split(','))):
+                            l_.append(d_['diseaseCodeDesc'])
+                        # l_.append(d_['diseaseCodeDesc'])
+                # 去除高血压，去重，得到一个疾病列表a
+                l_2 = List_PO.deduplication(l_)
+                # print(l_2)
+                l_4 = []
+                for j in l_2:
+                    l_3 = j.split(",")
+                    for j in l_3:
+                        l_4.append(j)
+                # print(l_4)
+                l_5 = List_PO.deduplication(l_4)
+                # print(l_5)
+
+                # 遍历疾病取值判断，去掉疾病列表l_5中疾病，剩下的疾病中将prefixICD值组合成列表l_7，
+                l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
+                # print(l_d_)
+                l_6 = []
+                for k in l_d_:
+                    l_6.append(k['diseaseName'])
+                # print(l_6)
+                l_7 = [x for x in l_6 if x not in l_5]
+                # print(l_7)
+
+                # 随机获取l_7的prefixICD值，赋值给DIAGNOSIS_CODE
+                s_8 = random.sample(l_7,1)[0]
+                # print(s_8)
+                l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (s_8))
+                # print(l_d_)
+                # print(l_d_[0]['prefixICD'])  # A15,A16,A1,A18,A19,B90
+                l_9 = l_d_[0]['prefixICD'].split(",")
+                # print(l_9)
+                s_10 = random.sample(l_9, 1)[0]
+                # print(s_10)
+                l_sql[i] = str(l_sql[i]).replace('{DIAGNOSIS_CODE}', str(s_10))
+                # print(l_sql[i])
+                # sys.exit(0)
+            # s2
+            if '{DIAGNOSIS_CODE2}' in l_sql[i]:
+                l_ = []
+                # 遍历a_jiankangganyu_yihuanjibingzuhe diseaseCodeDesc 是否包含，和高血压
+                l_d_ = Sqlserver_PO.select(
+                    "select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (d['diseaseCodeDesc']))
+                # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
+                l_1 = l_d_[0]['prefixICD'].split(",")
+                s_2 = random.sample(l_1, 1)[0]
+                # print(s_2)
+                l_sql[i] = str(l_sql[i]).replace('{DIAGNOSIS_CODE2}', str(s_2))
+
+
+                # sys.exit(0)
 
         # 生成动态临时库，保存变量与值
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))

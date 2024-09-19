@@ -19,15 +19,29 @@
 <script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
 
 <style>
-    {font-size: 11pt; font-family: Arial;
+    .center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh; /* Full height of the viewport */
+}
+    th {
+        background-color: #f9f9f9;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    table {
         border-collapse: collapse;
-        border: 1px silver;}
-    td, th
-    {    padding: 5px;}
-    tr:nth-child(even)
-    {    background: #E0E0E0;}
-    tr:hover
-    {    background: silver;    cursor: pointer;}
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: left;
+    }
+
+
 
 </style>
 
@@ -65,7 +79,7 @@ function submitForm() {
 <!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
+<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 </ul>
 </div>
@@ -81,6 +95,7 @@ function submitForm() {
             <th>ruleParam</th>
             <th>ruleCode</th>
             <th>diseaseRuleCode</th>
+            <th>diseaseCodeDesc</th>
             <th>tester</th>
         </tr>
 
@@ -100,12 +115,18 @@ function submitForm() {
             <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.ruleParam }}</a></td>
             <td>{{ item.ruleCode }}</td>
             <td>{{ item.diseaseRuleCode }}</td>
+            <td>{{ item.diseaseCodeDesc }}</td>
             <td>{{ item.tester }}</td>
         </tr>
     {% endfor %}
 
     <input type="hidden" name='ruleName' value="{{ ruleName }}">
-    <tr><td colspan="9" align="center"><button type="button" onclick="submitForm()">提交</button></td></tr>
+
+    <tr><td colspan="10">
+    <div class="center-flex">
+    <button type="button" onclick="submitForm()">提交</button>
+    </div>
+    </td></tr>
 
 </form>
 

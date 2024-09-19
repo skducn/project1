@@ -145,14 +145,14 @@ def index():
 
 
 # 获取测试规则
-@app.route('/a_jiankangganyu_yihuanjibingdanbing/<ruleName>')
-def a_jiankangganyu_yihuanjibingdanbing(ruleName):
-    print(ruleName)  # '健康干预_已患疾病单病'
+@app.route('/excel/<ruleName>')
+def excel(ruleName):
+    # print(ruleName)  # '健康干预_已患疾病单病'
     cursor.execute(
-        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
     l_t_rows = cursor.fetchall()
     # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-    l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'tester', 'id']
+    l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester', 'id']
     l_tmp = []
     for i, l_v in enumerate(l_t_rows):
         # print(i,l_v)
@@ -169,20 +169,19 @@ def submit():
     l_id = request.form.getlist("items")
     l_ruleName = request.form.getlist("ruleName")
     ruleName = l_ruleName[0]
-    # print(l_id)  # ['1', '4', '5']
-    print(ruleName)  # 健康干预_已患疾病单病
+    print(l_id)  # ['1', '4', '5']
+    # print(ruleName)  # 健康干预_已患疾病单病
     if l_id != []:
         for id in l_id:
             print(id)
             subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
             cursor.execute(
-                "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (
+                "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != ''" % (
                 d_ruleName[ruleName]))
             l_t_rows = cursor.fetchall()
             # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-            l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'tester',
-                     'id']
+            l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester','id']
             l_tmp = []
             for i, l_v in enumerate(l_t_rows):
                 # print(i,l_v)
@@ -200,9 +199,12 @@ def submit():
         # return render_template('index.html', refreshed=refreshed)
         # return render_template('about.html', data=l_tmp, ruleName=ruleName, refreshed=refreshed)
 
-        # return redirect('/a_jiankangganyu_yihuanjibingdanbing')
-        return redirect(url_for('a_jiankangganyu_yihuanjibingdanbing',ruleName='健康干预_已患疾病单病'))
+        # return redirect('/excel')
         # return redirect('http://www.baidu.com',code=301)
+
+        return redirect(url_for('excel',ruleName=ruleName))
+    else:
+        return redirect(url_for('excel',ruleName=ruleName))
 
 
 
@@ -211,15 +213,15 @@ def submit():
 def about4():
     ruleName = request.args.get('ruleName')
     id = request.args.get('id')
-    print(ruleName, id)
-
-    cursor.execute("select result,step,[rule],ruleParam from %s where id=%s " % (d_ruleName[ruleName], id))
+    print(ruleName, id)  # 健康干预_已患疾病单病 2
+    cursor.execute("select result,step,[rule],ruleParam,diseaseCodeDesc from %s where id=%s " % (d_ruleName[ruleName], id))
     l_t_rows = cursor.fetchall()
     result = l_t_rows[0][0]
     step = l_t_rows[0][1]
     rule = l_t_rows[0][2]
     ruleParam = l_t_rows[0][3]
-    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam})
+    diseaseCodeDesc = l_t_rows[0][4]
+    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc})
 
 
 
