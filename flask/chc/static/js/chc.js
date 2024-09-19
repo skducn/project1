@@ -72,7 +72,8 @@ $(document).ready(function() {
             type: 'GET',
             data: {'value': selectedValue},
             success: function(data) {
-                var textWithNewLines = data.text.replace(/\n/g, "<br/>");
+                var textWithNewLines = data.text.replace(/\n/g, "<br>");
+                // var textWithNewLines = data.text;
                 $('#get_queryRuleCollection').html(textWithNewLines);
                 // {#alert(textWithNewLines);#}
             },

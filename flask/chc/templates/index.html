@@ -13,7 +13,6 @@
 
 <!--浮动锚点-->
 <script src="{{ url_for('static', filename='js/js.js') }}"></script>
-
 <script src="{{ url_for('static', filename='js/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
 
@@ -31,7 +30,7 @@
 <li><span>&nbsp;&nbsp;3 查询step</span> </li>
 <li><span>&nbsp;&nbsp;4 查询sql</span> </li>
 <li><span>&nbsp;&nbsp;5 查询规则集</span> </li>
-<li><span>&nbsp;&nbsp;6 更新规则集</span> </li>
+<li><span>&nbsp;&nbsp;6 新增/更新规则集</span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 </ul>
 </div>
@@ -39,7 +38,7 @@
 <!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
+<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
 <li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
 </ul>
 </div>
@@ -58,7 +57,7 @@
 <div class="item" id="item1"></div>
 <div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
     <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">1 测试记录</h3>
-    <p class="a25 aR aT"><a href="https://docs.qq.com/doc/DYktZSGxrd01kUEp4?_t=1723704134963&u=0ca68067b0d749f28acf0587e58d23a8" target="_blank">使用文档v1.2</a></p>
+    <p class="a25 aR aT">id区间：如[1,4] ; 状态：ok、error </p>
 </div></div></div>
 
 
@@ -76,8 +75,8 @@
 </div></div>
 
 <div class="a5 md:a2u/2 af"><div class="a3u">
-    <label for class="al a25 aR a1j dark:a1k a2j">id*</label>
-    <input type="text" name="id" maxlength="10" id="cacu_value" placeholder="请输入id、id区间、状态" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+    <label for class="al a25 aR a1j dark:a1k a2j">id/id区间/状态*</label>
+    <input type="text" name="id" maxlength="10" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div></div>
 
 {% if output_testRule %}
@@ -123,7 +122,7 @@
         <div class="a3u">
     <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
     <select id="queryErrorRuleId" name="queryErrorRuleId" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-    <option value="none" selected>请选择</option>
+    <option value="none" selected>请选择...</option>
     {% for s in queryErrorRuleId[0:] %}
     <option value="{{s}}">{{s}}</option>
     {% endfor %}
@@ -160,7 +159,7 @@
 
     <div class="a5 md:a2u/2 af"><div class="a3u">
     <label for class="al a25 aR a1j dark:a1k a2j">id*</label>
-    <input type="text" name="id" maxlength="10" id="id" placeholder="请输入id" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+    <input type="text" name="id" maxlength="10" id="id" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
     </div></div>
 </div>
 
@@ -191,7 +190,7 @@
 <div class="a5 md:a2u af">
 <div class="a3u">
     <label for class="al a25 aR a1j dark:a1k a2j">sql语句</label>
-<input type="text" name="querySql" id="querySql" maxlength="88" placeholder="请输入sql语句" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<input type="text" name="querySql" id="querySql" maxlength="88" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 </div>
@@ -225,7 +224,7 @@
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
     <select id="queryRuleCollection" name="queryRuleCollection" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
- <option value="none" selected>请选择</option>
+ <option value="none" selected>请选择...</option>
 {% for s in queryRuleCollection[0:] %}
     <option value="{{s}}">{{s}}</option>
 {% endfor %}
@@ -238,9 +237,17 @@
 <div id="get_queryRuleCollection"></div>
 </div>
 
+{#<div class="a5 md:a2u af">#}
+{#<div class="a3u">#}
+{#<label for class="al a25 aR a1j dark:a1k a2j">sql*</label>#}
+{#<textarea name="sql" rows="15" id="get_queryRuleCollection" placeholder="请输入sql"  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+{#</textarea>#}
+{#</div>#}
+{#</div>#}
 
 
-<!-- 6 更新规则集 -->
+
+<!-- 6 新增/更新规则集 -->
 
 <div class="louti"></div>
 <br>
@@ -250,8 +257,8 @@
 <div class="a6 a1p ac">
 <div class="a5 af">
 <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">6 更新规则集</h3>
-<p class="a25 aR aT">注意：如原规则集存在则覆盖，否则创建规则集，请谨慎使用，如 规则集：s1</p>
+<h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">6 新增/更新规则集</h3>
+<p class="a25 aR aT">注意：如原规则集不存在则新增规则集，否则覆盖原有规则集，请谨慎使用！如覆盖操作，请先查询规则集并复制sql</p>
 </div>
 </div>
 </div>
@@ -262,14 +269,16 @@
 <div class="a5 md:a2u af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
-<input type="text"  name="ruleCollection" maxlength="10"  id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<input type="text"  name="ruleCollection" maxlength="10" placeholder="请输入..." id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 
 <div class="a5 md:a2u af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">sql*</label>
-<textarea name="sql" rows="15" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+<textarea name="sql" rows="15" id="cacu_value" placeholder="select...
+update...
+delete..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
 </div>
 </div>
 
@@ -391,10 +400,9 @@
 {#    <form action="{{ url_for('rule')}}" method="post">#}
 
 
-
-
-
-
+<div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
+    <p class="a25 aR aT"><a href="https://docs.qq.com/doc/DYktZSGxrd01kUEp4?_t=1723704134963&u=0ca68067b0d749f28acf0587e58d23a8" target="_blank">使用文档v1.2</a></p>
+</div></div></div>
 
 </body>
 </html>

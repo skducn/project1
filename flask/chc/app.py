@@ -145,9 +145,9 @@ def index():
 
 
 # 获取测试规则
-@app.route('/a_jiankangganyu_yihuanjibingdanbing')
-def a_jiankangganyu_yihuanjibingdanbing():
-    ruleName = '健康干预_已患疾病单病'
+@app.route('/a_jiankangganyu_yihuanjibingdanbing/<ruleName>')
+def a_jiankangganyu_yihuanjibingdanbing(ruleName):
+    print(ruleName)  # '健康干预_已患疾病单病'
     cursor.execute(
         "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
     l_t_rows = cursor.fetchall()
@@ -160,19 +160,68 @@ def a_jiankangganyu_yihuanjibingdanbing():
         d_ = dict(zip(l_key, list(l_v)))
         d_['ruleName'] = ruleName
         l_tmp.append(d_)
-
     return render_template('about.html', data=l_tmp, ruleName=ruleName)
 
-@app.route('/about3')
-def about3():
-    # return render_template('result2.html',
-    result = request.args.get('result')
-    step = request.args.get('step')
+
+@app.route('/submit', methods=['POST'])
+def submit():
+    # ruleName = '健康干预_已患疾病单病'
+    l_id = request.form.getlist("items")
+    l_ruleName = request.form.getlist("ruleName")
+    ruleName = l_ruleName[0]
+    # print(l_id)  # ['1', '4', '5']
+    print(ruleName)  # 健康干预_已患疾病单病
+    if l_id != []:
+        for id in l_id:
+            print(id)
+            subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+            cursor.execute(
+                "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,tester,id from %s where [rule] != ''" % (
+                d_ruleName[ruleName]))
+            l_t_rows = cursor.fetchall()
+            # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+            l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'tester',
+                     'id']
+            l_tmp = []
+            for i, l_v in enumerate(l_t_rows):
+                # print(i,l_v)
+                # print(dict(zip(l_key,list(l_v))))
+                d_ = dict(zip(l_key, list(l_v)))
+                d_['ruleName'] = ruleName
+                l_tmp.append(d_)
+            # print(l_tmp)
+
+        # refreshed = False
+        # if request.headers.get('X-Reload'):
+        #     # 如果是页面刷新，设置refreshed为True
+        #     refreshed = True
+            # 你可以在这里添加更多的刷新逻辑
+        # return render_template('index.html', refreshed=refreshed)
+        # return render_template('about.html', data=l_tmp, ruleName=ruleName, refreshed=refreshed)
+
+        # return redirect('/a_jiankangganyu_yihuanjibingdanbing')
+        return redirect(url_for('a_jiankangganyu_yihuanjibingdanbing',ruleName='健康干预_已患疾病单病'))
+        # return redirect('http://www.baidu.com',code=301)
+
+
+
+
+@app.route('/about4')
+def about4():
     ruleName = request.args.get('ruleName')
     id = request.args.get('id')
-    rule = request.args.get('rule')
-    ruleParam = request.args.get('ruleParam')
-    return render_template('result2.html', output_testRule={"ruleName":ruleName, "result": result, "step":step, "id": id,"rule": rule, "ruleParam": ruleParam})
+    print(ruleName, id)
+
+    cursor.execute("select result,step,[rule],ruleParam from %s where id=%s " % (d_ruleName[ruleName], id))
+    l_t_rows = cursor.fetchall()
+    result = l_t_rows[0][0]
+    step = l_t_rows[0][1]
+    rule = l_t_rows[0][2]
+    ruleParam = l_t_rows[0][3]
+    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam})
+
+
 
 
 # todo 1 测试记录
@@ -297,12 +346,12 @@ def get_queryRecord():
 @app.route('/get_queryRuleCollection')
 def get_queryRuleCollection():
     selected_value = request.args.get('value')
-    cursor.execute("select * from a_ceshiguize where [rule]='%s'" % selected_value)
+    cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
     rows = cursor.fetchall()
-    # print(rows)
+    print(rows)
     data = ""
     for row in rows:
-        data = data + str(row) + "\n\n"
+        data = data + str(row[0]) + "\n"
     print(data)
     response_data = {
         'text': data
@@ -393,6 +442,7 @@ def step():
             return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
         else:
             return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+
 
 
 

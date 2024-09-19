@@ -5,6 +5,18 @@
     <title>{{ ruleName }} </title>
     <title>CHC规则</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+
+<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
+
+<!--浮动锚点-->
+<script src="{{ url_for('static', filename='js/js.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chc.js') }}"></script>
+<script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
 
 <style>
     {font-size: 11pt; font-family: Arial;
@@ -19,10 +31,49 @@
 
 </style>
 
+{#    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>#}
+
+<script>
+function selectAll(checkAllBox) {
+  // 获取所有复选框元素
+  var items = document.getElementsByClassName('items');
+  // 根据全选复选框的状态设置其他复选框的状态
+  for (var i = 0; i < items.length; i++) {
+    items[i].checked = checkAllBox.checked;
+  }
+}
+function submitForm() {
+    var formData = $('#checkboxForm').serialize();
+    $.ajax({
+        type: 'POST',
+        url: '/submit',
+        data: formData,
+        success: function(response) {
+            console.log(response);
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+}
+
+</script>
+
 </head>
 <body>
+
+<!-- 锚点2 -->
+<div id="loutinav2">
+<ul>
+<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('a_jiankangganyu_yihuanjibingdanbing',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
+<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
+</ul>
+</div>
+
     <table border="1">
+
         <tr>
+            <th><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
             <th>id</th>
             <th>result</th>
             <th>updateDate</th>
@@ -31,21 +82,36 @@
             <th>ruleCode</th>
             <th>diseaseRuleCode</th>
             <th>tester</th>
-
         </tr>
 
-        {% for item in data %}
-        <tr>
-            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.id }}</a></td>
-            <td>{{ item.result }}</td>
+<form id="checkboxForm">
+    {% for item in data %}
+        <tr><td><input type="checkbox" class="items" name='items' value="{{ item.id }}"></td>
+            <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
+            {% if item.result == 'ok' %}
+                <td style="background-color: #4CAF50;">{{ item.result }}</td>
+            {% elif item.result == 'error' %}
+             <td style="background-color: #ff0000;">{{ item.result }}</td>
+            {% else %}
+                <td>{{ item.result }}</td>
+            {% endif %}
             <td>{{ item.updateDate }}</td>
             <td>{{ item.rule }}</td>
-            <td><a href="{{ url_for('about3', ruleName=item.ruleName, result=item.result, step=item.step, id=item.id,rule=item.rule, ruleParam=item.ruleParam)}}">{{ item.ruleParam }}</a></td>
+            <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.ruleParam }}</a></td>
             <td>{{ item.ruleCode }}</td>
             <td>{{ item.diseaseRuleCode }}</td>
             <td>{{ item.tester }}</td>
         </tr>
-        {% endfor %}
+    {% endfor %}
+
+    <input type="hidden" name='ruleName' value="{{ ruleName }}">
+    <tr><td colspan="9" align="center"><button type="button" onclick="submitForm()">提交</button></td></tr>
+
+</form>
+
     </table>
+
+
+
 </body>
 </html>
