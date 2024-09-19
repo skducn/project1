@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{#https://element.eleme.cn/#/zh-CN/component/installation#}
 <html>
 <head>
 <title>CHC规则</title>
@@ -7,6 +8,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
 {#<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>#}
@@ -25,21 +31,21 @@
 <!-- 锚点 -->
 <div id="loutinav">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;1 测试记录</span> </li>
-<li><span>&nbsp;&nbsp;2 查询错误规则记录</span> </li>
-<li><span>&nbsp;&nbsp;3 查询step</span> </li>
-<li><span>&nbsp;&nbsp;4 查询sql</span> </li>
-<li><span>&nbsp;&nbsp;5 查询规则集</span> </li>
-<li><span>&nbsp;&nbsp;6 新增/更新规则集</span> </li>
-<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
+<li class="active"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;1 测试记录</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;2 查询错误规则记录</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;3 查询step</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;4 查询sql</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;5 查询规则集</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-plus"></i>&nbsp;6 新增/更新规则集</button></span></li>
+<li class="last"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
 
 <!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
-<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class="last"><span><button type="button" class="el-button el-button--success is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
 
@@ -88,7 +94,7 @@
 <br>
 
 <div class="a5 af"><div class="a2g">
-    <input type="submit" value="执行" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u" />
+    <button class="el-button el-button--danger"><i class="el-icon-thumb"></i>&nbsp;提交</button>
     <br><br>
 </div></div>
 
@@ -164,7 +170,7 @@
 </div>
 
 <div class="a5 af"><div class="a2g">
-    <button id="queryRuleResult" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">查询</button>
+    <button id="queryRuleResult" class="el-button el-button--primary"><i class="el-icon-search"></i>&nbsp;查询</button>
 </div></div>
 
 
@@ -196,7 +202,7 @@
 </div>
 <div class="a5 af">
 <div class="a2g">
-<button id="queryRecord" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">查询</button>
+<button id="queryRecord" class="el-button el-button--primary"><i class="el-icon-search"></i>&nbsp;查询</button>
 </div>
 </div>
 
@@ -284,7 +290,7 @@ delete..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E
 
 
 <div class="a5 af"><div class="a2g">
-<button class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">提交</button>
+<button class="el-button el-button--danger"><i class="el-icon-thumb"></i>&nbsp;提交</button>
 </div></div>
 </div>
 </form>

@@ -19,7 +19,7 @@ ChcRule_PO = ChcRulePO()
 # ChcRule_PO.genIdcard2('310101198004110014')
 
 
-ChcRule_PO.importFull('测试规则')
+# ChcRule_PO.importFull('测试规则')
 # ChcRule_PO.importFull('健康评估')
 # ChcRule_PO.importFull('健康干预')
 # ChcRule_PO.importFull("中医体质辨识")
@@ -31,6 +31,6 @@ ChcRule_PO.importFull('测试规则')
 # ChcRule_PO.importFull('健康干预_已患疾病单病')
 
 # ChcRule_PO.importFull('健康干预_已患疾病组合')
-# ChcRule_PO.importFull('疾病取值判断')
+ChcRule_PO.importFull('疾病取值判断')
 
 

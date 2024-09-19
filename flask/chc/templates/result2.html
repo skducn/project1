@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{#https://element.eleme.cn/#/zh-CN/component/installation#}
 <html>
 <head>
 <meta charset="UTF-8">
@@ -7,8 +8,12 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
 
 <!--浮动锚点-->
@@ -26,17 +31,20 @@
 <!-- 锚点 -->
 <div id="loutinav">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;结果</span> </li>
-<li><span>&nbsp;&nbsp;编辑ruleParam</span> </li>
-<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
-<li><span><button onclick="goHome()" >&nbsp;&nbsp;返回首页</button></span></li>
+<li class="active"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;测试结果</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;编辑ruleParam</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain" onclick="goHome()"><i class="el-icon-plus"></i>&nbsp;返回首页</button></span></li>
+<li class="last"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
 
+
+
+<!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('excel',ruleName=output_testRule['ruleName']) }}" target = "_blank" >健康干预_已患疾病单病</a></span> </li>
-<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName=output_testRule['ruleName']) }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class="last"><span><button type="button" class="el-button el-button--success is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
 
@@ -75,7 +83,7 @@
     <div class="a6 a1K ac">
     <div class="a5 af"><div class="a2g">
     <p class="a25 aR aT">
-    <button onclick="goHome()" class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">返回首页</button>
+    <button onclick="goHome()" class="el-button el-button--default"><i class="el-icon-s-home"></i>&nbsp;返回首页</button>
     </p>
     </div></div>
     </div>
@@ -129,8 +137,10 @@
 </div>
 
 
+
 <div class="a5 af"><div class="a2g">
-<button class="a2x aR a1k a1q a1N a1r a3j a2g hover:a1u">提交</button>
+<button class="el-button el-button--danger"><i class="el-icon-thumb"></i>&nbsp;提交</button>
+<br><br>
 </div></div>
 </div>
 </form>

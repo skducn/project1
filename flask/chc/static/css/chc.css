@@ -101,10 +101,10 @@ line-height: 2rem;
     }
 
     #loutinav {
-        width: 122px;
+        /*width: 122px;*/
         position: fixed;
         top: 30px;
-        left: 50px;
+        left: 40px;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/
@@ -113,8 +113,8 @@ line-height: 2rem;
     }
 
     #loutinav ul li {
-        width: 122px;
-        height: 32px;
+        /*width: 122px;*/
+        height: 52px;
         border-bottom: 1px dotted #F8F8FF;
         list-style: none;
         font-size: 12px;
@@ -128,7 +128,7 @@ line-height: 2rem;
     }
 
     #loutinav ul li span {
-        width: 122px;
+        /*width: 122px;*/
         height: 32px;
         padding: 10px 0;
         position: absolute;
@@ -151,7 +151,7 @@ line-height: 2rem;
     }
 
     #loutinav ul li:hover span {
-        background: #00BFFF;
+        /*background: #00BFFF;*/
         color: #fff;
         display: block;
         border-radius:5px;
@@ -159,10 +159,10 @@ line-height: 2rem;
 
 
     #loutinav2 {
-        width: 150px;
+        /*width: 150px;*/
         position: fixed;
         top: 30px;
-        right: 50px;
+        right: 240px;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/
@@ -171,8 +171,8 @@ line-height: 2rem;
     }
 
     #loutinav2 ul li {
-        width: 150px;
-        height: 32px;
+        /*width: 150px;*/
+        height: 52px;
         border-bottom: 1px dotted #F8F8FF;
         list-style: none;
         font-size: 12px;
@@ -186,7 +186,7 @@ line-height: 2rem;
     }
 
     #loutinav2 ul li span {
-        width: 150px;
+        /*width: 150px;*/
         height: 32px;
         padding: 10px 0;
         position: absolute;
@@ -209,7 +209,7 @@ line-height: 2rem;
     }
 
     #loutinav2 ul li:hover span {
-        background: #00BFFF;
+        /*background: #00BFFF;*/
         color: #fff;
         display: block;
         border-radius:5px;

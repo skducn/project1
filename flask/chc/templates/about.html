@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{## https://www.bootcss.com/p/buttons/#}
+{#https://element.eleme.cn/#/zh-CN/component/installation#}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,6 +12,11 @@
 {#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
 {#<link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">#}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">#}
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
 <script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
 
@@ -26,7 +33,7 @@
   height: 10vh; /* Full height of the viewport */
 }
     th {
-        background-color: #f9f9f9;
+        background-color: #409EFF;
         position: sticky;
         top: 0;
         z-index: 10;
@@ -50,7 +57,8 @@
 <script>
 function selectAll(checkAllBox) {
   // 获取所有复选框元素
-  var items = document.getElementsByClassName('items');
+  {#var items = document.getElementsByClassName('items');#}
+  var items = document.getElementsByName('items');
   // 根据全选复选框的状态设置其他复选框的状态
   for (var i = 0; i < items.length; i++) {
     items[i].checked = checkAllBox.checked;
@@ -76,13 +84,13 @@ function submitForm() {
 </head>
 <body>
 
-<!-- 锚点2 -->
-<div id="loutinav2">
-<ul>
-<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>
-<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>
-</ul>
-</div>
+{#<!-- 锚点2 -->#}
+{#<div id="loutinav2">#}
+{#<ul>#}
+{#<li class="active"><span>&nbsp;&nbsp;<a href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank">健康干预_已患疾病单病</a></span> </li>#}
+{#<li class="last"><span>&nbsp;&nbsp;回顶部</span></li>#}
+{#</ul>#}
+{#</div>#}
 
     <table border="1">
 
@@ -101,12 +109,12 @@ function submitForm() {
 
 <form id="checkboxForm">
     {% for item in data %}
-        <tr><td><input type="checkbox" class="items" name='items' value="{{ item.id }}"></td>
+        <tr><td><input type="checkbox" name='items' value="{{ item.id }}"></td>
             <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
-                <td style="background-color: #4CAF50;">{{ item.result }}</td>
+                <td style="background-color: #67C23A;">{{ item.result }}</td>
             {% elif item.result == 'error' %}
-             <td style="background-color: #ff0000;">{{ item.result }}</td>
+             <td style="background-color: #F56C6C;">{{ item.result }}</td>
             {% else %}
                 <td>{{ item.result }}</td>
             {% endif %}
@@ -124,7 +132,24 @@ function submitForm() {
 
     <tr><td colspan="10">
     <div class="center-flex">
-    <button type="button" onclick="submitForm()">提交</button>
+
+<!-- 锚点left -->
+<div id="loutinav">
+<ul>
+<li><span><button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button></span></li>
+</ul>
+</div>
+
+<!-- 锚点right -->
+<div id="loutinav2">
+<ul>
+<li class="last"><span><button type="button" class="el-button el-button--primary is-plain">回顶部</button></span></li>
+</ul>
+</div>
+
+
+<button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button>
+
     </div>
     </td></tr>
 
