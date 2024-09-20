@@ -10,12 +10,22 @@
 # ***************************************************************u**
 from collections import Counter
 
-l = ['     jinhao\r', '\r', 'yoyo\r', '\r', '\r', '\r', '\r', '\r', '     ///     \r', '\r', '\r', '\r', '\r', 'titi\r', '\r', '']
-print([i.replace('\r', '') for i in l])
+d = {'N03': 'ok', 'N11': 'ok'}
+print(list(d.values()))
 
-l2 = [i.replace('\r', '') for i in l]
-l3 = [i.strip() for i in l2 if i != '']
-print(l3)
+if "error" in list(d.values()):
+    print(111)
+else:
+    print(999)
+
+
+
+# l = ['     jinhao\r', '\r', 'yoyo\r', '\r', '\r', '\r', '\r', '\r', '     ///     \r', '\r', '\r', '\r', '\r', 'titi\r', '\r', '']
+# print([i.replace('\r', '') for i in l])
+#
+# l2 = [i.replace('\r', '') for i in l]
+# l3 = [i.strip() for i in l2 if i != '']
+# print(l3)
 
 # print( [l2.remove(i) for i in l2 if i == ''])
 
