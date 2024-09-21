@@ -10,14 +10,20 @@
 # ***************************************************************u**
 from collections import Counter
 
-d = {'N03': 'ok', 'N11': 'ok'}
-print(list(d.values()))
+# d = {'N03': 'ok', 'N11': 'ok'}
+# print(list(d.values()))
+#
+# if "error" in list(d.values()):
+#     print(111)
+# else:
+#     print(999)
 
-if "error" in list(d.values()):
-    print(111)
-else:
-    print(999)
-
+# a = None
+#
+# print(type(a))
+# print(type(''))
+#
+# if isinstance(a, str):
 
 
 # l = ['     jinhao\r', '\r', 'yoyo\r', '\r', '\r', '\r', '\r', '\r', '     ///     \r', '\r', '\r', '\r', '\r', 'titi\r', '\r', '']

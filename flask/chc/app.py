@@ -177,10 +177,10 @@ def submit():
             subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
             cursor.execute(
-                "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != ''" % (
-                d_ruleName[ruleName]))
+                "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != '' and id=%s" % (
+                d_ruleName[ruleName], id))
             l_t_rows = cursor.fetchall()
-            # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+            print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
             l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester','id']
             l_tmp = []
             for i, l_v in enumerate(l_t_rows):
@@ -189,7 +189,7 @@ def submit():
                 d_ = dict(zip(l_key, list(l_v)))
                 d_['ruleName'] = ruleName
                 l_tmp.append(d_)
-            # print(l_tmp)
+            print(l_tmp)
 
         # refreshed = False
         # if request.headers.get('X-Reload'):
@@ -208,20 +208,6 @@ def submit():
 
 
 
-
-@app.route('/about4')
-def about4():
-    ruleName = request.args.get('ruleName')
-    id = request.args.get('id')
-    print(ruleName, id)  # 健康干预_已患疾病单病 2
-    cursor.execute("select result,step,[rule],ruleParam,diseaseCodeDesc from %s where id=%s " % (d_ruleName[ruleName], id))
-    l_t_rows = cursor.fetchall()
-    result = l_t_rows[0][0]
-    step = l_t_rows[0][1]
-    rule = l_t_rows[0][2]
-    ruleParam = l_t_rows[0][3]
-    diseaseCodeDesc = l_t_rows[0][4]
-    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc})
 
 
 
@@ -431,19 +417,34 @@ def step():
         rule = request.form['rule']
         ruleParam = request.form['ruleParam']
         print(ruleName, id, rule, ruleParam)  # 健康干预_已患疾病单病 1 s1 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G46'}
-        if ruleParam != "":
-            ruleParam = ruleParam.replace("'","''").replace("\r","")
-            # ruleParam = ruleParam.replace("\r","")
-            # ruleParam = ruleParam.replace('&apos;', "'").replace("\r","")
-            cursor.execute("update %s set ruleParam='%s' where id=%s" % (d_ruleName[ruleName], ruleParam, id))
-            conn.commit()
-            ruleParam = ruleParam.replace("''", "'")
-            subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            cursor.execute("select result,step from %s where id = %s" % (d_ruleName[ruleName], id))
-            rows = cursor.fetchall()
-            return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
-        else:
-            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+        print("12121212")
+        ruleParam = ruleParam.replace("'","''").replace("\r","")
+        # ruleParam = ruleParam.replace("\r","")
+        # ruleParam = ruleParam.replace('&apos;', "'").replace("\r","")
+        cursor.execute("update %s set ruleParam='%s' where id=%s" % (d_ruleName[ruleName], ruleParam, id))
+        conn.commit()
+        ruleParam = ruleParam.replace("''", "'")
+        subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        cursor.execute("select result,step,eachStep from %s where id = %s" % (d_ruleName[ruleName], id))
+        rows = cursor.fetchall()
+        # print(rows)
+        return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "eachStep": rows[0][2], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
+
+
+@app.route('/about4')
+def about4():
+    ruleName = request.args.get('ruleName')
+    id = request.args.get('id')
+    print(ruleName, id)  # 健康干预_已患疾病单病 2
+    cursor.execute("select result,step,[rule],ruleParam,diseaseCodeDesc,eachStep from %s where id=%s " % (d_ruleName[ruleName], id))
+    l_t_rows = cursor.fetchall()
+    result = l_t_rows[0][0]
+    step = l_t_rows[0][1]
+    rule = l_t_rows[0][2]
+    ruleParam = l_t_rows[0][3]
+    diseaseCodeDesc = l_t_rows[0][4]
+    eachStep = l_t_rows[0][5]
+    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc, 'eachStep':eachStep})
 
 
 
