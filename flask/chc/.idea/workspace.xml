@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/cli_chcRule.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/main_chcRule1.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/main_chcRule1.1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/config.ini" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/config.ini" afterDir="false" />
-    </list>
+    <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -233,6 +227,8 @@
       <workItem from="1726706818612" duration="16947000" />
       <workItem from="1726746768149" duration="7038000" />
       <workItem from="1726912993032" duration="7662000" />
+      <workItem from="1726982209704" duration="55000" />
+      <workItem from="1726982347475" duration="177000" />
     </task>
     <servers />
   </component>
@@ -244,7 +240,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flaskProject$main_chcRule.coverage" NAME="main_chcRule Coverage Results" MODIFIED="1723175297216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/instance/zyjk/CHC/rule" />
-    <SUITE FILE_PATH="coverage/chc$Flask__app_py___1_.coverage" NAME="Flask (app.py) (1) Coverage Results" MODIFIED="1726923231265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/chc$Flask__app_py___1_.coverage" NAME="Flask (app.py) (1) Coverage Results" MODIFIED="1726982431858" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flask_chc$flask_chc.coverage" NAME="flask_chc Coverage Results" MODIFIED="1723373250622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flaskProject$SqlserverPO.coverage" NAME="SqlserverPO Coverage Results" MODIFIED="1723168762086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PO" />
     <SUITE FILE_PATH="coverage/flaskProject$Flask__app_py___1_.coverage" NAME="Flask (app.py) (1) Coverage Results" MODIFIED="1723197100929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />

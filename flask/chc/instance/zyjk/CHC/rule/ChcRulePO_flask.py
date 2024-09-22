@@ -511,6 +511,7 @@ class ChcRulePO_flask():
         l_d_rows = Sqlserver_PO.select("select * from %s where id=%s" % (self.dbTable, self.dbId))
         # print(l_d_rows[0]) # {'id': 1, 'result': 'ok', 'updateDate': datetime.datetime(2023, 11, 7, 10, 4, 15), 'rule': 'r1', 'ruleParam': "AGE=55 .and. CATEGORY_CODE='2'", 'ruleCode': 'PG_Age001', '分类': '年龄', '规则名称': '年龄≥55岁', '评估规则详细描述': '年龄≥55岁', '评估因素判断规则': '年龄>=55', 'tester': '刘斌龙', 'var': ''}
 
+        self.case = l_d_rows[0]['case']
         self.rule = l_d_rows[0]['rule']
         if l_d_rows[0]['ruleParam'] != None:
             if l_d_rows[0]['ruleParam'] == '':
@@ -534,18 +535,44 @@ class ChcRulePO_flask():
 
         self.sql = self.getSql()
 
+        if self.rule == 's1':
+            if self.case == 'negative':
+                # 实例4：反向无参
+                # 实例5：反向带参，如：高血压，参数{'VISITTYPECODE':'31','DIAGNOSIS_CODE':'I15'}  ，其中 {'testcase':'negative'} 表示反向用例固定写法，'I15'是错误的值。
+                # 实例6：反向带参，如：高血压，参数{'DIAGNOSIS_CODE':'I15'} ，其中无参数‘VISITTYPECODE':'31'，自动从疾病取值判断中匹配高血压=31。
+                self.outNegative1(self.testRule11())
+            else:
+                # 实例1：正向无参
+                # 实例2：正向带参，如：高血压，参数{'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G40'}
+                # 实例3：正向带参，如：高血压，参数{'DIAGNOSIS_CODE':'G40'}
+                self.outResult2(self.testRule11())
+
         if self.rule == 's2':
-            if self.ruleParam != None:
-                if 'testcase' in self.ruleParam:
-                    # 实例3：反向带参数，如：{'testcase':'negative','VISITTYPECODE':'31','DIAGNOSIS_CODE':'I15'}  ，其中 {'testcase':'negative'} 表示反向用例固定写法，'I15'是错误的值。
-                    # 实例4：反向带参数，如：高血压，参数{'testcase':'negative','DIAGNOSIS_CODE':'I15'} ，其中无参数‘VISITTYPECODE':'31'，自动从疾病取值判断中匹配高血压=31。
-                    if self.ruleParam['testcase'] == "negative":
-                        self.outNegative0(self.testRule11())
-                    else:
-                        self.outResult2(self.testRule11())
+            if self.case == 'negative':
+                if self.ruleParam != None:
+                    # 实例5：反向带参，如：{'VISITTYPECODE':'34','DIAGNOSIS_CODE':'I15'}  ，'I15'是错误的值。
+                    # 实例6：反向带参，如：{'DIAGNOSIS_CODE':'I15'}  ，'I15'是错误的值。
+
+                    print(self.ruleParam['DIAGNOSIS_CODE'])
+                    self.prefixICD = self.ruleParam['DIAGNOSIS_CODE']
                 else:
-                    # 实例2：正向带参数，优先无参数，如：高血压，参数 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G40'} 或 {'DIAGNOSIS_CODE':'G40'}，建议调试用。
-                    self.outResult2(self.testRule11())
+                    # 实例4：反向无参
+                    # print(self.diseaseCodeDesc)
+                    l_d_ = Sqlserver_PO.select(
+                        "select prefixICD from a_jibingquzhipanduan where diseaseName !='%s'" % (self.diseaseCodeDesc))
+                    # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
+                    l_1 = l_d_[0]['prefixICD'].split(",")
+                    l_3 = []
+                    for i in l_d_:
+                        l_2 = i['prefixICD'].split(",")
+                        # print(l_2)
+                        l_3 = l_3 + l_2
+                    # print(l_3)
+                    # sys.exit(0)
+                    self.prefixICD = random.sample(l_3, 1)[0]
+                    print(self.prefixICD)
+                self.outNegative0(self.testRule11())
+
             else:
                 # 实例1：无参数，自动从疾病取值判断中匹配，建议使用。
                 # 1 遍历疾病取值判断(a_jibingquzhipanduan)，测试所有值
@@ -597,22 +624,6 @@ class ChcRulePO_flask():
                     self.outS2_2(1)
                 else:
                     self.outS2_2(2)
-
-        if self.rule == 's1':
-            if self.ruleParam != None:
-                if 'testcase' in self.ruleParam:
-                    # 实例3：反向带参数，如：{'testcase':'negative','VISITTYPECODE':'31','DIAGNOSIS_CODE':'I15'}  ，其中 {'testcase':'negative'} 表示反向用例固定写法，'I15'是错误的值。
-                    # 实例4：反向带参数，如：高血压，参数{'testcase':'negative','DIAGNOSIS_CODE':'I15'} ，其中无参数‘VISITTYPECODE':'31'，自动从疾病取值判断中匹配高血压=31。
-                    if self.ruleParam['testcase'] == "negative":
-                        self.outNegative1(self.testRule11())
-                    else:
-                        self.outResult2(self.testRule11())
-                else:
-                    # 实例2：正向带参数，优先无参数，如：高血压，参数 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G40'} 或 {'DIAGNOSIS_CODE':'G40'}，建议调试用。
-                    self.outResult2(self.testRule11())
-            else:
-                # 实例1：无参数，自动从疾病取值判断中匹配，建议使用。
-                self.outResult2(self.testRule11())
 
     def runId(self, l_dbId):
 
@@ -734,6 +745,7 @@ class ChcRulePO_flask():
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
             if "{随机11}" in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
+            # s1/s2
             if self.ruleParam != None:
                 if 'VISITTYPECODE' in self.ruleParam:
                     for k, v in self.ruleParam.items():
@@ -747,8 +759,8 @@ class ChcRulePO_flask():
                         l_d_ = Sqlserver_PO.select("select visitTypeCode from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
                         # print(l[0]['visitTypeCode'])
                         self.sql[i] = str(self.sql[i]).replace('{VISITTYPECODE}', str(l_d_[0]['visitTypeCode']))
+                # print(self.sql[i])
             else:
-                # s1
                 if '{VISITTYPECODE}' in self.sql[i]:
                     if self.diseaseCodeDesc != None and isinstance(self.diseaseCodeDesc, str):
                         l_d_ = Sqlserver_PO.select("select visitTypeCode from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
@@ -757,52 +769,64 @@ class ChcRulePO_flask():
                         # print(l_sql[i])
             # s1
             if '{DIAGNOSIS_CODE}' in self.sql[i]:
-                l_ = []
-                # 1 遍历a_jiankangganyu_yihuanjibingzuhe,判断 diseaseCodeDesc 是否包含高血压及其他疾病
-                l_d_ = Sqlserver_PO.select(
-                    "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % ('%' + self.diseaseCodeDesc +'%'))
-                # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
-                for d_ in l_d_:
-                    if ',' in d_['diseaseCodeDesc']:
-                        l_.append(d_['diseaseCodeDesc'])
+                if self.case == 'negative':
+                    l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
+                    # print(l_d_[0]['prefixICD'])  # I10,I11,I12,I13,I14,I15
+                    l_prefixICD = l_d_[0]['prefixICD'].split(',')
+                    # print(l_prefixICD)
+                    s_prefixICD = random.sample(l_prefixICD, 1)[0]
+                    # print(s_prefixICD)
+                    self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE}', str(s_prefixICD))
 
-                # 2 获取疾病列表a，并去重
-                l_2 = List_PO.deduplication(l_)
-                l_4 = []
-                for j in l_2:
-                    l_3 = j.split(",")
-                    for j in l_3:
-                        l_4.append(j)
-                l_5 = List_PO.deduplication(l_4)
-                # print(l_5)
+                else:
+                    l_ = []
+                    # 1 遍历a_jiankangganyu_yihuanjibingzuhe,判断 diseaseCodeDesc 是否包含高血压及其他疾病
+                    l_d_ = Sqlserver_PO.select(
+                        "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % ('%' + self.diseaseCodeDesc +'%'))
+                    # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
+                    for d_ in l_d_:
+                        if ',' in d_['diseaseCodeDesc']:
+                            l_.append(d_['diseaseCodeDesc'])
 
-                # 3 遍历疾病取值判断(a_jibingquzhipanduan)，去掉疾病列表a中疾病，剩下的疾病中将prefixICD值组合成列表b
-                l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
-                # print(l_d_)
-                l_6 = []
-                for k in l_d_:
-                    l_6.append(k['diseaseName'])
-                # print(l_6)
-                l_7 = [x for x in l_6 if x not in l_5]
-                # print(l_7)
+                    # 2 获取疾病列表a，并去重
+                    l_2 = List_PO.deduplication(l_)
+                    l_4 = []
+                    for j in l_2:
+                        l_3 = j.split(",")
+                        for j in l_3:
+                            l_4.append(j)
+                    l_5 = List_PO.deduplication(l_4)
+                    # print(l_5)
 
-                # 4 随机获取l_7的prefixICD值，赋值给DIAGNOSIS_CODE
-                s_8 = random.sample(l_7,1)[0]
-                # print(s_8)
-                l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (s_8))
-                # print(l_d_)
-                # print(l_d_[0]['prefixICD'])  # A15,A16,A1,A18,A19,B90
-                l_9 = l_d_[0]['prefixICD'].split(",")
-                # print(l_9)
-                s_10 = random.sample(l_9, 1)[0]
-                # print(s_10)
-                self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE}', str(s_10))
-                # print(l_sql[i])
-                # sys.exit(0)
+                    # 3 遍历疾病取值判断(a_jibingquzhipanduan)，去掉疾病列表a中疾病，剩下的疾病中将prefixICD值组合成列表b
+                    l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
+                    # print(l_d_)
+                    l_6 = []
+                    for k in l_d_:
+                        l_6.append(k['diseaseName'])
+                    # print(l_6)
+                    l_7 = [x for x in l_6 if x not in l_5]
+                    # print(l_7)
+
+                    # 4 随机获取l_7的prefixICD值，赋值给DIAGNOSIS_CODE
+                    s_8 = random.sample(l_7,1)[0]
+                    # print(s_8)
+                    l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (s_8))
+                    # print(l_d_)
+                    # print(l_d_[0]['prefixICD'])  # A15,A16,A1,A18,A19,B90
+                    l_9 = l_d_[0]['prefixICD'].split(",")
+                    # print(l_9)
+                    s_10 = random.sample(l_9, 1)[0]
+                    # print(s_10)
+                    self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE}', str(s_10))
+                    # print(l_sql[i])
+                    # sys.exit(0)
 
             # s2
             if '{DIAGNOSIS_CODE2}' in self.sql[i]:
                 self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE2}', str(self.prefixICD))
+
+
 
         # 生成动态临时库，保存变量与值
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))

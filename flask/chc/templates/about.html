@@ -100,6 +100,7 @@ function submitForm() {
             <th>result</th>
             <th>updateDate</th>
             <th>rule</th>
+            <th>case</th>
             <th>ruleParam</th>
             <th>ruleCode</th>
             <th>diseaseRuleCode</th>
@@ -120,6 +121,7 @@ function submitForm() {
             {% endif %}
             <td>{{ item.updateDate }}</td>
             <td>{{ item.rule }}</td>
+            <td>{{ item.case }}</td>
             <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.ruleParam }}</a></td>
             <td>{{ item.ruleCode }}</td>
             <td>{{ item.diseaseRuleCode }}</td>
