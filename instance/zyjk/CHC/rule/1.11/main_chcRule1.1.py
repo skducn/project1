@@ -15,7 +15,7 @@ from ChcRulePO import *
 r = ChcRulePO("健康干预_已患疾病单病")
 
 # 按id执行
-r.runId([3])
+r.runId([14])
 
 # 按id区间执行
 # r.runIdArea([31])
