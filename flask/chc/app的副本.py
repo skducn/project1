@@ -1,6 +1,32 @@
+# https://blog.jetbrains.com/zh-hans/pycharm/2022/08/flask-tutorial/
+# https://blog.csdn.net/weixin_44072077/article/details/102531756
 
-from flask import Flask, render_template, request, jsonify, Response, json, redirect, url_for, flash, session, request
-# from flask_cors import *
+# https://blog.51cto.com/u_16175517/7231181 Flask-python-前端实时显示后端处理进度
+# https://www.cnblogs.com/mqxs/p/7930064.html 【Flask】前端调用后端方法返回页面
+# https://blog.csdn.net/gui818/article/details/135848698
+
+# 安装 Microsoft ODBC Driver for SQL Server (macOS)
+# https://learn.microsoft.com/zh-cn/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos?view=sql-server-ver16
+# Microsoft ODBC 18
+# /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+# brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
+# brew update
+# HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
+
+# 杀5000端口进程
+# sudo kill -9 `lsof -t -i:5000`
+# sudo kill -9 `netstat -nlp | grep :5000 | awk '{print $7}' | cut -d '/' -f 1`
+
+# # 局域网ip`
+# /Users/linghuchong/miniconda3/envs/py308/bin/python -m flask run --host=0.0.0.0 --port=5001
+
+# https://max.book118.com/html/2024/0712/7005163005006133.shtm  flask用户认证与权限管理
+#***************************************************************
+
+
+
+from flask import Flask, render_template, request, jsonify, Response, json, redirect, url_for, flash, session
+from flask_cors import *
 # from tqdm import tqdm
 import time, subprocess, pymssql, sys, os
 # import settings
@@ -10,17 +36,22 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 # from sqlalchemy.orm import sessionmaker
 from apscheduler.schedulers.background import BackgroundScheduler
+
 # from flask_login import LoginManager
 # from flask_login import UserMixin
 # from flask_login import login_user, logout_user, current_user
+from flask import request
 
 sys.path.append(os.getcwd())
-
 from PO.TimePO import *
 Time_PO = TimePO()
 
 
 app = Flask(__name__)
+# app.secret_key = '12345678900'
+# app.secret_key='a62f2225bf70bfaccbc7f1ef2a397836717377de'
+# CORS(app, resources=r'/*')
+
 # CORS(app)  # 解决跨域问题
 # app.config.from_object(settings)  # 加载配置文件
 # print(app.config)
@@ -34,7 +65,6 @@ cursor = conn.cursor()
 d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu",'儿童健康干预': "a_ertongjiankangganyu",
               "评估因素取值": "a_pingguyinsuquzhi", "健康干预_已患疾病单病":"a_jiankangganyu_yihuanjibingdanbing", "健康干预_已患疾病组合":"a_jiankangganyu_yihuanjibingzuhe"}
 l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预', '评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
-
 # 获取测试规则
 cursor.execute("select distinct [rule] from a_ceshiguize")
 l_t_rows = cursor.fetchall()
@@ -44,11 +74,73 @@ for i in l_t_rows:
     l_testRule.append(i[0])
 
 
+# 登录
+# login_manager = LoginManager()
+# login_manager.init_app(app)
+# app.secret_key = '12345678900'
+# users = {"jinhao":{'password': 'jinhao123'},"chenxiaodong":{'password': '123456'}, "shuyangyang":{'password': '666666'}}
+
+# class User(UserMixin):
+#     def __init__(self, id):
+#         self.id = id
+#
+# @login_manager.user_loader
+# def load_user(user_id):
+#     if user_id in users:
+#         return User(user_id)
+#     return None
+
+@app.route('/')
+def index():
+    # todo 获取访问者ip
+    # ip_address = request.remote_addr
+    # print(ip_address)
+    # ip_address = request.headers.get('X-Forwarded-For', request.remote_addr)
+    # print(ip_address)
+    # if request.environ.get('HTTP_X_FORWARDED_FOR') is None:
+    #     print(request.environ['REMOTE_ADDR'])
+    # else:
+    #     print(request.environ['HTTP_X_FORWARDED_FOR'])  # if behind a proxy
+    # client_ip = request.headers.get('X-Forwarded-For', None)
+    # print(client_ip)
+    # return render_template('login.html')
+    # return redirect('http://www.jd.com',code=
+
+    return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+
+
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     if request.method == 'POST':
+#         username = request.form['username']
+#         password = request.form['password']
+#         print(username,password)
+#         if username in users and users[username]['password'] == password:
+#             user = User(username)
+#             login_user(user)
+#             # return redirect(url_for('protected'))
+#             return render_template('index.html', ruleName=l_ruleName, queryTestRule=l_testRule, queryErrorRuleId=l_ruleName)
+#         else:
+#             return render_template('login.html', output_login='error，账号或密码有误！')
+#
+#             # return "Invalid username or password"
+#     return render_template('login.html')
+
+# @app.route('/protected')
+# # @login_required
+# def protected():
+#     return f"Hello, {current_user.id}! This is a protected page."
+#
+# @app.route('/logout')
+# def logout():
+#     logout_user()
+#     return redirect(url_for('login'))
+
 # # todo [定时任务，每天凌晨2点执行]
 # def my_job():
 #     # print("执行定时任务...")
 #     # print(Time_PO.getDateTimeByDivide())  # 2020/03/19 15:19:28
-#     result = subprocess.run(['python3', './cli_chcRule_flask.py', '健康评估', 'all'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+#     result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', '健康评估', 'all'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 #     # print(result.stdout)
 # # # 创建调度器
 # scheduler = BackgroundScheduler()
@@ -58,12 +150,8 @@ for i in l_t_rows:
 # scheduler.start()
 
 
-@app.route('/')
-def index():
-    return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
 
-
-# todo 获取测试规则
+# 获取测试规则
 @app.route('/excel/<ruleName>')
 def excel(ruleName):
     # print(ruleName)  # '健康干预_已患疾病单病'
@@ -84,6 +172,10 @@ def excel(ruleName):
 
 @app.route('/submit', methods=['POST'])
 def submit():
+    # session['username'] = "ok!!!!!"
+    # return redirect(url_for('index'))
+
+    # ruleName = '健康干预_已患疾病单病'
     l_id = request.form.getlist("items")
     l_ruleName = request.form.getlist("ruleName")
     # print(l_id, l_id)  # ['1', '4', '5']
@@ -93,7 +185,7 @@ def submit():
     if l_id != []:
         for id in l_id:
             print(id)
-            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
             cursor.execute(
                 "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != '' and id=%s" % (
@@ -127,21 +219,6 @@ def submit():
         return redirect(url_for('excel',ruleName=ruleName))
 
 
-@app.route('/about4')
-def about4():
-    ruleName = request.args.get('ruleName')
-    id = request.args.get('id')
-    print(ruleName, id)  # 健康干预_已患疾病单病 2
-    cursor.execute("select result,step,[rule],ruleParam,diseaseCodeDesc,eachStep from %s where id=%s " % (d_ruleName[ruleName], id))
-    l_t_rows = cursor.fetchall()
-    result = l_t_rows[0][0]
-    step = l_t_rows[0][1]
-    rule = l_t_rows[0][2]
-    ruleParam = l_t_rows[0][3]
-    diseaseCodeDesc = l_t_rows[0][4]
-    eachStep = l_t_rows[0][5]
-    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc, 'eachStep':eachStep})
-
 
 
 
@@ -157,7 +234,7 @@ def testRule():
     if id != '':
         if ruleName == "评估因素取值":
             # try:
-            result = subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             print(result.stdout)
             d_result = {}
             d_result = eval(result.stdout)
@@ -171,7 +248,7 @@ def testRule():
 
         elif ruleName == "健康干预_已患疾病单病":
             try:
-                subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 cursor.execute("select result,step,[rule],ruleParam from %s where id = %s" % (d_ruleName[ruleName], id))
                 rows = cursor.fetchall()
                 return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "ruleName": ruleName, "id": id, "rule": rows[0][2], "ruleParam": rows[0][3]})
@@ -180,7 +257,7 @@ def testRule():
 
         else:
             try:
-                result = subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
                 print(result.stdout)
 
                 ruleCode = str(result.stdout).split("(r")[1].split(")")[0]
@@ -337,7 +414,7 @@ def debugParam():
         print(ruleName, id, ruleCode, ruleParam)
         cursor.execute("update %s set [rule]='%s', ruleParam='%s' where id=%s" % (d_ruleName[ruleName],ruleCode,ruleParam,id))
         conn.commit()
-        result = subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        result = subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result = result.stdout.replace("<br>", '')
         print(result)
         return render_template('result.html', output_testRule={"ruleName":ruleName, "id": id, "ruleCode":ruleCode, "ruleParam": ruleParam, "result":result}, debugRuleParam_testRule=l_testRule)
@@ -359,19 +436,34 @@ def step():
         cursor.execute("update %s set ruleParam='%s' where id=%s" % (d_ruleName[ruleName], ruleParam, id))
         conn.commit()
         ruleParam = ruleParam.replace("''", "'")
-        subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        subprocess.run(['python3', './instance/zyjk/CHC/rule/cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         cursor.execute("select result,step,eachStep from %s where id = %s" % (d_ruleName[ruleName], id))
         rows = cursor.fetchall()
         # print(rows)
         return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "eachStep": rows[0][2], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
 
 
+@app.route('/about4')
+def about4():
+    ruleName = request.args.get('ruleName')
+    id = request.args.get('id')
+    print(ruleName, id)  # 健康干预_已患疾病单病 2
+    cursor.execute("select result,step,[rule],ruleParam,diseaseCodeDesc,eachStep from %s where id=%s " % (d_ruleName[ruleName], id))
+    l_t_rows = cursor.fetchall()
+    result = l_t_rows[0][0]
+    step = l_t_rows[0][1]
+    rule = l_t_rows[0][2]
+    ruleParam = l_t_rows[0][3]
+    diseaseCodeDesc = l_t_rows[0][4]
+    eachStep = l_t_rows[0][5]
+    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc, 'eachStep':eachStep})
+
 
 
 
 @app.route('/swagger', methods=['POST'])
 def swagger():
-    result = subprocess.run(['python3', './main_chcSwagger.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    result = subprocess.run(['python3', './instance/zyjk/CHC/swagger/main_chcSwagger.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
     return result.stdout
 @app.route('/i', methods=['POST'])
 def i():

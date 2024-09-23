@@ -53,7 +53,7 @@ if sys.argv[1] == "评估因素取值":
         else:
             r.runStep(sys.argv[2])
 
-elif sys.argv[1] == "健康干预_已患疾病单病":
+elif sys.argv[1] == "健康干预_已患疾病单病" or sys.argv[1] == "健康干预_已患疾病组合":
     if sys.argv[2] == "error":
         r.runResult2("error")
     elif sys.argv[2] == "ok":

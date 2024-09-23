@@ -11,16 +11,14 @@
 
 <!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<!-- 引入组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-{#<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>#}
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
 
 <!--浮动锚点-->
-<script src="{{ url_for('static', filename='js/js.js') }}"></script>
-<script src="{{ url_for('static', filename='js/chc.js') }}"></script>
-<script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
+<script src="{{ url_for('static', filename='css/js.js') }}"></script>
+<script src="{{ url_for('static', filename='css/chc.js') }}"></script>
+<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 
 
 
@@ -45,6 +43,7 @@
 <div id="loutinav2">
 <ul>
 <li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</a></span></li>
 <li class="last"><span><button type="button" class="el-button el-button--success is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>

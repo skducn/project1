@@ -6,24 +6,19 @@
     <meta charset="UTF-8">
     <title>{{ ruleName }} </title>
     <title>CHC规则</title>
+
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-{#<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">#}
-{#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
-{#<link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">#}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
-{#<link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">#}
-<!-- 引入样式 -->
+<!-- element 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<!-- 引入组件库 -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 
-<script src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
-
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
 <!--浮动锚点-->
-<script src="{{ url_for('static', filename='js/js.js') }}"></script>
-<script src="{{ url_for('static', filename='js/chc.js') }}"></script>
-<script src="{{ url_for('static', filename='js/gobackAlert.js') }}"></script>
+<script src="{{ url_for('static', filename='css/js.js') }}"></script>
+<script src="{{ url_for('static', filename='css/chc.js') }}"></script>
+<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 
 <style>
     .center-flex {
@@ -69,6 +64,7 @@ function submitForm() {
     $.ajax({
         type: 'POST',
         url: '/submit',
+        dataType:'json',
         data: formData,
         success: function(response) {
             console.log(response);
@@ -109,6 +105,8 @@ function submitForm() {
         </tr>
 
 <form id="checkboxForm">
+{#<form action="{{ url_for('submit')}}" method="post">#}
+
     {% for item in data %}
         <tr><td><input type="checkbox" name='items' value="{{ item.id }}"></td>
             <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
@@ -132,7 +130,7 @@ function submitForm() {
 
     <input type="hidden" name='ruleName' value="{{ ruleName }}">
 
-    <tr><td colspan="10">
+    <tr><td colspan="11">
     <div class="center-flex">
 
 <!-- 锚点left -->
