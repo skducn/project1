@@ -66,20 +66,44 @@ def index():
 # todo 获取测试规则
 @app.route('/excel/<ruleName>')
 def excel(ruleName):
-    # print(ruleName)  # '健康干预_已患疾病单病'
-    cursor.execute(
-        "select result,updateDate,step,[rule],[case],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
-    l_t_rows = cursor.fetchall()
-    # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-    l_key = ['result', 'updateDate', 'step', 'rule', 'case','ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester', 'id']
-    l_tmp = []
-    for i, l_v in enumerate(l_t_rows):
-        # print(i,l_v)
-        # print(dict(zip(l_key,list(l_v))))
-        d_ = dict(zip(l_key, list(l_v)))
-        d_['ruleName'] = ruleName
-        l_tmp.append(d_)
-    return render_template('about.html', data=l_tmp, ruleName=ruleName)
+
+    if ruleName == '评估因素取值':
+        l_2 = []
+        l_1 = []
+        cursor.execute("select result,updateDate,step,[rule],tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        l_t_rows = cursor.fetchall()
+        # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+        for t in l_t_rows:
+            for i in t:
+                i = str(i).replace("\n", "<br>")
+                l_1.append(i)
+            l_2.append(l_1)
+            l_1 = []
+        # print(l_2)
+        l_key = ['result', 'updateDate', 'step', 'rule', 'tester', 'id']
+        l_tmp = []
+        for i, l_v in enumerate(l_2):
+        # for i, l_v in enumerate(l_t_rows):
+            d_ = dict(zip(l_key, list(l_v)))
+            d_['ruleName'] = ruleName
+            l_tmp.append(d_)
+        # print(l_tmp)
+        return render_template('assess.html', data=l_tmp, ruleName=ruleName)
+    else:
+        # print(ruleName)  # '健康干预_已患疾病单病'
+        cursor.execute(
+            "select result,updateDate,step,[rule],[case],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        l_t_rows = cursor.fetchall()
+        # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+        l_key = ['result', 'updateDate', 'step', 'rule', 'case','ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester', 'id']
+        l_tmp = []
+        for i, l_v in enumerate(l_t_rows):
+            # print(i,l_v)
+            # print(dict(zip(l_key,list(l_v))))
+            d_ = dict(zip(l_key, list(l_v)))
+            d_['ruleName'] = ruleName
+            l_tmp.append(d_)
+        return render_template('about.html', data=l_tmp, ruleName=ruleName)
 
 
 @app.route('/submit', methods=['POST'])
@@ -88,29 +112,52 @@ def submit():
     l_ruleName = request.form.getlist("ruleName")
     # print(l_id, l_id)  # ['1', '4', '5']
     ruleName = l_ruleName[0]
-    print(l_id)  # ['1', '4', '5']
+    # print(l_id)  # ['1', '4', '5']
     print(ruleName)  # 健康干预_已患疾病单病
     if l_id != []:
         for id in l_id:
             print(id)
-            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
 
-            cursor.execute(
-                "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != '' and id=%s" % (
-                d_ruleName[ruleName], id))
-            l_t_rows = cursor.fetchall()
-            print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-            l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester','id']
-            l_tmp = []
-            for i, l_v in enumerate(l_t_rows):
-                # print(i,l_v)
-                # print(dict(zip(l_key,list(l_v))))
-                d_ = dict(zip(l_key, list(l_v)))
-                d_['ruleName'] = ruleName
-                l_tmp.append(d_)
-            # print(l_tmp)
-
-        return redirect(url_for('excel', ruleName=ruleName))
+            if ruleName == '评估因素取值':
+                l_2 = []
+                l_1 = []
+                cursor.execute(
+                    "select result,updateDate,step,[rule],tester,id from %s where [rule] != '' and id=%s" % (
+                        d_ruleName[ruleName], id))
+                l_t_rows = cursor.fetchall()
+                # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+                for t in l_t_rows:
+                    for i in t:
+                        i = str(i).replace("\n", "<br>")
+                        l_1.append(i)
+                    l_2.append(l_1)
+                    l_1 = []
+                # print(l_2)
+                l_key = ['result', 'updateDate', 'step', 'rule', 'tester', 'id']
+                l_tmp = []
+                for i, l_v in enumerate(l_2):
+                    d_ = dict(zip(l_key, list(l_v)))
+                    d_['ruleName'] = ruleName
+                    l_tmp.append(d_)
+                # print(l_tmp)
+                return redirect(url_for('excel', ruleName=ruleName))
+            else:
+                cursor.execute(
+                    "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != '' and id=%s" % (
+                    d_ruleName[ruleName], id))
+                l_t_rows = cursor.fetchall()
+                print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+                l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester','id']
+                l_tmp = []
+                for i, l_v in enumerate(l_t_rows):
+                    # print(i,l_v)
+                    # print(dict(zip(l_key,list(l_v))))
+                    d_ = dict(zip(l_key, list(l_v)))
+                    d_['ruleName'] = ruleName
+                    l_tmp.append(d_)
+                # print(l_tmp)
+                return redirect(url_for('excel', ruleName=ruleName))
         # return redirect('/excel')
         # response = redirect(url_for('work'))
         # response = redirect('http://www.baidu.com')
@@ -352,7 +399,6 @@ def step():
         rule = request.form['rule']
         ruleParam = request.form['ruleParam']
         print(ruleName, id, rule, ruleParam)  # 健康干预_已患疾病单病 1 s1 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G46'}
-        print("12121212")
         ruleParam = ruleParam.replace("'","''").replace("\r","")
         # ruleParam = ruleParam.replace("\r","")
         # ruleParam = ruleParam.replace('&apos;', "'").replace("\r","")

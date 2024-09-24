@@ -207,7 +207,7 @@ def insert_TB_DC_DM_VISIT():
 # 孕产妇信息表
 # insert_TB_PREGNANT_MAIN_INFO('150200195611167392')
 
-print(Sqlserver_PO.select("select * from TB_PREGNANT_MAIN_INFO WHERE ZJHM='150200195611167392'"))
+# print(Sqlserver_PO.select("select * from TB_PREGNANT_MAIN_INFO WHERE ZJHM='150200195611167392'"))
 
 
 # a = Sqlserver_PO.select("SELECT COLUMN_NAME FROM information_schema.key_column_usage where table_name='TB_PREGNANT_MAIN_INFO'")
@@ -228,3 +228,5 @@ print(Sqlserver_PO.select("select * from TB_PREGNANT_MAIN_INFO WHERE ZJHM='15020
 # Sqlserver_PO.insert('TB_DC_CHRONIC_MAIN',{'GUID': '14449029827','VISITTYPECODE':'31','MANAGENUM':'32070719470820374X','ORGCODE':'0000001','EMPIGUID': '65209815'})
 
 
+# Sqlserver_PO.desc('HRPERSONBASICINFO')
+# print(Sqlserver_PO.getTableComment('HRPERSONBASICINFO'))

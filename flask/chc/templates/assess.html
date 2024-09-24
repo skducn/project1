@@ -44,9 +44,10 @@
     }
 
 .large-checkbox {
-    width: 50px; /* 复选框的宽度 */
-    height: 50px; /* 复选框的高度 */
+  width: 50px; /* 复选框的宽度 */
+  height: 50px; /* 复选框的高度 */
 }
+
 
 </style>
 
@@ -94,24 +95,21 @@ function submitForm() {
     <table border="1">
 
         <tr>
-            <th width="80"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+            <th width="60"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
             <th>id</th>
             <th>result</th>
-            <th width="150">updateDate</th>
+            <th width="100">updateDate</th>
+            <th>step</th>
             <th>rule</th>
-            <th>case</th>
-            <th width="150">ruleParam</th>
-            <th>ruleCode</th>
-            <th width="100">diseaseRuleCode</th>
-            <th>diseaseCodeDesc</th>
-            <th width="100">tester</th>
+            <th width="70">tester</th>
         </tr>
 
 <form id="checkboxForm">
 {#<form action="{{ url_for('submit')}}" method="post">#}
 
     {% for item in data %}
-        <tr><td><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
+        <tr>
+            <td><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
             <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
                 <td style="background-color: #67C23A;">{{ item.result }}</td>
@@ -121,12 +119,8 @@ function submitForm() {
                 <td>{{ item.result }}</td>
             {% endif %}
             <td>{{ item.updateDate }}</td>
-            <td>{{ item.rule }}</td>
-            <td>{{ item.case }}</td>
-            <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.ruleParam }}</a></td>
-            <td>{{ item.ruleCode }}</td>
-            <td>{{ item.diseaseRuleCode }}</td>
-            <td>{{ item.diseaseCodeDesc }}</td>
+            <td>{{ item.step|safe }}</td>
+            <td>{{ item.rule|safe }}</td>
             <td>{{ item.tester }}</td>
         </tr>
     {% endfor %}
