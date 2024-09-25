@@ -92,10 +92,10 @@ def excel(ruleName):
     else:
         # print(ruleName)  # '健康干预_已患疾病单病'
         cursor.execute(
-            "select result,updateDate,step,[rule],[case],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
+            "select result,updateDate,step,[rule],[case],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,assessRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
         l_t_rows = cursor.fetchall()
         # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-        l_key = ['result', 'updateDate', 'step', 'rule', 'case','ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester', 'id']
+        l_key = ['result', 'updateDate', 'step', 'rule', 'case','ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'assessRuleCode','tester', 'id']
         l_tmp = []
         for i, l_v in enumerate(l_t_rows):
             # print(i,l_v)
@@ -144,11 +144,11 @@ def submit():
                 return redirect(url_for('excel', ruleName=ruleName))
             else:
                 cursor.execute(
-                    "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != '' and id=%s" % (
+                    "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,assessRuleCode,tester,id from %s where [rule] != '' and id=%s" % (
                     d_ruleName[ruleName], id))
                 l_t_rows = cursor.fetchall()
                 print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-                l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester','id']
+                l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'assessRuleCode','tester','id']
                 l_tmp = []
                 for i, l_v in enumerate(l_t_rows):
                     # print(i,l_v)
@@ -336,8 +336,10 @@ def updateRuleCollection():
     if request.method == 'POST':
         ruleCollection = request.form['ruleCollection']
         sql = request.form['sql']
+        # print(ruleCollection)
+        # print(sql)
 
-        print(ruleCollection, sql)
+        sql = sql.replace("'", "''")
 
         if ruleCollection != '' and sql != '':
             l_ = sql.split("\n")

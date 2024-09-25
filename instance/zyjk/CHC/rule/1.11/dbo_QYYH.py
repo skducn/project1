@@ -116,7 +116,7 @@ def insert_T_HIS_DIAGNOSIS():
 
 
 # todo TB_PREGNANT_MAIN_INFO(孕产妇信息表)
-Sqlserver_PO.desc('TB_PREGNANT_MAIN_INFO')
+# Sqlserver_PO.desc('TB_PREGNANT_MAIN_INFO')
 # print(Sqlserver_PO.getTableComment('TB_PREGNANT_MAIN_INFO'))
 def insert_TB_PREGNANT_MAIN_INFO(varIdcard):
     # 删除记录
@@ -228,5 +228,10 @@ def insert_TB_DC_DM_VISIT():
 # Sqlserver_PO.insert('TB_DC_CHRONIC_MAIN',{'GUID': '14449029827','VISITTYPECODE':'31','MANAGENUM':'32070719470820374X','ORGCODE':'0000001','EMPIGUID': '65209815'})
 
 
-# Sqlserver_PO.desc('HRPERSONBASICINFO')
+# 门诊就诊记录表
+Sqlserver_PO.desc('TB_DC_EXAMINATION_INFO')
+# print(Sqlserver_PO.select('select * from TB_HIS_OP_MEDICAL_RECORD'))
+# print(Sqlserver_PO.select('select * from TB_HIS_OP_PERSCRIPTION where GUID=1'))
+
+
 # print(Sqlserver_PO.getTableComment('HRPERSONBASICINFO'))

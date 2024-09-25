@@ -29,8 +29,8 @@ ChcRule_PO = ChcRulePO()
 
 # ChcRule_PO.importFull('评估因素取值')
 # ChcRule_PO.importFull('健康干预_已患疾病单病')
-ChcRule_PO.importFull('健康干预_已患疾病组合')
-# ChcRule_PO.importFull('疾病取值判断')
+# ChcRule_PO.importFull('健康干预_已患疾病组合')
+ChcRule_PO.importFull('疾病取值判断')
 
 # ChcRule_PO.importFull('log')
 

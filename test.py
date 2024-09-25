@@ -10,16 +10,21 @@
 # ***************************************************************u**
 from collections import Counter
 
-varSign = 0
-d_total = {'GUID': '65209815', 'YH_JB001': 1, 'YH_JB002': 1, 'GY_YHZH078001': 1}
-l_diseaseRuleCode = ['YH_JB001','YH_JB002','GY_YHZH078001']
-for i in l_diseaseRuleCode:
-    if i in d_total.keys():
-        if d_total[i] == 1:
-            varSign = varSign + 0
-        else:
-            varSign = varSign + 1
-print(varSign)
+a = '慢性肾脏病'
+b = ['VISITTYPECODE', '慢性肾脏病']
+if a in b :
+    print(True)
+
+# varSign = 0
+# d_total = {'GUID': '65209815', 'YH_JB001': 1, 'YH_JB002': 1, 'GY_YHZH078001': 1}
+# l_diseaseRuleCode = ['YH_JB001','YH_JB002','GY_YHZH078001']
+# for i in l_diseaseRuleCode:
+#     if i in d_total.keys():
+#         if d_total[i] == 1:
+#             varSign = varSign + 0
+#         else:
+#             varSign = varSign + 1
+# print(varSign)
 
 # d = {'N03': 'ok', 'N11': 'ok'}
 # print(list(d.values()))

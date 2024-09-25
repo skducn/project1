@@ -481,8 +481,10 @@ class ChcRulePO():
             varPrefix = varSql.split(" ")[0]
             varPrefix = varPrefix.lower()
             if varPrefix == 'select':
+                # print(555,varSql)
                 if '{diseaseRuleCode}' in varSql:
                     l_diseaseRuleCode = self.diseaseRuleCode.split(",")
+                    # print(4444,l_diseaseRuleCode)
                     if len(l_diseaseRuleCode) > 1:
                         d_tmp = {}
                         for i in l_diseaseRuleCode:
@@ -495,15 +497,38 @@ class ChcRulePO():
                             d_tmp.update(l_d_[0])
                             # print(d_tmp)
                             l_d_ = [d_tmp]
+                elif '{assessRuleCode}' in varSql:
+                    l_assessRuleCode = self.assessRuleCode.split(",")
+                    # print(666,l_assessRuleCode)
+                    if len(l_assessRuleCode) > 1:
+                        d_tmp = {}
+                        for i in l_assessRuleCode:
+                            varSql1 = varSql.replace("{assessRuleCode}", i)
+                            # print(varSql1)
+                            Color_PO.outColor([{"33": varSql1}])
+                            self.log = self.log + "\n" + ", " + varSql1
+                            command = 'Sqlserver_PO.select("' + varSql1 + '")'
+                            l_d_ = eval(command)
+                            d_tmp.update(l_d_[0])
+                        # print(d_tmp)
+                        l_d_ = [d_tmp]
                 else:
                     command = 'Sqlserver_PO.select("' + varSql + '")'
                     l_d_ = eval(command)
                 return l_d_
             elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
                 if '{prefixICD}' in varSql:
-                    # print(len(self.d_param),self.d_param)
-                    for k, v in self.d_param.items():
+                    # print(self.d_param)  # {'prefixICD': {'心律失常': 'I45'}, 'assessValue': {'胺碘酮服药史': 'XC01BD'}}
+                    for k, v in self.d_param['prefixICD'].items():
                         varSql1 = varSql.replace("{prefixICD}", v)
+                        # print(varSql1)
+                        Color_PO.outColor([{"33": varSql1}])
+                        self.log = self.log + "\n" + ", " + varSql1
+                        command = 'Sqlserver_PO.execute("' + varSql1 + '")'
+                        eval(command)
+                elif '{assessValue}' in varSql:
+                    for k, v in self.d_param['assessValue'].items():
+                        varSql1 = varSql.replace("{assessValue}", v)
                         # print(varSql1)
                         Color_PO.outColor([{"33": varSql1}])
                         self.log = self.log + "\n" + ", " + varSql1
@@ -514,6 +539,7 @@ class ChcRulePO():
                     eval(command)
             else:
                 return None
+
 
     def runSql11(self, varSql):
 
@@ -633,9 +659,25 @@ class ChcRulePO():
             print(self.log)
 
 
+    def getRandomAssessValuebyName(self, assessName):
+
+        # 获取疾病取值判断中 评估名对应的值
+        l_d_ = Sqlserver_PO.select("select assessValue from a_jibingquzhipanduan where assessName='%s'" % (assessName))
+        print(l_d_)  # [{'assessValue': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
+        l_assessValue = l_d_[0]['assessValue'].split(",")
+        return random.sample(l_assessValue, 1)[0]
+
+    def getRandomAssessValuebyErrName(self, assessName):
+
+        # 获取疾病取值判断中 评估名对应的值
+        l_d_ = Sqlserver_PO.select("select assessValue from a_jibingquzhipanduan where assessName!='%s'" % (assessName))
+        print(l_d_)  # [{'assessValue': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
+        l_assessValue = l_d_[0]['assessValue'].split(",")
+        return random.sample(l_assessValue, 1)[0]
+
     def getRandomICDbyName(self, diseaseName):
 
-        # 遍历疾病取值判断(a_jibingquzhipanduan)，依据疾病名字，随机取值。
+        # 随机获取疾病取值判断中 疾病名字对应值。
         l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (diseaseName))
         # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
         l_prefixICD = l_d_[0]['prefixICD'].split(",")
@@ -643,7 +685,7 @@ class ChcRulePO():
 
     def getRandomICDbyErrName(self, diseaseName):
 
-        # 遍历疾病取值判断(a_jibingquzhipanduan)，依据疾病名字，随机获取非此疾病名字的值。
+        # 随机获取疾病取值判断中 非疾病名字对应值。
         l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName!='%s'" % (diseaseName))
         # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
         l_prefixICD = l_d_[0]['prefixICD'].split(",")
@@ -693,12 +735,20 @@ class ChcRulePO():
             self.assessCodeDesc = l_d_rows[0]['assessCodeDesc']
         else:
             self.assessCodeDesc = ""
+        if 'assessRuleCode' in l_d_rows[0].keys():
+            self.assessRuleCode = l_d_rows[0]['assessRuleCode']
+        else:
+            self.assessRuleCode = ""
+        if 'assessDesc' in l_d_rows[0].keys():
+            self.assessDesc = l_d_rows[0]['assessDesc']
+        else:
+            self.assessDesc = ""
         self.tester = l_d_rows[0]['tester']
 
         self.sql = self.getSql()
         self.log = ""
 
-        if self.rule == 's3':
+        if self.rule == 's3' or self.rule == 's4':
             self.d_param = {}
             if self.case == 'negative':
                 # ，如：高血压，参数{'VISITTYPECODE':'31','DIAGNOSIS_CODE':'I15'} 或 {'DIAGNOSIS_CODE':'I15'} ，其中无参数‘VISITTYPECODE':'31'，自动从疾病取值判断中匹配高血压=31。
@@ -710,6 +760,11 @@ class ChcRulePO():
                         s_prefixICD = self.getRandomICDbyErrName(i)
                         # print(i, s_prefixICD)  # 高血压, I13
                         self.d_param[i] = s_prefixICD
+                    l_assessDesc = self.assessDesc.split(",")
+                    for i in l_assessDesc:
+                        s_assessValue = self.getRandomAssessValuebyErrName(i)
+                        print(i, s_assessValue)  # 高血压, I13
+                        self.d_param[i] = s_assessValue
                     Color_PO.outColor([{"35": self.d_param}])
                     self.outResults(0, self.testRules())  # 反向传0
                 else:
@@ -727,12 +782,23 @@ class ChcRulePO():
             else:
                 if self.ruleParam == {}:
                     # 实例1：正向无参, 随机获取疾病的prefixICD
-                    l_diseaseCodeDesc = self.diseaseCodeDesc.split(",")
+                    d_1 = {}
+                    d_2 = {}
+                    l_diseaseCodeDesc = self.diseaseCodeDesc.split(",")  # ['高血压'，'糖尿病']
                     for i in l_diseaseCodeDesc:
                         s_prefixICD = self.getRandomICDbyName(i)
                         # print(i, s_prefixICD)  # 高血压, I13
-                        self.d_param[i] = s_prefixICD
-                    Color_PO.outColor([{"35": self.d_param}])
+                        d_1[i] = s_prefixICD
+                    self.d_param['prefixICD'] = d_1
+
+                    l_assessDesc = self.assessDesc.split(",")
+                    for i in l_assessDesc:
+                        s_assessValue = self.getRandomAssessValuebyName(i)
+                        # print(i, s_assessValue)  # 胺碘酮服药史 XC01BD
+                        d_2[i] = s_assessValue
+                    self.d_param['assessValue'] = d_2
+
+                    Color_PO.outColor([{"35": self.d_param}])  # {'prefixICD': {'心律失常': 'I45'}, 'assessValue': {'胺碘酮服药史': 'XC01BD'}}
                     self.outResults(1, self.testRules())  # 正向传1
                 else:
                     # 实例2：正向带参，{'高血压':'I12','糖尿病':'E14'}
@@ -748,16 +814,135 @@ class ChcRulePO():
                         sys.exit(0)
 
         if self.rule == 's1':
+            self.d_param = {}
             if self.case == 'negative':
-                # 实例3：反向无参
-                # 实例4：反向带参，如：高血压，参数{'VISITTYPECODE':'31','DIAGNOSIS_CODE':'I15'} 或 {'DIAGNOSIS_CODE':'I15'} ，其中无参数‘VISITTYPECODE':'31'，自动从疾病取值判断中匹配高血压=31。
-                self.outNegative1(self.testRule11())
-            else:
-                # 实例1：正向无参
-                # 实例2：正向带参，如：高血压，参数{'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G40'} 或 {'DIAGNOSIS_CODE':'G40'}
-                self.outResult2(self.testRule11())
+                if self.ruleParam == {}:
+                    # 实例2：反无参
+                    # s_prefixICD = self.getRandomICDbyName(self.diseaseCodeDesc)
+                    # self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'?'}
+                    # Color_PO.outColor([{"35": self.d_param}])
+                    # self.outResults(0, self.testRules())  # 反向传0
 
-        if self.rule == 's2' :
+                    l_d_ = Sqlserver_PO.select(
+                        "select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
+                    # print(l_d_[0]['prefixICD'])  # I10,I11,I12,I13,I14,I15
+                    l_prefixICD = l_d_[0]['prefixICD'].split(',')
+                    # print(l_prefixICD)
+                    s_prefixICD = random.sample(l_prefixICD, 1)[0]
+                    # print(s_prefixICD)
+                    self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'?'}
+                    Color_PO.outColor([{"35": self.d_param}])
+                    self.outResults(0, self.testRules())  # 反向传0
+                else:
+                    # 实例4：反有参 {'VISITTYPECODE':'34','慢性肾脏病':'?'}
+                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
+                        self.d_param = self.ruleParam
+                        Color_PO.outColor([{"35": self.d_param}])
+                        self.outResults(0, self.testRules())  # 反向传1
+
+
+                    else:
+                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
+                        sys.exit(0)
+            else:
+                if self.ruleParam == {}:
+                    # 实例1：正无参, 随机获取疾病的prefixICD
+                    # 正向，无参数
+                    l_ = []
+                    # 1 遍历a_jiankangganyu_yihuanjibingzuhe,判断 diseaseCodeDesc 是否包含高血压及其他疾病
+                    l_d_ = Sqlserver_PO.select(
+                        "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % (
+                                '%' + self.diseaseCodeDesc + '%'))
+                    # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
+                    for d_ in l_d_:
+                        if ',' in d_['diseaseCodeDesc']:
+                            l_.append(d_['diseaseCodeDesc'])
+
+                    # 2 获取疾病列表a，并去重
+                    l_2 = List_PO.deduplication(l_)
+                    l_4 = []
+                    for j in l_2:
+                        l_3 = j.split(",")
+                        for j in l_3:
+                            l_4.append(j)
+                    l_5 = List_PO.deduplication(l_4)
+                    # print(l_5)
+
+                    # 3 遍历疾病取值判断(a_jibingquzhipanduan)，去掉疾病列表a中疾病，剩下的疾病中将prefixICD值组合成列表b
+                    l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
+                    # print(l_d_)
+                    l_6 = []
+                    for k in l_d_:
+                        l_6.append(k['diseaseName'])
+                    # print(l_6)
+                    l_7 = [x for x in l_6 if x not in l_5]
+                    # print(l_7)
+
+                    # 4 随机获取l_7的prefixICD值，赋值给DIAGNOSIS_CODE
+                    s_8 = random.sample(l_7, 1)[0]
+                    # print(s_8)
+                    l_d_ = Sqlserver_PO.select(
+                        "select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (s_8))
+                    # print(l_d_)
+                    # print(l_d_[0]['prefixICD'])  # A15,A16,A1,A18,A19,B90
+                    l_9 = l_d_[0]['prefixICD'].split(",")
+                    # print(l_9)
+                    s_10 = random.sample(l_9, 1)[0]
+                    # print(s_10)
+                    # self.sql[i] = str(self.sql[i]).replace('{prefixErrICD}', str(s_10))
+
+                    self.d_param[self.diseaseCodeDesc] = str(s_10)  # {'高血压':'？'}
+                    Color_PO.outColor([{"35": self.d_param}])
+                    self.outResults(1, self.testRules())  # 正向传1
+                else:
+                    # 实例3：正有参 {'VISITTYPECODE':'34','慢性肾脏病':'N03'}
+                    # print(list(self.ruleParam.keys()))  # ['VISITTYPECODE', '慢性肾脏病']
+                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
+                        self.d_param = self.ruleParam
+                        Color_PO.outColor([{"35": self.d_param}])
+                        self.outResults(1, self.testRules())  # 正向传1
+                    else:
+                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
+                        sys.exit(0)
+
+        if self.rule == 's2':
+            self.d_param = {}
+            if self.case == 'negative':
+                if self.ruleParam == {}:
+                    # 实例2：反无参
+                    s_prefixICD = self.getRandomICDbyErrName(self.diseaseCodeDesc)
+                    self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'?'}
+                    Color_PO.outColor([{"35": self.d_param}])
+                    self.outResults(0, self.testRules())  # 反向传0
+                else:
+                    # 实例4：反有参 {'VISITTYPECODE':'34','慢性肾脏病':'?'}
+                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
+                        self.d_param = self.ruleParam
+                        Color_PO.outColor([{"35": self.d_param}])
+                        self.outResults(0, self.testRules())  # 反向传1
+                    else:
+                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
+                        sys.exit(0)
+            else:
+                if self.ruleParam == {}:
+                    # 实例1：正无参, 随机获取疾病的prefixICD
+                    s_prefixICD = self.getRandomICDbyName(self.diseaseCodeDesc)
+                    self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'N11'}
+                    Color_PO.outColor([{"35": self.d_param}])
+                    self.outResults(1, self.testRules())  # 正向传1
+                else:
+                    # 实例3：正有参 {'VISITTYPECODE':'34','慢性肾脏病':'N03'}
+                    # print(list(self.ruleParam.keys()))  # ['VISITTYPECODE', '慢性肾脏病']
+                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
+                        self.d_param = self.ruleParam
+                        Color_PO.outColor([{"35": self.d_param}])
+                        self.outResults(1, self.testRules())  # 正向传1
+                    else:
+                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
+                        sys.exit(0)
+
+
+        if self.rule == 's2bak' :
             if self.case == 'negative':
                 if self.ruleParam != None:
                     # 实例4：反向带参，如：{'DIAGNOSIS_CODE':'I15'}  ，'I15'是错误的值。
@@ -902,7 +1087,16 @@ class ChcRulePO():
                 l_diseaseRuleCode = self.diseaseRuleCode.split(",")
                 if len(l_diseaseRuleCode) == 1:
                     self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
+            if '{assessRuleCode}' in self.sql[i]:
+                l_assessRuleCode = self.assessRuleCode.split(",")
+                if len(l_assessRuleCode) == 1:
+                    self.sql[i] = self.sql[i].replace("{assessRuleCode}", self.assessRuleCode)
 
+            # s1/s2
+            # 获取疾病取值判断对应的visitTypeCode，并替换VISITTYPECODE
+            if 'VISITTYPECODE' in self.d_param:
+                self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
+                del self.d_param['VISITTYPECODE']
 
             # 将db转换成字典
             l = Sqlserver_PO.select("select key1, value1 from %s" % (self.tmp_db))
@@ -954,7 +1148,6 @@ class ChcRulePO():
 
         # 执行sql
 
-        # print(d)  # {'rule': ['select top(1) ID,ID_CARD from T_ASSESS_INFO order by ID desc', "UPDATE T_ASSESS_INFO set {测试规则参数} where ID_CARD = '{varIdcard}'", "delete from T_ASSESS_RULE_RECORD where ASSESS_ID = {varID} and RULE_CODE = '{规则编码}'", 'self.i_rerunExecuteRule({varID})', "select count(*) QTY from T_ASSESS_RULE_RECORD where ASSESS_ID = {varID} and RULE_CODE= '{规则编码}'"], 'ruleParam': "AGE=55 , CATEGORY_CODE='2'", 'ruleCode': 'PG_Age001'}
         self.log = ""
 
         for i in range(len(self.sql)):
@@ -962,7 +1155,6 @@ class ChcRulePO():
             # 格式化sql
             if "{随机11}" in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
-
             if '{diseaseRuleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
             if '{ruleCode}' in self.sql[i]:
@@ -1025,9 +1217,8 @@ class ChcRulePO():
                     # print(l_9)
                     s_10 = random.sample(l_9, 1)[0]
                     print(s_10)
-                    self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE}', str(s_10))
-                    # print(l_sql[i])
-                    # sys.exit(0)
+                    self.sql[i] = str(self.sql[i]).replace('{prefixErrICD}', str(s_10))
+
 
             # s2
             if '{DIAGNOSIS_CODE2}' in self.sql[i]:

@@ -94,17 +94,18 @@ function submitForm() {
     <table border="1">
 
         <tr>
-            <th width="80"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+            <th><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
             <th>id</th>
             <th>result</th>
-            <th width="150">updateDate</th>
+            <th>updateDate</th>
             <th>rule</th>
             <th>case</th>
-            <th width="150">ruleParam</th>
+            <th>ruleParam</th>
             <th>ruleCode</th>
-            <th width="100">diseaseRuleCode</th>
+            <th>diseaseRuleCode</th>
             <th>diseaseCodeDesc</th>
-            <th width="100">tester</th>
+            <th>assessRuleCode</th>
+            <th>tester</th>
         </tr>
 
 <form id="checkboxForm">
@@ -127,6 +128,7 @@ function submitForm() {
             <td>{{ item.ruleCode }}</td>
             <td>{{ item.diseaseRuleCode }}</td>
             <td>{{ item.diseaseCodeDesc }}</td>
+            <td>{{ item.assessRuleCode }}</td>
             <td>{{ item.tester }}</td>
         </tr>
     {% endfor %}

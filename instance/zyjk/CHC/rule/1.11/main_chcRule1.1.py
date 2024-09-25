@@ -19,7 +19,11 @@ from ChcRulePO import *
 r = ChcRulePO("健康干预_已患疾病组合")
 
 # 按id执行
-r.runId([128])
+r.runId([47])
+# r.runId([49])
+# r.runId([51])
+# r.runId([105])
+# r.runId([153])
 
 # 按id区间执行
 # r.runIdArea([31])
