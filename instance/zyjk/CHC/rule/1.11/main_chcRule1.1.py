@@ -19,11 +19,17 @@ from ChcRulePO import *
 r = ChcRulePO("健康干预_已患疾病组合")
 
 # 按id执行
-r.runId([47])
-# r.runId([49])
-# r.runId([51])
-# r.runId([105])
-# r.runId([153])
+r.runId([1])  # s3  {'prefixICD': {'高血压': 'I14'}}
+# r.runId([135])  # s3 {'prefixICD': {'高血压': 'I15', '冠心病': 'I25.1', '慢性胃炎': 'K29.5'}}
+
+# r.runId([49])  # s4 {'prefixICD': {'心律失常': 'I45'}, 'assessValue': {'非维生素K拮抗口服抗凝药物服药史': 'XB01AE'}}
+# r.runId([151])  # s4 {'prefixICD': {'高血压': 'I11', '冠心病': 'I25.1', '心律失常': 'I49'}, 'assessValue': {'胺碘酮服药史': 'XC01BD'}}
+
+# r.runId([109])  # s5 {'prefixICD': {'高血压': 'I13', '糖尿病': 'E13'}, 'assessValue': {'血脂异常': '2.3'}}
+# r.runId([153])  # s4 {'血脂异常': '2.3', 'assessValue': {'胺碘酮服药史': 'XC01BD'}, 'prefixICD': {'高血压': 'I11', '冠心病': 'I25.1', '心律失常': 'I44'}}
+
+
+
 
 # 按id区间执行
 # r.runIdArea([31])
