@@ -44,6 +44,7 @@ Data_PO = DataPO()
 from PO.CharPO import *
 Char_PO = CharPO()
 
+
 class ChcRulePO_flask():
 
     def __init__(self, sheetName=''):
@@ -104,6 +105,7 @@ class ChcRulePO_flask():
             Sqlserver_PO.execute("ALTER table %s alter column eachStep varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
             Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
             Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
             Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
             Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
         if sheetName != "测试规则":
@@ -306,17 +308,17 @@ class ChcRulePO_flask():
 
         if 'code' in d_r:
             if d_r['code'] != 200:
-                if Configparser_PO.SWITCH("SQL") == "on":
+                if Configparser_PO.SWITCH("log") == "on":
                     Color_PO.outColor([{"31": str_r}])
                 # self.log = self.log + "\n" + str_r
                 return ([{'name': '新增评估', 'value': "[ERROR => 新增评估(i_startAssess) => " + str(str_r) + "]"}])
             else:
                 return d_r['data']
-                # if Configparser_PO.SWITCH("SQL") == "on":
+                # if Configparser_PO.SWITCH("log") == "on":
                 #     Color_PO.consoleColor("31", "33", "新增评估(i_startAssess) =>  => " + str_r, "")
                 # return ([{'name':'新增评估', 'value': 200}])
         else:
-            if Configparser_PO.SWITCH("SQL") == "on":
+            if Configparser_PO.SWITCH("log") == "on":
                 Color_PO.outColor([{"31": str_r}])
             # self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
@@ -457,10 +459,13 @@ class ChcRulePO_flask():
 
         # 获取sql语句
 
-        # todo 输出第一行
-        Color_PO.consoleColor2({"35": str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester})
-        # print(str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester + " => " + self.successor )
-
+        # todo 1
+        try:
+            # Color_PO.consoleColor2({"35": str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester})
+            print(str(self.sheetName) + " => " + str(self.dbId) + "(" + self.rule + ")" + " => " + self.tester)
+        except:
+            print("error, rule不能为空！")
+            sys.exit(0)
         l_d_ = Sqlserver_PO.select("select sql from %s where [rule]='%s'" % (self.csgz, self.rule))
         l_sql = []
         for i in range(len(l_d_)):
@@ -482,32 +487,73 @@ class ChcRulePO_flask():
         else:
             varPrefix = varSql.split(" ")[0]
             varPrefix = varPrefix.lower()
-            if varPrefix == 'select':
+            # S4 处理 血脂异常 语句
+            if "{'血脂异常'" in varSql:
+                varSql1 = varSql.replace("{assessValue}", self.getRandomAssessValuebyName('血脂异常'))
+                d_varSql = dict(eval(varSql1))
+                # print(d_varSql) # {'血脂异常': "UPDATE TB_DC_EXAMINATION_INFO set TRIGLYCERIDE=2.3 WHERE EMPIGUID='65209815'"}
+                # print(self.d_param)
+                if '血脂异常' in self.d_param:
+                    if Configparser_PO.SWITCH("log") == "on":
+                        Color_PO.outColor([{"33": str(d_varSql['血脂异常'])}])
+                    self.log = self.log + "\n" + ", " + str(d_varSql['血脂异常'])
+                    command = 'Sqlserver_PO.execute("' + str(d_varSql['血脂异常']) + '")'
+                    eval(command)
+            elif varPrefix == 'select':
+                # print(555,varSql)
                 if '{diseaseRuleCode}' in varSql:
                     l_diseaseRuleCode = self.diseaseRuleCode.split(",")
+                    # print(4444,l_diseaseRuleCode)
                     if len(l_diseaseRuleCode) > 1:
                         d_tmp = {}
                         for i in l_diseaseRuleCode:
                             varSql1 = varSql.replace("{diseaseRuleCode}", i)
                             # print(varSql1)
-                            Color_PO.outColor([{"33": varSql1}])
+                            if Configparser_PO.SWITCH("log") == "on":
+                                Color_PO.outColor([{"33": varSql1}])
                             self.log = self.log + "\n" + ", " + varSql1
                             command = 'Sqlserver_PO.select("' + varSql1 + '")'
                             l_d_ = eval(command)
                             d_tmp.update(l_d_[0])
                             # print(d_tmp)
                             l_d_ = [d_tmp]
+                elif '{assessRuleCode}' in varSql:
+                    l_assessRuleCode = self.assessRuleCode.split(",")
+                    # print(666,l_assessRuleCode)
+                    if len(l_assessRuleCode) > 1:
+                        d_tmp = {}
+                        for i in l_assessRuleCode:
+                            varSql1 = varSql.replace("{assessRuleCode}", i)
+                            # print(varSql1)
+                            if Configparser_PO.SWITCH("log") == "on":
+                                Color_PO.outColor([{"33": varSql1}])
+                            self.log = self.log + "\n" + ", " + varSql1
+                            command = 'Sqlserver_PO.select("' + varSql1 + '")'
+                            l_d_ = eval(command)
+                            d_tmp.update(l_d_[0])
+                        # print(d_tmp)
+                        l_d_ = [d_tmp]
                 else:
                     command = 'Sqlserver_PO.select("' + varSql + '")'
                     l_d_ = eval(command)
                 return l_d_
             elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
                 if '{prefixICD}' in varSql:
-                    # print(len(self.d_param),self.d_param)
-                    for k, v in self.d_param.items():
+                    # print(self.d_param)  # {'prefixICD': {'心律失常': 'I45'}, 'assessValue': {'胺碘酮服药史': 'XC01BD'}}
+                    for k, v in self.d_param['prefixICD'].items():
                         varSql1 = varSql.replace("{prefixICD}", v)
                         # print(varSql1)
-                        Color_PO.outColor([{"33": varSql1}])
+                        if Configparser_PO.SWITCH("log") == "on":
+                            Color_PO.outColor([{"33": varSql1}])
+                        self.log = self.log + "\n" + ", " + varSql1
+                        command = 'Sqlserver_PO.execute("' + varSql1 + '")'
+                        eval(command)
+                elif '{assessValue}' in varSql:
+                    for k, v in self.d_param['assessValue'].items():
+                        # if "血脂异常" != k:
+                        varSql1 = varSql.replace("{assessValue}", v)
+                        if Configparser_PO.SWITCH("log") == "on":
+                            Color_PO.outColor([{"33": varSql1}])
                         self.log = self.log + "\n" + ", " + varSql1
                         command = 'Sqlserver_PO.execute("' + varSql1 + '")'
                         eval(command)
@@ -516,7 +562,6 @@ class ChcRulePO_flask():
                     eval(command)
             else:
                 return None
-
 
     def runSql11(self, varSql):
 
@@ -536,7 +581,6 @@ class ChcRulePO_flask():
                 return l_d_
             elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
                 command = 'Sqlserver_PO.execute("' + varSql + '")'
-                # todo 输出sql语句（调试）
                 l_d_ = eval(command)
                 # sleep(1)
                 return l_d_
@@ -557,7 +601,7 @@ class ChcRulePO_flask():
 
         # 生成动态临时库，保存变量与值
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
-        if Configparser_PO.SWITCH("SQL") == "on":
+        if Configparser_PO.SWITCH("log") == "on":
             Color_PO.outColor([{"31": self.tmp_db}])
         Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
 
@@ -635,24 +679,6 @@ class ChcRulePO_flask():
         if Configparser_PO.SWITCH("step") == "on":
             print(self.log)
 
-
-    def getRandomICDbyName(self, diseaseName):
-
-        # 遍历疾病取值判断(a_jibingquzhipanduan)，依据疾病名字，随机取值。
-        l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (diseaseName))
-        # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
-        l_prefixICD = l_d_[0]['prefixICD'].split(",")
-        return random.sample(l_prefixICD, 1)[0]
-
-    def getRandomICDbyErrName(self, diseaseName):
-
-        # 遍历疾病取值判断(a_jibingquzhipanduan)，依据疾病名字，随机获取非此疾病名字的值。
-        l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName!='%s'" % (diseaseName))
-        # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
-        l_prefixICD = l_d_[0]['prefixICD'].split(",")
-        return random.sample(l_prefixICD, 1)[0]
-
-
     def run11(self, dbId):
 
         # 按id执行
@@ -662,9 +688,10 @@ class ChcRulePO_flask():
         else:
             sys.exit(0)
 
+        self.d_param = {}
+
         # 获取表字段值
         l_d_rows = Sqlserver_PO.select("select * from %s where id=%s" % (self.dbTable, self.dbId))
-        # print(l_d_rows[0]) # {'id': 1, 'result': 'ok', 'updateDate': datetime.datetime(2023, 11, 7, 10, 4, 15), 'rule': 'r1', 'ruleParam': "AGE=55 .and. CATEGORY_CODE='2'", 'ruleCode': 'PG_Age001', '分类': '年龄', '规则名称': '年龄≥55岁', '评估规则详细描述': '年龄≥55岁', '评估因素判断规则': '年龄>=55', 'tester': '刘斌龙', 'var': ''}
 
         try:
             self.rule = l_d_rows[0]['rule']
@@ -700,188 +727,72 @@ class ChcRulePO_flask():
             self.assessRuleCode = l_d_rows[0]['assessRuleCode']
         else:
             self.assessRuleCode = ""
-        self.tester = l_d_rows[0]['tester']
 
+        d_2 = {}
+        if 'assessDesc' in l_d_rows[0].keys():
+            if l_d_rows[0]['assessDesc'] == None or l_d_rows[0]['assessDesc'] == "":
+                self.assessDesc = ""
+            else:
+                self.assessDesc = l_d_rows[0]['assessDesc']
+                l_assessDesc = self.assessDesc.split(",")
+                for i in l_assessDesc:
+                    s_assessValue = self.getRandomAssessValuebyName(i)
+                    if self.rule == 's4' and i == '血脂异常':
+                        self.d_param['血脂异常'] = s_assessValue
+                    else:
+                        d_2[i] = s_assessValue
+                self.d_param['assessValue'] = d_2
+
+        self.tester = l_d_rows[0]['tester']
         self.sql = self.getSql()
         self.log = ""
 
-        if self.rule == 's3' or self.rule == 's4':
-            self.d_param = {}
-            if self.case == 'negative':
-                # ，如：高血压，参数{'VISITTYPECODE':'31','DIAGNOSIS_CODE':'I15'} 或 {'DIAGNOSIS_CODE':'I15'} ，其中无参数‘VISITTYPECODE':'31'，自动从疾病取值判断中匹配高血压=31。
-                # self.outNegative1(self.testRule11())
-                if self.ruleParam == {}:
-                    # 实例3：反向无参
-                    l_diseaseCodeDesc = self.diseaseCodeDesc.split(",")
-                    for i in l_diseaseCodeDesc:
-                        s_prefixICD = self.getRandomICDbyErrName(i)
-                        # print(i, s_prefixICD)  # 高血压, I13
-                        self.d_param[i] = s_prefixICD
-                    Color_PO.outColor([{"35": self.d_param}])
-                    self.outResults(0, self.testRules())  # 反向传0
-                else:
-                    # 实例4：反向带参，{'高血压':'G40'}
-                    l_diseaseCodeDesc = self.diseaseCodeDesc.split(",")
-                    # print(l_diseaseCodeDesc)  # ['高血压', '糖尿病']
-                    # print(list(self.ruleParam.keys()))  # ['高血压', '糖尿病']
-                    if l_diseaseCodeDesc == list(self.ruleParam.keys()):
-                        self.d_param = self.ruleParam
-                        Color_PO.outColor([{"35": self.d_param}])
-                        self.outResults(0, self.testRules())  # 反向传0
-                    else:
-                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
-                        sys.exit(0)
-            else:
-                if self.ruleParam == {}:
-                    # 实例1：正向无参, 随机获取疾病的prefixICD
-                    l_diseaseCodeDesc = self.diseaseCodeDesc.split(",")
-                    for i in l_diseaseCodeDesc:
-                        s_prefixICD = self.getRandomICDbyName(i)
-                        # print(i, s_prefixICD)  # 高血压, I13
-                        self.d_param[i] = s_prefixICD
-                    Color_PO.outColor([{"35": self.d_param}])
-                    self.outResults(1, self.testRules())  # 正向传1
-                else:
-                    # 实例2：正向带参，{'高血压':'I12','糖尿病':'E14'}
-                    l_diseaseCodeDesc = self.diseaseCodeDesc.split(",")
-                    # print(l_diseaseCodeDesc)  # ['高血压', '糖尿病']
-                    # print(list(self.ruleParam.keys()))  # ['高血压', '糖尿病']
-                    if l_diseaseCodeDesc == list(self.ruleParam.keys()):
-                        self.d_param = self.ruleParam
-                        Color_PO.outColor([{"35": self.d_param}])
-                        self.outResults(1, self.testRules())  # 正向传1
-                    else:
-                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
-                        sys.exit(0)
-
         if self.rule == 's1':
-            self.d_param = {}
+            # 获取组合与非组合的疾病
+            self._s1_noParam()
+
             if self.case == 'negative':
                 if self.ruleParam == {}:
-                    # 实例2：反无参
-                    # s_prefixICD = self.getRandomICDbyName(self.diseaseCodeDesc)
-                    # self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'?'}
-                    # Color_PO.outColor([{"35": self.d_param}])
-                    # self.outResults(0, self.testRules())  # 反向传0
-
-                    l_d_ = Sqlserver_PO.select(
-                        "select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
-                    # print(l_d_[0]['prefixICD'])  # I10,I11,I12,I13,I14,I15
-                    l_prefixICD = l_d_[0]['prefixICD'].split(',')
-                    # print(l_prefixICD)
-                    s_prefixICD = random.sample(l_prefixICD, 1)[0]
-                    # print(s_prefixICD)
-                    self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'?'}
-                    Color_PO.outColor([{"35": self.d_param}])
-                    self.outResults(0, self.testRules())  # 反向传0
+                    # 实例3：反无参
+                    diseaseName = random.sample(self.l_combination_s1, 1)[0]
+                    # self.d_param['prefixICD'] = {}
+                    self.getPrefixICD(diseaseName)
+                    self.d_param.update(self.testRules())
+                    self.assertS1()
                 else:
-                    # 实例4：反有参 {'VISITTYPECODE':'34','慢性肾脏病':'?'}
-                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
-                        self.d_param = self.ruleParam
-                        Color_PO.outColor([{"35": self.d_param}])
-                        self.outResults(0, self.testRules())  # 反向传1
-
-
-                    else:
-                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
-                        sys.exit(0)
+                    # 实例4：反有参  {'prefixICD': {'高血压': 'I10'}}
+                    self._s1_param()
             else:
                 if self.ruleParam == {}:
-                    # 实例1：正无参, 随机获取疾病的prefixICD
-                    # 正向，无参数
-                    l_ = []
-                    # 1 遍历a_jiankangganyu_yihuanjibingzuhe,判断 diseaseCodeDesc 是否包含高血压及其他疾病
-                    l_d_ = Sqlserver_PO.select(
-                        "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % (
-                                '%' + self.diseaseCodeDesc + '%'))
-                    # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
-                    for d_ in l_d_:
-                        if ',' in d_['diseaseCodeDesc']:
-                            l_.append(d_['diseaseCodeDesc'])
-
-                    # 2 获取疾病列表a，并去重
-                    l_2 = List_PO.deduplication(l_)
-                    l_4 = []
-                    for j in l_2:
-                        l_3 = j.split(",")
-                        for j in l_3:
-                            l_4.append(j)
-                    l_5 = List_PO.deduplication(l_4)
-                    # print(l_5)
-
-                    # 3 遍历疾病取值判断(a_jibingquzhipanduan)，去掉疾病列表a中疾病，剩下的疾病中将prefixICD值组合成列表b
-                    l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
-                    # print(l_d_)
-                    l_6 = []
-                    for k in l_d_:
-                        l_6.append(k['diseaseName'])
-                    # print(l_6)
-                    l_7 = [x for x in l_6 if x not in l_5]
-                    # print(l_7)
-
-                    # 4 随机获取l_7的prefixICD值，赋值给DIAGNOSIS_CODE
-                    s_8 = random.sample(l_7, 1)[0]
-                    # print(s_8)
-                    l_d_ = Sqlserver_PO.select(
-                        "select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (s_8))
-                    # print(l_d_)
-                    # print(l_d_[0]['prefixICD'])  # A15,A16,A1,A18,A19,B90
-                    l_9 = l_d_[0]['prefixICD'].split(",")
-                    # print(l_9)
-                    s_10 = random.sample(l_9, 1)[0]
-                    # print(s_10)
-                    # self.sql[i] = str(self.sql[i]).replace('{prefixErrICD}', str(s_10))
-
-                    self.d_param[self.diseaseCodeDesc] = str(s_10)  # {'高血压':'？'}
-                    Color_PO.outColor([{"35": self.d_param}])
-                    self.outResults(1, self.testRules())  # 正向传1
+                    # 实例1：正无参
+                    diseaseName = random.sample(self.l_noCombination_s1, 1)[0]
+                    # self.d_param['prefixICD'] = {}
+                    self.getPrefixICD(diseaseName)
+                    self.d_param.update(self.testRules())
+                    self.assertS1()
                 else:
-                    # 实例3：正有参 {'VISITTYPECODE':'34','慢性肾脏病':'N03'}
-                    # print(list(self.ruleParam.keys()))  # ['VISITTYPECODE', '慢性肾脏病']
-                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
-                        self.d_param = self.ruleParam
-                        Color_PO.outColor([{"35": self.d_param}])
-                        self.outResults(1, self.testRules())  # 正向传1
-                    else:
-                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
-                        sys.exit(0)
+                    # 实例2：正有参 {'prefixICD': {'高血压': 'G40'}}
+                    self._s1_param()
 
-        if self.rule == 's2':
-            self.d_param = {}
+        if self.rule == 's2' or self.rule == 's3' or self.rule == 's4' or self.rule == 's5':
             if self.case == 'negative':
                 if self.ruleParam == {}:
-                    # 实例2：反无参
-                    s_prefixICD = self.getRandomICDbyErrName(self.diseaseCodeDesc)
-                    self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'?'}
-                    Color_PO.outColor([{"35": self.d_param}])
-                    self.outResults(0, self.testRules())  # 反向传0
+                    # 实例3：反无参
+                    self.getErrPrefixICD(self.diseaseCodeDesc)
+                    self.d_param.update(self.testRules())
+                    self.assertS1()
                 else:
-                    # 实例4：反有参 {'VISITTYPECODE':'34','慢性肾脏病':'?'}
-                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
-                        self.d_param = self.ruleParam
-                        Color_PO.outColor([{"35": self.d_param}])
-                        self.outResults(0, self.testRules())  # 反向传1
-                    else:
-                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
-                        sys.exit(0)
+                    # 实例4：反有参 {'VISITTYPECODE':'34','prefixICD':{'慢性肾脏病':'?'}}
+                    self._s1_param()
             else:
                 if self.ruleParam == {}:
-                    # 实例1：正无参, 随机获取疾病的prefixICD
-                    s_prefixICD = self.getRandomICDbyName(self.diseaseCodeDesc)
-                    self.d_param[self.diseaseCodeDesc] = s_prefixICD  # {'慢性肾脏病':'N11'}
-                    Color_PO.outColor([{"35": self.d_param}])
-                    self.outResults(1, self.testRules())  # 正向传1
+                    # 实例1：正无参
+                    self.getPrefixICD(self.diseaseCodeDesc)
+                    self.d_param.update(self.testRules())
+                    self.assertS1()
                 else:
-                    # 实例3：正有参 {'VISITTYPECODE':'34','慢性肾脏病':'N03'}
-                    # print(list(self.ruleParam.keys()))  # ['VISITTYPECODE', '慢性肾脏病']
-                    if self.diseaseCodeDesc in list(self.ruleParam.keys()):
-                        self.d_param = self.ruleParam
-                        Color_PO.outColor([{"35": self.d_param}])
-                        self.outResults(1, self.testRules())  # 正向传1
-                    else:
-                        print("error, ruleParm的key与diseaseCodeDesc不匹配！")
-                        sys.exit(0)
-
+                    # 实例2：正有参  {'VISITTYPECODE':'34','prefixICD':{'慢性肾脏病':'N11'}}
+                    self._s1_param()
 
         if self.rule == 's2bak' :
             if self.case == 'negative':
@@ -966,6 +877,49 @@ class ChcRulePO_flask():
                     else:
                         self.outS2_2(2)
 
+    def _s1_noParam(self):
+
+        # 如：高血压
+        # 1, 在"健康干预_已患疾病组合"中，获取疾病编码描述(diseaseCodeDesc)为高血压及包含高血压的组合，生成列表l_1
+        l_d_ = Sqlserver_PO.select(
+            "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % (
+                        '%' + self.diseaseCodeDesc + '%'))
+        # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
+        l_1 = []
+        for d_ in l_d_:
+            if ',' in d_['diseaseCodeDesc']:
+                l_1.append(d_['diseaseCodeDesc'])
+
+        # 2，对l_1去重，生成self.l_combination_s1
+        l_2 = List_PO.deduplication(l_1)
+        l_4 = []
+        for j in l_2:
+            l_3 = j.split(",")
+            for k in l_3:
+                l_4.append(k)
+        self.l_combination_s1 = List_PO.deduplication(l_4)
+        # print(555,self.l_combination_s1)
+
+        # 3，遍历疾病取值判断表，过滤掉列表self.l_combination_s1，生成列表l_7。
+        l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
+        l_6 = []
+        for k in l_d_:
+            l_6.append(k['diseaseName'])
+
+        self.l_noCombination_s1 = [x for x in l_6 if x not in self.l_combination_s1]
+
+    def _s1_param(self):
+        self.d_param = self.ruleParam
+        if Configparser_PO.SWITCH("log") == "on":
+            Color_PO.outColor([{"35": self.d_param}])
+        self.d_param.update(self.testRules())
+        self.assertS1()
+
+        # if self.diseaseCodeDesc in list(self.ruleParam['prefixICD'].keys()):
+        #
+        # else:
+        #     Color_PO.outColor([{"31": "error, ruleParm格式有误或疾病名称不匹配！"}])
+        #     sys.exit(0)
 
     def getVisitTypeCode(self, varSql, varFieldName):
 
@@ -1001,16 +955,69 @@ class ChcRulePO_flask():
                     # print(l_sql[i])
         return varSql
 
+    def getRandomAssessValuebyName(self, assessName):
+
+        # 获取疾病取值判断中 评估名对应的值
+        l_d_ = Sqlserver_PO.select("select assessValue from a_jibingquzhipanduan where assessName='%s'" % (assessName))
+        l_assessValue = l_d_[0]['assessValue'].split(",")
+        return random.sample(l_assessValue, 1)[0]
+
+    def getRandomAssessValuebyErrName(self, assessName):
+
+        # 获取疾病取值判断中 评估名对应的值
+        l_d_ = Sqlserver_PO.select("select assessValue from a_jibingquzhipanduan where assessName !='%s'" % (assessName))
+        l_assessValue = l_d_[0]['assessValue'].split(",")
+        # s_assessValue = random.sample(l_assessValue, 1)[0]
+        # self.d_param['assessValue'][assessName] = str(s_assessValue)
+        return random.sample(l_assessValue, 1)[0]
+
+    def getPrefixICD(self, diseaseName):
+
+        # 获取疾病取值判断中疾病名(diseaseName)对应随机值。
+        self.d_param['prefixICD'] = {}
+        # print(self.diseaseCodeDesc)
+        l_diseaseCodeDesc = diseaseName.split(",")
+        for i in l_diseaseCodeDesc:
+            l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName = '%s'" % (i))
+            l_prefixICD = l_d_[0]['prefixICD'].split(",")
+            s_prefixICD = random.sample(l_prefixICD, 1)[0]
+            self.d_param['prefixICD'][i] = str(s_prefixICD)
+        if Configparser_PO.SWITCH("log") == "on":
+            Color_PO.outColor([{"35": self.d_param}])
+
+    def getErrPrefixICD(self, diseaseName):
+
+        # 随机获取疾病取值判断中 非疾病名字对应值。
+        self.d_param['prefixICD'] = {}
+        # print(self.diseaseCodeDesc)
+        l_diseaseCodeDesc = diseaseName.split(",")
+
+        # 获取其他疾病列表
+        l_all = []
+        l_d_ = Sqlserver_PO.select('select diseaseName from a_jibingquzhipanduan')
+        for i in l_d_:
+            l_all.append(i['diseaseName'])
+        # print(l_all)
+        l_all = [x for x in l_all if x not in l_diseaseCodeDesc]
+        l_2 = random.sample(l_all, 2)
+        # print(l_2)
+
+        for i in l_2:
+            l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName = '%s'" % (i))
+            l_prefixICD = l_d_[0]['prefixICD'].split(",")
+            s_prefixICD = random.sample(l_prefixICD, 1)[0]
+            self.d_param['prefixICD'][i] = str(s_prefixICD)
+        if Configparser_PO.SWITCH("log") == "on":
+            Color_PO.outColor([{"35": self.d_param}])
 
     def testRules(self):
 
-        # 适用于s3s
-
         # 生成动态临时库，保存变量与值
+        # todo 3
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
         # print(self.tmp_db)
-        if Configparser_PO.SWITCH("SQL") == "on":
-            Color_PO.outColor([{"35": self.tmp_db}])
+        if Configparser_PO.SWITCH("log") == "on":
+            Color_PO.outColor([{"33": self.tmp_db}])
         Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
 
         # 获取临时变量
@@ -1025,15 +1032,19 @@ class ChcRulePO_flask():
             if '{ruleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
             if '{diseaseRuleCode}' in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
+                l_diseaseRuleCode = self.diseaseRuleCode.split(",")
+                if len(l_diseaseRuleCode) == 1:
+                    self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
             if '{assessRuleCode}' in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{assessRuleCode}", self.assessRuleCode)
+                l_assessRuleCode = self.assessRuleCode.split(",")
+                if len(l_assessRuleCode) == 1:
+                    self.sql[i] = self.sql[i].replace("{assessRuleCode}", self.assessRuleCode)
 
             # s1/s2
             # 获取疾病取值判断对应的visitTypeCode，并替换VISITTYPECODE
-            self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
-            if 'VISITTYPECODE' in self.d_param:
-                del self.d_param['VISITTYPECODE']
+            if '{VISITTYPECODE}' in self.sql[i]:
+                self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
+
 
             # 将db转换成字典
             l = Sqlserver_PO.select("select key1, value1 from %s" % (self.tmp_db))
@@ -1046,15 +1057,31 @@ class ChcRulePO_flask():
             if str(self.ASSESS_ID) != "":
                 self.sql[i] = str(self.sql[i]).replace('{ASSESS_ID}', str(self.ASSESS_ID))
 
-            # todo 输出sql语句
-            if Configparser_PO.SWITCH("SQL") == "on":
-                print(str(i + 1) + ", " + self.sql[i])  # 1, delete from T_ASSESS_INFO where ID_CARD = '310101202308070003'
+            # todo 输出sql
+            if Configparser_PO.SWITCH("log") == "on":
+                if self.rule == 's4':
+                    if "{'血脂异常'" in self.sql[i]:
+                        if '血脂异常' in self.d_param:
+                            print(str(i + 1) + ", " + self.sql[i])
+                    else:
+                        print(str(i + 1) + ", " + self.sql[i])
+                else:
+                    print(str(i + 1) + ", " + self.sql[i])
 
             # 记录步骤日志
             if self.log == "":
                 self.log = str(i + 1) + ", " + self.sql[i]
             else:
-                self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+                # self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+
+                if self.rule == 's4':
+                    if "{'血脂异常'" in self.sql[i]:
+                        if '血脂异常' in self.d_param:
+                            self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+                    else:
+                        self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+                else:
+                    self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
 
             # todo 执行sql
             # sql返回值
@@ -1070,8 +1097,8 @@ class ChcRulePO_flask():
                             Sqlserver_PO.execute("insert into %s (key1,value1) values ('%s', '%s')" % (self.tmp_db, str(k), str(v)))
 
                         # 打印返回值
-                        if Configparser_PO.SWITCH("SQL") == "on":
-                            Color_PO.outColor([{"31": l_d_[0]}])  # {'GUID': '65209815'}
+                        if Configparser_PO.SWITCH("log") == "on":
+                            Color_PO.outColor([{"35": l_d_[0]}])  # {'GUID': '65209815'}
 
                         d_total.update(l_d_[0])
 
@@ -1080,517 +1107,46 @@ class ChcRulePO_flask():
         self.log = self.log + "\n" + str(d_total)
         return d_total
 
+    def assertS1(self):
 
-    def testRule11(self):
+        if Configparser_PO.SWITCH("log") == "on":
+            Color_PO.outColor([{"35": self.d_param}])
 
-        # 执行sql
-
-        self.log = ""
-
-        for i in range(len(self.sql)):
-
-            # 格式化sql
-            if "{随机11}" in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
-            if '{diseaseRuleCode}' in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
-            if '{ruleCode}' in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
-
-
-            # s1/s2
-            # 获取疾病取值判断对应的visitTypeCode，并替换VISITTYPECODE
-            self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
-
-            # s1
-            if '{DIAGNOSIS_CODE}' in self.sql[i]:
-                if self.case == 'negative':
-                    l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
-                    # print(l_d_[0]['prefixICD'])  # I10,I11,I12,I13,I14,I15
-                    l_prefixICD = l_d_[0]['prefixICD'].split(',')
-                    # print(l_prefixICD)
-                    s_prefixICD = random.sample(l_prefixICD, 1)[0]
-                    # print(s_prefixICD)
-                    self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE}', str(s_prefixICD))
-
-                else:
-                    # 正向，无参数
-                    l_ = []
-                    # 1 遍历a_jiankangganyu_yihuanjibingzuhe,判断 diseaseCodeDesc 是否包含高血压及其他疾病
-                    l_d_ = Sqlserver_PO.select(
-                        "select diseaseCodeDesc from a_jiankangganyu_yihuanjibingzuhe where diseaseCodeDesc like '%s'" % ('%' + self.diseaseCodeDesc +'%'))
-                    # print(l_d_)  # [{'diseaseCodeDesc': '高血压'}, {'diseaseCodeDesc': '高血压,糖尿病'},
-                    for d_ in l_d_:
-                        if ',' in d_['diseaseCodeDesc']:
-                            l_.append(d_['diseaseCodeDesc'])
-
-                    # 2 获取疾病列表a，并去重
-                    l_2 = List_PO.deduplication(l_)
-                    l_4 = []
-                    for j in l_2:
-                        l_3 = j.split(",")
-                        for j in l_3:
-                            l_4.append(j)
-                    l_5 = List_PO.deduplication(l_4)
-                    # print(l_5)
-
-                    # 3 遍历疾病取值判断(a_jibingquzhipanduan)，去掉疾病列表a中疾病，剩下的疾病中将prefixICD值组合成列表b
-                    l_d_ = Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan")
-                    # print(l_d_)
-                    l_6 = []
-                    for k in l_d_:
-                        l_6.append(k['diseaseName'])
-                    # print(l_6)
-                    l_7 = [x for x in l_6 if x not in l_5]
-                    # print(l_7)
-
-                    # 4 随机获取l_7的prefixICD值，赋值给DIAGNOSIS_CODE
-                    s_8 = random.sample(l_7,1)[0]
-                    # print(s_8)
-                    l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (s_8))
-                    # print(l_d_)
-                    # print(l_d_[0]['prefixICD'])  # A15,A16,A1,A18,A19,B90
-                    l_9 = l_d_[0]['prefixICD'].split(",")
-                    # print(l_9)
-                    s_10 = random.sample(l_9, 1)[0]
-                    print(s_10)
-                    self.sql[i] = str(self.sql[i]).replace('{prefixErrICD}', str(s_10))
-
-
-            # s2
-            if '{DIAGNOSIS_CODE2}' in self.sql[i]:
-                self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE2}', str(self.prefixICD))
-
-            # s3
-            if '{DIAGNOSIS_CODE3}' in self.sql[i]:
-                self.sql[i] = str(self.sql[i]).replace('{DIAGNOSIS_CODE3}', str(self.prefixICD))
-
-        # 生成动态临时库，保存变量与值
-        self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
-        # print(self.tmp_db)
-        if Configparser_PO.SWITCH("SQL") == "on":
-            Color_PO.outColor([{"35": self.tmp_db}])
-        Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
-
-        # 获取临时变量
-        d_update = {}  # 更新数据
-        varQty1 = 0
-        varQty2 = 0
-        self.ASSESS_ID = ""
-
-        for i in range(len(self.sql)):
-
-            # 将db转换成字典
-            l = Sqlserver_PO.select("select key1, value1 from %s" % (self.tmp_db))
-            # print(l) # [{'key1': 'ID', 'value1': '499948'}, {'key1': 'QTY', 'value1': '1'}, {'key1': 'Q2', 'value1': '1'},
-            d_update = {}
-            for p in range(len(l)):
-                d_update[l[p]['key1']] = l[p]['value1']
-
-                if 'ID' in d_update:
-                    self.sql[i] = str(self.sql[i]).replace("{varID}", str(d_update['ID']))
-                if 'IDCARD' in d_update:
-                    self.sql[i] = str(self.sql[i]).replace("{varIDCARD}", str(d_update['IDCARD']))
-                if 'ID_CARD' in d_update:
-                    self.sql[i] = str(self.sql[i]).replace("{varID_CARD}", str(d_update['ID_CARD']))
-                if 'GUID' in d_update:
-                    self.sql[i] = str(self.sql[i]).replace("{varGUID}", str(d_update['GUID']))
-
-            if str(self.ASSESS_ID) != "":
-                self.sql[i] = str(self.sql[i]).replace('{ASSESS_ID}', str(self.ASSESS_ID))
-
-            # todo 输出sql语句
-            if Configparser_PO.SWITCH("SQL") == "on":
-                print(str(i + 1) + ", " + self.sql[i])  # 1, delete from T_ASSESS_INFO where ID_CARD = '310101202308070003'
-
-            # 记录步骤日志
-            if self.log == "":
-                self.log = str(i + 1) + ", " + self.sql[i]
+        if self.case != 'negative':
+            # 正向
+            if self.d_param[self.ruleCode] == 1:
+                Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+                self.log = (self.log).replace("'", "''")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
             else:
-                self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
-
-            # todo 执行sql
-            # sql返回值
-            l_d_ = self.runSql11(self.sql[i])
-            # print(111,l_d_)
-
-            if l_d_ != None:
-                if isinstance(l_d_, list) and l_d_ != []:
-                    if isinstance(l_d_[0], dict):
-
-                        # 将变量存入db
-                        for k, v in l_d_[0].items():
-                            Sqlserver_PO.execute("insert into %s (key1,value1) values ('%s', '%s')" % (self.tmp_db, str(k), str(v)))
-
-                        # 打印返回值
-                        if Configparser_PO.SWITCH("SQL") == "on":
-                            Color_PO.outColor([{"31": l_d_[0]}])
-
-                        if "qty1" in l_d_[0]:
-                            self.log = self.log + "\n" + str(l_d_[0])  # 步骤日志
-                            varQty1 = l_d_[0]['qty1']
-
-                        if "qty2" in l_d_[0]:
-                            self.log = self.log + "\n" + str(l_d_[0])  # 步骤日志
-                            varQty2 = l_d_[0]['qty2']
-        varQty = int(varQty1) + int(varQty2)
-        return varQty
-
-    def outResult1(self, varQty):
-
-        if varQty == 1:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-            self.log = (self.log).replace("'", "''")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-            print(self.log)
-            self.log = (self.log).replace("'", "''")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-        Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable,self.dbId,Time_PO.getDateTimeByDivide(),self.log))
-
-    def outResult2(self, varQty):
-
-        if varQty == 2:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-            self.log = (self.log).replace("'", "''")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-            print(self.log)
-            self.log = (self.log).replace("'", "''")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-            Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-
-    def outResults(self, qty, d_total):
-
-        # qty = 1 正向匹配所有value都为1
-        # qty = 0 反向匹配所有value都为0
-
-        varSign = 0
-        print(d_total) #  {'GUID': '65209815', 'YH_JB001': 1, 'YH_JB002': 1, 'GY_YHZH078001': 1}
-        l_diseaseRuleCode = self.diseaseRuleCode.split(",")
-        # print(l_diseaseRuleCode)  # ['YH_JB001','YH_JB002']
-        # print(self.ruleCode)  # GY_YHZH078001
-        l_diseaseRuleCode.append(self.ruleCode)
-        # print(l_diseaseRuleCode)  # ['YH_JB001','YH_JB002','GY_YHZH078001']
-        for i in l_diseaseRuleCode:
-            if i in d_total.keys():
-                if d_total[i] == qty:
-                    varSign = varSign + 0
-                else:
-                    varSign = varSign + 1
-
-        if varSign == 0:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-            self.log = (self.log).replace("'", "''")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-            print(self.log)
-            self.log = (self.log).replace("'", "''")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-            Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-
-
-    def outS2_2(self, varQty):
-
-        if varQty == 2:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-            # print(self.log)
-            # self.log = (self.log).replace("''", "\'")
-            # print(self.log)
-            # Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-            print(self.log)
-            # self.log = (self.log).replace("''", "'")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (
-            self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-            # Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-
-    def outNegative1(self, varQty):
-
-        # negative
-
-        if varQty == 1:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-            self.log = (self.log).replace("'", "''")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-            print(self.log)
-            self.log = (self.log).replace("'", "''")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-            Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (
-            self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-
-    def outNegative0(self, varQty):
-
-        # negative
-
-        if varQty == 0:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-            self.log = (self.log).replace("'", "''")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-            print(self.log)
-            self.log = (self.log).replace("'", "''")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-            Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-
-
-
-
-    def _getParamByGW(self):
-        d = {}
-        d['l_sql'] = self.getSql()
-        d['ruleCode'] = self.ruleCode
-        d['diseaseRuleCode'] = self.diseaseRuleCode
-        self._getDiseaseIdcardGW(d)
-
-    def outResultGW(self, d_actual):
-
-        varSign = 0
-        d_error = {}
-        for k, v in d_actual.items():
-            if (k == "QTY0" and v == 0) or (k != "QTY0" and v == 1):
-                varSign = 0
-            else:
-                varSign = 1
-                d_error[k] = v
-
-        if Configparser_PO.SWITCH("SQL") == "on":
-            print('值 => ' + str(d_actual))
-
-        if varSign == 0:
-            Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+                Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
+                print(self.log)
+                self.log = (self.log).replace("'", "''")
+                Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+                Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
             Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-            # Sqlserver_PO.execute("update %s set var='' where id=%s" % (self.dbTable, self.dbId))
-        else:
-            Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-            print(self.log)
-            Color_PO.consoleColor("31", "31", '错误值 => ' + str(d_error), "")
-            self.log = self.log + str(d_error)
-            self.log = (self.log).replace("'", "''")
-            Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-            Sqlserver_PO.execute("update %s set result='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+            Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+        elif self.case == 'negative':
+            # 反向
+            if self.d_param[self.ruleCode] == 0:
+                Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+                self.log = (self.log).replace("'", "''")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+            else:
+                Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
+                print(self.log)
+                self.log = (self.log).replace("'", "''")
+                Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+                Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
             Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-            # Sqlserver_PO.execute("update %s set var='' where id=%s" % (self.dbTable, self.dbId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+            Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
 
-    def _getAutoIdcard(self, d):
-
-        # 随机获取疾病身份证中身份证
-
-        varIdcard = ""
-        l_d_diseaseRuleCode_idcard = self.getDiseaseIdcard()
-        # print(l_d_diseaseRuleCode_idcard)  # [{'diseaseRuleCode': 'YH_JB001', 'idcard': 310101202308070001}, ...]
-        l_1 = []
-        for i in range(len(l_d_diseaseRuleCode_idcard)):
-            l_1.append(l_d_diseaseRuleCode_idcard[i]['idcard'])
-        d["varIdcard"] = random.choice(l_1)
-        # print(d["varIdcard"])
-        self.verifyIdcard(varIdcard)
-        if varIdcard != None:
-            if 'hitQty' in d and d['hitQty'] == 2:
-                self.outResult2(self.testRule(d))
-            else:
-                self.outResult1(self.testRule(d))
-        else:
-            Color_PO.consoleColor("31", "31", "[ERROR => _getDiseaseIdcard2() => 身份证不能为None!]", "")
-
-    def _getDiseaseIdcard2(self, d):
-
-        # 健康干预命中次数之获取身份证
-
-        # print(d)
-        varIdcard = ""
-        l_d_diseaseRuleCode_idcard = self.getDiseaseIdcard()
-        # print(l_d_diseaseRuleCode_idcard)
-        for i in range(len(l_d_diseaseRuleCode_idcard)):
-            for k, v in l_d_diseaseRuleCode_idcard[i].items():
-                # print(l_d_diseaseRuleCode_idcard[i][k])
-                if l_d_diseaseRuleCode_idcard[i][k] == d['diseaseRuleCode']:
-                    varIdcard = l_d_diseaseRuleCode_idcard[i]['idcard']
-                    break
-
-        d["varIdcard"] = varIdcard
-        self.verifyIdcard(varIdcard)
-
-        if varIdcard != None:
-            if 'hitQty' in d and d['hitQty'] == 2:
-                self.outResult2(self.testRule(d))
-            else:
-                self.outResult1(self.testRule(d))
-        else:
-            Color_PO.consoleColor("31", "31", "[ERROR => _getDiseaseIdcard2() => 身份证不能为None!]", "")
-
-    def _getDiseaseIdcardGW(self, d):
-
-        # print(d)
-        varIdcard = ""
-        l_d_diseaseRuleCode_idcard = self.getDiseaseIdcard()
-        # print(l_d_diseaseRuleCode_idcard)
-        for i in range(len(l_d_diseaseRuleCode_idcard)):
-            for k, v in l_d_diseaseRuleCode_idcard[i].items():
-                # print(l_d_diseaseRuleCode_idcard[i][k])
-                if l_d_diseaseRuleCode_idcard[i][k] == d['diseaseRuleCode']:
-                    varIdcard = l_d_diseaseRuleCode_idcard[i]['idcard']
-                    break
-        d["varIdcard"] = varIdcard
-        self.verifyIdcard(varIdcard)
-        if varIdcard != None:
-            # d_actual = self.gw(d)
-            # l_ruleCode, d_actual = self.gw(d)
-            # l_ruleCode.remove(d['diseaseRuleCode'])  # ['PG_JWS041', 'PG_JWS043']
-            # print(d_actual)
-            # self.outResultGW(l_ruleCode, d_all)
-            # print(d_actual)
-            self.outResultGW(self.gw(d))
-        else:
-            Color_PO.consoleColor("31", "31", "[ERROR => _getDiseaseIdcard() => 身份证不能为None!]", "")
-
-    def gw(self, d):
-
-        # todo 执行gw规则
-
-        l_sql = d['l_sql']
-        d_actual = {}
-        self.log = ""
-
-        for i in range(len(l_sql)):
-            # todo 格式化sql - gw
-            if 'varIdcard' in d:
-                l_sql[i] = str(l_sql[i]).replace("{身份证}", str(d['varIdcard']))
-            if 'ruleParam1' in d:
-                l_sql[i] = str(l_sql[i]).replace("{测试规则参数1}", d['ruleParam1'])
-            if 'ruleParam2' in d:
-                l_sql[i] = str(l_sql[i]).replace("{测试规则参数2}", d['ruleParam2'])
-            if 'ruleParam3' in d:
-                l_sql[i] = str(l_sql[i]).replace("{测试规则参数3}", d['ruleParam3'])
-            if 'ruleParam4' in d:
-                l_sql[i] = str(l_sql[i]).replace("{测试规则参数4}", d['ruleParam4'])
-            if 'ruleParam' in d:
-                l_sql[i] = str(l_sql[i]).replace("{测试规则参数}", d['ruleParam'])
-            if 'ruleCode' in d:
-                l_sql[i] = str(l_sql[i]).replace("{规则编码}", d['ruleCode'])
-            if "{随机数}" in l_sql[i]:
-                l_sql[i] = str(l_sql[i]).replace("{随机数}", Data_PO.getPhone())
-            if '{疾病评估规则编码}' in l_sql[i]:
-                l_sql[i] = str(l_sql[i]).replace("{疾病评估规则编码}", d['diseaseRuleCode'])
-
-        # pc.copy('')  # 清空剪贴板
-        # 生成动态临时数据库
-        self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
-        # print(self.tmp_db)
-        Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
-
-        # todo 获取临时变量 - gw
-        d_update = {}  # 更新数据
-        d_new = {}  # 新数据
-        for i in range(len(l_sql)):
-            # s = pc.paste()
-
-            # 将db转换成字典
-            l = Sqlserver_PO.select("select key1, value1 from %s" % (self.tmp_db))
-            # print(l) # [{'key1': 'ID', 'value1': '499948'}, {'key1': 'QTY', 'value1': '1'}, {'key1': 'Q2', 'value1': '1'},
-            d_update = {}
-            for p in range(len(l)):
-                d_update[l[p]['key1']] = l[p]['value1']
-
-            # if "{" in s:
-            #     d_new = Str_PO.str2dict(s)
-            #     d_update.update(d_new)  # 新数据合并到更新数据中
-
-            if 'ID' in d_update:
-                l_sql[i] = str(l_sql[i]).replace("{ID}", str(d_update['ID']))
-            if 'IDCARD' in d_update:
-                l_sql[i] = str(l_sql[i]).replace("{IDCARD}", str(d_update['IDCARD']))
-            if 'GUID' in d_update:
-                l_sql[i] = str(l_sql[i]).replace("{GUID}", str(d_update['GUID']))
-
-            # todo 输出sql语句 - gw
-            if Configparser_PO.SWITCH("SQL") == "on":
-                print(str(i + 1) + ", " + l_sql[i])  # 2, delete from T_ASSESS_INFO where ID_CARD = '310101202308070003'
-
-            # todo 记录步骤日志 - gw
-            if self.log == "":
-                self.log = str(i + 1) + ", " + l_sql[i]
-            else:
-                self.log = self.log + "\n" + str(i + 1) + ", " + l_sql[i]
-
-            # todo 执行sql - gw
-            a = self.runSql(l_sql[i])
-
-            if a != None:
-                if isinstance(a, list) and a != []:
-                    if isinstance(a[0], dict):
-                        # pc.copy(str(a[0]))
-
-                        # 将变量存入db
-                        for k, v in a[0].items():
-                            Sqlserver_PO.execute("insert into %s (key1,value1) values ('%s', '%s')" % (self.tmp_db, str(k), str(v)))
-
-                        self.log = self.log + "\n" + str(a[0])
-                        if Configparser_PO.SWITCH("SQL") == "on":
-                            for k, v in a[0].items():
-                                if k == "QTY0" or k == "ID":
-                                    Color_PO.consoleColor("31", "33", a[0], "")
-                                else:
-                                    if v != 1 :
-                                        Color_PO.consoleColor("31", "31", a[0], "")
-                                    else:
-                                        Color_PO.consoleColor("31", "33", a[0], "")
-                        # print(a[0])
-                        # print(d_actual)
-                        from collections import ChainMap
-                        d_actual = dict(ChainMap(a[0], d_actual))
-                        # d_actual = Dict_PO.mergeDictReserveFirstKey(a[0], d_actual)  # {'a': 1, 'b': 2, 'dev': 30, 'test': 3}
-
-        # ruleCode = d['ruleCode'].replace("(", '').replace(")", '').replace("'", '')
-        # # print(ruleCode)  # 'GW_JB011','PG_JWS041','PG_JWS043'
-        # l_ruleCode = Str_PO.str2list(ruleCode)
-        if "ID" in d_actual:
-            del d_actual['ID']
-        if "ID_CARD" in d_actual:
-            del d_actual['ID_CARD']
-        if "GUID" in d_actual:
-            del d_actual['GUID']
-        return d_actual
 
 
 

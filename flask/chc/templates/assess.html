@@ -9,7 +9,7 @@
 
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
 <!-- element 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
@@ -40,12 +40,12 @@
     th, td {
         border: 1px solid black;
         padding: 10px;
-        text-align: left;
+        text-align: center;
     }
 
 .large-checkbox {
-  width: 50px; /* 复选框的宽度 */
-  height: 50px; /* 复选框的高度 */
+  width: 30px; /* 复选框的宽度 */
+  height: 30px; /* 复选框的高度 */
 }
 
 
@@ -67,7 +67,7 @@ function submitForm() {
     var formData = $('#checkboxForm').serialize();
     $.ajax({
         type: 'POST',
-        url: '/submit',
+        url: '/submitStep',
         dataType:'json',
         data: formData,
         success: function(response) {
@@ -95,13 +95,13 @@ function submitForm() {
     <table border="1">
 
         <tr>
-            <th width="60"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
-            <th>id</th>
-            <th>result</th>
-            <th width="100">updateDate</th>
-            <th>step</th>
-            <th>rule</th>
-            <th width="70">tester</th>
+            <th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+            <th nowrap="nowrap">id</th>
+            <th nowrap="nowrap">result</th>
+            <th nowrap="nowrap">updateDate</th>
+            <th nowrap="nowrap">step</th>
+            <th nowrap="nowrap">rule</th>
+            <th nowrap="nowrap">tester</th>
         </tr>
 
 <form id="checkboxForm">
@@ -109,19 +109,19 @@ function submitForm() {
 
     {% for item in data %}
         <tr>
-            <td><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
-            <td><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
+            <td style="width:50px;overflow:hidden"><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
+            <td style="width:50px;overflow:hidden"><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
-                <td style="background-color: #67C23A;">{{ item.result }}</td>
+                <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>
             {% elif item.result == 'error' %}
-             <td style="background-color: #F56C6C;">{{ item.result }}</td>
+             <td style="background-color: #F56C6C;width:50px;overflow:hidden">{{ item.result }}</td>
             {% else %}
                 <td>{{ item.result }}</td>
             {% endif %}
-            <td>{{ item.updateDate }}</td>
-            <td>{{ item.step|safe }}</td>
-            <td>{{ item.rule|safe }}</td>
-            <td>{{ item.tester }}</td>
+            <td style="width:100px;overflow:hidden">{{ item.updateDate }}</td>
+            <td style="width:350px;overflow:hidden">{{ item.step|safe }}</td>
+            <td style="width:350px;overflow:hidden">{{ item.rule|safe }}</td>
+            <td style="width:100px;overflow:hidden">{{ item.tester }}</td>
         </tr>
     {% endfor %}
 

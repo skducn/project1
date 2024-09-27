@@ -1,0 +1,244 @@
+
+/* hr */
+
+.separator {
+border: none; /* 移除默认边框 */
+border-top: 1px solid #dee2e6; /* 加粗上边框，可以设置颜色 */
+margin: 10px 0; }
+
+
+
+/* pre提示 */
+
+pre {
+    white-space: pre-wrap;
+    background: #f8f8f8;
+    font-size: 14px;
+    color: red;
+    font-weight: normal;
+}
+
+pre1{
+white-space: pre-wrap;
+font-family: Arial, Helvetica, sans-serif;
+font-size:15px;
+color: #0167ff;
+text-align: left;
+line-height: 2rem;
+}
+
+pre2{
+white-space: pre-wrap;
+font-family: Arial, Helvetica, sans-serif;
+font-size:15px;
+color: #ff0000;
+text-align: left;
+line-height: 2rem;
+}
+
+/* alert重写 */
+
+#msg{
+    margin: auto;
+    border: 1px solid #666;
+    width:100%;
+    position: fixed;
+    z-index:999;
+    top: 0%;
+    left: 0%;
+    background:#fff;
+    box-shadow:5px 5px 8px #999;
+    font-size:15px;
+    color:#666;
+    border:1px solid #f8f8f8;
+    text-align: center;
+    line-height: 1.5rem;
+    display:inline-block;
+    padding-bottom:20px;
+    border-radius:14px;
+}
+.box {
+    width:99%;
+    margin: auto;
+}
+.box3{
+    font-size:15px;
+    color:#666;
+    line-height: 1.5rem;
+}
+#msg_top{
+    background:#f8f8f8;
+    padding:5px 15px 5px 20px;
+    text-align:left;
+}
+#msg_top span{
+    font-size:20px;
+    float:right;
+    cursor:pointer;
+}
+#msg_cont{
+    padding:15px 20px 20px;
+    text-align:left;
+}
+#msg_clear{
+    display:inline-block;
+    color:#fff;
+    padding:1px 15px;
+    background:#008B8B;
+    border-radius:4px;
+    float:center;
+    margin-right:15px;
+    cursor:pointer;
+
+}
+
+/* 浮动菜单 */
+
+* {
+        margin: 0;
+        padding: 0;
+        font-family: 'microsoft yahei';
+    }
+
+    #loutinav {
+        /*width: 122px;*/
+        position: fixed;
+        top: 40%;
+        left: 180px;
+        /*border: 1px solid #ddd;*/
+        display: none;
+        /*background: #F8F8FF;*/
+        padding-bottom:2px;
+        border-radius:5px;
+    }
+
+    #loutinav ul li {
+        /*width: 122px;*/
+        height: 52px;
+        border-bottom: 1px dotted #F8F8FF;
+        list-style: none;
+        font-size: 12px;
+        text-align: left;
+        position: relative;
+        cursor: pointer;
+        padding: 10px 0;
+        /*background: #F8F8FF;*/
+        color: #050505;
+
+    }
+
+    #loutinav ul li span {
+        /*width: 122px;*/
+        height: 32px;
+        padding: 10px 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+
+    #loutinav ul li.last {
+        /*background: #F8F8FF;*/
+        color: #050505;
+        /*border-bottom: 1px solid #ddd;*/
+    }
+
+    #loutinav ul li.active span {
+        /*background: #c00;*/
+        color: #050505;
+        display: block;
+
+    }
+
+    #loutinav ul li:hover span {
+        /*background: #00BFFF;*/
+        color: #fff;
+        display: block;
+        border-radius:5px;
+    }
+
+
+    #loutinav2 {
+        /*width: 150px;*/
+        position: fixed;
+        top: 40%;
+        right: 295px;
+        /*border: 1px solid #ddd;*/
+        display: none;
+        /*background: #F8F8FF;*/
+        padding-bottom:2px;
+        border-radius:5px;
+    }
+
+    #loutinav2 ul li {
+        /*width: 150px;*/
+        height: 52px;
+        border-bottom: 1px dotted #F8F8FF;
+        list-style: none;
+        font-size: 12px;
+        text-align: left;
+        position: relative;
+        cursor: pointer;
+        padding: 10px 0;
+        /*background: #F8F8FF;*/
+        color: #050505;
+
+    }
+
+    #loutinav2 ul li span {
+        /*width: 150px;*/
+        height: 32px;
+        padding: 10px 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+
+    #loutinav2 ul li.last {
+        /*background: #F8F8FF;*/
+        color: #050505;
+        /*border-bottom: 1px solid #ddd;*/
+    }
+
+    #loutinav2 ul li.active span {
+        /*background: #c00;*/
+        color: #050505;
+        display: block;
+
+    }
+
+    #loutinav2 ul li:hover span {
+        /*background: #00BFFF;*/
+        color: #fff;
+        display: block;
+        border-radius:5px;
+    }
+
+    #header {
+        background: #cc6633;
+        margin: 0 auto;
+         font-size: 50px;line-height: 300px;text-align: center;
+         color: #000;
+
+    }
+
+    #main {
+        margin: 0 auto;
+    }
+
+    #main .louti {
+        font-size: 50px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+    }
+
+ #footer {
+        width: 1000px;
+        height: 400px;
+        background: red;
+        margin: 0 auto;
+        font-size: 50px;line-height: 400px;text-align: center;
+         color: #000;
+    }

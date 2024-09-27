@@ -41,7 +41,7 @@
 <!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName=output_testRule['ruleName']) }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName=d_field['ruleName']) }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
 <li class="last"><span><button type="button" class="el-button el-button--success is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
@@ -62,23 +62,23 @@
 </div></div></div>
 
 
-{% if output_testRule %}
+{% if d_field %}
 
-{% if  output_testRule['result']  == 'ok' %}
+{% if  d_field['result']  == 'ok' %}
 
     <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
-    <pre1>{{ output_testRule['result'] }}</pre1> <br><br>
+    <pre1>{{ d_field['result'] }}</pre1> <br><br>
 
     <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-    <pre1>{{output_testRule['step']}}</pre1> <br>
-    <pre1>{{output_testRule['eachStep']}}</pre1> <br>
+    <pre1>{{d_field['step']}}</pre1> <br>
+    <pre1>{{d_field['eachStep']}}</pre1> <br>
 {% else %}
     <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
-    <pre2>{{ output_testRule['result'] }}</pre2> <br><br>
+    <pre2>{{ d_field['result'] }}</pre2> <br><br>
 
     <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-    <pre2>{{output_testRule['step']}}</pre2> <br>
-    <pre2>{{output_testRule['eachStep']}}</pre2> <br>
+    <pre2>{{d_field['step']}}</pre2> <br>
+    <pre2>{{d_field['eachStep']}}</pre2> <br>
 {%  endif %}
     <div class="a6 a1K ac">
     <div class="a5 af"><div class="a2g">
@@ -111,28 +111,35 @@
 <div class="a5 md:a2u/2 af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-<input type="text" readonly name="ruleName" value="{{ output_testRule['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<input type="text" readonly name="ruleName" value="{{ d_field['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 
 <div class="a5 md:a2u/2 af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">id</label>
-<input type="text" readonly name="id" value="{{ output_testRule['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<input type="text" readonly name="id" value="{{ d_field['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 
-<div class="a5 md:a2u af">
+<div class="a5 md:a2u/2 af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
-<input type="text" readonly name="rule" value="{{ output_testRule['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<input type="text" readonly name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+</div>
+</div>
+    
+<div class="a5 md:a2u/2 af">
+<div class="a3u">
+<label for class="al a25 aR a1j dark:a1k a2j">case</label>
+<input type="text" readonly name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 
 <div class="a5 md:a2u af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">ruleParam*</label>
-<textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{output_testRule['ruleParam']}}</textarea>
+<textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{d_field['ruleParam']}}</textarea>
 </div>
 </div>
 

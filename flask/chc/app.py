@@ -66,57 +66,120 @@ def index():
 # todo 获取测试规则
 @app.route('/excel/<ruleName>')
 def excel(ruleName):
-
     if ruleName == '评估因素取值':
         l_2 = []
         l_1 = []
-        cursor.execute("select result,updateDate,step,[rule],tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
-        l_t_rows = cursor.fetchall()
-        # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-        for t in l_t_rows:
-            for i in t:
-                i = str(i).replace("\n", "<br>")
-                l_1.append(i)
-            l_2.append(l_1)
-            l_1 = []
-        # print(l_2)
-        l_key = ['result', 'updateDate', 'step', 'rule', 'tester', 'id']
-        l_tmp = []
-        for i, l_v in enumerate(l_2):
-        # for i, l_v in enumerate(l_t_rows):
-            d_ = dict(zip(l_key, list(l_v)))
-            d_['ruleName'] = ruleName
-            l_tmp.append(d_)
-        # print(l_tmp)
-        return render_template('assess.html', data=l_tmp, ruleName=ruleName)
-    else:
-        # print(ruleName)  # '健康干预_已患疾病单病'
-        cursor.execute(
-            "select result,updateDate,step,[rule],[case],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,assessRuleCode,tester,id from %s where [rule] != ''" % (d_ruleName[ruleName]))
-        l_t_rows = cursor.fetchall()
-        # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-        l_key = ['result', 'updateDate', 'step', 'rule', 'case','ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'assessRuleCode','tester', 'id']
-        l_tmp = []
-        for i, l_v in enumerate(l_t_rows):
-            # print(i,l_v)
-            # print(dict(zip(l_key,list(l_v))))
-            d_ = dict(zip(l_key, list(l_v)))
-            d_['ruleName'] = ruleName
-            l_tmp.append(d_)
-        return render_template('about.html', data=l_tmp, ruleName=ruleName)
+        # 获取字段列表
+        cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+        l_t_field = cursor.fetchall()
+        l_1 = []
+        for i in l_t_field:
+            l_1.append(i[0])
+
+        # 获取所有值
+        cursor.execute("select * from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        l_t_value = cursor.fetchall()
+        l_d_all = []
+        for i, l_v in enumerate(l_t_value):
+            # 将字段呢值None改为空
+            l_3 = []
+            for j in l_v:
+                if j == None:
+                    j = ''
+                j = str(j).replace("\n", "<br>")
+                l_3.append(j)
+            l_v2 = tuple(l_3)
+            d_ = dict(zip(l_1, list(l_v2)))
+            l_d_all.append(d_)
+
+        return render_template('assess.html', data=l_d_all, ruleName=ruleName)
+
+    elif ruleName == '健康干预_已患疾病单病' or ruleName == '健康干预_已患疾病组合':
+
+        # 获取字段列表
+        cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+        l_t_field = cursor.fetchall()
+        l_1 = []
+        for i in l_t_field:
+            l_1.append(i[0])
+        # print(l_1)  # ['result', 'updateDate', 'step', 'rule', 'case', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'tester', 'id']
+
+        # 获取所有值
+        cursor.execute("select * from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        l_t_value = cursor.fetchall()
+        l_d_all = []
+        for i, l_v in enumerate(l_t_value):
+            # 将字段呢值None改为空
+            l_3 = []
+            for j in l_v:
+                if j == None:
+                    j = ''
+                l_3.append(j)
+            l_v2 = tuple(l_3)
+            d_ = dict(zip(l_1, list(l_v2)))
+            l_d_all.append(d_)
+
+        return render_template('excel.html', data=l_d_all, ruleName=ruleName)
 
 
-@app.route('/submit', methods=['POST'])
-def submit():
+
+@app.route('/submitId', methods=['POST'])
+def submitId():
     l_id = request.form.getlist("items")
     l_ruleName = request.form.getlist("ruleName")
-    # print(l_id, l_id)  # ['1', '4', '5']
     ruleName = l_ruleName[0]
-    # print(l_id)  # ['1', '4', '5']
-    print(ruleName)  # 健康干预_已患疾病单病
+    print(ruleName,l_id)  # 健康干预_已患疾病单病
     if l_id != []:
         for id in l_id:
-            print(id)
+            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
+            if ruleName == '健康干预_已患疾病单病':
+                cursor.execute(
+                    "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,tester,id from %s where [rule] != '' and id=%s" % (
+                    d_ruleName[ruleName], id))
+                l_t_rows = cursor.fetchall()
+                # print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+                l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc','tester','id']
+                l_tmp = []
+                for i, l_v in enumerate(l_t_rows):
+                    # 将字段呢值None改为空
+                    l_1 = []
+                    for j in l_v:
+                        if j == None:
+                            j = ''
+                        l_1.append(j)
+                    l_v2 = tuple(l_1)
+                    d_ = dict(zip(l_key, list(l_v2)))
+                    d_['ruleName'] = ruleName
+                    l_tmp.append(d_)
+                # print(l_tmp)
+            elif ruleName == '健康干预_已患疾病组合':
+                cursor.execute(
+                    "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,assessRuleCode,tester,id from %s where [rule] != '' and id=%s" % (
+                        d_ruleName[ruleName], id))
+                l_t_rows = cursor.fetchall()
+                print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
+                l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode',
+                         'diseaseCodeDesc', 'assessRuleCode', 'tester', 'id']
+                l_tmp = []
+                for i, l_v in enumerate(l_t_rows):
+                    # print(i,l_v)
+                    # print(dict(zip(l_key,list(l_v))))
+                    d_ = dict(zip(l_key, list(l_v)))
+                    d_['ruleName'] = ruleName
+                    l_tmp.append(d_)
+                # print(l_tmp)
+
+    return redirect(url_for('excel',ruleName=ruleName))
+
+
+@app.route('/submitStep', methods=['POST'])
+def submitStep():
+    l_id = request.form.getlist("items")
+    l_ruleName = request.form.getlist("ruleName")
+    ruleName = l_ruleName[0]
+    print(ruleName, l_id)  # 健康干预_已患疾病单病
+    if l_id != []:
+        for id in l_id:
             subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
 
             if ruleName == '评估因素取值':
@@ -141,37 +204,19 @@ def submit():
                     d_['ruleName'] = ruleName
                     l_tmp.append(d_)
                 # print(l_tmp)
-                return redirect(url_for('excel', ruleName=ruleName))
-            else:
-                cursor.execute(
-                    "select result,updateDate,step,[rule],ruleParam,ruleCode,diseaseRuleCode,diseaseCodeDesc,assessRuleCode,tester,id from %s where [rule] != '' and id=%s" % (
-                    d_ruleName[ruleName], id))
-                l_t_rows = cursor.fetchall()
-                print(l_t_rows)  # [('ok', datetime.date(2024, 9, 14),
-                l_key = ['result', 'updateDate', 'step', 'rule', 'ruleParam', 'ruleCode', 'diseaseRuleCode', 'diseaseCodeDesc', 'assessRuleCode','tester','id']
-                l_tmp = []
-                for i, l_v in enumerate(l_t_rows):
-                    # print(i,l_v)
-                    # print(dict(zip(l_key,list(l_v))))
-                    d_ = dict(zip(l_key, list(l_v)))
-                    d_['ruleName'] = ruleName
-                    l_tmp.append(d_)
-                # print(l_tmp)
-                return redirect(url_for('excel', ruleName=ruleName))
-        # return redirect('/excel')
-        # response = redirect(url_for('work'))
-        # response = redirect('http://www.baidu.com')
-        # response.headers['Access-Control-Allow-Origin'] = '*'
-        # return response
+    return redirect(url_for('excel', ruleName=ruleName))
 
-        # return redirect('http://127.0.0.1:5000/excel/%E5%81%A5%E5%BA%B7%E5%B9%B2%E9%A2%84_%E5%B7%B2%E6%82%A3%E7%96%BE%E7%97%85%E5%8D%95%E7%97%85')
-        # session['username'] = "ok!!!!!"
-        # return redirect(url_for('index'))
-        # return redirect(url_for('excel',ruleName=ruleName))
-        # return redirect('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+    # response = redirect(url_for('work'))
+    # response = redirect('http://www.baidu.com')
+    # response.headers['Access-Control-Allow-Origin'] = '*'
+    # return response
 
-    else:
-        return redirect(url_for('excel',ruleName=ruleName))
+    # session['username'] = "ok!!!!!"
+    # return redirect(url_for('index'))
+    # return redirect(url_for('excel',ruleName=ruleName))
+    # return redirect('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+
+
 
 
 @app.route('/about4')
@@ -179,15 +224,29 @@ def about4():
     ruleName = request.args.get('ruleName')
     id = request.args.get('id')
     print(ruleName, id)  # 健康干预_已患疾病单病 2
-    cursor.execute("select result,step,[rule],ruleParam,diseaseCodeDesc,eachStep from %s where id=%s " % (d_ruleName[ruleName], id))
+    d_ = {}
+    d_['ruleName'] = ruleName
+    d_['id'] = id
+    cursor.execute("select result,step,[rule],[case],ruleParam,diseaseCodeDesc,eachStep from %s where id=%s " % (d_ruleName[ruleName], id))
     l_t_rows = cursor.fetchall()
-    result = l_t_rows[0][0]
-    step = l_t_rows[0][1]
-    rule = l_t_rows[0][2]
-    ruleParam = l_t_rows[0][3]
-    diseaseCodeDesc = l_t_rows[0][4]
-    eachStep = l_t_rows[0][5]
-    return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc, 'eachStep':eachStep})
+    d_['result'] = l_t_rows[0][0]
+    d_['step'] = l_t_rows[0][1]
+    d_['rule'] = l_t_rows[0][2]
+    if l_t_rows[0][3] == None:
+        d_['case'] = '正向用例'
+    else:
+        d_['case'] = l_t_rows[0][3]
+    if l_t_rows[0][4] == None:
+        d_['ruleParam'] = ''
+    else:
+        d_['ruleParam'] = l_t_rows[0][4]
+    d_['diseaseCodeDesc'] = l_t_rows[0][5]
+    d_['eachStep'] = l_t_rows[0][6]
+
+
+    return render_template('result2.html', d_field=d_)
+
+    # return render_template('result2.html', output_testRule={"ruleName":ruleName, "id": id, "result": result, "step":step, "rule": rule, "ruleParam": ruleParam, 'diseaseCodeDesc':diseaseCodeDesc, 'eachStep':eachStep})
 
 
 
@@ -396,22 +455,28 @@ def debugParam():
 @app.route('/step', methods=['POST'])
 def step():
     if request.method == 'POST':
-        ruleName = request.form['ruleName']
-        id = request.form['id']
-        rule = request.form['rule']
-        ruleParam = request.form['ruleParam']
-        print(ruleName, id, rule, ruleParam)  # 健康干预_已患疾病单病 1 s1 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G46'}
-        ruleParam = ruleParam.replace("'","''").replace("\r","")
+        d_ = {}
+        d_['ruleName'] = request.form['ruleName']
+        d_['id'] = request.form['id']
+        d_['rule'] = request.form['rule']
+        d_['case'] = request.form['case']
+        d_['ruleParam'] = request.form['ruleParam']
+        print(d_['ruleName'],d_['id'],d_['rule'],d_['case'],d_['ruleParam'])
+        # print(ruleName, id, rule, case, ruleParam)  # 健康干预_已患疾病单病 1 s1 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G46'}
+        d_['ruleParam'] = d_['ruleParam'].replace("'","''").replace("\r","")
         # ruleParam = ruleParam.replace("\r","")
         # ruleParam = ruleParam.replace('&apos;', "'").replace("\r","")
-        cursor.execute("update %s set ruleParam='%s' where id=%s" % (d_ruleName[ruleName], ruleParam, id))
+        cursor.execute("update %s set ruleParam='%s' where id = %s" % (d_ruleName[d_['ruleName']], d_['ruleParam'], d_['id']))
         conn.commit()
-        ruleParam = ruleParam.replace("''", "'")
-        subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        cursor.execute("select result,step,eachStep from %s where id = %s" % (d_ruleName[ruleName], id))
+        d_['ruleParam'] = d_['ruleParam'].replace("''", "'")
+        subprocess.run(['python3', './cli_chcRule_flask.py', d_['ruleName'], d_['id']], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        cursor.execute("select result,step,eachStep from %s where id = %s" % (d_ruleName[d_['ruleName']], d_['id']))
         rows = cursor.fetchall()
-        # print(rows)
-        return render_template('result2.html', output_testRule={"result": rows[0][0], "step": rows[0][1], "eachStep": rows[0][2], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
+        d_["result"] = rows[0][0]
+        d_["step"] = rows[0][1]
+        d_["eachStep"] = rows[0][2]
+        return render_template('result2.html', d_field=d_, debugRuleParam_testRule=l_testRule)
+        # return render_template('result2.html', d_field={"result": rows[0][0], "step": rows[0][1], "eachStep": rows[0][2], "ruleName": ruleName, "id": id, "rule": rule, "ruleParam": ruleParam}, debugRuleParam_testRule=l_testRule)
 
 
 

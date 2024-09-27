@@ -10,10 +10,47 @@
 # ***************************************************************u**
 from collections import Counter
 
-a = '慢性肾脏病'
-b = ['VISITTYPECODE', '慢性肾脏病']
-if a in b :
-    print(True)
+
+a = "INSERT INTO [dbo].[TB_PREGNANT_MAIN_INFO] ([YCFID], [JCH], [XM], [ZJHM], [CSRQ], [MCYJ], [SG], [YQTZ], [SSY], [SZY], [LRRQ], [JCRQ], [GLSQ], [CJSJ]) VALUES ('{随机11}', '13', '张美丽','520300198802242314', '2016-12-02', '2024-08-08', 168.00, 67.00, '123', '67', '2024-09-12', '2024-09-14', '2024-01-12','{昨天日期}')"
+
+b = a.lower()
+print(b)
+
+# a = {'MCYJ': '123'}
+# b = {'hello': '456'}
+#
+# a.update(b)
+# print(a)
+
+# a = ('', None, '', 's1', 'negative', None, 'GY_YH002001', 'YH_JB002', '糖尿病', '舒阳阳', 4)
+# l = []
+# for i in a:
+#     if i == None:
+#         i = ''
+#     l.append(i)
+# b = tuple(l)
+# print(b)
+
+
+# l_1 =['脑卒中', '慢性肾脏病']
+# l_2 =['高血压', '糖尿病', '脑卒中', '慢性肾脏病', '慢性阻塞性肺疾病', '肺癌', '结直肠癌', '乳腺癌']
+#
+#
+# l_1 = [x for x in l_2 if x not in l_1]  # 两个列表中都存在
+# print(l_1)
+
+# import random
+# s_prefixICD = random.sample(l_1, 2)
+# print(s_prefixICD)
+
+
+# a = [x for x in l_1 if x in l_2]  # 两个列表中都存在
+# return [y for y in (varList1) if y not in a], [y for y in (varList2) if y not in a]
+
+#
+# d = {'prefixICD': {'高血压': 'I12'}}
+# d['prefixICD']['高血压'] = '33'
+# print(d)
 
 # varSign = 0
 # d_total = {'GUID': '65209815', 'YH_JB001': 1, 'YH_JB002': 1, 'GY_YHZH078001': 1}
