@@ -18,6 +18,22 @@
 # os.path.samestat(stat1, stat2)  #判断stat tuple stat1和stat2是否指向同一个文件
 # os.path.splitunc(path)  #把路径分割为加载点与文件
 # os.path.supports_unicode_filenames  #设置是否支持unicode路径名
+
+# 使用Path类处理文件路径。
+# 　　from pathlib import Path
+# 　　# 创建一个目录
+# 　　directory = Path('test_directory')
+# 　　directory.mkdir(exist_ok=True)
+# 　　# 创建一个文件
+# 　　file_path = directory / 'example.txt'
+# 　　file_path.touch()
+# 　　# 读取文件内容
+# 　　with file_path.open('r') as file:
+# 　　    content = file.read()
+# 　　    print(content)
+# 　　# 删除文件和目录
+# 　　file_path.unlink()
+# 　　directory.rmdir()
 # *********************************************************************
 """
 1 路径
