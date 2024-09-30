@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-{## https://www.bootcss.com/p/buttons/#}
-{#https://element.eleme.cn/#/zh-CN/component/installation#}
+{## https://www.bootcss.com/p/buttons/ 各种button #}
+{#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
+{#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
+{#            style="width:50px;overflow:hidden;text-align: left;vertical-align:top#}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -99,9 +101,11 @@ function submitForm() {
             <th nowrap="nowrap">id</th>
             <th nowrap="nowrap">result</th>
             <th nowrap="nowrap">updateDate</th>
-            <th nowrap="nowrap">step</th>
             <th nowrap="nowrap">rule</th>
-            <th nowrap="nowrap">tester</th>
+            <th nowrap="nowrap">case</th>
+            <th nowrap="nowrap">ruleParam</th>
+            <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">tester</a></th>
+
         </tr>
 
 <form id="checkboxForm">
@@ -119,8 +123,10 @@ function submitForm() {
                 <td>{{ item.result }}</td>
             {% endif %}
             <td style="width:100px;overflow:hidden">{{ item.updateDate }}</td>
-            <td style="width:350px;overflow:hidden">{{ item.step|safe }}</td>
-            <td style="width:350px;overflow:hidden">{{ item.rule|safe }}</td>
+
+            <td style="width:50px;overflow:hidden;">{{ item.rule|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden;">{{ item.case|safe|lower }}</td>
+            <td style="overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>
             <td style="width:100px;overflow:hidden">{{ item.tester }}</td>
         </tr>
     {% endfor %}

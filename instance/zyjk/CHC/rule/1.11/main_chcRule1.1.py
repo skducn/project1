@@ -12,12 +12,15 @@ from ChcRulePO import *
 
 # # 健康评估,健康干预,中医体质辨识,疾病评估,儿童健康干预
 
-# r = ChcRulePO("评估因素取值")
+r = ChcRulePO("评估因素取值")
+r.runId([5])
+# r.runId([6])
+# r.runAssessId([4])
 # r.runStep(4)
 # r.runStep(5)
 
-r = ChcRulePO("健康干预_已患疾病单病")
-r.runId([6])  # s1  {'prefixICD': {'肝硬化': 'K74.4''}, 'VISITTYPECODE': '31'}
+# r = ChcRulePO("健康干预_已患疾病单病")
+# r.runId([6])  # s1  {'prefixICD': {'肝硬化': 'K74.4''}, 'VISITTYPECODE': '31'}
 # r.runId([2])  # s1  {'prefixICD': {'慢性鼻炎': 'J31.0'}}
 # r.runId([3])  # s1 {'prefixICD': {'颈椎病': 'M47.101'}}
 # r.runId([4])  # s1 {'prefixICD': {'慢性胃炎': 'K29.6'}}
@@ -26,7 +29,7 @@ r.runId([6])  # s1  {'prefixICD': {'肝硬化': 'K74.4''}, 'VISITTYPECODE': '31'
 
 
 # r = ChcRulePO("健康干预_已患疾病组合")
-# r.runId([107])  # s3 {'prefixICD': {'高血压': 'I13', '糖尿病': 'E11'}}
+# r.runId([141])  # s3 {'prefixICD': {'高血压': 'I13', '糖尿病': 'E11'}}
 # r.runId([108])  # s3 {'prefixICD': {'癫痫': 'G41', '肝癌': 'C22'}}
 
 # r.runId([137])  # {'assessValue': {'血脂异常': '2.3'}, 'prefixICD': {'高血压': 'I14', '冠心病': 'I25.1', '慢性胃炎': 'K29.4'}}

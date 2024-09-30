@@ -44,7 +44,6 @@ Data_PO = DataPO()
 from PO.CharPO import *
 Char_PO = CharPO()
 
-
 class ChcRulePO_flask():
 
     def __init__(self, sheetName=''):
@@ -92,22 +91,24 @@ class ChcRulePO_flask():
         Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
 
         # 修改其他规则表的字段类型
-        if sheetName == "评估因素取值" :
-            # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
-            # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
-            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
-            # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
-        if sheetName == "健康干预_已患疾病单病" or sheetName== '健康干预_已患疾病组合':
-            Sqlserver_PO.execute("ALTER table %s alter column eachResult varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column eachStep varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+        # if sheetName == "评估因素取值" :
+        #     # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
+        #     # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
+        #     Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+        #     Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+        #     Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
+        #     Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+        #     # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
+        # if sheetName == "健康干预_已患疾病单病" or sheetName== '健康干预_已患疾病组合':
+
+        # Sqlserver_PO.execute("ALTER table %s alter column eachResult varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+        # Sqlserver_PO.execute("ALTER table %s alter column eachStep varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+        Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+        Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
+        Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+        Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+        Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+
         if sheetName != "测试规则":
             # 判断导入的表是否已有主键，没有主键则自动生成id自增主键
             isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
@@ -370,6 +371,7 @@ class ChcRulePO_flask():
 
 
 
+
     def runId(self, l_dbId):
 
         # 按id执行
@@ -589,6 +591,9 @@ class ChcRulePO_flask():
 
     def runStep(self, varId):
 
+        print(self.sheetName + " => " + str(varId))
+        # Color_PO.outColor([{"35": self.sheetName + " => " + str(varId)}])
+
         self.log = ""
         count = 1
         d_allSort = {}
@@ -599,85 +604,86 @@ class ChcRulePO_flask():
         l_rule = l_d_[0]['rule'].split("\n")
         # print(l_rule)  # ["update TB_PREGNANT_MAIN_INFO set MCYJ='2024-08-06' where ZJHM = '31010520161202008X'", "self.i_startAssess2('31010520161202008X','6','0000001')", 'select LMP from T_ASSESS_MATERNAL where ASSESS_ID={ASSESS_ID}']
 
-        # 生成动态临时库，保存变量与值
-        self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
-        if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"31": self.tmp_db}])
-        Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
+        # # 生成动态临时库，保存变量与值
+        # self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
+        # if Configparser_PO.SWITCH("log") == "on":
+        #     Color_PO.outColor([{"31": self.tmp_db}])
+        # Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
 
+        self.d_ = {}
 
         for i, v in enumerate(l_rule, start=1):
+
             if "{随机11}" in v:
                 v = v.replace("{随机11}", Data_PO.getFigures(11))
             if "{ASSESS_ID}" in v:
                 v = v.replace('{ASSESS_ID}', str(self.ASSESS_ID))
+            if "{昨天日期}" in v:
+                v = v.replace('{昨天日期}', str(Time_PO.getDateByMinusPeriod(-1)))
+            if "{YCFID}" in v:
+                v = v.replace('{YCFID}', str(self.d_['YCFID']))
 
-            self.log = self.log + v + "\n"
-
+            # v = v.lower()
+            # print(v)
             varPrefix = v.split(" ")[0]
             varPrefix = varPrefix.lower()
             if varPrefix == 'select':
-                self.selectResult = eval('Sqlserver_PO.select("' + v + '")')
-                if self.selectResult == []:
-                    Color_PO.outColor([{"31": "error, select语句无值 => " + v }])
-                    Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
-                    Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
-                    self.log = (self.log).replace("'", "''")
-                    Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, varId))
-                    Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-                    sys.exit(0)
-                # print(213,self.selectResult)
-                for k1, v1 in self.selectResult[0].items():
-                    Sqlserver_PO.execute("insert into %s(key1,value1) values('%s','%s')" % (self.tmp_db, k1, v1))
+                l_d_ = eval('Sqlserver_PO.select("' + v + '")')
+                self.log = self.log + str(i) + ", " + str(v) + "\n"
+                if Configparser_PO.SWITCH("log") == "on":
+                    # Color_PO.outColor([{"35": v}])
+                    print(i, v)
+
+                if l_d_ == []:
+                    s_key = v.split("select ")[1].split("from")[0]
+                    s_key = s_key.strip()
+                    # print(s_key)
+                    self.d_[s_key] = ''
+                else:
+                    self.d_.update(l_d_[0])
+                self.log = self.log + str(self.d_) + "\n"
+                Color_PO.outColor([{"35": self.d_}])
+
+                # for k1, v1 in self.selectResult[0].items():
+                #     Sqlserver_PO.execute("insert into %s(key1,value1) values('%s','%s')" % (self.tmp_db, k1, v1))
+
             elif varPrefix == 'update' or varPrefix == 'insert' or varPrefix == 'delete':
                 eval('Sqlserver_PO.execute("' + v + '")')
+                self.log = self.log + str(i) + ", " + str(v) + "\n"
+                if Configparser_PO.SWITCH("log") == "on":
+                    # Color_PO.outColor([{"35": v}])
+                    print(i, v)
             else:
                 if 'self.i_startAssess2' in v:
+                    if Configparser_PO.SWITCH("log") == "on":
+                        # Color_PO.outColor([{"35": v}])
+                        print(i, v)
                     self.ASSESS_ID = eval(v)
+                    self.log = self.log + str(i) + ", " + str(v) + "\n"
                     self.log = self.log + "{ASSESS_ID} = " + str(self.ASSESS_ID) + "\n"
+                    Color_PO.outColor([{"35": "{ASSESS_ID} = " + str(self.ASSESS_ID)}])
                 else:
-                    # 必须字典结构，断言select
-                    d_expect = eval(v)
-
-                    l_tmp = []
-                    d_tmp2 = {}
-                    for k2, v2 in d_expect.items():
-                        d_tmp2[k2] = v2
-                        l_tmp.append(d_tmp2)
-                        d_tmp2 = {}
-                    # print(l_tmp)
-                    # 排序
-                    d_sort = dict(enumerate(l_tmp, start=count))
-                    # print(d_sort)  # {1: {'LMP': '123'}, 2: {'ID': 1}}
-
-                    for k3, v3 in d_sort.items():
-                        l_d_ = Sqlserver_PO.select("select key1,value1 from %s where id=%s" % (self.tmp_db, int(k3)))
-                        # print(l_d_)
-                        # print(l_d_[0]['key1'], l_d_[0]['value1'])
-                        # print(list(d_sort[k3].keys())[0])
-                        if l_d_[0]['key1'] == list(d_sort[k3].keys())[0] and l_d_[0]['value1'] == str(list(d_sort[k3].values())[0]):
-                            d_allSort[k3] = "ok"
+                    # 断言select, 判断====
+                    # print(222, v)
+                    # print(999, self.d_)
+                    if "===" in v:
+                        s_1 = v.split("===")[0]
+                        s_2 = v.split("===")[1]
+                        if s_1 in self.d_ and s_2 in self.d_ and self.d_[s_1] != '':
+                            if self.d_[s_1] == self.d_[s_2]:
+                                Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
+                                Color_PO.consoleColor("31", "36", ("[OK] => " + self.sheetName + " => " + str(varId)).center(100, '-'), "")
+                            else:
+                                Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
+                                Color_PO.consoleColor("31", "31", ("[ERROR log] => " + self.sheetName + " => " + str(varId)).center(100, '-'), "")
+                                Color_PO.outColor([{"31": self.log}])
+                            Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
+                            self.log = (self.log).replace("'", "''")
+                            Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, varId))
+                            # Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
                         else:
-                            d_allSort[k3] = "error"
-                            d_error[k3] = "expect: " + l_d_[0]['key1'] + " = " + str(list(d_sort[k3].values())[0]) + " actual: " + l_d_[0]['key1'] + " = "+l_d_[0]['value1']
-                            self.log = self.log + d_error[k3] + "\n"
+                            Color_PO.outColor([{"31": "error, 值为空或不存在！"}])
 
-                    count = count + len(d_sort)
-                    # print(d_allSort)  # {1: 'error', 2: 'ok', 3: 'ok', 4: 'ok'}
-
-        if "error" in list(d_allSort.values()):
-            Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, varId))
-            Color_PO.outColor([{"31": "[ERROR] => " + self.sheetName + " => " + str(varId)}])
-            print(self.log)
-        else:
-            Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, varId))
-            Color_PO.outColor([{"36": "[OK] => " + self.sheetName + " => " + str(varId)}])
-        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), varId))
-        self.log = (self.log).replace("'", "''")
-        Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, varId))
-        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-        if Configparser_PO.SWITCH("step") == "on":
-            print(self.log)
 
     def run11(self, dbId):
 
@@ -710,7 +716,10 @@ class ChcRulePO_flask():
                     sys.exit(0)
         else:
             self.ruleParam = {}
-        self.ruleCode = l_d_rows[0]['ruleCode']
+        if 'ruleCode' in l_d_rows[0].keys():
+            self.ruleCode = l_d_rows[0]['ruleCode']
+        else:
+            self.ruleCode = ""
         if 'diseaseRuleCode' in l_d_rows[0].keys():
             self.diseaseRuleCode = l_d_rows[0]['diseaseRuleCode']
         else:
@@ -761,7 +770,7 @@ class ChcRulePO_flask():
                     self.assertS1()
                 else:
                     # 实例4：反有参  {'prefixICD': {'高血压': 'I10'}}
-                    self._s1_param()
+                    self.haveParam()
             else:
                 if self.ruleParam == {}:
                     # 实例1：正无参
@@ -772,7 +781,7 @@ class ChcRulePO_flask():
                     self.assertS1()
                 else:
                     # 实例2：正有参 {'prefixICD': {'高血压': 'G40'}}
-                    self._s1_param()
+                    self.haveParam()
 
         if self.rule == 's2' or self.rule == 's3' or self.rule == 's4' or self.rule == 's5':
             if self.case == 'negative':
@@ -783,7 +792,7 @@ class ChcRulePO_flask():
                     self.assertS1()
                 else:
                     # 实例4：反有参 {'VISITTYPECODE':'34','prefixICD':{'慢性肾脏病':'?'}}
-                    self._s1_param()
+                    self.haveParam()
             else:
                 if self.ruleParam == {}:
                     # 实例1：正无参
@@ -792,7 +801,25 @@ class ChcRulePO_flask():
                     self.assertS1()
                 else:
                     # 实例2：正有参  {'VISITTYPECODE':'34','prefixICD':{'慢性肾脏病':'N11'}}
-                    self._s1_param()
+                    self.haveParam()
+
+        else:
+            # 评估因素取值
+            # a1,a2
+            if self.case == 'negative':
+                if self.ruleParam == {}:
+                    # 反无参
+                    Color_PO.outColor([{"31": "error, 反向用例ruleParam不能为空！"}])
+                    sys.exit(0)
+            # 正无参、正有参、反有参
+            self.d_param = self.ruleParam
+            self.d_param.update(self.testRules())
+            self.assertAssess(self.d_param['result'])
+
+
+
+
+
 
         if self.rule == 's2bak' :
             if self.case == 'negative':
@@ -908,18 +935,13 @@ class ChcRulePO_flask():
 
         self.l_noCombination_s1 = [x for x in l_6 if x not in self.l_combination_s1]
 
-    def _s1_param(self):
+    def haveParam(self):
         self.d_param = self.ruleParam
         if Configparser_PO.SWITCH("log") == "on":
             Color_PO.outColor([{"35": self.d_param}])
         self.d_param.update(self.testRules())
         self.assertS1()
 
-        # if self.diseaseCodeDesc in list(self.ruleParam['prefixICD'].keys()):
-        #
-        # else:
-        #     Color_PO.outColor([{"31": "error, ruleParm格式有误或疾病名称不匹配！"}])
-        #     sys.exit(0)
 
     def getVisitTypeCode(self, varSql, varFieldName):
 
@@ -1039,9 +1061,12 @@ class ChcRulePO_flask():
                 l_assessRuleCode = self.assessRuleCode.split(",")
                 if len(l_assessRuleCode) == 1:
                     self.sql[i] = self.sql[i].replace("{assessRuleCode}", self.assessRuleCode)
-
+            if "{今天往前一年内的日期}" in self.sql[i]:
+                if '今天往前一年内的日期' in self.d_param:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.d_param['今天往前一年内的日期']))
+                else:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(Time_PO.getDateByMinusPeriod(-1)))
             # s1/s2
-            # 获取疾病取值判断对应的visitTypeCode，并替换VISITTYPECODE
             if '{VISITTYPECODE}' in self.sql[i]:
                 self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
 
@@ -1052,7 +1077,9 @@ class ChcRulePO_flask():
             for p in range(len(l)):
                 d_update[l[p]['key1']] = l[p]['value1']
                 if 'GUID' in d_update:
-                    self.sql[i] = str(self.sql[i]).replace("{varGUID}", str(d_update['GUID']))
+                    self.sql[i] = str(self.sql[i]).replace("{GUID}", str(d_update['GUID']))
+                if 'YCFID' in d_update:
+                    self.sql[i] = str(self.sql[i]).replace("{YCFID}", str(d_update['YCFID']))
 
             if str(self.ASSESS_ID) != "":
                 self.sql[i] = str(self.sql[i]).replace('{ASSESS_ID}', str(self.ASSESS_ID))
@@ -1107,6 +1134,7 @@ class ChcRulePO_flask():
         self.log = self.log + "\n" + str(d_total)
         return d_total
 
+
     def assertS1(self):
 
         if Configparser_PO.SWITCH("log") == "on":
@@ -1146,6 +1174,48 @@ class ChcRulePO_flask():
                 Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
             Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
             Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+
+    def assertAssess(self, result):
+
+        if Configparser_PO.SWITCH("log") == "on":
+            Color_PO.outColor([{"35": self.d_param}])
+
+        if self.case != 'negative':
+            # 正向
+            if self.d_param["result"] == result:
+                Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+                self.log = (self.log).replace("'", "''")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+            else:
+                Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
+                print(self.log)
+                self.log = (self.log).replace("'", "''")
+                Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+                Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
+            Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
+            Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+        elif self.case == 'negative':
+            # 反向
+            if self.d_param["result"] != result:
+                Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+                self.log = (self.log).replace("'", "''")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+            else:
+                Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
+                print(self.log)
+                self.log = (self.log).replace("'", "''")
+                Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
+                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+                Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
+            Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
+            Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+
+
 
 
 

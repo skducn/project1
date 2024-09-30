@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-{#https://element.eleme.cn/#/zh-CN/component/installation#}
-<html>
+{## https://www.bootcss.com/p/buttons/ 各种button #}
+{#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
+{#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}<html>
 <head>
 <meta charset="UTF-8">
-<title>CHC测试结果</title>
+<title>{{ d_field['ruleName'] }}</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
@@ -31,7 +32,7 @@
 <ul>
 <li class="active"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;测试结果</button></span></li>
 <li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;编辑ruleParam</button></span></li>
-<li class=""><span><button type="button" class="el-button el-button--primary is-plain" onclick="goHome()"><i class="el-icon-plus"></i>&nbsp;返回首页</button></span></li>
+<li class=""><span><button type="button" class="el-button el-button--primary is-plain" onclick="goHome()"><i class="el-icon-s-home"></i>&nbsp;返回首页</button></span></li>
 <li class="last"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
@@ -40,8 +41,11 @@
 
 <!-- 锚点2 -->
 <div id="loutinav2">
+
 <ul>
-<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName=d_field['ruleName']) }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;评估因素取值</a></span></li>
 <li class="last"><span><button type="button" class="el-button el-button--success is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
@@ -125,14 +129,21 @@
 <div class="a5 md:a2u/2 af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
-<input type="text" readonly name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+{#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+<select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<option value="{{ s_rule }}" selected>{{ s_rule }}</option>
+{% for s in queryRuleCollection[0:] %}
+<option value="{{s}}">{{s}}</option>
+{% endfor %}
+</select>
 </div>
 </div>
+
     
 <div class="a5 md:a2u/2 af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">case</label>
-<input type="text" readonly name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+<input type="text" name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
 </div>
 </div>
 

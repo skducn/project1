@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-{## https://www.bootcss.com/p/buttons/#}
-{#https://element.eleme.cn/#/zh-CN/component/installation#}
+{## https://www.bootcss.com/p/buttons/ 各种button #}
+{#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
+{#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ ruleName }} </title>
-    <title>CHC规则</title>
 
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
@@ -106,7 +106,11 @@ function submitForm() {
             <th nowrap="nowrap">diseaseRuleCode</th>
             <th nowrap="nowrap">diseaseCodeDesc</th>
             <th nowrap="nowrap">assessRuleCode</th>
-            <th nowrap="nowrap">tester</th>
+            {% if ruleName == '健康干预_已患疾病组合' %}
+            <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=u5ysd7" target="_blank">tester</a></th>
+                {% elif ruleName == '健康干预_已患疾病单病' %}
+            <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=nsxhin" target="_blank">tester</a></th>
+            {% endif %}
         </tr>
 
 <form id="checkboxForm">

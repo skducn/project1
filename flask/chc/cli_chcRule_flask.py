@@ -33,78 +33,58 @@ import argparse, ast
 # 步骤1
 r = ChcRulePO_flask(sys.argv[1])
 
-if sys.argv[1] == "评估因素取值":
-    if sys.argv[2] == "error":
-        r.runResult2("error")
-    elif sys.argv[2] == "ok":
-        r.runResult2("ok")
-    elif sys.argv[2] == "all":
-        r.runResult("all")
-    else:
-        if "-" in (sys.argv[2]):
-            start = int((sys.argv[2]).split("-")[0])
-            end = int((sys.argv[2]).split("-")[1])
-            if start < end:
-                for i in range(start, end + 1):
-                    r.runStep(i)
-            else:
-                for i in range(end, start + 1):
-                    r.runStep(i)
-        else:
-            r.runStep(sys.argv[2])
 
-elif sys.argv[1] == "健康干预_已患疾病单病" or sys.argv[1] == "健康干预_已患疾病组合":
-    if sys.argv[2] == "error":
-        r.runResult2("error")
-    elif sys.argv[2] == "ok":
-        r.runResult2("ok")
-    elif sys.argv[2] == "all":
-        r.runResult("all")
-    else:
-        if "-" in (sys.argv[2]):
-            start = int((sys.argv[2]).split("-")[0])
-            end = int((sys.argv[2]).split("-")[1])
-            if start < end:
-                for i in range(start, end + 1):
-                    r.run11(i)
-            else:
-                for i in range(end, start + 1):
-                    r.run11(i)
-        else:
-            r.run11(sys.argv[2])
-
+if sys.argv[2] == "error":
+    r.runResult2("error")
+elif sys.argv[2] == "ok":
+    r.runResult2("ok")
+elif sys.argv[2] == "all":
+    r.runResult("all")
 else:
-    # 步骤2, 默认off
-    if len(sys.argv) == 3 :
-        Configparser_PO.write('SWITCH', 'printsql', 'off')
+    if "-" in (sys.argv[2]):
+        start = int((sys.argv[2]).split("-")[0])
+        end = int((sys.argv[2]).split("-")[1])
+        if start < end:
+            for i in range(start, end + 1):
+                r.run11(i)
+        else:
+            for i in range(end, start + 1):
+                r.run11(i)
     else:
-        if sys.argv[3] == "on":
-            Configparser_PO.write('SWITCH', 'printsql', 'on')
-        else:
-            Configparser_PO.write('SWITCH', 'printsql', 'off')
+        r.run11(sys.argv[2])
 
-    # 步骤3
-    try:
-        if sys.argv[2] == "error":
-            r.runResult("error")
-        elif sys.argv[2] == "ok":
-            r.runResult("ok")
-        elif sys.argv[2] == "all":
-            r.runResult("all")
-        else:
-            if "-" in (sys.argv[2]):
-                start = int((sys.argv[2]).split("-")[0])
-                end = int((sys.argv[2]).split("-")[1])
-                if start < end:
-                    for i in range(start, end+1):
-                        r.run(i)
-                else:
-                    for i in range(end, start+1):
-                        r.run(i)
-            else:
-                r.run(sys.argv[2])
-    except:
-        sys.exit(0)
+
+    # # 步骤2, 默认off
+    # if len(sys.argv) == 3 :
+    #     Configparser_PO.write('SWITCH', 'printsql', 'off')
+    # else:
+    #     if sys.argv[3] == "on":
+    #         Configparser_PO.write('SWITCH', 'printsql', 'on')
+    #     else:
+    #         Configparser_PO.write('SWITCH', 'printsql', 'off')
+    #
+    # # 步骤3
+    # try:
+    #     if sys.argv[2] == "error":
+    #         r.runResult("error")
+    #     elif sys.argv[2] == "ok":
+    #         r.runResult("ok")
+    #     elif sys.argv[2] == "all":
+    #         r.runResult("all")
+    #     else:
+    #         if "-" in (sys.argv[2]):
+    #             start = int((sys.argv[2]).split("-")[0])
+    #             end = int((sys.argv[2]).split("-")[1])
+    #             if start < end:
+    #                 for i in range(start, end+1):
+    #                     r.run(i)
+    #             else:
+    #                 for i in range(end, start+1):
+    #                     r.run(i)
+    #         else:
+    #             r.run(sys.argv[2])
+    # except:
+    #     sys.exit(0)
 
 
 # ***************************************************************

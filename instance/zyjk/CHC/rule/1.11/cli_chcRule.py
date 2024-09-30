@@ -44,11 +44,11 @@ else:
         Configparser_PO.write('SWITCH', 'printsql', 'off')
 
 # 步骤3
-try:
+if sys.argv[1] == "评估因素取值":
     if sys.argv[2] == "error":
-        r.runResult("error")
+        r.runResult2("error")
     elif sys.argv[2] == "ok":
-        r.runResult("ok")
+        r.runResult2("ok")
     elif sys.argv[2] == "all":
         r.runResult("all")
     else:
@@ -56,16 +56,37 @@ try:
             start = int((sys.argv[2]).split("-")[0])
             end = int((sys.argv[2]).split("-")[1])
             if start < end:
-                for i in range(start, end+1):
-                    r.run11(i)
+                for i in range(start, end + 1):
+                    r.runStep(i)
             else:
-                for i in range(end, start+1):
-                    r.run11(i)
+                for i in range(end, start + 1):
+                    r.runStep(i)
         else:
-            r.run11(sys.argv[2])
+            r.runStep(sys.argv[2])
 
-except:
-    sys.exit(0)
+elif sys.argv[1] == "健康干预_已患疾病单病" or sys.argv[1] == "健康干预_已患疾病组合":
+    try:
+        if sys.argv[2] == "error":
+            r.runResult("error")
+        elif sys.argv[2] == "ok":
+            r.runResult("ok")
+        elif sys.argv[2] == "all":
+            r.runResult("all")
+        else:
+            if "-" in (sys.argv[2]):
+                start = int((sys.argv[2]).split("-")[0])
+                end = int((sys.argv[2]).split("-")[1])
+                if start < end:
+                    for i in range(start, end+1):
+                        r.run11(i)
+                else:
+                    for i in range(end, start+1):
+                        r.run11(i)
+            else:
+                r.run11(sys.argv[2])
+
+    except:
+        sys.exit(0)
 
 
 # ***************************************************************
