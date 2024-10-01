@@ -1,5 +1,8 @@
+# https://blog.csdn.net/qq_36545573/article/details/142639082 用户认证系统，实现登录
+# https://www.sohu.com/a/788524743_121124359
+from flask import Flask, render_template, jsonify, redirect, url_for, flash, session, request
+from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask import Flask, render_template, request, jsonify, Response, json, redirect, url_for, flash, session, request
 # from flask_cors import *
 # from tqdm import tqdm
 import time, subprocess, pymssql, sys, os
@@ -21,12 +24,21 @@ Time_PO = TimePO()
 
 
 app = Flask(__name__)
+# 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
+app.secret_key = 'your_secret_key'
+
 # CORS(app)  # 解决跨域问题
 # app.config.from_object(settings)  # 加载配置文件
 # print(app.config)
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pymssql://sa:Zy_123456789@192.168.0.234:1433/CHC'
 # db = SQLAlchemy(app)
+
+# 模拟的用户数据库，存储用户的用户名和经过哈希加密后的密码（防止明文存储密码）
+users = {
+    'jinhao': generate_password_hash('123456'),  # 'user1' 用户的密码经过哈希加密后存储
+    'user2': generate_password_hash('password2')  # 'user2' 用户的密码经过哈希加密后存储
+}
 
 # 数据库
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
@@ -59,8 +71,101 @@ for i in l_t_rows:
 
 
 @app.route('/')
+def homepage():
+    return render_template('pin.html')
+
+@app.route('/index')
 def index():
-    return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+    session_value = request.cookies.get('session')
+    print(session_value)
+    if session_value == "true":
+        session['logged_in'] = True
+        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,queryErrorRuleId=l_ruleName)
+    else:
+        return render_template('pin.html')
+
+
+
+
+
+# @app.route('/pin', methods=['POST', 'GET'])
+# def pin():
+#     # if request.args.get('redirect') == 'true':
+#     #     # return redirect('/new_url')
+#     #     print("123123123")
+#     #     return redirect(url_for('temp'))
+#     #     # return redirect("/temp")
+#     #     # return redirect("http://www.baidu.com")
+#     # else:
+#     #     return 'Stay on the same page'
+#
+#     if request.method == 'POST':
+#         # 获取POST请求中的数据
+#         name = request.form.get('name')
+#         age = request.form.get('age')
+#         print(name,age)
+#         return redirect(url_for('temp'))
+#         # return redirect("http://www.baidu.com",302)
+#         # 处理数据...
+#         # return jsonify({'message': 'Data received', 'data': {'name': name, 'age': age}})
+#     elif request.method == 'GET':
+#         # 获取GET请求中的数据
+#         name = request.args.get('name')
+#         age = request.args.get('age')
+#         print(name, age)
+#         # 处理数据...
+#         # return jsonify({'message': 'Data received', 'data': {'name': name, 'age': age}})
+#     # return redirect("http://www.baidu.com")
+#     return redirect(url_for('temp'))
+#     # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName)
+
+
+# 定义 '/login' 路由，并允许 GET 和 POST 两种请求方法
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    # 检查请求方法是否为 POST（表明用户提交了登录表单）
+    if request.method == 'POST':
+        # 获取用户通过表单提交的用户名
+        username = request.form['username']
+        # 获取用户通过表单提交的密码
+        password = request.form['password']
+        print(username, password)
+        # 从模拟的用户数据库中获取与用户名对应的哈希密码（若用户名不存在则返回 None）
+        user_hashed_password = users.get(username)
+        # 检查用户是否存在并且输入的密码与数据库中的哈希密码匹配
+        if user_hashed_password and check_password_hash(user_hashed_password, password):
+            # 如果验证通过，设置 session，表示用户已登录
+            session['logged_in'] = True
+            # 重定向用户到欢迎页面
+            # return redirect(url_for('welcome'))
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,
+                               queryErrorRuleId=l_ruleName)
+        else:
+            # 如果用户名或密码错误，返回错误信息
+            return 'Invalid username or password'
+    # 如果请求方法为 GET，返回包含用户名和密码输入框的登录表单
+    return render_template('login.html')
+
+
+# 定义 '/welcome' 路由，用于欢迎已登录的用户
+@app.route('/welcome')
+def welcome():
+    # 检查 session 中是否存在 'logged_in' 并且其值为 True，表明用户已登录
+    if session.get('logged_in'):
+        # 如果用户已登录，返回欢迎信息
+        return 'Welcome! You are logged in.'
+    else:
+        # 如果用户未登录，重定向到登录页面
+        return redirect(url_for('login'))
+
+
+# 定义 '/logout' 路由，用于处理用户登出
+@app.route('/logout')
+def logout():
+    # 从 session 中移除 'logged_in' 键，表示用户登出
+    session.pop('logged_in', None)
+    # 重定向到登录页面
+    return redirect(url_for('homepage'))
 
 
 def getFieldValueByStep(ruleName):
@@ -92,8 +197,7 @@ def getFieldValue(ruleName):
     l_field = []
     l_d_all = []
     # 获取字段列表
-    cursor.execute(
-        "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
     l_t_field = cursor.fetchall()
     for i in l_t_field:
         l_field.append(i[0])
@@ -116,8 +220,7 @@ def getFieldValueById(ruleName, id):
     l_field = []
     l_d_all = []
     # 获取字段列表
-    cursor.execute(
-        "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
     l_t_field = cursor.fetchall()
     for i in l_t_field:
         l_field.append(i[0])
@@ -139,12 +242,13 @@ def getFieldValueById(ruleName, id):
 
 
 # todo 获取测试规则
-@app.route('/excel/<ruleName>')
-def excel(ruleName):
-    if ruleName == '评估因素取值':
-        return render_template('assess.html', data=getFieldValueByStep(ruleName), ruleName=ruleName)
-    else:
-        return render_template('excel.html', data=getFieldValue(ruleName), ruleName=ruleName)
+@app.route('/list123/<ruleName>')
+def list123(ruleName):
+    if session.get('logged_in'):
+        if ruleName == '评估因素取值':
+            return render_template('assessFactor.html', data=getFieldValueByStep(ruleName), ruleName=ruleName)
+        else:
+            return render_template('healthIntervention.html', data=getFieldValue(ruleName), ruleName=ruleName)
 
 
 
@@ -158,7 +262,7 @@ def submitId():
         for id in l_id:
             subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValue(ruleName)
-    return redirect(url_for('excel',ruleName=ruleName))
+    return redirect(url_for('list123',ruleName=ruleName))
 
 
 @app.route('/submitStep', methods=['POST'])
@@ -172,12 +276,12 @@ def submitStep():
             print(id)
             subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValue(ruleName)
-    return redirect(url_for('excel', ruleName=ruleName))
+    return redirect(url_for('list123', ruleName=ruleName))
 
 
 
-@app.route('/about4')
-def about4():
+@app.route('/edit123')
+def edit123():
     ruleName = request.args.get('ruleName')
     id = request.args.get('id')
     print(ruleName, id)
@@ -190,8 +294,16 @@ def about4():
     if l_d_all[0]['ruleParam'] == None:
         l_d_all[0]['ruleParam'] = ''
     l_d_all[0]['ruleName'] = ruleName
+
+    # 获取测试规则
+    l_testRule = []
+    cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" % (ruleName))
+    l_t_rows = cursor.fetchall()
+    for i in l_t_rows:
+        l_testRule.append(i[0])
+
     # print(l_d_all)
-    return render_template('result2.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'] )
+    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'] )
 
 
 
@@ -208,7 +320,7 @@ def testRule():
             subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValueById(ruleName,id)
             l_d_all[0]['ruleName'] = ruleName
-            return render_template('result2.html', d_field=l_d_all[0])
+            return render_template('edit123.html', d_field=l_d_all[0])
         except:
             return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
 
@@ -303,13 +415,15 @@ def get_queryRecord():
 @app.route('/get_queryRuleCollection')
 def get_queryRuleCollection():
     selected_value = request.args.get('value')
-    cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
+    cursor.execute("select ruleName, [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
     rows = cursor.fetchall()
-    print(rows)
+    # print(rows[0][0])
+    # print(rows)
     data = ""
+    data = data + rows[0][0] + "\n\n"
     for row in rows:
-        data = data + str(row[0]) + "\n"
-    print(data)
+        data = data + str(row[1]) + "\n"
+    # print(data)
     response_data = {
         'text': data
     }
@@ -321,9 +435,10 @@ def get_queryRuleCollection():
 @app.route('/updateRuleCollection', methods=['POST'])
 def updateRuleCollection():
     if request.method == 'POST':
+        ruleName = request.form['ruleName']
         ruleCollection = request.form['ruleCollection']
         sql = request.form['sql']
-        # print(ruleCollection)
+        print(ruleName,ruleCollection)
         # print(sql)
 
         sql = sql.replace("'", "''")
@@ -341,12 +456,12 @@ def updateRuleCollection():
             if l_t_count[0][0] == 0:
                 for index, sql in enumerate(l3, start=1):
                     sql = sql.replace("'", "''").replace("\r", "")
-                    cursor.execute("insert into a_ceshiguize([rule],[seq],sql) values ('%s',%s,'%s')" % (ruleCollection, index, sql))
+                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],[seq],sql) values ('%s','%s',%s,'%s')" % (ruleName,ruleCollection, index, sql))
                     conn.commit()
             else:
                 cursor.execute("delete from a_ceshiguize where [rule]='%s'" % (ruleCollection))
                 for index, sql in enumerate(l3, start=1):
-                    cursor.execute("insert into a_ceshiguize([rule],[seq],sql) values ('%s',%s,'%s')" % (ruleCollection, index, sql))
+                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],[seq],sql) values ('%s','%s',%s,'%s')" % (ruleName,ruleCollection, index, sql))
                     conn.commit()
 
             # 获取更新后的规则集
@@ -402,7 +517,7 @@ def step():
         rows = cursor.fetchall()
         d_["result"] = rows[0][0]
         d_["step"] = rows[0][1]
-        return render_template('result2.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'])
+        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'])
 
 
 

@@ -38,15 +38,17 @@
 <li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-search"></i>&nbsp;5 查询规则集</button></span></li>
 <li class=""><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-thumb"></i>&nbsp;6 新增/更新规则集</button></span></li>
 <li class="last"><span><button type="button" class="el-button el-button--primary is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
+<li class=""><span><a class="el-button el-button--primary is-plain" href="{{ url_for('logout') }}" target = "_blank"><i class="el-icon-user"></i>&nbsp;登出</a></span></li>
+
 </ul>
 </div>
 
 <!-- 锚点2 -->
 <div id="loutinav2">
 <ul>
-<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
-<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</a></span></li>
-<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('excel',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;评估因素取值</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</a></span></li>
+<li class=""><span><a class="el-button el-button--success is-plain" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;评估因素取值</a></span></li>
 <li class="last"><span><button type="button" class="el-button el-button--success is-plain"><i class="el-icon-top"></i>&nbsp;回顶</button></span></li>
 </ul>
 </div>
@@ -274,7 +276,14 @@
 <form action="{{ url_for('updateRuleCollection')}}" method="post">
 <div class="a6 a1K ac">
 
-<div class="a5 md:a2u af">
+<div class="a5 md:a2u/2 af">
+<div class="a3u">
+<label for class="al a25 aR a1j dark:a1k a2j">规则名*</label>
+<input type="text"  name="ruleName" maxlength="10" placeholder="请输入..." id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+</div>
+</div>
+
+<div class="a5 md:a2u/2 af">
 <div class="a3u">
 <label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
 <input type="text"  name="ruleCollection" maxlength="10" placeholder="请输入..." id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">

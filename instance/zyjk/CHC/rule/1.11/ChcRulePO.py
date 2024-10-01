@@ -89,7 +89,9 @@ class ChcRulePO():
         Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
 
         # 修改其他规则表的字段类型
-        # if sheetName == "评估因素取值" :
+        if sheetName == "测试规则" :
+            Sqlserver_PO.execute("ALTER table %s alter column seq varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+
         #     # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
         #     # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
         #     Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
@@ -97,27 +99,26 @@ class ChcRulePO():
         #     Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
         #     Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
         #     # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
-        # if sheetName == "健康干预_已患疾病单病" or sheetName== '健康干预_已患疾病组合':
+        else:
+            # Sqlserver_PO.execute("ALTER table %s alter column eachResult varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            # Sqlserver_PO.execute("ALTER table %s alter column eachStep varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+            Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
 
-        # Sqlserver_PO.execute("ALTER table %s alter column eachResult varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        # Sqlserver_PO.execute("ALTER table %s alter column eachStep varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
-        Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
-        Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-
-        if sheetName != "测试规则":
-            # 判断导入的表是否已有主键，没有主键则自动生成id自增主键
-            isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
-            if isExistPrimaryKey == None:
-                l_ = Sqlserver_PO.select("select name from sys.columns where object_id = OBJECT_ID('%s') " % (dboTable))
-                for i in l_:
-                    if i['name'] == 'id' or i['name'] == 'ID':
-                        Sqlserver_PO.execute("ALTER TABLE %s DROP COLUMN id" % (dboTable))
-                        break
-                # 新增id自增主键（如果表中已存在id，则无法新增）
-                Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id)" % (dboTable))
+        # if sheetName != "测试规则":
+        # 判断导入的表是否已有主键，没有主键则自动生成id自增主键
+        isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
+        if isExistPrimaryKey == None:
+            l_ = Sqlserver_PO.select("select name from sys.columns where object_id = OBJECT_ID('%s') " % (dboTable))
+            for i in l_:
+                if i['name'] == 'id' or i['name'] == 'ID':
+                    Sqlserver_PO.execute("ALTER TABLE %s DROP COLUMN id" % (dboTable))
+                    break
+            # 新增id自增主键（如果表中已存在id，则无法新增）
+            Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id)" % (dboTable))
 
         # 添加表注释
         Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用)' + sheetName, dboTable))  # sheetName=注释，dboTable=表名

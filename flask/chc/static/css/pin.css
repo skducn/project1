@@ -1,0 +1,15 @@
+#login {
+  overflow: hidden;
+  background: black
+}
+.z-10 {
+  /* -webkit-box-shadow: inset 0px 0px 200px 200px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 0px 200px 200px rgba(0,0,0,0.75); */
+  box-shadow: inset 0px 0px 800px 200px rgba(0,0,0,0.75);
+}
+img {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; /* or object-fit: contain; */
+}

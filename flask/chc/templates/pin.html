@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>pin</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/pin.css') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="app">
+  
+<section id="login" class="relative">
+
+    <div class="absolute z-0">
+      <img :src="bgImage" :key="bgImage">
+    </div>
+    
+    <div class="relative z-10	bg-slate-900 bg-opacity-60 flex flex-col h-screen justify-center items-center">
+      <div class="h-48">
+        <p class="font-semibold text-white text-center text-4xl mb-4">Enter PIN Code</p>
+        <form id="pinForm" class="flex">
+          <div v-for="i in pinLength" :key="i">
+            <input 
+              type="password" 
+              :name="'pin'+i" 
+              @keydown="keydownHandler($event, i)"
+              @keydown.ctrl.a.prevent
+              @mousemove.prevent.stop
+              :value="pinInput[i-1]!=''?pinInput[i-1]:''" 
+              :autofocus="i==1"
+              placeholder=""
+              maxlength="1"
+              class="bg-slate-800 py-5 mx-1 text-white text-4xl unselectable font-bold rounded border border-sky-500 inline w-20 text-center select-none transition-all focus:outline-none focus:ring focus:ring-sky-300"
+            />
+          </div>
+        </form>
+        <!-- <div v-if="error" class="bg-rose-900 bg-opacity-50 rounded px-2 m-4 font-bold">
+          <p class="text-rose-500 text-center">{{error}}</p>
+        </div> -->
+      </div>
+    </div>
+  </section>
+</div>
+<!-- partial -->
+  <script src='https://cdn.tailwindcss.com'></script>
+<script src='https://unpkg.com/vue@3/dist/vue.global.js'></script>
+<script src="{{ url_for('static', filename='css/pin.js') }}"></script>
+
+</body>
+</html>

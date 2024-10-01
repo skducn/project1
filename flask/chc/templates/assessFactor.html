@@ -2,10 +2,13 @@
 {## https://www.bootcss.com/p/buttons/ 各种button #}
 {#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
+{#            style="width:50px;overflow:hidden;text-align: left;vertical-align:top#}
+{#https://tools.wujingquan.com/htmltable/#}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{{ ruleName }} </title>
+    <title>CHC规则</title>
 
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
@@ -27,7 +30,6 @@
   align-items: center;
   height: 10vh; /* Full height of the viewport */
 }
-
     th {
         background-color: #409EFF;
         position: sticky;
@@ -36,7 +38,7 @@
     }
     table {
         border-collapse: collapse;
-        width: 100%;
+        width: 95%;
     }
     th, td {
         border: 1px solid black;
@@ -45,9 +47,10 @@
     }
 
 .large-checkbox {
-    width: 30px; /* 复选框的宽度 */
-    height: 30px; /* 复选框的高度 */
+  width: 20px; /* 复选框的宽度 */
+  height: 20px; /* 复选框的高度 */
 }
+
 
 </style>
 
@@ -67,7 +70,7 @@ function submitForm() {
     var formData = $('#checkboxForm').serialize();
     $.ajax({
         type: 'POST',
-        url: '/submitId',
+        url: '/submitStep',
         dataType:'json',
         data: formData,
         success: function(response) {
@@ -81,6 +84,30 @@ function submitForm() {
 
 </script>
 
+    <!-- Row Highlight Javascript -->
+<script type="text/javascript">
+    window.onload=function(){
+    var tfrow = document.getElementById('tfhover').rows.length;
+    var tbRow=[];
+    for (var i=1;i<tfrow;i++) {
+        tbRow[i]=document.getElementById('tfhover').rows[i];
+        tbRow[i].onmouseover = function(){
+          this.style.backgroundColor = '#ffffff';
+        };
+        tbRow[i].onmouseout = function() {
+          this.style.backgroundColor = '#d4e3e5';
+        };
+    }
+};
+</script>
+
+<style type="text/css">
+table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
+table.tftable tr {background-color:#d4e3e5;}
+table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
+</style>
+
 </head>
 <body>
 
@@ -92,33 +119,24 @@ function submitForm() {
 {#</ul>#}
 {#</div>#}
 
-    <table style="word-wrap:break-word;word-break:break-all;white-space:normal;">
-
-        <tr>
-            <th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
-            <th nowrap="nowrap">id</th>
-            <th nowrap="nowrap">result</th>
-            <th nowrap="nowrap">updateDate</th>
-            <th nowrap="nowrap">rule</th>
-            <th nowrap="nowrap">case</th>
-            <th nowrap="nowrap">ruleParam</th>
-            <th nowrap="nowrap">ruleCode</th>
-            <th nowrap="nowrap">diseaseRuleCode</th>
-            <th nowrap="nowrap">diseaseCodeDesc</th>
-            <th nowrap="nowrap">assessRuleCode</th>
-            {% if ruleName == '健康干预_已患疾病组合' %}
-            <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=u5ysd7" target="_blank">tester</a></th>
-                {% elif ruleName == '健康干预_已患疾病单病' %}
-            <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=nsxhin" target="_blank">tester</a></th>
-            {% endif %}
-        </tr>
+<table id="tfhover" class="tftable" border="1">
+    <tr><th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+    <th nowrap="nowrap">id</th>
+    <th nowrap="nowrap">result</th>
+    <th nowrap="nowrap">updateDate</th>
+    <th nowrap="nowrap">rule</th>
+    <th nowrap="nowrap">case</th>
+    <th nowrap="nowrap">ruleParam</th>
+    <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">tester</a></th>
+    </tr>
 
 <form id="checkboxForm">
 {#<form action="{{ url_for('submit')}}" method="post">#}
 
     {% for item in data %}
-        <tr><td style="text-align:center; width:50px;overflow:hidden"><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
-            <td style="width:50px;overflow:hidden"><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
+        <tr>
+            <td style="width:50px;overflow:hidden"><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
+            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
                 <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>
             {% elif item.result == 'error' %}
@@ -126,47 +144,38 @@ function submitForm() {
             {% else %}
                 <td>{{ item.result }}</td>
             {% endif %}
-            <td nowrap="nowrap" style="width:150px;overflow:hidden">{{ item.updateDate }}</td>
-            <td style="width:50px;overflow:hidden">{{ item.rule }}</td>
-            <td style="width:100px;overflow:hidden">{{ item.case }}</td>
-            <td style="width:150px;overflow:hidden"><a href="{{ url_for('about4', ruleName=ruleName, id=item.id)}}">{{ item.ruleParam }}</a></td>
-            <td style="width:150px;overflow:hidden">{{ item.ruleCode }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.diseaseRuleCode }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.diseaseCodeDesc }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.assessRuleCode }}</td>
+            <td style="width:100px;overflow:hidden">{{ item.updateDate }}</td>
+
+            <td style="width:50px;overflow:hidden;">{{ item.rule|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden;">{{ item.case|safe|lower }}</td>
+            <td style="overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>
             <td style="width:100px;overflow:hidden">{{ item.tester }}</td>
         </tr>
     {% endfor %}
 
     <input type="hidden" name='ruleName' value="{{ ruleName }}">
 
+    <!-- 锚点left -->
+    <div id="loutinav">
+    <ul>
+    <li><span><button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button></span></li>
+    </ul>
+    </div>
+    <!-- 锚点right -->
+    <div id="loutinav2">
+    <ul>
+    <li class="last"><span><button type="button" class="el-button el-button--primary is-plain">回顶部</button></span></li>
+    </ul>
+    </div>
+
     <tr><td colspan="11">
     <div class="center-flex">
-
-<!-- 锚点left -->
-<div id="loutinav">
-<ul>
-<li><span><button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button></span></li>
-</ul>
-</div>
-
-<!-- 锚点right -->
-<div id="loutinav2">
-<ul>
-<li class="last"><span><button type="button" class="el-button el-button--primary is-plain">回顶部</button></span></li>
-</ul>
-</div>
-
-
-<button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button>
-
+    <button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button>
     </div>
     </td></tr>
 
 </form>
-
-    </table>
-
+</table>
 
 
 </body>

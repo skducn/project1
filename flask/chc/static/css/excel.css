@@ -1,10 +1,10 @@
 
 /* hr */
 
-.separator {
-border: none; /* 移除默认边框 */
-border-top: 1px solid #dee2e6; /* 加粗上边框，可以设置颜色 */
-margin: 10px 0; }
+/*.separator {*/
+/*border: none; !* 移除默认边框 *!*/
+/*border-top: 1px solid #dee2e6; !* 加粗上边框，可以设置颜色 *!*/
+/*margin: 10px 0; }*/
 
 
 
@@ -41,7 +41,7 @@ line-height: 2rem;
 #msg{
     margin: auto;
     border: 1px solid #666;
-    width:100%;
+    width:95%;
     position: fixed;
     z-index:999;
     top: 0%;
@@ -94,11 +94,11 @@ line-height: 2rem;
 
 /* 浮动菜单 */
 
-* {
-        margin: 0;
-        padding: 0;
-        font-family: 'microsoft yahei';
-    }
+/** {*/
+/*        margin: 0;*/
+/*        padding: 0;*/
+/*        font-family: 'microsoft yahei';*/
+/*    }*/
 
     #loutinav {
         /*width: 122px;*/
@@ -215,30 +215,30 @@ line-height: 2rem;
         border-radius:5px;
     }
 
-    #header {
-        background: #cc6633;
-        margin: 0 auto;
-         font-size: 50px;line-height: 300px;text-align: center;
-         color: #000;
+    /*#header {*/
+    /*    background: #cc6633;*/
+    /*    margin: 0 auto;*/
+    /*     font-size: 50px;line-height: 300px;text-align: center;*/
+    /*     color: #000;*/
 
-    }
+    /*}*/
 
-    #main {
-        margin: 0 auto;
-    }
+ /*   #main {*/
+ /*       margin: 0 auto;*/
+ /*   }*/
 
-    #main .louti {
-        font-size: 50px;
-        color: #fff;
-        font-weight: bold;
-        text-align: center;
-    }
+ /*   #main .louti {*/
+ /*       font-size: 50px;*/
+ /*       color: #fff;*/
+ /*       font-weight: bold;*/
+ /*       text-align: center;*/
+ /*   }*/
 
- #footer {
-        width: 1000px;
-        height: 400px;
-        background: red;
-        margin: 0 auto;
-        font-size: 50px;line-height: 400px;text-align: center;
-         color: #000;
-    }
+ /*#footer {*/
+ /*       width: 1000px;*/
+ /*       height: 400px;*/
+ /*       background: red;*/
+ /*       margin: 0 auto;*/
+ /*       font-size: 50px;line-height: 400px;text-align: center;*/
+ /*        color: #000;*/
+ /*   }*/
