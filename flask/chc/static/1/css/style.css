@@ -1,0 +1,780 @@
+/* -------------------------------------------------------------------
+ * Plugin Name           : Laus - Dropdown & Hamburger Menu
+ * Author Name           : Yucel Yilmaz
+ * Author URI            : https://codecanyon.net/user/aip_theme3434
+ * Created Date          : 18 January 2020
+ * Version               : 1.0
+ * File Name             : style.css
+------------------------------------------------------------------- */
+/* -------------------------------------------------------------------
+   Base                               
+   ------------------------ /
+ * 01.Base
+ * 02.Typography
+ * 03.Helper Class
+   ------------------------ /
+   Components                               
+   ------------------------ /
+ * 04.Buttons  
+   ------------------------ /
+   Layout                               
+   ------------------------ /
+ * 05.Navbar
+ * 06.Hero 
+ * 07.Features 
+ * 08.Footer
+ * 09.Responsive
+
+/* ---------------------------------------------------------------- */
+/* 01.Base                               
+/* ---------------------------------------------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body, html {
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  color: #677294;
+}
+
+a:link, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: #677294;
+}
+
+ul, ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+textarea, textarea:focus, input, input:focus, button, button:focus {
+  outline: none;
+  resize: inherit;
+}
+
+/* ---------------------------------------------------------------- */
+/* 02.Typography                                                  
+/* ---------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin: 0;
+  color: #000;
+  line-height: 1.3;
+  text-transform: capitalize;
+}
+
+h1, .h1 {
+  font-size: 55px;
+}
+
+h2, .h2 {
+  font-size: 42px;
+}
+
+h3, .h3 {
+  font-size: 44px;
+}
+
+h4, .h4 {
+  font-size: 22px;
+}
+
+h5, .h5 {
+  font-size: 18px;
+}
+
+h6, .h6 {
+  font-size: 16px;
+}
+
+p {
+  color: #677294;
+  margin: 0;
+  line-height: 28px;
+}
+
+.colum-text {
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------- */
+/* 03.Helper Class                                                  
+/* ---------------------------------------------------------------- */
+.section {
+  padding: 80px 0;
+}
+
+.section-heading .section-title {
+  position: relative;
+  text-align: center;
+  padding-bottom: 20px;
+  margin-bottom: 50px;
+}
+
+.section-heading .section-title:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 50px;
+  height: 4px;
+  background: #23c87a;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+
+.bg-light-grey {
+  background: #f1f2f6;
+}
+
+.pb-minus-70 {
+  padding-bottom: 70px;
+}
+
+/* ---------------------------------------------------------------- */
+/* 04.Buttons                                                   
+/* ---------------------------------------------------------------- */
+.button {
+  display: inline-block;
+  padding: 20px 40px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  -webkit-transition: background-color 0.25s ease;
+  transition: background-color 0.25s ease;
+}
+
+.button.default-button {
+  background: #23c87a;
+  color: #fff;
+}
+
+.button.default-button:hover {
+  background: #1da565;
+}
+
+/* ---------------------------------------------------------------- */
+/* 05.Navbar                                                   
+/* ---------------------------------------------------------------- */
+.header {
+  padding: 10px 0;
+  z-index: 3333;
+}
+
+.header ul li {
+  list-style-type: none;
+}
+
+.header .nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 20px 15px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  display: block;
+  position: relative;
+  color: #fff;
+  line-height: 28px;
+}
+
+.header .nav-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  background-color: #23c87a;
+}
+
+.header .nav-link:not(.active)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 7px;
+  z-index: -7;
+  -webkit-transition: -webkit-transform 0.4s ease;
+  transition: -webkit-transform 0.4s ease;
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+  background-color: #23c87a;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transform-origin: 100% 0;
+          transform-origin: 100% 0;
+}
+
+.header .nav-link:not(.active):hover::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+}
+
+.header .nav-link.signup-btn-toggle:after, .header .nav-link.login-btn-toggle:after {
+  display: none;
+}
+
+.header .dropdown-menu {
+  border: 0;
+  background: #fff;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+  -webkit-box-shadow: 0px 13px 35px 0 rgba(43, 50, 54, 0.2);
+          box-shadow: 0px 13px 35px 0 rgba(43, 50, 54, 0.2);
+}
+
+.header .dropdown-menu .dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 14px 28px;
+  font-weight: 400;
+  color: #000;
+  text-decoration: none;
+  position: relative;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.header .dropdown-menu .dropdown-item:focus, .header .dropdown-menu .dropdown-item:hover {
+  color: #fff;
+  background-color: #23c87a;
+  padding-left: 25px;
+}
+
+.header .dropdown-toggle {
+  padding-right: 25px !important;
+}
+
+.header .dropdown-toggle:before {
+  content: "\f078";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  font-weight: 700;
+  font-size: 12px;
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+.header .dropdown-toggle[aria-expanded="true"]:before {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  top: 20px;
+}
+
+.header .navbar-toggler {
+  outline: none;
+  border: none;
+  border-radius: 0;
+  padding: 0 10px 0 0;
+}
+
+.header .navbar-toggler .togler-icon-inner > span {
+  height: 3px;
+  margin: 5px;
+  width: 30px;
+  display: block;
+  background: #fff;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.header .navbar-toggler .togler-icon-inner > span:nth-child(2) {
+  width: 20px !important;
+  margin-left: auto;
+}
+
+.header .navbar-toggler .togler-icon-inner > span:last-child {
+  margin-bottom: 0;
+}
+
+.header .navbar-toggler[aria-expanded="true"] .togler-icon-inner > span:nth-child(1) {
+  -webkit-transform: rotate(-45deg) translate(-5px, 6px);
+          transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.header .navbar-toggler[aria-expanded="true"] .togler-icon-inner > span:nth-child(3) {
+  -webkit-transform: rotate(45deg) translate(-5px, -6px);
+          transform: rotate(45deg) translate(-5px, -6px);
+}
+
+.header .navbar-toggler[aria-expanded="true"] .togler-icon-inner > span:nth-child(2) {
+  opacity: 0;
+}
+
+.header .login-btn-mobile, .header .signup-btn-mobile {
+  display: none;
+}
+
+.header .navbar-brand {
+  color: #fff;
+  text-transform: capitalize;
+  margin-right: 0;
+  padding: 0;
+}
+
+.header .navbar-brand img {
+  display: none;
+}
+
+.header .navbar-brand img.logo-transparent {
+  display: block;
+}
+
+.header.header-shrink {
+  padding: 0;
+  background: #fff;
+  -webkit-box-shadow: 0px 13px 35px -12px rgba(43, 50, 54, 0.2);
+          box-shadow: 0px 13px 35px -12px rgba(43, 50, 54, 0.2);
+  -webkit-animation: stickyMenu 0.7s ease-in-out;
+          animation: stickyMenu 0.7s ease-in-out;
+}
+
+.header.header-shrink .nav-link {
+  color: #000 !important;
+}
+
+.header.header-shrink .togler-icon-inner > span {
+  background-color: #000;
+}
+
+.header.header-shrink .navbar-brand {
+  color: #23c87a;
+}
+
+#login-form {
+  z-index: 6666;
+}
+
+#signup-form {
+  z-index: 7777;
+}
+
+.laus-form-wrap {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 10px;
+  background: #fff;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 450px;
+  display: none;
+  -webkit-box-shadow: 0px 23px 49px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 0px 23px 49px 0 rgba(0, 0, 0, 0.3);
+}
+
+.laus-form-header {
+  padding: 20px 30px;
+  background: #23c87a;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+}
+
+.laus-form-header .laus-form-title {
+  color: #fff;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  text-align: center;
+}
+
+.form-link-margin {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.form-link-margin a {
+  color: #000;
+}
+
+.form-link-margin a:hover {
+  color: #23c87a;
+}
+
+.laus-form-inner {
+  background: #fff;
+  padding: 20px;
+  text-align: center;
+  border-radius: 0 0 5px 5px;
+}
+
+.laus-form-group {
+  position: relative;
+  overflow: hidden;
+}
+
+.laus-form-group .laus-form-control {
+  margin-bottom: 20px;
+  height: 60px;
+  outline: none;
+  padding: 0 20px 0 50px;
+  border: none;
+  color: #000;
+  width: 100%;
+  -webkit-box-shadow: 0px 13px 35px -12px rgba(43, 50, 54, 0.2);
+          box-shadow: 0px 13px 35px -12px rgba(43, 50, 54, 0.2);
+}
+
+.laus-form-group .laus-form-control :focus {
+  outline: none;
+  border: none;
+  color: #000;
+  -webkit-box-shadow: 0px 10px 26px 0px rgba(43, 50, 54, 0.2);
+          box-shadow: 0px 10px 26px 0px rgba(43, 50, 54, 0.2);
+}
+
+.laus-form-group > span {
+  position: absolute;
+  top: 22px;
+  left: 16px;
+  font-size: 16px;
+  color: #23c87a;
+  border-radius: 0 5px 5px 0;
+}
+
+.laus-form-control, .laus-form-btn {
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+
+.laus-form-btn {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  width: 100%;
+  padding: 20px 60px;
+  color: #fff !important;
+  background: #23c87a;
+  text-transform: capitalize;
+  display: block;
+}
+
+.laus-form-pt {
+  padding-top: 20px;
+}
+
+.custom-control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: auto;
+  line-height: 26px;
+}
+
+.custom-control-label {
+  margin-left: 15px;
+  padding-left: 10px;
+  color: #000;
+}
+
+.custom-control-label::before {
+  background-color: #fff;
+  border: 1px solid #23c87a;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #23c87a;
+  background: #23c87a;
+}
+
+.form-close-btn {
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+
+.form-close-btn i {
+  font-weight: 600;
+}
+
+@-webkit-keyframes stickyMenu {
+  0% {
+    margin-top: -120px;
+    opacity: 0;
+  }
+  50% {
+    margin-top: -64px;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes stickyMenu {
+  0% {
+    margin-top: -120px;
+    opacity: 0;
+  }
+  50% {
+    margin-top: -64px;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* 06.Hero                                                   
+/* ---------------------------------------------------------------- */
+.hero {
+  height: 850px;
+  background: #0033cc;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.hero h2, .hero h1, .hero p {
+  color: #fff;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  margin-bottom: 10px;
+}
+
+.hero p {
+  line-height: 28px;
+  margin-bottom: 60px;
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------- */
+/* 07.Features                                                   
+/* ---------------------------------------------------------------- */
+.features-box {
+  padding: 30px;
+  overflow: hidden;
+  margin-bottom: 30px;
+  background: #fff;
+  text-align: center;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 6px 10px 0 rgba(43, 50, 54, 0.2);
+          box-shadow: 0 6px 10px 0 rgba(43, 50, 54, 0.2);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.features-box:hover {
+  -webkit-box-shadow: 0 22px 49px 0 rgba(43, 50, 54, 0.2);
+          box-shadow: 0 22px 49px 0 rgba(43, 50, 54, 0.2);
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+
+.features-box .features-icon i {
+  color: #fff;
+  font-size: 40px;
+  margin-left: 0;
+  display: inline-block;
+  margin-bottom: 20px;
+  line-height: 90px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #23c87a;
+}
+
+/* ---------------------------------------------------------------- */
+/* 08.Footer                                                   
+/* ---------------------------------------------------------------- */
+.footer {
+  background: #0033cc;
+}
+
+.footer .copyright-wrap {
+  padding: 30px;
+}
+
+.footer .copyright-wrap .copyright-inner .copyright-text {
+  text-align: center;
+  color: #fff;
+  opacity: 0.85;
+}
+
+/* ---------------------------------------------------------------- */
+/* 09.Responsive                                                   
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* Responsive Media Query
+ * Medium devices (tablets, less than 992px)
+/* ---------------------------------------------------------------- */
+@media screen and (max-width: 991.98px) {
+  .header .container, .header, .header ul li {
+    padding: 0;
+  }
+  .header .container {
+    max-width: 100%;
+  }
+  .header .navbar-nav .nav-link {
+    color: #000;
+    padding: 10px 15px !important;
+    -webkit-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    border-bottom: 1px solid #f1f1f1;
+  }
+  .header .navbar-nav .nav-link:after {
+    display: none;
+  }
+  .header .navbar-nav .nav-item:last-child .nav-link {
+    border-bottom: 0;
+  }
+  .header .navbar-nav .dropdown-toggle:before {
+    top: 27px;
+    right: 20px;
+  }
+  .header .navbar-nav .dropdown-toggle[aria-expanded="true"]:before {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+    top: 11px;
+  }
+  .header .navbar-nav .dropdown-menu {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background: #f1f2f6;
+  }
+  .header .navbar-nav .dropdown-menu .dropdown-item:hover {
+    background: #23c87a;
+  }
+  .header .main-menu {
+    background: #fff;
+  }
+  .header .navbar-nav .nav-link:not(.active):hover, .header .navbar-nav .nav-link.active {
+    background: #23c87a;
+    color: #fff !important;
+    border-color: #23c87a;
+  }
+  .header .navbar-brand {
+    padding: 10px 0 10px 15px;
+  }
+  .header .login-btn-mobile, .header .signup-btn-mobile {
+    display: block;
+    position: absolute;
+    top: 32px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+  }
+  .header .signup-btn-mobile {
+    right: 65px;
+  }
+  .header .login-btn-mobile {
+    right: 110px;
+  }
+  .header.header-shrink .login-btn-mobile, .header.header-shrink .signup-btn-mobile {
+    color: #000;
+  }
+  /* Login & Sign Up Form  */
+  .login-btn-resp, .signup-btn-resp {
+    display: none;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive Media Query
+ * Large devices (desktop, less than min-width: 992px)
+/* ---------------------------------------------------------------- */
+@media screen and (min-width: 992px) {
+  .dropdown-menu {
+    position: absolute;
+    top: 80%;
+    left: 0;
+    z-index: 15;
+    opacity: 0;
+    visibility: hidden;
+    display: initial;
+    min-width: 250px;
+    color: #000;
+    border: 0;
+    border-radius: 0;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+  }
+  .dropdown-menu.show {
+    opacity: 1;
+    top: 100%;
+    visibility: visible;
+  }
+}
+
+/* ------------------------------------------------------------- */
+/* Responsive Media Query
+ * Extra small devices (portrait phones, less than 576px)
+/* ---------------------------------------------------------------- */
+@media only screen and (max-width: 575.98px) {
+  .laus-form-wrap {
+    width: 80%;
+  }
+  .laus-form-inner {
+    padding: 15px;
+  }
+  .laus-form-group {
+    position: relative;
+    overflow: hidden;
+  }
+  .laus-form-group .laus-form-control {
+    margin-bottom: 15px;
+    height: 50px;
+  }
+  .laus-form-group > span {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+    font-size: 14px;
+  }
+  .laus-form-btn {
+    padding: 15px 50px;
+  }
+  .laus-form-header {
+    padding: 15px 30px;
+  }
+  body, html {
+    font-size: 14px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

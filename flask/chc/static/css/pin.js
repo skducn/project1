@@ -52,8 +52,11 @@ const { createApp } = Vue
         const pin = localStorage.getItem('pin') || Array(this.pinLength).fill(0).join("");
         if (this.pinInput.join("") === "999999") {
           // console.log("Correct!");
+          // 设置cookie
+          document.cookie = "session=jinhao";
           // sessionStorage.setItem("logged_in", true);
-          document.cookie = "session=true"
+          // sessionStorage.setItem("key", "value");
+          // document.cookie = "jinhao"
           window.location.href = "/index";
 
 

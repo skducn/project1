@@ -77,11 +77,15 @@ def homepage():
 @app.route('/index')
 def index():
     session_value = request.cookies.get('session')
-    print(session_value)
-    if session_value == "true":
-        session['logged_in'] = True
+    # print(session_value)
+    # print(session['logged_in'])
+    if session_value == "jinhao":
+    # if session['logged_in'] == True:
+        # return render_template('1.html')
+        # return render_template('1.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,queryErrorRuleId=l_ruleName)
         return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,queryErrorRuleId=l_ruleName)
     else:
+
         return render_template('pin.html')
 
 
@@ -244,7 +248,8 @@ def getFieldValueById(ruleName, id):
 # todo 获取测试规则
 @app.route('/list123/<ruleName>')
 def list123(ruleName):
-    if session.get('logged_in'):
+    session_value = request.cookies.get('session')
+    if session_value == 'jinhao':
         if ruleName == '评估因素取值':
             return render_template('assessFactor.html', data=getFieldValueByStep(ruleName), ruleName=ruleName)
         else:
@@ -410,19 +415,31 @@ def get_queryRecord():
     return data
 
 
+@app.route('/get_queryRuleName')
+def get_queryRuleName():
+    ruleName = request.args.get('value')
+    print(ruleName)
+    # 获取测试规则
+    cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" %(ruleName))
+    l_t_rows = cursor.fetchall()
+    l_testRule = []
+    for i in l_t_rows:
+        l_testRule.append(i[0])
+    print(l_testRule)
+    return l_testRule
+
 
 # todo 5 查询规则集
 @app.route('/get_queryRuleCollection')
 def get_queryRuleCollection():
     selected_value = request.args.get('value')
-    cursor.execute("select ruleName, [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
+    # cursor.execute("select ruleName, [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
+    cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
     rows = cursor.fetchall()
-    # print(rows[0][0])
-    # print(rows)
     data = ""
-    data = data + rows[0][0] + "\n\n"
+    # data = data + rows[0][0] + "\n\n"
     for row in rows:
-        data = data + str(row[1]) + "\n"
+        data = data + str(row[0]) + "\n"
     # print(data)
     response_data = {
         'text': data

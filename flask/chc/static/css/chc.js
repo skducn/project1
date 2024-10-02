@@ -64,7 +64,7 @@ $("#queryRecord").click(function() {
 
     <!-- 5 查询规则集 -->
 
-$(document).ready(function() {
+
     $('#queryRuleCollection').change(function() {
         var selectedValue = $(this).val();
         $.ajax({
@@ -85,6 +85,28 @@ $(document).ready(function() {
 
 
 
-});
+    $('#queryRuleName').change(function() {
+        var selectedValue = $(this).val();
+        $.ajax({
+            url: "/get_queryRuleName",
+            type: 'GET',
+            data: {'value': selectedValue},
+            success: function(response) {
+                var queryRuleCollection=document.getElementById("queryRuleCollection");
+                for (var i = 1; i < queryRuleCollection.options.length;) {
+                queryRuleCollection.removeChild(queryRuleCollection.options[i]);
+                }
+
+                for (var i = 0; i < response.length; i++) {
+                $("#queryRuleCollection").append("<option>" + response[i] + "</option>");
+                }
+
+            },
+            error: function(xhr, status, error) {
+                console.log(xhr.responseText);
+            }
+        });
+    });
+
 
 });
