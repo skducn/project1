@@ -68,10 +68,13 @@ function submitForm() {
     $.ajax({
         type: 'POST',
         url: '/submitId',
-        dataType:'json',
+        {#dataType:'json',#}
         data: formData,
         success: function(response) {
-            console.log(response);
+            {#alert(response);#}
+            window.location.href = "/list123/" + response;
+            {#window.location.href = "/list123/健康干预_已患疾病组合";#}
+            {#console.log(response);#}
         },
         error: function(xhr, status, error) {
             console.error(error);

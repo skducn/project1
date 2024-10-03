@@ -41,7 +41,7 @@
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 
-    <title>CHC - 社区健康自动化规则测试Dropdown & Hamburger Menu</title>
+    <title>CHC - 社区健康自动化规则测试</title>
 </head>
 
 <body data-spy="scroll" data-target="#fixedNavbar">
@@ -94,10 +94,9 @@
                         规则名列表
                         </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</a>
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</a>
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-loading"></i>&nbsp;评估因素取值</a>
-                                <a class="dropdown-item" href="#">Blog Grid</a>
+                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</a>
+                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</a>
+                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</a>
 
                             </div>
                         </li>
@@ -142,7 +141,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title">查询规则集</h2>
+                            <h2 class="section-title"><i class="el-icon-search"></i>查询规则集</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -198,7 +197,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title">更新规则集</h2>
+                            <h2 class="section-title"><i class="el-icon-edit"></i>更新规则集</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -239,7 +238,7 @@
 
                     <div class="col-md-12">
                         <div class="a5 af"><div class="a2g">
-                        <button class="el-button el-button--primary"><i class="el-icon-thumb"></i>&nbsp;提交</button>
+                        <button class="el-button el-button--primary">提交</button>
                         </div></div>
                     </div>
                     <!--// .col //-->
@@ -309,7 +308,7 @@
                     <br>
 
                     <div class="a5 af"><div class="a2g">
-                    <button class="el-button el-button--primary"><i class="el-icon-thumb"></i>&nbsp;提交</button>
+                    <button class="el-button el-button--primary">提交</button>
                     <br><br>
                     </div></div>
 
@@ -343,7 +342,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title">规则名列表</h2>
+                            <h2 class="section-title"><i class="el-icon-document-copy"></i>规则名列表</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -354,7 +353,7 @@
                         <a href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank">
                         <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</h7>
+                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</h7>
                             </div>
                         </div>
                          </a>
@@ -364,7 +363,7 @@
                         <a  href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank">
                         <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</h7>
+                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</h7>
                             </div>
                         </div>
                          </a>
@@ -375,7 +374,7 @@
                         <a  href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank">
                         <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-loading"></i>&nbsp;评估因素取值</h7>
+                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</h7>
                             </div>
                         </div>
                          </a>

@@ -267,7 +267,9 @@ def submitId():
         for id in l_id:
             subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValue(ruleName)
-    return redirect(url_for('list123',ruleName=ruleName))
+        # print(l_d_all)
+        # print(ruleName)
+    return ruleName
 
 
 @app.route('/submitStep', methods=['POST'])
@@ -281,7 +283,9 @@ def submitStep():
             print(id)
             subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValue(ruleName)
-    return redirect(url_for('list123', ruleName=ruleName))
+        # return l_d_all
+    return ruleName
+    # return redirect(url_for('list123', ruleName=ruleName))
 
 
 

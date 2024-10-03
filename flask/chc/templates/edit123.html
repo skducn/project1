@@ -41,7 +41,7 @@
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 
-    <title>CHC - 社区健康自动化规则测试Dropdown & Hamburger Menu</title>
+    <title>编辑 - CHC</title>
 </head>
 
 <body data-spy="scroll" data-target="#fixedNavbar">
@@ -60,22 +60,11 @@
 {#                    <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo White" class="img-fluid logo-transparent">#}
                     <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo Normal" class="img-fluid logo-normal">
                 </a>
-                <!--// .logo //-->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#fixedNavbar" aria-controls="fixedNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="togler-icon-inner">
-                    <span class="line-1"></span>
-                    <span class="line-2"></span>
-                    <span class="line-3"></span>
-                    </span>
-                </button>
-                <button href="#" class="login-btn-toggle login-btn-mobile"><i class=" fa fa-sign-in-alt"></i></button>
-                <button href="#" class="signup-btn-toggle signup-btn-mobile"><i class="fas fa-user-plus"></i></button>
-                <!--// Mobile Toggle Btn //-->
+
+
                 <div class="collapse navbar-collapse main-menu justify-content-end" id="fixedNavbar">
                     <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link menu-link active" href="#" data-scroll-nav="1">欢迎光临</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#" data-scroll-nav="2">编辑规则</a>
                         </li>
@@ -97,26 +86,7 @@
 
     <main class="main-area">
 
-        <!--// Hero Section Start //-->
-        <section class="section hero" data-scroll-index="1">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="hero-section-inner text-center">
-                            <h1>CHC</h1>
-                            <h2>社区健康规则自动化测试</h2>
-                            <p>CHC a page, a full responsive menu that you can use in your portfolio and designs</p>
-                            <div class="button-center">
-                            </div>
-                        </div>
-                    </div>
-                    <!--// .col //-->
-                </div>
-                <!--// .row //-->
-            </div>
-            <!--// .container //-->
-        </section>
-        <!--// Hero Section End //-->
+
 
         <!--// About Section Start //-->
         <section class="section" data-scroll-index="2">
@@ -124,7 +94,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title">编辑规则</h2>
+                            <h2 class="section-title"><i class="el-icon-edit-outline"></i>编辑规则</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -203,7 +173,7 @@
 
 
 <div class="a5 af"><div class="a2g">
-<button class="el-button el-button--primary"><i class="el-icon-thumb"></i>&nbsp;提交</button>
+<button class="el-button el-button--primary">提交</button>
 <br><br>
 </div></div>
 </div>
@@ -240,7 +210,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title">规则名列表</h2>
+                            <h2 class="section-title"><i class="el-icon-document-copy"></i>规则名列表</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -251,7 +221,7 @@
                         <a  href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank">
                         <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病单病</h7>
+                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</h7>
                             </div>
                         </div>
                          </a>
@@ -261,7 +231,7 @@
                         <a  href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank">
                         <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-loading"></i>&nbsp;健康干预_已患疾病组合</h7>
+                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</h7>
                             </div>
                         </div>
                          </a>
@@ -272,7 +242,7 @@
                         <a  href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank">
                         <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-loading"></i>&nbsp;评估因素取值</h7>
+                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</h7>
                             </div>
                         </div>
                          </a>

@@ -71,13 +71,15 @@ function submitForm() {
     $.ajax({
         type: 'POST',
         url: '/submitStep',
-        dataType:'json',
+        {#dataType:'json',#}
         data: formData,
         success: function(response) {
-            console.log(response);
+            window.location.href = "/list123/" + response;
+            {#window.location.href = "/list123/评估因素取值";#}
         },
         error: function(xhr, status, error) {
             console.error(error);
+            console.log(response);
         }
     });
 }
