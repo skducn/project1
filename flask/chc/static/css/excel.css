@@ -101,10 +101,10 @@ line-height: 2rem;
 /*    }*/
 
     #loutinav {
-        /*width: 122px;*/
+        width: 300px;
         position: fixed;
         top: 40%;
-        left: 180px;
+        left: 300px;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/
@@ -113,9 +113,9 @@ line-height: 2rem;
     }
 
     #loutinav ul li {
-        /*width: 122px;*/
+        width: 300px;
         height: 52px;
-        border-bottom: 1px dotted #F8F8FF;
+        /*border-bottom: 1px dotted #F8F8FF;*/
         list-style: none;
         font-size: 12px;
         text-align: left;
@@ -128,7 +128,7 @@ line-height: 2rem;
     }
 
     #loutinav ul li span {
-        /*width: 122px;*/
+        width: 300px;
         height: 32px;
         padding: 10px 0;
         position: absolute;
@@ -159,10 +159,10 @@ line-height: 2rem;
 
 
     #loutinav2 {
-        /*width: 150px;*/
+        width: 150px;
         position: fixed;
         top: 40%;
-        right: 295px;
+        right: 350px;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/
@@ -171,9 +171,9 @@ line-height: 2rem;
     }
 
     #loutinav2 ul li {
-        /*width: 150px;*/
+        width: 150px;
         height: 52px;
-        border-bottom: 1px dotted #F8F8FF;
+        /*border-bottom: 1px dotted #F8F8FF;*/
         list-style: none;
         font-size: 12px;
         text-align: left;
@@ -186,7 +186,7 @@ line-height: 2rem;
     }
 
     #loutinav2 ul li span {
-        /*width: 150px;*/
+        width: 150px;
         height: 32px;
         padding: 10px 0;
         position: absolute;

@@ -18,7 +18,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # from flask_login import login_user, logout_user, current_user
 
 sys.path.append(os.getcwd())
-
+from ChcRulePO import *
 from PO.TimePO import *
 Time_PO = TimePO()
 
@@ -218,6 +218,11 @@ def getFieldValue(ruleName):
         t_value = tuple(l_tmp)
         d_ = dict(zip(l_field, list(t_value)))
         l_d_all.append(d_)
+
+    cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName[ruleName]))
+    l_t_rule = cursor.fetchall()
+    print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
+
     return l_d_all
 
 def getFieldValueById(ruleName, id):
@@ -250,10 +255,24 @@ def getFieldValueById(ruleName, id):
 def list123(ruleName):
     session_value = request.cookies.get('session')
     if session_value == 'jinhao':
+        s = ''
+        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        l_t_rule = cursor.fetchall()
+        # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
+        c = ''
+        for i in l_t_rule:
+            cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
+            l_t_sql = cursor.fetchall()
+            # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
+            s = ' =>'
+            for index, j in enumerate(l_t_sql, start=1):
+                s = s + '<br>' + str(index) + ", " + j[0]
+            c = c + '<br>' + i[0] + s + '<br>'
+        # print(c)
         if ruleName == '评估因素取值':
-            return render_template('assessFactor.html', data=getFieldValueByStep(ruleName), ruleName=ruleName)
+            return render_template('assessFactor.html', data=getFieldValueByStep(ruleName), ruleName=ruleName, l_ruleSql=c)
         else:
-            return render_template('healthIntervention.html', data=getFieldValue(ruleName), ruleName=ruleName)
+            return render_template('healthIntervention.html', data=getFieldValue(ruleName), ruleName=ruleName, l_ruleSql=c)
 
 
 
@@ -265,27 +284,29 @@ def submitId():
     print(ruleName, l_id)
     if l_id != []:
         for id in l_id:
-            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
+            r = ChcRulePO(ruleName)
+            r.runId([id])
+            # subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValue(ruleName)
-        # print(l_d_all)
-        # print(ruleName)
     return ruleName
 
 
 @app.route('/submitStep', methods=['POST'])
 def submitStep():
+    # "评估因素取值"
     l_id = request.form.getlist("items")
     l_ruleName = request.form.getlist("ruleName")
     ruleName = l_ruleName[0]
     print(ruleName, l_id)
     if l_id != []:
         for id in l_id:
-            print(id)
-            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
+            # print(id)
+            r = ChcRulePO(ruleName)
+            r.runId([id])
+            # subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValue(ruleName)
         # return l_d_all
     return ruleName
-    # return redirect(url_for('list123', ruleName=ruleName))
 
 
 
@@ -303,6 +324,10 @@ def edit123():
     if l_d_all[0]['ruleParam'] == None:
         l_d_all[0]['ruleParam'] = ''
     l_d_all[0]['ruleName'] = ruleName
+    # print(123,l_d_all[0])
+    # l_d_all[0]['分类'] = ruleName
+    # l_d_all[0]['评估因素名称'] = ruleName
+    # l_d_all[0]['取值规则'] = ruleName
 
     # 获取测试规则
     l_testRule = []
@@ -326,7 +351,9 @@ def testRule():
         print(ruleName, id)
     if id != '':
         try:
-            subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            r = ChcRulePO(ruleName)
+            r.runId([id])
+            # subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValueById(ruleName,id)
             l_d_all[0]['ruleName'] = ruleName
             return render_template('edit123.html', d_field=l_d_all[0])
@@ -509,6 +536,8 @@ def debugParam():
         print(ruleName, id, ruleCode, ruleParam)
         cursor.execute("update %s set [rule]='%s', ruleParam='%s' where id=%s" % (d_ruleName[ruleName],ruleCode,ruleParam,id))
         conn.commit()
+        # r = ChcRulePO(ruleName)
+        # r.runId([str(id)])
         result = subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result = result.stdout.replace("<br>", '')
         print(result)
@@ -533,7 +562,9 @@ def step():
         cursor.execute("update %s set [rule]='%s',[case]='%s',ruleParam='%s' where id = %s" % (d_ruleName[d_['ruleName']], d_['rule'], d_['case'], d_['ruleParam'], d_['id']))
         conn.commit()
         d_['ruleParam'] = d_['ruleParam'].replace("''", "'")
-        subprocess.run(['python3', './cli_chcRule_flask.py', d_['ruleName'], d_['id']], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        r = ChcRulePO(d_['ruleName'])
+        r.runId([d_['id']])
+        # subprocess.run(['python3', './cli_chcRule_flask.py', d_['ruleName'], d_['id']], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         cursor.execute("select result,step from %s where id = %s" % (d_ruleName[d_['ruleName']], d_['id']))
         rows = cursor.fetchall()
         d_["result"] = rows[0][0]

@@ -12,8 +12,14 @@ from ChcRulePO import *
 
 # # 健康评估,健康干预,中医体质辨识,疾病评估,儿童健康干预
 
+# r = ChcRulePO("健康干预_已患疾病单病")
+# r.runId([6])
+# r.runId([2])
+
+
 r = ChcRulePO("评估因素取值")
-r.runId([5])
+r.runId([13])
+# r.runId([2])
 # r.runId([6])
 # r.runAssessId([4])
 # r.runStep(4)

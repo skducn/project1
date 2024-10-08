@@ -8,20 +8,31 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ ruleName }} </title>
-    <title>CHC规则</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+
 <!-- element 引入样式 -->
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+{#<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">#}
+{#<script src="https://unpkg.com/element-ui/lib/index.js"></script>#}
 
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
 <!--浮动锚点-->
 <script src="{{ url_for('static', filename='css/js.js') }}"></script>
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
+
+<!--31525-->
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
+<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
+
 
 <style>
     .center-flex {
@@ -84,9 +95,10 @@ function submitForm() {
     });
 }
 
+
 </script>
 
-    <!-- Row Highlight Javascript -->
+<!-- Row Highlight Javascript -->
 <script type="text/javascript">
     window.onload=function(){
     var tfrow = document.getElementById('tfhover').rows.length;
@@ -101,11 +113,21 @@ function submitForm() {
         };
     }
 };
+
+    $(document).ready(function() {
+    new jBox('Modal', {
+  attach: '#Modal-1',
+  height: 600,
+  title: '{{ruleName}}',
+  content: '<div style="line-height: 30px;">' +
+      '{{ l_ruleSql | tojson }}<br></div>'
+    });
+  })
 </script>
 
 <style type="text/css">
 table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
-table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:left;}
+table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:center;}
 table.tftable tr {background-color:#d4e3e5;}
 table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
 </style>
@@ -126,10 +148,13 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     <th nowrap="nowrap">id</th>
     <th nowrap="nowrap">result</th>
     <th nowrap="nowrap">updateDate</th>
-    <th nowrap="nowrap">rule</th>
+    <th nowrap="nowrap" id="Modal-1" class="target-click"><a href="#">rule</a></th>
     <th nowrap="nowrap">case</th>
     <th nowrap="nowrap">ruleParam</th>
-    <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">tester</a></th>
+    <th nowrap="nowrap">分类</th>
+    <th nowrap="nowrap">评估因素名称</th>
+    <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">取值规则</a></th>
+    <th nowrap="nowrap">tester</th>
     </tr>
 
 <form id="checkboxForm">
@@ -150,7 +175,10 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 
             <td style="width:50px;overflow:hidden;">{{ item.rule|safe|lower }}</td>
             <td style="width:100px;overflow:hidden;">{{ item.case|safe|lower }}</td>
-            <td style="overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden">{{ item.分类 }}</td>
+            <td style="overflow:hidden">{{ item.评估因素名称 }}</td>
+            <td style="overflow:hidden">{{ item.取值规则 }}</td>
             <td style="width:100px;overflow:hidden">{{ item.tester }}</td>
         </tr>
     {% endfor %}
@@ -160,19 +188,19 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     <!-- 锚点left -->
     <div id="loutinav">
     <ul>
-    <li><span><button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button></span></li>
+    <li><span><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></span></li>
     </ul>
     </div>
     <!-- 锚点right -->
     <div id="loutinav2">
     <ul>
-    <li class="last"><span><button type="button" class="el-button el-button--primary is-plain">回顶部</button></span></li>
+    <li class="last"><span><button type="button" class="button button-glow button-border button-rounded button-primary">回顶部</button></span></li>
     </ul>
     </div>
 
     <tr><td colspan="11">
     <div class="center-flex">
-    <button type="button" onclick="submitForm()" class="el-button el-button--primary is-plain">提交</button>
+    <button type="button" onclick="submitForm()" class="button button-glow button-rounded button-raised button-primary">提交</button>
     </div>
     </td></tr>
 
