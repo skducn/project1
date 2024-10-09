@@ -163,7 +163,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     {% for item in data %}
         <tr>
             <td style="width:50px;overflow:hidden"><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
-            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
+            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
                 <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>
             {% elif item.result == 'error' %}

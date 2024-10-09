@@ -141,7 +141,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title"><i class="el-icon-search"></i>查询规则集</h2>
+                            <h2 class="section-title"><i class="el-icon-search"></i> 查询规则集</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -153,7 +153,8 @@
                         <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                         <select  id="queryRuleName" name="queryRuleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                         <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>
-                        {% for ruleName in ruleName[1:] %}
+{#                        <option value="{{ memory }}" selected>{{ memory }}</option>#}
+                        {% for ruleName in ruleName[0:] %}
                         <option value="{{ruleName}}">{{ruleName}}</option>
                         {% endfor %}
                         </select>
@@ -171,7 +172,6 @@
                         </div>
                         </div>
                         </div>
-
                     </div>
 
                     <div class="col-md-12">
@@ -197,7 +197,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title"><i class="el-icon-edit"></i>更新规则集</h2>
+                            <h2 class="section-title"><i class="el-icon-edit"></i> 更新规则集</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -210,7 +210,8 @@
                             <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                             <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>
-                            {% for ruleName in ruleName[1:] %}
+{#                            <option value="{{ memory }}" selected>{{ memory }}</option>#}
+                            {% for ruleName in ruleName[0:] %}
                             <option value="{{ruleName}}">{{ruleName}}</option>
                             {% endfor %}
                             </select>
@@ -231,7 +232,7 @@
                         <div class="a5 md:a2u af">
                         <div class="a3u">
                         <label for class="al a25 aR a1j dark:a1k a2j">步骤*</label>
-                        <textarea name="sql" rows="8" id="cacu_value" placeholder="请输入..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+                        <textarea name="sql" rows="5" id="cacu_value" placeholder="请输入..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
                         </div>
                         </div>
                     </div>
@@ -332,9 +333,7 @@
         </form>
         <!--// Portfolio Section End //-->
 
-<br>
-<hr class="separator">
-<br>
+
 
         <!--// Features Section End //-->
         <section class="features section pb-minus-70" data-scroll-index="6">
@@ -342,7 +341,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title"><i class="el-icon-document-copy"></i>规则名列表</h2>
+                            <h2 class="section-title"><i class="el-icon-document-copy"></i> 规则名列表</h2>
                         </div>
                     </div>
                     <!--// .col //-->

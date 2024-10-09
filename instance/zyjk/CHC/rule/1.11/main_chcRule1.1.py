@@ -18,7 +18,8 @@ from ChcRulePO import *
 
 
 r = ChcRulePO("评估因素取值")
-r.runId([13])
+r.runId([20])
+# r.runId([14])
 # r.runId([2])
 # r.runId([6])
 # r.runAssessId([4])

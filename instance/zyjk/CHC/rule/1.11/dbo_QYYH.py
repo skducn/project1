@@ -228,15 +228,17 @@ def insert_TB_DC_DM_VISIT():
 # Sqlserver_PO.insert('TB_DC_CHRONIC_MAIN',{'GUID': '14449029827','VISITTYPECODE':'31','MANAGENUM':'32070719470820374X','ORGCODE':'0000001','EMPIGUID': '65209815'})
 
 
-# 门诊就诊记录表
-# Sqlserver_PO.desc('TB_PREGNANT_MAIN_INFO')
+# 孕产妇信息表
+# Sqlserver_PO.desc('T_ASSESS_INFO')
+a = Sqlserver_PO.desc2('T_ASSESS_INFO')
+print(a)
 # UPDATE TB_DC_EXAMINATION_INFO set TRIGLYCERIDE=2.3 WHERE EMPIGUID='65209815'
 
 
 
 # print(Sqlserver_PO.select("select diseaseName from a_jibingquzhipanduan where diseaseName not like ('%s')" % ("高血压","慢性肾脏病")))
 
-print(Sqlserver_PO.select("select LMP from T_ASSESS_MATERNAL where ASSESS_ID = 504687"))
+# print(Sqlserver_PO.select("select LMP from T_ASSESS_MATERNAL where ASSESS_ID = 504687"))
 
 
 # print(Sqlserver_PO.getTableComment('HRPERSONBASICINFO'))

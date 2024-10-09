@@ -1251,10 +1251,177 @@ class SqlServerPO:
 
 
 
-    def desc(self, args=''):
+    def desc2(self, args=''):
 
         # 7.1 查看表结构
         
+        # 注意，表名区分大小写
+        # 1，所有表结构, desc()
+        # 2，所有表结构，可选字段, 如：desc(['id', 'page'])
+        # 3，模糊搜索所有表结构，如：desc('tb%')
+        # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
+        # 5，单表结构, desc('tb_code_value')
+        # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']})
+
+        d_tableComment = {}
+        l_columnName = []
+        l_dataType = []
+        l_maxLength = []
+        l_datetimePrecison = []
+        l_numericPrecision = []
+        l_isNull = []
+        l_columnDefault = []
+        l_columnComment = []
+
+        # 获取表和注释
+        if len(args) == 0 or isinstance(args, list):
+            # 1，所有表结构, desc()
+            # 2，所有表结构，可选字段, 如：desc(['id', 'page'])
+            d_tableComment = self.getTableComment()
+            # print(d_tableComment)  # {'a_ceshiguize': '(测试用例)测试规则', 'a_chc_auth': None,...
+        elif isinstance(args, str) and "%" in args:
+            # 3，模糊搜索所有表结构，如：desc('tb%')
+            d_tableComment = self.getTableComment(args)
+        elif isinstance(args, dict):
+            # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
+            # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']})
+            d_tableComment = self.getTableComment(list(args.keys())[0])
+        else:
+            if isinstance(args, str):
+                # 5，单表结构, desc('tb_code_value')
+                d_tableComment = self.getTableComment(args)
+                # print(d_tableComment)  # {'QYYH': '1+1+1签约信息表'}
+
+
+        # 遍历表，输出：列名columnName，类型dataType，长度maxLength，
+        # 标度datetimePrecision，精度numericPrecison，非空isNull，默认columnDefault，描述columnComment
+        for k, v in d_tableComment.items():
+            varTable = k
+
+            # 获取字段名COLUMN_NAME、日期精度DATETIME_PRECISION、数字精度numericPrecision，是否为空isNull，默认columnDefault
+            l_d_1 = self.select("SELECT COLUMN_NAME,DATETIME_PRECISION,NUMERIC_PRECISION,IS_NULLABLE,COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' ORDER BY ORDINAL_POSITION" % (varTable))
+            # print(l_d_1)  # [{'COLUMN_NAME': 'id', 'DATETIME_PRECISION': None, 'NUMERIC_PRECISION': 19, 'IS_NULLABLE': 'YES', 'COLUMN_DEFAULT': None}, ...
+
+            # 获取字段名COLUMN_NAME、数据类型DATA_TYPE、长度MAX_LENGTH、描述COLUMN_COMMENT
+            l_d_2 = self.select(
+                "SELECT d.name as DATA_TYPE, B.max_length as MAX_LENGTH, C.value as COLUMN_COMMENT FROM sys.tables A INNER JOIN sys.columns B ON B.object_id = A.object_id LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id inner join systypes d on B.user_type_id=d.xusertype WHERE A.name ='%s' order by B.column_id asc"
+                % (varTable))
+            # print(l_d_2)  # [{'DATA_TYPE': 'bigint', 'MAX_LENGTH': 8, 'COLUMN_COMMENT': None},...
+
+            # 合并l_d_1 和 l_d_2
+            for i in range(len(l_d_1)):
+                l_d_1[i].update(l_d_2[i])
+            # print(l_d_1)
+
+            try:
+                # 字段与类型对齐
+                columnName = dataType = maxLength = datetimePrecison = numericPrecision = isNull = columnDefault = columnComment = 0
+                for i in l_d_1:
+                    if len(str(i['COLUMN_NAME'])) > columnName:
+                        columnName = len(i['COLUMN_NAME'])
+                    if len(str(i['DATA_TYPE'])) > dataType:
+                        dataType = len(i['DATA_TYPE'])
+                    if len(str(i['MAX_LENGTH'])) > maxLength:
+                        maxLength = len(str(i['MAX_LENGTH']))
+                    if len(str(i['DATETIME_PRECISION'])) > datetimePrecison:
+                        datetimePrecison = len(str(i['DATETIME_PRECISION']))
+                    if len(str(i['NUMERIC_PRECISION'])) > numericPrecision:
+                        numericPrecision = len(str(i['NUMERIC_PRECISION']))
+                    if len(str(i['IS_NULLABLE'])) > isNull:
+                        isNull = len(str(i['IS_NULLABLE']))
+                    if len(str(i['COLUMN_DEFAULT'])) > columnDefault:
+                        columnDefault = len(str(i['COLUMN_DEFAULT']))
+                    if len(str(i['COLUMN_COMMENT'])) > columnComment:
+                        columnComment = len(str(i['COLUMN_COMMENT']))
+
+                # 2，所有表结构，可选字段, 如：desc(['id', 'page'])
+                if isinstance(args, list):
+                    for i in range(len(args)):
+                        for m in range(len(l_d_1)):
+                            if args[i] == l_d_1[m]['COLUMN_NAME']:
+                                l_columnName.append(str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME']) ))
+                                l_dataType.append(str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) +1 ))
+                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) +4 ))
+                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) +2))
+                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION'])) ))
+                                l_isNull.append(str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) +3))
+                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) +1))
+                                if l_d_1[m]['COLUMN_COMMENT'] == None:
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                else:
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
+                # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']}) ???
+                elif isinstance(args, dict):
+                    args = list(args.values())[0]
+                    # print(args)
+                    for i in range(len(args)):
+                        for m in range(len(l_d_1)):
+                            if args[i] == l_d_1[m]['COLUMN_NAME']:
+                                l_columnName.append(str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME']) ))
+                                l_dataType.append(str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) +1 ))
+                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) +4 ))
+                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) +2))
+                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION'])) ))
+                                l_isNull.append(str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) +3))
+                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) +1))
+                                if l_d_1[m]['COLUMN_COMMENT'] == None:
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                else:
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+
+                else:
+                    # 所有字段
+                    for i in l_d_1:
+                        l_columnName.append(str(i['COLUMN_NAME']) + " " * (columnName - len(i['COLUMN_NAME'])))
+                        l_dataType.append(str(i['DATA_TYPE']) + " " * (dataType - len(i['DATA_TYPE'])))
+                        l_maxLength.append(str(i['MAX_LENGTH']) + " " * (maxLength - len(str(i['MAX_LENGTH'])) + 5))
+                        l_datetimePrecison.append(str(i['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(i['DATETIME_PRECISION'])) + 1))
+                        l_numericPrecision.append(str(i['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(i['NUMERIC_PRECISION'])) + 1))
+                        l_isNull.append(str(i['IS_NULLABLE']) + " " * (isNull - len(str(i['IS_NULLABLE'])) + 3))
+                        l_columnDefault.append(str(i['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(i['COLUMN_DEFAULT'])) + 1))
+                        if i['COLUMN_COMMENT'] == None:
+                            l_columnComment.append(str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
+                        else:
+                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))+1))
+
+                # 只输出找到字段的表
+                s_value = ''
+                if len(l_columnName) != 0:
+                    s_info = str(k)+ "("+ str(d_tableComment[k])+ ") >> "+ str(len(l_d_1))+ "个字段\n"
+                    s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
+                        "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
+                        "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) +\
+                        "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) +\
+                        "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) +\
+                        "非空" + " " * (isNull - len("IS_NULLABLE") + 12) +\
+                        "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) +\
+                        "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "\n"
+
+                    for i in range(len(l_columnName)):
+                        s_value = s_value + l_columnName[i] + l_dataType[i] + l_maxLength[i] + l_datetimePrecison[i] + l_numericPrecision[i] + l_isNull[i] + l_columnDefault[i] + l_columnComment[i] + "\n"
+                        # print(l_columnName[i], l_dataType[i], l_maxLength[i], l_datetimePrecison[i],l_numericPrecision[i], l_isNull[i], l_columnDefault[i], l_columnComment[i])
+
+                    s_info = s_info + s_value
+
+                l_columnName = []
+                l_dataType = []
+                l_maxLength = []
+                l_datetimePrecison = []
+                l_numericPrecision = []
+                l_isNull = []
+                l_columnDefault = []
+                l_columnComment = []
+
+            except Exception as e:
+                raise e
+        return s_info
+        # return len(d_tableComment)
+
+    def desc(self, args=''):
+
+        # 7.1 查看表结构
+
         # 注意，表名区分大小写
         # 1，所有表结构, desc()
         # 2，所有表结构，可选字段, 如：desc(['id', 'page'])

@@ -41,6 +41,10 @@ users = {
 }
 
 # 数据库
+# from PO.SqlserverPO import *
+# Sqlserver_PO = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database"), Configparser_PO.DB_SQL("charset"))
+# Sqlserver_PO = SqlServerPO(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC',charset = 'utf-8')
+
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
 d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu",'儿童健康干预': "a_ertongjiankangganyu",
@@ -83,9 +87,12 @@ def index():
     # if session['logged_in'] == True:
         # return render_template('1.html')
         # return render_template('1.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,queryErrorRuleId=l_ruleName)
-        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,queryErrorRuleId=l_ruleName)
+        cursor.execute("select ruleName from a_memory where id = 1")
+        l_t_value = cursor.fetchall()
+        # print(l_t_value)
+        # print(l_t_value[0][0])
+        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName,memory=l_t_value[0][0])
     else:
-
         return render_template('pin.html')
 
 
@@ -324,10 +331,6 @@ def edit123():
     if l_d_all[0]['ruleParam'] == None:
         l_d_all[0]['ruleParam'] = ''
     l_d_all[0]['ruleName'] = ruleName
-    # print(123,l_d_all[0])
-    # l_d_all[0]['分类'] = ruleName
-    # l_d_all[0]['评估因素名称'] = ruleName
-    # l_d_all[0]['取值规则'] = ruleName
 
     # 获取测试规则
     l_testRule = []
@@ -336,8 +339,20 @@ def edit123():
     for i in l_t_rows:
         l_testRule.append(i[0])
 
+    # 获取步骤中表名
+    # print(l_d_all[0]['step'])
+    l_tableName = re.findall(r"from\s(\w+)\swhere", l_d_all[0]['step'], re.I)
+    print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+
+    a = Sqlserver_PO.desc2('T_ASSESS_INFO')
+    print(a)
     # print(l_d_all)
-    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'] )
+    dd = {}
+    dd['TB_PREGNANT_MAIN_INFO'] = "123"
+    dd['T_ASSESS_MATERNAL'] = "456"
+
+    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'],id=id,ruleName=ruleName,l_tableName=l_tableName,a=dd )
+    # return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'],id=id,ruleName=ruleName,l_tableName=l_tableName,a=a )
 
 
 
@@ -431,17 +446,23 @@ def get_queryRuleResult():
 @app.route("/get_queryRecord", methods=["POST"])
 def get_queryRecord():
     querySql = request.form.get("querySql")
+    querySql = querySql.replace("SELECT ","select ").replace("WHERE ","where ")
+    data = ""
     if 'select ' not in querySql :
-        rows='error，非查询语句！'
+        data = 'error，非查询语句！'
+        # print('error，非查询语句！')
+        # sys.exit(0)
     else:
-        if 'where' not in querySql:
-            rows = 'error，缺少where条件！'
+        if 'where ' not in querySql:
+            data = 'error，缺少where条件！'
+            # print('error，缺少where条件！')
+            # sys.exit(0)
         else:
-            data = ""
             cursor.execute(querySql)
             rows = cursor.fetchall()
             for row in rows:
-                data = data + str(row) + "<br>"
+                data = data + str(row)
+                # data = data + str(row) + "<br>"
             print(data)
     return data
 
@@ -450,6 +471,10 @@ def get_queryRecord():
 def get_queryRuleName():
     ruleName = request.args.get('value')
     print(ruleName)
+
+    cursor.execute("update a_memory set ruleName='%s' where id=1" % (ruleName))
+    conn.commit()
+
     # 获取测试规则
     cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" %(ruleName))
     l_t_rows = cursor.fetchall()
@@ -489,7 +514,7 @@ def updateRuleCollection():
         print(ruleName,ruleCollection)
         # print(sql)
 
-        sql = sql.replace("'", "''")
+
 
         if ruleCollection != '' and sql != '':
             l_ = sql.split("\n")
@@ -500,6 +525,8 @@ def updateRuleCollection():
             cursor.execute("select count([rule]) as [rule] from a_ceshiguize where [rule]='%s'" % (ruleCollection))
             l_t_count = cursor.fetchall()
             # print(l_t_count[0][0])
+            if l_t_count[0][0] != 0:
+                sql = sql.replace("'", "''")
 
             if l_t_count[0][0] == 0:
                 for index, sql in enumerate(l3, start=1):
@@ -569,7 +596,7 @@ def step():
         rows = cursor.fetchall()
         d_["result"] = rows[0][0]
         d_["step"] = rows[0][1]
-        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'])
+        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'])
 
 
 

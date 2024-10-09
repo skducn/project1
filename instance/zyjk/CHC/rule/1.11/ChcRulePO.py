@@ -831,7 +831,7 @@ class ChcRulePO():
 
         else:
             # 评估因素取值
-            # a1,a2
+            # a1,a2,a3
             if self.case == 'negative':
                 if self.ruleParam == {}:
                     # 反无参
@@ -839,12 +839,22 @@ class ChcRulePO():
                     sys.exit(0)
                 else:
                     # 反有参
+                    if Configparser_PO.SWITCH("log") == "on":
+                        Color_PO.outColor([{"35": "self.ruleParam => " + str(self.ruleParam)}])
+                    self.testRules()
+                    self.assertAssess()
+            else:
+
+                if self.ruleParam == {}:
+                    # 正无参
                     self.d_param = self.ruleParam
                     self.testRules()
-            else:
-                # 正无参、正有参
-                self.d_param = self.ruleParam
-                self.testRules()
+                else:
+                    # 正有参
+                    if Configparser_PO.SWITCH("log") == "on":
+                        Color_PO.outColor([{"35": "self.ruleParam => " + str(self.ruleParam)}])
+                    self.testRules()
+                    self.assertAssess()
 
 
 
@@ -1074,11 +1084,12 @@ class ChcRulePO():
         d_update = {}
         self.ASSESS_ID = ""
         # d_total = {}
+        s11 = Data_PO.getFigures(11)
         for i in range(len(self.sql)):
 
             # 格式化sql
             if "{随机11}" in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
+                self.sql[i] = self.sql[i].replace("{随机11}", s11)
             if '{ruleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
             if '{diseaseRuleCode}' in self.sql[i]:
@@ -1090,8 +1101,8 @@ class ChcRulePO():
                 if len(l_assessRuleCode) == 1:
                     self.sql[i] = self.sql[i].replace("{assessRuleCode}", self.assessRuleCode)
             if "{今天往前一年内的日期}" in self.sql[i]:
-                if '今天往前一年内的日期' in self.d_param:
-                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.d_param['今天往前一年内的日期']))
+                if '今天往前一年内的日期' in self.ruleParam:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam['今天往前一年内的日期']))
                 else:
                     self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(Time_PO.getDateByMinusPeriod(-1)))
             # s1/s2
@@ -1128,26 +1139,22 @@ class ChcRulePO():
             # todo 执行sql
             # sql返回值
             l_d_ = self.runSqls(self.sql[i])
-            # print(666,l_d_)
 
             # 记录步骤日志
             if self.log == "":
-                self.log = str(i + 1) + ", " + self.sql[i]
+                self.log = str(i + 1) + " " + self.sql[i]
             else:
                 if self.rule == 's4':
                     if "{'血脂异常'" in self.sql[i]:
                         if '血脂异常' in self.d_param:
-                            self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+                            self.log = self.log + "\n" + str(i + 1) + " " + self.sql[i]
                     else:
-                        self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+                        self.log = self.log + "\n" + str(i + 1) + " " + self.sql[i]
                 else:
-                    # print(4444,self.d_param)
-                    # print(5555,self.ASSESS_ID)
-                    if 'self.i_startAssess2' in self.sql[i]:
-                        self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i] + " => ASSESS_ID = " + str(self.ASSESS_ID)
-                    else:
-                        self.log = self.log + "\n" + str(i + 1) + ", " + self.sql[i]
+                    self.log = self.log + "\n" + str(i + 1) + " " + self.sql[i]
 
+                    if 'self.i_startAssess2' in self.sql[i]:
+                        self.log = self.log + "\n" + "ASSESS_ID = " + str(self.ASSESS_ID)
 
             if l_d_ != None:
                 if isinstance(l_d_, list) and l_d_ != []:
@@ -1165,7 +1172,7 @@ class ChcRulePO():
 
 
         self.log = self.log + "\n" + str(self.d_param)
-        # return d_total
+
 
 
     def assertS1(self):
@@ -1208,34 +1215,55 @@ class ChcRulePO():
             Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
             Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
 
+    def _assertAssessOk(self):
 
+        Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
+        Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+        self.log = (self.log).replace("'", "''")
+        Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
+        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+    def _assertAssessErr(self):
 
-    def assertAssess(self, result):
+        Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+        Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
+        print(self.log)
+        self.log = (self.log).replace("'", "''")
+        Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
+        Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+        Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
+        Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
+        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+
+    def assertAssess(self):
 
         if Configparser_PO.SWITCH("log") == "on":
             Color_PO.outColor([{"35": "self.d_param => " + str(self.d_param)}])
 
         if self.case != 'negative':
             # 正向
-            if self.d_param["result"] == result:
-                Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
-                Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
-                self.log = (self.log).replace("'", "''")
-                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+
+            if 'result2' in self.d_param:
+                if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']) and str(self.d_param["result2"]) == str(self.ruleParam['result2']):
+                    self._assertAssessOk()
+                else:
+                    self._assertAssessErr()
+            elif 'result1' in self.d_param:
+                if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']):
+                    self._assertAssessOk()
+                else:
+                    self._assertAssessErr()
             else:
-                Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-                Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
-                print(self.log)
-                self.log = (self.log).replace("'", "''")
-                Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
-                Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
-                Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-            Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-            Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+                if str(self.d_param["result"]) == str(self.ruleParam['result']):
+                    self._assertAssessOk()
+                else:
+                    self._assertAssessErr()
+
+
 
         elif self.case == 'negative':
             # 反向
-            if self.d_param["result"] == None:
+            if str(self.d_param["result"]) == str(self.ruleParam['result']):
                 Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
                 Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
                 self.log = (self.log).replace("'", "''")
