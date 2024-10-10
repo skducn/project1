@@ -4,13 +4,13 @@
 <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="description" content="Laus - Dropdown & Hamburger Menu">
-    <meta name="keywords" content="menu,responsive menu,navbar menu,navigation menu,hamburger menu,dropdown menu">
-    <meta name="author" content="Yucel Yilmaz">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-
+    {%  if get_current_ip == '127.0.0.1:5000' %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+    {% else %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
+    {%  endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
@@ -41,15 +41,11 @@
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 
-    <title>CHC - 社区健康自动化规则测试</title>
+    <title>CHC - 社区健康自动化规则测试{{ get_current_ip }}</title>
 </head>
 
 <body data-spy="scroll" data-target="#fixedNavbar">
 
-
-    <!--// Sign Up Form End //-->
-
-    <!--// Login Form Start //-->
 
 
     <!--// Header Start //-->
@@ -122,7 +118,7 @@
                         <div class="hero-section-inner text-center">
                             <h1>CHC</h1>
                             <h2>社区健康规则自动化测试</h2>
-                            <p>CHC a page, a full responsive menu that you can use in your portfolio and designs</p>
+                            <p>CHC a page, Automated testing of community health rules</p>
                             <div class="button-center">
                             </div>
                         </div>
@@ -152,7 +148,8 @@
                         <div class="a5 md:a2u af"><div class="a3u">
                         <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                         <select  id="queryRuleName" name="queryRuleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                        <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>
+                         <option value="none" selected>请选择...</option>
+{#                            <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>#}
 {#                        <option value="{{ memory }}" selected>{{ memory }}</option>#}
                         {% for ruleName in ruleName[0:] %}
                         <option value="{{ruleName}}">{{ruleName}}</option>
@@ -209,7 +206,8 @@
                         <div class="a5 md:a2u af"><div class="a3u">
                             <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                            <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>
+                             <option value="none" selected>请选择...</option>
+{#                                <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>#}
 {#                            <option value="{{ memory }}" selected>{{ memory }}</option>#}
                             {% for ruleName in ruleName[0:] %}
                             <option value="{{ruleName}}">{{ruleName}}</option>
@@ -281,8 +279,9 @@
                         <div class="a5 md:a2u af"><div class="a3u">
                             <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                            <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>
-                            {% for ruleName in ruleName[1:] %}
+                             <option value="none" selected>请选择...</option>
+{#                                <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>#}
+                            {% for ruleName in ruleName[0:] %}
                             <option value="{{ruleName}}">{{ruleName}}</option>
                             {% endfor %}
                             </select>

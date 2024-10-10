@@ -8,8 +8,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ ruleName }} </title>
+{%  if get_current_ip == '127.0.0.1:5000' %}
     <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-
+    {% else %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
+    {%  endif %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
 

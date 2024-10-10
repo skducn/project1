@@ -4,15 +4,15 @@
 <head>
     <!-- Meta Tags -->
     <meta charset="UTF-8">
-    <meta name="description" content="Laus - Dropdown & Hamburger Menu">
-    <meta name="keywords" content="menu,responsive menu,navbar menu,navigation menu,hamburger menu,dropdown menu">
-    <meta name="author" content="Yucel Yilmaz">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{{ id }} - {{ ruleName }}</title>
-
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+{%  if get_current_ip == '127.0.0.1:5000' %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+    {% else %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
+    {%  endif %}
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
@@ -57,50 +57,37 @@
 <script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
 <script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
 
-<script>
-    $(document).ready(function() {
-    new jBox('Modal', {
-  attach: '#Modal-1',
-  height: 600,
-  title: '{{ruleName}}',
-  content: '<div style="line-height: 30px;">' +
-      '{{a | tojson}}<br></div>'
-    });
-  })
-</script>
 
 <body data-spy="scroll" data-target="#fixedNavbar">
 
-
-    <!--// Sign Up Form End //-->
-
-    <!--// Login Form Start //-->
 
 
     <!--// Header Start //-->
     <header class="header fixed-top white-navbar">
         <div class="container">
             <nav class="navbar navbar-expand-lg p-0">
-                <a class="navbar-brand" href="">
-{#                    <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo White" class="img-fluid logo-transparent">#}
+                <a class="navbar-brand" href="/index">
+                    <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo White" class="img-fluid logo-transparent">
                     <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo Normal" class="img-fluid logo-normal">
                 </a>
-
 
                 <div class="collapse navbar-collapse main-menu justify-content-end" id="fixedNavbar">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#" data-scroll-nav="3">查询SQL</a>
+                            <a class="nav-link menu-link" href="#" data-scroll-nav=1">查询SQL</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#" data-scroll-nav="2">编辑规则</a>
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="1">查询表结构</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="3">编辑规则</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#" data-scroll-nav="6">规则名列表</a>
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="4">规则名列表</a>
                         </li>
                         <li class="nav-item">
-                        <a onclick="goHome()"  class="nav-link menu-link" href="#" ><i class="el-icon-s-home"></i>&nbsp;登出</a>
+                        <a onclick="goHome()" class="nav-link menu-link" href="#" ><i class="el-icon-s-home"></i>&nbsp;登出</a>
                         </li>
 
                     </ul>
@@ -115,10 +102,13 @@
     <main class="main-area">
 
 
-        <!-- 4 查询sql -->
+    <!-- 查询sql -->
     <!--// Features Section End //-->
-        <section class="features section pb-minus-70" data-scroll-index="3">
+    <br><br>
+        <section class="features section pb-minus-70" data-scroll-index="1">
             <div class="container">
+            <div class="row">
+            <div class="col-lg-6">
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
@@ -131,14 +121,48 @@
 
                 <div class="a5 md:a2u af">
                 <div class="a3u">
-                <input type="text" name="querySql" id="querySql" maxlength="150" placeholder="如：select step from a_pingguyinsuquzhi where id=4" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                <textarea name="querySql" id="querySql" rows="3" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+
+{#                <input type="text" name="querySql" id="querySql" maxlength="150" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
                 </div>
                 </div>
 
                 <div class="a5 af"><div class="a2g">
                 <button id="queryRecord" class="el-button el-button--primary">查询</button>
                 </div></div>
+            </div>
 
+                <div class="col-lg-6">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="section-heading">
+                        <h2 class="section-title"><i class="el-icon-search"></i> 查询表结构</h2>
+                    </div>
+                </div>
+            <!--// .col //-->
+            </div>
+
+            <table>
+                {% for k,v in d_tbl.items() %}
+                <tr>
+                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>
+                <script>
+                $(document).ready(function() {
+                new jBox('Modal', {
+                attach: '#{{ k }}',
+                height: 600,
+                title: '{{k}}',
+                content: '<div style="line-height: 30px;">' +
+                '{{v | tojson}}<br></div>'
+                });
+                })
+                </script>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+            </div>
             </div>
             <!--// .container //-->
         </section>
@@ -146,22 +170,9 @@
 
 
 
-    <table id="tfhover" class="tftable" border="1">
-    <tr>
-    <td nowrap="nowrap" id="Modal-1" class="target-click">weqwewqeqweqwewqe</td>
-    </tr>
-
-          {% for item in a %}
-                <td style="width:100px;overflow:hidden">{{ item }}</td>
-
-            </tr>
-        {% endfor %}
-    </table>
-
-
-
+        <!-- 编辑规则 -->
         <!--// About Section Start //-->
-        <section class="section" data-scroll-index="2">
+        <section class="section" data-scroll-index="3">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
@@ -173,106 +184,96 @@
                 </div>
                 <!--// .row //-->
 
-              {% if d_field %}
+                {% if d_field %}
+                    {% if  d_field['result']  == 'ok' %}
+                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
+                        <pre1>{{ d_field['result'] }}</pre1> <br><br>
 
-{% if  d_field['result']  == 'ok' %}
+                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+                        <pre1>{{d_field['step']}}</pre1> <br>
+                        <pre1>{{d_field['eachStep']}}</pre1> <br>
+                    {% else %}
+                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
+                        <pre2>{{ d_field['result'] }}</pre2> <br><br>
 
-    <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
-    <pre1>{{ d_field['result'] }}</pre1> <br><br>
+                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+                        <pre2>{{d_field['step']}}</pre2> <br>
+                        <pre2>{{d_field['eachStep']}}</pre2> <br>
+                    {%  endif %}
 
-    <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-    <pre1>{{d_field['step']}}</pre1> <br>
-    <pre1>{{d_field['eachStep']}}</pre1> <br>
-{% else %}
-    <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
-    <pre2>{{ d_field['result'] }}</pre2> <br><br>
+                    <div class="louti"></div>
 
-    <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-    <pre2>{{d_field['step']}}</pre2> <br>
-    <pre2>{{d_field['eachStep']}}</pre2> <br>
-{%  endif %}
+                <!-- 编辑 -->
 
-<div class="louti"></div>
+                <form action="{{ url_for('step')}}" method="post">
+                <div class="a6 a1K ac">
 
-<!-- 编辑 -->
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                <input type="text" readonly name="ruleName" value="{{ d_field['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                </div>
+                </div>
 
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">id</label>
+                <input type="text" readonly name="id" value="{{ d_field['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                </div>
+                </div>
 
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
+                {#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+                <select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                <option value="{{ s_rule }}" selected>{{ s_rule }}</option>
+                {% for s in queryRuleCollection[0:] %}
+                <option value="{{s}}">{{s}}</option>
+                {% endfor %}
+                </select>
+                </div>
+                </div>
 
-<form action="{{ url_for('step')}}" method="post">
-<div class="a6 a1K ac">
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">case</label>
+                <input type="text" name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                </div>
+                </div>
 
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-<input type="text" readonly name="ruleName" value="{{ d_field['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div>
-</div>
+                    <div class="col-md-12">
+                        <div class="box3">
+                        <div id="get_queryRuleCollection"></div>
+                        </div>
+                    </div>
 
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">id</label>
-<input type="text" readonly name="id" value="{{ d_field['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div>
-</div>
+                <div class="a5 md:a2u af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">ruleParam*</label>
+                <textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{d_field['ruleParam']}}</textarea>
+                </div>
+                </div>
 
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
-{#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
-<select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-<option value="{{ s_rule }}" selected>{{ s_rule }}</option>
-{% for s in queryRuleCollection[0:] %}
-<option value="{{s}}">{{s}}</option>
-{% endfor %}
-</select>
-</div>
-</div>
+                <div class="a5 af"><div class="a2g">
+                <button class="el-button el-button--primary">提交</button>
+                </div></div>
+                </div>
+                </form>
 
+                <!-- loading... -->
+                <div id="loading" style="display:none;">
+                <div class="a5 af">
+                <div class="aJ[510px] a2f a2g a3p wow fadeInUp" data-wow-delay=".2s">
+                <div class="a25 aR aT">执行中，请耐心等待...</div>
+                </div>
+                </div>
+                </div>
 
-
-<div class="a5 md:a2u/2 af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">case</label>
-<input type="text" name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div>
-</div>
-
-
-    <div class="col-md-12">
-        <div class="box3">
-        <div id="get_queryRuleCollection"></div>
-        </div>
-    </div>
-
-<div class="a5 md:a2u af">
-<div class="a3u">
-<label for class="al a25 aR a1j dark:a1k a2j">ruleParam*</label>
-<textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{d_field['ruleParam']}}</textarea>
-</div>
-</div>
-
-
-<div class="a5 af"><div class="a2g">
-<button class="el-button el-button--primary">提交</button>
-</div></div>
-</div>
-</form>
-
-
-<!-- loading... -->
-<div id="loading" style="display:none;">
-<div class="a5 af">
-<div class="aJ[510px] a2f a2g a3p wow fadeInUp" data-wow-delay=".2s">
-<div class="a25 aR aT">执行中，请耐心等待...</div>
-</div>
-</div>
-</div>
-
-{% elif error %}
-    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
-    <pre>{{ error }}</pre>
-{% endif %}
-
+                {% elif error %}
+                    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
+                    <pre>{{ error }}</pre>
+                {% endif %}
 
             </div>
             <!--// .container //-->
@@ -281,13 +282,9 @@
 
 
 
-
-
-
-
-
+        <!-- 规则名列表 -->
         <!--// Features Section End //-->
-        <section class="features section pb-minus-70" data-scroll-index="6">
+        <section class="features section pb-minus-70" data-scroll-index="4">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-7">

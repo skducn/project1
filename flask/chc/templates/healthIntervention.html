@@ -6,8 +6,12 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ ruleName }} </title>
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
+{%  if get_current_ip == '127.0.0.1:5000' %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+    {% else %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
+    {%  endif %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
 
 {#<!-- element 引入样式 -->#}
@@ -60,10 +64,8 @@
     width: 20px; /* 复选框的宽度 */
     height: 20px; /* 复选框的高度 */
 }
-
 </style>
 
-{#    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>#}
 
 <script>
 function selectAll(checkAllBox) {
@@ -164,7 +166,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 <form id="checkboxForm">
     {% for item in data %}
         <tr><td style="text-align:center; width:50px;overflow:hidden"><input type="checkbox" class="large-checkbox" name='items' value="{{ item.id }}"></td>
-            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}">{{ item.id }}</a></td>
+            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
                 <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>
             {% elif item.result == 'error' %}
@@ -175,7 +177,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
             <td nowrap="nowrap" style="width:150px;overflow:hidden">{{ item.updateDate }}</td>
             <td style="width:50px;overflow:hidden">{{ item.rule }}</td>
             <td style="width:100px;overflow:hidden">{{ item.case }}</td>
-            <td style="width:150px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}">{{ item.ruleParam }}</a></td>
+            <td style="width:150px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.ruleParam }}</a></td>
             <td style="width:150px;overflow:hidden">{{ item.ruleCode }}</td>
             <td style="width:150px;overflow:hidden">{{ item.diseaseRuleCode }}</td>
             <td style="width:150px;overflow:hidden">{{ item.diseaseCodeDesc }}</td>

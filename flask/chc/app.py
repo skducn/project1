@@ -22,6 +22,15 @@ from ChcRulePO import *
 from PO.TimePO import *
 Time_PO = TimePO()
 
+import socket
+def get_current_ip():
+    print(socket.gethostbyname(socket.getfqdn(socket.gethostname())))
+
+    # 获取本机主机名
+    hostname = socket.gethostname()
+    # 根据主机名获取本机IP地址
+    ip_address = socket.gethostbyname(hostname)
+    return ip_address
 
 app = Flask(__name__)
 # 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
@@ -80,6 +89,7 @@ def homepage():
 
 @app.route('/index')
 def index():
+    print(get_current_ip)
     session_value = request.cookies.get('session')
     # print(session_value)
     # print(session['logged_in'])
@@ -91,7 +101,7 @@ def index():
         l_t_value = cursor.fetchall()
         # print(l_t_value)
         # print(l_t_value[0][0])
-        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName,memory=l_t_value[0][0])
+        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName,memory=l_t_value[0][0],get_current_ip=get_current_ip())
     else:
         return render_template('pin.html')
 
@@ -339,19 +349,17 @@ def edit123():
     for i in l_t_rows:
         l_testRule.append(i[0])
 
-    # 获取步骤中表名
+    # 从step步骤中获取表名
     # print(l_d_all[0]['step'])
     l_tableName = re.findall(r"from\s(\w+)\swhere", l_d_all[0]['step'], re.I)
-    print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+    # print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+    # 获取表结构
+    d_tbl = {}
+    for i in l_tableName:
+        s_desc = Sqlserver_PO.desc2(i)
+        d_tbl[i] = s_desc
 
-    a = Sqlserver_PO.desc2('T_ASSESS_INFO')
-    print(a)
-    # print(l_d_all)
-    dd = {}
-    dd['TB_PREGNANT_MAIN_INFO'] = "123"
-    dd['T_ASSESS_MATERNAL'] = "456"
-
-    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'],id=id,ruleName=ruleName,l_tableName=l_tableName,a=dd )
+    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName,l_tableName=l_tableName,d_tbl=d_tbl )
     # return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'],id=id,ruleName=ruleName,l_tableName=l_tableName,a=a )
 
 
@@ -371,7 +379,27 @@ def testRule():
             # subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             l_d_all = getFieldValueById(ruleName,id)
             l_d_all[0]['ruleName'] = ruleName
-            return render_template('edit123.html', d_field=l_d_all[0])
+
+            # 获取测试规则
+            l_testRule = []
+            cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" % (ruleName))
+            l_t_rows = cursor.fetchall()
+            for i in l_t_rows:
+                l_testRule.append(i[0])
+
+            # 从step步骤中获取表名
+            # print(l_d_all[0]['step'])
+            l_tableName = re.findall(r"from\s(\w+)\swhere", l_d_all[0]['step'], re.I)
+            # print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+            # 获取表结构
+            d_tbl = {}
+            for i in l_tableName:
+                s_desc = Sqlserver_PO.desc2(i)
+                d_tbl[i] = s_desc
+            # return render_template('edit123.html', d_field=l_d_all[0])
+            return render_template('edit123.html', d_field=l_d_all[0], debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,id=id,ruleName=ruleName,d_tbl=d_tbl)
+            # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl)
+
         except:
             return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
 
@@ -514,8 +542,6 @@ def updateRuleCollection():
         print(ruleName,ruleCollection)
         # print(sql)
 
-
-
         if ruleCollection != '' and sql != '':
             l_ = sql.split("\n")
             l2 = [i.replace('\r', '') for i in l_]
@@ -596,7 +622,25 @@ def step():
         rows = cursor.fetchall()
         d_["result"] = rows[0][0]
         d_["step"] = rows[0][1]
-        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'])
+
+        # 获取测试规则
+        l_testRule = []
+        cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" % (d_['ruleName']))
+        l_t_rows = cursor.fetchall()
+        for i in l_t_rows:
+            l_testRule.append(i[0])
+
+        # 从step步骤中获取表名
+        # print(l_d_all[0]['step'])
+        l_tableName = re.findall(r"from\s(\w+)\swhere", d_["step"], re.I)
+        # print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+        # 获取表结构
+        d_tbl = {}
+        for i in l_tableName:
+            s_desc = Sqlserver_PO.desc2(i)
+            d_tbl[i] = s_desc
+
+        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl)
 
 
 

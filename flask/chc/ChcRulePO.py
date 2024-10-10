@@ -498,11 +498,13 @@ class ChcRulePO():
 
         # 执行sql
 
-        if 'self.i_startAssess2' in varSql:
+        if '--' in varSql:
+            ...
+        elif 'self.i_startAssess2' in varSql:
             self.ASSESS_ID = eval(varSql)
-        elif 'self.assert1' in varSql:
-            self.log = self.log + "\n" + varSql
-            eval(varSql)
+        # elif 'self.assert1' in varSql:
+        #     self.log = self.log + "\n" + varSql
+        #     eval(varSql)
         else:
             varPrefix = varSql.split(" ")[0]
             varPrefix = varPrefix.lower()
@@ -1105,6 +1107,18 @@ class ChcRulePO():
                     self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam['今天往前一年内的日期']))
                 else:
                     self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(Time_PO.getDateByMinusPeriod(-1)))
+            if "{今天往前一年内的日期1}" in self.sql[i]:
+                if '今天往前一年内的日期1' in self.ruleParam:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam['今天往前一年内的日期1']))
+            if "{今天往前一年内的日期2}" in self.sql[i]:
+                if '今天往前一年内的日期2' in self.ruleParam:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期2}', str(self.ruleParam['今天往前一年内的日期2']))
+            if "{今天往前一年内的日期3}" in self.sql[i]:
+                if '今天往前一年内的日期3' in self.ruleParam:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期3}', str(self.ruleParam['今天往前一年内的日期3']))
+            if "{今天往前一年内的日期4}" in self.sql[i]:
+                if '今天往前一年内的日期4' in self.ruleParam:
+                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期4}', str(self.ruleParam['今天往前一年内的日期4']))
             # s1/s2
             if '{VISITTYPECODE}' in self.sql[i]:
                 self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
@@ -1278,5 +1292,6 @@ class ChcRulePO():
                 Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
             Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
             Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+
 
 

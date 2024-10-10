@@ -230,7 +230,7 @@ def insert_TB_DC_DM_VISIT():
 
 # 孕产妇信息表
 # Sqlserver_PO.desc('T_ASSESS_INFO')
-a = Sqlserver_PO.desc2('T_ASSESS_INFO')
+a = Sqlserver_PO.desc2('TB_DC_EXAMINATION_INFO')
 print(a)
 # UPDATE TB_DC_EXAMINATION_INFO set TRIGLYCERIDE=2.3 WHERE EMPIGUID='65209815'
 

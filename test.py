@@ -15,18 +15,32 @@ a = "1 select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '520300198802242314'
 # 4 DELETE FROM TB_PREGNANT_MAIN_INFO WHERE ZJHM ='520300198802242314'
 # 5 DELETE FROM TB_DC_HTN_VISIT WHERE CARDID ="
 # a = "INSERT INTO [dbo].[TB_PREGNANT_MAIN_INFO] ([YCFID], [JCH], [XM], [ZJHM], [CSRQ], [MCYJ], [SG], [YQTZ], [SSY], [SZY], [LRRQ], [JCRQ], [GLSQ], [CJSJ]) VALUES ('{随机11}', '13', '张美丽','520300198802242314', '2016-12-02', '2024-08-08', 168.00, 67.00, '123', '67', '2024-09-12', '2024-09-14', '2024-01-12','{昨天日期}')"
+#
+# import re
+# # b = a.lower()
+# # b.split()
+#
+# # print(b)
+#
+# # text = "This is a test sentence with words in between"
+# pattern = r"from\s(\w+)\swhere"
+# matches = re.findall(pattern, a, re.I)
+# print(matches)
 
-import re
-# b = a.lower()
-# b.split()
+import socket
 
-# print(b)
+print(socket.gethostbyname(socket.getfqdn(socket.gethostname())))
 
-# text = "This is a test sentence with words in between"
-pattern = r"from\s(\w+)\swhere"
-matches = re.findall(pattern, a, re.I)
-print(matches)
 
+def get_current_ip():
+
+    # 获取本机主机名
+    hostname = socket.gethostname()
+    # 根据主机名获取本机IP地址
+    ip_address = socket.gethostbyname(hostname)
+    return ip_address
+
+print(get_current_ip())
 
 # a = {'MCYJ': '123'}
 # b = {'hello': '456'}
