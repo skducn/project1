@@ -773,6 +773,8 @@ class ChcRulePO():
             else:
                 self.assessDesc = l_d_rows[0]['assessDesc']
                 l_assessDesc = self.assessDesc.split(",")
+                print(11,self.assessDesc)
+                print(22,l_assessDesc)
                 for i in l_assessDesc:
                     s_assessValue = self.getRandomAssessValuebyName(i)
                     if self.rule == 's4' and i == '血脂异常':
@@ -1022,6 +1024,7 @@ class ChcRulePO():
 
         # 获取疾病取值判断中 评估名对应的值
         l_d_ = Sqlserver_PO.select("select assessValue from a_jibingquzhipanduan where assessName='%s'" % (assessName))
+        print(l_d_)
         l_assessValue = l_d_[0]['assessValue'].split(",")
         return random.sample(l_assessValue, 1)[0]
 
@@ -1138,7 +1141,8 @@ class ChcRulePO():
                 self.sql[i] = str(self.sql[i]).replace('{ASSESS_ID}', str(self.ASSESS_ID))
 
 
-            # # todo 输出sql
+
+            # todo 输出sql
             if Configparser_PO.SWITCH("log") == "on":
                 if self.rule == 's4':
                     if "{'血脂异常'" in self.sql[i]:
@@ -1149,10 +1153,6 @@ class ChcRulePO():
                 else:
                     print(str(i + 1) + ", " + self.sql[i])
 
-
-            # todo 执行sql
-            # sql返回值
-            l_d_ = self.runSqls(self.sql[i])
 
             # 记录步骤日志
             if self.log == "":
@@ -1167,8 +1167,13 @@ class ChcRulePO():
                 else:
                     self.log = self.log + "\n" + str(i + 1) + " " + self.sql[i]
 
-                    if 'self.i_startAssess2' in self.sql[i]:
-                        self.log = self.log + "\n" + "ASSESS_ID = " + str(self.ASSESS_ID)
+
+            # todo 执行sql
+            # sql返回值
+            l_d_ = self.runSqls(self.sql[i])
+
+            if 'self.i_startAssess2' in self.sql[i]:
+                self.log = self.log + "\n" + "ASSESS_ID = " + str(self.ASSESS_ID)
 
             if l_d_ != None:
                 if isinstance(l_d_, list) and l_d_ != []:

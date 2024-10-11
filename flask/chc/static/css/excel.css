@@ -103,66 +103,65 @@ line-height: 2rem;
     #loutinav {
         width: 300px;
         position: fixed;
-        top: 40%;
-        left: 300px;
-        /*border: 1px solid #ddd;*/
+        top: 55%;
+        left: 30%;
         display: none;
         /*background: #F8F8FF;*/
         padding-bottom:2px;
         border-radius:5px;
     }
 
-    #loutinav ul li {
-        width: 300px;
-        height: 52px;
-        /*border-bottom: 1px dotted #F8F8FF;*/
-        list-style: none;
-        font-size: 12px;
-        text-align: left;
-        position: relative;
-        cursor: pointer;
-        padding: 10px 0;
-        /*background: #F8F8FF;*/
-        color: #050505;
+    /*#loutinav ul li {*/
+    /*    width: 300px;*/
+    /*    height: 52px;*/
+    /*    !*border-bottom: 1px dotted #F8F8FF;*!*/
+    /*    list-style: none;*/
+    /*    font-size: 12px;*/
+    /*    text-align: left;*/
+    /*    position: relative;*/
+    /*    cursor: pointer;*/
+    /*    padding: 10px 0;*/
+    /*    !*background: #F8F8FF;*!*/
+    /*    color: #050505;*/
 
-    }
+    /*}*/
 
-    #loutinav ul li span {
-        width: 300px;
-        height: 32px;
-        padding: 10px 0;
-        position: absolute;
-        top: 0;
-        left: 0;
+    /*#loutinav ul li span {*/
+    /*    width: 300px;*/
+    /*    height: 32px;*/
+    /*    padding: 10px 0;*/
+    /*    position: absolute;*/
+    /*    top: 0;*/
+    /*    left: 0;*/
 
-    }
+    /*}*/
 
-    #loutinav ul li.last {
-        /*background: #F8F8FF;*/
-        color: #050505;
-        /*border-bottom: 1px solid #ddd;*/
-    }
+    /*#loutinav ul li.last {*/
+    /*    !*background: #F8F8FF;*!*/
+    /*    color: #050505;*/
+    /*    !*border-bottom: 1px solid #ddd;*!*/
+    /*}*/
 
-    #loutinav ul li.active span {
-        /*background: #c00;*/
-        color: #050505;
-        display: block;
+    /*#loutinav ul li.active span {*/
+    /*    !*background: #c00;*!*/
+    /*    color: #050505;*/
+    /*    display: block;*/
 
-    }
+    /*}*/
 
-    #loutinav ul li:hover span {
-        /*background: #00BFFF;*/
-        color: #fff;
-        display: block;
-        border-radius:5px;
-    }
+    /*#loutinav ul li:hover span {*/
+    /*    !*background: #00BFFF;*!*/
+    /*    color: #fff;*/
+    /*    display: block;*/
+    /*    border-radius:5px;*/
+    /*}*/
 
 
     #loutinav2 {
         width: 150px;
         position: fixed;
-        top: 40%;
-        right: 350px;
+        top: 55%;
+        right: 35%;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/

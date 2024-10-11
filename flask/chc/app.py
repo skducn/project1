@@ -22,15 +22,7 @@ from ChcRulePO import *
 from PO.TimePO import *
 Time_PO = TimePO()
 
-import socket
-def get_current_ip():
-    print(socket.gethostbyname(socket.getfqdn(socket.gethostname())))
 
-    # 获取本机主机名
-    hostname = socket.gethostname()
-    # 根据主机名获取本机IP地址
-    ip_address = socket.gethostbyname(hostname)
-    return ip_address
 
 app = Flask(__name__)
 # 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
@@ -83,13 +75,14 @@ for i in l_t_rows:
 # scheduler.start()
 
 
+system = os.uname().sysname
+
 @app.route('/')
 def homepage():
-    return render_template('pin.html')
+    return render_template('pin.html', system=os.uname().sysname)
 
 @app.route('/index')
 def index():
-    print(get_current_ip)
     session_value = request.cookies.get('session')
     # print(session_value)
     # print(session['logged_in'])
@@ -101,9 +94,9 @@ def index():
         l_t_value = cursor.fetchall()
         # print(l_t_value)
         # print(l_t_value[0][0])
-        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName,memory=l_t_value[0][0],get_current_ip=get_current_ip())
+        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName,memory=l_t_value[0][0], system=os.uname().sysname)
     else:
-        return render_template('pin.html')
+        return render_template('pin.html', system=system)
 
 
 
@@ -159,13 +152,12 @@ def login():
             session['logged_in'] = True
             # 重定向用户到欢迎页面
             # return redirect(url_for('welcome'))
-            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule,
-                               queryErrorRuleId=l_ruleName)
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName, system=system)
         else:
             # 如果用户名或密码错误，返回错误信息
             return 'Invalid username or password'
     # 如果请求方法为 GET，返回包含用户名和密码输入框的登录表单
-    return render_template('login.html')
+    return render_template('login.html', system=system)
 
 
 # 定义 '/welcome' 路由，用于欢迎已登录的用户
@@ -243,6 +235,9 @@ def getFieldValue(ruleName):
     return l_d_all
 
 def getFieldValueById(ruleName, id):
+
+    # 获取一行记录数据
+
     l_field = []
     l_d_all = []
     # 获取字段列表
@@ -267,7 +262,7 @@ def getFieldValueById(ruleName, id):
     return l_d_all
 
 
-# todo 获取测试规则
+# todo 打开规则列表页
 @app.route('/list123/<ruleName>')
 def list123(ruleName):
     session_value = request.cookies.get('session')
@@ -287,10 +282,9 @@ def list123(ruleName):
             c = c + '<br>' + i[0] + s + '<br>'
         # print(c)
         if ruleName == '评估因素取值':
-            return render_template('assessFactor.html', data=getFieldValueByStep(ruleName), ruleName=ruleName, l_ruleSql=c)
+            return render_template('assessFactor.html', data=getFieldValueByStep(ruleName), ruleName=ruleName, l_ruleSql=c, system=system)
         else:
-            return render_template('healthIntervention.html', data=getFieldValue(ruleName), ruleName=ruleName, l_ruleSql=c)
-
+            return render_template('healthIntervention.html', data=getFieldValue(ruleName), ruleName=ruleName, l_ruleSql=c, system=system)
 
 
 @app.route('/submitId', methods=['POST'])
@@ -359,7 +353,7 @@ def edit123():
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl[i] = s_desc
 
-    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName,l_tableName=l_tableName,d_tbl=d_tbl )
+    return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName,l_tableName=l_tableName,d_tbl=d_tbl, system=system )
     # return render_template('edit123.html', d_field=l_d_all[0], queryRuleCollection=l_testRule, s_rule=l_d_all[0]['rule'],id=id,ruleName=ruleName,l_tableName=l_tableName,a=a )
 
 
@@ -396,12 +390,12 @@ def testRule():
             for i in l_tableName:
                 s_desc = Sqlserver_PO.desc2(i)
                 d_tbl[i] = s_desc
-            # return render_template('edit123.html', d_field=l_d_all[0])
-            return render_template('edit123.html', d_field=l_d_all[0], debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,id=id,ruleName=ruleName,d_tbl=d_tbl)
-            # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl)
+            # return render_template('edit123.html', d_field=l_d_all[0], system=system)
+            return render_template('edit123.html', d_field=l_d_all[0], debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=l_d_all[0]['rule'],id=id,ruleName=ruleName,d_tbl=d_tbl, system=system)
+            # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl, system=system)
 
         except:
-            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName, system=system)
 
 
             # try:
@@ -423,7 +417,7 @@ def testRule():
             # except:
             #     return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，非法id！', queryErrorRuleId=l_ruleName)
     else:
-        return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule='error，id不能为空！', queryErrorRuleId=l_ruleName)
+        return render_template('index.html', ruleName=l_ruleName, output_testRule='error，id不能为空！', queryErrorRuleId=l_ruleName, system=system)
 
 
 # todo 2 查询错误规则的记录
@@ -531,6 +525,51 @@ def get_queryRuleCollection():
     return jsonify(response_data)
 
 
+@app.route('/get_queryResult')
+def get_queryResult():
+    value = request.args.get('value')
+    print(value)
+    l_1 = value.split(",")
+    print(l_1)
+
+    # # ？？？
+    # # 获取一行记录数据
+    # l_field = []
+    # l_d_all = []
+    # # 获取字段列表
+    # cursor.execute(
+    #     "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+    # l_t_field = cursor.fetchall()
+    # for i in l_t_field:
+    #     l_field.append(i[0])
+    # # 获取所有值
+    # cursor.execute("select * from %s where id=%s" % (d_ruleName[ruleName], id))
+    # # cursor.execute("select * from %s where [rule] != '' and id=%s" % (d_ruleName[ruleName], id))
+    # l_t_value = cursor.fetchall()
+    # for i, l_v in enumerate(l_t_value):
+    #     # 将字段呢值None改为空
+    #     l_tmp = []
+    #     for j in l_v:
+    #         if j == None:
+    #             j = ''
+    #         l_tmp.append(j)
+    #     t_value = tuple(l_tmp)
+    #     d_ = dict(zip(l_field, list(t_value)))
+    #     l_d_all.append(d_)
+    # return l_d_all
+
+    # cursor.execute("select ruleName, [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
+    # cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
+    # rows = cursor.fetchall()
+    # data = ""
+    # # data = data + rows[0][0] + "\n\n"
+    # for row in rows:
+    #     data = data + str(row[0]) + "\n"
+    # # print(data)
+    # response_data = {
+    #     'text': data
+    # }
+    return jsonify(selected_value)
 
 # todo 6 更新规则集
 @app.route('/updateRuleCollection', methods=['POST'])
@@ -572,9 +611,9 @@ def updateRuleCollection():
             l_testRule1 = []
             for i in l_t_rows:
                 l_testRule1.append(i[0])
-            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName)
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
         else:
-            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule3='error，rule集或sql不能为空！', queryErrorRuleId=l_ruleName)
+            return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule, output_testRule3='error，rule集或sql不能为空！', queryErrorRuleId=l_ruleName, system=system)
 
 
 
@@ -594,7 +633,7 @@ def debugParam():
         result = subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, str(id)], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         result = result.stdout.replace("<br>", '')
         print(result)
-        return render_template('result.html', output_testRule={"ruleName":ruleName, "id": id, "ruleCode":ruleCode, "ruleParam": ruleParam, "result":result}, debugRuleParam_testRule=l_testRule)
+        return render_template('result.html', output_testRule={"ruleName":ruleName, "id": id, "ruleCode":ruleCode, "ruleParam": ruleParam, "result":result}, debugRuleParam_testRule=l_testRule, system=system)
 
 
 # todo 编辑步骤
@@ -640,7 +679,7 @@ def step():
             s_desc = Sqlserver_PO.desc2(i)
             d_tbl[i] = s_desc
 
-        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl)
+        return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl, system=system)
 
 
 

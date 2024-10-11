@@ -64,7 +64,6 @@ $("#queryRecord").click(function() {
 
     <!-- 5 查询规则集 -->
 
-
     $('#queryRuleCollection').change(function() {
         var selectedValue = $(this).val();
         $.ajax({
@@ -84,6 +83,27 @@ $("#queryRecord").click(function() {
     });
 
 
+    $('#queryResult').change(function() {
+        var selectedValue = $(this).val();
+        $.ajax({
+            url: '/get_queryResult',
+            type: 'GET',
+            // data: {ruleName: ruleName, value:selectedValue},
+            data: {'value': selectedValue},
+            success: function(data) {
+                var textWithNewLines = data.text.replace(/\n/g, "<br>");
+                // var textWithNewLines = data.text;
+                $('#get_queryResult').html(textWithNewLines);
+                // {#alert(textWithNewLines);#}
+            },
+            error: function(error) {
+                console.error('Error fetching data: ', error);
+            }
+        });
+    });
+
+
+
 
     $('#queryRuleName').change(function() {
         var selectedValue = $(this).val();
@@ -96,11 +116,9 @@ $("#queryRecord").click(function() {
                 for (var i = 1; i < queryRuleCollection.options.length;) {
                 queryRuleCollection.removeChild(queryRuleCollection.options[i]);
                 }
-
                 for (var i = 0; i < response.length; i++) {
                 $("#queryRuleCollection").append("<option>" + response[i] + "</option>");
                 }
-
             },
             error: function(xhr, status, error) {
                 console.log(xhr.responseText);

@@ -161,8 +161,8 @@ line-height: 2rem;
     #loutinav2 {
         /*width: 150px;*/
         position: fixed;
-        top: 30px;
-        right: 240px;
+        top: 50%;
+        right: 20%;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/

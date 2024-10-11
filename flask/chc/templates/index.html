@@ -6,42 +6,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {%  if get_current_ip == '127.0.0.1:5000' %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-    {% else %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
-    {%  endif %}
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    <title>CHC - 社区健康自动化规则测试</title>
+
+{%  if system == 'Linux' %}
+<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+{% else %}
+<link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
+{%  endif %}
+
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">#}
 
-    <!-- Fonts & Icons -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='1/css/all.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='1/css/css.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='1/css/css1.css') }}">
+<!-- Fonts & Icons -->
+{#<link rel="stylesheet" href="{{ url_for('static', filename='1/css/all.css') }}">#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='1/css/css.css') }}">#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='1/css/css1.css') }}">#}
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='1/css/bootstrap.css') }}">
+<!-- Bootstrap -->
+<link rel="stylesheet" href="{{ url_for('static', filename='1/css/bootstrap.css') }}">
 
-    <!-- Animate.Css-->
-    <link rel="stylesheet" href="{{ url_for('static', filename='1/css/animate.min.css') }}">
+<!-- Animate.Css-->
+<link rel="stylesheet" href="{{ url_for('static', filename='1/css/animate.min.css') }}">
+{##}
+{#<!-- Theme Css -->#}
+<link rel="stylesheet" href="{{ url_for('static', filename='1/css/style.css') }}">
 
-    <!-- Theme Css -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='1/css/style.css') }}">
-
-    <!-- 引入样式 -->
+<!-- button -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+{#<script src="https://unpkg.com/element-ui/lib/index.js"></script>#}
 
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
 
 <!--浮动锚点-->
-<script src="{{ url_for('static', filename='css/js.js') }}"></script>
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
-<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
+{#<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>#}
 
-    <title>CHC - 社区健康自动化规则测试{{ get_current_ip }}</title>
 </head>
 
 <body data-spy="scroll" data-target="#fixedNavbar">
@@ -79,7 +80,7 @@
                             <a class="nav-link menu-link" href="#" data-scroll-nav="3">更新规则集</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="#" data-scroll-nav="4">规则测试</a>
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="4">测试</a>
                         </li>
 {#                        <li class="nav-item">#}
 {#                            <a class="nav-link menu-link" href="#" data-scroll-nav="6">规则名列表</a>#}
@@ -266,7 +267,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-7">
                         <div class="section-heading">
-                            <h2 class="section-title">测试规则</h2>
+                            <h2 class="section-title">测试</h2>
                         </div>
                     </div>
                     <!--// .col //-->
@@ -292,7 +293,7 @@
                     <!--// .col //-->
                     <div class="col-md-6">
                         <div class="a5 md:a2u af"><div class="a3u">
-                        <label for class="al a25 aR a1j dark:a1k a2j">id/id区间/状态*</label>
+                        <label for class="al a25 aR a1j dark:a1k a2j">id*</label>
                         <input type="text" name="id" maxlength="10" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                         </div></div>
                     </div>

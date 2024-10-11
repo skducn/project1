@@ -46,7 +46,7 @@
         });
 
         //3.回到顶部
-        $('.last').on('click',function(){
+        $('.top').on('click',function(){
             $('html,body').animate({//$('html,body')兼容问题body属于chrome
                 scrollTop:0
             })
