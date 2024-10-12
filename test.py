@@ -10,7 +10,19 @@
 # ***************************************************************u**
 from collections import Counter
 
-a = "1 select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '520300198802242314'2 DELETE FROM TB_DC_EXAMINATION_INFO WHERE GUID = '16644766'"
+from PO.CharPO import *
+Char_PO = CharPO()
+
+d_ruleName_tbl = {}
+l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
+for i in l_ruleName:
+    d_ruleName_tbl[i] = 'a_' + Char_PO.chinese2pinyin(i)
+
+print(d_ruleName_tbl)
+
+
+
+# a = "1 select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '520300198802242314'2 DELETE FROM TB_DC_EXAMINATION_INFO WHERE GUID = '16644766'"
 # 3 DELETE FROM TB_DC_DM_VISIT  WHERE CARDID = '520300198802242314'
 # 4 DELETE FROM TB_PREGNANT_MAIN_INFO WHERE ZJHM ='520300198802242314'
 # 5 DELETE FROM TB_DC_HTN_VISIT WHERE CARDID ="
@@ -26,21 +38,21 @@ a = "1 select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '520300198802242314'
 # pattern = r"from\s(\w+)\swhere"
 # matches = re.findall(pattern, a, re.I)
 # print(matches)
-
-import socket
-
-print(socket.gethostbyname(socket.getfqdn(socket.gethostname())))
-
-
-def get_current_ip():
-
-    # 获取本机主机名
-    hostname = socket.gethostname()
-    # 根据主机名获取本机IP地址
-    ip_address = socket.gethostbyname(hostname)
-    return ip_address
-
-print(get_current_ip())
+#
+# import socket
+#
+# print(socket.gethostbyname(socket.getfqdn(socket.gethostname())))
+#
+#
+# def get_current_ip():
+#
+#     # 获取本机主机名
+#     hostname = socket.gethostname()
+#     # 根据主机名获取本机IP地址
+#     ip_address = socket.gethostbyname(hostname)
+#     return ip_address
+#
+# print(get_current_ip())
 
 # a = {'MCYJ': '123'}
 # b = {'hello': '456'}

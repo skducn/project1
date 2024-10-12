@@ -7,12 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHC - 社区健康自动化规则测试</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
-{%  if system == 'Linux' %}
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-{% else %}
-<link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
-{%  endif %}
 
 {#<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">#}
 {#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
@@ -41,7 +37,7 @@
 
 <!--浮动锚点-->
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
-{#<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>#}
+<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 
 </head>
 
@@ -150,10 +146,8 @@
                         <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                         <select  id="queryRuleName" name="queryRuleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                          <option value="none" selected>请选择...</option>
-{#                            <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>#}
-{#                        <option value="{{ memory }}" selected>{{ memory }}</option>#}
-                        {% for ruleName in ruleName[0:] %}
-                        <option value="{{ruleName}}">{{ruleName}}</option>
+                        {% for i in global_d_['ruleName'][0:] %}
+                        <option value="{{i}}">{{i}}</option>
                         {% endfor %}
                         </select>
                         </div></div>
@@ -208,10 +202,8 @@
                             <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                              <option value="none" selected>请选择...</option>
-{#                                <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>#}
-{#                            <option value="{{ memory }}" selected>{{ memory }}</option>#}
-                            {% for ruleName in ruleName[0:] %}
-                            <option value="{{ruleName}}">{{ruleName}}</option>
+                            {% for i in global_d_['ruleName'][0:] %}
+                            <option value="{{i}}">{{i}}</option>
                             {% endfor %}
                             </select>
                         </div></div>
@@ -281,9 +273,8 @@
                             <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                              <option value="none" selected>请选择...</option>
-{#                                <option value="{{ruleName[0]}}" selected>{{ruleName[0]}}</option>#}
-                            {% for ruleName in ruleName[0:] %}
-                            <option value="{{ruleName}}">{{ruleName}}</option>
+i                            {% for i in global_d_['ruleName'][0:] %}
+                            <option value="{{i}}">{{i}}</option>
                             {% endfor %}
                             </select>
                         </div></div>

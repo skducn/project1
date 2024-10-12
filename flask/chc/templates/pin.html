@@ -3,15 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <title>pin - CHC</title>
-{%  if system == 'Linux' %}
-<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-{% else %}
-<link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
-{%  endif %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/pin.css') }}">
 
 </head>
+
 <body>
 <!-- partial:index.partial.html -->
 <div id="app">

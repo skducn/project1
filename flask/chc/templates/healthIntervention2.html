@@ -163,9 +163,19 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     <th nowrap="nowrap">id</th>
     <th nowrap="nowrap">结果<br>
     <select onchange="redirectToPage(this);" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-        <option value="all" selected>全部</option>
-        <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
-        <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+        {% if global_d_['resultStatus'] == 'error' %}
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}" selected>error</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='all') }}">全部</option>
+        {% elif global_d_['resultStatus'] == 'ok' %}
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}" selected>ok</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='all') }}">全部</option>
+        {% else %}
+            <option value="{{ url_for('list4',ruleName=ruleName,result='all') }}" selected>全部</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+        {% endif %}
     </select>
     </th>
     <th nowrap="nowrap">测试日期</th>
@@ -184,8 +194,6 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     <th nowrap="nowrap">优先级</th>
     <th nowrap="nowrap">tester</th>
     </tr>
-
-
 
 
 <form id="checkboxForm">

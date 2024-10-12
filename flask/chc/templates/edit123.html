@@ -8,11 +8,8 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>{{ id }} - {{ ruleName }}</title>
-    {%  if system == 'Linux' %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-    {% else %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
-    {%  endif %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
 
 {#<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">#}
 {#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
@@ -184,7 +181,7 @@ setTimeout(function() {
             </div>
 
             <table>
-                {% for k,v in d_tbl.items() %}
+                {% for k,v in global_d_['tblByStep'].items() %}
                 <tr>
                 <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>
                 <script>
@@ -271,7 +268,7 @@ setTimeout(function() {
                 {#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
                 <select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                 <option value="{{ s_rule }}" selected>{{ s_rule }}</option>
-                {% for s in queryRuleCollection[0:] %}
+                {% for s in global_d_['rule'][0:] %}
                 <option value="{{s}}">{{s}}</option>
                 {% endfor %}
                 </select>

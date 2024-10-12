@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
 {## https://www.w3schools.com/css/css3_buttons.asp#}
 {## https://www.bootcss.com/p/buttons/ 各种button #}
 {#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 {#https://tools.wujingquan.com/htmltable/#}
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>{{ ruleName }} </title>
     <meta charset="UTF-8">
     <title>{{ ruleName }}</title>
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
@@ -15,12 +13,11 @@
     <meta http-equiv="Expires" content="0">
     <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
-
 <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
 
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
-<!--浮动锚点-->
-<script src="{{ url_for('static', filename='css/suspend.js') }}"></script>
+<!-- 悬浮按钮 -->
+<script src="{{ url_for('static', filename='css/Suspend.js') }}"></script>
 
 <!--31525 popup-->
 <link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
@@ -63,19 +60,16 @@
 table {border-collapse: collapse;width: 95%;}
 th {position: sticky;z-index: 10;top: 0;}
 th, td {border: 1px solid black;padding: 10px;text-align: center;}
-table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #bcaf91;border-collapse: collapse;}
-table.tftable th {font-size:14px;background-color:#ded0b0;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;text-align:center;}
-table.tftable tr {background-color:#e9dbbb;}
-table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #bcaf91;}
+table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:center;}
+table.tftable tr {background-color:#d4e3e5;}
+table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
 .checkbox {width: 20px;height: 20px;}
 .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
 
 #loutinav {width: 150px;position: fixed;top: 55%;left: 37%;padding-bottom:2px;border-radius:5px;}
 #loutinav2 {width: 150px;position: fixed;top: 55%;right: 35%;padding-bottom:2px;border-radius:5px;}
 </style>
-
-<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 
 <script>
     // 获取所有复选框元素
@@ -129,7 +123,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     this.style.backgroundColor = '#ffffff';
     };
     tbRow[i].onmouseout = function() {
-    this.style.backgroundColor = '#e9dbbb';
+    this.style.backgroundColor = '#d4e3e5';
     };
     }
     };
@@ -157,41 +151,43 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     </div>
 </div>
 
-<table id="tfhover" class="tftable" style="word-wrap:break-word;word-break:break-all;white-space:normal;">
-    <tr>
-    <th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+
+<table id="tfhover" class="tftable" border="1">
+    <tr><th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
     <th nowrap="nowrap">id</th>
     <th nowrap="nowrap">结果<br>
     <select onchange="redirectToPage(this);" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-        <option value="all" selected>全部</option>
-        <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
-        <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+        {% if global_d_['resultStatus'] == 'error' %}
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}" selected>error</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='all') }}">全部</option>
+        {% elif global_d_['resultStatus'] == 'ok' %}
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}" selected>ok</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='all') }}">全部</option>
+        {% else %}
+            <option value="{{ url_for('list4',ruleName=ruleName,result='all') }}" selected>全部</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+        {% endif %}
     </select>
     </th>
     <th nowrap="nowrap">测试日期</th>
     <th nowrap="nowrap" id="Modal-1" class="target-click"><a href="#">规则集</a></th>
     <th nowrap="nowrap">正反用例</th>
     <th nowrap="nowrap">参数</th>
-    <th nowrap="nowrap">规则</th>
-    <th nowrap="nowrap">干预规则</th>
-    {% if ruleName == '健康干预_已患疾病组合' %}
-        <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=u5ysd7" target="_blank">疾病编码描述</a></th>
-    {% elif ruleName == '健康干预_已患疾病单病' %}
-        <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=nsxhin" target="_blank">疾病编码描述</a></th>
-    {% endif %}
-    <th nowrap="nowrap">评估因素编码</th>
-    <th nowrap="nowrap">评估因素描述</th>
-    <th nowrap="nowrap">优先级</th>
+    <th nowrap="nowrap">分类</th>
+    <th nowrap="nowrap">评估因素名称</th>
+    <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">取值规则</a></th>
     <th nowrap="nowrap">tester</th>
     </tr>
 
-
-
-
 <form id="checkboxForm">
+
     {% for item in data %}
-        <tr><td style="text-align:center; width:50px;overflow:hidden"><input type="checkbox" class="checkbox" name='items' value="{{ item.id }}"></td>
-            <td nowrap="nowrap" style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.id }}</a></td>
+        <tr>
+            <td style="width:50px;overflow:hidden"><input type="checkbox" class="checkbox" name='items' value="{{ item.id }}"></td>
+            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
                 <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>
             {% elif item.result == 'error' %}
@@ -199,16 +195,13 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
             {% else %}
                 <td>{{ item.result }}</td>
             {% endif %}
-            <td nowrap="nowrap" style="width:150px;overflow:hidden">{{ item.updateDate }}</td>
-            <td nowrap="nowrap" style="width:50px;overflow:hidden">{{ item.rule }}</td>
-            <td nowrap="nowrap" style="width:100px;overflow:hidden">{{ item.case }}</td>
-            <td nowrap="nowrap" style="width:150px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.ruleParam }}</a></td>
-            <td style="width:150px;overflow:hidden">{{ item.ruleCode }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.diseaseRuleCode }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.diseaseCodeDesc }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.assessRuleCode }}</td>
-            <td style="width:150px;overflow:hidden">{{ item.assessDesc }}</td>
-            <td style="width:50px;overflow:hidden">{{ item.priority }}</td>
+            <td style="width:100px;overflow:hidden">{{ item.updateDate }}</td>
+            <td style="width:50px;overflow:hidden;">{{ item.rule|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden;">{{ item.case|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>
+            <td style="width:100px;overflow:hidden">{{ item.分类 }}</td>
+            <td style="overflow:hidden">{{ item.评估因素名称 }}</td>
+            <td style="overflow:hidden">{{ item.取值规则 }}</td>
             <td style="width:100px;overflow:hidden">{{ item.tester }}</td>
         </tr>
     {% endfor %}
@@ -219,7 +212,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     <div id="loutinav"><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></div>
     <div id="loutinav2"><div class="top"><button type="button" class="button button-glow button-border button-rounded button-caution">回顶</button></div></div>
 
-    <tr><td colspan="14">
+    <tr><td colspan="11">
     <div class="submitButton">
     <button type="button" onclick="submitForm()" class="button button-glow button-rounded button-raised button-primary">提交</button>
     </div>

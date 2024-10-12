@@ -11,11 +11,8 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    {%  if system == 'Linux' %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
-    {% else %}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='pig.ico') }}"  type="image/x-icon">
-    {%  endif %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
 
@@ -92,7 +89,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     var formData = $('#checkboxForm').serialize();
     $.ajax({
     type: 'POST',
-    url: '/submitStep',
+    url: '/submitId',
     {#dataType:'json',#}
     data: formData,
     success: function(response) {
@@ -131,6 +128,14 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     };
     }
     };
+
+    // select 跳转页面
+    function redirectToPage(select) {
+    var value = select.options[select.selectedIndex].value;
+    if (value !== "") {
+        window.location.href = value;
+    }
+    }
 </script>
 
 </head>
@@ -151,11 +156,17 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 <table id="tfhover" class="tftable" border="1">
     <tr><th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
     <th nowrap="nowrap">id</th>
-    <th nowrap="nowrap">result</th>
-    <th nowrap="nowrap">updateDate</th>
-    <th nowrap="nowrap" id="Modal-1" class="target-click"><a href="#">rule</a></th>
-    <th nowrap="nowrap">case</th>
-    <th nowrap="nowrap">ruleParam</th>
+    <th nowrap="nowrap">结果<br>
+    <select onchange="redirectToPage(this);" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+        <option value="all" selected>全部</option>
+        <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+        <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+    </select>
+    </th>
+    <th nowrap="nowrap">测试日期</th>
+    <th nowrap="nowrap" id="Modal-1" class="target-click"><a href="#">规则集</a></th>
+    <th nowrap="nowrap">正反用例</th>
+    <th nowrap="nowrap">参数</th>
     <th nowrap="nowrap">分类</th>
     <th nowrap="nowrap">评估因素名称</th>
     <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">取值规则</a></th>
@@ -176,7 +187,6 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                 <td>{{ item.result }}</td>
             {% endif %}
             <td style="width:100px;overflow:hidden">{{ item.updateDate }}</td>
-
             <td style="width:50px;overflow:hidden;">{{ item.rule|safe|lower }}</td>
             <td style="width:100px;overflow:hidden;">{{ item.case|safe|lower }}</td>
             <td style="width:100px;overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>

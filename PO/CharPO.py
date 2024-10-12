@@ -135,12 +135,12 @@ if __name__ == "__main__":
     #
     # print("1.2 字节码转中文字符串".center(100, "-"))
     # print(Char_PO.byte2chinese(b"\xe9\x87\x91\xe6\xb5\xa9", "utf-8"))  # 金浩
-    print(Char_PO.byte2chinese(b"\xb2\xfa\xb8\xbe", "GBK"))  # 金浩
+    # print(Char_PO.byte2chinese(b"\xb2\xfa\xb8\xbe", "GBK"))  # 金浩
     # print(Char_PO.byte2chinese(b"\xbd\xf0\xba\xc6", "gbk"))  # 金浩
     #
     # print("1.3 中文转拼音".center(100, "-"))
-    # print(Char_PO.chinese2pinyin("上海市"))  # cengzengxiangyun
-    # print(Char_PO.chinese2pinyin("金浩", True))  # jinhaogaoge
+    print(Char_PO.chinese2pinyin("上海市"))  # shanghaishi
+    print(Char_PO.chinese2pinyin("金浩", True))  # jinhaogaoge
     #
     # print("1.4 中文转拼音（带声调）".center(100, "-"))
     # print(Char_PO.chinese2pinyinTone("金浩"))  # jīn hào
@@ -159,12 +159,12 @@ if __name__ == "__main__":
     #     print(2222)
 
 
-    # print("2.1 获取文本文件的编码".center(100, "-"))
-    print(Char_PO.getFileEncoding("/Users/linghuchong/Downloads/51/Python/project/a.txt"))
-    # {'encoding': 'GB2312', 'confidence': 0.99, 'language': 'Chinese'}
-
-    # print("2.2 获取url的编码".center(100, "-"))
-    print(Char_PO.getHttpEncoding("http://www.baidu.com"))
-    # {'encoding': 'utf-8', 'confidence': 0.99, 'language': ''}
-
-    Char_PO.code2code("/Users/linghuchong/Downloads/51/Python/project/a.txt", "/Users/linghuchong/Downloads/51/Python/project/b.txt")
+    # # print("2.1 获取文本文件的编码".center(100, "-"))
+    # print(Char_PO.getFileEncoding("/Users/linghuchong/Downloads/51/Python/project/a.txt"))
+    # # {'encoding': 'GB2312', 'confidence': 0.99, 'language': 'Chinese'}
+    #
+    # # print("2.2 获取url的编码".center(100, "-"))
+    # print(Char_PO.getHttpEncoding("http://www.baidu.com"))
+    # # {'encoding': 'utf-8', 'confidence': 0.99, 'language': ''}
+    #
+    # Char_PO.code2code("/Users/linghuchong/Downloads/51/Python/project/a.txt", "/Users/linghuchong/Downloads/51/Python/project/b.txt")
