@@ -94,11 +94,11 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     var formData = $('#checkboxForm').serialize();
     $.ajax({
     type: 'POST',
-    url: '/submitId',
+    url: '/submit4',
     {#dataType:'json',#}
     data: formData,
     success: function(response) {
-    window.location.href = "/list123/" + response;
+    window.location.href = "/list4/" + response;
     {#window.location.href = "/list123/评估因素取值";#}
     },
     error: function(xhr, status, error) {
@@ -198,7 +198,8 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 
 <form id="checkboxForm">
     {% for item in data %}
-        <tr><td style="text-align:center; width:50px;overflow:hidden"><input type="checkbox" class="checkbox" name='items' value="{{ item.id }}"></td>
+        <tr>
+            <td style="text-align:center; width:50px;overflow:hidden"><input type="checkbox" class="checkbox" name='id' value="{{ item.id }}"></td>
             <td nowrap="nowrap" style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.id }}</a></td>
             {% if item.result == 'ok' %}
                 <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>
@@ -222,6 +223,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     {% endfor %}
 
     <input type="hidden" name='ruleName' value="{{ ruleName }}">
+    <input type="hidden" name='result' value="{{ global_d_['resultStatus'] }}">
 
     <!-- 悬浮按钮 -->
     <div id="loutinav"><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></div>

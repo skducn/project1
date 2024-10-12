@@ -28,6 +28,11 @@ Time_PO = TimePO()
 from PO.CharPO import *
 Char_PO = CharPO()
 
+from PO.SqlserverPO import *
+Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+
+
 # 数据库
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
@@ -66,8 +71,8 @@ for i in l_ruleName:
     d_ruleName_tbl[i] = 'a_' + Char_PO.chinese2pinyin(i)
 # print(d_ruleName_tbl)  # {'评估因素取值': 'a_pingguyinsuquzhi', '健康干预_已患疾病单病': 'a_jiankangganyu_yihuanjibingdanbing', '健康干预_已患疾病组合': 'a_jiankangganyu_yihuanjibingzuhe'}
 
-d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu",'儿童健康干预': "a_ertongjiankangganyu",
-              "评估因素取值": "a_pingguyinsuquzhi", "健康干预_已患疾病单病":"a_jiankangganyu_yihuanjibingdanbing", "健康干预_已患疾病组合":"a_jiankangganyu_yihuanjibingzuhe"}
+# d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu",'儿童健康干预': "a_ertongjiankangganyu",
+#               "评估因素取值": "a_pingguyinsuquzhi", "健康干预_已患疾病单病":"a_jiankangganyu_yihuanjibingdanbing", "健康干预_已患疾病组合":"a_jiankangganyu_yihuanjibingzuhe"}
 
 
 # 获取测试规则集
@@ -115,6 +120,23 @@ def get_queryRuleCollection():
     }
     return jsonify(response_data)
 
+# todo index 1 及联规则集
+@app.route('/get_queryRuleName')
+def get_queryRuleName():
+    ruleName = request.args.get('value')
+    print(ruleName)
+
+    # cursor.execute("update a_memory set ruleName='%s' where id=1" % (ruleName))
+    # conn.commit()
+
+    # 获取测试规则
+    cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" %(ruleName))
+    l_t_rows = cursor.fetchall()
+    l_testRule = []
+    for i in l_t_rows:
+        l_testRule.append(i[0])
+    print(l_testRule)
+    return l_testRule
 
 # todo index 2 更新规则集
 @app.route('/updateRuleCollection', methods=['POST'])
@@ -210,12 +232,12 @@ def _getRecord(ruleName):
     l_field = []
     l_d_all = []
     # 获取字段列表
-    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName_tbl[ruleName]))
     l_t_field = cursor.fetchall()
     for i in l_t_field:
         l_field.append(i[0])
     # 获取所有值
-    cursor.execute("select * from %s where [rule] != ''" % (d_ruleName[ruleName]))
+    cursor.execute("select * from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
     l_t_value = cursor.fetchall()
     for i, l_v in enumerate(l_t_value):
         # 将字段呢值None改为空
@@ -228,7 +250,7 @@ def _getRecord(ruleName):
         d_ = dict(zip(l_field, list(t_value)))
         l_d_all.append(d_)
 
-    # cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName[ruleName]))
+    # cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
     # l_t_rule = cursor.fetchall()
     # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
 
@@ -243,7 +265,7 @@ def list123(ruleName):
 
         # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
         s = ''
-        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
         l_t_rule = cursor.fetchall()
         # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
         c = ''
@@ -270,14 +292,14 @@ def _getRecordByResult(ruleName, result):
     l_d_all = []
 
     # 获取字段列表
-    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName_tbl[ruleName]))
     l_t_field = cursor.fetchall()
     for i in l_t_field:
         l_field.append(i[0])
 
     # 获取条件result的记录
     if result != 'all' :
-        cursor.execute("select * from %s where result='%s'" % (d_ruleName[ruleName], result))
+        cursor.execute("select * from %s where result='%s'" % (d_ruleName_tbl[ruleName], result))
         l_t_value = cursor.fetchall()
         for i, l_v in enumerate(l_t_value):
             # 将None改为空
@@ -291,7 +313,7 @@ def _getRecordByResult(ruleName, result):
             l_d_all.append(d_)
     else:
         # 获取所有值
-        cursor.execute("select * from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        cursor.execute("select * from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
         l_t_value = cursor.fetchall()
         for i, l_v in enumerate(l_t_value):
             # 将字段呢值None改为空
@@ -319,7 +341,7 @@ def list4(ruleName, result):
 
         # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
         s = ''
-        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName[ruleName]))
+        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
         l_t_rule = cursor.fetchall()
         # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
         c = ''
@@ -354,6 +376,22 @@ def submitId():
             l_d_all = _getRecord(ruleName)
     return ruleName
 
+# todo 规则名列表 - 结果 - 提交
+@app.route('/submit4', methods=['POST'])
+def submit4():
+    l_id = request.form.getlist("id")
+    l_ruleName = request.form.getlist("ruleName")
+    l_result = request.form.getlist("result")
+    ruleName = l_ruleName[0]
+    print(ruleName, l_id, l_result[0])
+    if l_id != []:
+        for id in l_id:
+            r = ChcRulePO(ruleName)
+            r.runId([id])
+            # subprocess.run(['python3', './cli_chcRule_flask.py', ruleName, id], stdout=subprocess.PIPE,stderr=subprocess.PIPE, text=True)
+            l_d_all = _getRecord(ruleName)
+    tmp = ruleName + "/" + l_result[0]
+    return tmp
 
 def _getRecordById(ruleName, id):
 
@@ -362,13 +400,12 @@ def _getRecordById(ruleName, id):
     l_field = []
     l_d_all = []
     # 获取字段列表
-    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName[ruleName]))
+    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName_tbl[ruleName]))
     l_t_field = cursor.fetchall()
     for i in l_t_field:
         l_field.append(i[0])
     # 获取所有值
-    cursor.execute("select * from %s where id=%s" % (d_ruleName[ruleName], id))
-    # cursor.execute("select * from %s where [rule] != '' and id=%s" % (d_ruleName[ruleName], id))
+    cursor.execute("select * from %s where id=%s" % (d_ruleName_tbl[ruleName], id))
     l_t_value = cursor.fetchall()
     for i, l_v in enumerate(l_t_value):
         # 将字段呢值None改为空
@@ -460,13 +497,13 @@ def step():
         d_['ruleParam'] = d_['ruleParam'].replace("'","''").replace("\r","")
         # ruleParam = ruleParam.replace("\r","")
         # ruleParam = ruleParam.replace('&apos;', "'").replace("\r","")
-        cursor.execute("update %s set [rule]='%s',[case]='%s',ruleParam='%s' where id = %s" % (d_ruleName[d_['ruleName']], d_['rule'], d_['case'], d_['ruleParam'], d_['id']))
+        cursor.execute("update %s set [rule]='%s',[case]='%s',ruleParam='%s' where id = %s" % (d_ruleName_tbl[d_['ruleName']], d_['rule'], d_['case'], d_['ruleParam'], d_['id']))
         conn.commit()
         d_['ruleParam'] = d_['ruleParam'].replace("''", "'")
         r = ChcRulePO(d_['ruleName'])
         r.runId([d_['id']])
         # subprocess.run(['python3', './cli_chcRule_flask.py', d_['ruleName'], d_['id']], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-        cursor.execute("select result,step from %s where id = %s" % (d_ruleName[d_['ruleName']], d_['id']))
+        cursor.execute("select result,step from %s where id = %s" % (d_ruleName_tbl[d_['ruleName']], d_['id']))
         rows = cursor.fetchall()
         d_["result"] = rows[0][0]
         d_["step"] = rows[0][1]
@@ -493,6 +530,21 @@ def step():
 
 
 
+# todo 全局检索
+@app.route('/index3')
+def index3():
+
+    return render_template('index3.html', global_d_=global_d_)
+
+# todo 全局检索
+@app.route('/index4', methods=['POST'])
+def index4():
+    if request.method == 'POST':
+        datatype = request.form['datatype']
+        text = request.form['text']
+        print(datatype,text)
+        s = Sqlserver_PO.record('*', datatype, text)
+    return render_template('index4.html', global_d_=global_d_, s=s)
 
 
 if __name__ == '__main__':

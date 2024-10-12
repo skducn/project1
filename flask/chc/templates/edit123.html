@@ -90,7 +90,6 @@ setTimeout(function() {
 <body data-spy="scroll" data-target="#fixedNavbar">
 
 <!-- 遮罩层 -->
-
 <div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
     <div class="containerFlex">
     <svg width="100" height="100" viewBox="0 0 40 60">
@@ -296,7 +295,7 @@ setTimeout(function() {
                 </div>
 
                 <div class="a5 af"><div class="a2g">
-                    <div clss='submitButton'>
+                    <div class='submitButton'>
                     <button class="el-button el-button--primary">提交</button>
                     </div>
                 </div></div>
@@ -306,13 +305,7 @@ setTimeout(function() {
                 </form>
 
                 <!-- loading... -->
-                <div id="loading" style="display:none;">
-{#                <div class="a5 af">#}
-{#                <div class="aJ[510px] a2f a2g a3p wow fadeInUp" data-wow-delay=".2s">#}
-{#                <div class="a25 aR aT">执行中，请耐心等待...</div>#}
-{#                </div>#}
-{#                </div>#}
-                </div>
+                <div id="loading" style="display:none;"></div>
 
                 {% elif error %}
                     <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>

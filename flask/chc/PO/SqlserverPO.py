@@ -167,9 +167,7 @@ from PO.ColorPO import *
 
 Color_PO = ColorPO()
 
-# from PO.FakePO import *
-#
-# Fake_PO = FakePO()
+
 
 from PO.TimePO import *
 
@@ -375,8 +373,8 @@ class SqlServerPO:
             if l_d_[i]['value'] == None:
                 l_comment.append(l_d_[i]['value'])
             else:
-                l_comment.append(l_d_[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
-                # l_comment.append(l_d_[i]['value'].decode(encoding="GBK", errors="strict"))  # encoding="utf-8"
+                # l_comment.append(r[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
+                l_comment.append(l_d_[i]['value'].decode(encoding="GBK", errors="strict"))  # encoding="utf-8"
         return dict(zip(l_table, l_comment))
 
     def getTableComment(self, varTable="all"):
@@ -1405,13 +1403,13 @@ class SqlServerPO:
                             l_columnComment.append(
                                 str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
                         else:
-                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("utf-8")) + " " * (columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
-                            # l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
+                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                        columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
 
                 # 只输出找到字段的表
                 s_value = ''
                 if len(l_columnName) != 0:
-                    s_info = str(k) + "(" + str(d_tableComment[k]) + ") >> " + str(len(l_d_1)) + "个字段<br>"
+                    s_info = str(k) + "(" + str(d_tableComment[k]) + ") >> " + str(len(l_d_1)) + "个字段\n"
                     s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
                              "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
                              "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) + \
@@ -1419,11 +1417,11 @@ class SqlServerPO:
                              "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) + \
                              "非空" + " " * (isNull - len("IS_NULLABLE") + 12) + \
                              "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) + \
-                             "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "<br>"
+                             "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "\n"
 
                     for i in range(len(l_columnName)):
                         s_value = s_value + l_columnName[i] + l_dataType[i] + l_maxLength[i] + l_datetimePrecison[i] + \
-                                  l_numericPrecision[i] + l_isNull[i] + l_columnDefault[i] + l_columnComment[i] + "<br>"
+                                  l_numericPrecision[i] + l_isNull[i] + l_columnDefault[i] + l_columnComment[i] + "\n"
                         # print(l_columnName[i], l_dataType[i], l_maxLength[i], l_datetimePrecison[i],l_numericPrecision[i], l_isNull[i], l_columnDefault[i], l_columnComment[i])
 
                     s_info = s_info + s_value
@@ -1652,7 +1650,7 @@ class SqlServerPO:
                 # 遍历所有表
                 l_d_tbl = self.select("SELECT name as TABLE_NAME FROM SYSOBJECTS WHERE TYPE='U'")
                 # print(l_d_tbl)  # [{'TABLE_NAME': 'TB_RIS_REPORT2'}, {'TABLE_NAME': 'jh_jkpg'}, {'TABLE_NAME': 'jh_jkgy'},,...]
-
+                s = ''
                 for b in range(len(l_d_tbl)):
                     # 获取表的Name和Type
                     dboTable = l_d_tbl[b]['TABLE_NAME']
@@ -1675,27 +1673,30 @@ class SqlServerPO:
                     # print(l_type)  # ['varchar', 'varchar', 'varchar', 'varchar' ...]
 
                     # 遍历所有字段
+
                     for i in range(len(l_field)):
                         l_result = self.select(
                             "select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
                         if len(l_result) != 0:
-                            print("--" * 50)
+                            # print("--" * 50)
                             # Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
                             Color_PO.consoleColor("31", "36",
                                                   str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" +
                                                   d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条 ",
                                                   "")
+                            s = s + "<br>" + str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" + d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条<br>"
 
                             # 输出字段注释
+                            s = s + str(self.getFieldComment(dboTable)) + "<br>"
                             Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
-                            # print(self.getFieldComment(dboTable))
 
                             if varIsRecord == True:
                                 for j in range(len(l_result)):
                                     print(l_result[j])
+                                    s = s + str(l_result[j]) + "<br>"
                                     # print(str(l_result[j]).decode("utf8"))
                                     # print(l_result[j].encode('latin-1').decode('utf8'))
-
+                return s
             elif "*" not in varTable:
                 # 搜索指定表（单表）符合条件的记录.  ，获取列名称、列类别、类注释
                 # 获取表的Name和Type
@@ -1712,10 +1713,11 @@ class SqlServerPO:
                 # print(l_field)  # ['CZRYBM', 'CZRYXM', 'JMXM', 'SJHM', 'SFZH', 'JJDZ',...]
 
                 # 遍历所有字段
+                s = ''
                 for i in range(len(l_field)):
                     l_result = self.select("select * from %s where [%s] like '%s'" % (varTable, l_field[i], varValue))
                     if len(l_result) != 0:
-                        print("--" * 50)
+                        # print("--" * 50)
                         Color_PO.consoleColor("31", "36",
                                               "[result] => " + str(varValue) + " => " + varTable + " => " + l_field[
                                                   i] + " => " + str(len(l_result)) + "条 ", "")

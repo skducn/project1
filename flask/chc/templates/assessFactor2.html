@@ -88,7 +88,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     var formData = $('#checkboxForm').serialize();
     $.ajax({
     type: 'POST',
-    url: '/submitId',
+    url: '/submit4',
     {#dataType:'json',#}
     data: formData,
     success: function(response) {
@@ -207,6 +207,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
     {% endfor %}
 
     <input type="hidden" name='ruleName' value="{{ ruleName }}">
+    <input type="hidden" name='result' value="{{ global_d_['resultStatus'] }}">
 
     <!-- 悬浮按钮 -->
     <div id="loutinav"><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></div>

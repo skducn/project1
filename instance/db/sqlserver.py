@@ -13,15 +13,15 @@ from PO.sqlserverApp import *
 from PO.SqlserverPO import *
 
 # todo 社区健康平台
-Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
-# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")  # （静安）
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG_JINGAN", "GBK") # （静安）
 
 # Sqlserver_PO.desc('TB_DC_CHRONIC_MAIN')  # 慢性病防治随访主表
 # Sqlserver_PO.desc('T_HIS_DIAGNOSIS')  # 诊断疾病表
 
-# Sqlserver_PO.record('*', 'varchar', 'auto')
+Sqlserver_PO.record('*', 'varchar', 'jh123')
 # Sqlserver_PO.record('*', 'varchar', 'auto', False)
 # Sqlserver_PO.record('SYS_USER', 'varchar', 'auto')
 # Sqlserver_PO.record('*', 'datetime', '%2024-09-09%')
@@ -29,10 +29,10 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # print("7.3 插入记录".center(100, "-"))
 # Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'updateDate': '2010-11-12', 'ruleParam': 'param'})
 
-a = Sqlserver_PO.select("select ruleParam from a_jiankangganyu_yihuanjibingdanbing where id=6")
-print(a, type(a))
-print(a[0]['ruleParam'], type(a[0]['ruleParam']))
-# Sqlserver_PO.close()
+# a = Sqlserver_PO.select("select ruleParam from a_jiankangganyu_yihuanjibingdanbing where id=6")
+# print(a, type(a))
+# print(a[0]['ruleParam'], type(a[0]['ruleParam']))
+# # Sqlserver_PO.close()
 
 
 
