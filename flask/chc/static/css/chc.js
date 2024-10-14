@@ -104,7 +104,66 @@ $(document).ready(function() {
     // });
 
 
+    <!--  index5 查询表结构 -->
 
+    $('#queryDesc2').change(function() {
+    $('#mask').show(); // 显示遮罩层
+    var selectedValue = $(this).val();
+    $.ajax({
+    url: '/get_queryDesc2',
+    type: 'GET',
+    data: {'value': selectedValue},
+    success: function(data) {
+        var test = document.getElementById('test');
+        var divObj33 = document.getElementById("test3");
+        if (divObj33!=null){
+            divObj33.remove();
+        }
+        var divObj22 = document.getElementById("test2");
+        if (divObj22!=null){
+            divObj22.remove();
+        }
+        var divObj11 = document.getElementById("test1");
+        if (divObj11!=null){
+            divObj11.remove();
+        }
+
+        let divObj1 = document.createElement("div");
+            divObj1.className = 'a6 a1K ac';
+            divObj1.id = "test1"
+        test.appendChild(divObj1);
+        let divObj2 = document.createElement("div");
+            divObj2.className = 'a5 md:a2u/2 af';
+            divObj1.id = "test2"
+            divObj1.appendChild(divObj2);
+        let divObj3 = document.createElement("div");
+            divObj3.className = 'a3u';
+            divObj1.id = "test3"
+            divObj2.appendChild(divObj3);
+
+        for (let key in data){
+            let divObj = document.createElement("div");
+            divObj.id = key;
+            divObj.innerHTML = key;
+            divObj3.appendChild(divObj);
+            $(document).ready(function() {
+                new jBox('Modal', {
+                attach: '#' + key,
+                height: 600,
+                title: key,
+                content: '<div style="line-height: 30px;">' +
+                data[key] + '<br></div>'
+                });
+                })
+        }
+
+    $('#mask').hide(); // 显示遮罩层
+    },
+    error: function(error) {
+    console.error('Error fetching data: ', error);
+    }
+    });
+    });
 
 
 });

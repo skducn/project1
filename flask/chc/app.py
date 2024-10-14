@@ -18,6 +18,16 @@ from apscheduler.schedulers.background import BackgroundScheduler
 # from flask_login import UserMixin
 # from flask_login import login_user, logout_user, current_user
 
+from wtforms import SelectMultipleField, Form
+from wtforms.fields import core
+# from wtforms.fields import html5
+from wtforms import validators
+
+from flask import Flask, render_template
+from flask_wtf import FlaskForm, CSRFProtect
+from flask_wtf.file import FileField, FileRequired, FileAllowed
+
+
 sys.path.append(os.getcwd())
 
 from ChcRulePO import *
@@ -29,8 +39,8 @@ from PO.CharPO import *
 Char_PO = CharPO()
 
 from PO.SqlserverPO import *
-Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
-# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
+Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
 
 # 数据库
@@ -48,6 +58,9 @@ app = Flask(__name__)
 # 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
 # app.secret_key = 'jinhao' # eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk
 app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
+
+
+
 
 
 
@@ -85,23 +98,70 @@ for i in l_t_rows:
 global_d_['rule'] = l_testRule
 
 
-# todo 1 pin
-@app.route('/')
-def homepage():
-    return render_template('pin.html', global_d_=global_d_)
+
+class MultiSelectForm(Form):
+    options = [
+        ('1', 'Option 1'),
+        ('2', 'Option 2'),
+        ('3', 'Option 3'),
+        ('4', 'Option 4'),
+    ]
+    selected_options = SelectMultipleField(
+        'Options',
+        choices=options,
+        validators=[validators.DataRequired()]
+    )
+
+# todo 1 测试下拉框多选项s
+@app.route('/moreSelect', methods=['GET', 'POST'])
+def moreSelect():
+    form = MultiSelectForm(request.form)
+    if request.method == 'POST' and form.validate():
+        selected = form.selected_options.data
+        # 处理选中的选项
+        return 'Selected options: {}'.format(selected)
+    return render_template('index6.html', form=form)
 
 
-# todo 2 index
+@app.route('/login')
+def login():
+    return render_template('login.html')    #渲染login.html文件
+
+@app.route('/getcookie',methods=['POST','GET'])
+def getcookie():
+    if request.method=='POST':          #请求类型为POST
+        username=request.form['username']   #获取请求中的username
+        response = redirect(url_for('index'))   #重定向到index路由中，并返回响应对象
+        response.set_cookie('username',str(username),max_age=18000) #设置cookie值及属性
+        return response
+
+
+# # todo 1 pin
+# @app.route('/')
+# def homepage():
+#     return render_template('index6.html', global_d_=global_d_)
+#     # return render_template('pin.html', global_d_=global_d_)
+
 @app.route('/index')
 def index():
-    session_value = request.cookies.get('session')
-    print(session_value)
-    if session_value == "jinhao":
-    # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
-        return render_template('index.html', global_d_=global_d_)
-        # return render_template('index.html', l_ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName, d_=global_d_)
+    username = request.cookies.get('username',None)     #获取cookie值
+    if username!=None:
+        return render_template('index.html', global_d_=global_d_,username=username)
+        # return render_template('logout.html',username=username) #渲染logout.html到网页中并传递username值
     else:
-        return render_template('pin.html', global_d_=global_d_)
+        return render_template('logout.html')
+
+# # todo 2 index
+# @app.route('/')
+# def index():
+#     # session_value = request.cookies.get('session')
+#     # print(session_value)
+#     # if session_value == "jinhao":
+#     # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
+#         return render_template('index.html', global_d_=global_d_)
+#         # return render_template('index.html', l_ruleName=l_ruleName, queryRuleCollection=l_testRule, queryErrorRuleId=l_ruleName, d_=global_d_)
+#     # else:
+#     #     return render_template('pin.html', global_d_=global_d_)
 
 
 # todo index 1 查询规则集
@@ -533,18 +593,132 @@ def step():
 # todo 全局检索
 @app.route('/index3')
 def index3():
-
     return render_template('index3.html', global_d_=global_d_)
 
 # todo 全局检索
 @app.route('/index4', methods=['POST'])
 def index4():
     if request.method == 'POST':
-        datatype = request.form['datatype']
-        text = request.form['text']
-        print(datatype,text)
-        s = Sqlserver_PO.record('*', datatype, text)
+        try:
+            db = request.form['db']
+            datatype = request.form['datatype']
+            text = request.form['text']
+            filterTbl = request.form['filterTbl']
+            l_filterTbl = filterTbl.split(",")
+            print(db,datatype,text,l_filterTbl)
+
+            Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", db, "GBK")
+
+            s = Sqlserver_PO.record('*', datatype, text, l_filterTbl)
+            print(s)
+            global_d_['db'] = db
+            global_d_['datatype'] = datatype
+            global_d_['text'] = text
+            global_d_['filterTbl'] = filterTbl
+        except:
+            return render_template('index4.html', global_d_=global_d_)
     return render_template('index4.html', global_d_=global_d_, s=s)
+
+
+# todo 查询表结构
+@app.route('/queryDesc2')
+def queryDesc2():
+    return render_template('index5.html', global_d_=global_d_)
+
+@app.route('/get_queryDesc2')
+def get_queryDesc2():
+    selected_value = request.args.get('value')
+    print(selected_value)
+    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", selected_value, "GBK")
+    l_tableName = Sqlserver_PO.getTables()
+    print(l_tableName)  # ['condition_item', 'patient_demographics', 'patient_diagnosis' ...
+    # 获取表结构
+    d_tbl_desc2 = {}
+    for i in l_tableName:
+        s_desc = Sqlserver_PO.desc2(i)
+        d_tbl_desc2[i] = s_desc
+    print(d_tbl_desc2)
+    return d_tbl_desc2
+
+
+
+
+
+# todo 上传文件
+# https://www.jianshu.com/p/57b564efcb7b
+class Myform(FlaskForm):
+    file = FileField(label='用户头像上传',validators=[FileRequired(), FileAllowed(['jpg','png'])])  # 创建FileField字段
+@app.route('/upload1',methods=['GET','POST'])
+def upload1():
+    myform = Myform()         #创建表单对象
+    if myform.validate_on_submit():          #检查是否是一个POST请求并且请求是否有效
+        filename=myform.file.data.filename    #获取传入的文件名
+        filepath=os.path.dirname(os.path.abspath(__file__))       #获取当前项目的文件路径
+        savepath=os.path.join(filepath,'static')      #设置保存文件路径
+        myform.file.data.save(os.path.join(savepath,filename))    #保存文件
+        return '提交成功'
+    return render_template('index7.html', myform=myform)  #使用render_template()方法渲染file.html文件并将myform传递到file.html中
+
+
+
+from flask_wtf import FlaskForm, RecaptchaField, CSRFProtect
+# todo 验证码
+# https://www.jianshu.com/p/57b564efcb7b
+# https://blog.csdn.net/wggglggg/article/details/116231552
+class Myform(FlaskForm):
+    recaptcha = RecaptchaField()    #验证码字段
+@app.route('/yanzm')
+def yanzm():
+    myform=Myform()         #创建表单对象
+    return render_template('yanzm.html', myform=myform)     #使用render_template()方法渲染yanzm.html文件并将myform传递到file.html中
+
+# todo Flask框架——模型关系（1对多）
+# https://www.jianshu.com/p/aa280be2991f
+
+# todo Flask框架——数据库操作（增删改查）
+# https://www.jianshu.com/p/7330eed5a865
+
+# todo Flask框架——数据库配置及迁移同步
+# https://www.jianshu.com/p/6f445603af2c
+
+# todo Flask框架——蓝图、flask-script
+# https://www.jianshu.com/p/de9d269181a2
+
+# todo Flask框架——Session与Cookie
+# https://www.jianshu.com/p/36fb6f874f0e
+
+# todo Flask框架——flask-caching缓存
+# https://www.jianshu.com/p/c220eddc0358
+
+# todo Flask框架——消息闪现
+# https://www.jianshu.com/p/aa09df69480b
+
+# todo 发邮件
+# https://www.jianshu.com/p/df0a83fc71b5
+
+# todo SQLite
+# https://www.jianshu.com/p/0db917eb8bd9
+
+# todo Flask框架——Sijax
+# https://www.jianshu.com/p/5f656555bef2
+
+# todo Flask框架——项目可安装化
+# https://www.jianshu.com/p/b608cc906f1a
+
+# todo Flask框架——基于类视图
+# https://www.jianshu.com/p/df59d86c3985
+
+# todo Flask框架——应用错误处理
+# https://www.jianshu.com/p/712cc9b9eff0
+
+# todo Flask框架——Bootstrap-Flask使用
+# https://www.jianshu.com/p/746c126eb251
+
+# todo Flask框架——MongoEngine使用MongoDB
+# https://www.jianshu.com/p/5316498393e9
+
+# todo Flask框架——基于Celery的后台任务
+# https://www.jianshu.com/p/5b4459e9f3b0
 
 
 if __name__ == '__main__':

@@ -4,33 +4,17 @@
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 <html>
 <head>
-<title>检索记录 - CHC</title>
+<title>查询表结构 - CHC</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
-<!-- 引入样式 -->
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
-
-{#<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>#}
-{##}
-{#<!--浮动锚点-->#}
-{#<script src="{{ url_for('static', filename='css/js.js') }}"></script>#}
-{#<script src="{{ url_for('static', filename='css/chc.js') }}"></script>#}
-{#<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>#}
-{##}
-
-
 
 <style>
-    .containerFlex2{
-        display: flex;
-    justify-content: center;
-        align-items: center;
-    }
+
  /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
     .containerFlex {
     display: flex;
@@ -51,7 +35,7 @@
     transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
     }
 
-    /* mask */
+    /* loading */
     .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
     @keyframes dash { to {stroke-dashoffset: 136;} }
     .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
@@ -59,27 +43,25 @@
 
     .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
     textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
-    textErr{white-space: pre-wrap;font-size:15px;color: #b700ff;text-align: left;line-height: 1.5rem;}
+    textErr{white-space: pre-wrap;font-size:15px;color: #ff0000;text-align: left;line-height: 2rem;}
 </style>
 
-<!-- mask -->
+
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
-<script>
-<!-- mask -->
-document.addEventListener('DOMContentLoaded', function() {
-var form = document.querySelector('form');
-var loading = document.getElementById('loading');
-form.addEventListener('submit', function(event) {
-event.preventDefault(); // 阻止表单默认提交行为
-$('#mask').show(); // 显示遮罩层
-loading.style.display = 'block'; // 显示加载动画
-setTimeout(function() {
-form.submit(); // 模拟提交表单
-}, 1000);
-});
-});
-</script>
+<script src="{{ url_for('static', filename='css/chc.js') }}"></script>
+
 </head>
+
+<!--31525-->
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
+<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
+
 <body>
 
 <!-- 遮罩层 -->
@@ -94,78 +76,36 @@ form.submit(); // 模拟提交表单
 
 <section id="contact" class="av[100px] a1M">
 <div id="main">
-<div class="louti"></div>
+    <div class="louti"></div>
+    <div class="aJ[770px] a2f a4t a4d ae a0 dark:a1 a2d wow fadeInUp" data-wow-delay=".3s">
+        <div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w" id="test">
 
-<div class="aJ[770px] a2f a4t a4d ae a0 dark:a1 a2d wow fadeInUp" data-wow-delay=".3s">
-<div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w">
+            <!-- 测试记录 -->
+            <div class="item" id="item1"></div>
+            <div class="a6 a1p ac">
+                <div class="a5 af">
+                    <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
+                        <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28"><i class="el-icon-search"></i> 查询表结构</h3>
+                    </div>
+                </div>
+            </div>
 
+            <div class="a6 a1K ac">
+                <div class="a5 md:a2u/2 af"><div class="a3u">
+                    <label for class="al a25 aR a1j dark:a1k a2j">数据库</label>
+                    <select id="queryDesc2" name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                        <option value="" selected>请选择...</option>
+                        <option value="CHC" >CHC</option>
+                        <option value="CHCCONFIG" >CHCCONFIG</option>
+                        <option value="CHC_JINGAN" >CHC_JINGAN</option>
+                        <option value="CHCCONFIG_JINGAN" >CHCCONFIG_JINGAN</option>
+                        <option value="PHUSERS" >PHUSERS</option>
+                        <option value="ZYCONFIG" >ZYCONFIG</option>
+                    </select>
+                </div></div>
+            </div>
 
-<!-- 测试记录 -->
-
-<div class="item" id="item1"></div>
-<div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">检索记录</h3>
-</div></div></div>
-
-
-<form action="{{ url_for('index4')}}" method="post">
-<div class="a6 a1K ac">
-
-    <div class="a5 md:a2u/2 af"><div class="a3u">
-        <label for class="al a25 aR a1j dark:a1k a2j">数据库*</label>
-        <select name="db" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-            <option value="{{ global_d_['db'] }}" selected>{{ global_d_['db'] }}</option>
-            <option value="CHC" >CHC</option>
-            <option value="CHCCONFIG" >CHCCONFIG</option>
-        </select>
-    </div></div>
-
-<div class="a5 md:a2u/2 af"><div class="a3u">
-    <label for class="al a25 aR a1j dark:a1k a2j">数据类型</label>
-    <select name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-        <option value="{{ global_d_['datatype'] }}" selected>{{ global_d_['datatype'] }}</option>
-        <option value="varchar" >varchar</option>
-        <option value="nvarchar" >nvarchar</option>
-        <option value="nchar" >nchar</option>
-        <option value="int" >int</option>
-        <option value="datetime" >datetime</option>
-        <option value="money" >money</option>
-        <option value="timestamp" >timestamp</option>
-        <option value="float" >float</option>
-        <option value="double" >double</option>
-    </select>
-</div></div>
-
-<div class="a5 md:a2u/2 af"><div class="a3u">
-    <label for class="al a25 aR a1j dark:a1k a2j">模糊匹配*</label>
-    <input type="text" name="text" value="{{ global_d_['text'] }}" maxlength="50" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div></div>
-
-<div class="a5 md:a2u/2 af"><div class="a3u">
-    <label for class="al a25 aR a1j dark:a1k a2j">过滤表(多个表用英文逗号分隔)</label>
-    <input type="text" name="filterTbl" value="{{ global_d_['filterTbl'] }}" maxlength="100" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-</div></div>
-
-{% if output_testRule %}
-    <pre>{{ output_testRule }}</pre>
-{% elif error %}
-    <h2>Error:</h2>
-    <pre>{{ error }}</pre>
-{% endif %}
-<br>
-
-<div class="a5 af"><div class="a2g">
-    <br>
-    <button class="el-button el-button--primary">提交</button>
-    <br><br>
-</div></div>
-
-<!-- loading... -->
-<div id="loading" style="display:none;"></div>
-
-
-</div>
-</form>
+            <div id="get_queryDesc2"></div>
 
 
 
@@ -253,22 +193,10 @@ form.submit(); // 模拟提交表单
 </div>
 
 
-</div>
-</div></div>
-
-</section>
-
-<section class="containerFlex2" >
-    <div class="row">
-        <div class="col-md-12">
-            <div class="box3">
-                {{ s | safe }}
-                <br>
-            </div>
-        </div>
     </div>
+    </div>
+</div>
 </section>
-
 
 </body>
 </html>

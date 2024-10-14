@@ -22,11 +22,7 @@
 
 <!-- Bootstrap -->
 <link rel="stylesheet" href="{{ url_for('static', filename='1/css/bootstrap.css') }}">
-
-<!-- Animate.Css-->
 <link rel="stylesheet" href="{{ url_for('static', filename='1/css/animate.min.css') }}">
-{##}
-{#<!-- Theme Css -->#}
 <link rel="stylesheet" href="{{ url_for('static', filename='1/css/style.css') }}">
 
 <!-- button -->
@@ -146,21 +142,26 @@ form2.addEventListener('submit', function (event) {
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="#" data-scroll-nav="4">测试</a>
                         </li>
-{#                        <li class="nav-item">#}
-{#                            <a class="nav-link menu-link" href="#" data-scroll-nav="6">规则名列表</a>#}
-{#                        </li>#}
 
                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        规则名列表
-                        </a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">规则名列表</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                                 <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</a>
                                 <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</a>
                                 <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</a>
-
                             </div>
                         </li>
+
+                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">数据库查询</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                                <a class="dropdown-item" href="{{ url_for('index3') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;检索记录</a>
+                                <a class="dropdown-item" href="{{ url_for('queryDesc2') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;查询表机构</a>
+                                <a class="dropdown-item" href="{{ url_for('upload1') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;上传文件</a>
+                                <a class="dropdown-item" href="{{ url_for('yanzm') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;验证码</a>
+                            </div>
+                        </li>
+
                         <li class="nav-item">
                         <a onclick="goHome()"  class="nav-link menu-link" href="#" ><i class="el-icon-s-home"></i>&nbsp;登出</a>
                         </li>
@@ -442,16 +443,8 @@ i                            {% for i in global_d_['ruleName'][0:] %}
                          </a>
                     </div>
 
-                     <!--// .col //-->
-                    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6">
-                        <a  href="{{ url_for('index3') }}" target = "_blank">
-                        <div class="features-box">
-                            <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;全局检索</h7>
-                            </div>
-                        </div>
-                         </a>
-                    </div>
+
+
 
                     <!--// .col //-->
                 </div>

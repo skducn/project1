@@ -1270,6 +1270,7 @@ class SqlServerPO:
         l_columnDefault = []
         l_columnComment = []
 
+        s_info = ''
         # 获取表和注释
         if len(args) == 0 or isinstance(args, list):
             # 1，所有表结构, desc()
@@ -1408,21 +1409,21 @@ class SqlServerPO:
 
                 # 只输出找到字段的表
                 s_value = ''
-                if len(l_columnName) != 0:
-                    s_info = str(k) + "(" + str(d_tableComment[k]) + ") >> " + str(len(l_d_1)) + "个字段\n"
-                    s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
-                             "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
-                             "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) + \
-                             "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) + \
-                             "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) + \
-                             "非空" + " " * (isNull - len("IS_NULLABLE") + 12) + \
-                             "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) + \
-                             "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "\n"
 
+                if len(l_columnName) != 0:
+                    s_info = str(k) + "(" + str(d_tableComment[k]) + ") - " + str(len(l_d_1)) + "个字段<br>"
+                    s_info = s_info + "列名[1], 类型[2], 长度[3], 时精[4], 数精[5], 非空[6], 默认值[7], 注释[8] " + "<br>"
+                    # s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
+                    #          "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
+                    #          "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) + \
+                    #          "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) + \
+                    #          "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) + \
+                    #          "非空" + " " * (isNull - len("IS_NULLABLE") + 12) + \
+                    #          "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) + \
+                    #          "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "<br>"
                     for i in range(len(l_columnName)):
-                        s_value = s_value + l_columnName[i] + l_dataType[i] + l_maxLength[i] + l_datetimePrecison[i] + \
-                                  l_numericPrecision[i] + l_isNull[i] + l_columnDefault[i] + l_columnComment[i] + "\n"
-                        # print(l_columnName[i], l_dataType[i], l_maxLength[i], l_datetimePrecison[i],l_numericPrecision[i], l_isNull[i], l_columnDefault[i], l_columnComment[i])
+                        s_value = s_value + l_columnName[i] + ", " +  l_dataType[i] + ", " + l_maxLength[i] + "[3], " + l_datetimePrecison[i] + "[4], " + \
+                                  l_numericPrecision[i] + "[5], " + l_isNull[i] + "[6], " + l_columnDefault[i] + "[7], " + l_columnComment[i] + "<br>"
 
                     s_info = s_info + s_value
 
@@ -1630,12 +1631,13 @@ class SqlServerPO:
                 raise e
         return len(d_tableComment)
 
-    def record(self, varTable, varType, varValue, varIsRecord=True):
+    def record(self, varTable, varType, varValue, l_filterTbl, varIsRecord=True):
 
         """ 7.2 查找记录
         # 参数1：varTable = 表名（*表示所有的表）
         # 参数2：varType = 数据类型(char,int,double,timestamp)
         # 参数3：varValue = 值 (支持%模糊查询，如 %yy%)
+        参数4：l_filterTbl = 表名，过滤不需要的表（[table1,table2]）
         参数4:varIsRecord = True / False  (False表示不显示数据)
         """
         # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
@@ -1646,56 +1648,58 @@ class SqlServerPO:
 
         # 支持的类型
         if (varType in "double,timestamp,float,money,int,nchar,nvarchar,datetime,varchar"):
+            # 所有表
             if "*" in varTable:
-                # 遍历所有表
                 l_d_tbl = self.select("SELECT name as TABLE_NAME FROM SYSOBJECTS WHERE TYPE='U'")
                 # print(l_d_tbl)  # [{'TABLE_NAME': 'TB_RIS_REPORT2'}, {'TABLE_NAME': 'jh_jkpg'}, {'TABLE_NAME': 'jh_jkgy'},,...]
                 s = ''
+                # 遍历所有表
                 for b in range(len(l_d_tbl)):
-                    # 获取表的Name和Type
+
+                    # 表名
                     dboTable = l_d_tbl[b]['TABLE_NAME']
 
-                    # 获取表注释
-                    d_tableComment = self.getTableComment(dboTable)  # {'ASSESS_DIAGNOSIS': '门诊数据',...
+                    # 过滤不要遍历的表
+                    if dboTable not in l_filterTbl:
 
-                    l_d_field_type = self.select(
-                        "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
-                        % (dboTable))
-                    # print(l_d_field_type)  # [{'FIELD_NAME': 'GUID', 'TYPE': 'varchar'}, {'FIELD_NAME': 'VISITSTRNO', 'TYPE': 'varchar'},...]
+                        # 表名:注释
+                        d_tableComment = self.getTableComment(dboTable)  # {'ASSESS_DIAGNOSIS': '门诊数据',...
 
-                    l_field = []
-                    l_type = []
-                    for j in l_d_field_type:
-                        if varType in j['TYPE']:
-                            l_field.append(j['FIELD_NAME'])
-                            l_type.append(j['TYPE'])
-                    # print(l_field)  # ['GUID', 'VISITSTRNO', 'ORGCODE', 'ORGNAME',...]
-                    # print(l_type)  # ['varchar', 'varchar', 'varchar', 'varchar' ...]
+                        # 获取表名和类型
+                        l_d_field_type = self.select(
+                            "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
+                            % (dboTable))
+                        # print(l_d_field_type)  # [{'FIELD_NAME': 'GUID', 'TYPE': 'varchar'}, {'FIELD_NAME': 'VISITSTRNO', 'TYPE': 'varchar'},...]
+                        l_field = []
+                        l_type = []
+                        for j in l_d_field_type:
+                            if varType in j['TYPE']:
+                                l_field.append(j['FIELD_NAME'])
+                                l_type.append(j['TYPE'])
+                        # print(l_field)  # ['GUID', 'VISITSTRNO', 'ORGCODE', 'ORGNAME',...]
+                        # print(l_type)  # ['varchar', 'varchar', 'varchar', 'varchar' ...]
 
-                    # 遍历所有字段
+                        # 遍历所有字段
+                        for i in range(len(l_field)):
+                            l_result = self.select("select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                            if len(l_result) != 0:
+                                # print("--" * 50)
+                                s = s + "<br><textOk>" + str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" + d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条</textOk><br>"
+                                Color_PO.consoleColor("31", "36",
+                                                      str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" +
+                                                      d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条 ",
+                                                      "")
 
-                    for i in range(len(l_field)):
-                        l_result = self.select(
-                            "select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
-                        if len(l_result) != 0:
-                            # print("--" * 50)
-                            # Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
-                            Color_PO.consoleColor("31", "36",
-                                                  str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" +
-                                                  d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条 ",
-                                                  "")
-                            s = s + "<br>" + str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" + d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条<br>"
+                                # 输出字段注释
+                                s = s + "<textErr>" + str(self.getFieldComment(dboTable)) + "</textErr><br>"
+                                Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
 
-                            # 输出字段注释
-                            s = s + str(self.getFieldComment(dboTable)) + "<br>"
-                            Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
-
-                            if varIsRecord == True:
-                                for j in range(len(l_result)):
-                                    print(l_result[j])
-                                    s = s + str(l_result[j]) + "<br>"
-                                    # print(str(l_result[j]).decode("utf8"))
-                                    # print(l_result[j].encode('latin-1').decode('utf8'))
+                                if varIsRecord == True:
+                                    for j in range(len(l_result)):
+                                        print(l_result[j])
+                                        s = s + str(l_result[j]) + "<br>"
+                                        # print(str(l_result[j]).decode("utf8"))
+                                        # print(l_result[j].encode('latin-1').decode('utf8'))
                 return s
             elif "*" not in varTable:
                 # 搜索指定表（单表）符合条件的记录.  ，获取列名称、列类别、类注释

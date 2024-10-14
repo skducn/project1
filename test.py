@@ -10,16 +10,22 @@
 # ***************************************************************u**
 from collections import Counter
 
-from PO.CharPO import *
-Char_PO = CharPO()
+# from PO.CharPO import *
+# Char_PO = CharPO()
+#
+# d_ruleName_tbl = {}
+# l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
+# for i in l_ruleName:
+#     d_ruleName_tbl[i] = 'a_' + Char_PO.chinese2pinyin(i)
+#
+# print(d_ruleName_tbl)
 
-d_ruleName_tbl = {}
 l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
-for i in l_ruleName:
-    d_ruleName_tbl[i] = 'a_' + Char_PO.chinese2pinyin(i)
 
-print(d_ruleName_tbl)
-
+if "健康干预_已患疾病" in l_ruleName:
+    print(123)
+else:
+    print("rwerwer")
 
 
 # a = "1 select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '520300198802242314'2 DELETE FROM TB_DC_EXAMINATION_INFO WHERE GUID = '16644766'"

@@ -182,7 +182,8 @@ setTimeout(function() {
             <table>
                 {% for k,v in global_d_['tblByStep'].items() %}
                 <tr>
-                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>
+                <div id="{{ k }}" >{{ k }}</div>
+{#                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>#}
                 <script>
                 $(document).ready(function() {
                 new jBox('Modal', {
@@ -222,7 +223,7 @@ setTimeout(function() {
                 <!--// .row //-->
 
                 {% if d_field %}
-                    {% if  d_field['result']  == 'ok' %}
+                    {% if d_field['result']  == 'ok' %}
                         <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
                         <textOk>{{ d_field['result'] }}</textOk> <br><br>
 

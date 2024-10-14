@@ -2073,9 +2073,12 @@ if __name__ == "__main__":
     # Sqlserver_PO.desc('QYYH')
     # Sqlserver_PO.desc({'a_test':['number', 'rule1']})
 
+    print(Sqlserver_PO.desc2('TB_PREGNANT_MAIN_INFO'))
+
+
     # print("7.2 查找记录".center(100, "-"))
     # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
-    Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
+    # Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
     # Sqlserver_PO.record('*', 'money', '%34.5%')
     # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
     # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。

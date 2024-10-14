@@ -1,0 +1,16 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask MultiSelect Example</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.csrf_token() }}
+        {{ form.selected_options.label }}
+        {{ form.selected_options(size=4) }}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
