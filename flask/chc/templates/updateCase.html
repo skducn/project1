@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+{## https://www.bootcss.com/p/buttons/ 各种button #}
+{#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
+{#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
+<html>
+<head>
+<title>更新规则用例 - CHC</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='dragon.ico') }}"  type="image/x-icon">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
+
+<!-- 引入样式 -->
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+{#<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>#}
+{##}
+{#<!--浮动锚点-->#}
+{#<script src="{{ url_for('static', filename='css/js.js') }}"></script>#}
+{#<script src="{{ url_for('static', filename='css/chc.js') }}"></script>#}
+{#<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>#}
+{##}
+<style>
+
+ /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
+    .containerFlex {
+    display: flex;
+    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
+    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
+    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
+        row（默认值）：主轴为水平方向，起点在左端。
+        row-reverse：主轴为水平方向，起点在右端。
+        column：主轴为垂直方向，起点在上沿。
+        column-reverse：主轴为垂直方向，起点在下沿。*/
+    /* flex-wrap：是否换行及换行的方向
+        nowrap（默认）：不换行
+        wrap：换行，第一行在上方
+        wrap-reverse：换行，第一行在下方*/
+    height: 10vh; /* Full height of the viewport */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
+    }
+
+    /* mask */
+    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
+    @keyframes dash { to {stroke-dashoffset: 136;} }
+    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
+    @keyframes blink { 50% {opacity: 0;} }
+
+    .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
+    textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
+    textErr{white-space: pre-wrap;font-size:15px;color: #ff0000;text-align: left;line-height: 2rem;}
+</style>
+
+<!-- mask -->
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
+<script>
+<!-- mask -->
+document.addEventListener('DOMContentLoaded', function() {
+var form = document.querySelector('form');
+var loading = document.getElementById('loading');
+form.addEventListener('submit', function(event) {
+event.preventDefault(); // 阻止表单默认提交行为
+$('#mask').show(); // 显示遮罩层
+loading.style.display = 'block'; // 显示加载动画
+setTimeout(function() {
+form.submit(); // 模拟提交表单
+}, 1000);
+});
+});
+</script>
+
+</head>
+<body>
+
+<!-- 遮罩层 -->
+<div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div class="containerFlex">
+    <svg width="100" height="100" viewBox="0 0 40 60">
+    <polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
+    <text class="loading" x="0" y="45" fill="#fff" >processing...</text>
+    </svg>
+    </div>
+</div>
+
+<section id="contact" class="av[100px] a1M">
+<div id="main">
+<div class="louti"></div>
+
+<div class="aJ[770px] a2f a4t a4d ae a0 dark:a1 a2d wow fadeInUp" data-wow-delay=".3s">
+<div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w">
+
+
+<!-- 测试记录 -->
+
+<div class="item" id="item1"></div>
+<div class="a6 a1p ac"><div class="a5 af"><div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
+    <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">更新规则用例</h3>
+</div></div></div>
+
+
+{#<form action="{{ url_for('upload1')}}" method="post" enctype="multipart/form-data">#}
+<form action="{{ url_for('post_updateCase')}}" method="post" enctype="multipart/form-data">
+
+    {# 上传文件#}
+  <div class="a6 a1K ac">
+    <div class="a5 md:a2u/2 af">
+    <div class="a3u">
+{#    {{ myform.csrf_token }}     {#渲染csrf#}
+    <p>{{ myform.file.label }}<br>{{ myform.file }}</p>
+    </div>
+    </div>
+
+
+    <div class="a5 md:a2u/2 af">
+    <div class="a3u">
+    <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+    <select  name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+    <option value="none" selected>请选择...</option>
+    {% for i in global_d_['ruleName'][0:] %}
+    <option value="{{i}}">{{i}}</option>
+    {% endfor %}
+    </select>
+    </div>
+    </div>
+    </div>
+
+
+<br>
+
+<div class="a5 af"><div class="a2g">
+    <br>
+    <button class="el-button el-button--primary">提交</button>
+    <br><br>
+</div></div>
+
+<!-- loading... -->
+<div id="loading" style="display:none;"></div>
+
+
+</form>
+
+
+
+
+
+
+
+<!-- 两球 -->
+
+<div>
+<span class="ao a2K a4z a2i">
+<svg width="126" height="156" viewbox="0 0 126 156" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M62.9999 126C97.8032 126 126 97.7947 126 63C126 28.2053 97.8032 0 62.9999 0C28.2137 0 -6.10352e-05 28.2053 -6.10352e-05 63C-6.10352e-05 97.7947 28.2137 126 62.9999 126Z" fill="url(#paint0_radial_100_549)"></path>
+<circle cx="45.3482" cy="119.68" r="1.72625" transform="rotate(-120 45.3482 119.68)" fill="#8B5CF6"></circle>
+<circle cx="71.3609" cy="104.662" r="1.72625" transform="rotate(-120 71.3609 104.662)" fill="#8B5CF6"></circle>
+<circle cx="32.7905" cy="126.931" r="1.72625" transform="rotate(-120 32.7905 126.931)" fill="#8B5CF6"></circle>
+<circle cx="58.2051" cy="112.258" r="1.72625" transform="rotate(-120 58.2051 112.258)" fill="#8B5CF6"></circle>
+<circle cx="84.2176" cy="97.2391" r="1.72625" transform="rotate(-120 84.2176 97.2391)" fill="#8B5CF6"></circle>
+<circle cx="60.3668" cy="145.693" r="1.72625" transform="rotate(-120 60.3668 145.693)" fill="#8B5CF6"></circle>
+<circle cx="37.7528" cy="106.525" r="1.72625" transform="rotate(-120 37.7528 106.525)" fill="#8B5CF6"></circle>
+<circle cx="86.3793" cy="130.675" r="1.72625" transform="rotate(-120 86.3793 130.675)" fill="#8B5CF6"></circle>
+<circle cx="63.7654" cy="91.5066" r="1.72625" transform="rotate(-120 63.7654 91.5066)" fill="#8B5CF6"></circle>
+<circle cx="47.809" cy="152.944" r="1.72625" transform="rotate(-120 47.809 152.944)" fill="#8B5CF6"></circle>
+<circle cx="25.195" cy="113.775" r="1.72625" transform="rotate(-120 25.195 113.775)" fill="#8B5CF6"></circle>
+<circle cx="73.2235" cy="138.27" r="1.72625" transform="rotate(-120 73.2235 138.27)" fill="#8B5CF6"></circle>
+<circle cx="50.6096" cy="99.1019" r="1.72625" transform="rotate(-120 50.6096 99.1019)" fill="#8B5CF6"></circle>
+<circle cx="99.2361" cy="123.252" r="1.72625" transform="rotate(-120 99.2361 123.252)" fill="#8B5CF6"></circle>
+<circle cx="76.6221" cy="84.0833" r="1.72625" transform="rotate(-120 76.6221 84.0833)" fill="#8B5CF6"></circle>
+<circle cx="52.7713" cy="132.537" r="1.72625" transform="rotate(-120 52.7713 132.537)" fill="#8B5CF6"></circle>
+<circle cx="30.1573" cy="93.3689" r="1.72625" transform="rotate(-120 30.1573 93.3689)" fill="#8B5CF6"></circle>
+<circle cx="78.7839" cy="117.519" r="1.72625" transform="rotate(-120 78.7839 117.519)" fill="#8B5CF6"></circle>
+<circle cx="56.17" cy="78.3504" r="1.72625" transform="rotate(-120 56.17 78.3504)" fill="#8B5CF6"></circle>
+<circle cx="40.2136" cy="139.788" r="1.72625" transform="rotate(-120 40.2136 139.788)" fill="#8B5CF6"></circle>
+<circle cx="17.5996" cy="100.619" r="1.72625" transform="rotate(-120 17.5996 100.619)" fill="#8B5CF6"></circle>
+<circle cx="65.6281" cy="125.115" r="1.72625" transform="rotate(-120 65.6281 125.115)" fill="#8B5CF6"></circle>
+<circle cx="43.0141" cy="85.9466" r="1.72625" transform="rotate(-120 43.0141 85.9466)" fill="#8B5CF6"></circle>
+<circle cx="91.6406" cy="110.096" r="1.72625" transform="rotate(-120 91.6406 110.096)" fill="#8B5CF6"></circle>
+<circle cx="69.0267" cy="70.9275" r="1.72625" transform="rotate(-120 69.0267 70.9275)" fill="#8B5CF6"></circle>
+<defs>
+<radialgradient id="paint0_radial_100_549" cx="0" cy="0" r="1" gradientunits="userSpaceOnUse" gradienttransform="translate(62.9999) rotate(90) scale(126)">
+<stop stop-color="white"></stop>
+<stop offset="0.569" stop-color="#E4F2FE"></stop>
+<stop offset="0.993" stop-color="#D2E2EF"></stop>
+</radialgradient>
+</defs>
+</svg>
+</span>
+<span class="ao a4A a4B a2i">
+<svg width="161" height="189" viewbox="0 0 161 189" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M160.578 80.5879C160.578 36.3933 124.762 0.587885 80.5784 0.587887C36.3946 0.587889 0.578432 36.3933 0.578434 80.5879C0.578436 124.761 36.3947 160.588 80.5784 160.588C124.762 160.588 160.578 124.761 160.578 80.5879Z" fill="url(#paint0_radial_100_548)"></path>
+<circle cx="93.1069" cy="153.111" r="1.72625" transform="rotate(-120 93.1069 153.111)" fill="#8B5CF6"></circle>
+<circle cx="119.12" cy="138.093" r="1.72625" transform="rotate(-120 119.12 138.093)" fill="#8B5CF6"></circle>
+<circle cx="80.5492" cy="160.362" r="1.72625" transform="rotate(-120 80.5492 160.362)" fill="#8B5CF6"></circle>
+<circle cx="105.964" cy="145.688" r="1.72625" transform="rotate(-120 105.964 145.688)" fill="#8B5CF6"></circle>
+<circle cx="131.976" cy="130.67" r="1.72625" transform="rotate(-120 131.976 130.67)" fill="#8B5CF6"></circle>
+<circle cx="108.125" cy="179.124" r="1.72625" transform="rotate(-120 108.125 179.124)" fill="#8B5CF6"></circle>
+<circle cx="85.5115" cy="139.955" r="1.72625" transform="rotate(-120 85.5115 139.955)" fill="#8B5CF6"></circle>
+<circle cx="134.138" cy="164.105" r="1.72625" transform="rotate(-120 134.138 164.105)" fill="#8B5CF6"></circle>
+<circle cx="111.524" cy="124.937" r="1.72625" transform="rotate(-120 111.524 124.937)" fill="#8B5CF6"></circle>
+<circle cx="95.5677" cy="186.374" r="1.72625" transform="rotate(-120 95.5677 186.374)" fill="#8B5CF6"></circle>
+<circle cx="72.9537" cy="147.206" r="1.72625" transform="rotate(-120 72.9537 147.206)" fill="#8B5CF6"></circle>
+<circle cx="120.982" cy="171.701" r="1.72625" transform="rotate(-120 120.982 171.701)" fill="#8B5CF6"></circle>
+<circle cx="98.3683" cy="132.533" r="1.72625" transform="rotate(-120 98.3683 132.533)" fill="#8B5CF6"></circle>
+<circle cx="146.995" cy="156.682" r="1.72625" transform="rotate(-120 146.995 156.682)" fill="#8B5CF6"></circle>
+<circle cx="124.381" cy="117.514" r="1.72625" transform="rotate(-120 124.381 117.514)" fill="#8B5CF6"></circle>
+<circle cx="100.53" cy="165.968" r="1.72625" transform="rotate(-120 100.53 165.968)" fill="#8B5CF6"></circle>
+<circle cx="77.916" cy="126.8" r="1.72625" transform="rotate(-120 77.916 126.8)" fill="#8B5CF6"></circle>
+<circle cx="126.543" cy="150.95" r="1.72625" transform="rotate(-120 126.543 150.95)" fill="#8B5CF6"></circle>
+<circle cx="103.929" cy="111.781" r="1.72625" transform="rotate(-120 103.929 111.781)" fill="#8B5CF6"></circle>
+<circle cx="87.9723" cy="173.219" r="1.72625" transform="rotate(-120 87.9723 173.219)" fill="#8B5CF6"></circle>
+<circle cx="65.3583" cy="134.05" r="1.72625" transform="rotate(-120 65.3583 134.05)" fill="#8B5CF6"></circle>
+<circle cx="113.387" cy="158.546" r="1.72625" transform="rotate(-120 113.387 158.546)" fill="#8B5CF6"></circle>
+<circle cx="90.7728" cy="119.377" r="1.72625" transform="rotate(-120 90.7728 119.377)" fill="#8B5CF6"></circle>
+<circle cx="139.399" cy="143.527" r="1.72625" transform="rotate(-120 139.399 143.527)" fill="#8B5CF6"></circle>
+<circle cx="116.785" cy="104.358" r="1.72625" transform="rotate(-120 116.785 104.358)" fill="#8B5CF6"></circle>
+<defs>
+<radialgradient id="paint0_radial_100_548" cx="0" cy="0" r="1" gradientunits="userSpaceOnUse" gradienttransform="translate(0.578434 80.5879) scale(160)">
+<stop stop-color="white"></stop>
+<stop offset="0.569" stop-color="#FFEEFE"></stop>
+<stop offset="0.993" stop-color="#F1C6EF"></stop>
+</radialgradient>
+</defs>
+</svg>
+</span>
+</div>
+
+
+</div>
+</div></div>
+
+</section>
+
+
+
+
+
+</body>
+</html>
+

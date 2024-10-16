@@ -62,8 +62,6 @@ app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
 
 
 
-
-
 # todo 不同环境使用各自icon，mac平台显示小猪，linux平台显示龙
 system = os.uname().sysname
 if system == 'Linux':
@@ -74,7 +72,7 @@ else:
 
 # todo 初始化数据
 # 规则名列表
-l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
+l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合','中医体质辨识']
 # l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预', '评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
 global_d_['ruleName'] = l_ruleName
 
@@ -142,14 +140,16 @@ def getcookie():
 #     return render_template('index6.html', global_d_=global_d_)
 #     # return render_template('pin.html', global_d_=global_d_)
 
-@app.route('/index')
+@app.route('/')
 def index():
-    username = request.cookies.get('username',None)     #获取cookie值
-    if username!=None:
-        return render_template('index.html', global_d_=global_d_,username=username)
+    return render_template('index.html', global_d_=global_d_)
+
+    # username = request.cookies.get('username',None)     #获取cookie值
+    # if username!=None:
+    #     return render_template('index.html', global_d_=global_d_,username=username)
         # return render_template('logout.html',username=username) #渲染logout.html到网页中并传递username值
-    else:
-        return render_template('logout.html')
+    # else:
+    #     return render_template('logout.html')
 
 # # todo 2 index
 # @app.route('/')
@@ -319,29 +319,29 @@ def _getRecord(ruleName):
 # todo index 4 规则名列表
 @app.route('/list123/<ruleName>')
 def list123(ruleName):
-    session_value = request.cookies.get('session')
-    if session_value == "jinhao":
+    # session_value = request.cookies.get('session')
+    # if session_value == "jinhao":
     # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
 
-        # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
-        s = ''
-        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
-        l_t_rule = cursor.fetchall()
-        # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
-        c = ''
-        for i in l_t_rule:
-            cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
-            l_t_sql = cursor.fetchall()
-            # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
-            s = ' =>'
-            for index, j in enumerate(l_t_sql, start=1):
-                s = s + '<br>' + str(index) + ", " + j[0]
-            c = c + '<br>' + i[0] + s + '<br>'
-        # print(c)
-        if ruleName == '评估因素取值':
-            return render_template('assessFactor.html', global_d_=global_d_, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
-        else:
-            return render_template('healthIntervention.html', global_d_=global_d_, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
+    # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
+    s = ''
+    cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
+    l_t_rule = cursor.fetchall()
+    # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
+    c = ''
+    for i in l_t_rule:
+        cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
+        l_t_sql = cursor.fetchall()
+        # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
+        s = ' =>'
+        for index, j in enumerate(l_t_sql, start=1):
+            s = s + '<br>' + str(index) + ", " + j[0]
+        c = c + '<br>' + i[0] + s + '<br>'
+    # print(c)
+    if ruleName == '评估因素取值':
+        return render_template('assessFactor.html', global_d_=global_d_, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
+    else:
+        return render_template('healthIntervention.html', global_d_=global_d_, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
 
 
 def _getRecordByResult(ruleName, result):
@@ -395,30 +395,30 @@ def list4(ruleName, result):
     print(ruleName, result)  # 健康干预_已患疾病组合 error
     global_d_['resultStatus'] = result
 
-    session_value = request.cookies.get('session')
-    if session_value == "jinhao":
+    # session_value = request.cookies.get('session')
+    # if session_value == "jinhao":
     # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
 
-        # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
-        s = ''
-        cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
-        l_t_rule = cursor.fetchall()
-        # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
-        c = ''
-        for i in l_t_rule:
-            cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
-            l_t_sql = cursor.fetchall()
-            # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
-            s = ' =>'
-            for index, j in enumerate(l_t_sql, start=1):
-                s = s + '<br>' + str(index) + ", " + j[0]
-            c = c + '<br>' + i[0] + s + '<br>'
-        # print(c)
+    # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
+    s = ''
+    cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
+    l_t_rule = cursor.fetchall()
+    # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
+    c = ''
+    for i in l_t_rule:
+        cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
+        l_t_sql = cursor.fetchall()
+        # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
+        s = ' =>'
+        for index, j in enumerate(l_t_sql, start=1):
+            s = s + '<br>' + str(index) + ", " + j[0]
+        c = c + '<br>' + i[0] + s + '<br>'
+    # print(c)
 
-        if ruleName == '评估因素取值':
-            return render_template('assessFactor2.html', global_d_=global_d_, data=_getRecordByResult(ruleName,result), ruleName=ruleName, l_ruleSql=c)
-        else:
-            return render_template('healthIntervention2.html', global_d_=global_d_, data=_getRecordByResult(ruleName, result), ruleName=ruleName, l_ruleSql=c)
+    if ruleName == '评估因素取值':
+        return render_template('assessFactor2.html', global_d_=global_d_, data=_getRecordByResult(ruleName,result), ruleName=ruleName, l_ruleSql=c)
+    else:
+        return render_template('healthIntervention2.html', global_d_=global_d_, data=_getRecordByResult(ruleName, result), ruleName=ruleName, l_ruleSql=c)
 
 
 # todo 规则名列表 - id提交
@@ -642,22 +642,49 @@ def get_queryDesc2():
 
 
 
-
-
 # todo 上传文件
 # https://www.jianshu.com/p/57b564efcb7b
 class Myform(FlaskForm):
-    file = FileField(label='用户头像上传',validators=[FileRequired(), FileAllowed(['jpg','png'])])  # 创建FileField字段
+    file = FileField(label='用户头像上传',validators=[FileRequired(), FileAllowed(['xlsx','png'])])  # 创建FileField字段
+
 @app.route('/upload1',methods=['GET','POST'])
 def upload1():
     myform = Myform()         #创建表单对象
     if myform.validate_on_submit():          #检查是否是一个POST请求并且请求是否有效
         filename=myform.file.data.filename    #获取传入的文件名
         filepath=os.path.dirname(os.path.abspath(__file__))       #获取当前项目的文件路径
-        savepath=os.path.join(filepath,'static')      #设置保存文件路径
-        myform.file.data.save(os.path.join(savepath,filename))    #保存文件
+        # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
+        savepath=os.path.join(filepath)      #设置保存文件路径
+        myform.file.data.save(os.path.join(savepath, filename))    #保存文件
         return '提交成功'
     return render_template('index7.html', myform=myform)  #使用render_template()方法渲染file.html文件并将myform传递到file.html中
+
+
+# todo 更新规则用例
+@app.route('/updateCase')
+def updateCase():
+    myform = Myform()  # 创建表单对象
+    if myform.validate_on_submit():  # 检查是否是一个POST请求并且请求是否有效
+        filename = myform.file.data.filename  # 获取传入的文件名
+        filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
+        # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
+        savepath = os.path.join(filepath)  # 设置保存文件路径
+        myform.file.data.save(os.path.join(savepath, filename))  # 保存文件
+        # return '提交成功'
+    return render_template('updateCase.html', global_d_=global_d_, myform=myform)  #使用render_template()方法渲染file.html文件并将myform传递到file.html中
+
+# todo 更新规则用例2
+@app.route('/post_updateCase',methods=['POST'])
+def post_updateCase():
+
+    ruleName = request.form['ruleName']
+    print(ruleName)
+    if ruleName in global_d_['ruleName']:
+        ChcRule_PO = ChcRulePO()
+        ChcRule_PO.importFull(ruleName)
+
+    return render_template('index.html', global_d_=global_d_)
+    # return render_template('updateCase.html',global_d_=global_d_, myform=myform)  # 使用render_template()方法渲染file.html文件并将myform传递到file.html中
 
 
 
@@ -665,11 +692,11 @@ from flask_wtf import FlaskForm, RecaptchaField, CSRFProtect
 # todo 验证码
 # https://www.jianshu.com/p/57b564efcb7b
 # https://blog.csdn.net/wggglggg/article/details/116231552
-class Myform(FlaskForm):
+class Myform2(FlaskForm):
     recaptcha = RecaptchaField()    #验证码字段
 @app.route('/yanzm')
 def yanzm():
-    myform=Myform()         #创建表单对象
+    myform=Myform2()         #创建表单对象
     return render_template('yanzm.html', myform=myform)     #使用render_template()方法渲染yanzm.html文件并将myform传递到file.html中
 
 # todo Flask框架——模型关系（1对多）

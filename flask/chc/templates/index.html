@@ -146,19 +146,25 @@ form2.addEventListener('submit', function (event) {
                          <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">规则名列表</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</a>
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</a>
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</a>
+                                {% for i in global_d_['ruleName'] %}
+
+                                    <a class="dropdown-item" href="{{ url_for('list123',ruleName=i) }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;{{ i }}</a>
+
+{#                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</a>#}
+{#                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</a>#}
+{#                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</a>#}
+                                {% endfor %}
                             </div>
                         </li>
 
                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">数据库查询</a>
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdownMenu" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">辅助工具</a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                                 <a class="dropdown-item" href="{{ url_for('index3') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;检索记录</a>
                                 <a class="dropdown-item" href="{{ url_for('queryDesc2') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;查询表机构</a>
-                                <a class="dropdown-item" href="{{ url_for('upload1') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;上传文件</a>
-                                <a class="dropdown-item" href="{{ url_for('yanzm') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;验证码</a>
+{#                                <a class="dropdown-item" href="{{ url_for('upload1') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;上传文件</a>#}
+                                <a class="dropdown-item" href="{{ url_for('updateCase') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;更新规则用例</a>
+{#                                <a class="dropdown-item" href="{{ url_for('yanzm') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;验证码</a>#}
                             </div>
                         </li>
 
