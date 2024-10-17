@@ -10,6 +10,38 @@
 # ***************************************************************u**
 from collections import Counter
 
+# 将key插入第一个前面
+def insertFirst(varDict,key,value):
+    lis = list(varDict.items())
+    lis.insert(0, (key,value))
+    return dict(lis)
+
+dict1 = {'a':1, 'b':2, 'd':4, 'e':5}
+dict1 = insertFirst(dict1,'c',3)
+print(dict1)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+
+# 将key插入某个key后
+def insertPosition(varDict,pre_key,key,value):
+    # 插入到 pre_key 关键字 的后面
+    lis = list(varDict.items())
+    lis.insert([*varDict].index(pre_key)+1,(key,value))
+    return dict(lis)
+
+dict1 = {'a':1, 'b':2, 'd':4, 'e':5}
+dict1 = insertPosition(dict1,'e','c',3)
+print(dict1)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+
+
+
+# from collections import OrderedDict
+#
+# # 创建一个空的有序字典
+# ordered_dict = OrderedDict()
+# ordered_dict = {'result': '结果', 'updateDate': '更新日期'}
+#
+# ordered_dict['id']=123
+# print(ordered_dict)
+
 # from PO.CharPO import *
 # Char_PO = CharPO()
 #
@@ -20,12 +52,12 @@ from collections import Counter
 #
 # print(d_ruleName_tbl)
 
-l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
-
-if "健康干预_已患疾病" in l_ruleName:
-    print(123)
-else:
-    print("rwerwer")
+# l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
+#
+# if "健康干预_已患疾病" in l_ruleName:
+#     print(123)
+# else:
+#     print("rwerwer")
 
 
 # a = "1 select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '520300198802242314'2 DELETE FROM TB_DC_EXAMINATION_INFO WHERE GUID = '16644766'"

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi Select Example</title>
+</head>
+<body>
+    <form method="post">
+        {{ form.select.label }} {{ form.select }} {{ form.submit }}
+        {% for subfield in form.select %}
+            {{ subfield.tag() }}
+        {% endfor %}
+        {{ form.hidden_tag() }}
+    </form>
+</body>
+</html>

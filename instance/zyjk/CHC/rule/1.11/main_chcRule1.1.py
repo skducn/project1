@@ -14,7 +14,7 @@ from ChcRulePO import *
 
 # r = ChcRulePO("健康干预_已患疾病单病")
 r = ChcRulePO("健康干预_已患疾病组合")
-# r.runId([119])
+r.runId([119])
 # r.runId([45])
 # r.runId([199])
 # r.runId([201])

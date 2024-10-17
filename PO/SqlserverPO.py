@@ -910,17 +910,27 @@ class SqlServerPO:
 
     def setFieldComment(self, varTable, varField, varComment):
 
-        # 3.12 添加字段注释
+        # 3.12 设置字段注释
         # 注意：原注释必须为空，否则报错
         # setFieldComment('t_user','ID','编号')
-        self.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
+
+        # 判断字段是否存在
+        l_ = self.getFields(varTable)
+        # print(l_) # ['result', 'updateDate', 'step', 'rule', 'case', 'ruleParam', 'assessName', 'assessRule', 'tester']
+        if varField in l_:
+            self.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
 
     def reviseFieldComment(self, varTable, varField, varComment):
 
         # 3.13 修改字段注释
         # 注意：原注释必须有值，否则报错
         # reviseFieldComment('t_user','ID','编号')
-        self.execute("EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
+
+        # 判断字段是否存在
+        l_ = self.getFields(varTable)
+        # print(l_) # ['result', 'updateDate', 'step', 'rule', 'case', 'ruleParam', 'assessName', 'assessRule', 'tester']
+        if varField in l_:
+            self.execute("EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
 
 
     def setFieldTypeComment(self, varTable, varField, varType, varComment):

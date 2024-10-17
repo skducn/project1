@@ -89,6 +89,10 @@ todo:【分组】
 5.1 对字段1分组并显示对应字段2的值（按性别分组显示姓名）    getOneByGroupField(varTuple, 'gender', 'name')
 5.2 对字段1分组并显示所有字段的值（按性别分组显示所有值）  getAllByGroupField(varTuple, 'gender')
 
+todo：【插入】
+# 6.1 将key插入第一个前面 insertFirst(varDict,key,value):
+# 6.2 将key插入某个key后 insertPosition(varDict,pre_key,key,value):
+
 """
 
 
@@ -218,6 +222,22 @@ class DictPO:
         return {
             item[0]: list(item[1]) for item in itertools.groupby(varTuple, lambda x: x[varGroupByName])
         }
+
+
+    def insertFirst(self, varDict, key, value):
+
+        # 6.1 将key插入第一个前面
+        lis = list(varDict.items())
+        lis.insert(0, (key, value))
+        return dict(lis)
+
+
+    def insertPosition(self, varDict, pre_key, key, value):
+
+        # 6.2 将key插入某个key后
+        lis = list(varDict.items())
+        lis.insert([*varDict].index(pre_key) + 1, (key, value))
+        return dict(lis)
 
 
 if __name__ == "__main__":
@@ -369,3 +389,12 @@ if __name__ == "__main__":
     # #
     # # print("5.2 按性别分组显示所有值".center(100, "-"))
     # print(Dict_PO.getAllByGroupField(tuple, 'gender'))  # {'male': [{'name': 'jinhao', 'age': 105, 'gender': 'male'}, {'name': 'baba', 'age': 76, 'gender': 'male'}], 'female': [{'name': 'mama', 'age': 202, 'gender': 'female'}, {'name': 'yoyo', 'age': 84, 'gender': 'female'}]}
+
+
+    # # print("6.1 将key插入第一个前面".center(100, "-"))
+    dict1 = {'a': 1, 'b': 2, 'd': 4, 'e': 5}
+    print(Dict_PO.insertFirst(dict1, 'c', 33))  # {'c': 33, 'a': 1, 'b': 2, 'd': 4, 'e': 5}
+
+    # # print("6.2 将key插入某个key后".center(100, "-"))
+    dict1 = {'a': 1, 'b': 2, 'd': 4, 'e': 5}
+    print(Dict_PO.insertPosition(dict1,'e','c',35))  # {'a': 1, 'b': 2, 'd': 4, 'e': 5, 'c': 35}

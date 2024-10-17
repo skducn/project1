@@ -118,7 +118,7 @@ def moreSelect():
         selected = form.selected_options.data
         # 处理选中的选项
         return 'Selected options: {}'.format(selected)
-    return render_template('index6.html', form=form)
+    return render_template('index8.html', form=form)
 
 
 @app.route('/login')
@@ -140,8 +140,27 @@ def getcookie():
 #     return render_template('index6.html', global_d_=global_d_)
 #     # return render_template('pin.html', global_d_=global_d_)
 
+# from wtforms import Form, SelectMultipleField, SubmitField
+# from wtforms.fields import core
+# from wtforms.widgets import html5
+#
+# class MultiSelectForm(Form):
+#     # 定义一个SelectMultipleField字段
+#     options = [('1', 'Option 1'), ('2', 'Option 2'), ('3', 'Option 3')]
+#     select = SelectMultipleField('Choose Options', choices=options, widget=html5.Select())
+#     submit = SubmitField('Submit')
+
 @app.route('/')
 def index():
+    # form = MultiSelectForm(request.form)
+    #
+    # if form.validate_on_submit():
+    #     # 获取选中的值
+    #     selected_options = form.select.data
+    #     return f"Selected options: {', '.join(selected_options)}"
+
+    # return render_template('index.html', form=form)
+    # return render_template('index8.html', global_d_=global_d_)
     return render_template('index.html', global_d_=global_d_)
 
     # username = request.cookies.get('username',None)     #获取cookie值
@@ -309,6 +328,7 @@ def _getRecord(ruleName):
         t_value = tuple(l_tmp)
         d_ = dict(zip(l_field, list(t_value)))
         l_d_all.append(d_)
+    # print(123, l_d_all)
 
     # cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
     # l_t_rule = cursor.fetchall()
@@ -323,7 +343,7 @@ def list123(ruleName):
     # if session_value == "jinhao":
     # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
 
-    # 获取当前表规则集（去重）的步骤列表 = l_ruleSql
+    # 获取规则集（去重）的步骤列表 = l_ruleSql
     s = ''
     cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
     l_t_rule = cursor.fetchall()
@@ -338,10 +358,57 @@ def list123(ruleName):
             s = s + '<br>' + str(index) + ", " + j[0]
         c = c + '<br>' + i[0] + s + '<br>'
     # print(c)
-    if ruleName == '评估因素取值':
-        return render_template('assessFactor.html', global_d_=global_d_, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
-    else:
-        return render_template('healthIntervention.html', global_d_=global_d_, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
+
+    # 重构表格标题
+    # 获取字典{字段:注释}
+    d_field_comment = Sqlserver_PO.getFieldComment(d_ruleName_tbl[ruleName])
+    # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
+    # 重新排序排序id，将id放在第一位
+    if 'id' in d_field_comment:
+        del d_field_comment['id']
+        del d_field_comment['step']
+        d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
+        print(d_field_comment)
+    # 转换为{注释:宽度}
+    d_tmp2 = {}
+    for k,v in d_field_comment.items():
+        if k == 'id':
+            d_tmp2[v] = 50
+        elif k == 'result':
+            d_tmp2[v] = 50
+        elif k == 'rule':
+            d_tmp2[v] = 50
+        elif k == 'case':
+            d_tmp2[v] = 50
+        elif k == 'priority':
+            d_tmp2[v] = 50
+        elif k == 'tester':
+            d_tmp2[v] = 50
+        elif k == 'assessRule':
+            d_tmp2[v] = 300
+        else:
+            d_tmp2[v] = 100
+
+    # 重构表格数据（id移到第一）
+    # print(_getRecord(ruleName))
+    # s_id = ''
+    l_new = []
+    l_d_all = (_getRecord(ruleName))
+    for d_ in l_d_all:
+        s_id = d_['id']
+        del d_['id']
+        del d_['step']
+        d_ = Dict_PO.insertFirst(d_, 'id', s_id)
+        l_new.append(d_)
+    l_d_all = l_new
+    print(l_d_all)
+
+    return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
+
+    # if ruleName == '评估因素取值':
+    #     return render_template('assessFactor.html', global_d_=global_d_, d_field_comment=d_field_comment, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c)
+    # else:
+    #     return render_template('healthIntervention.html', global_d_=global_d_, d_field_comment=d_field_comment, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
 
 
 def _getRecordByResult(ruleName, result):
@@ -391,6 +458,78 @@ def _getRecordByResult(ruleName, result):
 # todo 规则名列表 - 结果
 @app.route('/list4/<ruleName>/<result>')
 def list4(ruleName, result):
+    # session_value = request.cookies.get('session')
+    # if session_value == "jinhao":
+    # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
+
+    # 获取规则集（去重）的步骤列表 = l_ruleSql
+    s = ''
+    cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
+    l_t_rule = cursor.fetchall()
+    # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
+    c = ''
+    for i in l_t_rule:
+        cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
+        l_t_sql = cursor.fetchall()
+        # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
+        s = ' =>'
+        for index, j in enumerate(l_t_sql, start=1):
+            s = s + '<br>' + str(index) + ", " + j[0]
+        c = c + '<br>' + i[0] + s + '<br>'
+    # print(c)
+
+    # 重构表格标题
+    # 获取字典{字段:注释}
+    d_field_comment = Sqlserver_PO.getFieldComment(d_ruleName_tbl[ruleName])
+    # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
+    # 重新排序排序id，将id放在第一位
+    if 'id' in d_field_comment:
+        del d_field_comment['id']
+        del d_field_comment['step']
+        d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
+        print(d_field_comment)
+    # 转换为{注释:宽度}
+    d_tmp2 = {}
+    for k,v in d_field_comment.items():
+        if k == 'id':
+            d_tmp2[v] = 50
+        elif k == 'result':
+            d_tmp2[v] = 50
+        elif k == 'rule':
+            d_tmp2[v] = 50
+        elif k == 'case':
+            d_tmp2[v] = 50
+        elif k == 'tester':
+            d_tmp2[v] = 50
+        elif k == 'priority':
+            d_tmp2[v] = 50
+        elif k == 'assessRule':
+            d_tmp2[v] = 300
+        else:
+            d_tmp2[v] = 100
+
+    # 重构表格数据（id移到第一）
+    # print(_getRecord(ruleName))
+    # s_id = ''
+    l_new = []
+    l_d_all = (_getRecordByResult(ruleName,result))
+    for d_ in l_d_all:
+        s_id = d_['id']
+        del d_['id']
+        del d_['step']
+        d_ = Dict_PO.insertFirst(d_, 'id', s_id)
+        l_new.append(d_)
+    l_d_all = l_new
+    print(l_d_all)
+
+    return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='hidden')
+
+    # if ruleName == '评估因素取值':
+    #     return render_template('assessFactor.html', global_d_=global_d_, d_field_comment=d_field_comment, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c)
+    # else:
+    #     return render_template('healthIntervention.html', global_d_=global_d_, d_field_comment=d_field_comment, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
+
+def list411(ruleName, result):
 
     print(ruleName, result)  # 健康干预_已患疾病组合 error
     global_d_['resultStatus'] = result
@@ -666,10 +805,16 @@ def updateCase():
     myform = Myform()  # 创建表单对象
     if myform.validate_on_submit():  # 检查是否是一个POST请求并且请求是否有效
         filename = myform.file.data.filename  # 获取传入的文件名
+        print(filename)
         filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
         # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
         savepath = os.path.join(filepath)  # 设置保存文件路径
+        print(222,savepath)
         myform.file.data.save(os.path.join(savepath, filename))  # 保存文件
+        # 文件改名
+        # os.rename("/Users/linghuchong/Downloads/51/Python/project/test1.py", "/Users/linghuchong/Downloads/51/Python/project/test12.py")  # 重命名文件
+
+
         # return '提交成功'
     return render_template('updateCase.html', global_d_=global_d_, myform=myform)  #使用render_template()方法渲染file.html文件并将myform传递到file.html中
 
@@ -677,14 +822,27 @@ def updateCase():
 @app.route('/post_updateCase',methods=['POST'])
 def post_updateCase():
 
+    myform = Myform()  # 创建表单对象
+    filename = myform.file.data.filename  # 获取传入的文件名
+    # print(filename)  # 123.xlsx
+    filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
+    # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
+    savepath = os.path.join(filepath)  # 设置保存文件路径
+    # print(savepath)   # /Users/linghuchong/Downloads/51/Python/project/flask/chc
+    myform.file.data.save(os.path.join(savepath, filename))  # 保存文件
+    # 文件改名
+    file1 = savepath + "/" + filename
+    file2 = savepath + "/chcRuleCase1.11.xlsx"
+    os.rename(file1, file2)
+
     ruleName = request.form['ruleName']
     print(ruleName)
     if ruleName in global_d_['ruleName']:
         ChcRule_PO = ChcRulePO()
         ChcRule_PO.importFull(ruleName)
 
-    return render_template('index.html', global_d_=global_d_)
-    # return render_template('updateCase.html',global_d_=global_d_, myform=myform)  # 使用render_template()方法渲染file.html文件并将myform传递到file.html中
+    # return render_template('index.html', global_d_=global_d_)
+    return render_template('updateCase.html',global_d_=global_d_, myform=myform)  # 使用render_template()方法渲染file.html文件并将myform传递到file.html中
 
 
 

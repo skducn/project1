@@ -22,7 +22,18 @@
 {#<script src="{{ url_for('static', filename='css/chc.js') }}"></script>#}
 {#<script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>#}
 {##}
-<style>
+
+    <!--31525 popup-->
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
+<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
+
+    <style>
 
  /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
     .containerFlex {
@@ -71,6 +82,19 @@ form.submit(); // 模拟提交表单
 }, 1000);
 });
 });
+
+$(document).ready(function() {
+    $('#Notice-1').click(function () {
+
+        new jBox('Notice', {
+            content: 'Hello, I\'m a notice',
+            color: 'black'
+        });
+
+    });
+});
+
+
 </script>
 
 </head>
@@ -133,8 +157,9 @@ form.submit(); // 模拟提交表单
 
 <div class="a5 af"><div class="a2g">
     <br>
-    <button class="el-button el-button--primary">提交</button>
+    <button class="el-button el-button--primary" id="Notice-1" class="target-notice">提交</button>
     <br><br>
+{#    <div id="Notice-1" class="target-notice">Click me</div>#}
 </div></div>
 
 <!-- loading... -->
