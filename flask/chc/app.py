@@ -27,10 +27,10 @@ from flask import Flask, render_template
 from flask_wtf import FlaskForm, CSRFProtect
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 
-
 sys.path.append(os.getcwd())
 
 from ChcRulePO import *
+from PO.OpenpyxlPO import *
 
 from PO.TimePO import *
 Time_PO = TimePO()
@@ -39,19 +39,12 @@ from PO.CharPO import *
 Char_PO = CharPO()
 
 from PO.SqlserverPO import *
-# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
 Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
-
+# Sqlserver_PO_chcconfig = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
 
 # 数据库
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
-
-# 参数集合
-global_d_ = {}
-# global_d_['ruleName'] = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
-# global_d_['rule'] = ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'...
-# global_d_['tblByStep'] = 步骤里的表名
 
 
 app = Flask(__name__)
@@ -61,78 +54,78 @@ app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
 
 
 
+# todo 初始化数据
+# 全局字典
+global_d_ = {}
 
-# todo 不同环境使用各自icon，mac平台显示小猪，linux平台显示龙
+# 不同环境使用各自icon，mac平台显示小猪，linux平台显示龙
 system = os.uname().sysname
 if system == 'Linux':
     global_d_['icon'] = 'dragon.ico'
 else:
     global_d_['icon'] = 'pig.ico'
 
+# 菜单
+global_d_ = {'menu': {"searchRecord": "检索记录", "queryDesc2": "查询表结构", "importCase": "导入用例", "registerTbl": "注册规则表"}}
 
-# todo 初始化数据
-# 规则名列表
-l_ruleName = ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合','中医体质辨识']
-# l_ruleName = ['健康评估', '健康干预', '疾病评估', '儿童健康干预', '评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合']
-global_d_['ruleName'] = l_ruleName
+# 获取规则名列表
+def getRuleName():
+    l_ = []
+    l_d_ = Sqlserver_PO.select("select * from a_ruleList")
+    # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
+    for d in l_d_:
+        l_.append(d['ruleName'])
+    return l_  # ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合','中医体质辨识']
+
+# 添加规则名列表
+def setRuleName(ruleName):
+    l_ruleName = []
+    l_d_ = Sqlserver_PO.select("select * from a_ruleList")
+    # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
+    for d in l_d_:
+        l_ruleName.append(d['ruleName'])
+    if ruleName not in l_ruleName:
+        dboTable = Char_PO.chinese2pinyin(ruleName)
+        dboTable = "a_" + dboTable
+        Sqlserver_PO.execute("insert into a_ruleList (ruleName, ruleNameTbl) values('%s', '%s')" % (ruleName, dboTable))
 
 # 规则名对应表字典
-d_ruleName_tbl = {}
-for i in l_ruleName:
-    d_ruleName_tbl[i] = 'a_' + Char_PO.chinese2pinyin(i)
-# print(d_ruleName_tbl)  # {'评估因素取值': 'a_pingguyinsuquzhi', '健康干预_已患疾病单病': 'a_jiankangganyu_yihuanjibingdanbing', '健康干预_已患疾病组合': 'a_jiankangganyu_yihuanjibingzuhe'}
+def getRuleList():
+    d_ = {}
+    l_d_ = Sqlserver_PO.select("select * from a_ruleList")
+    # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
+    for d in l_d_:
+        d_[d['ruleName']] = d['ruleNameTbl']
+    # print(d_)
+    return d_  # {'评估因素取值': 'a_jibingquzhipanduan', '健康干预_已患疾病单病': 'a_jiankangganyu_yihuanjibingdanbing', '健康干预_已患疾病组合': 'a_jiankangganyu_yihuanjibingzuhe'}
 
-# d_ruleName = {'健康评估': "a_jiankangpinggu", '健康干预': "a_jiankangganyu", '疾病评估': "a_jibingpinggu",'儿童健康干预': "a_ertongjiankangganyu",
-#               "评估因素取值": "a_pingguyinsuquzhi", "健康干预_已患疾病单病":"a_jiankangganyu_yihuanjibingdanbing", "健康干预_已患疾病组合":"a_jiankangganyu_yihuanjibingzuhe"}
+# 获取所有规则集
+def getRuleCollection():
+    l_testRule = []
+    l_d_ = Sqlserver_PO.select("select distinct [rule] from a_ceshiguize")
+    for d in l_d_:
+        l_testRule.append(d['rule'])
+    # print(l_testRule)  # ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'...
+    return l_testRule
+    # global_d_['rule'] = getRuleCollection()
 
+global_d_['ruleName'] = getRuleName()
+global_d_['rule'] = getRuleCollection()
 
-# 获取测试规则集
-l_testRule = []
-cursor.execute("select distinct [rule] from a_ceshiguize")
-l_t_rows = cursor.fetchall()
-for i in l_t_rows:
-    l_testRule.append(i[0])
-# print(l_testRule)  # ['a1', 'a2', 'a3', 'a4', 'a5', 'a6', 'a7'...
-global_d_['rule'] = l_testRule
-
-
-
-class MultiSelectForm(Form):
-    options = [
-        ('1', 'Option 1'),
-        ('2', 'Option 2'),
-        ('3', 'Option 3'),
-        ('4', 'Option 4'),
-    ]
-    selected_options = SelectMultipleField(
-        'Options',
-        choices=options,
-        validators=[validators.DataRequired()]
-    )
-
-# todo 1 测试下拉框多选项s
-@app.route('/moreSelect', methods=['GET', 'POST'])
-def moreSelect():
-    form = MultiSelectForm(request.form)
-    if request.method == 'POST' and form.validate():
-        selected = form.selected_options.data
-        # 处理选中的选项
-        return 'Selected options: {}'.format(selected)
-    return render_template('index8.html', form=form)
+# ---------------------------------------------------------------------------------------------------------------------
 
 
-@app.route('/login')
-def login():
-    return render_template('login.html')    #渲染login.html文件
+# @app.route('/login')
+# def login():
+#     return render_template('login.html')
 
-@app.route('/getcookie',methods=['POST','GET'])
-def getcookie():
-    if request.method=='POST':          #请求类型为POST
-        username=request.form['username']   #获取请求中的username
-        response = redirect(url_for('index'))   #重定向到index路由中，并返回响应对象
-        response.set_cookie('username',str(username),max_age=18000) #设置cookie值及属性
-        return response
-
+# @app.route('/getcookie',methods=['POST','GET'])
+# def getcookie():
+#     if request.method=='POST':          #请求类型为POST
+#         username=request.form['username']   #获取请求中的username
+#         response = redirect(url_for('index'))   #重定向到index路由中，并返回响应对象
+#         response.set_cookie('username',str(username),max_age=18000) #设置cookie值及属性
+#         return response
 
 # # todo 1 pin
 # @app.route('/')
@@ -150,17 +143,11 @@ def getcookie():
 #     select = SelectMultipleField('Choose Options', choices=options, widget=html5.Select())
 #     submit = SubmitField('Submit')
 
+
+
 @app.route('/')
 def index():
-    # form = MultiSelectForm(request.form)
-    #
-    # if form.validate_on_submit():
-    #     # 获取选中的值
-    #     selected_options = form.select.data
-    #     return f"Selected options: {', '.join(selected_options)}"
 
-    # return render_template('index.html', form=form)
-    # return render_template('index8.html', global_d_=global_d_)
     return render_template('index.html', global_d_=global_d_)
 
     # username = request.cookies.get('username',None)     #获取cookie值
@@ -199,15 +186,12 @@ def get_queryRuleCollection():
     }
     return jsonify(response_data)
 
+
 # todo index 1 及联规则集
 @app.route('/get_queryRuleName')
 def get_queryRuleName():
     ruleName = request.args.get('value')
     print(ruleName)
-
-    # cursor.execute("update a_memory set ruleName='%s' where id=1" % (ruleName))
-    # conn.commit()
-
     # 获取测试规则
     cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" %(ruleName))
     l_t_rows = cursor.fetchall()
@@ -308,6 +292,8 @@ def _getRecord(ruleName):
 
     # 获取所有记录
 
+    d_ruleName_tbl = getRuleList()
+
     l_field = []
     l_d_all = []
     # 获取字段列表
@@ -342,6 +328,8 @@ def list123(ruleName):
     # session_value = request.cookies.get('session')
     # if session_value == "jinhao":
     # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
+
+    d_ruleName_tbl = getRuleList()
 
     # 获取规则集（去重）的步骤列表 = l_ruleSql
     s = ''
@@ -418,6 +406,8 @@ def _getRecordByResult(ruleName, result):
     l_field = []
     l_d_all = []
 
+    d_ruleName_tbl = getRuleList()
+
     # 获取字段列表
     cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName_tbl[ruleName]))
     l_t_field = cursor.fetchall()
@@ -461,6 +451,8 @@ def list4(ruleName, result):
     # session_value = request.cookies.get('session')
     # if session_value == "jinhao":
     # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
+
+    d_ruleName_tbl = getRuleList()
 
     # 获取规则集（去重）的步骤列表 = l_ruleSql
     s = ''
@@ -531,6 +523,8 @@ def list4(ruleName, result):
 
 def list411(ruleName, result):
 
+    d_ruleName_tbl = getRuleList()
+
     print(ruleName, result)  # 健康干预_已患疾病组合 error
     global_d_['resultStatus'] = result
 
@@ -595,6 +589,8 @@ def submit4():
 def _getRecordById(ruleName, id):
 
     # 获取一行记录数据
+
+    d_ruleName_tbl = getRuleList()
 
     l_field = []
     l_d_all = []
@@ -685,6 +681,8 @@ def get_queryRecord():
 @app.route('/step', methods=['POST'])
 def step():
     if request.method == 'POST':
+
+        d_ruleName_tbl = getRuleList()
         d_ = {}
         d_['ruleName'] = request.form['ruleName']
         d_['id'] = request.form['id']
@@ -730,40 +728,31 @@ def step():
 
 
 # todo 全局检索
-@app.route('/index3')
-def index3():
-    return render_template('index3.html', global_d_=global_d_)
-
-# todo 全局检索
-@app.route('/index4', methods=['POST'])
-def index4():
+@app.route('/searchRecord', methods=['GET','POST'])
+def searchRecord():
     if request.method == 'POST':
-        try:
-            db = request.form['db']
-            datatype = request.form['datatype']
-            text = request.form['text']
-            filterTbl = request.form['filterTbl']
-            l_filterTbl = filterTbl.split(",")
-            print(db,datatype,text,l_filterTbl)
-
-            Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", db, "GBK")
-
-            s = Sqlserver_PO.record('*', datatype, text, l_filterTbl)
-            print(s)
-            global_d_['db'] = db
-            global_d_['datatype'] = datatype
-            global_d_['text'] = text
-            global_d_['filterTbl'] = filterTbl
-        except:
-            return render_template('index4.html', global_d_=global_d_)
-    return render_template('index4.html', global_d_=global_d_, s=s)
+        db = request.form['db']
+        datatype = request.form['datatype']
+        text = request.form['text']
+        filterTbl = request.form['filterTbl']
+        l_filterTbl = filterTbl.split(",")
+        print(db,datatype,text,l_filterTbl)
+        Sqlserver_PO2 = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", db, "GBK")
+        print(db)
+        s = Sqlserver_PO2.record2('*', datatype, text, l_filterTbl)
+        print(s)
+        global_d_['db'] = db
+        global_d_['datatype'] = datatype
+        global_d_['text'] = text
+        global_d_['filterTbl'] = filterTbl
+        return render_template('searchRecord.html', global_d_=global_d_, result=s)
+    return render_template('searchRecord.html', global_d_=global_d_)
 
 
 # todo 查询表结构
 @app.route('/queryDesc2')
 def queryDesc2():
-    return render_template('index5.html', global_d_=global_d_)
-
+    return render_template('queryDesc2.html', global_d_=global_d_)
 @app.route('/get_queryDesc2')
 def get_queryDesc2():
     selected_value = request.args.get('value')
@@ -781,68 +770,92 @@ def get_queryDesc2():
 
 
 
-# todo 上传文件
-# https://www.jianshu.com/p/57b564efcb7b
-class Myform(FlaskForm):
-    file = FileField(label='用户头像上传',validators=[FileRequired(), FileAllowed(['xlsx','png'])])  # 创建FileField字段
+# todo 更新用例
+@app.route('/importCase',methods=['GET','POST'])
+def importCase():
 
-@app.route('/upload1',methods=['GET','POST'])
-def upload1():
-    myform = Myform()         #创建表单对象
-    if myform.validate_on_submit():          #检查是否是一个POST请求并且请求是否有效
-        filename=myform.file.data.filename    #获取传入的文件名
-        filepath=os.path.dirname(os.path.abspath(__file__))       #获取当前项目的文件路径
-        # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
-        savepath=os.path.join(filepath)      #设置保存文件路径
-        myform.file.data.save(os.path.join(savepath, filename))    #保存文件
-        return '提交成功'
-    return render_template('index7.html', myform=myform)  #使用render_template()方法渲染file.html文件并将myform传递到file.html中
-
-
-# todo 更新规则用例
-@app.route('/updateCase')
-def updateCase():
-    myform = Myform()  # 创建表单对象
-    if myform.validate_on_submit():  # 检查是否是一个POST请求并且请求是否有效
-        filename = myform.file.data.filename  # 获取传入的文件名
-        print(filename)
+    if request.method == 'POST':
+        # 上传文件
+        if 'file' not in request.files:
+            return render_template('importCase.html', global_d_=global_d_)
+        file = request.files['file']
+        # print(file.filename)
+        if file.filename == '':
+            return render_template('importCase.html', global_d_=global_d_)
         filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
-        # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
         savepath = os.path.join(filepath)  # 设置保存文件路径
-        print(222,savepath)
-        myform.file.data.save(os.path.join(savepath, filename))  # 保存文件
+        file.save(os.path.join(savepath, file.filename))
         # 文件改名
-        # os.rename("/Users/linghuchong/Downloads/51/Python/project/test1.py", "/Users/linghuchong/Downloads/51/Python/project/test12.py")  # 重命名文件
+        file1 = savepath + "/" + file.filename
+        file2 = savepath + "/chcRuleCase1.11.xlsx"
+        os.rename(file1, file2)
+
+        # 导入用例
+        ruleName = request.form['ruleName']
+        print(ruleName)
+        if ruleName in global_d_['ruleName']:
+            ChcRule_PO = ChcRulePO()
+            ChcRule_PO.importFull(ruleName)
+
+    return render_template('importCase.html', global_d_=global_d_)
 
 
-        # return '提交成功'
-    return render_template('updateCase.html', global_d_=global_d_, myform=myform)  #使用render_template()方法渲染file.html文件并将myform传递到file.html中
+# todo 注册规则表1
+@app.route('/registerTbl',methods=['GET','POST'])
+def registerTbl():
 
-# todo 更新规则用例2
-@app.route('/post_updateCase',methods=['POST'])
-def post_updateCase():
+    if request.method == 'POST':
+        # 上传文件
+        if 'file' not in request.files:
+            return render_template('importCase.html', global_d_=global_d_)
+        file = request.files['file']
+        # print(file.filename)
+        if file.filename == '':
+            return render_template('importCase.html', global_d_=global_d_)
+        filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
+        savepath = os.path.join(filepath)  # 设置保存文件路径
+        file.save(os.path.join(savepath, file.filename))
+        # 文件改名
+        file1 = savepath + "/" + file.filename
+        file2 = savepath + "/chcRuleCase1.11.xlsx"
+        os.rename(file1, file2)
 
-    myform = Myform()  # 创建表单对象
-    filename = myform.file.data.filename  # 获取传入的文件名
-    # print(filename)  # 123.xlsx
-    filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
-    # savepath=os.path.join(filepath,'templates')      #设置保存文件路径
-    savepath = os.path.join(filepath)  # 设置保存文件路径
-    # print(savepath)   # /Users/linghuchong/Downloads/51/Python/project/flask/chc
-    myform.file.data.save(os.path.join(savepath, filename))  # 保存文件
-    # 文件改名
-    file1 = savepath + "/" + filename
-    file2 = savepath + "/chcRuleCase1.11.xlsx"
-    os.rename(file1, file2)
+        # 读取excel所有sheetName，去掉global_d_['ruleName']中的，再检查表格中应包含result updateDate step rule case ruleParam
 
-    ruleName = request.form['ruleName']
-    print(ruleName)
-    if ruleName in global_d_['ruleName']:
+        print(file2)
+        Openpyxl_PO = OpenpyxlPO(file2)
+        l_sheet = Openpyxl_PO.getSheets()
+        print(l_sheet)
+        l_tmp = []
+        for i in l_sheet:
+            print(i, Openpyxl_PO.getOneRow(1, varSheet=i))
+            l_title = (Openpyxl_PO.getOneRow(1, varSheet=i))
+            if len(l_title) > 6:
+                if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
+                    l_tmp.append(i)
+        print(l_tmp)
+
+        # return redirect(url_for('registerTbl2', global_d_=global_d_, l_canRegisterRuleName = l_tmp))   #重定向到index路由中，并返回响应对象
+
+        return render_template('registerTbl2.html',global_d_=global_d_, l_canRegisterRuleName = l_tmp)
+    return render_template('registerTbl.html',global_d_=global_d_)
+
+# todo 注册规则表2
+@app.route('/registerTbl2',methods=['GET','POST'])
+def registerTbl2():
+    if request.method == 'POST':
+        ruleName = request.form['ruleName']
+        print(ruleName)
         ChcRule_PO = ChcRulePO()
         ChcRule_PO.importFull(ruleName)
+        setRuleName(ruleName)
+        # return render_template('index.html', global_d_=global_d_)
+        return redirect(url_for('index'))   #重定向到index路由中，并返回响应对象
 
-    # return render_template('index.html', global_d_=global_d_)
-    return render_template('updateCase.html',global_d_=global_d_, myform=myform)  # 使用render_template()方法渲染file.html文件并将myform传递到file.html中
+    # return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_canRegisterRuleName)
+
+    return render_template('registerTbl2.html',global_d_=global_d_)
+
 
 
 
@@ -856,6 +869,9 @@ class Myform2(FlaskForm):
 def yanzm():
     myform=Myform2()         #创建表单对象
     return render_template('yanzm.html', myform=myform)     #使用render_template()方法渲染yanzm.html文件并将myform传递到file.html中
+
+# todo 上传文件
+# https://www.jianshu.com/p/57b564efcb7b
 
 # todo Flask框架——模型关系（1对多）
 # https://www.jianshu.com/p/aa280be2991f

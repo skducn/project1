@@ -1631,7 +1631,7 @@ class SqlServerPO:
                 raise e
         return len(d_tableComment)
 
-    def record(self, varTable, varType, varValue, l_filterTbl, varIsRecord=True):
+    def record2(self, varTable, varType, varValue, l_filterTbl, varIsRecord=True):
 
         """ 7.2 查找记录
         # 参数1：varTable = 表名（*表示所有的表）
@@ -1735,6 +1735,103 @@ class SqlServerPO:
                             # print(l_value)  # ['1015', '李*琳', '常*梅', '17717925118', '132222196702240429',...]
                             print(l_result[
                                       j])  # {'CZRYBM': '1015', 'CZRYXM': '李*琳', 'JMXM': '常*梅', 'SJHM': '17717925118', 'SFZH': '132222196702240429'...}
+
+        else:
+            print("\n" + varType + "类型不存在，如：float,money,int,nchar,nvarchar,datetime,timestamp")
+        # self.conn.close()
+
+    def record(self, varTable, varType, varValue, varIsRecord=True):
+
+        """ 7.2 查找记录
+        # 参数1：varTable = 表名（*表示所有的表）
+        # 参数2：varType = 数据类型(char,int,double,timestamp)
+        # 参数3：varValue = 值 (支持%模糊查询，如 %yy%)
+        参数4:varIsRecord = True / False  (False表示不显示数据)
+        """
+        # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
+        # Sqlserver_PO.record('*', 'varchar', '%海鹰居委会%')
+        # Sqlserver_PO.record('*', 'money', '%34.5%')
+        # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
+        # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+
+        # 支持的类型
+        if (varType in "double,timestamp,float,money,int,nchar,nvarchar,datetime,varchar"):
+            if "*" in varTable:
+                # 遍历所有表
+                l_d_tbl = self.select("SELECT name as TABLE_NAME FROM SYSOBJECTS WHERE TYPE='U'")
+                # print(l_d_tbl)  # [{'TABLE_NAME': 'TB_RIS_REPORT2'}, {'TABLE_NAME': 'jh_jkpg'}, {'TABLE_NAME': 'jh_jkgy'},,...]
+
+                for b in range(len(l_d_tbl)):
+                    # 获取表的Name和Type
+                    dboTable = l_d_tbl[b]['TABLE_NAME']
+
+                    # 获取表注释
+                    d_tableComment= self.getTableComment(dboTable)  # {'ASSESS_DIAGNOSIS': '门诊数据',...
+
+                    l_d_field_type = self.select(
+                        "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
+                        % (dboTable))
+                    # print(l_d_field_type)  # [{'FIELD_NAME': 'GUID', 'TYPE': 'varchar'}, {'FIELD_NAME': 'VISITSTRNO', 'TYPE': 'varchar'},...]
+
+                    l_field = []
+                    l_type = []
+                    for j in l_d_field_type:
+                        if varType in j['TYPE']:
+                            l_field.append(j['FIELD_NAME'])
+                            l_type.append(j['TYPE'])
+                    # print(l_field)  # ['GUID', 'VISITSTRNO', 'ORGCODE', 'ORGNAME',...]
+                    # print(l_type)  # ['varchar', 'varchar', 'varchar', 'varchar' ...]
+
+                    # 遍历所有字段
+                    for i in range(len(l_field)):
+                        l_result = self.select("select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                        if len(l_result) != 0:
+                            print("--" * 50)
+                            # Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
+                            Color_PO.consoleColor("31", "36", str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" + d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条 ", "")
+
+                            # 输出字段注释
+                            Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
+                            # print(self.getFieldComment(dboTable))
+
+                            if varIsRecord == True:
+                                for j in range(len(l_result)):
+                                    print(l_result[j])
+                                    # print(str(l_result[j]).decode("utf8"))
+                                    # print(l_result[j].encode('latin-1').decode('utf8'))
+
+            elif "*" not in varTable:
+                # 搜索指定表（单表）符合条件的记录.  ，获取列名称、列类别、类注释
+                # 获取表的Name和Type
+                l_d_field_type = self.select(
+                    "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
+                    % (varTable))
+                # print(l_d_field_type)  # [{'FIELD_NAME': 'ID', 'TYPE': 'int'}, {'FIELD_NAME': 'ARCHIVENUM', 'TYPE': 'varchar'}...]
+
+                # 筛选符合条件（包含指定type）的field
+                l_field = []
+                for j in l_d_field_type:
+                    if varType in j['TYPE']:
+                        l_field.append(j['FIELD_NAME'])
+                # print(l_field)  # ['CZRYBM', 'CZRYXM', 'JMXM', 'SJHM', 'SFZH', 'JJDZ',...]
+
+                # 遍历所有字段
+                for i in range(len(l_field)):
+                    l_result = self.select("select * from %s where [%s] like '%s'" % (varTable, l_field[i], varValue))
+                    if len(l_result) != 0:
+                        print("--" * 50)
+                        Color_PO.consoleColor("31", "36",
+                                              "[result] => " + str(varValue) + " => " + varTable + " => " + l_field[
+                                                  i] + " => " + str(len(l_result)) + "条 ", "")
+
+                        # 输出字段注释
+                        Color_PO.consoleColor2({"35": self.getFieldComment(varTable)})
+                        # print(self.getFieldComment(dboTable))
+
+                        for j in range(len(l_result)):
+                            l_value = [value for value in l_result[j].values()]
+                            # print(l_value)  # ['1015', '李*琳', '常*梅', '17717925118', '132222196702240429',...]
+                            print(l_result[j])  # {'CZRYBM': '1015', 'CZRYXM': '李*琳', 'JMXM': '常*梅', 'SJHM': '17717925118', 'SFZH': '132222196702240429'...}
 
         else:
             print("\n" + varType + "类型不存在，如：float,money,int,nchar,nvarchar,datetime,timestamp")

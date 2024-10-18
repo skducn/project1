@@ -10,11 +10,15 @@
 #***************************************************************
 from ChcRulePO import *
 
+r = ChcRulePO("健康干预_已患疾病单病")
+
+r.getRuleList()
+
 # # 健康评估,健康干预,中医体质辨识,疾病评估,儿童健康干预
 
 # r = ChcRulePO("健康干预_已患疾病单病")
-r = ChcRulePO("健康干预_已患疾病组合")
-r.runId([119])
+# r = ChcRulePO("健康干预_已患疾病组合")
+# r.runId([119])
 # r.runId([45])
 # r.runId([199])
 # r.runId([201])

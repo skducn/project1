@@ -4,108 +4,115 @@
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 <html>
 <head>
-<title>查询表结构 - CHC</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+<title>{{global_d_['menu']['searchRecord']}} - CHC</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
+<!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--13788-->
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/custom.css') }}">
+
+<!-- mask -->
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='css/mask.js') }}"></script>
 
 <style>
 
- /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
-    .containerFlex {
-    display: flex;
-    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
-    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
-    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
-        row（默认值）：主轴为水平方向，起点在左端。
-        row-reverse：主轴为水平方向，起点在右端。
-        column：主轴为垂直方向，起点在上沿。
-        column-reverse：主轴为垂直方向，起点在下沿。*/
-    /* flex-wrap：是否换行及换行的方向
-        nowrap（默认）：不换行
-        wrap：换行，第一行在上方
-        wrap-reverse：换行，第一行在下方*/
-    height: 10vh; /* Full height of the viewport */
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
-    }
-
-    /* loading */
-    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
-    @keyframes dash { to {stroke-dashoffset: 136;} }
-    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
-    @keyframes blink { 50% {opacity: 0;} }
-
-    .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
     textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
-    textErr{white-space: pre-wrap;font-size:15px;color: #ff0000;text-align: left;line-height: 2rem;}
+    textErr{white-space: pre-wrap;font-size:15px;color: #b700ff;text-align: left;line-height: 1.5rem;}
 </style>
 
-
-<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ url_for('static', filename='css/chc.js') }}"></script>
-
 </head>
-
-<!--31525-->
-<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
-{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
-<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
-<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
-<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
-<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
-<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
 
 <body>
 
 <!-- 遮罩层 -->
 <div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
-    <div class="containerFlex">
-    <svg width="100" height="100" viewBox="0 0 40 60">
-    <polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
-    <text class="loading" x="0" y="45" fill="#fff" >processing...</text>
-    </svg>
-    </div>
+<div class="containerFlex">
+<svg width="100" height="100" viewBox="0 0 40 60">
+<polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
+<text class="loading" x="0" y="45" fill="#fff" >processing...</text>
+</svg>
+</div>
 </div>
 
 <section id="contact" class="av[100px] a1M">
 <div id="main">
-    <div class="louti"></div>
-    <div class="aJ[770px] a2f a4t a4d ae a0 dark:a1 a2d wow fadeInUp" data-wow-delay=".3s">
-        <div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w" id="test">
+<div class="louti"></div>
 
-            <!-- 测试记录 -->
-            <div class="item" id="item1"></div>
-            <div class="a6 a1p ac">
-                <div class="a5 af">
-                    <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-                        <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28"><i class="el-icon-search"></i> 查询表结构</h3>
-                    </div>
-                </div>
+<div class="aJ[770px] a2f a4t a4d ae a0 dark:a1 a2d wow fadeInUp" data-wow-delay=".3s">
+<div class="a3V a3W sm:a4u[70px] a0 dark:aC a4d a2C a4v dark:a4w">
+
+    <div class="a6 a1p ac">
+        <div class="a5 af">
+            <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
+                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">检索记录</h3>
             </div>
+        </div>
+    </div>
 
-            <div class="a6 a1K ac">
-                <div class="a5 md:a2u/2 af"><div class="a3u">
-                    <label for class="al a25 aR a1j dark:a1k a2j">数据库</label>
-                    <select id="queryDesc2" name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                        <option value="" selected>请选择...</option>
-                        <option value="CHC" >CHC</option>
-                        <option value="CHCCONFIG" >CHCCONFIG</option>
-                        <option value="CHC_JINGAN" >CHC_JINGAN</option>
-                        <option value="CHCCONFIG_JINGAN" >CHCCONFIG_JINGAN</option>
-                        <option value="PHUSERS" >PHUSERS</option>
-                        <option value="ZYCONFIG" >ZYCONFIG</option>
-                    </select>
-                </div></div>
-            </div>
 
-            <div id="get_queryDesc2"></div>
+<form action="{{ url_for('searchRecord')}}" method="post">
+<div class="a6 a1K ac">
+
+    <div class="a5 md:a2u/2 af"><div class="a3u">
+        <label for class="al a25 aR a1j dark:a1k a2j">数据库</label>
+        <select name="db" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+            <option value="" selected>请选择...</option>
+            <option value="CHC" >CHC</option>
+            <option value="CHCCONFIG" >CHCCONFIG</option>
+            <option value="CHC_JINGAN" >CHC_JINGAN</option>
+            <option value="CHCCONFIG_JINGAN" >CHCCONFIG_JINGAN</option>
+            <option value="PHUSERS" >PHUSERS</option>
+            <option value="ZYCONFIG" >ZYCONFIG</option>
+        </select>
+    </div></div>
+
+
+<div class="a5 md:a2u/2 af"><div class="a3u">
+    <label for class="al a25 aR a1j dark:a1k a2j">数据类型</label>
+    <select name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+        <option value="varchar" selected>varchar</option>
+        <option value="nvarchar" >nvarchar</option>
+        <option value="nchar" >nchar</option>
+        <option value="int" >int</option>
+        <option value="datetime" >datetime</option>
+        <option value="money" >money</option>
+        <option value="timestamp" >timestamp</option>
+        <option value="float" >float</option>
+        <option value="double" >double</option>
+    </select>
+</div></div>
+
+<div class="a5 md:a2u/2 af"><div class="a3u">
+    <label for class="al a25 aR a1j dark:a1k a2j">模糊匹配*</label>
+    <input type="text" name="text" maxlength="50" id="cacu_value" placeholder="请输入关键字..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+</div></div>
+
+<div class="a5 md:a2u/2 af"><div class="a3u">
+    <label for class="al a25 aR a1j dark:a1k a2j">过滤表(多个表用英文逗号分隔)</label>
+    <input type="text" name="filterTbl" maxlength="100" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+</div></div>
+
+    <div class="a5 af">
+        <div class="a2g">
+    {#    <button class="el-button el-button--primary" >提交</button>#}
+    {#    <input type="submit" class="btn-custom green" value="提交">#}
+    {#    <input type="submit" class="btn-custom red" value="提交">#}
+        <input type="submit" class="btn-custom blue" value="提交">
+    {#    <input type="submit" class="btn-custom black" value="提交">#}
+        </div>
+    </div>
+
+    <!-- loading... -->
+    <div id="loading" style="display:none;"></div>
+
+</div>
+</form>
 
 
 
@@ -193,10 +200,23 @@
 </div>
 
 
-    </div>
-    </div>
 </div>
+</div></div>
+
 </section>
+
+
+<section class="containerFlex2" >
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box3">
+                {{ result | safe }}
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
+
 
 </body>
 </html>

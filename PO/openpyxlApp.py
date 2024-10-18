@@ -13,7 +13,20 @@ from PO.OpenpyxlPO import *
 # todo 文件，工作表
 # 打开文件（文件不存在则创建文件，默认Sheet1）
 # Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/7.xlsx")
-Openpyxl_PO = OpenpyxlPO("./data/7.xlsx")
+# Openpyxl_PO = OpenpyxlPO("./data/7.xlsx")
+Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase1.11.xlsx")
+l_sheet = Openpyxl_PO.getSheets()
+print(l_sheet)
+l_tmp = []
+for i in l_sheet:
+    print(i, Openpyxl_PO.getOneRow(1,varSheet=i))
+    l_title = (Openpyxl_PO.getOneRow(1,varSheet=i))
+    if len(l_title) > 6 :
+        if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
+            l_tmp.append(i)
+
+print(l_tmp)
+
 # Openpyxl_PO = OpenpyxlPO(r"/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx",['Sheet2','Sheet3'])
 
 # Openpyxl_PO.sh("Sheet2")

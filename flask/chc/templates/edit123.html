@@ -103,7 +103,7 @@ setTimeout(function() {
     <header class="header fixed-top white-navbar">
         <div class="container">
             <nav class="navbar navbar-expand-lg p-0">
-                <a class="navbar-brand" href="/index">
+                <a class="navbar-brand" href="/">
                     <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo White" class="img-fluid logo-transparent">
                     <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo Normal" class="img-fluid logo-normal">
                 </a>
@@ -333,40 +333,23 @@ setTimeout(function() {
                     <!--// .col //-->
                 </div>
                 <!--// .row //-->
-                <div class="row">
-                    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6">
-                        <a  href="{{ url_for('list123',ruleName='健康干预_已患疾病单病') }}" target = "_blank">
-                        <div class="features-box">
-                            <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病单病</h7>
-                            </div>
-                        </div>
-                         </a>
-                    </div>
-                    <!--// .col //-->
-                    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6">
-                        <a  href="{{ url_for('list123',ruleName='健康干预_已患疾病组合') }}" target = "_blank">
-                        <div class="features-box">
-                            <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;健康干预_已患疾病组合</h7>
-                            </div>
-                        </div>
-                         </a>
-                    </div>
 
-                    <!--// .col //-->
-                    <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6">
-                        <a  href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank">
-                        <div class="features-box">
+                <div class="row">
+                    {% for i in global_d_['ruleName'] %}
+                        <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6">
+                            <a href="{{ url_for('list123',ruleName=i) }}" target = "_blank">
+                            <div class="features-box">
                             <div class="features-body">
-                                <h7 class="features-title"><i class="el-icon-arrow-right"></i>&nbsp;评估因素取值</h7>
+                            <h7 class="features-title">{{ i }}</h7>
                             </div>
+                            </div>
+                            </a>
                         </div>
-                         </a>
-                    </div>
-                    <!--// .col //-->
+                    {% endfor %}
                 </div>
-                <!--// .row //-->
+
+
+
             </div>
             <!--// .container //-->
         </section>

@@ -4,50 +4,23 @@
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 <html>
 <head>
-<title>查询表结构 - CHC</title>
-    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+<title>{{global_d_['menu']['queryDesc2']}} - CHC</title>
+
+<link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
+<!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
-<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<!--13788-->
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/custom.css') }}">
 
-<style>
-
- /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
-    .containerFlex {
-    display: flex;
-    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
-    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
-    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
-        row（默认值）：主轴为水平方向，起点在左端。
-        row-reverse：主轴为水平方向，起点在右端。
-        column：主轴为垂直方向，起点在上沿。
-        column-reverse：主轴为垂直方向，起点在下沿。*/
-    /* flex-wrap：是否换行及换行的方向
-        nowrap（默认）：不换行
-        wrap：换行，第一行在上方
-        wrap-reverse：换行，第一行在下方*/
-    height: 10vh; /* Full height of the viewport */
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
-    }
-
-    /* loading */
-    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
-    @keyframes dash { to {stroke-dashoffset: 136;} }
-    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
-    @keyframes blink { 50% {opacity: 0;} }
-
-    .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
-    textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
-    textErr{white-space: pre-wrap;font-size:15px;color: #ff0000;text-align: left;line-height: 2rem;}
-</style>
-
-
+<!-- mask -->
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='css/mask.js') }}"></script>
+
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 
 </head>

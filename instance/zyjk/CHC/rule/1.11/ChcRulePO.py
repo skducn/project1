@@ -73,6 +73,29 @@ class ChcRulePO():
             print(d_r['data']['access_token'])
         return d_r['data']['access_token']
 
+    def crtRuleList(self):
+
+        # 创建规则名列表
+
+        dboTable = "a_ruleList"
+
+        # 删除表
+        Sqlserver_PO.execute("drop table if exists " + dboTable)
+
+        # 创建表
+        Sqlserver_PO.crtTable(dboTable, '''
+                ruleName VARCHAR(40) NOT NULL,
+                ruleNameTbl VARCHAR(40) NOT NULL''')
+
+        # 添加字段注释
+        Sqlserver_PO.setFieldComment(dboTable, 'ruleName', '规则名')
+        Sqlserver_PO.setFieldComment(dboTable, 'ruleNameTbl', '规则名表名')
+
+        # 添加表注释
+        Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用)规则名列表' , dboTable))  # sheetName=注释，dboTable=表名
+
+        Color_PO.outColor([{"36": "[OK] => " + "（" + dboTable + "）创建成功。"}, ])
+
     def importFull(self, sheetName):
 
         # 全量更新表（删除旧表，插入新表）
@@ -129,9 +152,8 @@ class ChcRulePO():
             Sqlserver_PO.setFieldComment(dboTable, 'assessCode', '评估因素编码')  # assessCode
             Sqlserver_PO.setFieldComment(dboTable, 'assessDesc', '评估因素描述')
             Sqlserver_PO.setFieldComment(dboTable, 'priority', '优先级')
-
-
-
+            # 健康干预
+            Sqlserver_PO.setFieldComment(dboTable, 'hitQty', '命中次数')
 
 
 
@@ -396,6 +418,15 @@ class ChcRulePO():
             return (l_msg)
 
 
+    def getRuleList(self):
+
+        d_ = {}
+        l_d_ = Sqlserver_PO.select("select * from a_ruleList")
+        # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
+        for d in l_d_:
+            d_[d['ruleName']] = d['ruleNameTbl']
+        # print(d_)
+        return d_
 
 
     def runId(self, l_dbId):

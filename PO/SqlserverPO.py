@@ -71,7 +71,7 @@
 # sqlalchemy+pandas：错误 'OptionEngine' object has no attribute 'execute'，'str' object has no attribute '_execute_on_connection'
 # https://www.cnblogs.com/bruce-he/p/17113269.html
 
-#SqlServer判断表、列不存在则创建 &&ExecuteNonQuery 要求命令拥有事务
+# SqlServer判断表、列不存在则创建 &&ExecuteNonQuery 要求命令拥有事务
 # https://blog.csdn.net/Andrewniu/article/details/78028207
 
 # https://blog.51cto.com/u_16213439/7729728
@@ -164,16 +164,19 @@ from time import sleep
 from sqlalchemy import create_engine, text
 
 from PO.ColorPO import *
+
 Color_PO = ColorPO()
 
-from PO.FakePO import *
-Fake_PO = FakePO()
+
 
 from PO.TimePO import *
+
 Time_PO = TimePO()
 
 from PO.FilePO import *
+
 File_PO = FilePO()
+
 
 class SqlServerPO:
 
@@ -206,8 +209,8 @@ class SqlServerPO:
     def getEngine_pymssql(self):
         ''' pymssql 引擎 '''
         # return create_engine("mssql+pymssql://" + self.user + ":" + self.password + "@" + self.server + ":" + str(self.port) + "/" + self.database)
-        return create_engine("mssql+pymssql://" + self.user + ":" + self.password + "@" + self.server + "/" + self.database)
-
+        return create_engine(
+            "mssql+pymssql://" + self.user + ":" + self.password + "@" + self.server + "/" + self.database)
 
     def selectParam(self, sql, param):
 
@@ -220,8 +223,6 @@ class SqlServerPO:
             return result
         except Exception as e:
             print(repr(e))
-
-
 
     def select(self, sql):
 
@@ -304,8 +305,6 @@ class SqlServerPO:
         self.cur.close()
         self.conn.close()
 
-
-
     def getTables(self):
 
         ''' 2.1 获取所有表 '''
@@ -327,7 +326,8 @@ class SqlServerPO:
         ''' 2.2 获取所有表的数量 '''
 
         try:
-            l_d_table = self.select("SELECT count(TABLE_NAME) as c FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE'")
+            l_d_table = self.select(
+                "SELECT count(TABLE_NAME) as c FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='BASE TABLE'")
             # l_d_table = self.select("SELECT count(NAME) as c FROM SYSOBJECTS WHERE TYPE='U'")  # 同上
             # print(l_d_table)  # [{'c': 105}]
             return l_d_table[0]['c']
@@ -355,7 +355,8 @@ class SqlServerPO:
         ''' 2.4 获取所有视图的数量 '''
 
         try:
-            l_d_table = self.select("SELECT count(TABLE_NAME) as c FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='VIEW'")
+            l_d_table = self.select(
+                "SELECT count(TABLE_NAME) as c FROM INFORMATION_SCHEMA.TABLES where TABLE_TYPE='VIEW'")
             # print(l_d_table)  # [{'c': 105}]
             return l_d_table[0]['c']
         except Exception as e:
@@ -388,23 +389,27 @@ class SqlServerPO:
         # try:
         if varTable == "all":
             # 所有表
-            l_d_ = self.select("SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0")
+            l_d_ = self.select(
+                "SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0")
             # print(l_d_)  # [{'name': 'ASSESS_DIAGNOSIS', 'value': b'\xc3\xc5\xd5\xef\xca\xfd\xbe\xdd'},...
             return self._getTableComment(l_d_)
         elif '%' in varTable:
             # 模糊表
-            l_d_ = self.select("SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0 where d.name like '%s'" % (varTable))
+            l_d_ = self.select(
+                "SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0 where d.name like '%s'" % (
+                    varTable))
             # print(l_d_)  # [{'name': 'ASSESS_DIAGNOSIS', 'value': b'\xc3\xc5\xd5\xef\xca\xfd\xbe\xdd'},...
             return self._getTableComment(l_d_)
         else:
             # 单表
-            l_d_ = self.select("SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0 where d.name = '%s'" % (varTable))
+            l_d_ = self.select(
+                "SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0 where d.name = '%s'" % (
+                    varTable))
             # print(l_d_)  # [{'name': 'QYYH', 'value': b'1+1+1\xc7\xa9\xd4\xbc\xd0\xc5\xcf\xa2\xb1\xed'}]
             return self._getTableComment(l_d_)
         # except Exception as e:
         #     print(e, ",[error], SqlserverPO.getTableComment()异常!")
         #     self.conn.close()
-
 
     def getStructure(self, varTable="all"):
 
@@ -488,14 +493,13 @@ class SqlServerPO:
             print(e, ",[error], SqlserverPO.getTableComment()异常!")
             self.conn.close()
 
-
-
     def getFields(self, varTable):
 
         ''' 2.7 获取字段名 '''
 
         try:
-            l_d_ = self.select("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
+            l_d_ = self.select(
+                "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
             # print(l_d_)  # [{'COLUMN_NAME': 'id'}, {'COLUMN_NAME': 'name'}, {'COLUMN_NAME': 'salesrep'}]
             l_field = []
             for i in range(len(l_d_)):
@@ -504,7 +508,6 @@ class SqlServerPO:
         except Exception as e:
             print(e, ",[error], getFields()异常!")
             self.conn.close()
-
 
     def getFieldComment(self, varTable):
 
@@ -549,7 +552,7 @@ class SqlServerPO:
         # print(result) # [{'tableName': 'aaa', 'Name': 'ID', 'Type': 'int', 'Size': 4, 'NotNull': False, 'Comment': None},...]
         try:
             for i in result:
-                 d_fields[str(i['Name'])] = str(i['Type'])
+                d_fields[str(i['Name'])] = str(i['Type'])
         except Exception as e:
             raise e
         return d_fields
@@ -578,7 +581,7 @@ class SqlServerPO:
         )
         try:
             for i in result:
-                if i['NotNull'] == False :
+                if i['NotNull'] == False:
                     d_fields[str(i['Name'])] = str(i['Type'])
         except Exception as e:
             raise e
@@ -594,18 +597,17 @@ class SqlServerPO:
         else:
             return None
 
-
     def getPrimaryKey(self, varTable):
 
         ''' 2.11 获取主键或组合键 '''
 
-        l_d_PK = self.select("SELECT COLUMN_NAME FROM information_schema.key_column_usage where table_name='" + varTable + "'")
+        l_d_PK = self.select(
+            "SELECT COLUMN_NAME FROM information_schema.key_column_usage where table_name='" + varTable + "'")
         # print(l_d_PK)  # [{'COLUMN_NAME': 'ADDRESS'}, {'COLUMN_NAME': 'ID'}]
-        if l_d_PK == [] :
+        if l_d_PK == []:
             return None
         else:
             return l_d_PK
-
 
     def getPrimaryKeyMaxValue(self, varTable):
 
@@ -616,22 +618,23 @@ class SqlServerPO:
 
         # 判断表中是否有记录
         varQty = self.getRecordQTY(varTable)
-        if varQty != 0 :
+        if varQty != 0:
             # 判断是否有主键
             l_d_PK = self.getPrimaryKey(varTable)
             if l_d_PK != None:
                 # 一个主键时，# [{'COLUMN_NAME': 'id'}]
-                if len(l_d_PK) == 1 :
+                if len(l_d_PK) == 1:
                     d = {}
 
                     # 获取字段与类型
                     d_fieldType = self.getFieldType(varTable)
                     # print(d_fieldType)
                     # 遍历判断主键的类型（因为主键可以是整型或字符型）
-                    for k,v in d_fieldType.items():
+                    for k, v in d_fieldType.items():
                         # print(l_d_PK[0]['COLUMN_NAME'])  # id
-                        if k == l_d_PK[0]['COLUMN_NAME'] and v == 'int' :
-                            maxValue = self.select("select max(" + str(l_d_PK[0]['COLUMN_NAME']) + ") as maxValue from " + varTable)
+                        if k == l_d_PK[0]['COLUMN_NAME'] and v == 'int':
+                            maxValue = self.select(
+                                "select max(" + str(l_d_PK[0]['COLUMN_NAME']) + ") as maxValue from " + varTable)
                             d[l_d_PK[0]['COLUMN_NAME']] = maxValue[0]['maxValue']
                     return (d)  # {'ID': 100}
                 else:
@@ -642,10 +645,9 @@ class SqlServerPO:
     def getForeignKey(self):
 
         ''' 2.16 获取所有外键关联表 '''
-        l_d_fk = self.select("select OBJECT_NAME(fk.parent_object_id) as 'table', fk.name as 'foreignKey', OBJECT_NAME(fk.referenced_object_id) as 'relatingTable' FROM sys.foreign_keys fk")
+        l_d_fk = self.select(
+            "select OBJECT_NAME(fk.parent_object_id) as 'table', fk.name as 'foreignKey', OBJECT_NAME(fk.referenced_object_id) as 'relatingTable' FROM sys.foreign_keys fk")
         return l_d_fk
-
-
 
     def crtTable(self, varTable, sql):
 
@@ -662,7 +664,6 @@ class SqlServerPO:
         # print(sql)
         self.execute(sql)
         self.conn.commit()
-
 
     def _genTypeValue(self, varTable):
 
@@ -751,9 +752,7 @@ class SqlServerPO:
                 d_init = self._genTypeValue(varTable)
                 # print(d_init)
                 # 执行insert
-                self._execInsert(varTable, d_init,{})
-
-
+                self._execInsert(varTable, d_init, {})
 
                 return True
             else:
@@ -802,7 +801,6 @@ class SqlServerPO:
                     d_init[primaryKey] = d_primaryKey[primaryKey] + 1
                     # print(d1)  # {'id': 40, 'name': 'a', 'age': 1}
 
-
                 # 执行insert
                 self._execInsert(varTable, d_init, d_field)
 
@@ -818,7 +816,6 @@ class SqlServerPO:
 
             # 判断表是否存在
             if self.isTable(varTable) == True:
-
                 # 生成必填项类型值
                 d_init = self._genNotNullTypeValue(varTable)
 
@@ -836,7 +833,7 @@ class SqlServerPO:
                 # print(d_init)  # {'id': 40, 'name': 'a', 'age': 1}
 
                 # 执行insert
-                self._execInsert(varTable, d_init,{})
+                self._execInsert(varTable, d_init, {})
 
     def _execInsert(self, varTable, d_init, d_field):
 
@@ -850,7 +847,7 @@ class SqlServerPO:
         if d_field != {}:
             for k, v in d_field.items():
                 for k1, v1 in d_init.items():
-                    if k == k1 :
+                    if k == k1:
                         d_init[k] = v
             # print(d_init)  # {'GHRQ': 'a', 'GHBM': 'a', 'GTHBZ': 'a', ...}
 
@@ -873,7 +870,7 @@ class SqlServerPO:
             print("[ok], " + str(sql))
             self.execute('set identity_insert ' + str(varTable) + ' off')
         else:
-            if 'None' in u :
+            if 'None' in u:
                 u = u.replace(",'None',", ",null,")
                 sql = "INSERT INTO " + str(varTable) + " (" + s + ") VALUES (" + u + ")"
             else:
@@ -898,40 +895,36 @@ class SqlServerPO:
         # 3.10 添加表注释
         # 注意：原注释必须为空，否则报错
         # setTableComment('t_user', '用户表')
-        self.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (varComment, varTable))
+        self.execute(
+            "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (
+            varComment, varTable))
 
     def reviseTableComment(self, varTable, varComment):
 
         # 3.11 修改表注释
         # 注意：原注释必须有值，否则报错
         # setTableComment('t_user', '用户表')
-        self.execute("EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (varComment, varTable))
-
+        self.execute(
+            "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (
+            varComment, varTable))
 
     def setFieldComment(self, varTable, varField, varComment):
 
-        # 3.12 设置字段注释
+        # 3.12 添加字段注释
         # 注意：原注释必须为空，否则报错
         # setFieldComment('t_user','ID','编号')
-
-        # 判断字段是否存在
-        l_ = self.getFields(varTable)
-        # print(l_) # ['result', 'updateDate', 'step', 'rule', 'case', 'ruleParam', 'assessName', 'assessRule', 'tester']
-        if varField in l_:
-            self.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
+        self.execute(
+            "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+            varComment, varTable, varField))
 
     def reviseFieldComment(self, varTable, varField, varComment):
 
         # 3.13 修改字段注释
         # 注意：原注释必须有值，否则报错
         # reviseFieldComment('t_user','ID','编号')
-
-        # 判断字段是否存在
-        l_ = self.getFields(varTable)
-        # print(l_) # ['result', 'updateDate', 'step', 'rule', 'case', 'ruleParam', 'assessName', 'assessRule', 'tester']
-        if varField in l_:
-            self.execute("EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
-
+        self.execute(
+            "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+            varComment, varTable, varField))
 
     def setFieldTypeComment(self, varTable, varField, varType, varComment):
 
@@ -950,7 +943,6 @@ class SqlServerPO:
                 self.reviseFieldComment(varTable, varField, varComment)
         except Exception as e:
             print(e)
-
 
     def setIdentityPrimaryKey(self, varTable, varField):
 
@@ -1003,11 +995,10 @@ class SqlServerPO:
         qty = self.select("Select OBJECTPROPERTY(OBJECT_ID('" + varTable + "'),'TableHasIdentity') as qty")
         # print(qty)  # [{'qty': 1}]
         # print(qty[0]['qty'])  # 1
-        if qty[0]['qty'] == 1 :
+        if qty[0]['qty'] == 1:
             return True
         else:
             return False
-
 
     # todo 迁移
 
@@ -1108,8 +1099,6 @@ class SqlServerPO:
         except Exception as e:
             print(e)
 
-
-
     def dict2db(self, varDict, varDbTable, index="True"):
 
         """5.4 字典导入数据库"""
@@ -1151,14 +1140,13 @@ class SqlServerPO:
         except Exception as e:
             print(e)
 
-
     def db2csv(self, sql, varExcelFile, header=1):
 
         """6.1 数据库sql导出csv(含字段或不含字段)"""
 
         try:
             engine = self.getEngine_pymssql()
-            df = pd.read_sql(text(sql), con= engine.connect())
+            df = pd.read_sql(text(sql), con=engine.connect())
             # header=None表示不含列名
             if header == None:
                 df.to_csv(varExcelFile, index=None, header=None)
@@ -1181,7 +1169,6 @@ class SqlServerPO:
                 df.to_excel(varExcelFile, index=None)
         except Exception as e:
             print(e)
-
 
     def db2dict(self, sql, orient='list'):
 
@@ -1217,7 +1204,8 @@ class SqlServerPO:
 
             # html标题、title
             html = '''<html><head><title>EHR规则自动化报表</title></head>
-            <body><b><caption>EHR规则自动化_''' + str(strftime("%Y-%m-%d %H:%M:%S", localtime())) + '''</caption></b><br><br>{table}</body></html>'''
+            <body><b><caption>EHR规则自动化_''' + str(
+                strftime("%Y-%m-%d %H:%M:%S", localtime())) + '''</caption></b><br><br>{table}</body></html>'''
             html_string = '''<style>.mystyle {font-size: 11pt; font-family: Arial;    border-collapse: collapse;     border: 1px solid silver;}.mystyle td, th {    padding: 5px;}.mystyle tr:nth-child(even) {    background: #E0E0E0;}.mystyle tr:hover {    background: silver;    cursor: pointer;}</style>'''
 
             with open(varHtml, 'w') as f:
@@ -1229,9 +1217,9 @@ class SqlServerPO:
             # 褐色 =7E0023,'c6efce = 淡绿', '006100 = 深绿'，'ffffff=白色', '000000=黑色'，'ffeb9c'= 橙色
             from bs4 import BeautifulSoup
             html_text = BeautifulSoup(open(varHtml), features='html.parser')
-            html_text = str(html_text).replace("<td>None</td>", "<td></td>")\
-                .replace(">正向结果</th>", 'bgcolor="#ffeb9c">正向结果</th>')\
-                .replace(">反向结果</th>", 'bgcolor="#ffeb9c">反向结果</th>')\
+            html_text = str(html_text).replace("<td>None</td>", "<td></td>") \
+                .replace(">正向结果</th>", 'bgcolor="#ffeb9c">正向结果</th>') \
+                .replace(">反向结果</th>", 'bgcolor="#ffeb9c">反向结果</th>') \
                 .replace("<td>error</td>", '<td bgcolor="#ff0000">error</td>')
 
             # 另存为report.html
@@ -1252,19 +1240,18 @@ class SqlServerPO:
         # db2df("select * from a_test")
 
         l_d_data = self.select(sql)
-        print(l_d_data)  # [{'id': 1, 'name': 'John Smith2', 'salesrep': 'John Doe3'}, {'id': 2, 'name': 'Jane Doe', 'salesrep': 'Joe Dog'},...
+        print(
+            l_d_data)  # [{'id': 1, 'name': 'John Smith2', 'salesrep': 'John Doe3'}, {'id': 2, 'name': 'Jane Doe', 'salesrep': 'Joe Dog'},...
         # print(l_d_data[0])
         # print(list(l_d_data[0].keys()))
         df = pd.DataFrame(l_d_data, columns=list(l_d_data[0].keys()))
         # df.to_string(index=False)
         return df
 
-
-
     def desc2(self, args=''):
 
         # 7.1 查看表结构
-        
+
         # 注意，表名区分大小写
         # 1，所有表结构, desc()
         # 2，所有表结构，可选字段, 如：desc(['id', 'page'])
@@ -1283,6 +1270,7 @@ class SqlServerPO:
         l_columnDefault = []
         l_columnComment = []
 
+        s_info = ''
         # 获取表和注释
         if len(args) == 0 or isinstance(args, list):
             # 1，所有表结构, desc()
@@ -1302,14 +1290,15 @@ class SqlServerPO:
                 d_tableComment = self.getTableComment(args)
                 # print(d_tableComment)  # {'QYYH': '1+1+1签约信息表'}
 
-
         # 遍历表，输出：列名columnName，类型dataType，长度maxLength，
         # 标度datetimePrecision，精度numericPrecison，非空isNull，默认columnDefault，描述columnComment
         for k, v in d_tableComment.items():
             varTable = k
 
             # 获取字段名COLUMN_NAME、日期精度DATETIME_PRECISION、数字精度numericPrecision，是否为空isNull，默认columnDefault
-            l_d_1 = self.select("SELECT COLUMN_NAME,DATETIME_PRECISION,NUMERIC_PRECISION,IS_NULLABLE,COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' ORDER BY ORDINAL_POSITION" % (varTable))
+            l_d_1 = self.select(
+                "SELECT COLUMN_NAME,DATETIME_PRECISION,NUMERIC_PRECISION,IS_NULLABLE,COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' ORDER BY ORDINAL_POSITION" % (
+                    varTable))
             # print(l_d_1)  # [{'COLUMN_NAME': 'id', 'DATETIME_PRECISION': None, 'NUMERIC_PRECISION': 19, 'IS_NULLABLE': 'YES', 'COLUMN_DEFAULT': None}, ...
 
             # 获取字段名COLUMN_NAME、数据类型DATA_TYPE、长度MAX_LENGTH、描述COLUMN_COMMENT
@@ -1349,17 +1338,26 @@ class SqlServerPO:
                     for i in range(len(args)):
                         for m in range(len(l_d_1)):
                             if args[i] == l_d_1[m]['COLUMN_NAME']:
-                                l_columnName.append(str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME']) ))
-                                l_dataType.append(str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) +1 ))
-                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) +4 ))
-                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) +2))
-                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION'])) ))
-                                l_isNull.append(str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) +3))
-                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) +1))
+                                l_columnName.append(
+                                    str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME'])))
+                                l_dataType.append(
+                                    str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) + 1))
+                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (
+                                            maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) + 4))
+                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (
+                                            datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) + 2))
+                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (
+                                            numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION']))))
+                                l_isNull.append(
+                                    str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) + 3))
+                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (
+                                            columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) + 1))
                                 if l_d_1[m]['COLUMN_COMMENT'] == None:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                 # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
                 # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']}) ???
                 elif isinstance(args, dict):
@@ -1368,17 +1366,26 @@ class SqlServerPO:
                     for i in range(len(args)):
                         for m in range(len(l_d_1)):
                             if args[i] == l_d_1[m]['COLUMN_NAME']:
-                                l_columnName.append(str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME']) ))
-                                l_dataType.append(str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) +1 ))
-                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) +4 ))
-                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) +2))
-                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION'])) ))
-                                l_isNull.append(str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) +3))
-                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) +1))
+                                l_columnName.append(
+                                    str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME'])))
+                                l_dataType.append(
+                                    str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) + 1))
+                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (
+                                            maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) + 4))
+                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (
+                                            datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) + 2))
+                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (
+                                            numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION']))))
+                                l_isNull.append(
+                                    str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) + 3))
+                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (
+                                            columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) + 1))
                                 if l_d_1[m]['COLUMN_COMMENT'] == None:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
 
                 else:
                     # 所有字段
@@ -1386,31 +1393,37 @@ class SqlServerPO:
                         l_columnName.append(str(i['COLUMN_NAME']) + " " * (columnName - len(i['COLUMN_NAME'])))
                         l_dataType.append(str(i['DATA_TYPE']) + " " * (dataType - len(i['DATA_TYPE'])))
                         l_maxLength.append(str(i['MAX_LENGTH']) + " " * (maxLength - len(str(i['MAX_LENGTH'])) + 5))
-                        l_datetimePrecison.append(str(i['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(i['DATETIME_PRECISION'])) + 1))
-                        l_numericPrecision.append(str(i['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(i['NUMERIC_PRECISION'])) + 1))
+                        l_datetimePrecison.append(str(i['DATETIME_PRECISION']) + " " * (
+                                    datetimePrecison - len(str(i['DATETIME_PRECISION'])) + 1))
+                        l_numericPrecision.append(str(i['NUMERIC_PRECISION']) + " " * (
+                                    numericPrecision - len(str(i['NUMERIC_PRECISION'])) + 1))
                         l_isNull.append(str(i['IS_NULLABLE']) + " " * (isNull - len(str(i['IS_NULLABLE'])) + 3))
-                        l_columnDefault.append(str(i['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(i['COLUMN_DEFAULT'])) + 1))
+                        l_columnDefault.append(
+                            str(i['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(i['COLUMN_DEFAULT'])) + 1))
                         if i['COLUMN_COMMENT'] == None:
-                            l_columnComment.append(str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
+                            l_columnComment.append(
+                                str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
                         else:
-                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))+1))
+                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                        columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
 
                 # 只输出找到字段的表
                 s_value = ''
-                if len(l_columnName) != 0:
-                    s_info = str(k)+ "("+ str(d_tableComment[k])+ ") >> "+ str(len(l_d_1))+ "个字段\n"
-                    s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
-                        "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
-                        "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) +\
-                        "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) +\
-                        "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) +\
-                        "非空" + " " * (isNull - len("IS_NULLABLE") + 12) +\
-                        "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) +\
-                        "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "\n"
 
+                if len(l_columnName) != 0:
+                    s_info = str(k) + "(" + str(d_tableComment[k]) + ") - " + str(len(l_d_1)) + "个字段<br>"
+                    s_info = s_info + "列名[1], 类型[2], 长度[3], 时精[4], 数精[5], 非空[6], 默认值[7], 注释[8] " + "<br>"
+                    # s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
+                    #          "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
+                    #          "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) + \
+                    #          "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) + \
+                    #          "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) + \
+                    #          "非空" + " " * (isNull - len("IS_NULLABLE") + 12) + \
+                    #          "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) + \
+                    #          "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "<br>"
                     for i in range(len(l_columnName)):
-                        s_value = s_value + l_columnName[i] + l_dataType[i] + l_maxLength[i] + l_datetimePrecison[i] + l_numericPrecision[i] + l_isNull[i] + l_columnDefault[i] + l_columnComment[i] + "\n"
-                        # print(l_columnName[i], l_dataType[i], l_maxLength[i], l_datetimePrecison[i],l_numericPrecision[i], l_isNull[i], l_columnDefault[i], l_columnComment[i])
+                        s_value = s_value + l_columnName[i] + ", " +  l_dataType[i] + ", " + l_maxLength[i] + "[3], " + l_datetimePrecison[i] + "[4], " + \
+                                  l_numericPrecision[i] + "[5], " + l_isNull[i] + "[6], " + l_columnDefault[i] + "[7], " + l_columnComment[i] + "<br>"
 
                     s_info = s_info + s_value
 
@@ -1470,14 +1483,15 @@ class SqlServerPO:
                 d_tableComment = self.getTableComment(args)
                 # print(d_tableComment)  # {'QYYH': '1+1+1签约信息表'}
 
-
         # 遍历表，输出：列名columnName，类型dataType，长度maxLength，
         # 标度datetimePrecision，精度numericPrecison，非空isNull，默认columnDefault，描述columnComment
         for k, v in d_tableComment.items():
             varTable = k
 
             # 获取字段名COLUMN_NAME、日期精度DATETIME_PRECISION、数字精度numericPrecision，是否为空isNull，默认columnDefault
-            l_d_1 = self.select("SELECT COLUMN_NAME,DATETIME_PRECISION,NUMERIC_PRECISION,IS_NULLABLE,COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' ORDER BY ORDINAL_POSITION" % (varTable))
+            l_d_1 = self.select(
+                "SELECT COLUMN_NAME,DATETIME_PRECISION,NUMERIC_PRECISION,IS_NULLABLE,COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s' ORDER BY ORDINAL_POSITION" % (
+                    varTable))
             # print(l_d_1)  # [{'COLUMN_NAME': 'id', 'DATETIME_PRECISION': None, 'NUMERIC_PRECISION': 19, 'IS_NULLABLE': 'YES', 'COLUMN_DEFAULT': None}, ...
 
             # 获取字段名COLUMN_NAME、数据类型DATA_TYPE、长度MAX_LENGTH、描述COLUMN_COMMENT
@@ -1517,17 +1531,26 @@ class SqlServerPO:
                     for i in range(len(args)):
                         for m in range(len(l_d_1)):
                             if args[i] == l_d_1[m]['COLUMN_NAME']:
-                                l_columnName.append(str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME']) ))
-                                l_dataType.append(str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) +1 ))
-                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) +4 ))
-                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) +2))
-                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION'])) ))
-                                l_isNull.append(str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) +3))
-                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) +1))
+                                l_columnName.append(
+                                    str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME'])))
+                                l_dataType.append(
+                                    str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) + 1))
+                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (
+                                            maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) + 4))
+                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (
+                                            datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) + 2))
+                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (
+                                            numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION']))))
+                                l_isNull.append(
+                                    str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) + 3))
+                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (
+                                            columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) + 1))
                                 if l_d_1[m]['COLUMN_COMMENT'] == None:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                 # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
                 # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']}) ???
                 elif isinstance(args, dict):
@@ -1536,17 +1559,26 @@ class SqlServerPO:
                     for i in range(len(args)):
                         for m in range(len(l_d_1)):
                             if args[i] == l_d_1[m]['COLUMN_NAME']:
-                                l_columnName.append(str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME']) ))
-                                l_dataType.append(str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) +1 ))
-                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) +4 ))
-                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) +2))
-                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION'])) ))
-                                l_isNull.append(str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) +3))
-                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) +1))
+                                l_columnName.append(
+                                    str(l_d_1[m]['COLUMN_NAME']) + " " * (columnName - len(l_d_1[m]['COLUMN_NAME'])))
+                                l_dataType.append(
+                                    str(l_d_1[m]['DATA_TYPE']) + " " * (dataType - len(l_d_1[m]['DATA_TYPE']) + 1))
+                                l_maxLength.append(str(l_d_1[m]['MAX_LENGTH']) + " " * (
+                                            maxLength - len(str(l_d_1[m]['MAX_LENGTH'])) + 4))
+                                l_datetimePrecison.append(str(l_d_1[m]['DATETIME_PRECISION']) + " " * (
+                                            datetimePrecison - len(str(l_d_1[m]['DATETIME_PRECISION'])) + 2))
+                                l_numericPrecision.append(str(l_d_1[m]['NUMERIC_PRECISION']) + " " * (
+                                            numericPrecision - len(str(l_d_1[m]['NUMERIC_PRECISION']))))
+                                l_isNull.append(
+                                    str(l_d_1[m]['IS_NULLABLE']) + " " * (isNull - len(l_d_1[m]['IS_NULLABLE']) + 3))
+                                l_columnDefault.append(str(l_d_1[m]['COLUMN_DEFAULT']) + " " * (
+                                            columnDefault - len(str(l_d_1[m]['COLUMN_DEFAULT'])) + 1))
                                 if l_d_1[m]['COLUMN_COMMENT'] == None:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                                columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
 
                 else:
                     # 所有字段
@@ -1554,27 +1586,33 @@ class SqlServerPO:
                         l_columnName.append(str(i['COLUMN_NAME']) + " " * (columnName - len(i['COLUMN_NAME'])))
                         l_dataType.append(str(i['DATA_TYPE']) + " " * (dataType - len(i['DATA_TYPE'])))
                         l_maxLength.append(str(i['MAX_LENGTH']) + " " * (maxLength - len(str(i['MAX_LENGTH'])) + 5))
-                        l_datetimePrecison.append(str(i['DATETIME_PRECISION']) + " " * (datetimePrecison - len(str(i['DATETIME_PRECISION'])) + 1))
-                        l_numericPrecision.append(str(i['NUMERIC_PRECISION']) + " " * (numericPrecision - len(str(i['NUMERIC_PRECISION'])) + 1))
+                        l_datetimePrecison.append(str(i['DATETIME_PRECISION']) + " " * (
+                                    datetimePrecison - len(str(i['DATETIME_PRECISION'])) + 1))
+                        l_numericPrecision.append(str(i['NUMERIC_PRECISION']) + " " * (
+                                    numericPrecision - len(str(i['NUMERIC_PRECISION'])) + 1))
                         l_isNull.append(str(i['IS_NULLABLE']) + " " * (isNull - len(str(i['IS_NULLABLE'])) + 3))
-                        l_columnDefault.append(str(i['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(i['COLUMN_DEFAULT'])) + 1))
+                        l_columnDefault.append(
+                            str(i['COLUMN_DEFAULT']) + " " * (columnDefault - len(str(i['COLUMN_DEFAULT'])) + 1))
                         if i['COLUMN_COMMENT'] == None:
-                            l_columnComment.append(str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
+                            l_columnComment.append(
+                                str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
                         else:
-                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))+1))
+                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (
+                                        columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
 
                 # 只输出找到字段的表
                 if len(l_columnName) != 0:
                     print("- - " * 20)
-                    Color_PO.outColor([{"36": str(k)+ "("+ str(d_tableComment[k])+ ") >> "+ str(len(l_d_1))+ "个字段"}])
+                    Color_PO.outColor(
+                        [{"36": str(k) + "(" + str(d_tableComment[k]) + ") >> " + str(len(l_d_1)) + "个字段"}])
                     Color_PO.outColor([{"35": "列名" + " " * (columnName - len("COLUMN_NAME") + 9) +
-                        "类型" + " " * (dataType - len("DATA_TYPE") + 6) +
-                        "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) +
-                        "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) +
-                        "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) +
-                        "非空" + " " * (isNull - len("IS_NULLABLE") + 12) +
-                        "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) +
-                        "注释" + " " * (columnComment - len("COLUMN_COMMENT"))}])
+                                              "类型" + " " * (dataType - len("DATA_TYPE") + 6) +
+                                              "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) +
+                                              "时精" + " " * (datetimePrecison - len("DATETIME_PRECISION") + 17) +
+                                              "数精" + " " * (numericPrecision - len("NUMERIC_PRECISION") + 15) +
+                                              "非空" + " " * (isNull - len("IS_NULLABLE") + 12) +
+                                              "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) +
+                                              "注释" + " " * (columnComment - len("COLUMN_COMMENT"))}])
 
                     for i in range(len(l_columnName)):
                         print(l_columnName[i], l_dataType[i], l_maxLength[i], l_datetimePrecison[i],
@@ -1592,6 +1630,115 @@ class SqlServerPO:
             except Exception as e:
                 raise e
         return len(d_tableComment)
+
+    def record2(self, varTable, varType, varValue, l_filterTbl, varIsRecord=True):
+
+        """ 7.2 查找记录
+        # 参数1：varTable = 表名（*表示所有的表）
+        # 参数2：varType = 数据类型(char,int,double,timestamp)
+        # 参数3：varValue = 值 (支持%模糊查询，如 %yy%)
+        参数4：l_filterTbl = 表名，过滤不需要的表（[table1,table2]）
+        参数4:varIsRecord = True / False  (False表示不显示数据)
+        """
+        # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
+        # Sqlserver_PO.record('*', 'varchar', '%海鹰居委会%')
+        # Sqlserver_PO.record('*', 'money', '%34.5%')
+        # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
+        # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+
+        # 支持的类型
+        if (varType in "double,timestamp,float,money,int,nchar,nvarchar,datetime,varchar"):
+            # 所有表
+            if "*" in varTable:
+                l_d_tbl = self.select("SELECT name as TABLE_NAME FROM SYSOBJECTS WHERE TYPE='U'")
+                # print(l_d_tbl)  # [{'TABLE_NAME': 'TB_RIS_REPORT2'}, {'TABLE_NAME': 'jh_jkpg'}, {'TABLE_NAME': 'jh_jkgy'},,...]
+                s = ''
+                # 遍历所有表
+                for b in range(len(l_d_tbl)):
+
+                    # 表名
+                    dboTable = l_d_tbl[b]['TABLE_NAME']
+
+                    # 过滤不要遍历的表
+                    if dboTable not in l_filterTbl:
+
+                        # 表名:注释
+                        d_tableComment = self.getTableComment(dboTable)  # {'ASSESS_DIAGNOSIS': '门诊数据',...
+
+                        # 获取表名和类型
+                        l_d_field_type = self.select(
+                            "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
+                            % (dboTable))
+                        # print(l_d_field_type)  # [{'FIELD_NAME': 'GUID', 'TYPE': 'varchar'}, {'FIELD_NAME': 'VISITSTRNO', 'TYPE': 'varchar'},...]
+                        l_field = []
+                        l_type = []
+                        for j in l_d_field_type:
+                            if varType in j['TYPE']:
+                                l_field.append(j['FIELD_NAME'])
+                                l_type.append(j['TYPE'])
+                        # print(l_field)  # ['GUID', 'VISITSTRNO', 'ORGCODE', 'ORGNAME',...]
+                        # print(l_type)  # ['varchar', 'varchar', 'varchar', 'varchar' ...]
+
+                        # 遍历所有字段
+                        for i in range(len(l_field)):
+                            l_result = self.select("select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                            if len(l_result) != 0:
+                                # print("--" * 50)
+                                s = s + "<br><textOk>" + str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" + d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条</textOk><br>"
+                                Color_PO.consoleColor("31", "36",
+                                                      str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" +
+                                                      d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条 ",
+                                                      "")
+
+                                # 输出字段注释
+                                s = s + "<textErr>" + str(self.getFieldComment(dboTable)) + "</textErr><br>"
+                                Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
+
+                                if varIsRecord == True:
+                                    for j in range(len(l_result)):
+                                        print(l_result[j])
+                                        s = s + str(l_result[j]) + "<br>"
+                                        # print(str(l_result[j]).decode("utf8"))
+                                        # print(l_result[j].encode('latin-1').decode('utf8'))
+                return s
+            elif "*" not in varTable:
+                # 搜索指定表（单表）符合条件的记录.  ，获取列名称、列类别、类注释
+                # 获取表的Name和Type
+                l_d_field_type = self.select(
+                    "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
+                    % (varTable))
+                # print(l_d_field_type)  # [{'FIELD_NAME': 'ID', 'TYPE': 'int'}, {'FIELD_NAME': 'ARCHIVENUM', 'TYPE': 'varchar'}...]
+
+                # 筛选符合条件（包含指定type）的field
+                l_field = []
+                for j in l_d_field_type:
+                    if varType in j['TYPE']:
+                        l_field.append(j['FIELD_NAME'])
+                # print(l_field)  # ['CZRYBM', 'CZRYXM', 'JMXM', 'SJHM', 'SFZH', 'JJDZ',...]
+
+                # 遍历所有字段
+                s = ''
+                for i in range(len(l_field)):
+                    l_result = self.select("select * from %s where [%s] like '%s'" % (varTable, l_field[i], varValue))
+                    if len(l_result) != 0:
+                        # print("--" * 50)
+                        Color_PO.consoleColor("31", "36",
+                                              "[result] => " + str(varValue) + " => " + varTable + " => " + l_field[
+                                                  i] + " => " + str(len(l_result)) + "条 ", "")
+
+                        # 输出字段注释
+                        Color_PO.consoleColor2({"35": self.getFieldComment(varTable)})
+                        # print(self.getFieldComment(dboTable))
+
+                        for j in range(len(l_result)):
+                            l_value = [value for value in l_result[j].values()]
+                            # print(l_value)  # ['1015', '李*琳', '常*梅', '17717925118', '132222196702240429',...]
+                            print(l_result[
+                                      j])  # {'CZRYBM': '1015', 'CZRYXM': '李*琳', 'JMXM': '常*梅', 'SJHM': '17717925118', 'SFZH': '132222196702240429'...}
+
+        else:
+            print("\n" + varType + "类型不存在，如：float,money,int,nchar,nvarchar,datetime,timestamp")
+        # self.conn.close()
 
     def record(self, varTable, varType, varValue, varIsRecord=True):
 
@@ -1707,22 +1854,23 @@ class SqlServerPO:
         # 2,字段值使用默认值
         dd = {}
         # 获取字段与默认值
-        l_d_fieldDefault = self.select("SELECT COLUMN_NAME, COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
+        l_d_fieldDefault = self.select(
+            "SELECT COLUMN_NAME, COLUMN_DEFAULT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
         # print(l_d_fieldDefault)  # [{'COLUMN_NAME': 'ID', 'COLUMN_DEFAULT': None}, {'COLUMN_NAME': 'ID_CARD', 'COLUMN_DEFAULT': "('')"}, ...
         for d in l_d_fieldDefault:
             # print(d)
             if d['COLUMN_DEFAULT'] == None:
-                for k,v in d_fieldType.items():
+                for k, v in d_fieldType.items():
                     if k == d['COLUMN_NAME']:
-                        if v == 'varchar' or v == 'nvarchar' or v == 'date' or v=='datetime2' or v=='datetime' :
+                        if v == 'varchar' or v == 'nvarchar' or v == 'date' or v == 'datetime2' or v == 'datetime':
                             dd[d['COLUMN_NAME']] = ''
-                        elif v == 'int' or v =='decimal' or v =='tinyint' or v =='float':
+                        elif v == 'int' or v == 'decimal' or v == 'tinyint' or v == 'float':
                             dd[d['COLUMN_NAME']] = 0
             else:
                 if d['COLUMN_DEFAULT'] == "('')":
                     dd[d['COLUMN_NAME']] = ''
                 else:
-                    COLUMN_DEFAULT = d['COLUMN_DEFAULT'].replace("(","").replace(")","")
+                    COLUMN_DEFAULT = d['COLUMN_DEFAULT'].replace("(", "").replace(")", "")
                     for k, v in d_fieldType.items():
                         if k == d['COLUMN_NAME']:
                             if v == 'varchar' or v == 'nvarchar':
@@ -1730,7 +1878,7 @@ class SqlServerPO:
                             # 注意：不获取时间的默认值，因为可能是函数结构
                             elif v == 'date' or v == 'datetime' or v == 'datetime2':
                                 dd[d['COLUMN_NAME']] = ''
-                            elif v == 'int' or v == 'decimal' or v =='tinyint' or v =='float':
+                            elif v == 'int' or v == 'decimal' or v == 'tinyint' or v == 'float':
                                 dd[d['COLUMN_NAME']] = int(COLUMN_DEFAULT)
         # print(dd)
         # sys.exit(0)
@@ -1797,7 +1945,7 @@ class SqlServerPO:
                     # print(d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']])  # 503136
                     dd[l_d_PK[0]['COLUMN_NAME']] = d_PK_maxValue[l_d_PK[0]['COLUMN_NAME']] + 1  # 主键最大值+1
                     # 移除参数中的主键
-                    for k,v in d_param.items():
+                    for k, v in d_param.items():
                         if l_d_PK[0]['COLUMN_NAME'] == k:
                             d_param.pop(k)
                             break
@@ -1806,7 +1954,6 @@ class SqlServerPO:
             elif len(l_d_PK) > 1:
                 print("[warning], 组合键（未处理）")
                 sys.exit(0)
-
 
         # 6,更新字段值（覆盖默认值）
         dd.update(d_param)
@@ -1837,28 +1984,30 @@ class SqlServerPO:
             for i, v in enumerate(list(d_param.keys())):
                 if 'SFZH' == v:
                     # print(list(a.values())[i])
-                    Color_PO.outColor([{"36": "[OK] => " + varTable + " => select * from " + varTable + " where SFZH = '" + str(list(d_param.values())[i]) + "'\n"}])
+                    Color_PO.outColor([{
+                                           "36": "[OK] => " + varTable + " => select * from " + varTable + " where SFZH = '" + str(
+                                               list(d_param.values())[i]) + "'\n"}])
 
                 elif 'IDCARDNO' == v:
                     # print(list(a.values())[i])
-                    Color_PO.outColor([{"36": "[OK] => " + varTable + " => select * from " + varTable + " where IDCARDNO = '" + str(list(d_param.values())[i]) + "'\n"}])
+                    Color_PO.outColor([{
+                                           "36": "[OK] => " + varTable + " => select * from " + varTable + " where IDCARDNO = '" + str(
+                                               list(d_param.values())[i]) + "'\n"}])
 
                 elif 'IDCARD' == v:
                     # print(list(a.values())[i])
-                    Color_PO.outColor([{"36": "[OK] => " + varTable + " => select * from " + varTable + " where IDCARD = '" + str(list(d_param.values())[i]) + "'\n"}])
+                    Color_PO.outColor([{
+                                           "36": "[OK] => " + varTable + " => select * from " + varTable + " where IDCARD = '" + str(
+                                               list(d_param.values())[i]) + "'\n"}])
 
         except:
             Color_PO.outColor([{"31": "[ERROR] => " + varTable + " => 创建记录失败!"}])
 
 
-
 if __name__ == "__main__":
-
     # todo 社区健康平台（静安）
     # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
     Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
-
-
 
     # 社区
     # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
@@ -1904,8 +2053,6 @@ if __name__ == "__main__":
     # # 删除表
     # Sqlserver_PO.execute("DROP TABLE a_test")
 
-
-
     # # print("2.1 获取所有表名".center(100, "-"))
     # print(Sqlserver_PO.getTables())  # ['condition_item', 'patient_demographics', 'patient_diagnosis' ...
     #
@@ -1944,7 +2091,6 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getPartFieldType("a_test", ["id"]))  # {'ID': 'int'}
     # print(Sqlserver_PO.getPartFieldType("a_test", ["id", 'name']))  # {'ID': 'int', 'AGE': 'int'}
 
-
     # print("2.12 获取必填项字段及类型".center(100, "-"))
     # print(Sqlserver_PO.getNotNullFieldAndType('a_test'))  # {'ID': 'int', 'NAME': 'text', 'AGE': 'int', 'ADDRESS': 'char'}
     #
@@ -1961,7 +2107,6 @@ if __name__ == "__main__":
 
     # print("2.16 获取所有外键 ".center(100, "-"))
     # print(Sqlserver_PO.getForeignKey())  # []   //没有返回空列表
-
 
     # https://www.jb51.net/article/264740.htm
 
@@ -2004,8 +2149,6 @@ if __name__ == "__main__":
     # print("3.7 自动生成必填项数据".center(100, "-"))
     # Sqlserver_PO.genRecordByNotNull('aaa')
 
-
-
     # # print("4.1 判断表是否存在".center(100, "-"))
     # print(Sqlserver_PO.isTable("aaa"))
     #
@@ -2015,8 +2158,6 @@ if __name__ == "__main__":
     # # print("4.3 判断是否有自增主键".center(100, "-"))
     # print(Sqlserver_PO.isIdentity('bbb'))
     # print(Sqlserver_PO.isIdentity('aaa'))
-
-
 
     # # print("5.1 csv2db自定义字段类型".center(100, "-"))
     # Sqlserver_PO.csv2dbByType('./data/test12.csv', "test555")
@@ -2039,8 +2180,6 @@ if __name__ == "__main__":
     # df = Sqlserver_PO.db2df("select * from a_test")
     # print(df)
     # Sqlserver_PO.df2db(df, "a_test1")
-
-
 
     # print("6.1 数据库sql导出csv(含字段或不含字段)".center(100, "-"))
     # Sqlserver_PO.db2csv("SELECT * FROM test99", './data/test99.csv')
@@ -2073,8 +2212,6 @@ if __name__ == "__main__":
     # print(df)
     # df.style.highlight_max(color='lime').highlight_min().to_excel('hello1.xlsx', index=False)  # 输出到excel带颜色
 
-
-
     # print("7.1 查看表结构".center(100, "-"))
     # Sqlserver_PO.desc()
     # Sqlserver_PO.desc(['id', 'page'])
@@ -2083,12 +2220,9 @@ if __name__ == "__main__":
     # Sqlserver_PO.desc('QYYH')
     # Sqlserver_PO.desc({'a_test':['number', 'rule1']})
 
-    print(Sqlserver_PO.desc2('TB_PREGNANT_MAIN_INFO'))
-
-
     # print("7.2 查找记录".center(100, "-"))
     # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
-    # Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
+    Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
     # Sqlserver_PO.record('*', 'money', '%34.5%')
     # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
     # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。

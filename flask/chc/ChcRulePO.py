@@ -73,6 +73,29 @@ class ChcRulePO():
             print(d_r['data']['access_token'])
         return d_r['data']['access_token']
 
+    def crtRuleList(self):
+
+        # 创建规则名列表
+
+        dboTable = "a_ruleList"
+
+        # 删除表
+        Sqlserver_PO.execute("drop table if exists " + dboTable)
+
+        # 创建表
+        Sqlserver_PO.crtTable(dboTable, '''
+                ruleName VARCHAR(40) NOT NULL,
+                ruleNameTbl VARCHAR(40) NOT NULL''')
+
+        # 添加字段注释
+        Sqlserver_PO.setFieldComment(dboTable, 'ruleName', '规则名')
+        Sqlserver_PO.setFieldComment(dboTable, 'ruleNameTbl', '规则名表名')
+
+        # 添加表注释
+        Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用)规则名列表' , dboTable))  # sheetName=注释，dboTable=表名
+
+        Color_PO.outColor([{"36": "[OK] => " + "（" + dboTable + "）创建成功。"}, ])
+
     def importFull(self, sheetName):
 
         # 全量更新表（删除旧表，插入新表）
@@ -91,7 +114,6 @@ class ChcRulePO():
         # 修改其他规则表的字段类型
         if sheetName == "测试规则" :
             Sqlserver_PO.execute("ALTER table %s alter column seq varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-
         #     # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
         #     # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
         #     Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
@@ -100,24 +122,51 @@ class ChcRulePO():
         #     Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
         #     # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
         else:
-            # Sqlserver_PO.execute("ALTER table %s alter column eachResult varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            # Sqlserver_PO.execute("ALTER table %s alter column eachStep varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
-            Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            # 如果此列没数据，则创建后是float，需转换成char
+            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))
+            Sqlserver_PO.setFieldComment(dboTable, 'result', '结果')
+            Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))
+            Sqlserver_PO.setFieldComment(dboTable, 'step', '步骤')
+            Sqlserver_PO.execute("ALTER table %s alter column [rule] varchar(8000)" % (dboTable))
+            Sqlserver_PO.setFieldComment(dboTable, 'rule', '规则集')
+            Sqlserver_PO.execute("ALTER table %s alter column [case] varchar(8000)" % (dboTable))
+            Sqlserver_PO.setFieldComment(dboTable, 'case', '用例')
+            Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))
+            Sqlserver_PO.setFieldComment(dboTable, 'ruleParam', '参数')
+            # 注意如果是日期字段且没有数据，则创建后是float，需转换成char(11)，再将char改为data
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float转char(11)类型
+            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 将char转data类型
+            Sqlserver_PO.setFieldComment(dboTable, 'updateDate', '更新日期')
+            Sqlserver_PO.setFieldComment(dboTable, 'tester', '测试者')
 
-        # if sheetName != "测试规则":
-        # 判断导入的表是否已有主键，没有主键则自动生成id自增主键
+            # 评估因素取值
+            Sqlserver_PO.setFieldComment(dboTable, 'assessName', '评估因素名称')
+            Sqlserver_PO.setFieldComment(dboTable, 'assessRule', '取值规则')
+
+            # # 健康干预_已患疾病单病
+            Sqlserver_PO.setFieldComment(dboTable, 'ruleCode', '规则编码')
+            Sqlserver_PO.setFieldComment(dboTable, 'diseaseRuleCode', '干预规则')
+            Sqlserver_PO.setFieldComment(dboTable, 'diseaseCodeDesc', '疾病编码描述')
+            #
+            # # 健康干预_已患疾病组合（包含单病）
+            Sqlserver_PO.setFieldComment(dboTable, 'assessCode', '评估因素编码')  # assessCode
+            Sqlserver_PO.setFieldComment(dboTable, 'assessDesc', '评估因素描述')
+            Sqlserver_PO.setFieldComment(dboTable, 'priority', '优先级')
+            # 健康干预
+            Sqlserver_PO.setFieldComment(dboTable, 'hitQty', '命中次数')
+
+
+
+        # 判断导入的表是否已有主键，没有则自动生成id自增主键
         isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
         if isExistPrimaryKey == None:
             l_ = Sqlserver_PO.select("select name from sys.columns where object_id = OBJECT_ID('%s') " % (dboTable))
             for i in l_:
+                # 删除id字段（普通字段）
                 if i['name'] == 'id' or i['name'] == 'ID':
                     Sqlserver_PO.execute("ALTER TABLE %s DROP COLUMN id" % (dboTable))
                     break
-            # 新增id自增主键（如果表中已存在id，则无法新增）
+            # 新增id自增主键（如果表中已存在id，则无法新增，所以要先删除id）
             Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id)" % (dboTable))
 
         # 添加表注释
@@ -369,6 +418,15 @@ class ChcRulePO():
             return (l_msg)
 
 
+    def getRuleList(self):
+
+        d_ = {}
+        l_d_ = Sqlserver_PO.select("select * from a_ruleList")
+        # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
+        for d in l_d_:
+            d_[d['ruleName']] = d['ruleNameTbl']
+        # print(d_)
+        return d_
 
 
     def runId(self, l_dbId):
@@ -538,13 +596,13 @@ class ChcRulePO():
                             d_tmp.update(l_d_[0])
                             # print(d_tmp)
                             l_d_ = [d_tmp]
-                elif '{assessRuleCode}' in varSql:
-                    l_assessRuleCode = self.assessRuleCode.split(",")
-                    # print(666,l_assessRuleCode)
-                    if len(l_assessRuleCode) > 1:
+                elif '{assessCode}' in varSql:
+                    l_assessCode = self.assessCode.split(",")
+                    # print(666,l_assessCode)
+                    if len(l_assessCode) > 1:
                         d_tmp = {}
-                        for i in l_assessRuleCode:
-                            varSql1 = varSql.replace("{assessRuleCode}", i)
+                        for i in l_assessCode:
+                            varSql1 = varSql.replace("{assessCode}", i)
                             # print(varSql1)
                             if Configparser_PO.SWITCH("log") == "on":
                                 Color_PO.outColor([{"33": varSql1}])
@@ -733,7 +791,9 @@ class ChcRulePO():
         except:
             print("warning, rule不存在！")
             sys.exit(0)
+
         self.case = l_d_rows[0]['case']
+
         if l_d_rows[0]['ruleParam'] != None:
             if l_d_rows[0]['ruleParam'] == '':
                 self.ruleParam = {}
@@ -745,27 +805,38 @@ class ChcRulePO():
                     sys.exit(0)
         else:
             self.ruleParam = {}
+
+        # 规则编码（健康干预_已患疾病单病、健康干预_已患疾病组合）
         if 'ruleCode' in l_d_rows[0].keys():
             self.ruleCode = l_d_rows[0]['ruleCode']
         else:
             self.ruleCode = ""
+
+        # 干预规则（健康干预_已患疾病单病、健康干预_已患疾病组合）
         if 'diseaseRuleCode' in l_d_rows[0].keys():
             self.diseaseRuleCode = l_d_rows[0]['diseaseRuleCode']
         else:
             self.diseaseRuleCode = ""
+
+        # 疾病编码描述（健康干预_已患疾病单病、健康干预_已患疾病组合）
         if 'diseaseCodeDesc' in l_d_rows[0].keys():
             self.diseaseCodeDesc = l_d_rows[0]['diseaseCodeDesc']
         else:
             self.diseaseCodeDesc = ""
-        if 'assessCodeDesc' in l_d_rows[0].keys():
-            self.assessCodeDesc = l_d_rows[0]['assessCodeDesc']
-        else:
-            self.assessCodeDesc = ""
-        if 'assessRuleCode' in l_d_rows[0].keys():
-            self.assessRuleCode = l_d_rows[0]['assessRuleCode']
-        else:
-            self.assessRuleCode = ""
 
+        # if 'assessCodeDesc' in l_d_rows[0].keys():
+        #     self.assessCodeDesc = l_d_rows[0]['assessCodeDesc']
+        # else:
+        #     self.assessCodeDesc = ""
+
+        # 评估因素编码（健康干预_已患疾病组合）
+        if 'assessCode' in l_d_rows[0].keys():
+            self.assessCode = l_d_rows[0]['assessCode']
+        else:
+            self.assessCode = ""
+
+
+        # 评估因素描述（健康干预_已患疾病组合）
         d_2 = {}
         if 'assessDesc' in l_d_rows[0].keys():
             if l_d_rows[0]['assessDesc'] == None or l_d_rows[0]['assessDesc'] == "":
@@ -773,8 +844,8 @@ class ChcRulePO():
             else:
                 self.assessDesc = l_d_rows[0]['assessDesc']
                 l_assessDesc = self.assessDesc.split(",")
-                print(11,self.assessDesc)
-                print(22,l_assessDesc)
+                # print(11,self.assessDesc)
+                # print(22,l_assessDesc)
                 for i in l_assessDesc:
                     s_assessValue = self.getRandomAssessValuebyName(i)
                     if self.rule == 's4' and i == '血脂异常':
@@ -1101,10 +1172,10 @@ class ChcRulePO():
                 l_diseaseRuleCode = self.diseaseRuleCode.split(",")
                 if len(l_diseaseRuleCode) == 1:
                     self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
-            if '{assessRuleCode}' in self.sql[i]:
-                l_assessRuleCode = self.assessRuleCode.split(",")
-                if len(l_assessRuleCode) == 1:
-                    self.sql[i] = self.sql[i].replace("{assessRuleCode}", self.assessRuleCode)
+            if '{assessCode}' in self.sql[i]:
+                l_assessCode = self.assessCode.split(",")
+                if len(l_assessCode) == 1:
+                    self.sql[i] = self.sql[i].replace("{assessCode}", self.assessCode)
             if "{今天往前一年内的日期}" in self.sql[i]:
                 if '今天往前一年内的日期' in self.ruleParam:
                     self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam['今天往前一年内的日期']))
