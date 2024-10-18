@@ -913,18 +913,20 @@ class SqlServerPO:
         # 3.12 添加字段注释
         # 注意：原注释必须为空，否则报错
         # setFieldComment('t_user','ID','编号')
-        self.execute(
-            "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-            varComment, varTable, varField))
+        if varField in self.getFields(varTable):
+            self.execute(
+                "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+                varComment, varTable, varField))
 
     def reviseFieldComment(self, varTable, varField, varComment):
 
         # 3.13 修改字段注释
         # 注意：原注释必须有值，否则报错
         # reviseFieldComment('t_user','ID','编号')
-        self.execute(
-            "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-            varComment, varTable, varField))
+        if varField in self.getFields(varTable):
+            self.execute(
+                "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+                varComment, varTable, varField))
 
     def setFieldTypeComment(self, varTable, varField, varType, varComment):
 
@@ -2075,7 +2077,7 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getStructure())
 
     # print("2.7 获取字段名".center(100, "-"))
-    # print(Sqlserver_PO.getFields('SYS_USER'))  # ['id', 'name', 'age']
+    print(Sqlserver_PO.getFields('a_zhongyitizhibianshi'))  # ['id', 'name', 'age']
 
     # print("2.8 获取字段和字段注释".center(100, "-"))
     # print(Sqlserver_PO.getFieldComment('SYS_USER'))  # {'id': '编号', 'name': None, 'salesrep': None}

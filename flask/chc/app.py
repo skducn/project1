@@ -57,6 +57,8 @@ app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
 # todo 初始化数据
 # 全局字典
 global_d_ = {}
+# 菜单
+global_d_ = {'menu': {"searchRecord": "检索记录", "queryDesc2": "查询表结构", "importCase": "导入用例", "registerTbl": "注册规则表"}}
 
 # 不同环境使用各自icon，mac平台显示小猪，linux平台显示龙
 system = os.uname().sysname
@@ -65,8 +67,6 @@ if system == 'Linux':
 else:
     global_d_['icon'] = 'pig.ico'
 
-# 菜单
-global_d_ = {'menu': {"searchRecord": "检索记录", "queryDesc2": "查询表结构", "importCase": "导入用例", "registerTbl": "注册规则表"}}
 
 # 获取规则名列表
 def getRuleName():
@@ -109,8 +109,8 @@ def getRuleCollection():
     return l_testRule
     # global_d_['rule'] = getRuleCollection()
 
-global_d_['ruleName'] = getRuleName()
-global_d_['rule'] = getRuleCollection()
+# global_d_['ruleName'] = getRuleName()
+# global_d_['rule'] = getRuleCollection()
 
 # ---------------------------------------------------------------------------------------------------------------------
 
@@ -147,6 +147,8 @@ global_d_['rule'] = getRuleCollection()
 
 @app.route('/')
 def index():
+    global_d_['ruleName'] = getRuleName()
+    global_d_['rule'] = getRuleCollection()
 
     return render_template('index.html', global_d_=global_d_)
 
@@ -769,76 +771,69 @@ def get_queryDesc2():
     return d_tbl_desc2
 
 
+def uploadFile(html):
+    # 上传文件
+    if 'file' not in request.files:
+        return render_template(html, global_d_=global_d_, message=0)
+    file = request.files['file']
+    # print(file.filename)
+    if file.filename == '':
+        return render_template(html, global_d_=global_d_, message=0)
+    filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
+    savepath = os.path.join(filepath)  # 设置保存文件路径
+    file.save(os.path.join(savepath, file.filename))
+    # 文件改名
+    file1 = savepath + "/" + file.filename
+    file2 = savepath + "/chcRuleCase1.11.xlsx"
+    os.rename(file1, file2)
+    global_d_['file2'] = file2
+
 
 # todo 更新用例
 @app.route('/importCase',methods=['GET','POST'])
 def importCase():
 
     if request.method == 'POST':
-        # 上传文件
-        if 'file' not in request.files:
-            return render_template('importCase.html', global_d_=global_d_)
-        file = request.files['file']
-        # print(file.filename)
-        if file.filename == '':
-            return render_template('importCase.html', global_d_=global_d_)
-        filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
-        savepath = os.path.join(filepath)  # 设置保存文件路径
-        file.save(os.path.join(savepath, file.filename))
-        # 文件改名
-        file1 = savepath + "/" + file.filename
-        file2 = savepath + "/chcRuleCase1.11.xlsx"
-        os.rename(file1, file2)
+        uploadFile('importCase.html')
 
         # 导入用例
         ruleName = request.form['ruleName']
         print(ruleName)
         if ruleName in global_d_['ruleName']:
             ChcRule_PO = ChcRulePO()
-            ChcRule_PO.importFull(ruleName)
+            status = ChcRule_PO.importFull(ruleName)
+            if status == 1:
+                return render_template('importCase.html', global_d_=global_d_, message=1)
+            else:
+                return render_template('importCase.html', global_d_=global_d_, message=0)
 
     return render_template('importCase.html', global_d_=global_d_)
 
+def getRuleNameBySheet(file2):
+    # 读取excel所有sheetName，去掉global_d_['ruleName']中的，再检查表格中应包含result updateDate step rule case ruleParam
+    Openpyxl_PO = OpenpyxlPO(file2)
+    l_sheet = Openpyxl_PO.getSheets()
+    print(l_sheet)
+    l_tmp = []
+    for i in l_sheet:
+        print(i, Openpyxl_PO.getOneRow(1, varSheet=i))
+        l_title = (Openpyxl_PO.getOneRow(1, varSheet=i))
+        if len(l_title) > 6:
+            if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[
+                3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
+                l_tmp.append(i)
+    print(l_tmp)
+    return l_tmp
 
 # todo 注册规则表1
 @app.route('/registerTbl',methods=['GET','POST'])
 def registerTbl():
 
     if request.method == 'POST':
-        # 上传文件
-        if 'file' not in request.files:
-            return render_template('importCase.html', global_d_=global_d_)
-        file = request.files['file']
-        # print(file.filename)
-        if file.filename == '':
-            return render_template('importCase.html', global_d_=global_d_)
-        filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
-        savepath = os.path.join(filepath)  # 设置保存文件路径
-        file.save(os.path.join(savepath, file.filename))
-        # 文件改名
-        file1 = savepath + "/" + file.filename
-        file2 = savepath + "/chcRuleCase1.11.xlsx"
-        os.rename(file1, file2)
-
-        # 读取excel所有sheetName，去掉global_d_['ruleName']中的，再检查表格中应包含result updateDate step rule case ruleParam
-
-        print(file2)
-        Openpyxl_PO = OpenpyxlPO(file2)
-        l_sheet = Openpyxl_PO.getSheets()
-        print(l_sheet)
-        l_tmp = []
-        for i in l_sheet:
-            print(i, Openpyxl_PO.getOneRow(1, varSheet=i))
-            l_title = (Openpyxl_PO.getOneRow(1, varSheet=i))
-            if len(l_title) > 6:
-                if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
-                    l_tmp.append(i)
-        print(l_tmp)
-
-        # return redirect(url_for('registerTbl2', global_d_=global_d_, l_canRegisterRuleName = l_tmp))   #重定向到index路由中，并返回响应对象
-
-        return render_template('registerTbl2.html',global_d_=global_d_, l_canRegisterRuleName = l_tmp)
-    return render_template('registerTbl.html',global_d_=global_d_)
+        file2 = uploadFile('registerTbl.html')
+        l_tmp = getRuleNameBySheet(global_d_['file2'])
+        return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp)
+    return render_template('registerTbl.html', global_d_=global_d_)
 
 # todo 注册规则表2
 @app.route('/registerTbl2',methods=['GET','POST'])
@@ -847,12 +842,13 @@ def registerTbl2():
         ruleName = request.form['ruleName']
         print(ruleName)
         ChcRule_PO = ChcRulePO()
-        ChcRule_PO.importFull(ruleName)
+        status = ChcRule_PO.importFull(ruleName)
         setRuleName(ruleName)
-        # return render_template('index.html', global_d_=global_d_)
-        return redirect(url_for('index'))   #重定向到index路由中，并返回响应对象
-
-    # return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_canRegisterRuleName)
+        l_tmp = getRuleNameBySheet(global_d_['file2'])
+        if status == 1:
+            return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
+        else:
+            return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
 
     return render_template('registerTbl2.html',global_d_=global_d_)
 

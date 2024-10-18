@@ -100,80 +100,81 @@ class ChcRulePO():
 
         # 全量更新表（删除旧表，插入新表）
 
-        # 中文转拼音
-        dboTable = Char_PO.chinese2pinyin(sheetName)
-        dboTable = "a_" + dboTable
-        # print(dboTable)
+        try:
+            # 中文转拼音
+            dboTable = Char_PO.chinese2pinyin(sheetName)
+            dboTable = "a_" + dboTable
+            # print(dboTable)
 
-        # 删除旧表
-        Sqlserver_PO.execute("drop table if exists " + dboTable)
+            # 删除表
+            Sqlserver_PO.execute("drop table if exists " + dboTable)
 
-        # sheetName导入数据库，并将身份证数字型转字段型
-        Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
+            # sheetName导入数据库，并将身份证数字型转字段型
+            Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
 
-        # 修改其他规则表的字段类型
-        if sheetName == "测试规则" :
-            Sqlserver_PO.execute("ALTER table %s alter column seq varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        #     # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
-        #     # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
-        #     Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        #     Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
-        #     Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
-        #     Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
-        #     # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
-        else:
-            # 如果此列没数据，则创建后是float，需转换成char
-            Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))
-            Sqlserver_PO.setFieldComment(dboTable, 'result', '结果')
-            Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))
-            Sqlserver_PO.setFieldComment(dboTable, 'step', '步骤')
-            Sqlserver_PO.execute("ALTER table %s alter column [rule] varchar(8000)" % (dboTable))
-            Sqlserver_PO.setFieldComment(dboTable, 'rule', '规则集')
-            Sqlserver_PO.execute("ALTER table %s alter column [case] varchar(8000)" % (dboTable))
-            Sqlserver_PO.setFieldComment(dboTable, 'case', '用例')
-            Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))
-            Sqlserver_PO.setFieldComment(dboTable, 'ruleParam', '参数')
-            # 注意如果是日期字段且没有数据，则创建后是float，需转换成char(11)，再将char改为data
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float转char(11)类型
-            Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 将char转data类型
-            Sqlserver_PO.setFieldComment(dboTable, 'updateDate', '更新日期')
-            Sqlserver_PO.setFieldComment(dboTable, 'tester', '测试者')
+            # 修改其他规则表的字段类型
+            if sheetName == "测试规则" :
+                Sqlserver_PO.execute("ALTER table %s alter column seq varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            #     # Sqlserver_PO.execute("ALTER TABLE %s alter column id int not null" % (dboTable))  # 设置主id不能为Null
+            #     # Sqlserver_PO.execute("ALTER TABLE %s add PRIMARY KEY (id)" % (dboTable))  # 设置主键（条件是id不能为Null）
+            #     Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            #     Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))  # 此列没数据，创建后是float，需转换成char
+            #     Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float改为char类型
+            #     Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 注意sqlserver无法将float改为date，先将float改为char，再将char改为data，
+            #     # Sqlserver_PO.execute("ALTER TABLE %s ADD var varchar(111)" % (tableName))  # 临时变量
+            else:
+                # 如果此列没数据，则创建后是float，需转换成char
+                Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))
+                Sqlserver_PO.setFieldComment(dboTable, 'result', '结果')
+                Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))
+                Sqlserver_PO.setFieldComment(dboTable, 'step', '步骤')
+                Sqlserver_PO.execute("ALTER table %s alter column [rule] varchar(8000)" % (dboTable))
+                Sqlserver_PO.setFieldComment(dboTable, 'rule', '规则集')
+                Sqlserver_PO.execute("ALTER table %s alter column [case] varchar(8000)" % (dboTable))
+                Sqlserver_PO.setFieldComment(dboTable, 'case', '用例')
+                Sqlserver_PO.execute("ALTER table %s alter column ruleParam varchar(8000)" % (dboTable))
+                Sqlserver_PO.setFieldComment(dboTable, 'ruleParam', '参数')
+                # 注意如果是日期字段且没有数据，则创建后是float，需转换成char(11)，再将char改为data
+                Sqlserver_PO.execute("ALTER table %s alter column updateDate char(11)" % (dboTable))  # 将float转char(11)类型
+                Sqlserver_PO.execute("ALTER table %s alter column updateDate DATE" % (dboTable))  # 将char转data类型
+                Sqlserver_PO.setFieldComment(dboTable, 'updateDate', '更新日期')
+                Sqlserver_PO.setFieldComment(dboTable, 'tester', '测试者')
 
-            # 评估因素取值
-            Sqlserver_PO.setFieldComment(dboTable, 'assessName', '评估因素名称')
-            Sqlserver_PO.setFieldComment(dboTable, 'assessRule', '取值规则')
+                # 评估因素取值
+                Sqlserver_PO.setFieldComment(dboTable, 'assessName', '评估因素名称')
+                Sqlserver_PO.setFieldComment(dboTable, 'assessRule', '取值规则')
 
-            # # 健康干预_已患疾病单病
-            Sqlserver_PO.setFieldComment(dboTable, 'ruleCode', '规则编码')
-            Sqlserver_PO.setFieldComment(dboTable, 'diseaseRuleCode', '干预规则')
-            Sqlserver_PO.setFieldComment(dboTable, 'diseaseCodeDesc', '疾病编码描述')
-            #
-            # # 健康干预_已患疾病组合（包含单病）
-            Sqlserver_PO.setFieldComment(dboTable, 'assessCode', '评估因素编码')  # assessCode
-            Sqlserver_PO.setFieldComment(dboTable, 'assessDesc', '评估因素描述')
-            Sqlserver_PO.setFieldComment(dboTable, 'priority', '优先级')
-            # 健康干预
-            Sqlserver_PO.setFieldComment(dboTable, 'hitQty', '命中次数')
+                # # 健康干预_已患疾病单病
+                Sqlserver_PO.setFieldComment(dboTable, 'ruleCode', '规则编码')
+                Sqlserver_PO.setFieldComment(dboTable, 'diseaseRuleCode', '干预规则')
+                Sqlserver_PO.setFieldComment(dboTable, 'diseaseCodeDesc', '疾病编码描述')
+                #
+                # # 健康干预_已患疾病组合（包含单病）
+                Sqlserver_PO.setFieldComment(dboTable, 'assessCode', '评估因素编码')
+                Sqlserver_PO.setFieldComment(dboTable, 'assessDesc', '评估因素描述')
+                Sqlserver_PO.setFieldComment(dboTable, 'priority', '优先级')
+                # 健康干预
+                Sqlserver_PO.setFieldComment(dboTable, 'hitQty', '命中次数')
 
 
+            # 判断导入的表是否已有主键，没有则自动生成id自增主键
+            isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
+            if isExistPrimaryKey == None:
+                l_ = Sqlserver_PO.select("select name from sys.columns where object_id = OBJECT_ID('%s') " % (dboTable))
+                for i in l_:
+                    # 删除id字段（普通字段）
+                    if i['name'] == 'id' or i['name'] == 'ID':
+                        Sqlserver_PO.execute("ALTER TABLE %s DROP COLUMN id" % (dboTable))
+                        break
+                # 新增id自增主键（如果表中已存在id，则无法新增，所以要先删除id）
+                Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id)" % (dboTable))
 
-        # 判断导入的表是否已有主键，没有则自动生成id自增主键
-        isExistPrimaryKey = Sqlserver_PO.getPrimaryKey(dboTable)
-        if isExistPrimaryKey == None:
-            l_ = Sqlserver_PO.select("select name from sys.columns where object_id = OBJECT_ID('%s') " % (dboTable))
-            for i in l_:
-                # 删除id字段（普通字段）
-                if i['name'] == 'id' or i['name'] == 'ID':
-                    Sqlserver_PO.execute("ALTER TABLE %s DROP COLUMN id" % (dboTable))
-                    break
-            # 新增id自增主键（如果表中已存在id，则无法新增，所以要先删除id）
-            Sqlserver_PO.execute("ALTER TABLE %s ADD id INT NOT NULL IDENTITY(1,1) primary key (id)" % (dboTable))
-
-        # 添加表注释
-        Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用)' + sheetName, dboTable))  # sheetName=注释，dboTable=表名
-
-        # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
-        Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dboTable + "）全量数据导入成功。"}, ])
+            # 添加表注释
+            Sqlserver_PO.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % ('(测试用)' + sheetName, dboTable))  # sheetName=注释，dboTable=表名
+            # Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dboTable + "）全量数据导入成功。"}, ])
+            return 1
+        except:
+            return 0
 
     def importIncremental(self, sheetName):
 

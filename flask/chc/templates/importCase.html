@@ -24,7 +24,19 @@
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='css/mask.js') }}"></script>
 
-    
+
+<link rel="stylesheet" href="{{ url_for('static', filename='42622/hsycmsAlert.min.css') }}">
+<script src="{{ url_for('static', filename='42622/jquery-1.10.2.js') }}"></script>
+<script src="{{ url_for('static', filename='42622/hsycmsAlert.min.js') }}"></script>
+
+
+
+
+<script type="text/javascript">
+    function showAlert(message) {
+        alert(message);
+    }
+</script>
 </head>
 
 <body>
@@ -191,8 +203,16 @@
 <script src="{{ url_for('static', filename='13788/js/prettify.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/scripts.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/custom.js') }}"></script>
-{##}
 
+
+<script type="text/javascript">
+    var message = {{ message | safe }};
+if (message == 1) {
+       hsycms.success('操作成功',()=>{  console.log('操作成功关闭后');  },1800)
+} else if (message == 0) {
+    hsycms.fail('操作失败',()=>{  console.log('操作失败关闭后');  },1800)
+};
+ </script>
 
 </body>
 </html>

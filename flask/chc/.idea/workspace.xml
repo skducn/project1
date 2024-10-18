@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../PO/SqlserverPO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PO/SqlserverPO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PO/data/7.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../PO/data/7.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PO/openpyxlApp.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PO/openpyxlApp.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/importFull.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/importFull.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/main_chcRule1.1.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/main_chcRule1.1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,6 +290,7 @@
       <workItem from="1729042386581" duration="6311000" />
       <workItem from="1729130615070" duration="15421000" />
       <workItem from="1729213406758" duration="25891000" />
+      <workItem from="1729250364877" duration="6019000" />
     </task>
     <servers />
   </component>
@@ -304,7 +302,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flaskProject$main_chcRule.coverage" NAME="main_chcRule Coverage Results" MODIFIED="1723175297216" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/instance/zyjk/CHC/rule" />
-    <SUITE FILE_PATH="coverage/chc$Flask__app_py___1_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1729244289616" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/chc$Flask__app_py___1_.coverage" NAME="Flask (app.py) (1) Coverage Results" MODIFIED="1729259944614" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flask_chc$flask_chc.coverage" NAME="flask_chc Coverage Results" MODIFIED="1723373250622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/flaskProject$SqlserverPO.coverage" NAME="SqlserverPO Coverage Results" MODIFIED="1723168762086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/PO" />
     <SUITE FILE_PATH="coverage/flaskProject$Flask__app_py___1_.coverage" NAME="Flask (app.py) (1) Coverage Results" MODIFIED="1723197100929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
