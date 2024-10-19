@@ -774,11 +774,11 @@ def get_queryDesc2():
 def uploadFile(html):
     # 上传文件
     if 'file' not in request.files:
-        return render_template(html, global_d_=global_d_, message=0)
+        return 0
     file = request.files['file']
     # print(file.filename)
     if file.filename == '':
-        return render_template(html, global_d_=global_d_, message=0)
+        return 0
     filepath = os.path.dirname(os.path.abspath(__file__))  # 获取当前项目的文件路径
     savepath = os.path.join(filepath)  # 设置保存文件路径
     file.save(os.path.join(savepath, file.filename))
@@ -792,10 +792,9 @@ def uploadFile(html):
 # todo 更新用例
 @app.route('/importCase',methods=['GET','POST'])
 def importCase():
-
+    message = 2
     if request.method == 'POST':
-        uploadFile('importCase.html')
-
+        message = uploadFile('importCase.html')
         # 导入用例
         ruleName = request.form['ruleName']
         print(ruleName)
@@ -807,7 +806,7 @@ def importCase():
             else:
                 return render_template('importCase.html', global_d_=global_d_, message=0)
 
-    return render_template('importCase.html', global_d_=global_d_)
+    return render_template('importCase.html', global_d_=global_d_, message=message)
 
 def getRuleNameBySheet(file2):
     # 读取excel所有sheetName，去掉global_d_['ruleName']中的，再检查表格中应包含result updateDate step rule case ruleParam
@@ -828,12 +827,16 @@ def getRuleNameBySheet(file2):
 # todo 注册规则表1
 @app.route('/registerTbl',methods=['GET','POST'])
 def registerTbl():
-
+    message = 2
     if request.method == 'POST':
-        file2 = uploadFile('registerTbl.html')
-        l_tmp = getRuleNameBySheet(global_d_['file2'])
-        return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp)
-    return render_template('registerTbl.html', global_d_=global_d_)
+        message = uploadFile('registerTbl.html')
+        if message != 0:
+            l_tmp = getRuleNameBySheet(global_d_['file2'])
+            return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp, message=2)
+        else:
+            return render_template('registerTbl.html', global_d_=global_d_, message=message)
+
+    return render_template('registerTbl.html', global_d_=global_d_, message=message)
 
 # todo 注册规则表2
 @app.route('/registerTbl2',methods=['GET','POST'])
@@ -841,16 +844,19 @@ def registerTbl2():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
         print(ruleName)
-        ChcRule_PO = ChcRulePO()
-        status = ChcRule_PO.importFull(ruleName)
-        setRuleName(ruleName)
-        l_tmp = getRuleNameBySheet(global_d_['file2'])
-        if status == 1:
-            return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
+        if ruleName == 'none':
+            return render_template('registerTbl.html', global_d_=global_d_, message=0)
         else:
-            return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
+            ChcRule_PO = ChcRulePO()
+            status = ChcRule_PO.importFull(ruleName)
+            setRuleName(ruleName)
+            l_tmp = getRuleNameBySheet(global_d_['file2'])
+            if status == 1:
+                return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
+            else:
+                return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
 
-    return render_template('registerTbl2.html',global_d_=global_d_)
+    return render_template('registerTbl2.html',global_d_=global_d_, message=2)
 
 
 

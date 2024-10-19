@@ -3,27 +3,162 @@
 # Author     : John
 # Date       : 2020-3-18
 # Description: FTP
+# IP：192.168.0.243
+# 账号：root
+# 密码：Benetech79$#-
+# 日志目录：EHR_2.1/logs
 # ********************************************************************************************************************
+
+from fabric import Connection
+
+# 建议将ssh连接所需参数变量化
+user = 'root'
+host = '192.168.0.243'
+password = 'Benetech79$#-'
+
+# 利用fabric.Connection快捷创建连接
+c = Connection(host=f'{user}@{host}',
+               connect_kwargs=dict(
+                   password=password
+               ))
+
+# 利用run方法直接执行传入的命令
+# a = c.run('cd /home/flask_chc/ && ls -l');
+# c.run('ls -l');
+c.run('kill');
+# print(123,a.stdout)
+
+
+c.close()
+
+# c.run('sh /home/flask_chc/k.sh');
+# c.run('export FLASK_APP=app.py && cd /home/flask_chc/ && flask run --host=0.0.0.0 &');
+# command = 'export FLASK_APP=app.py && cd /home/flask_chc/ && flask run --host=0.0.0.0 &'  # 根据实际情况调整命令
+
+# import paramiko
+#
+# # 创建SSH对象
+# ssh = paramiko.SSHClient()
+#
+# # 允许连接不在know_hosts文件中的主机
+# ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+#
+# # 连接服务器
+# ssh.connect(hostname='192.168.0.243', port=22, username='root', password='Benetech79$#-')
+#
+# # 执行命令
+#
+# # stdin, stdout, stderr = ssh.exec_command('sh /home/flask_chc/k.sh')
+# # stdin, stdout, stderr = ssh.exec_command('kill $(pgrep flask)')
+# # # 获取命令结果
+# # result = stdout.read().decode()
+# # error = stderr.read().decode()
+# # if error:
+# #     print("Error: ", error)
+# # else:
+# #     print("Result: ", result)
+#
+#
+# # stdin, stdout, stderr = ssh.exec_command('home/flask_chc/flask run --host=0.0.0.0 &')
+# # stdin, stdout, stderr = ssh.exec_command('cd /home/flask_chc/ && flask run --host=0.0.0.0 &')
+# # stdin, stdout, stderr = ssh.exec_command('cd /home/flask_chc/ && flask run --host=0.0.0.0 &')
+# stdin, stdout, stderr = ssh.exec_command('cd /home/flask_chc/ && nohup flask run --host=0.0.0.0 &')
+# # stdin, stdout, stderr = ssh.exec_command('ls -l')
+#
+# # command = 'export FLASK_APP=app.py && cd /home/flask_chc/ && flask run --host=0.0.0.0 &'  # 根据实际情况调整命令
+# # stdin, stdout, stderr = ssh.exec_command(command)
+# #
+# # 获取命令结果
+# result = stdout.read().decode('utf-8')
+# error = stderr.read().decode('utf-8')
+#
+# if error:
+#     print("Error: ", error)
+# else:
+#     print("Result: ", result)
+
+# # 关闭连接
+# ssh.close()
 
 from ftplib import FTP
 import time
 import tarfile
 import os
 
-from ftplib import FTP            #加载ftp模块
+# import ftplib,socket
+# def ftpconnect(ftp_info):
+#     ftp = ftplib.FTP(ftp_info[0])
+#
+#     username = ftp_info[1]
+#     passwd = ftp_info[2]
+#     ftp.set_pasv(True)
+#     ftp.login(username,passwd)
+#     return ftp
+#
+# ftp_info = ['192.168.0.243','root','Benetech79$#-']
+# ftp = ftpconnect(ftp_info)
+# print(ftp.nlst())
 
-ftp=FTP()                         #设置变量
-ftp.set_debuglevel(2)             #打开调试级别2，显示详细信息
-ftp.connect("http://10.111.3.22/",21)          #连接的ftp sever和端口
-ftp.login("Administrator","1q2w3e$R")      #连接的用户名，密码
-print(ftp.getwelcome())            #打印出欢迎信息
-ftp.cmd("e:\engine")                #进入远程目录
-bufsize=1024                      #设置的缓冲区大小
-filename="john.txt"           #需要下载的文件
-file_handle=open(filename,"wb").write #以写模式在本地打开文件
-ftp.retrbinaly("RETR filename.txt",file_handle,bufsize) #接收服务器上文件并写入本地文件
-ftp.set_debuglevel(0)             #关闭调试模式
-ftp.quit()                        #退出ftp
+
+# from ftplib import FTP
+#
+# # 连接到 FTP 服务器
+# ftp = FTP('192.168.0.243')  # 替换为实际的 FTP 服务器地址
+# ftp.login(user='root', passwd='Benetech79$#-')  # 输入用户名和密码登录
+#
+# # 列出 FTP 服务器上的文件列表
+# ftp.dir()
+#
+# # # 进入指定目录
+# # ftp.cwd('path')
+# #
+# # # 从 FTP 服务器下载文件
+# # filename = 'name.txt'
+# # local_file = open(filename, 'wb')
+# # ftp.retrbinary('RETR ' + filename, local_file.write, 1024)
+# # local_file.close()
+# #
+# # # 在 FTP 服务器上上传文件
+# # file_to_upload = 'file_to_upload.txt'
+# # with open(file_to_upload, 'rb') as f:
+# #     ftp.storbinary('STOR ' + file_to_upload, f)
+# #
+# # # 删除 FTP 服务器上的文件
+# # file_to_delete = 'file_to_delete.txt'
+# # ftp.delete(file_to_delete)
+#
+# # 关闭 FTP 连接
+# ftp.quit()
+
+
+# from ftplib import FTP            #加载ftp模块
+#
+# # 连接到FTP服务器
+# ftp = FTP('192.168.0.243')
+# # 登录到FTP服务器
+# ftp.login("root","Benetech79$#-")
+#
+# # 执行FTP命令，例如列出当前目录下的文件
+# ftp.retrlines('LIST')
+#
+# # 断开FTP连接
+# ftp.quit()
+
+# ftp=FTP()                         #设置变量
+# ftp.set_debuglevel(2)             #打开调试级别2，显示详细信息
+# ftp.connect("192.168.0.243",22)          #连接的ftp sever和端口
+# ftp.login("root","Benetech79$#-")      #连接的用户名，密码
+# # print(ftp.getwelcome())            #打印出欢迎信息
+# ftp.retrlines('LIST')
+# ftp.cwd("cd /home")
+# # ftp.cmd("\home")                #进入远程目录
+# print(ftp.dir())
+# # bufsize=1024                      #设置的缓冲区大小
+# # filename="john.txt"           #需要下载的文件
+# # file_handle=open(filename,"wb").write #以写模式在本地打开文件
+# # ftp.retrbinaly("RETR filename.txt",file_handle,bufsize) #接收服务器上文件并写入本地文件
+# ftp.set_debuglevel(0)             #关闭调试模式
+# ftp.quit()                        #退出ftp
 
 
 # from ftplib import FTP

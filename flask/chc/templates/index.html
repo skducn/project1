@@ -9,6 +9,8 @@
     <title>CHC - 社区健康自动化规则测试</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
+
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 
 <!-- Bootstrap -->
@@ -25,6 +27,7 @@
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 <script src="{{ url_for('static', filename='css/gobackAlert.js') }}"></script>
 <script src="{{ url_for('static', filename='css/mask.js') }}"></script>
+
 
 
 </head>
@@ -156,6 +159,8 @@
                         <option value="{{i}}">{{i}}</option>
                         {% endfor %}
                         </select>
+
+
                         </div></div>
                         </div>
 
@@ -385,6 +390,10 @@ i                            {% for i in global_d_['ruleName'][0:] %}
     <script src="{{ url_for('static', filename='1/js/jquery-3.4.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='1/js/plugins.js') }}"></script>
     <script src="{{ url_for('static', filename='1/js/main.js') }}"></script>
+
+
+
+
 
 </body>
 

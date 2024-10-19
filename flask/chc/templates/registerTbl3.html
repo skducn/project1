@@ -2,16 +2,18 @@
 {## https://www.bootcss.com/p/buttons/ 各种button #}
 {#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
+{## https://multiple-select.wenzhixin.net.cn/examples#basic.html#}
+{## https://www.cnblogs.com/makalochen/p/13790184.html#}
 <html>
 <head>
-<title>{{global_d_['menu']['importCase']}} - CHC</title>
+<title>{{global_d_['menu']['registerTbl']}}2 - CHC</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
 <!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
-<!--13788 upload file-->
+<!--13788 upload-->
 <link rel="stylesheet" href="{{ url_for('static', filename='13788/css/reset.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='13788/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='13788/css/default.css') }}">
@@ -28,6 +30,13 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='42622/hsycmsAlert.min.css') }}">
 <script src="{{ url_for('static', filename='42622/jquery-1.10.2.js') }}"></script>
 <script src="{{ url_for('static', filename='42622/hsycmsAlert.min.js') }}"></script>
+
+<!-- 28862 下拉框 -->
+<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='28862/component-chosen.css') }}">
+
+{## https://www.cnblogs.com/makalochen/p/13790184.html#}
+<link rel="stylesheet" href="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.css">
 
 
 </head>
@@ -53,32 +62,73 @@
     <div class="a6 a1p ac">
         <div class="a5 af">
             <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">导入用例</h3>
+                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">{{global_d_['menu']['registerTbl']}} - 步骤 2/2</h3>
             </div>
         </div>
     </div>
 
 
-<form action="{{ url_for('importCase')}}" method="post" enctype="multipart/form-data">
+<form action="{{ url_for('registerTbl2')}}" method="post">
     <div class="a6 a1K ac">
-        <div class="a5 md:a2u af">
-            <div class="a3u">
-                 <label for class="al a25 aR a1j dark:a1k a2j">上传文件</label>
-                <input type="file" name="file" id="demo-fileInput-3" multiple="multiple" >
-            </div>
-        </div>
+{#        <div class="a5 md:a2u af">#}
+{#            <div class="a3u">#}
+{#                 <label for class="al a25 aR a1j dark:a1k a2j">上传文件</label>#}
+{#                <input type="file" name="file" id="demo-fileInput-3" multiple="multiple" >#}
+{#            </div>#}
+{#        </div>#}
 
         <div class="a5 md:a2u af">
             <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                <select  name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                <option value="none" selected>请选择...</option>
-                {% for i in global_d_['ruleName'][0:] %}
-                <option value="{{i}}">{{i}}</option>
-                {% endfor %}
-                </select>
+
+            <!-- Multiple Select -->
+<select name='ruleName' id='ruleName' multiple="multiple">
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+</select>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/multiple-select@1.5.2/dist/multiple-select.min.js"></script>
+<script>
+    $(function () {
+        var numbusIps='${queryStormBaseConfInfo.ruleName}';
+        $('ruleName').multipleSelect({
+            placeholder: "请选择",
+            filter: true
+        }).multipleSelect('setSelects',[numbusIps]);
+    })
+</script>
+
+
+
+            <label>可注册的规则名</label>
+            <select name='ruleName' id="multiple" class="form-control form-control-chosen" data-placeholder="Please select..." multiple>
+            <option></option>
+            {% for i in l_canRegisterRuleName[0:] %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+            </select>
+
+{#                <label for class="al a25 aR a1j dark:a1k a2j">可注册的规则名</label>#}
+{#                <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+{#                <option value="none" selected>请选择...</option>#}
+{#                {% for i in l_canRegisterRuleName[0:] %}#}
+{#                <option value="{{i}}">{{i}}</option>#}
+{#                {% endfor %}#}
+{#                </select>#}
             </div>
         </div>
+
+
     </div>
 
     <br><br>
@@ -189,6 +239,12 @@
 
 </section>
 
+<Script>
+for(i=0;i<document.ruleName.length;i++){
+document.ruleName.options[i].selected=true;
+}
+</script>
+
 <!--13788 upload file-->
 <script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/bootstrap.min.js') }}"></script>
@@ -207,8 +263,41 @@ if (message == 1) {
 };
  </script>
 
+<script src="{{ url_for('static', filename='28862/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='28862/chosen.jquery.js') }}"></script>
 
+<script type="text/javascript">
+		$('.form-control-chosen').chosen({
+		  allow_single_deselect: true,
+		  width: '100%'
+		});
+		$('.form-control-chosen-required').chosen({
+		  allow_single_deselect: false,
+		  width: '100%'
+		});
+		$('.form-control-chosen-search-threshold-100').chosen({
+		  allow_single_deselect: true,
+		  disable_search_threshold: 100,
+		  width: '100%'
+		});
+		$('.form-control-chosen-optgroup').chosen({
+		  width: '100%'
+		});
 
+		$(function() {
+		  $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
+		});
+		$(document).on('click', '[title="clickable_optgroup"] .group-result', function() {
+		  var unselected = $(this).nextUntil('.group-result').not('.result-selected');
+		  if(unselected.length) {
+		    unselected.trigger('mouseup');
+		  } else {
+		    $(this).nextUntil('.group-result').each(function() {
+		      $('a.search-choice-close[data-option-array-index="' + $(this).data('option-array-index') + '"]').trigger('click');
+		    });
+		  }
+		});
+	</script>
 </body>
 </html>
 

@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
-<!--13788 upload-->
+<!--13788 upload file-->
 <link rel="stylesheet" href="{{ url_for('static', filename='13788/css/reset.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='13788/css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='13788/css/default.css') }}">
@@ -25,6 +25,7 @@
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='css/mask.js') }}"></script>
 
+<!-- 操作成功或失败提示 -->
 <link rel="stylesheet" href="{{ url_for('static', filename='42622/hsycmsAlert.min.css') }}">
 <script src="{{ url_for('static', filename='42622/jquery-1.10.2.js') }}"></script>
 <script src="{{ url_for('static', filename='42622/hsycmsAlert.min.js') }}"></script>
@@ -193,6 +194,7 @@
 </section>
 
 
+<!--13788 upload file-->
 <script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/jquery.filer.min.js') }}"></script>
@@ -200,11 +202,11 @@
 <script src="{{ url_for('static', filename='13788/js/scripts.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/custom.js') }}"></script>
 
-
-<script type="text/javascript">
-    var message = {{ message | safe }};
+<!-- 操作成功或失败提示 -->
+<script>
+var message = '{{ message }}';
 if (message == 1) {
-       hsycms.success('操作成功',()=>{  console.log('操作成功关闭后');  },1800)
+    hsycms.success('操作成功',()=>{  console.log('操作成功关闭后');  },1800)
 } else if (message == 0) {
     hsycms.fail('操作失败',()=>{  console.log('操作失败关闭后');  },1800)
 };
