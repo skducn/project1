@@ -4,30 +4,17 @@
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 <html>
 <head>
-<title>{{global_d_['menu']['importCase']}} - CHC</title>
+<title>select - CHC</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
 <!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
 
-<!--13788 upload file-->
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/reset.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/bootstrap.min.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/default.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/jquery.filer.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/jquery.filer-dragdropbox-theme.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/tomorrow.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/custom.css') }}">
+<!-- 28862 -->
+<link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='28862/component-chosen.css') }}">
 
-<!-- mask -->
-<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
-<script src="{{ url_for('static', filename='css/mask.js') }}"></script>
-
-<!-- 操作成功或失败提示 -->
-<link rel="stylesheet" href="{{ url_for('static', filename='42622/hsycmsAlert.min.css') }}">
-<script src="{{ url_for('static', filename='42622/hsycmsAlert.min.js') }}"></script>
-<script src="{{ url_for('static', filename='42622/jquery-1.10.2.js') }}"></script>
 
 </head>
 
@@ -52,29 +39,27 @@
     <div class="a6 a1p ac">
         <div class="a5 af">
             <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">导入用例</h3>
+                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">多下拉框</h3>
             </div>
         </div>
     </div>
 
 
-<form action="{{ url_for('importCase')}}" method="post" enctype="multipart/form-data">
+<form action="{{ url_for('testSort')}}" method="post">
     <div class="a6 a1K ac">
-        <div class="a5 md:a2u af">
-            <div class="a3u">
-                 <label for class="al a25 aR a1j dark:a1k a2j">上传文件</label>
-                <input type="file" name="file" id="demo-fileInput-3" multiple="multiple" >
-            </div>
-        </div>
+
 
         <div class="a5 md:a2u af">
             <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                <select  name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                <option value="none" selected>请选择...</option>
-                {% for i in global_d_['ruleName'][0:] %}
-                <option value="{{i}}">{{i}}</option>
+                <a href="?sort=asc">Ascending</a> | <a href="?sort=desc">Descending</a>
+
+                <ul>
+                {% for item in items %}
+                <li>{{ item }}</li>
                 {% endfor %}
+                </ul>
+
+
                 </select>
             </div>
         </div>
@@ -84,16 +69,10 @@
 
     <div class="a5 af">
         <div class="a2g">
-    {#    <button class="el-button el-button--primary" >提交</button>#}
-    {#    <input type="submit" class="btn-custom green" value="提交">#}
-    {#    <input type="submit" class="btn-custom red" value="提交">#}
         <input type="submit" class="btn-custom blue" value="提交">
-    {#    <input type="submit" class="btn-custom black" value="提交">#}
         </div>
     </div>
 
-    <!-- loading... -->
-    <div id="loading" style="display:none;"></div>
 
 </form>
 
@@ -188,27 +167,43 @@
 
 </section>
 
-<!--13788 upload file-->
-<script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>
-<script src="{{ url_for('static', filename='13788/js/bootstrap.min.js') }}"></script>
-<script src="{{ url_for('static', filename='13788/js/jquery.filer.min.js') }}"></script>
-<script src="{{ url_for('static', filename='13788/js/prettify.js') }}"></script>
-<script src="{{ url_for('static', filename='13788/js/scripts.js') }}"></script>
-<script src="{{ url_for('static', filename='13788/js/custom.js') }}"></script>
+
+<script src="{{ url_for('static', filename='28862/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='28862/chosen.jquery.js') }}"></script>
 
 
+	<script type="text/javascript">
+		$('.form-control-chosen').chosen({
+		  allow_single_deselect: true,
+		  width: '100%'
+		});
+		$('.form-control-chosen-required').chosen({
+		  allow_single_deselect: false,
+		  width: '100%'
+		});
+		$('.form-control-chosen-search-threshold-100').chosen({
+		  allow_single_deselect: true,
+		  disable_search_threshold: 100,
+		  width: '100%'
+		});
+		$('.form-control-chosen-optgroup').chosen({
+		  width: '100%'
+		});
 
-<!-- 操作成功或失败提示 -->
-<script>
-var message = '{{ message }}';
-if (message == 1) {
-    hsycms.success('操作成功',()=>{  console.log('操作成功关闭后');  },2800)
-} else if (message == 0) {
-    hsycms.fail('操作失败',()=>{  console.log('操作失败关闭后');  },2800)
-};
- </script>
-
-
+		$(function() {
+		  $('[title="clickable_optgroup"]').addClass('chosen-container-optgroup-clickable');
+		});
+		$(document).on('click', '[title="clickable_optgroup"] .group-result', function() {
+		  var unselected = $(this).nextUntil('.group-result').not('.result-selected');
+		  if(unselected.length) {
+		    unselected.trigger('mouseup');
+		  } else {
+		    $(this).nextUntil('.group-result').each(function() {
+		      $('a.search-choice-close[data-option-array-index="' + $(this).data('option-array-index') + '"]').trigger('click');
+		    });
+		  }
+		});
+	</script>
 
 </body>
 </html>

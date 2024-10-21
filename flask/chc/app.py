@@ -787,6 +787,7 @@ def uploadFile(html):
     file2 = savepath + "/chcRuleCase1.11.xlsx"
     os.rename(file1, file2)
     global_d_['file2'] = file2
+    return 1
 
 
 # todo 更新用例
@@ -795,16 +796,21 @@ def importCase():
     message = 2
     if request.method == 'POST':
         message = uploadFile('importCase.html')
+        print(message)
+        if message == 0:
+            return render_template('importCase.html', global_d_=global_d_, message=0)
         # 导入用例
         ruleName = request.form['ruleName']
         print(ruleName)
-        if ruleName in global_d_['ruleName']:
+        if ruleName in global_d_['ruleName'] and ruleName != "none":
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
             if status == 1:
                 return render_template('importCase.html', global_d_=global_d_, message=1)
             else:
                 return render_template('importCase.html', global_d_=global_d_, message=0)
+        else:
+            return render_template('importCase.html', global_d_=global_d_, message=0)
 
     return render_template('importCase.html', global_d_=global_d_, message=message)
 
@@ -857,6 +863,29 @@ def registerTbl2():
                 return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
 
     return render_template('registerTbl2.html',global_d_=global_d_, message=2)
+
+
+
+# todo 测试多下拉框
+@app.route('/testSelect',methods=['GET','POST'])
+def testSelect():
+    if request.method == 'POST':
+        ruleName = request.form.getlist('ruleName')
+        print(ruleName)
+    return render_template('testSelect.html', global_d_=global_d_)
+
+
+# todo 测试列表页升降序
+@app.route('/testSort',methods=['GET','POST'])
+def testSort():
+    # 假设的数据列表
+    items = ['apple', 'banana', 'cherry']
+    sort_order = request.args.get('sort', 'asc')
+    if sort_order == 'asc':
+        items.sort()  # 升序排序
+    elif sort_order == 'desc':
+        items.sort(reverse=True)  # 降序排序
+    return render_template('testSort.html', items=items, sort_order=sort_order, global_d_=global_d_)
 
 
 
