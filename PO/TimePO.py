@@ -10,10 +10,8 @@ from datetime import date, datetime, timedelta
 import calendar, datetime, time
 from time import strftime, gmtime
 
-from workalendar.asia import China
-cal = China()
-
-import pandas as pd
+# from workalendar.asia import China
+# cal = China()
 
 
 class TimePO:
@@ -333,39 +331,39 @@ class TimePO:
             d2 = zero
         return d1 < d2
 
-    def getCalendar(self):
-        # from workalendar.asia import China
-        #
-        # 创建一个中国的日历对象
-        # cal = China()
+    # def getCalendar(self):
+    #     # from workalendar.asia import China
+    #     #
+    #     # 创建一个中国的日历对象
+    #     # cal = China()
+    #
+    #     # 判断2023年每一天是否是法定节假日
+    #     for month in range(1, 13):
+    #         for day in range(1, cal.monthdays2calendar(2023, month)[-1][-1] + 1):
+    #             date = f"2023-{month:02d}-{day:02d}"
+    #             if cal.is_working_day(date):
+    #                 print(f"{date} 是工作日")
+    #             else:
+    #                 holiday_name = cal.get_holiday_name(date)
+    #                 if holiday_name:
+    #                     print(f"{date} 是{holiday_name}")
 
-        # 判断2023年每一天是否是法定节假日
-        for month in range(1, 13):
-            for day in range(1, cal.monthdays2calendar(2023, month)[-1][-1] + 1):
-                date = f"2023-{month:02d}-{day:02d}"
-                if cal.is_working_day(date):
-                    print(f"{date} 是工作日")
-                else:
-                    holiday_name = cal.get_holiday_name(date)
-                    if holiday_name:
-                        print(f"{date} 是{holiday_name}")
-
-    def get_weekday(self, x):
-        # 获取每月工作日天数，
-        from datetime import datetime
-
-        start_date = x + "-01"
-        # start_date
-        start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
-        start_datetime_2 = datetime.date(start_datetime)
-        # 计算每月最后一天的date
-        days_in_month = start_datetime_2.replace(day=28) + timedelta(days=4)
-        # print( start_datetime_2.replace(day=28))
-        end_date = days_in_month - timedelta(days=days_in_month.day)
-        # print(start_datetime_2,end_date)
-        cal = China()
-        data = cal.get_working_days_delta(start_datetime_2, end_date)
-        return data
+    # def get_weekday(self, x):
+    #     # 获取每月工作日天数，
+    #     from datetime import datetime
+    #
+    #     start_date = x + "-01"
+    #     # start_date
+    #     start_datetime = datetime.strptime(start_date, "%Y-%m-%d")
+    #     start_datetime_2 = datetime.date(start_datetime)
+    #     # 计算每月最后一天的date
+    #     days_in_month = start_datetime_2.replace(day=28) + timedelta(days=4)
+    #     # print( start_datetime_2.replace(day=28))
+    #     end_date = days_in_month - timedelta(days=days_in_month.day)
+    #     # print(start_datetime_2,end_date)
+    #     cal = China()
+    #     data = cal.get_working_days_delta(start_datetime_2, end_date)
+    #     return data
 
     def sec2hms1(self, varSec):
 

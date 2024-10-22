@@ -36,41 +36,50 @@
 # 　　directory.rmdir()
 # *********************************************************************
 """
-1 路径
-获取当前路径
-切换路径
-获取当前路径的父目录
+1 todo 路径
+获取当前路径 os.getcwd()()
+切换路径 os.chdir()
+获取当前路径的父目录 os.path.abspath("..")
 
-2 判断是否存在
-判断是否绝对路径
-判断路径或文件是否存在
-判断目录是否存在
-判断文件是否存在
+2 todo 判断是否存在
+判断是否绝对路径 os.path.isabs()
+判断路径或文件是否存在 os.path.exists()
+判断目录是否存在 os.path.isdir()
+判断文件是否存在 os.path.isfile()
 
-3 创建/删除/重命名
-新建目录
-新建多级目录
-删除空目录
-递归删除所有空目录
-强制删除目录
-删除文件
+3 todo 新建/删除/重命名
+新建目录 os.mkdir()
+新建多级目录 os.makedirs()
+删除空目录 os.rmdir()
+递归删除所有空目录 os.removedirs()
+强制删除目录 shutil.rmtree(varFolder)
+删除文件 os.remove()
 创建空文件(未成功)
-重命名文件或目录
-修改文件权限和时间戳
+重命名文件或目录 os.rename()
+修改文件权限和时间戳 os.chmod(file)
 
-4 获取/拼接目录与文件
-获取文件属性
+4 todo 获取/拼接目录与文件
+获取文件属性 os.stat()
 获取目录清单
-遍历目录及子目录下文件
-连接目录与文件名
-获取文件大小
-获取文件名
-分割文件名和扩展名
-分割路径和文件名
+遍历目录及子目录下文件 os.walk()
+连接目录与文件名 os.path.join(os.getcwd(), "ddd")
+获取文件大小 os.path.getsize()
+获取文件名 os.path.basename()
+分割文件名和扩展名 os.path.splitext()
+分割路径和文件名 os.path.split()
+获取文件最后修改日期
+# file_path = '/Users/linghuchong/Downloads/51/Python/project/PO/data/1.jpg'  # 文件路径
+dateTime = datetime.fromtimestamp(os.path.getmtime(file_path))  # 将修改时间转换为日期格式
 
 5 系统级
-获取系统平台
-获取环境变量
+获取系统平台 os.name()
+获取环境变量 os.environ.keys()
+添加路径到系统环境变量 sys.path.append()
+
+根据环境变量的值替换 os.path.expandvars(path)，根据环境变量的值替换path中包含的”$name”和”${name}”
+# os.environ['testPATH'] = 'D:/thunder'
+# path = '$testPATH/train/13.png'
+# print(os.path.expandvars(path))  # D:/thunder/train/13.png
 
 """
 
@@ -165,9 +174,9 @@ print(glob.glob("/Users/linghuchong/*.*"))  # ['/Users/linghuchong/Thumbs.db', '
 
 
 print("遍历目录及子目录下文件".center(100, "-"))
-# root是路径，dirs是目录，names是文件
-for root, dirs, names in os.walk("/Users/linghuchong/Downloads/51/Python/project/SQL"):
-    print(root, dirs, names)
+# s_path是路径，l_folder是目录，l_file是文件
+for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/SQL"):
+    print(s_path, l_folder, l_file)
 # 当 topdown=False，先遍历子目录
 # /Users/linghuchong/Downloads/51/Python/project/SQL/test [] ['hello.txt']
 # /Users/linghuchong/Downloads/51/Python/project/SQL ['test'] ['my.cnf', '.DS_Store', 'employee_connection.txt', 'employee_address.txt', 'text.txt', 'employee.txt', 'docker_mysql.sql']
