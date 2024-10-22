@@ -10,26 +10,65 @@
 # ***************************************************************u**
 from collections import Counter
 
-# 将key插入第一个前面
-def insertFirst(varDict,key,value):
-    lis = list(varDict.items())
-    lis.insert(0, (key,value))
-    return dict(lis)
 
-dict1 = {'a':1, 'b':2, 'd':4, 'e':5}
-dict1 = insertFirst(dict1,'c',3)
-print(dict1)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+import os, datetime, sys
+from datetime import date, datetime, timedelta
+from fabric import Connection
+# 建议将ssh连接所需参数变量化
+user = 'root'
+host = '192.168.0.243'
+password = 'Benetech79$#-'
+c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
 
-# 将key插入某个key后
-def insertPosition(varDict,pre_key,key,value):
-    # 插入到 pre_key 关键字 的后面
-    lis = list(varDict.items())
-    lis.insert([*varDict].index(pre_key)+1,(key,value))
-    return dict(lis)
+# print(datetime.now())
+def getDateByFile(varPath, varFile):
+    # 获取文件的最后修改日期和时间
 
-dict1 = {'a':1, 'b':2, 'd':4, 'e':5}
-dict1 = insertPosition(dict1,'e','c',3)
-print(dict1)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+    file_path = varPath + "/" + varFile
+    # print(file_path)
+    # file_path = '/Users/linghuchong/Downloads/51/Python/project/PO/data/1.jpg'  # 文件路径
+    dateTime = datetime.fromtimestamp(os.path.getmtime(file_path))  # 将修改时间转换为日期格式
+    l_ = str(dateTime).split(' ')
+    # print(l_)  # ['2023-11-15', '15:56:34.431144']
+    if l_[0] == str(date.today()):
+        # print(varPath, varFile, "更新文件")  # /Users/linghuchong/Downloads/51/Python/project/flask/chc/templates index.html 更新文件
+        # 上传文件
+        varPath1 = varPath.replace("/Users/linghuchong/Downloads/51/Python/project/flask/chc","")
+        print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
+        # c.put(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile)
+
+
+# 遍历所有的文件
+for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
+    for i in l_file:
+        if i != ".DS_Store" and i != "workspace.xml":
+            getDateByFile(s_path, i)
+
+# c.run('cd /home/flask_chc/ && ./sk.sh')
+
+
+
+
+# # 将key插入第一个前面
+# def insertFirst(varDict,key,value):
+#     lis = list(varDict.items())
+#     lis.insert(0, (key,value))
+#     return dict(lis)
+#
+# dict1 = {'a':1, 'b':2, 'd':4, 'e':5}
+# dict1 = insertFirst(dict1,'c',3)
+# print(dict1)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+#
+# # 将key插入某个key后
+# def insertPosition(varDict,pre_key,key,value):
+#     # 插入到 pre_key 关键字 的后面
+#     lis = list(varDict.items())
+#     lis.insert([*varDict].index(pre_key)+1,(key,value))
+#     return dict(lis)
+#
+# dict1 = {'a':1, 'b':2, 'd':4, 'e':5}
+# dict1 = insertPosition(dict1,'e','c',3)
+# print(dict1)  # {'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
 
 
 

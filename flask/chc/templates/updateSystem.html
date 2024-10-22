@@ -4,7 +4,7 @@
 {#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
 <html>
 <head>
-<title>select - CHC</title>
+<title>更新flask服务 - CHC</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
 <!-- main -->
@@ -14,6 +14,7 @@
 <!-- 28862 -->
 <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='28862/component-chosen.css') }}">
+
 
 
 </head>
@@ -39,31 +40,28 @@
     <div class="a6 a1p ac">
         <div class="a5 af">
             <div class="aJ[510px] a2f a2g a3p[70px] wow fadeInUp" data-wow-delay=".2s">
-                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">下拉框选多个值</h3>
+                <h3 class="a1X a3q sm:a2_ a1j dark:a1k a28">多下拉框</h3>
             </div>
         </div>
     </div>
 
 
-<form action="{{ url_for('testSelect')}}" method="post">
-    <div class="a6 a1K ac">
-        <div class="a5 md:a2u af">
-            <div class="a3u">
-                <label>多下拉框123:</label>
-				   <select name='ruleName' id="ruleName" class="form-control form-control-chosen" data-placeholder="Please select..." multiple>
-                        <option></option>
-                        <option value="1" >a</option>
-                        <option value="2" >b</option>
-                        <option value="3" >c</option>
-                        <option value="4" >d</option>
-				  </select>
-            </div>
-        </div>
+<form action="{{ url_for('updateSystem')}}" method="post">
+{#    <div class="a6 a1K ac">#}
+{##}
+{##}
+{#        <div class="a5 md:a2u af">#}
+{#            <div class="a3u">#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    <br><br>#}
 
-        <div class="a5 af">
-            <div class="a2g">
-                <input type="submit" class="btn-custom blue" value="提交">
-            </div>
+    <div class="a5 af">
+        <div class="a2g">
+        <input type="submit" class="btn-custom blue" value="提交">
         </div>
     </div>
 

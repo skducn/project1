@@ -98,15 +98,17 @@
                                 <a class="dropdown-item" href="{{ url_for('queryDesc2') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;{{ global_d_['menu']['queryDesc2'] }}</a>
                                 <a class="dropdown-item" href="{{ url_for('importCase') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;{{ global_d_['menu']['importCase'] }}</a>
                                 <a class="dropdown-item" href="{{ url_for('registerTbl') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;{{ global_d_['menu']['registerTbl'] }}</a>
-                                <a class="dropdown-item" href="{{ url_for('testSelect') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSelect</a>
-                                <a class="dropdown-item" href="{{ url_for('testSort') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSort</a>
-                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSort2</a>
+{#                                <a class="dropdown-item" href="{{ url_for('testSelect') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSelect</a>#}
+{#                                <a class="dropdown-item" href="{{ url_for('testSort') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSort</a>#}
+{#                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSort2</a>#}
+                                <a class="dropdown-item" href="{{ url_for('pin') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;更新flask服务</a>
+
 {#                                <a class="dropdown-item" href="{{ url_for('yanzm') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;验证码</a>#}
                             </div>
                         </li>
 
                         <li class="nav-item">
-                        <a onclick="goHome()"  class="nav-link menu-link" href="#" ><i class="el-icon-s-home"></i>&nbsp;登出</a>
+                        <a onclick="goHome()"  class="nav-link menu-link" href="#" ><i class="el-icon-s-home"></i>&nbsp;首页</a>
                         </li>
                     </ul>
                 </div>

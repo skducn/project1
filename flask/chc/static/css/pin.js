@@ -4,7 +4,7 @@ const { createApp } = Vue
     data() {
       return {
         bgImage: 'https://source.unsplash.com/random/1920x1080/?city,night',
-        pinLength: 3,
+        pinLength: 6,
         pinInput: [],
         error: null
       }
@@ -50,14 +50,19 @@ const { createApp } = Vue
       },
       check() {
         const pin = localStorage.getItem('pin') || Array(this.pinLength).fill(0).join("");
-        if (this.pinInput.join("") === "999") {
+        if (this.pinInput.join("") === "110110") {
           // console.log("Correct!");
           // 设置cookie
-          document.cookie = "session=jinhao";
+          // document.cookie = "session=jinhao";
           // sessionStorage.setItem("logged_in", true);
           // sessionStorage.setItem("key", "value");
           // document.cookie = "jinhao"
-          window.location.href = "/index";
+          window.location.href = "/updateSystem";
+          // 设置5000毫秒（2秒）的延迟后，关闭页面
+          setTimeout(function() {
+              window.close();
+          }, 5000);
+
 
 
         } else {

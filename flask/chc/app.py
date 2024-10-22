@@ -46,6 +46,15 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
 
+import os, datetime, sys
+from datetime import date, datetime, timedelta
+from fabric import Connection
+# 建议将ssh连接所需参数变量化
+user = 'root'
+host = '192.168.0.243'
+password = 'Benetech79$#-'
+c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
+
 
 app = Flask(__name__)
 # 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
@@ -128,10 +137,10 @@ def getRuleCollection():
 #         return response
 
 # # todo 1 pin
-# @app.route('/')
-# def homepage():
-#     return render_template('index6.html', global_d_=global_d_)
-#     # return render_template('pin.html', global_d_=global_d_)
+@app.route('/pin')
+def pin():
+    # return render_template('index6.html', global_d_=global_d_)
+    return render_template('pin.html', global_d_=global_d_)
 
 # from wtforms import Form, SelectMultipleField, SubmitField
 # from wtforms.fields import core
@@ -394,6 +403,7 @@ def list123(ruleName):
     print(l_d_all)
 
     return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
+
 
     # if ruleName == '评估因素取值':
     #     return render_template('assessFactor.html', global_d_=global_d_, d_field_comment=d_field_comment, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c)
@@ -888,6 +898,43 @@ def testSort():
     return render_template('testSort.html', items=items, sort_order=sort_order, global_d_=global_d_)
 
 
+# todo 更新flask服务（通过pin.html实现）
+def getDateByFile(varPath, varFile):
+    # 获取文件的最后修改日期和时间
+    file_path = varPath + "/" + varFile
+    # file_path = '/Users/linghuchong/Downloads/51/Python/project/PO/data/1.jpg'  # 文件路径
+    dateTime = datetime.fromtimestamp(os.path.getmtime(file_path))  # 将修改时间转换为日期格式
+    l_ = str(dateTime).split(' ')
+    # print(l_)  # ['2023-11-15', '15:56:34.431144']
+    if l_[0] == str(date.today()):
+        # print(varPath, varFile, "更新文件")  # /Users/linghuchong/Downloads/51/Python/project/flask/chc/templates index.html 更新文件
+        # 上传文件
+        varPath1 = varPath.replace("/Users/linghuchong/Downloads/51/Python/project/flask/chc","")
+        # print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
+        c.put(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile)
+@app.route('/updateSystem')
+def updateSystem():
+    # 遍历所有的文件
+    for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
+        for i in l_file:
+            if i != ".DS_Store" and i != "workspace.xml":
+                getDateByFile(s_path, i)
+    c.run('cd /home/flask_chc/ && ./sk.sh')
+    return render_template('index.html', global_d_=global_d_)
+
+# @app.route('/updateSystem1', methods=['GET','POST'])
+# def updateSystem1():
+#     if request.method == 'POST':
+#         # 遍历所有的文件
+#         for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
+#             for i in l_file:
+#                 if i != ".DS_Store" and i != "workspace.xml":
+#                     getDateByFile(s_path, i)
+#
+#         c.run('cd /home/flask_chc/ && ./sk.sh')
+#
+#         return render_template('index.html', global_d_=global_d_)
+#     return render_template('updateSystem.html', global_d_=global_d_)
 
 
 from flask_wtf import FlaskForm, RecaptchaField, CSRFProtect
