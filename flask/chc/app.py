@@ -1,5 +1,9 @@
 # https://blog.csdn.net/qq_36545573/article/details/142639082 用户认证系统，实现登录
 # https://www.sohu.com/a/788524743_121124359
+# lsof -i :5000
+# sudo ss -tulnp | grep ':5000'
+# python3 app.py run -h 0.0.0.0 --debug=false
+
 
 from flask import Flask, render_template, jsonify, redirect, url_for, flash, session, request
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -8,29 +12,29 @@ import sys, os
 # from flask_cors import *
 # from tqdm import tqdm
 # import settings
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 # import pyodbc,time, subprocess, pymssql,
 # from flask_cors import CORS
-from sqlalchemy import create_engine
+# from sqlalchemy import create_engine
 # from sqlalchemy.orm import sessionmaker
-from apscheduler.schedulers.background import BackgroundScheduler
+# from apscheduler.schedulers.background import BackgroundScheduler
 # from flask_login import LoginManager
 # from flask_login import UserMixin
 # from flask_login import login_user, logout_user, current_user
 
-from wtforms import SelectMultipleField, Form
-from wtforms.fields import core
-# from wtforms.fields import html5
-from wtforms import validators
+# from wtforms import SelectMultipleField, Form
+# from wtforms.fields import core
+# # from wtforms.fields import html5
+# from wtforms import validators
 
 from flask import Flask, render_template
-from flask_wtf import FlaskForm, CSRFProtect
-from flask_wtf.file import FileField, FileRequired, FileAllowed
+# from flask_wtf import FlaskForm, CSRFProtect
+# from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 sys.path.append(os.getcwd())
 
 from ChcRulePO import *
-from PO.OpenpyxlPO import *
+from OpenpyxlPO import *
 
 from PO.TimePO import *
 Time_PO = TimePO()
@@ -46,6 +50,11 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 conn = pymssql.connect(server='192.168.0.234', user='sa', password='Zy_123456789', database='CHC')
 cursor = conn.cursor()
 
+
+from PO.LogPO import *
+# _path = os.path.dirname(__file__)  # 获取当前文件路径
+Log_PO = LogPO('nohup.out',level="debug")
+
 import os, datetime, sys
 from datetime import date, datetime, timedelta
 from fabric import Connection
@@ -56,12 +65,89 @@ password = 'Benetech79$#-'
 c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
 
 
+
+
+
+# 创建方法生成日志
+def generation_log():
+    for i in range(20):
+        # Log_PO.info(i)
+        Log_PO.logger.info(i)
+        time.sleep(1)
+
+
+# 读取日志并返回
+def red_logs():
+    # log_path = f'{_path}/log.log'  # 获取日志文件路径
+    log_path = f'nohup.out'  # 获取日志文件路径
+    with open(log_path, 'rb') as f:
+        # log_size = os.path.getsize(log_path)  # 获取日志大小
+        log_size = 100
+        offset = -100
+        # 如果文件大小为0时返回空
+        if log_size == 0:
+            return ''
+        while True:
+            # 判断offset是否大于文件字节数,是则读取所有行,并返回
+            if (abs(offset) >= log_size):
+                f.seek(-log_size, 2)
+                data = f.readlines()
+                return data
+            # 游标移动倒数的字节数位置
+            data = f.readlines()
+            # 判断读取到的行数，如果大于1则返回最后一行，否则扩大offset
+            if (len(data) > 1):
+                return data
+            else:
+                offset *= 2
+
+
 app = Flask(__name__)
 # 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
 # app.secret_key = 'jinhao' # eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk
 app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
 
 
+
+line_number = [0] #存放当前日志行数
+# 定义接口把处理日志并返回到前端
+@app.route('/get_log',methods=['GET','POST'])
+def get_log():
+    log_data = red_logs() # 获取日志
+    # 判断如果此次获取日志行数减去上一次获取日志行数大于0，代表获取到新的日志
+    if len(log_data) - line_number[0] > 0:
+        log_type = 2 # 当前获取到日志
+        log_difference = len(log_data) - line_number[0] # 计算获取到少行新日志
+        log_list = [] # 存放获取到的新日志
+        # 遍历获取到的新日志存放到log_list中
+        for i in range(log_difference):
+            log_i = log_data[-(i+1)].decode('utf-8') # 遍历每一条日志并解码
+            log_list.insert(0,log_i) # 将获取的日志存放log_list中
+    else:
+        log_type = 3
+        log_list = ''
+    # 已字典形式返回前端
+    _log = {
+        'log_type' : log_type,
+        'log_list' : log_list
+    }
+    line_number.pop() # 删除上一次获取行数
+    line_number.append(len(log_data)) # 添加此次获取行数
+    return _log
+
+# 通过前端请求执行生成日志方法
+@app.route('/generation_log',methods=['GET','POST'])
+def generation_log_():
+    if request.method == 'POST':
+        generation_log()
+    return ''
+
+@app.route('/seeLog',methods=['GET','POST'])
+def seeLog():
+    if request.method == 'GET':
+        return render_template('seeLog.html')
+    if request.method == 'POST':
+        return render_template('seeLog.html')
 
 # todo 初始化数据
 # 全局字典
@@ -153,10 +239,18 @@ def pin():
 #     submit = SubmitField('Submit')
 
 
+@app.route('/index7')
+def index7():
+    global_d_['ruleName'] = getRuleName()
+    print(global_d_['ruleName'] )
+    global_d_['rule'] = getRuleCollection()
+
+    return render_template('index7.html', global_d_=global_d_)
 
 @app.route('/')
 def index():
     global_d_['ruleName'] = getRuleName()
+    print(global_d_['ruleName'] )
     global_d_['rule'] = getRuleCollection()
 
     return render_template('index.html', global_d_=global_d_)
@@ -402,8 +496,9 @@ def list123(ruleName):
     l_d_all = l_new
     print(l_d_all)
 
-    return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
 
+    return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
+110
 
     # if ruleName == '评估因素取值':
     #     return render_template('assessFactor.html', global_d_=global_d_, d_field_comment=d_field_comment, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c)
@@ -770,10 +865,14 @@ def get_queryDesc2():
     selected_value = request.args.get('value')
     print(selected_value)
     Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", selected_value, "GBK")
+
+    d_tbl_comment = Sqlserver_PO.getTableComment()
+    print(d_tbl_comment)
+
+    d_tbl_desc2 = {}
     l_tableName = Sqlserver_PO.getTables()
     print(l_tableName)  # ['condition_item', 'patient_demographics', 'patient_diagnosis' ...
     # 获取表结构
-    d_tbl_desc2 = {}
     for i in l_tableName:
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl_desc2[i] = s_desc
@@ -910,7 +1009,7 @@ def getDateByFile(varPath, varFile):
         # print(varPath, varFile, "更新文件")  # /Users/linghuchong/Downloads/51/Python/project/flask/chc/templates index.html 更新文件
         # 上传文件
         varPath1 = varPath.replace("/Users/linghuchong/Downloads/51/Python/project/flask/chc","")
-        # print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
+        print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
         c.put(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile)
 @app.route('/updateSystem')
 def updateSystem():
@@ -919,34 +1018,87 @@ def updateSystem():
         for i in l_file:
             if i != ".DS_Store" and i != "workspace.xml":
                 getDateByFile(s_path, i)
-    c.run('cd /home/flask_chc/ && ./sk.sh')
+    # c.run('cd /home/flask_chc/ && ./sk.sh')
+    # c.run('cd /home/flask_chc/ && ./k.sh')
+    # sk.sh内容如下：
+    # kill $(pgrep flask)
+    # cd /home/flask_chc/ && FLASK_APP=app.py && flask run --host=0.0.0.0 --port=5000
+
+    # tt()
     return render_template('index.html', global_d_=global_d_)
+def tt():
+    import paramiko
 
-# @app.route('/updateSystem1', methods=['GET','POST'])
-# def updateSystem1():
-#     if request.method == 'POST':
-#         # 遍历所有的文件
-#         for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
-#             for i in l_file:
-#                 if i != ".DS_Store" and i != "workspace.xml":
-#                     getDateByFile(s_path, i)
-#
-#         c.run('cd /home/flask_chc/ && ./sk.sh')
-#
-#         return render_template('index.html', global_d_=global_d_)
-#     return render_template('updateSystem.html', global_d_=global_d_)
+    # 设置SSH连接参数
+    hostname = '192.168.0.243'
+    port = 22  # SSH端口，默认是22
+    username = 'root'
+    password = 'Benetech79$#-'
+
+    # 创建SSH客户端
+    client = paramiko.SSHClient()
+    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+    client.connect(hostname, port, username, password)
+
+    # command = 'cd /home/flask_chc/ && ./k.sh'
+
+    # 执行远程命令
+    # stdin, stdout, stderr = client.exec_command('cd /home/flask_chc/ && ./k1.sh')
+    stdin, stdout, stderr = client.exec_command('cd /home/flask_chc/ && ./sk.sh')
+
+    # 获取命令输出
+    print(stdout.read().decode())
+
+    # 关闭连接
+    client.close()
+def t2():
+    ...
+    # import subprocess
+    #
+    # # 远程服务器的IP地址或主机名
+    # server_ip = '192.168.0.243'
+    # # SSH连接使用的用户名
+    # username = 'root'
+    # # 远程执行的命令
+    # # command = 'FLASK_APP=myapp.py flask run -p 5000'
+    # command = 'cd /home/flask_chc/ && ./k.sh'
+    #
+    # # 使用sshpass（需要预先安装）来自动输入密码，或者使用其他方式进行身份验证
+    # ssh_cmd = f'sshpass -p "Benetech79$#-" ssh -o StrictHostKeyChecking=no {username}@{server_ip} "{command}"'
+    #
+    # # 执行远程命令
+    # subprocess.run(ssh_cmd, shell=True)
 
 
-from flask_wtf import FlaskForm, RecaptchaField, CSRFProtect
+
+
+# todo 查看日志
+@app.route('/searchLog', methods=['GET','POST'])
+def searchLog():
+    if request.method == 'POST':
+        count = request.form['count']
+
+        # s = c.run('cd /home/flask_chc/ && tail -f nohup.out')
+        s = c.run('cd /home/flask_chc/ && tail -n '+ count +' nohup.out')
+        s = str(s).replace("192.168.0.148 -","<br>192.168.0.148 -").replace("(no stderr)","<br>(no stderr)")
+
+        global_d_['count'] = count
+
+        return render_template('searchLog.html', global_d_=global_d_, result=s)
+    return render_template('index7.html', global_d_=global_d_)
+
+
+
+# from flask_wtf import FlaskForm, RecaptchaField, CSRFProtect
 # todo 验证码
 # https://www.jianshu.com/p/57b564efcb7b
 # https://blog.csdn.net/wggglggg/article/details/116231552
-class Myform2(FlaskForm):
-    recaptcha = RecaptchaField()    #验证码字段
-@app.route('/yanzm')
-def yanzm():
-    myform=Myform2()         #创建表单对象
-    return render_template('yanzm.html', myform=myform)     #使用render_template()方法渲染yanzm.html文件并将myform传递到file.html中
+# class Myform2(FlaskForm):
+#     recaptcha = RecaptchaField()    #验证码字段
+# @app.route('/yanzm')
+# def yanzm():
+#     myform=Myform2()         #创建表单对象
+#     return render_template('yanzm.html', myform=myform)     #使用render_template()方法渲染yanzm.html文件并将myform传递到file.html中
 
 # todo 上传文件
 # https://www.jianshu.com/p/57b564efcb7b
@@ -1004,3 +1156,4 @@ if __name__ == '__main__':
     app.run(debug=True)
     # app.run(debug=True)  # 开发服务器，适用于开发和测试
     # os.system("/Users/linghuchong/miniconda3/envs/py308/bin/python -m flask run --host=0.0.0.0 --port=5001")
+    # FLASK_APP=app.py && nohup flask run --host=0.0.0.0 &

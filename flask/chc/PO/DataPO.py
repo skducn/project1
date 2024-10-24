@@ -63,13 +63,13 @@ import sys, random, json, jsonpath, hashlib, socket, struct, re, uuid, requests,
 import random
 from datetime import date
 from datetime import timedelta
-from bs4 import BeautifulSoup
-import pandas as pd
+# from bs4 import BeautifulSoup
+# import pandas as pd
 # from MyQR import myqr
 
 # from pyzbar.pyzbar import decode
-from PIL import Image
-from time import sleep
+# from PIL import Image
+# from time import sleep
 
 # from fake_useragent import UserAgent
 

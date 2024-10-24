@@ -2,15 +2,14 @@
 #****************************************************************
 # Author     : John
 # Date       : 2017-11-8
-# Description: sh,http://amoffat.github.io/sh/
+# Description: sh
 # sh(以前叫pbs)是Python成熟的subprocess接口，可以把shell命令当做函数来调用。
-
 # ImportError: sh 1.12.14 is currently only supported on linux and osx. please install pbs 0.110 (http://pypi.python.org/pypi/pbs) for windows support.
 # sh is a full-fledged subprocess replacement for Python 2.6 - 3.5, PyPy and PyPy3 that allows you to call any program as if it were a function:
 # 执行命令行 os.system , os.popen , subprocess.Popen , commands
 #***************************************************************
 
-import sh as pbs
+# import sh as pbs
 import sh,os, subprocess
 
 # 1，系统级启动程序，如 appium 启动，获取进程，杀进程，启动
@@ -25,20 +24,19 @@ import sh,os, subprocess
 
 
 # 2，获取网卡信息
-from sh import ifconfig
-print(ifconfig("en0"))
+print(sh.ifconfig("en0"))
 # en0: flags=8863<UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST> mtu 1500
 # 	options=400<CHANNEL_IO>
 # 	ether a0:99:9b:04:c9:99
-# 	inet6 fe80::1814:d05d:d752:6142%en0 prefixlen 64 secured scopeid 0x5
+# 	inet6 fe80::47a:8605:14be:dc4d%en0 prefixlen 64 secured scopeid 0x5
 # 	inet 192.168.1.102 netmask 0xffffff00 broadcast 192.168.1.255
 # 	nd6 options=201<PERFORMNUD,DAD>
 # 	media: autoselect
 # 	status: active
 
-# 解压文件
-# from sh import tar
-# tar("cvf", "/tmp/test.tar", "/my/home/directory/")
+# 3, 解压文件
+# sh.tar("cvf", "/tmp/test.tar", "/my/home/directory/")
+# sh.tar("cvf /tmp/test.tar /my/home/directory/")
 
 # 创建目录
 # for i in range(1,2):
@@ -96,16 +94,16 @@ print(ifconfig("en0"))
 #
 #
 # 显示目录清单
-print (sh.ls("-l", "/Users/linghuchong"))
+# print (sh.ls("-l", "/Users/linghuchong"))
 
-# bake命令参数，显示当前目录的字节数
-du = sh.du.bake('-shc')
-print (du('/users/linghuchong//Downloads/51/Project/common'))
-
-# glob列出文件
-list=sh.glob('/users/linghuchong//Downloads/51/Project/common/*')
-print(list)
-
-# # 调用自己的程序
-r = sh.Command('/Users/linghuchong/Downloads/51/Project/common/yaml1.py')
-print(r)
+# # bake命令参数，显示当前目录的字节数
+# du = sh.du.bake('-shc')
+# print (du('/users/linghuchong//Downloads/51/Project/common'))
+#
+# # glob列出文件
+# list=sh.glob('/users/linghuchong//Downloads/51/Project/common/*')
+# print(list)
+#
+# # # 调用自己的程序
+# r = sh.Command('/Users/linghuchong/Downloads/51/Project/common/yaml1.py')
+# print(r)

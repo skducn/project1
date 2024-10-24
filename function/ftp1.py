@@ -9,45 +9,6 @@
 # 日志目录：EHR_2.1/logs
 # ********************************************************************************************************************
 
-from fabric import Connection
-
-# 建议将ssh连接所需参数变量化
-user = 'root'
-host = '192.168.0.243'
-password = 'Benetech79$#-'
-c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
-
-# 上传文件
-c.put('/Users/linghuchong/Downloads/51/Python/project/flask/chc/templates/index.html', '/home/flask_chc/templates/index.html')
-
-# 利用run方法直接执行传入的命令
-# c.run('echo $PATH');
-# c.run('kill $(pgrep flask)');
-# c.run('cd /home/flask_chc/ && FLASK_APP=app.py && flask run --host=0.0.0.0 --port=5000');
-
-c.run('cd /home/flask_chc/ && ./sk.sh')
-
-# a = c.run('cd /usr/local/lib/python3.9/site-packages/ && FLASK_APP=/home/flask_chc/app.py flask run --host=0.0.0.0 --port=5000');
-# a = c.run('cd /usr/local/python3/bin && FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000');
-# a = c.run('cd /home/flask_chc/ && FLASK_APP=app.py ./usr/local/bin/flask run --host=0.0.0.0 --port=5000');
-# c.run('pwd');
-# c.run('kill $(pgrep flask)');
-# c.run('cd /home/flask_chc/ && flask run --host=0.0.0.0 &');
-
-# c.run('cd /home/flask_chc/ && FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000')
-# c.run('FLASK_APP=app.py flask run --host=0.0.0.0 --port=5000')
-
-# FLASK_APP=/home/flask_chc/app.py flask run --host=0.0.0.0 --port=5000
-
-
-# print(123,a.stdout)
-# # stdin, stdout, stderr = ssh.exec_command('kill $(pgrep flask)')
-
-c.close()
-
-# c.run('sh /home/flask_chc/k.sh');
-# c.run('export FLASK_APP=app.py && cd /home/flask_chc/ && flask run --host=0.0.0.0 &');
-# command = 'export FLASK_APP=app.py && cd /home/flask_chc/ && flask run --host=0.0.0.0 &'  # 根据实际情况调整命令
 
 # import paramiko
 #

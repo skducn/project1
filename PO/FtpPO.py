@@ -26,7 +26,6 @@ class FtpPO:
         # self.conn.put('/Users/linghuchong/Downloads/51/Python/project/flask/chc/templates/index.html', '/home/flask_chc/templates/index.html')
         self.conn.put(varLocalPathFile, varRemotePathFile)
 
-
     def run(self, varCommand):
 
         # 执行命令

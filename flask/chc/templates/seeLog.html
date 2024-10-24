@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            margin: auto;
+            background-color: #f5f5f5;
+        }
+        .button{width: 200px;height: 50px;color:#FFFFFF;background-color: #1da1f2}
+        .log{
+            width: 98%;
+            height: 500px;
+            background-color: #FFFFFF;
+            margin: 0 auto;
+            margin-top: 10px;
+            padding-top: 30px;
+            padding-bottom: 40px;
+        }
+        .log_text{
+            height: 500px;
+            margin-left: 80px;
+            font-size: 18px;
+            color: #111111;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+<button id="button" class="button">开始</button>
+<div class="log">
+    <div class="log_text" id='log_list'>
+        <div id="log_text"></div>
+    </div>
+</div>
+</body>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    var time
+      // 创建一个元素节点
+    function insertAfter( newElement, targetElement ){ // newElement是要追加的元素targetElement 是指定元素的位置
+        var parent = targetElement.parentNode; // 找到指定元素的父节点
+        parent.appendChild( newElement, targetElement );
+    };
+    function log(){
+        clearTimeout(time) // 清空定时器
+        var log_null = 0 //存放空日志次数
+        var div = document.getElementById('log_list') //找到存放日志的块
+        div.innerHTML = "<div id='log_text'></div>" // 每次跑清空div内内容
+
+        $.post('/generation_log',{},function (){
+        }) //请求生成日志接口
+        // 生成定时器
+        time = setInterval(function (){
+            $.get('/get_log',{},function (data){ //请求获取日志接口获取日志
+                if (data.log_type == 3){ //如果获取的是空日志log_null次数加1
+                    log_null ++
+                    if (log_null >= 5){
+                        clearTimeout(time) //如果连续10次获取的都是空日志清除定时任务
+                    }
+                    return
+                }
+                if (data.log_type == 2){ //如果获取到新日志
+                    for (i=0;i<data.log_list.length;i++){ //遍历日志
+                        var p = document.createElement("p") //生成一个p标签
+                        p.innerHTML = data.log_list[i] //日志存放到P标签内
+                        var header = document.getElementById('log_text')
+                        insertAfter(p,header) //将p标签添加到log_text div中
+                        div.scrollTop = div.scrollHeight //滚动条实时显示到底部
+                    }
+                    log_null = 0 //日志为空次数清0
+                }
+
+            })
+        },1000) //每1秒钟执行一次
+    }
+    document.getElementById('button').addEventListener("click",log) //点击开始按钮开始执行
+</script>
+</html>

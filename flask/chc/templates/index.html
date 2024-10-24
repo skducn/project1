@@ -102,6 +102,9 @@
 {#                                <a class="dropdown-item" href="{{ url_for('testSort') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSort</a>#}
 {#                                <a class="dropdown-item" href="{{ url_for('list123',ruleName='评估因素取值') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;testSort2</a>#}
                                 <a class="dropdown-item" href="{{ url_for('pin') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;更新flask服务</a>
+                                <a class="dropdown-item" href="{{ url_for('seeLog') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;查看日志</a>
+                                <a class="dropdown-item" href="{{ url_for('searchLog') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;查看日志2</a>
+                                <a class="dropdown-item" href="{{ url_for('index7') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;index7</a>
 
 {#                                <a class="dropdown-item" href="{{ url_for('yanzm') }}" target = "_blank"><i class="el-icon-arrow-right"></i>&nbsp;验证码</a>#}
                             </div>
@@ -164,8 +167,6 @@
                         <option value="{{i}}">{{i}}</option>
                         {% endfor %}
                         </select>
-
-
                         </div></div>
                         </div>
 
@@ -294,12 +295,11 @@
                 <div class="row">
                     <div class="col-md-6">
 
-
                         <div class="a5 md:a2u af"><div class="a3u">
                             <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                              <option value="none" selected>请选择...</option>
-i                            {% for i in global_d_['ruleName'][0:] %}
+                            {% for i in global_d_['ruleName'][0:] %}
                             <option value="{{i}}">{{i}}</option>
                             {% endfor %}
                             </select>
