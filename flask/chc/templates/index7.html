@@ -7,7 +7,6 @@
 <title>CHC - 社区健康自动化规则测试</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
-
 <!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
@@ -23,7 +22,6 @@
 
 <!-- 42904 超链接蓝色 -->
 <link rel="stylesheet" href="{{ url_for('static', filename='42904/style123.css') }}">
-
 
 <!-- mask -->
 <script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
@@ -60,8 +58,6 @@
     </div>
 </div>
 
-
-
 <article class="htmleaf-container">
 	<section id="section4" class="section-white">
 		<div class="container">
@@ -71,324 +67,468 @@
 				<br>
 					<div>
 						<ul class="nav nav-tabs" role="tablist">
-                            {%  if tabName == '查询规则集' %}
-							    <li role="presentation" class="active"><a href="#searchRuleCollection" role="tab" data-toggle="tab">查询规则集</a></li>
+                            {%  if tabName == '规则列表' %}
+							    <li role="presentation" class="active"><a href="#RL" role="tab" data-toggle="tab">规则列表</a></li>
                             {%  else %}
-							    <li role="presentation"><a href="#searchRuleCollection" role="tab" data-toggle="tab">查询规则集</a></li>
+							    <li role="presentation"><a href="#RL" role="tab" data-toggle="tab">规则列表</a></li>
                             {%  endif  %}
-                            {%  if tabName == '更新规则集' %}
-							    <li role="presentation" class="active"><a href="#updateRuleCollection" role="tab" data-toggle="tab">更新规则集</a></li>
+                            {%  if tabName == '数据仓库' %}
+							    <li role="presentation" class="active"><a href="#DW" role="tab" data-toggle="tab">数据仓库</a></li>
                             {%  else %}
-							    <li role="presentation"><a href="#updateRuleCollection" role="tab" data-toggle="tab">更新规则集</a></li>
+							    <li role="presentation"><a href="#DW" role="tab" data-toggle="tab">数据仓库</a></li>
                             {%  endif  %}
-                            {%  if tabName == '测试' %}
-							    <li role="presentation" class="active"><a href="#testRule" role="tab" data-toggle="tab">测试</a></li>
+                            {%  if tabName == '规则集' %}
+							    <li role="presentation" class="active"><a href="#RS" role="tab" data-toggle="tab">规则集</a></li>
                             {%  else %}
-							    <li role="presentation"><a href="#testRule" role="tab" data-toggle="tab">测试</a></li>
+							    <li role="presentation"><a href="#RS" role="tab" data-toggle="tab">规则集</a></li>
                             {%  endif  %}
-                            {%  if tabName == '规则名列表' %}
-							    <li role="presentation" class="active"><a href="#ruleList" role="tab" data-toggle="tab">规则名列表</a></li>
+
+{#                            {%  if tabName == '查询规则集' %}#}
+{#							    <li role="presentation" class="active"><a href="#searchRuleCollection" role="tab" data-toggle="tab">查询规则集</a></li>#}
+{#                            {%  else %}#}
+{#							    <li role="presentation"><a href="#searchRuleCollection" role="tab" data-toggle="tab">查询规则集</a></li>#}
+{#                            {%  endif  %}#}
+{#                            {%  if tabName == '更新规则集' %}#}
+{#							    <li role="presentation" class="active"><a href="#updateRuleCollection" role="tab" data-toggle="tab">更新规则集</a></li>#}
+{#                            {%  else %}#}
+{#							    <li role="presentation"><a href="#updateRuleCollection" role="tab" data-toggle="tab">更新规则集</a></li>#}
+{#                            {%  endif  %}#}
+
+                            {%  if tabName == '调试' %}
+							    <li role="presentation" class="active"><a href="#DB" role="tab" data-toggle="tab">调试</a></li>
                             {%  else %}
-							    <li role="presentation"><a href="#ruleList" role="tab" data-toggle="tab">规则名列表</a></li>
+							    <li role="presentation"><a href="#DB" role="tab" data-toggle="tab">调试</a></li>
                             {%  endif  %}
+
                             {%  if tabName == '辅助工具' %}
-							    <li role="presentation" class="active"><a href="#tools" role="tab" data-toggle="tab">辅助工具</a></li>
+							    <li role="presentation" class="active"><a href="#AT" role="tab" data-toggle="tab">辅助工具</a></li>
                             {%  else %}
-							    <li role="presentation"><a href="#tools" role="tab" data-toggle="tab">辅助工具</a></li>
+							    <li role="presentation"><a href="#AT" role="tab" data-toggle="tab">辅助工具</a></li>
+                            {%  endif  %}
+                            {%  if tabName == '系统配置' %}
+							    <li role="presentation" class="active"><a href="#SC" role="tab" data-toggle="tab">系统配置</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#SC" role="tab" data-toggle="tab">系统配置</a></li>
                             {%  endif  %}
 						</ul>
 
 						<div class="tab-content">
-                        
-                            <!-- 查询规则集 -->
 
-                            {%  if tabName == '查询规则集' %}
-							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="searchRuleCollection">
+        <!-- 规则列表 -->
+
+                            {%  if tabName == '规则列表' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="RL">
                             {%  else %}
-							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="searchRuleCollection">
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RL">
                             {%  endif  %}
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="a5 md:a2u af">
-                                            <div class="a3u">
-                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                                                <select  id="queryRuleName" name="queryRuleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                <option value="none" selected>请选择...</option>
-                                                {% for i in global_d_['ruleName'][0:] %}
-                                                <option value="{{i}}">{{i}}</option>
-                                                {% endfor %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <div class="a6 a1K ac">
-                                        <div class="a5 md:a2u af">
-                                        <div class="a3u">
-                                        <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
-                                        <select id="queryRuleCollection" name="queryRuleCollection" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                        <option value="none" selected>请选择...</option>
-                                        </select>
-                                        </div>
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pre-box collapsed">
-                                    <div class="pre-collapse">
-                                        <i class="fa fa-code pull-left"></i> + 功能注释
-                                    </div>
-                                    <pre class="prettyprint lang-js">当前规则名的规则集，所属a_ceshiguize库。<div id="get_queryRuleCollection"></div></pre>
-                                </div>
-							</div>
-                        
-                            
-                            <!-- 更新规则集 -->
-
-							<div role="tabpanel" class="tab-pane pt20 pb20 fade" id="updateRuleCollection">
-                                <form action="{{ url_for('updateRuleCollection')}}" method="post">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="a5 md:a2u af"><div class="a3u">
-                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                                                <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                 <option value="none" selected>请选择...</option>
-                                                {% for i in global_d_['ruleName'][0:] %}
-                                                <option value="{{i}}">{{i}}</option>
-                                                {% endfor %}
-                                                </select>
-                                            </div></div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="a5 md:a2u af">
-                                            <div class="a3u">
-                                            <label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
-                                            <input type="text"  name="ruleCollection" maxlength="10" placeholder="请输入..." id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                            </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="a5 md:a2u af">
-                                            <div class="a3u">
-                                            <label for class="al a25 aR a1j dark:a1k a2j">步骤*</label>
-                                            <textarea name="sql" rows="5" id="cacu_value" placeholder="请输入..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
-                                            </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-md-12">
-                                            <div class="a5 af"><div class="a2g">
-                                                <div class='submitButton'>
-                                                    <input type="submit" class="btn-custom black" value="提交">
-                                                </div>
-                                            </div></div>
-                                        </div>
-                                        <!--// .col //-->
-                                    </div>
-                                </form>
-							</div>
-
-
-                            <!-- 测试 -->
-                                {%  if tabName == '测试' %}
-                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="testRule">
-                                {%  else %}
-                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="testRule">
-                                {%  endif  %}
-
-
-                                <form action="{{ url_for('testRule')}}" method="post" id="mask_testRule">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="a5 md:a2u af"><div class="a3u">
-                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                                                <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                 <option value="none" selected>请选择...</option>
-                                                {% for i in global_d_['ruleName'][0:] %}
-                                                <option value="{{i}}">{{i}}</option>
-                                                {% endfor %}
-                                                </select>
-                                            </div></div>
-                                        </div>
-
-                                        <div class="col-md-6">
-                                            <div class="a5 md:a2u af"><div class="a3u">
-                                            <label for class="al a25 aR a1j dark:a1k a2j">id*</label>
-                                            <input type="text" name="id" maxlength="10" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                            </div></div>
-                                        </div>
-                                        <!--// .col //-->
-
-                                         <div class="col-md-12">
-                                            {% if output_testRule %}
-                                            <pre>{{ output_testRule }}</pre>
-                                            {% elif error %}
-                                            <h2>Error:</h2>
-                                            <pre>{{ error }}</pre>
-                                            {% endif %}
-                                            <br>
-
-                                            <div class="a5 af"><div class="a2g">
-                                                <input type="submit" class="btn-custom black" value="提交">
-                                                <br><br>
-                                            </div></div>
-
-{#                                            <!-- loading... -->#}
-{#                                            <div id="loading" style="display:none;"></div>#}
-                                        </div>
-                                    </div>
-                                </form>
-
-                                {% if testRule2 == 1 %}
-
-                                    {% if d_field %}
-                    {% if d_field['result']  == 'ok' %}
-                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
-                        <textOk>{{ d_field['result'] }}</textOk> <br><br>
-
-                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-                        <textOk>{{d_field['step']}}</textOk> <br>
-                        <textOk>{{d_field['eachStep']}}</textOk> <br>
-                    {% else %}
-                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
-                        <textErr>{{ d_field['result'] }}</textErr> <br><br>
-
-                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-                        <textErr>{{d_field['step']}}</textErr> <br>
-                        <textErr>{{d_field['eachStep']}}</textErr> <br>
-                    {%  endif %}
-
-                    <div class="louti"></div>
-
-                <!-- 编辑 -->
-
-                <form action="{{ url_for('step')}}" method="post" id="mask_testRule2">
-
-                <div class="a6 a1K ac">
-
-                <div class="a5 md:a2u/2 af">
-                <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                <input type="text" readonly name="ruleName" value="{{ d_field['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                </div>
-                </div>
-
-                <div class="a5 md:a2u/2 af">
-                <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">id</label>
-                <input type="text" readonly name="id" value="{{ d_field['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                </div>
-                </div>
-
-                <div class="a5 md:a2u/2 af">
-                <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
-                {#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
-                <select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                <option value="{{ s_rule }}" selected>{{ s_rule }}</option>
-                {% for s in global_d_['rule'][0:] %}
-                <option value="{{s}}">{{s}}</option>
-                {% endfor %}
-                </select>
-                </div>
-                </div>
-
-                <div class="a5 md:a2u/2 af">
-                <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">case</label>
-                <input type="text" name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                </div>
-                </div>
-
-                    <div class="col-md-12">
-                        <div class="box3">
-                        <div id="get_queryRuleCollection"></div>
-                        </div>
-                    </div>
-
-                <div class="a5 md:a2u af">
-                <div class="a3u">
-                <label for class="al a25 aR a1j dark:a1k a2j">ruleParam*</label>
-                <textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{d_field['ruleParam']}}</textarea>
-                </div>
-                </div>
-
-                <div class="a5 af"><div class="a2g">
-                    <div class='submitButton'>
-                    <button class="el-button el-button--primary">提交</button>
-                    </div>
-                </div></div>
-                </div>
-                </form>
-
-                {% elif error %}
-                    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
-                    <pre>{{ error }}</pre>
-                {% endif %}
-
-
-                                {% endif %}
-							</div>
-
-
-                            <!-- 规则名列表 -->
-
-                            {%  if subName == 4 %}
-							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="ruleList">
-                            {%  else %}
-							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="ruleList">
-                            {%  endif  %}
-								<div class="row">
-									<div class="col-md-12">
-                                        <div class="section__box">
-                                            {% for i in global_d_['ruleName'] %}
-
-
-    <a class="r-link ai-element ai-element_padding-all ai-element1" href="{{ url_for('list123',ruleName=i) }}" target = "_blank"><span class="ai-element__label">{{ i }}</span></a>
-{#                                                <a class="r-link ai-element ai-element_padding-all ai-element1" href="{{ url_for('list123',ruleName=i) }}" target = "_blank"><span class="ai-element__label">{{ i }}</span></a>#}
-                                            {% endfor %}
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+                                        {% for i in global_d_['ruleName'] %}
+                                            <a class="r-link ai-element ai-element_padding-all ai-element1" href="{{ url_for('list123',ruleName=i) }}" target = "_blank"><span class="ai-element__label">{{ i }}</span></a>
+                                        {% endfor %}
                                     </div>
 								</div>
 							</div>
-                        
-                            <!-- 辅助工具 -->
-                            {%  if tabName == '辅助工具' %}
-							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="tools">
+                            </div>
+
+        <!-- 数据仓库 -->
+
+                            {%  if tabName == '数据仓库' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DW">
                             {%  else %}
-							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="tools">
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DW">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+{#                                            <a class="r-link ai-element ai-element_padding-all ai-element1" href="#demo_searchRecord" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['searchRecord'] }}</span></a>#}
+{#                                            <a class="r-link ai-element ai-element_padding-all ai-element2" href="#demo_queryDesc2" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['queryDesc2'] }}</span></a>#}
+                                        <a class="r-link ai-element ai-element_padding-all ai-element4" href="#DW_CT" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['registerTbl'] }}</span></a>
+                                        <a class="r-link ai-element ai-element_padding-all ai-element3" href="#DW_IR" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['importCase'] }}</span></a>
+
+                                        <div class="tab-content">
+
+        <!-- 创建库表 -->
+                                            {%  if subName == '创建库表' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DW_CT">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DW_CT">
+                                            {%  endif  %}
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="section__box">
+                                                <form action="{{ url_for('registerTbl')}}" method="post" enctype="multipart/form-data" id="mask_registerTbl1">
+                                                    <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u af">
+                                                            <div class="a3u">
+                                                                 <label for class="al a25 aR a1j dark:a1k a2j">文件名</label>
+                                                                <input type="file" name="file" id="demo-fileInput-34" multiple="multiple" >
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <br><br>
+
+                                                    <div class="a5 af">
+                                                        <div class="a2g">
+                                                            <input type="submit" class="btn-custom green" value="上传 (步骤1/2)">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                {% if registerTbl2 == 1 %}
+                                                    <form action="{{ url_for('registerTbl2')}}" method="post" id="mask_registerTbl2">
+                                                        <div class="a6 a1K ac">
+                                                            <div class="a5 md:a2u/2 af">
+                                                                <div class="a3u">
+                                                                    <label for class="al a25 aR a1j dark:a1k a2j">规则名（可创建）</label>
+                                                                    <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                                    <option value="none" selected>请选择...</option>
+                                                                    {% for i in l_canRegisterRuleName[0:] %}
+                                                                    <option value="{{i}}">{{i}}</option>
+                                                                    {% endfor %}
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <br><br>
+                                                        <div class="a5 af">
+                                                            <div class="a2g">
+                                                            <input type="submit" class="btn-custom blue" value="提交 (步骤2/2)">
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                {% endif %}
+                                            </div></div></div></div>
+
+        <!-- 导入规则 -->
+
+                                            {%  if subName == '导入规则' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DW_IR">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DW_IR">
+                                            {%  endif  %}
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="section__box">
+                                                <form action="{{ url_for('importCase')}}" method="post" enctype="multipart/form-data" id="mask_importCase">
+                                                    <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u af">
+                                                            <div class="a3u">
+                                                                 <label for class="al a25 aR a1j dark:a1k a2j">文件名</label>
+                                                                <input type="file" name="file" id="demo-fileInput-3" multiple="multiple" >
+                                                            </div>
+                                                        </div>
+                                                        <div class="a5 md:a2u/2 af">
+                                                            <div class="a3u">
+                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                                <select  name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                                <option value="none" selected>请选择...</option>
+                                                                {% for i in global_d_['ruleName'][0:] %}
+                                                                <option value="{{i}}">{{i}}</option>
+                                                                {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <br><br>
+                                                    <div class="a5 af">
+                                                        <div class="a2g">
+                                                        <input type="submit" class="btn-custom green" value="上传">
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                            </div></div></div></div>
+                                        </div>
+                            </div></div></div></div>
+                            <!-- 数据仓库 end -->
+
+        <!-- 规则集  -->
+
+                            {%  if tabName == '规则集' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="RS">
+                            {%  else %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RS">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+                                        <a class="r-link ai-element ai-element_padding-all ai-element4" href="#RS_query" role="tab" data-toggle="tab"><span class="ai-element__label">查询</span></a>
+                                        <a class="r-link ai-element ai-element_padding-all ai-element3" href="#RS_new" role="tab" data-toggle="tab"><span class="ai-element__label">新建/修改</span></a>
+
+                                        <div class="tab-content">
+
+        <!-- 查询 -->
+
+                                            {%  if subName == '查询' %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="RS_query">
+                                            {%  else %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RS_query">
+                                            {%  endif  %}
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="a5 md:a2u af">
+                                                            <div class="a3u">
+                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                                <select  id="queryRuleName" name="queryRuleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                                <option value="none" selected>请选择...</option>
+                                                                {% for i in global_d_['ruleName'][0:] %}
+                                                                <option value="{{i}}">{{i}}</option>
+                                                                {% endfor %}
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u af">
+                                                        <div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
+                                                        <select id="queryRuleCollection" name="queryRuleCollection" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        <option value="none" selected>请选择...</option>
+                                                        </select>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="pre-box collapsed">
+                                                    <div class="pre-collapse">
+                                                        <i class="fa fa-code pull-left"></i> + 功能注释
+                                                    </div>
+                                                    <pre class="prettyprint lang-js">当前规则名的规则集，所属a_ceshiguize库。<div id="get_queryRuleCollection"></div></pre>
+                                                </div>
+                                            </div>
+
+        <!-- 新建/修改-->
+
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RS_new">
+                                                <form action="{{ url_for('updateRuleCollection')}}" method="post" id="mask32">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div class="a5 md:a2u af"><div class="a3u">
+                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                                <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                                 <option value="none" selected>请选择...</option>
+                                                                {% for i in global_d_['ruleName'][0:] %}
+                                                                <option value="{{i}}">{{i}}</option>
+                                                                {% endfor %}
+                                                                </select>
+                                                            </div></div>
+                                                        </div>
+
+                                                        <div class="col-md-6">
+                                                            <div class="a5 md:a2u af">
+                                                            <div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
+                                                            <input type="text"  name="ruleCollection" maxlength="10" placeholder="请输入..." id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="a5 md:a2u af">
+                                                            <div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">步骤*</label>
+                                                            <textarea name="sql" rows="5" id="cacu_value" placeholder="请输入..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+                                                            </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="a5 af"><div class="a2g">
+                                                                <div class='submitButton'>
+                                                                    <input type="submit" class="btn-custom black" value="提交">
+                                                                </div>
+                                                            </div></div>
+                                                        </div>
+                                                        <!--// .col //-->
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                            </div></div></div></div>
+                            <!-- 规则集end -->
+
+        <!--  调式   -->
+
+                            {%  if tabName == '调式' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DB">
+                            {%  else %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DB">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+                                        <a class="r-link ai-element ai-element_padding-all ai-element4" href="#DB_testRule" role="tab" data-toggle="tab"><span class="ai-element__label">测试规则</span></a>
+                                        <a class="r-link ai-element ai-element_padding-all ai-element3" href="#DB_querySql" role="tab" data-toggle="tab"><span class="ai-element__label">查询sql</span></a>
+
+                                        <div class="tab-content">
+        <!-- 测试规则 -->
+                                            {%  if subName == '测试规则' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DB_testRule">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DB_testRule">
+                                            {%  endif  %}
+                                            <form action="{{ url_for('testRule')}}" method="post" id="mask4">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="a5 md:a2u af"><div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                            <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                             <option value="none" selected>请选择...</option>
+                                                            {% for i in global_d_['ruleName'][0:] %}
+                                                            <option value="{{i}}">{{i}}</option>
+                                                            {% endfor %}
+                                                            </select>
+                                                        </div></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="a5 md:a2u af"><div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">id*</label>
+                                                        <input type="text" name="id" maxlength="10" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        </div></div>
+                                                    </div>
+                                                    <!--// .col //-->
+
+                                                     <div class="col-md-12">
+                                                        {% if output_testRule %}
+                                                        <pre>{{ output_testRule }}</pre>
+                                                        {% elif error %}
+                                                        <h2>Error:</h2>
+                                                        <pre>{{ error }}</pre>
+                                                        {% endif %}
+                                                        <br>
+
+                                                        <div class="a5 af"><div class="a2g">
+                                                            <input type="submit" class="btn-custom black" value="提交">
+                                                            <br><br>
+                                                        </div></div>
+                                                     </div>
+                                                </div>
+                                            </form>
+
+                                            {% if testRule2 == 1 %}
+                                                {% if d_field %}
+                                                    {% if d_field['result']  == 'ok' %}
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
+                                                        <textOk>{{ d_field['result'] }}</textOk> <br><br>
+
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+                                                        <textOk>{{d_field['step']}}</textOk> <br>
+                                                        <textOk>{{d_field['eachStep']}}</textOk> <br>
+                                                    {% else %}
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
+                                                        <textErr>{{ d_field['result'] }}</textErr> <br><br>
+
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+                                                        <textErr>{{d_field['step']}}</textErr> <br>
+                                                        <textErr>{{d_field['eachStep']}}</textErr> <br>
+                                                    {%  endif %}
+
+                                                    <div class="louti"></div>
+
+                    <!-- 编辑 -->
+
+                                                    <form action="{{ url_for('step')}}" method="post" id="mask_testRule2">
+                                                    <div class="a6 a1K ac">
+                                                    <div class="a5 md:a2u/2 af">
+                                                    <div class="a3u">
+                                                    <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                    <input type="text" readonly name="ruleName" value="{{ d_field['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="a5 md:a2u/2 af">
+                                                    <div class="a3u">
+                                                    <label for class="al a25 aR a1j dark:a1k a2j">id</label>
+                                                    <input type="text" readonly name="id" value="{{ d_field['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="a5 md:a2u/2 af">
+                                                    <div class="a3u">
+                                                    <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
+                                                    {#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+                                                    <select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                    <option value="{{ s_rule }}" selected>{{ s_rule }}</option>
+                                                    {% for s in global_d_['rule'][0:] %}
+                                                    <option value="{{s}}">{{s}}</option>
+                                                    {% endfor %}
+                                                    </select>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="a5 md:a2u/2 af">
+                                                    <div class="a3u">
+                                                    <label for class="al a25 aR a1j dark:a1k a2j">case</label>
+                                                    <input type="text" name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                    </div>
+                                                    </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="box3">
+                                                            <div id="get_queryRuleCollection"></div>
+                                                            </div>
+                                                        </div>
+
+                                                    <div class="a5 md:a2u af">
+                                                    <div class="a3u">
+                                                    <label for class="al a25 aR a1j dark:a1k a2j">ruleParam*</label>
+                                                    <textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{d_field['ruleParam']}}</textarea>
+                                                    </div>
+                                                    </div>
+
+                                                    <div class="a5 af"><div class="a2g">
+                                                        <div class='submitButton'>
+                                                        <button class="el-button el-button--primary">提交</button>
+                                                        </div>
+                                                    </div></div>
+                                                    </div>
+                                                    </form>
+
+                                                {% elif error %}
+                                                    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
+                                                    <pre>{{ error }}</pre>
+                                                {% endif %}
+
+                                            {% endif %}
+                                            </div>
+                                        </div>
+                            </div></div></div></div>
+                            <!-- 调式 end  -->
+
+        <!-- 辅助工具 -->
+
+                            {%  if tabName == '辅助工具' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="AT">
+                            {%  else %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="AT">
                             {%  endif  %}
 								<div class="row">
 									<div class="col-md-12">
                                         <div class="section__box">
-                                            <a class="r-link ai-element ai-element_padding-all ai-element1" href="#demo_searchRecord" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['searchRecord'] }}</span></a>
-                                            <a class="r-link ai-element ai-element_padding-all ai-element2" href="#demo_queryDesc2" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['queryDesc2'] }}</span></a>
-                                            <a class="r-link ai-element ai-element_padding-all ai-element3" href="#demo_importCase" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['importCase'] }}</span></a>
-                                            <a class="r-link ai-element ai-element_padding-all ai-element4" href="#demo_registerTbl" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['registerTbl'] }}</span></a>
-                                            <a class="r-link ai-elementX ai-element_padding-all ai-element5" href="{{ url_for('pin') }}" target = "_blank"><span class="ai-element__label">{{ global_d_['menu']['updateFile'] }}</span></a>
-                                            <a class="r-link ai-element ai-element_padding-all ai-element5" href="#log" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['queryLog'] }}</span></a>
+                                            <a class="r-link ai-element ai-element_padding-all ai-element1" href="#AT_searchRecord" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['searchRecord'] }}</span></a>
+                                            <a class="r-link ai-element ai-element_padding-all ai-element2" href="#AT_queryDesc2" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['queryDesc2'] }}</span></a>
 
-                                                <div class="tab-content">
+                                            <div class="tab-content">
+        <!-- 查询记录 -->
+                                                {%  if subName == '查询记录' %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="AT_searchRecord">
+                                                {%  else %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="AT_searchRecord">
+                                                {%  endif  %}
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="section__box">
 
-                                                <!-- 检索记录 -->
-
-                                                    {%  if subName == '检索记录' %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="demo_searchRecord">
-                                                    {%  else %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="demo_searchRecord">
-                                                    {%  endif  %}
-
-                                                    <div class="row">
-                                                    <div class="col-md-12">
-                                                    <div class="section__box">
-
-                                                    <form action="{{ url_for('searchRecord')}}" method="post" id="mask_searchRecord">
+                                                <form action="{{ url_for('searchRecord')}}" method="post" id="mask_searchRecord">
                                                     <div class="a6 a1K ac">
-
                                                         <div class="a5 md:a2u/2 af"><div class="a3u">
                                                             <label for class="al a25 aR a1j dark:a1k a2j">数据库</label>
                                                             <select name="db" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
@@ -402,30 +542,30 @@
                                                             </select>
                                                         </div></div>
 
-                                                    <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                        <label for class="al a25 aR a1j dark:a1k a2j">数据类型</label>
-                                                        <select name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                            <option value="varchar" selected>varchar</option>
-                                                            <option value="nvarchar" >nvarchar</option>
-                                                            <option value="nchar" >nchar</option>
-                                                            <option value="int" >int</option>
-                                                            <option value="datetime" >datetime</option>
-                                                            <option value="money" >money</option>
-                                                            <option value="timestamp" >timestamp</option>
-                                                            <option value="float" >float</option>
-                                                            <option value="double" >double</option>
-                                                        </select>
-                                                    </div></div>
+                                                        <div class="a5 md:a2u/2 af"><div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">数据类型</label>
+                                                            <select name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                                <option value="varchar" selected>varchar</option>
+                                                                <option value="nvarchar" >nvarchar</option>
+                                                                <option value="nchar" >nchar</option>
+                                                                <option value="int" >int</option>
+                                                                <option value="datetime" >datetime</option>
+                                                                <option value="money" >money</option>
+                                                                <option value="timestamp" >timestamp</option>
+                                                                <option value="float" >float</option>
+                                                                <option value="double" >double</option>
+                                                            </select>
+                                                        </div></div>
 
-                                                    <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                        <label for class="al a25 aR a1j dark:a1k a2j">模糊匹配*</label>
-                                                        <input type="text" name="text" maxlength="50" id="cacu_value" placeholder="请输入关键字..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                    </div></div>
+                                                        <div class="a5 md:a2u/2 af"><div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">模糊匹配*</label>
+                                                            <input type="text" name="text" maxlength="50" id="cacu_value" placeholder="请输入关键字..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        </div></div>
 
-                                                    <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                        <label for class="al a25 aR a1j dark:a1k a2j">过滤表(多个表用英文逗号分隔)</label>
-                                                        <input type="text" name="filterTbl" maxlength="100" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                    </div></div>
+                                                        <div class="a5 md:a2u/2 af"><div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">过滤表(多个表用英文逗号分隔)</label>
+                                                            <input type="text" name="filterTbl" maxlength="100" id="cacu_value" placeholder="请输入..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        </div></div>
 
                                                         <div class="a5 af">
                                                             <div class="a2g">
@@ -433,218 +573,118 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    </form>
-                                                        <br>
-                                                        <div class="row">
-                                                        <div class="col-md-12">
-                                                        <div class="box3">
-                                                        {{ result | safe }}
-                                                        </div>
-                                                        </div>
-                                                        </div>
+                                                </form>
 
-                                                    </div></div></div></div>
-
-
-                                                 <!-- 查询表结构 -->
-
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="demo_queryDesc2">
-                                                        <div class="row">
-                                                        <div class="col-md-12">
-                                                        <div class="section__box" id="test">
-
-                                                            <div class="a6 a1K ac">
-                                                            <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                            <label for class="al a25 aR a1j dark:a1k a2j">数据库名</label>
-                                                            <select id="queryDesc2" name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                            <option value="" selected>请选择...</option>
-                                                            <option value="CHC" >CHC</option>
-                                                            <option value="CHCCONFIG" >CHCCONFIG</option>
-                                                            <option value="CHC_JINGAN" >CHC_JINGAN</option>
-                                                            <option value="CHCCONFIG_JINGAN" >CHCCONFIG_JINGAN</option>
-                                                            <option value="PHUSERS" >PHUSERS</option>
-                                                            <option value="ZYCONFIG" >ZYCONFIG</option>
-                                                            </select>
-                                                            </div></div>
-                                                            </div>
-
-                                                            <div id="get_queryDesc2"></div>
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-
-
-                                                <!-- 导入用例 -->
-
-                                                    {%  if subName == '导入用例' %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="demo_importCase">
-                                                    {%  else %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="demo_importCase">
-                                                    {%  endif  %}
-
-                                                    <div class="row">
-                                                    <div class="col-md-12">
-                                                    <div class="section__box">
-                                                        <form action="{{ url_for('importCase')}}" method="post" enctype="multipart/form-data" id="mask_importCase">
-                                                            <div class="a6 a1K ac">
-                                                                <div class="a5 md:a2u af">
-                                                                    <div class="a3u">
-                                                                         <label for class="al a25 aR a1j dark:a1k a2j">文件名</label>
-                                                                        <input type="file" name="file" id="demo-fileInput-3" multiple="multiple" >
-                                                                    </div>
-                                                                </div>
-                                                                <div class="a5 md:a2u/2 af">
-                                                                    <div class="a3u">
-                                                                        <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
-                                                                        <select  name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                                        <option value="none" selected>请选择...</option>
-                                                                        {% for i in global_d_['ruleName'][0:] %}
-                                                                        <option value="{{i}}">{{i}}</option>
-                                                                        {% endfor %}
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <br><br>
-                                                            <div class="a5 af">
-                                                                <div class="a2g">
-                                                                <input type="submit" class="btn-custom green" value="上传">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-
-                                                    </div></div></div>
-                                                    </div>
-
-
-                                                <!-- 创建xx规则表 -->
-
-                                                    {%  if subName == '创建xx规则表' %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="demo_registerTbl">
-                                                    {%  else %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="demo_registerTbl">
-                                                    {%  endif  %}
-
-                                                    <div class="row">
-                                                    <div class="col-md-12">
-                                                    <div class="section__box">
-
-                                                        <form action="{{ url_for('registerTbl')}}" method="post" enctype="multipart/form-data" id="mask_registerTbl1">
-                                                            <div class="a6 a1K ac">
-                                                                <div class="a5 md:a2u af">
-                                                                    <div class="a3u">
-                                                                         <label for class="al a25 aR a1j dark:a1k a2j">文件名</label>
-                                                                        <input type="file" name="file" id="demo-fileInput-34" multiple="multiple" >
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <br><br>
-
-                                                            <div class="a5 af">
-                                                                <div class="a2g">
-                                                                    <input type="submit" class="btn-custom green" value="上传 (步骤1/2)">
-                                                                </div>
-                                                            </div>
-                                                        </form>
-
-                                                        {% if registerTbl2 == 1 %}
-                                                            <form action="{{ url_for('registerTbl2')}}" method="post" id="mask_registerTbl2">
-                                                                <div class="a6 a1K ac">
-                                                                    <div class="a5 md:a2u/2 af">
-                                                                        <div class="a3u">
-                                                                            <label for class="al a25 aR a1j dark:a1k a2j">规则名（可创建）</label>
-                                                                            <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                                            <option value="none" selected>请选择...</option>
-                                                                            {% for i in l_canRegisterRuleName[0:] %}
-                                                                            <option value="{{i}}">{{i}}</option>
-                                                                            {% endfor %}
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <br><br>
-                                                                <div class="a5 af">
-                                                                    <div class="a2g">
-                                                                    <input type="submit" class="btn-custom blue" value="提交 (步骤2/2)">
-                                                                    </div>
-                                                                </div>
-                                                            </form>
-                                                        {% endif %}
-
-                                                    </div></div></div>
-                                                    </div>
-
-
-
-                                                 <!-- 查询日志 -->
-
-                                                    {%  if subName == '查询日志' %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="log">
-                                                    {%  else %}
-                                                    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="log">
-                                                    {%  endif  %}
-
-                                                        <div class="row">
-                                                        <div class="col-md-12">
-                                                        <div class="section__box">
-
-                                                            <form action="{{ url_for('searchLog')}}" method="post" id="mask_searchLog">
-                                                            <div class="a6 a1K ac">
-                                                                <div class="a5 md:a2u/2 af">
-                                                                    <div class="a3u">
-                                                                    <label for class="al a25 aR a1j dark:a1k a2j">最近N条</label>
-                                                                    <select name="count" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
-                                                                        {%  if global_d_['count'] %}
-                                                                            <option value="{{ global_d_['count'] }}" selected>{{ global_d_['count'] }}</option>
-                                                                            <option value="5" >5</option>
-                                                                            <option value="10" >10</option>
-                                                                            <option value="20" >20</option>
-                                                                            <option value="50" >50</option>
-                                                                        {% else %}
-                                                                            <option value="5" selected>5</option>
-                                                                            <option value="10" >10</option>
-                                                                            <option value="20" >20</option>
-                                                                            <option value="50" >50</option>
-                                                                        {% endif  %}
-                                                                    </select>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="a5 af">
-                                                                    <div class="a2g">
-                                                                    <input type="submit" class="btn-custom blue" value="查询">
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-                                                            </form>
-                                                            <br><br>
-                                                            <div class="row">
-                                                            <div class="col-md-12">
-                                                            <div class="box3">
-                                                            {{ resultSearchLog | safe }}
-                                                            </div>
-                                                            </div>
-                                                            </div>
-
-                                                        </div>
-                                                        </div>
-                                                        </div>
-                                                    </div>
-
-
-
+                                                <br>
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="box3">
+                                                {{ result | safe }}
                                                 </div>
+                                                </div>
+                                                </div>
+                                                </div></div></div></div>
 
+        <!-- 查询表结构 -->
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="AT_queryDesc2">
+                                                    <div class="row">
+                                                    <div class="col-md-12">
+                                                    <div class="section__box" id="test">
+
+                                                        <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u/2 af"><div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">数据库名</label>
+                                                        <select id="queryDesc2" name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        <option value="" selected>请选择...</option>
+                                                        <option value="CHC" >CHC</option>
+                                                        <option value="CHCCONFIG" >CHCCONFIG</option>
+                                                        <option value="CHC_JINGAN" >CHC_JINGAN</option>
+                                                        <option value="CHCCONFIG_JINGAN" >CHCCONFIG_JINGAN</option>
+                                                        <option value="PHUSERS" >PHUSERS</option>
+                                                        <option value="ZYCONFIG" >ZYCONFIG</option>
+                                                        </select>
+                                                        </div></div>
+                                                        </div>
+
+                                                        <div id="get_queryDesc2"></div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                            </div></div></div></div>
+                            <!-- 辅助工具 end  -->
+
+        <!-- 系统配置 -->
+
+                            {%  if tabName == '系统配置' %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="SC">
+                            {%  else %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="SC">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+
+                                        <a class="r-link ai-elementX ai-element_padding-all ai-element5" href="{{ url_for('pin') }}" target = "_blank"><span class="ai-element__label">{{ global_d_['menu']['updateFile'] }}</span></a>
+                                        <a class="r-link ai-element ai-element_padding-all ai-element5" href="#SC_queryLog" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['queryLog'] }}</span></a>
+
+                                        <div class="tab-content">
+
+        <!-- 查询日志 -->
+
+                                            {%  if subName == '查询日志' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="SC_queryLog">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="SC_queryLog">
+                                            {%  endif  %}
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="section__box">
+                                                <form action="{{ url_for('searchLog')}}" method="post" id="mask62">
+                                                    <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u/2 af">
+                                                            <div class="a3u">
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">最近N条</label>
+                                                            <select name="count" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                                {%  if global_d_['count'] %}
+                                                                    <option value="{{ global_d_['count'] }}" selected>{{ global_d_['count'] }}</option>
+                                                                    <option value="5" >5</option>
+                                                                    <option value="10" >10</option>
+                                                                    <option value="20" >20</option>
+                                                                    <option value="50" >50</option>
+                                                                {% else %}
+                                                                    <option value="5" selected>5</option>
+                                                                    <option value="10" >10</option>
+                                                                    <option value="20" >20</option>
+                                                                    <option value="50" >50</option>
+                                                                {% endif  %}
+                                                            </select>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="a5 af">
+                                                            <div class="a2g">
+                                                            <input type="submit" class="btn-custom blue" value="查询">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+
+                                                <br><br>
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="box3">
+                                                {{ resultSearchLog | safe }}
+                                                </div>
+                                                </div>
+                                                </div>
+                                            </div></div></div></div>
                                         </div>
-                                    </div>
-								</div>
-							</div>
+                            </div></div></div></div>
+                            <!-- 系统配置 end  -->
 
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -657,9 +697,6 @@
 <div id="loading" style="display:none;"></div>
 
 
-
-
-
 <!--13788 upload file-->
 <script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/bootstrap.min.js') }}"></script>
@@ -667,8 +704,6 @@
 <script src="{{ url_for('static', filename='13788/js/prettify.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/scripts.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/custom.js') }}"></script>
-
-
 
 
 {#<!-- Javascript Plugins -->#}

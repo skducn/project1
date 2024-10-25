@@ -151,7 +151,7 @@ def seeLog():
 
 # todo 初始化数据
 # 全局字典菜单
-global_d_ = {'menu': {"searchRecord": "检索记录", "queryDesc2": "查询表结构", "importCase": "导入用例", "registerTbl": "创建xx规则表", "updateFile": "自动更新文件","queryLog": "查询日志"}}
+global_d_ = {'menu': {"searchRecord": "查询记录", "queryDesc2": "查询表结构", "importCase": "导入规则", "registerTbl": "创建库表", "updateFile": "更新文件","queryLog": "查询日志"}}
 
 
 
@@ -255,7 +255,7 @@ def index7():
     global_d_['rule'] = getRuleCollection()
 
     # return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
-    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则名列表', subName=4)
+    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
 
 @app.route('/')
 def index():
@@ -263,7 +263,7 @@ def index():
     print("(263)global_d_['ruleName'] => ", global_d_['ruleName'])
     global_d_['rule'] = getRuleCollection()
 
-    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则名列表', subName=4)
+    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表')
 
     # username = request.cookies.get('username',None)     #获取cookie值
     # if username!=None:
@@ -323,8 +323,7 @@ def updateRuleCollection():
         ruleName = request.form['ruleName']
         ruleCollection = request.form['ruleCollection']
         sql = request.form['sql']
-        print(ruleName,ruleCollection)
-
+        print("(326)规则集 - 新建/修改 =>", ruleName,ruleCollection)
         if ruleCollection != '' and sql != '':
             l_ = sql.split("\n")
             l2 = [i.replace('\r', '') for i in l_]
@@ -355,7 +354,7 @@ def updateRuleCollection():
             l_testRule1 = []
             for i in l_t_rows:
                 l_testRule1.append(i[0])
-            return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
+            return render_template('index7.html', global_d_=global_d_, tabName='规则集', subName='查询', message=1)
             # return render_template('index.html', global_d_=global_d_)
             # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
         else:
@@ -396,7 +395,7 @@ def testRule():
                 d_tblByStep[i] = s_desc
             global_d_['tblByStep'] = d_tblByStep
 
-            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'],tabName='测试', testRule2=1, message=2)
+            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'],tabName='调式',subName='测试规则', testRule2=1, message=2)
             # return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
             # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl, system=system)
         except:
@@ -842,7 +841,7 @@ def step():
             s_desc = Sqlserver_PO.desc2(i)
             d_tbl[i] = s_desc
         global_d_['tblByStep'] = d_tbl
-        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='测试', testRule2=1, message=1)
+        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='调式', testRule2=1, message=1)
         # return render_template('edit123.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], id=d_['id'], ruleName=d_['ruleName'])
 
 
@@ -856,16 +855,16 @@ def searchRecord():
         text = request.form['text']
         filterTbl = request.form['filterTbl']
         l_filterTbl = filterTbl.split(",")
-        print("(859)检索记录 - 参数 =>", db, datatype, text, l_filterTbl)
+        print("(859)查询记录 - 参数 =>", db, datatype, text, l_filterTbl)
         Sqlserver_PO2 = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", db, "GBK")
         result = Sqlserver_PO2.record2('*', datatype, text, l_filterTbl)
-        print("(862)检索记录 - 结果 =>", result)
+        print("(862)查询记录 - 结果 =>", result)
         global_d_['db'] = db
         global_d_['datatype'] = datatype
         global_d_['text'] = text
         global_d_['filterTbl'] = filterTbl
         # return render_template('searchRecord.html', global_d_=global_d_, result=s)
-        return render_template('index7.html', global_d_=global_d_, result=result, message=1, tabName='辅助工具', subName='检索记录')
+        return render_template('index7.html', global_d_=global_d_, result=result, message=1, tabName='辅助工具', subName='查询记录')
     return render_template('searchRecord.html', global_d_=global_d_)
 
 
@@ -922,23 +921,23 @@ def importCase():
     message = 2
     if request.method == 'POST':
         message = uploadFile()
-        print("(923)导入用例 - 上传文件 =>", message)
+        print("(923)导入规则 - 上传文件 =>", message)
         if message == 0:
-            return render_template('index7.html', global_d_=global_d_, message=0, tabName='辅助工具', subName='导入用例')
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据仓库', subName='导入规则')
         # 导入用例
         ruleName = request.form['ruleName']
-        print("(928)导入用例 - 规则名 =>", ruleName)
+        print("(928)导入规则 - 规则名 =>", ruleName)
         if ruleName in global_d_['ruleName'] and ruleName != "none":
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
             if status == 1:
                 # return render_template('importCase.html', global_d_=global_d_, message=1)
-                return render_template('index7.html', global_d_=global_d_, message=1, tabName='辅助工具', subName='导入用例')
+                return render_template('index7.html', global_d_=global_d_, message=1, tabName='数据仓库', subName='导入规则')
             else:
-                return render_template('index7.html', global_d_=global_d_, message=-1, tabName='辅助工具', subName='导入用例')
+                return render_template('index7.html', global_d_=global_d_, message=-1, tabName='数据仓库', subName='导入规则')
                 # return render_template('importCase.html', global_d_=global_d_, message=0)
         else:
-            return render_template('index7.html', global_d_=global_d_, message=0, tabName='辅助工具', subName='导入用例')
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据仓库', subName='导入规则')
             # return render_template('importCase.html', global_d_=global_d_, message=0)
 
     # return render_template('importCase.html', global_d_=global_d_, message=message)
@@ -965,14 +964,14 @@ def registerTbl():
     message = 2
     if request.method == 'POST':
         message = uploadFile()
-        print("(966)创建xx规则表 - 上传文件(步骤1/2)", message )
+        print("(966)创建库表 - 上传文件(步骤1/2)", message )
         # message = uploadFile('registerTbl.html')
         if message == 1:
             l_tmp = getRuleNameBySheet(global_d_['file2'])
-            return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=2, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
+            return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=2, tabName='数据仓库', subName='创建库表', registerTbl2=1)
             # return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp, message=2)
         else:
-            return render_template('index7.html', global_d_=global_d_, message=message, tabName='辅助工具', subName='创建xx规则表', registerTbl2=0)
+            return render_template('index7.html', global_d_=global_d_, message=message, tabName='数据仓库', subName='创建库表', registerTbl2=0)
             # return render_template('registerTbl.html', global_d_=global_d_, message=message)
 
     # return render_template('registerTbl.html', global_d_=global_d_, message=message)
@@ -982,21 +981,21 @@ def registerTbl():
 def registerTbl2():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
-        print("(983)创建xx规则表 - 规则名(步骤2/2) =>", ruleName)
+        print("(983)创建库表 - 规则名(步骤2/2) =>", ruleName)
         if ruleName == 'none':
             # return render_template('registerTbl.html', global_d_=global_d_, message=0)
-            return render_template('index7.html', global_d_=global_d_, message=0, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据仓库', subName='创建库表', registerTbl2=1)
         else:
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
             setRuleName(ruleName)
             l_tmp = getRuleNameBySheet(global_d_['file2'])
             if status == 1:
-                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
+                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='数据仓库', subName='创建库表', registerTbl2=1)
                 # return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
             else:
                 # return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
-                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=0, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
+                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=0, tabName='数据仓库', subName='创建库表', registerTbl2=1)
 
 
     # return render_template('registerTbl2.html',global_d_=global_d_, message=2)
@@ -1102,7 +1101,7 @@ def t2():
 
 
 # todo 查询日志
-@app.route('/searchLog', methods=['GET','POST'])
+@app.route('/searchLog', methods=['POST'])
 def searchLog():
     if request.method == 'POST':
         count = request.form['count']
@@ -1113,7 +1112,7 @@ def searchLog():
 
         global_d_['count'] = count
 
-        return render_template('index7.html', global_d_=global_d_, resultSearchLog=s, message=1, tabName='辅助工具', subName='查询日志')
+        return render_template('index7.html', global_d_=global_d_, resultSearchLog=s, message=1, tabName='系统配置', subName='查询日志')
         # return render_template('searchLog.html', global_d_=global_d_, resultSearchLog=s)
     # return render_template('index7.html', global_d_=global_d_)
 
