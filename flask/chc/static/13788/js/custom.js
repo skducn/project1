@@ -162,6 +162,14 @@ $(document).ready(function(){
 
     $('#demo-fileInput-2').filer();
 
+    $('#demo-fileInput-34').filer({
+        limit: 1,
+        maxSize: 1,
+        extensions: ['xlsx'],
+        changeInput: true,
+        showThumbs: true
+    });
+
     $('#demo-fileInput-3').filer({
         limit: 1,
         maxSize: 1,

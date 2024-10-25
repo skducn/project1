@@ -150,10 +150,11 @@ def seeLog():
         return render_template('seeLog.html')
 
 # todo 初始化数据
-# 全局字典
-global_d_ = {}
-# 菜单
-global_d_ = {'menu': {"searchRecord": "检索记录", "queryDesc2": "查询表结构", "importCase": "导入用例", "registerTbl": "注册规则表"}}
+# 全局字典菜单
+global_d_ = {'menu': {"searchRecord": "检索记录", "queryDesc2": "查询表结构", "importCase": "导入用例", "registerTbl": "创建xx规则表", "updateFile": "自动更新文件","queryLog": "查询日志"}}
+
+
+
 
 # 不同环境使用各自icon，mac平台显示小猪，linux平台显示龙
 system = os.uname().sysname
@@ -239,21 +240,30 @@ def pin():
 #     submit = SubmitField('Submit')
 
 
+@app.route('/index123')
+def index123():
+
+    # return redirect('123.html')
+    return render_template('123.html')
+
+
+
 @app.route('/index7')
 def index7():
     global_d_['ruleName'] = getRuleName()
-    print(global_d_['ruleName'] )
+    # print(global_d_['ruleName'] )
     global_d_['rule'] = getRuleCollection()
 
-    return render_template('index7.html', global_d_=global_d_)
+    # return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
+    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则名列表', subName=4)
 
 @app.route('/')
 def index():
     global_d_['ruleName'] = getRuleName()
-    print(global_d_['ruleName'] )
+    print("(263)global_d_['ruleName'] => ", global_d_['ruleName'])
     global_d_['rule'] = getRuleCollection()
 
-    return render_template('index.html', global_d_=global_d_)
+    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则名列表', subName=4)
 
     # username = request.cookies.get('username',None)     #获取cookie值
     # if username!=None:
@@ -345,7 +355,8 @@ def updateRuleCollection():
             l_testRule1 = []
             for i in l_t_rows:
                 l_testRule1.append(i[0])
-            return render_template('index.html', global_d_=global_d_)
+            return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
+            # return render_template('index.html', global_d_=global_d_)
             # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
         else:
             return render_template('index.html', global_d_=global_d_, output_testRule3='error，规则集或步骤不能为空！')
@@ -385,7 +396,8 @@ def testRule():
                 d_tblByStep[i] = s_desc
             global_d_['tblByStep'] = d_tblByStep
 
-            return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
+            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'],tabName='测试', testRule2=1, message=2)
+            # return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
             # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl, system=system)
         except:
             return render_template('index.html', global_d_=global_d_, output_testRule='error，非法id！')
@@ -461,10 +473,10 @@ def list123(ruleName):
         del d_field_comment['id']
         del d_field_comment['step']
         d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
-        print(d_field_comment)
+        print("(476)规则名列表 - ", ruleName, " => ", d_field_comment)
     # 转换为{注释:宽度}
     d_tmp2 = {}
-    for k,v in d_field_comment.items():
+    for k, v in d_field_comment.items():
         if k == 'id':
             d_tmp2[v] = 50
         elif k == 'result':
@@ -494,7 +506,7 @@ def list123(ruleName):
         d_ = Dict_PO.insertFirst(d_, 'id', s_id)
         l_new.append(d_)
     l_d_all = l_new
-    print(l_d_all)
+    # print(l_d_all)
 
 
     return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
@@ -830,11 +842,12 @@ def step():
             s_desc = Sqlserver_PO.desc2(i)
             d_tbl[i] = s_desc
         global_d_['tblByStep'] = d_tbl
-        return render_template('edit123.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], id=d_['id'], ruleName=d_['ruleName'])
+        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='测试', testRule2=1, message=1)
+        # return render_template('edit123.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], id=d_['id'], ruleName=d_['ruleName'])
 
 
 
-# todo 全局检索
+# todo 检索记录
 @app.route('/searchRecord', methods=['GET','POST'])
 def searchRecord():
     if request.method == 'POST':
@@ -843,44 +856,48 @@ def searchRecord():
         text = request.form['text']
         filterTbl = request.form['filterTbl']
         l_filterTbl = filterTbl.split(",")
-        print(db,datatype,text,l_filterTbl)
+        print("(859)检索记录 - 参数 =>", db, datatype, text, l_filterTbl)
         Sqlserver_PO2 = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", db, "GBK")
-        print(db)
-        s = Sqlserver_PO2.record2('*', datatype, text, l_filterTbl)
-        print(s)
+        result = Sqlserver_PO2.record2('*', datatype, text, l_filterTbl)
+        print("(862)检索记录 - 结果 =>", result)
         global_d_['db'] = db
         global_d_['datatype'] = datatype
         global_d_['text'] = text
         global_d_['filterTbl'] = filterTbl
-        return render_template('searchRecord.html', global_d_=global_d_, result=s)
+        # return render_template('searchRecord.html', global_d_=global_d_, result=s)
+        return render_template('index7.html', global_d_=global_d_, result=result, message=1, tabName='辅助工具', subName='检索记录')
     return render_template('searchRecord.html', global_d_=global_d_)
 
 
 # todo 查询表结构
 @app.route('/queryDesc2')
 def queryDesc2():
-    return render_template('queryDesc2.html', global_d_=global_d_)
+    # return render_template('queryDesc2.html', global_d_=global_d_)
+    return render_template('index7.html', global_d_=global_d_, tabName='辅助工具')
 @app.route('/get_queryDesc2')
 def get_queryDesc2():
     selected_value = request.args.get('value')
-    print(selected_value)
+    print("(880)查询表结构 - 数据库 =>", selected_value)
     Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", selected_value, "GBK")
 
+    # 获取表和注释字典
     d_tbl_comment = Sqlserver_PO.getTableComment()
-    print(d_tbl_comment)
+    # print(d_tbl_comment)  # {'SYS_ABI_CONFIG': None, 'SYS_CITY': '城市字典表',
 
-    d_tbl_desc2 = {}
+    # 获取表名
     l_tableName = Sqlserver_PO.getTables()
-    print(l_tableName)  # ['condition_item', 'patient_demographics', 'patient_diagnosis' ...
+    # print(l_tableName)  # ['SYS_USER_SECURITY', 'SYS_USER_ROLE', 'SYS_CITY',  ...
+
     # 获取表结构
+    d_tbl_desc2 = {}
     for i in l_tableName:
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl_desc2[i] = s_desc
-    print(d_tbl_desc2)
+    # print(d_tbl_desc2)
     return d_tbl_desc2
 
 
-def uploadFile(html):
+def uploadFile():
     # 上传文件
     if 'file' not in request.files:
         return 0
@@ -899,44 +916,47 @@ def uploadFile(html):
     return 1
 
 
-# todo 更新用例
+# todo 导入用例
 @app.route('/importCase',methods=['GET','POST'])
 def importCase():
     message = 2
     if request.method == 'POST':
-        message = uploadFile('importCase.html')
-        print(message)
+        message = uploadFile()
+        print("(923)导入用例 - 上传文件 =>", message)
         if message == 0:
-            return render_template('importCase.html', global_d_=global_d_, message=0)
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='辅助工具', subName='导入用例')
         # 导入用例
         ruleName = request.form['ruleName']
-        print(ruleName)
+        print("(928)导入用例 - 规则名 =>", ruleName)
         if ruleName in global_d_['ruleName'] and ruleName != "none":
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
             if status == 1:
-                return render_template('importCase.html', global_d_=global_d_, message=1)
+                # return render_template('importCase.html', global_d_=global_d_, message=1)
+                return render_template('index7.html', global_d_=global_d_, message=1, tabName='辅助工具', subName='导入用例')
             else:
-                return render_template('importCase.html', global_d_=global_d_, message=0)
+                return render_template('index7.html', global_d_=global_d_, message=-1, tabName='辅助工具', subName='导入用例')
+                # return render_template('importCase.html', global_d_=global_d_, message=0)
         else:
-            return render_template('importCase.html', global_d_=global_d_, message=0)
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='辅助工具', subName='导入用例')
+            # return render_template('importCase.html', global_d_=global_d_, message=0)
 
-    return render_template('importCase.html', global_d_=global_d_, message=message)
+    # return render_template('importCase.html', global_d_=global_d_, message=message)
 
 def getRuleNameBySheet(file2):
     # 读取excel所有sheetName，去掉global_d_['ruleName']中的，再检查表格中应包含result updateDate step rule case ruleParam
     Openpyxl_PO = OpenpyxlPO(file2)
     l_sheet = Openpyxl_PO.getSheets()
-    print(l_sheet)
+    # print(l_sheet)
     l_tmp = []
     for i in l_sheet:
-        print(i, Openpyxl_PO.getOneRow(1, varSheet=i))
+        # print(i, Openpyxl_PO.getOneRow(1, varSheet=i))  # 测试规则 ['ruleName', 'rule', 'seq', 'sql']  //输出每个sheet的字段名。
         l_title = (Openpyxl_PO.getOneRow(1, varSheet=i))
         if len(l_title) > 6:
             if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[
                 3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
                 l_tmp.append(i)
-    print(l_tmp)
+    print("(957)l_tmp(符合条件的sheet名) => ", l_tmp)
     return l_tmp
 
 # todo 注册规则表1
@@ -944,34 +964,42 @@ def getRuleNameBySheet(file2):
 def registerTbl():
     message = 2
     if request.method == 'POST':
-        message = uploadFile('registerTbl.html')
-        if message != 0:
+        message = uploadFile()
+        print("(966)创建xx规则表 - 上传文件(步骤1/2)", message )
+        # message = uploadFile('registerTbl.html')
+        if message == 1:
             l_tmp = getRuleNameBySheet(global_d_['file2'])
-            return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp, message=2)
+            return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=2, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
+            # return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp, message=2)
         else:
-            return render_template('registerTbl.html', global_d_=global_d_, message=message)
+            return render_template('index7.html', global_d_=global_d_, message=message, tabName='辅助工具', subName='创建xx规则表', registerTbl2=0)
+            # return render_template('registerTbl.html', global_d_=global_d_, message=message)
 
-    return render_template('registerTbl.html', global_d_=global_d_, message=message)
+    # return render_template('registerTbl.html', global_d_=global_d_, message=message)
 
 # todo 注册规则表2
 @app.route('/registerTbl2',methods=['GET','POST'])
 def registerTbl2():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
-        print(ruleName)
+        print("(983)创建xx规则表 - 规则名(步骤2/2) =>", ruleName)
         if ruleName == 'none':
-            return render_template('registerTbl.html', global_d_=global_d_, message=0)
+            # return render_template('registerTbl.html', global_d_=global_d_, message=0)
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
         else:
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
             setRuleName(ruleName)
             l_tmp = getRuleNameBySheet(global_d_['file2'])
             if status == 1:
-                return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
+                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
+                # return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
             else:
-                return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
+                # return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
+                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=0, tabName='辅助工具', subName='创建xx规则表', registerTbl2=1)
 
-    return render_template('registerTbl2.html',global_d_=global_d_, message=2)
+
+    # return render_template('registerTbl2.html',global_d_=global_d_, message=2)
 
 
 
@@ -997,7 +1025,7 @@ def testSort():
     return render_template('testSort.html', items=items, sort_order=sort_order, global_d_=global_d_)
 
 
-# todo 更新flask服务（通过pin.html实现）
+# todo 自动更新文件（通过pin.html，更新当天修改过的文件）
 def getDateByFile(varPath, varFile):
     # 获取文件的最后修改日期和时间
     file_path = varPath + "/" + varFile
@@ -1014,6 +1042,7 @@ def getDateByFile(varPath, varFile):
 @app.route('/updateSystem')
 def updateSystem():
     # 遍历所有的文件
+    print("(1045)辅助工具 - 自动更新文件 =>")
     for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
         for i in l_file:
             if i != ".DS_Store" and i != "workspace.xml":
@@ -1072,20 +1101,21 @@ def t2():
 
 
 
-# todo 查看日志
+# todo 查询日志
 @app.route('/searchLog', methods=['GET','POST'])
 def searchLog():
     if request.method == 'POST':
         count = request.form['count']
-
+        print("(1109)辅助工具 - 查询日志 =>", count)
         # s = c.run('cd /home/flask_chc/ && tail -f nohup.out')
         s = c.run('cd /home/flask_chc/ && tail -n '+ count +' nohup.out')
-        s = str(s).replace("192.168.0.148 -","<br>192.168.0.148 -").replace("(no stderr)","<br>(no stderr)")
+        s = str(s).replace("192.168.0.148 -", "<br>192.168.0.148 -").replace("(no stderr)", "<br>(no stderr)")
 
         global_d_['count'] = count
 
-        return render_template('searchLog.html', global_d_=global_d_, result=s)
-    return render_template('index7.html', global_d_=global_d_)
+        return render_template('index7.html', global_d_=global_d_, resultSearchLog=s, message=1, tabName='辅助工具', subName='查询日志')
+        # return render_template('searchLog.html', global_d_=global_d_, resultSearchLog=s)
+    # return render_template('index7.html', global_d_=global_d_)
 
 
 

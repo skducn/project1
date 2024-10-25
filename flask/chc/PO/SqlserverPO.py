@@ -1699,7 +1699,7 @@ class SqlServerPO:
 
                                 if varIsRecord == True:
                                     for j in range(len(l_result)):
-                                        print(l_result[j])
+                                        # print(l_result[j])
                                         s = s + str(l_result[j]) + "<br>"
                                         # print(str(l_result[j]).decode("utf8"))
                                         # print(l_result[j].encode('latin-1').decode('utf8'))
