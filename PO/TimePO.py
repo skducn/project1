@@ -286,23 +286,26 @@ class TimePO:
         else:
             return nabs
 
-    def now2timestamp(self):
-        import time
 
-        # now时间 转 时间戳'''
-        dtime = datetime.datetime.now()  # 2017-09-15 09:41:27.336784
-        return time.mktime(dtime.timetuple())  # 1505439687.0
+    def date2timestamp(self, varDate):
+        # 将日期转换为时间戳
+        # varDate = "2022-01-01"
+        date_obj = datetime.datetime.strptime(varDate, "%Y-%m-%d")
+        return date_obj.timestamp()
+
+    def now2timestamp(self):
+        # 日期时间转时间戳
+        varDateTime = datetime.datetime.now()  # 2017-09-15 09:41:27.336784
+        return time.mktime(varDateTime.timetuple())  # 1505439687.0
 
     def datetime2timestamp(self, varDatetime):
-        import time
-
-        """将字符串的时间转换为时间戳"""
+        # 字符串的日期时间转时间戳
         timeArray = time.strptime(varDatetime, "%Y-%m-%d %H:%M:%S")
         timeStamp = int(time.mktime(timeArray))
         return timeStamp
 
     def timestamp2datetime(self, intTimestamp):
-        """时间戳 转 时间"""
+        # 时间戳转日期时间
         return datetime.datetime.fromtimestamp(intTimestamp)
 
     # 日期比较（日期1大于日期2，返回True或False）
@@ -394,7 +397,7 @@ if __name__ == "__main__":
     # print(Time_PO.getDateTimeByDivide())  # 2020/03/19 15:19:28
     print(time.strftime("%H:%M:%S"))  # 15:19:28
 
-    #
+
     print(Time_PO.getDateByMinus())  # 2022-11-29   //当前日期
     # print(Time_PO.getDateByMinusPeriod(2))  # 2022-12-01  //2天后
     # print(Time_PO.getDateByMinusPeriod(-3))  # 2022-11-26  //3天前
@@ -430,7 +433,9 @@ if __name__ == "__main__":
     # print(Time_PO.getDayByYearMonth(2019, 2))  # 28   //2019年2月的天数
     # print(Time_PO.addZeroByPrefix(9))  # 09    //自动在 1 - 9 前加上0
 
-    # print(Time_PO.now2timestamp())  # 1584603355.0  //当前日期时间转时间戳
+    # 时间戳
+    print(Time_PO.date2timestamp("2024-10-28"))  # 1730044800.0  //日期转时间戳
+    print(Time_PO.now2timestamp())  # 1584603355.0  //当前日期时间转时间戳
     # print(Time_PO.datetime2timestamp(Time_PO.getDateTimeByPeriod(0)))  # 1584603355   //日期时间转时间戳
     print(Time_PO.timestamp2datetime(Time_PO.now2timestamp()))  # 2020-03-19 15:35:55  //时间戳转日期时间
 

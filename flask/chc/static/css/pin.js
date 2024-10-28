@@ -4,7 +4,7 @@ const { createApp } = Vue
     data() {
       return {
         bgImage: 'https://source.unsplash.com/random/1920x1080/?city,night',
-        pinLength: 6,
+        pinLength: 3,
         pinInput: [],
         error: null
       }
@@ -50,7 +50,7 @@ const { createApp } = Vue
       },
       check() {
         const pin = localStorage.getItem('pin') || Array(this.pinLength).fill(0).join("");
-        if (this.pinInput.join("") === "110110") {
+        if (this.pinInput.join("") === "999") {
           // console.log("Correct!");
           // 设置cookie
           // document.cookie = "session=jinhao";

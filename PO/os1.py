@@ -60,7 +60,16 @@
 
 4 todo 获取/拼接目录与文件
 获取文件属性 os.stat()
-获取目录清单
+获取目录下的所有子目录
+def getSubFolder(varPath):
+    l_sub = []
+    for entry in os.listdir(varPath):
+        s_varPath_file = os.path.join(varPath, entry)
+        if os.path.isdir(s_varPath_file):
+            l_sub.append(s_varPath_file)
+            l_sub.extend(getSubFolder(s_varPath_file))  # 递归调用
+    return l_sub
+
 遍历目录及子目录下文件 os.walk()
 连接目录与文件名 os.path.join(os.getcwd(), "ddd")
 获取文件大小 os.path.getsize()

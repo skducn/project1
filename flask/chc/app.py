@@ -57,12 +57,17 @@ Log_PO = LogPO('nohup.out',level="debug")
 
 import os, datetime, sys
 from datetime import date, datetime, timedelta
-from fabric import Connection
+from fabric import Connection, task
 # 建议将ssh连接所需参数变量化
 user = 'root'
 host = '192.168.0.243'
 password = 'Benetech79$#-'
 c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
+
+@task
+def copy_directory(local_path, remote_path):
+    with Connection(host, user=user, connect_kwargs={"password": 'Benetech79$#-'}) as conn:
+        conn.put(local_path=local_path, remote_path=remote_path, recursive=True)
 
 
 
@@ -395,13 +400,15 @@ def testRule():
                 d_tblByStep[i] = s_desc
             global_d_['tblByStep'] = d_tblByStep
 
-            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'],tabName='调式',subName='测试规则', testRule2=1, message=2)
+            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], tabName='调式',subName='测试规则', testRule2=1, message=2)
             # return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
             # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl, system=system)
         except:
-            return render_template('index.html', global_d_=global_d_, output_testRule='error，非法id！')
+            return render_template('index7.html', global_d_=global_d_, tabName='调式',subName='测试规则', testRule2=1, message=0)
+            # return render_template('index.html', global_d_=global_d_, output_testRule='error，非法id！')
     else:
-        return render_template('index.html', global_d_=global_d_, output_testRule='error，id不能为空！')
+        return render_template('index7.html', global_d_=global_d_, tabName='调式',subName='测试规则', testRule2=1, message=0)
+        # return render_template('index7.html', global_d_=global_d_, output_testRule='error，id不能为空！')
 
 
 def _getRecord(ruleName):
@@ -1025,35 +1032,135 @@ def testSort():
 
 
 # todo 自动更新文件（通过pin.html，更新当天修改过的文件）
-def getDateByFile(varPath, varFile):
-    # 获取文件的最后修改日期和时间
-    file_path = varPath + "/" + varFile
-    # file_path = '/Users/linghuchong/Downloads/51/Python/project/PO/data/1.jpg'  # 文件路径
-    dateTime = datetime.fromtimestamp(os.path.getmtime(file_path))  # 将修改时间转换为日期格式
-    l_ = str(dateTime).split(' ')
-    # print(l_)  # ['2023-11-15', '15:56:34.431144']
-    if l_[0] == str(date.today()):
-        # print(varPath, varFile, "更新文件")  # /Users/linghuchong/Downloads/51/Python/project/flask/chc/templates index.html 更新文件
-        # 上传文件
-        varPath1 = varPath.replace("/Users/linghuchong/Downloads/51/Python/project/flask/chc","")
-        print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
-        c.put(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile)
+def copyLocal2remote(s_localPath_prefix, s_remotePath_prefix, varLocalPath, varLocalFile):
+    # 2,遍历本地文件，如果当天修改过则复制到服务器
+    s_localPathFile = varLocalPath + "/" + varLocalFile  # '/Users/linghuchong/Downloads/51/Python/project/flask/chc/1.jpg'
+    s_dateTime = datetime.fromtimestamp(os.path.getmtime(s_localPathFile))   # 获取文件日期时间
+    # print(file_path, s_dateTime)  # '2023-11-15 15:56:34.431144'
+    l_dateTime = str(s_dateTime).split(' ')   # ['2023-11-15', '15:56:34.431144']
+    # 如果是当天日期，则复制文件到服务器
+    if l_dateTime[0] == str(date.today()):
+        s_del_localPathPrefix = varLocalPath.replace(s_localPath_prefix, "")
+        print("复制 => ", s_localPathFile, s_remotePath_prefix + s_del_localPathPrefix + "/" + varLocalFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
+        c.put(s_localPathFile, s_remotePath_prefix + s_del_localPathPrefix + "/" + varLocalFile)
+
+def getSubFolder(s_localPath, s_localPath2):
+    # 获取本地指定目录下所有目录及子目录结构
+    l_path_subFolder = []
+    l_local_folder = []
+    for entry in os.listdir(s_localPath):
+        s_varPath_file = os.path.join(s_localPath, entry)
+        if os.path.isdir(s_varPath_file):
+            l_path_subFolder.append(s_varPath_file)
+            l_path_subFolder.extend(getSubFolder(s_varPath_file, s_localPath2))  # 递归调用
+    # 过滤掉前缀路径，如 /Users/linghuchong/Downloads/51/Python/project/flask/chc
+    for i in l_path_subFolder:
+        if ".idea" not in i:
+            l_local_folder.append(i.replace(s_localPath2,""))
+    return l_local_folder
+
+def copyLocalFolder(varList1, varList2):
+    # 复制本地目录到远程目录
+    a = [x for x in varList1 if x in varList2]  # 两列表交集
+    return [y for y in varList1 if y not in a]  # 在varList1里但不在varList2
+
+def delRemoteFolder(varList1, varList2):
+    # 删除远程目录及子目录文件
+    a = [x for x in varList1 if x in varList2]  # 两列表交集
+    return [y for y in varList2 if y not in a]  # 在varList2里但不在varList1
+
+
 @app.route('/updateSystem')
 def updateSystem():
-    # 遍历所有的文件
+    # 遍历当前路径下所有目录和文件
     print("(1045)辅助工具 - 自动更新文件 =>")
-    for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
+    s_localPath_prefix = "/Users/linghuchong/Downloads/51/Python/project/flask/chc"
+    s_remotePath_prefix = '/home/flask_chc'
+    
+    # 1,遍历本地目录与服务器目录，如果服务器上没有则复制本地目录到服务器目录（包含内部目录与文件）
+    l_local_folder = getSubFolder(s_localPath_prefix, s_localPath_prefix)
+    print("本地CHC下目录及子目录 => ", l_local_folder)
+
+    result = c.run(f'find {s_remotePath_prefix} \( -path "{s_remotePath_prefix}/.git" -o -path "{s_remotePath_prefix}/.idea" \) -prune -o -type d -print', hide='stdout', warn=True)
+    # fabric_folder = c.run('find /home/flask_chc \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" \) -prune -o -type d -print')
+    # print(type(fabric_folder))  # <class 'fabric.runners.Result'>
+    # # 打印返回结果
+    # print(result.stdout)  # 输出命令的标准输出
+    # print(result.stderr)  # 输出命令的标准错误
+    # print(result.return_code)  # 输出命令的返回码
+    l_remote_folder = str(result.stdout).split("\n")
+    # print("远程CHC下目录及子目录 => ", l_remote_folder)  # ['Command exited with status 0.', '=== stdout ===', '/home/flask_chc', '/home/flask_chc/__pycache__',
+
+    l_remote_ = []
+    for i in l_remote_folder:
+        if f"{s_remotePath_prefix}/" in i:
+            l_remote_.append(i.replace(s_remotePath_prefix, ""))
+    print("远程CHC下目录及子目录2 => ", l_remote_)
+    
+    l_1 = copyLocalFolder(l_local_folder, l_remote_)
+    print("复制本地目录到远程目录 => ", l_1)  # ['/static/215447', '/static/708757', '/static/12', '/static/12/picture']
+    for i in l_1:
+        s_local_path = s_localPath_prefix + i
+        s_remote_path = s_remotePath_prefix + i
+        c.run(f"mkdir -p {s_remote_path}")
+        for s_path, l_folder, l_file in os.walk(s_local_path):
+            print(s_local_path + " => ", l_file)  # ['TableSorterV2.js', 'demo.html']
+            for i in l_file:
+                c.put(s_local_path + "/" + i, s_remote_path)
+            break
+    l_2 = delRemoteFolder(l_local_folder, l_remote_)
+    print("删除远程目录 => ", l_2)
+    for i in l_2:
+        s_remote_path = s_remotePath_prefix + i
+        c.run(f'rm -rf {s_remote_path}')
+
+    # 2,遍历本地目录文件，如果当天修改过则复制到服务器
+    l_local_file = []
+    l_remote_file = []
+    for s_path, l_folder, l_file in os.walk(s_localPath_prefix):
+        # print(111,l_folder)
         for i in l_file:
             if i != ".DS_Store" and i != "workspace.xml":
-                getDateByFile(s_path, i)
-    # c.run('cd /home/flask_chc/ && ./sk.sh')
-    # c.run('cd /home/flask_chc/ && ./k.sh')
+                copyLocal2remote(s_localPath_prefix, s_remotePath_prefix, s_path, i)
+                if '/__pycache__' not in s_path and '/.idea' not in s_path and '/static' not in s_path:
+                    # print("本地文件 => ", s_path + "/" + i)
+                    l_local_file.append(s_path + "/" + i)
+            # l_2_fiel = delRemoteFolder(l_local_folder, l_remote_)
+
+    # r = c.run(f'find /home/flask_chc -type d \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" -o -path "/home/flask_chc/__pycache__" -o -path "/home/flask_chc/PO/__pycache__" \) -prune -o -type f -print', hide='stdout', warn=True)
+    r = c.run(
+        f'find /home/flask_chc -type d \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" -o -path "/home/flask_chc/__pycache__" -o -path "/home/flask_chc/PO/__pycache__" -o -path "/home/flask_chc/static" \) -prune -o -type f -print',
+        hide='stdout', warn=True)
+    # print("远程文件 => ", r.stdout)
+    l_remote_file = str(r.stdout).split("\n")
+    l_remote_file.pop(-1)
+
+    # print("本地文件 => ", l_local_file)
+    print("远程文件 => ", l_remote_file)
+
+    l_local_file2 = []
+    for i in l_local_file:
+        l_local_file2.append(i.replace(s_localPath_prefix,s_remotePath_prefix))
+    print("本地文件2 => ", l_local_file2)
+    l_2_file = delRemoteFolder(l_local_file2, l_remote_file)
+    print("删除远程文件 => ", l_2_file)
+    for i in l_2_file:
+        c.run(f'rm -rf {i}')
+
+
+    r = c.run('cd /home/flask_chc/ && sh ./sk.sh', hide='stdout')
+    # r = c.run('cd /home/flask_chc/ && nohup flask run --host=0.0.0.0 >> /home/flask_chc/log.log 0>&1 &')
+    # print(r.stdout)
+    # print(r.return_code)
     # sk.sh内容如下：
     # kill $(pgrep flask)
     # cd /home/flask_chc/ && FLASK_APP=app.py && flask run --host=0.0.0.0 --port=5000
 
+
     # tt()
-    return render_template('index.html', global_d_=global_d_)
+    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
+
+
 def tt():
     import paramiko
 
@@ -1104,15 +1211,13 @@ def t2():
 @app.route('/searchLog', methods=['POST'])
 def searchLog():
     if request.method == 'POST':
-        count = request.form['count']
-        print("(1109)辅助工具 - 查询日志 =>", count)
+        global_d_['count'] = request.form['count']
+        print("(1109)辅助工具 - 查询日志 =>", global_d_['count'])
         # s = c.run('cd /home/flask_chc/ && tail -f nohup.out')
-        s = c.run('cd /home/flask_chc/ && tail -n '+ count +' nohup.out')
-        s = str(s).replace("192.168.0.148 -", "<br>192.168.0.148 -").replace("(no stderr)", "<br>(no stderr)")
+        result = c.run('cd /home/flask_chc/ && tail -n '+ global_d_['count'] +' nohup.out', hide='stdout', warn=True)
+        result = str(result.stdout).replace("192.168.0.148 -", "<br>192.168.0.148 -").replace("(no stderr)", "<br>(no stderr)")
 
-        global_d_['count'] = count
-
-        return render_template('index7.html', global_d_=global_d_, resultSearchLog=s, message=1, tabName='系统配置', subName='查询日志')
+        return render_template('index7.html', global_d_=global_d_, resultSearchLog=result, message=1, tabName='系统配置', subName='查询日志')
         # return render_template('searchLog.html', global_d_=global_d_, resultSearchLog=s)
     # return render_template('index7.html', global_d_=global_d_)
 

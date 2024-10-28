@@ -8,8 +8,6 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
-from collections import Counter
-
 
 import os, datetime, sys
 from datetime import date, datetime, timedelta
@@ -19,32 +17,130 @@ user = 'root'
 host = '192.168.0.243'
 password = 'Benetech79$#-'
 c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
-
-# print(datetime.now())
-def getDateByFile(varPath, varFile):
-    # 获取文件的最后修改日期和时间
-
-    file_path = varPath + "/" + varFile
-    # print(file_path)
-    # file_path = '/Users/linghuchong/Downloads/51/Python/project/PO/data/1.jpg'  # 文件路径
-    dateTime = datetime.fromtimestamp(os.path.getmtime(file_path))  # 将修改时间转换为日期格式
-    l_ = str(dateTime).split(' ')
-    # print(l_)  # ['2023-11-15', '15:56:34.431144']
-    if l_[0] == str(date.today()):
-        # print(varPath, varFile, "更新文件")  # /Users/linghuchong/Downloads/51/Python/project/flask/chc/templates index.html 更新文件
-        # 上传文件
-        varPath1 = varPath.replace("/Users/linghuchong/Downloads/51/Python/project/flask/chc","")
-        print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
-        # c.put(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile)
+r = c.run('cd /home/flask_chc/ && sh ./sk.sh')
 
 
-# 遍历所有的文件
-for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
-    for i in l_file:
-        if i != ".DS_Store" and i != "workspace.xml":
-            getDateByFile(s_path, i)
 
-# c.run('cd /home/flask_chc/ && ./sk.sh')
+
+# from fabric.api import run, env
+#
+# env.hosts = ['example1.com', 'example2.com']
+# env.user = 'bjhee'
+# env.password = '111111'
+#
+# def hello():
+#     run('ls -l /home/bjhee/')
+
+
+# import datetime
+# import os
+# import time,datetime
+#
+# # 获取日期的时间戳
+# date_obj = datetime.datetime.strptime("2024-10-28", "%Y-%m-%d")
+# timestamp = date_obj.timestamp()
+# print(timestamp)  # 1730044800.0
+#
+# # 获取当前目录下的所有子目录
+#
+# def getSubFolder(s_localPath, s_localPath2):
+#     # 获取本地指定目录下所有目录及子目录
+#     l_path_subFolder = []
+#     l_local_folder = []
+#     for entry in os.listdir(s_localPath):
+#         s_varPath_file = os.path.join(s_localPath, entry)
+#         if os.path.isdir(s_varPath_file):
+#             l_path_subFolder.append(s_varPath_file)
+#             l_path_subFolder.extend(getSubFolder(s_varPath_file, s_localPath2))  # 递归调用
+#     # 过滤掉前缀路径，如 /Users/linghuchong/Downloads/51/Python/project/flask/chc
+#     for i in l_path_subFolder:
+#         if ".idea" not in i:
+#             l_local_folder.append(i.replace(s_localPath2,""))
+#     return l_local_folder
+#
+#
+#
+# l_sub = getSubFolder('/Users/linghuchong/Downloads/51/Python/project/flask/chc','/Users/linghuchong/Downloads/51/Python/project/flask/chc')
+# print(l_sub)  # ['/Users/linghuchong/Downloads/51/Python/project/flask/chc/__pycache__',。。。。
+#
+# for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc/static/215447"):
+#     print(s_path, l_file)
+#
+#
+# # print(111,l_folder)
+#
+#
+# def get_newest_directory(path):
+#     newest = (0, None)
+#     for dirname in os.listdir(path):
+#         full_path = os.path.join(path, dirname)
+#         if os.path.isdir(full_path) and os.path.getctime(full_path) > newest[0]:
+#             # print(os.path.getctime(full_path))
+#             newest = (os.path.getctime(full_path), full_path)
+#             print(newest)
+#     return newest[1]
+
+
+# for i in l_subdirectories:
+#     newest_directory = get_newest_directory(i)
+#     print(f"最新创建的目录是: {newest_directory}")
+
+
+# date = os.path.getatime('/Users/linghuchong/Downloads/51/Python/project/flask/chc/static/12')
+# print(date)
+#
+# aa = time.ctime(date)
+# print(aa)
+
+
+# 遍历本地目录与服务器目录，如果服务器上没有则复制本地目录到服务器目录（包含内部目录与文件）
+# 遍历本地文件，如果当天修改过则复制到服务器
+
+
+# # 使用示例
+# for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
+#     print(l_folder)
+#     # directory_path = '/Users/linghuchong/Downloads/51/Python/project/flask/chc/static'  # 替换为你的目录路径
+#     newest_directory = get_newest_directory(l_folder)
+#     print(f"最新创建的目录是: {newest_directory}")
+
+
+
+
+
+# from collections import Counter
+#
+#
+
+# l_subdirectories = get_subdirectories('/Users/linghuchong/Downloads/51/Python/project/flask/chc')
+# print(l_subdirectories)  # ['/Users/linghuchong/Downloads/51/Python/project/flask/chc/__pycache__',。。。。
+
+
+# # print(datetime.now())
+# def getDateByFile(varPath, varFile):
+#     # 获取文件的最后修改日期和时间
+#
+#     file_path = varPath + "/" + varFile
+#     # print(file_path)
+#     # file_path = '/Users/linghuchong/Downloads/51/Python/project/PO/data/1.jpg'  # 文件路径
+#     dateTime = datetime.fromtimestamp(os.path.getmtime(file_path))  # 将修改时间转换为日期格式
+#     l_ = str(dateTime).split(' ')
+#     # print(l_)  # ['2023-11-15', '15:56:34.431144']
+#     if l_[0] == str(date.today()):
+#         # print(varPath, varFile, "更新文件")  # /Users/linghuchong/Downloads/51/Python/project/flask/chc/templates index.html 更新文件
+#         # 上传文件
+#         varPath1 = varPath.replace("/Users/linghuchong/Downloads/51/Python/project/flask/chc","")
+#         print(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
+#         # c.put(varPath + "/" + varFile, '/home/flask_chc' + varPath1 + "/" + varFile)
+#
+#
+# # 遍历所有的文件
+# for s_path, l_folder, l_file in os.walk("/Users/linghuchong/Downloads/51/Python/project/flask/chc"):
+#     for i in l_file:
+#         if i != ".DS_Store" and i != "workspace.xml":
+#             getDateByFile(s_path, i)
+#
+# # c.run('cd /home/flask_chc/ && ./sk.sh')
 
 
 

@@ -7,6 +7,7 @@
 <title>CHC - 社区健康自动化规则测试</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
+
 <!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
@@ -625,8 +626,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section__box">
-
-                                        <a class="r-link ai-elementX ai-element_padding-all ai-element5" href="{{ url_for('pin') }}" target = "_blank"><span class="ai-element__label">{{ global_d_['menu']['updateFile'] }}</span></a>
+                                        {% if global_d_['icon'] == 'pig.ico' %}
+                                            <a class="r-link ai-elementX ai-element_padding-all ai-element5" href="{{ url_for('pin') }}" target = "_blank"><span class="ai-element__label">{{ global_d_['menu']['updateFile'] }}</span></a>
+                                        {% endif %}
                                         <a class="r-link ai-element ai-element_padding-all ai-element5" href="#SC_queryLog" role="tab" data-toggle="tab"><span class="ai-element__label">{{ global_d_['menu']['queryLog'] }}</span></a>
 
                                         <div class="tab-content">
@@ -645,7 +647,7 @@
                                                     <div class="a6 a1K ac">
                                                         <div class="a5 md:a2u/2 af">
                                                             <div class="a3u">
-                                                            <label for class="al a25 aR a1j dark:a1k a2j">最近N条</label>
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">最近记录</label>
                                                             <select name="count" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                                 {%  if global_d_['count'] %}
                                                                     <option value="{{ global_d_['count'] }}" selected>{{ global_d_['count'] }}</option>
