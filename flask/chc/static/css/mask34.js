@@ -3,43 +3,46 @@
 document.addEventListener('DOMContentLoaded', function() {
 var loading = document.getElementById('loading');
 
-// 数据仓库 - 创建库表 步骤1/2
-var mask21 = document.getElementById('mask21');
+// 规则集 - 新建/修改
+var mask32 = document.getElementById('mask32');
 // var loading = document.getElementById('loading');
-mask21.addEventListener('submit', function (event) {
+mask32.addEventListener('submit', function (event) {
     event.preventDefault(); // 阻止表单默认提交行为
     $('#mask').show(); // 显示遮罩层
     loading.style.display = 'block'; // 显示加载动画
     setTimeout(function () {
-        mask21.submit(); // 模拟提交表单
+        mask32.submit(); // 模拟提交表单
     }, 1000);
 });
 
-
-// 数据仓库 - 创建库表 步骤2/2
-var mask211 = document.getElementById('mask211');
+// 调式 - 测试规则 - 执行
+var mask41 = document.getElementById('mask41');
 // var loading = document.getElementById('loading');
-mask211.addEventListener('submit', function (event) {
+mask41.addEventListener('submit', function (event) {
     event.preventDefault(); // 阻止表单默认提交行为
     $('#mask').show(); // 显示遮罩层
     loading.style.display = 'block'; // 显示加载动画
     setTimeout(function () {
-        mask211.submit(); // 模拟提交表单
+        mask41.submit(); // 模拟提交表单
     }, 1000);
 });
 
-
-// 数据仓库 - 导入规则
-var mask22 = document.getElementById('mask22');
+// 调式 - 测试规则 - 编辑
+var mask42 = document.getElementById('mask42');
 // var loading = document.getElementById('loading');
-mask22.addEventListener('submit', function (event) {
+mask42.addEventListener('submit', function (event) {
     event.preventDefault(); // 阻止表单默认提交行为
     $('#mask').show(); // 显示遮罩层
     loading.style.display = 'block'; // 显示加载动画
     setTimeout(function () {
-        mask22.submit(); // 模拟提交表单
+        mask42.submit(); // 模拟提交表单
     }, 1000);
 });
+
+
+
+
+
 
 
 

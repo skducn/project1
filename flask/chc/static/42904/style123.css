@@ -16,22 +16,49 @@ DEMO DEPENDENCIES
 * core styles
 */
 
-.ai-element{
+.ai-element-black{
 	--uiaiElementDisplay: inline-flex;
 	--uiaiElementTextColor: var(--aiElementTextColor);
-	--uiaiElementTextColorHover: var(--aiElementTextColorHover);	
-
+	--uiaiElementTextColorHover: var(--aiElementTextColorHover);
 	display: var(--uiaiElementDisplay);
 	color: var(--uiaiElementTextColor);
 	position: relative;
 	overflow: hidden;
 }
 
-.ai-elementX{
+.ai-element-red{
 	--uiaiElementDisplay: inline-flex;
 	--uiaiElementTextColor: var(--aiElementTextColor);
 	--uiaiElementTextColorHover: var(--aiElementTextColorHover);
+	display: var(--uiaiElementDisplay);
+	color: var(--uiaiElementTextColor);
+	position: relative;
+	overflow: hidden;
+}
 
+.ai-element-green{
+	--uiaiElementDisplay: inline-flex;
+	--uiaiElementTextColor: var(--aiElementTextColor);
+	--uiaiElementTextColorHover: var(--aiElementTextColorHover);
+	display: var(--uiaiElementDisplay);
+	color: var(--uiaiElementTextColor);
+	position: relative;
+	overflow: hidden;
+}
+
+.ai-element-purple{
+	--uiaiElementDisplay: inline-flex;
+	--uiaiElementTextColor: var(--aiElementTextColor);
+	--uiaiElementTextColorHover: var(--aiElementTextColorHover);
+	display: var(--uiaiElementDisplay);
+	color: var(--uiaiElementTextColor);
+	position: relative;
+	overflow: hidden;
+}
+.ai-element-blue{
+	--uiaiElementDisplay: inline-flex;
+	--uiaiElementTextColor: var(--aiElementTextColor);
+	--uiaiElementTextColorHover: var(--aiElementTextColorHover);
 	display: var(--uiaiElementDisplay);
 	color: var(--uiaiElementTextColor);
 	position: relative;
@@ -496,7 +523,23 @@ DEMO DEPENDENCIES
 SETTINGS
 */
 
-.ai-element{
+.ai-element-black{
+	--aiElementPadding: 10px 15px;
+	--aiElementLineWeight: 2px;
+	--aiElementLineColor: #2f2f2f;
+	--aiElementTextColor: #1b255a;
+	--aiElementTextColorHover: #243aab;
+}
+
+.ai-element-red{
+	--aiElementPadding: 10px 15px;
+	--aiElementLineWeight: 2px;
+	--aiElementLineColor: #ff0000;
+	--aiElementTextColor: #1b255a;
+	--aiElementTextColorHover: #243aab;
+}
+
+.ai-element-green{
 	--aiElementPadding: 10px 15px;
 	--aiElementLineWeight: 2px;
 	--aiElementLineColor: #79b70f;
@@ -504,10 +547,18 @@ SETTINGS
 	--aiElementTextColorHover: #243aab;
 }
 
-.ai-elementX{
+.ai-element-blue{
 	--aiElementPadding: 10px 15px;
 	--aiElementLineWeight: 2px;
 	--aiElementLineColor: #0167ff;
+	--aiElementTextColor: #1b255a;
+	--aiElementTextColorHover: #243aab;
+}
+
+.ai-element-purple{
+	--aiElementPadding: 10px 15px;
+	--aiElementLineWeight: 2px;
+	--aiElementLineColor: #b800cc;
 	--aiElementTextColor: #1b255a;
 	--aiElementTextColorHover: #243aab;
 }

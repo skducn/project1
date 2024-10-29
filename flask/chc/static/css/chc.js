@@ -1,7 +1,7 @@
 
 $(document).ready(function() {
 
-    <!-- 1 查询规则集 -->
+    <!-- 3 规则集 - 查询 - 规则集（与规则名及联）-->
 
     $('#queryRuleCollection').change(function() {
     var selectedValue = $(this).val();
@@ -21,7 +21,7 @@ $(document).ready(function() {
     });
     });
 
-    <!-- 1 查询规则集 - 规则名与规则集及联 -->
+    <!-- 3 规则集 - 查询 - 规则名（与规则集及联） -->
 
     $('#queryRuleName').change(function() {
     var selectedValue = $(this).val();
@@ -44,7 +44,51 @@ $(document).ready(function() {
     });
     });
 
-    <!-- edit123，查询sql -->
+
+    <!-- 4 调式 - 测试规则 - 规则集（与规则名及联）-->
+
+    $('#queryRuleCollection2').change(function() {
+    var selectedValue = $(this).val();
+    $.ajax({
+    url: '/get_queryRuleCollection',
+    type: 'GET',
+    data: {'value': selectedValue},
+    success: function(data) {
+    var textWithNewLines = data.text.replace(/\n/g, "<br>");
+    // var textWithNewLines = data.text;
+    $('#get_queryRuleCollection2').html(textWithNewLines);
+    // {#alert(textWithNewLines);#}
+    },
+    error: function(error) {
+    console.error('Error fetching data: ', error);
+    }
+    });
+    });
+
+    <!-- 4 调式 - 测试规则 - 规则名（与规则集及联）-->
+
+    $('#queryRuleName2').change(function() {
+    var selectedValue = $(this).val();
+    $.ajax({
+    url: "/get_queryRuleName",
+    type: 'GET',
+    data: {'value': selectedValue},
+    success: function(response) {
+    var queryRuleCollection2=document.getElementById("queryRuleCollection2");
+    for (var i = 1; i < queryRuleCollection2.options.length;) {
+    queryRuleCollection2.removeChild(queryRuleCollection2.options[i]);
+    }
+    for (var i = 0; i < response.length; i++) {
+    $("#queryRuleCollection2").append("<option>" + response[i] + "</option>");
+    }
+    },
+    error: function(xhr, status, error) {
+    console.log(xhr.responseText);
+    }
+    });
+    });
+
+    <!-- 4 调试 - 查询sql -->
 
     $("#queryRecord").click(function() {
     // 获取输入框的内容
@@ -104,7 +148,7 @@ $(document).ready(function() {
     // });
 
 
-    <!--  index5 查询表结构 -->
+    <!--  5 辅助工具 - 查询表结构 -->
 
     $('#queryDesc2').change(function() {
     $('#mask').show(); // 显示遮罩层

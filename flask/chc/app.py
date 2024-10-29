@@ -8,6 +8,7 @@
 from flask import Flask, render_template, jsonify, redirect, url_for, flash, session, request
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys, os
+from flask_caching import Cache
 
 # from flask_cors import *
 # from tqdm import tqdm
@@ -111,8 +112,25 @@ app = Flask(__name__)
 # 设置 Flask 应用的密钥，用于对 session 数据进行加密，保护敏感信息
 # app.secret_key = 'jinhao' # eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk
 app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
+cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
-
+#
+# class CDN(object):
+#     def __init__(self, app=None):
+#         self.app = app
+#         if app is not None:
+#             self.init_app(app)
+#
+#     def init_app(self, app):
+#         # 设置静态文件的缓存控制头
+#         @app.after_request
+#         def add_header(response):
+#             response.cache_control.max_age = 3600  # 设置缓存时间为1小时（3600秒）
+#             return response
+#
+#
+# # 初始化CDN
+# cdn = CDN(app)
 
 line_number = [0] #存放当前日志行数
 # 定义接口把处理日志并返回到前端
@@ -254,13 +272,14 @@ def index123():
 
 
 @app.route('/index7')
+@cache.cached(timeout=150)  # 缓存有效期为50秒
 def index7():
     global_d_['ruleName'] = getRuleName()
-    # print(global_d_['ruleName'] )
+    print(global_d_)
     global_d_['rule'] = getRuleCollection()
 
     # return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
-    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
+    return render_template('index7.html', global_d_=global_d_, tabName='规则列表', subName=1, message=-1)
 
 @app.route('/')
 def index():
@@ -268,7 +287,8 @@ def index():
     print("(263)global_d_['ruleName'] => ", global_d_['ruleName'])
     global_d_['rule'] = getRuleCollection()
 
-    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表')
+    # return render_template('index.html', global_d_=global_d_)
+    return render_template('index7.html', global_d_=global_d_, tabName='规则列表', subName=1, message=-1)
 
     # username = request.cookies.get('username',None)     #获取cookie值
     # if username!=None:
@@ -309,6 +329,7 @@ def get_queryRuleCollection():
 
 # todo index 1 及联规则集
 @app.route('/get_queryRuleName')
+@cache.cached(timeout=150)  # 缓存有效期为150秒
 def get_queryRuleName():
     ruleName = request.args.get('value')
     print(ruleName)
@@ -323,6 +344,7 @@ def get_queryRuleName():
 
 # todo index 2 更新规则集
 @app.route('/updateRuleCollection', methods=['POST'])
+@cache.cached(timeout=150)  # 缓存有效期为150秒
 def updateRuleCollection():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
@@ -363,7 +385,8 @@ def updateRuleCollection():
             # return render_template('index.html', global_d_=global_d_)
             # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
         else:
-            return render_template('index.html', global_d_=global_d_, output_testRule3='error，规则集或步骤不能为空！')
+            return render_template('index7.html', global_d_=global_d_, tabName='规则集', subName='查询', message=0)
+            # return render_template('index.html', global_d_=global_d_, output_testRule3='error，规则集或步骤不能为空！')
 
 
 # todo index 3 测试
@@ -848,7 +871,7 @@ def step():
             s_desc = Sqlserver_PO.desc2(i)
             d_tbl[i] = s_desc
         global_d_['tblByStep'] = d_tbl
-        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='调式', testRule2=1, message=1)
+        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='调式', subName='测试规则',testRule2=1, message=1)
         # return render_template('edit123.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], id=d_['id'], ruleName=d_['ruleName'])
 
 
@@ -1041,7 +1064,7 @@ def copyLocal2remote(s_localPath_prefix, s_remotePath_prefix, varLocalPath, varL
     # 如果是当天日期，则复制文件到服务器
     if l_dateTime[0] == str(date.today()):
         s_del_localPathPrefix = varLocalPath.replace(s_localPath_prefix, "")
-        print("复制 => ", s_localPathFile, s_remotePath_prefix + s_del_localPathPrefix + "/" + varLocalFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
+        print(s_localPathFile, " => ", s_remotePath_prefix + s_del_localPathPrefix + "/" + varLocalFile) # /Users/linghuchong/Downloads/51/Python/project/flask/chc/app.py /home/flask_chc/app.py
         c.put(s_localPathFile, s_remotePath_prefix + s_del_localPathPrefix + "/" + varLocalFile)
 
 def getSubFolder(s_localPath, s_localPath2):
@@ -1059,15 +1082,15 @@ def getSubFolder(s_localPath, s_localPath2):
             l_local_folder.append(i.replace(s_localPath2,""))
     return l_local_folder
 
-def copyLocalFolder(varList1, varList2):
+def copyLocalFolder(s_local, s_remote):
     # 复制本地目录到远程目录
-    a = [x for x in varList1 if x in varList2]  # 两列表交集
-    return [y for y in varList1 if y not in a]  # 在varList1里但不在varList2
+    a = [x for x in s_local if x in s_remote]  # 两列表交集
+    return [y for y in s_local if y not in a]  # 在s_local里但不在s_remote
 
-def delRemoteFolder(varList1, varList2):
+def delRemoteFolder(s_local, s_remote):
     # 删除远程目录及子目录文件
-    a = [x for x in varList1 if x in varList2]  # 两列表交集
-    return [y for y in varList2 if y not in a]  # 在varList2里但不在varList1
+    a = [x for x in s_local if x in s_remote]  # 两列表交集
+    return [y for y in s_remote if y not in a]  # 在s_remote里但不在s_local
 
 
 @app.route('/updateSystem')
@@ -1078,9 +1101,9 @@ def updateSystem():
     s_remotePath_prefix = '/home/flask_chc'
     
     # 1,遍历本地目录与服务器目录，如果服务器上没有则复制本地目录到服务器目录（包含内部目录与文件）
+    print("1, 比对/更新服务器上目录：")
     l_local_folder = getSubFolder(s_localPath_prefix, s_localPath_prefix)
-    print("本地CHC下目录及子目录 => ", l_local_folder)
-
+    print("本地", s_localPath_prefix, "下目录结构 => ", l_local_folder)
     result = c.run(f'find {s_remotePath_prefix} \( -path "{s_remotePath_prefix}/.git" -o -path "{s_remotePath_prefix}/.idea" \) -prune -o -type d -print', hide='stdout', warn=True)
     # fabric_folder = c.run('find /home/flask_chc \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" \) -prune -o -type d -print')
     # print(type(fabric_folder))  # <class 'fabric.runners.Result'>
@@ -1095,10 +1118,10 @@ def updateSystem():
     for i in l_remote_folder:
         if f"{s_remotePath_prefix}/" in i:
             l_remote_.append(i.replace(s_remotePath_prefix, ""))
-    print("远程CHC下目录及子目录2 => ", l_remote_)
-    
+    print("远程", s_remotePath_prefix, "下目录结构2 => ", l_remote_)
+
     l_1 = copyLocalFolder(l_local_folder, l_remote_)
-    print("复制本地目录到远程目录 => ", l_1)  # ['/static/215447', '/static/708757', '/static/12', '/static/12/picture']
+    print("复制，本地目录到远程 => ", l_1)  # ['/static/215447', '/static/708757', '/static/12', '/static/12/picture']
     for i in l_1:
         s_local_path = s_localPath_prefix + i
         s_remote_path = s_remotePath_prefix + i
@@ -1108,8 +1131,9 @@ def updateSystem():
             for i in l_file:
                 c.put(s_local_path + "/" + i, s_remote_path)
             break
+
     l_2 = delRemoteFolder(l_local_folder, l_remote_)
-    print("删除远程目录 => ", l_2)
+    print("删除，远程目录", l_2)
     for i in l_2:
         s_remote_path = s_remotePath_prefix + i
         c.run(f'rm -rf {s_remote_path}')
@@ -1117,33 +1141,41 @@ def updateSystem():
     # 2,遍历本地目录文件，如果当天修改过则复制到服务器
     l_local_file = []
     l_remote_file = []
+    print("2，复制当天修改过的文件：")
     for s_path, l_folder, l_file in os.walk(s_localPath_prefix):
         # print(111,l_folder)
         for i in l_file:
             if i != ".DS_Store" and i != "workspace.xml":
                 copyLocal2remote(s_localPath_prefix, s_remotePath_prefix, s_path, i)
-                if '/__pycache__' not in s_path and '/.idea' not in s_path and '/static' not in s_path:
+                # if '/__pycache__' not in s_path and '/.idea' not in s_path and '/static' not in s_path:
+                if '/__pycache__' not in s_path and '/.idea' not in s_path:
                     # print("本地文件 => ", s_path + "/" + i)
                     l_local_file.append(s_path + "/" + i)
             # l_2_fiel = delRemoteFolder(l_local_folder, l_remote_)
 
+    print("3，遍历所有文件，更新两边的文件：")
     # r = c.run(f'find /home/flask_chc -type d \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" -o -path "/home/flask_chc/__pycache__" -o -path "/home/flask_chc/PO/__pycache__" \) -prune -o -type f -print', hide='stdout', warn=True)
-    r = c.run(
-        f'find /home/flask_chc -type d \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" -o -path "/home/flask_chc/__pycache__" -o -path "/home/flask_chc/PO/__pycache__" -o -path "/home/flask_chc/static" \) -prune -o -type f -print',
-        hide='stdout', warn=True)
+    # r = c.run(f'find /home/flask_chc -type d \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" -o -path "/home/flask_chc/__pycache__" -o -path "/home/flask_chc/PO/__pycache__" -o -path "/home/flask_chc/static" \) -prune -o -type f -print', hide='stdout', warn=True)
+    r = c.run(f'find /home/flask_chc -type d \( -path "/home/flask_chc/.git" -o -path "/home/flask_chc/.idea" -o -path "/home/flask_chc/__pycache__" -o -path "/home/flask_chc/PO/__pycache__" \) -prune -o -type f -print', hide='stdout', warn=True)
     # print("远程文件 => ", r.stdout)
     l_remote_file = str(r.stdout).split("\n")
     l_remote_file.pop(-1)
 
-    # print("本地文件 => ", l_local_file)
-    print("远程文件 => ", l_remote_file)
-
+    print("本地文件", l_local_file)
     l_local_file2 = []
     for i in l_local_file:
-        l_local_file2.append(i.replace(s_localPath_prefix,s_remotePath_prefix))
-    print("本地文件2 => ", l_local_file2)
+        l_local_file2.append(i.replace(s_localPath_prefix, s_remotePath_prefix))
+    # print("本地文件2 => ", l_local_file2)
+    print("远程文件", l_remote_file)
+
+    l_3_file = copyLocalFolder(l_local_file2, l_remote_file)
+    print("复制，本地文件 => 远程文件", l_3_file)
+    for i in l_3_file:
+        i2 = i.replace(s_remotePath_prefix, s_localPath_prefix)
+        c.put(i2, i)
+
     l_2_file = delRemoteFolder(l_local_file2, l_remote_file)
-    print("删除远程文件 => ", l_2_file)
+    print("删除，远程文件", l_2_file)
     for i in l_2_file:
         c.run(f'rm -rf {i}')
 
@@ -1152,59 +1184,9 @@ def updateSystem():
     # r = c.run('cd /home/flask_chc/ && nohup flask run --host=0.0.0.0 >> /home/flask_chc/log.log 0>&1 &')
     # print(r.stdout)
     # print(r.return_code)
-    # sk.sh内容如下：
-    # kill $(pgrep flask)
-    # cd /home/flask_chc/ && FLASK_APP=app.py && flask run --host=0.0.0.0 --port=5000
-
-
-    # tt()
-    return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
-
-
-def tt():
-    import paramiko
-
-    # 设置SSH连接参数
-    hostname = '192.168.0.243'
-    port = 22  # SSH端口，默认是22
-    username = 'root'
-    password = 'Benetech79$#-'
-
-    # 创建SSH客户端
-    client = paramiko.SSHClient()
-    client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    client.connect(hostname, port, username, password)
-
-    # command = 'cd /home/flask_chc/ && ./k.sh'
-
-    # 执行远程命令
-    # stdin, stdout, stderr = client.exec_command('cd /home/flask_chc/ && ./k1.sh')
-    stdin, stdout, stderr = client.exec_command('cd /home/flask_chc/ && ./sk.sh')
-
-    # 获取命令输出
-    print(stdout.read().decode())
-
-    # 关闭连接
-    client.close()
-def t2():
-    ...
-    # import subprocess
-    #
-    # # 远程服务器的IP地址或主机名
-    # server_ip = '192.168.0.243'
-    # # SSH连接使用的用户名
-    # username = 'root'
-    # # 远程执行的命令
-    # # command = 'FLASK_APP=myapp.py flask run -p 5000'
-    # command = 'cd /home/flask_chc/ && ./k.sh'
-    #
-    # # 使用sshpass（需要预先安装）来自动输入密码，或者使用其他方式进行身份验证
-    # ssh_cmd = f'sshpass -p "Benetech79$#-" ssh -o StrictHostKeyChecking=no {username}@{server_ip} "{command}"'
-    #
-    # # 执行远程命令
-    # subprocess.run(ssh_cmd, shell=True)
-
-
+    # return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
+    sleep(3)
+    return redirect("http://192.168.0.243:5000/")
 
 
 # todo 查询日志
