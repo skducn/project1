@@ -785,7 +785,7 @@ def edit123():
     for i in l_t_rows:
         l_testRule.append(i[0])
     global_d_['rule'] = l_testRule
-    print(l_testRule)
+    print("l_testRule => ", l_testRule)
 
     # 从step步骤中获取表名
     # print(l_d_all[0]['step'])
@@ -797,14 +797,25 @@ def edit123():
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl[i] = s_desc
     global_d_['tblByStep'] = d_tbl
-    return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
+    print("global_d_['tblByStep'] => ", global_d_['tblByStep'])
+    l_tbl = list(global_d_['tblByStep'].keys())
+
+    print("d_field['step'] => ", l_d_all[0]['step'])
+    l_step = l_d_all[0]['step'].split("\n")
+    print("l_step => ", l_step)
+
+    return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName, l_step=l_step,l_tbl=l_tbl)
 
 
 # todo edit123，查询sql
 @app.route("/get_queryRecord", methods=["POST"])
 def get_queryRecord():
     querySql = request.form.get("querySql")
-    querySql = querySql.replace("SELECT ","select ").replace("WHERE ","where ")
+    querySql = querySql.replace("SELECT ", "select ").replace("WHERE ", "where ")
+    if ' select ' in querySql:
+        querySql = querySql.split(" select ")[1]
+        querySql = "select " + querySql
+
     data = ""
     if 'select ' not in querySql :
         data = 'error，非查询语句！'
@@ -1185,7 +1196,7 @@ def updateSystem():
     # print(r.stdout)
     # print(r.return_code)
     # return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
-    sleep(3)
+    sleep(5)
     return redirect("http://192.168.0.243:5000/")
 
 

@@ -9,17 +9,20 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-import os, datetime, sys
-from datetime import date, datetime, timedelta
-from fabric import Connection
-# 建议将ssh连接所需参数变量化
-user = 'root'
-host = '192.168.0.243'
-password = 'Benetech79$#-'
-c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
-r = c.run('cd /home/flask_chc/ && sh ./sk.sh')
+# import os, datetime, sys
+# from datetime import date, datetime, timedelta
+# from fabric import Connection
+# # 建议将ssh连接所需参数变量化
+# user = 'root'
+# host = '192.168.0.243'
+# password = 'Benetech79$#-'
+# c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
+# r = c.run('cd /home/flask_chc/ && sh ./sk.sh')
 
-
+s = "12 delete test "
+s = s.split(" select ")[1]
+s = "select " + s
+print(s)
 
 
 # from fabric.api import run, env
