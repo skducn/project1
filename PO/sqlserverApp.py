@@ -264,11 +264,27 @@ Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
 # print("3.1 创建表（自增id主键）".center(100, "-"))
 # Sqlserver_PO.crtTable('a_phs2gw', '''
-#     id INT IDENTITY(1,1) PRIMARY KEY,
-#     phsField VARCHAR(20) NOT NULL,
-#     phsValue VARCHAR(20) NOT NULL,
-#     phusersField VARCHAR(20) NOT NULL,
-#     phusersValue VARCHAR(20) NOT NULL''')
+# #     id INT IDENTITY(1,1) PRIMARY KEY,
+# #     phsField VARCHAR(20) NOT NULL,
+# #     phsValue VARCHAR(20) NOT NULL,
+# #     phusersField VARCHAR(20) NOT NULL,
+# #     phusersValue VARCHAR(20) NOT NULL''')
+
+# Sqlserver_PO.crtTable('a_api_wow_info', '''
+#         id INT IDENTITY(1,1) PRIMARY KEY ,
+#         role varchar(255) DEFAULT NULL ,
+#         role_cn varchar(255) DEFAULT NULL ,
+#         role_pinyin varchar(255) DEFAULT NULL ,
+#         zhuangbei varchar(255) DEFAULT NULL ,
+#         tianfu varchar(255) DEFAULT NULL
+#         ''')
+
+# 修改字段注释
+# Sqlserver_PO.setFieldComment('a_api_wow_info', 'role', '角色')
+
+Sqlserver_PO.execute(
+    "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (
+    '(测试api)' , 'a_api_wow_info'))  # sheetName=注释，dboTable=表名
 
 # Sqlserver_PO.crtTable('bbb', ''''CREATE TABLE bbb (
 # id INT IDENTITY(1,1) PRIMARY KEY,

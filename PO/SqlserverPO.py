@@ -112,7 +112,6 @@
 2.15 获取主键最大值 getPrimaryKeyMaxValue（self, varTable)
 2.16 获取所有外键 getForeignKey()
 
-3.1 创建表 crtTable(self, varTable, sql)
 3.2 生成类型值 _genTypeValue(self, varTable)
 3.3 生成必填项类型值 _genNotNullTypeValue(self, varTable)
 3.4 单表自动生成第一条数据 genFirstRecord(self, varTable)
@@ -121,10 +120,10 @@
 3.7 自动生成必填项数据 genRecordByNotNull(self, varTable)
 3.8 执行insert _execInsert(self, varTable, d_init,{})
 3.9 删除表的所有外键关系 dropKey(varTable)
-3.10 设置表注释 setTableComment(varTable, varComment)
-3.11 修改表注释 reviseTableComment(varTable, varComment)
-3.12 设置字段注释 setFieldComment(varTable, varField, varComment)
-3.13 修改字段注释  reviseFieldComment(varTable, varField, varComment)
+3.10 设置表注释 addTableComment(varTable, varComment)
+3.11 修改表注释 updateTableComment(varTable, varComment)
+3.12 设置字段注释 addFieldComment(varTable, varField, varComment)
+3.13 修改字段注释  updateFieldComment(varTable, varField, varComment)
 3.14 设置数据类型与备注 setFieldTypeComment(varTable, varField, varType, varComment)
 3.15 设置自增主键 setIdentityPrimaryKey(varTable, varField)
 
@@ -147,7 +146,17 @@
 
 7.1 查看表结构（字段、类型、大小、可空、注释），注意，表名区分大小写  desc()   //实例请参考 instance/db/sqlserver.py
 7.2 查找记录 record('*', 'money', '%34.5%')  //实例请参考 instance/db/sqlserver.py
-7.3 插入记录 insert()
+
+
+8.1 创建表 crtTable(self, varTable, sql)
+8.2 插入
+    插入1条记录
+    插入多条记录
+8.3 更新
+8.4 删除
+8.5 删除所有记录
+8.6 删除表
+
 
 """
 
@@ -164,17 +173,12 @@ from time import sleep
 from sqlalchemy import create_engine, text
 
 from PO.ColorPO import *
-
 Color_PO = ColorPO()
 
-
-
 from PO.TimePO import *
-
 Time_PO = TimePO()
 
 from PO.FilePO import *
-
 File_PO = FilePO()
 
 
@@ -652,7 +656,7 @@ class SqlServerPO:
     def crtTable(self, varTable, sql):
 
         '''
-        3.1 创建表
+        3.1 创建表(如果不存在)
         :param varTable : test99
         :param sql: id INTEGER PRIMARY KEY, name TEXT, age INTEGER
         :return:
@@ -664,6 +668,15 @@ class SqlServerPO:
         # print(sql)
         self.execute(sql)
         self.conn.commit()
+
+
+    def crtExistTable(self, varTable, sql):
+
+        # 3.1 创建表(如果存在先删除)
+        sql =" IF OBJECT_ID('" + varTable + "', 'U') IS NOT NULL DROP TABLE " + varTable + " CREATE TABLE " + varTable + "(" + sql + ")"
+        self.execute(sql)
+
+
 
     def _genTypeValue(self, varTable):
 
@@ -890,48 +903,35 @@ class SqlServerPO:
             if varFk[i]['relatingTable'] == varTable:
                 self.execute("ALTER table %s DROP %s" % (varFk[i]['table'], varFk[i]['foreignKey']))
 
-    def setTableComment(self, varTable, varComment):
+    def addTableComment(self, varTable, varComment):
 
-        # 3.10 添加表注释
-        # 注意：原注释必须为空，否则报错
-        # setTableComment('t_user', '用户表')
-        self.execute(
-            "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (
-            varComment, varTable))
+        # 3.10 添加表注释（要求原表没有注释，否则报错）
+        # addTableComment('t_user', '用户表')
+        self.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (varComment, varTable))
 
-    def reviseTableComment(self, varTable, varComment):
+    def updateTableComment(self, varTable, varComment):
 
-        # 3.11 修改表注释
-        # 注意：原注释必须有值，否则报错
-        # setTableComment('t_user', '用户表')
-        self.execute(
-            "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (
-            varComment, varTable))
+        # 3.11 修改表注释（要求原表有注释，否则报错）
+        # updateTableComment('t_user', '用户表')
+        self.execute("EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'user', N'dbo', N'table', N'%s', NULL, NULL" % (varComment, varTable))
 
-    def setFieldComment(self, varTable, varField, varComment):
+    def addFieldComment(self, varTable, varField, varComment):
 
-        # 3.12 添加字段注释
-        # 注意：原注释必须为空，否则报错
-        # setFieldComment('t_user','ID','编号')
+        # 3.12 添加字段注释（要求原字段没有注释，否则报错）
+        # addFieldComment('t_user','ID','编号')
         if varField in self.getFields(varTable):
-            self.execute(
-                "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-                varComment, varTable, varField))
+            self.execute("EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
 
-    def reviseFieldComment(self, varTable, varField, varComment):
+    def updateFieldComment(self, varTable, varField, varComment):
 
-        # 3.13 修改字段注释
-        # 注意：原注释必须有值，否则报错
-        # reviseFieldComment('t_user','ID','编号')
+        # 3.13 修改字段注释（要求原字段有注释，否则报错）
+        # updateFieldComment('t_user','ID','编号')
         if varField in self.getFields(varTable):
-            self.execute(
-                "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-                varComment, varTable, varField))
+            self.execute("EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (varComment, varTable, varField))
 
     def setFieldTypeComment(self, varTable, varField, varType, varComment):
 
-        # 3.14 设置字段类型与备注
-        # 应用于pandas带入数据
+        # 3.14 设置字段类型与备注（应用于pandas带入数据）
         # Sqlserver_PO.setFieldTypeComment(varTable, 'pResult', 'varchar(100)', '正向测试结果')  //修改pResult数据类型和备注
         self.execute("ALTER table %s alter column %s %s" % (varTable, varField, varType))
 
@@ -940,9 +940,9 @@ class SqlServerPO:
             d_comments = self.getFieldComment(varTable)
 
             if d_comments[varField] == None:
-                self.setFieldComment(varTable, varField, varComment)
+                self.addFieldComment(varTable, varField, varComment)
             else:
-                self.reviseFieldComment(varTable, varField, varComment)
+                self.updateFieldComment(varTable, varField, varComment)
         except Exception as e:
             print(e)
 
@@ -2009,10 +2009,10 @@ class SqlServerPO:
 if __name__ == "__main__":
     # todo 社区健康平台（静安）
     # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
-    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
     # 社区
-    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
     # a = Sqlserver_PO.select("select ruleParam from a_test123 where result='john'")
     # print(a)
     # print(a[0]['ruleParam'])
@@ -2026,34 +2026,6 @@ if __name__ == "__main__":
     # a = Sqlserver_PO.selectParam("select * from a_test where id=%s", 3)
     # print(a)
 
-    # print("1.2 执行".center(100, "-"))
-    # 创建表（如存在先删除）
-    # Sqlserver_PO.execute(""" IF OBJECT_ID('a_test', 'U') IS NOT NULL DROP TABLE a_test
-    # CREATE TABLE a_test (
-    #     id INT NOT NULL,
-    #     name VARCHAR(100),
-    #     salesrep VARCHAR(100),
-    #     PRIMARY KEY(id)
-    # )
-    # """)
-
-    # 插入1条记录
-    # Sqlserver_PO.execute("INSERT INTO a_test values(4, 'John Smith6662', 'John Doe3')")
-
-    # # 插入多条记录
-    # Sqlserver_PO.executemany("INSERT INTO a_test VALUES (%d, %s, %s)", [(1, 'John Smith2', 'John Doe3'), (2, 'Jane Doe', 'Joe Dog'), (3, 'Mike T.', 'Sarah H.')])
-
-    # 更新数据
-    # Sqlserver_PO.execute("UPDATE a_test set name='john123' where id=1")
-
-    # # 删除1条记录
-    # Sqlserver_PO.execute("DELETE FROM a_test WHERE id = 2")
-
-    # 删除所有记录
-    # Sqlserver_PO.execute("TRUNCATE TABLE a_test")
-
-    # # 删除表
-    # Sqlserver_PO.execute("DROP TABLE a_test")
 
     # # print("2.1 获取所有表名".center(100, "-"))
     # print(Sqlserver_PO.getTables())  # ['condition_item', 'patient_demographics', 'patient_diagnosis' ...
@@ -2077,7 +2049,7 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.getStructure())
 
     # print("2.7 获取字段名".center(100, "-"))
-    print(Sqlserver_PO.getFields('a_zhongyitizhibianshi'))  # ['id', 'name', 'age']
+    # print(Sqlserver_PO.getFields('a_zhongyitizhibianshi'))  # ['id', 'name', 'age']
 
     # print("2.8 获取字段和字段注释".center(100, "-"))
     # print(Sqlserver_PO.getFieldComment('SYS_USER'))  # {'id': '编号', 'name': None, 'salesrep': None}
@@ -2110,28 +2082,6 @@ if __name__ == "__main__":
     # print("2.16 获取所有外键 ".center(100, "-"))
     # print(Sqlserver_PO.getForeignKey())  # []   //没有返回空列表
 
-    # https://www.jb51.net/article/264740.htm
-
-    # print("3.1 创建表（自增id主键）".center(100, "-"))
-    # Sqlserver_PO.crtTable('a_phs2gw', '''
-    #     id INT IDENTITY(1,1) PRIMARY KEY,
-    #     phsField VARCHAR(20) NOT NULL,
-    #     phsValue VARCHAR(20) NOT NULL,
-    #     phusersField VARCHAR(20) NOT NULL,
-    #     phusersValue VARCHAR(20) NOT NULL''')
-
-    # Sqlserver_PO.crtTable('bbb', ''''CREATE TABLE bbb (
-    # id INT IDENTITY(1,1) PRIMARY KEY,
-    # name VARCHAR(20) NOT NULL,
-    # age INT NOT NULL) go''')
-
-    # print("3.1 创建表（ID主键） ".center(100, "-"))
-    # Sqlserver_PO.crtTable('aaa', '''CREATE TABLE aaa
-    #        (ID INT PRIMARY KEY     NOT NULL,
-    #         NAME           TEXT    NOT NULL,
-    #         AGE            INT     NOT NULL,
-    #         ADDRESS        CHAR(50),
-    #         SALARY         REAL);''')
 
     # print("3.2 生成类型值".center(100, "-"))
     # print(Sqlserver_PO._genTypeValue("aaa"))  # {'ID': 1, 'NAME': 'a', 'AGE': 1, 'ADDRESS': 'a', 'SALARY': 1.0, 'time': '08:12:23'}
@@ -2224,7 +2174,7 @@ if __name__ == "__main__":
 
     # print("7.2 查找记录".center(100, "-"))
     # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
-    Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
+    # Sqlserver_PO.record('*', 'varchar', '%测试测试2%', False)
     # Sqlserver_PO.record('*', 'money', '%34.5%')
     # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
     # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。
@@ -2233,5 +2183,42 @@ if __name__ == "__main__":
     # Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'createDate': Time_PO.getDateTimeByPeriod(0), 'ruleParam': 'param'})
 
 
+    # todo CRUD
+
+    # todo 8.1 创建表（如存在先删除）
+    Sqlserver_PO.crtExistTable('a_api_wow_info',
+       '''id INT NOT NULL,
+        name VARCHAR(100),
+        salesrep VARCHAR(100),
+        PRIMARY KEY(id)''')
 
 
+    # https://www.jb51.net/article/264740.htm
+
+    # todo 8.1 创建表（如不存在则创建）
+    # print("3.1 创建表（自增id主键）".center(100, "-"))
+    # Sqlserver_PO.crtTable('a_phs2gw', '''
+    #     id INT IDENTITY(1,1) PRIMARY KEY,
+    #     phsField VARCHAR(20) NOT NULL,
+    #     phsValue VARCHAR(20) NOT NULL,
+    #     phusersField VARCHAR(20) NOT NULL,
+    #     phusersValue VARCHAR(20) NOT NULL''')
+
+    # todo 8.2 插入
+    # 插入1条记录
+    # Sqlserver_PO.execute("INSERT INTO a_test values(4, 'John Smith6662', 'John Doe3')")
+
+    # # 插入多条记录
+    # Sqlserver_PO.executemany("INSERT INTO a_test VALUES (%d, %s, %s)", [(1, 'John Smith2', 'John Doe3'), (2, 'Jane Doe', 'Joe Dog'), (3, 'Mike T.', 'Sarah H.')])
+
+    # todo 8.3 更新
+    # Sqlserver_PO.execute("UPDATE a_test set name='john123' where id=1")
+
+    # todo 8.4 删除
+    # Sqlserver_PO.execute("DELETE FROM a_test WHERE id = 2")
+
+    # todo 8.5 删除所有记录
+    # Sqlserver_PO.execute("TRUNCATE TABLE a_test")
+
+    # todo 8.6 删除表
+    # Sqlserver_PO.execute("DROP TABLE a_test")
