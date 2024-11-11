@@ -2,7 +2,7 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 # Author     : John
 # Created on : 2020-6-9
-# Description: 新质控规则自动化脚本,test.py   //依据配置文件config.ini执行表格里用例
+# Description: 新质控规则自动化脚本,getCookies.py   //依据配置文件config.ini执行表格里用例
 # *****************************************************************
 
 from instance.zyjk.EHR.controlRuleNew.PageObject.RulePO import *

@@ -146,7 +146,7 @@ class ChcRulePO():
 
                 # # 健康干预_已患疾病单病
                 Sqlserver_PO.setFieldComment(dboTable, 'ruleCode', '规则编码')
-                Sqlserver_PO.setFieldComment(dboTable, 'diseaseRuleCode', '干预规则')
+                Sqlserver_PO.setFieldComment(dboTable, 'diseaseCode', '疾病编码')
                 Sqlserver_PO.setFieldComment(dboTable, 'diseaseCodeDesc', '疾病编码描述')
                 #
                 # # 健康干预_已患疾病组合（包含单病）
@@ -216,7 +216,7 @@ class ChcRulePO():
 
         l_d_ = Sqlserver_PO.select(
             "select diseaseName,diseaseCode from %s where [idcard]='%s'" % (varTable, str(varIdcard)))
-        # print(l_d_) # [{'diseaseName': '高血压', 'diseaseRuleCode': 'JB001', 'sql1': "DELETE from [dbo].[HRPERSONBASICINFO] WHERE [ARCHIVENUM] ='310101202308070020';...
+        # print(l_d_) # [{'diseaseName': '高血压', 'diseaseCode': 'JB001', 'sql1': "DELETE from [dbo].[HRPERSONBASICINFO] WHERE [ARCHIVENUM] ='310101202308070020';...
         diseaseName = l_d_[0]['diseaseName']  # 高血压
         diseaseCode = l_d_[0]['diseaseCode']  # JB001
 
@@ -265,9 +265,9 @@ class ChcRulePO():
 
         # 获取疾病身份证中对应疾病的身份证号码
 
-        l_d_diseaseRuleCode_idcard = Sqlserver_PO.select("select diseaseRuleCode, idcard from %s" % (self.jbsfz))
-        # print(l_d_diseaseRuleCode_idcard)  # [{'diseaseRuleCode': 'YH_JB001', 'idcard': 310101202308070001}, {'diseaseRuleCode': 'YH_JB002', 'idcard': 310101202308070002}, ...]
-        return l_d_diseaseRuleCode_idcard
+        l_d_diseaseCode_idcard = Sqlserver_PO.select("select diseaseCode, idcard from %s" % (self.jbsfz))
+        # print(l_d_diseaseCode_idcard)  # [{'diseaseCode': 'YH_JB001', 'idcard': 310101202308070001}, {'diseaseCode': 'YH_JB002', 'idcard': 310101202308070002}, ...]
+        return l_d_diseaseCode_idcard
 
     def verifyIdcard(self, varIdcard):
 
@@ -581,13 +581,13 @@ class ChcRulePO():
                     eval(command)
             elif varPrefix == 'select':
                 # print(555,varSql)
-                if '{diseaseRuleCode}' in varSql:
-                    l_diseaseRuleCode = self.diseaseRuleCode.split(",")
-                    # print(4444,l_diseaseRuleCode)
-                    if len(l_diseaseRuleCode) > 1:
+                if '{diseaseCode}' in varSql:
+                    l_diseaseCode = self.diseaseCode.split(",")
+                    # print(4444,l_diseaseCode)
+                    if len(l_diseaseCode) > 1:
                         d_tmp = {}
-                        for i in l_diseaseRuleCode:
-                            varSql1 = varSql.replace("{diseaseRuleCode}", i)
+                        for i in l_diseaseCode:
+                            varSql1 = varSql.replace("{diseaseCode}", i)
                             # print(varSql1)
                             if Configparser_PO.SWITCH("log") == "on":
                                 Color_PO.outColor([{"33": varSql1}])
@@ -814,10 +814,10 @@ class ChcRulePO():
             self.ruleCode = ""
 
         # 干预规则（健康干预_已患疾病单病、健康干预_已患疾病组合）
-        if 'diseaseRuleCode' in l_d_rows[0].keys():
-            self.diseaseRuleCode = l_d_rows[0]['diseaseRuleCode']
+        if 'diseaseCode' in l_d_rows[0].keys():
+            self.diseaseCode = l_d_rows[0]['diseaseCode']
         else:
-            self.diseaseRuleCode = ""
+            self.diseaseCode = ""
 
         # 疾病编码描述（健康干预_已患疾病单病、健康干预_已患疾病组合）
         if 'diseaseCodeDesc' in l_d_rows[0].keys():
@@ -1155,7 +1155,7 @@ class ChcRulePO():
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
         if Configparser_PO.SWITCH("log") == "on":
             Color_PO.outColor([{"33": self.tmp_db}])
-        Sqlserver_PO.crtTable(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
+        Sqlserver_PO.crtTableByCover(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
 
         # 获取临时变量
         d_update = {}
@@ -1169,10 +1169,10 @@ class ChcRulePO():
                 self.sql[i] = self.sql[i].replace("{随机11}", s11)
             if '{ruleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
-            if '{diseaseRuleCode}' in self.sql[i]:
-                l_diseaseRuleCode = self.diseaseRuleCode.split(",")
-                if len(l_diseaseRuleCode) == 1:
-                    self.sql[i] = self.sql[i].replace("{diseaseRuleCode}", self.diseaseRuleCode)
+            if '{diseaseCode}' in self.sql[i]:
+                l_diseaseCode = self.diseaseCode.split(",")
+                if len(l_diseaseCode) == 1:
+                    self.sql[i] = self.sql[i].replace("{diseaseCode}", self.diseaseCode)
             if '{assessCode}' in self.sql[i]:
                 l_assessCode = self.assessCode.split(",")
                 if len(l_assessCode) == 1:

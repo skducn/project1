@@ -5,7 +5,7 @@
 # python3 app.py run -h 0.0.0.0 --debug=false
 
 
-from flask import Flask, render_template, jsonify, redirect, url_for, flash, session, request
+from flask import Flask, render_template, jsonify, redirect, url_for, flash, session, request, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
 import sys, os
 from flask_caching import Cache
@@ -131,6 +131,11 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 #
 # # 初始化CDN
 # cdn = CDN(app)
+
+@app.route("/download")
+def download():
+    return send_file('/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase1.11.xlsx', as_attachment=True)
+
 
 line_number = [0] #存放当前日志行数
 # 定义接口把处理日志并返回到前端
@@ -265,21 +270,18 @@ def pin():
 
 @app.route('/index123')
 def index123():
-
     # return redirect('123.html')
     return render_template('123.html')
 
 
 
 @app.route('/index7')
-@cache.cached(timeout=150)  # 缓存有效期为50秒
 def index7():
     global_d_['ruleName'] = getRuleName()
     print(global_d_)
     global_d_['rule'] = getRuleCollection()
-
     # return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
-    return render_template('index7.html', global_d_=global_d_, tabName='规则列表', subName=1, message=-1)
+    return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
 
 @app.route('/')
 def index():
@@ -288,7 +290,7 @@ def index():
     global_d_['rule'] = getRuleCollection()
 
     # return render_template('index.html', global_d_=global_d_)
-    return render_template('index7.html', global_d_=global_d_, tabName='规则列表', subName=1, message=-1)
+    return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
 
     # username = request.cookies.get('username',None)     #获取cookie值
     # if username!=None:
@@ -329,7 +331,6 @@ def get_queryRuleCollection():
 
 # todo index 1 及联规则集
 @app.route('/get_queryRuleName')
-@cache.cached(timeout=150)  # 缓存有效期为150秒
 def get_queryRuleName():
     ruleName = request.args.get('value')
     print(ruleName)
@@ -344,7 +345,6 @@ def get_queryRuleName():
 
 # todo index 2 更新规则集
 @app.route('/updateRuleCollection', methods=['POST'])
-@cache.cached(timeout=150)  # 缓存有效期为150秒
 def updateRuleCollection():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
@@ -381,11 +381,11 @@ def updateRuleCollection():
             l_testRule1 = []
             for i in l_t_rows:
                 l_testRule1.append(i[0])
-            return render_template('index7.html', global_d_=global_d_, tabName='规则集', subName='查询', message=1)
+            return render_template('index7.html', global_d_=global_d_, tabName='数据源', subName='查询规则集', message=1)
             # return render_template('index.html', global_d_=global_d_)
             # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
         else:
-            return render_template('index7.html', global_d_=global_d_, tabName='规则集', subName='查询', message=0)
+            return render_template('index7.html', global_d_=global_d_, tabName='数据源', subName='更新规则集', message=0)
             # return render_template('index.html', global_d_=global_d_, output_testRule3='error，规则集或步骤不能为空！')
 
 
@@ -423,14 +423,14 @@ def testRule():
                 d_tblByStep[i] = s_desc
             global_d_['tblByStep'] = d_tblByStep
 
-            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], tabName='调式',subName='测试规则', testRule2=1, message=2)
+            return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], tabName='测试项',subName='测试规则', testRule2=1, message=2)
             # return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
             # return render_template('edit123.html', d_field=d_, debugRuleParam_testRule=l_testRule,queryRuleCollection=l_testRule,s_rule=d_['rule'],id=d_['id'],ruleName=d_['ruleName'],d_tbl=d_tbl, system=system)
         except:
-            return render_template('index7.html', global_d_=global_d_, tabName='调式',subName='测试规则', testRule2=1, message=0)
+            return render_template('index7.html', global_d_=global_d_, tabName='测试项',subName='测试规则', testRule2=1, message=0)
             # return render_template('index.html', global_d_=global_d_, output_testRule='error，非法id！')
     else:
-        return render_template('index7.html', global_d_=global_d_, tabName='调式',subName='测试规则', testRule2=1, message=0)
+        return render_template('index7.html', global_d_=global_d_, tabName='测试项',subName='测试规则', testRule2=1, message=0)
         # return render_template('index7.html', global_d_=global_d_, output_testRule='error，id不能为空！')
 
 
@@ -495,7 +495,8 @@ def list123(ruleName):
 
     # 重构表格标题
     # 获取字典{字段:注释}
-    d_field_comment = Sqlserver_PO.getFieldComment(d_ruleName_tbl[ruleName])
+    d_field_comment = Sqlserver_PO.getFieldCommentGBK(d_ruleName_tbl[ruleName])
+    print(504, d_field_comment)
     # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
     # 重新排序排序id，将id放在第一位
     if 'id' in d_field_comment:
@@ -539,7 +540,7 @@ def list123(ruleName):
 
 
     return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
-110
+
 
     # if ruleName == '评估因素取值':
     #     return render_template('assessFactor.html', global_d_=global_d_, d_field_comment=d_field_comment, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c)
@@ -620,7 +621,7 @@ def list4(ruleName, result):
 
     # 重构表格标题
     # 获取字典{字段:注释}
-    d_field_comment = Sqlserver_PO.getFieldComment(d_ruleName_tbl[ruleName])
+    d_field_comment = Sqlserver_PO.getFieldCommentGBK(d_ruleName_tbl[ruleName])
     # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
     # 重新排序排序id，将id放在第一位
     if 'id' in d_field_comment:
@@ -840,7 +841,6 @@ def get_queryRecord():
 @app.route('/step', methods=['POST'])
 def step():
     if request.method == 'POST':
-
         d_ruleName_tbl = getRuleList()
         d_ = {}
         d_['ruleName'] = request.form['ruleName']
@@ -882,12 +882,12 @@ def step():
             s_desc = Sqlserver_PO.desc2(i)
             d_tbl[i] = s_desc
         global_d_['tblByStep'] = d_tbl
-        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='调式', subName='测试规则',testRule2=1, message=1)
+        return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='测试项', subName='测试规则',testRule2=1, message=1)
         # return render_template('edit123.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], id=d_['id'], ruleName=d_['ruleName'])
 
 
 
-# todo 检索记录
+# todo 查询记录
 @app.route('/searchRecord', methods=['GET','POST'])
 def searchRecord():
     if request.method == 'POST':
@@ -934,6 +934,7 @@ def get_queryDesc2():
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl_desc2[i] = s_desc
     # print(d_tbl_desc2)
+
     return d_tbl_desc2
 
 
@@ -964,7 +965,7 @@ def importCase():
         message = uploadFile()
         print("(923)导入规则 - 上传文件 =>", message)
         if message == 0:
-            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据仓库', subName='导入规则')
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据源', subName='导入规则')
         # 导入用例
         ruleName = request.form['ruleName']
         print("(928)导入规则 - 规则名 =>", ruleName)
@@ -973,12 +974,12 @@ def importCase():
             status = ChcRule_PO.importFull(ruleName)
             if status == 1:
                 # return render_template('importCase.html', global_d_=global_d_, message=1)
-                return render_template('index7.html', global_d_=global_d_, message=1, tabName='数据仓库', subName='导入规则')
+                return render_template('index7.html', global_d_=global_d_, message=1, tabName='数据源', subName='导入规则')
             else:
-                return render_template('index7.html', global_d_=global_d_, message=-1, tabName='数据仓库', subName='导入规则')
+                return render_template('index7.html', global_d_=global_d_, message=-1, tabName='数据源', subName='导入规则')
                 # return render_template('importCase.html', global_d_=global_d_, message=0)
         else:
-            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据仓库', subName='导入规则')
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据源', subName='导入规则')
             # return render_template('importCase.html', global_d_=global_d_, message=0)
 
     # return render_template('importCase.html', global_d_=global_d_, message=message)
@@ -1009,15 +1010,15 @@ def registerTbl():
         # message = uploadFile('registerTbl.html')
         if message == 1:
             l_tmp = getRuleNameBySheet(global_d_['file2'])
-            return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=2, tabName='数据仓库', subName='创建库表', registerTbl2=1)
+            return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=2, tabName='数据源', subName='创建库表', registerTbl2=1)
             # return render_template('registerTbl2.html', global_d_=global_d_, l_canRegisterRuleName = l_tmp, message=2)
         else:
-            return render_template('index7.html', global_d_=global_d_, message=message, tabName='数据仓库', subName='创建库表', registerTbl2=0)
+            return render_template('index7.html', global_d_=global_d_, message=message, tabName='数据源', subName='创建库表', registerTbl2=0)
             # return render_template('registerTbl.html', global_d_=global_d_, message=message)
 
     # return render_template('registerTbl.html', global_d_=global_d_, message=message)
 
-# todo 注册规则表2
+# todo 创建库表步骤2/2
 @app.route('/registerTbl2',methods=['GET','POST'])
 def registerTbl2():
     if request.method == 'POST':
@@ -1025,18 +1026,18 @@ def registerTbl2():
         print("(983)创建库表 - 规则名(步骤2/2) =>", ruleName)
         if ruleName == 'none':
             # return render_template('registerTbl.html', global_d_=global_d_, message=0)
-            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据仓库', subName='创建库表', registerTbl2=1)
+            return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据源', subName='创建库表', registerTbl2=1)
         else:
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
             setRuleName(ruleName)
             l_tmp = getRuleNameBySheet(global_d_['file2'])
             if status == 1:
-                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='数据仓库', subName='创建库表', registerTbl2=1)
+                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='数据源', subName='创建库表', registerTbl2=1)
                 # return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
             else:
                 # return render_template('registerTbl2.html', global_d_=global_d_, message=0, l_canRegisterRuleName = l_tmp)
-                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=0, tabName='数据仓库', subName='创建库表', registerTbl2=1)
+                return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=0, tabName='数据源', subName='创建库表', registerTbl2=1)
 
 
     # return render_template('registerTbl2.html',global_d_=global_d_, message=2)
@@ -1195,7 +1196,7 @@ def updateSystem():
     # r = c.run('cd /home/flask_chc/ && nohup flask run --host=0.0.0.0 >> /home/flask_chc/log.log 0>&1 &')
     # print(r.stdout)
     # print(r.return_code)
-    # return render_template('index7.html', global_d_=global_d_, message=-1, tabName='规则列表', subName=1)
+    # return render_template('index7.html', global_d_=global_d_, message=-1, tabName='测试项', subName=1)
     sleep(5)
     return redirect("http://192.168.0.243:5000/")
 

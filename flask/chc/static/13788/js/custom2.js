@@ -96,7 +96,7 @@ $(document).ready(function(){
     //Pre Collapse
     $('.pre-collapse').on("click", function(e){
         var collapse_class = 'collapsed',
-            title = ["<i class=\"fa fa-code pull-left\"></i> + 显示sql步骤", "<i class=\"fa fa-code pull-left\"></i> - 隐藏sql步骤"],
+            title = ["<i class=\"fa fa-code pull-left\"></i> + 注释", "<i class=\"fa fa-code pull-left\"></i> - 注释"],
             $parent = $(this).closest('.pre-box'),
             $pre = $parent.find('pre').first();
         

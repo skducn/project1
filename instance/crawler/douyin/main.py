@@ -13,11 +13,13 @@
 from DyPO import *
 Dy_PO = DyPO()
 
+# 3.89 12/23 E@h.ba Njp:/ 维密视觉盛宴这首歌太上头了根本停不下来 # 维密秀 # 超模 # 美女 # 走秀 # 音乐现场 特别推荐这首歌，绝对的视觉盛宴，绝对的循环播放，好听的音乐根本停不下来，气氛太到位了！  https://v.douyin.com/iAN1ohCS/ 复制此链接，打开Dou音搜索，直接观看视频！
+
 # 0.25 02/24 O@k.pD odn:/ # 股票 # 短线交易 # 成交量 # 股民交流 # 上证指数 跳空高开，分时图，预判主力的预判  https://v.douyin.com/iFyomEfY/ 复制此链接，打开Dou音搜索，直接观看视频！
 
 # print("1，下载单个抖音视频".center(100, "-"))
 # folder = Dy_PO.getVideo("https://v.douyin.com/iYVuq563/ ", "/Users/linghuchong/Downloads/video/douyin/")
-folder = Dy_PO.getVideo2("https://v.douyin.com/iYVuq563/ ", "/Users/linghuchong/Downloads/video/douyin/")
+folder = Dy_PO.getVideo2("https://v.douyin.com/iAN1ohCS/ ", "/Users/linghuchong/Downloads/video/douyin/")
 os.system("open " + folder)
 
 # 8.48 03/06 qeO:/ G@i.CH 超爱的一版Greedy # 王嘉尔 # jacksonwang # 王嘉尔jackson # # 向全世界安利王嘉尔 # 王嘉尔科切拉舞台  https://v.douyin.com/iYVuq563/ 复制此链接，打开Dou音搜索，直接观看视频！

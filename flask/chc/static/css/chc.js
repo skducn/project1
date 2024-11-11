@@ -183,6 +183,7 @@ $(document).ready(function() {
         let divObj3 = document.createElement("div");
             divObj3.className = 'a3u';
             divObj1.id = "test3"
+            divObj3.style = "line-height: 25px;"
             divObj2.appendChild(divObj3);
 
         for (let key in data){

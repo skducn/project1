@@ -9,6 +9,16 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
+l = []
+l.append("BV1HV41197iW")
+l.append("BV1qK4y1i7JL")
+print(l)
+
+
+# d = {"a":1 , "b":3}
+# for i in d:
+#     print(i)
+
 # import os, datetime, sys
 # from datetime import date, datetime, timedelta
 # from fabric import Connection
@@ -19,10 +29,10 @@
 # c = Connection(host=f'{user}@{host}',connect_kwargs=dict(password=password))
 # r = c.run('cd /home/flask_chc/ && sh ./sk.sh')
 
-s = "12 delete test "
-s = s.split(" select ")[1]
-s = "select " + s
-print(s)
+# s = "12 delete test "
+# s = s.split(" select ")[1]
+# s = "select " + s
+# print(s)
 
 
 # from fabric.api import run, env
