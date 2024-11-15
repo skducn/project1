@@ -18,7 +18,7 @@ from BilibiliPO import *
 Bilibili_PO = BilibiliPO()
 
 
-Bilibili_PO.downloadMore(sys.argv[1])
+Bilibili_PO.downloadOne(sys.argv[1])
 
 
 

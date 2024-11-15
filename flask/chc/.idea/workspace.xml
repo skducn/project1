@@ -2,23 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../APP/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../APP/sqlserver/CRUD.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../APP/sqlserver/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../APP/sqlserver/get.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../APP/sqlserver/project.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../APP/sqlserver/set.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../APP/sqlserver/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11bak.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PO/SqlserverPO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../PO/SqlserverPO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../PO/sqlserverApp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/db/sqlserver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/ChcRulePO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/chcRuleCase1.11.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/importFull.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/rule/1.11/importFull.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/zentao/getManHour.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/zentao/getManHour.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../instance/crawler/bilibili/cliDownMore.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/crawler/bilibili/cliDownMore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../instance/crawler/bilibili/cliDownOne.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/crawler/bilibili/cliDownOne.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../instance/crawler/bilibili/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/crawler/bilibili/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,6 +370,7 @@
       <workItem from="1730249282114" duration="8576000" />
       <workItem from="1730360135626" duration="4504000" />
       <workItem from="1730421917651" duration="12561000" />
+      <workItem from="1731413770785" duration="22000" />
     </task>
     <servers />
   </component>
