@@ -904,7 +904,6 @@ class ChcRulePO():
                 else:
                     # 实例2：正有参  {'VISITTYPECODE':'34','prefixICD':{'慢性肾脏病':'N11'}}
                     self.haveParam()
-
         else:
             # 评估因素取值
             # a1,a2,a3
@@ -920,21 +919,19 @@ class ChcRulePO():
                     self.testRules()
                     self.assertAssess()
             else:
-
                 if self.ruleParam == {}:
                     # 正无参
-                    self.d_param = self.ruleParam
+                    # self.d_param = self.ruleParam
                     self.testRules()
                 else:
                     # 正有参
-                    if Configparser_PO.SWITCH("log") == "on":
-                        Color_PO.outColor([{"35": "self.ruleParam => " + str(self.ruleParam)}])
-                    self.testRules()
-                    self.assertAssess()
-
-
-
-
+                    try:
+                        if Configparser_PO.SWITCH("log") == "on":
+                            Color_PO.outColor([{"35": "self.ruleParam => " + str(self.ruleParam)}])
+                        self.testRules()
+                        self.assertAssess()
+                    except:
+                        Color_PO.outColor([{"35": "error,请检查测试规则中评估因素取值是否存在 a1,a2,a3 规则！"}])
 
         # if self.rule == 's2bak' :
         #     if self.case == 'negative':
@@ -1345,6 +1342,7 @@ class ChcRulePO():
                 else:
                     self._assertAssessErr()
             else:
+                # print("self.d_param => ", self.d_param)
                 if str(self.d_param["result"]) == str(self.ruleParam['result']):
                     self._assertAssessOk()
                 else:

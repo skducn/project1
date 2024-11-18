@@ -196,7 +196,7 @@ else:
 def getRuleName():
     l_ = []
     l_d_ = Sqlserver_PO.select("select * from a_ruleList")
-    # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
+    print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
     for d in l_d_:
         l_.append(d['ruleName'])
     return l_  # ['评估因素取值','健康干预_已患疾病单病', '健康干预_已患疾病组合','中医体质辨识']
@@ -286,7 +286,7 @@ def index7():
 @app.route('/')
 def index():
     global_d_['ruleName'] = getRuleName()
-    print("(263)global_d_['ruleName'] => ", global_d_['ruleName'])
+    print("(289)global_d_['ruleName'] => ", global_d_['ruleName'])
     global_d_['rule'] = getRuleCollection()
 
     # return render_template('index.html', global_d_=global_d_)
@@ -366,12 +366,13 @@ def updateRuleCollection():
             if l_t_count[0][0] == 0:
                 for index, sql in enumerate(l3, start=1):
                     sql = sql.replace("'", "''").replace("\r", "")
-                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],[seq],sql) values ('%s','%s',%s,'%s')" % (ruleName,ruleCollection, index, sql))
+                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],seq,sql) values ('%s','%s','%s','%s')" % (ruleName,ruleCollection, str(index), sql))
                     conn.commit()
             else:
                 cursor.execute("delete from a_ceshiguize where [rule]='%s'" % (ruleCollection))
                 for index, sql in enumerate(l3, start=1):
-                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],[seq],sql) values ('%s','%s',%s,'%s')" % (ruleName,ruleCollection, index, sql))
+                    sql = sql.replace("'", "''").replace("\r", "")
+                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],seq,sql) values ('%s','%s','%s','%s')" % (ruleName,ruleCollection, str(index), sql))
                     conn.commit()
 
             # 获取更新后的规则集
