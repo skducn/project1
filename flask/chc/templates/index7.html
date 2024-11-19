@@ -7,7 +7,6 @@
 <title>CHC - 社区健康自动化规则测试</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
-
 <!-- main -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/chc.css') }}">
@@ -47,7 +46,16 @@
 <style>
     textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
     textErr{white-space: pre-wrap;font-size:15px;color: #ec0b0b;text-align: left;line-height: 1.5rem;}
+    /* 表格 */
+{#table {border-collapse: collapse;width: 95%;}#}
+{#th {position: sticky;z-index: 10;top: 0;}#}
+th, td {border: 1px solid black;padding: 10px;text-align: center;}
+table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:center;}
+table.tftable tr {background-color:#d4e3e5;}
+table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
 </style>
+
 
 </head>
 
@@ -633,8 +641,9 @@
                                                         </div></div>
                                                         </div>
 
+                                                        <div style="line-height: 16px;" id="get_queryDesc2"></div>
+                                                        <div style="line-height: 16px;" id="queryDesc2_1"></div>
 
-                                                        <div style="line-height: 30px;" id="get_queryDesc2"></div>
                                                     </div>
                                                     </div>
                                                     </div>

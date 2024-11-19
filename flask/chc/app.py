@@ -918,7 +918,7 @@ def queryDesc2():
 @app.route('/get_queryDesc2')
 def get_queryDesc2():
     selected_value = request.args.get('value')
-    print("(880)查询表结构 - 数据库 =>", selected_value)
+    print("(921)查询表结构 - 数据库 =>", selected_value)
     Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", selected_value, "GBK")
 
     # 获取表和注释字典
@@ -936,6 +936,7 @@ def get_queryDesc2():
         d_tbl_desc2[i] = s_desc
     # print(d_tbl_desc2)
 
+    d_tbl_desc2['tblComment'] = d_tbl_comment
     return d_tbl_desc2
 
 

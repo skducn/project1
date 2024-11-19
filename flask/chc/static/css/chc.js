@@ -157,7 +157,7 @@ $(document).ready(function() {
     url: '/get_queryDesc2',
     type: 'GET',
     data: {'value': selectedValue},
-    success: function(data) {
+    success: function(response) {
         var test = document.getElementById('test');
         var divObj33 = document.getElementById("test3");
         if (divObj33!=null){
@@ -174,32 +174,63 @@ $(document).ready(function() {
 
         let divObj1 = document.createElement("div");
             divObj1.className = 'a6 a1K ac';
-            divObj1.id = "test1"
+            // divObj1.id = "test1"
         test.appendChild(divObj1);
         let divObj2 = document.createElement("div");
             divObj2.className = 'a5 md:a2u/2 af';
-            divObj1.id = "test2"
+            // divObj1.id = "test2"
             divObj1.appendChild(divObj2);
         let divObj3 = document.createElement("div");
             divObj3.className = 'a3u';
-            divObj1.id = "test3"
-            divObj3.style = "line-height: 25px;"
+            divObj3.id = "test3"
+            divObj3.style = "line-height: 16px;"
             divObj2.appendChild(divObj3);
 
-        for (let key in data){
-            let divObj = document.createElement("div");
-            divObj.id = key;
-            divObj.innerHTML = key;
-            divObj3.appendChild(divObj);
-            $(document).ready(function() {
-                new jBox('Modal', {
-                attach: '#' + key,
-                height: 600,
-                title: key,
-                content: '<div style="line-height: 30px;">' +
-                data[key] + '<br></div>'
-                });
+
+        for (let key in response){
+            if (key != 'tblComment') {
+
+                let trObj = document.createElement("tr");
+                let tdObj = document.createElement("td");
+                let tdObj2 = document.createElement("td");
+                divObj3.appendChild(trObj)
+                trObj.appendChild(tdObj)
+                trObj.appendChild(tdObj2)
+                let divObj = document.createElement("div");
+                let divObj2 = document.createElement("div");
+                let tblComment
+                varComment = response['tblComment'][key]
+                tblComment = key + "（" + varComment + "）"
+                divObj.id = key;
+                divObj.innerHTML = key;
+                divObj2.innerHTML = varComment;
+                tdObj.appendChild(divObj);
+                tdObj2.appendChild(divObj2);
+
+                //将文本内容格式化成表格
+                let l_tr = response[key].split("<br>")
+                let td_1 = '';
+                let tr_1 = '';
+                for (let i = 0; i < l_tr.length; i++) {
+                    let l_td = l_tr[i].split(",")
+                    for (let j = 0; j < l_td.length; j++) {
+                        td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'
+                    }
+                    tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'
+                    td_1 = ''
+                }
+                tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>'
+
+                $(document).ready(function () {
+                    new jBox('Modal', {
+                        attach: '#' + key,
+                        height: 600,
+                        title: tblComment,
+                        content: tr_1
+                            // '<tr><td><div style="line-height: 31px;">' + response[key] + '</div></td></tr>'
+                    });
                 })
+            }
         }
 
     $('#mask').hide(); // 显示遮罩层

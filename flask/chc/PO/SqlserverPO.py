@@ -1363,8 +1363,9 @@ class SqlServerPO:
                 s_value = ''
 
                 if len(l_columnName) != 0:
-                    s_info = str(k) + "(" + str(d_tableComment[k]) + ") - " + str(len(l_d_1)) + "个字段<br>"
-                    s_info = s_info + "列名[1], 类型[2], 长度[3], 时精[4], 数精[5], 非空[6], 默认值[7], 注释[8] " + "<br>"
+                    # s_info = str(k) + "(" + str(d_tableComment[k]) + ") - " + str(len(l_d_1)) + "个字段<br>"
+                    # s_info = s_info + "列名[1], 类型[2], 长度[3], 时精[4], 数精[5], 非空[6], 默认值[7], 注释[8] " + "<br>"
+                    s_info = s_info + "列名, 类型, 长度, 时精, 数精, 非空, 默认值, 注释" + "<br>"
                     # s_info = s_info + "列名" + " " * (columnName - len("COLUMN_NAME") + 9) + \
                     #          "类型" + " " * (dataType - len("DATA_TYPE") + 6) + \
                     #          "长度" + " " * (maxLength - len("MAX_LENGTH") + 13) + \
@@ -1374,12 +1375,16 @@ class SqlServerPO:
                     #          "默认值" + " " * (columnDefault - len("COLUMN_DEFAULT") + 11) + \
                     #          "注释" + " " * (columnComment - len("COLUMN_COMMENT")) + "<br>"
                     for i in range(len(l_columnName)):
-                        s_value = s_value + l_columnName[i] + ", " + l_dataType[i] + ", " + l_maxLength[i] + "[3], " + \
-                                  l_datetimePrecison[i] + "[4], " + \
-                                  l_numericPrecision[i] + "[5], " + l_isNull[i] + "[6], " + l_columnDefault[
-                                      i] + "[7], " + l_columnComment[i] + "<br>"
-
+                        s_value = s_value + l_columnName[i] + ", " + l_dataType[i] + ", " + l_maxLength[i] + ", " + \
+                                  l_datetimePrecison[i] + ", " + \
+                                  l_numericPrecision[i] + ", " + l_isNull[i] + ", " + l_columnDefault[
+                                      i] + ", " + l_columnComment[i] + "<br>"
+                        # s_value = s_value + l_columnName[i] + ", " + l_dataType[i] + ", " + l_maxLength[i] + "[3], " + \
+                        #           l_datetimePrecison[i] + "[4], " + \
+                        #           l_numericPrecision[i] + "[5], " + l_isNull[i] + "[6], " + l_columnDefault[
+                        #               i] + "[7], " + l_columnComment[i] + "<br>"
                     s_info = s_info + s_value
+                    s_info = s_info[:-4]  # 删除最后4个字符 <br>
 
                 l_columnName = []
                 l_dataType = []
