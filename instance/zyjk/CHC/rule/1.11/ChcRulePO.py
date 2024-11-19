@@ -17,6 +17,7 @@ Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database"))  # 测试环境
+Sqlserver_PO2 = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database2"))  # 测试环境
 # SqlServerPO = SqlServerPO(Configparser_PO.DB_DM("host"), Configparser_PO.DB_DM("user"), Configparser_PO.DB_DM("password"), Configparser_PO.DB_DM("port"))  # 测试环境
 
 from PO.StrPO import *
@@ -193,6 +194,7 @@ class ChcRulePO():
 
         # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
         Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）增量导入成功。"}, ])
+
 
     def genIdcard(self, sheetName):
 
@@ -417,6 +419,42 @@ class ChcRulePO():
             self.log = self.log + "\n" + str_r
             # 如：{"timestamp":"2023-08-12T20:56:45.715+08:00","status":404,"error":"Not Found","path":"/qyyh/addAssess/310101202308070001"}
             return (l_msg)
+
+
+
+    def getHospital(self):
+        # 1，获取医院信息表字典（机构编码：机构名）
+        d_hospital = {}
+        l_ = Sqlserver_PO2.select("select ORG_CODE,ORG_NAME from SYS_hospital")
+        for d in l_:
+            d_hospital[d['ORG_CODE']] = d['ORG_NAME']
+        # print(d_hospital)  # {'0000001': '静安精神病院', 'csdm': '彭浦新村街道社区健康管理中心', ...
+        return d_hospital
+
+
+    def getUserInfo(self):
+
+        # 2，获取当前用户信息
+        d_ = {}
+        l_ = Sqlserver_PO2.select(
+            "select NAME,THIRD_NO,ORG_CODE from SYS_USER where user_name='%s'" % (Configparser_PO.USER("user")))
+        d_['家庭医生'] = l_[0]['NAME']
+        # print("家庭医生 => ", varNAME)  # 小茄子
+
+        d_['家庭医生的工号'] = l_[0]['THIRD_NO']
+        # print("家庭医生的工号 => ", varTHIRD_NO)  # 1231231
+
+        d_['机构编号'] = l_[0]['ORG_CODE']
+        # print("机构编号 => ", varORG_CODE)  # 0000001
+
+        l_ = Sqlserver_PO2.select("select ORG_NAME from SYS_hospital where org_code='%s'" % (l_[0]['ORG_CODE']))
+        d_['机构名称'] = l_[0]['ORG_NAME']
+        # print("机构名称 => ", varORG_NAME)  # 静安精神病院
+
+        return d_
+
+
+
 
 
     def getRuleList(self):
@@ -1257,7 +1295,6 @@ class ChcRulePO():
                             Color_PO.outColor([{"33": l_d_[0]}])  # {'GUID': '65209815'}
 
                         self.d_param.update(l_d_[0])
-
 
         self.log = self.log + "\n" + str(self.d_param)
 

@@ -9,10 +9,68 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-l = []
-l.append("BV1HV41197iW")
-l.append("BV1qK4y1i7JL")
-print(l)
+
+# -*- coding: utf-8 -*-
+# @Time    : 2020/3/17 17:29
+# @Author  : felix
+# @File    : idNumber.py
+# @Software: PyCharm
+
+import random
+
+
+def getIdcard(birthyear, birthmonth, birthday):
+    # 预设地区:
+    codelist = ["110101", "110102", "110105", "110106", "110107", "420117", "420200", "420202", "420203", "420204",
+                "420205", "420222"]  # 随便设置了几个地区，基本都是湖北和北京的；
+    weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]  # 权重项
+    checkcode = {'0': '1', '1': '0', '2': 'X', '3': '9', '4': '8', '5': '7', '6': '6', '7': '5', '8': '5', '9': '3',
+                 '10': '2'}  # 校验码映射
+
+    #身份证前6位
+    try:
+        id = codelist[random.randint(0,len(codelist))] #地区项
+    except:
+        id = "110101"
+
+    #7-10位，出生年份
+    try:
+        birthdayStr = str(birthyear).zfill(4)+str(birthmonth).zfill(2)+str(birthday).zfill(2)
+        id = id + birthdayStr
+    except:
+        id = id + "19900101"
+
+    #最后4位的随机前3位
+    sex = ""
+    try:
+        sign = random.randint(1,999)
+        if sign%2 == 0:
+            sex = "女"
+        else:
+            sex = "男"
+        id = id + str(sign).zfill(3) #顺序号简单处理
+    except:
+        id = id + "999"
+    #判断性别
+
+    sum_1 = 0
+    for a in range(17):
+        sum_1 = sum_1+int(id[a])*weight[a]
+    index_id = sum_1%11
+    result_id = id + str(checkcode[str(index_id)])  #最终号码
+    return (result_id,sex)
+
+if __name__ == '__main__':
+    # birthyear = input("请输入出生年（例如：1990）： ")
+    # birthmonth = input("请输入出生月（例如：10）： ")
+    # birthday = input("请输入出生日（例如：2）： ")
+    (id,sex) = newIdNum('1950','12','12')
+    print("身份证号码为：%s，性别：%s" %(id,sex))
+
+# l = []
+# l.append("BV1HV41197iW")
+# l.append("BV1qK4y1i7JL")
+# print(l)
 
 
 # d = {"a":1 , "b":3}

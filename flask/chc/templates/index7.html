@@ -192,23 +192,53 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 
                                                     <div class="louti"></div>
 
+                                                            {#                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>#}
 
                                                     <label for class="al a25 aR a1j dark:a1k a2j">相关表结构信息:</label>
-                                                    {% for k,v in global_d_['tblByStep'].items() %}
-                                                    <div id="{{ k }}" >{{ k }}</div><br>
-                                                    {#                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>#}
-                                                    <script>
-                                                    $(document).ready(function() {
-                                                    new jBox('Modal', {
-                                                    attach: '#{{ k }}',
-                                                    height: 600,
-                                                    title: '{{k}}',
-                                                    content: '<div style="line-height: 30px;">' +
-                                                    '{{v | tojson}}<br></div>'
-                                                    });
-                                                    })
-                                                    </script>
-                                                    {% endfor %}
+
+                                                    {% for k,v in global_d_['tblByStep'].items()
+                                                        if (k != 'tblComment') %}
+                                                            <div id="{{ k }}" >{{ k }} ( {{ global_d_['tblByStep']['tblComment'][k] }}）</div><br>
+{#                                                                {% for i in v|split('<br>') %}#}
+{#                                                                   {% for j in i | split(',') %}#}
+{#                                                                        {{ td_1 }} = {{ td_1 }} + '<td><div style="line-height: 16px;">' + {{ j }} + '</div></td>'#}
+{#                                                                   {% endfor %}#}
+{#                                                                    {{ tr_1 }} = {{ tr_1 }} + '<tr>' + {{ tr_1 }} + '</tr>'#}
+{#                                                                    {{ td_1 }} = ''#}
+{#                                                                {% endfor %}#}
+{#                                                                {{ tr_1 }} = '<table class="tftable"><tbody>' + {{ tr_1 }}+ '</tbody></table>' %}#}
+
+                                                                <script>
+
+                                                                //将文本内容格式化成表格
+                                                                {#for (let key in {{ v }}){#}
+                                                                {#    let l_tr = key.split("<br>")#}
+                                                                {#    let td_1 = '';#}
+                                                                {#    let tr_1 = '';#}
+                                                                {#    for (let i = 0; i < l_tr.length; i++) {#}
+                                                                {#        let l_td = l_tr[i].split(",")#}
+                                                                {#        for (let j = 0; j < l_td.length; j++) {#}
+                                                                {#            td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'#}
+                                                                {#        }#}
+                                                                {#        tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'#}
+                                                                {#        td_1 = ''#}
+                                                                {#    }#}
+                                                                {#    tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>'#}
+
+                                                                    $(document).ready(function() {
+                                                                    new jBox('Modal', {
+                                                                    attach: '#{{ k }}',
+                                                                    height: 600,
+                                                                    title: '{{ global_d_['tblByStep']['tblComment'][k] }}',
+                                                                    {#content: tr_1#}
+                                                                    content: '<div style="line-height: 30px;">' +
+                                                                    '{{v | tojson}}<br></div>'
+                                                                    });
+
+                                                                    })
+                                                                </script>
+                                                        {%
+                                                    endfor %}
                                                     <br>
 
         <!-- 编辑 -->

@@ -74,6 +74,48 @@ class FakePO:
             return None
         return list1
 
+    def getIdcard(self, birthyear, birthmonth, birthday):
+        import random
+        # 预设地区:
+        codelist = ["110101", "110102", "110105", "110106", "110107", "420117", "420200", "420202", "420203", "420204",
+                    "420205", "420222"]  # 随便设置了几个地区，基本都是湖北和北京的；
+        weight = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]  # 权重项
+        checkcode = {'0': '1', '1': '0', '2': 'X', '3': '9', '4': '8', '5': '7', '6': '6', '7': '5', '8': '5', '9': '3',
+                     '10': '2'}  # 校验码映射
+
+        # 身份证前6位
+        try:
+            id = codelist[random.randint(0, len(codelist))]  # 地区项
+        except:
+            id = "110101"
+
+        # 7-10位，出生年份
+        try:
+            birthdayStr = str(birthyear).zfill(4) + str(birthmonth).zfill(2) + str(birthday).zfill(2)
+            id = id + birthdayStr
+        except:
+            id = id + "19900101"
+
+        # 最后4位的随机前3位
+        sex = ""
+        try:
+            sign = random.randint(1, 999)
+            if sign % 2 == 0:
+                sex = "女"
+            else:
+                sex = "男"
+            id = id + str(sign).zfill(3)  # 顺序号简单处理
+        except:
+            id = id + "999"
+        # 判断性别
+
+        sum_1 = 0
+        for a in range(17):
+            sum_1 = sum_1 + int(id[a]) * weight[a]
+        index_id = sum_1 % 11
+        result_id = id + str(checkcode[str(index_id)])  # 最终号码
+        return (result_id)
+
     def genPhone_number(self, country, n=1):
 
         """3 生成N个手机号"""
@@ -245,6 +287,9 @@ if __name__ == "__main__":
 
     Fake_PO = FakePO()
 
+    print(Fake_PO.getIdcard('1950','12','12'))
+
+
     # print("1，生成N个姓名".center(100, "-"))
     # print(Fake_PO.genName("zh_CN", 5))  # ['曾勇', '程旭', '金云', '张桂芝', '潘凤兰']
     # print(Fake_PO.genName('ja_JP', 5))  # ['橋本 翔太', '山田 七夏', '山口 香織', '山口 陽一', '加藤 花子']
@@ -270,7 +315,7 @@ if __name__ == "__main__":
     # print(Fake_PO.genEmail(5))  # ['yanjun@example.net', 'fren@example.org', 'gang65@example.org', 'xzhang@example.net', 'qjia@example.net']
     #
     # print("5，生成N个地址".center(100, "-"))
-    print(Fake_PO.genAddress('zh_CN', 5))  # ['上海市杭州市长寿白路C座 570538', '山西省潜江县东丽巢湖街u座 213982', '黑龙江省海门县怀柔张路u座 159680', '云南省上海县金平郑路o座 699256', '香港特别行政区拉萨县朝阳张家港路K座 667767']
+    # print(Fake_PO.genAddress('zh_CN', 5))  # ['上海市杭州市长寿白路C座 570538', '山西省潜江县东丽巢湖街u座 213982', '黑龙江省海门县怀柔张路u座 159680', '云南省上海县金平郑路o座 699256', '香港特别行政区拉萨县朝阳张家港路K座 667767']
     # print(Fake_PO.genAddress('ja_JP', 5))  # ['徳島県川崎市高津区前弥六41丁目6番8号', '秋田県横浜市中区日光27丁目23番7号 六番町コート328', '兵庫県大田区鳥越3丁目10番18号', '静岡県新島村鍛冶ケ沢11丁目27番19号', '富山県台東区所野28丁目25番6号 平須賀シティ865']
     # print(Fake_PO.genAddress('zh_TW', 5))  # ['76220 八德縣仁愛巷9號5樓', '26059 苗栗市南路1號7樓', '32821 馬公縣永寧街77號3樓', '47049 屏東五福街292號7樓', '96189 頭份自由路3號2樓']
     # print(Fake_PO.genAddress('ko_KR', 5))  # ['전라북도 진천군 삼성로', '인천광역시 성동구 역삼213가', '경상남도 광명시 도산대가 (성호손박동)', '제주특별자치도 청주시 서원구 선릉길', '경상남도 용인시 기흥구 개포가 (지훈이동)']
@@ -355,3 +400,4 @@ if __name__ == "__main__":
     # print(date_end - date_start)  # 0 days 00:00:07.272859
 
     # 测试结果：生成1万条数据需要7秒，10万条数据需要83秒
+

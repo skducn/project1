@@ -32,6 +32,7 @@ from flask import Flask, render_template
 # from flask_wtf import FlaskForm, CSRFProtect
 # from flask_wtf.file import FileField, FileRequired, FileAllowed
 
+
 sys.path.append(os.getcwd())
 
 from ChcRulePO import *
@@ -417,12 +418,19 @@ def testRule():
             # print(l_d_all[0]['step'])
             l_tableName = re.findall(r"from\s(\w+)\swhere", l_d_all[0]['step'], re.I)
             # print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+
+            # 获取表和注释字典
+            d_tbl_comment = Sqlserver_PO.getTableComment()
+            # print(d_tbl_comment)  # {'SYS_ABI_CONFIG': None, 'SYS_CITY': '城市字典表',
+
             # 获取表结构
-            d_tblByStep = {}
+            d_tbl_desc2 = {}
             for i in l_tableName:
                 s_desc = Sqlserver_PO.desc2(i)
-                d_tblByStep[i] = s_desc
-            global_d_['tblByStep'] = d_tblByStep
+                d_tbl_desc2[i] = s_desc
+            d_tbl_desc2['tblComment'] = d_tbl_comment
+            global_d_['tblByStep'] = d_tbl_desc2
+            print("global_d_['tblByStep'] => ",global_d_['tblByStep'])
 
             return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], tabName='测试项',subName='测试规则', testRule2=1, message=2)
             # return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)

@@ -1874,13 +1874,13 @@ class SqlServerPO:
             # print(counts.most_common(1)[0][0])
             if counts.most_common(1)[0][0] != None:
                 d_tmp[k] = counts.most_common(1)[0][0]
-                d_tmp6 = self.getPartFieldType(varTable, [k])
+                d_tmp6 = self.getFieldType(varTable, [k])
                 # print(d_tmp6)  # {'DOWNLOADSTATUS': 'tinyint'}
                 if d_tmp6[k] == 'datetime' or d_tmp6[k] == 'date' or d_tmp6[k] == 'datetime2':
                     d_tmp[k] = ''
             else:
                 # 获取字段和类型
-                d_tmp6 = self.getPartFieldType(varTable, [k])
+                d_tmp6 = self.getFieldType(varTable, [k])
                 # print(d_tmp6)  # {'DOWNLOADSTATUS': 'tinyint'}
                 if d_tmp6[k] == 'int' or d_tmp6[k] == 'tinyint' or d_tmp6[k] == 'decimal' or d_tmp6[k] == 'float':
                     d_tmp[k] = 0
@@ -1898,7 +1898,7 @@ class SqlServerPO:
         if l_d_PK != None:
             if len(l_d_PK) == 1:
                 # 获取主键的类型
-                d_PK = self.getPartFieldType(varTable, [l_d_PK[0]['COLUMN_NAME']])
+                d_PK = self.getFieldType(varTable, [l_d_PK[0]['COLUMN_NAME']])
                 # print(d_PK)  # {'GUID': 'varchar'}
                 # print(list(d_PK.values())[0])  #  'varchar'
                 s_PK_type = list(d_PK.values())[0]

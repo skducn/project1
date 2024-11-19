@@ -7,63 +7,73 @@
 # 'cs', '12345678'
 #***************************************************************
 
+from ChcPO import *
+Chc_PO = ChcPO()
+
 from PO.DataPO import *
 Data_PO = DataPO()
 
 from PO.FakePO import *
 Fake_PO = FakePO()
 
-from ConfigparserPO import *
-Configparser_PO = ConfigparserPO('config.ini')
+# from ConfigparserPO import *
+# Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database"), Configparser_PO.DB_SQL("charset"))
 Sqlserver_PO2 = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database2"), Configparser_PO.DB_SQL("charset"))
 
-# 获取随机姓名、地址及电话画面
-# print(Fake_PO.genName('Zh_CN', 1))
+# 随机地址
 # print(Fake_PO.genAddress('zh_CN', 1))
+
+# 随机电话
 # Fake_PO.genPhone_number('Zh_CN', 1)
-# 获取身份证和性别字典
-varJMXM = Fake_PO.genName('Zh_CN', 1)
-varIdcard = Fake_PO.genSsn('Zh_CN', 1)
-varSex = Data_PO.getSex(varIdcard)
+
+# 随机姓名
+residentName = Fake_PO.genName('Zh_CN', 1)
+print("居民姓名 => ", residentName)
+
+# 获取人群分类列表
+d_category = Chc_PO.getCategoryList(['0-6岁儿童', '学生（7-17岁）', '普通人群', '老年人', '未分类', '孕妇', '产妇'])
+print(d_category)  # {1: '0-6岁儿童', 2: '学生（7-17岁）', 3: '普通人群', 4: '老年人', 5: '未分类', 6: '孕妇', 7: '产妇'}
+
+# 通过人群分类生成身份证
+idcard = Chc_PO.getIdcardByCategory(4)  # 生成老年人身份证
+print("身份证 => ", idcard)
+
+# 获取身份证性别
+gender = Data_PO.getSex(idcard)
+print("性别 => ", gender)
 d_sex = {'男': 1, '女':2, '未知性别':3}
 
+# 获取医院信息表字典（机构）
+# d_hospital = Chc_PO.getHospital()
+# print("d_hospital => ", d_hospital)  # {'0000001': '静安精神病院', 'csdm': '彭浦新村街道社区健康管理中心', ...
+
+# 获取当前用户信息
+d_getUserInfo = Chc_PO.getUserInfo()
+print("用户信息 => ", d_getUserInfo)  # 用户信息 =>  {'doctorName': '小茄子', 'wkno': '1231231', 'orgCode': '0000001', 'orgName': '静安精神病院'}
+
+
 # todo QYYH（签约信息表）
-# Sqlserver_PO.desc('QYYH')
-# print(Sqlserver_PO.getTableComment('QYYH'))
-
-# 1，获取医院信息表字典（机构）
-d_hospital = {}
-l_ = Sqlserver_PO2.select("select ORG_CODE,ORG_NAME from SYS_hospital")
-for d in l_:
-    d_hospital[d['ORG_CODE']]=d['ORG_NAME']
-# print(d_hospital)  # {'0000001': '静安精神病院', 'csdm': '彭浦新村街道社区健康管理中心', ...
-
-# 2，当前用户信息
-l_ = Sqlserver_PO2.select("select NAME,THIRD_NO,ORG_CODE from SYS_USER where user_name='%s'" % (Configparser_PO.USER("user")))
-varNAME = l_[0]['NAME']
-# print(varNAME)  # 自动化  //家庭医生
-varTHIRD_NO = l_[0]['THIRD_NO']
-# print(varTHIRD_NO)  # 1100   //家庭医生的工号
-varORG_CODE = l_[0]['ORG_CODE']
-# print(varORG_CODE)  # a202020   //机构编号
-l_ = Sqlserver_PO2.select("select ORG_NAME from SYS_hospital where org_code='%s'" % (varORG_CODE))
-varORG_NAME = l_[0]['ORG_NAME']
-# print(varORG_NAME)  # 自动化第六医院   //机构名称
 
 # 3, 随机获取评估状态值(0:预评估；1:评估完成；2:未评估)
-evaluationStatus = random.sample([0,1,2], 1)[0]
-# print(evaluationStatus)
+# evaluationStatus = random.sample([0, 1, 2], 1)[0]
+# print(evaluationStatus)  # 0
 
-# 4，随机获取人群分类
-l_category = ['0-6岁儿童', '学生（7-17岁）', '普通人群', '老年人', '未分类', '孕妇', '产妇']
-d_category = dict(enumerate(l_category, start=1))
-# print(d_category)  # {1: '0-6岁儿童', 2: '学生（7-17岁）', 3: '普通人群', 4: '老年人', 5: '未分类', 6: '孕妇', 7: '产妇'}
-# print(list(d_category.keys()))  # [1, 2, 3, 4, 5, 6, 7]
-randomCategoryKey = random.sample(list(d_category.keys()), 1)[0]
-# print(randomCategoryKey, d_category[randomCategoryKey])   # 随机获取字典的key, 如：("2", d_category[2])
+# 签约信息表
+# 人群分类 CATEGORY_CODE":'4', 老年人
+Sqlserver_PO.insert("QYYH", {"CZRYBM": d_getUserInfo['wkno'], "CZRYXM": d_getUserInfo['doctorName'], "JMXM": residentName, "SJHM": Fake_PO.genPhone_number('Zh_CN', 1),
+        "SFZH": idcard, "JJDZ": Fake_PO.genAddress('zh_CN', 1), "ARCHIVEUNITCODE": d_getUserInfo['orgCode'], "ARCHIVEUNITNAME": d_getUserInfo['orgName'],
+        "SIGNSTATUS": 1, "SIGNDATE": "2023-01-01", "CATEGORY_CODE": 4, "CATEGORY_NAME": d_category[4], "LAST_SERVICE_DATE": "2023-05-06",
+        "KEY_POPULATION": 1, "REPORT_STATUS": 0, "LATEST_ASSESS_DATE": "2024-10-10", "LATEST_CONFIRM_DATE": "2024-11-11"})
+
+
+# Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":varJMXM, "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
+#         "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":"0000001", "ARCHIVEUNITNAME":d_hospital["0000001"],
+#         "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":7,"CATEGORY_NAME":d_category[7],"LAST_SERVICE_DATE":"2023-05-06",
+#         "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
+
 
 
 # todo HRPERSONBASICINFO(基本信息表)
@@ -72,23 +82,34 @@ randomCategoryKey = random.sample(list(d_category.keys()), 1)[0]
 
 def insert_HRPERSONBASICINFO():
     # 删除记录
-    Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (varIdcard))
+    Sqlserver_PO.execute("delete from HRPERSONBASICINFO where ARCHIVENUM = '%s'" % (idcard))
     # 插入记录
-    Sqlserver_PO.insert("HRPERSONBASICINFO",{"ARCHIVENUM":varIdcard, "NAME":varJMXM, "IDCARD":varIdcard, "CREATETIME":time.strftime("%Y-%m-%d %H:%M:%S")})
+    Sqlserver_PO.insert("HRPERSONBASICINFO",{"ARCHIVENUM":idcard, "NAME":residentName, "IDCARD":idcard, "CREATETIME":time.strftime("%Y-%m-%d %H:%M:%S")})
+
+# # 基本信息表
+# insert_HRPERSONBASICINFO()
 
 
-
-varGUID = Data_PO.getFigures(8)
 
 # todo TB_EMPI_INDEX_ROOT(患者主索引表)
 # Sqlserver_PO.desc('TB_EMPI_INDEX_ROOT')
 # print(Sqlserver_PO.getTableComment('TB_EMPI_INDEX_ROOT'))
 
 def insert_TB_EMPI_INDEX_ROOT():
+    varGUID = Data_PO.getFigures(8)
     # 删除记录
-    Sqlserver_PO.execute("delete from TB_EMPI_INDEX_ROOT where IDCARDNO = '%s'" % (varIdcard))
+    Sqlserver_PO.execute("delete from TB_EMPI_INDEX_ROOT where IDCARDNO = '%s'" % (idcard))
     # 插入记录
-    Sqlserver_PO.insert("TB_EMPI_INDEX_ROOT", {"GUID":varGUID, "NAME":varJMXM, "IDCARDNO":varIdcard})
+    Sqlserver_PO.insert("TB_EMPI_INDEX_ROOT", {"GUID":varGUID, "NAME":residentName, "IDCARDNO":idcard})
+
+# # 患者主索引表
+# insert_TB_EMPI_INDEX_ROOT()
+
+
+
+# =======================================================================================================================
+
+
 
 
 
@@ -179,24 +200,7 @@ def insert_TB_DC_DM_VISIT():
     # Sqlserver_PO.insert("TB_DC_DM_VISIT", {"GUID":varGUID, "CARDID":varGUID, "ORGCODE":"0000001", "VISITDATE":?, "SBP":?, "DBP":?})
 
 
-# 签约信息表
-# # 人群分类 CATEGORY_CODE":'4',"CATEGORY_NAME":d_category[4]
-# Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":varJMXM, "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
-#         "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":"0000001", "ARCHIVEUNITNAME":d_hospital["0000001"],
-#         "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":4,"CATEGORY_NAME":d_category[4],"LAST_SERVICE_DATE":"2023-05-06",
-#         "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
 
-
-# Sqlserver_PO.insert("QYYH",{"CZRYBM":varTHIRD_NO, "CZRYXM":varNAME, "JMXM":varJMXM, "SJHM":Fake_PO.genPhone_number('Zh_CN',1),
-#         "SFZH":varIdcard, "JJDZ":Fake_PO.genAddress('zh_CN', 1),"ARCHIVEUNITCODE":"0000001", "ARCHIVEUNITNAME":d_hospital["0000001"],
-#         "SIGNSTATUS":1,"SIGNDATE":"2023-01-01", "CATEGORY_CODE":7,"CATEGORY_NAME":d_category[7],"LAST_SERVICE_DATE":"2023-05-06",
-#         "KEY_POPULATION":1, "REPORT_STATUS":0, "LATEST_ASSESS_DATE":"2024-10-10", "LATEST_CONFIRM_DATE":"2024-11-11"})
-
-# 基本信息表
-# insert_HRPERSONBASICINFO()
-
-# 患者主索引表
-# insert_TB_EMPI_INDEX_ROOT()
 
 # 慢心病防治随访主表
 # insert_TB_DC_CHRONIC_MAIN()
@@ -230,8 +234,8 @@ def insert_TB_DC_DM_VISIT():
 
 # 孕产妇信息表
 # Sqlserver_PO.desc('T_ASSESS_INFO')
-a = Sqlserver_PO.desc2('TB_DC_EXAMINATION_INFO')
-print(a)
+# a = Sqlserver_PO.desc2('TB_DC_EXAMINATION_INFO')
+# print(a)
 # UPDATE TB_DC_EXAMINATION_INFO set TRIGLYCERIDE=2.3 WHERE EMPIGUID='65209815'
 
 
