@@ -420,17 +420,20 @@ def testRule():
             # print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
 
             # 获取表和注释字典
-            d_tbl_comment = Sqlserver_PO.getTableComment()
+            # d_tbl_comment = Sqlserver_PO.getTableComment()
             # print(d_tbl_comment)  # {'SYS_ABI_CONFIG': None, 'SYS_CITY': '城市字典表',
 
             # 获取表结构
             d_tbl_desc2 = {}
+            d_tbl_comment = {}
             for i in l_tableName:
                 s_desc = Sqlserver_PO.desc2(i)
                 d_tbl_desc2[i] = s_desc
+                d_tbl_comment.update(Sqlserver_PO.getTableComment(i))
+
             d_tbl_desc2['tblComment'] = d_tbl_comment
             global_d_['tblByStep'] = d_tbl_desc2
-            print("global_d_['tblByStep'] => ",global_d_['tblByStep'])
+            print("global_d_['tblByStep'] => ", global_d_['tblByStep'])
 
             return render_template('index7.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], tabName='测试项',subName='测试规则', testRule2=1, message=2)
             # return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName)
@@ -942,7 +945,7 @@ def get_queryDesc2():
     for i in l_tableName:
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl_desc2[i] = s_desc
-    # print(d_tbl_desc2)
+    print("d_tbl_desc2 => ", d_tbl_desc2)
 
     d_tbl_desc2['tblComment'] = d_tbl_comment
     return d_tbl_desc2

@@ -14,14 +14,11 @@ ChcRule_PO = ChcRulePO()
 
 # ChcRule_PO.importFull('测试规则')
 # ChcRule_PO.importFull('疾病取值判断')
-# ChcRule_PO.importFull('log')
-# ChcRule_PO.importFull('memory')
+
 # 创建规则名列表
 # ChcRule_PO.crtRuleList()
 
-
-
-ChcRule_PO.importFull('评估因素取值')
+# ChcRule_PO.importFull('评估因素取值')
 # ChcRule_PO.importFull('健康干预_已患疾病单病')
 # ChcRule_PO.importFull('健康干预_已患疾病组合')
 # ChcRule_PO.importFull('健康评估')
@@ -30,8 +27,6 @@ ChcRule_PO.importFull('评估因素取值')
 # ChcRule_PO.importFull('健康干预_其他分类')
 # ChcRule_PO.importFull('健康干预')
 # ChcRule_PO.importFull("中医体质辨识")
-
-
 
 
 

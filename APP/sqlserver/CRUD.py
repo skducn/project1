@@ -24,16 +24,44 @@ from PO.SqlserverPO import *
 # todo 社区健康平台
 Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
+# import json
+# d_getUserInfo = {'doctorName': '小茄子'}
+#
+# s_getUserInfo = json.dumps(d_getUserInfo, ensure_ascii=False)
+# Sqlserver_PO.execute("insert a_autoIdcard (tblName,idcard,category,userInfo) values ('%s','%s','%s','%s')" % (
+# u'签约信息表,基本信息表,患者主索引表', str(310101198004110014), str(4), s_getUserInfo))
+
+
+# print(str(d_getUserInfo))
+# for k,v in d_getUserInfo.items():
+#     Sqlserver_PO.execute("insert into a_autoIdcard (tblName,idcard) values ('%s','%s')" % (k,v ))
 
 # todo 8.1 创建表（覆盖，即如表存在先删除再创建），自增id主键PRIMARY KEY(id)
-Sqlserver_PO.crtTableByCover('a_api_wow_info',
-                           '''id INT NOT NULL,
-                            name1 VARCHAR(100),
-                            salesrep VARCHAR(100),
-                            bir DATETIME not null,
-                            ff varchar(12) not null default 123,
-                            PRIMARY KEY(id)
+Sqlserver_PO.crtTableByCover('a_autoIdcard',
+                           '''id INT IDENTITY(1,1) PRIMARY KEY,
+                            tblName NVARCHAR(50),
+                            idcard VARCHAR(18),
+                            category VARCHAR(10),
+                            userInfo VARCHAR(300)
                           ''')
+
+# Sqlserver_PO.crtTableByCover('a_autoIdcard',
+#                            '''id INT NOT NULL,
+#                             tblName VARCHAR(50),
+#                             idcard VARCHAR(18),
+#                             category VARCHAR(10),
+#                             userInfo VARCHAR(300),
+#                             PRIMARY KEY(id)
+#                           ''')
+
+# Sqlserver_PO.crtTableByCover('a_api_wow_info',
+#                            '''id INT NOT NULL,
+#                             name1 VARCHAR(100),
+#                             salesrep VARCHAR(100),
+#                             bir DATETIME not null,
+#                             ff varchar(12) not null default 123,
+#                             PRIMARY KEY(id)
+#                           ''')
 
 
 # todo 8.2 创建表（忽略，如原表存在则忽略不创建）,自增id主键IDENTITY(1,1) PRIMARY KEY
@@ -55,7 +83,7 @@ Sqlserver_PO.crtTableByCover('a_api_wow_info',
 # todo 8.5 删除表
 # Sqlserver_PO.execute("DROP TABLE a_test")
 # todo 8.6 插入1条记录
-Sqlserver_PO.execute("INSERT INTO a_api_wow_info values(4, 'John Smith6662','John Doe3', '2020-12-12', '123')")
+# Sqlserver_PO.execute("INSERT INTO a_api_wow_info values(4, 'John Smith6662','John Doe3', '2020-12-12', '123')")
 
 
 # todo 插入多条记录
