@@ -684,7 +684,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                         <label for class="al a25 aR a1j dark:a1k a2j">查询SQL</label>
                                                         <div class="a5 md:a2u af">
                                                             <div class="a3u">
-                                                                <textarea name="querySql" id="querySql" rows="2" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+                                                                <textarea name="querySql" id="querySql" rows="5" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -692,6 +692,40 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                     <div class="a5 af"><div class="a2g">
                                                     <input type="submit" id="queryRecord" class="btn-custom green" value="查询">
                                                     </div></div>
+
+{#                                                    {% for k1,v1 in global_d_['querySQL'].items()#}
+{#                                                        if (k1 != 'tblComment') %}#}
+{#                                                            <div id="{{ k1 }}" >{{ k1 }}（{{ global_d_['tblByStep']['tblComment'][k1] }}）</div><br>#}
+{#                                                            <script>#}
+                                                                {#//将文本内容格式化成表格#}
+                                                                {#let l_tr = ''#}
+                                                                {#l_tr = {{ v1 | tojson }}.split("<br>")#}
+                                                                {#var td_1 = '';#}
+                                                                {#var tr_1 = '';#}
+                                                                {#let l_td = '';#}
+                                                                {#for (i = 0; i < l_tr.length; i++) {#}
+                                                                {#    var l_td = l_tr[i].split(",")#}
+                                                                {#    for (j = 0; j < l_td.length; j++) {#}
+                                                                {#        td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'#}
+                                                                {#    }#}
+                                                                {#    tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'#}
+                                                                {#    var td_1 = ''}#}
+                                                                {#tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>'#}
+{##}
+{#                                                                $(document).ready(function() {#}
+{#                                                                    new jBox('Modal', {#}
+{#                                                                    attach: '#{{ k1 }}',#}
+{#                                                                    height: 600,#}
+{#                                                                    title:  '{{ k1 }}' + "（" + '{{ global_d_['tblByStep']['tblComment'][k1] }}' + "）",#}
+                                                                    {#content: {{ v1 }}#}
+                                                                    {#content: tr_1#}
+{#                                                                    content: '<div style="line-height: 30px;">' + '{{v1 | tojson}}<br></div>'#}
+{#                                                                    });#}
+{#                                                                })#}
+{##}
+{#                                                            </script>#}
+{#                                                    {% endfor %}#}
+{#                                                    <br>#}
 
                                                 </div></div></div></div>
 

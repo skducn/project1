@@ -115,6 +115,8 @@ app = Flask(__name__)
 app.secret_key = 'eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk'
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 
+app.debug =True
+
 #
 # class CDN(object):
 #     def __init__(self, app=None):
@@ -133,9 +135,6 @@ cache = Cache(app, config={'CACHE_TYPE': 'simple'})
 # # 初始化CDN
 # cdn = CDN(app)
 
-@app.route("/download")
-def download():
-    return send_file('/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase1.11.xlsx', as_attachment=True)
 
 
 line_number = [0] #存放当前日志行数
@@ -189,8 +188,18 @@ global_d_ = {'menu': {"searchRecord": "查询记录", "queryDesc2": "查询表�
 system = os.uname().sysname
 if system == 'Linux':
     global_d_['icon'] = 'dragon.ico'
+    global_d_['downloadFile'] = 'chcRuleCase.xlsx'
+
 else:
+    global_d_['downloadFile'] = '/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase.xlsx'
     global_d_['icon'] = 'pig.ico'
+
+
+@app.route("/download")
+def download():
+    return send_file(global_d_['downloadFile'], as_attachment=True)
+    # return send_file('https://192.168.0.243:5000/home/flask_chc/chcRuleCase.xlsx', as_attachment=True)
+    # return send_file('/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase.xlsx', as_attachment=True)
 
 
 # 获取规则名列表
@@ -824,10 +833,13 @@ def edit123():
 @app.route("/get_queryRecord", methods=["POST"])
 def get_queryRecord():
     querySql = request.form.get("querySql")
-    querySql = querySql.replace("SELECT ", "select ").replace("WHERE ", "where ")
+    querySql = querySql.replace("SELECT ", "select ").replace("WHERE ", "where ").replace("FROM ", "from ")
     if ' select ' in querySql:
         querySql = querySql.split(" select ")[1]
         querySql = "select " + querySql
+
+        global_d_['querySQL'] = querySql.split("from ")[1].split(" where")[0]
+
 
     data = ""
     if 'select ' not in querySql :
@@ -840,12 +852,15 @@ def get_queryRecord():
             # print('error，缺少where条件！')
             # sys.exit(0)
         else:
-            cursor.execute(querySql)
-            rows = cursor.fetchall()
-            for row in rows:
-                data = data + str(row)
-                # data = data + str(row) + "<br>"
-            print(data)
+            try:
+                cursor.execute(querySql)
+                rows = cursor.fetchall()
+                for row in rows:
+                    data = data + str(row)
+                    # data = data + str(row) + "<br>"
+                print(data)
+            except:
+                data = "error, 表或字段名错误！"
     return data
 
 
@@ -964,7 +979,7 @@ def uploadFile():
     file.save(os.path.join(savepath, file.filename))
     # 文件改名
     file1 = savepath + "/" + file.filename
-    file2 = savepath + "/chcRuleCase1.11.xlsx"
+    file2 = savepath + "/chcRuleCase.xlsx"
     os.rename(file1, file2)
     global_d_['file2'] = file2
     return 1
@@ -1036,7 +1051,7 @@ def registerTbl():
 def registerTbl2():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
-        print("(983)创建库表 - 规则名(步骤2/2) =>", ruleName)
+        print("(1052)创建库表 - 规则名(步骤2/2) =>", ruleName)
         if ruleName == 'none':
             # return render_template('registerTbl.html', global_d_=global_d_, message=0)
             return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据源', subName='创建库表', registerTbl2=1)
@@ -1045,6 +1060,7 @@ def registerTbl2():
             status = ChcRule_PO.importFull(ruleName)
             setRuleName(ruleName)
             l_tmp = getRuleNameBySheet(global_d_['file2'])
+            print("(1061)l_tmp", l_tmp)
             if status == 1:
                 return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='数据源', subName='创建库表', registerTbl2=1)
                 # return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)

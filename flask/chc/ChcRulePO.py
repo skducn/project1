@@ -11,12 +11,14 @@ import pyperclip as pc
 # 1、复制内容到剪贴板
 # 2、粘贴剪贴板里的内容
 
-from ConfigparserPO import *
+import datetime
 import random
+from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database"))  # 测试环境
+Sqlserver_PO2 = SqlServerPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database2"))  # 测试环境
 # SqlServerPO = SqlServerPO(Configparser_PO.DB_DM("host"), Configparser_PO.DB_DM("user"), Configparser_PO.DB_DM("password"), Configparser_PO.DB_DM("port"))  # 测试环境
 
 from PO.StrPO import *
@@ -193,6 +195,7 @@ class ChcRulePO():
 
         # print("[ok] 表'%s(%s)'创建成功! " % (dbTable, sheetName))
         Color_PO.outColor([{"36": "[OK] => " + sheetName + "（" + dbTable + "）增量导入成功。"}, ])
+
 
     def genIdcard(self, sheetName):
 
@@ -419,6 +422,42 @@ class ChcRulePO():
             return (l_msg)
 
 
+
+    def getHospital(self):
+        # 1，获取医院信息表字典（机构编码：机构名）
+        d_hospital = {}
+        l_ = Sqlserver_PO2.select("select ORG_CODE,ORG_NAME from SYS_hospital")
+        for d in l_:
+            d_hospital[d['ORG_CODE']] = d['ORG_NAME']
+        # print(d_hospital)  # {'0000001': '静安精神病院', 'csdm': '彭浦新村街道社区健康管理中心', ...
+        return d_hospital
+
+
+    def getUserInfo(self):
+
+        # 2，获取当前用户信息
+        d_ = {}
+        l_ = Sqlserver_PO2.select(
+            "select NAME,THIRD_NO,ORG_CODE from SYS_USER where user_name='%s'" % (Configparser_PO.USER("user")))
+        d_['家庭医生'] = l_[0]['NAME']
+        # print("家庭医生 => ", varNAME)  # 小茄子
+
+        d_['家庭医生的工号'] = l_[0]['THIRD_NO']
+        # print("家庭医生的工号 => ", varTHIRD_NO)  # 1231231
+
+        d_['机构编号'] = l_[0]['ORG_CODE']
+        # print("机构编号 => ", varORG_CODE)  # 0000001
+
+        l_ = Sqlserver_PO2.select("select ORG_NAME from SYS_hospital where org_code='%s'" % (l_[0]['ORG_CODE']))
+        d_['机构名称'] = l_[0]['ORG_NAME']
+        # print("机构名称 => ", varORG_NAME)  # 静安精神病院
+
+        return d_
+
+
+
+
+
     def getRuleList(self):
 
         d_ = {}
@@ -527,12 +566,15 @@ class ChcRulePO():
             print("error, rule或tester不能为空！")
             sys.exit(0)
         l_d_ = Sqlserver_PO.select("select sql from %s where [rule]='%s'" % (self.csgz, self.rule))
+        # print(self.csgz, self.rule)
+        # print("l_d_", l_d_)
         l_sql = []
         for i in range(len(l_d_)):
             if os.name == "posix":
                 l_sql.append(l_d_[i]['sql'])
             else:
                 l_sql.append(l_d_[i]['sql'].encode('latin1').decode('GB2312'))
+        # print("l_sql", l_sql)
         return l_sql
 
     def assert1(self, varResult, varExpect):
@@ -925,96 +967,18 @@ class ChcRulePO():
                     self.testRules()
                 else:
                     # 正有参
-                    try:
-                        if Configparser_PO.SWITCH("log") == "on":
-                            Color_PO.outColor([{"35": "self.ruleParam => " + str(self.ruleParam)}])
-                        self.testRules()
-                        self.assertAssess()
-                    except:
-                        Color_PO.outColor([{"35": "error,请检查测试规则中评估因素取值是否存在 a1,a2,a3 规则！"}])
+                    if Configparser_PO.SWITCH("log") == "on":
+                        Color_PO.outColor([{"35": "(967)self.ruleParam => " + str(self.ruleParam)}])
+                    self.testRules()
+                    self.assertAssess()
+                    # try:
+                    #     if Configparser_PO.SWITCH("log") == "on":
+                    #         Color_PO.outColor([{"35": "self.ruleParam => " + str(self.ruleParam)}])
+                    #     self.testRules()
+                    #     self.assertAssess()
+                    # except:
+                    #     Color_PO.outColor([{"35": "error,请检查测试规则中评估因素取值是否存在 a1,a2,a3 规则！"}])
 
-        # if self.rule == 's2bak' :
-        #     if self.case == 'negative':
-        #         if self.ruleParam != None:
-        #             # 实例4：反向带参，如：{'DIAGNOSIS_CODE':'I15'}  ，'I15'是错误的值。
-        #             print(self.ruleParam['DIAGNOSIS_CODE'])
-        #             self.prefixICD = self.ruleParam['DIAGNOSIS_CODE']
-        #         else:
-        #             # 实例3：反向无参
-        #             # print(self.diseaseCodeDesc)
-        #             l_d_ = Sqlserver_PO.select(
-        #                 "select prefixICD from a_jibingquzhipanduan where diseaseName !='%s'" % (self.diseaseCodeDesc))
-        #             # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
-        #             l_1 = l_d_[0]['prefixICD'].split(",")
-        #             l_3 = []
-        #             for i in l_d_:
-        #                 l_2 = i['prefixICD'].split(",")
-        #                 # print(l_2)
-        #                 l_3 = l_3 + l_2
-        #             # print(l_3)
-        #             # sys.exit(0)
-        #             self.prefixICD = random.sample(l_3, 1)[0]
-        #             print(self.prefixICD)
-        #         self.outNegative0(self.testRule11())
-        #     else:
-        #         if self.ruleParam != None:
-        #             # 实例2：带参，如：高血压 {'DIAGNOSIS_CODE':'I15'}
-        #             print(self.ruleParam['DIAGNOSIS_CODE'])
-        #             self.prefixICD = self.ruleParam['DIAGNOSIS_CODE']
-        #             self.outResult2(self.testRule11())
-        #         else:
-        #             # 实例1：无参数，自动从疾病取值判断中匹配，建议使用。
-        #             # 1 遍历疾病取值判断(a_jibingquzhipanduan)，测试所有值
-        #             l_d_ = Sqlserver_PO.select("select prefixICD from a_jibingquzhipanduan where diseaseName='%s'" % (self.diseaseCodeDesc))
-        #             # print(l_d_)  # [{'prefixICD': 'I60,I61,I62,I63,I64,I69.0,I69.1,I69.2,I69.3,I69.4'}]
-        #             l_1 = l_d_[0]['prefixICD'].split(",")
-        #             d_eachResult = {}
-        #             d_eachStep = {}
-        #             for i in l_1:
-        #                 # d['prefixICD'] = i
-        #                 self.prefixICD = i
-        #                 print(self.prefixICD)
-        #                 # a = self.testRule11(d)
-        #                 varQty = self.testRule11()
-        #
-        #                 if varQty == 2:
-        #                     # Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
-        #                     #     self.rule) + ") => OK]").center(100, '-')), "")
-        #                     d_eachResult[self.prefixICD] = 'ok'
-        #                     d_eachResult1 = str(d_eachResult).replace("'", "''")
-        #                     # print(d_eachResult1)
-        #                     Sqlserver_PO.execute("update %s set eachResult='%s' where id=%s" % (self.dbTable, str(d_eachResult1), self.dbId))
-        #                     self.log = (self.log).replace("'", "''")
-        #                     d_eachStep[self.prefixICD] = self.log
-        #                     d_eachStep1 = str(d_eachStep).replace("'", "''")
-        #                     # print(d_eachStep1)
-        #                     Sqlserver_PO.execute("update %s set eachStep='%s' where id=%s" % (self.dbTable, str(d_eachStep1), self.dbId))
-        #                 else:
-        #                     Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
-        #                     d_eachResult[self.prefixICD] = 'error'
-        #                     Sqlserver_PO.execute("update %s set eachResult='%s' where id=%s" % (self.dbTable, str(d_eachResult), self.dbId))
-        #                     print(self.log)
-        #                     self.log = (self.log).replace("'", "''")
-        #                     Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
-        #                         self.rule) + ") => ERROR]").center(100, '-')), "")
-        #                     d_eachStep[self.prefixICD] = self.log
-        #                     Sqlserver_PO.execute("update %s set eachStep='%s' where id=%s" % (self.dbTable, str(d_eachStep), self.dbId))
-        #                     Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (
-        #                         self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
-        #                 # Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
-        #                 Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
-        #
-        #             l_d_ = Sqlserver_PO.select("select eachResult from %s where id='%s'" % (self.dbTable, self.dbId))
-        #             print(l_d_)
-        #             s_33 = l_d_[0]['eachResult']  #  {'N03': 'ok', 'N11': 'ok', 'N18': 'ok'}
-        #             # print(s_33)
-        #             d_33 = dict(eval(s_33))
-        #             # print(d_33)
-        #             # print(list(d_33.values()))
-        #             if "error" in list(d_33.values()):
-        #                 self.outS2_2(1)
-        #             else:
-        #                 self.outS2_2(2)
 
     def _s1_noParam(self):
 
@@ -1158,12 +1122,13 @@ class ChcRulePO():
         d_update = {}
         self.ASSESS_ID = ""
         # d_total = {}
-        s11 = Data_PO.getFigures(11)
+        # s11 = Data_PO.getFigures(11)
+
         for i in range(len(self.sql)):
 
             # 格式化sql
             if "{随机11}" in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{随机11}", s11)
+                self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
             if '{ruleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
             if '{diseaseCode}' in self.sql[i]:
@@ -1174,11 +1139,10 @@ class ChcRulePO():
                 l_assessCode = self.assessCode.split(",")
                 if len(l_assessCode) == 1:
                     self.sql[i] = self.sql[i].replace("{assessCode}", self.assessCode)
+
             if "{今天往前一年内的日期}" in self.sql[i]:
                 if '今天往前一年内的日期' in self.ruleParam:
                     self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam['今天往前一年内的日期']))
-                else:
-                    self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(Time_PO.getDateByMinusPeriod(-1)))
             if "{今天往前一年内的日期1}" in self.sql[i]:
                 if '今天往前一年内的日期1' in self.ruleParam:
                     self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam['今天往前一年内的日期1']))
@@ -1195,6 +1159,14 @@ class ChcRulePO():
             if '{VISITTYPECODE}' in self.sql[i]:
                 self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
 
+            # 评估因素取值(dm\htn\examination)
+            for p in ['dm','htn','examination']:
+                if "{今天往前一年内的日期}" in self.sql[i] and '今天往前一年内的日期' in self.ruleParam[p]:
+                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam[p]['今天往前一年内的日期']))
+                if "{今天往前一年内的日期1}" in self.sql[i] and '今天往前一年内的日期1' in self.ruleParam[p]:
+                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam[p]['今天往前一年内的日期1']))
+
+
 
             # 将db转换成字典
             l = Sqlserver_PO.select("select key1, value1 from %s" % (self.tmp_db))
@@ -1208,7 +1180,6 @@ class ChcRulePO():
 
             if str(self.ASSESS_ID) != "":
                 self.sql[i] = str(self.sql[i]).replace('{ASSESS_ID}', str(self.ASSESS_ID))
-
 
 
             # todo 输出sql
@@ -1239,6 +1210,7 @@ class ChcRulePO():
 
             # todo 执行sql
             # sql返回值
+            # print("1201", self.sql[i])
             l_d_ = self.runSqls(self.sql[i])
 
             if 'self.i_startAssess2' in self.sql[i]:
@@ -1258,7 +1230,6 @@ class ChcRulePO():
 
                         self.d_param.update(l_d_[0])
 
-
         self.log = self.log + "\n" + str(self.d_param)
 
 
@@ -1266,7 +1237,7 @@ class ChcRulePO():
     def assertS1(self):
 
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": "self.d_param => " + str(self.d_param)}])
+            Color_PO.outColor([{"35": "(1227)self.d_param => " + str(self.d_param)}])
 
         if self.case != 'negative':
             # 正向
@@ -1326,13 +1297,14 @@ class ChcRulePO():
     def assertAssess(self):
 
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": "self.d_param => " + str(self.d_param)}])
+            Color_PO.outColor([{"35": "(1287)self.d_param => " + str(self.d_param)}])
 
         if self.case != 'negative':
             # 正向
+            if 'dm_maxvisitdate' in self.d_param:
 
-            if 'result2' in self.d_param:
-                if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']) and str(self.d_param["result2"]) == str(self.ruleParam['result2']):
+                s_d_param_dm_maxvisitdate = self.d_param["dm_maxvisitdate"].strftime('%Y-%m-%d')
+                if str(int(self.d_param["result"])) == str(self.ruleParam['dm']['result']) and str(self.d_param["result1"]) == str(self.ruleParam['dm']['result1']) and s_d_param_dm_maxvisitdate == str(self.ruleParam['dm']['dm_maxvisitdate']):
                     self._assertAssessOk()
                 else:
                     self._assertAssessErr()
@@ -1347,7 +1319,6 @@ class ChcRulePO():
                     self._assertAssessOk()
                 else:
                     self._assertAssessErr()
-
 
 
         elif self.case == 'negative':

@@ -18,7 +18,7 @@ ChcRule_PO = ChcRulePO()
 # 创建规则名列表
 # ChcRule_PO.crtRuleList()
 
-# ChcRule_PO.importFull('评估因素取值')
+ChcRule_PO.importFull('评估因素取值')
 # ChcRule_PO.importFull('健康干预_已患疾病单病')
 # ChcRule_PO.importFull('健康干预_已患疾病组合')
 # ChcRule_PO.importFull('健康评估')
