@@ -1124,13 +1124,27 @@ class ChcRulePO():
         d_update = {}
         self.ASSESS_ID = ""
         # d_total = {}
-        # s11 = Data_PO.getFigures(11)
+        s_random8 = Data_PO.getFigures(8)
+        s_random9 = Data_PO.getFigures(9)
+        s_random10 = Data_PO.getFigures(10)
+        s_random11 = Data_PO.getFigures(11)
+        s_random12 = Data_PO.getFigures(12)
 
         for i in range(len(self.sql)):
 
             # 格式化sql
-            if "{随机11}" in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
+            if "{引用随机值8}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值8}", s_random8)
+            if "{引用随机值9}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值9}", s_random9)
+            if "{引用随机值10}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值10}", s_random10)
+            if "{引用随机值11}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值11}", s_random11)
+            if "{引用随机值12}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值12}", s_random12)
+            if "{随机值11}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{随机值11}", Data_PO.getFigures(11))
             if '{ruleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
             if '{diseaseCode}' in self.sql[i]:
@@ -1161,12 +1175,18 @@ class ChcRulePO():
             if '{VISITTYPECODE}' in self.sql[i]:
                 self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
 
-            # 评估因素取值(dm\htn\examination)
-            for p in ['dm','htn','examination']:
-                if "{今天往前一年内的日期}" in self.sql[i] and '今天往前一年内的日期' in self.ruleParam[p]:
-                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam[p]['今天往前一年内的日期']))
-                if "{今天往前一年内的日期1}" in self.sql[i] and '今天往前一年内的日期1' in self.ruleParam[p]:
-                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam[p]['今天往前一年内的日期1']))
+            # 评估因素取值 - 高密度脂蛋白（HDL）(dm\htn\examination\op\ip)
+            if self.ruleParam.get('HDL'):
+                self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam['HDL']['今天往前一年内的日期1']))\
+                    .replace('{今天往前一年内的日期2}', str(self.ruleParam['HDL']['今天往前一年内的日期2']))\
+                    .replace('{今天往前一年内的日期3}', str(self.ruleParam['HDL']['今天往前一年内的日期3']))\
+                    .replace('{今天往前一年内的日期4}', str(self.ruleParam['HDL']['今天往前一年内的日期4']))\
+                    .replace('{今天往前一年内的日期5}', str(self.ruleParam['HDL']['今天往前一年内的日期5']))\
+                    .replace('{今天往前一年内的日期6}', str(self.ruleParam['HDL']['今天往前一年内的日期6']))\
+                    .replace('{今天往前一年内的日期7}', str(self.ruleParam['HDL']['今天往前一年内的日期7']))\
+                    .replace('{今天往前一年内的日期8}', str(self.ruleParam['HDL']['今天往前一年内的日期8']))\
+                    .replace('{今天往前一年内的日期9}', str(self.ruleParam['HDL']['今天往前一年内的日期9']))\
+                    .replace('{今天往前一年内的日期10}', str(self.ruleParam['HDL']['今天往前一年内的日期10']))
 
 
 
@@ -1303,13 +1323,33 @@ class ChcRulePO():
 
         if self.case != 'negative':
             # 正向
-            if 'dm_maxvisitdate' in self.d_param:
-
-                s_d_param_dm_maxvisitdate = self.d_param["dm_maxvisitdate"].strftime('%Y-%m-%d')
-                if str(int(self.d_param["result"])) == str(self.ruleParam['dm']['result']) and str(self.d_param["result1"]) == str(self.ruleParam['dm']['result1']) and s_d_param_dm_maxvisitdate == str(self.ruleParam['dm']['dm_maxvisitdate']):
+            if self.ruleParam.get('HDL'):
+                maxvisitdate12 = self.d_param["maxvisitdate12"].strftime('%Y-%m-%d')
+                maxvisitdate34 = self.d_param["maxvisitdate34"].strftime('%Y-%m-%d')
+                maxvisitdate56 = self.d_param["maxvisitdate56"].strftime('%Y-%m-%d')
+                maxvisitdate78 = self.d_param["maxvisitdate78"].strftime('%Y-%m-%d')
+                maxvisitdate910 = self.d_param["maxvisitdate910"].strftime('%Y-%m-%d')
+                if str(int(self.d_param["result1"])) == str(self.ruleParam['HDL']['result1']) \
+                        and str(self.d_param["result2"]) == str(self.ruleParam['HDL']['result2']) \
+                        and maxvisitdate12 == str(self.ruleParam['HDL']['maxvisitdate12']) \
+                        and str(int(self.d_param["result3"])) == str(self.ruleParam['HDL']['result3']) \
+                        and str(self.d_param["result4"]) == str(self.ruleParam['HDL']['result4']) \
+                        and maxvisitdate34 == str(self.ruleParam['HDL']['maxvisitdate34']) \
+                        and str(int(self.d_param["result5"])) == str(self.ruleParam['HDL']['result5']) \
+                        and str(self.d_param["result6"]) == str(self.ruleParam['HDL']['result6']) \
+                        and maxvisitdate56 == str(self.ruleParam['HDL']['maxvisitdate56']) \
+                        and str(int(self.d_param["result7"])) == str(self.ruleParam['HDL']['result7']) \
+                        and str(self.d_param["result8"]) == str(self.ruleParam['HDL']['result8']) \
+                        and maxvisitdate78 == str(self.ruleParam['HDL']['maxvisitdate78'])\
+                        and str(int(self.d_param["result9"])) == str(self.ruleParam['HDL']['result9']) \
+                        and str(self.d_param["result10"]) == str(self.ruleParam['HDL']['result10']) \
+                        and maxvisitdate910 == str(self.ruleParam['HDL']['maxvisitdate910']):
                     self._assertAssessOk()
                 else:
                     self._assertAssessErr()
+
+
+
             elif 'result1' in self.d_param:
                 if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']):
                     self._assertAssessOk()

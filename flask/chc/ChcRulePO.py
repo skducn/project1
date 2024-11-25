@@ -1160,11 +1160,11 @@ class ChcRulePO():
                 self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
 
             # 评估因素取值(dm\htn\examination)
-            for p in ['dm','htn','examination']:
-                if "{今天往前一年内的日期}" in self.sql[i] and '今天往前一年内的日期' in self.ruleParam[p]:
-                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam[p]['今天往前一年内的日期']))
-                if "{今天往前一年内的日期1}" in self.sql[i] and '今天往前一年内的日期1' in self.ruleParam[p]:
-                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam[p]['今天往前一年内的日期1']))
+            for k,v in self.ruleParam.items():
+                if "{今天往前一年内的日期}" in self.sql[i] and '今天往前一年内的日期' in self.ruleParam[k]:
+                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam[k]['今天往前一年内的日期']))
+                if "{今天往前一年内的日期1}" in self.sql[i] and '今天往前一年内的日期1' in self.ruleParam[k]:
+                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam[k]['今天往前一年内的日期1']))
 
 
 
@@ -1302,14 +1302,25 @@ class ChcRulePO():
         if self.case != 'negative':
             # 正向
             if 'dm_maxvisitdate' in self.d_param:
-
                 s_d_param_dm_maxvisitdate = self.d_param["dm_maxvisitdate"].strftime('%Y-%m-%d')
-                if str(int(self.d_param["result"])) == str(self.ruleParam['dm']['result']) and str(self.d_param["result1"]) == str(self.ruleParam['dm']['result1']) and s_d_param_dm_maxvisitdate == str(self.ruleParam['dm']['dm_maxvisitdate']):
+                if str(int(self.d_param['result'])) == str(self.ruleParam['dm']['result']) and str(self.d_param['result1']) == str(self.ruleParam['dm']['result1']) and s_d_param_dm_maxvisitdate == str(self.ruleParam['dm']['dm_maxvisitdate']):
+                    self._assertAssessOk()
+                else:
+                    self._assertAssessErr()
+            elif 'htn_maxvisitdate' in self.d_param:
+                s_d_param_htn_maxvisitdate = self.d_param["htn_maxvisitdate"].strftime('%Y-%m-%d')
+                if str(int(self.d_param['result'])) == str(self.ruleParam['htn']['result']) and str(self.d_param['result1']) == str(self.ruleParam['htn']['result1']) and s_d_param_htn_maxvisitdate == str(self.ruleParam['htn']['htn_maxvisitdate']):
+                    self._assertAssessOk()
+                else:
+                    self._assertAssessErr()
+            elif 'examination_maxvisitdate' in self.d_param:
+                s_d_param_examination_maxvisitdate = self.d_param["examination_maxvisitdate"].strftime('%Y-%m-%d')
+                if str(int(self.d_param['result'])) == str(self.ruleParam['examination']['result']) and str(self.d_param['result1']) == str(self.ruleParam['examination']['result1']) and s_d_param_examination_maxvisitdate == str(self.ruleParam['examination']['examination_maxvisitdate']):
                     self._assertAssessOk()
                 else:
                     self._assertAssessErr()
             elif 'result1' in self.d_param:
-                if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']):
+                if str(self.d_param['result']) == str(self.ruleParam['result']) and str(self.d_param['result1']) == str(self.ruleParam['result1']):
                     self._assertAssessOk()
                 else:
                     self._assertAssessErr()
