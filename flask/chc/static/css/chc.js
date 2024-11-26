@@ -186,10 +186,8 @@ $(document).ready(function() {
             divObj3.style = "line-height: 16px;"
             divObj2.appendChild(divObj3);
 
-
         for (let key in response){
             if (key != 'tblComment') {
-
                 let trObj = document.createElement("tr");
                 let tdObj = document.createElement("td");
                 let tdObj2 = document.createElement("td");

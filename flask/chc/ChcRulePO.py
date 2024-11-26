@@ -12,8 +12,9 @@ import pyperclip as pc
 # 2、粘贴剪贴板里的内容
 
 import datetime
-import random
+
 from ConfigparserPO import *
+import random
 Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
@@ -112,6 +113,7 @@ class ChcRulePO():
             Sqlserver_PO.execute("drop table if exists " + dboTable)
 
             # sheetName导入数据库，并将身份证数字型转字段型
+            print(Configparser_PO.FILE("case"))
             Sqlserver_PO.xlsx2dbByConverters(Configparser_PO.FILE("case"), dboTable, {"idcard": str}, sheetName)
 
             # 修改其他规则表的字段类型
@@ -948,7 +950,7 @@ class ChcRulePO():
                     self.haveParam()
         else:
             # 评估因素取值
-            # a1,a2,a3
+            # a1,a2,a3,HDL
             if self.case == 'negative':
                 if self.ruleParam == {}:
                     # 反无参
@@ -968,7 +970,7 @@ class ChcRulePO():
                 else:
                     # 正有参
                     if Configparser_PO.SWITCH("log") == "on":
-                        Color_PO.outColor([{"35": "(967)self.ruleParam => " + str(self.ruleParam)}])
+                        Color_PO.outColor([{"35": "(973)self.ruleParam => " + str(self.ruleParam)}])
                     self.testRules()
                     self.assertAssess()
                     # try:
@@ -1115,20 +1117,34 @@ class ChcRulePO():
         # todo 3
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"33": self.tmp_db}])
+            Color_PO.outColor([{"33": "(1120)self.tmp_db => " + self.tmp_db}])
         Sqlserver_PO.crtTableByCover(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
 
         # 获取临时变量
         d_update = {}
         self.ASSESS_ID = ""
         # d_total = {}
-        # s11 = Data_PO.getFigures(11)
+        s_random8 = Data_PO.getFigures(8)
+        s_random9 = Data_PO.getFigures(9)
+        s_random10 = Data_PO.getFigures(10)
+        s_random11 = Data_PO.getFigures(11)
+        s_random12 = Data_PO.getFigures(12)
 
         for i in range(len(self.sql)):
 
             # 格式化sql
-            if "{随机11}" in self.sql[i]:
-                self.sql[i] = self.sql[i].replace("{随机11}", Data_PO.getFigures(11))
+            if "{引用随机值8}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值8}", s_random8)
+            if "{引用随机值9}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值9}", s_random9)
+            if "{引用随机值10}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值10}", s_random10)
+            if "{引用随机值11}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值11}", s_random11)
+            if "{引用随机值12}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{引用随机值12}", s_random12)
+            if "{随机值11}" in self.sql[i]:
+                self.sql[i] = self.sql[i].replace("{随机值11}", Data_PO.getFigures(11))
             if '{ruleCode}' in self.sql[i]:
                 self.sql[i] = self.sql[i].replace("{ruleCode}", self.ruleCode)
             if '{diseaseCode}' in self.sql[i]:
@@ -1159,12 +1175,18 @@ class ChcRulePO():
             if '{VISITTYPECODE}' in self.sql[i]:
                 self.sql[i] = self.getVisitTypeCode(self.sql[i], 'VISITTYPECODE')
 
-            # 评估因素取值(dm\htn\examination)
-            for k,v in self.ruleParam.items():
-                if "{今天往前一年内的日期}" in self.sql[i] and '今天往前一年内的日期' in self.ruleParam[k]:
-                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期}', str(self.ruleParam[k]['今天往前一年内的日期']))
-                if "{今天往前一年内的日期1}" in self.sql[i] and '今天往前一年内的日期1' in self.ruleParam[k]:
-                        self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam[k]['今天往前一年内的日期1']))
+            # 评估因素取值 - 高密度脂蛋白（HDL）(dm\htn\examination\op\ip)
+            if self.ruleParam.get('HDL'):
+                self.sql[i] = self.sql[i].replace('{今天往前一年内的日期1}', str(self.ruleParam['HDL']['今天往前一年内的日期1']))\
+                    .replace('{今天往前一年内的日期2}', str(self.ruleParam['HDL']['今天往前一年内的日期2']))\
+                    .replace('{今天往前一年内的日期3}', str(self.ruleParam['HDL']['今天往前一年内的日期3']))\
+                    .replace('{今天往前一年内的日期4}', str(self.ruleParam['HDL']['今天往前一年内的日期4']))\
+                    .replace('{今天往前一年内的日期5}', str(self.ruleParam['HDL']['今天往前一年内的日期5']))\
+                    .replace('{今天往前一年内的日期6}', str(self.ruleParam['HDL']['今天往前一年内的日期6']))\
+                    .replace('{今天往前一年内的日期7}', str(self.ruleParam['HDL']['今天往前一年内的日期7']))\
+                    .replace('{今天往前一年内的日期8}', str(self.ruleParam['HDL']['今天往前一年内的日期8']))\
+                    .replace('{今天往前一年内的日期9}', str(self.ruleParam['HDL']['今天往前一年内的日期9']))\
+                    .replace('{今天往前一年内的日期10}', str(self.ruleParam['HDL']['今天往前一年内的日期10']))
 
 
 
@@ -1282,6 +1304,7 @@ class ChcRulePO():
         Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
         Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
         Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+
     def _assertAssessErr(self):
 
         Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
@@ -1294,6 +1317,30 @@ class ChcRulePO():
         Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
         Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
 
+    def _assertAssessOk_HDL(self, info):
+        Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + "_" + info + ") => OK]").center(100, '-')), "")
+        self.log = (self.log).replace("'", "''")
+
+
+    def _assertAssessErr_HDL(self,info):
+        Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+        print(self.log)
+        self.log = (self.log).replace("'", "''")
+        Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + "_" + info + ") => ERROR]").center(100, '-')), "")
+
+    def _result_HDL(self, d_date_value):
+        # 获取最大日期的值
+        Sqlserver_PO.execute("drop table %s" % (self.tmp_db))
+        # print(d_date_value)
+        l_ = list(d_date_value.keys())
+        dt_tmpDate = datetime.datetime(2024, 1, 1, 0, 0)
+        for dt_date in l_:
+            if dt_tmpDate < dt_date:
+                dt_tmpDate = dt_date
+        # print(dt_tmpDate)
+        return(d_date_value[dt_tmpDate])
+
+
     def assertAssess(self):
 
         if Configparser_PO.SWITCH("log") == "on":
@@ -1301,26 +1348,62 @@ class ChcRulePO():
 
         if self.case != 'negative':
             # 正向
-            if 'dm_maxvisitdate' in self.d_param:
-                s_d_param_dm_maxvisitdate = self.d_param["dm_maxvisitdate"].strftime('%Y-%m-%d')
-                if str(int(self.d_param['result'])) == str(self.ruleParam['dm']['result']) and str(self.d_param['result1']) == str(self.ruleParam['dm']['result1']) and s_d_param_dm_maxvisitdate == str(self.ruleParam['dm']['dm_maxvisitdate']):
-                    self._assertAssessOk()
+            if self.ruleParam.get('HDL'):
+                d_ = {}
+                if str(int(self.d_param["result1"])) == str(self.ruleParam['HDL']['result1']) \
+                        and str(self.d_param["result2"]) == str(self.ruleParam['HDL']['result2']) \
+                        and self.d_param["maxvisitdate12"].strftime('%Y-%m-%d') == str(self.ruleParam['HDL']['maxvisitdate12']):
+                    Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + "_糖尿病) => OK]").center(100, '-')), "")
+                    d_[self.d_param['maxvisitdate12']] = self.d_param['result2']
                 else:
-                    self._assertAssessErr()
-            elif 'htn_maxvisitdate' in self.d_param:
-                s_d_param_htn_maxvisitdate = self.d_param["htn_maxvisitdate"].strftime('%Y-%m-%d')
-                if str(int(self.d_param['result'])) == str(self.ruleParam['htn']['result']) and str(self.d_param['result1']) == str(self.ruleParam['htn']['result1']) and s_d_param_htn_maxvisitdate == str(self.ruleParam['htn']['htn_maxvisitdate']):
-                    self._assertAssessOk()
+                    Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + "_糖尿病) => ERROR]").center(100, '-')), "")
+                    sys.exit(0)
+                if str(int(self.d_param["result3"])) == str(self.ruleParam['HDL']['result3']) \
+                        and str(self.d_param["result4"]) == str(self.ruleParam['HDL']['result4']) \
+                        and self.d_param["maxvisitdate34"].strftime('%Y-%m-%d') == str(self.ruleParam['HDL']['maxvisitdate34']):
+                    Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
+                        self.rule) + "_高血压) => OK]").center(100, '-')), "")
+                    d_[self.d_param['maxvisitdate34']] = self.d_param['result4']
                 else:
-                    self._assertAssessErr()
-            elif 'examination_maxvisitdate' in self.d_param:
-                s_d_param_examination_maxvisitdate = self.d_param["examination_maxvisitdate"].strftime('%Y-%m-%d')
-                if str(int(self.d_param['result'])) == str(self.ruleParam['examination']['result']) and str(self.d_param['result1']) == str(self.ruleParam['examination']['result1']) and s_d_param_examination_maxvisitdate == str(self.ruleParam['examination']['examination_maxvisitdate']):
-                    self._assertAssessOk()
+                    Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
+                        self.rule) + "_高血压) => ERROR]").center(100, '-')), "")
+                    sys.exit(0)
+                if str(int(self.d_param["result5"])) == str(self.ruleParam['HDL']['result5']) \
+                        and str(self.d_param["result6"]) == str(self.ruleParam['HDL']['result6']) \
+                        and self.d_param["maxvisitdate56"].strftime('%Y-%m-%d') == str(self.ruleParam['HDL']['maxvisitdate56']):
+                    Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
+                        self.rule) + "_体检) => OK]").center(100, '-')), "")
+                    d_[self.d_param['maxvisitdate56']] = self.d_param['result6']
                 else:
-                    self._assertAssessErr()
+                    Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
+                        self.rule) + "_体检) => ERROR]").center(100, '-')), "")
+                    sys.exit(0)
+                if str(int(self.d_param["result7"])) == str(self.ruleParam['HDL']['result7']) \
+                        and str(self.d_param["result8"]) == str(self.ruleParam['HDL']['result8']) \
+                        and self.d_param["maxvisitdate78"].strftime('%Y-%m-%d') == str(self.ruleParam['HDL']['maxvisitdate78']):
+                    Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + "_门诊就诊) => OK]").center(100, '-')), "")
+                    d_[self.d_param['maxvisitdate78']] = self.d_param['result8']
+                else:
+                    Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + "_门诊就诊) => ERROR]").center(100, '-')), "")
+                    sys.exit(0)
+
+                if str(int(self.d_param["result9"])) == str(self.ruleParam['HDL']['result9']) \
+                        and str(self.d_param["result10"]) == str(self.ruleParam['HDL']['result10']) \
+                        and self.d_param["maxvisitdate910"].strftime('%Y-%m-%d') == str(self.ruleParam['HDL']['maxvisitdate910']):
+                    Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
+                        self.rule) + "_住院) => OK]").center(100, '-')), "")
+                    d_[self.d_param['maxvisitdate910']] = self.d_param['result10']
+                else:
+                    Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(
+                        self.rule) + "_住院) => ERROR]").center(100, '-')), "")
+                    sys.exit(0)
+
+                valueByMaxDate = self._result_HDL(d_)
+                print(valueByMaxDate)
+
+
             elif 'result1' in self.d_param:
-                if str(self.d_param['result']) == str(self.ruleParam['result']) and str(self.d_param['result1']) == str(self.ruleParam['result1']):
+                if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']):
                     self._assertAssessOk()
                 else:
                     self._assertAssessErr()

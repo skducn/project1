@@ -44,9 +44,9 @@
 
 
 <style>
-    textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
-    textErr{white-space: pre-wrap;font-size:15px;color: #ec0b0b;text-align: left;line-height: 1.5rem;}
-    /* 表格 */
+textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
+textErr{white-space: pre-wrap;font-size:15px;color: #ec0b0b;text-align: left;line-height: 1.5rem;}
+/* 表格 */
 {#table {border-collapse: collapse;width: 95%;}#}
 {#th {position: sticky;z-index: 10;top: 0;}#}
 th, td {border: 1px solid black;padding: 10px;text-align: center;}
@@ -84,12 +84,6 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                             {%  else %}
 							    <li role="presentation"><a href="#DW" role="tab" data-toggle="tab">数据源</a></li>
                             {%  endif  %}
-{#                            {%  if tabName == '调试' %}#}
-{#							    <li role="presentation" class="active"><a href="#DB" role="tab" data-toggle="tab">调试</a></li>#}
-{#                            {%  else %}#}
-{#							    <li role="presentation"><a href="#DB" role="tab" data-toggle="tab">调试</a></li>#}
-{#                            {%  endif  %}#}
-
                             {%  if tabName == '辅助工具' %}
 							    <li role="presentation" class="active"><a href="#AT" role="tab" data-toggle="tab">辅助工具</a></li>
                             {%  else %}
@@ -192,7 +186,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 
                                                     <div class="louti"></div>
 
-                                                            {#                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>#}
+                                                            {# <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>#}
 
                                                     <label for class="al a25 aR a1j dark:a1k a2j">相关表结构信息:</label>
 
@@ -220,7 +214,6 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                                     attach: '#{{ k1 }}',
                                                                     height: 600,
                                                                     title:  '{{ k1 }}' + "（" + '{{ global_d_['tblByStep']['tblComment'][k1] }}' + "）",
-                                                                    {#content: {{ v1 }}#}
                                                                     {#content: tr_1#}
                                                                     content: '<div style="line-height: 30px;">' + '{{v1 | tojson}}<br></div>'
                                                                     });
@@ -662,7 +655,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                         </div>
 
                                                         <div style="line-height: 16px;" id="get_queryDesc2"></div>
-                                                        <div style="line-height: 16px;" id="queryDesc2_1"></div>
+{#                                                        <div style="line-height: 16px;" id="queryDesc2_1"></div>#}
 
                                                     </div>
                                                     </div>

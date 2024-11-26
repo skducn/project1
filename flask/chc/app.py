@@ -825,8 +825,13 @@ def edit123():
     print("d_field['step'] => ", l_d_all[0]['step'])
     l_step = l_d_all[0]['step'].split("\n")
     print("l_step => ", l_step)
+    print("l_tbl => ", l_tbl)
 
-    return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName, l_step=l_step,l_tbl=l_tbl)
+    # 获取表和注释字典
+    d_tbl_comment = Sqlserver_PO.getTableComment()
+    print("d_tbl_comment => ", d_tbl_comment)
+
+    return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName, l_step=l_step,l_tbl=l_tbl, d_tbl_comment=d_tbl_comment)
 
 
 # todo edit123，查询sql
