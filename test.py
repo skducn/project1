@@ -9,15 +9,23 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-d_ = {'HDL':{'TB_DC_DM_VISIT':{'今天往前一年内的日期':'2024-10-01','今天往前一年内的日期1':'2024-10-02','result':2,'result1':'2','maxvisitdate':'2024-10-02'},
-'TB_DC_HTN_VISIT':{'今天往前一年内的日期':'2024-10-03','今天往前一年内的日期1':'2024-10-04','result':4,'result1':'4','maxvisitdate':'2024-10-04'},
-'TB_DC_EXAMINATION_INFO':{'今天往前一年内的日期':'2024-10-05','今天往前一年内的日期1':'2024-10-06','result':6,'result1':'6','maxvisitdate':'2024-10-06'}
-}}
+# d_ = {'HDL':{'TB_DC_DM_VISIT':{'今天往前一年内的日期':'2024-10-01','今天往前一年内的日期1':'2024-10-02','result':2,'result1':'2','maxvisitdate':'2024-10-02'},
+# 'TB_DC_HTN_VISIT':{'今天往前一年内的日期':'2024-10-03','今天往前一年内的日期1':'2024-10-04','result':4,'result1':'4','maxvisitdate':'2024-10-04'},
+# 'TB_DC_EXAMINATION_INFO':{'今天往前一年内的日期':'2024-10-05','今天往前一年内的日期1':'2024-10-06','result':6,'result1':'6','maxvisitdate':'2024-10-06'}
+# }}
+#
+# print(list(d_.get('HDL')))
 
-print(list(d_.get('HDL')))
+import datetime
+d_ = {datetime.datetime(2024, 10, 2, 0, 0): '2', datetime.datetime(2024, 10, 4, 0, 0): '4', datetime.datetime(2024, 10, 6, 0, 0): '6', datetime.datetime(2024, 10, 8, 0, 0): '8', datetime.datetime(2024, 10, 10, 0, 0): '10'}
 
-
-
+l_ = list(d_.keys())
+dt_tmpDate = datetime.datetime(2024, 1, 1, 0, 0)
+for dt_date in l_:
+    if dt_tmpDate < dt_date:
+        dt_tmpDate = dt_date
+print(dt_tmpDate)
+print(d_[dt_tmpDate])
 
 # -*- coding: utf-8 -*-
 # @Time    : 2020/3/17 17:29
