@@ -84,8 +84,8 @@ line-height: 2rem;
     #loutinav {
         /*width: 122px;*/
         position: fixed;
-        top: 30px;
-        left: 40px;
+        top: 30%;
+        left: 50%;
         /*border: 1px solid #ddd;*/
         display: none;
         /*background: #F8F8FF;*/

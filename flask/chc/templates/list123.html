@@ -75,7 +75,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 .checkbox {width: 20px;height: 20px;}
 .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
 
-#loutinav {width: 150px;position: fixed;top: 55%;left: 37%;padding-bottom:2px;border-radius:5px;}
+#loutinav {width: 150px;position: fixed;top: 40%;left: 47%;padding-bottom:2px;border-radius:5px;}
 #loutinav2 {width: 150px;position: fixed;top: 55%;right: 35%;padding-bottom:2px;border-radius:5px;}
 
 
@@ -218,7 +218,8 @@ td {
     {% if suspend == 'show' %}
         <!-- 悬浮按钮 -->
         <div id="loutinav"><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></div>
-        <div id="loutinav2"><div class="top"><button type="button" class="button button-glow button-border button-rounded button-caution">回顶</button></div></div>
+
+{#        <div id="loutinav2"><div class="top"><button type="button" class="button button-glow button-border button-rounded button-caution">回顶</button></div></div>#}
     {% endif %}
     <tr>
         <td colspan="113">

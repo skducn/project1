@@ -524,7 +524,7 @@ def list123(ruleName):
         del d_field_comment['id']
         del d_field_comment['step']
         d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
-        print("(476)规则名列表 - ", ruleName, " => ", d_field_comment)
+        print("(527)规则名列表 - ", ruleName, " => ", d_field_comment)
     # 转换为{注释:宽度}
     d_tmp2 = {}
     for k, v in d_field_comment.items():
