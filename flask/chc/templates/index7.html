@@ -194,28 +194,28 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                         if (k1 != 'tblComment') %}
                                                             <div id="{{ k1 }}" >{{ k1 }}（{{ global_d_['tblByStep']['tblComment'][k1] }}）</div><br>
                                                             <script>
-                                                                {#//将文本内容格式化成表格#}
-                                                                {#let l_tr = ''#}
-                                                                {#l_tr = {{ v1 | tojson }}.split("<br>")#}
-                                                                {#var td_1 = '';#}
-                                                                {#var tr_1 = '';#}
-                                                                {#let l_td = '';#}
-                                                                {#for (i = 0; i < l_tr.length; i++) {#}
-                                                                {#    var l_td = l_tr[i].split(",")#}
-                                                                {#    for (j = 0; j < l_td.length; j++) {#}
-                                                                {#        td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'#}
-                                                                {#    }#}
-                                                                {#    tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'#}
-                                                                {#    var td_1 = ''}#}
-                                                                {#tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>'#}
 
                                                                 $(document).ready(function() {
+                                                                    {#//将文本内容格式化成表格#}
+                                                                    l_tr = {{ v1 | tojson }}.split("<br>")
+                                                                    td_1 = '';
+                                                                    tr_1 = '';
+                                                                    l_td = '';
+                                                                    for (i = 0; i < l_tr.length; i++) {
+                                                                        l_td = l_tr[i].split(",")
+                                                                        for (j = 0; j < l_td.length; j++) {
+                                                                            td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'
+                                                                        }
+                                                                        tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'
+                                                                        td_1 = ''}
+                                                                    tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>'
+
                                                                     new jBox('Modal', {
                                                                     attach: '#{{ k1 }}',
                                                                     height: 600,
                                                                     title:  '{{ k1 }}' + "（" + '{{ global_d_['tblByStep']['tblComment'][k1] }}' + "）",
-                                                                    {#content: tr_1#}
-                                                                    content: '<div style="line-height: 30px;">' + '{{v1 | tojson}}<br></div>'
+                                                                    content: tr_1
+                                                                    {#content: '<div style="line-height: 30px;">' + '{{v1 | tojson}}<br></div>'#}
                                                                     });
                                                                 })
 

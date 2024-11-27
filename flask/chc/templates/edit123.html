@@ -220,37 +220,31 @@ setTimeout(function() {
                         <textOk>{{ d_field['result'] }}</textOk> <br><br>
 
                         <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
-{#                        <textOk>{{d_field['step']}}</textOk> #}
                         {% for p in l_step %}
                             {{ p }}<br>
                             {% for k,v in global_d_['tblByStep'].items() %}
                                 {% if k in p and k in l_tbl %}
                                     <textOk><div id="{{ k }}" ><i class="el-icon-search"></i>{{ k }}（{{ d_tbl_comment[k] }})</div></textOk>
-
                                     <script>
-                                    {#//将文本内容格式化成表格#}
-                                    {#let l_tr = {{ v | tojson }}.split("<br>")#}
-                                    {#var tmp = '';#}
-                                    {#let td_1 = '';#}
-                                    {#let tr_1 = '';#}
-                                    {#for (let i = 0; i < l_tr.length; i++) {#}
-                                    {#    let l_td = l_tr[i].split(",")#}
-                                    {#    for (let j = 0; j < l_td.length; j++) {#}
-                                    {#        td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'#}
-                                    {#    }#}
-                                    {#    tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'#}
-                                    {#    td_1 = ''}#}
-                                    {#tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>'#}
-                                    {#tmp = '123'#}
-
-
                                     $(document).ready(function() {
+                                        l_tr = {{ v | tojson }}.split("<br>");
+                                        td_1 = '';
+                                        tr_1 = '';
+                                        for (let i = 0; i < l_tr.length; i++) {
+                                            l_td = l_tr[i].split(",")
+                                            for (let j = 0; j < l_td.length; j++) {
+                                                td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'
+                                            }
+                                            tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'
+                                            td_1 = ''}
+                                        tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>';
+
                                     new jBox('Modal', {
                                     attach: '#{{ k }}',
                                     height: 600,
                                     title: '{{ k }}' + "（" + '{{ d_tbl_comment[k] }}' + "）",
-                                    content: '<div style="line-height: 30px;">' + '{{v | tojson}}<br></div>'
-                                    {#content: tr_1#}
+                                    {#content: '<div style="line-height: 30px;">' + '{{v | tojson}}<br></div>'#}
+                                    content: tr_1
                                     });
                                     })
                                     </script>
@@ -259,7 +253,6 @@ setTimeout(function() {
                             {% endfor %}
                           {% endfor %}
                         <br>
-{#                        <textOk>{{d_field['eachStep']}}</textOk> <br>#}
                     {% else %}
                         <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
                         <textErr>{{ d_field['result'] }}</textErr> <br><br>
@@ -273,12 +266,24 @@ setTimeout(function() {
                                     <textErr><div id="{{ k }}" ><i class="el-icon-search"></i>{{ k }}</div></textErr>
                                     <script>
                                     $(document).ready(function() {
+                                        l_tr = {{ v | tojson }}.split("<br>");
+                                        td_1 = '';
+                                        tr_1 = '';
+                                        for (let i = 0; i < l_tr.length; i++) {
+                                            l_td = l_tr[i].split(",")
+                                            for (let j = 0; j < l_td.length; j++) {
+                                                td_1 = td_1 + '<td><div style="line-height: 16px;">' + l_td[j] + '</div></td>'
+                                            }
+                                            tr_1 = tr_1 + '<tr>' + td_1 + '</tr>'
+                                            td_1 = ''}
+                                        tr_1 = '<table class="tftable"><tbody>' + tr_1 + '</tbody></table>';
+
                                     new jBox('Modal', {
                                     attach: '#{{ k }}',
                                     height: 600,
-                                    title: '{{k}}',
-                                    content: '<div style="line-height: 30px;">' +
-                                    '{{v | tojson}}<br></div>'
+                                    title: '{{ k }}' + "（" + '{{ d_tbl_comment[k] }}' + "）",
+                                    {#content: '<div style="line-height: 30px;">' + '{{v | tojson}}<br></div>'#}
+                                    content: tr_1
                                     });
                                     })
                                     </script>
