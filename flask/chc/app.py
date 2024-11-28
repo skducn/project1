@@ -290,16 +290,28 @@ def index7():
     global_d_['ruleName'] = getRuleName()
     print(global_d_)
     global_d_['rule'] = getRuleCollection()
-    # return render_template('index7.html', global_d_=global_d_, tabName='查询规则集', subName=1)
     return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
+
+# todo 登录
+@app.route('/login2', methods=['POST'])
+def login2():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if username == 'test' and password == '123456':
+            return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
+        else:
+            return render_template('login2.html')
+
 
 @app.route('/')
 def index():
     global_d_['ruleName'] = getRuleName()
     print("(289)global_d_['ruleName'] => ", global_d_['ruleName'])
     global_d_['rule'] = getRuleCollection()
+    return render_template('login2.html')
 
-    # return render_template('index.html', global_d_=global_d_)
+
     return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
 
     # username = request.cookies.get('username',None)     #获取cookie值

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CHC</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='60876/style.css') }}">
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!-- inspired by https://dribbble.com/shots/21953371-WeStud-Creative-Log-In-For-The-Educational-Platform -->
+<article>
+  <section>
+    <div class="bobbles">
+      <div class="bobble-1"></div>
+      <div class="bobble-2"></div>
+      <div class="bobble-3"></div>
+      <div class="bobble-4"></div>
+    </div>
+{#    <form autocomplete="off">#}
+         <form action="{{ url_for('login2')}}" method="post">
+      <h2>Welcome back!</h2>
+      <p>CHC 社区健康</p>
+      <div>
+        <label for="username">Username(test)</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div>
+        <label for="password">Password(123456)</label>
+        <input type="password" id="password" name="password" required />
+        <input type="checkbox" />
+      </div>
+      <div class="forgot">
+        <a href="#">Forgot password?</a>
+      </div>
+      <button>Log In</button>
+      <p class="signup">
+        Don't have an account? <a href="#">Sign up</a>
+      </p>
+    </form>
+  </section>
+</article>
+<!-- partial -->
+<script src="{{ url_for('static', filename='60876/script.js') }}"></script>
+
+</body>
+</html>
