@@ -196,7 +196,7 @@ td {
 <form id="checkboxForm">
     {% for d_ in l_d_all %}
         <tr>
-            <td style="width:50px;"><input type="checkbox" class="checkbox" name='items' value="{{ d_.id }}"></td>
+            <th style="width:50px;"><input type="checkbox" class="checkbox" name='items' value="{{ d_.id }}"></th>
             {% for k,v in d_.items() %}
                 {% if k == 'id' %}
                     <td style="width:50px;"><a href="{{ url_for('edit123', ruleName=ruleName, id=v)}}" target="_blank">{{ v }}</a></td>
@@ -206,6 +206,12 @@ td {
                     {% if k == 'result' and v == 'error'%}
                         <td style="background-color: #F56C6C;width:50px;">{{ v |safe|lower }}</td>
                     {% else %}
+{#                        {% if k == 'rule' %}#}
+{#                            <input type="hidden" name='rule1' value="{{ v }}">#}
+{#                        {%  endif  %}#}
+{#                        {% if k == 'ruleParam' %}#}
+{#                            <input type="hidden" name='ruleParam1' value="{{ v }}">#}
+{#                        {%  endif  %}#}
                         <td>{{ v |safe|lower }}</td>
                     {% endif %}
                 {% endif %}

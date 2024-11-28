@@ -730,7 +730,8 @@ def submitId():
     l_id = request.form.getlist("items")
     l_ruleName = request.form.getlist("ruleName")
     ruleName = l_ruleName[0]
-    print(ruleName, l_id)
+    print("(733)",ruleName, l_id)
+
     if l_id != []:
         for id in l_id:
             r = ChcRulePO(ruleName)
@@ -1142,7 +1143,7 @@ def delRemoteFolder(s_local, s_remote):
 @app.route('/updateSystem')
 def updateSystem():
     # 遍历当前路径下所有目录和文件
-    print("(1045)辅助工具 - 自动更新文件 =>")
+    print("(1146)辅助工具 - 自动更新文件 =>")
     s_localPath_prefix = "/Users/linghuchong/Downloads/51/Python/project/flask/chc"
     s_remotePath_prefix = '/home/flask_chc'
     

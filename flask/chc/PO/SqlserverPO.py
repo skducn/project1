@@ -467,17 +467,23 @@ class SqlServerPO:
 
         ''' 2.5 获取字段 '''
 
-        try:
-            l_d_ = self.select(
-                "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
-            # print(l_d_)  # [{'COLUMN_NAME': 'id'}, {'COLUMN_NAME': 'name'}, {'COLUMN_NAME': 'salesrep'}]
-            l_field = []
-            for i in range(len(l_d_)):
-                l_field.append(l_d_[i]['COLUMN_NAME'])
-            return l_field
-        except Exception as e:
-            print(e, ",[error], getFields()异常!")
-            self.conn.close()
+        l_d_ = self.select("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
+        print(l_d_)  # [{'COLUMN_NAME': 'id'}, {'COLUMN_NAME': 'name'}, {'COLUMN_NAME': 'salesrep'}]
+        l_field = []
+        for i in range(len(l_d_)):
+            l_field.append(l_d_[i]['COLUMN_NAME'])
+        return l_field
+
+        # try:
+        #     l_d_ = self.select("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
+        #     # print(l_d_)  # [{'COLUMN_NAME': 'id'}, {'COLUMN_NAME': 'name'}, {'COLUMN_NAME': 'salesrep'}]
+        #     l_field = []
+        #     for i in range(len(l_d_)):
+        #         l_field.append(l_d_[i]['COLUMN_NAME'])
+        #     return l_field
+        # except Exception as e:
+        #     print(e, ",[error], getFields()异常!")
+        #     self.conn.close()
 
     def getFieldComment(self, varTable):
 
@@ -500,8 +506,9 @@ class SqlServerPO:
                     # l_comment.append(l_d_[i]['COMMENT'].decode(encoding="GBK", errors="strict"))  # 打开页面
             return dict(zip(l_field, l_comment))
         except Exception as e:
-            print(e, ",[error], getFields()异常!")
+            print("[error], getFieldComment()异常!", e)
             self.conn.close()
+
     def getFieldCommentGBK(self, varTable):
 
         ''' 2.6 获取字段名与字段注释 '''
@@ -522,7 +529,7 @@ class SqlServerPO:
                     l_comment.append(l_d_[i]['COMMENT'].decode(encoding="GBK", errors="strict"))  # 打开页面
             return dict(zip(l_field, l_comment))
         except Exception as e:
-            print(e, ",[error], getFields()异常!")
+            print(e, ",[error], getFieldCommentGBK()异常!")
             self.conn.close()
 
     def getFieldType(self, varTable, l_field=[]):
@@ -1617,8 +1624,9 @@ class SqlServerPO:
 
                         # 遍历所有字段
                         for i in range(len(l_field)):
-                            l_result = self.select(
-                                "select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                            l_result = self.select("select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                            # print("(1628)",dboTable, l_field[i], varValue,l_result)
+
                             if len(l_result) != 0:
                                 # print("--" * 50)
                                 s = s + "<br><textOk>" + str(l_field[i]) + " = " + str(
@@ -1632,8 +1640,8 @@ class SqlServerPO:
                                                       "")
 
                                 # 输出字段注释
-                                s = s + "<textErr>" + str(self.getFieldComment(dboTable)) + "</textErr><br>"
-                                Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
+                                s = s + "<textErr>" + str(self.getFieldCommentGBK(dboTable)) + "</textErr><br>"
+                                Color_PO.consoleColor2({"35": self.getFieldCommentGBK(dboTable)})
 
                                 if varIsRecord == True:
                                     for j in range(len(l_result)):
