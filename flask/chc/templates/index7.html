@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CHC - 社区健康自动化规则测试</title>
+<title>CHC社区健康自动化平台</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
 
 <!-- main -->
@@ -69,8 +69,8 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 			<div class="row">
 				<div class="col-md-12">
                     <img src="{{ url_for('static', filename='benetch.gif') }}" alt="benetch">
-
-					<h2>CHC 社区健康自动化平台</h2>
+<br>
+{#					<h2>CHC 社区健康自动化平台</h2>#}
 				<br>
 					<div>
 						<ul class="nav nav-tabs" role="tablist">
@@ -130,7 +130,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="a5 md:a2u af"><div class="a3u">
-                                                            <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">规则名*</label>
                                                             <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                              <option value="none" selected>请选择...</option>
                                                             {% for i in global_d_['ruleName'][0:] %}
@@ -324,7 +324,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                     <div class="a6 a1K ac">
                                                         <div class="a5 md:a2u af">
                                                             <div class="a3u">
-                                                                 <label for class="al a25 aR a1j dark:a1k a2j">上传文件</label>
+                                                                 <label for class="al a25 aR a1j dark:a1k a2j">上传文件*</label>
                                                                 <input type="file" name="file" id="demo-fileInput-34" multiple="multiple" >
                                                             </div>
                                                         </div>
@@ -433,7 +433,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                     <div class="col-md-6">
                                                         <div class="a5 md:a2u af">
                                                             <div class="a3u">
-                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名*</label>
                                                                 <select  id="queryRuleName" name="queryRuleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                                 <option value="none" selected>请选择...</option>
                                                                 {% for i in global_d_['ruleName'][0:] %}
@@ -448,7 +448,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                         <div class="a6 a1K ac">
                                                         <div class="a5 md:a2u af">
                                                         <div class="a3u">
-                                                        <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
                                                         <select id="queryRuleCollection" name="queryRuleCollection" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                         <option value="none" selected>请选择...</option>
                                                         </select>
@@ -480,7 +480,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                     <div class="row">
                                                         <div class="col-md-6">
                                                             <div class="a5 md:a2u af"><div class="a3u">
-                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                                                                <label for class="al a25 aR a1j dark:a1k a2j">规则名*</label>
                                                                 <select name="ruleName" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                                  <option value="none" selected>请选择...</option>
                                                                 {% for i in global_d_['ruleName'][0:] %}
@@ -503,7 +503,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                             <div class="a5 md:a2u af">
                                                             <div class="a3u">
                                                             <label for class="al a25 aR a1j dark:a1k a2j">步骤*</label>
-                                                            <textarea name="sql" rows="5" id="cacu_value" placeholder="请输入..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+                                                            <textarea name="sql" rows="10" id="cacu_value" placeholder="请输入..."  class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
                                                             </div>
                                                             </div>
                                                         </div>
@@ -524,30 +524,6 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                             </div></div></div></div>
                             <!-- 数据源 end -->
 
-
-
-        <!--  调式   -->
-
-{#                            {%  if tabName == '调式' %}#}
-{#							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DB">#}
-{#                            {%  else %}#}
-{#							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DB">#}
-{#                            {%  endif  %}#}
-{#                            <div class="row">#}
-{#                                <div class="col-md-12">#}
-{#                                    <div class="section__box">#}
-{#                                        <a class="r-link ai-element-black ai-element_padding-all ai-element4" href="#DB_testRule" role="tab" data-toggle="tab"><span class="ai-element__label">测试规则</span></a>#}
-{#                                        <a class="r-link ai-element-green ai-element_padding-all ai-element3" href="#DB_querySql" role="tab" data-toggle="tab"><span class="ai-element__label">查询sql</span></a>#}
-{#                                        <a class="r-link ai-element ai-element_padding-all ai-element3" href="{{ url_for('index') }}" target = "_blank"><span class="ai-element__label">index</span></a>#}
-{##}
-{#                                        <div class="tab-content">#}
-{#        <!-- 测试规则 -->#}
-{##}
-{##}
-{##}
-{#                                        </div>#}
-{#                            </div></div></div></div>#}
-{#                            <!-- 调式 end  -->#}
 
         <!-- 辅助工具 -->
 
@@ -577,7 +553,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                 <form action="{{ url_for('searchRecord')}}" method="post" id="mask51">
                                                     <div class="a6 a1K ac">
                                                         <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                            <label for class="al a25 aR a1j dark:a1k a2j">数据库</label>
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">数据库*</label>
                                                             <select name="db" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                                 <option value="" selected>请选择...</option>
                                                                 <option value="CHC" >CHC</option>
@@ -590,7 +566,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                         </div></div>
 
                                                         <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                            <label for class="al a25 aR a1j dark:a1k a2j">数据类型</label>
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">数据类型*</label>
                                                             <select name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                                 <option value="varchar" selected>varchar</option>
                                                                 <option value="nvarchar" >nvarchar</option>
@@ -640,7 +616,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 
                                                         <div class="a6 a1K ac">
                                                         <div class="a5 md:a2u/2 af"><div class="a3u">
-                                                        <label for class="al a25 aR a1j dark:a1k a2j">数据库名</label>
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">数据库*</label>
                                                         <select id="queryDesc2" name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                         <option value="" selected>请选择...</option>
                                                         <option value="CHC" >CHC</option>
@@ -675,7 +651,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                                 <div class="section__box">
 
                                                     <div class="col-md-12">
-                                                        <label for class="al a25 aR a1j dark:a1k a2j">查询SQL</label>
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">简单条件查询</label>
                                                         <div class="a5 md:a2u af">
                                                             <div class="a3u">
                                                                 <textarea name="querySql" id="querySql" rows="5" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
@@ -756,10 +732,12 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                             <div class="col-md-12">
                                             <div class="section__box">
 
+                                                <form action="{{ url_for('searchLog')}}" method="post" id="mask62">
+
                                                     <div class="a6 a1K ac">
                                                         <div class="a5 md:a2u/2 af">
                                                             <div class="a3u">
-                                                            <label for class="al a25 aR a1j dark:a1k a2j">最近记录</label>
+                                                            <label for class="al a25 aR a1j dark:a1k a2j">最近N条（tail -f N）</label>
                                                             <select name="count" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
                                                                 {%  if global_d_['count'] %}
                                                                     <option value="{{ global_d_['count'] }}" selected>{{ global_d_['count'] }}</option>
@@ -823,7 +801,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
 
 
 <!--13788 upload file-->
-<script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>
+{#<script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>#}
 <script src="{{ url_for('static', filename='13788/js/bootstrap.min.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/jquery.filer.min.js') }}"></script>
 <script src="{{ url_for('static', filename='13788/js/prettify.js') }}"></script>

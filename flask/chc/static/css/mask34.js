@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 var loading = document.getElementById('loading');
 
-// 规则集 - 新建/修改
+// 数据源 - 更新规则集
 var mask32 = document.getElementById('mask32');
 // var loading = document.getElementById('loading');
 mask32.addEventListener('submit', function (event) {
@@ -15,7 +15,7 @@ mask32.addEventListener('submit', function (event) {
     }, 1000);
 });
 
-// 调式 - 测试规则 - 执行
+// 测试项 - 测试规则 - 执行
 var mask41 = document.getElementById('mask41');
 // var loading = document.getElementById('loading');
 mask41.addEventListener('submit', function (event) {

@@ -130,7 +130,7 @@ class ChcRulePO():
                 # 如果此列没数据，则创建后是float，需转换成char
                 Sqlserver_PO.execute("ALTER table %s alter column result varchar(8000)" % (dboTable))
                 Sqlserver_PO.setFieldComment(dboTable, 'result', '结果')
-                Sqlserver_PO.execute("ALTER table %s alter column step varchar(8000)" % (dboTable))
+                Sqlserver_PO.execute("ALTER table %s alter column step varchar(-1)" % (dboTable))
                 Sqlserver_PO.setFieldComment(dboTable, 'step', '步骤')
                 Sqlserver_PO.execute("ALTER table %s alter column [rule] varchar(8000)" % (dboTable))
                 Sqlserver_PO.setFieldComment(dboTable, 'rule', '规则集')
@@ -970,7 +970,7 @@ class ChcRulePO():
                 else:
                     # 正有参
                     if Configparser_PO.SWITCH("log") == "on":
-                        Color_PO.outColor([{"35": "(973)self.ruleParam => " + str(self.ruleParam)}])
+                        Color_PO.outColor([{"35": '({})self.ruleParam => '.format(sys._getframe().f_lineno) + str(self.ruleParam)}])
                     self.testRules()
                     self.assertAssess()
                     # try:
@@ -1016,7 +1016,8 @@ class ChcRulePO():
     def haveParam(self):
         self.d_param = self.ruleParam
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": "self.d_param => " + str(self.d_param)}])
+            Color_PO.outColor([{"35": '({})self.d_param  => '.format(sys._getframe().f_lineno) + str(self.d_param)}])
+
         self.testRules()
         self.assertS1()
 
@@ -1084,7 +1085,8 @@ class ChcRulePO():
             s_prefixICD = random.sample(l_prefixICD, 1)[0]
             self.d_param['prefixICD'][i] = str(s_prefixICD)
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": "self.d_param => " + str(self.d_param)}])
+            Color_PO.outColor([{"35": '({})self.d_param  => '.format(sys._getframe().f_lineno) + str(self.d_param)}])
+
 
     def getErrPrefixICD(self, diseaseName):
 
@@ -1109,7 +1111,8 @@ class ChcRulePO():
             s_prefixICD = random.sample(l_prefixICD, 1)[0]
             self.d_param['prefixICD'][i] = str(s_prefixICD)
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": self.d_param}])
+            Color_PO.outColor([{"35": '({})self.d_param  => '.format(sys._getframe().f_lineno) + str(self.d_param)}])
+
 
     def testRules(self):
 
@@ -1117,7 +1120,7 @@ class ChcRulePO():
         # todo 3
         self.tmp_db = 'a_temp' + str(Data_PO.getFigures(10))
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"33": "(1120)self.tmp_db => " + self.tmp_db}])
+            Color_PO.outColor([{"33": '({})self.tmp_db  => '.format(sys._getframe().f_lineno) + str(self.tmp_db)}])
         Sqlserver_PO.crtTableByCover(self.tmp_db, '''id INT IDENTITY(1,1) PRIMARY KEY, key1 VARCHAR(500), value1 VARCHAR(500)''')
 
         # 获取临时变量
@@ -1259,7 +1262,7 @@ class ChcRulePO():
     def assertS1(self):
 
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": "(1227)self.d_param => " + str(self.d_param)}])
+            Color_PO.outColor([{"35": '({})self.d_param  => '.format(sys._getframe().f_lineno) + str(self.d_param)}])
 
         if self.case != 'negative':
             # 正向
@@ -1344,7 +1347,7 @@ class ChcRulePO():
     def assertAssess(self):
 
         if Configparser_PO.SWITCH("log") == "on":
-            Color_PO.outColor([{"35": "(1287)self.d_param => " + str(self.d_param)}])
+            Color_PO.outColor([{"35": '({})self.d_param  => '.format(sys._getframe().f_lineno) + str(self.d_param)}])
 
         if self.case != 'negative':
             # 正向
@@ -1399,8 +1402,26 @@ class ChcRulePO():
                     sys.exit(0)
 
                 valueByMaxDate = self._result_HDL(d_)
-                print(valueByMaxDate)
+                # print(valueByMaxDate)
+                print("({})valueByMaxDate =>".format(sys._getframe().f_lineno), valueByMaxDate)
 
+                if str(valueByMaxDate) == self.ruleParam['result']:
+                    Color_PO.consoleColor("31", "36", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => OK]").center(100, '-')), "")
+                    Sqlserver_PO.execute("update %s set result='ok' where id=%s" % (self.dbTable, self.dbId))
+                    self.log = (self.log).replace("'", "''")
+                    print("self.log", self.log)
+                    Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
+                    Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+
+                else:
+                    Color_PO.consoleColor("31", "31", (("error log").center(100, '-')), "")
+                    Sqlserver_PO.execute("update %s set result='error' where id=%s" % (self.dbTable, self.dbId))
+                    # print(self.log)
+                    self.log = (self.log).replace("'", "''")
+                    Color_PO.consoleColor("31", "31", (("[" + str(self.sheetName) + " => " + str(self.dbId) + "(" + str(self.rule) + ") => ERROR]").center(100, '-')), "")
+                    Sqlserver_PO.execute("update %s set step='%s' where id=%s" % (self.dbTable, self.log, self.dbId))
+                    # Sqlserver_PO.execute("insert into a_log (t,t_id,updateDate,step) values('%s',%s,'%s','%s')" % (self.dbTable, self.dbId, Time_PO.getDateTimeByDivide(), self.log))
+                    Sqlserver_PO.execute("update %s set updateDate='%s' where id=%s" % (self.dbTable, Time_PO.getDateTimeByDivide(), self.dbId))
 
             elif 'result1' in self.d_param:
                 if str(self.d_param["result"]) == str(self.ruleParam['result']) and str(self.d_param["result1"]) == str(self.ruleParam['result1']):

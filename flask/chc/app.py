@@ -71,17 +71,12 @@ def copy_directory(local_path, remote_path):
     with Connection(host, user=user, connect_kwargs={"password": 'Benetech79$#-'}) as conn:
         conn.put(local_path=local_path, remote_path=remote_path, recursive=True)
 
-
-
-
-
 # 创建方法生成日志
 def generation_log():
     for i in range(20):
         # Log_PO.info(i)
         Log_PO.logger.info(i)
         time.sleep(1)
-
 
 # 读取日志并返回
 def red_logs():
@@ -136,7 +131,6 @@ app.debug =True
 # cdn = CDN(app)
 
 
-
 line_number = [0] #存放当前日志行数
 # 定义接口把处理日志并返回到前端
 @app.route('/get_log',methods=['GET','POST'])
@@ -182,14 +176,11 @@ def seeLog():
 global_d_ = {'menu': {"searchRecord": "查询记录", "queryDesc2": "查询表结构", "importCase": "导入规则", "registerTbl": "创建库表", "updateFile": "更新文件","queryLog": "查询日志"}}
 
 
-
-
 # 不同环境使用各自icon，mac平台显示小猪，linux平台显示龙
 system = os.uname().sysname
 if system == 'Linux':
     global_d_['icon'] = 'dragon.ico'
     global_d_['downloadFile'] = 'chcRuleCase.xlsx'
-
 else:
     global_d_['downloadFile'] = '/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase.xlsx'
     global_d_['icon'] = 'pig.ico'
@@ -223,14 +214,14 @@ def setRuleName(ruleName):
         dboTable = "a_" + dboTable
         Sqlserver_PO.execute("insert into a_ruleList (ruleName, ruleNameTbl) values('%s', '%s')" % (ruleName, dboTable))
 
-# 规则名对应表字典
+
 def getRuleList():
+    # 规则名列表对应表字典
     d_ = {}
     l_d_ = Sqlserver_PO.select("select * from a_ruleList")
     # print(l_d_)  # [{'ruleName': '评估因素取值', 'ruleNameTbl': 'a_jibingquzhipanduan'},...
     for d in l_d_:
         d_[d['ruleName']] = d['ruleNameTbl']
-    # print(d_)
     return d_  # {'评估因素取值': 'a_jibingquzhipanduan', '健康干预_已患疾病单病': 'a_jiankangganyu_yihuanjibingdanbing', '健康干预_已患疾病组合': 'a_jiankangganyu_yihuanjibingzuhe'}
 
 # 获取所有规则集
@@ -288,7 +279,7 @@ def index123():
 @app.route('/index7')
 def index7():
     global_d_['ruleName'] = getRuleName()
-    print(global_d_)
+    # print(global_d_)
     global_d_['rule'] = getRuleCollection()
     return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
 
@@ -299,7 +290,7 @@ def login2():
         username = request.form['username']
         password = request.form['password']
         if username == 'test' and password == '123456':
-            return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
+            return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName='测试规则', message=-1)
         else:
             return render_template('login2.html')
 
@@ -307,12 +298,10 @@ def login2():
 @app.route('/')
 def index():
     global_d_['ruleName'] = getRuleName()
-    print("(289)global_d_['ruleName'] => ", global_d_['ruleName'])
+    print("({})global_d_['ruleName']  =>".format(sys._getframe().f_lineno), global_d_['ruleName'])
     global_d_['rule'] = getRuleCollection()
-    return render_template('login2.html')
-
-
-    return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
+    return render_template('login2.html', global_d_=global_d_)
+    # return render_template('index7.html', global_d_=global_d_, tabName='测试项', subName=1, message=-1)
 
     # username = request.cookies.get('username',None)     #获取cookie值
     # if username!=None:
@@ -334,91 +323,119 @@ def index():
 #     #     return render_template('pin.html', global_d_=global_d_)
 
 
-# todo index 1 查询规则集
-@app.route('/get_queryRuleCollection')
-def get_queryRuleCollection():
-    selected_value = request.args.get('value')
-    cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
-    rows = cursor.fetchall()
-    data = ""
-    # data = data + rows[0][0] + "\n\n"
-    for row in rows:
-        data = data + str(row[0]) + "\n"
-    # print(data)
-    response_data = {
-        'text': data
-    }
-    return jsonify(response_data)
 
+def _getRecord(ruleName):
 
-# todo index 1 及联规则集
-@app.route('/get_queryRuleName')
-def get_queryRuleName():
-    ruleName = request.args.get('value')
-    print(ruleName)
-    # 获取测试规则
-    cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" %(ruleName))
-    l_t_rows = cursor.fetchall()
-    l_testRule = []
-    for i in l_t_rows:
-        l_testRule.append(i[0])
-    print(l_testRule)
-    return l_testRule
+    # 获取所有记录
+    l_field = []
+    l_d_all = []
 
-# todo index 2 更新规则集
-@app.route('/updateRuleCollection', methods=['POST'])
-def updateRuleCollection():
-    if request.method == 'POST':
-        ruleName = request.form['ruleName']
-        ruleCollection = request.form['ruleCollection']
-        sql = request.form['sql']
-        print("(326)规则集 - 新建/修改 =>", ruleName,ruleCollection)
-        if ruleCollection != '' and sql != '':
-            l_ = sql.split("\n")
-            l2 = [i.replace('\r', '') for i in l_]
-            l3 = [i.strip() for i in l2 if i != '']
-            # print(l3)  # ['jinhao', 'yoyo', '///', 'titi']
+    # 规则名列表对应表字典
+    d_ruleName_tbl = getRuleList()
 
-            cursor.execute("select count([rule]) as [rule] from a_ceshiguize where [rule]='%s'" % (ruleCollection))
-            l_t_count = cursor.fetchall()
-            # print(l_t_count[0][0])
-            if l_t_count[0][0] != 0:
-                sql = sql.replace("'", "''")
+    # 获取字段列表
+    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName_tbl[ruleName]))
+    l_t_field = cursor.fetchall()
+    for i in l_t_field:
+        l_field.append(i[0])
+    # 获取所有值
+    # cursor.execute("select * from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
+    cursor.execute("select * from %s" % (d_ruleName_tbl[ruleName]))
+    l_t_value = cursor.fetchall()
+    for i, l_v in enumerate(l_t_value):
+        # 将字段呢值None改为空
+        l_tmp = []
+        for j in l_v:
+            if j == None:
+                j = ''
+            l_tmp.append(j)
+        t_value = tuple(l_tmp)
+        d_ = dict(zip(l_field, list(t_value)))
+        l_d_all.append(d_)
+    return l_d_all
 
-            if l_t_count[0][0] == 0:
-                for index, sql in enumerate(l3, start=1):
-                    sql = sql.replace("'", "''").replace("\r", "")
-                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],seq,sql) values ('%s','%s','%s','%s')" % (ruleName,ruleCollection, str(index), sql))
-                    conn.commit()
-            else:
-                cursor.execute("delete from a_ceshiguize where [rule]='%s'" % (ruleCollection))
-                for index, sql in enumerate(l3, start=1):
-                    sql = sql.replace("'", "''").replace("\r", "")
-                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],seq,sql) values ('%s','%s','%s','%s')" % (ruleName,ruleCollection, str(index), sql))
-                    conn.commit()
+# todo 1.1 测试项 - 规则名列表
+@app.route('/list123/<ruleName>')
+def list123(ruleName):
+    # session_value = request.cookies.get('session')
+    # if session_value == "jinhao":
+    # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
 
-            # 获取更新后的规则集
-            cursor.execute("select distinct [rule] from a_ceshiguize")
-            l_t_rows = cursor.fetchall()
-            # print(l_t_rows)
-            l_testRule1 = []
-            for i in l_t_rows:
-                l_testRule1.append(i[0])
-            return render_template('index7.html', global_d_=global_d_, tabName='数据源', subName='查询规则集', message=1)
-            # return render_template('index.html', global_d_=global_d_)
-            # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
+    d_ruleName_tbl = getRuleList()
+
+    # 获取规则集（去重）的步骤列表 = l_ruleSql
+    s = ''
+    cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
+    # cursor.execute("select DISTINCT [rule] from %s " % (d_ruleName_tbl[ruleName]))
+    l_t_rule = cursor.fetchall()
+    # print(l_t_rule)  # [('a1',), ('a2',), ('a3',), ('a4',), ('a5',), ('a6',), ('a7',), ('HDL',)]
+    c = ''
+    for i in l_t_rule:
+        cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
+        l_t_sql = cursor.fetchall()
+        # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
+        s = ' =>'
+        for index, j in enumerate(l_t_sql, start=1):
+            s = s + '<br>' + str(index) + ", " + j[0]
+        c = c + '<br>' + i[0] + s + '<br>'
+    # print(c)  # <br>a1 =><br>1, DELETE FROM TB_PREGNANT_MAIN_INFO WHERE ZJHM = '520300198802242314'<br>2, INSERT INTO [dbo].
+
+    # 重构表格标题
+    # 获取字典{字段:注释}
+    d_field_comment = Sqlserver_PO.getFieldCommentGBK(d_ruleName_tbl[ruleName])
+    print("({})d_field_comment =>".format(sys._getframe().f_lineno), ruleName, d_field_comment)
+    # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
+    # 重新排序排序id，将id放在第一位
+    if 'id' in d_field_comment:
+        del d_field_comment['id']
+        del d_field_comment['step']
+        d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
+        print("({})规则名列表 =>".format(sys._getframe().f_lineno), ruleName, d_field_comment)
+
+    # 转换为{注释:宽度}
+    d_tmp2 = {}
+    for k, v in d_field_comment.items():
+        if k == 'id':
+            d_tmp2[v] = 50
+        elif k == 'result':
+            d_tmp2[v] = 50
+        elif k == 'rule':
+            d_tmp2[v] = 50
+        elif k == 'case':
+            d_tmp2[v] = 50
+        elif k == 'priority':
+            d_tmp2[v] = 50
+        elif k == 'tester':
+            d_tmp2[v] = 50
+        elif k == 'assessRule':
+            d_tmp2[v] = 300
         else:
-            return render_template('index7.html', global_d_=global_d_, tabName='数据源', subName='更新规则集', message=0)
-            # return render_template('index.html', global_d_=global_d_, output_testRule3='error，规则集或步骤不能为空！')
+            d_tmp2[v] = 100
+
+    # 重构表格数据（id移到第一）
+    # print(_getRecord(ruleName))
+    # s_id = ''
+    l_new = []
+    l_d_all = (_getRecord(ruleName))
+    for d_ in l_d_all:
+        s_id = d_['id']
+        del d_['id']
+        del d_['step']
+        d_ = Dict_PO.insertFirst(d_, 'id', s_id)
+        l_new.append(d_)
+    l_d_all = l_new
+    # print(l_d_all)
+    print("({})l_d_all =>".format(sys._getframe().f_lineno), l_d_all)
+    return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
 
 
-# todo index 3 测试
+# todo 1.2 测试项 - 测试规则
 @app.route('/testRule', methods=['POST'])
 def testRule():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
         id = request.form['id']
-        print(ruleName, id)
+        print('({})测试项 - 测试规则 - '.format(sys._getframe().f_lineno), ruleName, id)
     if id != '':
         try:
             r = ChcRulePO(ruleName)
@@ -467,118 +484,85 @@ def testRule():
         # return render_template('index7.html', global_d_=global_d_, output_testRule='error，id不能为空！')
 
 
-def _getRecord(ruleName):
+# todo 2.2 数据源 - 查询规则集
+@app.route('/get_queryRuleCollection')
+def get_queryRuleCollection():
+    selected_value = request.args.get('value')
+    cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % selected_value)
+    rows = cursor.fetchall()
+    data = ""
+    # data = data + rows[0][0] + "\n\n"
+    for row in rows:
+        data = data + str(row[0]) + "\n"
+    # print(data)
+    response_data = {
+        'text': data
+    }
+    return jsonify(response_data)
 
-    # 获取所有记录
 
-    d_ruleName_tbl = getRuleList()
+# todo 2.3.1 数据源 - 更新规则集1(及联规则集)
+@app.route('/get_queryRuleName')
+def get_queryRuleName():
+    ruleName = request.args.get('value')
+    print("({})ruleName =>".format(sys._getframe().f_lineno), ruleName)
+    # 获取测试规则
+    cursor.execute("select distinct [rule] from a_ceshiguize where ruleName='%s'" %(ruleName))
+    l_t_rows = cursor.fetchall()
+    l_testRule = []
+    for i in l_t_rows:
+        l_testRule.append(i[0])
+    print("({})l_testRule =>".format(sys._getframe().f_lineno), l_testRule)
+    return l_testRule
 
-    l_field = []
-    l_d_all = []
-    # 获取字段列表
-    cursor.execute("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (d_ruleName_tbl[ruleName]))
-    l_t_field = cursor.fetchall()
-    for i in l_t_field:
-        l_field.append(i[0])
-    # 获取所有值
-    cursor.execute("select * from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
-    l_t_value = cursor.fetchall()
-    for i, l_v in enumerate(l_t_value):
-        # 将字段呢值None改为空
-        l_tmp = []
-        for j in l_v:
-            if j == None:
-                j = ''
-            l_tmp.append(j)
-        t_value = tuple(l_tmp)
-        d_ = dict(zip(l_field, list(t_value)))
-        l_d_all.append(d_)
-    # print(123, l_d_all)
 
-    # cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
-    # l_t_rule = cursor.fetchall()
-    # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
+# todo 2.3.2 数据源 - 更新规则集2
+@app.route('/updateRuleCollection', methods=['POST'])
+def updateRuleCollection():
+    if request.method == 'POST':
+        ruleName = request.form['ruleName']
+        ruleCollection = request.form['ruleCollection']
+        sql = request.form['sql']
+        print("({})规则集 - 新建/修改 =>".format(sys._getframe().f_lineno), ruleName, ruleCollection)
+        if ruleCollection != '' and sql != '':
+            l_ = sql.split("\n")
+            l2 = [i.replace('\r', '') for i in l_]
+            l3 = [i.strip() for i in l2 if i != '']
+            # print(l3)  # ['jinhao', 'yoyo', '///', 'titi']
 
-    return l_d_all
+            cursor.execute("select count([rule]) as [rule] from a_ceshiguize where [rule]='%s'" % (ruleCollection))
+            l_t_count = cursor.fetchall()
+            # print(l_t_count[0][0])
+            if l_t_count[0][0] != 0:
+                sql = sql.replace("'", "''")
 
-# todo index 4 规则名列表
-@app.route('/list123/<ruleName>')
-def list123(ruleName):
-    # session_value = request.cookies.get('session')
-    # if session_value == "jinhao":
-    # if session_value == "eyJsb2dnZWRfaW4iOnRydWV9.ZwnhEw.h7glR3jzXLKlCtXxameQVGWQxnk":
+            if l_t_count[0][0] == 0:
+                for index, sql in enumerate(l3, start=1):
+                    sql = sql.replace("'", "''").replace("\r", "")
+                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],seq,sql) values ('%s','%s','%s','%s')" % (ruleName,ruleCollection, str(index), sql))
+                    conn.commit()
+            else:
+                cursor.execute("delete from a_ceshiguize where [rule]='%s'" % (ruleCollection))
+                for index, sql in enumerate(l3, start=1):
+                    sql = sql.replace("'", "''").replace("\r", "")
+                    cursor.execute("insert into a_ceshiguize(ruleName,[rule],seq,sql) values ('%s','%s','%s','%s')" % (ruleName,ruleCollection, str(index), sql))
+                    conn.commit()
 
-    d_ruleName_tbl = getRuleList()
-
-    # 获取规则集（去重）的步骤列表 = l_ruleSql
-    s = ''
-    cursor.execute("select DISTINCT [rule] from %s where [rule] != ''" % (d_ruleName_tbl[ruleName]))
-    l_t_rule = cursor.fetchall()
-    # print(l_t_rule)  # [('s3',), ('s4',), ('s5',)]
-    c = ''
-    for i in l_t_rule:
-        cursor.execute("select [sql] from a_ceshiguize where [rule]='%s'" % (i[0]))
-        l_t_sql = cursor.fetchall()
-        # print(l_t_sql)  # [("select GUID from TB_EMPI_INDEX_ROOT where IDCARDNO = '32070719470820374X'",), ("delete from TB_DC_CHRONIC_MAIN where EMPIGUID = '{GUID}'",),
-        s = ' =>'
-        for index, j in enumerate(l_t_sql, start=1):
-            s = s + '<br>' + str(index) + ", " + j[0]
-        c = c + '<br>' + i[0] + s + '<br>'
-    # print(c)
-
-    # 重构表格标题
-    # 获取字典{字段:注释}
-    d_field_comment = Sqlserver_PO.getFieldCommentGBK(d_ruleName_tbl[ruleName])
-    print(504, d_field_comment)
-    # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
-    # 重新排序排序id，将id放在第一位
-    if 'id' in d_field_comment:
-        del d_field_comment['id']
-        del d_field_comment['step']
-        d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
-        print("(527)规则名列表 - ", ruleName, " => ", d_field_comment)
-    # 转换为{注释:宽度}
-    d_tmp2 = {}
-    for k, v in d_field_comment.items():
-        if k == 'id':
-            d_tmp2[v] = 50
-        elif k == 'result':
-            d_tmp2[v] = 50
-        elif k == 'rule':
-            d_tmp2[v] = 50
-        elif k == 'case':
-            d_tmp2[v] = 50
-        elif k == 'priority':
-            d_tmp2[v] = 50
-        elif k == 'tester':
-            d_tmp2[v] = 50
-        elif k == 'assessRule':
-            d_tmp2[v] = 300
+            # 获取更新后的规则集
+            cursor.execute("select distinct [rule] from a_ceshiguize")
+            l_t_rows = cursor.fetchall()
+            # print(l_t_rows)
+            l_testRule1 = []
+            for i in l_t_rows:
+                l_testRule1.append(i[0])
+            return render_template('index7.html', global_d_=global_d_, tabName='数据源', subName='查询规则集', message=1)
+            # return render_template('index.html', global_d_=global_d_)
+            # return render_template('index.html', ruleName=l_ruleName, queryRuleCollection=l_testRule1, queryErrorRuleId=l_ruleName, system=system)
         else:
-            d_tmp2[v] = 100
-
-    # 重构表格数据（id移到第一）
-    # print(_getRecord(ruleName))
-    # s_id = ''
-    l_new = []
-    l_d_all = (_getRecord(ruleName))
-    for d_ in l_d_all:
-        s_id = d_['id']
-        del d_['id']
-        del d_['step']
-        d_ = Dict_PO.insertFirst(d_, 'id', s_id)
-        l_new.append(d_)
-    l_d_all = l_new
-    # print(l_d_all)
+            return render_template('index7.html', global_d_=global_d_, tabName='数据源', subName='更新规则集', message=0)
+            # return render_template('index.html', global_d_=global_d_, output_testRule3='error，规则集或步骤不能为空！')
 
 
-    return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='show')
-
-
-    # if ruleName == '评估因素取值':
-    #     return render_template('assessFactor.html', global_d_=global_d_, d_field_comment=d_field_comment, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c)
-    # else:
-    #     return render_template('healthIntervention.html', global_d_=global_d_, d_field_comment=d_field_comment, data=_getRecord(ruleName), ruleName=ruleName, l_ruleSql=c)
 
 
 def _getRecordByResult(ruleName, result):
@@ -627,6 +611,7 @@ def _getRecordByResult(ruleName, result):
 
     return (l_d_all)
 
+
 # todo 规则名列表 - 结果
 @app.route('/list4/<ruleName>/<result>')
 def list4(ruleName, result):
@@ -661,7 +646,8 @@ def list4(ruleName, result):
         del d_field_comment['id']
         del d_field_comment['step']
         d_field_comment = Dict_PO.insertFirst(d_field_comment, 'id', '编号')
-        print(d_field_comment)
+        print("({})d_field_comment =>".format(sys._getframe().f_lineno), ruleName, d_field_comment)
+
     # 转换为{注释:宽度}
     d_tmp2 = {}
     for k,v in d_field_comment.items():
@@ -694,7 +680,7 @@ def list4(ruleName, result):
         d_ = Dict_PO.insertFirst(d_, 'id', s_id)
         l_new.append(d_)
     l_d_all = l_new
-    print(l_d_all)
+    print("({})l_d_all =>".format(sys._getframe().f_lineno), ruleName, l_d_all)
 
     return render_template('list123.html', global_d_=global_d_, d_comment_size=d_tmp2, l_d_all=l_d_all, ruleName=ruleName, l_ruleSql=c, suspend='hidden')
 
@@ -706,8 +692,9 @@ def list4(ruleName, result):
 def list411(ruleName, result):
 
     d_ruleName_tbl = getRuleList()
-
     print(ruleName, result)  # 健康干预_已患疾病组合 error
+    print("({})ruleName,result =>".format(sys._getframe().f_lineno), ruleName, result)
+
     global_d_['resultStatus'] = result
 
     # session_value = request.cookies.get('session')
@@ -742,7 +729,7 @@ def submitId():
     l_id = request.form.getlist("items")
     l_ruleName = request.form.getlist("ruleName")
     ruleName = l_ruleName[0]
-    print("(733)",ruleName, l_id)
+    print("({})ruleName,l_id =>".format(sys._getframe().f_lineno), ruleName, l_id)
 
     if l_id != []:
         for id in l_id:
@@ -752,6 +739,7 @@ def submitId():
             l_d_all = _getRecord(ruleName)
     return ruleName
 
+
 # todo 规则名列表 - 结果 - 提交
 @app.route('/submit4', methods=['POST'])
 def submit4():
@@ -759,7 +747,8 @@ def submit4():
     l_ruleName = request.form.getlist("ruleName")
     l_result = request.form.getlist("result")
     ruleName = l_ruleName[0]
-    print(ruleName, l_id, l_result[0])
+    print("({})ruleName, l_id, l_result[0] =>".format(sys._getframe().f_lineno), ruleName, l_id, l_result[0])
+
     if l_id != []:
         for id in l_id:
             r = ChcRulePO(ruleName)
@@ -802,9 +791,10 @@ def _getRecordById(ruleName, id):
 def edit123():
     ruleName = request.args.get('ruleName')
     id = request.args.get('id')
-    print(ruleName, id)
+    print("({})ruleName, id =>".format(sys._getframe().f_lineno), ruleName, id)
     l_d_all = _getRecordById(ruleName,id)
-    print(l_d_all)
+    print("({})l_d_all =>".format(sys._getframe().f_lineno), l_d_all)
+
     if l_d_all[0]['case'] != 'negative':
         l_d_all[0]['case'] = '正向用例'
     else:
@@ -820,8 +810,7 @@ def edit123():
     for i in l_t_rows:
         l_testRule.append(i[0])
     global_d_['rule'] = l_testRule
-    print("l_testRule => ", l_testRule)
-
+    print("({})l_testRule =>".format(sys._getframe().f_lineno), l_testRule)
     # 从step步骤中获取表名
     # print(l_d_all[0]['step'])
     l_tableName = re.findall(r"from\s(\w+)\swhere", l_d_all[0]['step'], re.I)
@@ -832,17 +821,19 @@ def edit123():
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl[i] = s_desc
     global_d_['tblByStep'] = d_tbl
-    print("global_d_['tblByStep'] => ", global_d_['tblByStep'])
+    print("({})global_d_['tblByStep'] =>".format(sys._getframe().f_lineno), global_d_['tblByStep'])
+
     l_tbl = list(global_d_['tblByStep'].keys())
 
-    print("d_field['step'] => ", l_d_all[0]['step'])
+    print("({})l_d_all[0]['step'] =>".format(sys._getframe().f_lineno), l_d_all[0]['step'])
     l_step = l_d_all[0]['step'].split("\n")
-    print("l_step => ", l_step)
-    print("l_tbl => ", l_tbl)
+    print("({})l_step =>".format(sys._getframe().f_lineno), l_step)
+    print("({})l_tbl =>".format(sys._getframe().f_lineno), l_tbl)
+
 
     # 获取表和注释字典
     d_tbl_comment = Sqlserver_PO.getTableComment()
-    print("d_tbl_comment => ", d_tbl_comment)
+    print("({})d_tbl_comment =>".format(sys._getframe().f_lineno), d_tbl_comment)
 
     return render_template('edit123.html', global_d_=global_d_, d_field=l_d_all[0], s_rule=l_d_all[0]['rule'], id=id, ruleName=ruleName, l_step=l_step,l_tbl=l_tbl, d_tbl_comment=d_tbl_comment)
 
@@ -893,7 +884,8 @@ def step():
         d_['rule'] = request.form['rule']
         d_['case'] = request.form['case']
         d_['ruleParam'] = request.form['ruleParam']
-        print(d_['ruleName'],d_['id'],d_['rule'],d_['case'],d_['ruleParam'])
+        print("({})d_['ruleName'],d_['id'],d_['rule'],d_['case'],d_['ruleParam'] =>".format(sys._getframe().f_lineno), d_['ruleName'],d_['id'],d_['rule'],d_['case'],d_['ruleParam'])
+
         # print(ruleName, id, rule, case, ruleParam)  # 健康干预_已患疾病单病 1 s1 {'VISITTYPECODE':'31','DIAGNOSIS_CODE':'G46'}
         d_['ruleParam'] = d_['ruleParam'].replace("'","''").replace("\r","")
         # ruleParam = ruleParam.replace("\r","")
@@ -920,13 +912,20 @@ def step():
         # 从step步骤中获取表名
         # print(l_d_all[0]['step'])
         l_tableName = re.findall(r"from\s(\w+)\swhere", d_["step"], re.I)
-        print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+        # print(l_tableName)  # ['TB_PREGNANT_MAIN_INFO', 'T_ASSESS_MATERNAL']
+
         # 获取表结构
-        d_tbl = {}
+        d_tbl_desc2 = {}
+        d_tbl_comment = {}
         for i in l_tableName:
             s_desc = Sqlserver_PO.desc2(i)
-            d_tbl[i] = s_desc
-        global_d_['tblByStep'] = d_tbl
+            d_tbl_desc2[i] = s_desc
+            d_tbl_comment.update(Sqlserver_PO.getTableComment(i))
+
+        d_tbl_desc2['tblComment'] = d_tbl_comment
+        global_d_['tblByStep'] = d_tbl_desc2
+        print("global_d_['tblByStep'] => ", global_d_['tblByStep'])
+
         return render_template('index7.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], tabName='测试项', subName='测试规则',testRule2=1, message=1)
         # return render_template('edit123.html', global_d_=global_d_, d_field=d_, s_rule=d_['rule'], id=d_['id'], ruleName=d_['ruleName'])
 
@@ -941,10 +940,10 @@ def searchRecord():
         text = request.form['text']
         filterTbl = request.form['filterTbl']
         l_filterTbl = filterTbl.split(",")
-        print("(859)查询记录 - 参数 =>", db, datatype, text, l_filterTbl)
+        print("({})查询记录 - 参数 =>".format(sys._getframe().f_lineno), db, datatype, text, l_filterTbl)
         Sqlserver_PO2 = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", db, "GBK")
         result = Sqlserver_PO2.record2('*', datatype, text, l_filterTbl)
-        print("(862)查询记录 - 结果 =>", result)
+        print("({})查询记录 - 结果 =>".format(sys._getframe().f_lineno), result)
         global_d_['db'] = db
         global_d_['datatype'] = datatype
         global_d_['text'] = text
@@ -962,7 +961,7 @@ def queryDesc2():
 @app.route('/get_queryDesc2')
 def get_queryDesc2():
     selected_value = request.args.get('value')
-    print("(921)查询表结构 - 数据库 =>", selected_value)
+    print("({})查询表结构 - 数据库 =>".format(sys._getframe().f_lineno), selected_value)
     Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", selected_value, "GBK")
 
     # 获取表和注释字典
@@ -978,8 +977,7 @@ def get_queryDesc2():
     for i in l_tableName:
         s_desc = Sqlserver_PO.desc2(i)
         d_tbl_desc2[i] = s_desc
-    print("d_tbl_desc2 => ", d_tbl_desc2)
-
+    print("({})d_tbl_desc2 =>".format(sys._getframe().f_lineno), d_tbl_desc2)
     d_tbl_desc2['tblComment'] = d_tbl_comment
     return d_tbl_desc2
 
@@ -1009,12 +1007,12 @@ def importCase():
     message = 2
     if request.method == 'POST':
         message = uploadFile()
-        print("(923)导入规则 - 上传文件 =>", message)
+        print("({})导入规则 - 上传文件 =>".format(sys._getframe().f_lineno), message)
         if message == 0:
             return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据源', subName='导入规则')
         # 导入用例
         ruleName = request.form['ruleName']
-        print("(928)导入规则 - 规则名 =>", ruleName)
+        print("({})导入规则 - 规则名 =>".format(sys._getframe().f_lineno), ruleName)
         if ruleName in global_d_['ruleName'] and ruleName != "none":
             ChcRule_PO = ChcRulePO()
             status = ChcRule_PO.importFull(ruleName)
@@ -1043,7 +1041,7 @@ def getRuleNameBySheet(file2):
             if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[
                 3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
                 l_tmp.append(i)
-    print("(957)l_tmp(符合条件的sheet名) => ", l_tmp)
+    print("({})l_tmp(符合条件的sheet名) =>".format(sys._getframe().f_lineno), l_tmp)
     return l_tmp
 
 # todo 注册规则表1
@@ -1052,7 +1050,7 @@ def registerTbl():
     message = 2
     if request.method == 'POST':
         message = uploadFile()
-        print("(966)创建库表 - 上传文件(步骤1/2)", message )
+        print("({})创建库表 - 上传文件(步骤1/2) =>".format(sys._getframe().f_lineno), message)
         # message = uploadFile('registerTbl.html')
         if message == 1:
             l_tmp = getRuleNameBySheet(global_d_['file2'])
@@ -1069,7 +1067,7 @@ def registerTbl():
 def registerTbl2():
     if request.method == 'POST':
         ruleName = request.form['ruleName']
-        print("(1052)创建库表 - 规则名(步骤2/2) =>", ruleName)
+        print("({})创建库表 - 规则名(步骤2/2) =>".format(sys._getframe().f_lineno), ruleName)
         if ruleName == 'none':
             # return render_template('registerTbl.html', global_d_=global_d_, message=0)
             return render_template('index7.html', global_d_=global_d_, message=0, tabName='数据源', subName='创建库表', registerTbl2=1)
@@ -1078,7 +1076,8 @@ def registerTbl2():
             status = ChcRule_PO.importFull(ruleName)
             setRuleName(ruleName)
             l_tmp = getRuleNameBySheet(global_d_['file2'])
-            print("(1061)l_tmp", l_tmp)
+            print("({})l_tmp =>".format(sys._getframe().f_lineno), l_tmp)
+
             if status == 1:
                 return render_template('index7.html', global_d_=global_d_, l_canRegisterRuleName=l_tmp, message=1, tabName='数据源', subName='创建库表', registerTbl2=1)
                 # return render_template('registerTbl2.html', global_d_=global_d_, message=1, l_canRegisterRuleName = l_tmp)
@@ -1096,7 +1095,7 @@ def registerTbl2():
 def testSelect():
     if request.method == 'POST':
         ruleName = request.form.getlist('ruleName')
-        print(ruleName)
+        print("({})ruleName =>".format(sys._getframe().f_lineno), ruleName)
     return render_template('testSelect.html', global_d_=global_d_)
 
 
@@ -1155,7 +1154,8 @@ def delRemoteFolder(s_local, s_remote):
 @app.route('/updateSystem')
 def updateSystem():
     # 遍历当前路径下所有目录和文件
-    print("(1146)辅助工具 - 自动更新文件 =>")
+    print("({})辅助工具 - 自动更新文件 =>".format(sys._getframe().f_lineno))
+
     s_localPath_prefix = "/Users/linghuchong/Downloads/51/Python/project/flask/chc"
     s_remotePath_prefix = '/home/flask_chc'
     
@@ -1238,7 +1238,6 @@ def updateSystem():
     for i in l_2_file:
         c.run(f'rm -rf {i}')
 
-
     r = c.run('cd /home/flask_chc/ && sh ./sk.sh', hide='stdout')
     # r = c.run('cd /home/flask_chc/ && nohup flask run --host=0.0.0.0 >> /home/flask_chc/log.log 0>&1 &')
     # print(r.stdout)
@@ -1253,7 +1252,7 @@ def updateSystem():
 def searchLog():
     if request.method == 'POST':
         global_d_['count'] = request.form['count']
-        print("(1109)辅助工具 - 查询日志 =>", global_d_['count'])
+        print("({})辅助工具 - 查询日志 =>".format(sys._getframe().f_lineno), global_d_['count'])
         # s = c.run('cd /home/flask_chc/ && tail -f nohup.out')
         result = c.run('cd /home/flask_chc/ && tail -n '+ global_d_['count'] +' nohup.out', hide='stdout', warn=True)
         result = str(result.stdout).replace("192.168.0.148 -", "<br>192.168.0.148 -").replace("(no stderr)", "<br>(no stderr)")

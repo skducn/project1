@@ -35,16 +35,16 @@ todo clk
 todo get
 通过xpaths遍历获取标签数量 getQtyByX(varXpaths)
 通过xpath获取文本 getTextByX(varXpath)
-通过xpaths遍历获取文本列表 getTextListByX(varXpaths)
-通过xpaths遍历获取文本所在的位置 getTextIndexByX(varXpaths, varText)
-通过xpaths遍历获取文本包含部分内容的位置 getTextPartialContentIndexByX(varXpaths, varText)
-通过xpaths遍历获取指定文本之前的文本 getLeftTextByX(varXpaths, varText)
-通过xpath获取属性值 getAttrValueByX(varXpath, varAttr)
-通过xpaths遍历获取所有相同属性的值列表 getAttrValueListByX(varXpaths, varAttr)
-通过xpaths遍历获取属性值所在的位置 getAttrIndexByX(varXpaths, varAttr, varValue)
-通过xpaths遍历获取部分包含属性值所在的位置 getAttrPartialContentIndexByX(varXpaths, varAttr, varValue)
-通过xpaths遍历获取所有文本对应的属性值字典 getTextAttrValueDictByX(varXpaths, varAttr)
-通过linktext获取文本属性值 getAttrValueByH(varText, varAttr)
+通过xpaths遍历获取文本列表 getListTextByX(varXpaths)
+通过xpaths遍历获取文本所在的位置 getIndexByX(varXpaths, varText)
+通过xpaths遍历获取文本包含部分内容的位置 getPartIndexByX(varXpaths, varText)
+通过xpaths遍历获取指定文本之前的文本 getListPreviousTextByX(varXpaths, varText)
+通过xpath获取属性值 getAttrByAttrByX(varXpath, varAttr)
+通过xpaths遍历获取所有相同属性的值列表 getListAttrByAttrByX(varXpaths, varAttr)
+通过xpaths遍历获取属性值所在的位置 getIndexByAttrByX(varXpaths, varAttr, varValue)
+通过xpaths遍历获取部分包含属性值所在的位置 getPartIndexByAttrByX(varXpaths, varAttr, varValue)
+通过xpaths遍历获取所有文本对应的属性值字典 getDictTextAttrByAttrByX(varXpaths, varAttr)
+通过linktext获取文本属性值 getAttrByAttrByH(varText, varAttr)
 
 todo set
 通过id设置文本 setTextById()
@@ -115,7 +115,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image, ImageDraw, ImageGrab
 from pytesseract import *
-from seleniumwire import webdriver
+# from seleniumwire import webdriver
 
 
 class DomPO(object):
@@ -368,7 +368,7 @@ class DomPO(object):
     # todo get
 
     def getQtyByX(self, varXpaths):
-        """通过xpaths遍历获取标签数量"""
+        # 获取标签数量
         # 如：获取tr下有多少个div标签 getQtyByX('//*[@id="app"]/tr/div')
         qty = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
@@ -376,22 +376,13 @@ class DomPO(object):
         return qty
 
     def getTextByX(self, varXpath):
-        """通过xpath获取文本"""
+        # 获取文本
         # 如：getTextByX(u"//input[@class='123']")
         return self.find_element(*(By.XPATH, varXpath)).text
 
-
-    def getTextListByX(self, varXpaths):
-        """通过Xpaths遍历获取文本列表"""
-        # 如：getTextListByX("//tr")
-        l_text = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_text.append(a.text)
-        return l_text
-
-    def getTextIndexByX(self, varXpaths, varText):
-        """通过xpaths遍历获取文本所在的位置（索引号）"""
-        # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getTextIndexByX("//tr",'test')
+    def getIndexByX(self, varXpaths, varText):
+        # 获取文本的索引号
+        # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByX("//tr",'test')
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
@@ -399,18 +390,26 @@ class DomPO(object):
                 return index
         return None
 
-    def getTextPartialContentIndexByX(self, varXpaths, varTPC):
+    def getPartIndexByX(self, varXpaths, varTPC):
         """通过xpaths遍历获取文本包含部分内容的位置（索引号）"""
-        # 如：getTextPartialContentIndexByX("//tr","test")
+        # 如：getPartIndexByX("//tr","test")
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if varTPC in a.text:
                 return index
 
-    def getLeftTextByX(self, varXpaths, varText):
-        """通过xpaths遍历获取指定文本之前的文本"""
-        # 如文本集 a,b,c,d, getLeftTextByX("//tr",'c'), 返回列表【a,b】
+    def getListTextByX(self, varXpaths):
+        # 获取文本列表
+        # 如：getListTextByX("//tr")
+        l_text = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_text.append(a.text)
+        return l_text
+
+    def getListPreviousTextByX(self, varXpaths, varText):
+        # 获取指定文本之前的文本列表
+        # 如文本集 a,b,c,d, getListPreviousTextByX("//tr",'c'), 返回列表【a,b】
         l_leftText = []
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varText == a.text:
@@ -420,40 +419,46 @@ class DomPO(object):
         return l_leftText
 
 
-    def getAttrValueByX(self, varXpath, varAttr):
-        """通过xpath获取属性值"""
-        # 如：getAttrValueByX(u"//input[@class='123']","href")
+    def getAttrByAttrByX(self, varXpath, varAttr):
+        # 获取属性值
+        # 如：getAttrByAttrByX(u"//input[@class='123']","href")
         return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
-    def getAttrValueListByX(self, varXpaths, varAttr):
-        """通过xpaths遍历获取所有相同属性的值列表"""
-        # 如：获取所有tr标签中 href的值 getAttrValueListByX("//tr", "href")
-        l_attrValue = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_attrValue.append(a.get_attribute(varAttr))
-        return l_attrValue
+    def getAttrByAttrByH(self, varText, varAttr):
+        # 获取超链接文本的属性值
+        # 如：getAttrByAttrByH("超链接文本", "href")
+        return self.find_element(*(By.LINK_TEXT, varText)).get_attribute(varAttr)
 
-    def getAttrIndexByX(self, varXpaths, varAttr, varValue):
-        """通过xpaths遍历获取属性值所在的位置（索引号）"""
-        # 如：getAttrIndexByX("//td[9]/a","href","http://www.baidu.com")
+    def getIndexByAttrByX(self, varXpaths, varAttr, varValue):
+        # 获取属性值的索引号
+        # 如：getIndexByAttrByX("//a","href","http://www.baidu.com")
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if varValue == a.get_attribute(varAttr):
                 return index
 
-    def getAttrPartialContentIndexByX(self, varXpaths, varAttr, varValue):
-        """通过xpaths遍历获取部分包含属性值所在的位置（索引号）"""
-        # 如：getAttrPartialContentIndexByX("//td[9]/a","href","http://")
+    def getPartIndexByAttrByX(self, varXpaths, varAttr, varValue):
+        # 获取部分包含属性值的索引号
+        # 如：getPartIndexByAttrByX("//td[9]/a","href","http://")
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if varValue in a.get_attribute(varAttr):
                 return index
 
-    def getTextAttrValueDictByX(self, varXpaths, varAttr):
-        """通过xpaths遍历获取文本对应的属性值字典"""
-        # :如获取input下href即 {文本：属性值} getTextAttrValueDictByX(u"//input[@name='office_id']","href")
+    def getListAttrByAttrByX(self, varXpaths, varAttr):
+        # 获取所有相同属性值的列表
+        # 如：获取所有tr标签中 href的值 getListAttrByAttrByX("//tr", "href")
+        l_attrValue = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_attrValue.append(a.get_attribute(varAttr))
+        return l_attrValue
+
+    def getDictTextAttrByAttrByX(self, varXpaths, varAttr):
+        # 获取标签属性下的文本，并组合成字典{文本：属性值}
+        # 如获取所有a标签下的文本，getDictTextAttrByAttrByX("//a","href")
+        # {'首页': 'http://192.168.0.202:28098/index', '医院管理': 'http://192.168.0.202:28098/mainData/mainData/hospital'}
         l_text = []
         l_attrValue = []
         for a in self.find_elements(*(By.XPATH, varXpaths)):
@@ -461,10 +466,6 @@ class DomPO(object):
             l_attrValue.append(a.get_attribute(varAttr))
         return dict(zip(l_text, l_attrValue))
 
-    def getAttrValueByH(self, varText, varAttr):
-        """通过linktext获取文本属性值"""
-        # 如：getAttrValueByH("超链接文本","href")
-        return self.find_element(*(By.LINK_TEXT, varText)).get_attribute(varAttr)
 
 
 

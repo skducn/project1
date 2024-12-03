@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>{{ id }} - {{ ruleName }}</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
+
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/glightbox.min.css') }}">#}
+{#<link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/tailwind.css') }}">
+
+<style>
+
+ /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
+    .containerFlex {
+    display: flex;
+    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
+    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
+    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
+        row（默认值）：主轴为水平方向，起点在左端。
+        row-reverse：主轴为水平方向，起点在右端。
+        column：主轴为垂直方向，起点在上沿。
+        column-reverse：主轴为垂直方向，起点在下沿。*/
+    /* flex-wrap：是否换行及换行的方向
+        nowrap（默认）：不换行
+        wrap：换行，第一行在上方
+        wrap-reverse：换行，第一行在下方*/
+    height: 10vh; /* Full height of the viewport */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
+    }
+
+    /* loading */
+    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
+    @keyframes dash { to {stroke-dashoffset: 136;} }
+    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
+    @keyframes blink { 50% {opacity: 0;} }
+
+    .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
+    textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
+    textErr{white-space: pre-wrap;font-size:15px;color: #ff0000;text-align: left;line-height: 2rem;}
+</style>
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='1/css/bootstrap.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='1/css/animate.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='1/css/style.css') }}">
+{#button#}
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='css/chc.js') }}"></script>
+
+<script>
+<!-- loading加载中 -->
+document.addEventListener('DOMContentLoaded', function() {
+var form = document.querySelector('form');
+var loading = document.getElementById('loading');
+form.addEventListener('submit', function(event) {
+event.preventDefault(); // 阻止表单默认提交行为
+$('#mask').show(); // 显示遮罩层
+loading.style.display = 'block'; // 显示加载动画
+setTimeout(function() {
+    form.submit(); // 模拟提交表单
+}, 1000);
+});
+});
+</script>
+
+</head>
+
+<!--31525-->
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
+<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
+
+
+<body data-spy="scroll" data-target="#fixedNavbar">
+
+<!-- 遮罩层 -->
+<div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div class="containerFlex">
+    <svg width="100" height="100" viewBox="0 0 40 60">
+    <polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
+    <text class="loading" x="0" y="45" fill="#fff" >processing...</text>
+    </svg>
+    </div>
+</div>
+
+    <!--// Header Start //-->
+    <header class="header fixed-top white-navbar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg p-0">
+                <a class="navbar-brand" href="/">
+                    <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo White" class="img-fluid logo-transparent">
+                    <img src="{{ url_for('static', filename='1/picture/logo-black.png') }}" alt="Logo Normal" class="img-fluid logo-normal">
+                </a>
+
+                <div class="collapse navbar-collapse main-menu justify-content-end" id="fixedNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#" data-scroll-nav=1">查询SQL</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="1">查询表结构</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="3">编辑规则</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#" data-scroll-nav="4">规则名列表</a>
+                        </li>
+                        <li class="nav-item">
+                        <a onclick="goHome()" class="nav-link menu-link" href="#" ><i class="el-icon-s-home"></i>&nbsp;登出</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+            <!--// .navbar-nav //-->
+        </div>
+        <!--// .container //-->
+    </header>
+    <!--// Header End  //-->
+
+    <main class="main-area">
+
+
+    <!-- 查询sql -->
+    <!--// Features Section End //-->
+    <br><br>
+        <section class="features section pb-minus-70" data-scroll-index="1">
+            <div class="container">
+            <div class="row">
+            <div class="col-lg-6">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-heading">
+                            <h2 class="section-title"><i class="el-icon-search"></i> 查询SQL</h2>
+                        </div>
+                    </div>
+                    <!--// .col //-->
+                </div>
+                <!--// .row //-->
+
+                <div class="a5 md:a2u af">
+                <div class="a3u">
+                <textarea name="querySql" id="querySql" rows="3" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+
+{#                <input type="text" name="querySql" id="querySql" maxlength="150" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+                </div>
+                </div>
+
+                <div class="a5 af"><div class="a2g">
+                <button id="queryRecord" class="el-button el-button--primary">查询</button>
+                </div></div>
+            </div>
+
+                <div class="col-lg-6">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <div class="section-heading">
+                        <h2 class="section-title"><i class="el-icon-search"></i> 查询表结构</h2>
+                    </div>
+                </div>
+            <!--// .col //-->
+            </div>
+
+            <table>
+                {% for k,v in global_d_['tblByStep'].items() %}
+                <tr>
+                <div id="{{ k }}" >{{ k }}</div>
+{#                <td style="width:100px;overflow:hidden" id="{{ k }}" class="target-click">{{ k }}</td>#}
+                <script>
+                $(document).ready(function() {
+                new jBox('Modal', {
+                attach: '#{{ k }}',
+                height: 600,
+                title: '{{k}}',
+                content: '<div style="line-height: 30px;">' +
+                '{{v | tojson}}<br></div>'
+                });
+                })
+                </script>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+            </div>
+            </div>
+            <!--// .container //-->
+        </section>
+        <!--// Features Section End //-->
+
+
+
+        <!-- 编辑规则 -->
+        <!--// About Section Start //-->
+        <section class="section" data-scroll-index="3">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-heading">
+                            <h2 class="section-title"><i class="el-icon-edit-outline"></i> 编辑规则</h2>
+                        </div>
+                    </div>
+                    <!--// .col //-->
+                </div>
+                <!--// .row //-->
+
+                {% if d_field %}
+                    {% if d_field['result']  == 'ok' %}
+                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
+                        <textOk>{{ d_field['result'] }}</textOk> <br><br>
+
+                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+                        <textOk>{{d_field['step']}}</textOk> <br>
+                        <textOk>{{d_field['eachStep']}}</textOk> <br>
+                    {% else %}
+                        <label for class="al a25 aR a1j dark:a1k a2j">结果:</label>
+                        <textErr>{{ d_field['result'] }}</textErr> <br><br>
+
+                        <label for class="al a25 aR a1j dark:a1k a2j">步骤:</label>
+                        <textErr>{{d_field['step']}}</textErr> <br>
+                        <textErr>{{d_field['eachStep']}}</textErr> <br>
+                    {%  endif %}
+
+                    <div class="louti"></div>
+
+                <!-- 编辑 -->
+
+                <form action="{{ url_for('step')}}" method="post">
+
+
+                <div class="a6 a1K ac">
+
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">规则名</label>
+                <input type="text" readonly name="ruleName" value="{{ d_field['ruleName'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                </div>
+                </div>
+
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">id</label>
+                <input type="text" readonly name="id" value="{{ d_field['id'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                </div>
+                </div>
+
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">规则集</label>
+                {#<input type="text" name="rule" value="{{ d_field['rule'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+                <select id="queryRuleCollection" name="rule" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                <option value="{{ s_rule }}" selected>{{ s_rule }}</option>
+                {% for s in global_d_['rule'][0:] %}
+                <option value="{{s}}">{{s}}</option>
+                {% endfor %}
+                </select>
+                </div>
+                </div>
+
+                <div class="a5 md:a2u/2 af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">case</label>
+                <input type="text" name="case" value="{{ d_field['case'] }}" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                </div>
+                </div>
+
+                    <div class="col-md-12">
+                        <div class="box3">
+                        <div id="get_queryRuleCollection"></div>
+                        </div>
+                    </div>
+
+                <div class="a5 md:a2u af">
+                <div class="a3u">
+                <label for class="al a25 aR a1j dark:a1k a2j">ruleParam*</label>
+                <textarea name="ruleParam" rows="5" id="cacu_value" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">{{d_field['ruleParam']}}</textarea>
+                </div>
+                </div>
+
+                <div class="a5 af"><div class="a2g">
+                    <div class='submitButton'>
+                    <button class="el-button el-button--primary">提交</button>
+                    </div>
+                </div></div>
+
+
+                </div>
+                </form>
+
+                <!-- loading... -->
+                <div id="loading" style="display:none;"></div>
+
+                {% elif error %}
+                    <label for class="al a25 aR a1j dark:a1k a2j">Error:</label>
+                    <pre>{{ error }}</pre>
+                {% endif %}
+
+            </div>
+            <!--// .container //-->
+        </section>
+        <!--// About Section End //-->
+
+
+
+        <!-- 规则名列表 -->
+        <!--// Features Section End //-->
+        <section class="features section pb-minus-70" data-scroll-index="4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-7">
+                        <div class="section-heading">
+                            <h2 class="section-title"><i class="el-icon-document-copy"></i> 规则名列表</h2>
+                        </div>
+                    </div>
+                    <!--// .col //-->
+                </div>
+                <!--// .row //-->
+
+                <div class="row">
+                    {% for i in global_d_['ruleName'] %}
+                        <div class="col-lg-6 col-xl-3 col-md-6 col-sm-6">
+                            <a href="{{ url_for('list123',ruleName=i) }}" target = "_blank">
+                            <div class="features-box">
+                            <div class="features-body">
+                            <h7 class="features-title">{{ i }}</h7>
+                            </div>
+                            </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+
+
+            </div>
+            <!--// .container //-->
+        </section>
+        <!--// Features Section End //-->
+
+
+        <!--// Footer Start //-->
+        <footer class="footer">
+            <div class="copyright-wrap">
+                <div class="container">
+                    <div class="copyright-inner">
+                    </div>
+                </div>
+                <!--// .container //-->
+            </div>
+        </footer>
+        <!--// Footer End //-->
+
+    </main>
+
+    <!-- Javascript Plugins -->
+    <script src="{{ url_for('static', filename='1/js/jquery-3.4.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='1/js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='1/js/main.js') }}"></script>
+
+</body>
+
+</html>

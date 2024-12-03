@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+{## https://www.w3schools.com/css/css3_buttons.asp#}
+{## https://www.bootcss.com/p/buttons/ 各种button #}
+{#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
+{#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
+{#https://tools.wujingquan.com/htmltable/#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ruleName }}</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
+<!-- 悬浮按钮 -->
+<script src="{{ url_for('static', filename='css/Suspend.js') }}"></script>
+
+<!--31525 popup-->
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
+<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
+
+<style>
+    /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
+    .containerFlex {
+    display: flex;
+    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
+    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
+    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
+        row（默认值）：主轴为水平方向，起点在左端。
+        row-reverse：主轴为水平方向，起点在右端。
+        column：主轴为垂直方向，起点在上沿。
+        column-reverse：主轴为垂直方向，起点在下沿。*/
+    /* flex-wrap：是否换行及换行的方向
+        nowrap（默认）：不换行
+        wrap：换行，第一行在上方
+        wrap-reverse：换行，第一行在下方*/
+    height: 10vh; /* Full height of the viewport */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
+    }
+
+    /* loading */
+    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
+    @keyframes dash { to {stroke-dashoffset: 136;} }
+    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
+    @keyframes blink { 50% {opacity: 0;} }
+
+/* 表格 */
+table {border-collapse: collapse;width: 95%;}
+th {position: sticky;z-index: 10;top: 0;}
+th, td {border: 1px solid black;padding: 10px;text-align: center;}
+table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:center;}
+table.tftable tr {background-color:#d4e3e5;}
+table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
+.checkbox {width: 20px;height: 20px;}
+.submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
+
+#loutinav {width: 150px;position: fixed;top: 55%;left: 37%;padding-bottom:2px;border-radius:5px;}
+#loutinav2 {width: 150px;position: fixed;top: 55%;right: 35%;padding-bottom:2px;border-radius:5px;}
+</style>
+
+<script>
+    // 获取所有复选框元素
+    function selectAll(checkAllBox) {
+    {#var items = document.getElementsByClassName('items');#}
+    var items = document.getElementsByName('items');
+    // 根据全选复选框的状态设置其他复选框的状态
+    for (var i = 0; i < items.length; i++) {
+    items[i].checked = checkAllBox.checked;
+    }
+    }
+
+    // 提交表单
+    function submitForm() {
+    $('#mask').show(); // 显示遮罩层
+    var formData = $('#checkboxForm').serialize();
+    $.ajax({
+    type: 'POST',
+    url: '/submitId',
+    {#dataType:'json',#}
+    data: formData,
+    success: function(response) {
+    window.location.href = "/list123/" + response;
+    {#window.location.href = "/list123/评估因素取值";#}
+    },
+    error: function(xhr, status, error) {
+    console.error(error);
+    console.log(response);
+    }
+    });
+    }
+
+    // 弹出框
+    $(document).ready(function() {
+    new jBox('Modal', {
+    attach: '#Modal-1',
+    height: 600,
+    title: '{{ruleName}}',
+    content: '<div style="line-height: 30px;">' +
+    '{{ l_ruleSql | tojson }}<br></div>'
+    });
+    })
+
+    // 鼠标移动到每行颜色变白色
+    window.onload=function(){
+    var tfrow = document.getElementById('tfhover').rows.length;
+    var tbRow=[];
+    for (var i=1;i<tfrow;i++) {
+    tbRow[i]=document.getElementById('tfhover').rows[i];
+    tbRow[i].onmouseover = function(){
+    this.style.backgroundColor = '#ffffff';
+    };
+    tbRow[i].onmouseout = function() {
+    this.style.backgroundColor = '#d4e3e5';
+    };
+    }
+    };
+
+    // select 跳转页面
+    function redirectToPage(select) {
+    var value = select.options[select.selectedIndex].value;
+    if (value !== "") {
+        window.location.href = value;
+    }
+    }
+</script>
+
+</head>
+
+<body>
+
+<!-- 遮罩层 -->
+<div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div class="containerFlex">
+    <svg width="100" height="100" viewBox="0 0 40 60">
+    <polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
+    <text class="loading" x="0" y="45" fill="#fff" >processing...</text>
+    </svg>
+    </div>
+</div>
+
+
+<table id="tfhover" class="tftable" border="1">
+    <tr><th nowrap="nowrap"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+    {% for k,v in d_comment_size.items() %}
+        {%  if k == '结果' %}
+            <th nowrap="nowrap" style="width:{{ v }}px;overflow:hidden;">{{ k }}<br>
+            <select onchange="redirectToPage(this);" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+            <option value="all" selected>全部</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+            <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+            </select></th>
+{#        {% elif k == '' %}#}
+        {% else %}
+            <th nowrap="nowrap" style="width:{{ v }}px;overflow:hidden;">{{ k }}</th>
+        {% endif %}
+
+{#        <th nowrap="nowrap">id</th>#}
+{#        <th nowrap="nowrap">结果<br>#}
+{#        <select onchange="redirectToPage(this);" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">#}
+{#        <option value="all" selected>全部</option>#}
+{#        <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>#}
+{#        <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>#}
+{#        </select>#}
+{#        </th>#}
+{#        <th nowrap="nowrap">测试日期</th>#}
+{#        <th nowrap="nowrap" id="Modal-1" class="target-click"><a href="#">规则集</a></th>#}
+{#        <th nowrap="nowrap">正反用例</th>#}
+{#        <th nowrap="nowrap">参数</th>#}
+{#        <th nowrap="nowrap">分类</th>#}
+{#        <th nowrap="nowrap">评估因素名称</th>#}
+{#        <th nowrap="nowrap"><a href ="https://docs.qq.com/sheet/DYmtPV0dUa1NSdHNt?tab=h940rl" target="_blank">取值规则</a></th>#}
+{#        <th nowrap="nowrap">tester</th>#}
+    {% endfor %}
+    </tr>
+
+<form id="checkboxForm">
+
+    {% for d_ in l_d_all %}
+        <tr>
+            <td style="width:50px;overflow:hidden"><input type="checkbox" class="checkbox" name='items' value="{{ d_.id }}"></td>
+            {% for k,v in d_.items() %}
+                <td>{{ v |safe|lower }}</td>
+            {% endfor %}
+
+{#            <td style="width:50px;overflow:hidden"><input type="checkbox" class="checkbox" name='items' value="{{ item.id }}"></td>#}
+{#            <td style="width:50px;overflow:hidden"><a href="{{ url_for('edit123', ruleName=ruleName, id=item.id)}}" target="_blank">{{ item.id }}</a></td>#}
+{#            {% if item.result == 'ok' %}#}
+{#                <td style="background-color: #67C23A;width:50px;overflow:hidden">{{ item.result }}</td>#}
+{#            {% elif item.result == 'error' %}#}
+{#             <td style="background-color: #F56C6C;width:50px;overflow:hidden">{{ item.result }}</td>#}
+{#            {% else %}#}
+{#                <td>{{ item.result }}</td>#}
+{#            {% endif %}#}
+{#            <td style="width:100px;overflow:hidden">{{ item.updateDate }}</td>#}
+{#            <td style="width:50px;overflow:hidden;">{{ item.rule|safe|lower }}</td>#}
+{#            <td style="width:100px;overflow:hidden;">{{ item.case|safe|lower }}</td>#}
+{#            <td style="width:100px;overflow:hidden;">{{ item.ruleParam|safe|lower }}</td>#}
+{#            <td style="width:100px;overflow:hidden">{{ item.assessName }}</td>#}
+{#            <td style="overflow:hidden">{{ item.assessRule}}</td>#}
+{#            <td style="width:100px;overflow:hidden">{{ item.tester }}</td>#}
+        </tr>
+    {% endfor %}
+
+    <input type="hidden" name='ruleName' value="{{ ruleName }}">
+
+    <!-- 悬浮按钮 -->
+    <div id="loutinav"><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></div>
+    <div id="loutinav2"><div class="top"><button type="button" class="button button-glow button-border button-rounded button-caution">回顶</button></div></div>
+
+    <tr><td colspan="11">
+    <div class="submitButton">
+    <button type="button" onclick="submitForm()" class="button button-glow button-rounded button-raised button-primary">提交</button>
+    </div>
+    </td></tr>
+
+</form>
+</table>
+
+
+</body>
+</html>

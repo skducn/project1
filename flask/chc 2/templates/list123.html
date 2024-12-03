@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+{## https://www.w3schools.com/css/css3_buttons.asp#}
+{## https://www.bootcss.com/p/buttons/ 各种button #}
+{#https://element.eleme.cn/#/zh-CN/component/installation element官网#}
+{#https://blog.csdn.net/apollo_miracle/article/details/83016021 Flask 框架 - 模板#}
+{#https://tools.wujingquan.com/htmltable/#}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ ruleName }} - CHC</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/buttons.css') }}">
+
+{#<link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.2.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">#}
+{#<!-- Latest compiled and minified CSS -->#}
+{#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">#}
+{#<!-- Latest compiled and minified JavaScript -->#}
+{#<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>#}
+
+
+<script src="{{ url_for('static', filename='css/jquery-3.3.1.min.js') }}"></script>
+<!-- 悬浮按钮 -->
+<script src="{{ url_for('static', filename='css/Suspend.js') }}"></script>
+
+<!--31525 popup-->
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/dist/jBox.all.css') }}">
+{#<link rel="stylesheet" href="{{ url_for('static', filename='31525/css/Demo.css') }}">#}
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Avatars.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='31525/Playground/Playground.Login.css') }}">
+<script src="{{ url_for('static', filename='31525/js/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/dist/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Avatars.js') }}"></script>
+<script src="{{ url_for('static', filename='31525/Playground/Playground.Login.js') }}"></script>
+
+<style>
+    /* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
+    .containerFlex {
+    display: flex;
+    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
+    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
+    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
+        row（默认值）：主轴为水平方向，起点在左端。
+        row-reverse：主轴为水平方向，起点在右端。
+        column：主轴为垂直方向，起点在上沿。
+        column-reverse：主轴为垂直方向，起点在下沿。*/
+    /* flex-wrap：是否换行及换行的方向
+        nowrap（默认）：不换行
+        wrap：换行，第一行在上方
+        wrap-reverse：换行，第一行在下方*/
+    height: 10vh; /* Full height of the viewport */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
+    }
+
+    /* loading */
+    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
+    @keyframes dash { to {stroke-dashoffset: 136;} }
+    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
+    @keyframes blink { 50% {opacity: 0;} }
+
+/* 表格 */
+table {border-collapse: collapse;width: 95%;}
+th {position: sticky;z-index: 10;top: 0;}
+th, td {border: 1px solid black;padding: 10px;text-align: center;}
+table.tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #729ea5;border-collapse: collapse;}
+table.tftable th {font-size:14px;background-color:#acc8cc;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;text-align:center;}
+table.tftable tr {background-color:#d4e3e5;}
+table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #729ea5;}
+.checkbox {width: 20px;height: 20px;}
+.submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
+
+#loutinav {width: 150px;position: fixed;top: 55%;left: 37%;padding-bottom:2px;border-radius:5px;}
+#loutinav2 {width: 150px;position: fixed;top: 55%;right: 35%;padding-bottom:2px;border-radius:5px;}
+
+
+
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  word-wrap: break-word; /* 允许在长单词或URL中间进行换行 */
+  word-break: break-word; /* 防止单词被拆开 */
+}
+
+</style>
+
+<script>
+    // 获取所有复选框元素
+    function selectAll(checkAllBox) {
+    {#var items = document.getElementsByClassName('items');#}
+    var items = document.getElementsByName('items');
+    // 根据全选复选框的状态设置其他复选框的状态
+    for (var i = 0; i < items.length; i++) {
+    items[i].checked = checkAllBox.checked;
+    }
+    }
+
+    // 提交表单
+    function submitForm() {
+    $('#mask').show(); // 显示遮罩层
+    var formData = $('#checkboxForm').serialize();
+    $.ajax({
+    type: 'POST',
+    url: '/submitId',
+    {#dataType:'json',#}
+    data: formData,
+    success: function(response) {
+    window.location.href = "/list123/" + response;
+    {#window.location.href = "/list123/评估因素取值";#}
+    },
+    error: function(xhr, status, error) {
+    console.error(error);
+    console.log(response);
+    }
+    });
+    }
+
+    // 弹出框
+    $(document).ready(function() {
+    new jBox('Modal', {
+    attach: '#Modal-1',
+    height: 600,
+    title: '{{ruleName}}',
+    content: '<div style="line-height: 30px;">' +
+    '{{ l_ruleSql | tojson }}<br></div>'
+    });
+    })
+
+    // 鼠标移动到每行颜色变白色
+    window.onload=function(){
+    var tfrow = document.getElementById('tfhover').rows.length;
+    var tbRow=[];
+    for (var i=1;i<tfrow;i++) {
+    tbRow[i]=document.getElementById('tfhover').rows[i];
+    tbRow[i].onmouseover = function(){
+    this.style.backgroundColor = '#ffffff';
+    };
+    tbRow[i].onmouseout = function() {
+    this.style.backgroundColor = '#d4e3e5';
+    };
+    }
+    };
+
+    // select 跳转页面
+    function redirectToPage(select) {
+    var value = select.options[select.selectedIndex].value;
+    if (value !== "") {
+        window.location.href = value;
+    }
+    }
+</script>
+
+
+
+</head>
+
+<body>
+
+<!-- 遮罩层 -->
+<div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div class="containerFlex">
+    <svg width="100" height="100" viewBox="0 0 40 60">
+    <polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
+    <text class="loading" x="0" y="45" fill="#fff" >processing...</text>
+    </svg>
+    </div>
+</div>
+
+{{ ruleName }}
+<table id="tfhover" class="tftable">
+    <tr>
+        <th nowrap="nowrap" style="width:50px;"><input type="checkbox" id="selectAll" onclick="selectAll(this)"> 全选<br></th>
+        {% for k,v in d_comment_size.items() %}
+            {% if k == '结果' %}
+                <th nowrap="nowrap" style="width:{{ v }}px;">
+                <select onchange="redirectToPage(this);" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                <option value="result" selected>结果</option>
+                <option value="{{ url_for('list123',ruleName=ruleName) }}">全部</option>
+                <option value="{{ url_for('list4',ruleName=ruleName,result='error') }}">error</option>
+                <option value="{{ url_for('list4',ruleName=ruleName,result='ok') }}">ok</option>
+                </select>
+                </th>
+            {% elif k == '规则集' %}
+                <th nowrap="nowrap" style="width:{{ v }}px;" id="Modal-1" class="target-click"><a href="#">规则集</a></th>
+            {% else %}
+                <th nowrap="nowrap" style="width:{{ v }}px;">{{ k }}</th>
+            {% endif %}
+        {% endfor %}
+    </tr>
+
+<form id="checkboxForm">
+    {% for d_ in l_d_all %}
+        <tr>
+            <td style="width:50px;"><input type="checkbox" class="checkbox" name='items' value="{{ d_.id }}"></td>
+            {% for k,v in d_.items() %}
+                {% if k == 'id' %}
+                    <td style="width:50px;"><a href="{{ url_for('edit123', ruleName=ruleName, id=v)}}" target="_blank">{{ v }}</a></td>
+                {% else %}
+{#                    {% if k == 'result' and v == 'ok'%}#}
+{#                        <td style="background-color: #67C23A;width:50px;">{{ v |safe|lower }}</td>#}
+                    {% if k == 'result' and v == 'error'%}
+                        <td style="background-color: #F56C6C;width:50px;">{{ v |safe|lower }}</td>
+                    {% else %}
+                        <td>{{ v |safe|lower }}</td>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </tr>
+    {% endfor %}
+
+    <input type="hidden" name='ruleName' value="{{ ruleName }}">
+
+    {% if suspend == 'show' %}
+        <!-- 悬浮按钮 -->
+        <div id="loutinav"><button type="button" onclick="submitForm()" class="button button-glow button-border button-rounded button-primary">提交</button></div>
+        <div id="loutinav2"><div class="top"><button type="button" class="button button-glow button-border button-rounded button-caution">回顶</button></div></div>
+    {% endif %}
+    <tr>
+        <td colspan="113">
+    <div class="submitButton">
+    <button type="button" onclick="submitForm()" class="button button-glow button-rounded button-raised button-primary">提交</button>
+    </div>
+    </td>
+    </tr>
+
+</form>
+</table>
+
+
+</body>
+</html>

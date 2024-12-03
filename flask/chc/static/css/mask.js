@@ -3,7 +3,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 var loading = document.getElementById('loading');
 
-// 数据仓库 - 创建库表 步骤1/2
+
+// 数据源 - 创建库表 步骤1/2
 var mask21 = document.getElementById('mask21');
 // var loading = document.getElementById('loading');
 mask21.addEventListener('submit', function (event) {
@@ -16,7 +17,7 @@ mask21.addEventListener('submit', function (event) {
 });
 
 
-// 数据仓库 - 创建库表 步骤2/2
+// 数据源 - 创建库表 步骤2/2
 var mask211 = document.getElementById('mask211');
 // var loading = document.getElementById('loading');
 mask211.addEventListener('submit', function (event) {
@@ -29,7 +30,7 @@ mask211.addEventListener('submit', function (event) {
 });
 
 
-// 数据仓库 - 导入规则
+// 数据源 - 导入规则
 var mask22 = document.getElementById('mask22');
 // var loading = document.getElementById('loading');
 mask22.addEventListener('submit', function (event) {

@@ -1,0 +1,202 @@
+/* mask */
+/* 提交按钮和正确错误提示颜色 */
+/* hr */
+/* pre提示 */
+/* 浮动菜单 */
+
+/* 弹性布局（display:flex）https://blog.csdn.net/dsgdauigfs/article/details/140527162 */
+    .containerFlex2{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 40vh; /* Full height of the viewport */
+
+    }
+    .containerFlex {
+    display: flex;
+    justify-content: center;  /* 主轴上的子项对齐方式 flex-start(左) | flex-end（右） | center | space-between（往两边） | space-around（往中间）*/
+    align-items: center;  /* 交叉轴上的子项对齐方式 flex-start(顶) | flex-end(低) | center | baseline(第一行文字的基线对齐) | stretch（如果未设置高度或auto，占满整个容器的高度） */
+    /* flex-direction：定义主轴的方向，即子元素的主要排列方向
+        row（默认值）：主轴为水平方向，起点在左端。
+        row-reverse：主轴为水平方向，起点在右端。
+        column：主轴为垂直方向，起点在上沿。
+        column-reverse：主轴为垂直方向，起点在下沿。*/
+    /* flex-wrap：是否换行及换行的方向
+        nowrap（默认）：不换行
+        wrap：换行，第一行在上方
+        wrap-reverse：换行，第一行在下方*/
+    height: 10vh; /* Full height of the viewport */
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%); /* 将元素向上移动自身高度的一半 */
+    }
+
+/* mask */
+    .triangle {stroke-dasharray: 17;animation: dash 2.5s cubic-bezier(0.35, 0.04, 0.63, 0.95) infinite;}
+    @keyframes dash { to {stroke-dashoffset: 136;} }
+    .loading {font-family: 'Orbitron', sans-serif;font-size: 7px;animation: blink .9s ease-in-out infinite alternate;}
+    @keyframes blink { 50% {opacity: 0;} }
+
+/* 提交按钮和正确错误提示颜色 */
+    .submitButton {display: flex;justify-content: center;align-items: center;height: 10vh; /* Full height of the viewport */}
+    textOk{white-space: pre-wrap;font-size:15px;color: #0167ff;text-align: left;line-height: 2rem;}
+    textErr{white-space: pre-wrap;font-size:15px;color: #ff0000;text-align: left;line-height: 2rem;}
+
+/* hr */
+.separator {
+border: none; /* 移除默认边框 */
+border-top: 1px solid #dee2e6; /* 加粗上边框，可以设置颜色 */
+margin: 10px 0; }
+
+
+/* pre提示 */
+pre {
+    white-space: pre-wrap;
+    background: #f8f8f8;
+    font-size: 14px;
+    color: red;
+    font-weight: normal;
+}
+pre1{
+white-space: pre-wrap;
+font-family: Arial, Helvetica, sans-serif;
+font-size:15px;
+color: #0167ff;
+text-align: left;
+line-height: 2rem;
+}
+pre2{
+white-space: pre-wrap;
+font-family: Arial, Helvetica, sans-serif;
+font-size:15px;
+color: #ff0000;
+text-align: left;
+line-height: 2rem;
+}
+
+/* 浮动菜单 */
+* {
+        margin: 0;
+        padding: 0;
+        font-family: 'microsoft yahei';
+    }
+    #loutinav {
+        /*width: 122px;*/
+        position: fixed;
+        top: 30px;
+        left: 40px;
+        /*border: 1px solid #ddd;*/
+        display: none;
+        /*background: #F8F8FF;*/
+        padding-bottom:2px;
+        border-radius:5px;
+    }
+    #loutinav ul li {
+        /*width: 122px;*/
+        height: 52px;
+        border-bottom: 1px dotted #F8F8FF;
+        list-style: none;
+        font-size: 12px;
+        text-align: left;
+        position: relative;
+        cursor: pointer;
+        padding: 10px 0;
+        /*background: #F8F8FF;*/
+        color: #050505;
+    }
+    #loutinav ul li span {
+        /*width: 122px;*/
+        height: 32px;
+        padding: 10px 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #loutinav ul li.last {
+        /*background: #F8F8FF;*/
+        color: #050505;
+        /*border-bottom: 1px solid #ddd;*/
+    }
+    #loutinav ul li.active span {
+        /*background: #c00;*/
+        color: #050505;
+        display: block;
+    }
+    #loutinav ul li:hover span {
+        /*background: #00BFFF;*/
+        color: #fff;
+        display: block;
+        border-radius:5px;
+    }
+    #loutinav2 {
+        /*width: 150px;*/
+        position: fixed;
+        top: 50%;
+        right: 20%;
+        /*border: 1px solid #ddd;*/
+        display: none;
+        /*background: #F8F8FF;*/
+        padding-bottom:2px;
+        border-radius:5px;
+    }
+    #loutinav2 ul li {
+        /*width: 150px;*/
+        height: 52px;
+        border-bottom: 1px dotted #F8F8FF;
+        list-style: none;
+        font-size: 12px;
+        text-align: left;
+        position: relative;
+        cursor: pointer;
+        padding: 10px 0;
+        /*background: #F8F8FF;*/
+        color: #050505;
+    }
+    #loutinav2 ul li span {
+        /*width: 150px;*/
+        height: 32px;
+        padding: 10px 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #loutinav2 ul li.last {
+        /*background: #F8F8FF;*/
+        color: #050505;
+        /*border-bottom: 1px solid #ddd;*/
+    }
+    #loutinav2 ul li.active span {
+        /*background: #c00;*/
+        color: #050505;
+        display: block;
+    }
+    #loutinav2 ul li:hover span {
+        /*background: #00BFFF;*/
+        color: #fff;
+        display: block;
+        border-radius:5px;
+    }
+
+    #header {
+        background: #cc6633;
+        margin: 0 auto;
+         font-size: 50px;line-height: 300px;text-align: center;
+         color: #000;
+    }
+    #main {
+        margin: 0 auto;
+    }
+    #main .louti {
+        font-size: 50px;
+        color: #fff;
+        font-weight: bold;
+        text-align: center;
+    }
+#footer {
+    width: 1000px;
+    height: 400px;
+    background: red;
+    margin: 0 auto;
+    font-size: 50px;line-height: 400px;text-align: center;
+     color: #000;
+}

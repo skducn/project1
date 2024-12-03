@@ -1,48 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
-  <meta charset="UTF-8">
-  <title>CHC</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='60876/style.css') }}">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHC社区健康自动化平台</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename=global_d_['icon']) }}" type="image/x-icon">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='20231212/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='20231212/boxicons.min.css') }}">
 
 
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<!-- inspired by https://dribbble.com/shots/21953371-WeStud-Creative-Log-In-For-The-Educational-Platform -->
-<article>
-  <section>
-    <div class="bobbles">
-      <div class="bobble-1"></div>
-      <div class="bobble-2"></div>
-      <div class="bobble-3"></div>
-      <div class="bobble-4"></div>
-    </div>
-{#    <form autocomplete="off">#}
-         <form action="{{ url_for('login2')}}" method="post">
-      <h2>Welcome back!</h2>
-      <p>CHC 社区健康</p>
-      <div>
-        <label for="username">Username(test)</label>
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div>
-        <label for="password">Password(123456)</label>
-        <input type="password" id="password" name="password" required />
-        <input type="checkbox" />
-      </div>
-      <div class="forgot">
-        <a href="#">Forgot password?</a>
-      </div>
-      <button>Log In</button>
-      <p class="signup">
-        Don't have an account? <a href="#">Sign up</a>
-      </p>
-    </form>
-  </section>
-</article>
+{#<link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>#}
+<div class="l-form">
+            <div class="shape1"></div>
+            <div class="shape2"></div>
+
+            <div class="form">
+                <img src="{{ url_for('static', filename='20231212/authentication.svg') }}" alt="" class="form__img">
+
+
+                             <form action="{{ url_for('login2')}}" method="post" class="form__content">
+
+                    <h1 class="form__title">CHC 社区健康</h1>
+
+                    <div class="form__div form__div-one">
+                        <div class="form__icon">
+                            <i class='bx bx-user-circle'></i>
+                        </div>
+
+                        <div class="form__div-input">
+                            <label for="" class="form__label">Username(test)</label>
+                            <input type="text" class="form__input" name="username">
+                        </div>
+                    </div>
+
+                    <div class="form__div">
+                        <div class="form__icon">
+                            <i class='bx bx-lock' ></i>
+                        </div>
+
+                        <div class="form__div-input">
+                            <label for="" class="form__label">Password(123456)</label>
+                            <input type="password" class="form__input" name="password">
+                        </div>
+                    </div>
+                    <a href="#" class="form__forgot">Forgot Password?</a>
+
+                    <input type="submit" class="form__button" value="Login">
+
+                    <div class="form__social">
+                        <span class="form__social-text">Our login with</span>
+
+                        <a href="#" class="form__social-icon"><i class='bx bxl-facebook' ></i></a>
+                        <a href="#" class="form__social-icon"><i class='bx bxl-google' ></i></a>
+                        <a href="#" class="form__social-icon"><i class='bx bxl-instagram' ></i></a>
+                    </div>
+                </form>
+            </div>
+
+        </div>
 <!-- partial -->
-<script src="{{ url_for('static', filename='60876/script.js') }}"></script>
+
+<script src="{{ url_for('static', filename='20231212/script.js') }}"></script>
 
 </body>
 </html>
