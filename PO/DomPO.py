@@ -82,14 +82,14 @@ todo js
 通过tagname去掉隐藏属性 clsDisplayByTagName(varLabel, varLen)
 
 todo boolean
-通过xpath判断ture或false isBooleanByX(varPath)
+通过xpath判断ture或false isEleExistByX(varPath)
 通过xpath判断属性是否存在 isBooleanAttr(varXpath, varAttr)
 通过xpath判断属性值是否存在 isBooleanAttrValue(varPath, varAttr, varValue)
-通过Id判断ture或false isBooleanById(varId)
-通过name判断ture或false isBooleanByName(varName)
-通过超链接判断是否包含varText  isBooleanTextPartialContentByP(varPartText)
-通过超链接判断是否存在varText isBooleanTextByL(varText)
-通过xpath判断varText是否存在  isBooleanTextByX(varPath, varText)
+通过Id判断ture或false isEleExistById(varId)
+通过name判断ture或false isEleExistByName(varName)
+通过超链接判断是否包含varText  isElePartExistByP(varPartText)
+通过超链接判断是否存在varText isEleExistByL(varText)
+通过xpath判断varText是否存在  isEleTextExistByX(varPath, varText)
 
 todo alert(system)
 点击弹框中的确认 alertAccept()
@@ -135,17 +135,22 @@ class DomPO(object):
         """重写元素定位"""
         try:
             # Python特性，将入参放在元组里，入参loc，加*，变成元组。
-            # WebDriverWait(self.driver,10).until(lambda driver: driver.find_element(*loc).is_displayed())
+            # WebDriverWait(self.driver,5).until(lambda driver: driver.find_element(*loc).is_displayed())
             # 注意：以下loc入参本身就是元组，所以不需要再加*
-            WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except:
             print("未找到元素 %s " % (loc))
 
+    def waitLoading(self, varXpath):
+        # 创建WebDriverWait对象
+        wait = WebDriverWait(self.driver, 5)
+        wait.until(EC.visibility_of_element_located((By.XPATH, varXpath)))
+
     def find_elements(self, *loc):
         """重写元素集定位"""
         try:
-            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except:
             print("未找到元素集 %s " % (loc))
@@ -757,10 +762,8 @@ class DomPO(object):
 
     # todo True or False
 
-    def isBooleanByX(self, varPath):
-
-        # 通过xpath判断ture或false
-
+    def isEleExistByX(self, varPath):
+        # 判断元素是否存在
         flag = False
         try:
             self.find_element(*(By.XPATH, varPath))
@@ -769,36 +772,81 @@ class DomPO(object):
             flag = False
         return flag
 
-    def isBooleanAttrByX(self, varPath, varAttr):
-
-        # 通过xpath判断属性是否存在
-
+    def isEleAttrExistByX(self, varPath, varAttr):
+        # 判断元素属性是否存在
         flag = False
         try:
-            element = self.find_element(*(By.XPATH, varPath))
-            if element.get_attribute(varAttr):
+            ele = self.find_element(*(By.XPATH, varPath))
+            if ele.get_attribute(varAttr):
                 flag = True
         except:
             flag = False
         return flag
 
-    def isBooleanAttrValueByX(self, varPath, varAttr, varValue):
-
-        # 通过xpath判断属性值是否存在
-        # 如：isBooleanAttrValueByX("//tr","href","www.badu.com")
-
+    def isEleAttrValueExistByX(self, varPath, varAttr, varValue):
+        # 判断元素属性的值是否存在
+        # 如：isEleAttrValueExistByX("//tr","href","www.badu.com")
         flag = False
         try:
-            for a in self.find_elements(*(By.XPATH, varPath)):
-                if varValue == a.get_attribute(varAttr):
+            for ele in self.find_elements(*(By.XPATH, varPath)):
+                if varValue == ele.get_attribute(varAttr):
                     flag = True
                     break
         except:
             flag = False
         return flag
 
-    def isBooleanAttrValueListByX(self, varPath, varAttr, varValue):
+    def isEleExistById(self, varId):
+        # 通过Id判断ture或false
+        flag = False
+        try:
+            self.find_element(*(By.ID, varId))
+            flag = True
+        except:
+            flag = False
+        return flag
 
+    def isEleExistByName(self, varName):
+        # 通过name判断ture或false
+        flag = False
+        try:
+            self.find_element(*(By.NAME, varName))
+            flag = True
+        except:
+            flag = False
+        return flag
+
+    def isElePartExistByP(self, varPartText):
+        # 通过超链接判断是否包含varText
+        flag = False
+        try:
+            self.driver.find_element_by_partial_link_text(varPartText)
+            flag = True
+        except:
+            flag = False
+        return flag
+
+    def isEleExistByL(self, varText):
+        # 通过超链接判断是否存在varText
+        flag = False
+        try:
+            self.driver.find_element_by_link_text(varText)
+            flag = True
+        except:
+            flag = False
+        return flag
+
+    def isEleTextExistByX(self, varPath, varText):
+        # 通过xpath判断文本是否存在
+        flag = False
+        try:
+            if self.find_element(*(By.XPATH, varPath)).text == varText:
+                flag = True
+        except:
+            flag = False
+        return flag
+
+    def isBooleanAttrValueListByX(self, varPath, varAttr, varValue):
         """通过xpath判断属性等于值"""
         # 如：isBooleanAttrValueListByX("//tr","href","www.badu.com")
         # .isBooleanAttrValueListByX("//div/label/span[1]", 'class', 'el-radio__input is-disabled is-checked')
@@ -825,66 +873,6 @@ class DomPO(object):
             else:
                 l1.append("False")
         return l1
-
-    def isBooleanById(self, varId):
-
-        # 通过Id判断ture或false
-
-        flag = False
-        try:
-            self.find_element(*(By.ID, varId))
-            flag = True
-        except:
-            flag = False
-        return flag
-
-    def isBooleanByName(self, varName):
-
-        # 通过name判断ture或false
-
-        flag = False
-        try:
-            self.find_element(*(By.NAME, varName))
-            flag = True
-        except:
-            flag = False
-        return flag
-
-    def isBooleanTextPartialContentByP(self, varPartText):
-
-        # 通过超链接判断是否包含varText
-
-        flag = False
-        try:
-            self.driver.find_element_by_partial_link_text(varPartText)
-            flag = True
-        except:
-            flag = False
-        return flag
-
-    def isBooleanTextByL(self, varText):
-
-        # 通过超链接判断是否存在varText
-
-        flag = False
-        try:
-            self.driver.find_element_by_link_text(varText)
-            flag = True
-        except:
-            flag = False
-        return flag
-
-    def isBooleanTextByX(self, varPath, varText):
-
-        # 通过xpath判断文本是否存在
-
-        flag = False
-        try:
-            if self.find_element(*(By.XPATH, varPath)).text == varText:
-                flag = True
-        except:
-            flag = False
-        return flag
 
 
     def isElementVisibleXpath(self, element):
@@ -938,4 +926,11 @@ class DomPO(object):
     def getCount(self, varLabel):
         c = self.find_elements(*(By.TAG_NAME, varLabel))
         return len(c)
+
+
+    def zoom(self, percent):
+        # 缩放页面
+        # js = "document.body.style.zoom='70%'"
+        js = "document.body.style.zoom='" + str(percent) + "%'"
+        self.driver.execute_script(js)
 

@@ -19,11 +19,13 @@ ErpApp_PO = ErpAppPO()
 # 登录app
 ErpApp_PO.login("https://syym.zy-health.net:9443/#/home", "zhuyan", "Zy123456")
 
-# ErpApp_PO.Web_PO.scrollToBottom()
+ErpApp_PO.Web_PO.scrollToBottom()
 # ErpApp_PO.Web_PO.scrollToView("//a[@href='#/meeting']")
 # ErpApp_PO.Web_PO.scrollToView("//a[last()]")  # 拖动到最后一个a标签
 
 # ErpApp_PO.Web_PO.scrollByStep(200)
 # ErpApp_PO.Web_PO.scrollByStep(200)
 # ErpApp_PO.Web_PO.scrollByStep(200)
-ErpApp_PO.Web_PO.scrollByAuto(100)
+# ErpApp_PO.Web_PO.scrollByAuto(100)
+
+ErpApp_PO.visit()
