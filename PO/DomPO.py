@@ -123,6 +123,58 @@ class DomPO(object):
     def __init__(self, driver):
         self.driver = driver
 
+    def test(self, varText):
+        xpath_expression = "//*[contains(text(), " + str(varText) + ")]"
+        elements = self.find_element(*(By.XPATH, xpath_expression))
+        # print("text =>", elements.text)
+        # print("get_attribute =>", elements.get_attribute("value"))
+        # print(elements)
+
+        elements = self.find_element(*(By.XPATH, "//div[text()='会前评估能否过会']"))
+        varclass = elements.get_attribute("class")
+        print("class2 => ", varclass)
+
+        up_ele = elements.find_element(*(By.XPATH, ".."))
+        varclass = up_ele.get_attribute("class")
+        print("class3 => ", varclass)
+        # self.find_element(*(By.XPATH, "//" + up_ele + "/div[2]/div/div/div[2]/div/input"))
+        # a = up_ele.find_element(*(By.XPATH, ".//div[2]/div/div/div[2]/div/input"))
+        # a = up_ele.find_element(By.XPATH, ".//div[@class='van-field__body']/input")
+        a = up_ele.find_element(*(By.XPATH, ".//div[@class='van-field__body']/input"))
+        # /html/body/div[1]/div/div[1]/div/div[6]/div/div[5]/div/div[2]/div/div/div[2]/div/input
+        # https://blog.csdn.net/qq_52059892/article/details/143858501
+        self.setTextByX(a, '否')
+
+
+
+
+
+    def yearMonthDay(self, varPath, varStep, t=2):
+        elements = self.find_element(*(By.XPATH, varPath))
+        # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
+        actions = ActionChains(self.driver)
+        actions.move_to_element(elements)
+        actions.click_and_hold()
+        if varStep > 120:
+            actions.move_by_offset(0, 120)
+
+
+
+        #     # varStep = varStep/4
+        #     # for i in range(4):
+        #     #     print(i)
+        #     #     actions.move_by_offset(0, varStep)
+        # elif varStep > 100 and varStep < 200:
+        #     varStep = varStep/2
+        #     for i in range(2):
+        #         print(i)
+        #         actions.move_by_offset(0, varStep)
+        else:
+            actions.move_by_offset(0, varStep)
+        actions.release()
+        actions.perform()
+        sleep(t)
+
 
     def check_contain_chinese(self, check_str):
         # 判断字符串中是否包含中文符合
@@ -137,7 +189,7 @@ class DomPO(object):
             # Python特性，将入参放在元组里，入参loc，加*，变成元组。
             # WebDriverWait(self.driver,5).until(lambda driver: driver.find_element(*loc).is_displayed())
             # 注意：以下loc入参本身就是元组，所以不需要再加*
-            WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
             return self.driver.find_element(*loc)
         except:
             print("未找到元素 %s " % (loc))
@@ -150,7 +202,7 @@ class DomPO(object):
     def find_elements(self, *loc):
         """重写元素集定位"""
         try:
-            WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(loc))
+            WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
             return self.driver.find_elements(*loc)
         except:
             print("未找到元素集 %s " % (loc))
@@ -702,11 +754,12 @@ class DomPO(object):
             sleep(t)
             self.driver.execute_script('window.scrollTo(0, %s)' % i)
 
-    def scrollToBottom(self):
+    def scrollToBottom(self, t=1):
         # 直接滚动到页面底部
         # self.driver.execute_script('window.scrollTo(0, 1000)')  # 滚动到页面底部
         # self.driver.execute_script("document.documentElement.scrollTop=1000")  # 滚动到页面底部
         self.driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+        sleep(t)
 
     def scrollToView(self, varXpath, t=1):
         # 将元素滚动到可见区域。
