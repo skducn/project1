@@ -217,19 +217,20 @@ class WebPO(DomPO):
 
     def _openURL(self, varURL):
 
-        # 1.1 打开
+        # 1.1 打开chrome
+
+        # 1 配置项
+        options = Options()
 
         if self.driver == "chrome":
 
-            # 1 配置项
-            options = Options()
-
             # todo 屏幕
-            options.add_argument("--start-maximized")  # 最大化浏览器
+            # options.add_argument("--start-maximized")  # 最大化浏览器
             # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
             # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
-            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 指定窗口大小
             # width, height = pyautogui.size()  # 1440 900  //获取屏幕尺寸
+            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小
+            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 指定窗口大小
 
             # todo 浏览器
             options.add_experimental_option("detach", True)  # 浏览器永不关闭
@@ -270,7 +271,7 @@ class WebPO(DomPO):
         elif self.driver == "noChrome":
 
             # 1 配置项
-            options = Options()
+
             options.headless = True  # 无界面模式
 
             # todo 系统
@@ -281,6 +282,51 @@ class WebPO(DomPO):
             # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
             # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
             # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+            # 更新下载chromedriver
+            self.updateChromedriver(options)
+
+            # # 绕过检测（滑动验证码）
+            # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
+
+            self.driver.get(varURL)
+            return self.driver
+
+        elif self.driver == "appChrome":
+
+            # 1 配置项
+
+            # todo 屏幕
+            options.add_argument('--window-size=%s,%s' % (320, 1000))  # 指定窗口大小
+
+            # todo 浏览器
+            options.add_experimental_option("detach", True)  # 浏览器永不关闭
+            options.add_argument("--allow-running-insecure-content")  # Allow insecure content
+            # options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.243:8010/")  # Replace example.com with your site's domain (this is what worked for me)
+
+            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块
+            options.add_argument('--incognito')  # 无痕模式
+
+            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+            options.add_experimental_option("excludeSwitches",
+                                            ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
+            options.add_experimental_option("excludeSwitches",
+                                            ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+            # options.headless = True  # 无界面模式
+            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+            # todo 系统
+            # options.add_argument("disable-cache")  # 禁用缓存
+            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+            options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+            options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+            options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
             # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
@@ -341,6 +387,8 @@ class WebPO(DomPO):
         """1.1 打开网页"""
         # self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver.get(varUrl)
+        # self.driver.set_window_size(800, 320)
+
         sleep(t)
 
     def getSource(self):

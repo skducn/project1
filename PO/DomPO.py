@@ -684,41 +684,68 @@ class DomPO(object):
 
     # todo js
 
+    def scrollByStep(self, varStep, t=1):
+        # 按步长向下滚动一次，模拟用户拖动滚动条的行为。
+        self.driver.execute_script('window.scrollBy(0, ' + str(varStep) + ')')
+        sleep(t)
+
+    def scrollByAuto(self, varStep, t=1):
+        # 按步长逐步向下滚动直到页面底部
+        # 获取滚动条的高度
+        new_height = self.driver.execute_script("return document.body.scrollHeight")
+        for i in range(0, new_height, varStep):
+            sleep(t)
+            self.driver.execute_script('window.scrollTo(0, %s)' % i)
+
+    def scrollToBottom(self):
+        # 直接滚动到页面底部
+        # self.driver.execute_script('window.scrollTo(0, 1000)')  # 滚动到页面底部
+        # self.driver.execute_script("document.documentElement.scrollTop=1000")  # 滚动到页面底部
+        self.driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+
+    def scrollToView(self, varXpath, t=1):
+        # 将元素滚动到可见区域。
+        # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
+        # element = self.driver.find_element_by_id(varId)  id方式定位
+        # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
+        # ErpApp_PO.Web_PO.scrollToView("//a[last()]")  # 拖动到最后一个a标签
+        element = self.find_element(*(By.XPATH, varXpath))
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
+        sleep(t)
+
     def clsTextByJs(self, t=1):
-        """清除input输入框内容"""
+        # 清除input输入框内容
         self.driver.execute_script('document.querySelector("input[type=number]").value=""')
         sleep(t)
 
-    def clsReadonlyByX(self, varXpath, t=0):
-        """通过xpath去掉只读属性"""
-        d = self.find_element(*(By.XPATH, varXpath))
-        self.driver.execute_script('arguments[0].removeAttribute("readonly")', d)
+    def clsReadonlyByX(self, varXpath, t=1):
+        # 去掉只读属性
+        ele = self.find_element(*(By.XPATH, varXpath))
+        self.driver.execute_script('arguments[0].removeAttribute("readonly")', ele)
         sleep(t)
 
-    def clsReadonlyById(self, varId, t=0):
-        """通过id去掉只读属性"""
-        # 一般用于第三方日期控件
+    def clsReadonlyById(self, varId, t=1):
+        # 通过id去掉只读属性, 一般用于第三方日期控件
         self.driver.execute_script('document.getElementById("' + varId + '").removeAttribute("readonly")')
         sleep(t)
 
-    def clsReadonlyByName(self, varName, t=0):
-        """通过name去掉只读属性"""
+    def clsReadonlyByName(self, varName, t=1):
+        # 通过name去掉只读属性
         # 注意：document只支持getElementsByName方法获取标签数组，如 array[0]
         self.driver.execute_script('document.getElementsByName("' + varName + '")[0].removeAttribute("readonly")')
         sleep(t)
 
-    def clsDisplayByName(self, varName, t=0):
-        """通过name去掉隐藏属性"""
+    def clsDisplayByName(self, varName, t=1):
+        # 通过name去掉隐藏属性
         self.driver.execute_script('document.getElementsByName("' + varName + '")[0].style.display=""')
         sleep(t)
 
     def clsDisplayByTagName(self, varLabel, varLen, t=1):
-        """通过tagname去掉隐藏属性"""
+        # 通过tagname去掉隐藏属性
         # 如：清除30个ul标签的display，30是ul数量，可以通过其他方式获取。 jsDisplayByTagName(30, "ul")
         for i in range(varLen):
             self.driver.execute_script('document.getElementsByTagName("' + varLabel + '")[' + str(i) + '].style.display=""')
         sleep(t)
-
 
     def displayBlockID(self, varID):
         # 未验证？(未确认)
