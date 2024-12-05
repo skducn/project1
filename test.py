@@ -11,8 +11,19 @@
 
 import sys
 
-print('（{}）'.format(sys._getframe().f_lineno))
+# print('（{}）'.format(sys._getframe().f_lineno))
 
+d = {"唐晓晶": "支持", "刘月月": "反对"}
+
+for i,k in enumerate(d):
+    print(i,k)
+
+
+# del d['其他药事会成员']['唐晓晶']
+# print(d)
+# print(len(d['其他药事会成员']))
+#
+# print(d['其他药事会成员'][list(d['其他药事会成员'].keys())[0]])
 
 
 # def PRINT(string):

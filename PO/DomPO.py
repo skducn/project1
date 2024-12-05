@@ -123,57 +123,59 @@ class DomPO(object):
     def __init__(self, driver):
         self.driver = driver
 
-    def test(self, varText):
-        xpath_expression = "//*[contains(text(), " + str(varText) + ")]"
-        elements = self.find_element(*(By.XPATH, xpath_expression))
-        # print("text =>", elements.text)
-        # print("get_attribute =>", elements.get_attribute("value"))
-        # print(elements)
 
-        elements = self.find_element(*(By.XPATH, "//div[text()='会前评估能否过会']"))
-        varclass = elements.get_attribute("class")
-        print("class2 => ", varclass)
+    def getDivTextUpEle(self, varText, varUp):
+        # 通过文本获取上一个元素
+        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
+        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
+        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
+        return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+        # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
 
-        up_ele = elements.find_element(*(By.XPATH, ".."))
-        varclass = up_ele.get_attribute("class")
-        print("class3 => ", varclass)
-        # self.find_element(*(By.XPATH, "//" + up_ele + "/div[2]/div/div/div[2]/div/input"))
-        # a = up_ele.find_element(*(By.XPATH, ".//div[2]/div/div/div[2]/div/input"))
-        # a = up_ele.find_element(By.XPATH, ".//div[@class='van-field__body']/input")
-        a = up_ele.find_element(*(By.XPATH, ".//div[@class='van-field__body']/input"))
-        # /html/body/div[1]/div/div[1]/div/div[6]/div/div[5]/div/div[2]/div/div/div[2]/div/input
-        # https://blog.csdn.net/qq_52059892/article/details/143858501
-        self.setTextByX(a, '否')
+    def getSpanTextUpEle(self, varText, varUp):
+        # 通过文本获取上一个元素
+        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
+        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
+        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
+        return self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
 
 
+    def textLocateEle(self, varText, varXpath, varValue, varXpath2):
+
+        # self.Web_PO.textLocateEle('会前评估能否过会', "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
+        ele_up = self.getDivTextUpEle(varText, '..')
+        self.setTextClickByX(ele_up, varXpath, varValue, varXpath2)
 
 
-
-    def yearMonthDay(self, varPath, varStep, t=2):
+    def scrollDateTime(self, varPath, varStep, t=2):
         elements = self.find_element(*(By.XPATH, varPath))
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
         actions = ActionChains(self.driver)
         actions.move_to_element(elements)
         actions.click_and_hold()
-        if varStep > 120:
-            actions.move_by_offset(0, 120)
-
-
-
-        #     # varStep = varStep/4
-        #     # for i in range(4):
-        #     #     print(i)
-        #     #     actions.move_by_offset(0, varStep)
-        # elif varStep > 100 and varStep < 200:
-        #     varStep = varStep/2
-        #     for i in range(2):
-        #         print(i)
-        #         actions.move_by_offset(0, varStep)
-        else:
-            actions.move_by_offset(0, varStep)
+        if varStep != 0 :
+            if varStep >= 150:
+                actions.move_by_offset(0, 150)
+            elif varStep <= -500:
+                actions.move_by_offset(0, -500)
+            else:
+                actions.move_by_offset(0, varStep)
         actions.release()
         actions.perform()
         sleep(t)
+
+    def scrollToLeft(self, varPath, varStep, t=2):
+        elements = self.find_element(*(By.XPATH, varPath))
+        # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(varStep, 0).release().perform()
+        actions = ActionChains(self.driver)
+        actions.move_to_element(elements)
+        actions.click_and_hold()
+        actions.move_by_offset(varStep, 0)
+        actions.release()
+        actions.perform()
+        sleep(t)
+
+
 
 
     def check_contain_chinese(self, check_str):
@@ -565,6 +567,17 @@ class DomPO(object):
         """通过xpath键盘追加文本"""
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+
+    # todo ele元素再定位
+
+    def eleClkByX(self, ele, varXpath):
+        # 元素再定位后点击
+        ele.find_element(*(By.XPATH, varXpath)).click()
+
+    def eleSetTextClkByX(self, ele, varXpath, varValue, varXpath2):
+        # 元素再定位后输入和提交
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        ele.find_element(*(By.XPATH, varXpath2)).click()
 
 
 
