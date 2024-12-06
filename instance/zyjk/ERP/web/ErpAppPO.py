@@ -32,13 +32,33 @@ class ErpAppPO(object):
 
 
 
-    def login(self, varURL, varUser, varPass):
+    def login(self, varURL, varUser, varPass, varPost=None):
         self.Web_PO = WebPO("appChrome")
         self.Web_PO.openURL(varURL)
         self.Web_PO.setTextByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/div/input', varUser)
         self.Web_PO.setTextByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/div[2]/div/input', varPass)
         self.Web_PO.clkByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[3]/button', 2)
-        self.Web_PO.clkByX('/html/body/div[3]/div[2]/div[3]/button[2]', 2)
+        if varPost == None:
+            self.Web_PO.clkByX('/html/body/div[3]/div[2]/div[3]/button[2]', 2)  # 确认
+        else:
+            self.Web_PO.scrollToView("/html/body/div[3]/div[2]/div[3]/button[2]")
+            l_ = (self.Web_PO.getTextsByX("//div"))
+            l_1 = self.List_PO.deduplication(l_)
+            # print(l_1)
+            l_2 = self.List_PO.split(l_1, "注：当一个人拥有多个岗位时，需要选择对应的岗位进行登录，将会影响到所对应岗位的数据权限及功能权限的展示;", 1)
+            # print(l_2[0])
+            l_3 = l_2[0].split("\n")
+            # print(l_3)
+            l_4 = self.List_PO.delDuplicateElement(l_3)
+            # print(l_4)
+            d_5 = dict(enumerate(l_4, start=1))
+            # print(d_5)
+            d_6 = {v:k for k,v in d_5.items()}
+            # print(d_6)
+
+            self.Web_PO.clkByX("/html/body/div[3]/div[2]/div[2]/div/div/div[2]/div/div[" + str(d_6[varPost]) + "]")
+            self.Web_PO.clkByX('/html/body/div[3]/div[2]/div[3]/button[2]', 2)  # 确认
+
 
     def getMenuUrl(self):
 

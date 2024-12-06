@@ -15,9 +15,12 @@
 from ErpAppPO import *
 ErpApp_PO = ErpAppPO()
 
+url = "https://syym.zy-health.net:9443/#/home"
 
 # 登录app
-ErpApp_PO.login("https://syym.zy-health.net:9443/#/home", "zhuyan", "Zy123456")
+# ErpApp_PO.login(url, "zhuyan", "Zy123456")
+# ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06【经理岗】")
+ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06/徐汇07【代表岗】")
 
 # ErpApp_PO.Web_PO.scrollToBottom()
 # ErpApp_PO.Web_PO.scrollToView("//a[@href='#/meeting']")

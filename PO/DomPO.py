@@ -124,27 +124,6 @@ class DomPO(object):
         self.driver = driver
 
 
-    def getDivTextUpEle(self, varText, varUp):
-        # 通过文本获取上一个元素
-        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
-        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
-        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
-        # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
-
-    def getSpanTextUpEle(self, varText, varUp):
-        # 通过文本获取上一个元素
-        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
-        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
-        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        return self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
-
-
-    def textLocateEle(self, varText, varXpath, varValue, varXpath2):
-
-        # self.Web_PO.textLocateEle('会前评估能否过会', "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
-        ele_up = self.getDivTextUpEle(varText, '..')
-        self.setTextClickByX(ele_up, varXpath, varValue, varXpath2)
 
 
     def scrollDateTime(self, varPath, varStep, t=2):
@@ -579,6 +558,11 @@ class DomPO(object):
 
     # todo ele元素再定位
 
+
+    def eleGetAttrByX(self, ele, attr):
+        # 元素再定位后获取属性
+        return ele.get_attribute(attr)
+
     def eleClkByX(self, ele, varXpath):
         # 元素再定位后点击
         ele.find_element(*(By.XPATH, varXpath)).click()
@@ -588,7 +572,26 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
         ele.find_element(*(By.XPATH, varXpath2)).click()
 
+    def getDivTextUpEle(self, varText, varUp):
+        # 通过文本获取上一个元素
+        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
+        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
+        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
+        return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+        # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
 
+    def getSpanTextUpEle(self, varText, varUp):
+        # 通过文本获取上一个元素
+        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
+        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
+        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
+        return self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+
+    def textLocateEle(self, varText, varXpath, varValue, varXpath2):
+
+        # self.Web_PO.textLocateEle('会前评估能否过会', "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
+        ele_up = self.getDivTextUpEle(varText, '..')
+        self.eleSetTextClkByX(ele_up, varXpath, varValue, varXpath2)
 
     # todo checkbox
 
