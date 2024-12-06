@@ -6,19 +6,18 @@
 # *********************************************************************
 """
 todo：【转换】
-1.1 两列表合并字典（后覆盖） print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
-1.2 enumerate索引列表转字典 print(dict(enumerate(['a','b','c'], start=1)))  # {1: 'a', 2: 'b', 3: 'c'}
-1.3 fromkeys列表多对一值转字典
-print(dict.fromkeys(['a', 5], 1))  # {'a':1, 5:1}
-print(dict.fromkeys(['a', 5, 'tt'], "100"))  # {'a': '100', 5: '100', 'tt': '100'}
-print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
-1.4 列表内两元组转字典（后覆盖） print(dict([('a', '123'), ('b', '456')]))  # {'a': '123', 'b': '456'}
-1.5 列表中配对转字典（后覆盖） print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
-1.6 列表中键值对格式转字典（后覆盖） print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
-1.7 列表转字符串 print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
-1.8 整数转数字列表
+1.1 两列表转字典（后覆盖） dict(zip([1, 2], ['skducn', 'yoyo']))  # {1: 'skducn', 2: 'yoyo'}
+1.2 索引和元素转字典 dict(enumerate(['a','b','c'], start=1))  # {1: 'a', 2: 'b', 3: 'c'}
+1.3 元素和固定值转字典 dict.fromkeys(['a', 5], 1)  # {'a':1, 5:1}  ， print(dict.fromkeys(['a', 5]))  # {'a': None, 5: None}
+1.4 一组元组转字典（后覆盖） dict([('a', '123'), ('b', '456')])  # {'a': '123', 'b': '456'}
+1.5 相邻元素配对转字典（后覆盖） pair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
+1.6 列表中键值对格式转字典（后覆盖） keyValue2dict(['a : 1', 'b : 2']) # {'a': '1', 'b': '2'}
+1.7 元素转字符串 print(",".join(['John', 'Doe', 'Jack', 'Bob', 'Smith']))  # John,Doe,Jack,Bob,Smith
+1.8 int数字打散，转元素列表
 # print(list(map(int, str(12345))))  # [1, 2, 3, 4, 5]
 # print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
+1.9 str打散，转元素列表 print([str(x) for x in str('abcddfdrer')])  # ['a', 'b', 'c', 'd', 'd', 'f', 'd', 'r', 'e', 'r']
+
 
 todo：【操作元素】
 2.1 生成元素索引 list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1))
@@ -91,12 +90,12 @@ class ListPO:
 
     """[转换]"""
 
-    def listPair2dict(self, varList):
+    def pair2dict(self, varList):
 
         # 1.5 列表中配对转字典（覆盖update）
-        # print(List_PO.listPair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
-        # print(List_PO.listPair2dict(["a", "1", "a", "2"]))  # {'a': '2'}   //如遇重复key则取后面的key值
-        # print(List_PO.listPair2dict(["a", "1", "b", "2", "c"]))  # {'a': '1', 'b': '2'}  //如果元素个数是奇数，则忽略最后一个元素
+        # print(List_PO.pair2dict(["a", "1", 100, 2]))  # {'a': '1', 100: 2}
+        # print(List_PO.pair2dict(["a", "1", "a", "2"]))  # {'a': '2'}   //如遇重复key则取后面的key值
+        # print(List_PO.pair2dict(["a", "1", "b", "2", "c"]))  # {'a': '1', 'b': '2'}  //如果元素个数是奇数，则忽略最后一个元素
 
         dict4 = {}
         if len(varList) < 2:
@@ -110,13 +109,13 @@ class ListPO:
                 dict4.update({varList[i]: varList[i + 1]})
             return dict4
 
-    def listKeyValue2dict(self, varList, varSign=":"):
+    def keyValue2dict(self, varList, varSign=":"):
 
         # 1.6 列表中键值对格式转字典（覆盖update）
-        # print(List_PO.listKeyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
-        # print(List_PO.listKeyValue2dict(['a , 3', 'b , 4'], ","))  # {'a': '3', 'b': '4'}
-        # print(List_PO.listKeyValue2dict(['a : 1', 'b : 2', 'a : 133']))  # {'a': '133', 'b': '2'}  //如遇重复key则取后面的key值
-        # print(List_PO.listKeyValue2dict(['a : 1', '123b456', 'c : 3']))  # {'a': '1', 'c': '3'}   ////忽略不符合键值对格式
+        # print(List_PO.keyValue2dict(['a : 1', 'b : 2']))  # {'a': '1', 'b': '2'}
+        # print(List_PO.keyValue2dict(['a , 3', 'b , 4'], ","))  # {'a': '3', 'b': '4'}
+        # print(List_PO.keyValue2dict(['a : 1', 'b : 2', 'a : 133']))  # {'a': '133', 'b': '2'}  //如遇重复key则取后面的key值
+        # print(List_PO.keyValue2dict(['a : 1', '123b456', 'c : 3']))  # {'a': '1', 'c': '3'}   ////忽略不符合键值对格式
 
         dict3 = {}
         try:

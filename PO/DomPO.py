@@ -439,6 +439,15 @@ class DomPO(object):
         # 如：getTextByX(u"//input[@class='123']")
         return self.find_element(*(By.XPATH, varXpath)).text
 
+    def getTextsByX(self, varXpath):
+        # 获取文本
+        # 如：getTextByX(u"//input[@class='123']")
+        l_ = []
+        for a in self.find_elements(*(By.XPATH, varXpath)):
+            l_.append(a.text)
+        return l_
+
+
     def getIndexByX(self, varXpaths, varText):
         # 获取文本的索引号
         # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByX("//tr",'test')
