@@ -165,141 +165,6 @@ class ErpAppPO(object):
 
     
     
-    def _hospital_getDateTime(self):
-
-        # 开发跟进信息 - 获取日期和时间
-        sleep(2)
-        defaultYear = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-        defaultMonth = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-        defaultDay = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-        defaultHour = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-        defaultMinutes = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-        self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
-        # print("defaultYear,defaultMonth,defaultDay,defaultHour,defaultMinutes =>", defaultYear,defaultMonth,defaultDay,defaultHour,defaultMinutes)
-        l_default = []
-        l_default.append(defaultYear)
-        l_default.append(defaultMonth)
-        l_default.append(defaultDay)
-        l_default.append(defaultHour)
-        l_default.append(defaultMinutes)
-        return l_default
-
-    def _hospital_getStep(self, l_expected, l_actual):
-        # 模拟鼠标上下滚动
-        # 负数，鼠标往上滚动，取大值（预期值大于当前值）
-        # 正数，鼠标往下滚动，取小值（预期值小于当前值）
-        if l_expected[0] > l_actual[0]:
-            varYear = (l_expected[0] - l_actual[0]) * -20
-        else:
-            varYear = (l_actual[0] - l_expected[0]) * 20
-        # print("药事会实际召开时间year: " + str(varYear))
-
-        if l_expected[1] > l_actual[1]:
-            varMonth = (l_expected[1] - l_actual[1]) * -20
-        else:
-            varMonth = (l_actual[1] - l_expected[1]) * 20
-        # print("药事会实际召开时间month: " + str(varMonth))
-
-        if l_expected[2] > l_actual[2]:
-            varDay = (l_expected[2] - l_actual[2]) * -20
-        else:
-            varDay = (l_actual[2] - l_expected[2]) * 20
-        # print("药事会实际召开时间day: " + str(varDay))
-
-        if l_expected[3] > l_actual[3]:
-            varHour = (l_expected[3] - l_actual[3]) * -20
-        else:
-            varHour = (l_actual[3] - l_expected[3]) * 20
-        # print("药事会实际召开时间hour: " + str(varHour))
-
-        if l_expected[4] > l_actual[4]:
-            varMinutes = (l_expected[4] - l_actual[4]) * -20
-        else:
-            varMinutes = (l_actual[4] - l_expected[4]) * 20
-        # print("药事会实际召开时间minutes: " + str(varMinutes))
-
-        return (varYear, varMonth, varDay, varHour, varMinutes)
-
-    def _hospital_verifyDateTime(self, varTD, varActual, varExpected, varLoc):
-        # verifyDateTime(6, d_['药事会实际召开时间'][2], defaultDay, varDay, 3)
-        if varActual != varExpected:
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-            if varActual > varExpected:
-                var_ = (varActual - varExpected) * -20
-            else:
-                var_ = (varExpected - varActual) * 20
-            self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
-            sleep(3)
-            varExpected = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-            self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
-            if varActual != varExpected:
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-                if varActual > varExpected:
-                    var_ = (varActual - varExpected) * -20
-                else:
-                    var_ = (varExpected - varActual) * 20
-                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
-                sleep(2)
-                varExpected = int(self.Web_PO.getTextByX(
-                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
-                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
-            if varActual != varExpected:
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-                if varActual > varExpected:
-                    var_ = (varActual - varExpected) * -20
-                else:
-                    var_ = (varExpected - varActual) * 20
-                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
-                sleep(2)
-                varExpected = int(self.Web_PO.getTextByX(
-                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
-                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
-            if varActual != varExpected:
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-                if varActual > varExpected:
-                    var_ = (varActual - varExpected) * -20
-                else:
-                    var_ = (varExpected - varActual) * 20
-                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
-                sleep(2)
-                varExpected = int(self.Web_PO.getTextByX(
-                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
-                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
-                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
-
-    def __hospital_dataTime(self, varTD, l_dateTime ):
-        # __hospital_dataTime(6, d_['药事会实际召开时间'])
-        # __hospital_dataTime(9, d_['过会日期'])
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-        l_ = self._hospital_getStep(l_dateTime, self._hospital_getDateTime())
-
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[0])
-        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[1])
-        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[2])
-        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[3])
-        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[4])
-        l_revise = self._hospital_getDateTime()
-
-        # 校验年月日时分(varTD 对应 div[6])
-        self._hospital_verifyDateTime(varTD, l_dateTime[0], l_revise[0], 1)
-        self._hospital_verifyDateTime(varTD, l_dateTime[1], l_revise[1], 2)
-        self._hospital_verifyDateTime(varTD, l_dateTime[2], l_revise[2], 3)
-        self._hospital_verifyDateTime(varTD, l_dateTime[2], l_revise[2], 3)  # 重复跑
-        self._hospital_verifyDateTime(varTD, l_dateTime[3], l_revise[3], 4)
-        self._hospital_verifyDateTime(varTD, l_dateTime[3], l_revise[3], 4)
-        self._hospital_verifyDateTime(varTD, l_dateTime[4], l_revise[4], 5)
-        self._hospital_verifyDateTime(varTD, l_dateTime[4], l_revise[4], 5)
-        self._hospital_verifyDateTime(varTD, l_dateTime[4], l_revise[4], 5)
-
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-        l_result = self._hospital_getDateTime()
-        if l_dateTime == l_result:
-            return 1
-        else:
-            return 0
 
 
     # todo 首页
@@ -325,7 +190,99 @@ class ErpAppPO(object):
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/div/div/div[3]/div[2]")
 
 
+
+    def _topRank_getDate(self):
+        # 获取日期
+        sleep(2)
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
+        l_1 = self.Web_PO.getTextsByX("//li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+        l_date = []
+        for i in l_1:
+            i = i.replace("年", "").replace("月", "").replace("日", "")
+            l_date.append(int(i))
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
+        return l_date
+
+    def _topRank_getStep(self, l_expected, l_actual):
+        # 模拟鼠标上下滚动
+        # 负数，鼠标往上滚动，取大值（预期值大于当前值）
+        # 正数，鼠标往下滚动，取小值（预期值小于当前值）
+        if l_expected[0] > l_actual[0]:
+            varYear = (l_expected[0] - l_actual[0]) * -20
+        else:
+            varYear = (l_actual[0] - l_expected[0]) * 20
+
+        if l_expected[1] > l_actual[1]:
+            varMonth = (l_expected[1] - l_actual[1]) * -20
+        else:
+            varMonth = (l_actual[1] - l_expected[1]) * 20
+
+        if l_expected[2] > l_actual[2]:
+            varDay = (l_expected[2] - l_actual[2]) * -20
+        else:
+            varDay = (l_actual[2] - l_expected[2]) * 20
+
+        return (varYear, varMonth, varDay)
+
+    def _topRank_verifyDate(self, varExpected, varActual, varLoc):
+        # 校验日期
+        sleep(2)
+        if varExpected != varActual:
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
+            if varExpected > varActual:
+                var_ = (varExpected - varActual) * -20
+            else:
+                var_ = (varActual - varExpected) * 20
+            self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+            sleep(3)
+            varActual = self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+            varActual = int(varActual[:-1])
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
+            if varExpected != varActual:
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
+                if varExpected > varActual:
+                    var_ = (varExpected - varActual) * -20
+                else:
+                    var_ = (varActual - varExpected) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                    varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(3)
+                varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                    varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                varActual = int(varActual[:-1])
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
+            if varExpected != varActual:
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
+                if varExpected > varActual:
+                    var_ = (varExpected - varActual) * -20
+                else:
+                    var_ = (varActual - varExpected) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                    varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(3)
+                varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                    varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                varActual = int(varActual[:-1])
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
+            if varExpected != varActual:
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
+                if varExpected > varActual:
+                    var_ = (varExpected - varActual) * -20
+                else:
+                    var_ = (varActual - varExpected) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                    varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(3)
+                varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                    varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                varActual = int(varActual[:-1])
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
+
     def _topRank_date(self, l_expected):
+
+        # 选择年月日（封装）
 
         # 默认系统日期
         l_sysDate = []
@@ -487,6 +444,143 @@ class ErpAppPO(object):
                 self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[4]/div[3]/div[2]/div[3]/div/div[1]/ul/li[" + str(i+1) + "]")
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[4]/div[3]/div[2]/div[4]/button[2]")
 
+
+    def _hospital_getDateTime(self):
+
+        # 开发跟进信息 - 获取日期和时间
+        sleep(2)
+        defaultYear = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        defaultMonth = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        defaultDay = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        defaultHour = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        defaultMinutes = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+        # print("defaultYear,defaultMonth,defaultDay,defaultHour,defaultMinutes =>", defaultYear,defaultMonth,defaultDay,defaultHour,defaultMinutes)
+        l_default = []
+        l_default.append(defaultYear)
+        l_default.append(defaultMonth)
+        l_default.append(defaultDay)
+        l_default.append(defaultHour)
+        l_default.append(defaultMinutes)
+        return l_default
+
+    def _hospital_getStep(self, l_expected, l_actual):
+        # 模拟鼠标上下滚动
+        # 负数，鼠标往上滚动，取大值（预期值大于当前值）
+        # 正数，鼠标往下滚动，取小值（预期值小于当前值）
+        if l_expected[0] > l_actual[0]:
+            varYear = (l_expected[0] - l_actual[0]) * -20
+        else:
+            varYear = (l_actual[0] - l_expected[0]) * 20
+        # print("药事会实际召开时间year: " + str(varYear))
+
+        if l_expected[1] > l_actual[1]:
+            varMonth = (l_expected[1] - l_actual[1]) * -20
+        else:
+            varMonth = (l_actual[1] - l_expected[1]) * 20
+        # print("药事会实际召开时间month: " + str(varMonth))
+
+        if l_expected[2] > l_actual[2]:
+            varDay = (l_expected[2] - l_actual[2]) * -20
+        else:
+            varDay = (l_actual[2] - l_expected[2]) * 20
+        # print("药事会实际召开时间day: " + str(varDay))
+
+        if l_expected[3] > l_actual[3]:
+            varHour = (l_expected[3] - l_actual[3]) * -20
+        else:
+            varHour = (l_actual[3] - l_expected[3]) * 20
+        # print("药事会实际召开时间hour: " + str(varHour))
+
+        if l_expected[4] > l_actual[4]:
+            varMinutes = (l_expected[4] - l_actual[4]) * -20
+        else:
+            varMinutes = (l_actual[4] - l_expected[4]) * 20
+        # print("药事会实际召开时间minutes: " + str(varMinutes))
+
+        return (varYear, varMonth, varDay, varHour, varMinutes)
+
+    def _hospital_verifyDateTime(self, varTD, varActual, varExpected, varLoc):
+        # verifyDateTime(6, d_['药事会实际召开时间'][2], defaultDay, varDay, 3)
+        if varActual != varExpected:
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+            if varActual > varExpected:
+                var_ = (varActual - varExpected) * -20
+            else:
+                var_ = (varExpected - varActual) * 20
+            self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+            sleep(3)
+            varExpected = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+            self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+            if varActual != varExpected:
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+                if varActual > varExpected:
+                    var_ = (varActual - varExpected) * -20
+                else:
+                    var_ = (varExpected - varActual) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varExpected = int(self.Web_PO.getTextByX(
+                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
+                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+            if varActual != varExpected:
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+                if varActual > varExpected:
+                    var_ = (varActual - varExpected) * -20
+                else:
+                    var_ = (varExpected - varActual) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varExpected = int(self.Web_PO.getTextByX(
+                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
+                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+            if varActual != varExpected:
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+                if varActual > varExpected:
+                    var_ = (varActual - varExpected) * -20
+                else:
+                    var_ = (varExpected - varActual) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varExpected = int(self.Web_PO.getTextByX(
+                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
+                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+
+
+    def __hospital_dataTime(self, varTD, l_dateTime ):
+        # __hospital_dataTime(6, d_['药事会实际召开时间'])
+        # __hospital_dataTime(9, d_['过会日期'])
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+
+        l_ = self._hospital_getStep(l_dateTime, self._hospital_getDateTime())
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[0])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[1])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[2])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[3])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[4])
+        l_revise = self._hospital_getDateTime()
+
+        # 校验年月日时分(varTD 对应 div[6])
+        self._hospital_verifyDateTime(varTD, l_dateTime[0], l_revise[0], 1)
+        self._hospital_verifyDateTime(varTD, l_dateTime[1], l_revise[1], 2)
+        self._hospital_verifyDateTime(varTD, l_dateTime[2], l_revise[2], 3)
+        self._hospital_verifyDateTime(varTD, l_dateTime[2], l_revise[2], 3)  # 重复跑
+        self._hospital_verifyDateTime(varTD, l_dateTime[3], l_revise[3], 4)
+        self._hospital_verifyDateTime(varTD, l_dateTime[3], l_revise[3], 4)
+        self._hospital_verifyDateTime(varTD, l_dateTime[4], l_revise[4], 5)
+        self._hospital_verifyDateTime(varTD, l_dateTime[4], l_revise[4], 5)
+        self._hospital_verifyDateTime(varTD, l_dateTime[4], l_revise[4], 5)
+
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
+        l_result = self._hospital_getDateTime()
+        if l_dateTime == l_result:
+            return 1
+        else:
+            return 0
 
 
     # 功能
@@ -698,12 +792,387 @@ class ErpAppPO(object):
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
 
 
+    def _product_verifyDate(self, varPath, varExpected, varActual, varLoc):
+        # 校验日期
+        sleep(2)
+        if varExpected != varActual:
+            self.Web_PO.clkByX(varPath)
+            if varExpected > varActual:
+                var_ = (varExpected - varActual) * -20
+            else:
+                var_ = (varActual - varExpected) * 20
+            self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+            sleep(2)
+            varActual = self.Web_PO.getTextByX("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+            varActual = int(varActual[:-1])
+            self.Web_PO.clkByX("//div[@class='van-popup van-popup--round van-popup--bottom']/div[3]/button[2]")
+            # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varLocButton) + "]/div[2]/div[3]/button[2]")
+
+            if varExpected != varActual:
+                self.Web_PO.clkByX(varPath)
+                if varExpected > varActual:
+                    var_ = (varExpected - varActual) * -20
+                else:
+                    var_ = (varActual - varExpected) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                varActual = int(varActual[:-1])
+                self.Web_PO.clkByX("//div[@class='van-popup van-popup--round van-popup--bottom']/div[3]/button[2]")
+                # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varLocButton) + "]/div[2]/div[3]/button[2]")
+            if varExpected != varActual:
+                self.Web_PO.clkByX(varPath)
+                if varExpected > varActual:
+                    var_ = (varExpected - varActual) * -20
+                else:
+                    var_ = (varActual - varExpected) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                varActual = int(varActual[:-1])
+                self.Web_PO.clkByX("//div[@class='van-popup van-popup--round van-popup--bottom']/div[3]/button[2]")
+                # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varLocButton) + "]/div[2]/div[3]/button[2]")
+            if varExpected != varActual:
+                self.Web_PO.clkByX(varPath)
+                if varExpected > varActual:
+                    var_ = (varExpected - varActual) * -20
+                else:
+                    var_ = (varActual - varExpected) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                varActual = int(varActual[:-1])
+                self.Web_PO.clkByX("//div[@class='van-popup van-popup--round van-popup--bottom']/div[3]/button[2]")
+                # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varLocButton) + "]/div[2]/div[3]/button[2]")
+
+    def _product_dateModule(self, varPath):
+        # 获取组件日期
+        self.Web_PO.clkByX(varPath, 2)
+        l_1 = self.Web_PO.getTextsByX("//ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+        l_1 = self.List_PO.dels(l_1, "")
+        print("日期 => ", l_1)
+        l_actual_tmp = []
+        for i in l_1:
+            i = i.replace("年", "").replace("月", "").replace("日", "")
+            l_actual_tmp.append(int(i))
+        self.Web_PO.clkByX("//div[@class='van-popup van-popup--round van-popup--bottom']/div[3]/button[2]")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varLocButton) + "]/div[2]/div[3]/button[2]")
+
+        return l_actual_tmp
+
+    def _product_date(self, l_expected, varPath):
+
+        # 药事会计划开始日期，药事会计划结束日期 - 选择年月日
+
+        # 第一次获取日期组件默认年月日
+        l_actual_tmp = self._product_dateModule(varPath)
+
+        # 模拟鼠标上下滚动，修改日期
+        l_ = self._topRank_getStep(l_expected, l_actual_tmp)
+        self.Web_PO.clkByX(varPath)
+        self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[0])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[1])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[2])
+        self.Web_PO.clkByX("//div[@class='van-popup van-popup--round van-popup--bottom']/div[3]/button[2]")
+
+        # 第二次获取日期组件默认年月日（即修改后的日期）
+        l_actual_tmp = self._product_dateModule(varPath)
+        print("修改日期 =>", l_actual_tmp)  # [2022, 4, 1]
+
+        # 校验日期
+        self._product_verifyDate(varPath, l_expected[0], l_actual_tmp[0], 1)
+        self._product_verifyDate(varPath, l_expected[1], l_actual_tmp[1], 2)
+        self._product_verifyDate(varPath, l_expected[2], l_actual_tmp[2], 3)
+
+        # 第N次获取日期组件默认年月日（即最终修改后的日期）
+        l_actual = self._product_dateModule(varPath)
+        print("最终日期 =>", l_actual)  # [2022, 1, 1]
+
+        if l_expected == l_actual:
+            print(1)
+            return 1
+        else:
+            print(0)
+            return 0
+
+    def _product_date1(self, l_expected, varPath, varXpathButton):
+
+        # 药事会计划开始日期，药事会计划结束日期 - 选择年月日
+
+        # 第一次获取日期组件默认年月日
+        l_actual_tmp = self._product_dateModule(varPath, varXpathButton)
+
+        # 模拟鼠标上下滚动，修改日期
+        l_ = self._topRank_getStep(l_expected, l_actual_tmp)
+        self.Web_PO.clkByX(varPath)
+        self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[0])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[1])
+        self.Web_PO.scrollDateTime("//div[@class='van-picker']/div/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[2])
+        self.Web_PO.clkByX(varXpathButton)
+
+
+        # 第二次获取日期组件默认年月日（即修改后的日期）
+        l_actual_tmp = self._product_dateModule(varPath, varXpathButton)
+        print("修改日期 =>", l_actual_tmp)  # [2022, 4, 1]
+
+        # 校验日期
+        self._product_verifyDate(varPath, l_expected[0], l_actual_tmp[0], 1, varXpathButton)
+        self._product_verifyDate(varPath, l_expected[1], l_actual_tmp[1], 2, varXpathButton)
+        self._product_verifyDate(varPath, l_expected[2], l_actual_tmp[2], 3, varXpathButton)
+
+        # 第N次获取日期组件默认年月日（即最终修改后的日期）
+        l_actual = self._product_dateModule(varPath, varXpathButton)
+        print("最终日期 =>", l_actual)  # [2022, 1, 1]
+
+        if l_expected == l_actual:
+            print(1)
+            return 1
+        else:
+            print(0)
+            return 0
+
+    def _product_new(self, d_):
+
+        # 新增（产品开发右上角）
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[3]")
+
+        # 1,开发医院类型
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[1]/div[2]/div/input")
+        if d_['开发医院类型'] == '医院':
+            # 医院
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div[1]/ul/li[1]", 2)
+        else:
+            # 站点
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div[1]/ul/li[2]", 2)
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[3]/button[2]")  # 确认
+        # 2,开发医院信息
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[2]/div[2]/div/input", 2)
+        # 搜索
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div[2]/div/div/div[3]/div[1]/div/div/div/div/div[2]/div/input", d_['开发医院信息'])
+        # 单选框
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div[2]/div/div/div[3]/div[3]/div[1]/div/div/div/div[1]/div[1]/div[1]/div")
+        # 确定
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div[2]/div/div/div[6]/button[2]")
+        # 3,开发产品名称
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[4]/div[2]/div/input")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div/div/div[2]/div/input", d_['开发产品名称'])
+        # 确认
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[4]/button[2]")
+        # 4.1,开发负责人1
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[5]/div[2]/div/input")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div/div/div[2]/div/input", d_['开发负责人1'])
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[4]/button[2]")  # 确认
+        # 4.2,开发负责人2
+        if d_['开发负责人2'] != "":
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[6]/div[2]/div/input")
+            self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div/div/div[2]/div/input", d_['开发负责人2'])
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[4]/button[2]")  # 确认
+
+        # # 6,药事会计划结束日期
+        self._product_date(d_['药事会计划结束日期'], "/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[8]/div[2]/div/input")
+
+        # 5,药事会计划开始日期
+        self._product_date(d_['药事会计划开始日期'], "/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[7]/div[2]/div/input")
+
+        # 7,提单科室
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[9]/div[2]/div/input")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div/div/div[2]/div/input", d_['提单科室'])
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[4]/button[2]")  # 确认
+
+        # 提交
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[11]/button[2]")
+
+    def _product_verifyDateTime(self, varXpath, varActual, varExpected, varLoc):
+        # verifyDateTime(6, d_['药事会实际召开时间'][2], defaultDay, varDay, 3)
+        if varActual != varExpected:
+            self.Web_PO.clkByX(varXpath, 2)
+            if varActual > varExpected:
+                var_ = (varActual - varExpected) * -20
+            else:
+                var_ = (varExpected - varActual) * 20
+            self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+            sleep(3)
+            varExpected = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+            self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+            if varActual != varExpected:
+                self.Web_PO.clkByX(varXpath, 2)
+                if varActual > varExpected:
+                    var_ = (varActual - varExpected) * -20
+                else:
+                    var_ = (varExpected - varActual) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varExpected = int(self.Web_PO.getTextByX(
+                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
+                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+            if varActual != varExpected:
+                self.Web_PO.clkByX(varXpath, 2)
+                if varActual > varExpected:
+                    var_ = (varActual - varExpected) * -20
+                else:
+                    var_ = (varExpected - varActual) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varExpected = int(self.Web_PO.getTextByX(
+                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
+                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+            if varActual != varExpected:
+                self.Web_PO.clkByX(varXpath, 2)
+                if varActual > varExpected:
+                    var_ = (varActual - varExpected) * -20
+                else:
+                    var_ = (varExpected - varActual) * 20
+                self.Web_PO.scrollDateTime("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                sleep(2)
+                varExpected = int(self.Web_PO.getTextByX(
+                    "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
+                        varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+                self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
+
+    def __product_dataTime(self, l_dateTime, varXpath):
+        # __product_dataTime(6, d_['药事会实际召开时间'])
+        # __product_dataTime(9, d_['过会日期'])
+        self.Web_PO.clkByX(varXpath, 2)
+
+        l_ = self._hospital_getStep(l_dateTime, self._hospital_getDateTime())
+        self.Web_PO.clkByX(varXpath, 2)
+        self.Web_PO.scrollDateTime(
+            "//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
+            l_[0])
+        self.Web_PO.scrollDateTime(
+            "//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
+            l_[1])
+        self.Web_PO.scrollDateTime(
+            "//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
+            l_[2])
+        self.Web_PO.scrollDateTime(
+            "//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
+            l_[3])
+        self.Web_PO.scrollDateTime(
+            "//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
+            l_[4])
+        l_revise = self._hospital_getDateTime()
+
+        # 校验年月日时分(varTD 对应 div[6])
+        self._product_verifyDateTime(varXpath, l_dateTime[0], l_revise[0], 1)
+        self._product_verifyDateTime(varXpath, l_dateTime[1], l_revise[1], 2)
+        self._product_verifyDateTime(varXpath, l_dateTime[2], l_revise[2], 3)
+        self._product_verifyDateTime(varXpath, l_dateTime[2], l_revise[2], 3)  # 重复跑
+        self._product_verifyDateTime(varXpath, l_dateTime[3], l_revise[3], 4)
+        self._product_verifyDateTime(varXpath, l_dateTime[3], l_revise[3], 4)
+        self._product_verifyDateTime(varXpath, l_dateTime[4], l_revise[4], 5)
+        self._product_verifyDateTime(varXpath, l_dateTime[4], l_revise[4], 5)
+        self._product_verifyDateTime(varXpath, l_dateTime[4], l_revise[4], 5)
+
+        self.Web_PO.clkByX(varXpath, 2)
+        l_result = self._hospital_getDateTime()
+        if l_dateTime == l_result:
+            return 1
+        else:
+            return 0
+
+    def __product_devFollowUp(self, d_):
+
+        # {"开发次数": "二次开发", "提单科室": "神外", "提单规则": "可随时提单"}
+
+        # 开发跟进
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[2]")
+
+        # # # 开发次数
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[1]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['开发次数'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")  # 确认
+        # #
+        # # # 提单科室
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[2]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['提单科室'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        # #
+        # # # 提单规则
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[3]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['提单规则'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        #
+        # # # 过会规则
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[4]/div/div[2]/div/textarea")
+        # l_afterMeetingRule = self.Web_PO.getTextsByX("//div[@role='checkbox']/span")
+        # # print("l_afterMeetingRule => ", l_afterMeetingRule)
+        # dd_ = dict(enumerate(l_afterMeetingRule, start=1))
+        # d_afterMeetingRule = {v: k for k, v in dd_.items()}
+        # # print("d_afterMeetingRule => ", d_afterMeetingRule)
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[7]/div/div[2]/div[" + str(d_afterMeetingRule[d_["过会规则"]]) + "]/div")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[7]/div/div[3]/button[2]")
+        #
+        # # 提单状态
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[5]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['提单状态'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        #
+        # # # 药剂科会前确认信息
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[6]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['药剂科会前确认信息'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        #
+
+        # # 药事会计划结束日期
+        # self._product_date(d_['药事会计划结束日期'], "/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[8]/div/div[2]/div/input")
+
+        # # 药事会计划开始日期
+        # self._product_date(d_['药事会计划开始日期'], "/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[7]/div/div[2]/div/input")
+
+        #
+        # # 药事会实际召开时间
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[9]/div/div[2]/div/input")
+        conveningTime = self.__product_dataTime(d_['药事会实际召开时间'], "/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[9]/div/div[2]/div/input")
+        print(conveningTime)
+
+
+        #
+        # # 会前评估能否过会
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[10]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        # #
+        # # # 经改进后能否过会
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[11]/div/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_['经改进后能否过会'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        #
+
+        # 提交
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
+
+    def _product_edit(self):
+
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", "曹路社区")
+
+        # self.__product_visitor()
+        # 拜访人
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[1]")
+
+        # 开发跟进
+        self.__product_devFollowUp({"开发次数": "二次开发", "提单科室": "神外", "提单规则": "可随时提单", "过会规则": "需投票，过三分之二票数",
+                                    "提单状态": "可随时提单，已承诺", "药剂科会前确认信息": "已收到报告，确认上会",
+                                    "药事会计划开始日期": [2025, 7, 10], "药事会计划结束日期": [2025, 11, 10], "药事会实际召开时间": [2024,12,12,12,12],
+                                    "会前评估能否过会": "否", "经改进后能否过会": "是"})
+
+
+
     # todo 产品开发
-    def product(self):
+    def product(self, d_):
+        # 产品开发
         self.Web_PO.clkByX("//a[@href='#/product']")
 
+        # 新增产品开发
+        # self._product_new(d_)
+
+        # # 编辑产品开发
+        self._product_edit()
+
         # 返回
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
 
 
    # todo 审批中心

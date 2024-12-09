@@ -87,7 +87,9 @@ ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06/徐汇07【代表�
 # ErpApp_PO.Web_PO.scrollToBottom(5)
 #
 # # todo 产品开发
-# ErpApp_PO.product()
+ErpApp_PO.Web_PO.scrollToBottom()
+ErpApp_PO.product({"开发医院类型": "医院", "开发医院信息": "曹路社区", "开发产品名称": "依叶", "开发负责人1": "薛伟", "开发负责人2": "陈东升",
+                   "药事会计划开始日期": [2025, 1, 1], "药事会计划结束日期": [2025, 3, 31], "提单科室": "呼吸科"})
 # ErpApp_PO.Web_PO.scrollToBottom(5)
 #
 # # todo 审批中心
