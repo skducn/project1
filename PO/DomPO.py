@@ -418,11 +418,11 @@ class DomPO(object):
         # 如：getTextByX(u"//input[@class='123']")
         return self.find_element(*(By.XPATH, varXpath)).text
 
-    def getTextsByX(self, varXpath):
+    def getTextsByX(self, varXpaths):
         # 获取文本
         # 如：getTextByX(u"//input[@class='123']")
         l_ = []
-        for a in self.find_elements(*(By.XPATH, varXpath)):
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
             l_.append(a.text)
         return l_
 
@@ -556,7 +556,33 @@ class DomPO(object):
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
 
+
+
     # todo ele元素再定位
+
+    def getShadowRoot(self, varXpath, varShadowXpath, t=2):
+        # shadow-root元素识别智能用CSS_SELECTOR方法获得，通过Xpath一直报错
+        # 如：varLabel = input ， varShadowXpath = 'div[class="close svelte-rbapkb"]'
+        sleep(t)
+        ele = self.find_element(*(By.XPATH, varXpath))
+        shadow_root = ele.shadow_root
+        ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
+        return (ele2.text)
+
+    def getShadowRoots(self, varXpaths, varShadowXpath, t=2):
+        # 遍历所有shadow-root元素input下div的文本，返回列表
+        # 注意：识别只能用CSS_SELECTOR方法获得，通过Xpath一直报错
+        # 如：varLabel = input ， varShadowXpath = 'div'
+        # getShadowRoots("//input", "div")
+        sleep(t)
+        eles = self.find_elements(*(By.XPATH, varXpaths))
+        l_text_shadow = []
+        for i in eles:
+            shadow_root = i.shadow_root
+            ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
+            # print(ele2.text)
+            l_text_shadow.append(ele2.text)
+        return l_text_shadow
 
 
     def eleGetAttrByX(self, ele, attr):
@@ -571,6 +597,10 @@ class DomPO(object):
         # 元素再定位后输入和提交
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
         ele.find_element(*(By.XPATH, varXpath2)).click()
+
+    def eleGetTextByX(self, ele, varXpath):
+        # 元素再定位后获取文本
+        return ele.find_element(*(By.XPATH, varXpath)).text
 
     def getDivTextUpEle(self, varText, varUp):
         # 通过文本获取上一个元素
