@@ -126,8 +126,10 @@ class DomPO(object):
 
 
 
-    def scrollDateTime(self, varPath, varStep, t=2):
-        elements = self.find_element(*(By.XPATH, varPath))
+    def scrollDateTime(self, ele, varPath, varStep, t=2):
+        # 滚动
+        elements = ele.find_element(*(By.XPATH, varPath))
+        # elements = self.find_element(*(By.XPATH, varPath))
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
         actions = ActionChains(self.driver)
         actions.move_to_element(elements)
@@ -591,7 +593,10 @@ class DomPO(object):
 
     def eleClkByX(self, ele, varXpath):
         # 元素再定位后点击
-        ele.find_element(*(By.XPATH, varXpath)).click()
+        e = ele.find_element(*(By.XPATH, varXpath))
+        # e = ele.find_element_by_xpath(varXpath)
+        e.click()
+
 
     def eleSetTextClkByX(self, ele, varXpath, varValue, varXpath2):
         # 元素再定位后输入和提交
@@ -607,7 +612,10 @@ class DomPO(object):
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+        element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
+        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
+        return parent_element
+        # return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
         # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
 
     def getSpanTextUpEle(self, varText, varUp):
