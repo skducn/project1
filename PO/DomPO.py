@@ -127,10 +127,11 @@ class DomPO(object):
 
 
     def scrollDateTime(self, ele, varPath, varStep, t=2):
-        # 滚动
-        elements = ele.find_element(*(By.XPATH, varPath))
-        # elements = self.find_element(*(By.XPATH, varPath))
+        # 上下滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
+
+        sleep(t)
+        elements = ele.find_element(*(By.XPATH, varPath))
         actions = ActionChains(self.driver)
         actions.move_to_element(elements)
         actions.click_and_hold()
@@ -145,17 +146,19 @@ class DomPO(object):
         actions.perform()
         sleep(t)
 
-    def scrollToLeft(self, varPath, varStep, t=2):
-        elements = self.find_element(*(By.XPATH, varPath))
+    def scrollToLeft(self, ele, varPath, varStep, t=2):
+        # 左右滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(varStep, 0).release().perform()
+
+        sleep(t)
+        elements = ele.find_element(*(By.XPATH, varPath))
         actions = ActionChains(self.driver)
         actions.move_to_element(elements)
         actions.click_and_hold()
         actions.move_by_offset(varStep, 0)
         actions.release()
         actions.perform()
-        sleep(t)
-
+        # sleep(t)
 
 
 
@@ -607,7 +610,7 @@ class DomPO(object):
         # 元素再定位后获取文本
         return ele.find_element(*(By.XPATH, varXpath)).text
 
-    def getDivTextUpEle(self, varText, varUp):
+    def getDivTextUpEle2(self, varText, varUp):
         # 通过文本获取上一个元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
@@ -617,6 +620,12 @@ class DomPO(object):
         return parent_element
         # return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
         # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
+
+    def getDivTextUpEle(self, varText):
+        # 通过文本获取上一个元素
+        element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
+        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
+        return parent_element
 
     def getSpanTextUpEle(self, varText, varUp):
         # 通过文本获取上一个元素
