@@ -596,11 +596,11 @@ class DomPO(object):
         # 元素再定位后获取属性
         return ele.get_attribute(attr)
 
-    def eleClkByX(self, ele, varXpath):
+    def eleClkByX(self, ele, varXpath, t=2):
         # 元素再定位后点击
         e = ele.find_element(*(By.XPATH, varXpath))
-        # e = ele.find_element_by_xpath(varXpath)
         e.click()
+        sleep(t)
 
 
     def eleSetTextByX(self, ele, varXpath, varValue):
@@ -641,6 +641,12 @@ class DomPO(object):
             l_.append(a.find_element(*(By.XPATH, varXpathLabel)).text)
         return l_
 
+    def getDivTextUpEle(self, varText):
+        # 通过div文本获取上层元素
+        element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
+        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
+        return parent_element
+
 
     def getDivTextUpEle2(self, varText, varUp):
         # 通过div文本获取上层或上上层元素
@@ -650,18 +656,19 @@ class DomPO(object):
         return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
         # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
 
-    def getDivTextUpEle(self, varText):
-        # 通过div文本获取上层元素
-        element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
-        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
-        return parent_element
-
     def getSpanTextUpEle2(self, varText, varUp):
         # 通过span文本获取上层或上上层元素
         # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
         # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
         # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
         return self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+
+    def getLabelTextUpEle2(self, varLabel, varText, varUp):
+        # 通过span文本获取上层或上上层元素
+        # 如：ele_up = self.getLabelTextUpEle2('会前评估能否过会','..') # 获取文本上一层的元素
+        # 如：ele_up = self.getLabelTextUpEle2('会前评估能否过会','../..') # 获取文本上上一层的元素
+        # 如：ele_up = self.getLabelTextUpEle2('会前评估能否过会','../../..') # 获取文本上上上一层的元素
+        return self.find_element(*(By.XPATH, "//" + varLabel +"[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
 
     def getSpanTextUpEle(self, varText):
         # 通过span文本获取上层元素
@@ -871,6 +878,16 @@ class DomPO(object):
         sleep(t)
 
     def scrollToView(self, varXpath, t=1):
+        # 将元素滚动到可见区域。
+        # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
+        # element = self.driver.find_element_by_id(varId)  id方式定位
+        # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
+        # ErpApp_PO.Web_PO.scrollToView("//a[last()]")  # 拖动到最后一个a标签
+        element = self.find_element(*(By.XPATH, varXpath))
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
+        sleep(t)
+
+    def eleScrollToView(self, ele, varXpath, t=1):
         # 将元素滚动到可见区域。
         # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
         # element = self.driver.find_element_by_id(varId)  id方式定位

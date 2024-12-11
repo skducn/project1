@@ -661,11 +661,10 @@ class ErpAppPO(object):
 
         # 删除第一条
         self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
-                                 # /html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[2]/div/tr/td[1]/div/div/div/input
-        self.Web_PO.scrollToLeft("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div", -50)
+        self.Web_PO.scrollLeftRight("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div", -50)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/div/div/button")
                           # /html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[2]/div/div/div/button
-        # self.Web_PO.scrollToLeft("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div", 444)
+        # self.Web_PO.scrollLeftRight("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div", 444)
         # sys.exit(0)
 
         if otherMemberCount > 0:
@@ -700,7 +699,7 @@ class ErpAppPO(object):
                     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[7]/div/div[2]/div[1]/button[2]")
 
             # 删除第一条
-            self.Web_PO.scrollToLeft("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div")
+            self.Web_PO.scrollLeftRight("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div")
 
 
 
@@ -996,12 +995,11 @@ class ErpAppPO(object):
 
 
 
-    def _product_visitor(self, d_visitor):
+    def _product_visitor(self, d_expected):
 
         # 拜访及态度
 
-        # 1，获取医院开发信息和开发跟进信息
-        # 1/2 获取医院开发信息的字段和值
+        # 1 获取医院开发信息，生成字典d_devInfo
         ele = self.Web_PO.getSpanTextUpEle2("医院开发信息", "../..")
         i_fieldCount = self.Web_PO.eleGetQtyByX(ele, ".//div[2]/div[@class='van-col van-col--24']")
         l_field = []
@@ -1019,45 +1017,75 @@ class ErpAppPO(object):
         d_devInfo = dict(zip(l_field, l_devInfo_shadow))
         print(d_devInfo)  # {'医院信息': 'HCO00000122-崇中心', '产品信息': '氨叶-CP102', '负责人': '薛伟、彭琦'}
 
-        # 2/2 获取开发跟进信息
-        # 主要成员及态度
+        # 2 获取开发跟进信息，生成字典d_actual
+        # 2.1 主要成员及态度
         # print(l_shadow)  # ['韦彩雯', '支持', '杨忠英', '支持', ...
         l_post = ['科室主任', '药剂科主任', '医务处长', '业务院长', '院长']
-        d_member = {}
+        d_actual = {}
         for i in range(len(l_post)):
             l_1 = []
             l_1.append(l_shadow.pop(0))
             l_1.append(l_shadow.pop(0))
             d_1 = self.List_PO.pair2dict(l_1)
-            d_member[l_post[i]] = d_1
-        # print(d_member)  # {'科室主任': {'陈健': '支持'}, '药剂科主任': {'杨忠英': '支持'}, '医务处长': {'陈海群': '支持'}, '业务院长': {'陈海群': '支持'}, '院长': {'陈健': '支持'}}
-        # 其他药事会成员及态度
-        # print(l_shadow)
+            d_actual[l_post[i]] = d_1
+        # print(d_actual)  # {'科室主任': {'陈健': '支持'}, '药剂科主任': {'杨忠英': '支持'}, '医务处长': {'陈海群': '支持'}, '业务院长': {'陈海群': '支持'}, '院长': {'陈健': '支持'}}
+
+        # 2.2 其他药事会成员及态度
+        # print(l_shadow)  # ['韦彩雯', '支持', '杨忠英', '支持', ...
         d_devFollowUp = self.List_PO.pair2dict(l_shadow)
         # print(d_devFollowUp)  # {'韦彩雯': '支持', '杨忠英': '支持', '陈海群': '支持'...
-        d_member['其他药事会成员'] = d_devFollowUp
-        print(d_member)
+        d_actual['其他药事会成员'] = d_devFollowUp
 
 
-        # 2，比对预期值与开发跟进信息和其他药事会成员数据，如不一致则进行更新。
-        print(d_visitor)
+        # 3 比对预期值与开发跟进信息和其他药事会成员数据，如不一致则进行更新。
+        print("d_actual =>", d_actual)
+        print("d_expected =>", d_expected)
 
-        if d_visitor['科室主任'] != d_member['科室主任']:
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/table[1]/tr[2]/td[1]/div/div/div/input")
-            self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", list(d_visitor['科室主任'].keys())[0])
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]", 2)
-            if d_visitor['科室主任'][list(d_visitor['科室主任'].keys())[0]] != d_member['科室主任'][list(d_member['科室主任'].keys())[0]]:
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/table[1]/tr[2]/td[3]/div/div/div/input")
-                self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", list(d_visitor['科室主任'].values())[0])
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")
+        # 3.1 修改主要成员
+        for index, i in enumerate(l_post, start=2):
+            if d_expected[i] != d_actual[i]:
+                if list(d_expected[i].keys())[0] != list(d_actual[i].keys())[0]:
+                    self.Web_PO.eleClkByX(ele, ".//table[1]/tr[" + str(index) + "]/td[1]/div/div/div/input")
+                    ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected[i].keys())[0])
+                    self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
+                if list(d_expected[i].values())[0] != list(d_actual[i].values())[0]:
+                    self.Web_PO.eleClkByX(ele, ".//table[1]/tr[" + str(index) + "]/td[3]/div/div/div/input")
+                    ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected[i].values())[0])
+                    self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
 
 
-            # for k, v in d_visitor.items():
-        #     if k == '科室主任':
-        #         for k1, v1 in v.items():
-        #             if d_member[k][k1] != k1 :
-        #                 self.Web_PO.eleSetTextClkByX(ele, ".//div[2]/div/div[1]/div/div/div/div/div[2]/div/input", v1, ".//div[3]/button[2]")
+        # 3.2 修改其他药事会成员
+        # 操作逻辑：删除所有记录后再添加
+        # 删除第一条
+        ele3 = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
+        qty_row = self.Web_PO.eleGetQtyByX(ele3, ".//div/div[@class='van-swipe-cell']")
+        # print(qty_row)
+        for i in range(qty_row):
+            self.Web_PO.scrollLeftRight(ele3, ".//div/div[1]/div", -50)
+            self.Web_PO.eleClkByX(ele3, ".//div/div[1]/div/div/div/button")
 
+        # 点击增加一行新记录
+        for i in range(len(d_expected['其他药事会成员'])):
+
+            self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
+
+            self.Web_PO.eleClkByX(ele, ".//table[2]/div/div[" + str(i+1) + "]/div/tr/td[1]/div/div/div/input")
+            ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected['其他药事会成员'].keys())[i])
+            self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
+
+            self.Web_PO.eleClkByX(ele, ".//table[2]/div/div[" + str(i+1) + "]/div/tr/td[4]/div/div/div/input")
+            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected['其他药事会成员'].values())[i])
+            self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
+
+
+        # 提交
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
+        # 拜访人信息录入成功（确定）
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[5]")
 
     def _product_devFollowUp__list(self):
         # 获取开发跟进反馈列表页数据

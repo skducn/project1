@@ -12,6 +12,12 @@
 a = {'科室主任': {'李标': '支持'}}
 
 print(list(a['科室主任'].values())[0])
+l_post = ["rr","gg","Vv"]
+for index, k in enumerate(l_post, start=1):
+    print(index, k)
+
+for index, i in enumerate({'郭震': '支持', '杨忠英': '反对', '陈健': '中立'}, start=2):
+    print
 
 # a = ['HCO00000122-崇中心', '氨叶-CP102', '薛伟、彭琦', '韦彩雯', '支持', '杨忠英', '支持']
 #
