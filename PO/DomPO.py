@@ -5,9 +5,11 @@
 # Description: 通过DOM来操作页面中各种元素，例如添加元素、删除元素、替换元素等
 # 重新定义 find_element, find_elements, send_keys,
 # clk, get, set, checkbox, select, iframe, js, boolean
-
 # pip install selenium-wire
 
+# https://blog.csdn.net/m0_57162664/article/details/134266949  Css
+# 使用 nth-of-type(n)，可以指定选择的元素是父元素的第几个某类型的子节点。, 如 span:nth-of-type(2) 定位父元素第二个span类型子节点
+# nth-last-of-type(n)，可以倒过来， 选择父元素的倒数第几个某类型的子节点。
 # ***************************************************************
 '''
 重新定义
@@ -126,7 +128,7 @@ class DomPO(object):
 
 
 
-    def scrollDateTime(self, ele, varPath, varStep, t=2):
+    def scrollUpDown(self, ele, varPath, varStep, t=2):
         # 上下滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
 
@@ -146,7 +148,7 @@ class DomPO(object):
         actions.perform()
         sleep(t)
 
-    def scrollToLeft(self, ele, varPath, varStep, t=2):
+    def scrollLeftRight(self, ele, varPath, varStep, t=2):
         # 左右滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(varStep, 0).release().perform()
 
@@ -601,44 +603,79 @@ class DomPO(object):
         e.click()
 
 
+    def eleSetTextByX(self, ele, varXpath, varValue):
+        # 元素再定位后输入和提交
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+
     def eleSetTextClkByX(self, ele, varXpath, varValue, varXpath2):
         # 元素再定位后输入和提交
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        sleep(2)
         ele.find_element(*(By.XPATH, varXpath2)).click()
+
+    def eleGetQtyByX(self, ele, varXpaths):
+        # 元素再定位后获取标签数量
+        # 如：获取tr下有多少个div标签 getQtyByX('//*[@id="app"]/tr/div')
+        qty = 0
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            qty = qty + 1
+        return qty
 
     def eleGetTextByX(self, ele, varXpath):
         # 元素再定位后获取文本
         return ele.find_element(*(By.XPATH, varXpath)).text
 
+    def eleGetTextsByX(self, ele, varXpaths):
+        # 元素再定位后获取文本
+        l_ = []
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            l_.append(a.text)
+        return l_
+
+    def eleGetTextsByLabelByX(self, ele, varXpaths, varXpathLabel):
+        # eleGetTextsByLabelByX(ele, "//div[3]/div", ".//div")  # div下的text
+        # eleGetTextsByLabelByX(ele, "//div[3]/div", ".//span") # span下的text
+        # 元素再定位后获取div文本
+        l_ = []
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            l_.append(a.find_element(*(By.XPATH, varXpathLabel)).text)
+        return l_
+
+
     def getDivTextUpEle2(self, varText, varUp):
-        # 通过文本获取上一个元素
+        # 通过div文本获取上层或上上层元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
         # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
-        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
-        return parent_element
-        # return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+        return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
         # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
 
     def getDivTextUpEle(self, varText):
-        # 通过文本获取上一个元素
+        # 通过div文本获取上层元素
         element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
         parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
         return parent_element
 
-    def getSpanTextUpEle(self, varText, varUp):
-        # 通过文本获取上一个元素
+    def getSpanTextUpEle2(self, varText, varUp):
+        # 通过span文本获取上层或上上层元素
         # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
         # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
         # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
         return self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
 
+    def getSpanTextUpEle(self, varText):
+        # 通过span文本获取上层元素
+        element = self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']"))
+        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
+        return parent_element
+
     def textLocateEle(self, varText, varXpath, varValue, varXpath2):
 
         # self.Web_PO.textLocateEle('会前评估能否过会', "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
-        ele_up = self.getDivTextUpEle(varText, '..')
+        ele_up = self.getDivTextUpEle(varText)
         self.eleSetTextClkByX(ele_up, varXpath, varValue, varXpath2)
+
+
 
     # todo checkbox
 
