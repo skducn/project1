@@ -828,16 +828,34 @@ class ErpAppPO(object):
             l_getModuleDate.append(int(i))
         self.Web_PO.eleClkByX(ele, varXpathConfirm)
         return (ele, l_getModuleDate)
-    def _common_date(self, varXpathIn, varTitle, varXpathDiv, l_expected, varXpathConfirm):
-
+    def _common_date(self, d_expected, varField, varTitle, varXpathDiv, varXpathConfirm):
         # 选择年月日（公共封装）
         # 如：药事会计划开始日期，药事会计划结束日期
 
-        for i in range(len(l_expected)):
-            # 获取组件年月日
-            ele, l_getModuleDate = self._common_date__get(varXpathIn, varTitle, varXpathDiv, varXpathConfirm)
-            # 获取预期值与组件值之步长并校验比对年月日
-            self._common_date__verify(ele, varXpathIn, l_expected[i], l_getModuleDate[i], varXpathDiv, i+1, varXpathConfirm)
+        # 开发跟进信息
+        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
+        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        dd_ = dict(enumerate(l_field, start=1))
+        d_field = {v: k for k, v in dd_.items()}
+        ele2 = self.Web_PO.getLabelTextUpEle2("span", varField, "../..")
+        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//input", "div")
+
+        # 判断补0
+        if d_expected[varField][1] < 10:
+            varMonth = "0" + str(d_expected[varField][1])
+        else:
+            varMonth = str(d_expected[varField][1])
+        if d_expected[varField][2] < 10:
+            varDay = "0" + str(d_expected[varField][2])
+        else:
+            varDay = str(d_expected[varField][2])
+        s_expected = str(d_expected[varField][0]) + "-" + varMonth + "-" + varDay
+        if s_expected != str(l_actual[0]):
+            for i in range(len(d_expected[varField])):
+                # 获取组件年月日
+                ele, l_getModuleDate = self._common_date__get(self._product_devFollowUp__common_xpath(d_field[varField]), varTitle, varXpathDiv, varXpathConfirm)
+                # 获取预期值与组件值之步长并校验比对年月日
+                self._common_date__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]), d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i+1, varXpathConfirm)
 
 
     def _common_dateTime__xpath(self, varXpathDiv, varDiv):
@@ -877,46 +895,246 @@ class ErpAppPO(object):
             l_getModuleDate.append(int(i))
         self.Web_PO.eleClkByX(ele, varXpathConfirm)
         return (ele, l_getModuleDate)
-    def _common_dateTime(self, varXpathIn, varTitle, varXpathDiv, l_expected, varXpathConfirm):
+    def _common_dateTime(self, d_expected, varField, varTitle, varXpathDiv, varXpathConfirm):
 
         # 选择年月日时分（公共封装）
         # 如：药事会实际召开时间
 
-        for i in range(len(l_expected)):
-            # 获取组件年月日
-            ele, l_getModuleDate = self._common_dateTime__get(varXpathIn, varTitle, varXpathDiv, varXpathConfirm)
-            # 获取预期值与组件值之步长并校验比对年月日
-            self._common_dateTime__verify(ele, varXpathIn, l_expected[i], l_getModuleDate[i], varXpathDiv, i + 1, varXpathConfirm)
+        # 开发跟进信息
+        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
+        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        dd_ = dict(enumerate(l_field, start=1))
+        d_field = {v: k for k, v in dd_.items()}
+        ele2 = self.Web_PO.getLabelTextUpEle2("span", varField, "../..")
+        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//input", "div")
+
+        # 判断补0
+        if d_expected[varField][1] < 10:
+            varMonth = "0" + str(d_expected[varField][1])
+        else:
+            varMonth = str(d_expected[varField][1])
+        if d_expected[varField][2] < 10:
+            varDay = "0" + str(d_expected[varField][2])
+        else:
+            varDay = str(d_expected[varField][2])
+        s_expected = str(d_expected[varField][0]) + "-" + varMonth + "-" + varDay
+        if s_expected != str(l_actual[0]):
+            for i in range(len(d_expected[varField])):
+                # 获取组件年月日
+                ele, l_getModuleDate = self._common_dateTime__get(self._product_devFollowUp__common_xpath(d_field[varField]), varTitle, varXpathDiv, varXpathConfirm)
+                # 获取预期值与组件值之步长并校验比对年月日
+                self._common_dateTime__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]), d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1, varXpathConfirm)
+
+
+
+    def __getVisitor(self):
+
+        # 拜访及态度
+        # {'主要成员': {'科室主任': ['陈海群', '中立'], '药剂科主任': ['杨忠英', '中立'], '医务处长': ['王久文', '支持'], '业务院长': ['陈健', '中立'], '院长': ['王旭辉', '支持']},
+        # '其他药事会成员': [['郭震', '支持'], ['杨忠英', '反对'], ['陈健', '中立'], ['张金春', '支持'], ['石来新', '反对'], ['沈亚雯', '中立']]}
+
+        d_visitor = {}
+        # 主要成员
+        ele = self.Web_PO.getLabelTextUpEle2("th", "主要成员", "../..")
+        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        l_shadow = self.List_PO.group(l_shadow, 2)
+        l_post = ['科室主任', '药剂科主任', '医务处长', '业务院长', '院长']
+        d_visitor['主要成员'] = dict(zip(l_post, l_shadow))
+
+        # 其他药事会成员
+        ele = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
+        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        d_visitor['其他药事会成员'] = self.List_PO.group(l_shadow, 2)
+
+        return d_visitor
 
 
 
 
-    def _product_new__list(self):
-        # 获取新增产品开发列表页数据
 
-        # 1/3 获取字段列表（不包括所属医院信息）
-        # 统计字段数量
-        i_fieldCount = self.Web_PO.getQtyByX("//form[@class='van-form']/div")
-        l_field = []
-        for i in range(i_fieldCount-2):
-            s_text = self.Web_PO.getTextByX("//form[@class='van-form']/div[" + str(i+1) + "]/div[1]/div/div/div")
-            if s_text != '所属医院信息':
-                l_field.append(s_text)
-        # print(l_field)  # ['开发医院类型', '开发医院信息', '开发医院级别', '开发产品名称', '开发负责人1', '开发负责人2', '药事会计划开始日期', '药事会计划结束日期', '提单科室']
+    # todo 产品开发
 
-        # 2/3 获取字段的shadow的的值（不包括所属医院信息的值）
-        l_text_shadow = self.Web_PO.getShadowRoots('//input', 'div:nth-of-type(2)')
-        # print(l_text_shadow)  # ['站点', '曹路社区永丰村卫生室', '一级医院', '依叶', '薛伟', '陈东升', '2025-10-09', '2025-11-11', '呼吸科', '', '曹路社区']
-        l_value = l_text_shadow[:-2]
+    def _product_devFollowUp__common_xpath(self, varDiv):
+        # 公共表单（产品开发 - 开发跟进反馈）
+        # 第一层
+        return "/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[" + str(varDiv) + "]/div/div[2]/div/input"
+    def _product_devFollowUp__common(self, d_expected, varField):
+        # 公共表单（产品开发 - 开发跟进反馈）
 
-        # 3/3 合并字典
-        d_new = dict(zip(l_field, l_value))
-        # 追加'所属医院信息'
-        ele_upup = self.Web_PO.getDivTextUpEle2("所属医院信息", "../../../..")
-        s_text = self.Web_PO.eleGetTextByX(ele_upup, ".//div[2]/span")
-        d_new['所属医院信息'] = s_text
-        print(d_new)
-        return d_new
+        # 开发跟进信息
+        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
+        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        dd_ = dict(enumerate(l_field, start=1))
+        d_field = {v: k for k, v in dd_.items()}
+        ele2 = self.Web_PO.getLabelTextUpEle2("span", varField, "../..")
+        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//input", "div")
+        if l_actual[0] != d_expected[varField]:
+            self.Web_PO.clkByX(self._product_devFollowUp__common_xpath(d_field[varField]))
+            self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_expected[varField])
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")  # 确认
+    def set_product_devFollowUp(self, d_expected):
+        # 开发跟进
+
+        self._product_devFollowUp__common(d_expected, '开发次数')
+        self._product_devFollowUp__common(d_expected, '提单科室')
+        self._product_devFollowUp__common(d_expected, '提单规则')
+
+        # # 过会规则
+        # 操作逻辑，先反勾选所有复选框，再勾选预期值
+        ele2 = self.Web_PO.getLabelTextUpEle2("span", '过会规则', "../..")
+        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//textarea", "div")
+        l_actual = l_actual[0].split(", ")
+        # print(dict(Counter(l_actual)) == dict(Counter(d_expected['过会规则'])))
+        if dict(Counter(l_actual)) != dict(Counter(d_expected['过会规则'])):
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[4]/div/div[2]/div/textarea")
+            l_afterMeetingRule = self.Web_PO.getTextsByX("//div[@role='checkbox']/span")
+            dd_ = dict(enumerate(l_afterMeetingRule, start=1))
+            d_afterMeetingRule = {v: k for k, v in dd_.items()}
+            # 先反勾选所有复选框
+            ele = self.Web_PO.getDivTextUpEle("选择过会规则")
+            self.Web_PO.eleClksByX(ele, ".//div[@class='van-checkbox__icon van-checkbox__icon--round van-checkbox__icon--checked']")
+            # 再勾选预期值
+            for i in range(len(d_expected["过会规则"])):
+                self.Web_PO.eleClkByX(ele, ".//div[2]/div[" + str(d_afterMeetingRule[d_expected["过会规则"][i]]) + "]/div")
+            self.Web_PO.eleClkByX(ele, ".//div[3]/button[2]")
+
+        self._product_devFollowUp__common(d_expected, '提单状态')
+        self._product_devFollowUp__common(d_expected, '药剂科会前确认信息')
+        self._common_date(d_expected, '药事会计划结束日期', " 请选择药事会结束时间 ", ".//div[2]/div/div", ".//div[3]/button[2]")
+        self._common_date(d_expected, '药事会计划开始日期', " 请选择药事会开始时间 ", ".//div[2]/div/div", ".//div[3]/button[2]")
+        self._common_dateTime(d_expected, '药事会实际召开时间', "药事会实际召开时间选择", ".//div[2]/div[2]", ".//div[2]/div[1]/button[2]")
+        self._product_devFollowUp__common(d_expected, '会前评估能否过会')
+        self._product_devFollowUp__common(d_expected, '经改进后能否过会')
+        if d_expected['会前评估能否过会'] == '是' or d_expected['经改进后能否过会'] == '是':
+            self._common_date(d_expected, '过会日期',  "过会时间选择", ".//div[2]/div[2]", ".//div[2]/div[1]/button[2]")
+
+        # 提交
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
+        # 拜访人信息录入成功（确定）
+        ele4 = self.Web_PO.getLabelTextUpEle2("div", "开发跟进信息录入成功", "../..")
+        self.Web_PO.eleClkByX(ele4, ".//div[5]")
+
+    def get_product_devFollowUp(self, d_expected):
+        # 开发跟进反馈 - 获取数据
+
+        # 选择标签
+        if d_expected['标签'] == '跟进中':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[1]/span")
+        elif d_expected['标签'] == '已结束':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/span")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'])
+        # 点击开发跟进
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[2]")
+
+        d_getCurrData = {}
+
+        # 1 获取医院开发信息
+        ele = self.Web_PO.getLabelTextUpEle2("span", "医院信息", "../../../..")
+        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        d_devInfo = dict(zip(l_field, l_shadow))
+        d_getCurrData["医院开发信息"] = d_devInfo
+
+        # 2 获取开发跟进信息
+        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
+        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        l_field.remove('过会规则')
+        d_getCurrData["开发跟进信息"] = dict(zip(l_field, l_shadow))
+        # 追加过会规则
+        l_text_shadow = self.Web_PO.getShadowRoots('//textarea', 'div')
+        d_getCurrData['开发跟进信息']['过会规则'] = l_text_shadow[0]
+        # 追加采购时间和更新时间
+        l_text_span = self.Web_PO.getTextsByX("//div[@class='van-col van-col--24']/span")
+        d_getCurrData['开发跟进信息']['采购时间'] = l_text_span[0]
+        d_getCurrData['开发跟进信息']['更新时间'] = l_text_span[1]
+
+        return d_getCurrData
+
+
+    def set_product_visitor(self, d_getCurrDate, d_expected):
+        # 拜访及态度 - 修改数据
+        # 修改逻辑，将 d_getCurrDate 与 d_expected 比对，如不一致则更新。
+
+        # 更新主要成员
+        ele = self.Web_PO.getLabelTextUpEle2("th", "主要成员", "../..")
+        d_post = {"科室主任": 2, "药剂科主任": 3, "医务处长" : 4, "业务院长": 5, "院长": 6}
+        for k, v in d_getCurrDate['拜访及态度']['主要成员'].items():
+            if k in d_expected['拜访及态度']['主要成员']:
+                if v != d_expected['拜访及态度']['主要成员'][k]:
+                    if v[0] != d_expected['拜访及态度']['主要成员'][k][0]:
+                        # 主要成员
+                        self.Web_PO.eleClkByX(ele, ".//tr[" + str(d_post[k]) + "]/td[1]/div/div/div/input")
+                        ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+                        self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['主要成员'][k][0])
+                        self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
+                    elif v[1] != d_expected['拜访及态度']['主要成员'][k][1]:
+                        # 态度
+                        self.Web_PO.eleClkByX(ele, ".//tr[" + str(d_post[k]) + "]/td[3]/div/div/div/input")
+                        ele2 = self.Web_PO.getDivTextUpEle(" 态度选择 ")
+                        self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['主要成员'][k][1])
+                        self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
+
+        # 更新其他药事会成员
+        # 操作逻辑：删除所有会员后再添加
+        # 遍历删除
+        ele3 = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
+        qty_row = self.Web_PO.eleGetQtyByX(ele3, ".//div/div[@class='van-swipe-cell']")
+        for i in range(qty_row):
+            self.Web_PO.scrollLeftRight(ele3, ".//div/div[1]/div", -50)
+            self.Web_PO.eleClkByX(ele3, ".//div/div[1]/div/div/div/button")
+        # 点击增加一行新记录
+        for i in range(len(d_expected['拜访及态度']['其他药事会成员'])):
+            self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
+            # 其他药事会成员
+            self.Web_PO.eleClkByX(ele3, ".//div/div[" + str(i+1) + "]/div/tr/td[1]/div/div/div/input")
+            ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['其他药事会成员'][i][0])
+            self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
+            # 态度
+            self.Web_PO.eleClkByX(ele3, ".//div/div[" + str(i+1) + "]/div/tr/td[4]/div/div/div/input")
+            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['其他药事会成员'][i][1])
+            self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
+
+        # # 提交
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
+        # # 拜访人信息录入成功（确定），返回产品开发列表页
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[5]")
+
+    def get_product_visitor(self, d_expected):
+        # 拜访及态度 - 获取数据
+
+        # {'医院开发信息': {'医院信息': 'HCO00000122-崇中心', '产品信息': '氨叶-CP102', '负责人': '薛伟、彭琦'},
+        # '拜访及态度': {'主要成员': {'科室主任': ['陈海群', '中立'], '药剂科主任': ['杨忠英', '中立'], '医务处长': ['王久文', '支持'], '业务院长': ['陈健', '中立'], '院长': ['王旭辉', '支持']},
+        # '其他药事会成员': [['郭震', '支持'], ['杨忠英', '反对'], ['陈健', '中立'], ['张金春', '支持'], ['石来新', '反对'], ['沈亚雯', '中立']]}}
+
+        # 选择标签
+        if d_expected['标签'] == '跟进中':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[1]/span")
+        elif d_expected['标签'] == '已结束':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/span")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'])
+        # 点击拜访人
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[1]")
+
+        d_getCurrData = {}
+
+        # 1 获取医院开发信息
+        ele = self.Web_PO.getLabelTextUpEle2("span", "医院信息", "../../../..")
+        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        d_devInfo = dict(zip(l_field, l_shadow))
+        d_getCurrData["医院开发信息"] = d_devInfo
+
+        # 2 获取拜访及态度
+        d_getCurrData["拜访及态度"] = self.__getVisitor()
+
+        # 关闭，返回产品开发列表页
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[1]")
+        return d_getCurrData
+
+
     def _product_new__common_xpath(self, varDiv):
         # 公共表单（产品开发 - 新增产品开发）
         # 第一层
@@ -930,7 +1148,7 @@ class ErpAppPO(object):
         self._product_new__common_xpath(varDiv)
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[2]/div/div/div/div[2]/div/input", varValue)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[2]/div[4]/button[2]")
-    def product_new(self, d_new):
+    def new_product(self, d_new):
         # 新增产品开发
 
         # 新增（产品开发右上角）
@@ -966,14 +1184,8 @@ class ErpAppPO(object):
             self._common_date(self._product_new__common_xpathDate(7), " 请选择药事会开始时间 ", ".//div[2]/div/div", d_new['药事会计划开始日期'], ".//div[3]/button[2]")
             # 9,提单科室
             self._product_new__common(9, d_new['提单科室'])
-
-            # 获取新增产品开发列表页数据
-            d_new = self._product_new__list()
-
             # # 提交
-            # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[11]/button[2]")
-            # # 取消
-            # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[11]/button[1]")
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[11]/button[2]")
 
         else:
             # 站点
@@ -984,233 +1196,71 @@ class ErpAppPO(object):
             self._common_date(self._product_new__common_xpathDate(9), " 请选择药事会结束时间 ", ".//div[2]/div/div", d_new['药事会计划结束日期'], ".//div[3]/button[2]")
             self._common_date(self._product_new__common_xpathDate(8), " 请选择药事会开始时间 ", ".//div[2]/div/div", d_new['药事会计划开始日期'], ".//div[3]/button[2]")
             self._product_new__common(10, d_new['提单科室'])
-
-            # 获取新增产品开发列表页数据
-            d_new = self._product_new__list()
-
             # 提交
-            # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[12]/button[2]")
-            # 取消
-            # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[12]/button[1]")
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/form/div[12]/button[2]")
 
 
+    def get_product_info(self, d_expected):
 
-    def _product_visitor(self, d_expected):
+        # 产品开发详情
 
-        # 拜访及态度
+        # 获取产品开发详情
+        # 选择标签
+        if d_expected['标签'] == '跟进中':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[1]/span")
+        elif d_expected['标签'] == '已结束':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/span")
+        # 1 搜索
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", "崇中")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", "心")
+        # 2 点击标题进入产品开发详情
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[1]")
 
-        # 1 获取医院开发信息，生成字典d_devInfo
-        ele = self.Web_PO.getSpanTextUpEle2("医院开发信息", "../..")
-        i_fieldCount = self.Web_PO.eleGetQtyByX(ele, ".//div[2]/div[@class='van-col van-col--24']")
-        l_field = []
-        for i in range(i_fieldCount):
-            s_text = self.Web_PO.eleGetTextByX(ele, ".//div[2]/div[" + str(i+1) + "]/div/div[1]/span")
-            l_field.append(s_text)
-        # print(l_field)  # ['医院信息', '产品信息', '负责人']
-        # 获取医院开发信息shadow值
-        l_devInfo_shadow = []
-        l_shadow = self.Web_PO.getShadowRoots('//input', 'div:nth-last-of-type(1)')
-        l_devInfo_shadow.append(l_shadow.pop(0))
-        l_devInfo_shadow.append(l_shadow.pop(0))
-        l_devInfo_shadow.append(l_shadow.pop(0))
-        # print(l_devInfo_shadow)  # ['HCO00000122-崇中心', '氨叶-CP102', '薛伟、彭琦']
-        d_devInfo = dict(zip(l_field, l_devInfo_shadow))
-        print(d_devInfo)  # {'医院信息': 'HCO00000122-崇中心', '产品信息': '氨叶-CP102', '负责人': '薛伟、彭琦'}
+        d_info = {}
+        # 开发基础信息
+        ele1 = self.Web_PO.getLabelTextUpEle2("div", "开发编码", "../..")
+        l_devInfo_field = self.Web_PO.eleGetTextsByX(ele1, ".//div/div")
+        l_devInfo_value = self.Web_PO.eleGetTextsByX(ele1, ".//div/span")
+        d_devInfo = dict(zip(l_devInfo_field, l_devInfo_value))
+        d_info['开发基础信息'] = d_devInfo
 
-        # 2 获取开发跟进信息，生成字典d_actual
-        # 2.1 主要成员及态度
-        # print(l_shadow)  # ['韦彩雯', '支持', '杨忠英', '支持', ...
-        l_post = ['科室主任', '药剂科主任', '医务处长', '业务院长', '院长']
-        d_actual = {}
-        for i in range(len(l_post)):
-            l_1 = []
-            l_1.append(l_shadow.pop(0))
-            l_1.append(l_shadow.pop(0))
-            d_1 = self.List_PO.pair2dict(l_1)
-            d_actual[l_post[i]] = d_1
-        # print(d_actual)  # {'科室主任': {'陈健': '支持'}, '药剂科主任': {'杨忠英': '支持'}, '医务处长': {'陈海群': '支持'}, '业务院长': {'陈海群': '支持'}, '院长': {'陈健': '支持'}}
+        # 开发跟进信息
+        ele2 = self.Web_PO.getLabelTextUpEle2("div", "开发次数", "../..")
+        l_devFollowUp_field = self.Web_PO.eleGetTextsByX(ele2, ".//div/div")
+        l_devFollowUp_value = self.Web_PO.eleGetTextsByX(ele2, ".//div/span")
+        d_devFollowUp = dict(zip(l_devFollowUp_field, l_devFollowUp_value))
+        d_info['开发跟进信息'] = d_devFollowUp
 
-        # 2.2 其他药事会成员及态度
-        # print(l_shadow)  # ['韦彩雯', '支持', '杨忠英', '支持', ...
-        d_devFollowUp = self.List_PO.pair2dict(l_shadow)
-        # print(d_devFollowUp)  # {'韦彩雯': '支持', '杨忠英': '支持', '陈海群': '支持'...
-        d_actual['其他药事会成员'] = d_devFollowUp
+        d_post = {}
+        ele3 = self.Web_PO.getLabelTextUpEle2("th", "主要成员", "../..")
+        l_principle_members = self.Web_PO.eleGetTextsByX(ele3, ".//td")
+        l_principle_members = self.List_PO.group(l_principle_members, 3)
+        # print("l_principle_members =>", l_principle_members)
+        d_principle_members = {}
+        for i in range(len(l_principle_members)):
+            d_principle_members[l_principle_members[i].pop(1)] = l_principle_members[i]
+        # print("主要成员 =>", d_principle_members)
+        d_post['职务'] = d_principle_members
 
-
-        # 3 比对预期值与开发跟进信息和其他药事会成员数据，如不一致则进行更新。
-        print("d_actual =>", d_actual)
-        print("d_expected =>", d_expected)
-
-        # 3.1 修改主要成员
-        for index, i in enumerate(l_post, start=2):
-            if d_expected[i] != d_actual[i]:
-                if list(d_expected[i].keys())[0] != list(d_actual[i].keys())[0]:
-                    self.Web_PO.eleClkByX(ele, ".//table[1]/tr[" + str(index) + "]/td[1]/div/div/div/input")
-                    ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected[i].keys())[0])
-                    self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
-                if list(d_expected[i].values())[0] != list(d_actual[i].values())[0]:
-                    self.Web_PO.eleClkByX(ele, ".//table[1]/tr[" + str(index) + "]/td[3]/div/div/div/input")
-                    ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected[i].values())[0])
-                    self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
-
-
-        # 3.2 修改其他药事会成员
-        # 操作逻辑：删除所有记录后再添加
-        # 删除第一条
+        d_members = {}
         ele3 = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
-        qty_row = self.Web_PO.eleGetQtyByX(ele3, ".//div/div[@class='van-swipe-cell']")
-        # print(qty_row)
-        for i in range(qty_row):
-            self.Web_PO.scrollLeftRight(ele3, ".//div/div[1]/div", -50)
-            self.Web_PO.eleClkByX(ele3, ".//div/div[1]/div/div/div/button")
+        l_other_members = self.Web_PO.eleGetTextsByX(ele3, ".//td")
+        l_other_members = self.List_PO.group(l_other_members, 4)
+        # print("l_other_members =>", l_other_members)
+        d_other_members = {}
+        for i in range(len(l_other_members)):
+            d_other_members[l_other_members[i].pop(0)] = l_other_members[i]
+        # print("其他药事会成员 =>", d_other_members)
+        d_members['其他药事会成员'] = d_other_members
 
-        # 点击增加一行新记录
-        for i in range(len(d_expected['其他药事会成员'])):
-
-            self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
-
-            self.Web_PO.eleClkByX(ele, ".//table[2]/div/div[" + str(i+1) + "]/div/tr/td[1]/div/div/div/input")
-            ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected['其他药事会成员'].keys())[i])
-            self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
-
-            self.Web_PO.eleClkByX(ele, ".//table[2]/div/div[" + str(i+1) + "]/div/tr/td[4]/div/div/div/input")
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", list(d_expected['其他药事会成员'].values())[i])
-            self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
-
-
-        # 提交
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
-        # 拜访人信息录入成功（确定）
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[5]")
-
-    def _product_devFollowUp__list(self):
-        # 获取开发跟进反馈列表页数据
-        d_dev = {}
-
-        # 1/3 获取shadow的的值
-        l_text_shadow = self.Web_PO.getShadowRoots('//input', 'div')
-        # print(l_text_shadow)
-        l_value = l_text_shadow[:-1]
-        l_field = ['医院信息', '产品信息', '负责人', '开发次数', '提单科室', '提单规则', '提单状态', '药剂科会前确认信息', '药事会计划开始日期', '药事会计划结束日期',
-                   '药事会实际召开时间', '会前评估能否过会', '经改进后能否过会', '过会日期']
-        d_dev = dict(zip(l_field, l_value))
-
-        # 2/3 过会规则
-        l_text_shadow = self.Web_PO.getShadowRoots('//textarea', 'div')
-        d_dev['过会规则'] = l_text_shadow
-
-        # 3/3 获取span的值
-        l_text_span = self.Web_PO.getTextsByX("//div[@class='van-col van-col--24']/span")
-        d_dev['采购时间'] = l_text_span[0]
-        d_dev['更新时间'] = l_text_span[1]
-        return d_dev
-    def _product_devFollowUp__common_xpath(self, varDiv):
-        # 公共表单（产品开发 - 开发跟进反馈）
-        # 第一层
-        return "/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[" + str(varDiv) + "]/div/div[2]/div/input"
-    def _product_devFollowUp__common(self, varDiv, varValue):
-        # 公共表单（产品开发 - 开发跟进反馈）
-        self.Web_PO.clkByX(self._product_devFollowUp__common_xpath(varDiv))
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", varValue)
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[3]/div/div[2]/button[2]")  # 确认
-    def _product_devFollowUp(self, d_edit):
-        # 开发跟进
-
-
-        # 点击开发跟进（产品开发）
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[2]")
-
-        # 开发次数
-        self._product_devFollowUp__common(1, d_edit['开发次数'])
-
-        # 提单科室
-        self._product_devFollowUp__common(2, d_edit['提单科室'])
-
-        # 提单规则
-        self._product_devFollowUp__common(3, d_edit['提单规则'])
-
-        # # 过会规则
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[4]/div/div[2]/div/textarea")
-        l_afterMeetingRule = self.Web_PO.getTextsByX("//div[@role='checkbox']/span")
-        dd_ = dict(enumerate(l_afterMeetingRule, start=1))
-        d_afterMeetingRule = {v: k for k, v in dd_.items()}
-        ele = self.Web_PO.getDivTextUpEle("选择过会规则")
-        for i in range(len(d_edit["过会规则"])):
-            self.Web_PO.eleClkByX(ele, ".//div[2]/div[" + str(d_afterMeetingRule[d_edit["过会规则"][i]]) + "]/div")
-        self.Web_PO.eleClkByX(ele, ".//div[3]/button[2]")
-
-        # 提单状态
-        self._product_devFollowUp__common(5, d_edit['提单状态'])
-
-        # 药剂科会前确认信息
-        self._product_devFollowUp__common(6, d_edit['药剂科会前确认信息'])
-
-        # 药事会计划结束日期
-        self._common_date(self._product_devFollowUp__common_xpath(8), " 请选择药事会结束时间 ", ".//div[2]/div/div", d_edit['药事会计划结束日期'], ".//div[3]/button[2]")
-
-        # # 药事会计划开始日期
-        self._common_date(self._product_devFollowUp__common_xpath(7), " 请选择药事会开始时间 ", ".//div[2]/div/div", d_edit['药事会计划开始日期'], ".//div[3]/button[2]")
-
-        # # 药事会实际召开时间
-        self._common_dateTime(self._product_devFollowUp__common_xpath(9), "药事会实际召开时间选择", ".//div[2]/div[2]", d_edit['药事会实际召开时间'], ".//div[2]/div[1]/button[2]")
-
-        # 会前评估能否过会
-        self._product_devFollowUp__common(10, d_edit['会前评估能否过会'])
-
-        # 经改进后能否过会
-        self._product_devFollowUp__common(11, d_edit['经改进后能否过会'])
-
-        if d_edit['会前评估能否过会'] == '是' or d_edit['经改进后能否过会'] == '是':
-            self._common_date(self._product_devFollowUp__common_xpath(12), "过会时间选择", ".//div[2]/div[2]", d_edit['过会日期'], ".//div[2]/div[1]/button[2]")
-
-        # 获取开发跟进反馈列表页数据
-        d_dev = self._product_devFollowUp__list()
-
-
-        # 提交
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
-
-
-    def product_dev(self, d_visotor, d_edit):
-
-        # 产品开发
-
-        # 开发医院 - 拜访人
-        # 搜索医院、负责人
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", d_visotor['搜索'])
-        # 点击拜访人
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[1]")
-        self._product_visitor(d_visotor)
-
-        # 开发医院 - 开发跟进
-        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input",d_edit['搜索'])
-        # 点击开发跟进
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[3]/button[2]")
-        # d_dev = self._product_devFollowUp(d_edit)
-        # print(d_dev)
-
-
-
-    # todo 产品开发
-    def product(self, d_new, d_visitor, d_edit):
-
-        # 点击产品开发
-        self.Web_PO.clkByX("//a[@href='#/product']")
-
-        # 新增产品开发
-        # self.product_new(d_new)
-
-        # # 开发医院（拜访人,开发跟进）
-        self.product_dev(d_visitor, d_edit)
-
-
+        d_post.update(d_members)
+        d_info['拜访及态度'] = d_post
 
         # 返回
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
+        return d_info
+
+
 
 
    # todo 审批中心

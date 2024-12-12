@@ -8,16 +8,34 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
+from collections import Counter
 
-a = {'科室主任': {'李标': '支持'}}
+a = [1,2,"你好",3]
+b = [2,1,3,"你好"]
 
-print(list(a['科室主任'].values())[0])
-l_post = ["rr","gg","Vv"]
-for index, k in enumerate(l_post, start=1):
-    print(index, k)
+# a = Counter(a)
+# b = Counter(b)
+print (dict(Counter(a))==dict(Counter(b)))
+if dict(Counter(a)) != dict(Counter(b)):
+    print(123)
 
-for index, i in enumerate({'郭震': '支持', '杨忠英': '反对', '陈健': '中立'}, start=2):
-    print
+# True
+
+
+a = '临床主任确认即可过会, 需投票，过三分之二票数'
+
+print(a.split(", "))
+
+
+# a = {'科室主任': {'李标': '支持'}}
+#
+# print(list(a['科室主任'].values())[0])
+# l_post = ["rr","gg","Vv"]
+# for index, k in enumerate(l_post, start=1):
+#     print(index, k)
+#
+# for index, i in enumerate({'郭震': '支持', '杨忠英': '反对', '陈健': '中立'}, start=2):
+#     print
 
 # a = ['HCO00000122-崇中心', '氨叶-CP102', '薛伟、彭琦', '韦彩雯', '支持', '杨忠英', '支持']
 #

@@ -543,10 +543,11 @@ class DomPO(object):
         """通过name追加文本"""
         self.find_element(*(By.NAME, varName)).send_keys(varText)
 
-    def setTextByX(self, varXpath, varText):
+    def setTextByX(self, varXpath, varText, t=2):
         """通过xpath设置文本"""
         self.find_element(*(By.XPATH, varXpath)).clear()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        sleep(t)
 
     def appentTextByX(self, varXpath, varText):
         """通过xpath追加文本"""
@@ -587,7 +588,20 @@ class DomPO(object):
         for i in eles:
             shadow_root = i.shadow_root
             ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
-            # print(ele2.text)
+            l_text_shadow.append(ele2.text)
+        return l_text_shadow
+
+    def eleGetShadowRoots(self, ele, varXpaths, varShadowXpath, t=2):
+        # 遍历所有shadow-root元素input下div的文本，返回列表
+        # 注意：识别只能用CSS_SELECTOR方法获得，通过Xpath一直报错
+        # 如：varLabel = input ， varShadowXpath = 'div'
+        # eleGetShadowRoots(ele, "//table[1]", "div")
+        sleep(t)
+        eles = ele.find_elements(*(By.XPATH, varXpaths))
+        l_text_shadow = []
+        for i in eles:
+            shadow_root = i.shadow_root
+            ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
             l_text_shadow.append(ele2.text)
         return l_text_shadow
 
@@ -602,7 +616,11 @@ class DomPO(object):
         e.click()
         sleep(t)
 
-
+    def eleClksByX(self, ele, varXpaths, t=2):
+        # 元素再定位后点击
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            a.click()
+        sleep(t)
     def eleSetTextByX(self, ele, varXpath, varValue):
         # 元素再定位后输入和提交
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)

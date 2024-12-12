@@ -18,7 +18,6 @@ todo：【转换】
 # print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
 1.9 str打散，转元素列表 print([str(x) for x in str('abcddfdrer')])  # ['a', 'b', 'c', 'd', 'd', 'f', 'd', 'r', 'e', 'r']
 
-
 todo：【操作元素】
 2.1 生成元素索引 list(enumerate(['Spring', 'Summer', 'Fall', 'Winter'], start=1))
 2.2 数字字符串与数字互相转换 list(map(int,['1','2','3'])))  # [1, 2, 3]
@@ -37,6 +36,15 @@ todo：【比较】
 3.2 获取两列表相同元素 print(List_PO.getIntersection(['a', 'b', 'c', 'd'], ['b', 'c', 'kk', 'z']))  # ['b', 'c']
 3.3 获取两列表中在list1且不在list2的元素 print([x for x in [1,2,3] if x not in [1,5,6]])
 3.4 获取两列表相同元素的索引号 twoListGetSameIndex(['a', 'b', 'c', 'd'], ['a', 'k', 'c', 'z']))  # [1, 3]
+3.5 比较两个列表元素是否相同，忽略顺序
+from collections import Counter
+a=[1,2,3,4,5,6,7,8,9]
+b=[9,8,7,6,5,4,3,2,1]
+a = Counter(a)
+b = Counter(b)
+print (dict(a)==dict(b))
+# True
+
 
 todo：【替换】
 4.1 批量替换1个到列表 print(List_PO.replaceOne(["1", 2, "3", "2", 2], 2, ""))  # ['1', '', '3', '2', '']
