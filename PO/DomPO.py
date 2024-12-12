@@ -543,11 +543,10 @@ class DomPO(object):
         """通过name追加文本"""
         self.find_element(*(By.NAME, varName)).send_keys(varText)
 
-    def setTextByX(self, varXpath, varText, t=2):
+    def setTextByX(self, varXpath, varText):
         """通过xpath设置文本"""
         self.find_element(*(By.XPATH, varXpath)).clear()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
-        sleep(t)
 
     def appentTextByX(self, varXpath, varText):
         """通过xpath追加文本"""

@@ -19,9 +19,11 @@ print (dict(Counter(a))==dict(Counter(b)))
 if dict(Counter(a)) != dict(Counter(b)):
     print(123)
 
-# True
+a = "你"
+print(a[0])
+print(a[1:])
 
-
+print(len(a))
 a = '临床主任确认即可过会, 需投票，过三分之二票数'
 
 print(a.split(", "))

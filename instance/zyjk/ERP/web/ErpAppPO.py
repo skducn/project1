@@ -984,7 +984,6 @@ class ErpAppPO(object):
         ele2 = self.Web_PO.getLabelTextUpEle2("span", '过会规则', "../..")
         l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//textarea", "div")
         l_actual = l_actual[0].split(", ")
-        # print(dict(Counter(l_actual)) == dict(Counter(d_expected['过会规则'])))
         if dict(Counter(l_actual)) != dict(Counter(d_expected['过会规则'])):
             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[4]/div/div[2]/div/textarea")
             l_afterMeetingRule = self.Web_PO.getTextsByX("//div[@role='checkbox']/span")
@@ -1100,7 +1099,8 @@ class ErpAppPO(object):
         # # 提交
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
         # # 拜访人信息录入成功（确定），返回产品开发列表页
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[5]")
+        ele4 = self.Web_PO.getLabelTextUpEle2("div", "拜访人信息录入成功", "../..")
+        self.Web_PO.eleClkByX(ele4, ".//div[5]")
 
     def get_product_visitor(self, d_expected):
         # 拜访及态度 - 获取数据
@@ -1207,14 +1207,22 @@ class ErpAppPO(object):
         # 获取产品开发详情
         # 选择标签
         if d_expected['标签'] == '跟进中':
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[1]/span")
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[1]/span", 2)
         elif d_expected['标签'] == '已结束':
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/span")
-        # 1 搜索
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", "崇中")
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", "心")
-        # 2 点击标题进入产品开发详情
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[1]")
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[1]/div/div[2]/span", 2)
+
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", d_expected["搜索"])
+        sleep(2)
+        # 如果开发医院没有结果，则切换标签打开发站点
+        l_ = self.Web_PO.getTextsByX("//span")
+        if '开发医院（0）' in l_:
+            # 开发站点
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[2]/div[1]/div/div", 2)
+            # 2 点击标题进入产品开发详情
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[2]/div[2]/div/div/div/div[1]/div[1]", 2)
+        else:
+            # 2 点击标题进入产品开发详情
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[1]/div[2]/div/div/div/div[1]/div[1]", 2)
 
         d_info = {}
         # 开发基础信息
@@ -1264,6 +1272,28 @@ class ErpAppPO(object):
 
 
    # todo 审批中心
+    def get_approve_list(self, d_expected):
+        # 审批中心
+
+        # 选择标签
+        if d_expected['标签'] == '未审批':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[1]", 2)
+        elif d_expected['标签'] == '已审批':
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[2]", 2)
+
+        self.Web_PO.scrollUpDown()
+
+        # ele = self.Web_PO.getLabelTextUpEle2("span","审批中心", "../../../..")
+
+        # /html/body/div[1]/div/div[1]/div/   div[2]/div/div[3]/div/div/div[1]/div[1]/div[1]/div/div
+
+        self.Web_PO.scrollByAuto(3000)
+        # self.Web_PO.scrollToBottom()
+
+        l_ = self.Web_PO.getTextsByX("//div[@class='hospital-ul van-clearfix']")
+        print(l_)
+
+
     def approve(self):
         self.Web_PO.clkByX("//a[@href='#/approve']")
         # 返回
