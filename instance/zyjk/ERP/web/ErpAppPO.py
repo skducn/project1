@@ -1282,10 +1282,41 @@ class ErpAppPO(object):
             varDiv = 3
         elif d_expected['标签'] == '已审批':
             varDiv = 4
+        # 点击标签（未审批或已审批）
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[" + str(varDiv-2) + "]", 4)
 
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[" + str(varDiv-2) + "]", 4)  # 点击标签（未审批或已审批）
-        # 获取审批条数
-        s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+        if varDiv == 4:
+            if '筛选' in d_expected.keys() and d_expected['筛选'] != None:
+                # 点击筛选
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
+                # 1 审批类型
+                if '审批类型' in d_expected['筛选'].keys():
+                    for i in range(len(d_expected['筛选']['审批类型'])):
+                        ele = self.Web_PO.getLabelTextUpEle2("div", d_expected['筛选']['审批类型'][i]+" ", "..")
+                        self.Web_PO.eleClkByX(ele, ".")
+                # 2 审批状态
+                if '审批状态' in d_expected['筛选'].keys() and d_expected['筛选']['审批状态'] == '已通过':
+                    # 点击已拒绝
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[2]/div")
+                elif d_expected['筛选']['审批状态'] == '已拒绝':
+                    # 点击已通过
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
+                # 3 确认
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]", 2)
+
+                # 获取筛选条数
+                s_filterCount = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[2]/span")
+                # 获取审批条数
+                s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+                print("共", s_count, "条审批 ,当前已经筛选", s_filterCount, "条审批：")
+                varSign = 2
+            else:
+                # 获取审批条数
+                s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+                print("共", s_count, "条审批")
+                varSign = 1
+
+        # 统计列表页数据
         self.Web_PO.scrollToEndByKeys("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 10, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div[1]/div/div[2]", 2)
         l_approved = self.Web_PO.getTextsByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
         l_approved = self.List_PO.deduplication(l_approved)
@@ -1293,10 +1324,18 @@ class ErpAppPO(object):
         d_no = dict(enumerate(l_no, start=1))
         d_no = {v:k for k,v in d_no.items()}
         print(d_no)  # {'CV340': 1, 'CV338': 2, 'CV334': 3, 'CV337': 4, 'CV336': 5}
-        if s_count == len(d_no):
-            print("ok, 审批条数一致", d_expected['标签'] + "共", s_count, "条审批")
+
+        # 比对数量
+        if varSign == 2:
+            if int(s_filterCount) == len(d_no):
+                print("ok, 审批条数一致", d_expected['标签'] + "共筛选", s_filterCount, "条审批")
+            else:
+                print("errorrrrrrrrrr, 审批条数不一致! ", d_expected['标签'] + "共筛选", s_filterCount, "条审批, 列表统计共", len(d_no), "条")
         else:
-            print("errorrrrrrrrrr, 审批条数不一致! ", d_expected['标签'] + "共", s_count, "条审批, 列表统计共", len(d_no), "条")
+            if int(s_count) == len(d_no):
+                print("ok, 审批条数一致", d_expected['标签'] + "共", s_count, "条审批")
+            else:
+                print("errorrrrrrrrrr, 审批条数不一致! ", d_expected['标签'] + "共", s_count, "条审批, 列表统计共", len(d_no), "条")
 
         d_approved = dict(enumerate(l_approved, start=1))
         return d_approved
@@ -1304,12 +1343,7 @@ class ErpAppPO(object):
 
         # sys.exit(0)
         #
-        # # 筛选审批状态
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
-        # # 点击已通过
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]")
-        #
+
         # # 选择第2个
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div/div/div[1]/div[2]")
         # # 获取审批详情
