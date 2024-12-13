@@ -1358,6 +1358,7 @@ class ErpAppPO(object):
                 varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
             print(self.List_PO.getDuplicationCount(l_approved))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
 
+
             l_approved = self.List_PO.deduplication(l_approved)
             l_no = ([i.split("\n")[0] for i in l_approved])
             d_no = dict(enumerate(l_no, start=1))
@@ -1380,7 +1381,17 @@ class ErpAppPO(object):
             l_approved = self.Web_PO.getTextsByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(
                 varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
             l_no = ([i.split("\n")[0] for i in l_approved])
+            print(l_no)
+            d_no = dict(enumerate(l_no, start=1))
+            d_no = {v: k for k, v in d_no.items()}
+            print(d_no)
+
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div[1]/div/div[1]/div[" + str(d_no['CV179']) + "]/div[2]")
+            sleep(1212)
+
             print(self.List_PO.getDuplicationCount(l_no))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
+
+
 
             l_approved = self.List_PO.deduplication(l_approved)
             print(l_approved)

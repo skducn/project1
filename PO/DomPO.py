@@ -20,14 +20,16 @@ sendKeysByX
 sendKeysById
 sendKeysByname
 
+todo keys
+
 todo clk
 通过Xpath点击 clkByX(varXpath)
-通过Xpaths遍历点击 clksByX(varXpaths)
-通过Xpath按回车键 clkEnterByX(varXpath)
-通过xpaths遍历点击第N个索引号 clkIndexByX(varXpaths)
-通过xpaths遍历点击文本中包含varTPC的内容 clkTextPartialContentByX(varXpaths,varTPC)
-通过xpaths遍历点击属性中包含varAPC内容 clkAttrPartialContentByX(varXpaths, varAttr,varAPC)
-通过xpaths遍历二次xpath clkDoubleByX(varXpaths, varXpath)
+通过Xpaths遍历点击 clkByXs(varXpaths)
+通过Xpath按回车键 keysEnterByX(varXpath)
+通过xpaths遍历点击第N个索引号 clkIndexByXs(varXpaths)
+通过xpaths遍历点击文本中包含varTPC的内容 clkTpcByXs(varXpaths,varTPC)
+通过xpaths遍历点击属性中包含varAPC内容 clkApcByXs(varXpaths, varAttr,varAPC)
+通过xpaths遍历二次xpath clkByXsByX(varXpaths, varXpath)
 通过id点击 clkById(varId)
 通过name点击 clkByName(varText)
 通过tagname点击 clkByTagname(varText)
@@ -35,18 +37,18 @@ todo clk
 通过linkstext点击 clkByLinkstext(varText)
 
 todo get
-通过xpaths遍历获取标签数量 getQtyByX(varXpaths)
+通过xpaths遍历获取标签数量 getQtyByXs(varXpaths)
 通过xpath获取文本 getTextByX(varXpath)
 通过xpaths遍历获取文本列表 getListTextByX(varXpaths)
-通过xpaths遍历获取文本所在的位置 getIndexByX(varXpaths, varText)
-通过xpaths遍历获取文本包含部分内容的位置 getPartIndexByX(varXpaths, varText)
-通过xpaths遍历获取指定文本之前的文本 getListPreviousTextByX(varXpaths, varText)
-通过xpath获取属性值 getAttrByAttrByX(varXpath, varAttr)
-通过xpaths遍历获取所有相同属性的值列表 getListAttrByAttrByX(varXpaths, varAttr)
-通过xpaths遍历获取属性值所在的位置 getIndexByAttrByX(varXpaths, varAttr, varValue)
-通过xpaths遍历获取部分包含属性值所在的位置 getPartIndexByAttrByX(varXpaths, varAttr, varValue)
-通过xpaths遍历获取所有文本对应的属性值字典 getDictTextAttrByAttrByX(varXpaths, varAttr)
-通过linktext获取文本属性值 getAttrByAttrByH(varText, varAttr)
+通过xpaths遍历获取文本所在的位置 getIndexByXs(varXpaths, varText)
+通过xpaths遍历获取文本包含部分内容的位置 getIndexByTpcByXs(varXpaths, varText)
+通过xpaths遍历获取指定文本之前的文本 getBeforeTextByXs(varXpaths, varText)
+通过xpath获取属性值 getValueFromAttrByX(varXpath, varAttr)
+通过xpaths遍历获取所有相同属性的值列表 getValueFromAttrByXs(varXpaths, varAttr)
+通过xpaths遍历获取属性值所在的位置 getIndexFromAttrByXs(varXpaths, varAttr, varValue)
+通过xpaths遍历获取部分包含属性值所在的位置 getIndexFromApcByXs(varXpaths, varAttr, varValue)
+通过xpaths遍历获取所有文本对应的属性值字典 getDictTextValueFromAttrByXs(varXpaths, varAttr)
+通过linktext获取文本属性值 getValueFromAttrByLt(varText, varAttr)
 
 todo set
 通过id设置文本 setTextById()
@@ -69,14 +71,14 @@ todo select
 通过name选择值 sltValueByName(varName, varValue)
 
 todo iframe
-通过Xpath切换到iframe switchIframeByX(varXpath)
-通过id切换到iframe   switchIframeById(varId)
-通过xpaths遍历遍历属性中包含指定值切换iframe  switchIframeAttrPartialContentByX(varXpaths,varAttr,varValue,2)
-多个iframe之间切换  switchIframe(0)
+通过Xpath切换到iframe swhIframeByX(varXpath)
+通过id切换到iframe   swhIframeById(varId)
+通过xpaths遍历遍历属性中包含指定值切换iframe  swhIframeFromApcByXs(varXpaths,varAttr,varValue,2)
+多个iframe之间切换  swhIframe(0)
 退出iframe  quitIframe(0)
 
 todo js
-清除input输入框内容 clsTextByJs()
+清除input输入框内容 clsText()
 清除readonly属性，是元素可见  clsReadonlyByX(varXpath)
 通过id去掉控件只读属性 clsReadonlyById(varId)
 通过name去掉只读属性 clsReadonlyByName(varName)
@@ -125,16 +127,6 @@ class DomPO(object):
     def __init__(self, driver):
         self.driver = driver
 
-
-
-
-    def check_contain_chinese(self, check_str):
-        # 判断字符串中是否包含中文符合
-        for ch in check_str.decode("utf-8"):
-            if "\u4e00" <= ch <= "\u9fff":
-                return True
-        return False
-
     def find_element(self, *loc):
         """重写元素定位"""
         try:
@@ -171,28 +163,31 @@ class DomPO(object):
         except AttributeError:
             print("未找到元素 %s " % (loc))
 
+
+    # todo keys
+
     def sendKeysByX(self, varXpath, varValue):
-        """通过Xpath键盘发送"""
         # 如：Web_PO.sendKeysXpath("//input[@id='impload'", os.getcwd() + "\\drugTemplet.xls")  # 导入文件
-        # self.driver.find_element_by_xpath(varXpath).send_keys(varValue)
+        self.find_element(*(By.XPATH, varXpath)).clear()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
 
     def sendKeysById(self, varId, varValue):
-        """通过id键盘发送"""
         # 如：Web_PO.sendKeysId("impload", os.getcwd() + "\\drugTemplet.xls")  # 导入文件
-        # self.driver.find_element_by_id(varId).send_keys(varValue)
         self.find_element(*(By.ID, varId)).send_keys(varValue)
 
-    def sendKeysName(self, varName, varValue):
-        """通过name键盘发送"""
-        # self.driver.find_element_by_name(varName).send_keys(varValue)
+    def sendKeysByName(self, varName, varValue):
         self.find_element(*(By.NAME, varName)).send_keys(varValue)
 
-
+    def keysEnterByX(self, varXpath, t=1):
+        """通过Xpath按回车键"""
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+        sleep(t)
 
    # todo assert
 
+
     def assertTrue(self, testValue, errMsg):
+        # ???
         try:
             if testValue == True:
                 return True
@@ -202,34 +197,26 @@ class DomPO(object):
         except:
             return None
 
-    def assertEqualTrue(self, expected, actual):
+    def assertEqualTrue(self, varExpected, varActual):
         try:
-            if expected == actual:
+            if varExpected == varActual:
                 return True
             else:
                 return False
         except:
             return None
 
-    def assertEqual(self, expected, actual, okMsg, errMsg):
+    def assertEqual(self, varExpected, varActual, okMsg, errMsg):
         try:
-            if expected == actual:
-                # print(okMsg)
+            if varExpected == varActual:
+                print(okMsg)
                 return True
             else:
-                # print(errMsg)
+                print(errMsg)
                 return False
         except:
             return None
 
-    def assertEqualValue(self, expected, actual, okMsg, errMsg):
-
-        if expected == actual:
-
-            return True
-        else:
-
-            return False
 
     def assertContain(self, one, all, okMsg, errMsg):
         try:
@@ -251,48 +238,41 @@ class DomPO(object):
         except:
             return None
 
-    def getError(self, varStatus, varErrorInfo, varErrorRow):
-        # 当函数返回error时，获取当前语句行号及错误提示。
-        # 因此函数必须要有返回值
-        # Level_PO.getError(Level_PO.inputId(u"officebundle_tmoffice_officeName", u"自动化科室123"), u"输入框定位错误！",sys._getframe().f_lineno)
-        # errorrrrrrrrrrr, 101行, '获取科室文本与对应值的字典'。
-        if varStatus == "error":
-            print("errorrrrrrrrrrr,", varErrorRow, "行,", varErrorInfo)
-            sys.exit(0)
+    # def getError(self, varStatus, varErrorInfo, varErrorRow):
+    #     # 当函数返回error时，获取当前语句行号及错误提示。
+    #     # 因此函数必须要有返回值
+    #     # Level_PO.getError(Level_PO.inputId(u"officebundle_tmoffice_officeName", u"自动化科室123"), u"输入框定位错误！",sys._getframe().f_lineno)
+    #     # errorrrrrrrrrrr, 101行, '获取科室文本与对应值的字典'。
+    #     if varStatus == "error":
+    #         print("errorrrrrrrrrrr,", varErrorRow, "行,", varErrorInfo)
+    #         sys.exit(0)
 
 
 
     # todo clk
 
-    def clkByX(self, varXpath, t=0):
-        """通过Xpath点击"""
+    def clkByX(self, varXpath, t=1):
         self.find_element(*(By.XPATH, varXpath)).click()
         sleep(t)
 
-    def clksByX(self, varXpaths, t=0):
-        """通过Xpaths遍历点击"""
+    def clkByXs(self, varXpaths, t=1):
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             a.click()
             sleep(t)
 
-    def clkEnterByX(self, varXpath, t=0):
-        """通过Xpath按回车键"""
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
-        sleep(t)
-
-    def clkIndexByX(self, varPaths, varIndex, t=0):
-        """通过xpaths遍历点击第N个索引号"""
-        # 如：遍历按钮点击第5个。clkIndexByX(u"//button[@ng-click='action.callback()']",5)
+    def clkIndexByXs(self, varXpaths, varIndex, t=1):
+        # 遍历Xpath点击第N个索引号
+        # 如：遍历按钮点击第5个。clkIndexByXs(u"//button[@ng-click='action.callback()']",5)
         index = 0
-        for a in self.find_elements(*(By.XPATH, varPaths)):
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if index == varIndex:
                 a.click()
                 break
         sleep(t)
 
-    def clkTextPartialContentByX(self, varXpaths, varTPC, t=0):
-        """通过xpaths遍历点击文本中包含varTPC的内容"""
+    def clkTpcByXs(self, varXpaths, varTPC, t=1):
+       # 遍历Xpath点击文本中包含varTPC(TextPartialContent)的内容
         # 如：遍历按钮点击所有文本中包含20190506059的内容。clkTextsContain(u"//td[@aria-describedby='gridTable_run_name']/a",u"20190506059")
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varTPC in a.text:
@@ -300,17 +280,17 @@ class DomPO(object):
                 break
         sleep(t)
 
-    def clkAttrPartialContentByX(self, varXpaths, varAttr, varAPC, t=0):
-        """通过xpaths遍历点击属性中包含varAPC内容"""
-        # 如：遍历点击a链接属性href中包含www内容， clkAttrPartialContentByX("//a","href","www")
+    def clkApcByXs(self, varXpaths, varAttr, varAPC, t=1):
+        # 遍历Xpath点击属性中包含varAPC(AttrPartialContent)内容"""
+        # 如：遍历点击a链接属性href中包含www内容， clkApcByXs("//a","href","www")
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varAPC in a.get_attribute(varAttr):
                 a.click()
                 break
         sleep(t)
 
-    def clkDoubleByX(self, varXpaths, varXpath, t=1):
-        """通过xpaths遍历二次xpath"""
+    def clkByXsByX(self, varXpaths, varXpath, t=1):
+        # 遍历Xpaths的二次xpath
         # 一般用于，click后二次确认
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             a.click()
@@ -318,67 +298,35 @@ class DomPO(object):
             self.find_element(*(By.XPATH, varXpath)).click()
         sleep(t)
 
-    def clkById(self, varId, t=0):
-        """通过id点击"""
+    def clkById(self, varId, t=1):
         self.find_element(*(By.ID, varId)).click()
         sleep(t)
 
-    def clkByName(self, varName, t=0):
-        """通过name点击"""
+    def clkByName(self, varName, t=1):
         self.find_element(*(By.NAME, varName)).click()
         sleep(t)
 
-    def clkByTagname(self, varText, t=0):
-        """通过tagname点击"""
+    def clkByTagname(self, varText, t=1):
         self.find_element(*(By.TAG_NAME, varText)).click()
         sleep(t)
 
-    def clkByLinktext(self, varText, t=0):
-        """通过linktext点击"""
+    def clkByLinktext(self, varText, t=1):
         self.find_element(*(By.LINK_TEXT, varText)).click()
         sleep(t)
 
-    def clkByLinkstext(self, varText, t=0):
+    def clkByLinkstext(self, varText, t=1):
         """通过linkstext点击"""
         for a in self.find_elements(*(By.LINK_TEXT, varText)):
             a.click()
         sleep(t)
 
-    def clickXpathXpath(self, varPath, varPath2, t=0):
-        # ? 未侧式
-        try:
-            elements = self.find_element(*(By.XPATH, varPath))
-            actions = ActionChains(self.driver)
-            actions.move_to_element(elements).perform()
-            yy = self.find_element(*(By.XPATH, varPath2))
-            yy.click()
-            sleep(t)
-        except:
-            return None
-    def clickXpathRight(self, varPath, varId):
-        # ?
-        try:
-            xx = self.find_element(*(By.XPATH, varPath))
-            yy = self.find_element(*(By.ID, varId))
-            ActionChains(self.driver).drag_and_drop(xx, yy).perform()
-            # ActionChains(self.driver).dra
-            # print "end"
-            ActionChains(self.driver).click_and_hold(xx).perform()
-            # perform()
-            # ActionChains(self.driver).click
-            ActionChains(self.driver).move_to_element(
-                self.find_element(*(By.ID, varId))
-            )
-        except:
-            return None
-
 
 
     # todo get
 
-    def getQtyByX(self, varXpaths):
+    def getQtyByXs(self, varXpaths):
         # 获取标签数量
-        # 如：获取tr下有多少个div标签 getQtyByX('//*[@id="app"]/tr/div')
+        # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
         qty = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             qty = qty + 1
@@ -389,18 +337,17 @@ class DomPO(object):
         # 如：getTextByX(u"//input[@class='123']")
         return self.find_element(*(By.XPATH, varXpath)).text
 
-    def getTextsByX(self, varXpaths):
-        # 获取文本
-        # 如：getTextByX(u"//input[@class='123']")
+    def getTextByXs(self, varXpaths):
+        # 获取文本列表
+        # 如：getTextByXs(u"//input[@class='123']")
         l_ = []
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             l_.append(a.text)
         return l_
 
-
-    def getIndexByX(self, varXpaths, varText):
+    def getIndexByXs(self, varXpaths, varText):
         # 获取文本的索引号
-        # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByX("//tr",'test')
+        # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByXs("//tr",'test')
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
@@ -408,74 +355,65 @@ class DomPO(object):
                 return index
         return None
 
-    def getPartIndexByX(self, varXpaths, varTPC):
-        """通过xpaths遍历获取文本包含部分内容的位置（索引号）"""
-        # 如：getPartIndexByX("//tr","test")
+    def getIndexByTpcByXs(self, varXpaths, varTPC):
+        """通过xpaths遍历获取文本包含部分内容(TPC)的位置（索引号）"""
+        # 如：getIndexByTpcByXs("//tr","test")
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if varTPC in a.text:
                 return index
 
-    def getListTextByX(self, varXpaths):
-        # 获取文本列表
-        # 如：getListTextByX("//tr")
-        l_text = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_text.append(a.text)
-        return l_text
-
-    def getListPreviousTextByX(self, varXpaths, varText):
+    def getBeforeTextByXs(self, varXpaths, varText):
         # 获取指定文本之前的文本列表
-        # 如文本集 a,b,c,d, getListPreviousTextByX("//tr",'c'), 返回列表【a,b】
-        l_leftText = []
+        # 如文本集 a,b,c,d, getBeforeTextByXs("//tr",'c'), 返回列表【a,b】
+        l_beforeText = []
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varText == a.text:
                 break
             else:
-                l_leftText.append(a.text)
-        return l_leftText
+                l_beforeText.append(a.text)
+        return l_beforeText
 
-
-    def getAttrByAttrByX(self, varXpath, varAttr):
+    def getValueFromAttrByX(self, varXpath, varAttr):
         # 获取属性值
-        # 如：getAttrByAttrByX(u"//input[@class='123']","href")
+        # 如：getValueFromAttrByX(u"//input[@class='123']","href")
         return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
-    def getAttrByAttrByH(self, varText, varAttr):
+    def getValueFromAttrByXs(self, varXpaths, varAttr):
+        # 获取所有相同属性值的列表
+        # 如：获取所有tr标签中 href的值 getValueFromAttrByXs("//tr", "href")
+        l_attrValue = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_attrValue.append(a.get_attribute(varAttr))
+        return l_attrValue
+
+    def getValueFromAttrByLt(self, varText, varAttr):
         # 获取超链接文本的属性值
-        # 如：getAttrByAttrByH("超链接文本", "href")
+        # 如：getValueFromAttrByLt("超链接文本", "href")
         return self.find_element(*(By.LINK_TEXT, varText)).get_attribute(varAttr)
 
-    def getIndexByAttrByX(self, varXpaths, varAttr, varValue):
+    def getIndexFromAttrByXs(self, varXpaths, varAttr, varValue):
         # 获取属性值的索引号
-        # 如：getIndexByAttrByX("//a","href","http://www.baidu.com")
+        # 如：getIndexFromAttrByXs("//a","href","http://www.baidu.com")
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if varValue == a.get_attribute(varAttr):
                 return index
 
-    def getPartIndexByAttrByX(self, varXpaths, varAttr, varValue):
-        # 获取部分包含属性值的索引号
-        # 如：getPartIndexByAttrByX("//td[9]/a","href","http://")
+    def getIndexFromApcByXs(self, varXpaths, varAttr, varValue):
+        # 获取部分包含属性值的索引号 APC = attribute part content
+        # 如：getIndexFromApcByXs("//td[9]/a","href","http://")
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             index = index + 1
             if varValue in a.get_attribute(varAttr):
                 return index
 
-    def getListAttrByAttrByX(self, varXpaths, varAttr):
-        # 获取所有相同属性值的列表
-        # 如：获取所有tr标签中 href的值 getListAttrByAttrByX("//tr", "href")
-        l_attrValue = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_attrValue.append(a.get_attribute(varAttr))
-        return l_attrValue
-
-    def getDictTextAttrByAttrByX(self, varXpaths, varAttr):
+    def getDictTextValueFromAttrByXs(self, varXpaths, varAttr):
         # 获取标签属性下的文本，并组合成字典{文本：属性值}
-        # 如获取所有a标签下的文本，getDictTextAttrByAttrByX("//a","href")
+        # 如获取所有a标签下的文本，getDictTextValueFromAttrByXs("//a","href")
         # {'首页': 'http://192.168.0.202:28098/index', '医院管理': 'http://192.168.0.202:28098/mainData/mainData/hospital'}
         l_text = []
         l_attrValue = []
@@ -484,6 +422,21 @@ class DomPO(object):
             l_attrValue.append(a.get_attribute(varAttr))
         return dict(zip(l_text, l_attrValue))
 
+    def getUpEleByLabelText(self, varLabel, varText):
+        # 通过标签下文本获取上一层元素
+        # getUpEleByLabelText("div", "文本")  # 获取div下文本上一层的元素
+        # getUpEleByLabelText("span", "文本")  # 获取span下文本上一层的元素
+        element = self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']"))
+        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
+        return parent_element
+
+    def getSuperEleByLabelText(self, varLabel, varText, varXpath):
+        # 通过标签下文本获取上层或上上层元素
+        # 如：ele = self.getSuperEleByLabelText("span"，'过会', '..') # 获取span标签下文本上一层的元素
+        # 如：ele = self.getSuperEleByLabelText("div"，'会前评估能否过会', '..') # 获取div标签下文本上一层的元素
+        # 如：ele = self.getSuperEleByLabelText("div"，'会前评估能否过会', '../..') # 获取文本上二层的元素
+        # 如：ele = self.getSuperEleByLabelText("div"，'会前评估能否过会', '../../..') # 获取文本上三层的元素
+        return self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varXpath))
 
 
 
@@ -529,74 +482,64 @@ class DomPO(object):
 
 
 
-    # todo ele元素再定位
+    # todo shadow-root元素
 
-    def getShadowRoot(self, varXpath, varShadowXpath, t=2):
-        # shadow-root元素识别智能用CSS_SELECTOR方法获得，通过Xpath一直报错
-        # 如：varLabel = input ， varShadowXpath = 'div[class="close svelte-rbapkb"]'
-        sleep(t)
+    def getShadowByXByC(self, varXpath, varCss, t=1):
+        # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
         ele = self.find_element(*(By.XPATH, varXpath))
         shadow_root = ele.shadow_root
-        ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
+        ele2 = shadow_root.find_element(By.CSS_SELECTOR, varCss)
+        sleep(t)
         return (ele2.text)
 
-    def getShadowRoots(self, varXpaths, varShadowXpath, t=2):
-        # 遍历所有shadow-root元素input下div的文本，返回列表
-        # 注意：识别只能用CSS_SELECTOR方法获得，通过Xpath一直报错
-        # 如：varLabel = input ， varShadowXpath = 'div'
-        # getShadowRoots("//input", "div")
-        sleep(t)
+    def getShadowByXsByC(self, varXpaths, varCss, t=1):
+        # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
+        # 如：input下shadow-root元素div的文本，返回列表
+        # getShadowByXsByC("//input", "div")
         eles = self.find_elements(*(By.XPATH, varXpaths))
-        l_text_shadow = []
+        l_shadow = []
         for i in eles:
             shadow_root = i.shadow_root
-            ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
-            l_text_shadow.append(ele2.text)
-        return l_text_shadow
-
-    def eleGetShadowRoots(self, ele, varXpaths, varShadowXpath, t=2):
-        # 遍历所有shadow-root元素input下div的文本，返回列表
-        # 注意：识别只能用CSS_SELECTOR方法获得，通过Xpath一直报错
-        # 如：varLabel = input ， varShadowXpath = 'div'
-        # eleGetShadowRoots(ele, "//table[1]", "div")
+            ele2 = shadow_root.find_element(By.CSS_SELECTOR, varCss)
+            l_shadow.append(ele2.text)
         sleep(t)
-        eles = ele.find_elements(*(By.XPATH, varXpaths))
-        l_text_shadow = []
-        for i in eles:
-            shadow_root = i.shadow_root
-            ele2 = shadow_root.find_element(By.CSS_SELECTOR, varShadowXpath)
-            l_text_shadow.append(ele2.text)
-        return l_text_shadow
+        return l_shadow
 
 
-    def eleGetAttrByX(self, ele, attr):
-        # 元素再定位后获取属性
-        return ele.get_attribute(attr)
+    # todo ele元素再定位
 
-    def eleClkByX(self, ele, varXpath, t=2):
+    def eleClkByX(self, ele, varXpath, t=1):
         # 元素再定位后点击
         e = ele.find_element(*(By.XPATH, varXpath))
         e.click()
         sleep(t)
 
-    def eleClksByX(self, ele, varXpaths, t=2):
+    def eleClkByXs(self, ele, varXpaths, t=1):
         # 元素再定位后点击
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             a.click()
         sleep(t)
-    def eleSetTextByX(self, ele, varXpath, varValue):
-        # 元素再定位后输入和提交
-        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        
+    def eleGetShadowByXsByC(self, ele, varXpaths, varCss, t=1):
+        # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
+        # 遍历所有shadow-root元素input下div的文本，返回列表
+        # eleGetShadowByXsByC(ele, "//table[1]", "div")
+        eles = ele.find_elements(*(By.XPATH, varXpaths))
+        l_shadow = []
+        for i in eles:
+            shadow_root = i.shadow_root
+            ele2 = shadow_root.find_element(By.CSS_SELECTOR, varCss)
+            l_shadow.append(ele2.text)
+        sleep(t)
+        return l_shadow
 
-    def eleSetTextClkByX(self, ele, varXpath, varValue, varXpath2):
-        # 元素再定位后输入和提交
-        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
-        sleep(2)
-        ele.find_element(*(By.XPATH, varXpath2)).click()
+    def eleGetValueFromAttr(self, ele, varAttr):
+        # 元素再定位后获取属性
+        return ele.get_attribute(varAttr)
 
-    def eleGetQtyByX(self, ele, varXpaths):
+    def eleGetQtyByXs(self, ele, varXpaths):
         # 元素再定位后获取标签数量
-        # 如：获取tr下有多少个div标签 getQtyByX('//*[@id="app"]/tr/div')
+        # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
         qty = 0
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             qty = qty + 1
@@ -606,62 +549,74 @@ class DomPO(object):
         # 元素再定位后获取文本
         return ele.find_element(*(By.XPATH, varXpath)).text
 
-    def eleGetTextsByX(self, ele, varXpaths):
+    def eleGetTextByXs(self, ele, varXpaths):
         # 元素再定位后获取文本
         l_ = []
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             l_.append(a.text)
         return l_
 
-    def eleGetTextsByLabelByX(self, ele, varXpaths, varXpathLabel):
-        # eleGetTextsByLabelByX(ele, "//div[3]/div", ".//div")  # div下的text
-        # eleGetTextsByLabelByX(ele, "//div[3]/div", ".//span") # span下的text
+    def eleGetTextByXsByX(self, ele, varXpaths, varXpath):
+        # eleGetTextByXsByX(ele, "//div[3]/div", ".//div")  # div下的text
+        # eleGetTextByXsByX(ele, "//div[3]/div", ".//span") # span下的text
         # 元素再定位后获取div文本
         l_ = []
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
-            l_.append(a.find_element(*(By.XPATH, varXpathLabel)).text)
+            l_.append(a.find_element(*(By.XPATH, varXpath)).text)
         return l_
 
-    def getDivTextUpEle(self, varText):
-        # 通过div文本获取上层元素
-        element = self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']"))
-        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
-        return parent_element
+    def eleSetTextByX(self, ele, varXpath, varValue):
+        # 元素再定位后输入和提交
+        ele.find_element(*(By.XPATH, varXpath)).clear()
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
 
+    def eleSetTextClkByXByX(self, ele, varXpath, varValue, varXpath2, t=1):
+        # 元素再定位后输入和提交
+        ele.find_element(*(By.XPATH, varXpath)).clear()
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        sleep(t)
+        ele.find_element(*(By.XPATH, varXpath2)).click()
 
-    def getDivTextUpEle2(self, varText, varUp):
-        # 通过div文本获取上层或上上层元素
-        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
-        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
-        # 如：ele_up = self.getDivTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        return self.find_element(*(By.XPATH, "//div[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
-        # return self.find_element(*(By.XPATH, "//*[contains(text(), " + str(varText) + ")]")).find_element(*(By.XPATH, ".."))
+    def eleScrollUpDownByX(self, ele, varPath, varStep, t=2):
+        # 定位元素后，上下滚动
+        # step 负数向上滚动，正数向下滚动
+        sleep(t)
+        ele2 = ele.find_element(*(By.XPATH, varPath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(ele2)
+        actions.click_and_hold()
+        actions.move_by_offset(0, varStep)
+        actions.release()
+        actions.perform()
+        sleep(t)
 
-    def getSpanTextUpEle2(self, varText, varUp):
-        # 通过span文本获取上层或上上层元素
-        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','..') # 获取文本上一层的元素
-        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../..') # 获取文本上上一层的元素
-        # 如：ele_up = self.getSpanTextUpEle('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        return self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+    def eleScrollLeftRightByX(self, ele, varPath, varStep, t=2):
+        # 定位元素后, 左右滚动
+        sleep(t)
+        ele2 = ele.find_element(*(By.XPATH, varPath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(ele2)
+        actions.click_and_hold()
+        actions.move_by_offset(varStep, 0)
+        actions.release()
+        actions.perform()
+        sleep(t)
 
-    def getLabelTextUpEle2(self, varLabel, varText, varUp):
-        # 通过span文本获取上层或上上层元素
-        # 如：ele_up = self.getLabelTextUpEle2('会前评估能否过会','..') # 获取文本上一层的元素
-        # 如：ele_up = self.getLabelTextUpEle2('会前评估能否过会','../..') # 获取文本上上一层的元素
-        # 如：ele_up = self.getLabelTextUpEle2('会前评估能否过会','../../..') # 获取文本上上上一层的元素
-        return self.find_element(*(By.XPATH, "//" + varLabel +"[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varUp))
+    def eleScrollViewByX(self, ele, varXpath, t=1):
+        # 将元素滚动到可见区域。
+        # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
+        # element = self.driver.find_element_by_id(varId)  id方式定位
+        # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
+        # ErpApp_PO.Web_PO.scrollViewByX("//a[last()]")  # 拖动到最后一个a标签
+        element = ele.find_element(*(By.XPATH, varXpath))
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
+        sleep(t)
 
-    def getSpanTextUpEle(self, varText):
-        # 通过span文本获取上层元素
-        element = self.find_element(*(By.XPATH, "//span[text()='" + str(varText) + "']"))
-        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
-        return parent_element
-
-    def textLocateEle(self, varText, varXpath, varValue, varXpath2):
-
-        # self.Web_PO.textLocateEle('会前评估能否过会', "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
-        ele_up = self.getDivTextUpEle(varText)
-        self.eleSetTextClkByX(ele_up, varXpath, varValue, varXpath2)
+    # def textLocateEle(self, varText, varXpath, varValue, varXpath2):
+    #
+    #     # self.Web_PO.textLocateEle('会前评估能否过会', "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
+    #     ele_up = self.getDivTextUpEle(varText)
+    #     self.eleSetTextClkByX(ele_up, varXpath, varValue, varXpath2)
 
 
 
@@ -750,15 +705,15 @@ class DomPO(object):
                     break
         else:
             return None
-    def selectXpathsMenu1Menu2(self, varPaths1, varMenu, varPaths2, varMenu2, t):
+    def selectXpathsMenu1Menu2(self, varXpaths1, varMenu, varXpaths2, varMenu2, t):
         # 遍历级联菜单（选择一级菜单后再选择二级菜单）(待确认)
         # Level_PO.selectMenu("//a[@class='dropdown-toggle']", u"作业管理", "//a[@href='#']", u"作业框架管理", 3)
         try:
-            for a in self.driver.find_elements_by_xpath(varPaths1):
+            for a in self.driver.find_elements_by_xpath(varXpaths1):
                 if varMenu == a.text:
                     a.click()
                     sleep(t)
-                    for a2 in self.driver.find_elements_by_xpath(varPaths2):
+                    for a2 in self.driver.find_elements_by_xpath(varXpaths2):
                         if varMenu2 == a2.text:
                             a2.click()
                             sleep(t)
@@ -793,28 +748,29 @@ class DomPO(object):
 
     # todo iframe
 
-    def switchIframeByX(self, varXpath, t=1):
+    def swhIframeByX(self, varXpath, t=1):
         """通过Xpath切换到iframe"""
-        # 如：switchIframeByX("//body[@class='gray-bg top-navigation']/div[4]/iframe")
+        # 如：swhIframeByX("//body[@class='gray-bg top-navigation']/div[4]/iframe")
         self.driver.switch_to_frame(self.find_element(*(By.XPATH, varXpath)))
         sleep(t)
 
-    def switchIframeById(self, varId, t=1):
+    def swhIframeById(self, varId, t=1):
         """通过id切换到iframe"""
-        #如：switchIframeById（"layui-layer-iframe1"）
+        #如：swhIframeById（"layui-layer-iframe1"）
         self.driver.switch_to_frame(self.find_element(*(By.ID, varId)))
         sleep(t)
 
-    def switchIframeAttrPartialContentByX(self, varXpaths, varAttr, varValue, t=1):
+    def swhIframeFromApcByXs(self, varXpaths, varAttr, varValue, t=1):
         """通过xpaths遍历遍历属性中包含指定值切换iframe"""
-        # 如：switchIframeAttrPartialContentByX（"//iframe", "src", "/general/workflow/new/"）
+        # 如：swhIframeFromApcByXs（"//iframe", "src", "/general/workflow/new/"）
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varValue in a.get_attribute(varAttr):
-                self.driver.switch_to_frame(self.driver.find_element_by_xpath(varXpaths))
+                self.driver.switch_to_frame(self.find_element(*(By.XPATH, varXpaths)))
+                # self.driver.switch_to_frame(self.driver.find_element_by_xpath(varXpaths))
                 break
         sleep(t)
 
-    def switchIframe(self, t=1):
+    def swhIframe(self, t=1):
         """多个iframe之间切换"""
         # 如：如第一层iframe1，第二层iframe2，两者之间切换
         self.driver.switch_to.parent_frame()
@@ -825,7 +781,7 @@ class DomPO(object):
         self.driver.switch_to_default_content()
         sleep(t)
 
-    def inIframeTopDiv(self, varPath, t=0):
+    def inIframeTopDiv(self, varPath, t=1):
         # 定位iframe的div路径?(未确认)
         # evel_PO.inIframeDiv("[@id='showRealtime']", 2)
         # Home_PO.inIframeDiv("[@class='cetc-popup-content']/div", 2)
@@ -835,13 +791,12 @@ class DomPO(object):
         sleep(t)
 
 
-
-    # todo js
+    # todo ActionChains
     # https://fishpi.cn/article/1713864467902
 
-    def scrollToEndByKeys(self, varPath, varCount, varPath2, t=2):
-        # 通过键盘输入End滚动到底部
-        # 逻辑：定位varPath元素，遍历keys到底N次，遇到varPath2元素退出
+    def scrollKeysEndByXByX(self, varPath, varCount, varPath2, t=2):
+        # 键盘keys.End滚动到底部
+        # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
         ele = self.find_element(*(By.XPATH, varPath))
         for i in range(varCount):
             ActionChains(self.driver).send_keys_to_element(ele, Keys.END).perform()
@@ -852,13 +807,14 @@ class DomPO(object):
         # ActionChains(self.driver).send_keys_to_element(ele, Keys.PAGE_DOWN).perform()
         # ActionChains(self.driver).send_keys_to_element(ele, Keys.ARROW_DOWN).perform()
 
-    def scrollUpDown(self, varPath, varStep, t=2):
+    def scrollUpDownByX(self, varPath, varStep, t=2):
         # 上下滚动
+        # step 负数向上滚动，正数向下滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
         sleep(t)
-        elements = self.find_element(*(By.XPATH, varPath))
+        ele = self.find_element(*(By.XPATH, varPath))
         actions = ActionChains(self.driver)
-        actions.move_to_element(elements)
+        actions.move_to_element(ele)
         actions.click_and_hold()
         if varStep != 0:
             if varStep >= 150:
@@ -871,89 +827,61 @@ class DomPO(object):
         actions.perform()
         sleep(t)
 
-    def eleScrollUpDown(self, ele, varPath, varStep, t=2):
-        # 定位元素后，上下滚动
-        sleep(t)
-        elements = ele.find_element(*(By.XPATH, varPath))
-        actions = ActionChains(self.driver)
-        actions.move_to_element(elements)
-        actions.click_and_hold()
-        actions.move_by_offset(0, varStep)
-        actions.release()
-        actions.perform()
-        sleep(t)
-
-    def scrollLeftRight(self, varPath, varStep, t=2):
+    def scrollLeftRightByX(self, varPath, varStep, t=2):
         # 左右滚动
         sleep(t)
-        elements = self.find_element(*(By.XPATH, varPath))
+        ele = self.find_element(*(By.XPATH, varPath))
         actions = ActionChains(self.driver)
-        actions.move_to_element(elements)
+        actions.move_to_element(ele)
         actions.click_and_hold()
         actions.move_by_offset(varStep, 0)
         actions.release()
         actions.perform()
         sleep(t)
 
-    def eleScrollLeftRight(self, ele, varPath, varStep, t=2):
-        # 定位元素后, 左右滚动
-        sleep(t)
-        elements = ele.find_element(*(By.XPATH, varPath))
-        actions = ActionChains(self.driver)
-        actions.move_to_element(elements)
-        actions.click_and_hold()
-        actions.move_by_offset(varStep, 0)
-        actions.release()
-        actions.perform()
-        # sleep(t)
-
-    def scrollByStep(self, varStep, t=1):
-        # 按步长向下滚动一次，模拟用户拖动滚动条的行为。
-        sleep(3)
-        self.driver.execute_script("window.scrollBy(0, -500);")
-        # self.driver.execute_script('window.scrollBy(0, ' + str(varStep) + ');')
+    # todo js
+    
+    
+    def scrollBy(self, varStep, t=2):
+        # 按步长滚动，模拟用户拖动滚动条的行为。
+        # step 负数向上滚动，正数向下滚动
+        # scrollByStep(-500)
+        # self.driver.execute_script("window.scrollBy(0, -500);")
+        self.driver.execute_script('window.scrollBy(0, ' + str(varStep) + ');')
         sleep(t)
 
     def scrollToLocation(self, varLoc):
         # 滚动到指定位置。
         self.driver.execute_script('window.scrollTo(0, %s)' % varLoc)
 
-    def scrollByAuto(self, varStep, t=1):
+    def scrollByStep(self, varStep, t=1):
         # 按步长逐步向下滚动直到页面底部
-        # 获取滚动条的高度
+        # scrollByAuto(50)
         new_height = self.driver.execute_script("return document.body.scrollHeight")
         for i in range(0, new_height, varStep):
             sleep(t)
             self.driver.execute_script('window.scrollTo(0, %s)' % i)
 
-    def scrollToBottom(self, t=1):
+    def scrollBottom(self, t=1):
         # 直接滚动到页面底部
         # self.driver.execute_script('window.scrollTo(0, 1000)')  # 滚动到页面底部
         # self.driver.execute_script("document.documentElement.scrollTop=1000")  # 滚动到页面底部
         self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(t)
 
-    def scrollToView(self, varXpath, t=1):
+    def scrollViewByX(self, varXpath, t=1):
         # 将元素滚动到可见区域。
         # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
         # element = self.driver.find_element_by_id(varId)  id方式定位
         # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
-        # ErpApp_PO.Web_PO.scrollToView("//a[last()]")  # 拖动到最后一个a标签
-        element = self.find_element(*(By.XPATH, varXpath))
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
+        # ErpApp_PO.Web_PO.scrollViewByX("//a[last()]")  # 拖动到最后一个a标签
+        ele = self.find_element(*(By.XPATH, varXpath))
+        self.driver.execute_script("arguments[0].scrollIntoView();", ele)  # 将元素滚动到可见区域
         sleep(t)
 
-    def eleScrollToView(self, ele, varXpath, t=1):
-        # 将元素滚动到可见区域。
-        # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
-        # element = self.driver.find_element_by_id(varId)  id方式定位
-        # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
-        # ErpApp_PO.Web_PO.scrollToView("//a[last()]")  # 拖动到最后一个a标签
-        element = ele.find_element(*(By.XPATH, varXpath))
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
-        sleep(t)
 
-    def clsTextByJs(self, t=1):
+
+    def clsText(self, t=1):
         # 清除input输入框内容
         self.driver.execute_script('document.querySelector("input[type=number]").value=""')
         sleep(t)
@@ -1122,7 +1050,7 @@ class DomPO(object):
         except:
             flag = False
         return flag
-    def locElement(self, varPath, t=0):
+    def locElement(self, varPath, t=1):
         # 定位到某元素???（未确认）
         try:
             elements = self.find_element(*(By.XPATH, varPath))
