@@ -16,6 +16,10 @@ a = ['CV340\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n瞿今歌
 
 print([i.split("\n")[0] for i in a])
 
+varList = [1,2,3,4,3,2,3]
+print(sorted(set(varList), key=varList.index))
+
+print([item for item in varList if varList.count(item) == 1])
 
 
 # from collections import Counter

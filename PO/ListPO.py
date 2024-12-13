@@ -57,7 +57,7 @@ todo：【删除】
 5.2 删除特殊字符（\n\t\r\xa0等）print(List_PO.delSpecialChar(['0\n编号', '1\n既往史', 444, '2\n既\r往    史\t\n逻\xa0辑', 'abc']))   #  ['0编号', '1既往史', '444', '2既往史逻辑', 'abc']
 5.3 删除指定的或模糊的元素 print(List_PO.dels(['0', "错误", '1', 123, "错误"], "错误"))  # ['0', '1', 123]  // 删除“错误”元素
 5.4 删除重复的元素 print(List_PO.delDuplicateElement([2, "a", 1, "\n", "\n", 13, "", "test", 6, 2, "", "", 1, "a"]))  # [13, 'test', 6]
-5.5 列表元素去重 print(List_PO.deduplication([2, 1, 13, 6, 2, 1]))  # [2, 1, 13, 6]
+5.5 去重，去掉重复数据（保留1个） print(List_PO.deduplication([2, 1, 13, 6, 2, 1]))  # [2, 1, 13, 6]
 
 todo：【统计】
 6 获取重复的元素数量 print(List_PO.getDuplicationCount([2, 1, 13, 6, 2, 1]))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
