@@ -128,42 +128,6 @@ class DomPO(object):
 
 
 
-    def scrollUpDown(self, ele, varPath, varStep, t=2):
-        # 上下滚动
-        # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
-
-        sleep(t)
-        elements = ele.find_element(*(By.XPATH, varPath))
-        actions = ActionChains(self.driver)
-        actions.move_to_element(elements)
-        actions.click_and_hold()
-        if varStep != 0 :
-            if varStep >= 150:
-                actions.move_by_offset(0, 150)
-            elif varStep <= -500:
-                actions.move_by_offset(0, -500)
-            else:
-                actions.move_by_offset(0, varStep)
-        actions.release()
-        actions.perform()
-        sleep(t)
-
-    def scrollLeftRight(self, ele, varPath, varStep, t=2):
-        # 左右滚动
-        # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(varStep, 0).release().perform()
-
-        sleep(t)
-        elements = ele.find_element(*(By.XPATH, varPath))
-        actions = ActionChains(self.driver)
-        actions.move_to_element(elements)
-        actions.click_and_hold()
-        actions.move_by_offset(varStep, 0)
-        actions.release()
-        actions.perform()
-        # sleep(t)
-
-
-
     def check_contain_chinese(self, check_str):
         # 判断字符串中是否包含中文符合
         for ch in check_str.decode("utf-8"):
@@ -873,11 +837,86 @@ class DomPO(object):
 
 
     # todo js
+    # https://fishpi.cn/article/1713864467902
+
+    def scrollToEndByKeys(self, varPath, varCount, varPath2, t=2):
+        # 通过键盘输入End滚动到底部
+        # 逻辑：定位varPath元素，遍历keys到底N次，遇到varPath2元素退出
+        ele = self.find_element(*(By.XPATH, varPath))
+        for i in range(varCount):
+            ActionChains(self.driver).send_keys_to_element(ele, Keys.END).perform()
+            sleep(1)
+            if self.isEleExistByX(varPath2):
+                break
+        sleep(t)
+        # ActionChains(self.driver).send_keys_to_element(ele, Keys.PAGE_DOWN).perform()
+        # ActionChains(self.driver).send_keys_to_element(ele, Keys.ARROW_DOWN).perform()
+
+    def scrollUpDown(self, varPath, varStep, t=2):
+        # 上下滚动
+        # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
+        sleep(t)
+        elements = self.find_element(*(By.XPATH, varPath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(elements)
+        actions.click_and_hold()
+        if varStep != 0:
+            if varStep >= 150:
+                actions.move_by_offset(0, 150)
+            elif varStep <= -500:
+                actions.move_by_offset(0, -500)
+            else:
+                actions.move_by_offset(0, varStep)
+        actions.release()
+        actions.perform()
+        sleep(t)
+
+    def eleScrollUpDown(self, ele, varPath, varStep, t=2):
+        # 定位元素后，上下滚动
+        sleep(t)
+        elements = ele.find_element(*(By.XPATH, varPath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(elements)
+        actions.click_and_hold()
+        actions.move_by_offset(0, varStep)
+        actions.release()
+        actions.perform()
+        sleep(t)
+
+    def scrollLeftRight(self, varPath, varStep, t=2):
+        # 左右滚动
+        sleep(t)
+        elements = self.find_element(*(By.XPATH, varPath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(elements)
+        actions.click_and_hold()
+        actions.move_by_offset(varStep, 0)
+        actions.release()
+        actions.perform()
+        sleep(t)
+
+    def eleScrollLeftRight(self, ele, varPath, varStep, t=2):
+        # 定位元素后, 左右滚动
+        sleep(t)
+        elements = ele.find_element(*(By.XPATH, varPath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(elements)
+        actions.click_and_hold()
+        actions.move_by_offset(varStep, 0)
+        actions.release()
+        actions.perform()
+        # sleep(t)
 
     def scrollByStep(self, varStep, t=1):
         # 按步长向下滚动一次，模拟用户拖动滚动条的行为。
-        self.driver.execute_script('window.scrollBy(0, ' + str(varStep) + ')')
+        sleep(3)
+        self.driver.execute_script("window.scrollBy(0, -500);")
+        # self.driver.execute_script('window.scrollBy(0, ' + str(varStep) + ');')
         sleep(t)
+
+    def scrollToLocation(self, varLoc):
+        # 滚动到指定位置。
+        self.driver.execute_script('window.scrollTo(0, %s)' % varLoc)
 
     def scrollByAuto(self, varStep, t=1):
         # 按步长逐步向下滚动直到页面底部
@@ -891,7 +930,7 @@ class DomPO(object):
         # 直接滚动到页面底部
         # self.driver.execute_script('window.scrollTo(0, 1000)')  # 滚动到页面底部
         # self.driver.execute_script("document.documentElement.scrollTop=1000")  # 滚动到页面底部
-        self.driver.execute_script('window.scrollTo(0, document.body.scrollHeight)')
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         sleep(t)
 
     def scrollToView(self, varXpath, t=1):
@@ -910,7 +949,7 @@ class DomPO(object):
         # element = self.driver.find_element_by_id(varId)  id方式定位
         # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
         # ErpApp_PO.Web_PO.scrollToView("//a[last()]")  # 拖动到最后一个a标签
-        element = self.find_element(*(By.XPATH, varXpath))
+        element = ele.find_element(*(By.XPATH, varXpath))
         self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
         sleep(t)
 

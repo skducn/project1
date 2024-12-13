@@ -124,10 +124,25 @@ ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06/徐汇07【代表�
 #
 # # todo 审批中心
 ErpApp_PO.Web_PO.scrollToBottom()
-ErpApp_PO.Web_PO.clkByX("//a[@href='#/approve']")
-
+ErpApp_PO.Web_PO.clkByX("//a[@href='#/approve']", 2)
+# 1 获取未审批列表页数据
 d_data = ErpApp_PO.get_approve_list({"标签": "未审批"})
 print(d_data)
+
+# # 2 获取已审批列表页数据
+d_data = ErpApp_PO.get_approve_list({"标签": "已审批"})
+print(d_data)
+
+# # 3 获取未审批指定医院编号的审批详情
+# d_data = ErpApp_PO.get_approve_searchInfo({"标签": "未审批", "搜索": "广医院", "编号": "CV339"})
+# print(d_data)
+#
+# # 4 获取已审批指定医院编号的审批详情
+# d_data = ErpApp_PO.get_approve_searchInfo({"标签": "已审批", "搜索": "广医院", "编号": "CV340"})
+# print(d_data)
+
+
+
 
 
 

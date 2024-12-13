@@ -1273,25 +1273,108 @@ class ErpAppPO(object):
 
    # todo 审批中心
     def get_approve_list(self, d_expected):
+
+        # 审批中心
+        # 获取审批中心列表数据
+
+        # 选择标签
+        if d_expected['标签'] == '未审批':
+            varDiv = 3
+        elif d_expected['标签'] == '已审批':
+            varDiv = 4
+
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[" + str(varDiv-2) + "]", 4)  # 点击标签（未审批或已审批）
+        # 获取审批条数
+        s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+        self.Web_PO.scrollToEndByKeys("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 10, "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div[1]/div/div[2]", 2)
+        l_approved = self.Web_PO.getTextsByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
+        l_approved = self.List_PO.deduplication(l_approved)
+        l_no = ([i.split("\n")[0] for i in l_approved])
+        d_no = dict(enumerate(l_no, start=1))
+        d_no = {v:k for k,v in d_no.items()}
+        print(d_no)  # {'CV340': 1, 'CV338': 2, 'CV334': 3, 'CV337': 4, 'CV336': 5}
+        if s_count == len(d_no):
+            print("ok, 审批条数一致", d_expected['标签'] + "共", s_count, "条审批")
+        else:
+            print("errorrrrrrrrrr, 审批条数不一致! ", d_expected['标签'] + "共", s_count, "条审批, 列表统计共", len(d_no), "条")
+
+        d_approved = dict(enumerate(l_approved, start=1))
+        return d_approved
+
+
+        # sys.exit(0)
+        #
+        # # 筛选审批状态
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
+        # # 点击已通过
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]")
+        #
+        # # 选择第2个
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div/div/div[1]/div[2]")
+        # # 获取审批详情
+        # ele = self.Web_PO.getLabelTextUpEle2("div", "审批基础信息", "../../..")
+        # l_div = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/div")
+        # l_span = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/span")
+        # d_approveList = dict(zip(l_div, l_span))
+        # print(d_approveList)
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")  # 返回
+
+
+
+    def get_approve_searchInfo(self, d_expected):
         # 审批中心
 
         # 选择标签
         if d_expected['标签'] == '未审批':
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[1]", 2)
+            varDiv = 3
         elif d_expected['标签'] == '已审批':
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[2]", 2)
+            varDiv = 4
 
-        self.Web_PO.scrollUpDown()
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[" + str(varDiv-2) + "]", 2)
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'])
+        self.Web_PO.scrollToEndByKeys("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 8)
+        l_approved = self.Web_PO.getTextsByX("//div[@class='collapse-list']")
+        l_approved = self.List_PO.deduplication(l_approved)
+        l_no = ([i.split("\n")[0] for i in l_approved])
+        d_no = dict(enumerate(l_no, start=1))
+        d_no = {v:k for k,v in d_no.items()}
+        print(d_no)  # {'CV340': 1, 'CV338': 2, 'CV334': 3, 'CV337': 4, 'CV336': 5}
+        # d_approved = dict(enumerate(l_approved, start=1))
+        # print(d_approved)
 
-        # ele = self.Web_PO.getLabelTextUpEle2("span","审批中心", "../../../..")
+        if d_expected['编号'] in d_no.keys():
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[" + str(d_no[d_expected['编号']]) + "]/div[2]")
+            # 获取审批详情
+            ele = self.Web_PO.getLabelTextUpEle2("div", "审批基础信息", "../../..")
+            l_div = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/div")
+            l_span = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/span")
+            d_approve_info = dict(zip(l_div, l_span))
+            # print(d_approve_info)
+            return d_approve_info
 
-        # /html/body/div[1]/div/div[1]/div/   div[2]/div/div[3]/div/div/div[1]/div[1]/div[1]/div/div
 
-        self.Web_PO.scrollByAuto(3000)
-        # self.Web_PO.scrollToBottom()
+        sys.exit(0)
 
-        l_ = self.Web_PO.getTextsByX("//div[@class='hospital-ul van-clearfix']")
-        print(l_)
+        # 筛选审批状态
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
+        # 点击已通过
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]")
+
+        # 选择第2个
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div/div/div[1]/div[2]")
+        # 获取审批详情
+        ele = self.Web_PO.getLabelTextUpEle2("div", "审批基础信息", "../../..")
+        l_div = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/div")
+        l_span = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/span")
+        d_approveList = dict(zip(l_div, l_span))
+        print(d_approveList)
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")  # 返回
+
+
+        # l_ = self.Web_PO.getTextsByX("//div[@class='hospital-ul van-clearfix']")
+        # print(l_)
 
 
     def approve(self):

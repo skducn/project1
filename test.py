@@ -8,25 +8,35 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
-from collections import Counter
 
-a = [1,2,"你好",3]
-b = [2,1,3,"你好"]
 
-# a = Counter(a)
-# b = Counter(b)
-print (dict(Counter(a))==dict(Counter(b)))
-if dict(Counter(a)) != dict(Counter(b)):
-    print(123)
+d = {"标签": "已审批", "搜索234": "广医院", "编号": "CV336"}
 
-a = "你"
-print(a[0])
-print(a[1:])
+a = ['CV340\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n瞿今歌\n提交时间：\n2023-12-11 14:24:27\n审批时间：\n2023-12-11 14:25:04\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV338\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n尚巧兰\n提交时间：\n2023-12-11 13:41:52\n审批时间：\n2023-12-11 13:48:42\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV334\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n袁邵美\n提交时间：\n2023-12-08 14:31:39\n审批时间：\n2023-12-08 16:48:00\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV337\n广医院\n已拒绝\n地区经理：\n薛伟\n客户：\n邱紫云\n提交时间：\n2023-12-11 13:26:19\n审批时间：\n2023-12-11 13:40:40\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV336\n广医院\n已拒绝\n地区经理：\n薛伟\n客户：\n瞿今歌\n提交时间：\n2023-12-08 16:52:55\n审批时间：\n2023-12-08 16:54:22\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成']
 
-print(len(a))
-a = '临床主任确认即可过会, 需投票，过三分之二票数'
+print([i.split("\n")[0] for i in a])
 
-print(a.split(", "))
+
+
+# from collections import Counter
+#
+# a = [1,2,"你好",3]
+# b = [2,1,3,"你好"]
+#
+# # a = Counter(a)
+# # b = Counter(b)
+# print (dict(Counter(a))==dict(Counter(b)))
+# if dict(Counter(a)) != dict(Counter(b)):
+#     print(123)
+#
+# a = "你"
+# print(a[0])
+# print(a[1:])
+#
+# print(len(a))
+# a = '临床主任确认即可过会, 需投票，过三分之二票数'
+#
+# print(a.split(", "))
 
 
 # a = {'科室主任': {'李标': '支持'}}
