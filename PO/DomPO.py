@@ -89,14 +89,14 @@ todo js
 通过tagname去掉隐藏属性 clsDisplayByTagName(varLabel, varLen)
 
 todo boolean
-通过xpath判断ture或false isEleExistByX(varPath)
+通过xpath判断ture或false isEleExistByX(varXpath)
 通过xpath判断属性是否存在 isBooleanAttr(varXpath, varAttr)
-通过xpath判断属性值是否存在 isBooleanAttrValue(varPath, varAttr, varValue)
+通过xpath判断属性值是否存在 isBooleanAttrValue(varXpath, varAttr, varValue)
 通过Id判断ture或false isEleExistById(varId)
 通过name判断ture或false isEleExistByName(varName)
 通过超链接判断是否包含varText  isElePartExistByP(varPartText)
 通过超链接判断是否存在varText isEleExistByL(varText)
-通过xpath判断varText是否存在  isEleTextExistByX(varPath, varText)
+通过xpath判断varText是否存在  isEleTextExistByX(varXpath, varText)
 
 todo alert(system)
 点击弹框中的确认 alertAccept()
@@ -426,21 +426,22 @@ class DomPO(object):
             l_attrValue.append(a.get_attribute(varAttr))
         return dict(zip(l_text, l_attrValue))
 
-    def getUpEleByX(self, varLabel, varText):
+    def getUpEleByX(self, varXpath):
         # 通过标签下文本获取上一层元素
-        # getUpEleByX("div", "文本")  # 获取div下文本上一层的元素
-        # getUpEleByX("span", "文本")  # 获取span下文本上一层的元素
-        element = self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']"))
-        parent_element = self.driver.execute_script("return arguments[0].parentNode;", element)
-        return parent_element
+        # getUpEleByX("//div[@class='van-col']")  # 获取div下文本上一层的元素
+        # getUpEleByX("//div[text()='文本']")  # 获取div下文本上一层的元素
+        # getUpEleByX("//span[text()='文本']")  # 获取span下文本上一层的元素
+        ele = self.find_element(*(By.XPATH, varXpath))
+        return self.driver.execute_script("return arguments[0].parentNode;", ele)
 
-    def getSuperEleByX(self, varLabel, varText, varXpath):
+
+    def getSuperEleByX(self, varXpath, varXpath2):
         # 通过标签下文本获取上层或上上层元素
-        # 如：ele = self.getSuperEleByX("span"，'过会', '..') # 获取span标签下文本上一层的元素
-        # 如：ele = self.getSuperEleByX("div"，'会前评估能否过会', '..') # 获取div标签下文本上一层的元素
-        # 如：ele = self.getSuperEleByX("div"，'会前评估能否过会', '../..') # 获取文本上二层的元素
-        # 如：ele = self.getSuperEleByX("div"，'会前评估能否过会', '../../..') # 获取文本上三层的元素
-        return self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']")).find_element(*(By.XPATH, varXpath))
+        # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
+        # 如：ele = self.getSuperEleByX("//div[text()='过会']", '../../..') # 获取div标签下文本上上上层的元素
+        # ele = self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']"))
+        ele = self.find_element(*(By.XPATH, varXpath))
+        return ele.find_element(*(By.XPATH, varXpath2))
 
 
 
@@ -464,10 +465,11 @@ class DomPO(object):
         """通过name追加文本"""
         self.find_element(*(By.NAME, varName)).send_keys(varText)
 
-    def setTextByX(self, varXpath, varText):
+    def setTextByX(self, varXpath, varText, t=0):
         """通过xpath设置文本"""
         self.find_element(*(By.XPATH, varXpath)).clear()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        sleep(t)
 
     def appentTextByX(self, varXpath, varText):
         """通过xpath追加文本"""
@@ -484,6 +486,16 @@ class DomPO(object):
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
 
+    def setTextBydoubleClkByX(self, varXpath, varText, t=2):
+        # 定位元素后，上下滚动
+        # step 负数向上滚动，正数向下滚动
+        sleep(t)
+        ele2 = self.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        actions.double_click(ele2).perform()
+        sleep(t)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
 
 
     # todo shadow-root元素
@@ -512,7 +524,7 @@ class DomPO(object):
 
     # todo ele元素再定位
 
-    def eleClkByX(self, ele, varXpath, t=1):
+    def eleClkByX(self, ele, varXpath, t=2):
         # 元素再定位后点击
         e = ele.find_element(*(By.XPATH, varXpath))
         e.click()
@@ -522,7 +534,7 @@ class DomPO(object):
         # 元素再定位后点击
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             a.click()
-        sleep(t)
+            sleep(t)
         
     def eleGetShadowByXsByC(self, ele, varXpaths, varCss, t=1):
         # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
@@ -537,7 +549,7 @@ class DomPO(object):
         sleep(t)
         return l_shadow
 
-    def eleGetValueFromAttr(self, ele, varAttr):
+    def eleGetValueByAttr(self, ele, varAttr):
         # 元素再定位后获取属性
         return ele.get_attribute(varAttr)
 
@@ -581,23 +593,41 @@ class DomPO(object):
         sleep(t)
         ele.find_element(*(By.XPATH, varXpath2)).click()
 
-    def eleScrollUpDownByX(self, ele, varPath, varStep, t=2):
+    def eleDoubleClkByX(self, ele, varXpath, t=2):
         # 定位元素后，上下滚动
         # step 负数向上滚动，正数向下滚动
         sleep(t)
-        ele2 = ele.find_element(*(By.XPATH, varPath))
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        actions.double_click(ele2).perform()
+        sleep(t)
+
+    def eleScrollUpDownByX(self, ele, varXpath, varStep, t=2):
+        # 定位元素后，上下滚动
+        # step 负数向上滚动，正数向下滚动
+        sleep(t)
+        # print(varStep)
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.move_to_element(ele2)
         actions.click_and_hold()
-        actions.move_by_offset(0, varStep)
+        # actions.move_by_offset(0, varStep)
+        if varStep != 0:
+            if varStep >= 150:
+                actions.move_by_offset(0, 150)
+            elif varStep <= -500:
+                actions.move_by_offset(0, -500)
+            else:
+                actions.move_by_offset(0, varStep)
+
         actions.release()
         actions.perform()
         sleep(t)
 
-    def eleScrollLeftRightByX(self, ele, varPath, varStep, t=2):
+    def eleScrollLeftRightByX(self, ele, varXpath, varStep, t=2):
         # 定位元素后, 左右滚动
         sleep(t)
-        ele2 = ele.find_element(*(By.XPATH, varPath))
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.move_to_element(ele2)
         actions.click_and_hold()
@@ -614,6 +644,17 @@ class DomPO(object):
         # ErpApp_PO.Web_PO.scrollViewByX("//a[last()]")  # 拖动到最后一个a标签
         element = ele.find_element(*(By.XPATH, varXpath))
         self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
+        sleep(t)
+
+    def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, varXpath2, t=2):
+        # 键盘keys.End滚动到底部
+        # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        for i in range(varCount):
+            ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
+            sleep(1)
+            if self.isEleExistByX(varXpath2):
+                break
         sleep(t)
 
 
@@ -661,14 +702,14 @@ class DomPO(object):
         # 如：value=10 , Text=启用 ，sltValueByName("isAvilable", '10')
         Select(self.find_element(*(By.XPATH, varXpath))).select_by_visible_text(varValue)
 
-    def selectXpathText(self, varPath, varText):
+    def selectXpathText(self, varXpath, varText):
         # 遍历Xpath下的Option,(待确认)
         # self.selectXpathText(u"//select[@regionlevel='1']", u'启用'), （一般情况 value=1 , Text=启用）
-        s1 = self.driver.find_element_by_xpath(varPath)
+        s1 = self.driver.find_element_by_xpath(varXpath)
         l_content1 = []
         l_value1 = []
         # varContents = self.driver.find_elements_by_xpath(varByXpath + "/option")
-        varContents = self.driver.find_elements_by_xpath(varPath + "/option")
+        varContents = self.driver.find_elements_by_xpath(varXpath + "/option")
         for a in varContents:
             l_content1.append(a.text)
             l_value1.append(a.get_attribute("value"))
@@ -774,11 +815,11 @@ class DomPO(object):
         self.driver.switch_to_default_content()
         sleep(t)
 
-    def inIframeTopDiv(self, varPath, t=1):
+    def inIframeTopDiv(self, varXpath, t=1):
         # 定位iframe的div路径?(未确认)
         # evel_PO.inIframeDiv("[@id='showRealtime']", 2)
         # Home_PO.inIframeDiv("[@class='cetc-popup-content']/div", 2)
-        iframe = self.driver.find_element_by_xpath("//div" + varPath + "/iframe")
+        iframe = self.driver.find_element_by_xpath("//div" + varXpath + "/iframe")
         # print iframe.get_attribute("src")
         self.driver.switch_to_frame(iframe)
         sleep(t)
@@ -787,25 +828,29 @@ class DomPO(object):
     # todo ActionChains
     # https://fishpi.cn/article/1713864467902
 
-    def scrollKeysEndByXByX(self, varPath, varCount, varPath2, t=2):
+
+
+    def scrollKeysEndByXByX(self, varXpath, varCount, varXpath2, t=2):
         # 键盘keys.End滚动到底部
         # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
-        ele = self.find_element(*(By.XPATH, varPath))
+        ele = self.find_element(*(By.XPATH, varXpath))
         for i in range(varCount):
             ActionChains(self.driver).send_keys_to_element(ele, Keys.END).perform()
             sleep(1)
-            if self.isEleExistByX(varPath2):
+            if self.isEleExistByX(varXpath2):
                 break
         sleep(t)
         # ActionChains(self.driver).send_keys_to_element(ele, Keys.PAGE_DOWN).perform()
         # ActionChains(self.driver).send_keys_to_element(ele, Keys.ARROW_DOWN).perform()
 
-    def scrollUpDownByX(self, varPath, varStep, t=2):
+
+
+    def scrollUpDownByX(self, varXpath, varStep, t=2):
         # 上下滚动
         # step 负数向上滚动，正数向下滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
         sleep(t)
-        ele = self.find_element(*(By.XPATH, varPath))
+        ele = self.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.move_to_element(ele)
         actions.click_and_hold()
@@ -820,10 +865,10 @@ class DomPO(object):
         actions.perform()
         sleep(t)
 
-    def scrollLeftRightByX(self, varPath, varStep, t=2):
+    def scrollLeftRightByX(self, varXpath, varStep, t=2):
         # 左右滚动
         sleep(t)
-        ele = self.find_element(*(By.XPATH, varPath))
+        ele = self.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.move_to_element(ele)
         actions.click_and_hold()
@@ -918,33 +963,33 @@ class DomPO(object):
 
     # todo True or False
 
-    def isEleExistByX(self, varPath):
+    def isEleExistByX(self, varXpath):
         # 判断元素是否存在
         flag = False
         try:
-            self.find_element(*(By.XPATH, varPath))
+            self.find_element(*(By.XPATH, varXpath))
             flag = True
         except:
             flag = False
         return flag
 
-    def isEleAttrExistByX(self, varPath, varAttr):
+    def isEleAttrExistByX(self, varXpath, varAttr):
         # 判断元素属性是否存在
         flag = False
         try:
-            ele = self.find_element(*(By.XPATH, varPath))
+            ele = self.find_element(*(By.XPATH, varXpath))
             if ele.get_attribute(varAttr):
                 flag = True
         except:
             flag = False
         return flag
 
-    def isEleAttrValueExistByX(self, varPath, varAttr, varValue):
+    def isEleAttrValueExistByX(self, varXpath, varAttr, varValue):
         # 判断元素属性的值是否存在
         # 如：isEleAttrValueExistByX("//tr","href","www.badu.com")
         flag = False
         try:
-            for ele in self.find_elements(*(By.XPATH, varPath)):
+            for ele in self.find_elements(*(By.XPATH, varXpath)):
                 if varValue == ele.get_attribute(varAttr):
                     flag = True
                     break
@@ -992,38 +1037,38 @@ class DomPO(object):
             flag = False
         return flag
 
-    def isEleTextExistByX(self, varPath, varText):
+    def isEleTextExistByX(self, varXpath, varText):
         # 通过xpath判断文本是否存在
         flag = False
         try:
-            if self.find_element(*(By.XPATH, varPath)).text == varText:
+            if self.find_element(*(By.XPATH, varXpath)).text == varText:
                 flag = True
         except:
             flag = False
         return flag
 
-    def isBooleanAttrValueListByX(self, varPath, varAttr, varValue):
+    def isBooleanAttrValueListByX(self, varXpath, varAttr, varValue):
         """通过xpath判断属性等于值"""
         # 如：isBooleanAttrValueListByX("//tr","href","www.badu.com")
         # .isBooleanAttrValueListByX("//div/label/span[1]", 'class', 'el-radio__input is-disabled is-checked')
         # 判断单选框是否被选中。
 
         l1 = []
-        for a in self.find_elements(*(By.XPATH, varPath)):
+        for a in self.find_elements(*(By.XPATH, varXpath)):
             if varValue == a.get_attribute(varAttr):
                 l1.append("True")
             else:
                 l1.append("False")
         return l1
 
-    def isBooleanAttrContainValueListByX(self, varPath, varAttr, varValue):
+    def isBooleanAttrContainValueListByX(self, varXpath, varAttr, varValue):
 
         """通过xpath判断属性包含值"""
         # .isBooleanAttrContainValueListByX("//div/label/span[1]", 'class', 'el-radio__input is-disabled is-checked')
         # 判断单选框是否被选中。
 
         l1 = []
-        for a in self.find_elements(*(By.XPATH, varPath)):
+        for a in self.find_elements(*(By.XPATH, varXpath)):
             if varValue in a.get_attribute(varAttr):
                 l1.append("True")
             else:
@@ -1043,10 +1088,10 @@ class DomPO(object):
         except:
             flag = False
         return flag
-    def locElement(self, varPath, t=1):
+    def locElement(self, varXpath, t=1):
         # 定位到某元素???（未确认）
         try:
-            elements = self.find_element(*(By.XPATH, varPath))
+            elements = self.find_element(*(By.XPATH, varXpath))
             actions = ActionChains(self.driver)
             actions.move_to_element(elements).perform()
             sleep(t)

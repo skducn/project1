@@ -40,8 +40,8 @@ class ErpAppPO(object):
         if varPost == None:
             self.Web_PO.clkByX('/html/body/div[3]/div[2]/div[3]/button[2]', 2)  # 确认
         else:
-            self.Web_PO.scrollToView("/html/body/div[3]/div[2]/div[3]/button[2]")
-            l_ = (self.Web_PO.getTextsByX("//div"))
+            self.Web_PO.scrollViewByX("/html/body/div[3]/div[2]/div[3]/button[2]")
+            l_ = (self.Web_PO.getTextByXs("//div"))
             l_1 = self.List_PO.deduplication(l_)
             # print(l_1)
             l_2 = self.List_PO.split(l_1, "注：当一个人拥有多个岗位时，需要选择对应的岗位进行登录，将会影响到所对应岗位的数据权限及功能权限的展示;", 1)
@@ -85,7 +85,7 @@ class ErpAppPO(object):
         # 获取日期
         sleep(2)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
-        l_1 = self.Web_PO.getTextsByX("//li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+        l_1 = self.Web_PO.getTextByXs("//li[@class='van-picker-column__item van-picker-column__item--selected']/div")
         l_date = []
         for i in l_1:
             i = i.replace("年", "").replace("月", "").replace("日", "")
@@ -124,7 +124,7 @@ class ErpAppPO(object):
                 var_ = (varExpected - varActual) * -20
             else:
                 var_ = (varActual - varExpected) * 20
-            self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+            self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
             sleep(3)
             varActual = self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
             varActual = int(varActual[:-1])
@@ -135,7 +135,7 @@ class ErpAppPO(object):
                     var_ = (varExpected - varActual) * -20
                 else:
                     var_ = (varActual - varExpected) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(3)
                 varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
                 varActual = int(varActual[:-1])
@@ -146,7 +146,7 @@ class ErpAppPO(object):
                     var_ = (varExpected - varActual) * -20
                 else:
                     var_ = (varActual - varExpected) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(3)
                 varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
                 varActual = int(varActual[:-1])
@@ -157,7 +157,7 @@ class ErpAppPO(object):
                     var_ = (varExpected - varActual) * -20
                 else:
                     var_ = (varActual - varExpected) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(3)
                 varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
                 varActual = int(varActual[:-1])
@@ -173,7 +173,7 @@ class ErpAppPO(object):
     def switchArea(self, manager, representative):
         # 切换
         # 定位元素为可见
-        self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[2]", 2)
+        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[2]", 2)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[2]")
 
         # 经理辖区
@@ -195,7 +195,7 @@ class ErpAppPO(object):
         # 获取日期
         sleep(2)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
-        l_1 = self.Web_PO.getTextsByX("//li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+        l_1 = self.Web_PO.getTextByXs("//li[@class='van-picker-column__item van-picker-column__item--selected']/div")
         l_date = []
         for i in l_1:
             i = i.replace("年", "").replace("月", "").replace("日", "")
@@ -233,7 +233,7 @@ class ErpAppPO(object):
                 var_ = (varExpected - varActual) * -20
             else:
                 var_ = (varActual - varExpected) * 20
-            self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+            self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
                 varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
             sleep(3)
             varActual = self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
@@ -246,7 +246,7 @@ class ErpAppPO(object):
                     var_ = (varExpected - varActual) * -20
                 else:
                     var_ = (varActual - varExpected) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
                     varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(3)
                 varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
@@ -259,7 +259,7 @@ class ErpAppPO(object):
                     var_ = (varExpected - varActual) * -20
                 else:
                     var_ = (varActual - varExpected) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
                     varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(3)
                 varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
@@ -272,7 +272,7 @@ class ErpAppPO(object):
                     var_ = (varExpected - varActual) * -20
                 else:
                     var_ = (varActual - varExpected) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
                     varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(3)
                 varActual = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div/div[" + str(
@@ -295,13 +295,13 @@ class ErpAppPO(object):
         l_ = self._scrollUpDown_date(l_expected, l_sysDate)
         # print(l_)  # (40, 220, 100)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
-        self.Web_PO.scrollUpDown(
+        self.Web_PO.eleScrollUpDownByX(
             "//div[@class='van-picker van-datetime-picker']/div/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
             l_[0])
-        self.Web_PO.scrollUpDown(
+        self.Web_PO.eleScrollUpDownByX(
             "//div[@class='van-picker van-datetime-picker']/div/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
             l_[1])
-        self.Web_PO.scrollUpDown(
+        self.Web_PO.eleScrollUpDownByX(
             "//div[@class='van-picker van-datetime-picker']/div/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
             l_[2])
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
@@ -331,7 +331,7 @@ class ErpAppPO(object):
         # 今日团队综合排名 - Top排名 - 拜访达成统计排名
 
         # 首页点击top排名
-        self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[1]/div[2]")
+        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[1]/div[2]")
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[1]/div[2]")
 
         # # todo 选择日期
@@ -343,7 +343,7 @@ class ErpAppPO(object):
             if varOrg == "团队排名":
                 # 点击团队排名
                 self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[1]")
-                l_ = self.Web_PO.getTextsByX("//span")
+                l_ = self.Web_PO.getTextByXs("//span")
                 l_2 = self.List_PO.split(l_, "个人排名", 1)
                 l_3 = self.List_PO.dels(l_2, "")
                 l_3 = self.List_PO.dels(l_3, "团队")
@@ -353,7 +353,7 @@ class ErpAppPO(object):
                 l_6 = self.List_PO.group(l_5, 10)
                 # print(l_6)
                 # 获取各指标达成分数
-                l_7 = self.Web_PO.getTextsByX("//div/div[2]/div")
+                l_7 = self.Web_PO.getTextByXs("//div/div[2]/div")
                 c = len(l_7[0].split("指标达成分数")) - 1
                 l_8 = []
                 for i in range(c):
@@ -373,7 +373,7 @@ class ErpAppPO(object):
                 # 个人排名
                 self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[2]")
                 sleep(2)
-                l_ = self.Web_PO.getTextsByX("//span")
+                l_ = self.Web_PO.getTextByXs("//span")
                 # print(l_)
                 l_2 = self.List_PO.split(l_, "个人排名", 1)
                 l_3 = self.List_PO.dels(l_2, "")
@@ -383,7 +383,7 @@ class ErpAppPO(object):
                 l_6 = self.List_PO.group(l_5, 10)
                 # print(l_6)
                 # # 获取各指标达成分数
-                l_7 = self.Web_PO.getTextsByX("//div/div[2]/div")
+                l_7 = self.Web_PO.getTextByXs("//div/div[2]/div")
                 c = len(l_7[0].split("指标达成分数")) - 1
                 l_8 = []
                 for i in range(c):
@@ -402,7 +402,7 @@ class ErpAppPO(object):
     def todayRank(self):
         # 今日团队综合排名 - 列表数据
 
-        self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[2]")
+        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[2]")
         s = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[2]")
         l_ = s.split("\n")
         # print(l_)
@@ -421,7 +421,7 @@ class ErpAppPO(object):
     def behaviorAnalysis(self):
         # 行为分析 - 团队拜访、团队会议、团队开发数据
 
-        self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[3]/div[2]")
+        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[3]/div[2]")
         s = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[3]/div[2]")
         l_ = s.split("\n")
         l_1 = self.List_PO.pair2dict(l_)
@@ -435,7 +435,7 @@ class ErpAppPO(object):
         # 业绩分析 - 选择产品
 
         # 点击选择产品
-        self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[4]/div[1]/div[2]", 2)
+        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[4]/div[1]/div[2]", 2)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[4]/div[1]/div[2]")
         # 获取li的数量
         count = self.Web_PO.getQtyByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[4]/div[3]/div[2]/div[3]/div/div[1]/ul/li")
@@ -508,7 +508,7 @@ class ErpAppPO(object):
                 var_ = (varActual - varExpected) * -20
             else:
                 var_ = (varExpected - varActual) * 20
-            self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+            self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
             sleep(3)
             varExpected = int(self.Web_PO.getTextByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
             self.Web_PO.clkByX("//div[@class='van-picker van-datetime-picker']/div[1]/button[2]")
@@ -518,7 +518,7 @@ class ErpAppPO(object):
                     var_ = (varActual - varExpected) * -20
                 else:
                     var_ = (varExpected - varActual) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(2)
                 varExpected = int(self.Web_PO.getTextByX(
                     "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
@@ -530,7 +530,7 @@ class ErpAppPO(object):
                     var_ = (varActual - varExpected) * -20
                 else:
                     var_ = (varExpected - varActual) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(2)
                 varExpected = int(self.Web_PO.getTextByX(
                     "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
@@ -542,7 +542,7 @@ class ErpAppPO(object):
                     var_ = (varActual - varExpected) * -20
                 else:
                     var_ = (varExpected - varActual) * 20
-                self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
                 sleep(2)
                 varExpected = int(self.Web_PO.getTextByX(
                     "//div[@class='van-picker van-datetime-picker']/div[2]/div[" + str(
@@ -557,11 +557,11 @@ class ErpAppPO(object):
 
         l_ = self._scrollUpDown_dateTime(l_dateTime, self._hospital_getDateTime())
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[" + str(varTD) + "]/div[2]/div/input", 2)
-        self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[0])
-        self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[1])
-        self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[2])
-        self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[3])
-        self.Web_PO.scrollUpDown("//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[4])
+        self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[0])
+        self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[1])
+        self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[2])
+        self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[4]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[3])
+        self.Web_PO.eleScrollUpDownByX("//div[@class='van-picker van-datetime-picker']/div[2]/div[5]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", l_[4])
         l_revise = self._hospital_getDateTime()
 
         # 校验年月日时分(varTD 对应 div[6])
@@ -660,16 +660,16 @@ class ErpAppPO(object):
         # print(otherMemberCount)
 
         # 删除第一条
-        self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
-        self.Web_PO.scrollLeftRight("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div", -50)
+        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
+        self.Web_PO.eleScrollLeftRightByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div", -50)
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/div/div/button")
                           # /html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[2]/div/div/div/button
-        # self.Web_PO.scrollLeftRight("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div", 444)
+        # self.Web_PO.eleScrollLeftRightByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div", 444)
         # sys.exit(0)
 
         if otherMemberCount > 0:
             # 定位元素为可见
-            self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
+            self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
 
             # 其他药事会成员
             # 编辑第一条 成员
@@ -685,7 +685,7 @@ class ErpAppPO(object):
                 del d_['其他药事会成员'][list(d_['其他药事会成员'].keys())[0]]
                 for i, k in enumerate(d_['其他药事会成员']):
                     # 定位元素为可见
-                    self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
+                    self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div", 2)
 
                     # 点击增加一行新纪录
                     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/div")
@@ -699,7 +699,7 @@ class ErpAppPO(object):
                     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[7]/div/div[2]/div[1]/button[2]")
 
             # 删除第一条
-            self.Web_PO.scrollLeftRight("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div")
+            self.Web_PO.eleScrollLeftRightByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[1]/div/div[3]/table[2]/div[1]/div/tr/td[1]/div/div/div")
 
 
 
@@ -709,37 +709,37 @@ class ErpAppPO(object):
 
         # # # todo 1 开发跟进信息 - 提单科室
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[1]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('提单科室', '..'), "//div[2]/div/div/div[2]/div/input", d_['提单科室'],"//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='提单科室']"), "//div[2]/div/div/div[2]/div/input", d_['提单科室'],"//div[3]/div[1]/button[2]")
         #
         # # # todo 2 开发跟进信息 - 提单规则
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[2]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('提单规则', '..'), "//div[2]/div/div/div[2]/div/input", d_['提单规则'], "//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='提单规则']"), "//div[2]/div/div/div[2]/div/input", d_['提单规则'], "//div[3]/div[1]/button[2]")
         #
         # # # todo 3 开发跟进信息 - 提单状态
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[3]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('提单状态', '..'), "//div[2]/div/div/div[2]/div/input", d_['提单状态'], "//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='提单状态']"), "//div[2]/div/div/div[2]/div/input", d_['提单状态'], "//div[3]/div[1]/button[2]")
         #
         # # # todo 4 开发跟进信息 - 过会规则
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[4]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('过会规则', '..'), "//div[2]/div/div/div[2]/div/input", d_['过会规则'], "//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='过会规则']"), "//div[2]/div/div/div[2]/div/input", d_['过会规则'], "//div[3]/div[1]/button[2]")
 
         # 定位元素为可见
-        # self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[11]", 2)
+        # self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[11]", 2)
 
         # todo 5 开发跟进信息 - 药剂科会前确认信息
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[5]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('药剂科会前确认信息', '..'), "//div[2]/div/div/div[2]/div/input", d_['药剂科会前确认信息'], "//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='药剂科会前确认信息']"), "//div[2]/div/div/div[2]/div/input", d_['药剂科会前确认信息'], "//div[3]/div[1]/button[2]")
 
         # todo 6 开发跟进信息 - 药事会实际召开时间
         # conveningTime = self.__hospital_dataTime(6, d_['药事会实际召开时间'])
 
         # # todo 7 开发跟进信息 - 会前评估能否过会
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[7]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('会前评估能否过会', '..'), "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='会前评估能否过会']"), "//div[2]/div/div/div[2]/div/input", d_['会前评估能否过会'], "//div[3]/div[1]/button[2]")
         #
         # # todo 8 开发跟进信息 - 经改进后能否过会
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div[1]/div[1]/div/div[2]/div[2]/div/div[3]/div[2]/div[8]/div[2]/div/input", 2)
-        # self.Web_PO.eleSetTextClkByX(self.Web_PO.getDivTextUpEle('经改进后能否过会', '..'), "//div[2]/div/div/div[2]/div/input", d_['经改进后能否过会'], "//div[3]/div[1]/button[2]")
+        # self.Web_PO.eleSetTextClkByXByX(self.Web_PO.getUpEleByX("//div[text()='经改进后能否过会']"), "//div[2]/div/div/div[2]/div/input", d_['经改进后能否过会'], "//div[3]/div[1]/button[2]")
 
         # # todo 9 开发跟进信息 - 过会日期
         afterMetting = self.__hospital_dataTime(9, d_['过会日期'])
@@ -783,12 +783,6 @@ class ErpAppPO(object):
         # 返回
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
 
-    # todo 会议管理
-    def meeting(self):
-        self.Web_PO.clkByX("//a[@href='#/meeting']")
-
-        # 返回
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
 
 
 
@@ -803,7 +797,7 @@ class ErpAppPO(object):
                 var_ = (i_expected - i_getModuleDate) * -20
             else:
                 var_ = (i_getModuleDate - i_expected) * 20
-            self.Web_PO.scrollUpDown(ele, self._common_date__xpath(varXpathDiv, varLoc), var_)
+            self.Web_PO.eleScrollUpDownByX(ele, self._common_date__xpath(varXpathDiv, varLoc), var_)
             s_getModuleDate = self.Web_PO.eleGetTextByX(ele, self._common_date__xpath(varXpathDiv, varLoc))
             if self.Str_PO.isContainChinese(s_getModuleDate):
                 i_getModuleDate = int(s_getModuleDate[:-1])
@@ -817,7 +811,7 @@ class ErpAppPO(object):
 
         # 获取年月日
         self.Web_PO.clkByX(varXpathIn, 2)
-        ele = self.Web_PO.getDivTextUpEle(varTitle)
+        ele = self.Web_PO.getUpEleByX("//div[text()='" + str(varTitle) + "']")
         l_1 = []
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_date__xpath(varXpathDiv, 1)))
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_date__xpath(varXpathDiv, 2)))
@@ -833,12 +827,12 @@ class ErpAppPO(object):
         # 如：药事会计划开始日期，药事会计划结束日期
 
         # 开发跟进信息
-        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
-        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
+        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         dd_ = dict(enumerate(l_field, start=1))
         d_field = {v: k for k, v in dd_.items()}
-        ele2 = self.Web_PO.getLabelTextUpEle2("span", varField, "../..")
-        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//input", "div")
+        ele2 = self.Web_PO.getSuperEleByX("//span[text()='" + str(varField) + "']", "../..")
+        l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
 
         # 判断补0
         if d_expected[varField][1] < 10:
@@ -860,6 +854,9 @@ class ErpAppPO(object):
 
     def _common_dateTime__xpath(self, varXpathDiv, varDiv):
         return varXpathDiv + "/div[" + str(varDiv) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"
+    # /html/body/div[1]/div/div[1]/div/div[6]/div
+    #
+    # /div[2]/div[2]/div[1]/ul/li[van-picker-column__item van-picker-column__item--selected]/div
     def _common_dateTime__verify(self, ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc, varXpathConfirm):
         if i_expected != i_getModuleDate:
             self.Web_PO.clkByX(varXpathIn)
@@ -867,7 +864,7 @@ class ErpAppPO(object):
                 var_ = (i_expected - i_getModuleDate) * -20
             else:
                 var_ = (i_getModuleDate - i_expected) * 20
-            self.Web_PO.scrollUpDown(ele, self._common_dateTime__xpath(varXpathDiv, varLoc), var_)
+            self.Web_PO.eleScrollUpDownByX(ele, self._common_dateTime__xpath(varXpathDiv, varLoc), var_)
             s_getModuleDate = self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, varLoc))
             if self.Str_PO.isContainChinese(s_getModuleDate):
                 i_getModuleDate = int(s_getModuleDate[:-1])
@@ -881,7 +878,9 @@ class ErpAppPO(object):
 
         # 获取年月日
         self.Web_PO.clkByX(varXpathIn, 2)
-        ele = self.Web_PO.getDivTextUpEle(varTitle)
+        ele = self.Web_PO.getUpEleByX("//div[text()='" + str(varTitle) + "']")
+
+        # ele = self.Web_PO.getUpEleByX(varTitle)
         l_1 = []
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 1)))
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 2)))
@@ -901,12 +900,12 @@ class ErpAppPO(object):
         # 如：药事会实际召开时间
 
         # 开发跟进信息
-        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
-        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
+        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         dd_ = dict(enumerate(l_field, start=1))
         d_field = {v: k for k, v in dd_.items()}
-        ele2 = self.Web_PO.getLabelTextUpEle2("span", varField, "../..")
-        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//input", "div")
+        ele2 = self.Web_PO.getSuperEleByX("//span[text=()='" + str(varField) + "']", "../..")
+        l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
 
         # 判断补0
         if d_expected[varField][1] < 10:
@@ -935,15 +934,15 @@ class ErpAppPO(object):
 
         d_visitor = {}
         # 主要成员
-        ele = self.Web_PO.getLabelTextUpEle2("th", "主要成员", "../..")
-        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        ele = self.Web_PO.getSuperEleByX("//th[text()='主要成员']", "../..")
+        l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
         l_shadow = self.List_PO.group(l_shadow, 2)
         l_post = ['科室主任', '药剂科主任', '医务处长', '业务院长', '院长']
         d_visitor['主要成员'] = dict(zip(l_post, l_shadow))
 
         # 其他药事会成员
-        ele = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
-        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
+        ele = self.Web_PO.getSuperEleByX("//th[text()='其他药事会成员']", "../..")
+        l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
         d_visitor['其他药事会成员'] = self.List_PO.group(l_shadow, 2)
 
         return d_visitor
@@ -962,12 +961,12 @@ class ErpAppPO(object):
         # 公共表单（产品开发 - 开发跟进反馈）
 
         # 开发跟进信息
-        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
-        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
+        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         dd_ = dict(enumerate(l_field, start=1))
         d_field = {v: k for k, v in dd_.items()}
-        ele2 = self.Web_PO.getLabelTextUpEle2("span", varField, "../..")
-        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//input", "div")
+        ele2 = self.Web_PO.getSuperEleByX("//span[text()='" + str(varField) + "']", "../..")
+        l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
         if l_actual[0] != d_expected[varField]:
             self.Web_PO.clkByX(self._product_devFollowUp__common_xpath(d_field[varField]))
             self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[5]/div[2]/div/div[2]/div/div/div[2]/div/input", d_expected[varField])
@@ -981,16 +980,16 @@ class ErpAppPO(object):
 
         # # 过会规则
         # 操作逻辑，先反勾选所有复选框，再勾选预期值
-        ele2 = self.Web_PO.getLabelTextUpEle2("span", '过会规则', "../..")
-        l_actual = self.Web_PO.eleGetShadowRoots(ele2, ".//textarea", "div")
+        ele2 = self.Web_PO.getSuperEleByX("//span[text()='过会规则']", "../..")
+        l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//textarea", "div")
         l_actual = l_actual[0].split(", ")
         if dict(Counter(l_actual)) != dict(Counter(d_expected['过会规则'])):
             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[4]/div[4]/div/div[2]/div/textarea")
-            l_afterMeetingRule = self.Web_PO.getTextsByX("//div[@role='checkbox']/span")
+            l_afterMeetingRule = self.Web_PO.getTextByXs("//div[@role='checkbox']/span")
             dd_ = dict(enumerate(l_afterMeetingRule, start=1))
             d_afterMeetingRule = {v: k for k, v in dd_.items()}
             # 先反勾选所有复选框
-            ele = self.Web_PO.getDivTextUpEle("选择过会规则")
+            ele = self.Web_PO.getUpEleByX("//div[text()='选择过会规则']")
             self.Web_PO.eleClksByX(ele, ".//div[@class='van-checkbox__icon van-checkbox__icon--round van-checkbox__icon--checked']")
             # 再勾选预期值
             for i in range(len(d_expected["过会规则"])):
@@ -1010,7 +1009,7 @@ class ErpAppPO(object):
         # 提交
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
         # 拜访人信息录入成功（确定）
-        ele4 = self.Web_PO.getLabelTextUpEle2("div", "开发跟进信息录入成功", "../..")
+        ele4 = self.Web_PO.getSuperEleByX("//div[text()='开发跟进信息录入成功']", "../..")
         self.Web_PO.eleClkByX(ele4, ".//div[5]")
 
     def get_product_devFollowUp(self, d_expected):
@@ -1028,23 +1027,23 @@ class ErpAppPO(object):
         d_getCurrData = {}
 
         # 1 获取医院开发信息
-        ele = self.Web_PO.getLabelTextUpEle2("span", "医院信息", "../../../..")
-        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
-        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        ele = self.Web_PO.getSuperEleByX("span", "医院信息", "../../../..")
+        l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
+        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         d_devInfo = dict(zip(l_field, l_shadow))
         d_getCurrData["医院开发信息"] = d_devInfo
 
         # 2 获取开发跟进信息
-        ele = self.Web_PO.getLabelTextUpEle2("span", "开发次数", "../../../..")
-        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
-        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        ele = self.Web_PO.getSuperEleByX("span", "开发次数", "../../../..")
+        l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
+        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         l_field.remove('过会规则')
         d_getCurrData["开发跟进信息"] = dict(zip(l_field, l_shadow))
         # 追加过会规则
         l_text_shadow = self.Web_PO.getShadowRoots('//textarea', 'div')
         d_getCurrData['开发跟进信息']['过会规则'] = l_text_shadow[0]
         # 追加采购时间和更新时间
-        l_text_span = self.Web_PO.getTextsByX("//div[@class='van-col van-col--24']/span")
+        l_text_span = self.Web_PO.getTextByXs("//div[@class='van-col van-col--24']/span")
         d_getCurrData['开发跟进信息']['采购时间'] = l_text_span[0]
         d_getCurrData['开发跟进信息']['更新时间'] = l_text_span[1]
 
@@ -1056,7 +1055,7 @@ class ErpAppPO(object):
         # 修改逻辑，将 d_getCurrDate 与 d_expected 比对，如不一致则更新。
 
         # 更新主要成员
-        ele = self.Web_PO.getLabelTextUpEle2("th", "主要成员", "../..")
+        ele = self.Web_PO.getSuperEleByX("//th[text()='主要成员']", "../..")
         d_post = {"科室主任": 2, "药剂科主任": 3, "医务处长" : 4, "业务院长": 5, "院长": 6}
         for k, v in d_getCurrDate['拜访及态度']['主要成员'].items():
             if k in d_expected['拜访及态度']['主要成员']:
@@ -1064,31 +1063,31 @@ class ErpAppPO(object):
                     if v[0] != d_expected['拜访及态度']['主要成员'][k][0]:
                         # 主要成员
                         self.Web_PO.eleClkByX(ele, ".//tr[" + str(d_post[k]) + "]/td[1]/div/div/div/input")
-                        ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+                        ele2 = self.Web_PO.getUpEleByX("//div[text()=' 主要成员选择 ']")
                         self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['主要成员'][k][0])
                         self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
                     elif v[1] != d_expected['拜访及态度']['主要成员'][k][1]:
                         # 态度
                         self.Web_PO.eleClkByX(ele, ".//tr[" + str(d_post[k]) + "]/td[3]/div/div/div/input")
-                        ele2 = self.Web_PO.getDivTextUpEle(" 态度选择 ")
+                        ele2 = self.Web_PO.getUpEleByX("//div[text()=' 态度选择 ']")
                         self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['主要成员'][k][1])
                         self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]", 2)
 
         # 更新其他药事会成员
         # 操作逻辑：删除所有会员后再添加
         # 遍历删除
-        ele3 = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
-        qty_row = self.Web_PO.eleGetQtyByX(ele3, ".//div/div[@class='van-swipe-cell']")
+        ele3 = self.Web_PO.getSuperEleByX("//th[text()='其他药事会成员']", "../..")
+        qty_row = self.Web_PO.eleGetQtyByXs(ele3, ".//div/div[@class='van-swipe-cell']")
         for i in range(qty_row):
-            self.Web_PO.scrollLeftRight(ele3, ".//div/div[1]/div", -50)
+            self.Web_PO.eleScrollLeftRightByX(ele3, ".//div/div[1]/div", -50)
             self.Web_PO.eleClkByX(ele3, ".//div/div[1]/div/div/div/button")
         # 点击增加一行新记录
         for i in range(len(d_expected['拜访及态度']['其他药事会成员'])):
-            self.Web_PO.scrollToView("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
+            self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/table[2]/div/div/button")
             # 其他药事会成员
             self.Web_PO.eleClkByX(ele3, ".//div/div[" + str(i+1) + "]/div/tr/td[1]/div/div/div/input")
-            ele2 = self.Web_PO.getDivTextUpEle(" 主要成员选择 ")
+            ele2 = self.Web_PO.getUpEleByX("//div[text()=' 主要成员选择 ']")
             self.Web_PO.eleSetTextByX(ele2, ".//div[2]/div/div/div[2]/div/input", d_expected['拜访及态度']['其他药事会成员'][i][0])
             self.Web_PO.eleClkByX(ele2, ".//div[3]/div/div[2]/button[2]")
             # 态度
@@ -1099,7 +1098,7 @@ class ErpAppPO(object):
         # # 提交
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
         # # 拜访人信息录入成功（确定），返回产品开发列表页
-        ele4 = self.Web_PO.getLabelTextUpEle2("div", "拜访人信息录入成功", "../..")
+        ele4 = self.Web_PO.getSuperEleByX("//div[text()='拜访人信息录入成功']", "../..")
         self.Web_PO.eleClkByX(ele4, ".//div[5]")
 
     def get_product_visitor(self, d_expected):
@@ -1121,9 +1120,9 @@ class ErpAppPO(object):
         d_getCurrData = {}
 
         # 1 获取医院开发信息
-        ele = self.Web_PO.getLabelTextUpEle2("span", "医院信息", "../../../..")
-        l_shadow = self.Web_PO.eleGetShadowRoots(ele, './/input', 'div:nth-last-of-type(1)')
-        l_field = self.Web_PO.eleGetTextsByX(ele, ".//span")
+        ele = self.Web_PO.getSuperEleByX("//span[text()='医院信息']", "../../../..")
+        l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
+        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         d_devInfo = dict(zip(l_field, l_shadow))
         d_getCurrData["医院开发信息"] = d_devInfo
 
@@ -1156,8 +1155,8 @@ class ErpAppPO(object):
 
         # 1,开发医院类型
         self._product_new__common_xpath(1)
-        ele = self.Web_PO.getDivTextUpEle(" 请选择开发医院类型 ")
-        l_hospitalType = (self.Web_PO.eleGetTextsByLabelByX(ele, ".//div[2]/div/div[1]/ul/li", './/div'))
+        ele = self.Web_PO.getUpEleByX("//div[text()=' 请选择开发医院类型 ']")
+        l_hospitalType = (self.Web_PO.eleGetTextByXsByX(ele, ".//div[2]/div/div[1]/ul/li", './/div'))
         d_hospitalType = dict(enumerate(l_hospitalType, start=1))
         d_hospitalType = {v: k for k, v in d_hospitalType.items()}
         self.Web_PO.eleClkByX(ele, ".//div[2]/div/div[1]/ul/li[" + str(d_hospitalType[d_new['开发医院类型']]) + "]")
@@ -1166,8 +1165,8 @@ class ErpAppPO(object):
         # 2,开发医院信息
         self._product_new__common_xpath(2)
         # 搜索,单选框
-        ele = self.Web_PO.getSpanTextUpEle2("请选择开发医院信息", "../../../..")
-        self.Web_PO.eleSetTextClkByX(ele, ".//div[3]/div[1]/div/div/div/div/div[2]/div/input", d_new['开发医院信息'], ".//div[3]/div[3]/div[1]/div/div/div[1]/div[1]/div[1]/div[1]/div")
+        ele = self.Web_PO.getSuperEleByX("//div[text()='请选择开发医院信息']", "../../../..")
+        self.Web_PO.eleSetTextClkByXByX(ele, ".//div[3]/div[1]/div/div/div/div/div[2]/div/input", d_new['开发医院信息'], ".//div[3]/div[3]/div[1]/div/div/div[1]/div[1]/div[1]/div[1]/div")
         self.Web_PO.eleClkByX(ele, ".//div[6]/button[2]")
 
         if d_new['开发医院类型'] == "医院":
@@ -1214,7 +1213,7 @@ class ErpAppPO(object):
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div/div/div/div[2]/div/input", d_expected["搜索"])
         sleep(2)
         # 如果开发医院没有结果，则切换标签打开发站点
-        l_ = self.Web_PO.getTextsByX("//span")
+        l_ = self.Web_PO.getTextByXs("//span")
         if '开发医院（0）' in l_:
             # 开发站点
             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/div/div/div/div[2]/div[1]/div/div", 2)
@@ -1226,22 +1225,22 @@ class ErpAppPO(object):
 
         d_info = {}
         # 开发基础信息
-        ele1 = self.Web_PO.getLabelTextUpEle2("div", "开发编码", "../..")
-        l_devInfo_field = self.Web_PO.eleGetTextsByX(ele1, ".//div/div")
-        l_devInfo_value = self.Web_PO.eleGetTextsByX(ele1, ".//div/span")
+        ele1 = self.Web_PO.getSuperEleByX("//div[text()='开发编码']", "../..")
+        l_devInfo_field = self.Web_PO.eleGetTextByXs(ele1, ".//div/div")
+        l_devInfo_value = self.Web_PO.eleGetTextByXs(ele1, ".//div/span")
         d_devInfo = dict(zip(l_devInfo_field, l_devInfo_value))
         d_info['开发基础信息'] = d_devInfo
 
         # 开发跟进信息
-        ele2 = self.Web_PO.getLabelTextUpEle2("div", "开发次数", "../..")
-        l_devFollowUp_field = self.Web_PO.eleGetTextsByX(ele2, ".//div/div")
-        l_devFollowUp_value = self.Web_PO.eleGetTextsByX(ele2, ".//div/span")
+        ele2 = self.Web_PO.getSuperEleByX("//div[text()='开发次数']", "../..")
+        l_devFollowUp_field = self.Web_PO.eleGetTextByXs(ele2, ".//div/div")
+        l_devFollowUp_value = self.Web_PO.eleGetTextByXs(ele2, ".//div/span")
         d_devFollowUp = dict(zip(l_devFollowUp_field, l_devFollowUp_value))
         d_info['开发跟进信息'] = d_devFollowUp
 
         d_post = {}
-        ele3 = self.Web_PO.getLabelTextUpEle2("th", "主要成员", "../..")
-        l_principle_members = self.Web_PO.eleGetTextsByX(ele3, ".//td")
+        ele3 = self.Web_PO.getSuperEleByX("//th[text()='主要成员']", "../..")
+        l_principle_members = self.Web_PO.eleGetTextByXs(ele3, ".//td")
         l_principle_members = self.List_PO.group(l_principle_members, 3)
         # print("l_principle_members =>", l_principle_members)
         d_principle_members = {}
@@ -1251,8 +1250,8 @@ class ErpAppPO(object):
         d_post['职务'] = d_principle_members
 
         d_members = {}
-        ele3 = self.Web_PO.getLabelTextUpEle2("th", "其他药事会成员", "../..")
-        l_other_members = self.Web_PO.eleGetTextsByX(ele3, ".//td")
+        ele3 = self.Web_PO.getSuperEleByX("//th[text()='其他药事会成员']", "../..")
+        l_other_members = self.Web_PO.eleGetTextByXs(ele3, ".//td")
         l_other_members = self.List_PO.group(l_other_members, 4)
         # print("l_other_members =>", l_other_members)
         d_other_members = {}
@@ -1270,8 +1269,258 @@ class ErpAppPO(object):
 
 
 
+    # todo 会议管理
 
-   # todo 审批中心
+    def get_meeting_info(self, d_expected):
+
+        # 会议管理
+
+        # 会议详情
+
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'])
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]", 2)
+
+        # 会议详情信息
+        ele = self.Web_PO.getSuperEleByX("//div[text()='会议编码']", "../..")
+        l_ = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']")
+        d_1 = {}
+        d = {}
+        for i in range(len(l_)):
+            l_1 = l_[i].split("\n")
+            if len(l_1) == 2:
+                d_1[l_1[0]] = l_1[1]
+            else:
+                d_1[l_1[0]] = ""
+        d["会议详情信息"] = d_1
+
+        # 重要客户信息
+        ele = self.Web_PO.getSuperEleByX("//div[text()='劳务总预算']", "../..")
+        l_ = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']")
+        d_1 = {}
+        for i in range(len(l_)):
+            l_1 = l_[i].split("\n")
+            if len(l_1) == 2:
+                d_1[l_1[0]] = l_1[1]
+            else:
+                d_1[l_1[0]] = ""
+
+        l_ = self.Web_PO.getTextByXs("//div[@class='cellFont']")
+        l_1= l_[0].split("\n")
+        # print(l_1)  # ['讲者', '周丽娟', '全科', '新江湾社区', '65.00']
+        d_2 = {}
+        # d_2['info'] = l_1
+        d_1['info'] = l_1
+        d["重要客户信息"] = d_1
+
+        # 返回
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
+
+        return d
+
+    def set_meeting(self, d_expected):
+
+        # 会议管理
+
+        # 会议执行反馈
+
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'])
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[3]/button", 2)
+
+        # 实际会议时间
+        for i in range(len(d_expected['实际会议时间'])):
+            # 获取组件年月日
+            ele, l_getModuleDate = self._common_dateTime__get("/html/body/div[1]/div/div[1]/div/div[3]/form/div[5]/div[1]/div[2]/div/input",
+                                                              "药事会实际召开时", ".//div[2]/div[2]", "/html/body/div[1]/div/div[1]/div/div[6]/div/div[2]/div[1]/button[2]")
+            # 获取预期值与组件值之步长并校验比对年月日
+            self._common_dateTime__verify(ele,"/html/body/div[1]/div/div[1]/div/div[3]/form/div[5]/div[1]/div[2]/div/input", d_expected['实际会议时间'][i], l_getModuleDate[i], ".//div[2]/div[2]", i + 1, "/html/body/div[1]/div/div[1]/div/div[6]/div/div[2]/div[1]/button[2]")
+
+        # 实际餐费
+        self.Web_PO.setTextBydoubleClkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[7]/div[2]/div/div/div/div[1]/input", d_expected['实际餐费'])
+
+        # 场地费
+        self.Web_PO.setTextBydoubleClkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[8]/div[2]/div/div/div/div[1]/input", d_expected['场地费'])
+
+        # 会中执行清单
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[9]/div[2]/div/div")
+        l_ = self.Web_PO.getTextByXs("//div[@class='van-cell-group van-hairline--top-bottom']")
+        l_ = l_[0].split("\n")
+        d_ = dict(enumerate(l_, start=1))
+        d_ = {v: k for k, v in d_.items()}
+        # print(d_)
+        for i in range(len(d_expected['会中执行清单'])):
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[8]/div[1]/div[2]/div/div[2]/div/div/div/div[" + str(d_[d_expected['会中执行清单'][i]]) + "]/div[1]/div")
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[8]/div[2]/button[2]")  # 确认
+
+        # 实际参会者
+        # 计划参会者 +
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[12]/button[1]", 2)
+        l_ = self.Web_PO.getTextByXs("//div[@class='planerTitleBox']")
+        # print(l_) # ['讲者\n周丽娟\n全科\n新江湾社区', '参与者\n朱一川\n全科\n新江湾社区']
+        d_ = dict(enumerate(l_, start=1))
+        d_ = {v:k for k,v in d_.items()}
+        for k, v in d_.items():
+            for i in range(len(d_expected['计划参会者'])):
+                if ("\n" + d_expected['计划参会者'][i]['参与者'] + "\n") in k:
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[10]/div/div[4]/div/div[2]/div/div/div/div[" + str(v) + "]/div/div/div[1]/div")
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[10]/div/div[5]/button[2]")  # 确认
+
+        # 滚动页面到底部
+        self.Web_PO.scrollKeysEndByXByX("/html/body/div[1]/div/div[1]/div/div[3]/form", 3, "/html/body/div[1]/div/div[1]/div/div[4]/button[2]")
+
+        l_1 = self.Web_PO.getTextByXs("//div[@class='addMeeter van-swipe-cell']")
+        d_ = dict(enumerate(l_, start=13))
+        d_ = {v: k for k, v in d_.items()}
+        for k, v in d_.items():
+            for i in range(len(d_expected['计划参会者'])):
+                if ("\n" + d_expected['计划参会者'][i]['参与者'] + "\n") in k:
+
+                    # 1/3选择角色
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[1]/div/div/div[2]/div/div", 5)
+                    ele = self.Web_PO.getUpEleByX("//div[text()='角色选择']")
+                    l_ = self.Web_PO.eleGetTextByXs(ele, "//div[@class='van-cell-group van-hairline--top-bottom']")
+                    l_1 = l_[1].split("\n")
+                    d_1 = dict(enumerate(l_1, start=1))
+                    d_1 = {v: k for k, v in d_1.items()}
+                    # print(d_1)  # {'讲者': 1, '主席': 2, '点评者': 3, '组织者': 4, '参与者': 5}
+                    # 2/3清除复选框
+                    ele = self.Web_PO.getUpEleByX("//div[text()='角色选择']")
+                    self.Web_PO.eleScrollKeysEndByXByX(ele, ".//div[@class='cellFont']", 2, "/html/body/div[1]/div/div[1]/div/div[10]/div/div[4]/button[2]")
+                    self.Web_PO.eleClkByXs(ele, ".//div[@class='van-checkbox__icon van-checkbox__icon--square van-checkbox__icon--checked']")
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[10]/div/div[4]/button[2]", 2)
+                    # 3/3选择角色
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[1]/div/div/div[2]/div/div", 5)
+                    for j in range(len(d_expected['计划参会者'][i]['角色'])):
+                        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[10]/div/div[3]/div/div[2]/div/div/div/div[" + str(d_1[d_expected['计划参会者'][i]['角色'][j]]) + "]/div/div/div[1]/div", 2)
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[10]/div/div[4]/button[2]")
+
+                    # 实际劳务费
+                    self.Web_PO.setTextBydoubleClkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[2]/div/div[4]/div/div/div/div/div/div/div/input", d_expected['计划参会者'][i]['实际劳务费'])
+
+                    # 调整(产品观念)
+                    if d_expected['计划参会者'][i]['产品观念'] != "":
+                        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[3]/div/div[2]/div")
+
+                        ??? 产品观念定位错误
+                        ele = self.Web_PO.getSuperEleByX("//span[text()='产品观念']", "../../../../..")
+                        print(self.Web_PO.eleGetValueByAttr(ele, "class"))
+
+                       
+                        for k1, v1 in d_expected['计划参会者'][i]['产品观念'].items():
+                            if v1 == '反对':
+                                self.Web_PO.eleClkByX(ele, ".//div[1]/div[2]/div/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[2]/div")
+                            elif v1 == '同意':
+                                self.Web_PO.eleClkByX(ele, ".//div[1]/div[2]/div/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[1]/div")
+                        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[12]/div[2]/button[2]")  # 确认
+                        self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]")  # 确认
+
+                    # 会后跟进
+                    if d_expected['计划参会者'][i]['会后跟进'] == "是":
+                        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[4]/div/div[4]/div/div")
+
+
+        # 提交
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/button[2]", 2)
+
+
+
+    # todo 审批中心
+
+    def _getApproveCount(self):
+        # 获取筛选条数
+        s_filterCount = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[2]/span")
+        # 获取审批条数
+        s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+        return s_count,s_filterCount
+    def get_approve_Qty(self, d_expected):
+
+        # 审批中心
+        # 获取审批中心列表数据
+
+        # 选择标签
+        if d_expected['标签'] == '未审批':
+            varDiv = 3
+        elif d_expected['标签'] == '已审批':
+            varDiv = 4
+        # 点击标签（未审批或已审批）
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[" + str(varDiv-2) + "]", 4)
+
+        if varDiv == 3:
+            if '筛选' in d_expected.keys() and d_expected['筛选'] != None:
+                # 点击筛选
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
+                # 1 审批类型
+                if '审批类型' in d_expected['筛选'].keys() and d_expected['筛选']['审批类型'] != None:
+                    for i in range(len(d_expected['筛选']['审批类型'])):
+                        ele = self.Web_PO.getSuperEleByX("//div[text()='" + str(d_expected['筛选']['审批类型'][i]) + " " + "']", "..")
+                        self.Web_PO.eleClkByX(ele, ".")
+                # 2 审批状态（未审批、待二级审批）
+                if '审批状态' in d_expected['筛选'].keys() and d_expected['筛选']['审批状态'] == '未审批':
+                    # 点击待二级审批
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[2]/div")
+                elif d_expected['筛选']['审批状态'] == '待二级审批':
+                    # 点击未审批
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
+                # 3 确认
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]", 2)
+
+                if '搜索' in d_expected.keys():
+                    # 搜索
+                    self.Web_PO.setTextByX(
+                        "/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div/div/div[2]/div/input",
+                        d_expected['搜索'], 2)
+                # 筛选结果
+                s_count, s_filterCount = self._getApproveCount()
+                return {"未审批": s_count, "已筛选": s_filterCount}
+            elif '搜索' in d_expected.keys():
+                # 搜索
+                self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'], 2)
+                # 筛选结果
+                s_count, s_filterCount = self._getApproveCount()
+                return {"未审批": s_count, "已筛选": s_filterCount}
+            else:
+                # 获取审批条数
+                s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+                return {"未审批": s_count}
+        elif varDiv == 4:
+            if '筛选' in d_expected.keys() and d_expected['筛选'] != None:
+                # 点击筛选
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
+                # 1 审批类型
+                if '审批类型' in d_expected['筛选'].keys() and d_expected['筛选']['审批类型'] != None:
+                    for i in range(len(d_expected['筛选']['审批类型'])):
+                        ele = self.Web_PO.getSuperEleByX("//div[text()='" + str(d_expected['筛选']['审批类型'][i]) + " " + "']", "..")
+                        self.Web_PO.eleClkByX(ele, ".")
+                # 2 审批状态（已通过、已拒绝）
+                if '审批状态' in d_expected['筛选'].keys() and d_expected['筛选']['审批状态'] == '已通过':
+                    # 点击已拒绝
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[2]/div")
+                elif d_expected['筛选']['审批状态'] == '已拒绝':
+                    # 点击已通过
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
+                # 3 确认
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]", 2)
+                if '搜索' in d_expected.keys():
+                    self.Web_PO.setTextByX(
+                        "/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div/div/div[2]/div/input",
+                        d_expected['搜索'], 2)
+                    # 筛选结果
+                s_count, s_filterCount = self._getApproveCount()
+                return {"未审批": s_count, "已筛选": s_filterCount}
+            elif '搜索' in d_expected.keys():
+                self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'], 2)
+                # 筛选结果
+                s_count, s_filterCount = self._getApproveCount()
+                return {"未审批": s_count, "已筛选": s_filterCount}
+            else:
+                # 获取审批条数
+                s_count = self.Web_PO.getTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[3]/span[1]")
+                return {"已审批": s_count}
+
+
+
+
+
+
     def get_approve_list(self, d_expected):
 
         # 审批中心
@@ -1292,7 +1541,7 @@ class ErpAppPO(object):
                 # 1 审批类型
                 if '审批类型' in d_expected['筛选'].keys() and d_expected['筛选']['审批类型'] != None:
                     for i in range(len(d_expected['筛选']['审批类型'])):
-                        ele = self.Web_PO.getLabelTextUpEle2("div", d_expected['筛选']['审批类型'][i]+" ", "..")
+                        ele = self.Web_PO.getSuperEleByX("//div[text()='" + str(d_expected['筛选']['审批类型'][i]) + " " + "']", "..")
                         self.Web_PO.eleClkByX(ele, ".")
                 # 2 审批状态（未审批、待二级审批）
                 if '审批状态' in d_expected['筛选'].keys() and d_expected['筛选']['审批状态'] == '未审批':
@@ -1323,7 +1572,7 @@ class ErpAppPO(object):
                 # 1 审批类型
                 if '审批类型' in d_expected['筛选'].keys() and d_expected['筛选']['审批类型'] != None:
                     for i in range(len(d_expected['筛选']['审批类型'])):
-                        ele = self.Web_PO.getLabelTextUpEle2("div", d_expected['筛选']['审批类型'][i]+" ", "..")
+                        ele = self.Web_PO.getSuperEleByX("//div[text()='" + str(d_expected['筛选']['审批类型'][i]) + " " + "']", "..")
                         self.Web_PO.eleClkByX(ele, ".")
                 # 2 审批状态（已通过、已拒绝）
                 if '审批状态' in d_expected['筛选'].keys() and d_expected['筛选']['审批状态'] == '已通过':
@@ -1351,10 +1600,10 @@ class ErpAppPO(object):
         if varSign == 2 and int(s_filterCount) != 0:
             # 有筛选
             # 统计列表页数据
-            self.Web_PO.scrollToEndByKeys(
+            self.Web_PO.scrollKeysEndByXByX(
                 "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 10,
                 "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div[1]/div/div[2]", 2)
-            l_approved = self.Web_PO.getTextsByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(
+            l_approved = self.Web_PO.getTextByXs("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(
                 varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
             print(self.List_PO.getDuplicationCount(l_approved))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
 
@@ -1375,10 +1624,10 @@ class ErpAppPO(object):
         elif varSign == 1 and int(s_count) != 0:
             # 无筛选
             # 统计列表页数据
-            self.Web_PO.scrollToEndByKeys(
+            self.Web_PO.scrollKeysEndByXByX(
                 "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 10,
                 "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div[1]/div/div[2]", 2)
-            l_approved = self.Web_PO.getTextsByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(
+            l_approved = self.Web_PO.getTextByXs("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(
                 varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
             l_no = ([i.split("\n")[0] for i in l_approved])
             print(l_no)
@@ -1387,7 +1636,6 @@ class ErpAppPO(object):
             print(d_no)
 
             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div[1]/div/div[1]/div[" + str(d_no['CV179']) + "]/div[2]")
-            sleep(1212)
 
             print(self.List_PO.getDuplicationCount(l_no))  # [(2, 2), (1, 2), (13, 1), (6, 1)]
 
@@ -1415,16 +1663,16 @@ class ErpAppPO(object):
         # # 选择第2个
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div/div/div[1]/div[2]")
         # # 获取审批详情
-        # ele = self.Web_PO.getLabelTextUpEle2("div", "审批基础信息", "../../..")
-        # l_div = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/div")
-        # l_span = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/span")
+        # ele = self.Web_PO.getSuperEleByX("div", "审批基础信息", "../../..")
+        # l_div = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']/div")
+        # l_span = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']/span")
         # d_approveList = dict(zip(l_div, l_span))
         # print(d_approveList)
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")  # 返回
 
 
 
-    def get_approve_searchInfo(self, d_expected):
+    def get_approve_info(self, d_expected):
         # 审批中心
 
         # 选择标签
@@ -1435,47 +1683,50 @@ class ErpAppPO(object):
 
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/div[1]/div/div[" + str(varDiv-2) + "]", 2)
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['搜索'])
-        self.Web_PO.scrollToEndByKeys("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 8)
-        l_approved = self.Web_PO.getTextsByX("//div[@class='collapse-list']")
+        self.Web_PO.scrollKeysEndByXByX(
+            "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[2]/div[1]", 10,
+            "/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div[1]/div/div[2]", 2)
+        l_approved = self.Web_PO.getTextByXs("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(
+            varDiv) + "]/div/div/div[1]/div[@class='collapse-list']")
         l_approved = self.List_PO.deduplication(l_approved)
         l_no = ([i.split("\n")[0] for i in l_approved])
         d_no = dict(enumerate(l_no, start=1))
         d_no = {v:k for k,v in d_no.items()}
-        print(d_no)  # {'CV340': 1, 'CV338': 2, 'CV334': 3, 'CV337': 4, 'CV336': 5}
+        # print(d_no)  # {'CV340': 1, 'CV338': 2, 'CV334': 3, 'CV337': 4, 'CV336': 5}
         # d_approved = dict(enumerate(l_approved, start=1))
         # print(d_approved)
 
         if d_expected['编号'] in d_no.keys():
             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[" + str(varDiv) + "]/div/div/div[1]/div[" + str(d_no[d_expected['编号']]) + "]/div[2]")
             # 获取审批详情
-            ele = self.Web_PO.getLabelTextUpEle2("div", "审批基础信息", "../../..")
-            l_div = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/div")
-            l_span = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/span")
+            ele = self.Web_PO.getSuperEleByX("//div[text()='审批基础信息']", "../../..")
+            l_div = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']/div")
+            l_span = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']/span")
             d_approve_info = dict(zip(l_div, l_span))
             # print(d_approve_info)
             return d_approve_info
 
 
-        sys.exit(0)
+        # sys.exit(0)
+        #
+        # # 筛选审批状态
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
+        # # 点击已通过
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]")
+        #
+        # # 选择第2个
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div/div/div[1]/div[2]")
+        # # 获取审批详情
+        # ele = self.Web_PO.getSuperEleByX("div", "审批基础信息", "../../..")
+        # l_div = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']/div")
+        # l_span = self.Web_PO.eleGetTextByXs(ele, ".//div[@class='van-col van-col--24']/span")
+        # d_approveList = dict(zip(l_div, l_span))
+        # print(d_approveList)
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")  # 返回
 
-        # 筛选审批状态
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[1]/img")
-        # 点击已通过
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[2]/div[2]/div[1]/div")
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div[1]/div[2]/form/div[3]/button[2]")
 
-        # 选择第2个
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[4]/div/div/div[1]/div[2]")
-        # 获取审批详情
-        ele = self.Web_PO.getLabelTextUpEle2("div", "审批基础信息", "../../..")
-        l_div = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/div")
-        l_span = self.Web_PO.eleGetTextsByX(ele, ".//div[@class='van-col van-col--24']/span")
-        d_approveList = dict(zip(l_div, l_span))
-        print(d_approveList)
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")  # 返回
-
-
-        # l_ = self.Web_PO.getTextsByX("//div[@class='hospital-ul van-clearfix']")
+        # l_ = self.Web_PO.getTextByXs("//div[@class='hospital-ul van-clearfix']")
         # print(l_)
 
 
