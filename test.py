@@ -9,17 +9,31 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
+d = {'讲者': 1, '主席': 2, '点评者': 3, '组织者': 4, '参与者': 5}
+print(list(d.keys()))
+a = list(d.keys())
+a.remove('主席')
+print(a)
 
-d = {"标签": "已审批", "搜索234": "广医院", "编号": "CV336"}
+# print(d['222'])
+print(d.get('主席'))
+# a = ['医院\n金泽社区\n科室\n检验科\n会议类型\n会议计划时间\n实际会议时间\n请注意实际会议时间提交后不可调整\n实际劳务费用\n元\n实际餐费\n元\n场地费\n元\n会中执行清单\n已勾选0项目\n实际参会者\n实际参会者共0人\n计划参会者\n新增参会者']
+# a = a[0].split("\n")
+# print(a)
+# for i in a:
+#     if "实际参会者共" in i:
+#         print(i)
+#         a = i.split("实际参会者共")[1].split("人")[0]
+#         print(a)
+#         if a == 0
 
-a = ['CV340\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n瞿今歌\n提交时间：\n2023-12-11 14:24:27\n审批时间：\n2023-12-11 14:25:04\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV338\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n尚巧兰\n提交时间：\n2023-12-11 13:41:52\n审批时间：\n2023-12-11 13:48:42\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV334\n广医院\n已通过\n地区经理：\n薛伟\n客户：\n袁邵美\n提交时间：\n2023-12-08 14:31:39\n审批时间：\n2023-12-08 16:48:00\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV337\n广医院\n已拒绝\n地区经理：\n薛伟\n客户：\n邱紫云\n提交时间：\n2023-12-11 13:26:19\n审批时间：\n2023-12-11 13:40:40\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成', 'CV336\n广医院\n已拒绝\n地区经理：\n薛伟\n客户：\n瞿今歌\n提交时间：\n2023-12-08 16:52:55\n审批时间：\n2023-12-08 16:54:22\n审批类型 : 转目标客户\n薛伟（区域经理） 审批完成']
-
-print([i.split("\n")[0] for i in a])
-
-varList = [1,2,3,4,3,2,3]
-print(sorted(set(varList), key=varList.index))
-
-print([item for item in varList if varList.count(item) == 1])
+#
+# print([i.split("\n")[0] for i in a])
+#
+# varList = [1,2,3,4,3,2,3]
+# print(sorted(set(varList), key=varList.index))
+#
+# print([item for item in varList if varList.count(item) == 1])
 
 
 # from collections import Counter

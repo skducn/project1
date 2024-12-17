@@ -349,6 +349,14 @@ class DomPO(object):
             l_.append(a.text)
         return l_
 
+    def EleGetLabelQtyByX(self, ele, varXpaths, varAttr):
+        # 获取属性值的索引号
+        # 如：getIndexByAttrByXs("//a","href","http://www.baidu.com")
+        index = 0
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            index = index + 1
+        return index
+
     def getIndexByXs(self, varXpaths, varText):
         # 获取文本的索引号
         # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByXs("//tr",'test')
@@ -465,37 +473,41 @@ class DomPO(object):
         """通过name追加文本"""
         self.find_element(*(By.NAME, varName)).send_keys(varText)
 
-    def setTextByX(self, varXpath, varText, t=0):
-        """通过xpath设置文本"""
+    def setTextByX(self, varXpath, varText, t=1):
+        # 输入框清空后输入文本
         self.find_element(*(By.XPATH, varXpath)).clear()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         sleep(t)
 
-    def appentTextByX(self, varXpath, varText):
-        """通过xpath追加文本"""
-        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
-
-    def setTextEnterByX(self, varXpath, varText):
-        """通过xpath键盘设置文本"""
+    def setTextEnterByX(self, varXpath, varText, t=1):
+        # 输入框清空后输入文本，按回车
         self.find_element(*(By.XPATH, varXpath)).clear()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
-
-    def appendTextEnterByX(self, varXpath, varText):
-        """通过xpath键盘追加文本"""
-        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
-
-    def setTextBydoubleClkByX(self, varXpath, varText, t=2):
-        # 定位元素后，上下滚动
-        # step 负数向上滚动，正数向下滚动
         sleep(t)
-        ele2 = self.find_element(*(By.XPATH, varXpath))
+
+    def setTextTabByX(self, varXpath, varText, t=1):
+        # 输入框双击后输入文本，按Tab
+        ele = self.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
-        actions.double_click(ele2).perform()
+        actions.double_click(ele).perform()
         sleep(t)
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
+
+    def appentTextByX(self, varXpath, varText, t=1):
+        # 输入框追加文本
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        sleep(t)
+
+    def appendTextEnterByX(self, varXpath, varText, t=1):
+        # 输入框追加文本，按回车
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+        sleep(t)
+
+
 
 
     # todo shadow-root元素
@@ -586,6 +598,25 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).clear()
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
 
+    def eleSetTextEnterByX(self, ele, varXpath, varValue, t=1):
+        # 元素再定位后输入和提交
+
+        ele.find_element(*(By.XPATH, varXpath)).clear()
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+        sleep(t)
+
+    def eleSetTextBackspaceEnterByX(self, ele, varXpath, varN, varValue, t=3):
+        # 元素再定位后输入和提交
+        for i in range(varN):
+            ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        # ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.CONTROL, 'a')
+        # ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.CONTROL, 'x')
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+        sleep(t)
+
+
     def eleSetTextClkByXByX(self, ele, varXpath, varValue, varXpath2, t=1):
         # 元素再定位后输入和提交
         ele.find_element(*(By.XPATH, varXpath)).clear()
@@ -596,10 +627,18 @@ class DomPO(object):
     def eleDoubleClkByX(self, ele, varXpath, t=2):
         # 定位元素后，上下滚动
         # step 负数向上滚动，正数向下滚动
-        sleep(t)
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.double_click(ele2).perform()
+        sleep(t)
+
+    def eleCtrlAByX(self, ele, varXpath, t=2):
+        # 定位元素后，上下滚动
+        # step 负数向上滚动，正数向下滚动
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        ele2.click()
+        actions = ActionChains(self.driver)
+        actions.key_down(ele2, "Control").send_keys('a').key_up('Control').perform()
         sleep(t)
 
     def eleScrollUpDownByX(self, ele, varXpath, varStep, t=2):
@@ -655,6 +694,12 @@ class DomPO(object):
             sleep(1)
             if self.isEleExistByX(varXpath2):
                 break
+        sleep(t)
+
+    def eleScrollKeysEndByX(self, ele, varXpath, t=2):
+        # 键盘keys.End滚动到底部
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
         sleep(t)
 
 
@@ -962,6 +1007,19 @@ class DomPO(object):
 
 
     # todo True or False
+
+
+
+    def eleIsEleExistByX(self, ele, varXpath):
+        # 判断元素是否存在
+        flag = False
+        try:
+            ele.find_element(*(By.XPATH, varXpath))
+            flag = True
+        except:
+            flag = False
+        return flag
+
 
     def isEleExistByX(self, varXpath):
         # 判断元素是否存在
