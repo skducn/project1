@@ -875,6 +875,43 @@ class DomPO(object):
 
 
 
+
+    def scrollKeysEndByXs2(self, varValue, varXpaths, varXpath2):
+        # 每滚动一次（到底部）返回字典的值
+        # self.Web_PO.scrollKeysEndByXs2("45%", "//div[@class='van-picker-column']/ul/li", "//div[@class='van-picker-column']")
+        l_2 = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_ = self.getTextByXs(varXpath2)
+            ActionChains(self.driver).send_keys_to_element(a, Keys.END).perform()
+            # print(l_)
+            l_1 = l_[0].split("\n")
+            for i in l_1:
+                l_2.append(i)
+            # print(l_2)
+            # 去重
+            l_3 = sorted(set(l_2), key=l_2.index)
+            # print(l_3)
+            # 成字典
+            d_ = {v: k for k, v in dict(enumerate(l_3,start=1)).items()}
+            # print(d_)
+            if varValue in l_[0]:
+                return d_[varValue]
+
+
+    def scrollKeysEndByXs(self, varXpaths, t=2):
+        # 遍历滚动到底部
+        # self.Web_PO.scrollKeysEndByXs("//div[@class='van-picker-column']/ul/li")
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            ActionChains(self.driver).send_keys_to_element(a, Keys.END).perform()
+        sleep(t)
+
+    def scrollKeysEndByX(self, varXpath, t=2):
+        # 一次性滚动到底部
+        # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
+        ele = self.find_element(*(By.XPATH, varXpath))
+        ActionChains(self.driver).send_keys_to_element(ele, Keys.END).perform()
+        sleep(t)
+
     def scrollKeysEndByXByX(self, varXpath, varCount, varXpath2, t=2):
         # 键盘keys.End滚动到底部
         # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出

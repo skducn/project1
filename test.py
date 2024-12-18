@@ -9,14 +9,23 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-d = {'讲者': 1, '主席': 2, '点评者': 3, '组织者': 4, '参与者': 5}
-print(list(d.keys()))
-a = list(d.keys())
-a.remove('主席')
-print(a)
+def deduplication(varList):
+    # 5.5 列表元素去重
 
-# print(d['222'])
-print(d.get('主席'))
+    return sorted(set(varList), key=varList.index)
+
+d = ['30%', '35%', '40%', '30%', '35%', '40%', '30%', '35%', '40%', '30%', '35%', '40%', '45%', '35%', '40%', '45%', '50%', '55%', '45%', '50%', '55%', '60%', '45%', '50%', '55%', '60%', '65%', '50%', '55%', '60%', '65%', '55%', '60%', '65%', '70%']
+
+print(deduplication(d))
+
+
+# print(list(d.keys()))
+# # a = list(d.keys())
+# a.remove('主席')
+# print(a)
+#
+# # print(d['222'])
+# print(d.get('主席'))
 # a = ['医院\n金泽社区\n科室\n检验科\n会议类型\n会议计划时间\n实际会议时间\n请注意实际会议时间提交后不可调整\n实际劳务费用\n元\n实际餐费\n元\n场地费\n元\n会中执行清单\n已勾选0项目\n实际参会者\n实际参会者共0人\n计划参会者\n新增参会者']
 # a = a[0].split("\n")
 # print(a)

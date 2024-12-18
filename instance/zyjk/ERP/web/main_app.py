@@ -71,7 +71,19 @@ ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06/徐汇07【代表�
 # ErpApp_PO.Web_PO.scrollBottom(5)
 
 # # todo 客户管理
-# ErpApp_PO.customer()
+ErpApp_PO.Web_PO.scrollBottom()
+ErpApp_PO.Web_PO.clkByX("//a[@href='#/customer?title=%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86']")
+# ErpApp_PO.set_customer_info({"搜索": "尚巧兰", "性别": "女", "所属医院": "曹路社区", "科室": "体检中心", "职称": "主治医师", "客户类型": "医生", "职务": "主任", "每日病例更新医生": "是"})
+
+# ErpApp_PO.set_customer_case({"搜索": "卓德华", "病例数": "12", "是否有凭证": "是"})
+
+ErpApp_PO.set_customer_potential({"搜索": "浩", "产品": "氨叶", "门诊天数": "12", "单次门诊量": "34", "高血压患者比例": "30%",
+                                  "负责床位数": "12", "门诊复诊周期": "6", "月度床位周转次数": "4", "月高血压患者比例": "65%", "出院随访周期": "8",
+                                  "竞品1": "菲尼定-10mg*14", "竞品2": "新亚富舒-10mg*28", "竞品3": "复代文-12.5mg*7"})
+
+# ErpApp_PO.set_customer_address()
+
+
 # ErpApp_PO.Web_PO.scrollBottom(5)
 #
 # # todo 拜访管理
@@ -83,8 +95,8 @@ ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06/徐汇07【代表�
 # ErpApp_PO.Web_PO.scrollBottom(5)
 #
 # # todo 会议管理
-ErpApp_PO.Web_PO.scrollBottom()
-ErpApp_PO.Web_PO.clkByX("//a[@href='#/meeting']", 2)
+# ErpApp_PO.Web_PO.scrollBottom()
+# ErpApp_PO.Web_PO.clkByX("//a[@href='#/meeting']", 2)
 
 # 获取会议详情
 # d_data = ErpApp_PO.get_meeting_info({"搜索": "新江湾"})
@@ -110,10 +122,11 @@ ErpApp_PO.Web_PO.clkByX("//a[@href='#/meeting']", 2)
 #                                          })
 
 # 编辑反馈
-d_data = ErpApp_PO.set_meeting_edit({"搜索": "川沙社区", "选择": ["儿科", "检验科", "城市会"], "实际会议时间": [2024, 12, 16, 16, 51], "实际餐费": 12.34, "场地费": "233.78", "会中执行清单":["拍照", "准备餐食"],
-                                 "计划参会者": [{"参与者": "刘文斌", "角色": ["主席", "参与者"], "实际劳务费": 33, "产品观念": {1: "反对", 2: "同意", 7: "同意"}, "会后跟进": "是"}
-                                     , {"参与者": "周丽娟", "角色": ["点评者", "讲者"], "实际劳务费": 44, "产品观念": {3: "反对", 4: "同意", 5: "同意"}, "会后跟进": "否"}]
-                                         })
+# bug：产品观念里设计缺陷，导致无法编辑，要么全部必填或改成checkbox支持反勾选。
+# d_data = ErpApp_PO.set_meeting_edit({"搜索": "川沙社区", "选择": ["儿科", "检验科", "城市会"], "实际会议时间": [2024, 12, 16, 16, 51], "实际餐费": 12.34, "场地费": "233.78", "会中执行清单":["拍照", "准备餐食"],
+#                                  "计划参会者": [{"参与者": "刘文斌", "角色": ["主席", "参与者"], "实际劳务费": 33.09, "产品观念": {1: "反对", 2: "同意", 7: "同意"}, "会后跟进": "是"}
+#                                      , {"参与者": "周丽娟", "角色": ["点评者", "讲者"], "实际劳务费": 44.10, "产品观念": {3: "反对", 4: "同意", 5: "同意"}, "会后跟进": "否"}]
+#                                          })
 
 # # todo 产品开发
 # ErpApp_PO.Web_PO.scrollBottom()
