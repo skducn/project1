@@ -71,24 +71,31 @@ ErpApp_PO.login(url, "xuewei", "Zy123456", "浦东01/闵行06/徐汇07【代表�
 # ErpApp_PO.Web_PO.scrollBottom(5)
 
 # # todo 客户管理
-ErpApp_PO.Web_PO.scrollBottom()
-ErpApp_PO.Web_PO.clkByX("//a[@href='#/customer?title=%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86']")
+# ErpApp_PO.Web_PO.scrollBottom()
+# ErpApp_PO.Web_PO.clkByX("//a[@href='#/customer?title=%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86']")
 # ErpApp_PO.set_customer_info({"搜索": "尚巧兰", "性别": "女", "所属医院": "曹路社区", "科室": "体检中心", "职称": "主治医师", "客户类型": "医生", "职务": "主任", "每日病例更新医生": "是"})
 
 # ErpApp_PO.set_customer_case({"搜索": "卓德华", "病例数": "12", "是否有凭证": "是"})
 
-ErpApp_PO.set_customer_potential({"搜索": "浩", "产品": "氨叶", "门诊天数": "12", "单次门诊量": "34", "高血压患者比例": "30%",
-                                  "负责床位数": "12", "门诊复诊周期": "6", "月度床位周转次数": "4", "月高血压患者比例": "65%", "出院随访周期": "8",
-                                  "竞品1": "菲尼定-10mg*14", "竞品2": "新亚富舒-10mg*28", "竞品3": "复代文-12.5mg*7"})
+# ErpApp_PO.set_customer_potential({"搜索": "浩", "产品": "氨叶", "门诊天数": "12", "单次门诊量": "34", "高血压患者比例": "30%",
+#                                   "负责床位数": "12", "门诊复诊周期": "6", "月度床位周转次数": "4", "月高血压患者比例": "65%", "出院随访周期": "8",
+#                                   "竞品1": "菲尼定-10mg*14", "竞品2": "新亚富舒-10mg*28", "竞品3": "复代文-12.5mg*7"})
 
-# ErpApp_PO.set_customer_address()
+# ErpApp_PO.set_customer_address({"搜索": "袁邵美", "联系方式": "13812123344", "地址信息": ["上海", "广西", "北京"]})
 
 
-# ErpApp_PO.Web_PO.scrollBottom(5)
+
 #
 # # todo 拜访管理
-# ErpApp_PO.visit()
-# ErpApp_PO.Web_PO.scrollBottom(5)
+ErpApp_PO.Web_PO.scrollBottom()
+ErpApp_PO.Web_PO.clkByX("//a[@href='#/visit']")
+ErpApp_PO.set_visit_new({"创建拜访": "创建计划拜访", "医院": "曹路社区", "客户": "杨振燕", "产品": "氨叶",
+                         "拜访类型": {"销售": "评估与跟进", "市6场": {"会议": "", "会前准备内容": "告知会议时间、地点、主题及客户人选"},
+                                  "竞品信息收集": "是"},"客户关系": "4级", "产品观念": {3: "反对", 4: "同意", 13: "同意"}, "拜访性质": "路访",
+                         "拜访计划时间": [2024, 12, 1, '上午', 12, 30]})
+
+
+
 #
 # # todo 协防管理
 # ErpApp_PO.withVisit()

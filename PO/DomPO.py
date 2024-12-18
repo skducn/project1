@@ -892,8 +892,8 @@ class DomPO(object):
             l_3 = sorted(set(l_2), key=l_2.index)
             # print(l_3)
             # 成字典
-            d_ = {v: k for k, v in dict(enumerate(l_3,start=1)).items()}
-            # print(d_)
+            d_ = {v: k for k, v in dict(enumerate(l_3, start=1)).items()}
+            print(d_)
             if varValue in l_[0]:
                 return d_[varValue]
 

@@ -912,19 +912,232 @@ class ErpAppPO(object):
         # 返回列表
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[11]/div/div/div[4]/div[2]")
 
-    def customer(self):
-        self.Web_PO.clkByX("//a[@href='#/customer?title=%E5%AE%A2%E6%88%B7%E7%AE%A1%E7%90%86']")
+    def set_customer_address(self, d_expected):
 
-        # 返回
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
+        # 客户管理 - 地址信息
+
+        # 搜索
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[4]/div[1]/div[1]/div[2]/div/div/div[2]/div/input",d_expected['搜索'])
+        # 地址信息
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/div[3]/div/div/div[1]/div[1]/div[3]/button[4]")
+        # 联系方式
+        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[5]/div/div[2]/div/input", d_expected['联系方式'])
+
+        # # 地址信息1
+        if "地址信息" in d_expected.keys():
+            if self.Web_PO.isEleExistByX("//div[@class='addressInfo']/div"):
+                varQty = self.Web_PO.getQtyByXs("//div[@class='addressInfo']/div")
+                if int(varQty) > 1:
+                    # 原来有地址，且大于1个，删除所有并保留1个
+                    for i in range(varQty-1):
+                        self.Web_PO.clkByX("//div[@class='addressInfo']/div[1]/i")
+                    # 更新地址
+                    if len(d_expected['地址信息']) == 1:
+                        # 更新1个地址
+                        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                    elif len(d_expected['地址信息']) > 1:
+                        # 更新多个地址
+                        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                        d_expected['地址信息'].pop(0)
+                        # print(d_expected['地址信息'])
+                        for i in range(len(d_expected['地址信息'])):
+                            # 客户地址 +
+                            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
+                            self.Web_PO.setTextTabByX(
+                                "/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div[" + str(i+2) + "]/div/div[2]/div/input",
+                                d_expected['地址信息'][0])
+            else:
+                # 原来没有地址
+                # 新增地址
+                if len(d_expected['地址信息']) == 1:
+                    # 新增1个地址
+                    # 客户地址 +
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
+                    self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                elif len(d_expected['地址信息']) > 1:
+                    # 新增多个地址
+                    # 客户地址 +
+                    self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
+                    self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                    d_expected['地址信息'].pop(0)
+                    # print(d_expected['地址信息'])
+                    for i in range(len(d_expected['地址信息'])):
+                        # 客户地址 +
+                        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
+                        self.Web_PO.setTextTabByX(
+                            "/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div[" + str(i+2) + "]/div/div[2]/div/input",
+                            d_expected['地址信息'][0])
+
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[8]/button[2]")
 
 
     # todo 拜访管理
-    def visit(self):
-        self.Web_PO.clkByX("//a[@href='#/visit']")
 
-        # 返回
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
+    def _common_dateTime__get2(self):
+        # 拜访计划时间
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[11]/div[2]/div/input")
+        # 获取年月日
+        ele = self.Web_PO.getUpEleByX("//div[text()='选择拜访计划时间']")
+        l_1 = []
+        l_1.append(self.Web_PO.eleGetTextByX(ele, ".//div[2]/div/div[1]/div[2]/div[1]/ul/li[1]/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, ".//div[2]/div/div[1]/div[2]/div[2]/ul/li[1]/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, ".//div[2]/div/div[1]/div[2]/div[3]/ul/li[1]/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, ".//div[2]/div/div[2]/div[2]/div[1]/ul/li[1]/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, ".//div[2]/div/div[3]/div[2]/div[1]/ul/li[1]/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, ".//div[2]/div/div[3]/div[2]/div[2]/ul/li[1]/div"))
+        print("日期 => ", l_1)
+        l_getModuleDate = []
+        for i in l_1:
+            i = i.replace("年", "").replace("月", "").replace("日", "").replace("点", "").replace("分", "")
+            l_getModuleDate.append(i)
+        print("l_getModuleDate =>", l_getModuleDate)
+        self.Web_PO.eleClkByX(ele, ".//div[3]/button[2]")
+        return (ele, l_getModuleDate)
+    def set_visit_new(self, d_expected):
+
+        # 拜访管理
+
+        # 创建拜访计划
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[5]/button")
+
+        # 创建拜访
+        ele = self.Web_PO.getUpEleByX("//div[text()='请选择拜访创建性质']")
+        l_ = self.Web_PO.eleGetTextByXs(ele, ".//span")
+        d_ = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
+        # print(d_)  # {'创建计划拜访': 1, '创建临时拜访': 2, '创建非工作日拜访': 3, '': 4}
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[7]/div[2]/div/div[2]/div/div[" + str(d_[d_expected['创建拜访']]) + "]/div[2]/div")
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[7]/div[3]/button[2]")
+
+        # # 创建拜访计划
+        # # 医院
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[2]/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['医院'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[3]/div[1]/div")
+        #
+        # # 客户
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[3]/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[4]/div[1]/div[1]/div/div/div/div[2]/div/input", d_expected['客户'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/div[3]/div/div/div[1]/div")
+        #
+        # # 产品
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[6]/div[2]/div/input")
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[1]/div/div[3]/div[1]/div/div/div/div/div[2]/div/input", d_expected['产品'])
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[3]/div")
+
+
+        # # 拜访类型
+        # # 销售
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[1]/div[2]/div/input")
+        # ele = self.Web_PO.getSuperEleByX("//span[text()='要求试用']", "../../..")
+        # l_ = self.Web_PO.eleGetTextByXs(ele, ".//span")
+        # d_ = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
+        # print(d_) # {'要求试用': 1, '要求增加患者数': 2, '评估与跟进': 3}
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[2]/div[1]/div/div[2]/div/div/div[" + str(d_[d_expected['拜访类型']['销售']]) + "]/div[2]/div")
+        #
+        # # 市6场
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[1]/div/div[2]")
+        # # 1/2会议
+        # # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[2]/div[2]/div/div[2]/div[2]/div/input")
+        # # 2/2会前准备内容
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[2]/div[2]/div/div[4]/div[2]/div/input")
+        # self.Web_PO.scrollKeysEndByX("//div[@class='van-picker-column']/ul")
+        # ele = self.Web_PO.getUpEleByX("//div[text()='会前准备内容']")
+        # l_ = self.Web_PO.eleGetTextByXs(ele, ".//li")
+        # d_ = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
+        # print(d_)  # {'告知会议时间、地点、主题及客户人选': 1, '了解产品观念': 2, '收集异议': 3}
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[8]/div/div/div[2]/div/div[2]/div[1]/ul/li[" + str(d_[d_expected['拜访类型']['市6场']['会前准备内容']]) + "]")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[8]/div/div/div[3]/button[2]")
+        #
+        # # 开发
+        # # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[1]/div/div[3]")
+        #
+        # # 竞品信息
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[1]/div/div[4]")
+        # if d_expected['拜访类型']['竞品信息收集'] == "是":
+        #     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[2]/div[4]/div/div[2]/div/div/div/div[2]/div")
+        #
+        # # 确定
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[3]/div[2]")
+        #
+
+
+        # 客户关系
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[8]/div[2]/div/input")
+        # ele = self.Web_PO.getSuperEleByX("//span[text()='选项']", "../..")
+        # l_ = self.Web_PO.eleGetTextByXs(ele, ".//span")
+        # l_.remove("选项")
+        # l_.remove("操作")
+        # # print(l_)
+        # d_ = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
+        # print(d_)
+        # for k, v in d_.items():
+        #     if d_expected['客户关系'] in k:
+        #         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[7]/div/div/div[2]/div[2]/div/div/div[" + str(v) + "]/div[2]")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[7]/div/div/div[3]/div[2]") # 确定
+
+        # 产品观念
+
+        # # 调整(产品观念)
+        # if d_expected['产品观念'] != "":
+        #     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[9]/div[2]/div/input")
+        #     # 定位 - 产品观念下的同意
+        #     ele = self.Web_PO.getSuperEleByX("//span[text()='同意']", "../../../..")
+        #     for k1, v1 in d_expected['产品观念'].items():
+        #         if v1 == '反对':
+        #             if self.Web_PO.eleIsEleExistByX(ele, ".//div[2]/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[2]/div"):
+        #                 self.Web_PO.eleScrollViewByX(ele, ".//div[2]/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[2]/div")
+        #                 self.Web_PO.eleClkByX(ele, ".//div[2]/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[2]/div")
+        #         elif v1 == '同意':
+        #             if self.Web_PO.eleIsEleExistByX(ele, ".//div[2]/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[1]/div"):
+        #                 self.Web_PO.eleScrollViewByX(ele, ".//div[2]/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[1]/div")
+        #                 self.Web_PO.eleClkByX(ele, ".//div[2]/div[2]/div[" + str(k1) + "]/div/div/div[2]/div[1]/div")
+        #     self.Web_PO.eleClkByX(ele, ".//div[3]/div[2]")  # 确认
+
+
+        # # 拜访性质
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[10]/div[2]/div/input")
+        # self.Web_PO.scrollKeysEndByX("//div[@class='van-picker-column']/ul")
+        # ele = self.Web_PO.getUpEleByX("//div[text()=' 拜访性质 ']")
+        # l_ = self.Web_PO.eleGetTextByXs(ele, ".//li")
+        # d_ = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
+        # # print(d_)  # {'院访': 1, '家访': 2, '路访': 3}
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div[3]/div/div[1]/ul/li[" + str(d_[d_expected['拜访性质']]) + "]")
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div[4]/button[2]")
+
+
+
+        for i in range(len(l_getModuleDate)):
+            # 获取组件年月日
+            ele, l_getModuleDate = self._common_dateTime__get2()
+            # 获取预期值与组件值之步长并校验比对年月日
+            self._common_dateTime__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]),
+                                          d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1,
+                                          varXpathConfirm)
+
+        # def _common_dateTime__verify(self, ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc, varXpathConfirm):
+        # if i_expected != i_getModuleDate:
+        #     # self.Web_PO.clkByX(varXpathIn)
+        #     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[11]/div[2]/div/input")
+        #
+        #     if i_expected > i_getModuleDate:
+        #         var_ = (i_expected - i_getModuleDate) * -20
+        #     else:
+        #         var_ = (i_getModuleDate - i_expected) * 20
+        #     self.Web_PO.eleScrollUpDownByX(ele, self._common_dateTime__xpath(varXpathDiv, varLoc), var_)
+        #     s_getModuleDate = self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, varLoc))
+        #     if self.Str_PO.isContainChinese(s_getModuleDate):
+        #         i_getModuleDate = int(s_getModuleDate[:-1])
+        #     else:
+        #         i_getModuleDate = int(s_getModuleDate)
+        #     # self.Web_PO.eleClkByX(ele, varXpathConfirm)
+        #     self.Web_PO.eleClkByX(ele, ".//div[3]/button[2]")
+        #     return self._common_dateTime__verify(ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc,
+        #                                          varXpathConfirm)
+
+
+
+        # /html/body/div[1]/div/div[1]/div/div[6]/div/div/div[2]/div[2]/div[1]/div/div[2]/div/div/div[2]/div[2]/div
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[6]/div/div/div[3]/div[2]")  # 确定
 
 
     # todo 拜访管理
@@ -1005,9 +1218,6 @@ class ErpAppPO(object):
 
     def _common_dateTime__xpath(self, varXpathDiv, varDiv):
         return varXpathDiv + "/div[" + str(varDiv) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"
-    # /html/body/div[1]/div/div[1]/div/div[6]/div
-    #
-    # /div[2]/div[2]/div[1]/ul/li[van-picker-column__item van-picker-column__item--selected]/div
     def _common_dateTime__verify(self, ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc, varXpathConfirm):
         if i_expected != i_getModuleDate:
             self.Web_PO.clkByX(varXpathIn)
@@ -1030,8 +1240,6 @@ class ErpAppPO(object):
         # 获取年月日
         self.Web_PO.clkByX(varXpathIn, 2)
         ele = self.Web_PO.getUpEleByX("//div[text()='" + str(varTitle) + "']")
-
-        # ele = self.Web_PO.getUpEleByX(varTitle)
         l_1 = []
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 1)))
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 2)))
@@ -1048,13 +1256,12 @@ class ErpAppPO(object):
     def _common_dateTime(self, d_expected, varField, varTitle, varXpathDiv, varXpathConfirm):
 
         # 选择年月日时分（公共封装）
-        # 如：药事会实际召开时间
+        # 如：产品开发 - 开发跟进 - 药事会实际召开时间
 
         # 开发跟进信息
         ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
-        l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
-        dd_ = dict(enumerate(l_field, start=1))
-        d_field = {v: k for k, v in dd_.items()}
+        l_ = self.Web_PO.eleGetTextByXs(ele, ".//span")
+        d_field = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
         ele2 = self.Web_PO.getSuperEleByX("//span[text=()='" + str(varField) + "']", "../..")
         l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
 
