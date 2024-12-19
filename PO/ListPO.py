@@ -30,6 +30,7 @@ todo：【操作元素】
 from iteration_utilities import deepflatten
 print(list(deepflatten([[1,2,3],[4,[5],[6,7]],[8,[9,[10]]]], depth=3)))  # [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  //多层递归
 print([i for sublist in [[1,2,3],[3]] for i in sublist])  # [1, 2, 3, 3]  # 一层递归
+2.9 获取列表中指定元素的后一个元素 getNextEle(l_, varValue)
 
 todo：【比较】
 3.1 删除两列表交集元素 print(List_PO.delIntersection(['01', '02', '03'], ['02', '05']))  # (['01', '03'], ['05'])
@@ -95,6 +96,9 @@ class ListPO:
 
     def __init__(self):
         pass
+
+
+
 
     """[转换]"""
 
@@ -229,6 +233,13 @@ class ListPO:
         相加结果列表。如果两个列表长度不一致或元素类型不一致，则返回None。
         """
         return [i + j for i, j in zip(varList1, varList2)]
+
+    def getNextEle(self, l_, varValue):
+
+        # 2.9 获取列表中指定元素的后一个元素
+        for i in range(len(l_)):
+            if l_[i] == varValue:
+                return l_[i + 1]
 
 
     """[比较]"""

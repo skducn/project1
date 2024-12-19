@@ -31,8 +31,6 @@ class ErpPO(object):
         # self.Dom_PO = DomPO()
 
 
-
-
     def login(self, varURL, varUser, varPass):
         self.Web_PO = WebPO("chrome")
         # self.Web_PO.driver.set_window_size(1366,768)  # 按分辨率1366*768打开

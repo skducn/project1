@@ -11,6 +11,10 @@ from captcha.image import ImageCaptcha
 import matplotlib.pyplot as plt
 import numpy as np
 
+from PIL import Image
+import pytesseract
+
+
 '''
 1，生成验证码图片 genCaptcha()
 2，获取验证码 getCaptchaByDdddOcr()
@@ -58,7 +62,16 @@ if __name__ == "__main__":
     Captcha_PO = CaptchaPO()
 
     # 生成验证码
-    Captcha_PO.genCaptcha("./data/1.jpg")
+    # Captcha_PO.genCaptcha("./data/1.jpg")
+    # Captcha_PO.genCaptcha("./data/base64.png")
 
     # 获取验证码
-    print(Captcha_PO.getCaptchaByDdddOcr("./data/1.jpg"))
+    # print(Captcha_PO.getCaptchaByDdddOcr("./data/1.jpg"))
+    # print(Captcha_PO.getCaptchaByDdddOcr("./data/base64.png"))
+
+
+    #上面都是导包，只需要下面这一行就能实现图片文字识别
+    # text = pytesseract.image_to_string(Image.open('E:\example4.jpg',),lang='chi_sim')#设置为中文文字的识别
+    # text = pytesseract.image_to_string(Image.open('/Users/linghuchong/Downloads/51/Python/project/PO/data/base64.png'),lang='eng') # 设置为英文或阿拉伯数字的识别
+    text = pytesseract.image_to_string(Image.open('/Users/linghuchong/Downloads/51/Python/project/PO/data/base64.png',),lang='chi_sim') # 设置为英文或阿拉伯数字的识别
+    print (text)

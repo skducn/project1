@@ -1,0 +1,20 @@
+python308
+
+解释器：/Users/linghuchong/miniconda3/envs/py308/bin/python
+
+切换到308
+conda activate py308
+
+# 安装包路径
+/Users/linghuchong/miniconda3/envs/py308/lib/python3.8/site-packages
+
+# 解决：pytesseract.pytesseract.TesseractNotFoundError: tesseract is not installed or it's not in your path
+配置pytesseract模块
+1，pytesseract安装包路径：/Users/linghuchong/miniconda3/envs/py308/lib/python3.8/site-packages/pytesseract
+2, 配置 pytesseract.py ，将 tesseract_cmd = 'tesseract' 改为：
+tesseract_cmd = '/usr/local/Cellar/tesseract/5.4.1/bin/tesseract'
+
+3 配置tessdata环境变量
+sudo vi ~/.bash_profile
+export TESSDATA_PREFIX=/usr/local/share/tessdata
+重启电脑才会生效。

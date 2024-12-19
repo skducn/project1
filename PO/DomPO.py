@@ -349,13 +349,13 @@ class DomPO(object):
             l_.append(a.text)
         return l_
 
-    def EleGetLabelQtyByX(self, ele, varXpaths, varAttr):
-        # 获取属性值的索引号
-        # 如：getIndexByAttrByXs("//a","href","http://www.baidu.com")
-        index = 0
+    def eleGetQtyByXs(self, ele, varXpaths):
+        # 获取标签数量
+        # 如：eleGetQtyByXs(ele, "//ul/li")
+        varQty = 0
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
-            index = index + 1
-        return index
+            varQty = varQty + 1
+        return varQty
 
     def getIndexByXs(self, varXpaths, varText):
         # 获取文本的索引号
@@ -1230,3 +1230,10 @@ class DomPO(object):
         js = "document.body.style.zoom='" + str(percent) + "%'"
         self.driver.execute_script(js)
 
+
+
+    def canvas2base64(self, varXpath):
+        # canvas元素转base64图片
+        canvas = self.find_element(*(By.XPATH, varXpath))
+        data_url = self.driver.execute_script("return arguments[0].toDataURL('image/png');", canvas)
+        return data_url

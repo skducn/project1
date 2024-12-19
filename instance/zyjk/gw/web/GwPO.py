@@ -78,6 +78,7 @@ class GwPO():
     def login(self, varUrl, varUser, varPass):
         # 登录
         Web_PO.openURL(varUrl)
+        Web_PO.driver.maximize_window()  # 全屏
         Web_PO.setTextByX("//input[@placeholder='请输入用户名']", varUser)
         Web_PO.setTextByX("//input[@placeholder='输入密码']", varPass)
         Web_PO.clkByX("//button[@type='button']", 1)
@@ -122,11 +123,11 @@ class GwPO():
 
         # 获取二级菜单名
         Web_PO.clsDisplayByTagName("ul", varLabelCount)  # 展开所有二级菜单（去掉display：none）
-        l_menu2 = Web_PO.getTextListByX("//ul/div/a/li/span[2]")
+        l_menu2 = Web_PO.getTextByXs("//ul/div/a/li/span[2]")
         # print(l_menu2)  # ['健康档案概况', '个人健康档案', '家庭健康档案', ...
 
         # 获取二级菜单链接
-        l_menu2Url = Web_PO.getAttrValueListByX("//a", "href")
+        l_menu2Url = Web_PO.getAttrValueByXs("//a", "href")
         # print(l_menu2Url) # ['http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex', 'http://192.168.0.203:30080/#/phs/HealthRecord/Personal', ...
 
         # 生成字典{菜单：URL}
@@ -139,7 +140,7 @@ class GwPO():
 
         '''格式化一级菜单'''
 
-        l_menu = Web_PO.getTextListByX("//li")
+        l_menu = Web_PO.getTextByXs("//li")
         # 去掉''
         l_menu = [i for i in l_menu if i != '']  # ['首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
 
@@ -171,7 +172,7 @@ class GwPO():
         Web_PO.clkByX('//*[@id="topmenu-container"]/li[' + str(d_menu1[varMenuName]) + ']', 2)
 
         # 获取二级菜单
-        l_menu2 = Web_PO.getTextListByX("//li")
+        l_menu2 = Web_PO.getTextByXs("//li")
 
         # 去掉''
         l_menu2 = [i for i in l_menu2 if i != '']
@@ -313,7 +314,7 @@ class GwPO():
         # 点击姓名
         Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[2]/div/span" ,2)
 
-        # l_result = Web_PO.getTextListByX("//td/div")
+        # l_result = Web_PO.getTextByXs("//td/div")
         # l_result = [i for i in l_result if i != '']
         # print(l_result)  # ['37068500200200014', '6月26日测试', '60\n高\n脂', '女',...
 
@@ -321,7 +322,7 @@ class GwPO():
 
         # 已建专项
 
-        l_disease = Web_PO.getTextListByX("//button/span")
+        l_disease = Web_PO.getTextByXs("//button/span")
         # print(l_disease)
         for i in range(len(l_disease)):
             if l_disease[i] == varDisease:
@@ -350,7 +351,7 @@ class GwPO():
         # 高血压患者管理卡
 
         # 获取字段名
-        l_div = Web_PO.getTextListByX("//div[@class='table_line']/div")
+        l_div = Web_PO.getTextByXs("//div[@class='table_line']/div")
         # print(l_div)  # ['管理卡号', '信息来源\n健康档案\n首诊测压\n普查\n门诊就诊\n其他', '', '档案编号'...
         l_div.remove('吸烟情况\n吸烟状况\n戒烟开始日期\n开始吸烟年龄\n岁')
         l_div.remove("未服药血压\nmmHg\nmmHg")
@@ -397,7 +398,7 @@ class GwPO():
                     '身份证号码', '居住地址', '身高(cm)', '体重(kg)', '吸烟状况', '戒烟开始日期', '开始吸烟年龄',
                     '开始饮酒年龄', '职业暴露危险因素', '有危害因素的具体职业', '从事职业时长',
                     '毫米汞柱起','毫米汞柱始','确诊日期', '终止管理日期', '终止管理原因', '建卡时间', '建卡医生', '建卡医疗机构']
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
         # print(l_input)
 
         # # 将居住地址6个值（索引5）组成列表
@@ -417,7 +418,7 @@ class GwPO():
         # 糖尿病患者管理卡
 
         # 1，获取所有字段名和checkbox值
-        l_trtd = Web_PO.getTextListByX("//tr/td")
+        l_trtd = Web_PO.getTextByXs("//tr/td")
         l_trtd = [i for i in l_trtd if i != '']
         # print(l_trtd)
 
@@ -433,7 +434,7 @@ class GwPO():
             l_normalfield.remove(ll[i])
         # print(l_normalfield)  # ['档案编号', '姓名', '性别', '出生日期', '身份证号', '职业', '居住地址', '身高(cm)', '体重(kg)', '确诊日期', '终止管理日期', '终止管理原因', '建卡时间', '建卡医生', '建卡医疗机构']
         # 2.2，获取非checkbox值
-        l_normalValue = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_normalValue = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
         # print(l_normalValue)  # ['37068500200200014', '6月26日测试', '女', '1960-01-19'
         # 将居住地址6个值（索引5）组成列表
         l_tmp = []
@@ -480,7 +481,7 @@ class GwPO():
         # 高血脂患者管理卡
 
         # 1，获取所有字段名和checkbox值
-        l_trtd = Web_PO.getTextListByX("//tr/td")
+        l_trtd = Web_PO.getTextByXs("//tr/td")
         l_trtd = [i for i in l_trtd if i != '']
         # print(l_trtd)
 
@@ -496,7 +497,7 @@ class GwPO():
             l_normalfield.remove(ll[i])
         # print(l_normalfield)  # ['档案编号', '姓名', '性别', '出生日期', '身份证号', '职业', '居住地址', '身高(cm)', '体重(kg)', '确诊日期', '终止管理日期', '终止管理原因', '建卡时间', '建卡医生', '建卡医疗机构']
         # 2.2，获取非checkbox值
-        l_normalValue = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_normalValue = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
         # print(l_normalValue)  # ['37068500200200014', '6月26日测试', '女', '1960-01-19'
         # 将居住地址6个值（索引5）组成列表
         l_tmp = []
@@ -539,7 +540,7 @@ class GwPO():
 
     def runUser(self, *varUsername):
 
-        l_username = Web_PO.getTextListByX("//tr/td[1]/div")
+        l_username = Web_PO.getTextByXs("//tr/td[1]/div")
         # print(l_username) # ['零跑', '测试', '黎明', '李永波', '胡军', '张建民', '舒雅有', '赵爽', '陈平安']
 
         if len(varUsername) == 1 and varUsername[0] != 'all':
@@ -557,7 +558,7 @@ class GwPO():
                         Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div/div[1]/div/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr[' + str(i + 1) + ']/td[1]/div', 2)
                         self.residentHealthRecord(l_username[i])
                         # 关闭当前标签
-                        l_a = Web_PO.getAttrValueListByX("//a",'href')
+                        l_a = Web_PO.getAttrValueByXs("//a",'href')
                         # print(l_a)
                         for i in range(len(l_a)):
                             if "http://192.168.0.203:30080/#/phs/personalAddOrUpdate/addOrUpdate" in l_a[i]:
@@ -568,7 +569,7 @@ class GwPO():
                 Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div/div[1]/div/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr[' + str(i + 1) + ']/td[1]/div', 2)
                 self.residentHealthRecord(l_username[i])
                 # 关闭当前标签
-                l_a = Web_PO.getAttrValueListByX("//a", 'href')
+                l_a = Web_PO.getAttrValueByXs("//a", 'href')
                 for i in range(len(l_a)):
                     if "http://192.168.0.203:30080/#/phs/personalAddOrUpdate/addOrUpdate" in l_a[i]:
                         Web_PO.clkByX(
@@ -608,7 +609,7 @@ class GwPO():
         # 居民健康档案
 
         # 1.1 获取字段
-        l_div = Web_PO.getTextListByX("//div[@class='table_line']/div")
+        l_div = Web_PO.getTextByXs("//div[@class='table_line']/div")
         print("1.1 原始l_div => ", l_div)
 
         # 1.2 清洗字段
@@ -708,13 +709,13 @@ class GwPO():
 
         # 3 生成normal字段
         l_field = [i for i in l_div if "\n" not in i]
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
 
         # 当药物过敏史中选择其他药物过敏源时，显示文本域输入框（医疗费用支付方式备注）
         if d_checkbox['药物过敏史']['其他药物过敏源'] == 'True':
             l_field.insert(l_field.index('医疗费用支付方式备注') + 1, '其他药物过敏源备注')
             # 当药物过敏史中选择其他药物过敏源时，显示文本域输入框（医疗费用支付方式备注）
-            l_textarea = Web_PO.getAttrValueListByX("//div/div/div/textarea", 'value')
+            l_textarea = Web_PO.getAttrValueByXs("//div/div/div/textarea", 'value')
             # 在input中23位置插入textarea值
             l_input.insert(23, l_textarea[0])
             print('3.3 l_textarea => ', l_textarea)
@@ -770,7 +771,7 @@ class GwPO():
         Web_PO.swhLabel(1)
 
         # 1.1 获取字段
-        l_div = Web_PO.getTextListByX("//div[@class='table_line']/div")
+        l_div = Web_PO.getTextByXs("//div[@class='table_line']/div")
         # print("1.1 原始l_div => ", l_div)
 
         # 1.2 清洗字段
@@ -870,13 +871,13 @@ class GwPO():
 
         # 3 生成normal字段
         l_field = [i for i in l_div if "\n" not in i]
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
 
         # 当药物过敏史中选择其他药物过敏源时，显示文本域输入框（医疗费用支付方式备注）
         if d_checkbox['药物过敏史']['其他药物过敏源'] == 'True':
             l_field.insert(l_field.index('医疗费用支付方式备注') + 1, '其他药物过敏源备注')
             # 当药物过敏史中选择其他药物过敏源时，显示文本域输入框（医疗费用支付方式备注）
-            l_textarea = Web_PO.getAttrValueListByX("//div/div/div/textarea", 'value')
+            l_textarea = Web_PO.getAttrValueByXs("//div/div/div/textarea", 'value')
             # 在input中23位置插入textarea值
             l_input.insert(23, l_textarea[0])
             print('3.3 l_textarea => ', l_textarea)
@@ -933,7 +934,7 @@ class GwPO():
         Web_PO.swhLabel(1)
 
         # 1.1 获取字段
-        l_div = Web_PO.getTextListByX("//div[@class='table_line']/div")
+        l_div = Web_PO.getTextByXs("//div[@class='table_line']/div")
         print("1.1 原始l_div => ", l_div)
 
         # 1.2 清洗字段
@@ -1033,13 +1034,13 @@ class GwPO():
 
         # 3 生成normal字段
         l_field = [i for i in l_div if "\n" not in i]
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
 
         # 当药物过敏史中选择其他药物过敏源时，显示文本域输入框（医疗费用支付方式备注）
         if d_checkbox['药物过敏史']['其他药物过敏源'] == 'True':
             l_field.insert(l_field.index('医疗费用支付方式备注') + 1, '其他药物过敏源备注')
             # 当药物过敏史中选择其他药物过敏源时，显示文本域输入框（医疗费用支付方式备注）
-            l_textarea = Web_PO.getAttrValueListByX("//div/div/div/textarea", 'value')
+            l_textarea = Web_PO.getAttrValueByXs("//div/div/div/textarea", 'value')
             # 在input中23位置插入textarea值
             l_input.insert(23, l_textarea[0])
             print('3.3 l_textarea => ', l_textarea)
@@ -1094,7 +1095,7 @@ class GwPO():
         Web_PO.swhLabel(1)
 
         # 1.1 获取字段
-        l_div = Web_PO.getTextListByX("//form/div")
+        l_div = Web_PO.getTextByXs("//form/div")
         # print("1.1 原始l_div => ", l_div)
 
         # # 1.2 清洗字段
@@ -1182,7 +1183,7 @@ class GwPO():
 
         # 3 生成normal字段
         l_field = [i for i in l_div if "\n" not in i]
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
         # 选择其他，显示输入框
         if d_checkbox['督导人员选择']['其他'] == 'True':
             l_field.insert(l_field.index('吸烟1'), '督导人员选择其他备注')
@@ -1248,7 +1249,7 @@ class GwPO():
         Web_PO.swhLabel(1)
 
         # 1.1 获取字段
-        # l_div = Web_PO.getTextListByX("//form/div")
+        # l_div = Web_PO.getTextByXs("//form/div")
         # print("1.1 原始l_div => ", l_div)
 
         l_div = ['填表日期','是否高危产妇\n是\n否', '丈夫姓名', '丈夫年龄', '丈夫电话', '孕次', '阴1道分娩', '剖宫产', '末次月经\n不详', '周', '天','预产期',
@@ -1306,7 +1307,7 @@ class GwPO():
         # 3 生成normal字段
         l_field = [i for i in l_div if "\n" not in i]
         # print(l_field)
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
         if d_checkbox['末次月经']['不详'] == 'False':
             l_field.insert(l_field.index('周'), '末次月经日期')
             l_div.insert(l_div.index('周'), '末次月经日期')  # 更新div
@@ -1399,7 +1400,7 @@ class GwPO():
         Web_PO.swhLabel(1)
 
         # 1.1 获取字段
-        l_div = Web_PO.getTextListByX("//form/div")
+        l_div = Web_PO.getTextByXs("//form/div")
         # print("1.1 原始l_div => ", l_div)
 
         # # 1.2 清洗字段
@@ -1479,7 +1480,7 @@ class GwPO():
 
         # 3 生成normal字段
         l_field = [i for i in l_div if "\n" not in i]
-        l_input = Web_PO.getAttrValueListByX("//div/div/div/input", 'value')
+        l_input = Web_PO.getAttrValueByXs("//div/div/div/input", 'value')
         if d_checkbox['既往主要症状']['其他'] == 'True':
             l_field.insert(l_field.index('住院'), '既往主要症状其他备注')
             l_div.insert(l_div.index('住院'), '既往主要症状其他备注')  # 更新div
