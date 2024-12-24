@@ -124,11 +124,69 @@ from PIL import Image, ImageDraw, ImageGrab
 from pytesseract import *
 # from seleniumwire import webdriver
 
+# from lxml import etree
+import lxml.html
+from lxml import etree
+# from lxml.html.clean import Cleaner
+
+from lxml_html_clean import clean_html
+#  pip3 install lxml_html_clean
 
 class DomPO(object):
 
     def __init__(self, driver):
         self.driver = driver
+
+
+    def gettest(self, varUrl):
+
+
+        # cleaned_html = clean_html(raw_html)
+        # cleaner = Cleaner()
+        # cleaner.javascript = True
+        # cleaner.page_structure = False
+        # cleaner.style = True
+
+        # base_url = 'http://xxxxxxxxxx'
+        # 需要提前下载一个网页，并保存为本地文件test.html
+
+        print(varUrl)
+
+        # with open('/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/ERP/web/test.html', 'r', encoding='utf-8') as f:
+        #     html_str = f.read()
+
+# /html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[2]/div/div/div[1]/ul/li[11]/div
+#         self.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span/span[1]")
+
+        # /html/body/div[1]/div/div[1]/div/div[2]/div/div[3]/div[3]/div[2]/div[2]/div[1]
+
+        r = requests.get(varUrl)
+        text = r.content.decode('utf8')
+        # tree = lxml.html.fromstring(text)
+        print(text)
+        sleep(6)
+        tree = etree.HTML(text)
+        sleep(6)
+        print(tree)
+
+        # etree_root = clean_html(tree)
+        # dom_tree = etree.ElementTree(etree_root)
+        # dom_tree = etree.ElementTree(tree)
+        # for e in dom_tree.iter():
+        #     xpath = dom_tree.getpath(e)
+        #     print(xpath)
+
+        # # 解析HTML
+        # # tree = etree.HTML(html_content)
+        #
+        # # 定位元素
+        element = tree.xpath('//div[@class="top-main-list"]')[0]
+        #
+        # # 获取元素的XPath
+        xpath = element.getroottree().getpath(element)
+        print(xpath)  # 输出: /html/body/div/ul/li[1]
+
+
 
     def find_element(self, *loc):
         """重写元素定位"""
@@ -236,10 +294,19 @@ class DomPO(object):
 
     # todo clk
 
+
+
+    def getUrlByclkByX(self, varXpath, t=1):
+        # 单点击，并返回url
+        self.find_element(*(By.XPATH, varXpath)).click()
+        sleep(t)
+        return (self.driver.current_url)
+
     def clkByX(self, varXpath, t=1):
         # 单点击
         self.find_element(*(By.XPATH, varXpath)).click()
         sleep(t)
+
 
     def clkByXs(self, varXpaths, t=1):
         # 多点击

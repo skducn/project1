@@ -21,8 +21,8 @@
 
 3， 将图片转换成二进制或字符串 image2strOrByte()
 """
-
-import sys, smtplib, os, base64, requests, urllib, json, jsonpath, logging1, time
+import urllib
+import sys, smtplib, os, base64, requests, json, jsonpath, logging1, time
 import email.mime.multipart
 import email.mime.text
 from email.mime.text import MIMEText

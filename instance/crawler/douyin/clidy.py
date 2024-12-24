@@ -4,7 +4,10 @@
 # Created on : 2024-7-19
 # Description: 下载抖音视频或音频 for cli
 # json在线解析 https://www.sojson.com/
-# 将抖音detail复制到detail.json, 执行clidy.py mp3|mp5 下载
+
+# 下载方法
+# 1，将抖音detail复制到detail.json, 执行 clidy.py mp3|mp4 下载
+# 2，复制黏贴解析后的地址
 
 # todo Alfred中输入 "dy mp3|mp4 "，执行以下脚本
 # conda activate py308

@@ -202,26 +202,26 @@ class DyPO:
 		ff = varPath + "/" + varTitle + varExtension
 
 		# 写入文件
-		# res = requests.get(varUrlSource)
-		# with open(ff, "wb") as f:
-		# 	f.write(res.content)
+		res = requests.get(varUrlSource)
+		with open(ff, "wb") as f:
+			f.write(res.content)
 
-		res = requests.get(varUrlSource, stream=True)
-		# print(res.status_code)  # 403的下载不了
-		if res.status_code == 200:
-			with open(ff, "wb") as f:
-				for chunk in res.iter_content(chunk_size=8192):
-					if chunk:
-						f.write(chunk)
+		# res = requests.get(varUrlSource, stream=True)
+		# # print(res.status_code)  # 403的下载不了
+		# if res.status_code == 200:
+		# 	with open(ff, "wb") as f:
+		# 		for chunk in res.iter_content(chunk_size=8192):
+		# 			if chunk:
+		# 				f.write(chunk)
 
 
-		print("[已完成] => ", ff)
+		print("[已完成] =>", ff)
 		return varPath
 
 
 	def getDetail(self, varExtension):
 
-		# 通过剪贴板解析视频信息（打开抖音从detail中复制内容到剪贴板）
+		# 通过剪贴板解析视频信息（打开抖音从detail中复制内容到e剪贴板）
 		string = pc.paste()
 		data = json.loads(string)
 
@@ -229,27 +229,35 @@ class DyPO:
 			# 通过detail.json 获取解析视频信息
 			with open('/Users/linghuchong/Downloads/51/Python/project/instance/crawler/douyin/detail.json', 'r', encoding='utf-8-sig') as file:
 				data = json.load(file)
-
-		# https://www.douyin.com/video/7388545761698417920
+		# 7446320045027806474
+		# https://www.douyin.com/video/7446320045027806474
 		# print(data)
 
 		aweme_id = data['aweme_detail']['aweme_id']  # 7388545761698417920
-		# print(aweme_id)  # 7388545761698417920
+		print("[aweme_id] =>", aweme_id)  # 7388545761698417920
 
-		author = data['aweme_detail']['music']['author']
-		print(author)  # 英语
+		# author = data['aweme_detail']['music']['author']
+		# print("目录 =>", author)  # 英语
 
-		caption = data['aweme_detail']['caption']
-		# print(caption)  # 在洗车场的对话，关于养宠物～鹦鹉#英语口语 #练口语 #英语 #听力 #生活英语
-		filename = aweme_id + "，" + caption
+		# caption = data['aweme_detail']['caption']
+		# print("caption =>", caption)  # 在洗车场的对话，关于养宠物～鹦鹉#英语口语 #练口语 #英语 #听力 #生活英语
+
+		item_title = data['aweme_detail']['item_title']
+		print("[item_title] =>", item_title)  # 在洗车场的对话，关于养宠物～鹦鹉#英语口语 #练口语 #英语 #听力 #生活英语
+
+		author = data['aweme_detail']['author']['nickname']
+		print("[目录] =>", author)  # 英语
+
+		filename = aweme_id + "_" + item_title
+		# filename = aweme_id + "_" + caption
 		filename = Str_PO.delSpecialChar(filename)  # 7388545761698417920，在洗车场的对话，关于养宠物～鹦鹉#英语口语#练口语#英语#听力#生活英语
-		print(filename)  # 7388545761698417920，在洗车场的对话，关于养宠物～鹦鹉#英语口语#练口语#英语#听力#生活英语
+		print("[文件名] =>", filename)  # 7388545761698417920，在洗车场的对话，关于养宠物～鹦鹉#英语口语#练口语#英语#听力#生活英语
 
-		url_mp3 = data['aweme_detail']['music']['play_url']['uri']
-		print(url_mp3)  # https://sf5-hl-cdn-tos.douyinstatic.com/obj/ies-music/7388545888857180991.mp3
+		# url_mp3 = data['aweme_detail']['music']['play_url']['uri']
+		# print("mp3 =>", url_mp3)  # https://sf5-hl-cdn-tos.douyinstatic.com/obj/ies-music/7388545888857180991.mp3
 
 		url_mp4 = data['aweme_detail']['video']['download_addr']['url_list'][2]
-		print(url_mp4)  # http://v3-web.douyinvod.com/e253e936b005b9e737ba7e795e08ff96/669a4e6e/video/tos/cn/tos-cn-ve-15/ooAXJUQgNrAFOEWZG49D6ifSfMDMABTI7iImoJ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0%7C0%7C0%7C3&br=695&bt=695&cs=0&ds=2&ft=pEaFx4hZffPdOW~-N12NvAq-antLjrK8CId.RkaypSmpUjVhWL6&mime_type=video_mp4&qs=0&rc=ZDg6aTY4NDwzNjxpODtoM0BpajRpNXc5cjhwdDMzNGkzM0AwNmFgMjQyNjMxLTZiYzA1YSNnbzZeMmQ0MzFgLS1kLWFzcw%3D%3D&btag=c0000e00038000&cquery=100o_100w_100B_100x_100z&dy_q=1721376986&feature_id=aec1901414fcc21744f0443229378a3c&l=20240719161626D25776EE6FED8C064CDA
+		print("[mp4] =>", url_mp4)  # http://v3-web.douyinvod.com/e253e936b005b9e737ba7e795e08ff96/669a4e6e/video/tos/cn/tos-cn-ve-15/ooAXJUQgNrAFOEWZG49D6ifSfMDMABTI7iImoJ/?a=6383&ch=26&cr=3&dr=0&lr=all&cd=0%7C0%7C0%7C3&br=695&bt=695&cs=0&ds=2&ft=pEaFx4hZffPdOW~-N12NvAq-antLjrK8CId.RkaypSmpUjVhWL6&mime_type=video_mp4&qs=0&rc=ZDg6aTY4NDwzNjxpODtoM0BpajRpNXc5cjhwdDMzNGkzM0AwNmFgMjQyNjMxLTZiYzA1YSNnbzZeMmQ0MzFgLS1kLWFzcw%3D%3D&btag=c0000e00038000&cquery=100o_100w_100B_100x_100z&dy_q=1721376986&feature_id=aec1901414fcc21744f0443229378a3c&l=20240719161626D25776EE6FED8C064CDA
 
 		if varExtension == 'mp3':
 			varPath = self.save(author, filename, url_mp3, '.mp3')

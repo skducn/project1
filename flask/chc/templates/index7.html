@@ -94,6 +94,11 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                             {%  else %}
 							    <li role="presentation"><a href="#SC" role="tab" data-toggle="tab">系统配置</a></li>
                             {%  endif  %}
+                            {%  if tabName == 'ERP' %}
+							    <li role="presentation" class="active"><a href="#ERP" role="tab" data-toggle="tab">ERP</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#ERP" role="tab" data-toggle="tab">ERP</a></li>
+                            {%  endif  %}
 						</ul>
 
 						<div class="tab-content">
@@ -703,7 +708,7 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                             </div></div></div></div>
                             <!-- 辅助工具 end  -->
 
-        <!-- 系统配置 -->
+                <!-- 系统配置 -->
 
                             {%  if tabName == '系统配置' %}
                                 <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="SC">
@@ -777,6 +782,43 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                         </div>
                             </div></div></div></div>
                             <!-- 系统配置 end  -->
+
+                <!-- ERP -->
+
+                            {%  if tabName == 'ERP' %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="ERP">
+                            {%  else %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="ERP">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+                                        <a class="r-link ai-element-green ai-element_padding-all ai-element5" href="{{ url_for('erp') }}" target = "_blank"><span class="ai-element__label">今日团队综合排名</span></a>
+
+                                        <div class="tab-content">
+
+                                            <br><br>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="box3">列表清单：
+                                            {{ result_topList | safe }}
+                                            </div>
+                                            </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="box3">团队排名：
+                                            {{ result_team | safe }}
+                                            </div>
+                                            </div>
+                                            </div>
+
+
+                                        </div>
+                            </div></div></div></div>
+                            <!-- ERP end  -->
 
 						</div>
 					</div>

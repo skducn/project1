@@ -5,6 +5,12 @@
 # Description: ERP 对象库
 # *****************************************************************
 
+from ConfigparserPO import *
+Configparser_PO = ConfigparserPO('config.ini')
+
+from PO.MysqlPO import *
+Mysql_PO = MysqlPO(Configparser_PO.DB_SQL("host"), Configparser_PO.DB_SQL("user"), Configparser_PO.DB_SQL("password"), Configparser_PO.DB_SQL("database"),Configparser_PO.DB_SQL("port"))
+
 
 import string, numpy
 from string import digits
@@ -31,13 +37,13 @@ class ErpAppPO(object):
         # self.Dom_PO = DomPO()
 
 
-    def login(self, varURL, varUser, varPass, varPost=None):
+    def login(self, post=Configparser_PO.USER("post")):
         self.Web_PO = WebPO("appChrome")
-        self.Web_PO.openURL(varURL)
-        self.Web_PO.setTextByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/div/input', varUser)
-        self.Web_PO.setTextByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/div[2]/div/input', varPass)
+        self.Web_PO.openURL(Configparser_PO.HTTP("url"))
+        self.Web_PO.setTextByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[1]/div[1]/div[2]/div/input', Configparser_PO.USER("user"))
+        self.Web_PO.setTextByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[1]/div[2]/div/div[2]/div/input', Configparser_PO.USER("password"))
         self.Web_PO.clkByX('/html/body/div[1]/div/div[1]/div/div[2]/form/div[3]/button', 2)
-        if varPost == None:
+        if post == None:
             self.Web_PO.clkByX('/html/body/div[3]/div[2]/div[3]/button[2]', 2)  # 确认
         else:
             self.Web_PO.scrollViewByX("/html/body/div[3]/div[2]/div[3]/button[2]")
@@ -55,7 +61,7 @@ class ErpAppPO(object):
             d_6 = {v:k for k,v in d_5.items()}
             # print(d_6)
 
-            self.Web_PO.clkByX("/html/body/div[3]/div[2]/div[2]/div/div/div[2]/div/div[" + str(d_6[varPost]) + "]")
+            self.Web_PO.clkByX("/html/body/div[3]/div[2]/div[2]/div/div/div[2]/div/div[" + str(d_6[post]) + "]")
             self.Web_PO.clkByX('/html/body/div[3]/div[2]/div[3]/button[2]', 2)  # 确认
 
 
@@ -280,124 +286,149 @@ class ErpAppPO(object):
                 varActual = int(varActual[:-1])
                 self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
 
-    def _topRank_date(self, l_expected):
-
-        # 选择年月日（封装）
-
-        # 默认系统日期
-        l_sysDate = []
-        l_sysDate.append(int(Time_PO.getYear()))
-        l_sysDate.append(int(Time_PO.getMonth()))
-        l_sysDate.append(int(Time_PO.getDay()))
-        print("l_sysDate => ", l_sysDate)  # [2024, 12, 6]
-
-        # 模拟鼠标上下滚动，修改日期
-        l_ = self._scrollUpDown_date(l_expected, l_sysDate)
-        # print(l_)  # (40, 220, 100)
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[1]/div/span[2]/span")
-        self.Web_PO.eleScrollUpDownByX(
-            "//div[@class='van-picker van-datetime-picker']/div/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
-            l_[0])
-        self.Web_PO.eleScrollUpDownByX(
-            "//div[@class='van-picker van-datetime-picker']/div/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
-            l_[1])
-        self.Web_PO.eleScrollUpDownByX(
-            "//div[@class='van-picker van-datetime-picker']/div/div[3]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div",
-            l_[2])
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[5]/div/div/div[3]/button[2]")
-
-        # 获取修改后的日期
-        l_getModuleDate = self._topRank_getDate()
-        print("l_getModuleDate =>", l_getModuleDate)  # [2022, 4, 1]
-
-        # 校验日期
-        self._topRank_verifyDate(l_expected[0], l_getModuleDate[0], 1)
-        self._topRank_verifyDate(l_expected[1], l_getModuleDate[1], 2)
-        self._topRank_verifyDate(l_expected[2], l_getModuleDate[2], 3)
-
-        l_actual = self._topRank_getDate()
-        print("l_actual =>", l_actual)  # [2022, 1, 1]
-
-        if l_expected == l_actual:
-            print(1)
-            return 1
-        else:
-            print(0)
-            return 0
 
 
-    # 今日团队综合排名
-    def topRank(self, l_expected, varOrg):
+    def _common_chkDate(self, ele1, varIn, i_expected, i_actual, ele2, varPrefixal, varOut):
+
+        # 递归校验日期
+        # print(i_expected, i_actual)
+
+        if i_expected != i_actual:
+            self.Web_PO.eleClkByX(ele1, varIn)
+            if i_expected > i_actual:
+                var_ = (i_expected - i_actual) * -20
+            else:
+                var_ = (i_actual - i_expected) * 20
+
+            self.Web_PO.eleScrollUpDownByX(ele2, self._common_date_selected(varPrefixal), var_)
+            varPartDate = self.Web_PO.eleGetTextByX(ele2, self._common_date_selected(varPrefixal))
+            varPartDate = varPartDate.replace("年", "").replace("月", "").replace("日", "").replace("时", "").replace("分", "")
+            i_actual = int(varPartDate)
+            self.Web_PO.eleClkByX(ele2, varOut)
+            return self._common_chkDate(ele1, varIn, i_expected, i_actual, ele2, varPrefixal, varOut)
+
+    def _common_getActualDate(self, ele1, varIn, varLabel, varTitle, l_varSelectedXpath, varOut):
+        # l_actual = self._common_getActualDate(ele1, ".//span[2]/span/span[" + str(d_param[1]) + "]", d_param[2], [".//div[2]/div/div/div[1]", ".//div[2]/div/div/div[2]", ".//div[2]/div/div/div[3]"])
+
+        # 弹框日期格式化
+        l_actual = []
+
+        # 1，点击弹框
+        self.Web_PO.eleClkByX(ele1, varIn)
+
+        # 2，获取弹框对象
+        ele2 = self.Web_PO.getUpEleByX("//" + str(varLabel) + "[text()='" + str(varTitle) + "']")
+
+        # 2，获取实际日期
+        for i in l_varSelectedXpath:
+            varPartDate = self.Web_PO.eleGetTextByX(ele2, self._common_date_selected(i))
+            varPartDate = varPartDate.replace("年", "").replace("月", "").replace("日", "").replace("时", "").replace("分", "")
+            l_actual.append(varPartDate)
+        self.Web_PO.eleClkByX(ele2, varOut)
+        return (ele2, l_actual)
+
+    def _topRank_date(self, d_param):
+
+        # self._topRank_date(["span", "拜访达成统计排名", 1, "div", "选择开始时间", d_param['开始日期']])
+
+        # 1，入口的对象
+        ele1 = self.Web_PO.getUpEleByX("//" + str(d_param[0]) + "[text()='" + str(d_param[1]) + "']")
+
+        # 2 弹框获取实际日期
+        l_actual = self._common_getActualDate(ele1, ".//span[2]/span/span[" + str(d_param[2]) + "]", str(d_param[3]), str(d_param[4]), [".//div[2]/div/div/div[1]", ".//div[2]/div/div/div[2]", ".//div[2]/div/div/div[3]"], "..//div[3]/button[2]")
+
+        # 3，期望值与实际值比对
+        l_expected = d_param[5]
+        if l_expected != l_actual:
+            for i in range(3):
+                # 弹框获取实际日期
+                ele2, l_actual = self._common_getActualDate(ele1, ".//span[2]/span/span[" + str(d_param[2]) + "]", str(d_param[3]), str(d_param[4]), [".//div[2]/div/div/div[1]", ".//div[2]/div/div/div[2]", ".//div[2]/div/div/div[3]"], "..//div[3]/button[2]")
+
+                # 获取预期值与组件值之步长并校验比对年月日
+                self._common_chkDate(ele1, ".//span[2]/span/span[" + str(d_param[2]) + "]", int(l_expected[i]), int(l_actual[i]), ele2, ".//div[2]/div/div/div[" + str(i+1) + "]", "..//div[3]/button[2]")
+
+
+    # todo 今日团队综合排名
+    def topRank(self, d_param):
         # 今日团队综合排名 - Top排名 - 拜访达成统计排名
 
         # 首页点击top排名
         self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[1]/div[2]")
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/div/div[2]/div[2]/div[1]/div[2]")
 
-        # # todo 选择日期
-        if self._topRank_date(l_expected) == 1:
+        # 选择日期
+        self._topRank_date(["span", "拜访达成统计排名", 1, "div", "选择开始时间", d_param['开始日期']])
+        self._topRank_date(["span", "拜访达成统计排名", 2, "div", "选择结束时间", d_param['结束日期']])
 
-            # todo 选择排名
-            s_date = ("-".join(["".join(str(x)) for x in l_expected]))  # 2024-1-1
-            d_team = {}
-            if varOrg == "团队排名":
-                # 点击团队排名
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[1]")
-                l_ = self.Web_PO.getTextByXs("//span")
-                l_2 = self.List_PO.split(l_, "个人排名", 1)
-                l_3 = self.List_PO.dels(l_2, "")
-                l_3 = self.List_PO.dels(l_3, "团队")
-                for i in range(8):
-                    l_3 = self.List_PO.dels(l_3, str(i+3))
-                l_5 = self.List_PO.dels(l_3, "\n", varMode="mohu")
-                l_6 = self.List_PO.group(l_5, 10)
-                # print(l_6)
-                # 获取各指标达成分数
-                l_7 = self.Web_PO.getTextByXs("//div/div[2]/div")
-                c = len(l_7[0].split("指标达成分数")) - 1
-                l_8 = []
-                for i in range(c):
-                    s_8 = l_7[0].split("指标达成分数：")[1+i].split("\n")[0]
-                    l_8.append(s_8)
-                # print(l_8) # ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00']
-                l_9 = []
-                for i in range(len(l_6)):
-                    l_6[i].append('指标达成分数')
-                    l_6[i].append(l_8[i])
-                    l_9.append(self.List_PO.pair2dict(l_6[i]))
-                # print(l_9)  # [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'},...
-                d_team[s_date] = l_9
-                print(d_team)  # {'2014-1-1': [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'}
+        # 点击XX排名
+        d_team = {}
+        if d_param['排名'] == "团队排名":
+            # 点击团队排名
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[1]")
+            l_ = self.Web_PO.getTextByXs("//span")
+            l_2 = self.List_PO.split(l_, "个人排名", 1)
+            l_3 = self.List_PO.dels(l_2, "")
+            l_3 = self.List_PO.dels(l_3, "团队")
+            for i in range(8):
+                l_3 = self.List_PO.dels(l_3, str(i+3))
+            l_5 = self.List_PO.dels(l_3, "\n", varMode="mohu")
+            l_6 = self.List_PO.group(l_5, 10)
+            # print(l_6)
+            # 获取各指标达成分数
+            l_7 = self.Web_PO.getTextByXs("//div/div[2]/div")
+            c = len(l_7[0].split("指标达成分数")) - 1
+            l_8 = []
+            for i in range(c):
+                s_8 = l_7[0].split("指标达成分数：")[1+i].split("\n")[0]
+                l_8.append(s_8)
+            # print(l_8) # ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00']
+            l_9 = []
+            for i in range(len(l_6)):
+                l_6[i].append('指标达成分数')
+                l_6[i].append(l_8[i])
+                l_9.append(self.List_PO.pair2dict(l_6[i]))
+            # print(l_9)  # [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'},...
+            # d_team[s_date] = l_9
+            d_team['开始日期'] = d_param['开始日期']
+            d_team['结束日期'] = d_param['结束日期']
+            d_team['团队排名'] = l_9
+            return (d_team)  # {'开始日期': ['2023', '09', '06'], '结束日期': ['2024', '09', '06'], '团队排名': [{'刘挺团队': '宝山/黄埔/崇明'。。。
 
-            else:
-                # 个人排名
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[2]")
-                sleep(2)
-                l_ = self.Web_PO.getTextByXs("//span")
-                # print(l_)
-                l_2 = self.List_PO.split(l_, "个人排名", 1)
-                l_3 = self.List_PO.dels(l_2, "")
-                for i in range(30):
-                    l_3 = self.List_PO.dels(l_3, str(i+3))
-                l_5 = self.List_PO.dels(l_3, "\n", varMode="mohu")
-                l_6 = self.List_PO.group(l_5, 10)
-                # print(l_6)
-                # # 获取各指标达成分数
-                l_7 = self.Web_PO.getTextByXs("//div/div[2]/div")
-                c = len(l_7[0].split("指标达成分数")) - 1
-                l_8 = []
-                for i in range(c):
-                    s_8 = l_7[0].split("指标达成分数：")[1 + i].split("\n")[0]
-                    l_8.append(s_8)
-                # print(l_8) # ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00']
-                l_9 = []
-                for i in range(len(l_6)):
-                    l_6[i].append('指标达成分数')
-                    l_6[i].append(l_8[i])
-                    l_9.append(self.List_PO.pair2dict(l_6[i]))
-                # print(l_9)  # [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'},...
-                d_team[s_date] = l_9
-                print(d_team)  # {'2014-1-1': [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'}
+        else:
+            # 个人排名
+            self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[2]")
+            sleep(2)
+            l_ = self.Web_PO.getTextByXs("//span")
+            # print(l_)
+            l_2 = self.List_PO.split(l_, "个人排名", 1)
+            l_3 = self.List_PO.dels(l_2, "")
+            for i in range(30):
+                l_3 = self.List_PO.dels(l_3, str(i+3))
+            l_5 = self.List_PO.dels(l_3, "\n", varMode="mohu")
+            l_6 = self.List_PO.group(l_5, 10)
+            # print(l_6)
+            # # 获取各指标达成分数
+            l_7 = self.Web_PO.getTextByXs("//div/div[2]/div")
+            c = len(l_7[0].split("指标达成分数")) - 1
+            l_8 = []
+            for i in range(c):
+                s_8 = l_7[0].split("指标达成分数：")[1 + i].split("\n")[0]
+                l_8.append(s_8)
+            # print(l_8) # ['0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00']
+            l_9 = []
+            for i in range(len(l_6)):
+                l_6[i].append('指标达成分数')
+                l_6[i].append(l_8[i])
+                l_9.append(self.List_PO.pair2dict(l_6[i]))
+            # print(l_9)  # [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'},...
+            # d_team[s_date] = l_9
+            d_team['开始日期'] = d_param['开始日期']
+            d_team['结束日期'] = d_param['结束日期']
+            d_team['团队排名'] = l_9
+            return (d_team)  # {'2014-1-1': [{'薛伟团队': '浦东/闵行/徐汇', '实地工作拜访完成率': '0.00%', '定位匹配率': '0.00%', '双A客户达成率': '0.00%', '高潜客户达成率': '0.00%', '指标达成分数': '0.00'}
+
+        # 返回首页
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[1]/div/div[1]")
 
     def todayRank(self):
         # 今日团队综合排名 - 列表数据
@@ -1105,14 +1136,15 @@ class ErpAppPO(object):
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div[4]/button[2]")
 
 
+        self._common_dateTime2(d_expected, "/html/body/div[1]/div/div[1]/div/div[3]/div[2]/form/div[11]/div[2]/div/input", '拜访计划时间', "选择拜访计划时间", "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[1]/div[2]", "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[3]/button[2]")
 
-        for i in range(len(l_getModuleDate)):
-            # 获取组件年月日
-            ele, l_getModuleDate = self._common_dateTime__get2()
-            # 获取预期值与组件值之步长并校验比对年月日
-            self._common_dateTime__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]),
-                                          d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1,
-                                          varXpathConfirm)
+        # for i in range(len(l_getModuleDate)):
+        #     # 获取组件年月日
+        #     ele, l_getModuleDate = self._common_dateTime__get2()
+        #     # 获取预期值与组件值之步长并校验比对年月日
+        #     self._common_dateTime__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]),
+        #                                   d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1,
+        #                                   varXpathConfirm)
 
         # def _common_dateTime__verify(self, ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc, varXpathConfirm):
         # if i_expected != i_getModuleDate:
@@ -1215,10 +1247,14 @@ class ErpAppPO(object):
                 # 获取预期值与组件值之步长并校验比对年月日
                 self._common_date__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]), d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i+1, varXpathConfirm)
 
+    # todo _common_
+    def _common_date_selected(self, varPrefixal):
+        return varPrefixal + "/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"
 
     def _common_dateTime__xpath(self, varXpathDiv, varDiv):
         return varXpathDiv + "/div[" + str(varDiv) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"
     def _common_dateTime__verify(self, ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc, varXpathConfirm):
+        # self._common_dateTime__verify(ele, varXpathIn, d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1, varXpathConfirm)
         if i_expected != i_getModuleDate:
             self.Web_PO.clkByX(varXpathIn)
             if i_expected > i_getModuleDate:
@@ -1235,10 +1271,58 @@ class ErpAppPO(object):
             return self._common_dateTime__verify(ele, varXpathIn, i_expected, i_getModuleDate, varXpathDiv, varLoc, varXpathConfirm)
         else:
             return 1
-    def _common_dateTime__get(self, varXpathIn, varTitle, varXpathDiv, varXpathConfirm):
+    def _common_dateTime__verify2(self, ele, varXpathIn, i_expected, i_getModuleDate, varLoc, varXpathConfirm):
+        # self._common_dateTime__verify(ele, varXpathIn, d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1, varXpathConfirm)
+        print(varLoc, i_expected,i_getModuleDate)
+        if i_expected != i_getModuleDate:
+            self.Web_PO.clkByX(varXpathIn)
+            if isinstance(i_expected, str):
+                if i_expected == "下午":
+                    var_ = -20
+                elif i_expected == "晚上":
+                    var_ = -40
+                self.Web_PO.eleScrollUpDownByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[1]/div", var_)
+                i_getModuleDate = self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[1]/div")
+            else:
+                if i_expected > i_getModuleDate:
+                    var_ = (i_expected - i_getModuleDate) * -20
+                else:
+                    var_ = (i_getModuleDate - i_expected) * 20
+
+                if varLoc < 4 :
+                    self.Web_PO.eleScrollUpDownByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[1]/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                    s_getModuleDate = self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[1]/div[2]/div[" + str(varLoc) + "]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+                elif varLoc > 4 and varLoc < 6:
+                    self.Web_PO.eleScrollUpDownByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[" + str(varLoc-2) + "]/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                    s_getModuleDate = self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[" + str(varLoc-2) + "]/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+                    print(varLoc, s_getModuleDate)
+                else:
+                    self.Web_PO.eleScrollUpDownByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[3]/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div", var_)
+                    s_getModuleDate = self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[3]/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div")
+                    # /html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[3]/div[2]/div[2]/ul/li[1]/div
+                    print(6, s_getModuleDate)
+
+                if "年" in s_getModuleDate:
+                    i_getModuleDate = int(s_getModuleDate[:-1])
+                if "月" in s_getModuleDate:
+                    i_getModuleDate = int(s_getModuleDate[:-1])
+                if "日" in s_getModuleDate:
+                    i_getModuleDate = int(s_getModuleDate[:-1])
+                if "点" in s_getModuleDate:
+                    i_getModuleDate = int(s_getModuleDate[:-1])
+                if "分" in s_getModuleDate:
+                    i_getModuleDate = int(s_getModuleDate[:-1])
+
+                self.Web_PO.eleClkByX(ele, varXpathConfirm, 2)
+
+
+            return self._common_dateTime__verify2(ele, varXpathIn, i_expected, i_getModuleDate, varLoc, varXpathConfirm)
+        else:
+            return 1
+    def _common_dateTime__get(self, varIn, varTitle, varXpathDiv, varOut):
 
         # 获取年月日
-        self.Web_PO.clkByX(varXpathIn, 2)
+        self.Web_PO.clkByX(varIn, 2)
         ele = self.Web_PO.getUpEleByX("//div[text()='" + str(varTitle) + "']")
         l_1 = []
         l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 1)))
@@ -1249,23 +1333,53 @@ class ErpAppPO(object):
         # print("日期 => ", l_1)
         l_getModuleDate = []
         for i in l_1:
-            i = i.replace("年", "").replace("月", "").replace("日", "")
+            i = i.replace("年", "").replace("月", "").replace("日", "").replace("时", "").replace("分", "")
             l_getModuleDate.append(int(i))
+        print("l_getModuleDate =>", l_getModuleDate)
+        self.Web_PO.eleClkByX(ele, varOut)
+        return (ele, l_getModuleDate)
+    def _common_dateTime__get3(self, varXpathIn, varTitle, varXpathDiv, varXpathConfirm):
+
+        # 获取年月日
+        self.Web_PO.clkByX(varXpathIn, 2)
+        ele = self.Web_PO.getUpEleByX("//div[text()='" + str(varTitle) + "']")
+        l_1 = []
+        l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 1)))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 2)))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, self._common_dateTime__xpath(varXpathDiv, 3)))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[2]/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[3]/div[2]/div[1]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        l_1.append(self.Web_PO.eleGetTextByX(ele, "/html/body/div[1]/div/div[1]/div/div[10]/div/div/div[2]/div/div[3]/div[2]/div[2]/ul/li[@class='van-picker-column__item van-picker-column__item--selected']/div"))
+        # print("日期 => ", l_1)
+        l_getModuleDate = []
+        for i in l_1:
+            i = i.replace("年", "").replace("月", "").replace("日", "").replace("点", "").replace("分", "")
+            if self.Str_PO.isNumber(i):
+                l_getModuleDate.append(int(i))
+            else:
+                l_getModuleDate.append(i)
+        print("l_getModuleDate =>", l_getModuleDate)
         self.Web_PO.eleClkByX(ele, varXpathConfirm)
         return (ele, l_getModuleDate)
     def _common_dateTime(self, d_expected, varField, varTitle, varXpathDiv, varXpathConfirm):
 
+        # self._common_dateTime(d_expected, '药事会实际召开时间', "药事会实际召开时间选择", ".//div[2]/div[2]", ".//div[2]/div[1]/button[2]")
         # 选择年月日时分（公共封装）
         # 如：产品开发 - 开发跟进 - 药事会实际召开时间
 
         # 开发跟进信息
+        # 获取开发跟进信息下所有字段的值
         ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
         l_ = self.Web_PO.eleGetTextByXs(ele, ".//span")
         d_field = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
-        ele2 = self.Web_PO.getSuperEleByX("//span[text=()='" + str(varField) + "']", "../..")
-        l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
+        print(d_field)  # {'开发次数': 1, '提单科室': 2, '提单规则': 3, '过会规则': ...
 
-        # 判断补0
+        # 获取药事会实际召开时间的值
+        ele2 = self.Web_PO.getSuperEleByX("//span[text()='" + str(varField) + "']", "../..")
+        l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
+        print("l_actual =>", l_actual)  #  ['2024-12-12 16:24:00']
+
+        # 补0（参数是数字型，转换成字符串时1-9要补0）
         if d_expected[varField][1] < 10:
             varMonth = "0" + str(d_expected[varField][1])
         else:
@@ -1274,6 +1388,8 @@ class ErpAppPO(object):
             varDay = "0" + str(d_expected[varField][2])
         else:
             varDay = str(d_expected[varField][2])
+
+        # 期望值与实际值比对
         s_expected = str(d_expected[varField][0]) + "-" + varMonth + "-" + varDay
         if s_expected != str(l_actual[0]):
             for i in range(len(d_expected[varField])):
@@ -1281,6 +1397,43 @@ class ErpAppPO(object):
                 ele, l_getModuleDate = self._common_dateTime__get(self._product_devFollowUp__common_xpath(d_field[varField]), varTitle, varXpathDiv, varXpathConfirm)
                 # 获取预期值与组件值之步长并校验比对年月日
                 self._common_dateTime__verify(ele, self._product_devFollowUp__common_xpath(d_field[varField]), d_expected[varField][i], l_getModuleDate[i], varXpathDiv, i + 1, varXpathConfirm)
+
+    def _common_dateTime2(self, d_expected, varXpathIn, varField, varTitle, varXpathDiv, varXpathConfirm):
+
+        # self._common_dateTime(d_expected, '药事会实际召开时间', "药事会实际召开时间选择", ".//div[2]/div[2]", ".//div[2]/div[1]/button[2]")
+        # 选择年月日时分（公共封装）
+        # 如：产品开发 - 开发跟进 - 药事会实际召开时间
+
+        # 开发跟进信息
+        # 获取开发跟进信息下所有字段的值
+        # ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
+        # l_ = self.Web_PO.eleGetTextByXs(ele, ".//span")
+        # d_field = {v: k for k, v in dict(enumerate(l_, start=1)).items()}
+        # print(d_field)  # {'开发次数': 1, '提单科室': 2, '提单规则': 3, '过会规则': ...
+
+        # 获取药事会实际召开时间的值
+        # ele2 = self.Web_PO.getSuperEleByX("//span[text()='" + str(varField) + "']", "../..")
+        # l_actual = self.Web_PO.eleGetShadowByXsByC(ele2, ".//input", "div")
+        # print("l_actual =>", l_actual)  #  ['2024-12-12 16:24:00']
+
+        # 补0（参数是数字型，转换成字符串时1-9要补0）
+        if d_expected[varField][1] < 10:
+            varMonth = "0" + str(d_expected[varField][1])
+        else:
+            varMonth = str(d_expected[varField][1])
+        if d_expected[varField][2] < 10:
+            varDay = "0" + str(d_expected[varField][2])
+        else:
+            varDay = str(d_expected[varField][2])
+
+        # 期望值与实际值比对
+        s_expected = str(d_expected[varField][0]) + "-" + varMonth + "-" + varDay
+        # if s_expected != str(l_actual[0]):
+        for i in range(len(d_expected[varField])):
+            # 获取组件年月日
+            ele, l_getModuleDate = self._common_dateTime__get3(varXpathIn, varTitle, varXpathDiv, varXpathConfirm)
+            # 获取预期值与组件值之步长并校验比对年月日
+            self._common_dateTime__verify2(ele, varXpathIn, d_expected[varField][i], l_getModuleDate[i], i + 1, varXpathConfirm)
 
 
 
@@ -1385,20 +1538,20 @@ class ErpAppPO(object):
         d_getCurrData = {}
 
         # 1 获取医院开发信息
-        ele = self.Web_PO.getSuperEleByX("span", "医院信息", "../../../..")
+        ele = self.Web_PO.getSuperEleByX("//span[text()='医院信息']", "../../../..")
         l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
         l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         d_devInfo = dict(zip(l_field, l_shadow))
         d_getCurrData["医院开发信息"] = d_devInfo
 
         # 2 获取开发跟进信息
-        ele = self.Web_PO.getSuperEleByX("span", "开发次数", "../../../..")
+        ele = self.Web_PO.getSuperEleByX("//span[text()='开发次数']", "../../../..")
         l_shadow = self.Web_PO.eleGetShadowByXsByC(ele, './/input', 'div:nth-last-of-type(1)')
         l_field = self.Web_PO.eleGetTextByXs(ele, ".//span")
         l_field.remove('过会规则')
         d_getCurrData["开发跟进信息"] = dict(zip(l_field, l_shadow))
         # 追加过会规则
-        l_text_shadow = self.Web_PO.getShadowRoots('//textarea', 'div')
+        l_text_shadow = self.Web_PO.getShadowByXByC('//textarea', 'div')
         d_getCurrData['开发跟进信息']['过会规则'] = l_text_shadow[0]
         # 追加采购时间和更新时间
         l_text_span = self.Web_PO.getTextByXs("//div[@class='van-col van-col--24']/span")

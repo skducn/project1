@@ -45,7 +45,7 @@ if __name__ == '__main__':
 
     Configparser_PO = ConfigparserPO('config.ini')
 
-    # Configparser_PO.cf.read('config.ini')  # 读
+    # Configparser_PO.cf.read('config2.ini')  # 读
 
     # Configparser_PO.write('EXCEL', 'sheetName', '355')
     # print(Configparser_PO.EXCEL('sheetName'))  # 355

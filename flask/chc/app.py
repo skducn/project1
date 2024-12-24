@@ -35,6 +35,11 @@ from flask import Flask, render_template
 
 sys.path.append(os.getcwd())
 
+from erp.ErpAppPO import *
+ErpApp_PO = ErpAppPO()
+
+
+
 from ChcRulePO import *
 from OpenpyxlPO import *
 
@@ -1149,6 +1154,23 @@ def delRemoteFolder(s_local, s_remote):
     # 删除远程目录及子目录文件
     a = [x for x in s_local if x in s_remote]  # 两列表交集
     return [y for y in s_remote if y not in a]  # 在s_remote里但不在s_local
+
+@app.route('/erp')
+def erp():
+
+    ErpApp_PO.login(post="浦东01/闵行06【经理岗】")
+
+    # todo 今日团队综合排名
+    # 列表数据
+    topList = (ErpApp_PO.todayRank())  # {'今日新增客户数': ['0人', '团队排名：1 / 9'], '实地工作拜访完成率': ['0.00%', '团队排名：1 / 9'], '双A客户拜访频率': ['0.00%', '团队排名：1 / 9'], '高潜客户拜访频率': ['0.00%', '团队排名：1 / 9']}
+
+    # Top 排名
+    team = (ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "团队排名"}))
+    # print(ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "个人排名"}))
+
+    return render_template('index7.html', global_d_=global_d_, result_topList=topList, result_team=team, message=1, tabName='ERP', subName='erp')
+
+    # return redirect("http://192.168.0.243:5000/")
 
 
 @app.route('/updateSystem')
