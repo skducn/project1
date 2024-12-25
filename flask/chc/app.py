@@ -1155,23 +1155,6 @@ def delRemoteFolder(s_local, s_remote):
     a = [x for x in s_local if x in s_remote]  # 两列表交集
     return [y for y in s_remote if y not in a]  # 在s_remote里但不在s_local
 
-@app.route('/erp')
-def erp():
-
-    ErpApp_PO.login(post="浦东01/闵行06【经理岗】")
-
-    # todo 今日团队综合排名
-    # 列表数据
-    topList = (ErpApp_PO.todayRank())  # {'今日新增客户数': ['0人', '团队排名：1 / 9'], '实地工作拜访完成率': ['0.00%', '团队排名：1 / 9'], '双A客户拜访频率': ['0.00%', '团队排名：1 / 9'], '高潜客户拜访频率': ['0.00%', '团队排名：1 / 9']}
-
-    # Top 排名
-    team = (ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "团队排名"}))
-    # print(ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "个人排名"}))
-
-    return render_template('index7.html', global_d_=global_d_, result_topList=topList, result_team=team, message=1, tabName='ERP', subName='erp')
-
-    # return redirect("http://192.168.0.243:5000/")
-
 
 @app.route('/updateSystem')
 def updateSystem():
@@ -1282,6 +1265,45 @@ def searchLog():
         return render_template('index7.html', global_d_=global_d_, resultSearchLog=result, message=1, tabName='系统配置', subName='查询日志')
         # return render_template('searchLog.html', global_d_=global_d_, resultSearchLog=s)
     # return render_template('index7.html', global_d_=global_d_)
+
+
+
+
+
+# todo ERP
+@app.route('/erp_ranking', methods=['POST'])
+def erp_ranking():
+    if request.method == 'POST':
+        startDate = request.form['startDate']
+        l_startDate = startDate.split("-")
+        endDate = request.form['endDate']
+        l_endDate = endDate.split("-")
+
+        ErpApp_PO.login(post="浦东01/闵行06【经理岗】")
+
+        # Top 排名
+        # team = (ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "团队排名"}))
+        team = (ErpApp_PO.topRank({"开始日期": l_startDate, "结束日期": l_endDate, "排名": "团队排名"}))
+
+        return render_template('index7.html', global_d_=global_d_, result_team=team, message=1, tabName='ERP', subName='erp')
+
+
+@app.route('/erp')
+def erp():
+
+    ErpApp_PO.login(post="浦东01/闵行06【经理岗】")
+
+    # todo 今日团队综合排名
+    # 列表数据
+    topList = (ErpApp_PO.todayRank())  # {'今日新增客户数': ['0人', '团队排名：1 / 9'], '实地工作拜访完成率': ['0.00%', '团队排名：1 / 9'], '双A客户拜访频率': ['0.00%', '团队排名：1 / 9'], '高潜客户拜访频率': ['0.00%', '团队排名：1 / 9']}
+
+    # Top 排名
+    team = (ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "团队排名"}))
+    # print(ErpApp_PO.topRank({"开始日期": ['2023', '09', '06'], "结束日期": ['2024', '09', '06'], "排名": "个人排名"}))
+
+    return render_template('index7.html', global_d_=global_d_, result_topList=topList, result_team=team, message=1, tabName='ERP', subName='erp')
+
+    # return redirect("http://192.168.0.243:5000/")
 
 
 

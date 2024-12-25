@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CHC社区健康自动化平台</title>
+
+<!--13788 upload file-->
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/reset.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/bootstrap.min.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/default.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/jquery.filer.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/jquery.filer-dragdropbox-theme.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/tomorrow.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='13788/css/custom.css') }}">
+
+
+</head>
+
+<body data-spy="scroll" data-target="#fixedNavbar">
+
+
+
+<article class="htmleaf-container">
+	<section id="section4" class="section-white">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+                    <img src="{{ url_for('static', filename='benetch.gif') }}" alt="benetch">
+<br>
+{#					<h2>CHC 社区健康自动化平台</h2>#}
+				<br>
+					<div>
+						<ul class="nav nav-tabs" role="tablist">
+                            {%  if tabName == '测试项' %}
+							    <li role="presentation" class="active"><a href="#RL" role="tab" data-toggle="tab">测试项</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#RL" role="tab" data-toggle="tab">测试项</a></li>
+                            {%  endif  %}
+                            {%  if tabName == '数据源' %}
+							    <li role="presentation" class="active"><a href="#DW" role="tab" data-toggle="tab">数据源</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#DW" role="tab" data-toggle="tab">数据源</a></li>
+                            {%  endif  %}
+                            {%  if tabName == '辅助工具' %}
+							    <li role="presentation" class="active"><a href="#AT" role="tab" data-toggle="tab">辅助工具</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#AT" role="tab" data-toggle="tab">辅助工具</a></li>
+                            {%  endif  %}
+                            {%  if tabName == '系统配置' %}
+							    <li role="presentation" class="active"><a href="#SC" role="tab" data-toggle="tab">系统配置</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#SC" role="tab" data-toggle="tab">系统配置</a></li>
+                            {%  endif  %}
+                            {%  if tabName == 'ERP' %}
+							    <li role="presentation" class="active"><a href="#ERP" role="tab" data-toggle="tab">ERP</a></li>
+                            {%  else %}
+							    <li role="presentation"><a href="#ERP" role="tab" data-toggle="tab">ERP</a></li>
+                            {%  endif  %}
+						</ul>
+
+						<div class="tab-content">
+
+        <!-- 测试项 -->
+
+                            {%  if tabName == '测试项' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="RL">
+                            {%  else %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RL">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box" >
+
+
+                                    </div>
+                                    <br>
+                                    <div class="section__box">
+                                            <a class="r-link ai-element-blue ai-element_padding-all ai-element4" href="#DB_testRule" role="tab" data-toggle="tab"><span class="ai-element__label">测试规则</span></a>
+                                    </div>
+                                </div>
+							</div>
+
+    <!-- 测试规则 -->
+                                            {%  if subName == '测试规则' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DB_testRule">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DB_testRule">
+                                            {%  endif  %}
+
+
+                                            </div>
+
+
+                            </div>
+
+        <!-- 数据源 -->
+
+                            {%  if tabName == '数据源' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DW">
+                            {%  else %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DW">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+
+                                        <div class="tab-content">
+
+        <!-- 创建库表 13788/js/jquery.filer.min.js-->
+                                            {%  if subName == '创建库表' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DW_CT">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DW_CT">
+                                            {%  endif  %}
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="section__box">
+
+                                                <!-- 调用 13788 - js - customs.js-->
+                                                <div class="pre-box collapsed">
+                                                    <div class="pre-collapse">
+                                                        <i class="fa fa-code pull-left"></i> + 注释
+                                                    </div>
+                                                    <pre class="prettyprint lang-js"><h4>创建库表</h4>功能：将excel指定sheet导入数据库生成对应规则表，如健康干预 => a_jiankangganyu, <br>步骤1：先下载模版，按照模版要求编写用例，然后上传文件。<br>步骤2：选择规则名提交生成库表。(如无可选项，表示不符合建表要求。)<br>注意：库表可反复提交，将覆盖之前库表和数据，一般用于补充或更新用例，涉及到他人库表时需谨慎与再确认。
+                                                    <img src="{{ url_for('static', filename='test.jpg') }}" alt="benetch">
+                                                    </pre>
+                                                </div>
+
+
+                                            </div></div></div></div>
+
+
+
+
+
+        <!-- 查询规则集 -->
+
+                                            {%  if subName == '查询规则集' %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="RS_query">
+                                            {%  else %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RS_query">
+                                            {%  endif  %}
+                                                <div class="row">
+                                                    <div class="col-md-6">
+
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u af">
+                                                        <div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">规则集*</label>
+                                                        <select id="queryRuleCollection" name="queryRuleCollection" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        <option value="none" selected>请选择...</option>
+                                                        </select>
+                                                        </div>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div id="get_queryRuleCollection" style="line-height: 25px;"></div>
+                                                <br>
+
+                                                <!-- 调用 13788 - js - customs.js-->
+                                                <div class="pre-box collapsed">
+                                                    <div class="pre-collapse">
+                                                        <i class="fa fa-code pull-left"></i> + 注释
+                                                    </div>
+                                                    <pre class="prettyprint lang-js">注：规则集所属a_ceshiguize库。
+                                                    <img src="{{ url_for('static', filename='benetch.gif') }}" alt="benetch">
+                                                    </pre>
+                                                </div>
+
+                                            </div>
+
+        <!-- 更新规则集-->
+
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="RS_new">
+
+                                            </div>
+
+                                        </div>
+                            </div></div></div></div>
+                            <!-- 数据源 end -->
+
+
+        <!-- 辅助工具 -->
+
+                            {%  if tabName == '辅助工具' %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="AT">
+                            {%  else %}
+							    <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="AT">
+                            {%  endif  %}
+								<div class="row">
+									<div class="col-md-12">
+                                        <div class="section__box">
+
+                                            <div class="tab-content">
+        <!-- 查询记录 -->
+                                                {%  if subName == '查询记录' %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="AT_searchRecord">
+                                                {%  else %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="AT_searchRecord">
+                                                {%  endif  %}
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="section__box">
+
+
+                                                <br>
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="box3">
+                                                {{ result | safe }}
+                                                </div>
+                                                </div>
+                                                </div>
+                                                </div></div></div></div>
+
+        <!-- 查询表结构 -->
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="AT_queryDesc2">
+                                                    <div class="row">
+                                                    <div class="col-md-12">
+                                                    <div class="section__box" id="test">
+
+                                                        <div class="a6 a1K ac">
+                                                        <div class="a5 md:a2u/2 af"><div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">数据库*</label>
+                                                        <select id="queryDesc2" name="datatype" method="GET" action="/" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        <option value="" selected>请选择...</option>
+                                                        <option value="CHC" >CHC</option>
+                                                        <option value="CHCCONFIG" >CHCCONFIG</option>
+                                                        <option value="CHC_JINGAN" >CHC_JINGAN</option>
+                                                        <option value="CHCCONFIG_JINGAN" >CHCCONFIG_JINGAN</option>
+                                                        <option value="PHUSERS" >PHUSERS</option>
+                                                        <option value="ZYCONFIG" >ZYCONFIG</option>
+                                                        <option value="NEHR" >NEHR</option>
+                                                        </select>
+                                                        </div></div>
+                                                        </div>
+
+                                                        <div style="line-height: 16px;" id="get_queryDesc2"></div>
+{#                                                        <div style="line-height: 16px;" id="queryDesc2_1"></div>#}
+
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                </div>
+
+
+
+        <!-- 查询sql -->
+                                                {%  if subName == '查询sql' %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="DB_querySql">
+                                                {%  else %}
+                                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="DB_querySql">
+                                                {%  endif  %}
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="section__box">
+
+                                                    <div class="col-md-12">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">简单条件查询</label>
+                                                        <div class="a5 md:a2u af">
+                                                            <div class="a3u">
+                                                                <textarea name="querySql" id="querySql" rows="5" placeholder="如：select ... from ... where ..." class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F"></textarea>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="a5 af"><div class="a2g">
+                                                    <input type="submit" id="queryRecord" class="btn-custom green" value="查询">
+                                                    </div></div>
+                                                </div></div></div></div>
+
+                                            </div>
+                            </div></div></div></div>
+                            <!-- 辅助工具 end  -->
+
+                <!-- 系统配置 -->
+
+                            {%  if tabName == '系统配置' %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="SC">
+                            {%  else %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="SC">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+
+                                        <div class="tab-content">
+
+        <!-- 查询日志 -->
+
+                                            {%  if subName == '查询日志' %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="SC_queryLog">
+                                            {%  else %}
+                                            <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="SC_queryLog">
+                                            {%  endif  %}
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="section__box">
+
+
+                                                <br><br>
+                                                <div class="row">
+                                                <div class="col-md-12">
+                                                <div class="box3">
+                                                {{ resultSearchLog | safe }}
+                                                </div>
+                                                </div>
+                                                </div>
+                                            </div></div></div></div>
+                                        </div>
+                            </div></div></div></div>
+                            <!-- 系统配置 end  -->
+
+                <!-- ERP -->
+
+                            {%  if tabName == 'ERP' %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade in active" id="ERP">
+                            {%  else %}
+                                <div role="tabpanel" class="tab-pane pt20 pb20 fade" id="ERP">
+                            {%  endif  %}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section__box">
+
+                                        <div class="tab-content">
+
+                                            <br><br>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="box3">列表清单：
+                                            {{ result_topList | safe }}
+                                            </div>
+                                            </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="box3">团队排名：<br>
+                                            {{ result_team | safe }}
+                                            </div>
+                                            </div>
+                                            </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="box3">检查1：今日团队综合排名- Top排名 - 拜访达成统计排名，获取团队排名清单<br>
+                                            </div>
+                                            </div>
+                                            </div>
+
+
+                                        </div>
+                            </div></div></div></div>
+                            <!-- ERP end  -->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</article>
+
+<!-- 遮罩层 -->
+<div id="mask" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+    <div class="containerFlex">
+    <svg width="100" height="100" viewBox="0 0 40 60">
+    <polygon class="triangle" fill="none" stroke="#fff" stroke-width="1" points="16,1 32,32 1,32"/>
+    <text class="loading" x="0" y="45" fill="#fff" >processing...</text>
+    </svg>
+    </div>
+</div>
+
+<!-- loading... -->
+<div id="loading" style="display:none;"></div>
+
+
+<!--13788 upload file-->
+{#<script src="{{ url_for('static', filename='13788/js/jquery-2.1.1.min.js') }}"></script>#}
+<script src="{{ url_for('static', filename='13788/js/bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='13788/js/jquery.filer.min.js') }}"></script>
+<script src="{{ url_for('static', filename='13788/js/prettify.js') }}"></script>
+{#<script src="{{ url_for('static', filename='13788/js/scripts.js') }}"></script>#}
+<script src="{{ url_for('static', filename='13788/js/custom2.js') }}"></script>
+
+
+{#<!-- Javascript Plugins -->#}
+{#<script src="{{ url_for('static', filename='1/js/jquery-3.4.0.min.js') }}"></script>#}
+{#<script src="{{ url_for('static', filename='1/js/plugins.js') }}"></script>#}
+{#<script src="{{ url_for('static', filename='1/js/main.js') }}"></script>#}
+
+<!-- 操作成功或失败提示 -->
+<script>
+var message = '{{ message }}';
+if (message == 1) {
+    hsycms.success('操作成功',()=>{  console.log('操作成功关闭后');  },2000)
+} else if (message == 0) {
+    hsycms.fail('操作失败',()=>{  console.log('操作失败关闭后');  },2000)
+};
+ </script>
+
+</body>
+</html>

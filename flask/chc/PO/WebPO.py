@@ -167,9 +167,8 @@ class WebPO(DomPO):
             defaultPath = "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
             s = Service(defaultPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
         elif os.name == "posix":
-            # for mac
-            chromeVer = subprocess.check_output(
-                "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            # for mac or linux
+            chromeVer = subprocess.check_output("/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
             chromeVer = bytes.decode(chromeVer).replace("\n", '')
             chromeVer = chromeVer.split('Google Chrome ')[1].strip()
             # print("chromeVer:", chromeVer)  # 120.0.6099.129
@@ -195,6 +194,66 @@ class WebPO(DomPO):
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
 
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
+            self.driver = webdriver.Chrome(service=s, options=options)
+            # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
+            # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
+
+
+            # try:
+            #     self.driver = webdriver.Chrome(service=s, options=options)
+            # except:
+            #     # 下载失败通过网站下载文件
+            #     print("chromedriver updated failed!")
+            #     print("download from https://googlechromelabs.github.io/chrome-for-testing/#stable")
+            #     sys.exit(0)
+            #     # shutil.rmtree("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
+            #     # os.mkdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
+            #     # os.chdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
+            #     # print(os.getcwd())
+            #     # os.system("curl -o chromedriver-mac-x64.zip https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/mac-x64/chromedriver-mac-x64.zip")
+            #     # shutil.unpack_archive('./chromedriver-mac-x64.zip', './', 'zip')
+            #     # # sys.exit(0)
+
+    def updateChromedriverForLinux(self, options):
+
+        # 获取浏览器版本及主版本（前三位如果相同，则为同一版本）
+        if os.name == "nt":
+            # for win
+            chromeVer = subprocess.check_output(
+                "powershell -command \"&{(Get-Item 'C:\Program Files\Google\Chrome\Application\chrome.exe').VersionInfo.ProductVersion}\"",
+                shell=True)
+            chromeVer = bytes.decode(chromeVer).replace("\n", '')
+            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')  # 120.0.6099.
+            defaultPath = "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
+            s = Service(defaultPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
+        elif os.name == "posix":
+            # for mac or linux
+            # chromeVer = subprocess.check_output("/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            # chromeVer = bytes.decode(chromeVer).replace("\n", '')
+            # chromeVer = chromeVer.split('Google Chrome ')[1].strip()
+            # # print("chromeVer:", chromeVer)  # 120.0.6099.129
+            # chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
+            # # print("chromeVer3 => ", chromeVer3)  # 120.0.6099.
+            # defaultPath = "/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+            # currPath = defaultPath + chromeVer3
+            # # print(currPath)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/127.0.6533.
+
+            # 3 检查chromedriver主版本是否存在
+            # if os.path.isdir(currPath) == False:
+            # 自动下载chrome驱动并修改成主板本
+            # print("chromedriver downloading ...")
+            # Service(ChromeDriverManager().install())
+            #     l_folder = os.listdir(defaultPath)
+            #     # print(l_folder)  # ['.DS_Store', '127.0.6533.88', '126.0.6478.']
+            #     for i in range(len(l_folder)):
+            #         if chromeVer3 in l_folder[i]:
+            #             os.rename(defaultPath + l_folder[i], defaultPath + chromeVer3)
+            #             break
+            os.chdir("/home/chromedriver-linux64")
+            os.system("chmod 775 chromedriver")
+            # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
+            #
+            s = Service("/home/chromedriver-linux64/chromedriver")
             self.driver = webdriver.Chrome(service=s, options=options)
             # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
             # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
@@ -332,6 +391,7 @@ class WebPO(DomPO):
 
             # 更新下载chromedriver
             self.updateChromedriver(options)
+            # self.updateChromedriverForLinux(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})

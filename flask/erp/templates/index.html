@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+<title>ERP</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='index/normalize.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='index/reset.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='index/Demo.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='index/jBox.all.css') }}">
+
+
+
+</head>
+<body>
+
+
+<main class="container">
+
+<h2>功能</h2>
+
+<div class="targets-wrapper">
+
+    <a class="r-link ai-element-black ai-element_padding-all ai-element1" href="{{ url_for('test') }}" target = "_blank"><span class="ai-element__label">
+        <div id="Tooltip-1" class="target">医院管理</div></span></a>
+
+<div id="Tooltip-2" class="target">客户管理</div>
+<div id="Tooltip-3" class="target">拜访管理</div>
+<div id="Tooltip-4" class="target">协防管理</div>
+<div id="Tooltip-5" class="target">会议管理</div>
+<div id="Tooltip-6" class="target">产品开发</div>
+<div id="Tooltip-7" class="target">审批中心</div>
+<div id="Tooltip-8" class="target">工作计划</div>
+
+</div>
+
+<h2>首页</h2>
+
+<div class="targets-wrapper">
+<div id="Modal-1" class="target-click">Click me</div>
+<div id="Modal-2" class="target-click">Click me</div>
+<div id="Modal-3" class="target-click">Click me</div>
+<div class="target-click" data-confirm onClick="new jBox('Notice', {content: 'Yay! You clicked the confirm button', color: 'green', attributes: {y: 'bottom'}})">Click me</div>
+</div>
+
+<h2>Notice</h2>
+
+<div class="targets-wrapper">
+<div id="Notice-1" class="target-notice">Click me</div>
+<div id="Notice-2" class="target-notice">Click me</div>
+<div id="Notice-3" class="target-notice">Click me</div>
+<div id="Notice-4" class="target-notice">Click me</div>
+<div id="Notice-5" class="target-notice">Click me</div>
+<div id="Notice-6" class="target-notice">Click me</div>
+<div id="Notice-7" class="target-notice">Click me</div>
+<div id="Notice-8" class="target-notice">Click me</div>
+</div>
+
+<h2>Image</h2>
+
+<div class="targets-wrapper">
+<a class="demo-img" href="https://stephanwagner.me/img/jBox/demo/image1.jpg" data-jbox-image="gallery1" title="Navigate with your keyboard: Press the [right] or [left] key"><img src="https://stephanwagner.me/img/jBox/demo/image1-preview.jpg" alt=""></a>
+<a class="demo-img" href="https://stephanwagner.me/img/jBox/demo/image2.jpg" data-jbox-image="gallery1" title="jBox is smart, the next image gets preloaded"><img src="https://stephanwagner.me/img/jBox/demo/image2-preview.jpg" alt=""></a>
+<a class="demo-img" href="https://stephanwagner.me/img/jBox/demo/image3.jpg" data-jbox-image="gallery1" title="You can easily group your images into galleries"><img src="https://stephanwagner.me/img/jBox/demo/image3-preview.jpg" alt=""></a>
+<a class="demo-img" href="https://stephanwagner.me/img/jBox/demo/image4.jpg" data-jbox-image="gallery1" title="As usual, attaching jBox to images is easy as pie"><img src="https://stephanwagner.me/img/jBox/demo/image4-preview.jpg" alt=""></a>
+<a href="https://stephanwagner.me/img/jBox/demo/NOT-FOUND.jpg" data-jbox-image="gallery1" title="You can adjust this image-not-found notice with CSS"></a>
+</div>
+
+
+
+</main>
+
+<script src="{{ url_for('static', filename='index/jquery-1.11.0.min.js') }}"></script>
+<script src="{{ url_for('static', filename='index/jBox.all.js') }}"></script>
+<script src="{{ url_for('static', filename='index/Demo.js') }}"></script>
+
+</body>
+</html>

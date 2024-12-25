@@ -29,6 +29,8 @@
 <script src="{{ url_for('static', filename='css/mask.js') }}"></script>
 <script src="{{ url_for('static', filename='css/mask34.js') }}"></script>
 <script src="{{ url_for('static', filename='css/mask56.js') }}"></script>
+<script src="{{ url_for('static', filename='css/mask78.js') }}"></script>
+
 <!-- mask -->
 <script src="{{ url_for('static', filename='css/chc.js') }}"></script>
 
@@ -809,11 +811,46 @@ table.tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: so
                                             <br><br>
                                             <div class="row">
                                             <div class="col-md-12">
-                                            <div class="box3">团队排名：
+                                            <div class="box3">团队排名：<br>
                                             {{ result_team | safe }}
                                             </div>
                                             </div>
                                             </div>
+
+                                            <br><br>
+                                            <div class="row">
+                                            <div class="col-md-12">
+                                            <div class="box3">检查1：今日团队综合排名- Top排名 - 拜访达成统计排名，获取团队排名清单<br>
+                                            </div>
+                                            </div>
+                                            </div>
+                                            <form action="{{ url_for('erp_ranking')}}" method="post" id="mask71">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="a5 md:a2u af"><div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">开始日期*</label>
+                                                        <input type="text" name="startDate" maxlength="10" id="cacu_value1" placeholder="格式：2023-12-01" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        </div></div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="a5 md:a2u af"><div class="a3u">
+                                                        <label for class="al a25 aR a1j dark:a1k a2j">结束日期*</label>
+                                                        <input type="text" name="endDate" maxlength="10" id="cacu_value2" placeholder="格式：2024-12-01" class="a5 a25 a1i aT av[14px] a3X aw a2C a4v dark:a4w aK dark:a1 a2E a4x focus-visible:aN focus:a2F">
+                                                        </div></div>
+                                                    </div>
+                                                    <!--// .col //-->
+
+                                                     <div class="col-md-12">
+
+                                                        <div class="a5 af"><div class="a2g">
+                                                            <input type="submit" class="btn-custom black" value="执行">
+                                                            <br><br>
+                                                        </div></div>
+                                                     </div>
+                                                </div>
+                                            </form>
+
 
 
                                         </div>
