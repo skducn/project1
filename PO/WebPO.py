@@ -225,7 +225,7 @@ class WebPO(DomPO):
         if self.driver == "chrome":
 
             # todo 屏幕
-            # options.add_argument("--start-maximized")  # 最大化浏览器
+            options.add_argument("--start-maximized")  # 最大化浏览器
             # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
             # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
             # width, height = pyautogui.size()  # 1440 900  //获取屏幕尺寸

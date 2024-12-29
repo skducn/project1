@@ -403,6 +403,14 @@ class DomPO(object):
             qty = qty + 1
         return qty
 
+    def eleGetQtyByX(self, ele, varXpaths):
+        # 获取标签数量
+        # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
+        qty = 0
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            qty = qty + 1
+        return qty
+
     def getTextByX(self, varXpath):
         # 获取文本
         # 如：getTextByX(u"//input[@class='123']")
@@ -559,6 +567,18 @@ class DomPO(object):
         actions = ActionChains(self.driver)
         actions.double_click(ele).perform()
         sleep(t)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
+
+    def setTextTabByX2(self, varXpath, varText, t=1):
+        # 输入框双击后输入文本，按Tab
+        ele = self.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        actions.double_click(ele).perform()
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
         sleep(t)
@@ -1135,6 +1155,21 @@ class DomPO(object):
             flag = False
         return flag
 
+    def isEleExistByXForWait(self, varXpath, varCycle):
+        # 循环等待时间，判断元素是否存在，存在则退出
+
+        for i in range(varCycle):
+            if self.isEleExistByX(varXpath):
+                break
+            else:
+                sleep(1)
+
+
+
+
+
+
+
     def isEleAttrExistByX(self, varXpath, varAttr):
         # 判断元素属性是否存在
         flag = False
@@ -1208,6 +1243,14 @@ class DomPO(object):
         except:
             flag = False
         return flag
+
+    def isEleTextExistByXForWait(self, varXpath, varText, varCycle):
+        # 循环等待时间，通过xpath判断文本是否存在，存在则退出
+        for i in range(varCycle):
+            if self.isEleTextExistByX(self, varXpath, varText):
+                break
+            else:
+                sleep(1)
 
     def isBooleanAttrValueListByX(self, varXpath, varAttr, varValue):
         """通过xpath判断属性等于值"""

@@ -48,10 +48,11 @@ import cv2, pyautogui
 
 # 1, 登录
 # chcWebPO_quan.login(varUrl + 'login', 'admin', 'Zy@123456')
-chcWebPO_quan.login(varUrl + 'login', 'cs', '12345678')
+chcWebPO_quan.login(varUrl + 'login', 'lbl', 'HHkk2327447')
 
-a = Web_PO.getTextListByX("//span")
-print(a)
+
+
+# print(a)
 
 # # 2, 获取首页源码，点击菜单
 # html_source = Web_PO.getSource()
