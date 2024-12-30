@@ -20,7 +20,6 @@ sendKeysByX
 sendKeysById
 sendKeysByname
 
-
 todo clk
 单点击 clkByX(varXpath)
 多点击 clkByXs(varXpaths)
@@ -403,14 +402,6 @@ class DomPO(object):
             qty = qty + 1
         return qty
 
-    def eleGetQtyByX(self, ele, varXpaths):
-        # 获取标签数量
-        # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
-        qty = 0
-        for a in ele.find_elements(*(By.XPATH, varXpaths)):
-            qty = qty + 1
-        return qty
-
     def getTextByX(self, varXpath):
         # 获取文本
         # 如：getTextByX(u"//input[@class='123']")
@@ -424,13 +415,6 @@ class DomPO(object):
             l_.append(a.text)
         return l_
 
-    def eleGetQtyByXs(self, ele, varXpaths):
-        # 获取标签数量
-        # 如：eleGetQtyByXs(ele, "//ul/li")
-        varQty = 0
-        for a in ele.find_elements(*(By.XPATH, varXpaths)):
-            varQty = varQty + 1
-        return varQty
 
     def getIndexByXs(self, varXpaths, varText):
         # 获取文本的索引号
@@ -621,24 +605,25 @@ class DomPO(object):
         return l_shadow
 
 
+
     # todo ele元素再定位
 
     def eleClkByX(self, ele, varXpath, t=2):
-        # 元素再定位后点击
+        # 定位元素之点击
         e = ele.find_element(*(By.XPATH, varXpath))
         e.click()
         sleep(t)
 
     def eleClkByXs(self, ele, varXpaths, t=1):
-        # 元素再定位后点击
+        # 定位元素之遍历点击
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             a.click()
             sleep(t)
         
     def eleGetShadowByXsByC(self, ele, varXpaths, varCss, t=1):
+        # 定位元素之遍历shadow-root获取文本
         # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
-        # 遍历所有shadow-root元素input下div的文本，返回列表
-        # eleGetShadowByXsByC(ele, "//table[1]", "div")
+        # 如： 获取input下所有shadow-root元素div的文本 eleGetShadowByXsByC(ele, ".//table[1]/input", "div")
         eles = ele.find_elements(*(By.XPATH, varXpaths))
         l_shadow = []
         for i in eles:
@@ -649,52 +634,51 @@ class DomPO(object):
         return l_shadow
 
     def eleGetValueByAttr(self, ele, varAttr):
-        # 元素再定位后获取属性
+        # 定位元素之获取属性
         return ele.get_attribute(varAttr)
 
     def eleGetQtyByXs(self, ele, varXpaths):
-        # 元素再定位后获取标签数量
-        # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
+        # 定位元素之获取标签数量
+        # 如：获取div标签数量 eleGetQtyByXs(ele, './/tr/div')
         qty = 0
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             qty = qty + 1
         return qty
 
     def eleGetTextByX(self, ele, varXpath):
-        # 元素再定位后获取文本
+        # 定位元素之获取文本
         return ele.find_element(*(By.XPATH, varXpath)).text
 
     def eleGetTextByXs(self, ele, varXpaths):
-        # 元素再定位后获取文本
+        # 定位元素之遍历获取文本
         l_ = []
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             l_.append(a.text)
         return l_
 
     def eleGetTextByXsByX(self, ele, varXpaths, varXpath):
-        # eleGetTextByXsByX(ele, "//div[3]/div", ".//div")  # div下的text
-        # eleGetTextByXsByX(ele, "//div[3]/div", ".//span") # span下的text
-        # 元素再定位后获取div文本
+        # 定位元素之遍历获取div文本
+        # eleGetTextByXsByX(ele, ".//div[3]/div", ".//div")  # div下的text
         l_ = []
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             l_.append(a.find_element(*(By.XPATH, varXpath)).text)
         return l_
 
     def eleSetTextByX(self, ele, varXpath, varValue):
-        # 元素再定位后输入和提交
+        # 定位元素之输入
         ele.find_element(*(By.XPATH, varXpath)).clear()
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
 
     def eleSetTextEnterByX(self, ele, varXpath, varValue, t=1):
-        # 元素再定位后输入和提交
-
+        # 定位元素之输入并回车
         ele.find_element(*(By.XPATH, varXpath)).clear()
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
         ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
     def eleSetTextBackspaceEnterByX(self, ele, varXpath, varN, varValue, t=3):
-        # 元素再定位后输入和提交
+        # 定位元素之N次点击删除并输入和回车
+        # 如：输入框中按键盘删除键3次后再输入和回车 eleSetTextBackspaceEnterByX(ele, varXpath, 3, varValue)
         for i in range(varN):
             ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
         # ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.CONTROL, 'a')
@@ -703,25 +687,22 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
-
     def eleSetTextClkByXByX(self, ele, varXpath, varValue, varXpath2, t=1):
-        # 元素再定位后输入和提交
+        # 定位元素之输入与二次确认
         ele.find_element(*(By.XPATH, varXpath)).clear()
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
         sleep(t)
         ele.find_element(*(By.XPATH, varXpath2)).click()
 
     def eleDoubleClkByX(self, ele, varXpath, t=2):
-        # 定位元素后，上下滚动
-        # step 负数向上滚动，正数向下滚动
+        # 定位元素之双击
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.double_click(ele2).perform()
         sleep(t)
 
     def eleCtrlAByX(self, ele, varXpath, t=2):
-        # 定位元素后，上下滚动
-        # step 负数向上滚动，正数向下滚动
+        # 定位元素之全选
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         ele2.click()
         actions = ActionChains(self.driver)
@@ -729,10 +710,8 @@ class DomPO(object):
         sleep(t)
 
     def eleScrollUpDownByX(self, ele, varXpath, varStep, t=2):
-        # 定位元素后，上下滚动
+        # 定位元素之上下滚动（用于app上时间日期控件）
         # step 负数向上滚动，正数向下滚动
-        sleep(t)
-        # print(varStep)
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.move_to_element(ele2)
@@ -745,14 +724,12 @@ class DomPO(object):
                 actions.move_by_offset(0, -500)
             else:
                 actions.move_by_offset(0, varStep)
-
         actions.release()
         actions.perform()
         sleep(t)
 
     def eleScrollLeftRightByX(self, ele, varXpath, varStep, t=2):
-        # 定位元素后, 左右滚动
-        sleep(t)
+        # 定位元素之左右滚动
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.move_to_element(ele2)
@@ -763,17 +740,15 @@ class DomPO(object):
         sleep(t)
 
     def eleScrollViewByX(self, ele, varXpath, t=1):
-        # 将元素滚动到可见区域。
-        # 先定位元素，然后使用JavaScript脚本将元素滚动到可见区域。
-        # element = self.driver.find_element_by_id(varId)  id方式定位
-        # element = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
-        # ErpApp_PO.Web_PO.scrollViewByX("//a[last()]")  # 拖动到最后一个a标签
+        # 定位元素之元素滚动到可见区域
+        # ele = self.find_element(*(By.XPATH, "//a[@href='#/meeting']"))  Xpath方式定位
+        # eleScrollViewByX(ele, "//a[last()]")  # 拖动到最后一个a标签
         element = ele.find_element(*(By.XPATH, varXpath))
         self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
         sleep(t)
 
     def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, varXpath2, t=2):
-        # 键盘keys.End滚动到底部
+        # 定位元素之键盘keys.End滚动到底部
         # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         for i in range(varCount):
@@ -784,7 +759,7 @@ class DomPO(object):
         sleep(t)
 
     def eleScrollKeysEndByX(self, ele, varXpath, t=2):
-        # 键盘keys.End滚动到底部
+        # 定位元素之键盘keysEnd滚动到底部(用于移动端)
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
         sleep(t)

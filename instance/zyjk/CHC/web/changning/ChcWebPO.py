@@ -175,12 +175,12 @@ class ChcWebPO():
         self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input")
         # 获取 共 ？条
         isQty = self.Web_PO.getTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[1]")
-        print(isQty)  # 共 12 条
+        # print(isQty)  # 共 12 条
         if isQty != "共 0 条":
             # qty  获取总页数
 
             li_qty = self.Web_PO.getQtyByXs("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/ul/li")
-            print(li_qty)
+            # print(li_qty)
 
             if int(li_qty) < 7:
                 qty = int(li_qty)
@@ -200,9 +200,13 @@ class ChcWebPO():
                 for i in range(int(tr_qty)):
                     idcard = self.Web_PO.eleGetTextByX(ele, ".//div[3]/div/div[1]/div/table/tbody/tr["+ str(i+1)+ "]/td[9]/div")
                     l_.append(idcard)
-                print(k+1, l_)
+                print(varDoc, k+1, l_)
                 d_1[k+1] = l_
             d_2[varDoc] = d_1
+            # print(d_2)
+            File_PO.dict2jsonfile(varDoc + ".json", d_2)
+            # dd_ = File_PO.jsonfile2dict(varDoc + ".json")
+            # print(dd_)
             return d_2
 
     def getIdcard(self, varUser, varPass, varDoc):

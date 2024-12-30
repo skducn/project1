@@ -3,7 +3,8 @@
 # Author     : John
 # Created on : 2018-7-2
 # Description: Web 对象层 （selenium 4.4.3）
-# pip install opencv_python  下载cv2
+# pip install opencv_python    // cv2
+
 # https://www.cnblogs.com/FBGG/p/17975814
 # selenium并不支持获取响应的数据，我们可以使用selenium-wire库，selenium-wire扩展了 Selenium 的 Python 绑定，可以访问浏览器发出的底层请求。seleniumwire只兼容Selenium 4.0.0+，
 # pip install selenium-wire
@@ -14,13 +15,14 @@
 # 安装指定版本：pip install selenium==4.4.3
 # 注：selenium 4.10 会引起浏览器自动关闭现象，实测安装4.4.3 正常
 
-# todo chrome浏览器
-# 1，查看chrome浏览器版本：chrome://version
+
+# todo chrome
+# 1，查看版本：chrome://version
 # print(self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //获取浏览器版本
 # print(self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //获取chrome驱动版本
 # 注：以上两版本号前3位一样就可以，如 114.0.5735
 
-# todo chrome驱动
+# 2，下载驱动
 # 下载1：https://googlechromelabs.github.io/chrome-for-testing/#stable （新）
 # https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.122/mac-x64/chrome-mac-x64.zip
 # 下载2：http://chromedriver.storage.googleapis.com/index.html （旧）
@@ -101,6 +103,8 @@
 from PO.DomPO import *
 import requests, bs4, subprocess
 
+from PO.FilePO import *
+File_PO = FilePO()
 
 class WebPO(DomPO):
 
@@ -150,58 +154,48 @@ class WebPO(DomPO):
         except Exception as e:
             print(f"未找到'另存为'弹框: {e}")
 
-    def updateChromedriver(self, options, varChromePath, varDriverPath):
-        # updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe", "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
+    def updateChromedriver(self, options):
+
         # 获取浏览器版本及主版本（前三位如果相同，则为同一版本）
         if os.name == "nt":
             # for win
-
-            # 1 本机chrome程序路径
-            chromeVer = subprocess.check_output("powershell -command \"&{(Get-Item '" + varChromePath + "').VersionInfo.ProductVersion}\"", shell=True)
+            chromeVer = subprocess.check_output(
+                "powershell -command \"&{(Get-Item 'C:\Program Files\Google\Chrome\Application\chrome.exe').VersionInfo.ProductVersion}\"",
+                shell=True)
             chromeVer = bytes.decode(chromeVer).replace("\n", '')
             chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')  # 120.0.6099.
-
-            # 2 驱动路径
-            currPath = varDriverPath + chromeVer3
+            defaultPath = "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
+            s = Service(defaultPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
+        elif os.name == "posix":
+            # for mac
+            chromeVer = subprocess.check_output(
+                "/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            chromeVer = bytes.decode(chromeVer).replace("\n", '')
+            chromeVer = chromeVer.split('Google Chrome ')[1].strip()
+            # print("chromeVer:", chromeVer)  # 120.0.6099.129
+            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
+            # print("chromeVer3 => ", chromeVer3)  # 120.0.6099.
+            defaultPath = "/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+            currPath = defaultPath + chromeVer3
+            # print(currPath)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/127.0.6533.
 
             # 3 检查chromedriver主版本是否存在
             if os.path.isdir(currPath) == False:
                 # 自动下载chrome驱动并修改成主板本
-                print("chromedriver downloading...")
-                Service(ChromeDriverManager().install())
-                l_folder = os.listdir(varDriverPath)
-                for i in range(len(l_folder)):
-                    if chromeVer3 in l_folder[i]:
-                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
-                        break
-                os.chdir(varDriverPath + chromeVer3 + "\\chromedriver-win32")
-            s = Service(varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
-            self.driver = webdriver.Chrome(service=s, options=options)
-
-        elif os.name == "posix":
-            # for mac
-
-            chromeVer = subprocess.check_output("/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
-            chromeVer = bytes.decode(chromeVer).replace("\n", '')
-            chromeVer = chromeVer.split('Google Chrome ')[1].strip()
-            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
-            defaultPath = "/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
-            currPath = defaultPath + chromeVer3
-            # 检查chromedriver主版本是否存在
-            if os.path.isdir(currPath) == False:
-                print("chromedriver downloading...")
+                print("chromedriver downloading ...")
                 Service(ChromeDriverManager().install())
                 l_folder = os.listdir(defaultPath)
+                # print(l_folder)  # ['.DS_Store', '127.0.6533.88', '126.0.6478.']
                 for i in range(len(l_folder)):
                     if chromeVer3 in l_folder[i]:
                         os.rename(defaultPath + l_folder[i], defaultPath + chromeVer3)
                         break
-                os.chdir(defaultPath + chromeVer3 + "/chromedriver-mac-x64")
+                os.chdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3 + "/chromedriver-mac-x64")
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
+
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
             self.driver = webdriver.Chrome(service=s, options=options)
-
             # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
             # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
 
@@ -266,10 +260,7 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            if os.name == "nt":
-                self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe", "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-            elif os.name == "posix":
-                self.updateChromedriver(options)
+            self.updateChromedriver(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
@@ -295,11 +286,7 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            if os.name == "nt":
-                self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
-                                        "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-            elif os.name == "posix":
-                self.updateChromedriver(options)
+            self.updateChromedriver(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
@@ -344,11 +331,7 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            if os.name == "nt":
-                self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
-                                        "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-            elif os.name == "posix":
-                self.updateChromedriver(options)
+            self.updateChromedriver(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
@@ -357,82 +340,185 @@ class WebPO(DomPO):
             return self.driver
 
 
+        # elif self.driver == "firefox":
+        #     if platform.system() == "Windows":
+        #         # profile = webdriver.FirefoxProfile()
+        #         # # profile = FirefoxProfile()
+        #         # profile.native_events_enabled = True
+        #         # # self.driver = Firefox(profile)
+        #         # profile.set_preference("browser.startup.homepage", "about:blank")  # 解决跳转到firefox官网指定页，过慢问题。
+        #         # profile.set_preference("startup.homepage_welcome_url", "about:blank")  # 解决跳转到firefox官网指定页，过慢问题。
+        #         # profile.set_preference("startup.homepage_welcome_url.additional", "about:blank")  # 解决跳转到firefox官网指定页，过慢问题。
+        #         # profile.assume_untrusted_cert_issuer = True  # 访问没有证书的https站点
+        #         # accept_untrusted_certs = True  # 访问没有证书的https站点
+        #         # profile.set_preference('permissions.default.image', 2)  # 不加载的图片，加快显示速度
+        #         # profile.set_preference('browser.migration.version', 9001)  # 不加载过多的图片，加快显示速度
+        #         # self.driver = webdriver.Firefox(profile)
+        #         self.driver = webdriver.Firefox()
+        #         self.driver.implicitly_wait(10)  # 隐性等待
+        #         self.driver.get(varURL)
+        #     elif platform.system() == "Darwin":
+        #         options = webdriver.FirefoxOptions()
+        #         options.add_argument("--start-maximized")  # 最大化浏览器
+        #         # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
+        #         # options.add_argument("-headless")
+        #         options.add_argument("--disable-gpu")
+        #
+        #         self.driver = webdriver.Firefox(
+        #             # firefox_profile=None,
+        #             # firefox_binary=None,
+        #             # # timeout=30,
+        #             # capabilities=None,
+        #             # proxy=None,
+        #             # executable_path="/usr/local/bin/geckodriver",
+        #             # log_path="geckodriver.log",
+        #             options=options
+        #         )
+        #         # self.driver._is_remote = False  # 解决mac电脑上传图片问题
+        #         # self.driver.implicitly_wait(10)  # 隐性等待
+        #         self.driver.get(varURL)
+        #     return self.driver
 
     def openURL(self, varURL):
         self._openURL(varURL)
 
 
     def opn(self, varUrl, t=1):
-        # 1.1 打开网页
+        """1.1 打开网页"""
+        # self.driver = webdriver.Chrome(ChromeDriverManager().install())
         self.driver.get(varUrl)
+        # self.driver.set_window_size(800, 320)
+
         sleep(t)
 
     def getSource(self):
-        # 1. 获取源码
+        """1. 获取源码"""
         return self.driver.page_source
 
+
     def opnLabel(self, varURL, t=2):
-        # 1.2 打开标签页
+
+        ''' 1.2 打开标签页 '''
+
         self.driver.execute_script('window.open("' + varURL + '");')
         sleep(t)
 
     def swhLabel(self, varSwitch, t=1):
-        # 1.3 切换标签页
+
+        '''
+        1.3 切换标签页
         # self.swhLabel(0) # 0 = 激活第一个标签页 ， 1 = 激活第二个标签页 , 以此类推。
+        '''
+
         all_handles = self.driver.window_handles
         sleep(t)
         self.driver.switch_to.window(all_handles[varSwitch])
 
     def cls(self):
-        # 1.4 关闭窗口
+
+        '''
+        1.4 关闭当前窗口
+        :return:
+        '''
+
         self.driver.close()
 
     def refresh(self):
-        # 刷新页面
+        """刷新页面"""
         self.driver.refresh()
 
     def getBrowserSize(self):
-        # 2.1 获取当前浏览器宽高
+
+        '''
+        2.1 获取当前浏览器宽高
+        :return:
+        '''
+
         d_size = self.driver.get_window_size()  # {'width': 1936, 'height': 1056}
         return d_size
         # return (d_size["width"] - 16, d_size["height"] + 24)
 
     def setBrowserSize(self, width, height):
-        # 2.2 设置浏览器分辨率
-        # Web_PO.setBrowserSize(1366, 768) # 按分辨率1366*768打开浏览器
+
+        '''
+        2.2 设置浏览器分辨率
+        :param width: 1366
+        :param height: 768
+        :return:
+        # Web_PO.setBrowser(1366, 768) # 按分辨率1366*768打开浏览器
+        '''
+
         self.driver.set_window_size(width, height)
 
     def setBrowserMax(self):
-        # 2.3 设置浏览器全屏
+
+        '''
+        2.3 设置浏览器全屏
+        :return:
+        '''
+
         self.driver.maximize_window()
 
     def zoom(self, percent):
-        # 2.4 缩放页面内容比率
-        # zoom(50) 内容缩小50%
+
+        '''
+        2.4 缩放页面内容比率
+        :param percent:  50
+        :return:
+        30表示内容缩小到 50%
+        '''
+
         self.driver.execute_script("document.body.style.zoom='" + str(percent) + "%'")
 
     def getBrowserScreen(self, varImageFile="browser.png"):
-        # 2.5 截取浏览器内屏幕
-        # getBrowserScreen("d:\\screenshot.png")
+
+        '''
+        2.5 截取浏览器内屏幕
+        :param varImageFile:  "d:\\screenshot.png"
+        :return:
+        前置条件：先打开浏览器后才能截屏.
+        '''
+
         try:
             self.driver.get_screenshot_as_file(varImageFile)
         except:
             print("error, 请检查浏览器是否打开！")
 
     def scrollBottom(self, t=2):
-        # 2.6 页面滚动条到底部
+
+        '''
+        2.6 页面滚动条到底部
+        :param t:
+        :return:
+        '''
+
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
         sleep(t)
 
 
+
     def popupAlert(self, varText, t=1):
-        # 3.1 弹出框
+
+        '''
+        3.1 弹出框
+        :param varText:
+        :param t:
+        :return:
+        '''
+
         # 注意这里需要转义引号
         self.driver.execute_script("alert('" + varText + "');")
         sleep(t)
 
     def confirmAlert(self, varOperate, t=1):
-        # 3.2 确认弹出框
+
+        '''
+        3.2 确认弹出框
+        :param operate:
+        :param t:
+        :return:
+        '''
+
         if varOperate == "accept":
             self.driver.switch_to.alert.accept()
             sleep(t)
@@ -446,44 +532,87 @@ class WebPO(DomPO):
 
 
     def kilBrowser(self):
-        # 4.1 关闭浏览器应用
+
+        '''
+        4.1 关闭浏览器应用
+        :return:
+        '''
+
         self.driver.quit()
 
 
     def scrollLeftByApp(self, location, t=1):
-        # 5.1 app屏幕左移
-        # Web_PO.scrollLeftByApp('1000')  # 屏幕向左移动1000个像素
+
+        '''
+        5.1 app屏幕左移
+        :param location: "1000"
+        :param t:
+        :return:
+         # Web_PO.scrollLeft('1000')  # 屏幕向左移动1000个像素
+        '''
+
         self.driver.execute_script("var q=document.documentElement.scrollLeft=" + location)
         sleep(t)
 
     def scrollRightByApp(self, location, t=1):
-        # 5.2 app屏幕右移
-        # Web_PO.scrollRightByApp('1000', 2)  # 屏幕向右移动1000个像素
+
+        '''
+        5.2 app屏幕右移
+        :param location: "1000"
+        :param t:
+        :return:
+        Web_PO.scrollRight('1000', 2)  # 屏幕向右移动1000个像素
+        '''
+
         self.driver.execute_script("var q=document.documentElement.scrollRight=" + location)
         sleep(t)
 
     def scrollUpByApp(self, location, t=1):
-        # 5.3 app屏幕上移
-        # Web_PO.scrollUpByApp("1000",2) # 屏幕向上移动1000个像素
+
+        '''
+        5.3 app屏幕上移
+        :param location: :1000
+        :param t:
+        :return:
+        Web_PO.scrollTop("1000",2) # 屏幕向上移动1000个像素
+        '''
+
         # self.driver.execute_script("var q=document.body.scrollTop=" + location)
         self.driver.execute_script("var q=document.documentElement.scrollTop=" + location)
         sleep(t)
 
     def scrollDownByApp(self, location, t=1):
-        # 5.4 app屏幕下移
-        # Web_PO.scrollDownByApp("1000",2) # 屏幕向下移动1000个像素
+
+        '''
+        5.4 app屏幕下移
+        :param location:
+        :param t:
+        :return:
+        Web_PO.scrollDown("1000",2) # 屏幕向下移动1000个像素
+        '''
+
         self.driver.execute_script("var q=document.documentElement.scrollDown=" + location)
         sleep(t)
 
 
+
     def scrollIntoView(self, varXpath, t=1):
-        # 元素拖动到可见的元素
+
+        '''
+        元素拖动到可见的元素
+        :param varXpath:
+        :param t:
+        :return:
+        '''
+
         element = self.driver.find_element_by_xpath(varXpath)
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
         sleep(t)
 
     def scrollTopById(self, varId, t=1):
-        # 2.10 内嵌窗口中滚动条操作
+
+        """2.10 内嵌窗口中滚动条操作"""
+
         # 若要对页面中的内嵌窗口中的滚动条进行操作，要先定位到该内嵌窗口，在进行滚动条操作
         # self.screenTopId("zy.android.healthstatisticssystem:id/vp_content",2)
         js = "var q=document.getElementById('" + varId + "').scrollTop=100000"
@@ -491,7 +620,9 @@ class WebPO(DomPO):
         sleep(t)
 
     def getCode(self, capScrnPic, xStart, yStart, xEnd, yEnd):
+
         """8 获取验证码 ？？"""
+
         # Level_PO.getCode(u"test.jpg",2060, 850, 2187, 900）
         # 注：地址是图片元素中的位置。
         self.driver.save_screenshot(capScrnPic)
