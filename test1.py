@@ -5,12 +5,29 @@
 # Description: ChainMap
 # ********************************************************************************************************************
 
-d = {'result': '[ERROR] => 疾病评估 => 1(r9) => 郭斐 => 舒阳阳'}
-2323
-12
-313
+numbers = [1, 2, 3, 4, 5]
+total = sum(numbers)  # 推荐
+print(total)
 
-# -*- coding: utf-8 -*-
+
+squares_gen = (x**2 for x in range(10))  # 内存占用较小
+print(squares_gen)
+print(list(squares_gen))
+
+
+# functools.lru_cache 可以缓存函数的返回值，避免重复计算，提高性能。
+import functools
+@functools.lru_cache(maxsize=None)
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n - 1) + fibonacci(n - 2)
+# 第一次调用会计算
+print(fibonacci(10))  # 输出: 55
+
+# 第二次调用会直接返回缓存结果
+print(fibonacci(11))  # 输出: 55，但速度更快
+
 
 # import binascii
 # import re

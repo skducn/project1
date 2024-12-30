@@ -266,10 +266,7 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            if os.name == "nt":
-                self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe", "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-            elif os.name == "posix":
-                self.updateChromedriver(options)
+            self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe", "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
@@ -295,11 +292,8 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            if os.name == "nt":
-                self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
+            self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
                                         "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-            elif os.name == "posix":
-                self.updateChromedriver(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
@@ -344,11 +338,9 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            if os.name == "nt":
-                self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
+            self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
                                         "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-            elif os.name == "posix":
-                self.updateChromedriver(options)
+
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})

@@ -9,14 +9,52 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-def deduplication(varList):
-    # 5.5 列表元素去重
+# import sys
+# print(sys.version_info)
+#
+# if sys.version_info < (3,8,16,"final",1):
+#     print("121212")
+# else:
+#     print(0000)
 
-    return sorted(set(varList), key=varList.index)
+# psutil 是一个跨平台库，用于轻松获取系统运行的进程和系统利用率（CPU、内存、磁盘、网络等）信息。
+import psutil
+# 获取CPU使用率
+cpu_usage = psutil.cpu_percent(interval=1)
+print(f'CPU Usage: {cpu_usage}%')
+# 获取内存使用率
+memory_info = psutil.virtual_memory()
+print(f'Total Memory: {memory_info.total / (1024 ** 3):.2f} GB')
+print(f'Available Memory: {memory_info.available / (1024 ** 3):.2f} GB')
 
-d = ['30%', '35%', '40%', '30%', '35%', '40%', '30%', '35%', '40%', '30%', '35%', '40%', '45%', '35%', '40%', '45%', '50%', '55%', '45%', '50%', '55%', '60%', '45%', '50%', '55%', '60%', '65%', '50%', '55%', '60%', '65%', '55%', '60%', '65%', '70%']
 
-print(deduplication(d))
+import platform
+# 获取操作系统信息
+system = platform.system()
+version = platform.version()
+architecture = platform.architecture()
+print(f'System: {system}')
+print(f'Version: {version}')
+print(f'Architecture: {architecture}')
+
+# import itchat
+# itchat.auto_login(hotReload=True)
+#
+# # 获取好友列表
+# friends = itchat.get_friends(update=True)
+#
+# for friend in friends:
+#     print(friend['NickName'])
+
+
+# def deduplication(varList):
+#     # 5.5 列表元素去重
+#
+#     return sorted(set(varList), key=varList.index)
+#
+# d = ['30%', '35%', '40%', '30%', '35%', '40%', '30%', '35%', '40%', '30%', '35%', '40%', '45%', '35%', '40%', '45%', '50%', '55%', '45%', '50%', '55%', '60%', '45%', '50%', '55%', '60%', '65%', '50%', '55%', '60%', '65%', '55%', '60%', '65%', '70%']
+#
+# print(deduplication(d))
 
 
 # print(list(d.keys()))

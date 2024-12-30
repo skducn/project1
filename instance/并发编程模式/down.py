@@ -2,20 +2,12 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2024-11-11
-# Description: 多线程，下载文件
+# Description: 并发编程模式，下载文件
 # *****************************************************************
 
 import threading
 import requests
 import os
-
-
-# 虚拟文件URL列表
-file_urls = [
-    "https://www.example.com/file1.txt",
-    "https://www.example.com/file2.txt",
-    "https://www.example.com/file3.txt"
-]
 
 
 # 下载函数
@@ -42,8 +34,14 @@ class DownloaderThread(threading.Thread):
 download_dir = "downloads"
 os.makedirs(download_dir, exist_ok=True)
 
+
 # 创建并启动多个下载线程
 threads = []
+file_urls = [
+    "https://www.example.com/file1.txt",
+    "https://www.example.com/file2.txt",
+    "https://www.example.com/file3.txt"
+]
 for i, url in enumerate(file_urls):
     file_name = f"file{i + 1}.txt"
     save_path = os.path.join(download_dir, file_name)

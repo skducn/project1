@@ -245,7 +245,7 @@ if __name__ == "__main__":
     Sys_PO = SysPO()
 
     # print("1.1，获取当前系统".center(100, "-"))
-    print(Sys_PO.getPlatform())  # nt  //表示windows    posix //表示mac
+    # print(Sys_PO.getPlatform())  # nt  //表示windows    posix //表示mac
     #
     # print("1.2，获取本机mac地址".center(100, "-"))
     # print(Sys_PO.getMacAddress())  # 00:e1:8c:93:f6:76
@@ -289,10 +289,10 @@ if __name__ == "__main__":
     # # print("2.9，关闭应用程序进程的PID".center(100, "-"))
     # Sys_PO.clsPID(21500)
     #
-    print("2.10，关闭应用程序进程名".center(100, "-"))
+    # print("2.10，关闭应用程序进程名".center(100, "-"))
     # Sys_PO.clsApp('notepad.exe')  # for win
-    Sys_PO.clsApp("Sublime Text")  # for mac
-    Sys_PO.clsApp("Microsoft Excel")
+    # Sys_PO.clsApp("Sublime Text")  # for mac
+    # Sys_PO.clsApp("Microsoft Excel")
 
     # # print("3.1 输出系统错误(简)".center(100, "-"))
     # Sys_PO.outMsg1("error", str(sys._getframe(0).f_lineno), sys._getframe(0).f_code.co_name , "错误提示")

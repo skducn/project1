@@ -398,7 +398,7 @@ class DomPO(object):
         # 获取标签数量
         # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
         qty = 0
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
+        for _ in self.find_elements(*(By.XPATH, varXpaths)):
             qty = qty + 1
         return qty
 
@@ -584,6 +584,7 @@ class DomPO(object):
     # todo shadow-root元素
 
     def getShadowByXByC(self, varXpath, varCss, t=1):
+        # 如：获取指定input下shadow-root元素div的文本 getShadowByXByC("//input", "div")
         # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
         ele = self.find_element(*(By.XPATH, varXpath))
         shadow_root = ele.shadow_root
@@ -592,9 +593,8 @@ class DomPO(object):
         return (ele2.text)
 
     def getShadowByXsByC(self, varXpaths, varCss, t=1):
+        # 如：获取所有input下shadow-root元素div的文本 getShadowByXsByC("//input", "div")
         # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
-        # 如：input下shadow-root元素div的文本，返回列表
-        # getShadowByXsByC("//input", "div")
         eles = self.find_elements(*(By.XPATH, varXpaths))
         l_shadow = []
         for i in eles:
@@ -641,7 +641,7 @@ class DomPO(object):
         # 定位元素之获取标签数量
         # 如：获取div标签数量 eleGetQtyByX(ele, './/tr/div')
         qty = 0
-        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+        for _ in ele.find_elements(*(By.XPATH, varXpaths)):
             qty = qty + 1
         return qty
 
@@ -649,7 +649,7 @@ class DomPO(object):
         # 定位元素之遍历获取标签数量
         # 如：获取div标签数量 eleGetQtyByXs(ele, './/tr/div')
         qty = 0
-        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+        for _ in ele.find_elements(*(By.XPATH, varXpaths)):
             qty = qty + 1
         return qty
 

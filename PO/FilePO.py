@@ -14,6 +14,10 @@ json文件转字典，jsonfile2dict("output.json")
 字典转yaml，dict2yamlfile1("output.pickle", {1: "a"})
 字典转yaml2，dict2yamlfile2("output.pickle", {1: "a"})
 
+读取文件
+读取大文件 readBigFile()
+
+
 3，目录与文件
 3.2 获取路径下目录及文件清单（包括路径） getWalk()
 
@@ -40,11 +44,22 @@ import json, pickle, yaml
 
 class FilePO:
 
+    def readBigFile(self, varFilePath):
+        # 读取大文件
+        # readBigFile()
+        with open(varFilePath, 'rb') as file:
+            while True:
+                chunk = file.read(1024)
+                if not chunk:
+                    break
+                # 处理这个块
+
+
 
     def dict2jsonfile(self, varFilePath, d_content):
         # 方法1: 使用json.dump()将字典直接写入文件
         # dict2jsonfile("output.json", {1:"a"})
-        with open(varFilePath, "w") as file:
+        with open(varFilePath, "w", encoding='utf-8') as file:
             json.dump(d_content, file, ensure_ascii=False)
 
     def dict2jsonfile2(self, varFilePath, d_content):

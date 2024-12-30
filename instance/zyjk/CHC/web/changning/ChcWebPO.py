@@ -146,9 +146,9 @@ class ChcWebPO():
         self.Web_PO.swhLabel(1)
 
         # # 人群分类
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[3]/div/div/div/div/div/input", 2)
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[3]/div/div/div/div/div/input", 2)
         # # 老年人
-        self.Web_PO.clkByX("/html/body/div[2]/div[2]/div/div/div[1]/ul/li[4]", 2)
+        # self.Web_PO.clkByX("/html/body/div[2]/div[2]/div/div/div[1]/ul/li[4]", 2)
         #
         # # 家庭医生
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input",2)
