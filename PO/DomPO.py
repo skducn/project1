@@ -637,8 +637,16 @@ class DomPO(object):
         # 定位元素之获取属性
         return ele.get_attribute(varAttr)
 
-    def eleGetQtyByXs(self, ele, varXpaths):
+    def eleGetQtyByX(self, ele, varXpaths):
         # 定位元素之获取标签数量
+        # 如：获取div标签数量 eleGetQtyByX(ele, './/tr/div')
+        qty = 0
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            qty = qty + 1
+        return qty
+
+    def eleGetQtyByXs(self, ele, varXpaths):
+        # 定位元素之遍历获取标签数量
         # 如：获取div标签数量 eleGetQtyByXs(ele, './/tr/div')
         qty = 0
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
