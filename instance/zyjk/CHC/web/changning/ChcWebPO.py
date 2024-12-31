@@ -43,7 +43,6 @@ class ChcWebPO():
                 l_2 = []
                 for i in v:
                     s = varUrlTest + "#/SignManage/signAssess/component/basicReport?idCard=" + str(i)
-                    # s = "http://10.207.237.160:8088/login#/SignManage/signAssess/component/basicReport?idCard=" + str(i)
                     l_1.append(s)
                     l_2.append(i)
                 # print(l_1)
@@ -54,7 +53,7 @@ class ChcWebPO():
 
                 # sleep(8)
                 # self.Web_PO.isEleTextExistByXForWait("/html/body/div[1]/div/div[2]/section/div/div/section/footer/button[3]", '待上传市级平台', 30)
-                print("已完成,", k1, ",第", k, "页 => ", l_2)
+                print("已完成,", k1, "第", k, "页 =>", l_2)
 
                 for i in range(len(l_1)):
                     self.Web_PO.swhLabel(1)

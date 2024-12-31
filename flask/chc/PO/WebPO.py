@@ -391,7 +391,7 @@ class WebPO(DomPO):
 
             # 更新下载chromedriver
             self.updateChromedriver(options)
-            # self.updateChromedriverForLinux(options)
+            self.updateChromedriverForLinux(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})

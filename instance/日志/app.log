@@ -1,0 +1,25 @@
+2024-12-31 17:32:50,030 - INFO - Program started
+2024-12-31 17:32:59,686 - INFO - Received signal: SIGINT
+2024-12-31 17:32:59,686 - INFO - Program is terminating...
+2024-12-31 17:33:56,362 - INFO - Program started
+2024-12-31 17:34:03,111 - INFO - Received signal: SIGINT
+2024-12-31 17:34:03,111 - INFO - Program is terminating...
+2024-12-31 17:34:29,489 - INFO - Program started
+2024-12-31 17:34:31,494 - INFO - 123
+2024-12-31 17:34:33,498 - INFO - 123
+2024-12-31 17:34:35,501 - INFO - 123
+2024-12-31 17:34:37,506 - INFO - 123
+2024-12-31 17:34:38,297 - INFO - Received signal: SIGINT
+2024-12-31 17:34:38,297 - INFO - Program is terminating...
+2024-12-31 17:35:32,528 - INFO - Program started
+2024-12-31 17:35:34,533 - INFO - 123
+2024-12-31 17:35:36,537 - INFO - 123
+2024-12-31 17:35:37,207 - INFO - Received signal: SIGINT
+2024-12-31 17:35:37,207 - INFO - Program is terminating...
+2024-12-31 17:35:50,998 - INFO - Program started
+2024-12-31 17:35:53,002 - INFO - 123
+2024-12-31 17:35:55,007 - INFO - 123
+2024-12-31 17:35:57,011 - INFO - 123
+2024-12-31 17:35:59,015 - INFO - 123
+2024-12-31 17:36:00,014 - INFO - Received signal: SIGINT
+2024-12-31 17:36:00,014 - INFO - Program is terminating...
