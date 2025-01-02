@@ -3,6 +3,7 @@
 # Author     : John
 # Date       : 2023-1-1
 # Description: 当程序中断时，将日志保存到app.log
+# 参考zyjk - chc - web - changning的main()
 # *****************************************************************
 
 import signal

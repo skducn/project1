@@ -22,3 +22,7 @@
 2024-12-31 17:53:40,465 - INFO - 666
 2024-12-31 17:53:42,469 - INFO - 666
 2024-12-31 17:53:43,328 - ERROR - An error occurred: 'int' object has no attribute 'logger'
+2025-01-02 08:55:31,859 - INFO - Program started
+2025-01-02 08:55:33,868 - INFO - 444
+2025-01-02 08:55:35,877 - INFO - 444
+2025-01-02 08:55:37,283 - ERROR - An error occurred: 'int' object has no attribute 'logger'

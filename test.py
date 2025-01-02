@@ -9,6 +9,30 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
+import os
+
+# 获取CPU核数
+cpu_count = os.cpu_count()
+print(f"CPU cores: {cpu_count}")
+
+import psutil
+
+def get_cpu_cores_psutil():
+    return psutil.cpu_count()
+
+if __name__ == "__main__":
+    print(f"Number of CPU cores: {get_cpu_cores_psutil()}")
+
+
+import multiprocessing
+
+def get_cpu_cores_multiprocessing():
+    return multiprocessing.cpu_count()
+
+if __name__ == "__main__":
+    print(f"Number of CPU cores: {get_cpu_cores_multiprocessing()}")
+
+
 # import sys
 # print(sys.version_info)
 #
@@ -17,25 +41,26 @@
 # else:
 #     print(0000)
 
-# psutil 是一个跨平台库，用于轻松获取系统运行的进程和系统利用率（CPU、内存、磁盘、网络等）信息。
-import psutil
-# 获取CPU使用率
-cpu_usage = psutil.cpu_percent(interval=1)
-print(f'CPU Usage: {cpu_usage}%')
-# 获取内存使用率
-memory_info = psutil.virtual_memory()
-print(f'Total Memory: {memory_info.total / (1024 ** 3):.2f} GB')
-print(f'Available Memory: {memory_info.available / (1024 ** 3):.2f} GB')
 
-
-import platform
-# 获取操作系统信息
-system = platform.system()
-version = platform.version()
-architecture = platform.architecture()
-print(f'System: {system}')
-print(f'Version: {version}')
-print(f'Architecture: {architecture}')
+# # psutil 是一个跨平台库，用于轻松获取系统运行的进程和系统利用率（CPU、内存、磁盘、网络等）信息。
+# import psutil
+# # 获取CPU使用率
+# cpu_usage = psutil.cpu_percent(interval=1)
+# print(f'CPU Usage: {cpu_usage}%')
+# # 获取内存使用率
+# memory_info = psutil.virtual_memory()
+# print(f'Total Memory: {memory_info.total / (1024 ** 3):.2f} GB')
+# print(f'Available Memory: {memory_info.available / (1024 ** 3):.2f} GB')
+#
+#
+# import platform
+# # 获取操作系统信息
+# system = platform.system()
+# version = platform.version()
+# architecture = platform.architecture()
+# print(f'System: {system}')
+# print(f'Version: {version}')
+# print(f'Architecture: {architecture}')
 
 # import itchat
 # itchat.auto_login(hotReload=True)

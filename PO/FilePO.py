@@ -38,11 +38,12 @@ json文件转字典，jsonfile2dict("output.json")
 """
 
 import os, shutil, glob, sys, pathlib, mimetypes
-import json, pickle, yaml
+import json
+import pickle
+# import yaml
 
 
-
-class FilePO:
+class FilePO():
 
     def readBigFile(self, varFilePath):
         # 读取大文件

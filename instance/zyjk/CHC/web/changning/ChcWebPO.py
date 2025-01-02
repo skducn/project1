@@ -13,6 +13,9 @@ varUrlTest = Configparser_PO.HTTP("testUrl")
 
 from PO.WebPO import *
 
+# from PO.LogPO2 import *
+# Log_PO2 = LogPO2("./LogPO3.log")
+
 from PO.CaptchaPO import *
 Captcha_PO = CaptchaPO()
 
@@ -22,8 +25,40 @@ Base64_PO = Base64PO()
 from PO.FilePO import *
 File_PO = FilePO()
 
+import logging
+import signal
+import sys
+
+from time import sleep
+
+
 
 class ChcWebPO():
+
+
+    def __init__(self, varFile):
+
+        # 配置日志
+        logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        self.logger = logging.getLogger(__name__)
+        print(varFile)
+
+
+
+    # 定义信号处理函数
+    def handle_signal(self, signum, frame):
+        self.logger.info('Received signal: {}'.format(signal.Signals(signum).name))
+        self.logger.info('Program is terminating...')
+        # 在这里可以添加额外的清理代码或日志记录
+        sys.exit(0)
+
+        # # 信号处理函数需要2个参数,这里放在了类里面,所以还需要额外的self参数
+        # logger.info("Get TERM signal {0}".format(signal_num))
+        # self.terminated_flag = True
+        # self._kill_sleep_gevent()  # 轮询结束休眠的协程
+
+
 
     def runTest(self, varUser, varPass, d_2):
 
@@ -128,9 +163,12 @@ class ChcWebPO():
 
 
 
-
     def getIdcardTest(self, varUser, varPass, varDoc):
         # 获取每个医生所管理的身份证列表
+
+        # 注册信号处理函数
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
 
         # 登录
         self.Web_PO = WebPO("chrome")
@@ -199,6 +237,8 @@ class ChcWebPO():
                 for i in range(int(tr_qty)):
                     idcard = self.Web_PO.eleGetTextByX(ele, ".//div[3]/div/div[1]/div/table/tbody/tr["+ str(i+1)+ "]/td[9]/div")
                     l_.append(idcard)
+                pp = (str(varDoc) + str(k+1) + str(l_))
+                self.logger.info(pp)
                 print(varDoc, k+1, l_)
                 d_1[k+1] = l_
             d_2[varDoc] = d_1
@@ -289,148 +329,27 @@ class ChcWebPO():
 
 
 
-    def getIdcard121212(self, varUser, varPass, varDoc):
-        # 获取每个医生所管理的身份证列表
-
+    def getDocTest(self, varUser, varPass):
+        # 获取家庭医生列表顺序名单(测试环境)
         # 登录
         self.Web_PO = WebPO("chrome")
-        self.Web_PO.openURL(varUrl)
+        self.Web_PO.openURL(varUrlTest)
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
-        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
-
-        for i in range(10):
-            dataURI = self.Web_PO.getAttrValueByX(u"//img[@class='login-code-img']", "src")  # getValueByAttr
-            imgFile = Base64_PO.base64ToImg(dataURI)
-            captcha = Captcha_PO.getCaptchaByDdddOcr(imgFile)
-            File_PO.removeFile('', imgFile)
-            # print(captcha)
-            self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", captcha)
-            self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
-            if self.Web_PO.isEleExistByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button") == False:
-                break
-
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 3)
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
 
         # 居民健康服务 - 健康评估及干预
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li", 2)
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li/ul/div/a/li", 2)
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li/ul/div[2]/a/li", 2)
+        self.Web_PO.opnLabel(varUrlTest + "/#/SignManage/signAssess", 1)
+        self.Web_PO.swhLabel(1)
 
-        # # 人群分类
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[3]/div/div/div/div/div/input", 2)
-        # # 老年人
-        self.Web_PO.clkByX("/html/body/div[2]/div[2]/div/div/div[1]/ul/li[4]", 2)
-        #
         # # 家庭医生
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input",2)
-        self.Web_PO.clkByX("/html/body/div[2]/div[3]/div/div/div[1]/ul/li[" + str(varDoc) + "]")  # 修改l[2]
-        #
-        # # 本年度上传情况
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[1]/div/div/div/div/div/input", 2)
-        self.Web_PO.clkByX("/html/body/div[2]/div[12]/div/div/div[1]/ul/li[1]", 2)
-        #
-        #
-        # # 查询
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[2]/div/button")
-
-        # l_1 = []
-        # for k in range(118):
-        #     # 前往第几页
-        #     self.Web_PO.setTextTabByX2("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", k+1, 2)
-        #     l_ = []
-        #     for i in range(10):
-        #         a = self.Web_PO.getTextByX("//tbody/tr["+ str(i+1)+ "]/td[8]/div")
-        #         l_.append(a)
-        #         s = "http://10.207.237.160:8088/login#/SignManage/signAssess/component/basicReport?idCard=" + str(a)
-        #         l_1.append(s)
-        #     print(k+1, l_)
-        # print(l_1)
-        #
-        # sys.exit(0)
-
-        l_1 = []
-        a = ['310105195912092845', '310105195311121284', '310101194710034022', '310105195707152853', '310105195410313222', '310105195106023212', '310105195112280821', '310105195812023236', '310105195509022126', '310105195410182090']
-        for i in a:
-            s = "http://10.207.237.160:8088/login#/SignManage/signAssess/component/basicReport?idCard=" + str(i)
-            l_1.append(s)
-
-        for i in range(len(l_1)):
-            self.Web_PO.opnLabel(l_1[i])
-            self.Web_PO.swhLabel(i + 1)
-            sleep(3)
-            l_ = self.Web_PO.getTextByXs("//span")
-            sleep(2)
-            for j in l_:
-                if j == "待上传市级平台":
-                    # self.Web_PO.cls()
-                    ...
-
-                elif j == "上传报告":
-                    # 上次报告
-                    self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/section/div/div/section/footer/button[3]")
-                    self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/section/footer/button[3]", 2)
-                    if self.Web_PO.isEleExistByX("/html/body/div[5]/div/div/div[3]/button[2]"):
-                        self.Web_PO.clkByX("/html/body/div[5]/div/div/div[3]/button[2]", 1)
-                    elif self.Web_PO.isEleExistByX("/html/body/div[3]/div/div/div[3]/button[2]"):
-                        self.Web_PO.clkByX("/html/body/div[3]/div/div/div[3]/button[2]", 1)
-
-                    # 返回
-                    # sleep(20)
-                    # self.Web_PO.cls()
-                    # # /html/body/div[1]/div/div[2]/div[1]/div[2]/span
-                    #
-                    # if self.Web_PO.isEleExistByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span") == True:
-                    #     self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span", 1)
-                    #     self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span", 2)
-                    #     # /html/body/div[1]/div/div[2]/div[1]/div[2]/span
-                    # break
-
-
-        sys.exit(0)
-
-
-        # 点击第一条
-        for k in range(500):
-            # 前往第几页
-            self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", k+1, 2)
-            for i in range(5,10):
-                # # 查询
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[2]/div/button")
-                # 点击第N行
-                # /html/body/div[1]/div/div[2]/section/div/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[12]/div/button
-                self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[" + str(i+1) + "]/td[12]/div/button", 1)
-                self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[" + str(i+1) + "]/td[12]/div/button", 4)
-                l_ = self.Web_PO.getTextByXs("//span")
-                for j in l_:
-                    if j == "待上传市级平台":
-                        # 返回
-                        if self.Web_PO.isEleExistByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span") == True:
-                            self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span", 2)
-                            break
-
-                    if j == "上传报告":
-                        # 上次报告
-                        self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/section/div/div/section/footer/button[3]")
-                        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/section/footer/button[3]", 2)
-                        if self.Web_PO.isEleExistByX("/html/body/div[5]/div/div/div[3]/button[2]"):
-                            self.Web_PO.clkByX("/html/body/div[5]/div/div/div[3]/button[2]", 1)
-                        elif self.Web_PO.isEleExistByX("/html/body/div[3]/div/div/div[3]/button[2]"):
-                            self.Web_PO.clkByX("/html/body/div[3]/div/div/div[3]/button[2]", 1)
-
-                        # 返回
-                        sleep(20)
-                        # /html/body/div[1]/div/div[2]/div[1]/div[2]/span
-
-                        if self.Web_PO.isEleExistByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span") == True:
-                            self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span", 1)
-                            self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/span", 2)
-                            # /html/body/div[1]/div/div[2]/div[1]/div[2]/span
-                        break
-
-        # /html/body/div[1]/div/div[2]/section/div/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[12]/div/button
-        # /html/body/div[1]/div/div[2]/section/div/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[2]/td[12]/div/button
-
+        self.Web_PO.clkByX(
+            "/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input")
+        l_doc = self.Web_PO.getTextByXs("/html/body/div[2]/div[3]/div/div/div[1]/ul/li")
+        d_doc = dict(enumerate(l_doc, start=1))
+        d_doc = {v: k for k, v in d_doc.items()}
+        return d_doc
 
     def getDoc(self, varUser, varPass):
         # 获取家庭医生列表顺序名单
@@ -461,23 +380,3 @@ class ChcWebPO():
             d_doc = {v: k for k, v in d_doc.items()}
             return d_doc
 
-    def getDocTest(self, varUser, varPass):
-        # 获取家庭医生列表顺序名单(测试环境)
-        # 登录
-        self.Web_PO = WebPO("chrome")
-        self.Web_PO.openURL(varUrlTest)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
-
-        # 居民健康服务 - 健康评估及干预
-        self.Web_PO.opnLabel(varUrlTest + "/#/SignManage/signAssess", 1)
-        self.Web_PO.swhLabel(1)
-
-        # # 家庭医生
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input")
-        l_doc = self.Web_PO.getTextByXs("/html/body/div[2]/div[3]/div/div/div[1]/ul/li")
-        d_doc = dict(enumerate(l_doc,start=1))
-        d_doc = {v: k for k,v in d_doc.items()}
-        return d_doc
