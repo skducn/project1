@@ -31,33 +31,33 @@ import time
 
 # # 封装getIdcardTest函数
 def p_getIdcard(param):
-    return ChcWeb_PO.getIdcardTest(param[0], param[1], param[2])
+    return ChcWeb_PO.getIdcardTest(param)
 
 def p_runTest(param):
-    return ChcWeb_PO.runTest(param[0], param[1], param[2])
+    return ChcWeb_PO.runTest(param)
 
 
 # 程序的主要部分
 def main():
     try:
         time1 = time.time()
-        # 假设有 4 个 CPU 核心
-        print("CPU cores: ", cpu_count())  # cpu核数
+        # 获取cpu核数
+        print("CPU cores: ", cpu_count())
+
         with Pool(cpu_count()) as pool:
-            squared_numbers = pool.map(p_getIdcard, [('lbl', 'HHkk2327447', "小茄子"), ('lbl', 'HHkk2327447', "小猴子")])
+            squared_numbers = pool.map(p_getIdcard, ["小茄子", "小猴子"])
         print(squared_numbers)
 
-        # with Pool(4) as pool:
-        #     pool.map(p_runTest, [('lbl', 'HHkk2327447', File_PO.jsonfile2dict("小茄子.json")),
-        #                          ('lbl', 'HHkk2327447', File_PO.jsonfile2dict("小猴子.json"))])
+        # 假设有 4 个 CPU 核心
+        with Pool(4) as pool:
+            pool.map(p_runTest, ["小茄子.json", "小猴子.json"])
 
         time2 = time.time()
         pool.close()
         pool.join()
         print('总共耗时：' + str(time2 - time1) + 's')
 
-    except Exception as e:
-        # Log_PO2.logger.error('An error occurred: {}'.format(e))
+    except:
         sys.exit(1)
 
 if __name__ == "__main__":

@@ -30,7 +30,7 @@ import signal
 import sys
 
 from time import sleep
-
+import datetime
 
 
 class ChcWebPO():
@@ -39,11 +39,12 @@ class ChcWebPO():
     def __init__(self, varFile):
 
         # 配置日志
-        logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-        # logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+        if os.name == 'nt':
+            logging.basicConfig(filename=varFile, level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
+        else:
+            logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger(__name__)
-        print(varFile)
-
+        # print(varFile, datetime.datetime.now())
 
 
     # 定义信号处理函数
@@ -52,26 +53,26 @@ class ChcWebPO():
         self.logger.info('Program is terminating...')
         # 在这里可以添加额外的清理代码或日志记录
         sys.exit(0)
-
         # # 信号处理函数需要2个参数,这里放在了类里面,所以还需要额外的self参数
         # logger.info("Get TERM signal {0}".format(signal_num))
         # self.terminated_flag = True
         # self._kill_sleep_gevent()  # 轮询结束休眠的协程
 
 
-
-    def runTest(self, varUser, varPass, d_2):
+    def runTest(self, varJsonFile):
 
         # 1，登录
         self.Web_PO = WebPO("chrome")
         self.Web_PO.openURL(varUrlTest)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", Configparser_PO.USER("user"))
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", Configparser_PO.USER("password"))
         # 验证码
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
 
         # 2，遍历身份id
+        varJsonFile = varJsonFile + ".json"
+        d_2 = File_PO.jsonfile2dict(varJsonFile)
         for k1, v1 in d_2.items():
             for k, v in v1.items():
                 l_1 = []
@@ -163,7 +164,7 @@ class ChcWebPO():
 
 
 
-    def getIdcardTest(self, varUser, varPass, varDoc):
+    def getIdcardTest(self, varDoc):
         # 获取每个医生所管理的身份证列表
 
         # 注册信号处理函数
@@ -173,8 +174,8 @@ class ChcWebPO():
         # 登录
         self.Web_PO = WebPO("chrome")
         self.Web_PO.openURL(varUrlTest)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", Configparser_PO.USER("user"))
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", Configparser_PO.USER("password"))
         self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
 
@@ -190,7 +191,6 @@ class ChcWebPO():
         # # 家庭医生
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input",2)
         li_qty = self.Web_PO.getQtyByXs("/html/body/div[2]/div[3]/div/div/div[1]/ul/li")
-        # print(li_qty)
         for i in range(int(li_qty)):
             varDocName = self.Web_PO.getTextByX("/html/body/div[2]/div[3]/div/div/div[1]/ul/li[" + str(i+1) + "]/span")
             if varDocName == varDoc:
