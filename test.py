@@ -9,6 +9,11 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
+l_ = ['总院', '分院', '门诊部']
+d_3 = dict(enumerate(l_, start=1))
+d_4 = {v: k for k, v in d_3.items()}
+print(d_4)
+
 import os
 
 # 获取CPU核数

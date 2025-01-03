@@ -451,6 +451,8 @@ class DomPO(object):
         # 如：getAttrValueByX(u"//input[@class='123']","href")
         return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
+
+
     def getAttrValueByXs(self, varXpaths, varAttr):
         # 获取所有相同属性值的列表
         # 如：获取所有tr标签中 href的值 getAttrValueByXs("//tr", "href")
@@ -637,6 +639,11 @@ class DomPO(object):
         # 定位元素之获取属性
         return ele.get_attribute(varAttr)
 
+    def eleGetAttrValueByX(self, ele, varXpath, varAttr):
+        # 获取属性值
+        # 如：eleGetAttrValueByX(ele, u"//input[@class='123']","href")
+        return ele.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
+
     def eleGetQtyByX(self, ele, varXpaths):
         # 定位元素之获取标签数量
         # 如：获取div标签数量 eleGetQtyByX(ele, './/tr/div')
@@ -682,6 +689,16 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).clear()
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
         ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+        sleep(t)
+
+    def eleSetTextTabByX(self, ele, varXpath, varText, t=1):
+        # 输入框双击后输入文本，按Tab
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        actions.double_click(ele2).perform()
+        sleep(t)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
         sleep(t)
 
     def eleSetTextBackspaceEnterByX(self, ele, varXpath, varN, varValue, t=3):
