@@ -9,10 +9,14 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 
-l_ = ['总院', '分院', '门诊部']
-d_3 = dict(enumerate(l_, start=1))
-d_4 = {v: k for k, v in d_3.items()}
-print(d_4)
+lst = ['', '', '', '', '', '', '', '', '启用状态', '', '', '']
+print(lst.index('启用状态'))
+
+
+# a = ['25', '26', '27', '28', '29', '30', '1']
+# a = [int(i) for i in a]
+# a = [0 if i > 10 else i for i in a]
+# print(a)
 
 import os
 
