@@ -61,7 +61,7 @@ class ErpPO(object):
 
     # todo 医院管理
 
-    def _dropdownDateByAriaHidden(self, v):
+    def _dropdownDateByAriaHidden(self):
             # 日期区间
             # 如：医院管理最后更新时间
 
@@ -1036,11 +1036,33 @@ class ErpPO(object):
             return l_
 
 
+    # todo 辖区分配
+
+
+    def _dropdownByAreaAssign(self):
+        # 辖区分配
+
+        varPrefix = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']"
+        l_ = self.Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li")
+        print(l_)
 
 
 
+    def setVer(self, varVer, varInfo):
 
+        # 点击 所在周期版本
+        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/form/div/div/div/div[2]/div/div")
+        l_ = self.Web_PO.getTextByXs(
+            "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li")
+        # print(l_)  # ['202501版本', '202412版本', '202411版本'。。。
+        d_ = dict(enumerate(l_, start=1))
+        d_ = {v:k for k, v in d_.items()}
+        # print(d_)  # {'202501版本': 1, '202412版本': 2, '202411版本': 3,
+        self.Web_PO.clkByX(
+            "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(
+                d_[varVer]) + "]")
 
+        self.Web_PO.setTextEnterByX("/html/body/div[1]/div/div[2]/section/div/div[3]/div[1]/div[1]/div/div/input", varInfo)
 
 
 
