@@ -61,7 +61,7 @@ class ErpPO(object):
 
     # todo 医院管理
 
-    def _dropdownDateByAriaHidden(self):
+    def _dropdownDateByAriaHidden(self, v):
             # 日期区间
             # 如：医院管理最后更新时间
 
@@ -182,6 +182,25 @@ class ErpPO(object):
         d_4 = {v: k for k, v in d_3.items()}
         self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper styleMyStaffTitle' and @aria-hidden='false']/div/div[2]/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
 
+    def _dropdown4(self, ele, elePath, v):
+        # 下拉框多选
+        # 非销售岗位关联
+        # _dropdown4(ele, "//", '分院')
+        self.Web_PO.eleClkByX(ele, elePath, 1)
+        l_ = self.Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li")
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)
+        # 取消当前已勾选的项
+        for i in range(len(d_4)):
+            varClass = self.Web_PO.getAttrValueByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(i+1) + "]", 'class')
+            if varClass == 'el-select-dropdown__item is-selected is-hovering' or varClass == 'el-select-dropdown__item is-selected':
+                self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(i+1) + "]", 1)
+
+        # 勾选
+        for i in range(len(v)):
+            self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v[i]]) + "]", 1)
+
     def _dropdown2(self, ele, elePath, v):
         # 公共下拉框
         # _dropdown2(ele, "//", '分院')
@@ -189,6 +208,7 @@ class ErpPO(object):
         l_ = self.Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li")
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)
         self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
 
     def _dropdown(self, ele, elePath, l_, v):
@@ -1048,22 +1068,96 @@ class ErpPO(object):
 
 
 
-    def setVer(self, varVer, varInfo):
+    def setInfo(self, d_):
 
         # 点击 所在周期版本
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/form/div/div/div/div[2]/div/div")
         l_ = self.Web_PO.getTextByXs(
             "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li")
         # print(l_)  # ['202501版本', '202412版本', '202411版本'。。。
-        d_ = dict(enumerate(l_, start=1))
-        d_ = {v:k for k, v in d_.items()}
-        # print(d_)  # {'202501版本': 1, '202412版本': 2, '202411版本': 3,
+        d_1 = dict(enumerate(l_, start=1))
+        d_1 = {v:k for k, v in d_1.items()}
+        # print(d_1)  # {'202501版本': 1, '202412版本': 2, '202411版本': 3,
         self.Web_PO.clkByX(
             "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(
-                d_[varVer]) + "]")
+                d_1[d_['周期版本']]) + "]")
 
-        self.Web_PO.setTextEnterByX("/html/body/div[1]/div/div[2]/section/div/div[3]/div[1]/div[1]/div/div/input", varInfo)
+        # 辖区信息里搜索辖区名称
+        ele3 = self.Web_PO.getSuperEleByX("//span[text()='辖区信息']", "../../..")
+        self.Web_PO.eleSetTextEnterByX(ele3, ".//div[3]/div[1]/div[1]/div/div/input", d_['辖区名称'])
 
+        varSign = 0
+
+        # 获取总监数量
+        ele2 = self.Web_PO.getSuperEleByX("//span[text()='总部']", "../..")
+        varZjQty = self.Web_PO.eleGetQtyByXByXs(ele2, ".//div[2]")
+        # print("varZjQty", varZjQty)
+
+        # 点击 代表岗位
+        if varSign == 0:
+            self.Web_PO.eleClkByX(ele3, ".//div[3]/div[1]/div[2]/div/div/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]", 2)
+            # 判断辖区名字是否是代表岗位
+            areaName = self.Web_PO.eleGetShadowByXByC(ele3, ".//div[3]/div[2]/div/div/form/div[2]/div/div/div/div/div/input", 'div:nth-last-of-type(1)')
+            if areaName == d_['辖区名称']:
+                print("代表岗位", areaName)
+                varSign = 1
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div[2]/div[2]/button[3]")  # 编辑
+                self.Web_PO.eleSetTextByX(ele3, ".//div[3]/div[2]/div/div/form/div[2]/div/div/div/div/div/input", d_['编辑']['辖区名称'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[3]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['辖区级别'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[4]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['上级辖区'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[5]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['销售岗位关联'])
+                self._dropdown4(ele3, ".//div[3]/div[2]/div/div/form/div[8]/div/div/div/div/div/div[1]", d_['编辑']['非销售岗位关联'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[9]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['启用状态'])
+                self.Web_PO.eleSetTextByX(ele3, ".//div[3]/div[2]/div/div/form/div[10]/div/div/div/div/textarea", d_['编辑']['备注信息'])
+                # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div[2]/div[2]/button[3]")  # 保存
+
+        # 点击 经理岗位
+        if varSign == 0:
+            for j in range(varZjQty):
+                if varSign == 0:
+                    l_jl1 = self.Web_PO.eleGetTextByXsByX(ele3, ".//div[3]/div[1]/div[2]/div/div/div[1]/div[2]/div[" + str(j+1) + "]/div[2]/div", ".//div[1]")
+                    # print(11)  # ['浦东/闵行/徐汇\n(\n薛伟)', '奉贤/金山\n(\n陈东升)', ...
+                    for i in range(len(l_jl1)):
+                        if d_['辖区名称'] in l_jl1[i]:
+                            # print("经理岗位", d_['辖区名称'], i+1)
+                            self.Web_PO.eleClkByX(ele3, ".//div[3]/div[1]/div[2]/div/div/div[1]/div[2]/div[" + str(j+1) + "]/div[2]/div[" + str(i+1) + "]/div[1]", 2)
+                            varSign = 1
+                            self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div[2]/div[2]/button[3]")  # 编辑
+                            self.Web_PO.eleSetTextByX(ele3, ".//div[3]/div[2]/div/div/form/div[2]/div/div/div/div/div/input", d_['编辑']['辖区名称'])
+                            self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[3]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['辖区级别'])
+                            self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[4]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['上级辖区'])
+                            self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[5]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['销售岗位关联'])
+                            self._dropdown4(ele3, ".//div[3]/div[2]/div/div/form/div[8]/div/div/div/div/div/div[1]", d_['编辑']['非销售岗位关联'])
+                            self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[9]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['启用状态'])
+                            self.Web_PO.eleSetTextByX(ele3, ".//div[3]/div[2]/div/div/form/div[10]/div/div/div/div/textarea", d_['编辑']['备注信息'])
+                            # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div[2]/div[2]/button[3]")  # 保存
+                            break
+
+        # 点击 总监岗位（耗材部）
+        if varSign == 0:
+            l_1 = []
+            for i in range(varZjQty):
+                l_1.append(self.Web_PO.eleGetTextByX(ele3, ".//div[3]/div[1]/div[2]/div/div/div[1]/div[2]/div[" + str(i+1) + "]/div[1]/span[1]"))
+            d_1 = dict(enumerate(l_1, start=1))
+            d_1 = {v:k for k, v in d_1.items()}
+            # print(d_1)
+            for k, v in d_1.items():
+                if k == d_['辖区名称']:
+                    self.Web_PO.eleClkByX(ele3, ".//div[3]/div[1]/div[2]/div/div/div[1]/div[2]/div[" + str(v) + "]/div[1]", 2)
+            # 判断辖区名字是否是总监岗位
+            areaName = self.Web_PO.eleGetShadowByXByC(ele3, ".//div[3]/div[2]/div/div/form/div[2]/div/div/div/div/div/input", 'div:nth-last-of-type(1)')
+            if areaName == d_['辖区名称']:
+                # print("总监岗位", areaName)
+                varSign = 1
+                self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div[2]/div[2]/button[3]")  # 编辑
+                self.Web_PO.eleSetTextByX(ele3, ".//div[3]/div[2]/div/div/form/div[2]/div/div/div/div/div/input", d_['编辑']['辖区名称'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[3]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['辖区级别'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[4]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['上级辖区'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[5]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['销售岗位关联'])
+                self._dropdown4(ele3, ".//div[3]/div[2]/div/div/form/div[8]/div/div/div/div/div/div[1]", d_['编辑']['非销售岗位关联'])
+                self._dropdown2(ele3, ".//div[3]/div[2]/div/div/form/div[9]/div/div/div/div/div/div[1]/div[2]", d_['编辑']['启用状态'])
+                self.Web_PO.eleSetTextByX(ele3, ".//div[3]/div[2]/div/div/form/div[10]/div/div/div/div/textarea", d_['编辑']['备注信息'])
+                # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div[2]/div[2]/button[3]")  # 保存
 
 
 

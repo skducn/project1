@@ -397,10 +397,8 @@ class DomPO(object):
     def getQtyByXs(self, varXpaths):
         # 获取标签数量
         # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
-        qty = 0
-        for _ in self.find_elements(*(By.XPATH, varXpaths)):
-            qty = qty + 1
-        return qty
+        return len(self.find_elements(*(By.XPATH, varXpaths)))
+
 
     def getTextByX(self, varXpath):
         # 获取文本
@@ -534,6 +532,13 @@ class DomPO(object):
         """通过name追加文本"""
         self.find_element(*(By.NAME, varName)).send_keys(varText)
 
+
+
+    def setClearByX(self, varXpath, t=1):
+        # 输入框清空
+        self.find_element(*(By.XPATH, varXpath)).clear()
+        sleep(t)
+
     def setTextByX(self, varXpath, varText, t=1):
         # 输入框清空后输入文本
         self.find_element(*(By.XPATH, varXpath)).clear()
@@ -610,6 +615,17 @@ class DomPO(object):
 
     # todo ele元素再定位
 
+    def eleClearByX(self, ele, varXpath, t=1):
+        # 定位元素之
+        # e = ele.find_element(*(By.XPATH, varXpath))
+        # e.clear()
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+
+        # self.find_element(*(By.XPATH, varXpath)).clear()
+        # sleep(t)
+        sleep(t)
+
     def eleClkByX(self, ele, varXpath, t=2):
         # 定位元素之点击
         e = ele.find_element(*(By.XPATH, varXpath))
@@ -622,6 +638,17 @@ class DomPO(object):
             a.click()
             sleep(t)
         
+    def eleGetShadowByXByC(self, ele, varXpath, varCss, t=1):
+        # 定位元素之遍历shadow-root获取文本
+        # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
+        # 如： 获取input下所有shadow-root元素div的文本 eleGetShadowByXsByC(ele, ".//table[1]/input", 'div:nth-last-of-type(1)')
+        # 'div:nth-last-of-type(1)' 表示多个div时，获取最后一个div的text
+        ele = ele.find_element(*(By.XPATH, varXpath))
+        shadow_root = ele.shadow_root
+        ele2 = shadow_root.find_element(By.CSS_SELECTOR, varCss)
+        sleep(t)
+        return ele2.text
+
     def eleGetShadowByXsByC(self, ele, varXpaths, varCss, t=1):
         # 定位元素之遍历shadow-root获取文本
         # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
@@ -631,6 +658,7 @@ class DomPO(object):
         for i in eles:
             shadow_root = i.shadow_root
             ele2 = shadow_root.find_element(By.CSS_SELECTOR, varCss)
+            # ele2 = shadow_root.find_element(By.TAG_NAME, varCss)
             l_shadow.append(ele2.text)
         sleep(t)
         return l_shadow
@@ -644,21 +672,20 @@ class DomPO(object):
         # 如：eleGetAttrValueByX(ele, u"//input[@class='123']","href")
         return ele.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
-    def eleGetQtyByX(self, ele, varXpaths):
-        # 定位元素之获取标签数量
-        # 如：获取div标签数量 eleGetQtyByX(ele, './/tr/div')
-        qty = 0
-        for _ in ele.find_elements(*(By.XPATH, varXpaths)):
-            qty = qty + 1
-        return qty
+
+    def eleGetQtyByXByXs(self, ele, varXpath, varXpaths= "./*"):
+        # 定位元素之获取当前层下标签数量
+        # 如：获取input下一层所有div标签数量 eleGetQtyByXByXs(ele, './/tr/input', "./div")
+        # 如：获取input下一层所有标签数量 eleGetQtyByXByXs(ele, './/tr/input', "./*")
+        parent_element = ele.find_element(*(By.XPATH, varXpath))
+        return len(parent_element.find_elements(*(By.XPATH, varXpaths)))
+
 
     def eleGetQtyByXs(self, ele, varXpaths):
-        # 定位元素之遍历获取标签数量
+        # 定位元素之遍历获取所有层标签数量
         # 如：获取div标签数量 eleGetQtyByXs(ele, './/tr/div')
-        qty = 0
-        for _ in ele.find_elements(*(By.XPATH, varXpaths)):
-            qty = qty + 1
-        return qty
+        return len(ele.find_elements(*(By.XPATH, varXpaths)))
+
 
     def eleGetTextByX(self, ele, varXpath):
         # 定位元素之获取文本
