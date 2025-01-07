@@ -806,8 +806,8 @@ class DomPO(object):
         for i in range(varCount):
             ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
             sleep(1)
-            if self.isEleExistByX(varXpath2):
-                break
+            # if self.isEleExistByX(varXpath2):
+            #     break
         sleep(t)
 
     def eleScrollKeysEndByX(self, ele, varXpath, t=2):
