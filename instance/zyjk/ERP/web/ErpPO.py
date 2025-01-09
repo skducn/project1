@@ -211,54 +211,116 @@ class ErpPO(object):
         d_4 = {v: k for k, v in d_3.items()}  # {'总院': 1, '分院': 2, '门诊部': 3}
         print(d_4)
         self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
+    #
+    # def _dropdown(self, ele, elePath, l_, v):
+    #     # 公共下拉框
+    #     # _dropdown(ele, "//", ['总院', '分院', '门诊部'], '分院')
+    #     d_3 = dict(enumerate(l_, start=1))
+    #     d_4 = {v: k for k, v in d_3.items()}  # {'总院': 1, '分院': 2, '门诊部': 3}
+    #     self.Web_PO.eleClkByX(ele, elePath, 1)
+    #     self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
+    #
+    # def _hospitalPCC(self, ele, elePath, v):
+    #     # 公共 - 省份城市区县
+    #     self.Web_PO.eleClkByX(ele, elePath, 1)
+    #     l_1 = self.Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul")
+    #     # l_1 = self.Web_PO.getListTextByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul")
+    #     l_2 = l_1[0].split("\n")
+    #     d_3 = dict(enumerate(l_2, start=1))
+    #     d_4 = {v: k for k, v in d_3.items()}
+    #     self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
 
-    def _dropdown(self, ele, elePath, l_, v):
-        # 公共下拉框
-        # _dropdown(ele, "//", ['总院', '分院', '门诊部'], '分院')
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}  # {'总院': 1, '分院': 2, '门诊部': 3}
-        self.Web_PO.eleClkByX(ele, elePath, 1)
-        self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
-
-
-    def _hospitalPCC(self, ele, elePath, v):
-        # 公共 - 省份城市区县
-        self.Web_PO.eleClkByX(ele, elePath, 1)
-        l_1 = self.Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul")
-        # l_1 = self.Web_PO.getListTextByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul")
-        l_2 = l_1[0].split("\n")
-        d_3 = dict(enumerate(l_2, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        self.Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(d_4[v]) + "]", 1)
 
 
     def hospital_search(self, d_):
         # 医院管理 - 查询
 
-        # 判断展开还是收起，如果已展开则不操作，否则展开
-        ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
-        s_ = self.Web_PO.eleGetTextByX(ele2, ".//div[2]/button[1]/span")
-        if s_ == "展开":
-            self.Web_PO.eleClkByX(ele2, ".//div[2]/button[1]", 1)  # 展开
+        # 1 展开
+        self._clkSpread()
 
-        ele3 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
-        _dropdownByX = ".//div/div/div/div[1]/div[2]"
-        _liByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        # 2 输入
+        ele = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
         for k, v in d_.items():
-            if k == '医院编码' or k == '医院名称' or k == '别名':
+            if k in ['医院编码', '医院名称', '别名']:
                 self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div/div/div/input", v)
-            elif k == '医院级别' or k == '启用状态':
-                self._clkDropdown(k, _dropdownByX, _liByX, v)
-            elif k == '省份' or k == '城市' or k == '区县':
-                self._clkDropdown(k, _dropdownByX, "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
+            elif k in ['医院级别', '启用状态', '省份', '城市', '区县']:
+                self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
             elif k == '最后更新时间':
                 self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
-        # # 点击查询
-        self.Web_PO.eleClkByX(ele2, ".//div[2]/button[2]", 1)
 
-        # 返回搜索结果数量
+        # 3 查询
+        self.Web_PO.eleClkByX(ele, ".//div[1]/div[2]/button[2]", 1)
+
+        # 4 返回搜索结果数量
         return self._getId()
 
+    def hospital_add(self, varQty, d_):
+        # 医院管理 - 新增
+
+        if varQty == None:
+
+            # 1 新增
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../.."), ".//div[2]/button[2]", 1)
+
+            # 2 输入
+            ele = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../..")
+            for k, v in d_.items():
+                if k in ['医院全称', '医院简称', '详细地址', '邮政编码', '电话', '邮箱', '网址', '床位数', '门诊量']:
+                    self.Web_PO.eleSetTextEnterByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/div/input", v)
+                elif k in ["医院类型", "医院级别", "获取方式", "启用状态", "省份", "城市", "区县"]:
+                    self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
+                elif k == "备注信息":
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/textarea", v)
+
+            # 3 提交
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../../../.."), ".//div[2]/div/button[2]", 1)
+
+    def hospital_edit(self, varQty, d_):
+        # 医院管理 - 修改
+
+        if varQty == 1:
+
+            # 1 修改
+            # 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏),点击修改
+            ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
+            _tdXps = ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td"
+            varTdLoc = self.Web_PO.eleGetQtyByXs(ele, _tdXps)
+            self.Web_PO.eleClkByX(ele, _tdXps + "[" + str(varTdLoc) + "]/div/div/button[1]")
+
+            # 2 输入
+            ele = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../..")
+            for k, v in d_.items():
+                if k in ['医院全称', '医院简称', '详细地址', '经度坐标', '纬度坐标', '邮政编码', '电话', '邮箱', '网址', '床位数', '门诊量']:
+                    self.Web_PO.eleSetTextEnterByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/div/input", v)
+                elif k in ["医院类型", "医院级别", "获取方式", "启用状态", "省份", "城市", "区县"]:
+                    self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
+                elif k == "备注信息":
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/textarea", v)
+
+            # 3 提交
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../../../.."), ".//div[2]/div/button[2]", 1)
+
+    def hospital_info(self, varQty):
+        # 医院管理 - 详情
+
+        if varQty == 1:
+
+            # 1 获取td数量，定位详情按钮(因为td字段可通过配置显示或隐藏)，点击详情
+            ele3 = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
+            _tdXps = ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td"
+            varTdLoc = self.Web_PO.eleGetQtyByXs(ele3, _tdXps)
+            self.Web_PO.eleClkByX(ele3, _tdXps + "[" + str(varTdLoc) + "]/div/div/button[2]")
+
+            # 2 获取列表信息
+            ele2 = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../..")
+            l_ = self.Web_PO.eleGetTextByXs(ele2, ".//div[2]/div/table/tr")
+
+            # 3 关闭
+            ele3 = self.Web_PO.getSuperEleByX("//span[text()='医院详情']", "../../..")
+            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[1]", 1)
+
+            print(l_)  # ['医院全称\n天津自动化医院1\n医院简称\n天自院1', '医院级别\n二级医院\n医院类型\n分院',...
+            return l_
 
     def hospital_reset(self):
         # 医院管理 - 重置
@@ -266,40 +328,6 @@ class ErpPO(object):
         # 点击重置
         ele = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
         self.Web_PO.eleClkByX(ele, ".//div[2]/button[3]", 1)
-
-    def hospital_add(self, varQty, d_):
-        # 医院管理 - 新增
-
-        if varQty == None:
-
-            # 点击新增
-            ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../..")
-            self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 1)
-
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../..")
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[1]/div[2]/div/div/div/div/input", d_['医院全称'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[2]/div[1]/div/div/div/div/input", d_['医院简称'])
-            self._dropdown2(ele2, ".//div[2]/form/div[2]/div[2]/div/div/div/div/div[1]/div[2]", d_['医院类型'])
-            self._dropdown2(ele2, ".//div[2]/form/div[3]/div[2]/div/div/div/div/div[1]/div[2]", d_['医院级别'])
-            self._hospitalPCC(ele2, ".//div[2]/form/div[4]/div[1]/div/div/div/div/div[1]/div[2]", d_['省份'])
-            self._dropdown2(ele2, ".//div[2]/form/div[4]/div[2]/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-            self._hospitalPCC(ele2, ".//div[2]/form/div[5]/div[1]/div/div/div/div/div[1]/div[2]", d_['城市'])
-            self._hospitalPCC(ele2, ".//div[2]/form/div[5]/div[2]/div/div/div/div/div[1]/div[2]", d_['区县'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[6]/div[1]/div/div/div/div/input", d_['详细地址'])
-            self._dropdown2(ele2, ".//div[2]/form/div[6]/div[2]/div/div/div/div/div[1]/div[2]", d_['获取方式'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[8]/div[1]/div/div/div/div/input", d_['邮政编码'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[8]/div[2]/div/div/div/div/input", d_['电话'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[9]/div[1]/div/div/div/div/input", d_['邮箱'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[9]/div[2]/div/div/div/div/input", d_['网址'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[10]/div[1]/div/div/div/div/input", d_['床位数'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[10]/div[2]/div/div/div/div/input", d_['门诊量'])
-            self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[11]/div/div/textarea", d_['备注信息'])
-            # 提交 bug改文字为确定
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 提交
-
-
-
     def _hospital_setup_checkbox(self, ele2, varNum, varField):
         # 列表是否显示，先判断勾选框是否勾选
         # _hospital_setup_checkbox(ele2, 3, v['列表是否显示'])
@@ -338,111 +366,34 @@ class ErpPO(object):
         self.Web_PO.eleClkByX(ele2, ".//footer/span/button[2]")  # 提交
 
 
-    def hospital_edit(self, varQty, d_):
-        # 医院管理 - 修改
 
-        if varQty == 1:
-
-            # 1 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏),点击修改
-            ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
-            varTdLoc = self.Web_PO.eleGetQtyByXs(ele, ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td")
-            self.Web_PO.eleClkByX(ele, ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[" + str(varTdLoc) + "]/div/div/button[1]")
-
-            # 医院基础信息
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../..")
-            for k, v in d_.items():
-                if k == '医院全称':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[1]/div[2]/div/div/div/div/input", d_['医院全称'])
-                if k == '医院简称':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[2]/div[1]/div/div/div/div/input", d_['医院简称'])
-                if k == '医院级别':
-                    self._dropdown2(ele2, ".//div[2]/form/div[3]/div[2]/div/div/div/div/div[1]/div[2]", d_['医院级别'])
-                if k == '省份':
-                    self._hospitalPCC(ele2, ".//div[2]/form/div[4]/div[1]/div/div/div/div/div[1]/div[2]", d_['省份'])
-                if k == '启动状态':
-                    self._dropdown2(ele2, ".//div[2]/form/div[4]/div[2]/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-                if k == '城市':
-                    self._hospitalPCC(ele2, ".//div[2]/form/div[5]/div[1]/div/div/div/div/div[1]/div[2]", d_['城市'])
-                if k == '区县':
-                    self._hospitalPCC(ele2, ".//div[2]/form/div[5]/div[2]/div/div/div/div/div[1]/div[2]", d_['区县'])
-                if k == '详细地址':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[6]/div[1]/div/div/div/div/input", d_['详细地址'])
-                if k == '获取方式':
-                    self._dropdown2(ele2, ".//div[2]/form/div[6]/div[2]/div/div/div/div/div[1]/div[2]", d_['获取方式'])
-                if k == '邮政编码':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[8]/div[1]/div/div/div/div/input", d_['邮政编码'])
-                if k == '电话':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[8]/div[2]/div/div/div/div/input", d_['电话'])
-                if k == '邮箱':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[9]/div[1]/div/div/div/div/input", d_['邮箱'])
-                if k == '网址':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[9]/div[2]/div/div/div/div/input", d_['网址'])
-                if k == '床位数':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[10]/div[1]/div/div/div/div/input", d_['床位数'])
-                if k == '门诊量':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[10]/div[2]/div/div/div/div/input", d_['门诊量'])
-                if k == '备注信息':
-                    self.Web_PO.eleSetTextByX(ele2, ".//div[2]/form/div[11]/div/div/textarea", d_['备注信息'])
-
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 提交
-
-
-    def hospital_info(self, varQty):
-        # 医院管理 - 详情
-
-        if varQty == 1:
-
-            # 1 获取td数量，定位详情按钮(因为td字段可通过配置显示或隐藏)，点击详情
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
-            varTdLoc = self.Web_PO.eleGetQtyByXs(ele3, ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td")
-            self.Web_PO.eleClkByX(ele3, ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[" + str(varTdLoc) + "]/div/div/button[2]")
-
-            # 2 获取列表信息
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='医院基础信息']", "../..")
-            l_ = self.Web_PO.eleGetTextByXs(ele2, ".//div[2]/div/table/tr")
-
-            # 3 关闭
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='医院详情']", "../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[1]", 1)
-
-            print(l_)  # ['医院全称\n天津自动化医院1\n医院简称\n天自院1', '医院级别\n二级医院\n医院类型\n分院',...
-            return l_
 
 
 
     # todo 主数据管理 - 3经销商管理
+
     def dealer_search(self, d_):
         # 经销商管理 - 查询
 
-        # 判断展开还是收起，如果已展开则不操作，否则展开
-        ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
-        s_ = self.Web_PO.eleGetTextByX(ele2, ".//div[2]/button[1]/span")
-        if s_ == "展开":
-            self.Web_PO.eleClkByX(ele2, ".//div[2]/button[1]", 1)  # 展开
+        # 1 展开
+        self._clkSpread()
 
-        ele3 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
+        # 2 输入
+        ele = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
         for k, v in d_.items():
-            if k == '经销商名称':
-                self.Web_PO.eleSetTextByX(ele3, ".//form/div/div/div[2]/div/div/div/div/input", v)
-            if k == '经销商级别':
-                self._dropdown2(ele3, ".//form/div/div/div[4]/div/div/div/div/div[1]/div[2]", v)
-            if k == '省份':
-                self._hospitalPCC(ele3, ".//form/div/div/div[5]/div/div/div/div/div[1]/div[2]", v)
-            if k == '城市':
-                self._hospitalPCC(ele3, ".//form/div/div/div[6]/div/div/div/div/div[1]/div[2]", v)
-            if k == '区县':
-                self._hospitalPCC(ele3, ".//form/div/div/div[7]/div/div/div/div/div[1]/div[2]", v)
-            if k == '启用状态':
-                self._dropdown2(ele3, ".//form/div/div/div[8]/div/div/div/div/div[1]/div[2]", v)
-            if k == '最后更新时间':
-                self.Web_PO.eleClkByX(ele3, ".//form/div/div/div[9]/div/div[2]/div/input[1]")
-                self._dropdownDateByAriaHidden(v)
+            if k in ['经销商名称', '医院名称', '别名']:
+                self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div/div/div/input", v)
+            elif k in ['经销商级别', '启用状态', '省份', '城市', '区县']:
+                self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]",
+                                     "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+                                     v)
+            elif k == '最后更新时间':
+                self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
 
-        # 点击查询
-        self.Web_PO.eleClkByX(ele2, ".//div[2]/button[2]", 1)
+        # 3 查询
+        self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 1)
 
-        # 返回搜索结果数量
+        # 4 返回搜索结果数量
         return self._getId()
 
     def dealer_add(self, varQty, d_):
@@ -450,61 +401,54 @@ class ErpPO(object):
 
         if varQty == None:
 
-            # 点击新增
-            ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../..")
-            self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 1)
+            # 1 新增
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../.."), ".//div[2]/button[2]", 1)
 
-            # 医院基础信息
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../..")
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[1]/div[2]/div/div/div/div/input", d_['经销商名称'])
-            self._hospitalPCC(ele2, ".//form/div[2]/div[1]/div/div/div/div/div[1]/div[2]", d_['省份'])
-            self._hospitalPCC(ele2, ".//form/div[2]/div[2]/div/div/div/div/div[1]/div[2]", d_['城市'])
-            self._hospitalPCC(ele2, ".//form/div[3]/div[1]/div/div/div/div/div[1]/div[2]", d_['区县'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[2]/div/div/div/div/input", d_['详细地址'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[1]/div/div/div/div/input", d_['联系电话'])
-            self._dropdown2(ele2, ".//form/div[4]/div[2]/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-            self._dropdown2(ele2, ".//form/div[5]/div[1]/div/div/div/div/div[1]/div[2]", d_['经销商级别'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[6]/div/div/div/div/textarea", d_['备注信息'])
-            # 确定
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../../../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 确定
+            # 2 输入
+            ele = self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../..")
+            for k, v in d_.items():
+                if k in ['经销商名称', '详细地址', '联系电话']:
+                    self.Web_PO.eleSetTextEnterByX(
+                        self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."),
+                        ".//div/div/div/input", v)
+                elif k in ["经销商级别", "启用状态", "省份", "城市", "区县"]:
+                    self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]",
+                                         "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+                                         v)
+                elif k == "备注信息":
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/textarea", v)
 
+            # 3 确定
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../../../../.."), ".//div[2]/div/button[2]", 1)
 
     def dealer_edit(self, varQty, d_):
         # 经销商管理 - 修改
 
         if varQty == 1:
 
+            # 1 修改
             # 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏)，点击修改
             ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
-            varTdLoc = self.Web_PO.eleGetQtyByXs(ele, ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td")
-            self.Web_PO.eleClkByX(ele, ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[" + str(varTdLoc) + "]/div/button[1]")  # 修改
+            _tdXps = ".//div[3]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td"
+            varTdLoc = self.Web_PO.eleGetQtyByXs(ele, _tdXps)
+            self.Web_PO.eleClkByX(ele, _tdXps + "[" + str(varTdLoc) + "]/div/button[1]")
 
-            # 经销商基础信息
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../..")
+            # 2 输入
+            ele = self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../..")
             for k, v in d_.items():
-                if k == '经销商名称':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[1]/div[2]/div/div/div/div/input", d_['经销商名称'])
-                if k == '省份':
-                    self._hospitalPCC(ele2, ".//form/div[2]/div[1]/div/div/div/div/div[1]/div[2]", d_['省份'])
-                if k == '城市':
-                    self._hospitalPCC(ele2, ".//form/div[2]/div[2]/div/div/div/div/div[1]/div[2]", d_['城市'])
-                if k == '区县':
-                    self._hospitalPCC(ele2, ".//form/div[3]/div[1]/div/div/div/div/div[1]/div[2]", d_['区县'])
-                if k == '详细地址':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[2]/div/div/div/div/input", d_['详细地址'])
-                if k == '联系电话':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[1]/div/div/div/div/input", d_['联系电话'])
-                if k == '启用状态':
-                    self._dropdown2(ele2, ".//form/div[4]/div[2]/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-                if k == '经销商级别':
-                    self._dropdown2(ele2, ".//form/div[5]/div[1]/div/div/div/div/div[1]/div[2]", d_['经销商级别'])
-                if k == '备注信息':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[6]/div/div/div/div/textarea", d_['备注信息'])
-            # 确定
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../../../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 确定
+                if k in ['经销商名称', '详细地址', '联系电话']:
+                    self.Web_PO.eleSetTextEnterByX(
+                        self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."),
+                        ".//div/div/div/input", v)
+                elif k in ["经销商级别", "启用状态", "省份", "城市", "区县"]:
+                    self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]",
+                                         "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+                                         v)
+                elif k == "备注信息":
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/textarea", v)
 
+            # 3 确定
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='经销商基础信息']", "../../../../.."), ".//div[2]/div/button[2]", 1)  # 确定
 
     def dealer_info(self, varQty):
         # 经销商管理 - 详情
@@ -528,35 +472,34 @@ class ErpPO(object):
             return l_
 
 
+
+
+
+
     # todo 主数据管理 - 5商业公司管理
 
     def business_search(self, d_):
         # 商业公司管理 - 查询
 
-        # 判断展开还是收起，如果已展开则不操作，否则展开
-        ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
-        s_ = self.Web_PO.eleGetTextByX(ele2, ".//div[2]/button[1]/span")
-        if s_ == "展开":
-            self.Web_PO.eleClkByX(ele2, ".//div[2]/button[1]", 1)  # 展开
+        # 展开
+        self._clkSpread()
 
-
-        ele3 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
+        # 2 输入
+        ele = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
         for k, v in d_.items():
-            if k == '商业公司编码':
-                self.Web_PO.eleSetTextByX(ele3, ".//div[2]/form/div[1]/div[1]/div/div/div/div/input", v)
-            elif k == '商业公司全称':
-                self.Web_PO.eleSetTextByX(ele3, ".//div[2]/form/div[1]/div[2]/div/div/div/div/input", v)
-            elif k == '联系人':
-                self.Web_PO.eleSetTextByX(ele3, ".//div[2]/form/div[1]/div[3]/div/div/div/div/input", v)
-            elif k == '启用状态':
-                self._dropdown2(ele3, ".//div[2]/form/div[1]/div[4]/div/div/div/div/div[1]/div[2]", v)
+            if k in ['商业公司编码', '商业公司名称', '联系人']:
+                self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."),".//div/div/div/input", v)
+            elif k in ['启用状态']:
+                self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]",
+                                     "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+                                     v)
             elif k == '最后更新时间':
-                self.Web_PO.eleClkByX(ele3, ".//div[2]/form/div[2]/div/div/div/div[2]/div/input[1]", 1)
-                self._dropdownDateByAriaHidden(v)
+                self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
 
-        self.Web_PO.eleClkByX(ele2, ".//div[2]/button[2]", 3)  # 查询
+        # 3 查询
+        self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 1)
 
-        # 返回搜索结果数量
+        # 4 返回搜索结果数量
         return self._getId()
 
     def business_add(self, varQty, d_):
@@ -564,80 +507,53 @@ class ErpPO(object):
 
         if varQty == None:
 
-            # 点击新增
-            ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../..")
-            self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 1)
+            # 1 新增
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../.."), ".//div[2]/button[2]", 1)
 
-            # 商业公司基础信息
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../..")
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[1]/div[2]/div/div/div/div/input", d_['商业公司全称'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[2]/div[1]/div/div/div/div/input", d_['商业公司简称'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[2]/div[2]/div/div/div/div/input", d_['商业公司地址'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[1]/div/div/div/div/input", d_['联系人'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[2]/div/div/div/div/input", d_['联系人电话'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[1]/div/div/div/div/input", d_['合同开始日期'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[2]/div/div/div/div/input", d_['合同结束日期'])
-            # self.Web_PO.eleSetTextByX(ele2, ".//form/div[5]/div[1]/div/div/div/div/input", d_['合同编号'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[5]/div[2]/div/div/div/div/input", d_['许可证编号'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[6]/div[1]/div/div/div/div/input", d_['许可证有效期'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[6]/div[2]/div/div/div/div/input", d_['营业执照编号'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[7]/div[1]/div/div/div/div/input", d_['营业执照有效期'])
-            self._dropdown2(ele2, ".//form/div[7]/div[2]/div/div/div/div/div[1]/div[2]", d_['企业类别'])
-            self._dropdown2(ele2, ".//form/div[8]/div/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[9]/div/div/div/div/textarea", d_['生产(经营)范围'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[10]/div/div/div/div/textarea", d_['备注信息'])
+            # 2 输入
+            ele = self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../..")
+            for k, v in d_.items():
+                if k in ['商业公司全称', '商业公司简称', '商业公司地址','联系人','联系人电话','合同开始日期','合同结束日期','许可证编号','许可证有效期','营业执照编号','营业执照有效期','合同编号']:
+                    self.Web_PO.eleSetTextEnterByX(
+                        self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/div/input", v)
+                elif k in ["企业类别", "启用状态"]:
+                    self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]",
+                                         "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+                                         v)
+                elif k in ['生产(经营)范围','备注信息']:
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/textarea", v)
 
-            # 确认 bug改文字为确定
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 确认
-
+            # 3 确认
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../../../.."), ".//div[2]/div/button[2]", 1)
 
     def business_edit(self, varQty, d_):
         # 商业公司管理 - 修改
 
         if varQty == 1:
 
-            # 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏),点击修改
+            # 1 修改
+            # 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏)
             ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
             varTdLoc = self.Web_PO.eleGetQtyByXs(ele, ".//div[4]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td")
             self.Web_PO.eleClkByX(ele, ".//div[4]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[" + str(varTdLoc) + "]/div/div/button[1]")
 
-            # 商业公司基础信息
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../..")
+            # 2 输入
+            ele = self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../..")
             for k, v in d_.items():
-                if k == '商业公司全称':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[1]/div[2]/div/div/div/div/input", d_['商业公司全称'])
-                if k == '商业公司简称':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[2]/div[1]/div/div/div/div/input", d_['商业公司简称'])
-                if k == '商业公司地址':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[2]/div[2]/div/div/div/div/input", d_['商业公司地址'])
-                if k == '联系人':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[1]/div/div/div/div/input", d_['联系人'])
-                if k == '联系人电话':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[2]/div/div/div/div/input", d_['联系人电话'])
-                if k == '合同开始日期':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[1]/div/div/div/div/input", d_['合同开始日期'])
-                if k == '合同结束日期':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[2]/div/div/div/div/input", d_['合同结束日期'])
-                if k == '许可证编号':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[5]/div[2]/div/div/div/div/input", d_['许可证编号'])
-                if k == '许可证有效期':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[6]/div[1]/div/div/div/div/input", d_['许可证有效期'])
-                if k == '营业执照编号':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[6]/div[2]/div/div/div/div/input", d_['营业执照编号'])
-                if k == '营业执照有效期':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[7]/div[1]/div/div/div/div/input", d_['营业执照有效期'])
-                if k == '企业类别':
-                    self._dropdown2(ele2, ".//form/div[7]/div[2]/div/div/div/div/div[1]/div[2]", d_['企业类别'])
-                if k == '启动状态':
-                    self._dropdown2(ele2, ".//form/div[8]/div/div/div/div/div/div[1]/div[2]",  d_['启用状态'])
-                if k == '生产(经营)范围':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[9]/div/div/div/div/textarea", d_['生产(经营)范围'])
-                if k == '备注信息':
-                    self.Web_PO.eleSetTextByX(ele2, ".//form/div[10]/div/div/div/div/textarea", d_['备注信息'])
+                if k in ['商业公司全称', '商业公司简称', '商业公司地址', '联系人', '联系人电话', '合同开始日期', '合同结束日期', '许可证编号', '许可证有效期', '营业执照编号',
+                         '营业执照有效期', '合同编号']:
+                    self.Web_PO.eleSetTextEnterByX(
+                        self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."),
+                        ".//div/div/div/input", v)
+                elif k in ["企业类别", "启用状态"]:
+                    self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]",
+                                         "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+                                         v)
+                elif k in ['生产(经营)范围', '备注信息']:
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), ".//div/div/textarea", v)
 
-            ele3 = self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../../../..")
-            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 提交
+            # 提交
+            self.Web_PO.eleClkByX(self.Web_PO.getSuperEleByX("//span[text()='商业公司基础信息']", "../../../.."), ".//div[2]/div/button[2]", 1)
 
 
     def business_info(self, varQty):
@@ -694,8 +610,43 @@ class ErpPO(object):
 
 
 
+    # todo common 
 
-    # todo 组织架构管理 - 3员工管理
+
+    def _clkDropdownNoPath(self, ele, eleXpath, liXpaths, v):
+
+        # 选择下拉框的值
+        # self._clkDropdown(ele, ".//div[2]/div/div", _liByX1, d_['周期版本'])
+        self.Web_PO.eleClkByX(ele, eleXpath, 1)
+        l_ = self.Web_PO.getTextByXs(liXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        self.Web_PO.clkByX(liXpaths + "[" + str(d_4[v]) + "]", 1)
+
+    def _eleClkDropdownSpan(self, k, ele, varXpath, varXpaths, v):
+        # 选择下拉框的值
+        # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
+        # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+        ele2 = self.Web_PO.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", "..")
+        self.Web_PO.eleClkByX(ele2, varXpath, 1)
+        l_ = self.Web_PO.getTextByXs(varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        self.Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
+
+    def _eleClkDropdown(self, k, ele, varXpath, varXpaths, v):
+        # 选择下拉框的值
+        # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
+        # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+        ele2 = self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", "..")
+        self.Web_PO.eleClkByX(ele2, varXpath, 1)
+        l_ = self.Web_PO.getTextByXs(varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        self.Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
 
     def _dropdownDate(self, v):
         # 公共 - 日期区间
@@ -715,23 +666,23 @@ class ErpPO(object):
             year = defaultYear - v[0]
             for i in range(year):
                 self.Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[1]/button[1]")
-                             # /html/body/div[2]/div[7]/div/div/div/div[1]/div/button[1]
+                # /html/body/div[2]/div[7]/div/div/div/div[1]/div/button[1]
         else:
             year = v[0] - defaultYear
             for i in range(year):
                 self.Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[4]/button[2]")
-                             # /html/body/div[2]/div[7]/div/div/div/div[2]/div/button[1]
+                # /html/body/div[2]/div[7]/div/div/div/div[2]/div/button[1]
         # 切换月
         if v[1] < defaultMonth:
             month = defaultMonth - v[1]
             for i in range(month):
                 self.Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[1]/button[2]")
-                             # /html/body/div[2]/div[7]/div/div/div/div[1]/div/button[2]
+                # /html/body/div[2]/div[7]/div/div/div/div[1]/div/button[2]
         else:
             month = v[1] - defaultMonth
             for i in range(month):
                 self.Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[4]/button[1]")
-                             # /html/body/div[2]/div[7]/div/div/div/div[2]/div/button[2]
+                # /html/body/div[2]/div[7]/div/div/div/div[2]/div/button[2]
 
         # if v[0] < int(defaultYear):
         #     self.Web_PO.clkByX(varPrefix + "/div/div/div[1]/div/button[2]", 1)
@@ -744,7 +695,7 @@ class ErpPO(object):
         #             self.Web_PO.clkByX("//div[@class='el-picker-panel el-date-range-picker' and @visible='true']/div/div/div[1]/div/button[2]", 1)
 
         # 开始日期
-                     # /html/body/div[2]/div[7]/div/div/div/div[1]/table/tbody/tr[2]
+        # /html/body/div[2]/div[7]/div/div/div/div[1]/table/tbody/tr[2]
         tr2 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[2]")
         tr3 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[3]")
         tr4 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[4]")
@@ -777,7 +728,8 @@ class ErpPO(object):
         for i in range(len(l_1)):
             for j in range(len(l_1[i])):
                 if l_1[i][j] == v[2]:
-                    self.Web_PO.clkByX(varPrefix + "/div/div/div[1]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
+                    self.Web_PO.clkByX(
+                        varPrefix + "/div/div/div[1]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
         # 结束日期
         if v[1] == v[4]:
@@ -816,7 +768,120 @@ class ErpPO(object):
         for i in range(len(l_1)):
             for j in range(len(l_1[i])):
                 if l_1[i][j] == v[5]:
-                    self.Web_PO.clkByX(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 1)
+                    self.Web_PO.clkByX(
+                        varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(
+                            j + 1) + "]", 1)
+
+    def _clkDropdownByDate(self, k, eleXpath, v):
+        # 产品信息管理 - 最后更新时间
+        # self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
+
+        ele = self.Web_PO.getSuperEleByX("//div[text()='" + k + "']", "..")
+        self.Web_PO.eleClkByX(ele, eleXpath, 1)
+
+        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取日期年和月
+        defaultYM = self.Web_PO.getTextByX(varPrefix + "/div/div/div/div[1]/div/div")
+        defaultYear = int(defaultYM.split(" 年 ")[0])
+        defaultMonth = int(defaultYM.split(" 年 ")[1].split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/div/button[1]")
+        else:
+            year = v[0] - defaultYear
+            for i in range(year):
+                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[3]/div/button[1]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/div/button[2]")
+        else:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[2]/div/button[2]")
+
+        # 开始日期
+        tr2 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[2]")
+        tr3 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[3]")
+        tr4 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[4]")
+        tr5 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[5]")
+        tr6 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[6]")
+        tr7 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("开始日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    self.Web_PO.clkByX(
+                        varPrefix + "/div/div/div/div[1]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
+
+        # 结束日期
+        if v[1] == v[4]:
+            varLoc = 1
+        else:
+            varLoc = 2
+        tr2 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[2]")
+        tr3 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[3]")
+        tr4 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[4]")
+        tr5 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[5]")
+        tr6 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[6]")
+        tr7 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("结束日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[5]:
+                    self.Web_PO.clkByX(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(
+                        i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
     def _dropdownDateSingle(self, v):
         # 公共 - 单个日期控件
@@ -886,39 +951,17 @@ class ErpPO(object):
         for i in range(len(l_1)):
             for j in range(len(l_1[i])):
                 if l_1[i][j] == v[2]:
-                    self.Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[3]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
+                    self.Web_PO.clkByX(
+                        varPrefix + "/div/div[1]/div/div[3]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
+                        2)
 
-    def staff_search(self, d_):
-        # 员工管理 - 查询
-
+    def _clkSpread(self):
         # 判断展开还是收起，如果已展开则不操作，否则展开
         ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
         s_ = self.Web_PO.eleGetTextByX(ele2, ".//div[2]/button[1]/span")
         if s_ == "展开":
             self.Web_PO.eleClkByX(ele2, ".//div[2]/button[1]", 1)  # 展开
 
-        _dropdownByX = ".//div/div/div/div[1]/div[2]"
-        for k, v in d_.items():
-            if k == '员工信息':
-                self._clkDropdown(k, _dropdownByX, "/html/body/div[2]/div[2]/div/div[2]/div[1]/ul/li", v)
-            elif k == '职位' or k == '是否在职' or k == '启用状态':
-                self._clkDropdown(k, _dropdownByX, "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
-            elif k == '联系方式':
-                self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), "div/div/div/input", v)
-            if k == '入职日期' or k == '离职日期':
-                self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
-            if k == '主管信息':
-                self._clkDropdown(k, _dropdownByX, "//div[@class='el-popper is-pure is-light el-select__popper styleMyStaffTitle' and @aria-hidden='false']/div/div[2]/div[1]/ul/li", v)
-            if k == '最后更新时间':
-                self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
-        # 点击查询
-        ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
-        self.Web_PO.eleClkByX(ele2, ".//div[2]/button[2]", 3)
-
-        # 返回搜索结果数量
-        return self._getId()
-
-    #
     def _getId(self):
         # 获取xx编码
         # 返回搜索结果数量
@@ -938,118 +981,111 @@ class ErpPO(object):
         return d_
 
 
+
+
+
+
+
+    # todo 组织架构管理 - 3员工管理
+
+    def staff_search(self, d_):
+        # 员工管理 - 查询
+
+        # 1 展开
+        self._clkSpread()
+
+        # 2 输入
+        _dropdownByX = ".//div/div/div/div[1]/div[2]"
+        _inputByX = "div/div/div/input"
+        _liByX1 = "/html/body/div[2]/div[2]/div/div[2]/div[1]/ul/li"
+        _liByX2 = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        _liByX3 = "//div[@class='el-popper is-pure is-light el-select__popper styleMyStaffTitle' and @aria-hidden='false']/div/div[2]/div[1]/ul/li"
+        ele = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
+        for k, v in d_.items():
+            if k == '员工信息':
+                self._eleClkDropdown(k, ele, _dropdownByX, _liByX1, v)
+            elif k in ['职位', '是否在职', '启用状态']:
+                self._eleClkDropdown(k, ele, _dropdownByX, _liByX2, v)
+            elif k == '联系方式':
+                self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), _inputByX, v)
+            if k in ['入职日期', '离职日期', '最后更新时间']:
+                self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
+            if k == '主管信息':
+                self._eleClkDropdown(k, ele, _dropdownByX, _liByX3, v)
+
+        # 3 查询
+        self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 3)
+
+        # 4 返回搜索结果数量
+        return self._getId()
+
     def staff_add(self, varQty, d_):
         # 员工管理 - 新增
 
         if varQty == None:
 
-            # 点击新增
+            # 1 新增
             ele = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../..")
             self.Web_PO.eleClkByX(ele, ".//div[2]/button[2]", 1)
 
-            # 员工基本信息
+            # 2 输入
             _dropdownByX = ".//div/div/div/div[1]/div[2]"
-            _liByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-            ele2 = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "..")
-            # self.Web_PO.eleSetTextByX(ele2, ".//form/div[1]/div[2]/div/div/div/div/input", d_['员工姓名'])
-            # self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='员工姓名'][count(preceding-sibling::*[text()='员工姓名']) = 1]", ".."),".//div/div/div/input", d_['员工姓名'])
-            self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='员工姓名']", ".."),".//div/div/div/input", d_['员工姓名'])
-# element = driver.find_element_by_xpath(f"//*[text()='{text_to_match}'][count(preceding-sibling::*[text()='{text_to_match}']) = 1]")
-            self._clkDropdown('省份', _dropdownByX, _liByX, d_['省份'])
-            self._clkDropdown('城市', _dropdownByX, _liByX, d_['城市'])
-            self._clkDropdown('性别', _dropdownByX, _liByX, d_['性别'])
+            _inputByX = ".//div/div/div/input"
+            _liByX1 = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+            _liByX2 = "//div[@class='el-popper is-pure is-light el-select__popper styleMyStaffTitle' and @aria-hidden='false']/div/div[2]/div[1]/ul/li"
+            ele = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "..")
+            for k, v in d_.items():
+                if k in ['员工姓名', '联系方式', '邮箱', '入职日期', '离职日期']:
+                    self.Web_PO.eleSetTextEnterByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), _inputByX, v)
+                elif k in ["省份", "城市", "性别", "职称", "是否在职", "启用状态"]:
+                    self._eleClkDropdown(k, ele, _dropdownByX, _liByX1, v)
+                elif k == "主管信息":
+                    self._eleClkDropdown(k, ele, _dropdownByX, _liByX2, v)
+                elif k == "备注信息":
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."),".//div/div/textarea", v)
 
-            # self._hospitalPCC(ele2, ".//form/div[2]/div[1]/div/div/div/div/div[1]/div[2]", d_['省份'])
-            # self._hospitalPCC(ele2, ".//form/div[2]/div[2]/div/div/div/div/div[1]/div[2]", d_['城市'])
-            # self._dropdown(ele2, ".//form/div[3]/div[1]/div/div/div/div/div[1]/div[2]", ["女", "男", "不详"], d_['性别'])
-            # self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//*[text()='联系方式'][3]", ".."),".//div/div/div/input", d_['联系方式'])
-            self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='联系方式'][count(preceding-sibling::label[text()='联系方式']) = 2]", ".."),".//div/div/div/input", d_['联系方式'])
-
-            # /html/body/div[1]/div/div[2]/section/div/div[6]/div/div/div[1]/div/div/form/div[3]/div[2]/div/div/div/div/input
-            self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='邮箱']", ".."),".//div/div/div/input", d_['邮箱'])
-
-
-            # self.Web_PO.eleSetTextByX(ele2, ".//form/div[3]/div[2]/div/div/div/div/input", d_['联系方式'])
-            # self.Web_PO.eleSetTextByX(ele2, ".//form/div[4]/div[1]/div/div/div/div/input", d_['邮箱'])
-
-            self._clkDropdown('职称', _dropdownByX, _liByX, d_['职称'])
-            sleep(2)
-            self._clkDropdown('是否在职', _dropdownByX, _liByX, d_['是否在职'])
-
-            # self._dropdown2(ele2, ".//form/div[4]/div[2]/div/div/div/div/div[1]/div[2]", d_['职称'])
-            # self._dropdown2(ele2, ".//form/div[5]/div[1]/div/div/div/div/div[1]/div[2]", d_['是否在职'])
-            self.Web_PO.eleSetTextEnterByX(self.Web_PO.getSuperEleByX("//label[text()='入职日期']", ".."),".//div/div/div/input", d_['入职日期'])
-
-            # self.Web_PO.eleSetTextEnterByX(ele2, ".//form/div[5]/div[2]/div/div/div/div/input", d_['入职日期'])
-            # self._dropdown3(ele2, ".//form/div[6]/div[2]/div/div/div/div/div[1]/div[2]", d_['主管信息'])
-            self._clkDropdown('主管信息', _dropdownByX, "//div[@class='el-popper is-pure is-light el-select__popper styleMyStaffTitle' and @aria-hidden='false']/div/div[2]/div[1]/ul/li", d_['主管信息'])
-
-            self._clkDropdown('启用状态', _dropdownByX, _liByX, d_['启用状态'])
-
-            # self._dropdown2(ele2, ".//form/div[7]/div[1]/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-            self.Web_PO.eleSetTextByX(ele2, ".//form/div[8]/div/div/textarea", d_['备注信息'])
-
-            # 提交 bug改文字为确定
-            # ele3 = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "../../../..")
-            # self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)  # 提交
-
+            # 3 提交
+            ele3 = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "../../../..")
+            self.Web_PO.eleClkByX(ele3, ".//div[2]/div/button[2]", 1)
 
     def staff_edit(self, varQty, d_):
         # 员工管理 - 修改
 
         if varQty == 1:
 
-            # # 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏),点击修改
+            # 1 修改
+            # 获取td数量，定位修改按钮(因为td字段可通过配置显示或隐藏),点击修改
             ele3 = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
             varTdLoc = self.Web_PO.eleGetQtyByXs(ele3, ".//div[4]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td")
             self.Web_PO.eleClkByX(ele3, ".//div[4]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[" + str(varTdLoc) + "]/div/button[1]")  # 修改
 
-            ele1 = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "..")
-            isJob = 0
+            # 2 输入
+            _dropdownByX = ".//div/div/div/div[1]/div[2]"
+            _inputByX = ".//div/div/div/input"
+            _liByX1 = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+            _liByX2 = "//div[@class='el-popper is-pure is-light el-select__popper styleMyStaffTitle' and @aria-hidden='false']/div/div[2]/div[1]/ul/li"
+            ele = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "..")
             for k, v in d_.items():
-                if k == '员工姓名':
-                    self.Web_PO.eleSetTextByX(ele1, ".//form/div[1]/div[2]/div/div/div/div/input", d_['员工姓名'])
-                elif k == '省份':
-                    self._hospitalPCC(ele1, ".//form/div[2]/div[1]/div/div/div/div/div[1]/div[2]", d_['省份'])
-                elif k == '城市':
-                    self._hospitalPCC(ele1, ".//form/div[2]/div[2]/div/div/div/div/div[1]/div[2]", d_['城市'])
-                elif k == '性别':
-                    self._dropdown2(ele1, ".//form/div[3]/div[1]/div/div/div/div/div[1]/div[2]", d_['性别'])
-                elif k == '联系方式':
-                    self.Web_PO.eleSetTextByX(ele1, ".//form/div[3]/div[2]/div/div/div/div/input", d_['联系方式'])
-                elif k == '邮箱':
-                    self.Web_PO.eleSetTextByX(ele1, ".//form/div[4]/div[1]/div/div/div/div/input", d_['邮箱'])
-                elif k == '职称':
-                    self._dropdown2(ele1, ".//form/div[4]/div[2]/div/div/div/div/div[1]/div[2]", d_['职称'])
-                elif k == '是否在职':
-                    self._dropdown2(ele1, ".//form/div[5]/div[1]/div/div/div/div/div[1]/div[2]", d_['是否在职'])
-                    if d_['是否在职'] == '在职':
-                        isJob = 1
-                    else:
-                        isJob = 2
-                elif isJob == 1 and k == '入职日期':
-                    self.Web_PO.eleClkByX(ele1, ".//form/div[5]/div[2]/div/div/div/div/input")
-                    self._dropdownDateSingle(d_['入职日期'])
-                elif isJob == 2 and k == '离职日期':
-                    self.Web_PO.eleClkByX(ele1, ".//form/div[6]/div[1]/div/div/div/div/input")
-                    self._dropdownDateSingle(d_['离职日期'])
-                elif k == '主管信息':
-                    self._dropdown2(ele1, ".//form/div[6]/div[2]/div/div/div/div/div[1]/div[2]", d_['主管信息'])
-                elif k == '启动状态':
-                    self._dropdown2(ele1, ".//form/div[7]/div[1]/div/div/div/div/div[1]/div[2]", d_['启用状态'])
-                elif k == '备注信息':
-                    self.Web_PO.eleSetTextByX(ele1, ".//form/div[8]/div/div/textarea", d_['备注信息'])
+                if k in ['员工姓名', '联系方式', '邮箱', '入职日期', '离职日期']:
+                    self.Web_PO.eleSetTextEnterByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."), _inputByX, v)
+                elif k in ["省份", "城市", "性别", "职称", "是否在职", "启用状态"]:
+                    self._eleClkDropdown(k, ele, _dropdownByX, _liByX1, v)
+                elif k == "主管信息":
+                    self._eleClkDropdown(k, ele, _dropdownByX, _liByX2, v)
+                elif k == "备注信息":
+                    self.Web_PO.eleSetTextByX(self.Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", ".."),".//div/div/textarea", v)
 
+            # 3 提交
             ele4 = self.Web_PO.getSuperEleByX("//span[text()='员工基本信息']", "../../../..")
-            self.Web_PO.eleClkByX(ele4, ".//div[2]/div/button[2]", 1)  # 提交
-
+            self.Web_PO.eleClkByX(ele4, ".//div[2]/div/button[2]", 1)
 
     def staff_info(self, varQty):
         # 员工管理 - 详情
 
         if varQty == 1:
 
-            # 1 获取td数量，定位详情按钮(因为td字段可通过配置显示或隐藏)，点击详情
+            # 1 详情
+            # 获取td数量，定位详情按钮(因为td字段可通过配置显示或隐藏)，点击详情
             ele3 = self.Web_PO.getSuperEleByX("//span[text()='数据列表']", "../../..")
             varTdLoc = self.Web_PO.eleGetQtyByXs(ele3, ".//div[4]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td")
             self.Web_PO.eleClkByX(ele3, ".//div[4]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[" + str(varTdLoc) + "]/div/button[2]")
@@ -1066,6 +1102,8 @@ class ErpPO(object):
             return l_
 
 
+
+
     # todo 辖区管理 - 1辖区分配
 
 
@@ -1080,16 +1118,10 @@ class ErpPO(object):
     def setInfo(self, d_):
 
         # 点击 所在周期版本
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/form/div/div/div/div[2]/div/div")
-        l_ = self.Web_PO.getTextByXs(
-            "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li")
-        # print(l_)  # ['202501版本', '202412版本', '202411版本'。。。
-        d_1 = dict(enumerate(l_, start=1))
-        d_1 = {v:k for k, v in d_1.items()}
-        # print(d_1)  # {'202501版本': 1, '202412版本': 2, '202411版本': 3,
-        self.Web_PO.clkByX(
-            "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li[" + str(
-                d_1[d_['周期版本']]) + "]")
+        _liByX1 = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        ele = self.Web_PO.getSuperEleByX("//span[text()='所在周期版本']", "../../..")
+        self._clkDropdownNoPath(ele, ".//div[2]/div/div", _liByX1, d_['周期版本'])
+
 
         # 辖区信息里搜索辖区名称
         ele3 = self.Web_PO.getSuperEleByX("//span[text()='辖区信息']", "../../..")
@@ -1171,138 +1203,28 @@ class ErpPO(object):
 
     # todo 产品管理 - 产品信息管理
 
-    def _clkDropdownByDate(self, k, eleXpath, v):
-        # 产品信息管理 - 最后更新时间
-        # self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
-
-        ele = self.Web_PO.getSuperEleByX("//div[text()='" + k + "']", "..")
-        self.Web_PO.eleClkByX(ele, eleXpath, 1)
-        
-        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
-
-        # 1 获取日期年和月
-        defaultYM = self.Web_PO.getTextByX(varPrefix + "/div/div/div/div[1]/div/div")
-        defaultYear = int(defaultYM.split(" 年 ")[0])
-        defaultMonth = int(defaultYM.split(" 年 ")[1].split(" 月")[0])
-        # print("defaultYear", defaultYear)
-        # print("defaultMonth", defaultMonth)
-
-        # 2 切换年
-        if v[0] < defaultYear:
-            year = defaultYear - v[0]
-            for i in range(year):
-                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/div/button[1]")
-        else:
-            year = v[0] - defaultYear
-            for i in range(year):
-                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[3]/div/button[1]")
-        # 切换月
-        if v[1] < defaultMonth:
-            month = defaultMonth - v[1]
-            for i in range(month):
-                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/div/button[2]")
-        else:
-            month = v[1] - defaultMonth
-            for i in range(month):
-                self.Web_PO.clkByX(varPrefix + "/div/div/div/div[2]/div/button[2]")
-
-        # 开始日期
-        tr2 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[2]")
-        tr3 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[3]")
-        tr4 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[4]")
-        tr5 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[5]")
-        tr6 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[6]")
-        tr7 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[7]")
-        l_1 = []
-        l_tr2 = tr2[0].split("\n")
-        l_tr2 = [int(i) for i in l_tr2]
-        l_tr2 = [0 if i > 10 else i for i in l_tr2]
-        l_1.append(l_tr2)
-        l_tr3 = tr3[0].split("\n")
-        l_tr3 = [int(i) for i in l_tr3]
-        l_1.append(l_tr3)
-        l_tr4 = tr4[0].split("\n")
-        l_tr4 = [int(i) for i in l_tr4]
-        l_1.append(l_tr4)
-        l_tr5 = tr5[0].split("\n")
-        l_tr5 = [int(i) for i in l_tr5]
-        l_1.append(l_tr5)
-        l_tr6 = tr6[0].split("\n")
-        l_tr6 = [int(i) for i in l_tr6]
-        l_tr6 = [0 if i < 10 else i for i in l_tr6]
-        l_1.append(l_tr6)
-        l_tr7 = tr7[0].split("\n")
-        l_tr7 = [int(i) for i in l_tr7]
-        l_tr7 = [0 if i < 10 else i for i in l_tr7]
-        l_1.append(l_tr7)
-        # print("开始日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
-        for i in range(len(l_1)):
-            for j in range(len(l_1[i])):
-                if l_1[i][j] == v[2]:
-                    self.Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
-
-        # 结束日期
-        if v[1] == v[4]:
-            varLoc = 1
-        else:
-            varLoc = 2
-        tr2 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[2]")
-        tr3 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[3]")
-        tr4 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[4]")
-        tr5 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[5]")
-        tr6 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[6]")
-        tr7 = self.Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[7]")
-        l_1 = []
-        l_tr2 = tr2[0].split("\n")
-        l_tr2 = [int(i) for i in l_tr2]
-        l_tr2 = [0 if i > 10 else i for i in l_tr2]
-        l_1.append(l_tr2)
-        l_tr3 = tr3[0].split("\n")
-        l_tr3 = [int(i) for i in l_tr3]
-        l_1.append(l_tr3)
-        l_tr4 = tr4[0].split("\n")
-        l_tr4 = [int(i) for i in l_tr4]
-        l_1.append(l_tr4)
-        l_tr5 = tr5[0].split("\n")
-        l_tr5 = [int(i) for i in l_tr5]
-        l_1.append(l_tr5)
-        l_tr6 = tr6[0].split("\n")
-        l_tr6 = [int(i) for i in l_tr6]
-        l_tr6 = [0 if i < 10 else i for i in l_tr6]
-        l_1.append(l_tr6)
-        l_tr7 = tr7[0].split("\n")
-        l_tr7 = [int(i) for i in l_tr7]
-        l_tr7 = [0 if i < 10 else i for i in l_tr7]
-        l_1.append(l_tr7)
-        # print("结束日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
-        for i in range(len(l_1)):
-            for j in range(len(l_1[i])):
-                if l_1[i][j] == v[5]:
-                    self.Web_PO.clkByX(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
 
 
     def product_search(self, d_):
         # 产品信息管理 - 查询
 
-        # 判断展开还是收起，如果已展开则不操作，否则展开
-        ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
-        s_ = self.Web_PO.eleGetTextByX(ele2, ".//div[2]/button[1]/span")
-        if s_ == "展开":
-            self.Web_PO.eleClkByX(ele2, ".//div[2]/button[1]", 1)  # 展开
+        # 展开
+        self._clkSpread()
 
         _inputByX = "div/div/div/input"
         _dropdownByX = ".//div/div/div/div[1]/div[2]"
         _liByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        ele = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../../..")
         for k, v in d_.items():
-            if k == '产品编码' or k == '产品名称' or k == '品规编码' or k == '品规':
+            if k in ['产品编码', '产品名称', '品规编码', '品规']:
                 self.Web_PO.eleSetTextByX(self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), _inputByX, v)
-            elif k == '剂型类别' or k == '产品类型' or k == '启用状态':
-                self._clkDropdown(k, _dropdownByX, _liByX,  v)
+            elif k in ['剂型类别', '产品类型', '启用状态']:
+                self._eleClkDropdown(k, ele, _dropdownByX, _liByX,  v)
             elif k == '最后更新时间':
                 self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
         # 点击查询
-        self.Web_PO.eleClkByX(ele2, ".//div[2]/button[2]", 3)
+        self.Web_PO.eleClkByX(ele, ".//div/div[2]/button[2]", 3)
 
         # 返回搜索结果数量
         return self._getId()
@@ -1496,32 +1418,19 @@ class ErpPO(object):
 
     # todo 行为数据 - 拜访管理 - 拜访列表
 
-    def _clkDropdown(self, k, eleXpath, liXpaths, v):
-        # 选择下拉框的值
-        # self._clkDropdown(k, _dropdownByX, _liByXs, v)
-        # self._clkDropdown(k, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
-        ele = self.Web_PO.getSuperEleByX("//label[text()='" + k + "']", "..")
-        self.Web_PO.eleClkByX(ele, eleXpath, 1)
-        l_ = self.Web_PO.getTextByXs(liXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        self.Web_PO.clkByX(liXpaths + "[" + str(d_4[v]) + "]", 1)
+
 
     def visit_search(self, d_):
         # 拜访列表 - 查询
 
-        # 判断展开还是收起，如果已展开则不操作，否则展开
-        ele2 = self.Web_PO.getSuperEleByX("//span[text()='筛选查询']", "../..")
-        s_ = self.Web_PO.eleGetTextByX(ele2, ".//div[2]/button[1]/span")
-        if s_ == "展开":
-            self.Web_PO.eleClkByX(ele2, ".//div[2]/button[1]", 1)  # 展开
+        # 展开
+        self._clkSpread()
 
         _dropdownByX = ".//div/div/div/div[1]/div[2]"
         for k, v in d_.items():
             if k == '拜访客户信息':
                 self._clkDropdown(k, _dropdownByX, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
-            elif k == '科室' or k == '客户标签' or k == '医院级别' or k == '拜访类型' or k == '客户关系' or k == '拜访状态' or k == '拜访创建性质' or k == '拜访性质' or k == '计划时间范围' or k == '完成时间范围':
+            elif k in ['科室', '客户标签', '医院级别', '拜访类型', '客户关系', '拜访状态', '拜访创建性质', '拜访性质', '计划时间范围', '完成时间范围']:
                 self._clkDropdown(k, _dropdownByX, "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
             elif k == '产品信息':
                 self._clkDropdown(k, _dropdownByX, "/html/body/div[2]/div[11]/div/div[2]/div[1]/ul/li", v)

@@ -615,6 +615,12 @@ class DomPO(object):
 
     # todo ele元素再定位
 
+    def eleGetSuperEleByX(self, ele, varXpath, varXpath2):
+        # 通过标签下文本获取上层或上上层元素
+        # 如：ele = self.eleGetSuperEleByX(ele, ".//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        return ele2.find_element(*(By.XPATH, varXpath2))
+
     def eleClearByX(self, ele, varXpath, t=1):
         # 定位元素之
         # e = ele.find_element(*(By.XPATH, varXpath))

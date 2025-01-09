@@ -21,6 +21,360 @@ import ddddocr
 
 class GwPO():
 
+
+    # todo common 
+
+
+    def _clkDropdownNoPath(self, ele, eleXpath, liXpaths, v):
+
+        # 选择下拉框的值
+        # self._clkDropdown(ele, ".//div[2]/div/div", _liByX1, d_['周期版本'])
+        Web_PO.eleClkByX(ele, eleXpath, 1)
+        l_ = Web_PO.getTextByXs(liXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        Web_PO.clkByX(liXpaths + "[" + str(d_4[v]) + "]", 1)
+
+    def _eleClkDropdownSpan(self, k, ele, varXpath, varXpaths, v):
+        # 选择下拉框的值
+        # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
+        # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+        ele2 = Web_PO.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", "..")
+        Web_PO.eleClkByX(ele2, varXpath, 1)
+        l_ = Web_PO.getTextByXs(varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
+
+    def _eleClkDropdown(self, k, ele, varXpath, varXpaths, v):
+        # 选择下拉框的值
+        # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
+        # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+        ele2 = Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", "..")
+        Web_PO.eleClkByX(ele2, varXpath, 1)
+        l_ = Web_PO.getTextByXs(varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
+
+    def _dropdownDate(self, v):
+        # 公共 - 日期区间
+        # 如：最后更新时间，入职日期，离职日期
+
+        varPrefix = "//div[@class='el-picker-panel el-date-range-picker' and @visible='true']"
+
+        # 1 获取日期年和月
+        defaultYM = Web_PO.getTextByX(varPrefix + "/div/div/div[1]/div/div")
+        defaultYear = int(defaultYM.split(" 年 ")[0])
+        defaultMonth = int(defaultYM.split(" 年 ")[1].split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[1]/button[1]")
+                # /html/body/div[2]/div[7]/div/div/div/div[1]/div/button[1]
+        else:
+            year = v[0] - defaultYear
+            for i in range(year):
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[4]/button[2]")
+                # /html/body/div[2]/div[7]/div/div/div/div[2]/div/button[1]
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[1]/button[2]")
+                # /html/body/div[2]/div[7]/div/div/div/div[1]/div/button[2]
+        else:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[2]/span[4]/button[1]")
+                # /html/body/div[2]/div[7]/div/div/div/div[2]/div/button[2]
+
+        # if v[0] < int(defaultYear):
+        #     Web_PO.clkByX(varPrefix + "/div/div/div[1]/div/button[2]", 1)
+        #     defaultYM = Web_PO.getTextByX(varPrefix + "/div/div/div[1]/div/div")
+        #     defaultMonth = defaultYM.split(" 年 ")[1].split(" 月")[0]
+        #     if v[1] < int(defaultMonth):
+        #         b = int(defaultMonth) - v[1]
+        #         # print(b)
+        #         for i in range(b):
+        #             Web_PO.clkByX("//div[@class='el-picker-panel el-date-range-picker' and @visible='true']/div/div/div[1]/div/button[2]", 1)
+
+        # 开始日期
+        # /html/body/div[2]/div[7]/div/div/div/div[1]/table/tbody/tr[2]
+        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[2]")
+        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[3]")
+        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[4]")
+        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[5]")
+        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[6]")
+        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div/div[1]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("开始日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    Web_PO.clkByX(
+                        varPrefix + "/div/div/div[1]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
+
+        # 结束日期
+        if v[1] == v[4]:
+            varLoc = 1
+        else:
+            varLoc = 2
+        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[2]")
+        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[3]")
+        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[4]")
+        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[5]")
+        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[6]")
+        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("结束日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[5]:
+                    Web_PO.clkByX(
+                        varPrefix + "/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(
+                            j + 1) + "]", 1)
+
+    def _clkDropdownByDate(self, k, eleXpath, v):
+        # 产品信息管理 - 最后更新时间
+        # self._clkDropdownByDate(k, ".//div[2]/div/input[1]", v)
+
+        ele = Web_PO.getSuperEleByX("//div[text()='" + k + "']", "..")
+        Web_PO.eleClkByX(ele, eleXpath, 1)
+
+        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取日期年和月
+        defaultYM = Web_PO.getTextByX(varPrefix + "/div/div/div/div[1]/div/div")
+        defaultYear = int(defaultYM.split(" 年 ")[0])
+        defaultMonth = int(defaultYM.split(" 年 ")[1].split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/div/button[1]")
+        else:
+            year = v[0] - defaultYear
+            for i in range(year):
+                Web_PO.clkByX(varPrefix + "/div/div/div/div[3]/div/button[1]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                Web_PO.clkByX(varPrefix + "/div/div/div/div[1]/div/button[2]")
+        else:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                Web_PO.clkByX(varPrefix + "/div/div/div/div[2]/div/button[2]")
+
+        # 开始日期
+        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[2]")
+        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[3]")
+        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[4]")
+        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[5]")
+        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[6]")
+        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[1]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("开始日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    Web_PO.clkByX(
+                        varPrefix + "/div/div/div/div[1]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
+
+        # 结束日期
+        if v[1] == v[4]:
+            varLoc = 1
+        else:
+            varLoc = 2
+        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[2]")
+        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[3]")
+        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[4]")
+        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[5]")
+        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[6]")
+        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("结束日期", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[5]:
+                    Web_PO.clkByX(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(
+                        i + 2) + "]/td[" + str(j + 1) + "]", 2)
+
+    def _dropdownDateSingle(self, ele, elePath, v):
+        # 公共 - 单个日期控件
+        # 如：入职日期，离职日期
+
+        Web_PO.eleClkByX(ele, elePath)
+        # print(v)
+
+        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取当前年和月
+        defaultY = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
+        defaultYear = int(defaultY.split(" 年")[0])
+        defaultMonth = int(defaultM.split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                # 上年
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
+        elif defaultYear < v[0]:
+            year = v[0] - defaultYear
+            for i in range(year):
+                # 后年
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                # 上月
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
+        elif defaultMonth < v[1]:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                # 后月
+                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
+
+        # 3 遍历日期列表
+        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+
+        # 选择日期
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    Web_PO.clkByX(
+                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
+                        2)
+
+    
     def clsApp(self, varApp):
 
         '''
@@ -301,18 +655,70 @@ class GwPO():
         # 保存
         Web_PO.clk('/html/body/div[5]/div/div/div[3]/div/button[1]', 1)
 
-    def personalHealthRecord(self, varIdCard):
+    def personalHealthRecord(self, d_):
 
         # 个人健康档案
         # 查询（通过身份证查找唯一记录）,并点击姓名
         # personalHealthRecord('110101196001193209')
+        # /html/body/div[1]/div/div[3]/section/div/div/div[1]/form/div/div
+
+        # form
+        ele = Web_PO.getSuperEleByX("//span[text()='展开']", "../../..")
+
+        Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/form/div/div", 2)  # 展开
+        for k, v in d_.items():
+            # if k in ['姓名', '身份证号', '建档人', '本人电话']:
+            #     Web_PO.eleSetTextByX(Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div/div/input", v)
+            # if k in ['年龄']:
+            #     Web_PO.eleSetTextByX(Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div/div[1]/div/div/input", v[0])
+            #     Web_PO.eleSetTextByX(Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div/div[2]/div/div/input", v[1])
+
+            # if k in ['性别', '人群分类', '档案是否开放', '档案状态', '血型', '常住类型', '是否签约', '是否残疾', '今年是否体检', '既往史', '今年是否已更新', '医疗费用支付方式', '档案缺失项目']:
+            #     self._eleClkDropdown(k, ele, ".//div/div/div/div/input", "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v)
+
+            # if k in ['出生日期范围', '今年体检日期', '今年更新日期', '建档日期']:
+            #     self._dropdownDateSingle(Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div[1]/input", v[0])
+            #     self._dropdownDateSingle(Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div[2]/input", v[1])
+            # if k in ['现住址']:
+            #     self._eleClkDropdown(k, ele, ".//div/div/div[1]/div[1]/div/div/input", "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v[0])
+            #     self._eleClkDropdown(k, ele, ".//div/div/div[1]/div[2]/div/div/input", "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li", v[1])
+            #     Web_PO.eleSetTextByX(Web_PO.getSuperEleByX("//label[text()='" + k + "']", ".."), ".//div/div/div[2]/div/input", v[2])
+            if k in ['管理机构']:
+                ele = Web_PO.getSuperEleByX("//label[text()='" + k + "']", "..")
+                Web_PO.eleClkByX(ele, ".//div/div/div/input")
+                l_ = Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div/div[1]/ul/li")
+                print(l_)
+                # 卫健局
+                if v in l_:
+                    Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div/div[1]/ul/li/label/span[1]/span")
+                else:
+                    Web_PO.clkByX("//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div/div[1]/ul/li")
+                    l_ = Web_PO.getTextByXs("//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[2]/div[1]/ul/li")
+                    print(l_)
+                    # 卫生院
+                    if v in l_:
+                        for i in range(len(l_)):
+                            if l_[i] == v:
+                                Web_PO.clkByX(
+                                    "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[2]/div[1]/ul/li["+str(i+1)+"]/label/span[1]/span")
+                    else:
+                        # 卫生室
+
+
+# /html/body/div[2]/div[23]/div/div[1]/div[1]/ul/li
+                # /html/body/div[2]/div[23]/div/div/div[1]/ul/li/label/span[1]/input
+                # Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div/div[1]/form/span[2]/div[16]/div/div/div/input')
+                # el-popper is-pure is-light el-cascader__dropdown
+                # /html/body/div[2]/div[69]/div/div[1]/div[1]/ul/li/span
+                # /html/body/div[2]/div[23]/div/div/div[1]/ul/li/label/span[1]/span
+
 
         # 输入身份证
-        Web_PO.setTextByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/form/div[1]/div[3]/div/div/input", varIdCard)
-        # 点击查询
-        Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/div/button[1]", 2)
-        # 点击姓名
-        Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[2]/div/span" ,2)
+        # Web_PO.setTextByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/form/span[1]/div[3]/div/div/input", varIdCard)
+        # # 点击查询
+        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/form/div/button[1]", 2)
+        # # 点击姓名
+        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[2]/div/span" ,2)
 
         # l_result = Web_PO.getTextByXs("//td/div")
         # l_result = [i for i in l_result if i != '']
