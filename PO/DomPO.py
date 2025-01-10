@@ -647,7 +647,7 @@ class DomPO(object):
     def eleGetShadowByXByC(self, ele, varXpath, varCss, t=1):
         # 定位元素之遍历shadow-root获取文本
         # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
-        # 如： 获取input下所有shadow-root元素div的文本 eleGetShadowByXsByC(ele, ".//table[1]/input", 'div:nth-last-of-type(1)')
+        # 如： 获取input下所有shadow-root元素div的文本 eleGetShadowByXByC(ele, ".//table[1]/input", 'div:nth-last-of-type(1)')
         # 'div:nth-last-of-type(1)' 表示多个div时，获取最后一个div的text
         ele = ele.find_element(*(By.XPATH, varXpath))
         shadow_root = ele.shadow_root
@@ -677,6 +677,16 @@ class DomPO(object):
         # 获取属性值
         # 如：eleGetAttrValueByX(ele, u"//input[@class='123']","href")
         return ele.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
+
+    def eleGetAttrValueByXs(sself, ele, varXpaths, varAttr):
+        # 遍历获取属性值
+        # 如：eleGetAttrValueByXs(ele, u"//input[@class='123']", "href")
+        l_ = []
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            l_.append(a.get_attribute(varAttr))
+        return l_
+
+
 
 
     def eleGetQtyByXByXs(self, ele, varXpath, varXpaths= "./*"):

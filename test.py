@@ -8,10 +8,10 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
+a = '疾病\n有\n无\n疾病名称\n疾病名称\n手术\n有\n无\n手术名称\n手术名称\n外伤\n有\n无\n外伤名称\n输血\n有\n无\n输血原因'
 
-a = ['12','33']
-if '33' in a:
-    print(121212)
+print(a.count("输血原因"))
+
 
 # a = ['25', '26', '27', '28', '29', '30', '1']
 # a = [int(i) for i in a]
