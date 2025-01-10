@@ -36,22 +36,21 @@ class GwPO():
         # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
 
-    def _eleClkDropdownSpan(self, k, ele, varXpath, varXpaths, v):
-        # 选择下拉框的值
-        # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
-        # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
-        ele2 = Web_PO.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", "..")
-        Web_PO.eleClkByX(ele2, varXpath, 1)
-        l_ = Web_PO.getTextByXs(varXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
+    # def _eleClkDropdownSpan(self, k, ele, varXpath, varXpaths, v):
+    #     # 选择下拉框的值
+    #     # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
+    #     # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+    #     ele2 = Web_PO.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", "..")
+    #     Web_PO.eleClkByX(ele2, varXpath, 1)
+    #     l_ = Web_PO.getTextByXs(varXpaths)
+    #     d_3 = dict(enumerate(l_, start=1))
+    #     d_4 = {v: k for k, v in d_3.items()}
+    #     # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+    #     Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
 
     def _eleClkDropdown(self, ele, varXpath, varXpaths, v):
         # 选择下拉框的值
-        # self._eleClkDropdown(k, _dropdownByX, _liByXs, v)
-        # self._eleClkDropdown(k, ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+        # self._eleClkDropdown(ele, ".//div/div/div/div[1]/div[2]", "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
 
         # ele2 = Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", "..")
         Web_PO.eleClkByX(ele, varXpath, 1)
@@ -64,6 +63,20 @@ class GwPO():
         elif isinstance(v, list):
             for i in range(len(v)):
                 Web_PO.clkByX(varXpaths + "[" + str(d_4[v[i]]) + "]", 1)
+
+    def _eleClkRadio(self, ele, varXpaths, v):
+        # 选择单选框的值
+        # self._eleClkRadio(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+
+        l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
+        if l_ == ['门诊\n家庭\n电话']:
+            l_ = l_[0].split('\n')
+        # print(l_)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+
 
     def _dropdownDate(self, v):
         # 公共 - 日期区间
@@ -675,8 +688,12 @@ class GwPO():
     def _getEleByLabelText(self, k):
         return Web_PO.getSuperEleByX("//label[text()='" + k + "']", "..")
 
-    def _eleLabel(self, ele, k):
-        return Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", "..")
+    def _eleLabel(self, ele, k, varLoc=".."):
+        return Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+
+    def _eleDiv(self, ele, k, varLoc=".."):
+        return Web_PO.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+
 
     def personalHealthRecord_s(self, d_):
 
@@ -744,20 +761,47 @@ class GwPO():
             # print(l_)
             varIndex = Web_PO.getIndexByApcByXs("//a", "href", "personalAddOrUpdate")
             return l_[varIndex-1]  # http://192.168.0.203:30080/phs/personalAddOrUpdate/addOrUpdate/530?id=530&type=1
-
-
         else:
             print(s_)
 
+        Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[2]")
+
+
+    def personalHealthRecord_update(self, d_):
+        # 居民健康档案 - 更新
+
+        ele = Web_PO.getSuperEleByX("//div[text()='居民健康档案']", "../../..")
+
+        # 1 点击更新
+        Web_PO.eleClkByX(ele, "./div[2]/button[1]", 2)
+        Web_PO.eleScrollViewByX(ele, ".//form/div[2]/div[2]/div[1]/div[1]")
+
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        for k, v in d_.items():
+            # if k in [' 性别 ', ' 民族 ', ' 文化程度 ', ' 职业 ', ' 婚姻状况 ', ' 档案是否开放 ']:
+            #     self._eleClkDropdown(self._eleDiv(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
+            # if k in [' 姓名 ', ' 本人电话 ', ' 联系人姓名 ', ' 联系人电话 ', ' 工作单位 ']:
+            #     Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/input", v)
+            # elif k in [' 更新内容 ']:
+            #     Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, "../.."), ".//div[2]/div/div/div/input", v)
+            # if k in [' 出生日期 ', ' 建档日期 ']:
+            #     self._dropdownDateSingle(self._eleDiv(ele, k), ".//div[2]/div/div/div/input", v)
+            if k in [' 血型 ', ' 常住类型 ', ' 血型 ', ' RH血型 ', ' 厨房排风设施 ', ' 燃料类型 ', ' 饮水 ', ' 厕所 ', ' 禽畜栏 ', ' 更新方式 ']:
+                self._eleClkRadio(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
 
 
 
-        # # 点击姓名
-        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[2]/div/span" ,2)
 
-        # l_result = Web_PO.getTextByXs("//td/div")
-        # l_result = [i for i in l_result if i != '']
-        # print(l_result)  # ['37068500200200014', '6月26日测试', '60\n高\n脂', '女',...
+
+
+
+
+
+        # 2 点击仅保存
+        # Web_PO.eleClkByX(ele, "./div[1]/button[1]", 2)
+
+
+
 
     def _getRadio(self, varField):
         d_ = {}
@@ -775,7 +819,7 @@ class GwPO():
         d_blood = dict(zip(l_blood_1, l_blood_2))
         varField = varField.strip()
         d_[varField] = d_blood
-        print(d_)
+        # print(d_)
         return d_
     
     def _getCheckbox(self, varField):
@@ -812,146 +856,135 @@ class GwPO():
         l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/textarea", 'div:nth-last-of-type(1)')
         varField = varField.strip()
         d_[varField] = l_
-        print(d_)
+        # print(d_)
         return d_
+
+    def _getJWS(self, varField, varQty, l_):
+        l_4 = []
+        d_2 = {}
+        for _ in range(varQty*2):
+            l_4.append(l_.pop(0))
+        d_2[varField] = l_4
+        return d_2
 
     def personalHealthRecord_info(self, varUrl):
         # 获取居民健康档案 -详情
-        print(varUrl)
         Web_PO.opnLabel(varUrl)
         Web_PO.swhLabel(2)
 
-        # ele = Web_PO.getSuperEleByX("//div[text()='居民健康档案']", "../..")
-        # l_ = Web_PO.eleGetTextByXs(ele, ".//div")
-        # print(l_)
-        # l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
-        # print(l_)
-
         d_ = self._getText(' 身份证号码 ')
-        # d_.update(self._getText(' 档案编号 '))
-        # d_.update(self._getText(' 姓名 '))
-        # d_.update(self._getText(' 性别 '))
-        # d_.update(self._getText(' 出生日期 '))
-        # d_.update(self._getText(' 民族 '))
-        # d_.update(self._getText(' 现住址 ', "../.."))
-        # d_.update(self._getText(' 本人电话 '))
-        # d_.update(self._getText(' 联系人姓名 '))
-        # d_.update(self._getText(' 联系人电话 '))
-        # d_.update(self._getRadio(' 常住类型 '))
-        # d_.update(self._getText(' 文化程度 '))
-        # d_.update(self._getText(' 职业 '))
-        # d_.update(self._getText(' 工作单位 '))
-        # d_.update(self._getText(' 婚姻状况 '))
-        # d_.update(self._getRadio(' 血型 '))
-        # d_.update(self._getRadio(' RH血型 '))
-        #
-        # d_1 = self._getCheckbox(' 医疗费用支付方式 ')
-        # if d_1['医疗费用支付方式']['城镇职工基本医疗保险'] == 1:
-        #     d_1_1 = self._getText(' 医疗费用支付方式 ')
-        #     d_1['医疗费用支付方式']['城镇职工基本医疗保险'] = {1: d_1_1['医疗费用支付方式'][0]}
-        #     d_.update(d_1)
-        # if d_1['医疗费用支付方式']['城镇居民基本医疗保险'] == 1:
-        #     d_1_1 = self._getText(' 医疗费用支付方式 ')
-        #     d_1['医疗费用支付方式']['城镇居民基本医疗保险'] = {1: d_1_1['医疗费用支付方式'][1]}
-        #     d_.update(d_1)
-        # if d_1['医疗费用支付方式']['贫困救助'] == 1:
-        #     d_1_1 = self._getText(' 医疗费用支付方式 ')
-        #     d_1['医疗费用支付方式']['贫困救助'] = {1: d_1_1['医疗费用支付方式'][2]}
-        #     d_.update(d_1)
-        # elif d_1['医疗费用支付方式']['贫困救助'] == 0:
-        #     d_1_1 = self._getText(' 医疗费用支付方式 ')
-        #     d_1['医疗费用支付方式']['贫困救助'] = {0: d_1_1['医疗费用支付方式'][2]}
-        #     d_.update(d_1)
-        # if d_1['医疗费用支付方式']['其他'] == 1:
-        #     d_1['医疗费用支付方式']['input'] = d_1_1['医疗费用支付方式'][3]
-        #     d_.update(d_1)
-        #
-        # d_1 = self._getCheckbox(' 药物过敏史 ')
-        # if d_1['药物过敏史']['其他药物过敏源'] == 1:
-        #     d_1_1 = self._getTextarea(' 药物过敏史 ')
-        #     d_1['药物过敏史']['input'] = d_1_1['药物过敏史'][0]
-        #     d_.update(d_1)
-        #
-        # d_.update(self._getCheckbox(' 暴露史 '))
+        d_.update(self._getText(' 档案编号 '))
+        d_.update(self._getText(' 姓名 '))
+        d_.update(self._getText(' 性别 '))
+        d_.update(self._getText(' 出生日期 '))
+        d_.update(self._getText(' 民族 '))
+        d_.update(self._getText(' 现住址 ', "../.."))
+        d_.update(self._getText(' 本人电话 '))
+        d_.update(self._getText(' 联系人姓名 '))
+        d_.update(self._getText(' 联系人电话 '))
+        d_.update(self._getRadio(' 常住类型 '))
+        d_.update(self._getText(' 文化程度 '))
+        d_.update(self._getText(' 职业 '))
+        d_.update(self._getText(' 工作单位 '))
+        d_.update(self._getText(' 婚姻状况 '))
+        d_.update(self._getRadio(' 血型 '))
+        d_.update(self._getRadio(' RH血型 '))
 
+        d_1 = self._getCheckbox(' 医疗费用支付方式 ')
+        if d_1['医疗费用支付方式']['城镇职工基本医疗保险'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['城镇职工基本医疗保险'] = {1: d_2['医疗费用支付方式'][0]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['城镇居民基本医疗保险'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['城镇居民基本医疗保险'] = {1: d_2['医疗费用支付方式'][1]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['贫困救助'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['贫困救助'] = {1: d_2['医疗费用支付方式'][2]}
+            d_.update(d_1)
+        elif d_1['医疗费用支付方式']['贫困救助'] == 0:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['贫困救助'] = {0: d_2['医疗费用支付方式'][2]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['其他'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['input'] = d_2['医疗费用支付方式'][3]
+            d_.update(d_1)
 
+        d_1 = self._getCheckbox(' 药物过敏史 ')
+        if d_1['药物过敏史']['其他药物过敏源'] == 1:
+            d_2 = self._getTextarea(' 药物过敏史 ')
+            d_1['药物过敏史']['input'] = d_2['药物过敏史'][0]
+            d_.update(d_1)
 
-        d_.update(self._getText(' 既往史 '))
+        d_.update(self._getCheckbox(' 暴露史 '))
 
-        d_ = {}
         ele = Web_PO.getSuperEleByX("//div[text()=' 既往史 ']", "..")
         l_ = Web_PO.eleGetTextByXs(ele, ".//div")
-        print(l_[1])  # '疾病\n有\n无\n疾病名称\n疾病名称\n手术\n有\n无\n手术名称\n手术名称\n外伤\n有\n无\n外伤名称\n输血\n有\n无\n输血原因'
-
         a = (l_[1].count("疾病名称"))
         b = (l_[1].count("手术名称"))
         c = (l_[1].count("外伤名称"))
         d = (l_[1].count("输血原因"))
-
-
-        # Web_PO.eleGetQtyByXs(ele, ".//")
         l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
+        d_1 = self._getJWS("疾病", a, l_)
+        d_2 = self._getJWS("手术", b, l_)
+        d_1.update(d_2)
+        d_3 = self._getJWS("外伤", c, l_)
+        d_1.update(d_3)
+        d_4 = self._getJWS("输血", d, l_)
+        d_1.update(d_4)
+        d_5 = {}
         varField = ' 既往史 '.strip()
-        d_[varField] = l_
-        print(d_)
-        sys.exit(0)
-        # return d_
+        d_5[varField] = d_1
+        d_.update(d_5)
 
-        d_.update(self._getRadio(' 疾病 '))
-        d_.update(self._getRadio(' 手术 '))
-        d_.update(self._getRadio(' 外伤 '))
-        d_.update(self._getRadio(' 输血 '))
+        d_1 = self._getRadio(' 家族史 ')
+        if d_1['家族史']['有'] == 1:
+            d_2 = self._getText(' 家族史 ')
+            d_1['家族史']['input'] = d_2['家族史']
+        d_.update(d_1)
 
+        d_1 = self._getRadio(' 遗传病史 ')
+        d_2 = self._getText(' 遗传病史 ', "../..")
+        d_1['遗传病史']['疾病名称'] = d_2['遗传病史'][0]
+        d_.update(d_1)
 
-        # d_1 = self._getRadio(' 家族史 ')
-        # if d_1['家族史']['有'] == 1:
-        #     dd_ = self._getText(' 家族史 ')
-        #     d_1['家族史']['input'] = dd_['家族史']
-        # d_.update(d_1)
-        #
-        # d_1 = self._getRadio(' 遗传病史 ')
-        # dd_ = self._getText(' 遗传病史 ', "../..")
-        # d_1['遗传病史']['疾病名称'] = dd_['遗传病史'][0]
-        # d_.update(d_1)
-        #
-        # d_1 = self._getCheckbox(' 残疾情况 ')
-        # dd_ = self._getText(' 残疾情况 ')
-        # d_1['残疾情况']['input'] = dd_['残疾情况'][0]
-        # d_.update(d_1)
-        #
-        # d_.update(self._getText(' 残疾证号 ')[0])
-        #
-        #
-        # d_1 = self._getText(' 与户主关系 ')
-        # d_1.update(self._getText(' 户主姓名 '))
-        # d_1.update(self._getText(' 户主身份证号 '))
-        # d_1.update(self._getText(' 家庭人口数 '))
-        # d_1.update(self._getText(' 家庭结构 '))
-        # d_1.update(self._getRadio(' 居住情况 '))
-        # d_2 = {}
-        # d_2['家庭情况'] = d_1
-        # d_.update(d_2)
-        #
-        #
-        # d_1 = self._getRadio(' 厨房排风设施 ')
-        # d_1.update(self._getRadio(' 燃料类型 '))
-        # d_1.update(self._getRadio(' 饮水 '))
-        # d_1.update(self._getRadio(' 厕所 '))
-        # d_1.update(self._getRadio(' 禽畜栏 '))
-        # d_2 = {}
-        # d_2['生活环境'] = d_1
-        # d_.update(d_2)
-        #
-        # d_.update(self._getText(' 建档单位 '))
-        # d_.update(self._getText(' 管理机构 '))
-        # d_.update(self._getText(' 建档日期 '))
-        # d_.update(self._getText(' 建档人 '))
-        # d_.update(self._getText(' 更新日期 '))
-        # d_.update(self._getRadio(' 更新方式 '))
-        # d_.update(self._getText(' 更新人 '))
-        # d_.update(self._getText(' 更新内容 ', "../.."))
+        d_1 = self._getCheckbox(' 残疾情况 ')
+        d_2 = self._getText(' 残疾情况 ')
+        d_1['残疾情况']['input'] = d_2['残疾情况'][0]
+        d_.update(d_1)
 
-        print(d_)
+        d_.update(self._getText(' 残疾证号 '))
+
+        d_1 = self._getText(' 与户主关系 ')
+        d_1.update(self._getText(' 户主姓名 '))
+        d_1.update(self._getText(' 户主身份证号 '))
+        d_1.update(self._getText(' 家庭人口数 '))
+        d_1.update(self._getText(' 家庭结构 '))
+        d_1.update(self._getRadio(' 居住情况 '))
+        d_.update({'家庭情况': d_1})
+
+        d_1 = self._getRadio(' 厨房排风设施 ')
+        d_1.update(self._getRadio(' 燃料类型 '))
+        d_1.update(self._getRadio(' 饮水 '))
+        d_1.update(self._getRadio(' 厕所 '))
+        d_1.update(self._getRadio(' 禽畜栏 '))
+        d_.update({'生活环境': d_1})
+
+        d_.update(self._getText(' 建档单位 '))
+        d_.update(self._getText(' 管理机构 '))
+        d_.update(self._getText(' 档案是否开放 '))
+        d_.update(self._getText(' 建档日期 '))
+        d_.update(self._getText(' 建档人 '))
+        d_.update(self._getText(' 更新日期 '))
+        d_.update(self._getRadio(' 更新方式 '))
+        d_.update(self._getText(' 更新人 '))
+        d_.update(self._getText(' 更新内容 ', "../.."))
+
+        Web_PO.cls()
+        # print(d_)
+        return d_
 
 
 
