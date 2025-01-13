@@ -875,21 +875,70 @@ class GwPO():
 
         Web_PO.eleClkByX(ele, "./div/button[1]", 2) # 点击查询
 
+        # # 2 获取查询数量
+        # s_ = self._getQty()
+        #
+        # # 3 点击姓名（更新健康档案）
+        # if s_ == 1:
+        #     Web_PO.clkByX("//tr[@class='el-table__row']/td[2]/div/span", 2)
+        #     l_ = Web_PO.getAttrValueByXs("//a", "href")
+        #     # print(l_)
+        #     varIndex = Web_PO.getIndexByApcByXs("//a", "href", "personalAddOrUpdate")
+        #     return l_[varIndex-1]  # http://192.168.0.203:30080/phs/personalAddOrUpdate/addOrUpdate/530?id=530&type=1
+        # else:
+        #     print(s_)
+        #
+        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[2]")
+
+    def personalHealthRecord_operation(self, varOperation):
+
         # 2 获取查询数量
         s_ = self._getQty()
 
         # 3 点击姓名（更新健康档案）
-        if s_ == 1:
-            Web_PO.clkByX("//tr[@class='el-table__row']/td[2]/div/span", 2)
-            l_ = Web_PO.getAttrValueByXs("//a", "href")
-            # print(l_)
-            varIndex = Web_PO.getIndexByApcByXs("//a", "href", "personalAddOrUpdate")
-            return l_[varIndex-1]  # http://192.168.0.203:30080/phs/personalAddOrUpdate/addOrUpdate/530?id=530&type=1
+        if s_ == 1 and varOperation == '姓名':
+            Web_PO.clkByX("//tr[@class='el-table__row']/td[2]/div", 2)
+            # l_ = Web_PO.getAttrValueByXs("//a", "href")
+            # # print(l_)
+            # varIndex = Web_PO.getIndexByApcByXs("//a", "href", "personalAddOrUpdate")
+            # return l_[varIndex - 1]  # http://192.168.0.203:30080/phs/personalAddOrUpdate/addOrUpdate/530?id=530&type=1
+        elif s_ == 1 and varOperation == '查看':
+            Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[16]/div/div[1]", 2)
+        elif s_ == 1 and varOperation == '更新':
+            Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[16]/div/div[2]", 2)
+        elif s_ == 1 and varOperation[0] == '终结':
+            Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[16]/div/div[3]", 2)  # 更多
+            Web_PO.clkByX("//div[@class='el-popper is-light el-popover' and @aria-hidden='false']/div[1]", 2)  # 终结
+            ele2 = Web_PO.getSuperEleByX("//span[text()='终结健康档案']", "../..")
+            # 选择档案状态
+            _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+            for k,v in varOperation[1].items():
+                self._eleClkRadio2(self._eleLabel(ele2, '档案状态'), "./div/div", k)
+                if k == '暂不管理':
+                    # 暂不管理原因
+                    self._eleClkDropdown(self._eleLabel(ele2, '暂不管理原因'), ".//div/div/div/div/input", _dropdownByX, v[0])
+                    # 暂不管理日期
+                    self._dropdownDateSingle(self._eleLabel(ele2, '暂不管理日期'), "./div/div/input", v[1])
+                elif k == '已死亡':
+                    # 档案注销日期
+                    self._dropdownDateSingle(self._eleLabel(ele2, '档案注销日期'), "./div/div/input", v[0])
+                    # 死亡日期
+                    self._dropdownDateSingle(self._eleLabel(ele2, '死亡日期'), "./div/div/input", v[1])
+
+            Web_PO.eleClkByX(ele2, ".//div[3]/span/button[1]")  # 确认
+
+
+        elif s_ == 1 and varOperation == '更新历史':
+            # 更新历史
+            Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[16]/div/div[3]", 2)  # 更多
+            Web_PO.clkByX("//div[@class='el-popper is-light el-popover' and @aria-hidden='false']/div[2]", 2)  # 更新历史
+            ele2 = Web_PO.getSuperEleByX("//span[text()='更新历史']", "../..")
+            l_ = Web_PO.eleGetTextByXs(ele2, ".//div[2]")
+            print(l_[0])
+            Web_PO.eleClkByX(ele2, "./div[3]/span/button")  # 关闭
+
         else:
-            print(s_)
-
-        Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[2]")
-
+            print("查询数量多余1个，无法操作")
 
     def _jws(self,ele,k, v1, _dropdownByX, varLoc):
         if isinstance(v1, list):
@@ -906,15 +955,14 @@ class GwPO():
         else:
             if v1 != "remain":
                 self._eleClkRadio2(self._eleDiv(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "无")
-
     def personalHealthRecord_update(self, d_):
         # 居民健康档案 - 更新
 
         ele = Web_PO.getSuperEleByX("//div[text()='居民健康档案']", "../../..")
 
         # 1 点击更新
-        Web_PO.eleClkByX(ele, "./div[2]/button[1]", 2)
-        Web_PO.eleScrollViewByX(ele, ".//form/div[2]/div[2]/div[1]/div[1]")
+        # Web_PO.eleClkByX(ele, "./div[2]/button[1]", 2)
+        # Web_PO.eleScrollViewByX(ele, ".//form/div[2]/div[2]/div[1]/div[1]")
 
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
@@ -982,9 +1030,9 @@ class GwPO():
                         Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/i", 2)  # +
                     for i in range(len(v)):
                         # 疾病名称
-                        self._eleClkDropdown(self._eleDiv(ele, k), ".//div[2]/div[2]/div/div[" + str(i+1) + "]/div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[i][0])
+                        self._eleClkDropdown(self._eleDiv(ele, k), ".//div[2]/div[2]/div/div[" + str(i+1) + "]/div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[i][1][0])
                         # 与本人关系
-                        self._eleClkDropdown(self._eleDiv(ele, k), ".//div[2]/div[2]/div/div[" + str(i+1) + "]/div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[i][1])
+                        self._eleClkDropdown(self._eleDiv(ele, k), ".//div[2]/div[2]/div/div[" + str(i+1) + "]/div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[i][1][1])
                 else:
                     self._eleClkRadio2(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/div", "无")
             if k in [' 遗传病史 ']:
@@ -1035,8 +1083,6 @@ class GwPO():
         # Web_PO.eleClkByX(ele, "./div[1]/button[1]", 2)
 
 
-
-
     def _getRadio(self, varField):
         d_ = {}
         ele2 = Web_PO.getSuperEleByX("//div[text()='" + varField + "']", "..")
@@ -1055,7 +1101,7 @@ class GwPO():
         d_[varField] = d_blood
         # print(d_)
         return d_
-    
+
     def _getCheckbox(self, varField):
         d_ = {}
         ele2 = Web_PO.getSuperEleByX("//div[text()='" + varField + "']", "..")
@@ -1101,10 +1147,134 @@ class GwPO():
         d_2[varField] = l_4
         return d_2
 
-    def personalHealthRecord_info(self, varUrl):
-        # 获取居民健康档案 -详情
-        Web_PO.opnLabel(varUrl)
-        Web_PO.swhLabel(2)
+    def personalHealthRecord_check(self):
+        # 查看 - 获取居民健康档案
+
+        d_ = self._getText(' 身份证号码 ')
+        d_.update(self._getText(' 档案编号 '))
+        d_.update(self._getText(' 姓名 '))
+        d_.update(self._getText(' 性别 '))
+        d_.update(self._getText(' 出生日期 '))
+        d_.update(self._getText(' 民族 '))
+        d_.update(self._getText(' 现住址 ', "../.."))
+        d_.update(self._getText(' 本人电话 '))
+        d_.update(self._getText(' 联系人姓名 '))
+        d_.update(self._getText(' 联系人电话 '))
+        d_.update(self._getRadio(' 常住类型 '))
+        d_.update(self._getText(' 文化程度 '))
+        d_.update(self._getText(' 职业 '))
+        d_.update(self._getText(' 工作单位 '))
+        d_.update(self._getText(' 婚姻状况 '))
+        d_.update(self._getRadio(' 血型 '))
+        d_.update(self._getRadio(' RH血型 '))
+
+        d_1 = self._getCheckbox(' 医疗费用支付方式 ')
+        if d_1['医疗费用支付方式']['城镇职工基本医疗保险'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['城镇职工基本医疗保险'] = {1: d_2['医疗费用支付方式'][0]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['城镇居民基本医疗保险'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['城镇居民基本医疗保险'] = {1: d_2['医疗费用支付方式'][1]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['贫困救助'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['贫困救助'] = {1: d_2['医疗费用支付方式'][2]}
+            d_.update(d_1)
+        elif d_1['医疗费用支付方式']['贫困救助'] == 0:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['贫困救助'] = {0: d_2['医疗费用支付方式'][2]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['其他'] == 1:
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['input'] = d_2['医疗费用支付方式'][3]
+            d_.update(d_1)
+
+        d_1 = self._getCheckbox(' 药物过敏史 ')
+        if d_1['药物过敏史']['其他药物过敏源'] == 1:
+            d_2 = self._getTextarea(' 药物过敏史 ')
+            d_1['药物过敏史']['input'] = d_2['药物过敏史'][0]
+        d_.update(d_1)
+
+        d_.update(self._getCheckbox(' 暴露史 '))
+
+        ele = Web_PO.getSuperEleByX("//div[text()=' 既往史 ']", "..")
+        l_ = Web_PO.eleGetTextByXs(ele, ".//div")
+        a = (l_[1].count("疾病名称"))
+        b = (l_[1].count("手术名称"))
+        c = (l_[1].count("外伤名称"))
+        d = (l_[1].count("输血原因"))
+        l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
+        d_1 = self._getJWS("疾病", a, l_)
+        d_2 = self._getJWS("手术", b, l_)
+        d_1.update(d_2)
+        d_3 = self._getJWS("外伤", c, l_)
+        d_1.update(d_3)
+        d_4 = self._getJWS("输血", d, l_)
+        d_1.update(d_4)
+        d_5 = {}
+        varField = ' 既往史 '.strip()
+        d_5[varField] = d_1
+        d_.update(d_5)
+
+        d_1 = self._getRadio(' 家族史 ')
+        print('家族史', d_1)
+        if d_1['家族史'] != {}:
+            d_2 = self._getText(' 家族史 ')
+            d_1['家族史']['input'] = d_2['家族史']
+        else:
+            d_1['家族史'] = '无'
+        d_.update(d_1)
+
+        d_1 = self._getRadio(' 遗传病史 ')
+        print('遗传病史', d_1)
+        if d_1['遗传病史'] != {}:
+            d_2 = self._getText(' 遗传病史 ', "../..")
+            d_1['遗传病史']['疾病名称'] = d_2['遗传病史'][0]
+        else:
+            d_1['遗传病史'] = '无'
+        d_.update(d_1)
+
+        d_1 = self._getCheckbox(' 残疾情况 ')
+        d_2 = self._getText(' 残疾情况 ')
+        print("d_1", d_1)
+        print("d_2", d_2)
+        if d_2['残疾情况'] != []:
+            d_1['残疾情况']['input'] = d_2['残疾情况'][0]
+        d_.update(d_1)
+
+        d_.update(self._getText(' 残疾证号 '))
+
+        d_1 = self._getText(' 与户主关系 ')
+        d_1.update(self._getText(' 户主姓名 '))
+        d_1.update(self._getText(' 户主身份证号 '))
+        d_1.update(self._getText(' 家庭人口数 '))
+        d_1.update(self._getText(' 家庭结构 '))
+        d_1.update(self._getRadio(' 居住情况 '))
+        d_.update({'家庭情况': d_1})
+
+        d_1 = self._getRadio(' 厨房排风设施 ')
+        d_1.update(self._getRadio(' 燃料类型 '))
+        d_1.update(self._getRadio(' 饮水 '))
+        d_1.update(self._getRadio(' 厕所 '))
+        d_1.update(self._getRadio(' 禽畜栏 '))
+        d_.update({'生活环境': d_1})
+
+        d_.update(self._getText(' 建档单位 '))
+        d_.update(self._getText(' 管理机构 '))
+        d_.update(self._getText(' 档案是否开放 '))
+        d_.update(self._getText(' 建档日期 '))
+        d_.update(self._getText(' 建档人 '))
+
+
+        Web_PO.cls()
+
+        return d_
+
+    def personalHealthRecord_info(self):
+        # 点击姓名，获取居民健康档案
+        # Web_PO.opnLabel(varUrl)
+        # Web_PO.swhLabel(2)
 
         d_ = self._getText(' 身份证号码 ')
         d_.update(self._getText(' 档案编号 '))
@@ -1222,12 +1392,37 @@ class GwPO():
 
 
 
+    # todo 基本公卫 - 健康档案管理 - 死亡管理
 
+    def death_s(self, d_):
 
+        # 死亡管理 - 搜索
 
+        ele = Web_PO.getSuperEleByX("//label[text()='身份证号']", "..")
+        Web_PO.eleSetTextByX(ele, "./div/div/input", d_['身份证号'])
+        Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[1]/div/form/div[5]/div/button[1]", 2)  # 查询
 
+        # 2 获取查询数量
+        s_ = self._getQty()
 
+        # 3 点击姓名（更新健康档案）
+        if s_ == 1:
+            Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button", 2) # 点击档案查看
+            # l_ = Web_PO.getAttrValueByXs("//a", "href")
+            # # print(l_)
+            # varIndex = Web_PO.getIndexByApcByXs("//a", "href", "personalAddOrUpdate")
+            # print(varIndex)
+            print(self.personalHealthRecord_check())
+        else:
+            print(s_)
 
+        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[2]")
+        # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button
+        # # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button
+        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button")  # 点击档案查看
+        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[3]") # 切换健康档案详情
+        #
+        # self.personalHealthRecord_info()
 
 
 
@@ -1262,8 +1457,6 @@ class GwPO():
                         # 高血脂患者管理卡
                         print(self.hyperlipidemiaPatientCard())
                 break
-
-
 
     def hypertensionPatientCard(self):
 
@@ -1493,7 +1686,6 @@ class GwPO():
                     if "http://192.168.0.203:30080/#/phs/personalAddOrUpdate/addOrUpdate" in l_a[i]:
                         Web_PO.clkByX(
                             '/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[' + str(i + 1) + ']/span', 2)
-
 
     def _residentHealthRecord(self, l_div, i, varDisease, varDiseaseName, varDiseaseTime):
 
@@ -1842,7 +2034,6 @@ class GwPO():
                     d_result[k] = v
         print(varUsername + ' => ',  d_result)
         # return d_result
-
 
 
     def physicalExamination(self, varUsername, varTestUrl):
