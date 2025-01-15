@@ -26,7 +26,7 @@ from PO.FilePO import *
 File_PO = FilePO()
 
 import logging
-import signal
+import signal, inspect
 import sys
 
 from time import sleep
@@ -47,19 +47,32 @@ class ChcWebPO():
         # print(varFile, datetime.datetime.now())
 
 
-    # 定义信号处理函数
     def handle_signal(self, signum, frame):
+        # 信号处理函数
+        # 他有2个参数 signum, frame
+        # frame对象是signal模块的内部实现细节，通常情况下，我们不需要直接操作或访问frame对象。
+        # 如果你需要获取当前调用栈或者进行调试，可以考虑使用其他工具和方法，例如sys模块的exc_info()函数或者内置的pdb调试器。
         self.logger.info('Received signal: {}'.format(signal.Signals(signum).name))
         self.logger.info('Program is terminating...')
+        # self.logger.info(inspect.getframeinfo(frame))
+        # print(inspect.getframeinfo(frame)) # 函数用于获取关于frame的信息，包括文件名、行号以及函数名等。
+
         # 在这里可以添加额外的清理代码或日志记录
         sys.exit(0)
-        # # 信号处理函数需要2个参数,这里放在了类里面,所以还需要额外的self参数
         # logger.info("Get TERM signal {0}".format(signal_num))
         # self.terminated_flag = True
         # self._kill_sleep_gevent()  # 轮询结束休眠的协程
 
+    # 注册信号处理函数
+    # 当用户按下Ctrl+C时，会触发SIGINT信号，然后调用handle_signal函数，打印出提示信息后退出程序。
+    # signal.signal(signal.SIGINT, handle_signal)
+    # signal.signal(signal.SIGTERM, handle_signal)
 
     def runTest(self, varJsonFile):
+
+        # # # 当用户按下Ctrl+C时，会触发SIGINT信号，然后调用handle_signal函数，打印出提示信息后退出程序。
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
 
         # 1，登录
         self.Web_PO = WebPO("chrome")
@@ -71,7 +84,7 @@ class ChcWebPO():
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
 
         # 2，遍历身份id
-        varJsonFile = varJsonFile + ".json"
+        # varJsonFile = varJsonFile + ".json"
         d_2 = File_PO.jsonfile2dict(varJsonFile)
         for k1, v1 in d_2.items():
             for k, v in v1.items():
@@ -90,6 +103,7 @@ class ChcWebPO():
                 # sleep(8)
                 # self.Web_PO.isEleTextExistByXForWait("/html/body/div[1]/div/div[2]/section/div/div/section/footer/button[3]", '待上传市级平台', 30)
                 print("已完成,", k1, "第", k, "页 =>", l_2)
+                self.logger.info("已完成," + str(k1) +  "第" + str(k) + "页 =>" + str(l_2))
 
                 for i in range(len(l_1)):
                     self.Web_PO.swhLabel(1)
@@ -167,7 +181,7 @@ class ChcWebPO():
     def getIdcardTest(self, varDoc):
         # 获取每个医生所管理的身份证列表
 
-        # 注册信号处理函数
+        # # 注册信号处理函数
         signal.signal(signal.SIGINT, self.handle_signal)
         signal.signal(signal.SIGTERM, self.handle_signal)
 
@@ -238,11 +252,12 @@ class ChcWebPO():
                     idcard = self.Web_PO.eleGetTextByX(ele, ".//div[3]/div/div[1]/div/table/tbody/tr["+ str(i+1)+ "]/td[9]/div")
                     l_.append(idcard)
                 pp = (str(varDoc) + str(k+1) + str(l_))
-                self.logger.info(pp)
                 print(varDoc, k+1, l_)
+                self.logger.info(pp)
                 d_1[k+1] = l_
             d_2[varDoc] = d_1
             # print(d_2)
+            # self.logger.info(str(varDoc) + ".json" + str(d_2))
             File_PO.dict2jsonfile(varDoc + ".json", d_2)
             # dd_ = File_PO.jsonfile2dict(varDoc + ".json")
             # print(dd_)

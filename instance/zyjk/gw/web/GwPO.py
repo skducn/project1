@@ -17,10 +17,28 @@ Sys_PO = SysPO()
 from PO.Base64PO import *
 Base64_PO = Base64PO()
 
+import logging
+import signal
+import sys
 import ddddocr
 
 class GwPO():
 
+    def __init__(self, varFile):
+        # 配置日志
+        if os.name == 'nt':
+            logging.basicConfig(filename=varFile, level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
+        else:
+            logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        self.logger = logging.getLogger(__name__)
+        # print(varFile, datetime.datetime.now())
+
+
+    # 定义信号处理函数
+    def handle_signal(self, signum, frame):
+        self.logger.info('Received signal: {}'.format(signal.Signals(signum).name))
+        self.logger.info('Program is terminating...')
+        # 在这里可以添加额外的清理代码或日志记录
 
     # todo common 
 
@@ -577,7 +595,7 @@ class GwPO():
         Web_PO.driver.maximize_window()  # 全屏
         Web_PO.setTextByX("//input[@placeholder='请输入用户名']", varUser)
         Web_PO.setTextByX("//input[@placeholder='输入密码']", varPass)
-        Web_PO.clkByX("//button[@type='button']", 1)
+        Web_PO.clkByX("//button[@type='button']", 4)
         # for i in range(10):
         #     code = Web_PO.getAttrValueByX(u"//img[@class='login-code-img']", "src")
         #     Base64_PO.base64ToImg(code)
@@ -873,7 +891,8 @@ class GwPO():
                                             if l_3[i] == v[1]:
                                                 Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label/span[1]/span")
 
-        Web_PO.eleClkByX(ele, "./div/button[1]", 2) # 点击查询
+        Web_PO.eleClkByX(ele, "./div/button[1]", 2)  # 点击查询
+        # self.logger.info("搜索条件：" + str(d_))
 
         # # 2 获取查询数量
         # s_ = self._getQty()
@@ -927,7 +946,6 @@ class GwPO():
 
             Web_PO.eleClkByX(ele2, ".//div[3]/span/button[1]")  # 确认
 
-
         elif s_ == 1 and varOperation == '更新历史':
             # 更新历史
             Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[16]/div/div[3]", 2)  # 更多
@@ -955,8 +973,12 @@ class GwPO():
         else:
             if v1 != "remain":
                 self._eleClkRadio2(self._eleDiv(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "无")
-    def personalHealthRecord_update(self, d_):
+    def personalHealthRecord_update(self, d_search, d_):
         # 居民健康档案 - 更新
+
+        # # # 当用户按下Ctrl+C时，会触发SIGINT信号，然后调用handle_signal函数，打印出提示信息后退出程序。
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
 
         ele = Web_PO.getSuperEleByX("//div[text()='居民健康档案']", "../../..")
 
@@ -1078,7 +1100,7 @@ class GwPO():
             if k in [' 更新内容 ']:
                 Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, "../.."), ".//div[2]/div/div/div/input", v)
 
-
+        self.logger.info("搜索 => " + str(d_search) + ", 更新 => " + str(d_))
         # 2 点击仅保存
         # Web_PO.eleClkByX(ele, "./div[1]/button[1]", 2)
 
@@ -1218,7 +1240,7 @@ class GwPO():
         d_.update(d_5)
 
         d_1 = self._getRadio(' 家族史 ')
-        print('家族史', d_1)
+        # print('家族史', d_1)
         if d_1['家族史'] != {}:
             d_2 = self._getText(' 家族史 ')
             d_1['家族史']['input'] = d_2['家族史']
@@ -1227,7 +1249,7 @@ class GwPO():
         d_.update(d_1)
 
         d_1 = self._getRadio(' 遗传病史 ')
-        print('遗传病史', d_1)
+        # print('遗传病史', d_1)
         if d_1['遗传病史'] != {}:
             d_2 = self._getText(' 遗传病史 ', "../..")
             d_1['遗传病史']['疾病名称'] = d_2['遗传病史'][0]
@@ -1237,8 +1259,8 @@ class GwPO():
 
         d_1 = self._getCheckbox(' 残疾情况 ')
         d_2 = self._getText(' 残疾情况 ')
-        print("d_1", d_1)
-        print("d_2", d_2)
+        # print("d_1", d_1)
+        # print("d_2", d_2)
         if d_2['残疾情况'] != []:
             d_1['残疾情况']['input'] = d_2['残疾情况'][0]
         d_.update(d_1)
@@ -1266,8 +1288,8 @@ class GwPO():
         d_.update(self._getText(' 建档日期 '))
         d_.update(self._getText(' 建档人 '))
 
-
         Web_PO.cls()
+        self.logger.info(d_)
 
         return d_
 
@@ -1397,6 +1419,10 @@ class GwPO():
     def death_s(self, d_):
 
         # 死亡管理 - 搜索
+
+        # # # 当用户按下Ctrl+C时，会触发SIGINT信号，然后调用handle_signal函数，打印出提示信息后退出程序。
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
 
         ele = Web_PO.getSuperEleByX("//label[text()='身份证号']", "..")
         Web_PO.eleSetTextByX(ele, "./div/div/input", d_['身份证号'])

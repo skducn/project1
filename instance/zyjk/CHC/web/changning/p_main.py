@@ -7,7 +7,7 @@
 # 执行main主程序，设置logPO4.log日志（info），将主程序main中需要记录的内容设置为 self.logger.info(XX), 当程序中断或control+c时，将日志记录到logPO4.log中
 #***************************************************************
 from ChcWebPO import *
-ChcWeb_PO = ChcWebPO("./LogPO4.log")
+ChcWeb_PO = ChcWebPO("./LogPO5.log")
 
 from multiprocessing import Pool, cpu_count
 import time
@@ -42,14 +42,15 @@ def main():
     try:
         time1 = time.time()
         # 获取cpu核数
-        print("CPU cores: ", cpu_count())
+        # print("CPU cores: ", cpu_count())
+        # ChcWeb_PO.logger.info("CPU cores: "+ str(cpu_count()))
 
-        with Pool(cpu_count()) as pool:
-            squared_numbers = pool.map(p_getIdcard, ["小茄子", "小猴子"])
-        print(squared_numbers)
+        # with Pool(2) as pool:
+        #     squared_numbers = pool.map(p_getIdcard, ["小茄子", "小猴子"])
+        # print("test", squared_numbers)
 
         # 假设有 4 个 CPU 核心
-        with Pool(4) as pool:
+        with Pool(2) as pool:
             pool.map(p_runTest, ["小茄子.json", "小猴子.json"])
 
         time2 = time.time()

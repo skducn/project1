@@ -6,7 +6,7 @@
 # multiprocessing 模块允许你并行执行多个进程，充分利用多核 CPU 的计算能力。
 # http://www.51testing.com/html/80/15326880-7803860.html
 # https://blog.csdn.net/u013421629/article/details/100284962
-# 实例 - CHC - web - changning - main.py 新泾镇社区卫生服务中心 - 执行自动上报 - 多进程
+# 实例 - CHC - web - changning - p_main.py 新泾镇社区卫生服务中心 - 执行自动上报 - 多进程
 # *****************************************************************
 
 from multiprocessing import Pool

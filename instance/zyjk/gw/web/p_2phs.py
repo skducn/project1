@@ -6,12 +6,11 @@
 # *****************************************************************
 
 from GwPO import *
-Gw_PO = GwPO()
+Gw_PO = GwPO("./p_2phs_p.log")
 
 from multiprocessing import Pool
 import time
 import numpy as np
-
 
 
 
@@ -26,13 +25,15 @@ def main(user, password, d_idcard, d_param):
     # 2 获取基本公卫二级菜单连接
     Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[2]", 2)  # 点击一级菜单基本公卫
     d_menu_jbgw = Gw_PO.getMenu2Url()
+    # Gw_PO.logger.info(d_menu_jbgw)
     # print('基本公卫 =>', d_menu_jbgw) # 基本公卫 => {'健康档案概况': 'http://192.168.0.203:30080/phs/HealthRecord/ehrindex', '个人健康档案': 'http://192.168.0.203:30080/phs/HealthRecord/Personal', '家庭健康档案': 'http://192.168.0.203:30080/phs/HealthRecord/Family', '迁入申请': 'http://192.168.0.203:30080/phs/HealthRecord/Immigration', '迁出审核': 'http://192.168.0.203:30080/phs/HealthRecord/Exit', '档案交接': 'http://192.168.0.203:30080/phs/HealthRecord/handoverFile', '死亡管理': 'http://192.168.0.203:30080/phs/HealthRecord/DeathManagement', '区域档案查询': 'http://192.168.0.203:30080/phs/HealthRecord/regionalFile', '接诊信息查询': 'http://192.168.0.203:30080/phs/HealthRecord/Diagnosis', '就诊管理': 'http://192.168.0.203:30080/phs/HealthRecord/Visit', '高血压专项': 'http://192.168.0.203:30080/phs/Hypertension/gxyregister', '高血压随访': 'http://192.168.0.203:30080/phs/Hypertension/gxyjob', '高血压报病': 'http://192.168.0.203:30080/phs/Hypertension/gxybb', '糖尿病专项': 'http://192.168.0.203:30080/phs/Diabetes/tnbregister', '糖尿病随访': 'http://192.168.0.203:30080/phs/Diabetes/tnbjob', '糖尿病报病': 'http://192.168.0.203:30080/phs/Diabetes/tnbbb', '慢阻肺病登记': 'http://192.168.0.203:30080/phs/Copd/register', '慢阻肺病专项': 'http://192.168.0.203:30080/phs/Copd/project', '慢阻肺病随访': 'http://192.168.0.203:30080/phs/Copd/visit', '儿童概况': 'http://192.168.0.203:30080/phs/Child/etindex', '儿童健康档案': 'http://192.168.0.203:30080/phs/Child/etfiles', '中医体质辨识列表': 'http://192.168.0.203:30080/phs/Child/tcm', '中医体质辨识汇总': 'http://192.168.0.203:30080/phs/Child/tzbs', '儿童检查记录': 'http://192.168.0.203:30080/phs/Child/etjob', '孕产妇概况': 'http://192.168.0.203:30080/phs/MaternalRecord/ycfindex', '孕产妇登记': 'http://192.168.0.203:30080/phs/MaternalRecord/ycfregister', '孕产妇档案': 'http://192.168.0.203:30080/phs/MaternalRecord/ycffiles', '孕产妇随访': 'http://192.168.0.203:30080/phs/MaternalRecord/ycfjob', '老年人概况': 'http://192.168.0.203:30080/phs/Snr/lnrindex', '老年人专项登记': 'http://192.168.0.203:30080/phs/Snr/special', '老年人专项管理': 'http://192.168.0.203:30080/phs/Snr/lnrfiles', '本年度未体检': 'http://192.168.0.203:30080/phs/Snr/unexamined', '老年人中医体质辨识': 'http://192.168.0.203:30080/phs/Snr/chMedicine', '老年人自理能力评估查询': 'http://192.168.0.203:30080/phs/Snr/selfCareAssess', '老年人抑郁评估查询': 'http://192.168.0.203:30080/phs/Snr/depressed', '简易智力检查查询': 'http://192.168.0.203:30080/phs/Snr/intelligence', '体检登记': 'http://192.168.0.203:30080/phs/HealthExamination/tjregister', '体检记录': 'http://192.168.0.203:30080/phs/HealthExamination/tjrecord', '未体检人员': 'http://192.168.0.203:30080/phs/HealthExamination/tjunexam', '肺结核患者概况': 'http://192.168.0.203:30080/phs/Tuberculosis/fjhindex', '肺结核登记': 'http://192.168.0.203:30080/phs/Tuberculosis/fjhregister', '肺结核管理': 'http://192.168.0.203:30080/phs/Tuberculosis/fjhfiles', '残疾人概况': 'http://192.168.0.203:30080/phs/Disabled/cjrindex', '残疾人登记': 'http://192.168.0.203:30080/phs/Disabled/cjrregister', '残疾人管理': 'http://192.168.0.203:30080/phs/Disabled/cjrfiles', '严重精神障碍登记': 'http://192.168.0.203:30080/phs/MentalDisorder/jsregister', '严重精神障碍患者': 'http://192.168.0.203:30080/phs/MentalDisorder/jsfiles', '严重精神病障碍随访': 'http://192.168.0.203:30080/phs/MentalDisorder/jsjob', '严重精神障碍概况': 'http://192.168.0.203:30080/phs/MentalDisorder/jsindex', '健康教育活动': 'http://192.168.0.203:30080/phs/HealthEducation/HealthActivity', '本年度未评': 'http://192.168.0.203:30080/phs/hbp/noassessdata', '评分信息查询': 'http://192.168.0.203:30080/phs/hbp/assessdata'}
 
     # todo 1.2, 健康档案管理 - 个人健康档案
     Web_PO.opnLabel(d_menu_jbgw['个人健康档案'])
     Web_PO.swhLabel(1)
-    varUrl = Gw_PO.personalHealthRecord_s(d_idcard)
-    Gw_PO.personalHealthRecord_update(d_param)
+    Gw_PO.personalHealthRecord_s(d_idcard)
+    Gw_PO.personalHealthRecord_operation('更新')
+    Gw_PO.personalHealthRecord_update(d_idcard, d_param)
 
 # {' 与户主关系 ': '子', ' 性别 ': "女", ' 民族 ': "回族", ' 文化程度 ': "专科教育", ' 职业 ': "军人", ' 婚姻状况 ': "离婚", ' 档案是否开放 ': "否",
 #                                        ' 户主姓名 ': "李四2", ' 户主身份证号 ': "310101198004110013", ' 家庭人口数 ': "4", ' 家庭结构 ': "3", ' 居住情况 ': '独居',
@@ -78,15 +79,26 @@ if __name__ == "__main__":
     time1 = time.time()
 
     # 用不同账号，并发2个
-    with Pool(2) as pool:
-        squared_numbers = pool.map(p_main, [('11011', 'HHkk2327447', {"身份证号": "230202194504020016"}, {' 姓名 ': "李四1", ' 本人电话 ': "13815161715", ' 联系人姓名 ': "令狐冲1", ' 联系人电话 ': "58771231", ' 工作单位 ': "上海智赢1", ' 残疾证号 ': 'ab1111', ' 更新内容 ': "测试3峡"}),
-                                            ('admin', 'Zy123456', {"身份证号": "110118199001019375"}, {' 姓名 ': "找老刘", ' 本人电话 ': "13815161719", ' 联系人姓名 ': "白衣", ' 联系人电话 ': "58771236", ' 工作单位 ': "上海贝壳", ' 更新内容 ': "测试4峡"})])
+    with Pool(8) as pool:
+        pool.map(p_main, [('11011', 'HHkk2327447', {"身份证号": "110101202401015310"}, {' 姓名 ': "周八", ' 本人电话 ': "13815161718", ' 联系人姓名 ': "令狐冲1", ' 联系人电话 ': "58771231", ' 工作单位 ': "上海智赢1", ' 残疾证号 ': 'ab1111', ' 更新内容 ': "测试8峡"}),
+                          ('11012', 'Jinhao123', {"身份证号": "110118199001019375"}, {' 姓名 ': "刘一", ' 本人电话 ': "13815161711", ' 联系人姓名 ': "白衣1", ' 联系人电话 ': "58771231", ' 工作单位 ': "上海贝壳1", ' 更新内容 ': "测试1峡"}),
+                          ('11013', 'Jinhao123', {"身份证号": "110107199001016298"}, {' 姓名 ': "陈二", ' 本人电话 ': "13815161712", ' 联系人姓名 ': "白衣2", ' 联系人电话 ': "58771232", ' 工作单位 ': "上海贝壳2", ' 更新内容 ': "测试2峡"}),
+                          ('11014', 'Jinhao123', {"身份证号": "110118199001012253"}, {' 姓名 ': "张三", ' 本人电话 ': "13815161713", ' 联系人姓名 ': "白衣3", ' 联系人电话 ': "58771233", ' 工作单位 ': "上海贝壳3", ' 更新内容 ': "测试3峡"}),
+                          ('11015', 'Jinhao123', {"身份证号": "110101195901018874"}, {' 姓名 ': "李四", ' 本人电话 ': "13815161714", ' 联系人姓名 ': "白衣4", ' 联系人电话 ': "58771234", ' 工作单位 ': "上海贝壳4", ' 更新内容 ': "测试4峡"}),
+                          ('11016', 'Jinhao123', {"身份证号": "370685196005183025"}, {' 姓名 ': "王五", ' 本人电话 ': "13815161715", ' 联系人姓名 ': "白衣5", ' 联系人电话 ': "58771235", ' 工作单位 ': "上海贝壳5", ' 更新内容 ': "测试5峡"}),
+                          ('11017', 'Jinhao123', {"身份证号": "370685202205080014"}, {' 姓名 ': "赵六", ' 本人电话 ': "13815161716", ' 联系人姓名 ': "白衣6", ' 联系人电话 ': "58771236", ' 工作单位 ': "上海贝壳6", ' 更新内容 ': "测试6峡"}),
+                          ('11018', 'Jinhao123', {"身份证号": "110101202307016019"}, {' 姓名 ': "孙七", ' 本人电话 ': "13815161717", ' 联系人姓名 ': "白衣7", ' 联系人电话 ': "58771237", ' 工作单位 ': "上海贝壳7", ' 更新内容 ': "测试7峡"})])
     # print(squared_numbers)
+    # Gw_PO.logger.info(squared_numbers)
 
     time2 = time.time()
+
     pool.close()
     pool.join()
-    print('总共耗时：' + str(time2 - time1) + 's')
+    print('总耗时：' + str(int(time2 - time1)) + '秒')
+    Gw_PO.logger.info('总耗时：' + str(int(time2 - time1)) + '秒')
+    Gw_PO.logger.info('-'.center(50, "-"))
+
 
 
 # Gw_PO.personalHealthRecord_s({"人群分类":["残疾人", "孕产妇"],"既往史":["脑卒中"],"本人电话":"1382121212"})

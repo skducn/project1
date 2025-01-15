@@ -20,11 +20,11 @@ class LogPO2(object):
         self.logger = logging.getLogger(__name__)
 
     # 定义信号处理函数
-    def handle_signal(self, signum):
+    def handle_signal(self, signum, frame):
         self.logger.info('Received signal: {}'.format(signal.Signals(signum).name))
         self.logger.info('Program is terminating...')
         # 在这里可以添加额外的清理代码或日志记录
-        sys.exit(0)
+        # sys.exit(0)
 
     # 注册信号处理函数
     signal.signal(signal.SIGINT, handle_signal)
