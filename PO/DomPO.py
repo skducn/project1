@@ -853,29 +853,169 @@ class DomPO(object):
     # todo select
 
     def sltTextById(self, varId, varText):
-        """通过id选择文本"""
+        # Select 类（标准 HTML <select> 标签）
+        # 通过id选择文本"""
         # 如：value=1 , Text=启用 ，sltTextById("id", u'启用')
-        Select(self.find_element(*(By.ID, varId))).select_by_visible_text(varText)
+        slt = Select(self.find_element(*(By.ID, varId)))
+        slt.select_by_visible_text(varText)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
 
     def sltValueById(self, varId, varValue):
-        """通过id选择值"""
+        # Select 类（标准 HTML <select> 标签）
+        # 通过id选择value值
         # 如：value=10 , Text=启用 ，sltTextById("id", '10')
-        Select(self.find_element(*(By.ID, varId))).select_by_value(varValue)
+        slt = Select(self.find_element(*(By.ID, varId)))
+        slt.select_by_value(varValue)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
 
     def sltTextByName(self, varName, varText):
-        """通过name选择文本"""
+        # Select 类（标准 HTML <select> 标签）
+        # 通过name选择文本
         # 如：value=10 , Text=启用 ，sltTextByName("isAvilable", '启动')
-        Select(self.find_element(*(By.NAME, varName))).select_by_visible_text(varText)
+        slt = Select(self.find_element(*(By.NAME, varName)))
+        slt.select_by_visible_text(varText)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
 
     def sltValueByName(self, varName, varValue):
-        """通过name选择值"""
+        # Select 类（标准 HTML <select> 标签）
+        # 通过name选择value值
         # 如：value=10 , Text=启用 ，sltValueByName("isAvilable", '10')
-        Select(self.find_element(*(By.NAME, varName))).select_by_value(varValue)
+        slt = Select(self.find_element(*(By.NAME, varName)))
+        slt.select_by_value(varValue)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
+
+    def sltTextByX(self, varXpath, varText):
+        # Select 类（标准 HTML <select> 标签）
+        # 通过xpath选择文本
+        # 如：sltTextByX("//select", '文本')
+        slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        slt.select_by_visible_text(varText)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
+
+    def sltTextByX2(self, varXpath1, varXpath2):
+        # 自定义下拉框操作（非 <select> 元素）
+        # 通过xpath选择文本值
+        # 如：sltTextByX2("//div[@class='dropdown']", "//li[text()='Option Text']")
+        from selenium.webdriver.common.action_chains import ActionChains
+        # 点击下拉框以显示选项
+        slt = Select(self.find_element(*(By.XPATH, varXpath1)))
+        ActionChains(self.driver).click(slt).perform()
+        # 选择指定选项
+        option = Select(self.find_element(*(By.XPATH, varXpath2)))
+        ActionChains(self.driver).click(option).perform()
+
+    def sltTextsByX2(self, varXpath1, varXpath2, l_options):
+        # 自定义下拉框操作（非 <select> 元素）
+        # 通过xpath选择多个文本值
+        # 如：sltTextsByX2("//div[@class='dropdown']", "//ul[@class='multi-select']/li", ["文本1","文本2"])
+        from selenium.webdriver.common.action_chains import ActionChains
+        # 点击下拉框以显示选项
+        slt = self.find_element(*(By.XPATH, varXpath1))
+        ActionChains(self.driver).click(slt).perform()
+        # 选择指定选项
+        options = self.find_element(*(By.XPATH, varXpath2))
+        for option in options:
+            if option.text in l_options:
+                ActionChains(self.driver).click(option).perform()
+
+    def sltTextsByX3(self, varXpath1, l_varText):
+        # 自定义下拉框操作（非 <select> 元素）
+        # 通过xpath选择多个文本值
+        # 如：sltTextsByX3("//div[@class='dropdown']", ['文本1', '文本2'])
+        from selenium.webdriver.common.action_chains import ActionChains
+        from selenium.webdriver.common.keys import Keys
+        # 点击下拉框以显示选项
+        slt = self.find_element(*(By.XPATH, varXpath1))
+        ActionChains(self.driver).click(slt).perform()
+        # 选择指定选项
+        for varText in l_varText:
+            option = self.find_element(*(By.XPATH, "//li[text()='" + str(varText) + "']"))
+            ActionChains(self.driver).key_down(Keys.CONTROL).click(option)
+        # # 使用 Ctrl 键选择多个选项
+        ActionChains(self.driver).key_up(Keys.CONTROL).perform()
+
 
     def sltValueByX(self, varXpath, varValue):
-        """通过xpath选择值"""
-        # 如：value=10 , Text=启用 ，sltValueByName("isAvilable", '10')
-        Select(self.find_element(*(By.XPATH, varXpath))).select_by_visible_text(varValue)
+        # Select 类（标准 HTML <select> 标签）
+        # 通过xpath选择value值
+        # 如 <option value="2" ...
+        # 如：sltValueByX("//select", '2')
+        slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        slt.select_by_value(varValue)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
+
+    def sltIndexByX(self, varXpath, varIndex):
+        # Select 类（标准 HTML <select> 标签）
+        # 通过xpath定位index，选择值
+        # 如：sltIndexByX("//select", 3)
+        slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        slt.select_by_index(varIndex)
+        return slt
+        # 可通过 assert slt.first_selected_option.text == '健康干预_已患疾病组合'，判断是否选择成功
+
+    def sltTextsByX(self, varXpath, varText1, varText2):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath选择多个文本
+        # 如：sltTextByX("//select", '文本1', '文本2')
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.select_by_visible_text(varText1)
+        m_slt.select_by_visible_text(varText2)
+        selected_options = [option.text for option in m_slt.all_selected_options]
+        return selected_options
+        # 可通过 assert "'文本1" in selected_options and "'文本2" in selected_options ，判断是否选择成功
+
+    def sltValuesByX(self, varXpath, varValue1, varValue2):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath选择多个value
+        # 如：sltTextByX("//select", '2', '3')
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.select_by_value(varValue1)
+        m_slt.select_by_value(varValue2)
+
+    def sltIndexsByX(self, varXpath, varIndex1, varIndex2):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath选择多个index
+        # 如：sltTextByX("//select", 0, 3)
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.select_by_index(varIndex1)
+        m_slt.select_by_index(varIndex2)
+
+    def deSltAllByX(self, varXpath):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath取消所有选项
+        # 如：deSltAllByX("//select")
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.deselect_all()
+
+    def deSltTextByX(self, varXpath, varText):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath取消单个文本选项
+        # 如：desltByX("//select", '文本')
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.deselect_by_visible_text(varText)
+
+    def deSltValueByX(self, varXpath, varValue):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath取消单个value选项
+        # 如：desltByX("//select", "2")
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.deselect_by_value(varValue)
+
+    def deSltIndexByX(self, varXpath, varIndex):
+        # 标准多选框（带 <select multiple> 标签）
+        # 通过xpath取消单个index选项
+        # 如：desltByX("//select", 0)
+        m_slt = Select(self.find_element(*(By.XPATH, varXpath)))
+        m_slt.deselect_by_index(varIndex)
+
+
+
 
     def selectXpathText(self, varXpath, varText):
         # 遍历Xpath下的Option,(待确认)
@@ -930,22 +1070,6 @@ class DomPO(object):
                     break
         except:
             return None
-    def get_selectNAMEvalue(self, varByname, varContent):
-        # 获取某select下text的value值。（下拉框，定位ByName，选择内容，text != value ）(待确认)
-        s1 = self.driver.find_element_by_name(varByname)
-        l_content1 = []
-        l_value1 = []
-        varContents = self.driver.find_elements_by_xpath(
-            "//select[@name='" + varByname + "']/option"
-        )
-        for a in varContents:
-            l_content1.append(a.text)
-            l_value1.append(a.get_attribute("value"))
-        d_total1 = dict(zip(l_content1, l_value1))
-        for i in range(len(d_total1)):
-            if sorted(d_total1.items())[i][0] == varContent:
-                value = sorted(d_total1.items())[i][1]
-                return value
     def get_selectOptionValue(self, varByname, varNum):
         # 获取某个select中text的value值。(待确认)
         varValue = self.driver.find_element_by_xpath(

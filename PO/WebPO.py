@@ -101,6 +101,7 @@
 from PO.DomPO import *
 import requests, bs4, subprocess
 
+from selenium.webdriver.support.ui import Select
 
 class WebPO(DomPO):
 
@@ -562,7 +563,24 @@ if __name__ == "__main__":
     # Web_PO = WebPO("firefox")
 
     # # print("1.1 打开网站".center(100, "-"))
-    Web_PO.openURL("https://gitee.com/explore")
+    Web_PO.openURL("http://192.168.0.243:5000/")
+    Web_PO.clkByX("/html/body/div[1]/div[3]/form/input")
+
+    # Web_PO.clkByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select")
+    Web_PO.sltTextByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", '健康干预')
+    Web_PO.sltValueByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", 'none')
+    Web_PO.sltIndexByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", 3)
+    # assert s.first_selected_option.text == '健康干预_已患疾病组合'
+
+    # 定位下拉框
+    # dropdown = Select(driver.find_element("id", "dropdown_id"))
+    #   # 通过以下三种方式选择单个选项
+    # dropdown.select_by_visible_text("Option Text")  # 根据选项文本选择
+    # dropdown.select_by_value("option_value")  # 根据选项的 value 属性选择
+    # dropdown.select_by_index(2)  # 根据选项的索引（从 0 开始）选择
+    #   # 验证选择
+    # assert dropdown.first_selected_option.text == "Option Text"
+
     # Web_PO.setTextByX("/html/body/div[2]/div[2]/div[2]/div/div[2]/form/div/div/input", "drissionpage")
     # Web_PO.clkByX("/html/body/div[2]/div[2]/div[2]/div/div[2]/form/div/div/button", 2)
     # a = Web_PO.getAttrValueListByX("//div[@class='card-body']/h4/a", "href")

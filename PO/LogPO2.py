@@ -10,7 +10,6 @@ import sys
 import logging
 from time import sleep
 
-
 class LogPO2(object):
 
     def __init__(self, varFile):
@@ -30,8 +29,6 @@ class LogPO2(object):
     # 注册信号处理函数
     signal.signal(signal.SIGINT, handle_signal)
     signal.signal(signal.SIGTERM, handle_signal)
-
-    # return self.logger
 
 
     # 程序的主要部分

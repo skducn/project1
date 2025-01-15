@@ -13,7 +13,7 @@ varUrlTest = Configparser_PO.HTTP("testUrl")
 
 from PO.WebPO import *
 
-# from PO.LogPO2 import *
+from PO.LogPO2 import *
 # Log_PO2 = LogPO2("./LogPO3.log")
 
 from PO.CaptchaPO import *
