@@ -837,7 +837,7 @@ class DomPO(object):
     # todo checkbox
 
     def isSelectedByX(self, varXpath):
-       # 复选框是否选中？ True 或 False"""
+        # 判断是否勾选 True 或 False"""
         # isSelectedByX(u"//input[@class='123']")
         return self.find_element(*(By.XPATH, varXpath)).is_selected()
 
@@ -848,6 +848,18 @@ class DomPO(object):
             if a.is_selected() == True:
                 a.click()
 
+    def eleIsSelectedByX(self, ele, varXpath):
+        # 判断是否勾选
+        # 返回 True 或 False
+        # eleIsSelectedByX(ele, u"//input[@class='123']")
+        return ele.find_element(*(By.XPATH, varXpath)).is_selected()
+
+    def eleClrSelectedByXs(self, ele, varXpaths):
+        # 取消所有已勾选的复选框
+        # eleClrSelectedByXs(ele, u"//input[@type='checkbox']")
+        for a in ele.find_elements(*(By.XPATH, varXpaths)):
+            if a.is_selected() == True:
+                a.click()
 
 
     # todo select

@@ -5,6 +5,10 @@
 # Description: 公卫 - 基本公卫(并发测试)
 # *****************************************************************
 
+import sys
+sys.path.append("/Users/linghuchong/Downloads/51/Python/project/")
+
+
 from GwPO import *
 Gw_PO = GwPO("./p_2phs_p.log")
 

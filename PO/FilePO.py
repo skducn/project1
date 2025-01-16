@@ -74,8 +74,9 @@ class FilePO():
         # json文件转字典
         # jsonfile2dict("output.json")
         with open(varFilePath, "r", encoding='utf-8') as file:
-            c = file.read()
-            return json.loads(c)
+            data = file.read()
+
+        return json.loads(data)
 
 
     def dict2picklefile(self, varFilePath, d_content):
