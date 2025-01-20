@@ -114,10 +114,10 @@ class GwPO():
 
         # 获取所有的选项
         l_ = Web_PO.eleGetTextByXs(ele, _checkboxByX)
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
@@ -143,6 +143,25 @@ class GwPO():
                         varClass = Web_PO.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             Web_PO.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
+
+    def _eleClkCheckbox3(self, ele, _textByX, v):
+        # 选择复选框的值
+
+        # 获取所有的选项
+        l_ = Web_PO.eleGetTextByXs(ele, _textByX)
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+
+        # 勾选选项(如果已勾选则不操作)
+        for i in range(len(v)):
+            for k3, v3 in d_4.items():
+                if isinstance(v[i], str):
+                    if v[i] == k3:
+                        varClass = Web_PO.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
+                        if varClass != 'el-checkbox el-checkbox--default is-checked':
+                            Web_PO.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
 
     def _eleClkCheckbox2(self, ele, v, default='remain'):
@@ -472,8 +491,8 @@ class GwPO():
         defaultM = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
         defaultYear = int(defaultY.split(" 年")[0])
         defaultMonth = int(defaultM.split(" 月")[0])
-        # print("defaultYear", defaultYear)
-        # print("defaultMonth", defaultMonth)
+        print("defaultYear", defaultYear)
+        print("defaultMonth", defaultMonth)
 
         # 2 切换年
         if v[0] < defaultYear:
@@ -838,7 +857,6 @@ class GwPO():
 
     def _eleDiv(self, ele, k, varLoc=".."):
         return Web_PO.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
-
 
     def personalHealthRecord_s(self, d_):
 
@@ -1494,7 +1512,129 @@ class GwPO():
 
 
 
+    # todo 基本公卫 - 健康行为积分 - 本年度未评
 
+    def notReviewed_s(self, d_):
+
+        # 本年度未评 - 搜索
+
+        # 当用户按下Ctrl+C时，会触发SIGINT信号，然后调用handle_signal函数，打印出提示信息后退出程序。
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//label[text()='管理机构']", "../../../..")  # form
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+
+        for k, v in d_.items():
+            if k in ['姓名', '身份证号']:
+                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div/input", v)
+            elif k in ['人群分类']:
+                self._eleClkCheckbox3(self._eleLabel(ele, k), ".//span[2]", v)
+            elif k in ['档案状态']:
+                self._eleClkDropdown(self._eleLabel(ele, k), ".//div/div/div/div/input", _dropdownByX, v)
+            elif k in ['现住址']:
+                self._clkDropdownNoPath(self._eleLabel(ele, k, "../.."), "./div[1]/div/div/div/div/input", _dropdownByX, v[0])
+                self._clkDropdownNoPath(self._eleLabel(ele, k, "../.."), "./div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), "./div[3]/div/div/input", v[2])
+            elif k in ['管理机构']:
+                _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
+                Web_PO.eleClkByX(self._eleLabel(ele, k), ".//div/div/div/input")
+                l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                # 卫健局
+                if v == l_1:
+                    # print(l_1)  # ['招远市卫健局']
+                    Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
+                else:
+                    Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                    l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
+                    # 卫生院
+                    if len(v) == 1:
+                        # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
+                        if v[0] in l_2:
+                            for i in range(len(l_2)):
+                                if l_2[i] == v[0]:
+                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(
+                                        i + 1) + "]/label/span[1]/span")
+                    else:
+                        # 卫生室
+                        if v[0] in l_2:
+                            for i in range(len(l_2)):
+                                if l_2[i] == v[0]:
+                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]")
+                                    l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
+                                    if v[1] in l_3:
+                                        # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
+                                        for i in range(len(l_3)):
+                                            if l_3[i] == v[1]:
+                                                Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(
+                                                    i + 1) + "]/label/span[1]/span")
+
+        Web_PO.eleClkByX(ele, "./div[2]/div[2]/div/button[1]", 2)  # 点击查询
+
+        # 2 获取查询数量
+        s_ = self._getQty()
+
+        # 3 点击新增
+        if s_ == 1:
+            Web_PO.clkByX( "/html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[10]/div/button",
+                2)  # 新增
+
+            # print(self.personalHealthRecord_check())
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[8]/div/div/div/div/input
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[9]/div/div/div/div/input
+            # 评分日期
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[21]/td[2]/div/div/div/div/input
+
+        else:
+            print(s_)
+
+    def notReviewed_a(self, d_):
+        # Gw_PO.notReviewed_a({"积分": [[1, [2025, 1, 2], 10], [5, [2025, 2, 2], 10]], "是否兑换": "是", "评分日期": [2025, 1, 3]})
+
+        # 本年度未评 - 2025年居民健康行为积分卡
+
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//div[text()='2025年居民健康行为积分卡']", ".")
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+
+        # Web_PO.eleScrollKeysEndByX(ele, "/html/body/div[1]/div/div[3]/section/div/div[2]/form")
+
+        for k, v in d_.items():
+            if k in ['积分']:
+
+                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+                a = Web_PO.eleGetQtyByXs(ele2, ".//tr")
+                print(a)
+                b = Web_PO.eleGetQtyByXByXs(ele2, "./tr[1]", "./td")
+                print(b)
+                b = Web_PO.eleGetQtyByXByXs(ele2, "./tr[2]", "./td")
+                print(b)
+                b = Web_PO.eleGetQtyByXByXs(ele2, "./tr[20]", "./td")
+                print(b)
+
+                # for i in range(len(v)):
+                #     if v[i][0] == 1:
+                #         self._dropdownDateSingle(ele2, ".//tr[" + str(v[i][0]) + "]/td[8]/div/div/div/div/input", v[i][1])
+                #         Web_PO.eleSetTextByX(ele2, ".//tr[" + str(v[i][0]) + "]/td[9]/div/div/div/div/input", v[i][2])
+                #         # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[13]/td[8]/div/div/div/div/input
+                #     else:
+                #         self._dropdownDateSingle(ele2, ".//tr[" + str(v[i][0]) + "]/td[7]/div/div/div/div/input", v[i][1])
+                #         Web_PO.eleSetTextByX(ele2, ".//tr[" + str(v[i][0]) + "]/td[8]/div/div/div/div/input", v[i][2])
+                #     # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[5]/td[7]/div/div/div/div/input
+
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[2]/div
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[8]/div/div/div/div/input
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[9]/div/div/div/div/input
+            # elif k in ['是否兑换']:
+            #     self._eleClkDropdown(self._eleLabel(ele, k), ".//div/div/div/div/input", _dropdownByX, v)
+            #     # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[21]/td[3]/div/div/div[1]/div/div/div/div/div/input
+            #     # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[21]/td[3]/div/div/div[1]/div/div/div/div/div/input
+            elif k in ['"""评分日期"""']:
+                self._dropdownDateSingle(self._eleDiv(ele, k, "../.."), ".//td[2]/div/div/div/div/input", v)
+                # self._dropdownDateSingle(self._eleLabel(ele, k, "../.."), ".//td[2]/div/div/div/div/input", v[1])
+                # /html/body/div[1]/div/div[3]/section/div/div[2]/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[21]/td[2]/div/div/div/div/input
 
 
 

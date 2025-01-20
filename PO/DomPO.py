@@ -502,7 +502,7 @@ class DomPO(object):
         return self.driver.execute_script("return arguments[0].parentNode;", ele)
 
 
-    def getSuperEleByX(self, varXpath, varXpath2):
+    def getSuperEleByX(self, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
         # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
         # 如：ele = self.getSuperEleByX("//div[text()='过会']", '../../..') # 获取div标签下文本上上上层的元素

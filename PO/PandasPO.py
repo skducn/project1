@@ -22,7 +22,9 @@
 3.3 字典转csv  dict2csv()
 3.4 字典转text  dict2text()
 
-4 xlsx转列表
+4.1 xlsx转列表
+4.2 xlsx转字典
+
 
 将df输出html
 """
@@ -185,12 +187,31 @@ class PandasPO:
 
     def xlsx2list(self, pathFile, sheetName):
 
-        """4 xlsx转列表"""
+        # 4.1 xlsx转列表"""
 
         try:
             df = pd.read_excel(pathFile, sheet_name=sheetName, header=None)
             t = numpy.array(df)
             return t.tolist()
+        except Exception as e:
+            print(e)
+
+    def xlsx2dict(self, pathFile, sheetName):
+
+        # 4.2 xlsx转字典"""
+
+        try:
+            df = pd.read_excel(pathFile, sheet_name=sheetName, header=None)
+            # d_ = df.to_dict()  # 以列形式返回, 如：
+            # {0: {0: ' 与户主关系 ', 1: '子', 2: '父亲', 3: '女儿'},
+            # 1: {0: ' 性别 ', 1: '女', 2: '男', 3: '无法识别'},
+            # 2: {0: ' 民族 ', 1: '回族', 2: '汉族', 3: '壮族'}
+            d_ = df.to_dict(orient='index')  # 以行形式返回，如：
+            # {0: {0: ' 与户主关系 ', 1: ' 性别 ', 2: ' 民族 '},
+            # 1: {0: '子', 1: '女', 2: '回族'},
+            # 2: {0: '父亲', 1: '男', 2: '汉族'},
+            # 3: {0: '女儿', 1: '无法识别', 2: '壮族'}}
+            return d_
         except Exception as e:
             print(e)
 
@@ -218,9 +239,13 @@ if __name__ == "__main__":
 
     Pandas_PO = PandasPO()
 
-    df = pd.read_excel("./data/1.xlsx")
-    print(df)
-    print(df[1])
+    data = {'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35]}
+    df = pd.DataFrame(data)
+    print(df[df['Age']>30])
+
+    # df = pd.read_excel("./data/1.xlsx")
+    # print(df)
+    # print(df[1])
 
     #
     # # print("1 执行sql".center(100, "-"))
