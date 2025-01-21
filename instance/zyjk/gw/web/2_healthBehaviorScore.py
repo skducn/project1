@@ -37,18 +37,36 @@ Gw_PO.logger.info(d_menu_jbgw)
 Web_PO.opnLabel(d_menu_jbgw['本年度未评'])
 Web_PO.swhLabel(1)
 
-# Gw_PO.notReviewed_s({"身份证号":"110101199001012256", "人群分类": ["残疾人", "儿童"]})
-# Gw_PO.notReviewed_s({"管理机构":["玲珑卫生院", "玲珑镇大蒋家村卫生室"], "档案状态": "在档", "姓名": "刘长春", "身份证号":"110101199001012256",
+# 1 查询
+# s_qty = Gw_PO.notReviewed_s({"身份证号":"110101199001012256", "人群分类": ["残疾人", "儿童"]})
+# s_qty = Gw_PO.notReviewed_s({"管理机构":["玲珑卫生院", "玲珑镇大蒋家村卫生室"], "档案状态": "在档", "姓名": "刘长春", "身份证号":"110101199001012256",
 #                      "现住址":["泉山街道", "花园社区居民委员会","123"], "人群分类": ["残疾人", "儿童"]})
 
 
+# 2 新增
+# 判断查询数量，并点击新增
+# if s_qty == 1: Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[10]/div/button", 2)  # 新增
+# (use to testing)
+# Web_PO.opnLabel("http://192.168.0.203:30080/phs/hbp/components/add?id&ehrId=375&singInfoId&type=edit&routeType=1")
+# Web_PO.swhLabel(2)
+# 新增详情页
+# Gw_PO.notReviewed_a({'评分日期': [2025, 1, 3], '是否兑换': "是"})
+# Gw_PO.notReviewed_a({"积分": [[['所有人', '1', '健康素养'], [2025,1,2], 10], [["所有人", '5', "查询档案"], [2025,2,2],2], [["高血压、糖尿病病友", '13', "按时用药"],[2025,4,1],1]],
+#                      '评分日期': [2025, 1, 3], '是否兑换': "是"})
 
-Web_PO.opnLabel("http://192.168.0.203:30080/phs/hbp/components/add?id&ehrId=375&singInfoId&type=edit&routeType=1")
-Web_PO.swhLabel(2)
+# 3 批量评分
+# 点击批量评分，先选择记录，点击批量评分
+# Gw_PO.notReviewed_batch({'身份证号': ['340203202407017263']})
+# Gw_PO.notReviewed_batch({'身份证号': ['110101194301191302', '340203202407018290']}
+# Gw_PO.notReviewed_batch({'身份证号': "all"})
 
-# Gw_PO.notReviewed_a({'"是否兑换"': "是", '评分日期': [2025,1,3]})
-Gw_PO.notReviewed_a({"积分": [[1,[2025,1,2],10], [5,[2025,2,2],2]]})
-# Gw_PO.notReviewed_a({"积分": [[1,[2025,1,2],10], [5,[2025,2,2],10]], "是否兑换": "是", "评分日期": [2025,1,3]})
+# 翻页用于批量评分
+# Web_PO.setTextBackspaceEnterByX("/html/body/div[1]/div/div[3]/section/div/main/div[3]/div/span[3]/div/input", 2)  # 切换到第2页
+# Web_PO.setTextBackspaceEnterByX("/html/body/div[1]/div/div[3]/section/div/main/div[3]/div/span[3]/div/input", 12) # 切换到第12页
+# Web_PO.setTextBackspaceEnterByX("/html/body/div[1]/div/div[3]/section/div/main/div[3]/div/span[3]/div/input", 13) # 切换到第13页
+# Web_PO.setTextBackspaceEnterByX("/html/body/div[1]/div/div[3]/section/div/main/div[3]/div/span[3]/div/input", 4) # 切换到第4页
+
+
 
 
 # # todo 13.2, 健康行为积分 - 评分信息查询

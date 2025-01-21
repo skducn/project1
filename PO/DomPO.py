@@ -744,6 +744,17 @@ class DomPO(object):
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
         sleep(t)
 
+    def setTextBackspaceEnterByX(self, varXpath, varValue, varN=3):
+        # 定位元素之3次点击删除并输入和回车
+        # 如：输入框中按键盘删除键3次后再输入和回车 setTextBackspaceEnterByX(varXpath, varValue)
+        for i in range(varN):
+            self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        # self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.CONTROL, 'a')
+        # self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.CONTROL, 'x')
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
+        sleep(2)
+
     def eleSetTextBackspaceEnterByX(self, ele, varXpath, varN, varValue, t=3):
         # 定位元素之N次点击删除并输入和回车
         # 如：输入框中按键盘删除键3次后再输入和回车 eleSetTextBackspaceEnterByX(ele, varXpath, 3, varValue)
@@ -755,6 +766,13 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
+    def setTextClkByXByX(self, varXpath, varValue, varXpath2, t=1):
+        # 定位元素之输入与二次确认
+        self.find_element(*(By.XPATH, varXpath)).clear()
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+        sleep(t)
+        self.find_element(*(By.XPATH, varXpath2)).click()
+
     def eleSetTextClkByXByX(self, ele, varXpath, varValue, varXpath2, t=1):
         # 定位元素之输入与二次确认
         ele.find_element(*(By.XPATH, varXpath)).clear()
@@ -762,11 +780,26 @@ class DomPO(object):
         sleep(t)
         ele.find_element(*(By.XPATH, varXpath2)).click()
 
+    def doubleClkByX(self, varXpath, t=2):
+        # 定位元素之双击
+        ele2 = self.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        actions.double_click(ele2).perform()
+        sleep(t)
+
     def eleDoubleClkByX(self, ele, varXpath, t=2):
         # 定位元素之双击
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
         actions.double_click(ele2).perform()
+        sleep(t)
+
+    def ctrlAByX(self, varXpath, t=2):
+        # 定位元素之全选
+        ele2 = self.find_element(*(By.XPATH, varXpath))
+        ele2.click()
+        actions = ActionChains(self.driver)
+        actions.key_down(ele2, "Control").send_keys('a').key_up('Control').perform()
         sleep(t)
 
     def eleCtrlAByX(self, ele, varXpath, t=2):
