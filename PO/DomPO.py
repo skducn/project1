@@ -105,6 +105,8 @@ todo alert(system)
 
 import sys, os, platform, platform, psutil, ddddocr, requests, bs4, subprocess
 # import pyscreeze, pyautogui, cv2
+import pyautogui
+
 from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -1727,3 +1729,51 @@ class DomPO(object):
         canvas = self.find_element(*(By.XPATH, varXpath))
         data_url = self.driver.execute_script("return arguments[0].toDataURL('image/png');", canvas)
         return data_url
+
+
+    def upFile(self, varXpath, l_varFile):
+
+        # 上传文件
+
+        for i in l_varFile:
+
+            # 点击 +
+            self.clkByX(varXpath)
+
+            # 选中文件
+            pyautogui.write(i, interval=0.2)
+            sleep(2)
+            pyautogui.press('enter', 1)
+            pyautogui.press('enter', 1)
+
+            # 模拟点击“打开”按钮
+            # pyautogui.moveTo(1250, 820, duration=1)
+            # pyautogui.click()
+
+            # 定位“打开”按钮的坐标，这个坐标需要根据你的Finder窗口实际情况进行调整
+            x , y = pyautogui.size()
+            open_button_x = x - 170
+            # print(open_button_x)
+            open_button_y = y - 80
+            # print(open_button_y)
+            pyautogui.moveTo(x=open_button_x, y=open_button_y, duration=1)
+            pyautogui.click()
+
+
+        # upload_btn = self.find_element(*(By.XPATH, varXpath))
+        # self.driver.execute_script("arguments[0].style.visibility='visible'", upload_btn)
+
+
+        # file_path = os.path.abspath(varFile)
+        # self.find_element(*(By.XPATH, "//input[@type='file']")).send_keys(varFile)
+
+        # upload_btn.send_keys(varFile)
+
+        # ActionChains.(self.driver).click(upload_btn).perform()
+
+        # # 将文件路径设为不可见输入框的值
+        # self.driver.execute_script("arguments[0].value = arguments[1]", upload_btn, "varFile")
+        #
+        # # 点击实际的上传按钮
+        # self.driver.execute_script("arguments[0].click()", upload_btn)
+

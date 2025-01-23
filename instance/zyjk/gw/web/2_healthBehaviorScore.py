@@ -90,4 +90,4 @@ s_qty = Gw_PO.noScored_query({"身份证号":"110101199001012256", "人群分类
 # # 判断查询数量，并点击详情
 # if s_qty == 1: Web_PO.eleClkByX(ele2, ".//button[1]", 2)
 # # 详情页(null)
-# Gw_PO.scoreInformation_detail()
+Gw_PO.scoreInformation_detail()
