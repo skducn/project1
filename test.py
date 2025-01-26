@@ -13,18 +13,19 @@ lst = ['', '有\n无','','']
 lst_filtered = [i for i in lst if i][0]
 print(lst_filtered)
 
-# a = ['25', '26', '27', '28', '29', '30', '1']
-# a = [int(i) for i in a]
-# a = [0 if i > 10 else i for i in a]
-# print(a)
+a = ['25', '26', '27', '28', '29', '30', '1']
+a = [int(i) for i in a]
+a = [0 if i > 10 else i for i in a]
+print(a)
 
 import os
 
 # 获取CPU核数
 cpu_count = os.cpu_count()
 print(f"CPU cores: {cpu_count}")
-
 import psutil
+
+
 
 def get_cpu_cores_psutil():
     return psutil.cpu_count()

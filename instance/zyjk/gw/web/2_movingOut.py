@@ -33,16 +33,16 @@ Web_PO.opnLabel(d_menu_basicPHS['迁出审核'])
 Web_PO.swhLabel(1)
 
 # 1 查询
-Gw_PO.movingOut_query({"姓名": "李明明", "身份证号": "110101195901018874", "申请日期": [[2025, 1, 1], [2025, 1, 2]],
-                      "管理机构": ["招远市卫健局"], "申请人": "test", "状态": "已批准"})
+# Gw_PO.movingOut_query({"姓名": "李明明", "身份证号": "110101195901018874", "申请日期": [[2025, 1, 1], [2025, 1, 2]],
+#                       "管理机构": ["招远市卫健局"], "申请人": "test", "状态": "已批准"})
 
 # 2 同意
 Gw_PO.movingOut_query({"身份证号": "110101195901018874"})  # 查询
 Gw_PO.movingOut_operation('同意')
 
-# # 3 拒绝
-Gw_PO.movingOut_query({"身份证号": "110101195901018874"})  # 查询
-Gw_PO.movingOut_operation('拒绝')
+# # # 3 拒绝
+# Gw_PO.movingOut_query({"身份证号": "110101195901018874"})  # 查询
+# Gw_PO.movingOut_operation('拒绝')
 
 
 

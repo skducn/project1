@@ -5,28 +5,70 @@
 # Description: ChainMap
 # ********************************************************************************************************************
 
-numbers = [1, 2, 3, 4, 5]
-total = sum(numbers)  # 推荐
-print(total)
+# from openai import OpenAI
+#
+# text = input("请输入: \n")
+# print("正在AI思考中...")
+#
+# # client = OpenAI(api_key="mNF21RSnIIDP7lCzObF9w9JB", base_url="https://api.openai.com")
+# client = OpenAI(api_key="sk-e2bf2354c1924fbeb55c41e4d7bd151d", base_url="https://api.deepseek.com")
+#
+# # 使用 stream=True 启用流式响应，默认情况下，返回的响应会被解析为一个 list，
+# response = client.chat.completions.create(
+#     model="deepseek-chat",  # 确保模型名称正确
+#     messages=[
+#         {"role": "system", "content": "you are a helpful assistant"},
+#         {"role": "user", "content": text},
+#     ],
+#     stream=True  # 启用流式响应
+# )
+#
+#
+# print("AI 回答:")
+# # 逐行显示响应内容
+# for chunk in response:
+#     if chunk.choices[0].delta.content:
+#         # 检查是否有内容
+#         print(chunk.choices[0].delta.content, end="", flush=True)
+# print() # 换行
 
 
-squares_gen = (x**2 for x in range(10))  # 内存占用较小
-print(squares_gen)
-print(list(squares_gen))
+from refact import Refact
+
+# 假设你的API密钥是'your_api_key_here'
+refact = Refact(api_key='mNF21RSnIIDP7lCzObF9w9JB')
+
+# 示例：重构代码
+result = refact.refactor(code="""def add(a, b): return a + b""")
+print(result)
 
 
-# functools.lru_cache 可以缓存函数的返回值，避免重复计算，提高性能。
-import functools
-@functools.lru_cache(maxsize=None)
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n - 1) + fibonacci(n - 2)
-# 第一次调用会计算
-print(fibonacci(10))  # 输出: 55
 
-# 第二次调用会直接返回缓存结果
-print(fibonacci(11))  # 输出: 55，但速度更快
+
+
+
+# numbers = [1, 2, 3, 4, 5]
+# total = sum(numbers)  # 推荐
+# print(total)
+#
+#
+# squares_gen = (x**2 for x in range(10))  # 内存占用较小
+# print(squares_gen)
+# print(list(squares_gen))
+#
+#
+# # functools.lru_cache 可以缓存函数的返回值，避免重复计算，提高性能。
+# import functools
+# @functools.lru_cache(maxsize=None)
+# def fibonacci(n):
+#     if n <= 1:
+#         return n
+#     return fibonacci(n - 1) + fibonacci(n - 2)
+# # 第一次调用会计算
+# print(fibonacci(10))  # 输出: 55
+#
+# # 第二次调用会直接返回缓存结果
+# print(fibonacci(11))  # 输出: 55，但速度更快
 
 
 # import binascii
