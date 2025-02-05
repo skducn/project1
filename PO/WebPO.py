@@ -242,9 +242,9 @@ class WebPO(DomPO):
             # todo 浏览器
             options.add_experimental_option("detach", True)  # 浏览器永不关闭
             options.add_argument("--allow-running-insecure-content") # Allow insecure content
-            # options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.243:8010/")  # Replace example.com with your site's domain (this is what worked for me)
 
             options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块
+            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
             options.add_argument('--incognito')  # 无痕模式
 
             options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）

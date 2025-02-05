@@ -6,6 +6,9 @@
 # https://platform.deepseek.com/usage  # 查看余款
 # https://api-docs.deepseek.com/zh-cn/guides/reasoning_model  # 查看R1模型
 
+# 本地部署了deepseek-r1:1.5b
+# localhost-2:~ linghuchong$ ollama run deepseek-r1:1.5b
+# >>> Send a message (/? for help)
 # 要使用 `curl` 实现 DeepSeek API 的流式响应（Server-Sent Events, SSE），需确保 API 支持流式传输，并按照以下步骤操作：
 #
 # ---

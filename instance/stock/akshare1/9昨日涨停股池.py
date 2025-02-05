@@ -6,7 +6,7 @@
 # www.akshare.xyz
 # conda activate py310
 # pip install aksare
-# https://ke.qq.com/webcourse/index.html?r=1683165164078#cid=5835909&term_id=106048134&taid=13742039927164037&type=3072&source=PC_COURSE_DETAIL&vid=387702306340510660
+# 腾讯课堂：https://ke.qq.com/webcourse/index.html?r=1683165164078#cid=5835909&term_id=106048134&taid=13742039927164037&type=3072&source=PC_COURSE_DETAIL&vid=387702306340510660
 # *****************************************************************
 
 import pandas as pd

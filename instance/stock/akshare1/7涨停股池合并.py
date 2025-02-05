@@ -23,7 +23,7 @@ import time
 # 1，初始化数据
 # folder_name = 'ztgc'
 folder_name = '7涨停股池'
-varDate = '20230515'
+varDate = '20241202'
 file_name = folder_name + '合并.xlsx'
 sheetName = folder_name + '合并'
 

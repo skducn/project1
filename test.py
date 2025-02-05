@@ -8,39 +8,160 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
+# pip3 install --upgrade --force-reinstall pyobjc
+
+import ctypes
+from ctypes.util import find_library
+import objc
+from AppKit import NSBundle
+# from Foundation import NSBundleResourceRequest
+from Foundation import NSBundle
+
+# 获取主 bundle
+main_bundle = NSBundle.mainBundle()
+print(main_bundle.bundlePath())  # /Users/linghuchong/miniconda3/envs/py310/bin
+
+
+# 加载CoreServices框架
+CoreServices = NSBundle.bundleWithIdentifier_("com.apple.CoreServices")
+CoreServices.load()
+
+# 找到TISSelectInputMethod的地址
+TISSelectInputMethod = ctypes.CFUNCTYPE(None, ctypes.c_void_p)(CoreServices.functionForName_("TISSelectInputMethod"))
+TISSelectInputMethod.restype = None
+TISSelectInputMethod.argtypes = [ctypes.c_void_p]
+
+# 获取输入法的标识符，例如："com.apple.inputmethod.Pinyin" 是中文拼音输入法
+input_method_identifier = "com.apple.inputmethod.Pinyin"  # 例如切换到中文拼音输入法
+input_method = ctypes.c_void_p(CoreServices.functionForName_("TISCopyCurrentKeyboardInputSource").__call__())
+TISSelectInputMethod(input_method)  # 切换到指定的输入法
+
+
+
+
+
+# # from AppKit import NSWorkspace, NSWorkspaceInputMethodIdentifierKey, NSWorkspaceInputMethodDisplayNameKey
+# from AppKit import NSWorkspace, NSWorkspaceInputMethodIdentifierKey
+#
+#
+# def get_current_input_method():
+#     workspace = NSWorkspace.sharedWorkspace()
+#     input_methods = workspace.localizedInputMethods()
+#     for method in input_methods:
+#         if method[NSWorkspaceInputMethodIdentifierKey] == workspace.activeInputMethodIdentifier():
+#             return method[NSWorkspaceInputMethodDisplayNameKey]
+#     return None
+#
+#
+# print(get_current_input_method())
+
+import objc
+#!/usr/bin/python
+
+# 查找当前活动窗口的应用程序名称?
+# from AppKit import NSWorkspace
+# activeAppName = NSWorkspace.sharedWorkspace().activeApplication()['NSApplicationName']
+# print(activeAppName)
+
+# from AppKit import NSWorkspace, NSLocaleIdentifier, NSLocaleLanguageCode, NSLocaleLanguageName, NSLocaleCountryCode, NSLocaleCountryName
+#
+# def get_current_input_method_details():
+#     workspace = NSWorkspace.sharedWorkspace()
+#     input_method_identifier = workspace.activeInputMethodIdentifier()
+#     input_method = workspace.inputMethodWithIdentifier_(input_method_identifier)
+#     locale = input_method.locale()
+#     language_code = locale.objectForKey_(NSLocaleLanguageCode)
+#     country_code = locale.objectForKey_(NSLocaleCountryCode)
+#     # language_name = locale.displayNameForKey_(NSLocaleLanguageName, value: language_code)
+#     # country_name = locale.displayNameForKey_(NSLocaleCountryName, value: country_code)
+#     return {
+#         "identifier": input_method_identifier,
+#         # "language": language_name,
+#         # "country": country_name,
+#         "locale": locale.localeIdentifier()
+#     }
+#
+# details = get_current_input_method_details()
+# print("Current Input Method Details:", details)
+
+
+# from AppKit import NSWorkspaceInputMethodIdentifierKey
+# # NSWorkspaceInputMethodIdentifierKey
+#
+# workspace = NSWorkspace.sharedWorkspace()
+# input_methods = workspace.preferredInputMethods()
+#
+# for method in input_methods:
+#     if NSWorkspaceInputMethodIdentifierKey in method:
+#         print(method[NSWorkspaceInputMethodIdentifierKey])
+
+
+# import subprocess
+#
+# # 切换到拼音输入法（以拼音输入法标识为例）
+# subprocess.run(['osascript', '-e', 'tell application "System Events" to keystroke "1" using {command down}'])
+
+
+
+# l_date = ['2024-09-30', '2024-10-08', '2024-10-09']
+# l_1_date = l_date[0].split("-")
+# print(l_1_date)
+#
+#
+# l_date = []
+# print(len(l_date))
+
+
+# import pandas as pd
+# import seaborn as sns
+# # import jqdata as jq
+# import jqdatasdk as jq
+# # pip install jqdatasdk
+# import numpy as np
+# # from jqdata import *
+# from jqlib.technical_analysis import *
+#
+# # 找出涨停板股票并去除ST,停牌股
+# security = list(get_all_securities(['stock']).index)
+# for stock in security:
+#     st=get_extras('is_st', stock, start_date='2024-09-30', end_date='2024-09-30')
+#     price = get_price(stock, start_date='2022-12-07', end_date='2022-12-07', fields=['high_limit','high'],skip_paused=False, fill_paused=False)
+#     if price.iloc[0,0] == price.iloc[0,1] and st.iloc[0,0] == False:
+#         print(stock)
+
 # a = ['高血压', '2025-01-07', '糖尿病', '2025-01-01', 'shou1', '2025-01-13', 'shou55', '2025-01-07', 'wai2', '2025-01-08', 'shu3', '2025-01-30']
-lst = ['', '有\n无','','']
-lst_filtered = [i for i in lst if i][0]
-print(lst_filtered)
-
-a = ['25', '26', '27', '28', '29', '30', '1']
-a = [int(i) for i in a]
-a = [0 if i > 10 else i for i in a]
-print(a)
-
-import os
-
-# 获取CPU核数
-cpu_count = os.cpu_count()
-print(f"CPU cores: {cpu_count}")
-import psutil
-
-
-
-def get_cpu_cores_psutil():
-    return psutil.cpu_count()
-
-if __name__ == "__main__":
-    print(f"Number of CPU cores: {get_cpu_cores_psutil()}")
-
-
-import multiprocessing
-
-def get_cpu_cores_multiprocessing():
-    return multiprocessing.cpu_count()
-
-if __name__ == "__main__":
-    print(f"Number of CPU cores: {get_cpu_cores_multiprocessing()}")
+# lst = ['', '有\n无','','']
+# lst_filtered = [i for i in lst if i][0]
+# print(lst_filtered)
+#
+# a = ['25', '26', '27', '28', '29', '30', '1']
+# a = [int(i) for i in a]
+# a = [0 if i > 10 else i for i in a]
+# print(a)
+#
+# import os
+#
+# # 获取CPU核数
+# cpu_count = os.cpu_count()
+# print(f"CPU cores: {cpu_count}")
+# import psutil
+#
+#
+#
+# def get_cpu_cores_psutil():
+#     return psutil.cpu_count()
+#
+# if __name__ == "__main__":
+#     print(f"Number of CPU cores: {get_cpu_cores_psutil()}")
+#
+#
+# import multiprocessing
+#
+# def get_cpu_cores_multiprocessing():
+#     return multiprocessing.cpu_count()
+#
+# if __name__ == "__main__":
+#     print(f"Number of CPU cores: {get_cpu_cores_multiprocessing()}")
 
 
 # import sys

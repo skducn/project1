@@ -30,3 +30,19 @@
 2025-01-23 17:55:04,666 - ERROR - 系统接口404异常
 2025-01-24 09:04:37,827 - ERROR - 系统接口404异常
 2025-01-24 09:06:05,278 - ERROR - 系统接口404异常
+2025-02-05 14:18:52,485 - INFO - ====== WebDriver manager ======
+2025-02-05 14:18:52,721 - INFO - Get LATEST chromedriver version for google-chrome
+2025-02-05 14:18:53,072 - INFO - Get LATEST chromedriver version for google-chrome
+2025-02-05 14:18:56,526 - INFO - There is no [mac64] chromedriver "132.0.6834.159" for browser google-chrome "132.0.6834" in cache
+2025-02-05 14:18:56,526 - INFO - Get LATEST chromedriver version for google-chrome
+2025-02-05 14:19:30,345 - INFO - WebDriver version 132.0.6834.159 selected
+2025-02-05 14:19:30,349 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.159/mac-x64/chromedriver-mac-x64.zip
+2025-02-05 14:19:30,349 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/132.0.6834.159/mac-x64/chromedriver-mac-x64.zip
+2025-02-05 14:19:30,889 - INFO - Driver downloading response is 200
+2025-02-05 14:19:40,076 - INFO - Get LATEST chromedriver version for google-chrome
+2025-02-05 14:19:40,725 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/132.0.6834.159]
+2025-02-05 14:19:57,656 - INFO - 查询 => {'身份证号': '110101195901018874'}
+2025-02-05 14:28:52,914 - INFO - 查询 => {'身份证号': '110101195901018874'}
+2025-02-05 14:29:03,378 - INFO - 点击同意
+2025-02-05 14:31:03,571 - INFO - 查询 => {'身份证号': '110101195901018874'}
+2025-02-05 14:31:14,061 - ERROR - 查询数量不等于1，无法操作

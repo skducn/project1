@@ -21,12 +21,20 @@ import tushare as ts
 ts.set_token('894e80b70503f5cda0d86f75820c5871ff391cf7344e55931169bb2a')
 pro = ts.pro_api()
 
-
-# df = pro.daily(ts_code='603439.SH', start_date='20220119', end_date='20220120')
-# print(df)
-
-df = pro.top_inst(trade_date='20220120')
+#获取单日全部股票数据涨跌停价格
+df = pro.stk_limit(trade_date='20190625')
 print(df)
+
+# date = '20240930'
+# df = pro.daily_basic(trade_date=date, fields='ts_code,close,limit_ratio')
+# df = df[df['limit_ratio'] == 1]  # 涨停股票的limit_ratio为1
+#
+# print(df)
+# # df = pro.daily(ts_code='603439.SH', start_date='20220119', end_date='20220120')
+# # print(df)
+#
+# df = pro.top_inst(trade_date='20220120')
+# print(df)
 
 
 # df = ts.get_realtime_quotes('603439')

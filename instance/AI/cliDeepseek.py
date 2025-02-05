@@ -12,9 +12,10 @@ import sys, os
 # text = input("提问: \n")
 # print("正在AI思考中...")
 
-api_key = os.getenv("sk-e2bf2354c1924fbeb55c41e4d7bd151d")
+# api_key = os.getenv("sk-e2bf2354c1924fbeb55c41e4d7bd151d")
 # client = OpenAI(api_key="mNF21RSnIIDP7lCzObF9w9JB", base_url="https://api.openai.com")
-client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+# client = OpenAI(api_key=api_key, base_url="https://api.deepseek.com")
+client = OpenAI(api_key="sk-e2bf2354c1924fbeb55c41e4d7bd151d", base_url="https://api.deepseek.com")
 
 # 使用 stream=True 启用流式响应，默认情况下，返回的响应会被解析为一个 list，
 # https://api-docs.deepseek.com/zh-cn/

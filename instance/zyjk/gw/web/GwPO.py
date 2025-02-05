@@ -774,13 +774,16 @@ class GwPO():
 
     def _getQty(self):
         # 获取查询结果数量
-        if Web_PO.getTextByX("//div[@class='el-pagination is-background']/span") == "共 1 条":
-            return 1
-        else:
-            s_ = Web_PO.getTextByX("//div[@class='el-pagination is-background']/span")
-            s_ = s_.split("共 ")[1].split(" 条")[0]
-            return s_
 
+        if Web_PO.isEleExistByX("//div[@class='el-pagination is-background']/span"):
+            if Web_PO.getTextByX("//div[@class='el-pagination is-background']/span") == "共 1 条":
+                return 1
+            else:
+                s_ = Web_PO.getTextByX("//div[@class='el-pagination is-background']/span")
+                s_ = s_.split("共 ")[1].split(" 条")[0]
+                return s_
+        else:
+            return 0
 
 
     # todo 基本公卫 - 健康档案管理 - 个人健康档案
@@ -1556,13 +1559,12 @@ class GwPO():
 
 
 
-    # todo 基本公卫 - 健康档案管理 - 迁出审核
+    # todo 2.5 基本公卫 - 健康档案管理 - 迁出审核
 
     def movingOut_query(self, d_):
 
         # 迁出审核 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
@@ -1626,6 +1628,7 @@ class GwPO():
                 ele3 = Web_PO.getSuperEleByX("//div[text()=' 同意迁出该居民个人健康档案？ ']", "../..")
                 # Web_PO.eleClkByX(ele3, ".//button[1]")  # 确认
                 Web_PO.eleClkByX(ele3, ".//button[2]")  # 取消
+                self.logger.info("点击" + varOperation)
             elif s_ == 1 and varOperation == '拒绝':
                 Web_PO.eleClkByX(ele2, ".//button[2]", 2)
                 ele3 = Web_PO.getSuperEleByX("//div[text()='拒绝迁出原因']")
@@ -1633,50 +1636,49 @@ class GwPO():
                 ele4 = Web_PO.getSuperEleByX("//span[text()='档案迁移信息']", "../..")
                 # Web_PO.eleClkByX(ele4, ".//button[1]") # 确认
                 Web_PO.eleClkByX(ele4, ".//button[2]") # 取消
+                self.logger.info("点击" + varOperation)
             else:
-                print("查询数量多余1个，无法操作")
-            self.logger.info("点击" + varOperation)
+                print("查询数量不等于1，无法操作")
+                self.logger.error("查询数量不等于1，无法操作")
         except:
             self.logger.error(varOperation + "失败！")
 
 
 
 
-    # todo 基本公卫 - 健康档案管理 - 死亡管理
+    # todo 2.7 基本公卫 - 健康档案管理 - 死亡管理
 
-    def death_s(self, d_):
+    def death_query(self, d_):
 
         # 死亡管理 - 查询
 
-        # # # 当用户按下Ctrl+C时，会触发SIGINT信号，然后调用handle_signal函数，打印出提示信息后退出程序。
-        signal.signal(signal.SIGINT, self.handle_signal)
-        signal.signal(signal.SIGTERM, self.handle_signal)
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
-        ele = Web_PO.getSuperEleByX("//label[text()='身份证号']", "..")
-        Web_PO.eleSetTextByX(ele, "./div/div/input", d_['身份证号'])
-        Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[1]/div/form/div[5]/div/button[1]", 2)  # 查询
+        for k, v in d_.items():
+            try:
+                if k in ['姓名', '身份证号']:
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                elif k in ['死亡日期']:
+                    self._dropdownDateSingle(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
+                    self._dropdownDateSingle(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
+                elif k in ['现住址']:
+                    self._clkDropdownNoPath(self._eleLabel(ele, k), ".//div/div/div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    self._clkDropdownNoPath(self._eleLabel(ele, k), ".//div/div/div[1]/div[2]/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/div/input", v[2])
+            except:
+                self.logger.error("查询 => " + str(k) + ": " + str(v))
 
-        # 2 获取查询数量
-        s_ = self._getQty()
+        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
+        self.logger.info("查询 => " + str(d_))
 
-        # 3 点击姓名（更新健康档案）
-        if s_ == 1:
-            Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button", 2) # 点击档案查看
-            # l_ = Web_PO.getAttrValueByXs("//a", "href")
-            # # print(l_)
-            # varIndex = Web_PO.getIndexByApcByXs("//a", "href", "personalAddOrUpdate")
-            # print(varIndex)
-            print(self.personalHealthRecord_check())
-        else:
-            print(s_)
+    def death_out(self, varFile):
 
-        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[2]")
-        # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button
-        # # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button
-        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[11]/div/button")  # 点击档案查看
-        # Web_PO.clkByX("/html/body/div[1]/div/div[3]/div[1]/div/div/div[1]/div/a[3]") # 切换健康档案详情
-        #
-        # self.personalHealthRecord_info()
+        # 死亡管理 - 导出
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 点击导出
+        Web_PO.exportFile(varFile)
 
 
 

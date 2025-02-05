@@ -65,8 +65,10 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 2.6 更新列数据 setCols({"A": ["公司", "百度", "天猫"], "F": ["学校", "清华大学", "北京大学"]})
 2.7 追加列数据 appendCols([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
 
+2.5 设置单元格列宽 setColWidth(1, 100) # 设置第1列宽度100
+2.5 设置单元格列宽 setColWidth2('f', 100) # 设置第f列宽度100
 2.5 设置单元格行高与列宽 setCellDimensions(3, 30, 'f', 30) //设置第三行行高30，第f列列宽50
-2.6 设置工作表所有单元格的行高与列宽 setAllCellDimensions(30, 20) //设置所有单元格高30，宽50
+2.6 设置工作表所有单元格的行高与列宽 setAllCellDimensions(30, 20) //设置所有单元格高30，宽20
 2.7 设置所有单元格自动换行 setAllWordWrap()
 2.8 设置冻结首行 setFreeze('A2'）
 2.9 设置单元格对齐样式  setCellAlignment(5, 4, 'center', 'center')
@@ -495,6 +497,22 @@ class OpenpyxlPO:
         d = (dict(zip(l_colLetter, l_l_cols)))
         self.setCols(d)
 
+    def setColWidth(self, col, colQty, varSheet=0):
+
+        # 2.5 设置列列宽
+        # Openpyxl_PO.setColWidth(10, 50) // 设置第十列的宽50
+        sh = self.sh(varSheet)
+        sh.column_dimensions[get_column_letter(col)].width = colQty  # 列宽
+        self.save()
+
+    def setColWidth2(self, col, colQty, varSheet=0):
+
+        # 2.5 设置列列宽
+        # Openpyxl_PO.setColWidth2('f', 50) // 设置第f列的宽50
+        sh = self.sh(varSheet)
+        sh.column_dimensions[col].width = colQty  # 列宽
+        self.save()
+
     def setCellDimensions(self, row, rowQty, col, colQty, varSheet=0):
 
         # 2.5 设置单元格行高与列宽
@@ -919,6 +937,14 @@ class OpenpyxlPO:
         # Openpyxl_PO.setSheetColor("FF0000")
         sh = self.sh(varSheet)
         sh.sheet_properties.tabColor = varColor
+        self.save()
+
+    def clsSheetColor(self, i, j , varSheet=0):
+
+        # 2.19 清除工作表背景颜色
+        # clsSheetColor(2,4) # 清除第二行第四列背景色
+        sh = self.sh(varSheet)
+        sh.cell(i,j).fill = None
         self.save()
 
 
