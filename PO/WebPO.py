@@ -26,34 +26,34 @@
 # 下载2：http://chromedriver.storage.googleapis.com/index.html （旧）
 # 下载3：https://registry.npmmirror.com/binary.html?path=chromedriver （旧）
 
-# 3，自动下载驱动
+# todo 自动下载驱动
 # from webdriver_manager.chrome import ChromeDriverManager
 # ChromeDriverManager().install()
 # self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 # mac系统默认调用路径：/Users/linghuchong/.wdm/drivers/chromedriver/mac64/120.0.6099.109/chromedriver-mac-x64/chromedriver
 
-# 4, 设置配置
+# todo 设置配置
 # for win 路径：C:\Python38\Scripts\chromedrive.exe
 # for mac 路径：
 # from selenium.webdriver.chrome.service import Service
 # self.driver = webdriver.Chrome(service=Service("/Users/linghuchong/Downloads/51/Python/project/instance/web/chromedriver"), options=options)
 
-# 5，options参数
+# todo options参数
 # https://www.bilibili.com/read/cv25916901/
 # https://blog.csdn.net/xc_zhou/article/details/82415870
 # https://blog.csdn.net/amberom/article/details/107980370
 # https://www.5axxw.com/questions/content/ey8x1v  解决不安全下载被阻止问题
-# 6，常见问题
+# https://zhuanlan.zhihu.com/p/612823571
+
+# todo 常见问题
 # Q1：MAC 移动chromedriver时报错，如 sudo mv chromedriver /usr/bin 提示： Operation not permitted
 # A1: 重启按住command + R,进入恢复模式，实用工具 - 终端，输入 csrutil disable , 重启电脑。
-
 
 # todo edge
 # edge 114.0.1823.37 (64 位) , selenium =3.141.0，edge = 114.0.1823.37
 # edge下载：https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/
 # mac系统默认调用路径：/usr/local/bin/msedgedriver
 # win系统默认调用路径：c:\python39\msedgedriver.exe
-
 
 # todo firefox
 # geckodriver 0.14.0 for selenium3.0
@@ -100,7 +100,6 @@
 
 from PO.DomPO import *
 import requests, bs4, subprocess
-
 from selenium.webdriver.support.ui import Select
 
 class WebPO(DomPO):
@@ -151,11 +150,14 @@ class WebPO(DomPO):
         except Exception as e:
             print(f"未找到'另存为'弹框: {e}")
 
-    def updateChromedriver(self, options, varChromePath, varDriverPath):
-        # updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe", "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
+    def updateChromedriver(self, options):
+
         # 获取浏览器版本及主版本（前三位如果相同，则为同一版本）
         if os.name == "nt":
             # for win
+
+            varChromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+            varDriverPath = "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
 
             # 1 本机chrome程序路径
             chromeVer = subprocess.check_output("powershell -command \"&{(Get-Item '" + varChromePath + "').VersionInfo.ProductVersion}\"", shell=True)
@@ -182,22 +184,27 @@ class WebPO(DomPO):
         elif os.name == "posix":
             # for mac
 
+            varDriverPath = "/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+
+            # 1 本机chrome程序路径
             chromeVer = subprocess.check_output("/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
             chromeVer = bytes.decode(chromeVer).replace("\n", '')
             chromeVer = chromeVer.split('Google Chrome ')[1].strip()
             chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
-            defaultPath = "/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
-            currPath = defaultPath + chromeVer3
-            # 检查chromedriver主版本是否存在
+
+            # 2 驱动路径
+            currPath = varDriverPath + chromeVer3
+
+            # 3 检查chromedriver主版本是否存在
             if os.path.isdir(currPath) == False:
                 print("chromedriver downloading...")
                 Service(ChromeDriverManager().install())
-                l_folder = os.listdir(defaultPath)
+                l_folder = os.listdir(varDriverPath)
                 for i in range(len(l_folder)):
                     if chromeVer3 in l_folder[i]:
-                        os.rename(defaultPath + l_folder[i], defaultPath + chromeVer3)
+                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
                         break
-                os.chdir(defaultPath + chromeVer3 + "/chromedriver-mac-x64")
+                os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
@@ -233,20 +240,15 @@ class WebPO(DomPO):
 
             # todo 屏幕
             options.add_argument("--start-maximized")  # 最大化浏览器
+            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
+            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
             # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
             # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
-            # width, height = pyautogui.size()  # 1440 900  //获取屏幕尺寸
-            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小
-            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 指定窗口大小
+            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
 
             # todo 浏览器
             options.add_experimental_option("detach", True)  # 浏览器永不关闭
-            options.add_argument("--allow-running-insecure-content") # Allow insecure content
-
-            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块
-            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
             options.add_argument('--incognito')  # 无痕模式
-
             options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
             options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
             options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
@@ -254,6 +256,13 @@ class WebPO(DomPO):
             options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
             # options.headless = True  # 无界面模式
             # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+            # todo 安全性
+            options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
+            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
+            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
+            # 禁用“保存密码”弹出窗口
+            options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
 
             # todo 系统
             # options.add_argument("disable-cache")  # 禁用缓存
@@ -267,7 +276,7 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe", "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
+            self.updateChromedriver(options)
 
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
@@ -293,11 +302,7 @@ class WebPO(DomPO):
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
-                                        "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-
-            # # 绕过检测（滑动验证码）
-            # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
+            self.updateChromedriver(options)
 
             self.driver.get(varURL)
             return self.driver
@@ -318,10 +323,9 @@ class WebPO(DomPO):
             options.add_argument('--incognito')  # 无痕模式
 
             options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
-            options.add_experimental_option("excludeSwitches",
-                                            ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
-            options.add_experimental_option("excludeSwitches",
-                                            ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+            options.add_argument('-ignore-ssl-errors')  # 忽略相关错误
+            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 忽略证书错误
+            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 防止自动化检测, 解决"Chrome正受到自动测试软件的控制"提示，建议放在最后。
             # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
             options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
             # options.headless = True  # 无界面模式
@@ -333,18 +337,13 @@ class WebPO(DomPO):
             options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
             options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
             options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
-            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志，防止自动化日志输出检测
             options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
             # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
             # 更新下载chromedriver
-            self.updateChromedriver(options, "C:\Program Files\Google\Chrome\Application\chrome.exe",
-                                        "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\")
-
-
-            # # 绕过检测（滑动验证码）
-            # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
+            self.updateChromedriver(options)
 
             self.driver.get(varURL)
             return self.driver

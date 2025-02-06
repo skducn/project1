@@ -10,33 +10,43 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-import ctypes
-from ctypes.util import find_library
-import objc
-from AppKit import NSBundle
-# from Foundation import NSBundleResourceRequest
-from Foundation import NSBundle
-
-# 获取主 bundle
-main_bundle = NSBundle.mainBundle()
-print(main_bundle.bundlePath())  # /Users/linghuchong/miniconda3/envs/py310/bin
+import pyautogui
 
 
-# 加载CoreServices框架
-CoreServices = NSBundle.bundleWithIdentifier_("com.apple.CoreServices")
-CoreServices.load()
+# 获取屏幕尺寸
+width, height = pyautogui.size()
+print(width, height)  # 1440 900
 
-# 找到TISSelectInputMethod的地址
-TISSelectInputMethod = ctypes.CFUNCTYPE(None, ctypes.c_void_p)(CoreServices.functionForName_("TISSelectInputMethod"))
-TISSelectInputMethod.restype = None
-TISSelectInputMethod.argtypes = [ctypes.c_void_p]
-
-# 获取输入法的标识符，例如："com.apple.inputmethod.Pinyin" 是中文拼音输入法
-input_method_identifier = "com.apple.inputmethod.Pinyin"  # 例如切换到中文拼音输入法
-input_method = ctypes.c_void_p(CoreServices.functionForName_("TISCopyCurrentKeyboardInputSource").__call__())
-TISSelectInputMethod(input_method)  # 切换到指定的输入法
-
-
+# 获取鼠标位置
+x, y = pyautogui.position()
+print(x,y)  # 2512 767
+# import ctypes
+# from ctypes.util import find_library
+# import objc
+# from AppKit import NSBundle
+# # from Foundation import NSBundleResourceRequest
+# from Foundation import NSBundle
+#
+# # 获取主 bundle
+# main_bundle = NSBundle.mainBundle()
+# print(main_bundle.bundlePath())  # /Users/linghuchong/miniconda3/envs/py310/bin
+#
+#
+# # 加载CoreServices框架
+# CoreServices = NSBundle.bundleWithIdentifier_("com.apple.CoreServices")
+# CoreServices.load()
+#
+# # 找到TISSelectInputMethod的地址
+# TISSelectInputMethod = ctypes.CFUNCTYPE(None, ctypes.c_void_p)(CoreServices.functionForName_("TISSelectInputMethod"))
+# TISSelectInputMethod.restype = None
+# TISSelectInputMethod.argtypes = [ctypes.c_void_p]
+#
+# # 获取输入法的标识符，例如："com.apple.inputmethod.Pinyin" 是中文拼音输入法
+# input_method_identifier = "com.apple.inputmethod.Pinyin"  # 例如切换到中文拼音输入法
+# input_method = ctypes.c_void_p(CoreServices.functionForName_("TISCopyCurrentKeyboardInputSource").__call__())
+# TISSelectInputMethod(input_method)  # 切换到指定的输入法
+#
+#
 
 
 

@@ -86,10 +86,11 @@ else:
 
         # 2，调用接口获取数据
         varUrl = 'https://stockapi.com.cn/v1/base/ZTPool?date=' + l_date[i]
-        x = requests.get(varUrl, headers=headers, proxies=proxies)
+        # x = requests.get(varUrl, headers=headers, proxies=proxies)
+        x = requests.get(varUrl, headers=headers)
         # print(x.text)
         d_tmp1 = eval(x.text)
-        if d_tmp1['code'] == 60040:
+        if d_tmp1['code'] == 60040 or d_tmp1['code'] == 88886:
             # {"msg":"该接口无token用户单个ip每日可调用三次，请明日再来，若想无限制，请购买token，地址:https://stockapi.com.cn","code":60040}
             print("接口调用次数已达上限！")
             sys.exit(0)

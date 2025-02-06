@@ -1,0 +1,46 @@
+import pyautogui
+
+# 模拟按下键盘上的字母键
+pyautogui.press(‘a’)
+
+# 模拟按下组合键（如Ctrl+C）
+pyautogui.hotkey(‘ctrl’, ‘c’)
+
+# 模拟按下特殊键（如Enter键、Tab键）
+pyautogui.press(‘enter’)
+pyautogui.press(‘tab’)
+
+# 按下回车键
+pyautogui.typewrite(‘\n’)
+
+# 模拟输入文本
+pyautogui.typewrite(‘Hello, World!’)
+
+# 模拟按下键盘上的功能键（如F1、F2）
+pyautogui.press(‘f1’)
+pyautogui.press(‘f2’)
+
+获取屏幕尺寸
+width, height = pyautogui.size()
+print(width, height)  # 1440 900
+
+获取鼠标位置：
+x, y = pyautogui.position()
+
+移动鼠标：
+pyautogui.moveTo(100, 100)`表示将鼠标移动到屏幕上坐标为(100, 100)的位置。
+
+点击鼠标：
+pyautogui.click(200, 200)`表示模拟点击屏幕上坐标为(200, 200)的位置。
+
+
+2. 模拟打开编辑器：
+pyautogui.hotkey(‘win’, ‘r’)  # 按下Win+R组合键，打开运行窗口
+pyautogui.typewrite(‘notepad’)  # 输入notepad，表示运行记事本编辑器
+pyautogui.press(‘enter’)  # 按下回车，打开记事本编辑器
+
+4. 模拟保存并关闭：
+pyautogui.hotkey(‘ctrl’, ‘s’)  # 按下Ctrl+S，打开保存对话框
+pyautogui.typewrite(‘test.txt’)  # 输入文件名
+pyautogui.press(‘enter’)  # 按下回车，保存文件
+pyautogui.hotkey(‘alt’, ‘f4’)  # 按下Alt+F4，关闭编辑器

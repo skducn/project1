@@ -17,9 +17,9 @@ Sys_PO = SysPO()
 from PO.Base64PO import *
 Base64_PO = Base64PO()
 
-import logging
+import logging, os, sys
 import signal
-import sys
+
 import ddddocr
 
 class GwPO():
@@ -786,7 +786,6 @@ class GwPO():
             return 0
 
 
-    # todo 基本公卫 - 健康档案管理 - 个人健康档案
 
     def _getEleByLabelText(self, k):
         return Web_PO.getSuperEleByX("//label[text()='" + k + "']", "..")
@@ -884,7 +883,10 @@ class GwPO():
 
 
 
-    def personalHealthRecord_query(self, d_):
+
+    # todo 2.1.2 基本公卫 - 健康档案管理 - 个人健康档案
+
+    def phs_healthrecord_personal_query(self, d_):
 
         # 个人健康档案 - 查询
 
@@ -945,7 +947,7 @@ class GwPO():
         Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
         self.logger.info("查询 => " + str(d_))
 
-    def personalHealthRecord_operation(self, varOperation):
+    def phs_healthrecord_personal_operation(self, varOperation):
 
         # 个人健康档案 - 操作
 
@@ -993,7 +995,7 @@ class GwPO():
         except:
             self.logger.error(varOperation + "失败！")
 
-    def personalHealthRecord_detail(self):
+    def phs_healthrecord_personal_detail(self):
 
         # 个人健康档案 - 详情
 
@@ -1121,7 +1123,7 @@ class GwPO():
         except:
             self.logger.error("查看失败")
 
-    def personalHealthRecord_modify(self, d_):
+    def phs_healthrecord_personal_modify(self, d_):
 
         # 个人健康档案 - 更新
 
@@ -1282,7 +1284,7 @@ class GwPO():
         # Web_PO.eleClkByX(ele, ".//button[1]", 2)
         self.logger.info("更新 => " + str(d_))
 
-    def personalHealthRecord_info(self):
+    def phs_healthrecord_personal_info(self):
         # 点击姓名，获取居民健康档案
         # Web_PO.opnLabel(varUrl)
         # Web_PO.swhLabel(2)
@@ -1403,9 +1405,103 @@ class GwPO():
 
 
 
-    # todo 基本公卫 - 健康档案管理 - 迁入申请
+    # todo 2.1.3 基本公卫 - 健康档案管理 - 家庭健康档案
 
-    def movingIn_query(self, d_):
+    def phs_healthrecord_family_query(self, d_):
+
+        # 家庭健康档案 - 查询
+
+        # 1 查询
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+
+        for k, v in d_.items():
+            try:
+                if k in ['姓名', '身份证号', '现住址']:
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                elif k in ['家庭住址']:
+                    self._clkDropdownNoPath(self._eleLabel(ele, k), ".//div/div/div[1]/div/div/div/div/input", _dropdownByX, v[0])
+                    self._clkDropdownNoPath(self._eleLabel(ele, k), ".//div/div/div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    self._clkDropdownNoPath(self._eleLabel(ele, k), ".//div/div/div[3]/div/div/div/div/input", _dropdownByX, v[2])
+                elif k in ['管理机构']:
+                    _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
+                    Web_PO.eleClkByX(self._eleLabel(ele, k),  ".//input")
+                    l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                    # 卫健局
+                    if v == l_1:
+                        # print(l_1)  # ['招远市卫健局']
+                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
+                    else:
+                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                        l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
+                        # 卫生院
+                        if len(v) == 1:
+                            # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
+                            if v[0] in l_2:
+                                for i in range(len(l_2)):
+                                    if l_2[i] == v[0]:
+                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li["+str(i+1)+"]/label/span[1]/span")
+                        else:
+                            # 卫生室
+                            if v[0] in l_2:
+                                for i in range(len(l_2)):
+                                    if l_2[i] == v[0]:
+                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i+1) + "]")
+                                        l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
+                                        if v[1] in l_3:
+                                            # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
+                                            for i in range(len(l_3)):
+                                                if l_3[i] == v[1]:
+                                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label/span[1]/span")
+            except:
+                self.logger.error("查询 => " + str(k) + ": " + str(v))
+
+        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
+        self.logger.info("查询 => " + str(d_))
+
+    def phs_healthrecord_family_operation(self, varOperation):
+
+        # 家庭健康档案 - 操作
+
+        # 获取查询数量
+        s_ = self._getQty()
+        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+
+        try:
+            # 操作
+            # 点击姓名等同于更新
+            if s_ == 1 and varOperation == '姓名':
+                Web_PO.clkByX("//tr[@class='el-table__row']/td[1]/div", 2)
+            elif s_ == 1 and varOperation == '查看':
+                Web_PO.clkByX("//tr[@class='el-table__row']", 2)
+                Web_PO.eleClkByX(ele2, ".//tr/td[16]/div/div[1]", 2)
+            elif s_ == 1 and varOperation == '维护家庭成员':
+                Web_PO.clkByX("//tr[@class='el-table__row']", 2)
+                Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div/div/div[2]/div[1]/span[2]/button',2)  # 点击 +维护家庭成员
+                ele = Web_PO.getSuperEleByX("(//span[text()='维护家庭成员'])[last()]", "../..")
+                # Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 保存
+                Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 取消
+                # /html/body/div[1]/div/div[3]/section/div/div/div[2]/div/div/div[2]/div[3]/div/div/div[3]/span/button[2]
+            else:
+                print("查询数量多余1个，无法操作")
+            self.logger.info("点击" + varOperation)
+        except:
+            self.logger.error(varOperation + "失败！")
+
+    def phs_healthrecord_family_export(self, varFile):
+
+        # 家庭健康档案 - 导出
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 点击导出
+        Web_PO.exportFile(varFile)
+
+
+
+
+    # todo 2.1.4 基本公卫 - 健康档案管理 - 迁入申请
+
+    def phs_healthrecord_immigration_query(self, d_):
 
         # 迁入申请 - 查询
 
@@ -1458,7 +1554,7 @@ class GwPO():
         Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
         self.logger.info("查询 => " + str(d_))
 
-    def movingIn_operation(self, varOperation):
+    def phs_healthrecord_immigration_operation(self, varOperation):
 
         # 迁入申请 - 操作
 
@@ -1480,7 +1576,7 @@ class GwPO():
         except:
             self.logger.error(varOperation + "失败！")
 
-    def movingIn_detail(self):
+    def phs_healthrecord_immigration_detail(self):
 
         # 迁入申请 - 查看
 
@@ -1515,7 +1611,7 @@ class GwPO():
 
         return d_1
 
-    def movingIn_new(self, d_):
+    def phs_healthrecord_immigration_new(self, d_):
 
         # 迁入申请 - 新增
 
@@ -1559,9 +1655,9 @@ class GwPO():
 
 
 
-    # todo 2.5 基本公卫 - 健康档案管理 - 迁出审核
+    # todo 2.1.5 基本公卫 - 健康档案管理 - 迁出审核
 
-    def movingOut_query(self, d_):
+    def phs_healthrecord_exit_query(self, d_):
 
         # 迁出审核 - 查询
 
@@ -1613,7 +1709,7 @@ class GwPO():
         Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
         self.logger.info("查询 => " + str(d_))
 
-    def movingOut_operation(self, varOperation):
+    def phs_healthrecord_exit_operation(self, varOperation):
 
         # 迁出审核 - 操作
 
@@ -1645,12 +1741,14 @@ class GwPO():
 
 
 
+    # todo 2.1.7 基本公卫 - 健康档案管理 - 死亡管理
 
-    # todo 2.7 基本公卫 - 健康档案管理 - 死亡管理
-
-    def death_query(self, d_):
+    def phs_healthrecord_deathmanagement_query(self, d_):
 
         # 死亡管理 - 查询
+
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
 
         ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -1672,7 +1770,7 @@ class GwPO():
         Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
         self.logger.info("查询 => " + str(d_))
 
-    def death_out(self, varFile):
+    def phs_healthrecord_deathmanagement_export(self, varFile):
 
         # 死亡管理 - 导出
 
@@ -1682,10 +1780,172 @@ class GwPO():
 
 
 
+    # todo 2.1.8 基本公卫 - 健康档案管理 - 区域档案查询
 
-    # todo 基本公卫 - 健康教育 - 健康教育活动
+    def phs_healthrecord_regionalfile_query(self, d_):
 
-    def healthEducationActivity_query(self, d_):
+        # 死亡管理 - 查询
+
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+
+        for k, v in d_.items():
+            try:
+                if k in ['身份证号']:
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+            except:
+                self.logger.error("查询 => " + str(k) + ": " + str(v))
+
+        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
+        self.logger.info("查询 => " + str(d_))
+
+
+
+    # todo 2.1.9 基本公卫 - 健康档案管理 - 接诊信息查询
+
+    def phs_healthrecord_diagnosis_query(self, d_):
+
+        # 接诊信息查询 - 查询
+
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+
+        for k, v in d_.items():
+            try:
+                if k in ['姓名', '身份证号']:
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                elif k in ['就诊日期']:
+                    self._dropdownDateSingle(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
+                    self._dropdownDateSingle(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
+                elif k in ['导入状态']:
+                    self._eleClkDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                elif k in ['管理机构']:
+                    _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
+                    Web_PO.eleClkByX(self._eleLabel(ele, k), ".//div/div/div/input")
+                    l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                    # 卫健局
+                    if v == l_1:
+                        # print(l_1)  # ['招远市卫健局']
+                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
+                    else:
+                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                        l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
+                        # 卫生院
+                        if len(v) == 1:
+                            # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
+                            if v[0] in l_2:
+                                for i in range(len(l_2)):
+                                    if l_2[i] == v[0]:
+                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(
+                                            i + 1) + "]/label/span[1]/span")
+                        else:
+                            # 卫生室
+                            if v[0] in l_2:
+                                for i in range(len(l_2)):
+                                    if l_2[i] == v[0]:
+                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]")
+                                        l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
+                                        if v[1] in l_3:
+                                            # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
+                                            for i in range(len(l_3)):
+                                                if l_3[i] == v[1]:
+                                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(
+                                                        i + 1) + "]/label/span[1]/span")
+
+            except:
+                self.logger.error("查询 => " + str(k) + ": " + str(v))
+
+        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
+        self.logger.info("查询 => " + str(d_))
+
+
+
+    # todo 2.1.10 基本公卫 - 健康档案管理 - 就诊管理
+
+    def phs_healthrecord_visit_query(self, d_):
+
+        # 就诊管理 - 查询
+
+        signal.signal(signal.SIGINT, self.handle_signal)
+        signal.signal(signal.SIGTERM, self.handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+
+        for k, v in d_.items():
+            try:
+                if k in ['姓名', '身份证号']:
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                elif k in ['就诊日期']:
+                    self._dropdownDateSingle(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
+                    self._dropdownDateSingle(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
+                elif k in ['现住址']:
+                    self._clkDropdownNoPath(self._eleLabel(ele, k), ".//div/div/div/div/input", _dropdownByX, v[0])
+                    # /html/body/div[1]/div/div[3]/section/div/main/div[1]/form/div/div[5]/div[1]/div/div/div/div/input
+                    # /html/body/div[1]/div/div[3]/section/div/main/div[1]/form/div/div[5]/div[2]/div/div/div/div/input
+                    # /html/body/div[1]/div/div[3]/section/div/main/div[1]/form/div/div[5]/div[3]/div/div/input
+                    self._clkDropdownNoPath(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    # /html/body/div[1]/div/div[3]/section/div/main/div[1]/form/div/div[5]/div[2]/div/div/div/div/input
+                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    # /html/body/div[1]/div/div[3]/section/div/main/div[1]/form/div/div[5]/div[2]/div/div/div/div/input
+                elif k in ['管理机构']:
+                    _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
+                    Web_PO.eleClkByX(self._eleLabel(ele, k), ".//div/div/div/input")
+                    l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                    # 卫健局
+                    if v == l_1:
+                        # print(l_1)  # ['招远市卫健局']
+                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
+                    else:
+                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
+                        l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
+                        # 卫生院
+                        if len(v) == 1:
+                            # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
+                            if v[0] in l_2:
+                                for i in range(len(l_2)):
+                                    if l_2[i] == v[0]:
+                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(
+                                            i + 1) + "]/label/span[1]/span")
+                        else:
+                            # 卫生室
+                            if v[0] in l_2:
+                                for i in range(len(l_2)):
+                                    if l_2[i] == v[0]:
+                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]")
+                                        l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
+                                        if v[1] in l_3:
+                                            # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
+                                            for i in range(len(l_3)):
+                                                if l_3[i] == v[1]:
+                                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(
+                                                        i + 1) + "]/label/span[1]/span")
+
+            except:
+                self.logger.error("查询 => " + str(k) + ": " + str(v))
+
+        Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 点击查询
+        self.logger.info("查询 => " + str(d_))
+
+    def phs_healthrecord_visit_export(self, varFile):
+
+        # 就诊管理 - 导出
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击导出
+        Web_PO.exportFile(varFile)
+
+
+
+    # todo 2.12.1 基本公卫 - 健康教育 - 健康教育活动
+
+    def phs_healtheducation_healthactivity_query(self, d_):
 
         # 健康教育活动 - 查询
 
@@ -1703,7 +1963,7 @@ class GwPO():
 
         Web_PO.eleClkByX(ele, ".//button[1]")  # 查询
 
-    def healthEducationActivity_new(self, d_):
+    def phs_healtheducation_healthactivity_new(self, d_):
 
         # 健康教育活动 - 新增
 
@@ -1739,11 +1999,9 @@ class GwPO():
 
 
 
+    # todo 2.13.1 基本公卫 - 健康行为积分 - 本年度未评
 
-
-    # todo 基本公卫 - 健康行为积分 - 本年度未评
-
-    def noScored_query(self, d_):
+    def phs_hbp_noassessdata_query(self, d_):
 
         # 本年度未评 - 查询
 
@@ -1803,7 +2061,7 @@ class GwPO():
         s_ = self._getQty()
         return s_
 
-    def noScored_new(self, d_):
+    def phs_hbp_noassessdata_new(self, d_):
 
         # 本年度未评 - 2025年居民健康行为积分卡
 
@@ -1854,7 +2112,7 @@ class GwPO():
         Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[2]")  # 取消
         # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[1]")  # 保存
 
-    def noScored_batch(self, d_):
+    def phs_hbp_noassessdata_batch(self, d_):
         # Gw_PO.noScored_batch({'身份证号': ['110101194301191302', '340203202407018290']})
 
         # 本年度未评 - 批量评分
@@ -1893,9 +2151,9 @@ class GwPO():
 
 
 
-    # todo 基本公卫 - 健康行为积分 - 评分信息查询
+    # todo 2.13.2 基本公卫 - 健康行为积分 - 评分信息查询
 
-    def scoreInformation_query(self, d_):
+    def phs_hbp_assessdata_query(self, d_):
 
         # 评分信息查询 - 查询
 
@@ -1961,7 +2219,7 @@ class GwPO():
         s_ = self._getQty()
         return s_
 
-    def scoreInformation_modify(self, d_):
+    def phs_hbp_assessdata_modify(self, d_):
 
         # 评分信息查询 - 修改
 
@@ -2011,7 +2269,7 @@ class GwPO():
         Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[2]")  # 取消
         # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[1]")  # 保存
 
-    def scoreInformation_detail(self):
+    def phs_hbp_assessdata_detail(self):
 
         # 评分信息查询 - 详情
 

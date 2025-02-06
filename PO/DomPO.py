@@ -506,11 +506,17 @@ class DomPO(object):
 
     def getSuperEleByX(self, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
+        # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
         # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
         # 如：ele = self.getSuperEleByX("//div[text()='过会']", '../../..') # 获取div标签下文本上上上层的元素
         # ele = self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']"))
         ele = self.find_element(*(By.XPATH, varXpath))
         return ele.find_element(*(By.XPATH, varXpath2))
+
+        # # 计算匹配元素的数量，然后定位最后一个
+        # index = len(driver.find_elements_by_xpath("//div[text()='特定文本']")) - 1
+        # last_element = driver.find_elements_by_xpath("//div[text()='特定文本']")[index]
+        # print(last_element.text)
 
 
 
@@ -1744,6 +1750,7 @@ class DomPO(object):
             pyautogui.write(i, interval=0.2)
             sleep(2)
             pyautogui.press('enter', 1)
+            sleep(2)
             pyautogui.press('enter', 1)
 
             # 模拟点击“打开”按钮
@@ -1779,46 +1786,17 @@ class DomPO(object):
 
     def exportFile(self, varFile):
 
-        # export文件
-
-        # sleep(2)
+        # 导出文件
 
         # 选中文件
         pyautogui.write(varFile, interval=0.2)
-        pyautogui.hotkey('control', 'space')
-
         sleep(2)
         pyautogui.press('enter', 1)
+        sleep(2)
         pyautogui.press('enter', 1)
+        sleep(2)
+        pyautogui.press('tab', 1)
+        sleep(2)
+        pyautogui.press('space', 1)
 
-        # 模拟点击“打开”按钮
-        # pyautogui.moveTo(1250, 820, duration=1)
-        # pyautogui.click()
-
-        # 定位“打开”按钮的坐标，这个坐标需要根据你的Finder窗口实际情况进行调整
-        x , y = pyautogui.size()
-        open_button_x = x - 380
-        # print(open_button_x)
-        open_button_y = y - 240
-        # print(open_button_y)
-        pyautogui.moveTo(x=open_button_x, y=open_button_y, duration=1)
-        pyautogui.click()
-
-
-        # upload_btn = self.find_element(*(By.XPATH, varXpath))
-        # self.driver.execute_script("arguments[0].style.visibility='visible'", upload_btn)
-
-
-        # file_path = os.path.abspath(varFile)
-        # self.find_element(*(By.XPATH, "//input[@type='file']")).send_keys(varFile)
-
-        # upload_btn.send_keys(varFile)
-
-        # ActionChains.(self.driver).click(upload_btn).perform()
-
-        # # 将文件路径设为不可见输入框的值
-        # self.driver.execute_script("arguments[0].value = arguments[1]", upload_btn, "varFile")
-        #
-        # # 点击实际的上传按钮
-        # self.driver.execute_script("arguments[0].click()", upload_btn)
 
