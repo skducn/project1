@@ -10,10 +10,8 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-l_ = ['是\n否']
-
-if "\n" in l_[0]:
-    print(9)
+my_dict = {"name": "Alice"}
+print(list(my_dict.keys())[0])  # 将字典的键转换为列表
 
 # # x = 'multiply'
 # # code = "def " + x + "(x, y): return x * y"

@@ -989,16 +989,18 @@ class DomPO(object):
             else:
                 l_isChecked.append(0)
         d_default = dict(zip(l_value, l_isChecked))
-        # print(d_default)  # {'是': 0, '否': 1}
+        print(d_default)  # {'是': 0, '否': 1}
 
         # 检查是否已经选中，如果未选择则勾选，否则不操作。
         if d_default[v] == 0:
+            # self.eleClkByX(ele, varXpaths + "[2]", 1)
             self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
             # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
 
     # todo checkbox
 
-    def eleCheckboxSplitDivs(self, ele, _checkboxByX, v, default="remain"):
+    def eleCheckboxLeftLabelByN(self, ele, _checkboxByX, v, default="remain"):
+        # eleCheckboxSplitDivs
         # 勾选复选框
         # 不独立值（有\n拼接值），divs
         # self._eleClkCheckbox(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
@@ -1037,7 +1039,8 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
 
-    def eleCheckboxDivs(self, ele, _checkboxByX, v, default="remain"):
+    def eleCheckboxLeftLabel(self, ele, _checkboxByX, v, default="remain"):
+        # eleCheckboxDivs
         # 勾选复选框
         # 独立值（无\n拼接值），divs
         # self.eleClkCheckbox(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
@@ -1047,7 +1050,7 @@ class DomPO(object):
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
@@ -1073,8 +1076,14 @@ class DomPO(object):
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
+                elif isinstance(v[i], dict):
+                    if list(v[i].keys())[0] == k3:
+                        varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        if varClass != 'el-checkbox el-checkbox--default is-checked':
+                            self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
 
-    def eleCheckboxSplitLabels(self, ele, _textByX, v):
+    def eleCheckboxRightLabelByN(self, ele, _textByX, v):
+        # eleCheckboxSplitLabels
         # 勾选复选框
         # 不独立值（有\n拼接值），遍历label
         # 获取所有的选项
@@ -1095,7 +1104,8 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
-    def eleCheckboxLabels(self, ele, _textByX, v):
+    def eleCheckboxRightLabel(self, ele, _textByX, v):
+        # eleCheckboxLabels
         # 勾选复选框
         # 独立值（无\n拼接值），遍历label
 
