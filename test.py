@@ -10,16 +10,37 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-import pyautogui
+l_ = ['是\n否']
+
+if "\n" in l_[0]:
+    print(9)
+
+# # x = 'multiply'
+# # code = "def " + x + "(x, y): return x * y"
+# # exec(code)
+# # print(multiply(5, 3))  # 输出: 15
+#
+# func_name = "abc"
+# # func_code = f"def {func_name}:\n print('Hello, World!') \n print(x * y) \n"
+# func_code = f"def {func_name}(x,y):" \
+#             f"print('Hello, World!') " \
+#             f"print(x * y) \n"
+# exec(func_code)
+
+# 现在可以调用x函数
+# abc(2,4)  # 输出: Hello, World!
 
 
-# 获取屏幕尺寸
-width, height = pyautogui.size()
-print(width, height)  # 1440 900
-
-# 获取鼠标位置
-x, y = pyautogui.position()
-print(x,y)  # 2512 767
+# import pyautogui
+#
+#
+# # 获取屏幕尺寸
+# width, height = pyautogui.size()
+# print(width, height)  # 1440 900
+#
+# # 获取鼠标位置
+# x, y = pyautogui.position()
+# print(x,y)  # 2512 767
 # import ctypes
 # from ctypes.util import find_library
 # import objc

@@ -878,7 +878,8 @@ class DomPO(object):
 
     # todo radio
 
-    def eleRadioSplitDivs(self, ele, varXpaths, v):
+    def eleRadioLeftLabelByN(self, ele, varXpaths, v):
+        # eleRadioSplitDivs
         # 选择单选框
         # 不独立值（有\n拼接）,遍历div
         # self.eleRadioSplitDivs(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
@@ -887,10 +888,28 @@ class DomPO(object):
         l_ = l_[0].split('\n')
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
-    def eleRadioDivs(self, ele, varXpaths, v):
+        # 获取单选框所有值的状态
+        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
+        # print(l_value)  # ['是', '否']
+        # 获取单选框所有值的状态
+        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+        l_isChecked = []
+        for i in range(len(l_class)):
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[i] == 'el-radio is-disabled is-checked el-radio--default':
+                l_isChecked.append(1)
+            else:
+                l_isChecked.append(0)
+        d_default = dict(zip(l_value, l_isChecked))
+        # print(d_default)  # {'是': 0, '否': 1}
+        # 检查是否已经选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+
+    def eleRadioLeftLabel(self, ele, varXpaths, v):
+        # eleRadioDivs
         # 选择单选框
         # 独立值（无\n拼接），遍历div
         # self.eleRadioDivs(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
@@ -898,9 +917,28 @@ class DomPO(object):
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
         # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
 
-    def eleRadioSplitLabels(self, ele, varXpaths, v):
+        # 获取单选框所有值的状态
+        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
+        # print(l_value)  # ['是', '否']
+        # 获取单选框所有值的状态
+        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+        l_isChecked = []
+        for i in range(len(l_class)):
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
+                i] == 'el-radio is-disabled is-checked el-radio--default':
+                l_isChecked.append(1)
+            else:
+                l_isChecked.append(0)
+        d_default = dict(zip(l_value, l_isChecked))
+        # print(d_default)  # {'是': 0, '否': 1}
+        # 检查是否已经选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+
+    def eleRadioRightLabelByN(self, ele, varXpaths, v):
+        # eleRadioSplitLabels
         # 选择单选框
         # 不独立值（有\n拼接），遍历label
         l_ = self.eleGetTextByXs(ele, varXpaths)
@@ -908,19 +946,55 @@ class DomPO(object):
         l_ = l_[0].split('\n')
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        self.eleClkByX(ele, varXpaths + "/label[" + str(d_4[v]) + "]", 1)
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
-    def eleRadioLabels(self, ele, varXpaths, v):
+        # 获取单选框所有值的状态
+        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
+        # print(l_value)  # ['是', '否']
+        # 获取单选框所有值的状态
+        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+        l_isChecked = []
+        for i in range(len(l_class)):
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
+                i] == 'el-radio is-disabled is-checked el-radio--default':
+                l_isChecked.append(1)
+            else:
+                l_isChecked.append(0)
+        d_default = dict(zip(l_value, l_isChecked))
+        # print(d_default)  # {'是': 0, '否': 1}
+        # 检查是否已经选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "/label[" + str(d_4[v]) + "]", 1)
+
+    def eleRadioRightLabel(self, ele, varXpaths, v):
+        # eleRadioLabels
         # 选择单选框
         # 独立值（无\n拼接），遍历label
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
         print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        self.eleClkByX(ele, varXpaths + "/label[" + str(d_4[v]) + "]", 1)
 
+        # 获取单选框所有值的状态
+        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
+        # print(l_value)  # ['是', '否']
+        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+        l_isChecked = []
+        for i in range(len(l_class)):
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
+                i] == 'el-radio is-disabled is-checked el-radio--default':
+                l_isChecked.append(1)
+            else:
+                l_isChecked.append(0)
+        d_default = dict(zip(l_value, l_isChecked))
+        # print(d_default)  # {'是': 0, '否': 1}
 
+        # 检查是否已经选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
+            # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
 
     # todo checkbox
 
@@ -1040,6 +1114,8 @@ class DomPO(object):
                         varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+
+
 
     def isSelectedByX(self, varXpath):
         # 是否勾选
@@ -1784,9 +1860,9 @@ class DomPO(object):
         # # 点击实际的上传按钮
         # self.driver.execute_script("arguments[0].click()", upload_btn)
 
-    def exportFile(self, varFile):
+    def exportExistFile(self, varFile):
 
-        # 导出文件
+        # 导出文件(文件已存在，覆盖)
 
         # 选中文件
         pyautogui.write(varFile, interval=0.2)
@@ -1798,5 +1874,18 @@ class DomPO(object):
         pyautogui.press('tab', 1)
         sleep(2)
         pyautogui.press('space', 1)
+
+    def exportFile(self, varFile):
+
+        # 导出文件（文件不存在，生成）
+
+        # 选中文件
+        pyautogui.write(varFile, interval=0.2)
+        sleep(2)
+        pyautogui.press('enter', 1)
+        sleep(2)
+        pyautogui.press('enter', 1)
+        sleep(2)
+
 
 

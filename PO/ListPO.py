@@ -160,7 +160,7 @@ class ListPO:
             list3.pop(0)
             return list3
         elif varMode == 0:
-            # 将列表中某个元素之前的元素组成一个新的列表， 如 [1,2,3,'审核信息',4,5,6] 变为 [1,2,3]
+            # 将列表中某个元素之前的元素组成一个新的列表， 如 [1,2,3,'分割',4,5,6] => [1,2,3]
             list4 = []
             for i in varList:
                 if varElement == i:
