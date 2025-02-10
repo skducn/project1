@@ -6,11 +6,9 @@
 # 如统计 2023-2-1 到 2023-2-8 所有人的工作日志，生成zentao_daily.xlsx文档。
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-import sys, platform, os
-
-import pandas as pd
-
-sys.path.append("../../../")
+import sys, platform, os, webbrowser
+# sys.path.append("/Users/linghuchong/Downloads/51/Python/project/PO/")
+sys.path.append('../../..')
 
 from PO.TimePO import *
 Time_PO = TimePO()
@@ -20,11 +18,10 @@ Mysql_PO = MysqlPO("192.168.0.211", "readonly", "benetech123", "zentaoep", 3306)
 
 from PO.OpenpyxlPO import *
 
-
 def getRecord(varStartDate, varEndDate, l_varWho):
 
     varEndDate = varEndDate + " 23:59:59"
-    excelName = "zentao_daily.xlsx"
+    excelName = "./" + os.path.basename(__file__).split('.')[0] + ".xlsx"
     sheetName = "禅道日报"
 
     # 创建文档
@@ -83,24 +80,6 @@ def getRecord(varStartDate, varEndDate, l_varWho):
     # print(listall)
     # sys.exit(0)
     d2 = dict(enumerate(listall, start=2))
-    # print(d2)
-    for k, v in d2.items():
-        print(v[0], v[1], v[3], v[4].replace("<div>", "").replace("\n\n", "").replace("\n\n\n", "")
-              .replace("</div>", "").replace('<span style="background-color:#FFFFFF;">', "")
-              .replace('<p class="MsoNormal">', "").replace('<p class="MsoNormal" style="margin-left:0pt;text-indent:0pt;background:#FFFFFF;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:27pt;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:36pt;">',"")
-              .replace('<p class="p" style="margin-left:0pt;text-indent:0pt;background:#FFFFFF;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:40pt;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:45pt;">',"")
-              .replace('<p class="MsoNormal" style="margin-left:0pt;text-indent:36pt;background:#FFFFFF;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:72pt;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:36pt;background:#FFFFFF;">',"")
-              .replace('<p class="MsoNormal" style="text-indent:72pt;background:#FFFFFF;">',"")
-              .replace('<p style="background-color:#FFFFFF;">',"")
-              .replace('\n\t\n\t',"")
-              .replace('<div>\n\t', ""))
-        # print(v)
 
     # Openpyxl_PO.insertRows({1: ["姓名", "项目", "模块", "标题", "描述", "工时", "完成日期"]}, sheetName)
     Openpyxl_PO.insertRows({1: ["姓名", "项目", "标题", "描述", "工时", "完成日期"]}, sheetName)
@@ -108,32 +87,36 @@ def getRecord(varStartDate, varEndDate, l_varWho):
     Openpyxl_PO.save()
 
     df = pd.read_excel(excelName)
-
-    # print(excelName + " 生成中，请稍等...")
-    # if platform.system() == 'Darwin':
-    #     os.system("open " + excelName)
-    # if platform.system() == 'Windows':
-    #     os.system("start " + excelName)
-
     return df
 
 
-# 生成4-7到4-8两天的工作日志
-# df = getRecord("2024-5-24", "2024-5-30", ['金浩'])
-# getRecord("2024-5-24", "2024-5-30", ['郭斐'])
-# getRecord("2024-5-24", "2024-5-30", ['陈晓东'])
-# df = getRecord("2024-7-16", "2024-7-16", ['舒阳阳'])
-df = getRecord("2024-1-8", "2024-9-9", ['舒阳阳', '陈晓东'])
-
+if len(sys.argv) == 1:
+    # 没有参数显示昨天的工作日志
+    s_yesterdayDate = str(Time_PO.getDateByPeriodDate(str(Time_PO.getDateByMinus()), -1))
+    df = getRecord(s_yesterdayDate, s_yesterdayDate, ['舒阳阳', '陈晓东'])
+elif len(sys.argv) == 2:
+    # 一个参数显示某天工作日志
+    if sys.argv[1] == "yesterday":
+        s_yesterdayDate = str(Time_PO.getDateByPeriodDate(str(Time_PO.getDateByMinus()), -1))
+        df = getRecord(s_yesterdayDate, s_yesterdayDate, ['舒阳阳', '陈晓东'])
+    else:
+        df = getRecord(sys.argv[1], sys.argv[1], ['舒阳阳', '陈晓东'])
+    # 二个参数显示区间日期的工作日志
+else:
+    df = getRecord(sys.argv[1], sys.argv[2], ['舒阳阳', '陈晓东'])
+    # df = getRecord("2025-2-6", "2025-2-7", ['舒阳阳', '陈晓东'])
 
 title = "工作日志"
-filePrefix = "abc"
+filePrefix = os.path.basename(__file__).split('.')[0]
 pd.set_option('colheader_justify', 'center')  # 对其方式居中
 html = '''<html><head><title>''' + str(title) + '''</title></head>
-  <body><b><caption>''' + str(title) + '''_''' + str(
-    Time_PO.getDate()) + '''</caption></b><br><br>{table}</body></html>'''
+  <body><b><caption>''' + str(title) + '''</caption></b><br>{table}</body></html>'''
 style = '''<style>.mystyle {font-size: 11pt; font-family: Arial;border-collapse: collapse;border: 1px solid silver;}.mystyle td, 
 th {padding: 5px;}.mystyle tr:nth-child(even) {background: #E0E0E0;}.mystyle tr:hover {background: silver;cursor:pointer;}</style>'''
-rptNameDate = "report/" + str(filePrefix) + str(Time_PO.getDate()) + ".html"
+# rptNameDate = "report/" + str(filePrefix) + str(Time_PO.getDate()) + ".html"
+rptNameDate = "report/" + str(filePrefix) + ".html"
 with open(rptNameDate, 'w') as f:
     f.write(style + html.format(table=df.to_html(classes="mystyle", col_space=100, index=False)))
+
+# 浏览器中打开
+webbrowser.open('file:///Users/linghuchong/Downloads/51/Python/project/instance/zyjk/zentao/' + rptNameDate)

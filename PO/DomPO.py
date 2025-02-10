@@ -856,16 +856,25 @@ class DomPO(object):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
         sleep(t)
 
-    def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, varXpath2, t=2):
+    def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, t=2):
         # 定位元素之键盘keys.End滚动到底部
         # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         for i in range(varCount):
             ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
             sleep(1)
-            # if self.isEleExistByX(varXpath2):
-            #     break
         sleep(t)
+
+    # def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, varXpath2, t=2):
+    #     # 定位元素之键盘keys.End滚动到底部
+    #     # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
+    #     ele2 = ele.find_element(*(By.XPATH, varXpath))
+    #     for i in range(varCount):
+    #         ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
+    #         sleep(1)
+    #         # if self.isEleExistByX(varXpath2):
+    #         #     break
+    #     sleep(t)
 
     def eleScrollKeysEndByX(self, ele, varXpath, t=2):
         # 定位元素之键盘keysEnd滚动到底部(用于移动端)
@@ -926,8 +935,7 @@ class DomPO(object):
         # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
         l_isChecked = []
         for i in range(len(l_class)):
-            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
-                i] == 'el-radio is-disabled is-checked el-radio--default':
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[i] == 'el-radio is-disabled is-checked el-radio--default':
                 l_isChecked.append(1)
             else:
                 l_isChecked.append(0)
@@ -946,7 +954,7 @@ class DomPO(object):
         l_ = l_[0].split('\n')
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -974,7 +982,7 @@ class DomPO(object):
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -989,7 +997,7 @@ class DomPO(object):
             else:
                 l_isChecked.append(0)
         d_default = dict(zip(l_value, l_isChecked))
-        print(d_default)  # {'是': 0, '否': 1}
+        # print(d_default)  # {'是': 0, '否': 1}
 
         # 检查是否已经选中，如果未选择则勾选，否则不操作。
         if d_default[v] == 0:
@@ -1050,7 +1058,7 @@ class DomPO(object):
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
@@ -1571,6 +1579,12 @@ class DomPO(object):
         # 去掉只读属性
         ele = self.find_element(*(By.XPATH, varXpath))
         self.driver.execute_script('arguments[0].removeAttribute("readonly")', ele)
+        sleep(t)
+
+    def eleClsReadonlyByX(self, ele, varXpath, t=1):
+        # 去掉只读属性
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        self.driver.execute_script('arguments[0].removeAttribute("readonly")', ele2)
         sleep(t)
 
     def clsReadonlyById(self, varId, t=1):
