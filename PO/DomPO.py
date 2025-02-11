@@ -506,6 +506,7 @@ class DomPO(object):
 
     def getSuperEleByX(self, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
+        # ele = Web_PO.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".") # 定位到第三个元素
         # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
         # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
         # 如：ele = self.getSuperEleByX("//div[text()='过会']", '../../..') # 获取div标签下文本上上上层的元素
@@ -1497,7 +1498,7 @@ class DomPO(object):
 
 
     def scrollUpDownByX(self, varXpath, varStep, t=2):
-        # 上下滚动
+        # 上下滚动（移动，按住不放上下滚动）
         # step 负数向上滚动，正数向下滚动
         # ActionChains(self.driver).move_to_element(elements).click_and_hold().move_by_offset(0, varStep).release().perform()
         sleep(t)
@@ -1517,7 +1518,7 @@ class DomPO(object):
         sleep(t)
 
     def scrollLeftRightByX(self, varXpath, varStep, t=2):
-        # 左右滚动
+        # 左右滚动（移动，按住不放左右滚动）
         sleep(t)
         ele = self.find_element(*(By.XPATH, varXpath))
         actions = ActionChains(self.driver)
@@ -1527,6 +1528,19 @@ class DomPO(object):
         actions.release()
         actions.perform()
         sleep(t)
+
+    def scrollLeftRightByXByWeb(self, varXpath, varStep, t=2):
+        # 左右滚动（移动，按住不放左右滚动）
+        sleep(t)
+        ele = self.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        actions.move_to_element(ele)
+        actions.click_and_hold()
+        actions.move_by_offset(varStep, 0)
+        actions.release()
+        actions.perform()
+        sleep(t)
+
 
     # todo js
     

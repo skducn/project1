@@ -44,7 +44,8 @@ Gw_PO.phs_hypertension_gxyjob_query({"身份证号": "110101199001012256"})
 
 
 # todo 3 详情(编辑)
-# Gw_PO.phs_hypertension_gxyjob_operation([{'随访日期': '2024-07-24'}, '详情'])
+# Gw_PO.phs_hypertension_gxyjob_operation([{'随访日期': '2024-10-15'}, '详情'])
+Gw_PO.phs_hypertension_gxyjob_operation([{'随访日期': '2024-07-24'}, '详情'])
 # Gw_PO.phs_hypertension_gxyjob_operation([{' 管理级别 ': "二级", ' 是否终止管理 ': '是'}, '详情编辑'])
 # Gw_PO.phs_hypertension_gxyjob_operation([{' 是否终止管理 ': '否', ' 终止管理日期 ': [2025, 2, 5], ' 终止管理原因 ': "nono",
 #                                                ' 建卡时间 ': [2025, 2, 2], ' 建卡医生 ':"卫生院", ' 建卡医疗机构 ': "待定机构",
@@ -57,4 +58,4 @@ Gw_PO.phs_hypertension_gxyjob_query({"身份证号": "110101199001012256"})
 
 
 # todo 4 删除
-Gw_PO.phs_hypertension_gxyjob_operation([{'随访日期': '2024-07-24'}, '删除'])
+# Gw_PO.phs_hypertension_gxyjob_operation([{'随访日期': '2024-07-24'}, '删除'])

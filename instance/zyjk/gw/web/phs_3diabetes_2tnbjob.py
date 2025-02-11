@@ -34,11 +34,11 @@ Gw_PO.phs_diabetes_tnbjob_query({"身份证号": "370685202402190640"})
 
 
 # todo 2 导出(17.xls)
-Gw_PO.phs_diabetes_tnbjob_export("/Users/linghuchong/Desktop/1756")
+# Gw_PO.phs_diabetes_tnbjob_export("/Users/linghuchong/Desktop/1756")
 
 
 
-# todo 3 详情（有问题）
+# todo 3 详情
 Gw_PO.phs_diabetes_tnbjob_operation([{'随访医生': 'test'}, '详情'])
 # Gw_PO.phs_diabetes_tnbjob_operation([{' 管理级别 ': "二级", ' 是否终止管理 ': '是'}, '详情编辑'])
 # Gw_PO.phs_diabetes_tnbjob_operation([{' 是否终止管理 ': '否', ' 终止管理日期 ': [2025, 2, 5], ' 终止管理原因 ': "nono",

@@ -938,6 +938,24 @@ class GwPO():
         return d_2
 
 
+    def __eleRadioLeftLabel(self, ele, varXpaths, v):
+        # eleRadioLabels
+        # 选择单选框
+        # 内部调用，用于随访
+        l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+    def __eleRadioRightLabel(self, ele, varXpaths, v):
+        # eleRadioLabels
+        # 选择单选框
+        # 内部调用，用于随访
+        l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
 
 
     # todo 2.1.2 基本公卫 - 健康档案管理 - 个人健康档案
@@ -2028,13 +2046,78 @@ class GwPO():
 
 
 
-    # todo 2.2.1 基本公卫 - 高血压管理 - 高血压专项
 
+    # todo 2.2.1 基本公卫 - 高血压管理 - 高血压专项
+    def __phs_hypertension_operation(self, varOperation, l_):
+
+        # 遍历高血压专项、高血压随访的列表页
+        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+        ele1 = Web_PO.getSuperEleByX("//thead", ".")
+
+        d_1 = {}
+        # 获取字典列表
+        Web_PO.zoom(50)
+        l_field = Web_PO.eleGetTextByXs(ele1, ".//div")
+        # print(l_field)  # ['个人档案编号', '姓名', '提醒', '身份证号', '年龄', '性别', '电话', '居住地址', '建卡日期', '建卡医生', '上次随访日期', '下次随访日期', '操作']
+        Web_PO.zoom(100)
+
+        # 获取值列表
+        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
+        # print(l_value)
+        s_class_warn = Web_PO.eleGetAttrValueByX(ele2, ".//td[3]/div/div/div", "style")
+        # print(s_class_warn)  # background: rgb(223, 57, 38); width: 16px; height: 16px;
+        s_class_warn = s_class_warn.split("rgb")[1].split(";")[0]
+        l_value[2] = s_class_warn
+        print(l_value)
+
+        if varOperation in l_value:
+            i_row = len(List_PO.split(l_value, varOperation, 0))
+            l_value = List_PO.dels(l_value, varOperation)
+            l_group = List_PO.group(l_value, i_row)
+            if "提醒" in l_field:
+                for i in l_group:
+                    i.pop(3)
+                    i.pop(3)
+        elif "详情" in l_value:
+            i_row = len(List_PO.split(l_value, "详情", 0))
+            l_value = List_PO.dels(l_value, "详情")
+            l_group = List_PO.group(l_value, i_row)
+            if "提醒" in l_field:
+                for i in l_group:
+                    i.pop(3)
+                    i.pop(3)
+        print(l_group)  # [['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2024-07-09', '村卫生室', '2024-10-24', '2024-11-30', '详情\n评估\n随访'], ['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2025-01-14', '卫健委', '', '', '详情\n评估\n随访']]
+
+        # 遍历获取每行数据中全部符合要求的字段索引max_key
+        s = 0
+        for i in range(len(l_group)):
+            for k, v in l_[0].items():
+                if k in l_field:
+                    s_fieldIndex = l_field.index(k)
+                    if l_group[i][s_fieldIndex] == v:
+                        s = s + 1
+                        d_1[i + 1] = s
+            s = 0
+        # print(d_1)
+        max_key = max(d_1, key=d_1.get)
+        return max_key
+
+    def __phs_hypertension_gxyregister_operation_common(self, ele, k, varValue, v):
+        # 默认已勾选以上都无，先取消勾选
+        # varclass_none = Web_PO.eleGetAttrValueByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[12]/label", "class")  # 以上都无
+        # if varclass_none == 'el-checkbox el-checkbox--default is-checked':
+        # 获取所有的选项, 定位到以上都无，不勾选
+        l_ = Web_PO.eleGetTextByXs(self._eleDiv(ele, k), './/div[2]/div/div/div[1]/div')
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        # print(d_4)  # {'男性>55 岁或女性>65 岁': 1, '吸烟': 2, '糖耐量受损': 3, '血脂异常TC≥5.7mmol/L（220mg/dL） 或LDL-C>3.6mmol/L （140mg/dL） 或 HDL-C<1.0mmol/L （40mg/dL）': 4, '早 发 心血 管病家族 史 （一级亲属发病年龄男 性小于 55 岁，女性小于 65 岁）': 5, '腹型肥胖': 6, '血同型半胱氨酸升高': 7, '糖尿病伴微白蛋白尿': 8, '以静息为主的生活方式': 9, '血浆纤维蛋白原增高': 10, '高敏C反应蛋白≥3mg/L或C反应蛋白≥10mg/L': 11, '以上都无': 12}
+        Web_PO.eleClkByX(self._eleDiv(ele, k),
+                         ".//div[2]/div/div/div/div[" + str(d_4[varValue]) + "]/label")  # 不勾选'以上都无'
+        Web_PO.eleCheckboxDivs(self._eleDiv(ele, k), ".//div[2]/div/div/div[1]/div", v)
     def phs_hypertension_gxyregister_query(self, d_):
 
         # 高血压专项 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
@@ -2102,77 +2185,14 @@ class GwPO():
         else:
             Web_PO.exportFile(varFile)
 
-    def __phs_hypertension_gxyregister_operation(self, ele2, l_):
-        # ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-        ele1 = Web_PO.getSuperEleByX("//thead", ".")
-
-        d_1 = {}
-        # 获取字典列表
-        l_field = Web_PO.eleGetTextByXs(ele1, ".//div")
-        print(l_field)  # ['个人档案编号', '姓名', '提醒', '身份证号', '年龄', '性别', '电话', '居住地址', '建卡日期', '建卡医生', '上次随访日期', '下次随访日期', '操作']
-
-        # 获取值列表
-        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
-        l_group = List_PO.group(l_value, 15)
-        for i in l_group:
-            i.pop(2)
-            i.pop(3)
-        # print(l_group)  # [['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2024-07-09', '村卫生室', '2024-10-24', '2024-11-30', '详情\n评估\n随访'], ['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2025-01-14', '卫健委', '', '', '详情\n评估\n随访']]
-
-        # 遍历获取每行数据中全部符合要求的字段索引max_key
-        s = 0
-        for i in range(len(l_group)):
-            for k, v in l_[0].items():
-                if k in l_field:
-                    s_fieldIndex = l_field.index(k)
-                    if l_group[i][s_fieldIndex] == v:
-                        s = s + 1
-                        d_1[i + 1] = s
-            s = 0
-        # print(d_1)
-        max_key = max(d_1, key=d_1.get)
-        return max_key
-    def __phs_hypertension_gxyregister_operation_common(self, ele, k, varValue, v):
-        ...
-        # 默认已勾选以上都无，先取消勾选
-        # varclass_none = Web_PO.eleGetAttrValueByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[12]/label", "class")  # 以上都无
-        # if varclass_none == 'el-checkbox el-checkbox--default is-checked':
-        # 获取所有的选项, 定位到以上都无，不勾选
-        l_ = Web_PO.eleGetTextByXs(self._eleDiv(ele, k), './/div[2]/div/div/div[1]/div')
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'男性>55 岁或女性>65 岁': 1, '吸烟': 2, '糖耐量受损': 3, '血脂异常TC≥5.7mmol/L（220mg/dL） 或LDL-C>3.6mmol/L （140mg/dL） 或 HDL-C<1.0mmol/L （40mg/dL）': 4, '早 发 心血 管病家族 史 （一级亲属发病年龄男 性小于 55 岁，女性小于 65 岁）': 5, '腹型肥胖': 6, '血同型半胱氨酸升高': 7, '糖尿病伴微白蛋白尿': 8, '以静息为主的生活方式': 9, '血浆纤维蛋白原增高': 10, '高敏C反应蛋白≥3mg/L或C反应蛋白≥10mg/L': 11, '以上都无': 12}
-        Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[" + str(d_4[varValue]) + "]/label")  # 不勾选'以上都无'
-        Web_PO.eleCheckboxDivs(self._eleDiv(ele, k), ".//div[2]/div/div/div[1]/div", v)
-    def __eleRadioLeftLabel(self, ele, varXpaths, v):
-        # eleRadioLabels
-        # 选择单选框
-        # 内部调用，用于随访
-        l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-    def __eleRadioRightLabel(self, ele, varXpaths, v):
-        # eleRadioLabels
-        # 选择单选框
-        # 内部调用，用于随访
-        l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
-
     def phs_hypertension_gxyregister_operation(self, l_):
 
         # 高血压专项 - 操作
 
         try:
-            # 操作
-            if l_[1] == '详情':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[13]/div/button[1]", 2)
+            if l_[1] in ['详情', '评估', '随访']:
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + l_[1] + "'])[position()=" + str(self.__phs_hypertension_operation('详情\n评估\n随访', l_)) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
             elif l_[1] == '详情编辑':
                 ele = Web_PO.getSuperEleByX("//div[text()='高血压患者管理卡']", "..")
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -2204,10 +2224,6 @@ class GwPO():
                         self._dropdownDateSingle(self._eleDiv(ele, k), ".//div[1]/input", v)
                 ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                 Web_PO.eleClkByX(ele2, ".", 2)
-            elif l_[1] == '评估':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[13]/div/button[2]", 2)
             elif l_[1] == '评估新增':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[1]/button", 2)  # 新增
                 ele = Web_PO.getSuperEleByX("//div[text()='高血压患者评估']", "..")
@@ -2233,10 +2249,6 @@ class GwPO():
                 ele3 = Web_PO.getSuperEleByX("//div[text()='高血压患者评估']", "../../..")
                 # Web_PO.eleClkByX(ele3, ".//button[1]", 2)  # 保存
                 Web_PO.eleClkByX(ele3, ".//button[2]", 2)  # 取消
-            elif l_[1] == '随访':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[13]/div/button[3]", 2)
             elif l_[1] == '随访新增':
                 ele = Web_PO.getSuperEleByX("//form", ".")
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -2345,7 +2357,6 @@ class GwPO():
 
         # 高血压随访 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
@@ -2418,11 +2429,9 @@ class GwPO():
         # 高血压随访 - 操作
 
         try:
-            # 操作
             if l_[1] == '详情':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[15]/div/button[1]", 2)
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + l_[1] + "'])[position()=" + str(self.__phs_hypertension_operation('详情\n编辑\n删除', l_)) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
             elif l_[1] == '详情编辑':
                 ele = Web_PO.getSuperEleByX("//div[text()='高血压患者管理卡']", "..")
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -2455,9 +2464,8 @@ class GwPO():
                 ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                 Web_PO.eleClkByX(ele2, ".", 2)
             elif l_[1] == '删除':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[15]/div/button[3]", 2)
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + l_[1] + "'])[position()=" + str(self.__phs_hypertension_operation('详情\n编辑\n删除', l_)) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
                 Web_PO.clkByX("/html/body/div[4]/div/div/div[3]/button[1]")  # 二次确认
             else:
                 print("error,无法操作!")
@@ -2468,12 +2476,57 @@ class GwPO():
 
 
 
+
     # todo 2.3.1 基本公卫 - 糖尿病管理 - 糖尿病专项
+    def __phs_diabetes_operation(self, varOperation, l_):
+
+        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+        ele1 = Web_PO.getSuperEleByX("//thead", ".")
+
+        d_1 = {}
+        # 获取字典列表
+        # 缩小页面，获取所有的字段
+        Web_PO.zoom(50)
+        # 获取字段列表
+        l_field = Web_PO.eleGetTextByXs(ele1, ".//div")
+        print(l_field)  # ['姓名', '身份证号', '出生日期', '电话', '居住地址', '性别', '随访医生', '空腹血糖', '随访方式', '随访日期', '随访评价结果', '下次随访日期', '数据源', '操作']
+        Web_PO.zoom(100)
+
+        # 获取值列表
+        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
+        # print(l_value)
+        s_class_warn = Web_PO.eleGetAttrValueByX(ele2, ".//td[3]/div/span", "class")
+        # print(s_class_warn) # warn-tag warn-red
+        l_value[2] = s_class_warn
+        print(l_value)
+        if varOperation in l_value:
+            i_row = len(List_PO.split(l_value, varOperation, 0))
+            l_value = List_PO.dels(l_value, varOperation)
+            l_group = List_PO.group(l_value, i_row)
+        elif "详情" in l_value:
+            i_row = len(List_PO.split(l_value, "详情", 0))
+            l_value = List_PO.dels(l_value, "详情")
+            l_group = List_PO.group(l_value, i_row)
+        print(l_group)  # [['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2024-07-09', '村卫生室', '2024-10-24', '2024-11-30', '详情\n评估\n随访'], ['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2025-01-14', '卫健委', '', '', '详情\n评估\n随访']]
+
+        # 遍历获取每行数据中全部符合要求的字段索引max_key
+        s = 0
+        for i in range(len(l_group)):
+            for k, v in l_[0].items():
+                if k in l_field:
+                    s_fieldIndex = l_field.index(k)
+                    if l_group[i][s_fieldIndex] == v:
+                        s = s + 1
+                        d_1[i + 1] = s
+            s = 0
+        # print(d_1)
+        max_key = max(d_1, key=d_1.get)
+        return max_key
+
     def phs_diabetes_tnbregister_query(self, d_):
 
         # 糖尿病专项 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
@@ -2481,9 +2534,6 @@ class GwPO():
             try:
                 if k in ['姓名', '身份证号', '建卡医生']:
                     Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
-                # elif k in ['收缩压范围', '舒张压范围']:
-                #     Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div[1]/input", v[0])
-                #     Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
                 elif k in ['是否终止管理', '随访提醒分类', '档案状态', '随访评价结果']:
                     self._eleClkDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期范围']:
@@ -2544,49 +2594,15 @@ class GwPO():
         else:
             Web_PO.exportFile(varFile)
 
-    def __phs_diabetes_tnbregister_operation(self, ele2, l_):
-        ele1 = Web_PO.getSuperEleByX("//thead", ".")
-
-        d_1 = {}
-        # 获取字典列表
-        l_field = Web_PO.eleGetTextByXs(ele1, ".//div")
-        # print(l_field)  # ['个人档案编号', '姓名', '提醒', '身份证号', '年龄', '性别', '电话', '居住地址', '建卡日期', '', '', '', '操作']
-
-        # 获取值列表
-        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
-        # print(l_value)  # ['37068500200200016', '黄忠文', '', '370685202402190640', '1', '女', '122111', '泉山街道魁星东社区居民委员会123', '2024-07-15', '刘斌龙卫健委', '2024-10-15', '2025-01-13', '详情\n评估\n随访']
-        l_group = List_PO.group(l_value, 13)
-        # for i in l_group:
-        #     i.pop(-1)
-        #     i.pop(-1)
-        #     i.pop(-1)
-        # print(l_group)  # [['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2024-07-09', '村卫生室', '2024-10-24', '2024-11-30', '详情\n评估\n随访'], ['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2025-01-14', '卫健委', '', '', '详情\n评估\n随访']]
-
-        # 遍历获取每行数据中全部符合要求的字段索引max_key
-        s = 0
-        for i in range(len(l_group)):
-            for k, v in l_[0].items():
-                if k in l_field:
-                    s_fieldIndex = l_field.index(k)
-                    if l_group[i][s_fieldIndex] == v:
-                        s = s + 1
-                        d_1[i + 1] = s
-            s = 0
-        # print(d_1)
-        max_key = max(d_1, key=d_1.get)
-        return max_key
-
     def phs_diabetes_tnbregister_operation(self, l_):
 
         # 糖尿病专项 - 操作
 
         try:
             # 操作
-            if l_[1] == '详情':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_diabetes_tnbregister_operation(ele2, l_)
-                # print("max_key", max_key)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[13]/div/button[1]", 2)
+            if l_[1] in ['详情', '评估', '随访']:
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + l_[1] + "'])[position()=" + str(self.__phs_diabetes_operation('详情\n评估\n随访', l_)) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
             elif l_[1] == '详情编辑':
                 ele = Web_PO.getSuperEleByX("//th[text()=' 糖尿病患者管理卡 ']", "../..")
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -2617,10 +2633,6 @@ class GwPO():
 
                 ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                 Web_PO.eleClkByX(ele2, ".", 2)
-            elif l_[1] == '评估':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_diabetes_tnbregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[13]/div/button[2]", 2)
             elif l_[1] == '评估新增':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[1]/button", 2)  # 新增
                 ele = Web_PO.getSuperEleByX("//th[text()=' 糖尿病患者评估 ']", "../..")
@@ -2635,10 +2647,6 @@ class GwPO():
                         self._dropdownDateSingle(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/input", v)
                 ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                 Web_PO.eleClkByX(ele2, ".", 2)
-            elif l_[1] == '随访':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_diabetes_tnbregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[13]/div/button[3]", 2)
             elif l_[1] == '随访新增':
                 ele = Web_PO.getSuperEleByX("//form", ".")
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -2735,14 +2743,12 @@ class GwPO():
 
 
 
-
     # todo 2.2.2 基本公卫 - 糖尿病管理 - 糖尿病随访
 
     def phs_diabetes_tnbjob_query(self, d_):
 
         # 糖尿病随访 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
@@ -2807,7 +2813,7 @@ class GwPO():
 
     def phs_diabetes_tnbjob_export(self, varFile):
 
-        # 高血压随访 - 导出
+        # 糖尿病随访 - 导出
 
         ele = Web_PO.getSuperEleByX("//form", ".")
         Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 点击导出
@@ -2819,14 +2825,13 @@ class GwPO():
 
     def phs_diabetes_tnbjob_operation(self, l_):
 
-        # 高血压随访 - 操作
+        # 糖尿病随访 - 操作
 
         try:
             # 操作
             if l_[1] == '详情':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[15]/div/button[1]", 2)
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + l_[1] + "'])[position()=" + str(self.__phs_diabetes_operation('详情\n编辑\n删除', l_)) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
             elif l_[1] == '详情编辑':
                 ele = Web_PO.getSuperEleByX("//div[text()='高血压患者管理卡']", "..")
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
@@ -2865,15 +2870,15 @@ class GwPO():
                 ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                 Web_PO.eleClkByX(ele2, ".", 2)
             elif l_[1] == '删除':
-                ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-                max_key = self.__phs_hypertension_gxyregister_operation(ele2, l_)
-                Web_PO.eleClkByX(ele2, ".//tr[" + str(max_key) + "]/td[15]/div/button[3]", 2)
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + l_[1] + "'])[position()=" + str(self.__phs_diabetes_operation('详情\n编辑\n删除', l_)) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
                 Web_PO.clkByX("/html/body/div[4]/div/div/div[3]/button[1]")  # 二次确认
             else:
-                print("error,无法操作!")
+                print("error, 无法操作!")
             self.logger.info("点击" + str(l_))
         except:
             self.logger.error(str(l_) + "失败！")
+
 
 
 

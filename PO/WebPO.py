@@ -398,10 +398,11 @@ class WebPO(DomPO):
         # 2.3 设置浏览器全屏
         self.driver.maximize_window()
 
-    def zoom(self, percent):
+    def zoom(self, percent, t=2):
         # 2.4 缩放页面内容比率
         # zoom(50) 内容缩小50%
         self.driver.execute_script("document.body.style.zoom='" + str(percent) + "%'")
+        sleep(t)
 
     def getBrowserScreen(self, varImageFile="browser.png"):
         # 2.5 截取浏览器内屏幕
