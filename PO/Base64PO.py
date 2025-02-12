@@ -47,13 +47,18 @@ class Base64PO:
             fileExt = result.groupdict().get("ext")  # gif
             base64Data = result.groupdict().get("data")  # /9j/4AAQSkZJRgABAgAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDB ....
         else:
-            raise Exception("Do not parse!")
+            # raise Exception("Do not parse!")
+            raise ValueError("无法解析 dataURI 格式")
 
         # 2、解码base64
-        img = base64.urlsafe_b64decode(base64Data)
+        # img = base64.urlsafe_b64decode(base64Data)
+        img = base64.b64decode(base64Data)
 
         # 3、生成图片
-        pathFile = "{}.{}".format(os.getcwd() + "/" + file, fileExt)
+        # pathFile = "{}.{}".format(os.getcwd() + "/" + file, fileExt)
+        # pathFile = os.path.join(os.getcwd(), f"{file}.{fileExt}")
+        default_filename = "output_image"
+        pathFile = os.path.join(os.getcwd(), f"{file or default_filename}.{fileExt}")
         with open(pathFile, "wb") as f:
             f.write(img)
 

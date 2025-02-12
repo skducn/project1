@@ -41,7 +41,7 @@ def getRecord(varStartDate, varEndDate, l_varWho):
               "LEFT JOIN zt_effort ON zt_effort.objectID = zt_task.id WHERE zt_task.finishedDate BETWEEN '" + varStartDate + "' AND '" + varEndDate + "' AND zt_effort.date BETWEEN  " \
               "'" + varStartDate + "' AND '" + varEndDate + "' AND zt_effort.objectType = 'task' AND zt_effort.account != 'admin' AND zt_effort.consumed > 0 AND realname IN ('" + l_varWho[j] + "') ORDER BY " \
               "realname,finishedDate"
-        # print(sql)
+        print(sql)
         tmpTuple = Mysql_PO.execQuery(sql)
         # print(tmpTuple)
         list1 = []
