@@ -74,7 +74,8 @@ class Gw_i_PO():
 
         # 在线sm2解密
 
-        Web_PO = WebPO("noChrome")
+        # Web_PO = WebPO("noChrome")
+        Web_PO = WebPO("chrome")
         self._sm2(Web_PO)
         Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", varEncrypt)
         Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[2]/a[1]", 1)
@@ -87,9 +88,9 @@ class Gw_i_PO():
 
         # 登录
         # 注意需要关闭验证码
-
+        d_ = {}
         command = "curl -X POST '" + self.ipAddr + "/auth/login' -d '" + encrypt_data + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Authorization:' -H 'Content-Type:application/json'"
-        # print(command)
+        print(command)
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         str_r = bytes.decode(out)
@@ -102,17 +103,20 @@ class Gw_i_PO():
             # {'code': 500, 'msg': '非法参数！'}
             self.token = d_r['code']
 
-        Color_PO.outColor([{"35": "token =>"}, {"35": self.token}])
-
+        d_['user'] = Configparser_PO.ACCOUNT("user")
+        d_['token'] = self.token
+        Color_PO.outColor([{"35": d_}])
         # print("token =>", self.token)
 
     def curl(self, varMethod, varUrl):
 
-        # 跑接口
-        # r = gw_i_PO.curl('GET', "/server/tEhrInfo/getEhrHomeInfo?0=47c8d0444e60f4ee4348b3611c62e6aa071e81981f40195294d3424177bb400732c3ce5e782259d9302a642fbc9723a20aec65bf6d7a138933a52da1dd0aa67bcf7c48b51f712248988be78445dbddc1e9c2449e4d93b64b1b4a3f26ed748ac44ccf5c871807de69e8268f986c6e")
-
-        command = "curl -X " + varMethod + ' "' + self.ipAddr + varUrl + '" ' + '-H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Content-Type:application/json" -H "Authorization:' + self.token + '"'
+        # 执行接口
+        if varMethod == "GET":
+            command = "curl -X " + varMethod + " '" + self.ipAddr + varUrl + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+        elif varMethod == 'POST':
+            command = "curl -X " + varMethod + " '" + self.ipAddr + varUrl + " -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization':'" + self.token + "'"
         # print(command)
+
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         str_r = bytes.decode(out)

@@ -17,6 +17,10 @@ class ConfigparserPO:
         value = self.cf.get("HTTP", name)
         return value
 
+    def ACCOUNT(self, name):
+        value = self.cf.get("ACCOUNT", name)
+        return value
+
     def DB(self, name):
         value = self.cf.get("DB", name)
         return value
