@@ -407,6 +407,7 @@ class DomPO(object):
         # 如：getTextByX(u"//input[@class='123']")
         return self.find_element(*(By.XPATH, varXpath)).text
 
+
     def getTextByXs(self, varXpaths):
         # 获取文本列表
         # 如：getTextByXs(u"//input[@class='123']")
@@ -506,11 +507,11 @@ class DomPO(object):
 
     def getSuperEleByX(self, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
-        # ele = Web_PO.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".") # 定位到第三个元素
-        # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
-        # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
-        # 如：ele = self.getSuperEleByX("//div[text()='过会']", '../../..') # 获取div标签下文本上上上层的元素
-        # ele = self.find_element(*(By.XPATH, "//" + varLabel + "[text()='" + str(varText) + "']"))
+        # ele = Web_PO.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 通过位置定位， 定位到第三个元素
+        # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 通过文本定位， 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
+        # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 通过文本定位， 获取span标签下文本上上层的元素
+        # ele = Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[2]/div[1]/div/div','.')  # 通过决绝路径定位， 获取当前路径
+        # ele = Web_PO.getSuperEleByX("//div[@class='formList']", '.')  # 通过相对路径定位
         ele = self.find_element(*(By.XPATH, varXpath))
         return ele.find_element(*(By.XPATH, varXpath2))
 
@@ -519,6 +520,9 @@ class DomPO(object):
         # last_element = driver.find_elements_by_xpath("//div[text()='特定文本']")[index]
         # print(last_element.text)
 
+    def getEleByClassName(self, className):
+        ele = self.find_element(*(By.CLASS_NAME, className))
+        return ele
 
 
     # todo set
@@ -600,8 +604,8 @@ class DomPO(object):
     # todo shadow-root元素
 
     def getShadowByXByC(self, varXpath, varCss, t=1):
+        # 获取shadow-root元素， shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
         # 如：获取指定input下shadow-root元素div的文本 getShadowByXByC("//input", "div")
-        # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
         ele = self.find_element(*(By.XPATH, varXpath))
         shadow_root = ele.shadow_root
         ele2 = shadow_root.find_element(By.CSS_SELECTOR, varCss)
@@ -609,8 +613,8 @@ class DomPO(object):
         return (ele2.text)
 
     def getShadowByXsByC(self, varXpaths, varCss, t=1):
+        # 获取shadow-root元素， shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
         # 如：获取所有input下shadow-root元素div的文本 getShadowByXsByC("//input", "div")
-        # shadow-root元素通过CSS_SELECTOR方法获得，不支持Xpath
         eles = self.find_elements(*(By.XPATH, varXpaths))
         l_shadow = []
         for i in eles:
