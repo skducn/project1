@@ -36,7 +36,7 @@ clkByLinktext(varText)
 clkByLinkstext(varText)
 
 todo get
-获取标签数量 getQtyByXs(varXpaths)
+获取标签数量 getCountByXs(varXpaths)
 获取文本 getTextByX(varXpath)
 获取文本列表 getListTextByX(varXpaths)
 获取文本的索引号 getIndexByXs(varXpaths, varText)
@@ -396,10 +396,48 @@ class DomPO(object):
 
     # todo get
 
-    def getQtyByXs(self, varXpaths):
+    def getCountByTag(self, varLabel):
+        # tag方式获取所有标签的数量
+        c = self.find_elements(*(By.TAG_NAME, varLabel))
+        return len(c)
+
+    def eleGetCountByTag(self, ele, varLabel):
+        # tag方式获取ele标签的数量
+        # 获取tbody标签下所有的tr变迁数量
+        # ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+        # Web_PO.eleGetCountByLabel(ele2, "tr")
+        c = ele.find_elements(*(By.TAG_NAME, varLabel))
+        return len(c)
+
+
+
+    def getCountByXByXs(self, varXpath, varXpaths="./*"):
+        # 获取xpath下标签的数量
+        # 获取'.//tr/input'下所有div标签的数量 getCountByXByXs(ele, './/tr/input', "./div")
+        # 获取'.//tr/input'下所有标签的数量 getCountByXByXs(ele, './/tr/input', "./*")
+        parent_element = self.find_element(*(By.XPATH, varXpath))
+        return len(parent_element.find_elements(*(By.XPATH, varXpaths)))
+
+    def eleGetCountByXByXs(self, ele, varXpath, varXpaths="./*"):
+        # 获取ele当前层下标签的数量
+        # 获取'.//tr/input'下所有div标签的数量 eleGetCountByXByXs(ele, './/tr/input', "./div")
+        # 获取'.//tr/input'下所有标签的数量 eleGetCountByXByXs(ele, './/tr/input', "./*")
+        parent_element = ele.find_element(*(By.XPATH, varXpath))
+        return len(parent_element.find_elements(*(By.XPATH, varXpaths)))
+
+    def getCountByXs(self, varXpaths):
         # 获取标签数量
-        # 如：获取tr下有多少个div标签 getQtyByXs('//*[@id="app"]/tr/div')
-        return len(self.find_elements(*(By.XPATH, varXpaths)))
+        # 获取tr下有多少个div标签 getCountByXs('//*[@id="app"]/tr/div')
+        c = self.find_elements(*(By.XPATH, varXpaths))
+        return len(c)
+
+    def eleGetCountByXs(self, ele, varXpaths):
+        # xpath方式获取ele标签数量
+        # 获取'.//tr/div'下所有标签数量 eleGetCountByXs(ele, './/tr/div')
+        return len(ele.find_elements(*(By.XPATH, varXpaths)))
+
+
+
 
 
     def getTextByX(self, varXpath):
@@ -702,19 +740,7 @@ class DomPO(object):
 
 
 
-    def eleGetQtyByXByXs(self, ele, varXpath, varXpaths= "./*"):
-        # 定位元素之获取当前层下标签数量
-        # 如：获取input下一层所有div标签数量 eleGetQtyByXByXs(ele, './/tr/input', "./div")
-        # 如：获取input下一层所有标签数量 eleGetQtyByXByXs(ele, './/tr/input', "./*")
-        parent_element = ele.find_element(*(By.XPATH, varXpath))
-        return len(parent_element.find_elements(*(By.XPATH, varXpaths)))
-
-
-    def eleGetQtyByXs(self, ele, varXpaths):
-        # 定位元素之遍历获取所有层标签数量
-        # 如：获取div标签数量 eleGetQtyByXs(ele, './/tr/div')
-        return len(ele.find_elements(*(By.XPATH, varXpaths)))
-
+   
 
     def eleGetTextByX(self, ele, varXpath):
         # 定位元素之获取文本
@@ -1814,31 +1840,26 @@ class DomPO(object):
     # todo alert(system)
 
     def alertAccept(self):
-
         # 点击弹框中的确认
-
         alert = self.driver.switch_to.alert
         alert.accept()
 
     def alertDismiss(self):
-
         # 点击弹框中的取消
-
         alert = self.driver.switch_to.alert
         alert.dismiss()
 
     def alertText(self):
-
         # 获取弹框中的文案
-
         alert = self.driver.switch_to.alert
         return alert.text
 
 
-    def getCount(self, varLabel):
-        c = self.find_elements(*(By.TAG_NAME, varLabel))
-        return len(c)
 
+
+
+
+    
 
     def zoom(self, percent):
         # 缩放页面

@@ -10,8 +10,45 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-my_dict = {"name": "Alice"}
-print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+# my_dict = {"name": "Alice"}
+# print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+
+# import qwen
+#
+# # 初始化 Qwen 实例
+# qwen_instance = qwen.Qwen()
+#
+# # 调用方法
+# result = qwen_instance.some_method()
+# print(result)
+
+visitDate = '2025-02-17'
+l_1 = visitDate.split("-")
+l_ = []
+for i in l_1:
+    l_.append(int(i))
+print(l_)
+
+# import os
+# from openai import OpenAI
+#
+# client = OpenAI(
+#     # 若没有配置环境变量，请用百炼API Key将下行替换为：api_key="sk-xxx",
+#     api_key="sk-f3e3d8f64cab416fb028d582533c1e01",
+#     # api_key=os.getenv("DASHSCOPE_API_KEY"),
+#     base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+# )
+# completion = client.chat.completions.create(
+#     model="qwen-plus",  # 此处以qwen-plus为例，可按需更换模型名称。模型列表：https://help.aliyun.com/zh/model-studio/getting-started/models
+#     messages=[
+#         {'role': 'system', 'content': 'You are a helpful assistant.'},
+#         {'role': 'user', 'content': '你是谁？'}],
+# )
+#
+# print(completion.model_dump_json())
+
+
+
 
 # # x = 'multiply'
 # # code = "def " + x + "(x, y): return x * y"
