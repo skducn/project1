@@ -34,11 +34,12 @@ Gw_PO.phs_copd_register_query({"身份证号": "341226199708114773"})
 
 
 # todo 2 专项登记
-Gw_PO.phs_copd_register_operation([{'姓名': 'szz'}, '专项登记'])
-Gw_PO.phs_copd_register_operation([{' 居住地址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'],
+Gw_PO.phs_copd_register_operation({'operate': '专项登记', 'option': {"身份证号": "341226199708114773"}})
+Gw_PO.phs_copd_register_operation({'operate': '专项登记', 'index': {'operate2': '编辑'},
+                                                'value':{' 居住地址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'],
                                                ' 确诊日期 ': [2024, 7, 1],
                                                ' 是否终止管理 ': '是', '终止管理日期': [2025, 2, 5], '终止管理原因': "nono",
-                                               '建卡时间': [2025, 2, 2], '建卡医生': "卫生院"}, '编辑'])
+                                               '建卡时间': [2025, 2, 2], '建卡医生': "卫生院"}})
 
 
 

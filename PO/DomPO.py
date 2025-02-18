@@ -584,6 +584,10 @@ class DomPO(object):
         self.find_element(*(By.NAME, varName)).send_keys(varText)
 
 
+    def clkTabByX(self, varXpath, t=1):
+        # 按tab
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
 
     def setClearByX(self, varXpath, t=1):
         # 输入框清空
@@ -1150,10 +1154,13 @@ class DomPO(object):
 
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, _textByX)
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+
+        self.eleClrSelectedByXs(ele, ".//td[4]/div/div/div/label[1]")
+        # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div[3]/form/table/tbody/tr[5]/td[4]/div/div/div/label[1]/span[1]/input
 
         # 勾选选项(如果已勾选则不操作)
         for i in range(len(v)):
