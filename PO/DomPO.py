@@ -770,6 +770,11 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).clear()
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
 
+    def eleSetTextByX2(self, ele, varXpath, varValue):
+        # 定位元素之输入
+        # ele.find_element(*(By.XPATH, varXpath)).clear()
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varValue)
+
     def eleSetTextEnterByX(self, ele, varXpath, varValue, t=1):
         # 定位元素之输入并回车
         ele.find_element(*(By.XPATH, varXpath)).clear()
@@ -1171,7 +1176,64 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
+    def eleCheckboxRightLabel2(self, ele, _textByX, v):
+        # 取消全部勾选项，再勾选复选框
+        # 独立值（无\n拼接值），遍历label
+        # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}])
 
+        # 获取所有选项
+        l_ = self.eleGetTextByXs(ele, _textByX)  # ".//td[4]/div/div/div/label"
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+
+        # 取消全部勾选项
+        for i in range(len(l_)):
+            varDiv1class = self.eleGetAttrValueByX(ele, _textByX + "[" + str(i+1) + "]", "class")
+            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+                self.eleClkByX(ele, _textByX + "[" + str(i+1) + "]")
+
+        # 勾选选项, 遇到字典的话，勾选key
+        for i in range(len(v)):
+            for k3, v3 in d_4.items():
+                if isinstance(v[i], str):
+                    if v[i] == k3:
+                        self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
+                        # self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+                if isinstance(v[i], dict):
+                    if list(v[i].keys())[0] == k3:
+                        self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
+                        # self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+
+    def eleCheckboxRightLabel3(self, ele, _textByX, _inputByX, v):
+        # 儿童健康管理 - 健康检查记录 - 1-8月龄儿童健康检查记录表 - 两次随访间患者情况
+        # 取消全部勾选项，再勾选复选框和输入次数
+        # 实例：__eleCheckboxRightLabel3(ele, ".//td[4]/div/div/div/label", {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"})
+
+        l_v2 = list(v.keys())  # 将字典的键转换为列表
+
+        # 获取所有选项
+        l_ = self.eleGetTextByXs(ele, _textByX)  # ".//td[4]/div/div/div/label"
+        l_ = [item.strip() for item in l_]
+        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+
+        # 取消全部勾选项
+        for i in range(len(l_)):
+            varDiv1class = self.eleGetAttrValueByX(ele, _textByX + "[" + str(i+1) + "]", "class")
+            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+                self.eleClkByX(ele, _textByX + "[" + str(i+1) + "]")
+
+        # 勾选选项, 遇到字典的话，勾选key
+        for i in range(len(l_v2)):
+            for k3, v3 in d_4.items():
+                if l_v2[i] == k3 and k3 != "无":
+                    self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
+                    self.eleSetTextByX(ele, _inputByX + "[" + str(v3-1) + "]/input", v[k3])
+           
 
     def isSelectedByX(self, varXpath):
         # 是否勾选

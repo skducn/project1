@@ -10,8 +10,9 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-# my_dict = {"name": "Alice"}
-# print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+my_dict = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
+print(list(my_dict.keys()))  # 将字典的键转换为列表
+print(list(my_dict.keys())[0])  # 将字典的键转换为列表
 
 # import qwen
 #
@@ -22,12 +23,12 @@
 # result = qwen_instance.some_method()
 # print(result)
 
-visitDate = '2025-02-17'
-l_1 = visitDate.split("-")
-l_ = []
-for i in l_1:
-    l_.append(int(i))
-print(l_)
+# visitDate = '2025-02-17'
+# l_1 = visitDate.split("-")
+# l_ = []
+# for i in l_1:
+#     l_.append(int(i))
+# print(l_)
 
 # import os
 # from openai import OpenAI
