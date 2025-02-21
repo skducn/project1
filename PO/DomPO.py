@@ -965,7 +965,7 @@ class DomPO(object):
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -980,10 +980,13 @@ class DomPO(object):
             else:
                 l_isChecked.append(0)
         d_default = dict(zip(l_value, l_isChecked))
-        # print(d_default)  # {'是': 0, '否': 1}
-        # 检查是否已经选中，如果未选择则勾选，否则不操作。
-        if d_default[v] == 0:
-            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+        # print(d_default[v] , v ,d_default, d_4[v])  # {'是': 0, '否': 1}
+
+        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
+
+        # # 检查是否已经选中，如果未选择则勾选，否则不操作。
+        # if d_default[v] == 0:
+        #     self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
 
     def eleRadioRightLabelByN(self, ele, varXpaths, v):
         # eleRadioSplitLabels
@@ -1176,35 +1179,33 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
-    def eleCheckboxRightLabel2(self, ele, _textByX, v):
-        # 取消全部勾选项，再勾选复选框
-        # 独立值（无\n拼接值），遍历label
-        # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}])
+    def eleCheckboxRightLabel2(self, ele, textByX, v):
+        # 勾选复选框
+        # 步骤：先取消全部勾选项，再勾选指定复选框
+        # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}]) ， 只勾选 糖尿病和其他，但不处理123
 
         # 获取所有选项
-        l_ = self.eleGetTextByXs(ele, _textByX)  # ".//td[4]/div/div/div/label"
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        l_ = self.eleGetTextByXs(ele, textByX)  # ".//td[4]/div/div/div/label"
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
 
         # 取消全部勾选项
         for i in range(len(l_)):
-            varDiv1class = self.eleGetAttrValueByX(ele, _textByX + "[" + str(i+1) + "]", "class")
+            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i+1) + "]", "class")
             if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
-                self.eleClkByX(ele, _textByX + "[" + str(i+1) + "]")
+                self.eleClkByX(ele, textByX + "[" + str(i+1) + "]")
 
-        # 勾选选项, 遇到字典的话，勾选key
+        # 遍历勾选选项
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
                     if v[i] == k3:
-                        self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
-                        # self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
                 if isinstance(v[i], dict):
                     if list(v[i].keys())[0] == k3:
-                        self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
-                        # self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
 
     def eleCheckboxRightLabel3(self, ele, _textByX, _inputByX, v):
         # 儿童健康管理 - 健康检查记录 - 1-8月龄儿童健康检查记录表 - 两次随访间患者情况
@@ -1216,10 +1217,10 @@ class DomPO(object):
         # 获取所有选项
         l_ = self.eleGetTextByXs(ele, _textByX)  # ".//td[4]/div/div/div/label"
         l_ = [item.strip() for item in l_]
-        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 取消全部勾选项
         for i in range(len(l_)):

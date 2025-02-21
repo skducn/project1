@@ -1,8 +1,8 @@
 # coding=utf-8
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> >>
 # Author     : John
-# Created on : 2025-2-5
-# Description: 基本公卫 - 儿童健康管理 - 儿童健康档案
+# Created on : 2025-2-19
+# Description: 基本公卫 - 儿童健康管理 - 儿童检查记录
 # *****************************************************************
 from GwPO import *
 logName = "./" + os.path.basename(__file__).split('.')[0] + ".log"
@@ -13,41 +13,32 @@ Configparser_PO = ConfigparserPO('config.ini')
 Gw_PO.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"), Configparser_PO.ACCOUNT("password"))
 # 菜单
 d_menu_basicPHS = {'健康档案概况': 'http://192.168.0.203:30080/phs/HealthRecord/ehrindex', '个人健康档案': 'http://192.168.0.203:30080/phs/HealthRecord/Personal', '家庭健康档案': 'http://192.168.0.203:30080/phs/HealthRecord/Family', '迁入申请': 'http://192.168.0.203:30080/phs/HealthRecord/Immigration', '迁出审核': 'http://192.168.0.203:30080/phs/HealthRecord/Exit', '档案交接': 'http://192.168.0.203:30080/phs/HealthRecord/handoverFile', '死亡管理': 'http://192.168.0.203:30080/phs/HealthRecord/DeathManagement', '区域档案查询': 'http://192.168.0.203:30080/phs/HealthRecord/regionalFile', '接诊信息查询': 'http://192.168.0.203:30080/phs/HealthRecord/Diagnosis', '就诊管理': 'http://192.168.0.203:30080/phs/HealthRecord/Visit', '高血压专项': 'http://192.168.0.203:30080/phs/Hypertension/gxyregister', '高血压随访': 'http://192.168.0.203:30080/phs/Hypertension/gxyjob', '高血压报病': 'http://192.168.0.203:30080/phs/Hypertension/gxybb', '糖尿病专项': 'http://192.168.0.203:30080/phs/Diabetes/tnbregister', '糖尿病随访': 'http://192.168.0.203:30080/phs/Diabetes/tnbjob', '糖尿病报病': 'http://192.168.0.203:30080/phs/Diabetes/tnbbb', '慢阻肺病登记': 'http://192.168.0.203:30080/phs/Copd/register', '慢阻肺病专项': 'http://192.168.0.203:30080/phs/Copd/project', '慢阻肺病随访': 'http://192.168.0.203:30080/phs/Copd/visit', '儿童概况': 'http://192.168.0.203:30080/phs/Child/etindex', '儿童健康档案': 'http://192.168.0.203:30080/phs/Child/etfiles', '中医体质辨识列表': 'http://192.168.0.203:30080/phs/Child/tcm', '中医体质辨识汇总': 'http://192.168.0.203:30080/phs/Child/tzbs', '儿童检查记录': 'http://192.168.0.203:30080/phs/Child/etjob', '孕产妇概况': 'http://192.168.0.203:30080/phs/MaternalRecord/ycfindex', '孕产妇登记': 'http://192.168.0.203:30080/phs/MaternalRecord/ycfregister', '孕产妇档案': 'http://192.168.0.203:30080/phs/MaternalRecord/ycffiles', '孕产妇随访': 'http://192.168.0.203:30080/phs/MaternalRecord/ycfjob', '老年人概况': 'http://192.168.0.203:30080/phs/Snr/lnrindex', '老年人专项登记': 'http://192.168.0.203:30080/phs/Snr/special', '老年人专项管理': 'http://192.168.0.203:30080/phs/Snr/lnrfiles', '本年度未体检': 'http://192.168.0.203:30080/phs/Snr/unexamined', '老年人中医体质辨识': 'http://192.168.0.203:30080/phs/Snr/chMedicine', '老年人自理能力评估查询': 'http://192.168.0.203:30080/phs/Snr/selfCareAssess', '老年人抑郁评估查询': 'http://192.168.0.203:30080/phs/Snr/depressed', '简易智力检查查询': 'http://192.168.0.203:30080/phs/Snr/intelligence', '体检登记': 'http://192.168.0.203:30080/phs/HealthExamination/tjregister', '体检记录': 'http://192.168.0.203:30080/phs/HealthExamination/tjrecord', '未体检人员': 'http://192.168.0.203:30080/phs/HealthExamination/tjunexam', '肺结核患者概况': 'http://192.168.0.203:30080/phs/Tuberculosis/fjhindex', '肺结核登记': 'http://192.168.0.203:30080/phs/Tuberculosis/fjhregister', '肺结核管理': 'http://192.168.0.203:30080/phs/Tuberculosis/fjhfiles', '残疾人概况': 'http://192.168.0.203:30080/phs/Disabled/cjrindex', '残疾人登记': 'http://192.168.0.203:30080/phs/Disabled/cjrregister', '残疾人管理': 'http://192.168.0.203:30080/phs/Disabled/cjrfiles', '严重精神障碍登记': 'http://192.168.0.203:30080/phs/MentalDisorder/jsregister', '严重精神障碍患者': 'http://192.168.0.203:30080/phs/MentalDisorder/jsfiles', '严重精神病障碍随访': 'http://192.168.0.203:30080/phs/MentalDisorder/jsjob', '严重精神障碍概况': 'http://192.168.0.203:30080/phs/MentalDisorder/jsindex', '健康教育活动': 'http://192.168.0.203:30080/phs/HealthEducation/HealthActivity', '本年度未评': 'http://192.168.0.203:30080/phs/hbp/noassessdata', '评分信息查询': 'http://192.168.0.203:30080/phs/hbp/assessdata'}
-varUrl = d_menu_basicPHS['儿童健康档案']
-Web_PO.opnLabel(d_menu_basicPHS['儿童健康档案'])
+varUrl = d_menu_basicPHS['儿童检查记录']
+Web_PO.opnLabel(d_menu_basicPHS['儿童检查记录'])
 Web_PO.swhLabel(1)
 
 
 # todo 1 查询
-# Gw_PO.phs_child_etfiles_query({"身份证号": "321254202501154625"})
-# Gw_PO.phs_child_etfiles_query({"姓名": "胡成", "出生日期": [[2025, 1, 1], [2025, 1, 2]], "上次完成 检查类型": "新生儿", "上次 随访日期": [[2025, 1, 1], [2025, 1, 2]],
-#                                "下次 随访日期": [[2025, 1, 1], [2025, 1, 2]],"母亲姓名": "yoyo", "父亲姓名": "john", "管理状态": "管理中", "管理类别": "本地管理",
-#                                "月龄": "3月", "新生儿异常情况": "听力异常", "喂养方式": "人工", "是否满6周岁": "是", "身份证号 是否填写": "是", "儿童管理机构": ["招远市卫健局"],
-#                                "是否仅查询机构": "是", "身份证号": "110101199001015000", "随访提醒分类": "常规管理", "出生地址": ["大秦家街道", "大秦家村民委员会", "123"],
-#                                "随访日期": [[2025, 1, 3], [2025, 1, 5]], "随访医生": "张三费"})
-
+# Gw_PO.phs_child_etjob_query({"身份证号": "110101202401015310"})
+# Gw_PO.phs_child_etjob_query({"儿童管理机构": ["招远市卫健局"], "是否仅查询机构": "是", "姓名": "胡成", "身份证号": "110101202401015310", "登记日期": [[2025, 1, 1], [2025, 1, 2]],
+#                              "检查类型": ["3岁", '6月龄'], "随访日期": [[2025, 1, 3], [2025, 1, 5]], "下次随访日期": [[2025, 3, 2], [2025, 3, 4]],
+#                            "出生日期": [[2022, 1, 3], [2022, 1, 5]], "血红蛋白": ['2', '3'], "随访医生": "张三"})
+# "儿童管理机构": ["招远市卫健局"]
+# "儿童管理机构": ["玲珑卫生院"]
+# "儿童管理机构": ['玲珑卫生院', '玲珑镇大蒋家村卫生室']
 
 # todo 2 导出
 # Gw_PO.export("/Users/linghuchong/Desktop/44")
 
 
-# todo 3 新增
-# Gw_PO.phs_child_etfiles_new({"姓名": "胡成", "性别": "男", "出生日期": [2025, 1, 1],  "身份证号": '310101201501011123',
-#                                "出生地址": ['山东省', '烟台市', '招远市', '泉山街道', '花园社区居民委员会','东方路444号'],
-#                                "母亲姓名": "yoyo", "母亲职业": "军人", "母亲身份证号": "310101198004112345", "母亲联系电话": "02158776544",
-#                                "父亲姓名": "john", "父亲职业": "专业技术人员", "父亲身份证号": "310101198004112346", "父亲联系电话": "02158776546",
-#                                "家庭住址": ['山东省', '烟台市', '招远市', '辛庄镇', '小宋家村民委员会','东方路111号'], "同步出生地": "是",
-#                                "管理类别": ["中途迁入管理", "4"]
-#                                })
 
-
-
-# todo 4 健康检查
-# Gw_PO.phs_child_etfiles_query({"身份证号": "110101202401015310"})
-# Gw_PO.phs_child_etfiles_operation({'operate': '健康检查', 'option': {"身份证号": "110101202401015310"}})
+# todo 3 编辑
+Gw_PO.phs_child_etjob_query({"身份证号": "110101202401015310"})
+# Gw_PO.phs_child_etjob_operation({'operate': '编辑', 'option': {"身份证号": "110101202401015310"}})
 
 # todo 4.1 新生儿家庭访视记录表
-# Gw_PO.phs_child_etfiles_operation({'operate': '健康检查', 'title': '新生儿家庭访视记录表', '新生儿': {
+# Gw_PO.phs_child_etjob_operation({'operate': '编辑', 'title': '新生儿家庭访视记录表', 'data': {
+#     '新生儿': {
 #     '本次访视时间': [2025, 2, 9], '出生孕周': ['3', '2'], '母亲妊娠期': ['糖尿病', {'其他': '111'}],
 #     '助产机构名称': '某机构', '出生情况': ['顺产', {'其他': '222'}], '新生儿窒息': '有', 'Apgar评分': ['有', ['1', '2', '3']],
 #     ' 是否有畸形 ': ['有', {'畸形详细': "测试一下"}], '新生儿听力检查': '未通过', '新生儿疾病筛查 ': ['甲低', {'其他': '333'}],
@@ -60,10 +51,10 @@ Web_PO.swhLabel(1)
 #     ' 外生殖器 ': {'异常': '77'}, '脐带 ': {'其他': '66'}, '指导 ': ['发育指导', '口腔保健指导', {'其他': '666'}],
 #     '转诊': ['有', {'原因': '121', '机构': '3232', '科室': '55', '联系人': 'cdg', '联系方式': '13312123344','结果': '到位'}],
 #     '下次访视时间': [2025, 4, 9], '下次随访地点': 'sh', '随访医生签名': '测试2', '家长签名': 'yyy'}
-# })
+# }})
 
 # # todo 4.2 1-8月龄儿童健康检查记录表
-# Gw_PO.phs_child_etfiles_operation({'operate': '健康检查', 'title': '1-8月龄儿童健康检查记录表', 'data': {
+# Gw_PO.phs_child_etjob_operation({'operate': '编辑', 'title': '1-8月龄儿童健康检查记录表', 'data': {
 #     '满月': {'随访日期': [2024, 1, 1], '本次服务类别': ['随访'], '体重(kg)': [10.11, '上'], '身长(cm)': [20.22, '中'], '头围(cm)': '30',
 #         '面色': '红润', '皮肤': '异常', '前囟': ['未闭', '10', '11'], '颈部包块': '有', '眼睛': '异常', '耳': '异常', '口腔': '异常',
 #         '胸部': '异常', '腹部': '异常', '脐部': '其他', '四肢': '异常', '肛门/外生殖器': '异常',
@@ -101,7 +92,7 @@ Web_PO.swhLabel(1)
 
 
 # # todo 4.3 12-30月龄儿童健康检查记录表
-# Gw_PO.phs_child_etfiles_operation({'operate': '健康检查', 'title': '12-30月龄儿童健康检查记录表', 'data': {
+# Gw_PO.phs_child_etjob_operation({'operate': '编辑', 'title': '12-30月龄儿童健康检查记录表', 'data': {
 #     '12月龄': {'随访日期': [2025, 1, 1], '本次服务类别': ['随访'], '体重(kg)': [10.11, '上'], '身长(cm)': [20.22, '中'],
 #         '面色': '红润', '皮肤': '异常', '前囟': ['未闭', '10', '11'], '眼睛': '异常', '耳': '异常', '听力': '未通过',
 #         '出牙/龋齿数': ['6', '8'], '胸部': '异常', '腹部': '异常', '四肢': '异常', '步态': '异常', '可疑佝偻病': '鸡胸',
@@ -143,7 +134,7 @@ Web_PO.swhLabel(1)
 
 
 # # todo 4.4 3～6岁儿童健康检查记录表
-# Gw_PO.phs_child_etfiles_operation({'operate': '健康检查', 'title': '3～6岁儿童健康检查记录表', 'data': {
+# Gw_PO.phs_child_etjob_operation({'operate': '编辑', 'title': '3～6岁儿童健康检查记录表', 'data': {
 #     '3岁': {'随访日期': [2022, 1, 1], '本次服务类别': ['随访'], '体重(kg)': [10.11, '上'], '身长(cm)': [20.22, '中'], '体重/身高': '中',
 #         '体格发育评估': '消瘦',
 #         '耳': '异常', '听力': '未通过',
@@ -176,19 +167,10 @@ Web_PO.swhLabel(1)
 # }})
 
 # todo 4.5 结案
-# Gw_PO.phs_child_etfiles_operation({'operate': '健康检查', 'title': '结案', 'data': {'结案原因': '完成服务'}})
+# Gw_PO.phs_child_etfiles_operation({'operate': '编辑', 'title': '结案', 'data': {'结案原因': '完成服务'}})
 
 
-# todo 5 儿童信息 (编辑)
-# Gw_PO.phs_child_etfiles_query({"身份证号": "110101202401015310"})
-# Gw_PO.phs_child_etfiles_operation({'operate': '儿童信息', 'option': {"身份证号": "110101202401015310"}})
-# Gw_PO.phs_child_etfiles_operation({'operate': '儿童信息', 'title': '编辑', 'data': {"姓名": "胡成", "性别": "男", "出生日期": [2025, 1, 1],  "身份证号": '310101201501011123',
-#                                "出生地址": ['山东省', '烟台市', '招远市', '泉山街道', '花园社区居民委员会', '东方路444号'],
-#                                "母亲姓名": "yoyo", "母亲职业": "军人", "母亲身份证号": "310101198004112345", "母亲联系电话": "02158776544",
-#                                "父亲姓名": "john", "父亲职业": "专业技术人员", "父亲身份证号": "310101198004112346", "父亲联系电话": "02158776546",
-#                                "家庭住址": ['山东省', '烟台市', '招远市', '辛庄镇', '小宋家村民委员会','东方路111号'], "同步出生地": "是",
-#                                "管理类别": ["中途迁入管理", "4"]
-#                                }})
 
-# todo 5 儿童信息 (删除)
-# Gw_PO.phs_child_etfiles_operation({'operate': '儿童信息', 'title': '删除', 'data':{})
+
+# todo 5 删除
+# Gw_PO.phs_child_etjob_operation({'operate': '删除', 'option': {"身份证号": "110101202401015310"}})
