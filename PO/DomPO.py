@@ -670,7 +670,7 @@ class DomPO(object):
 
     # todo ele元素再定位
 
-    def eleGetSuperEleByX(self, ele, varXpath, varXpath2):
+    def eleGetSuperEleByX(self, ele, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
         # 如：ele = self.eleGetSuperEleByX(ele, ".//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
         ele2 = ele.find_element(*(By.XPATH, varXpath))
@@ -937,7 +937,7 @@ class DomPO(object):
         l_ = l_[0].split('\n')
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -965,7 +965,7 @@ class DomPO(object):
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -1025,7 +1025,7 @@ class DomPO(object):
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -1043,10 +1043,12 @@ class DomPO(object):
         # print(d_default)  # {'是': 0, '否': 1}
 
         # 检查是否已经选中，如果未选择则勾选，否则不操作。
-        if d_default[v] == 0:
+        # if d_default[v] == 0:
             # self.eleClkByX(ele, varXpaths + "[2]", 1)
-            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
+        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
             # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
+
+
 
     # todo checkbox
 
@@ -1060,10 +1062,10 @@ class DomPO(object):
         l_ = self.eleGetTextByXs(ele, _checkboxByX)
         l_ = [i for i in l_ if i]  # 过滤掉空的元素
         l_ = l_[0].split('\n')
-        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
@@ -1089,6 +1091,28 @@ class DomPO(object):
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
+
+    def eleCheckboxRightLabelByN(self, ele, _textByX, v):
+        # eleCheckboxSplitLabels
+        # 勾选复选框
+        # 不独立值（有\n拼接值），遍历label
+        # 获取所有的选项
+        l_ = self.eleGetTextByXs(ele, _textByX)
+        l_ = [i for i in l_ if i]  # 过滤掉空的元素
+        l_ = l_[0].split('\n')
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+
+        # 勾选选项(如果已勾选则不操作)
+        for i in range(len(v)):
+            for k3, v3 in d_4.items():
+                if isinstance(v[i], str):
+                    if v[i] == k3:
+                        varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
+                        if varClass != 'el-checkbox el-checkbox--default is-checked':
+                            self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
     def eleCheckboxLeftLabel(self, ele, _checkboxByX, v, default="remain"):
         # eleCheckboxDivs
@@ -1133,27 +1157,53 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
 
-    def eleCheckboxRightLabelByN(self, ele, _textByX, v):
-        # eleCheckboxSplitLabels
-        # 勾选复选框
-        # 不独立值（有\n拼接值），遍历label
+    def eleCheckboxLeftLabel2(self, ele, textByX, v):
+        # eleCheckboxDivs
+        # 勾选复选框 (包括字典key)
+        # 独立值（无\n拼接值），divs
+        # self.eleCheckboxLeftLabel2(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
+
         # 获取所有的选项
-        l_ = self.eleGetTextByXs(ele, _textByX)
-        l_ = [i for i in l_ if i]  # 过滤掉空的元素
-        l_ = l_[0].split('\n')
+        l_ = self.eleGetTextByXs(ele, textByX)
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
         # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
-        # 勾选选项(如果已勾选则不操作)
+        # 取消全部勾选项
+        for i in range(len(l_)):
+            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]", "class")
+            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+                self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
+        # # 全部取消勾选项
+        # if default != 'remain':
+        #     l_2 = []
+        #     for i in range(len(l_)):
+        #         l_2.append(self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(i + 1) + "]/label", "class"))
+        #     d_3 = dict(enumerate(l_2, start=1))
+        #     # print(d_3)  # {1: 'el-checkbox el-checkbox--default is-disabled', 2: 'el-checkbox el-checkbox--default is-checked',
+        #     for k2, v2 in d_3.items():
+        #         if v2 == 'el-checkbox el-checkbox--default is-checked':
+        #             self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
+
+        # 遍历勾选选项
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
                     if v[i] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
-                        if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+                        # varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        # if varClass != 'el-checkbox el-checkbox--default is-checked':
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+                # elif isinstance(v[i], list):
+                #     if v[i][0] == k3:
+                #         varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
+                #         if varClass != 'el-checkbox el-checkbox--default is-checked':
+                #             self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+                if isinstance(v[i], dict):
+                    if list(v[i].keys())[0] == k3:
+                        # varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
+                        # if varClass != 'el-checkbox el-checkbox--default is-checked':
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
 
     def eleCheckboxRightLabel(self, ele, _textByX, v):
         # eleCheckboxLabels
@@ -1162,10 +1212,10 @@ class DomPO(object):
 
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, _textByX)
-        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         self.eleClrSelectedByXs(ele, ".//td[4]/div/div/div/label[1]")
         # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div[3]/form/table/tbody/tr[5]/td[4]/div/div/div/label[1]/span[1]/input
@@ -1180,8 +1230,8 @@ class DomPO(object):
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
     def eleCheckboxRightLabel2(self, ele, textByX, v):
-        # 勾选复选框
-        # 步骤：先取消全部勾选项，再勾选指定复选框
+        # 勾选复选框（包括字典key）
+        # 步骤：先取消全部勾选项，再勾选指定复选框值
         # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}]) ， 只勾选 糖尿病和其他，但不处理123
 
         # 获取所有选项
@@ -1189,7 +1239,7 @@ class DomPO(object):
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
 
         # 取消全部勾选项
         for i in range(len(l_)):

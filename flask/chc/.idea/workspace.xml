@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../instance/文件处理/处理超大日志文件.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/web/changning/ChcWebPO.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/web/changning/ChcWebPO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/CHC/web/changning/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/CHC/web/changning/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -426,6 +422,7 @@
       <workItem from="1735104454022" duration="6000" />
       <workItem from="1735104534126" duration="187000" />
       <workItem from="1735626889579" duration="214000" />
+      <workItem from="1740359048238" duration="10000" />
     </task>
     <servers />
   </component>
