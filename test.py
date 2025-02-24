@@ -9,9 +9,8 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
-55555555
 
-# 45  thank you
+
 
 my_dict = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
 print(list(my_dict.keys()))  # 将字典的键转换为列表
