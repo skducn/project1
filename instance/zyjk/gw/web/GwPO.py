@@ -5722,7 +5722,7 @@ class GwPO():
                         elif k in ['本次服务类别']:
                             Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/div/label", list(v.keys())[0])
                             if list(v.keys())[0] == '失访':
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div[" + str(varTd) + "]/div[2]/div[2]/div/div/div/input", v['list(v.keys())[0]'])
+                                Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div[" + str(varTd) + "]/div[2]/div[2]/div/div/div/input", v[list(v.keys())[0]])
                         elif k in ['随访方式']:
                             Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[2]/div[" + str(varTd) + "]/div/div/div/label", v)
                         elif k in ['孕周']:
