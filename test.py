@@ -10,7 +10,7 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-
+test
 
 my_dict = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
 print(list(my_dict.keys()))  # 将字典的键转换为列表
