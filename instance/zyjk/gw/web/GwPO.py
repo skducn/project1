@@ -5745,7 +5745,6 @@ class GwPO():
                                     Web_PO.eleClkByX(self._eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div/div[2]")  # 点击 +
                                     self.__eleDropdown(self._eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div[" + str(i+2) + "]/div[1]/div/div/div/div/div/input", _dropdownByX, v[i])
                                     # /html/body/div[2]/div[29]/div/div/div[1]/ul/li[3]
-
                         elif k in ['胎心率(次/分钟)']:
                             for i in range(len(v)):
                                 Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div[" + str(i+1) + "]/div/div/div[1]/input", v[i])
