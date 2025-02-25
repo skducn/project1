@@ -379,9 +379,14 @@ class WebPO(DomPO):
         # 1.4 关闭窗口
         self.driver.close()
 
+    def quit(self):
+        self.driver.quit()
+
     def refresh(self):
         # 刷新页面
         self.driver.refresh()
+
+
 
     def getBrowserSize(self):
         # 2.1 获取当前浏览器宽高
@@ -553,6 +558,8 @@ class WebPO(DomPO):
                 sleep(2)
                 break
         return len_cur
+
+
 
 
 if __name__ == "__main__":

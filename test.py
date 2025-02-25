@@ -9,12 +9,23 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
+from collections import ChainMap
 
-4444
+d_global = {
 
-my_dict = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
-print(list(my_dict.keys()))  # 将字典的键转换为列表
-print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+        }
+
+d_1 = {'身份证号': 'shuzi', "33":'44'}
+
+d6 = dict(ChainMap(d_global, d_1))
+print(d6)
+
+dd = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
+# print(list(my_dict.keys()))  # 将字典的键转换为列表
+# print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+
+if "外3伤" in dd:
+    print(dd['外伤'])
 
 # import qwen
 #

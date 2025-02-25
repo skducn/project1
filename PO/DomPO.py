@@ -189,6 +189,17 @@ class DomPO(object):
 
 
 
+    def find_elementNoWait(self, *loc):
+        # 重写元素定位(无需等待)
+        try:
+            # Python特性，将入参放在元组里，入参loc，加*，变成元组。
+            # WebDriverWait(self.driver,5).until(lambda driver: driver.find_element(*loc).is_displayed())
+            # 注意：以下loc入参本身就是元组，所以不需要再加*
+            # WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+            return self.driver.find_element(*loc)
+        except:
+            print("未找到元素 %s " % (loc))
+
     def find_element(self, *loc):
         """重写元素定位"""
         try:
@@ -440,10 +451,18 @@ class DomPO(object):
 
 
 
-    def getTextByX(self, varXpath):
+    # def getTextByXnoWait(self, varXpath):
+    #     # 获取文本
+    #     # 如：getTextByX(u"//input[@class='123']")
+    #     return self.find_elementNoWait(*(By.XPATH, varXpath)).text
+
+    def getTextByX(self, varXpath, wait='no'):
         # 获取文本
         # 如：getTextByX(u"//input[@class='123']")
-        return self.find_element(*(By.XPATH, varXpath)).text
+        if wait == 'no':
+            return self.find_elementNoWait(*(By.XPATH, varXpath)).text
+        else:
+            return self.find_element(*(By.XPATH, varXpath)).text
 
 
     def getTextByXs(self, varXpaths):
@@ -485,10 +504,13 @@ class DomPO(object):
                 l_beforeText.append(a.text)
         return l_beforeText
 
-    def getAttrValueByX(self, varXpath, varAttr):
+    def getAttrValueByX(self, varXpath, varAttr, wait='no'):
         # 获取属性值
         # 如：getAttrValueByX(u"//input[@class='123']","href")
-        return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
+        if wait == 'no':
+            return self.find_elementNoWait(*(By.XPATH, varXpath)).get_attribute(varAttr)
+        else:
+            return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
 
 
@@ -1172,7 +1194,8 @@ class DomPO(object):
 
         # 取消全部勾选项
         for i in range(len(l_)):
-            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]", "class")
+            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]/label", "class")
+            # /html/body/div[1]/div/div[3]/section/div/div[2]/div[4]/div[1]/form/div/div[11]/div/div[2]/div/div/div/div[3]/label
             if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
                 self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
         # # 全部取消勾选项
@@ -1833,6 +1856,17 @@ class DomPO(object):
             flag = False
         return flag
 
+    def eleIsEleAttrExistByX(self, ele, varXpath, varAttr):
+        # 判断元素属性是否存在
+        flag = False
+        try:
+            ele = ele.find_element(*(By.XPATH, varXpath))
+            if ele.get_attribute(varAttr):
+                flag = True
+        except:
+            flag = False
+        return flag
+
     def isEleAttrValueExistByX(self, varXpath, varAttr, varValue):
         # 判断元素属性的值是否存在
         # 如：isEleAttrValueExistByX("//tr","href","www.badu.com")
@@ -2070,5 +2104,123 @@ class DomPO(object):
         pyautogui.press('enter', 1)
         sleep(2)
 
+
+
+    def getXpathByLabel(self, varLabel):
+        # 获取所有标签的XPath路径
+        # 如 getXpathByLabel('button')
+        l_ = []
+        varLabel = self.find_elements(*(By.TAG_NAME, varLabel))
+        # varLabel = self.driver.find_elements(By.TAG_NAME, varLabel)
+        for i, button in enumerate(varLabel):
+            xpath = self.driver.execute_script("""
+                  function getElementXPath(element) {
+                      if (element.id !== '') {
+                          return 'id("' + element.id + '")';
+                      }
+                      if (element === document.body) {
+                          return element.tagName;
+                      }
+
+                      var ix = 0;
+                      var siblings = element.parentNode.childNodes;
+                      for (var i = 0; i < siblings.length; i++) {
+                          var sibling = siblings[i];
+                          if (sibling === element) {
+                              return getElementXPath(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+                          }
+                          if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+                              ix++;
+                          }
+                      }
+                  }
+                  return getElementXPath(arguments[0]);
+                  """, button)
+            # print(f'Button {i + 1}: XPath = {xpath}')
+            l_.append(xpath)
+        return l_
+
+    def eleGetXpathByLabel(self, ele, varLabel):
+        # 获取所有标签的XPath路径
+        # 如 getXpathByLabel('button')
+        l_ = []
+        varLabel = ele.find_elements(*(By.TAG_NAME, varLabel))
+        # varLabel = ele.find_elements(By.TAG_NAME, varLabel)
+        for i, button in enumerate(varLabel):
+            xpath = self.driver.execute_script("""
+                  function getElementXPath(element) {
+                      if (element.id !== '') {
+                          return 'id("' + element.id + '")';
+                      }
+                      if (element === document.body) {
+                          return element.tagName;
+                      }
+
+                      var ix = 0;
+                      var siblings = element.parentNode.childNodes;
+                      for (var i = 0; i < siblings.length; i++) {
+                          var sibling = siblings[i];
+                          if (sibling === element) {
+                              return getElementXPath(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+                          }
+                          if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+                              ix++;
+                          }
+                      }
+                  }
+                  return getElementXPath(arguments[0]);
+                  """, button)
+            # print(f'Button {i + 1}: XPath = {xpath}')
+            l_.append(xpath)
+        return l_
+
+    def getTextXpathByLabel(self, varLabel, varLabel2):
+        # 获取路径及标签
+        # 如 获取button和下级文本，getTextXpathByLabel("button", "/span")
+        # {'登录': 'id("app")/DIV[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/FORM[1]/DIV[4]/BUTTON[1]'}
+        d_ = {}
+        l_ = self.getXpathByLabel(varLabel)
+        try:
+            for i, xpath in enumerate(l_):
+                # print(xpath, self.getTextByX(xpath + varLabel2))
+                # d_[xpath] = self.getTextByX(xpath + varLabel2)
+                d_[self.getTextByX(xpath + varLabel2, wait='no')] = xpath
+        except:
+            ...
+        finally:
+            return d_
+
+    def getValueXpathByLabel(self, varLabel, attr):
+        # 获取路径及标签的属性值
+        # 如 获取input的placehoder值，getValueXpathByLabel("input", "placeholder")
+        # {'请输入用户名': 'id("app")/DIV[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/FORM[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[1]', '输入密码': 'id("app")/DIV[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/FORM[1]/DIV[2]/DIV[1]/DIV[1]/INPUT[1]'}
+
+        d_ = {}
+        l_ = self.getXpathByLabel(varLabel)
+        try:
+            for i, xpath in enumerate(l_):
+                d_[self.getAttrValueByX(xpath, attr, wait='no')] = xpath
+        except:
+            ...
+        finally:
+            return d_
+
+    def getTextByLabel(self, varLabel):
+        # 获取指定标签的所有文本
+        # 如 getTextByLabel('button')
+        l_1 = []
+        l_ = self.getXpathByLabel(varLabel)
+        for i, xpath in enumerate(l_):
+            l_1.append(self.getTextByX(xpath))
+        return l_1
+
+    def eleGetTextByLabel(self, ele, varLabel):
+        # 获取ele指定标签的所有文本
+        l_1 = []
+        l_ = self.eleGetXpathByLabel(ele, varLabel)
+        for i, xpath in enumerate(l_):
+            l_1.append(self.getTextByX(xpath))
+            # print(self.getTextByX(xpath))
+        return l_1
 
 
