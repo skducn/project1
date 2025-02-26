@@ -133,6 +133,9 @@ from lxml import etree
 from lxml_html_clean import clean_html
 #  pip3 install lxml_html_clean
 
+from PO.ListPO import *
+List_PO = ListPO()
+
 class DomPO(object):
 
     def __init__(self, driver):
@@ -1047,7 +1050,7 @@ class DomPO(object):
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
         # 获取单选框所有值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
@@ -1144,10 +1147,11 @@ class DomPO(object):
 
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, _checkboxByX)
+        # l_= List_PO.dels(l_, "")
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        print("d_4: ", d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
@@ -1161,6 +1165,7 @@ class DomPO(object):
                     self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
 
         # 勾选选项(如果已勾选则不操作)
+        print("v:",v)
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
@@ -1168,13 +1173,16 @@ class DomPO(object):
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
-                elif isinstance(v[i], list):
+                if isinstance(v[i], list):
                     if v[i][0] == k3:
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
-                elif isinstance(v[i], dict):
+                if isinstance(v[i], dict):
+                    print(111, v[i])
+                    print(222, k3)
                     if list(v[i].keys())[0] == k3:
+                        print('k3', k3)
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)

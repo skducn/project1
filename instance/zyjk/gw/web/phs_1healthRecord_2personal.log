@@ -1,0 +1,413 @@
+2025-02-26 11:22:22,490 - INFO - 查询 => {'身份证号': '110101194301191302'}
+2025-02-26 11:24:19,995 - INFO - 查询 => {'身份证号': '110101194301191302'}
+2025-02-26 11:30:21,041 - INFO - 查询 => {'身份证号': '110101194301191302'}
+2025-02-26 11:33:04,523 - INFO - 查询 => {'身份证号': '321254202501154625'}
+2025-02-26 11:34:22,582 - INFO - 查询 => {'身份证号': '372922198510281068'}
+2025-02-26 11:37:36,583 - INFO - 查询 => {'身份证号': '372922198510281068'}
+2025-02-26 11:38:12,948 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 11:46:32,164 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 11:48:00,167 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 11:51:22,138 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 11:53:41,632 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:03:39,446 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:08:47,974 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:12:19,714 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:14:14,180 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:15:10,735 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:24:41,599 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:24:48,813 - INFO - 点击{'operate': ' 查看 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 13:25:33,496 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:25:40,684 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 13:37:59,993 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:38:07,129 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 13:38:28,643 - INFO - Received signal: SIGINT
+2025-02-26 13:38:28,645 - INFO - Program is terminating...
+2025-02-26 13:38:29,032 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea0b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element
+2025-02-26 13:38:29,034 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea4a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element
+2025-02-26 13:38:29,036 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea860>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element
+2025-02-26 13:38:29,039 - ERROR - 更新失败 =>  出生日期 : [1946, 2, 2]
+2025-02-26 13:38:29,042 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea680>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,044 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeaa10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,046 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea9b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,049 - ERROR - 更新失败 =>  民族 : 回族
+2025-02-26 13:38:29,051 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeead70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,053 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeae60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,056 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb040>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,058 - ERROR - 更新失败 =>  现住址 : ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号']
+2025-02-26 13:38:29,061 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb310>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,063 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeadd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,066 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb220>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,068 - ERROR - 更新失败 =>  本人电话 : 13815161718
+2025-02-26 13:38:29,071 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeead70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,073 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea800>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,076 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeac80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,078 - ERROR - 更新失败 =>  联系人姓名 : 令狐冲
+2025-02-26 13:38:29,081 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea680>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,084 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea1a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,086 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeebd60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,089 - ERROR - 更新失败 =>  联系人电话 : 58771234
+2025-02-26 13:38:29,091 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea3e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,094 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea230>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,097 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb460>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,099 - ERROR - 更新失败 =>  常住类型 : 非户籍
+2025-02-26 13:38:29,102 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb760>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,104 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb850>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,109 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeba30>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,111 - ERROR - 更新失败 =>  文化程度 : 专科教育
+2025-02-26 13:38:29,114 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb520>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,117 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb6d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,120 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea4d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,123 - ERROR - 更新失败 =>  职业 : 军人
+2025-02-26 13:38:29,126 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea710>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,129 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea4a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,132 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea110>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,134 - ERROR - 更新失败 =>  工作单位 : 上海智赢
+2025-02-26 13:38:29,137 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeab00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,139 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea890>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,141 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea320>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,144 - ERROR - 更新失败 =>  婚姻状况 : 离婚
+2025-02-26 13:38:29,146 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeaf20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,149 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb190>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,151 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeadd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,154 - ERROR - 更新失败 =>  血型 : 不详
+2025-02-26 13:38:29,157 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea9e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,159 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea2c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,162 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eee9f30>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,165 - ERROR - 更新失败 =>  RH血型 : Rh阳性
+2025-02-26 13:38:29,167 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeebee0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,170 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeacb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,173 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeaf80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,175 - ERROR - 更新失败 =>  医疗费用支付方式 : [['城镇职工基本医疗保险', '555'], ['城镇居民基本医疗保险', '666'], ['贫困救助', '777'], '全自费', ['其他', '123']]
+2025-02-26 13:38:29,179 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb070>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,181 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeae00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,184 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeab60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,187 - ERROR - 更新失败 =>  药物过敏史 : ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']]
+2025-02-26 13:38:29,190 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea950>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,192 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeaa70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,195 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea860>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,197 - ERROR - 更新失败 =>  暴露史 : ['化学品', '不详']
+2025-02-26 13:38:29,197 - ERROR - 更新失败 =>  既往史 : {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}
+2025-02-26 13:38:29,197 - ERROR - 更新失败 =>  家族史 : ['有', ['高血压', '母亲']]
+2025-02-26 13:38:29,197 - ERROR - 更新失败 =>  遗传病史 : ['有', '帕金森']
+2025-02-26 13:38:29,200 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea590>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,202 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea0b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,204 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb610>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,207 - ERROR - 更新失败 =>  残疾情况 : ['听力残疾', '精神残疾', ['其他残疾', '90']]
+2025-02-26 13:38:29,210 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04ef39d80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,213 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04ef381f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,216 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04ef383d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,229 - ERROR - 更新失败 =>  残疾证号 : ab123
+2025-02-26 13:38:29,231 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea380>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,234 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea0b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,237 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb3d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,239 - ERROR - 更新失败 =>  与户主关系 : 子
+2025-02-26 13:38:29,242 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb4f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,245 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeaa70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,247 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eee9d20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,249 - ERROR - 更新失败 =>  户主姓名 : 李四2
+2025-02-26 13:38:29,251 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea620>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,253 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeae00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,256 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeab30>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,258 - ERROR - 更新失败 =>  户主身份证号 : 310101198004110013
+2025-02-26 13:38:29,261 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeab90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,263 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeacb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,265 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeada0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,267 - ERROR - 更新失败 =>  家庭人口数 : 4
+2025-02-26 13:38:29,270 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04ef39f90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,272 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04ef38520>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,274 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04ef38700>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,277 - ERROR - 更新失败 =>  家庭结构 : 3
+2025-02-26 13:38:29,279 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb220>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,281 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeacb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,283 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeb1f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,285 - ERROR - 更新失败 =>  居住情况 : 独居
+2025-02-26 13:38:29,288 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeace0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,290 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeeae00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,292 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea9b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,294 - ERROR - 更新失败 =>  厨房排风设施 : 烟囱
+2025-02-26 13:38:29,297 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea650>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,299 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea7d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,302 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea290>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,304 - ERROR - 更新失败 =>  燃料类型 : 煤
+2025-02-26 13:38:29,306 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea710>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,308 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeebca0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:29,310 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fb04eeea350>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/21dc6e697bec53dd4fdbd2ef796cde22/element/f.B401087CE0EAAD2126E0249DC670BDE7.d.3CE2E5D4F73D85C0D9B1B7A1B957487F.e.17382/element
+2025-02-26 13:38:53,890 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:39:01,019 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 13:39:56,992 - ERROR - 更新失败 =>  药物过敏史 : ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']]
+2025-02-26 13:39:57,028 - ERROR - 更新失败 =>  暴露史 : ['化学品', '不详']
+2025-02-26 13:39:57,029 - ERROR - 更新失败 =>  既往史 : {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}
+2025-02-26 13:39:57,029 - ERROR - 更新失败 =>  家族史 : ['有', ['高血压', '母亲']]
+2025-02-26 13:39:57,029 - ERROR - 更新失败 =>  遗传病史 : ['有', '帕金森']
+2025-02-26 13:39:57,133 - ERROR - 更新失败 =>  残疾情况 : ['听力残疾', '精神残疾', ['其他残疾', '90']]
+2025-02-26 13:40:37,746 - ERROR - 更新失败 =>  更新方式 : 门诊
+2025-02-26 13:40:38,906 - INFO - 更新 => {'operate': '仅保存', 'data': {' 姓名 ': '李四', ' 性别 ': '女', ' 出生日期 ': [2024, 2, 2], ' 民族 ': '回族', ' 现住址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'], ' 本人电话 ': '13815161718', ' 联系人姓名 ': '令狐冲', ' 联系人电话 ': '58771234', ' 常住类型 ': '非户籍', ' 文化程度 ': '专科教育', ' 职业 ': '军人', ' 工作单位 ': '上海智赢', ' 婚姻状况 ': '离婚', ' 血型 ': '不详', ' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['城镇职工基本医疗保险', '555'], ['城镇居民基本医疗保险', '666'], ['贫困救助', '777'], '全自费', ['其他', '123']], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123', ' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居', ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': ['金岭镇卫生院', '金岭镇山上候家村卫生室'], ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
+2025-02-26 13:40:38,906 - INFO - 点击{'operate': '仅保存', 'data': {' 姓名 ': '李四', ' 性别 ': '女', ' 出生日期 ': [2024, 2, 2], ' 民族 ': '回族', ' 现住址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'], ' 本人电话 ': '13815161718', ' 联系人姓名 ': '令狐冲', ' 联系人电话 ': '58771234', ' 常住类型 ': '非户籍', ' 文化程度 ': '专科教育', ' 职业 ': '军人', ' 工作单位 ': '上海智赢', ' 婚姻状况 ': '离婚', ' 血型 ': '不详', ' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['城镇职工基本医疗保险', '555'], ['城镇居民基本医疗保险', '666'], ['贫困救助', '777'], '全自费', ['其他', '123']], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123', ' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居', ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': ['金岭镇卫生院', '金岭镇山上候家村卫生室'], ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
+2025-02-26 13:58:46,849 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:58:53,983 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 13:58:54,400 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 13:58:54,447 - ERROR - 更新失败 =>  药物过敏史 : ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']]
+2025-02-26 13:58:54,486 - ERROR - 更新失败 =>  暴露史 : ['化学品', '不详']
+2025-02-26 13:58:54,486 - ERROR - 更新失败 =>  既往史 : {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}
+2025-02-26 13:58:54,487 - ERROR - 更新失败 =>  家族史 : ['有', ['高血压', '母亲']]
+2025-02-26 13:58:54,487 - ERROR - 更新失败 =>  遗传病史 : ['有', '帕金森']
+2025-02-26 13:58:54,532 - ERROR - 更新失败 =>  残疾情况 : ['听力残疾', '精神残疾', ['其他残疾', '90']]
+2025-02-26 13:59:27,878 - INFO - Received signal: SIGINT
+2025-02-26 13:59:27,879 - INFO - Program is terminating...
+2025-02-26 13:59:28,404 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466ddb40>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element
+2025-02-26 13:59:28,407 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466de2c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element
+2025-02-26 13:59:28,410 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466de770>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element
+2025-02-26 13:59:28,413 - ERROR - 更新失败 =>  建档日期 : [2025, 1, 16]
+2025-02-26 13:59:28,416 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466de0e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element/f.13DFF690ECB727AF620799E76D8FF9E9.d.73D4F901B8DD798E90E7115ED9CD7D82.e.17388/element
+2025-02-26 13:59:28,419 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466de350>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element/f.13DFF690ECB727AF620799E76D8FF9E9.d.73D4F901B8DD798E90E7115ED9CD7D82.e.17388/element
+2025-02-26 13:59:28,422 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466ddc00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element/f.13DFF690ECB727AF620799E76D8FF9E9.d.73D4F901B8DD798E90E7115ED9CD7D82.e.17388/element
+2025-02-26 13:59:28,425 - ERROR - 更新失败 =>  更新方式 : 门诊
+2025-02-26 13:59:28,428 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466de890>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element/f.13DFF690ECB727AF620799E76D8FF9E9.d.73D4F901B8DD798E90E7115ED9CD7D82.e.17388/element
+2025-02-26 13:59:28,431 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466de980>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element/f.13DFF690ECB727AF620799E76D8FF9E9.d.73D4F901B8DD798E90E7115ED9CD7D82.e.17388/element
+2025-02-26 13:59:28,434 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe4466deb60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/93d9a5303f51a64fc1f4ebeff838c22f/element/f.13DFF690ECB727AF620799E76D8FF9E9.d.73D4F901B8DD798E90E7115ED9CD7D82.e.17388/element
+2025-02-26 13:59:28,437 - ERROR - 更新失败 =>  更新内容 : 测试三峡
+2025-02-26 13:59:28,437 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123', ' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居', ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': ['金岭镇卫生院', '金岭镇山上候家村卫生室'], ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
+2025-02-26 13:59:28,437 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123', ' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居', ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': ['金岭镇卫生院', '金岭镇山上候家村卫生室'], ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
+2025-02-26 13:59:50,134 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 13:59:57,730 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:00:01,046 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:00:01,047 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:00:01,047 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:02:14,786 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:02:22,019 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:02:22,399 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:02:22,399 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:02:22,399 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:03:36,176 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:03:43,510 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:03:43,961 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:03:43,962 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:03:43,962 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:05:50,175 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:05:57,267 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:05:57,620 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:05:57,620 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:05:57,620 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:08:47,839 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:08:54,957 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:08:55,230 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:08:55,230 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:08:55,230 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:10:40,351 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:10:47,462 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:10:47,732 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:10:47,732 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:10:47,732 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:13:59,697 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:14:06,831 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:14:07,112 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:14:07,112 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:14:07,112 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:23:42,238 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:23:49,349 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:23:50,706 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:23:50,707 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:23:50,707 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:27:39,635 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:27:46,746 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:27:48,056 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:27:48,056 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:27:48,056 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:29:58,453 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:30:05,597 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:30:06,909 - ERROR - 更新失败 =>  医疗费用支付方式 : ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]
+2025-02-26 14:30:06,909 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:30:06,909 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': ['全自费', {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777', '其他': '123'}]}}
+2025-02-26 14:37:11,177 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:37:18,306 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:37:19,613 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 14:37:19,613 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:37:19,613 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:39:37,947 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:39:45,047 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:39:46,347 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 14:39:46,347 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:39:46,347 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:40:49,506 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:40:56,566 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:40:57,879 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 14:40:57,879 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:40:57,879 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:43:42,046 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 14:43:49,175 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 14:43:50,494 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 14:43:50,494 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 14:43:50,494 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 15:06:25,917 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:06:33,048 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:06:35,460 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 15:06:35,460 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 15:06:35,460 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 15:12:44,364 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:12:51,481 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:13:00,486 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 15:13:00,487 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 15:14:57,448 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:15:04,567 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:15:13,644 - ERROR - 更新失败 =>  药物过敏史 : ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']]
+2025-02-26 15:15:13,676 - ERROR - 更新失败 =>  暴露史 : ['化学品', '不详']
+2025-02-26 15:15:13,677 - ERROR - 更新失败 =>  既往史 : {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}
+2025-02-26 15:15:13,677 - ERROR - 更新失败 =>  家族史 : ['有', ['高血压', '母亲']]
+2025-02-26 15:15:13,677 - ERROR - 更新失败 =>  遗传病史 : ['有', '帕金森']
+2025-02-26 15:15:13,777 - ERROR - 更新失败 =>  残疾情况 : ['听力残疾', '精神残疾', ['其他残疾', '90']]
+2025-02-26 15:15:14,952 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123'}}
+2025-02-26 15:15:14,953 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', ['其他药物过敏源', '12345']], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123'}}
+2025-02-26 15:20:31,001 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:20:38,190 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:20:41,896 - ERROR - 更新失败 =>  暴露史 : ['化学品', '不详']
+2025-02-26 15:20:41,896 - ERROR - 更新失败 =>  既往史 : {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}
+2025-02-26 15:20:41,896 - ERROR - 更新失败 =>  家族史 : ['有', ['高血压', '母亲']]
+2025-02-26 15:20:41,896 - ERROR - 更新失败 =>  遗传病史 : ['有', '帕金森']
+2025-02-26 15:20:41,997 - ERROR - 更新失败 =>  残疾情况 : ['听力残疾', '精神残疾', ['其他残疾', '90']]
+2025-02-26 15:20:43,196 - INFO - 更新 => {'operate': '仅保存', 'data': {' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123'}}
+2025-02-26 15:20:43,196 - INFO - 点击{'operate': '仅保存', 'data': {' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': [['高血压', [2025, 1, 1]]], '手术': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]], '外伤': 'clear', '输血': 'remain'}, ' 家族史 ': ['有', ['高血压', '母亲']], ' 遗传病史 ': ['有', '帕金森'], ' 残疾情况 ': ['听力残疾', '精神残疾', ['其他残疾', '90']], ' 残疾证号 ': 'ab123'}}
+2025-02-26 15:51:48,420 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:51:55,569 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:51:55,734 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 15:52:01,630 - ERROR - 更新失败 =>  遗传病史 : {'有': '帕金森'}
+2025-02-26 15:52:01,933 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 15:52:01,934 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 15:52:01,934 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 15:54:14,035 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:54:21,177 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:54:21,316 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 15:54:27,196 - ERROR - 更新失败 =>  遗传病史 : {'有': '帕金森'}
+2025-02-26 15:54:27,500 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 15:54:27,500 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 15:54:27,501 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 15:58:19,742 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 15:58:26,871 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 15:58:28,277 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 15:58:28,277 - ERROR - 更新失败 =>  遗传病史 : {'有': '帕金森'}
+2025-02-26 15:58:28,554 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 15:58:28,554 - INFO - 更新 => {'operate': '仅保存', 'data': {' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 15:58:28,554 - INFO - 点击{'operate': '仅保存', 'data': {' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 15:59:58,701 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:00:05,752 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:00:05,888 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 16:00:08,149 - ERROR - 更新失败 =>  遗传病史 : {'有': '帕金森'}
+2025-02-26 16:00:08,434 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 16:00:08,434 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:00:08,434 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': '帕金森'}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:00:44,112 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:00:51,222 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:00:51,429 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 16:00:51,429 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:00:51,430 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:02:10,383 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:02:17,452 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:02:17,593 - ERROR - 更新失败 =>  医疗费用支付方式 : [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]
+2025-02-26 16:02:17,593 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:02:17,593 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:04:24,907 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:04:31,969 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:04:40,985 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:04:40,987 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:07:58,911 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:08:06,019 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:08:14,876 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:08:14,876 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}]}}
+2025-02-26 16:10:20,946 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:10:28,148 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:10:44,363 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 16:10:44,363 - INFO - 更新 => {'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:10:44,363 - INFO - 点击{'operate': '仅保存', 'data': {' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:13:10,761 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:13:17,877 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:13:18,249 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 16:13:18,249 - INFO - 更新 => {'operate': '仅保存', 'data': {' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:13:18,249 - INFO - 点击{'operate': '仅保存', 'data': {' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:13:52,746 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:13:59,862 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:14:02,446 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 16:14:02,446 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:14:02,446 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:15:02,108 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:15:09,236 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:15:12,829 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 16:15:12,829 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:15:12,829 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:17:51,898 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:17:59,033 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:18:05,389 - ERROR - 更新失败 =>  残疾情况 : [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]
+2025-02-26 16:18:05,389 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:18:05,389 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:21:09,362 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:21:16,436 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:21:22,680 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:21:22,680 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}]}}
+2025-02-26 16:29:53,501 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:30:00,617 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:30:04,104 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}}}
+2025-02-26 16:30:04,104 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}}}
+2025-02-26 16:33:02,733 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:33:10,018 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:33:13,651 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}}}
+2025-02-26 16:33:13,651 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}}}
+2025-02-26 16:36:37,345 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:36:44,518 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:36:48,123 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}}}
+2025-02-26 16:36:48,123 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}}}
+2025-02-26 16:50:08,878 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:50:15,999 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:50:37,709 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}}}
+2025-02-26 16:50:37,710 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}}}
+2025-02-26 16:52:46,695 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 16:52:53,879 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 16:53:15,673 - INFO - 更新 => {'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}}}
+2025-02-26 16:53:15,673 - INFO - 点击{'operate': '仅保存', 'data': {' 暴露史 ': ['化学品', '不详'], ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}}}
+2025-02-26 17:17:57,860 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:18:04,966 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:18:06,303 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}
+2025-02-26 17:18:06,303 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}}}
+2025-02-26 17:18:06,303 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}}}
+2025-02-26 17:19:48,627 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:19:55,959 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:20:10,451 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}
+2025-02-26 17:20:10,451 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}}}
+2025-02-26 17:20:10,451 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}}}
+2025-02-26 17:21:52,681 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:22:00,137 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:22:24,092 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}
+2025-02-26 17:22:24,092 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}}}
+2025-02-26 17:22:24,092 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': 'remain'}}}}
+2025-02-26 17:44:23,173 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:44:30,384 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:44:33,904 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 17:44:33,904 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:44:33,904 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:45:36,317 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:45:43,420 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:46:09,678 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 17:46:09,678 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:46:09,679 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:47:20,183 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:47:27,331 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:47:53,736 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 17:47:53,736 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:47:53,736 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:53:18,801 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:53:25,997 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:53:52,256 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 17:53:52,258 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:53:52,259 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:55:19,102 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:55:26,324 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:55:52,420 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 17:55:52,421 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:55:52,421 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:56:39,415 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 17:56:46,559 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 17:57:27,526 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 17:57:27,526 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 17:57:27,526 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 18:00:14,146 - INFO - 查询 => {'姓名': '丽丽'}
+2025-02-26 18:00:21,296 - INFO - 点击{'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-26 18:01:17,817 - ERROR - 更新失败 =>  既往史 : {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}
+2025-02-26 18:01:17,817 - INFO - 更新 => {'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}
+2025-02-26 18:01:17,818 - INFO - 点击{'operate': '仅保存', 'data': {' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]]]}, '外伤': {'无': ''}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}}}

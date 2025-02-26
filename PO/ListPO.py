@@ -142,6 +142,29 @@ class ListPO:
 
     """【操作元素】"""
 
+    def split2(self, varList, varElement):
+
+        # 2.3.1 列表分裂成组
+        # print(List_PO.split2([1, 2, 3, '测试', 4, 5, "测试", 6], '测试'))  # [[1,2,3],[4,5],[6]]
+        l_ = []
+        l_all = []
+
+        for i in range(len(varList)):
+            if varList[i] == varElement:
+                # varList.pop(0)
+                l_all.append(l_)
+                l_ = []
+            else:
+                l_.append(varList[i])
+        l_all.append(l_)
+        for i in l_all:
+            if i == []:
+                l_all.remove(i)
+        return l_all
+
+
+
+
     def split(self, varList, varElement, varMode):
 
         # 2.3 列表分裂

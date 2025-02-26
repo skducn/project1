@@ -9,23 +9,34 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
-from collections import ChainMap
 
-d_global = {
+# a = '残\n高\n脂'
+# print(len(a.split("\n")))
 
-        }
+a = ['', '', '', '商业医疗保险', '全公费', '全自费', '其他']
+b = a.pop(0)
+print(b)
+b = a.pop(0)
+print(b)
+print(a)
 
-d_1 = {'身份证号': 'shuzi', "33":'44'}
-
-d6 = dict(ChainMap(d_global, d_1))
-print(d6)
-
-dd = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
-# print(list(my_dict.keys()))  # 将字典的键转换为列表
-# print(list(my_dict.keys())[0])  # 将字典的键转换为列表
-
-if "外3伤" in dd:
-    print(dd['外伤'])
+# from collections import ChainMap
+#
+# d_global = {
+#
+#         }
+#
+# d_1 = {'身份证号': 'shuzi', "33":'44'}
+#
+# d6 = dict(ChainMap(d_global, d_1))
+# print(d6)
+#
+# dd = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
+# # print(list(my_dict.keys()))  # 将字典的键转换为列表
+# # print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+#
+# if "外3伤" in dd:
+#     print(dd['外伤'])
 
 # import qwen
 #
