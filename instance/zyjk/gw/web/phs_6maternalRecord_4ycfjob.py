@@ -20,7 +20,7 @@ Web_PO.swhLabel(1)
 
 # todo 1 查询
 Gw_PO.phs_maternalRecord_ycfjob_query({"身份证号": "110101199001014243"})
-# Gw_PO.phs_maternalRecord_ycfjob_query({"管理机构": ["招远市卫健局"], '是否仅查询机构': '是', "姓名": "胡成", "身份证号": "110101199001014243",
+# Gw_PO.phs_maternalRecord_ycfjob_query({"管理机构": "招远市卫健局", '是否仅查询机构': '是', "姓名": "胡成", "身份证号": "110101199001014243",
 #                                        '检查类型': '产后访视', "随访日期": [[2024, 2, 2], [2024, 3, 3]]})
 
 

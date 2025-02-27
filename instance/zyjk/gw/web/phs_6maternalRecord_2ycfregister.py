@@ -19,12 +19,14 @@ Web_PO.swhLabel(1)
 
 
 # todo 1 查询
-Gw_PO.phs_maternalRecord_ycfregister_query({"身份证号": "110101194301191302"})
-# Gw_PO.phs_maternalRecord_ycfregister_query({"管理机构": ["招远市卫健局"], "档案状态": "在档", "姓名": "胡成", '年龄': [12, 14], "身份证号": "110101194301191302",'联系电话': '13817161514'})
-
+# Gw_PO.phs_maternalRecord_ycfregister_query({"身份证号": "110101194301191302"})
+Gw_PO.phs_maternalRecord_ycfregister_query({"管理机构": {"蚕庄卫生院": "蚕庄镇柳杭村卫生室"}, "档案状态": "在档", "姓名": "胡成", '年龄': [12, 14], "身份证号": "110101194301191302",'联系电话': '13817161514'})
+# "管理机构": "招远市卫健局"
+# "管理机构": "蚕庄卫生院"
+# "管理机构": {"蚕庄卫生院": "蚕庄镇柳杭村卫生室"}
 
 # todo 2 专项登记
-Gw_PO.phs_maternalRecord_ycfregister_operation({'operate': '新增登记及第一次产前随访', 'option': {"身份证号": "110101194301191302"}})
+# Gw_PO.phs_maternalRecord_ycfregister_operation({'operate': '新增登记及第一次产前随访', 'option': {"身份证号": "110101194301191302"}})
 # 新增登记及第一次产前随访
 # Gw_PO.phs_maternalRecord_ycfregister_operation({'operate': '新增登记及第一次产前随访', 'data': {
 #     '填表日期': [2024, 1, 1], '是否高危产妇': '是', '丈夫姓名': '阿依达', '丈夫年龄': '43', '丈夫电话': '13611223344',
