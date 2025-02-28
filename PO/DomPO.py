@@ -11,7 +11,7 @@
 # 使用 nth-of-type(n)，可以指定选择的元素是父元素的第几个某类型的子节点。, 如 span:nth-of-type(2) 定位父元素第二个span类型子节点
 # nth-last-of-type(n)，可以倒过来， 选择父元素的倒数第几个某类型的子节点。
 # ***************************************************************
-'''
+"""
 重新定义
 find_element
 find_elements
@@ -20,7 +20,7 @@ sendKeysByX
 sendKeysById
 sendKeysByname
 
-todo clk
+todo clk菜单
 单点击 clkByX(varXpath)
 多点击 clkByXs(varXpaths)
 单点击某个索引号 clkIndexByXs(varXpaths, varIndex)
@@ -35,7 +35,7 @@ clkByTagname
 clkByLinktext(varText)
 clkByLinkstext(varText)
 
-todo get
+todo get菜单
 获取标签数量 getCountByXs(varXpaths)
 获取文本 getTextByX(varXpath)
 获取文本列表 getListTextByX(varXpaths)
@@ -52,7 +52,7 @@ todo get
 通过标签下文本获取上一层元素 getUpEleByX(varLabel, varText)
 通过标签下文本获取上层或上上层元素 getSuperEleByX(varLabel, varText, varXpath)
 
-todo set
+todo set菜单
 通过id设置文本 setTextById()
 通过id追加文本 appendTextById()
 通过name设置文本 setTextByName()
@@ -62,24 +62,24 @@ todo set
 通过xpath键盘设置文本 setTextEnterByX()
 通过xpath键盘追加文本  appendTextEnterByX()
 
-todo checkbox
+todo checkbox菜单
 是否选中复选框 isSelectedByX(varXpath)
 取消所有已勾选的复选框clsSelected(varXpaths)
 
-todo select
+todo select菜单
 通过id选择文本 sltTextById(varId, varText)
 通过id选择值 sltValueById(varId, varValue)
 通过name选择文本 sltTextByName(varName, varText)
 通过name选择值 sltValueByName(varName, varValue)
 
-todo iframe
+todo iframe菜单
 通过Xpath切换到iframe swhIframeByX(varXpath)
 通过id切换到iframe   swhIframeById(varId)
 通过xpaths遍历遍历属性中包含指定值切换iframe  swhIframeFromApcByXs(varXpaths,varAttr,varValue,2)
 多个iframe之间切换  swhIframe(0)
 退出iframe  quitIframe(0)
 
-todo js
+todo js菜单
 清除input输入框内容 clsText()
 清除readonly属性，是元素可见  clsReadonlyByX(varXpath)
 通过id去掉控件只读属性 clsReadonlyById(varId)
@@ -87,7 +87,7 @@ todo js
 通过name去掉隐藏属性 clsDisplayByName(varName)
 通过tagname去掉隐藏属性 clsDisplayByTagName(varLabel, varLen)
 
-todo boolean
+todo boolean菜单
 通过xpath判断ture或false isEleExistByX(varXpath)
 通过xpath判断属性是否存在 isBooleanAttr(varXpath, varAttr)
 通过xpath判断属性值是否存在 isBooleanAttrValue(varXpath, varAttr, varValue)
@@ -97,25 +97,26 @@ todo boolean
 通过超链接判断是否存在varText isEleExistByL(varText)
 通过xpath判断varText是否存在  isEleTextExistByX(varXpath, varText)
 
-todo alert(system)
+todo alert(system)菜单
 点击弹框中的确认 alertAccept()
 点击弹框中的取消 alertDismiss()
 获取弹框中的文案 alertText()
-'''
+"""
 
-import sys, os, platform, platform, psutil, ddddocr, requests, bs4, subprocess
-# import pyscreeze, pyautogui, cv2
-import pyautogui
+import requests, pyautogui
+# import sys, os, platform, platform, psutil, ddddocr, bs4, subprocess, pyscreeze, pyautogui, cv2
 
 from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.abstract_event_listener import *
 from selenium.webdriver.support.event_firing_webdriver import *
+from lxml import etree
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.abstract_event_listener import *
 from selenium.webdriver.support.expected_conditions import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -124,14 +125,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image, ImageDraw, ImageGrab
 from pytesseract import *
 # from seleniumwire import webdriver
-
 # from lxml import etree
-import lxml.html
-from lxml import etree
+# import lxml.html
 # from lxml.html.clean import Cleaner
-
-from lxml_html_clean import clean_html
-#  pip3 install lxml_html_clean
+# from lxml_html_clean import clean_html
+# pip3 install lxml_html_clean
 
 from PO.ListPO import *
 List_PO = ListPO()
@@ -143,7 +141,6 @@ class DomPO(object):
 
 
     def gettest(self, varUrl):
-
 
         # cleaned_html = clean_html(raw_html)
         # cleaner = Cleaner()
@@ -418,8 +415,8 @@ class DomPO(object):
     def eleGetCountByTag(self, ele, varLabel):
         # tag方式获取ele标签的数量
         # 获取tbody标签下所有的tr变迁数量
-        # ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-        # Web_PO.eleGetCountByLabel(ele2, "tr")
+        # ele2 = self.getSuperEleByX("//tbody", ".")
+        # self.eleGetCountByLabel(ele2, "tr")
         c = ele.find_elements(*(By.TAG_NAME, varLabel))
         return len(c)
 
@@ -570,11 +567,11 @@ class DomPO(object):
 
     def getSuperEleByX(self, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
-        # ele = Web_PO.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 通过位置定位， 定位到第三个元素
+        # ele = self.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 通过位置定位， 定位到第三个元素
         # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 通过文本定位， 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
         # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 通过文本定位， 获取span标签下文本上上层的元素
-        # ele = Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[2]/div[1]/div/div','.')  # 通过决绝路径定位， 获取当前路径
-        # ele = Web_PO.getSuperEleByX("//div[@class='formList']", '.')  # 通过相对路径定位
+        # ele = self.getSuperEleByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[2]/div[1]/div/div','.')  # 通过决绝路径定位， 获取当前路径
+        # ele = self.getSuperEleByX("//div[@class='formList']", '.')  # 通过相对路径定位
         ele = self.find_element(*(By.XPATH, varXpath))
         return ele.find_element(*(By.XPATH, varXpath2))
 
@@ -1073,6 +1070,11 @@ class DomPO(object):
         self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
             # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
 
+    def eleRadioRightLabelAndText(self, ele, varRadioRightLableByX, v, varTextByX):
+        # 单选框 rightlabel + 其他文本输入框
+        # self.eleRadioRightLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/label", v, ".//div[2]/div[2]/div/div/div/input")
+        self.eleRadioRightLabel(ele, varRadioRightLableByX, list(v.keys())[0])
+        self.eleSetTextByX(ele, varTextByX, v[list(v.keys())[0]][list(v[list(v.keys())[0]].keys())[0]])
 
 
     # todo checkbox
@@ -1315,7 +1317,16 @@ class DomPO(object):
                 if l_v2[i] == k3 and k3 != "无":
                     self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
                     self.eleSetTextByX(ele, _inputByX + "[" + str(v3-1) + "]/input", v[k3])
-           
+
+    def eleCheckboxLeftLabelAndText(self, ele, varCheckboxLeftLableByX, v, varTextByX):
+        # 下拉框leftlabel + 其他文本输入框
+        # self.eleCheckboxLeftLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
+        self.eleCheckboxLeftLabel(ele, varCheckboxLeftLableByX, v)
+        for i in v:
+            if isinstance(i, dict):
+                self.eleSetTextByX(ele, varTextByX, i[list(i.keys())[0]])
+
+
 
     def isSelectedByX(self, varXpath):
         # 是否勾选
@@ -1344,6 +1355,228 @@ class DomPO(object):
                 a.click()
 
 
+    # todo location
+
+    def eleCommon(self, ele, k, varLoc=".."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+    
+    def eleCommon2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+
+    def eleDiv(self, ele, k, varLoc=".."):
+        return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+
+    def eleLabel(self, ele, k, varLoc=".."):
+        return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+
+    def eleSpan(self, ele, k, varLoc=".."):
+        return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+
+    def eleTd(self, ele, k, varLoc=".."):
+        return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+
+
+    # todo dropdown
+
+    def _dropdown(self, varTextByXs, v):
+        l_ = self.getTextByXs(varTextByXs)
+        # print(l_)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        if isinstance(v, str):
+            # 单选
+            self.clkByX(varTextByXs + "[" + str(d_4[v]) + "]", 1)
+        elif isinstance(v, list):
+            # 多选
+            for i in range(len(v)):
+                self.clkByX(varTextByXs + "[" + str(d_4[v[i]]) + "]", 1)
+    def dropdown(self, varDropdownByX, varTextByXs, v):
+        # 点击下拉框，遍历文本，选择值
+        # self.dropdown(".//div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
+        # _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        self.clkByX(varDropdownByX, 1)
+        self._dropdown(varTextByXs, v)
+       
+    def eleDropdown(self, ele, varDropdownByX, varTextByXs, v):
+        # ele点击下拉框，遍历文本，选择值
+        # self.eleDropdown(self.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
+        self.eleClkByX(ele, varDropdownByX, 1)
+        self._dropdown(varTextByXs, v)
+        
+
+    def dropdownDate1(self, varDropdownByX, v):
+        # 点击单个日期控件下拉框，选择日期
+        # self.dropdownDate1(".//input", v)
+
+        self.clkByX(varDropdownByX)
+        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取当前年和月
+        defaultY = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
+        defaultYear = int(defaultY.split(" 年")[0])
+        defaultMonth = int(defaultM.split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                # 上年
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
+        elif defaultYear < v[0]:
+            year = v[0] - defaultYear
+            for i in range(year):
+                # 后年
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                # 上月
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
+        elif defaultMonth < v[1]:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                # 后月
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
+
+        # 3 遍历日期列表
+        tr2 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+
+        # 选择日期
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    self.clkByX(
+                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
+                        2)
+
+    def eleDropdownDate1(self, ele, varDropdownByX, v):
+        # ele点击单个日期控件下拉框，选择日期
+        # self.eleDropdownDate1(self.eleCommon(ele, k), ".//input", v)
+
+        self.eleScrollViewByX(ele, varDropdownByX, 2)
+        self.eleClkByX(ele, varDropdownByX)
+        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取当前年和月
+        defaultY = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
+        defaultYear = int(defaultY.split(" 年")[0])
+        defaultMonth = int(defaultM.split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                # 上年
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
+        elif defaultYear < v[0]:
+            year = v[0] - defaultYear
+            for i in range(year):
+                # 后年
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                # 上月
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
+        elif defaultMonth < v[1]:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                # 后月
+                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
+
+        # 3 遍历日期列表
+        tr2 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+
+        # 选择日期
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    self.clkByX(
+                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
+                        2)
 
 
 
@@ -2087,7 +2320,7 @@ class DomPO(object):
 
     def exportExistFile(self, varFile):
 
-        # 导出文件(文件已存在，覆盖)
+        # 导出文件(覆盖)
 
         # 选中文件
         pyautogui.write(varFile, interval=0.2)

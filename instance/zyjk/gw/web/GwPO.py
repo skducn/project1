@@ -31,10 +31,6 @@ import ddddocr
 from collections import ChainMap
 
 # d_g_type_func = {}
-d_g_type_func = {'文本': 'Web_PO.setTextEnterByX(dd_text_xpath[k], v)',
-                 '单下拉框': 'self.dropdown(dd_text_xpath[k], v)',
-                 '管理机构': 'self.gljg(ele, k, v)',
-                 '日期': 'self.dropdownDateByOne(dd_text_xpath[k], v)'}
 
 # exec("""for i in range(2):
 #     self.dropdownDateByOne(dd_text_xpath[k], v[i])""")
@@ -51,331 +47,285 @@ class GwPO():
         self.logger = logging.getLogger(__name__)
         # print(varFile, datetime.datetime.now())
 
+        self.selectors = {
+            'form': "//form",
+            'dropdown_class': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']",
+            'dropdown_class_dropdown': "//div[@class='el-popper is-pure is-light el-select__dropdown' and @aria-hidden='false']",
+            'dropdown_dropdown_1': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div/div[1]/ul/li",
+            'dropdown_dropdown_2': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[2]/div[1]/ul/li",
+            'dropdown_dropdown_3': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[3]/div[1]/ul/li",
+            'dropdown_popper': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+            'button_save_only': ".//span[text()='仅保存']",
+            'button_save_review': ".//span[text()='保存复核']",
+            'button_cancel': ".//span[text()='取消']",
+            'associate_family_confirm': ".//div[3]/div/button[1]",
+            'associate_family_cancel': ".//div[3]/div/button[2]"
+        }
 
-
-
-    # todo common
+        self.d_g_type_func = {'文本': 'Web_PO.setTextEnterByX(dd_text_xpath[k], v)',
+                         '单下拉框': "Web_PO.dropdown(dd_text_xpath[k], self.selectors['dropdown_popper'], v)",
+                         '管理机构': 'self.__gljg(ele, k, v)',
+                         '日期': 'Web_PO.dropdownDate1(dd_text_xpath[k], v)'}
 
     def __handle_signal(self, signum, frame):
         # 定义信号处理函数
         self.logger.info('Received signal: {}'.format(signal.Signals(signum).name))
         self.logger.info('Program is terminating...')
         # 在这里可以添加额外的清理代码或日志记录
- 
-    def gljg(self, ele, k, v):
-        # 管理机构
-        # v 是字符串或字典
-        _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
-        Web_PO.eleClkByX(self._eleCommon(ele, k), ".//input")
-        # l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
 
+    def clsApp(self, varApp):
+
+        '''
+        关闭应用程序
+         # clsApp("chrome.exe")
+        '''
+
+        l_pid = []
+        pids = psutil.pids()
+        for pid in pids:
+            p = psutil.Process(pid)
+            if p.name() == varApp:
+                l_pid.append(pid)
+        for i in range(len(l_pid)):
+            p = psutil.Process(l_pid[i])
+            p.terminate()
+
+    def _sm2(self, Web_PO):
+
+        # Web_PO.openURL("https://config.net.cn/tools/sm2.html")
+        Web_PO.opnLabel("https://config.net.cn/tools/sm2.html")
+        # 私钥
+        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[1]",
+                          "124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62")
+        # 公钥
+        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[2]",
+                          '04025d84101aa6ba2835995c2e72c0d9f49f382a87ace7e2770a511e1bbe95a40a2800a40bc966b3a51e4d36735e2b5941dd6e10f502f68fbc42a0ba7cec7ab249')
+
+    def encrypt(self, varSource):
+        # 在线sm2加密
+        # Web_PO = WebPO("noChrome")
+        self._sm2(Web_PO)
+        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", varSource)
+        Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[1]/a[1]", 1)
+        r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", "value")
+        return r
+
+    def decrypt(self, varEncrypt):
+        # 在线sm2解密
+        # Web_PO = WebPO("chrome")
+        self._sm2(Web_PO)
+        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", varEncrypt)
+        Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[2]/a[1]", 1)
+        r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", "value")
+        Web_PO.cls()
+        return r
+
+    def getDecode(self, varKey, varSm2Data):
+
+        # 在线sm2解密数据
+        d = {}
+        # Web_PO.openURL("https://the-x.cn/zh-cn/cryptography/Sm2.aspx")
+        Web_PO.opnLabel("https://the-x.cn/zh-cn/cryptography/Sm2.aspx")
+        Web_PO.swhLabel(1)
+        # 解密秘钥：124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62
+        Web_PO.setTextByX("/html/body/div/form/div[1]/div[1]/div[1]/textarea",
+                          "124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62")
+        Web_PO.setTextByX("/html/body/div/form/div[1]/div[1]/div[2]/textarea", varSm2Data)
+        Web_PO.clkByX("/html/body/div/form/div[2]/div[2]/input[2]", 2)
+        s_result = Web_PO.getAttrValueByX("/html/body/div/form/div[3]/textarea", "value")
+        d_result = eval(s_result)
+        d[varKey] = d_result
+        Web_PO.cls()
+        Web_PO.swhLabel(0)
+        return d
+
+    def login(self, varUrl, varUser, varPass):
+        # 登录
+        Web_PO.openURL(varUrl)
+        Web_PO.driver.maximize_window()  # 全屏
+        # Web_PO.setTextByX("//input[@placeholder='请输入用户名']", varUser)
+        # Web_PO.setTextByX("//input[@placeholder='输入密码']", varPass)
+        # Web_PO.clkByX("//button[@type='button']", 2)
+
+        d_ = Web_PO.getValueXpathByLabel("input", "placeholder")
+        Web_PO.setTextByX(d_['请输入用户名'], varUser)
+        Web_PO.setTextByX(d_['输入密码'], varPass)
+
+        d_ = Web_PO.getTextXpathByLabel("button", "/span")
+        Web_PO.clkByX(d_['登录'], 2)
+
+        # 系统接口404
+        l_ = Web_PO.getTextByXs("//div")
+        if '系统接口404异常' in l_:
+            print('系统接口404异常')
+            self.logger.error('系统接口404异常')
+            Web_PO.cls()
+            sys.exit(0)
+
+    def getMenu2Url(self):
+
+        # 获取菜单连接
+
+        # 统计ur数量
+        c = Web_PO.getCount("ul")
+        varLabelCount = c - 3
+
+        # 获取二级菜单名
+        Web_PO.clsDisplayByTagName("ul", varLabelCount)  # 展开所有二级菜单（去掉display：none）
+        l_menu2 = Web_PO.getTextByXs("//ul/div/a/li/span[2]")
+        # print(l_menu2)  # ['健康档案概况', '个人健康档案', '家庭健康档案', ...
+
+        # 获取二级菜单链接
+        l_menu2Url = Web_PO.getAttrValueByXs("//a", "href")
+        # print(l_menu2Url) # ['http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex', 'http://192.168.0.203:30080/#/phs/HealthRecord/Personal', ...
+
+        # 生成字典{菜单：URL}
+        d_menuUrl = dict(zip(l_menu2, l_menu2Url))
+        # print(d_menuUrl)  # {'健康档案概况': 'http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex',...
+
+        return d_menuUrl
+
+    def menu1(self, varMenu1):
+
+        '''格式化一级菜单'''
+
+        l_menu = Web_PO.getTextByXs("//li")
+        # 去掉''
+        l_menu = [i for i in l_menu if i != '']  # ['首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
+
+        # 序列化成字典
+        d_menu = (dict(enumerate(l_menu, start=1)))
+        # print(d_menu)  # {1: '首页', 2: '基本公卫', 3: '三高共管六病同防', 4: '系统配置', 5: '社区管理', 6: '报表', 7: '更多菜单'}
+
+        # 序列化反转
+        d_menu = {v: k for k, v in d_menu.items()}
+        print(d_menu)  # {'首页': 1, '基本公卫': 2, '三高共管六病同防': 3, '系统配置': 4, '社区管理': 5, '报表': 6, '更多菜单': 7}
+
+        if varMenu1 == '更多菜单':
+            Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[" + (str(d_menu[varMenu1])) + "]")
+        else:
+            Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[" + (str(d_menu[varMenu1])) + "]")
+            # /html/body/div[1]/div/div[1]/div[2]/ul/li[2]
+            # /html/body/div[1]/div/div[2]/div[2]/ul/li[3]
+            # /html/body/div[1]/div/div[2]/div[2]/ul/li[4]
+            # /html/body/div[1]/div/div[2]/div[2]/ul/li[3]
+            # /html/body/div[1]/div/div[1]/div[2]/ul/li[3]
+            # /html/body/div[1]/div/div[2]/div[2]/ul/li[1]
+        # return d_menu
+
+    def menu2(self, d_menu1, varMenuName):
+
+        '''格式化二级菜单'''
+        # ['健康档案管理', '', '', '', '', '', '儿童健康管理', '', '', '', '', '孕产妇管理', '', '', '', '', '老年人健康管理', '', '', '', '', '', '肺结核患者管理', '', '', '', '', '残疾人健康管理', '', '', '', '', '严重精神障碍健康管理', '', '', '', '', '健康教育', '', '高血压管理', '', '', '', '糖尿病管理', '', '', '', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单', '', '', '', '', '', '', '']
+
+        Web_PO.clkByX('//*[@id="topmenu-container"]/li[' + str(d_menu1[varMenuName]) + ']', 2)
+
+        # 获取二级菜单
+        l_menu2 = Web_PO.getTextByXs("//li")
+
+        # 去掉''
+        l_menu2 = [i for i in l_menu2 if i != '']
+        # print(l_menu2)  # ['健康档案管理', '儿童健康管理', '孕产妇管理', '老年人健康管理', '肺结核患者管理', '残疾人健康管理', '严重精神障碍健康管理', '健康教育', '高血压管理', '糖尿病管理', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
+
+        # 序列化成字典
+        d_menu2 = (dict(enumerate(l_menu2, start=1)))
+        # print(d_menu2)  # {1: '健康档案管理', 2: '儿童健康管理', 3: '孕产妇管理', 4: '老年人健康管理', 5: '肺结核患者管理', 6: '残疾人健康管理', 7: '严重精神障碍健康管理', 8: '健康教育', 9: '高血压管理', 10: '糖尿病管理', 11: '首页', 12: '基本公卫', 13: '三高共管六病同防', 14: '系统配置', 15: '社区管理', 16: '报表', 17: '更多菜单'}
+
+        # 序列化反转
+        d_menu2 = {v: k for k, v in d_menu2.items()}
+        # print(d_menu2)  # {'健康档案管理': 1, '儿童健康管理': 2, '孕产妇管理': 3, '老年人健康管理': 4, '肺结核患者管理': 5, '残疾人健康管理': 6, '严重精神障碍健康管理': 7, '健康教育': 8, '高血压管理': 9, '糖尿病管理': 10, '首页': 11, '基本公卫': 12, '三高共管六病同防': 13, '系统配置': 14, '社区管理': 15, '报表': 16, '更多菜单': 17}
+
+        return d_menu2
+
+        # return d_menu2[varMenuName]
+
+    def menu3(self, d_menu2, varMenu2Name, varMenu3Name):
+
+        '''格式化三级菜单'''
+        # ['健康档案管理', '', '', '', '', '', '儿童健康管理', '', '', '', '', '孕产妇管理', '', '', '', '', '老年人健康管理', '', '', '', '', '', '肺结核患者管理', '', '', '', '', '残疾人健康管理', '', '', '', '', '严重精神障碍健康管理', '', '', '', '', '健康教育', '', '高血压管理\n高血压专项\n高血压随访\n高血压报病', '高血压专项', '高血压随访', '高血压报病', '糖尿病管理', '', '', '', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单', '', '', '', '', '', '', '']
+        # 定位 '高血压管理\n高血压专项\n高血压随访\n高血压报病'
+
+        Web_PO.clk('//*[@id="app"]/div/div[1]/div/div[1]/div/ul/div[' + str(d_menu2[varMenu2Name]) + ']/li', 2)
+
+        # 获取三级菜单
+        l_menu3 = Web_PO.getTexts("//li")
+
+        # 去掉''
+        l_menu3 = [i for i in l_menu3 if i != '']
+        # print(l_menu3)  # ['健康档案管理', '儿童健康管理', '孕产妇管理', '老年人健康管理', '肺结核患者管理', '残疾人健康管理', '严重精神障碍健康管理', '健康教育', '高血压管理\n高血压专项\n高血压随访\n高血压报病', '高血压专项', '高血压随访', '高血压报病', '糖尿病管理', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
+
+        # 序列化成字典
+        d_menu3 = (dict(enumerate(l_menu3, start=1)))
+        # print(d_menu3)  # {1: '健康档案管理', 2: '儿童健康管理', 3: '孕产妇管理', 4: '老年人健康管理', 5: '肺结核患者管理', 6: '残疾人健康管理', 7: '严重精神障碍健康管理', 8: '健康教育', 9: '高血压管理\n高血压专项\n高血压随访\n高血压报病', 10: '高血压专项', 11: '高血压随访', 12: '高血压报病', 13: '糖尿病管理', 14: '首页', 15: '基本公卫', 16: '三高共管六病同防', 17: '系统配置', 18: '社区管理', 19: '报表', 20: '更多菜单'}
+
+        # 序列化反转
+        d_menu3 = {v: k for k, v in d_menu3.items()}
+        # print(d_menu3)  # {'健康档案管理': 1, '儿童健康管理': 2, '孕产妇管理': 3, '老年人健康管理': 4, '肺结核患者管理': 5, '残疾人健康管理': 6, '严重精神障碍健康管理': 7, '健康教育': 8, '高血压管理\n高血压专项\n高血压随访\n高血压报病': 9, '高血压专项': 10, '高血压随访': 11, '高血压报病': 12, '糖尿病管理': 13, '首页': 14, '基本公卫': 15, '三高共管六病同防': 16, '系统配置': 17, '社区管理': 18, '报表': 19, '更多菜单': 20}
+
+        for k, v in d_menu3.items():
+            if varMenu2Name + "\n" in k:
+                list1 = k.split("\n")  # ['高血压管理', '高血压专项', '高血压随访', '高血压报病']
+                for i in range(len(list1)):
+                    if list1[i] == varMenu3Name:
+                        Web_PO.clk('//*[@id="app"]/div/div[1]/div/div[1]/div/ul/div[' + str(
+                            d_menu2[varMenu2Name]) + ']/li/ul/div[' + str(i) + ']/a', 2)
+                        break
+                break
+
+
+
+    # todo common
+
+    def export(self, varFile):
+        # 导出
+        try:
+            ele = Web_PO.getSuperEleByX("//form", ".")
+            ele2 = Web_PO.eleGetSuperEleByX(ele, ".//span[text()='导出']", "..")
+            Web_PO.eleClkByX(ele2, ".", 2)  # 点击导出
+            if os.access(varFile, os.F_OK):
+                Web_PO.exportExistFile(varFile)
+            else:
+                Web_PO.exportFile(varFile)
+        except Exception as e:
+            print(f"导出过程中发生错误: {e}")
+
+    def __gljg(self, ele, k, v):
+        # 管理机构
+        Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//input")
         if isinstance(v, str):
             if v == '招远市卫健局':
                 # 卫健局
-                Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label")
-                Web_PO.clkTabByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label")
+                Web_PO.clkByX(self.selectors['dropdown_dropdown_1'] + "/label")
+                Web_PO.clkTabByX(self.selectors['dropdown_dropdown_1'] + "/label")
             else:
                 # 卫生院
-                Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
-                l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
+                Web_PO.clkByX(self.selectors['dropdown_dropdown_1'])
+                l_2 = Web_PO.getTextByXs(self.selectors['dropdown_dropdown_2'])
                 # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
                 if v in l_2:
                     for i in range(len(l_2)):
                         if l_2[i] == v:
-                            Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]/label")
-                            Web_PO.clkTabByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]/label")
+                            Web_PO.clkByX(self.selectors['dropdown_dropdown_2'] + "[" + str(i + 1) + "]/label")
+                            Web_PO.clkTabByX(self.selectors['dropdown_dropdown_2'] + "[" + str(i + 1) + "]/label")
                             break
         elif isinstance(v, dict):
             # 卫生院
-            Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
-            l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
+            Web_PO.clkByX(self.selectors['dropdown_dropdown_1'])
+            l_2 = Web_PO.getTextByXs(self.selectors['dropdown_dropdown_2'])
             varKey = list(v.keys())[0]
             if varKey in l_2:
                 for i in range(len(l_2)):
                     if l_2[i] == varKey:
                         # 卫生室
-                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]/label")
-                        l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
+                        Web_PO.clkByX(self.selectors['dropdown_dropdown_2'] + "[" + str(i + 1) + "]")
+                        l_3 = Web_PO.getTextByXs(self.selectors['dropdown_dropdown_3'])
                         # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
                         if v[varKey] in l_3:
                             for i in range(len(l_3)):
                                 if l_3[i] == v[varKey]:
-                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label")
-                                    Web_PO.clkTabByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label")
+                                    Web_PO.clkByX(self.selectors['dropdown_dropdown_3'] + "[" + str(i + 1) + "]/label")
+                                    Web_PO.clkTabByX(self.selectors['dropdown_dropdown_3'] + "[" + str(i + 1) + "]/label")
                                     break
-
-    def gljg2(self, ele, k, v):
-        # 管理机构
-        # v 是字符串或字典
-        _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
-        Web_PO.eleClkByX(self._eleCommon(ele, k), ".//input")
-        l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
-        print("v, l_1:", v, l_1)
-
-        # 卫健局
-        if v == l_1:
-            print(l_1)  # ['招远市卫健局']
-            Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label")
-            # Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
-            # /html/body/div[2]/div[50]    /div/div[1]/div[1]/ul/li/label
-            Web_PO.clkTabByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label")
-            # Web_PO.clkTabByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
-        else:
-            Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
-            l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
-            # 卫生院
-            if len(v) == 1:
-                # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
-                if v[0] in l_2:
-                    for i in range(len(l_2)):
-                        if l_2[i] == v[0]:
-                            Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]/label/span[1]/span")
-                            break
-            else:
-                # 卫生室
-                if v[0] in l_2:
-                    for i in range(len(l_2)):
-                        if l_2[i] == v[0]:
-                            Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i + 1) + "]")
-                            l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
-                            if v[1] in l_3:
-                                # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
-                                for i in range(len(l_3)):
-                                    if l_3[i] == v[1]:
-                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label/span[1]/span")
-                                        Web_PO.clkTabByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]")
-                                        break
-
-    def export(self, varFile):
-
-        # 导出
-
-        ele = Web_PO.getSuperEleByX("//form", ".")
-        Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 点击导出
-
-        if os.access(varFile + ".xlsx", os.F_OK):
-            Web_PO.exportExistFile(varFile)
-        else:
-            Web_PO.exportFile(varFile)
-
-
-    def dropdown(self, varXpath, v):
-        # 选择下拉框的值
-
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-        Web_PO.clkByX(varXpath, 1)
-        l_ = Web_PO.getTextByXs(_dropdownByX)
-        # print(l_)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        if isinstance(v, str):
-            # 单选
-            # print(varXpaths + "[" + str(d_4[v]) + "]")
-            # /html/body/div[2]/div[30]/div/div/div[1]/ul/li[3]
-            Web_PO.clkByX(_dropdownByX + "[" + str(d_4[v]) + "]", 1)
-        elif isinstance(v, list):
-            # 多选
-            for i in range(len(v)):
-                Web_PO.clkByX(_dropdownByX + "[" + str(d_4[v[i]]) + "]", 1)
-
-    def __dropdown(self, varXpath, v):
-        # 选择下拉框的值
-
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-        Web_PO.clkByX(varXpath, 1)
-        l_ = Web_PO.getTextByXs(_dropdownByX)
-        # print(l_)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        if isinstance(v, str):
-            # 单选
-            # print(varXpaths + "[" + str(d_4[v]) + "]")
-            # /html/body/div[2]/div[30]/div/div/div[1]/ul/li[3]
-            Web_PO.clkByX(_dropdownByX + "[" + str(d_4[v]) + "]", 1)
-        elif isinstance(v, list):
-            # 多选
-            for i in range(len(v)):
-                Web_PO.clkByX(_dropdownByX + "[" + str(d_4[v[i]]) + "]", 1)
-
-    def __eleDropdown(self, ele, varXpath, varXpaths, v):
-        # 选择下拉框的值
-        Web_PO.eleClkByX(ele, varXpath, 1)
-        l_ = Web_PO.getTextByXs(varXpaths)
-        # print(l_)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        if isinstance(v, str):
-            # 单选
-            # print(varXpaths + "[" + str(d_4[v]) + "]")
-            # /html/body/div[2]/div[30]/div/div/div[1]/ul/li[3]
-            Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
-        elif isinstance(v, list):
-            # 多选
-            for i in range(len(v)):
-                Web_PO.clkByX(varXpaths + "[" + str(d_4[v[i]]) + "]", 1)
-
-    def dropdownDateByOne(self, elePath, v):
-        # 公共 - 单个日期控件
-        # 如：入职日期，离职日期
-
-        # Web_PO.eleScrollViewByX(ele, elePath, 2)
-        Web_PO.clkByX(elePath)
-        # print(v)
-
-        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
-
-        # 1 获取当前年和月
-        defaultY = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
-        defaultM = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
-        defaultYear = int(defaultY.split(" 年")[0])
-        defaultMonth = int(defaultM.split(" 月")[0])
-        # print("defaultYear", defaultYear)
-        # print("defaultMonth", defaultMonth)
-
-        # 2 切换年
-        if v[0] < defaultYear:
-            year = defaultYear - v[0]
-            for i in range(year):
-                # 上年
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
-        elif defaultYear < v[0]:
-            year = v[0] - defaultYear
-            for i in range(year):
-                # 后年
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
-        # 切换月
-        if v[1] < defaultMonth:
-            month = defaultMonth - v[1]
-            for i in range(month):
-                # 上月
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
-        elif defaultMonth < v[1]:
-            month = v[1] - defaultMonth
-            for i in range(month):
-                # 后月
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
-
-        # 3 遍历日期列表
-        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
-        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
-        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
-        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
-        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
-        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
-        l_1 = []
-        l_tr2 = tr2[0].split("\n")
-        l_tr2 = [int(i) for i in l_tr2]
-        l_tr2 = [0 if i > 10 else i for i in l_tr2]
-        l_1.append(l_tr2)
-        l_tr3 = tr3[0].split("\n")
-        l_tr3 = [int(i) for i in l_tr3]
-        l_1.append(l_tr3)
-        l_tr4 = tr4[0].split("\n")
-        l_tr4 = [int(i) for i in l_tr4]
-        l_1.append(l_tr4)
-        l_tr5 = tr5[0].split("\n")
-        l_tr5 = [int(i) for i in l_tr5]
-        l_1.append(l_tr5)
-        l_tr6 = tr6[0].split("\n")
-        l_tr6 = [int(i) for i in l_tr6]
-        l_tr6 = [0 if i < 10 else i for i in l_tr6]
-        l_1.append(l_tr6)
-        l_tr7 = tr7[0].split("\n")
-        l_tr7 = [int(i) for i in l_tr7]
-        l_tr7 = [0 if i < 10 else i for i in l_tr7]
-        l_1.append(l_tr7)
-        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
-
-        # 选择日期
-        for i in range(len(l_1)):
-            for j in range(len(l_1[i])):
-                if l_1[i][j] == v[2]:
-                    Web_PO.clkByX(
-                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
-                        2)
-
-    def eleDropdownDateByOne(self, ele, elePath, v):
-        # 公共 - 单个日期控件
-        # 如：入职日期，离职日期
-
-        Web_PO.eleScrollViewByX(ele, elePath, 2)
-        Web_PO.eleClkByX(ele, elePath)
-        # print(v)
-
-        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
-
-        # 1 获取当前年和月
-        defaultY = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
-        defaultM = Web_PO.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
-        defaultYear = int(defaultY.split(" 年")[0])
-        defaultMonth = int(defaultM.split(" 月")[0])
-        # print("defaultYear", defaultYear)
-        # print("defaultMonth", defaultMonth)
-
-        # 2 切换年
-        if v[0] < defaultYear:
-            year = defaultYear - v[0]
-            for i in range(year):
-                # 上年
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
-        elif defaultYear < v[0]:
-            year = v[0] - defaultYear
-            for i in range(year):
-                # 后年
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
-        # 切换月
-        if v[1] < defaultMonth:
-            month = defaultMonth - v[1]
-            for i in range(month):
-                # 上月
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
-        elif defaultMonth < v[1]:
-            month = v[1] - defaultMonth
-            for i in range(month):
-                # 后月
-                Web_PO.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
-
-        # 3 遍历日期列表
-        tr2 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
-        tr3 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
-        tr4 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
-        tr5 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
-        tr6 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
-        tr7 = Web_PO.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
-        l_1 = []
-        l_tr2 = tr2[0].split("\n")
-        l_tr2 = [int(i) for i in l_tr2]
-        l_tr2 = [0 if i > 10 else i for i in l_tr2]
-        l_1.append(l_tr2)
-        l_tr3 = tr3[0].split("\n")
-        l_tr3 = [int(i) for i in l_tr3]
-        l_1.append(l_tr3)
-        l_tr4 = tr4[0].split("\n")
-        l_tr4 = [int(i) for i in l_tr4]
-        l_1.append(l_tr4)
-        l_tr5 = tr5[0].split("\n")
-        l_tr5 = [int(i) for i in l_tr5]
-        l_1.append(l_tr5)
-        l_tr6 = tr6[0].split("\n")
-        l_tr6 = [int(i) for i in l_tr6]
-        l_tr6 = [0 if i < 10 else i for i in l_tr6]
-        l_1.append(l_tr6)
-        l_tr7 = tr7[0].split("\n")
-        l_tr7 = [int(i) for i in l_tr7]
-        l_tr7 = [0 if i < 10 else i for i in l_tr7]
-        l_1.append(l_tr7)
-        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
-
-        # 选择日期
-        for i in range(len(l_1)):
-            for j in range(len(l_1[i])):
-                if l_1[i][j] == v[2]:
-                    Web_PO.clkByX(
-                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
-                        2)
 
     def __eleDropdownDateByTwo(self, v):
         # 公共 - 日期区间
@@ -612,151 +562,9 @@ class GwPO():
                     Web_PO.clkByX(varPrefix + "/div/div/div/div[" + str(varLoc) + "]/table/tbody/tr[" + str(
                         i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
-
-
-
-
-    # def __clkDropdownNoPath(self, ele, eleXpath, varXpaths, v):
-    #     # 选择下拉框的值（单选）
-    #     # 用于现住址
-    #     # self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-    #     Web_PO.eleClkByX(ele, eleXpath, 1)
-    #     l_ = Web_PO.getTextByXs(varXpaths)
-    #     d_3 = dict(enumerate(l_, start=1))
-    #     d_4 = {v: k for k, v in d_3.items()}
-    #     # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-    #     Web_PO.clkByX(varXpaths + "[" + str(d_4[v]) + "]", 1)
-
-
-
-    # def _eleClkRadio(self, ele, varXpaths, v):
-    #     # 选择单选框的值(定位label左[v的对应值])
-    #     # Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
-    #     l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
-    #     # if l_ == ['门诊\n家庭\n电话']:
-    #     #     l_ = l_[0].split('\n')
-    #     # elif l_ == ['有\n无']:
-    #     #     l_ = l_[0].split('\n')
-    #     # elif l_ == ['是\n否']:
-    #     #     l_ = l_[0].split('\n')
-    #     if "\n" in l_[0]:
-    #         l_ = l_[0].split('\n')
-    #     # print(l_)
-    #     d_3 = dict(enumerate(l_, start=1))
-    #     d_4 = {v: k for k, v in d_3.items()}
-    #     # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-    #
-    #     # 获取单选框所有值的状态
-    #     l_value = Web_PO.eleGetTextByXs(ele, ".//label/span[2]")
-    #     # print(l_value)  # ['是', '否']
-    #     l_class = Web_PO.eleGetAttrValueByXs(ele, ".//label", "class")
-    #     # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
-    #     l_isChecked = []
-    #     for i in range(len(l_class)):
-    #         if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[i] == 'el-radio is-disabled is-checked el-radio--default':
-    #             l_isChecked.append(1)
-    #         else:
-    #             l_isChecked.append(0)
-    #     d_default = dict(zip(l_value, l_isChecked))
-    #     # print(d_default)  # {'是': 0, '否': 1}
-    #
-    #     # 检查是否已经选中，如果未选择则勾选，否则不操作。
-    #     if d_default[v] == 0:
-    #         Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-    #         # 如：/html/body/div[1]/div/div[3]/section/div/form/div[2]/div[7]/div[2]/div[2]/div/div/div[2]/label
-
-
-    # def _eleClkRadioByLabel(self, ele, varXpaths, v):
-    #     # 选择单选框的值(定位label右[v的对应值])
-    #     # Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div/label", v)
-    #
-    #     l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
-    #     if "\n" in l_[0]:
-    #         l_ = l_[0].split('\n')
-    #     # print(l_)
-    #     d_3 = dict(enumerate(l_, start=1))
-    #     d_4 = {v: k for k, v in d_3.items()}
-    #     # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-    #
-    #     # 获取单选框所有值的状态
-    #     l_value = Web_PO.eleGetTextByXs(ele, ".//label/span[2]")
-    #     # print(l_value)  # ['是', '否']
-    #     l_class = Web_PO.eleGetAttrValueByXs(ele, ".//label", "class")
-    #     # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
-    #     l_isChecked = []
-    #     for i in range(len(l_class)):
-    #         if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[i] == 'el-radio is-disabled is-checked el-radio--default':
-    #             l_isChecked.append(1)
-    #         else:
-    #             l_isChecked.append(0)
-    #     d_default = dict(zip(l_value, l_isChecked))
-    #     # print(d_default)  # {'是': 0, '否': 1}
-    #
-    #     # 检查是否已经选中，如果未选择则勾选，否则不操作。
-    #     if d_default[v] == 0:
-    #         Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
-    #         # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
-
-
-
-
-
-   
-    def _eleCheckboxPay(self, ele, v, default='remain'):
-        # 医疗费用支付方式
-        # 选择复选框的值
-
-        # 1, 全部不勾选
-        if default != "remain":
-            # 城镇职工基本医疗保险
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[1]/div[1]/div/div/div/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[1]/div/div/div/label", 1)
-            # 城镇居民基本医疗保险
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[2]/div/div/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[2]/div/div/label", 1)
-            # 贫困救助
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[1]/div/div/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[1]/div/div/label", 1)
-            # 商业医疗保险
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[4]/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[4]/label", 1)
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[4]/label", 1)
-            # 全公费
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[5]/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[5]/label", 1)
-            # 全自费
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[6]/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[6]/label", 1)
-            # 其他
-            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[7]/label", "class")
-            if varClass == 'el-checkbox el-checkbox--default is-checked':
-                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[7]/label", 1)
-
-        # 更改
-        if isinstance(v, list):
-            self._eleCheckboxLL2other(ele, ".//div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div", v, ".//div[2]/div/div/div/div[2]/div[2]/div/div/div/div/input")
-
-        if isinstance(v, dict):
-            for k1, v1 in v.items():
-                if k1 == '城镇职工基本医疗保险':
-                    Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[1]/div/div/div")
-                    Web_PO.eleSetTextByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[1]/div/div/div/input", v1)
-                if k1 == '城镇居民基本医疗保险' :
-                    Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[2]/div/div")
-                    Web_PO.eleSetTextByX(ele, ".//div[2]/div/div/div/div[1]/div[3]/div/div/div/div/input",v1)
-                if k1 == '贫困救助':
-                    Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[1]/div/div")
-                    Web_PO.eleSetTextByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[2]/div/div/div/input",v1)
-
-
     def pagination(self, varGoto):
 
+        # 获取页面，跳转页码
         d_ = {}
         ele = Web_PO.getSuperEleByX("//div[@class='my-table-pagination']", '.')
         s_totalRecord = Web_PO.eleGetTextByX(ele, './/div/span[1]')
@@ -775,217 +583,7 @@ class GwPO():
         s_gotoPage = Web_PO.eleGetShadowByXByC(ele, './/div/span[3]/div/input', 'div:nth-last-of-type(1)')
         d_['gotoPage'] = int(s_gotoPage)
         return d_
-    
-    def clsApp(self, varApp):
 
-        '''
-        关闭应用程序
-        :param varApp:
-        :return:
-         # clsApp("chrome.exe")
-        '''
-
-        l_pid = []
-        pids = psutil.pids()
-        for pid in pids:
-            p = psutil.Process(pid)
-            if p.name() == varApp:
-                l_pid.append(pid)
-        for i in range(len(l_pid)):
-            p = psutil.Process(l_pid[i])
-            p.terminate()
-
-
-
-
-    def _sm2(self, Web_PO):
-
-        # Web_PO.openURL("https://config.net.cn/tools/sm2.html")
-        Web_PO.opnLabel("https://config.net.cn/tools/sm2.html")
-        # 私钥
-        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[1]",
-                          "124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62")
-        # 公钥
-        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[2]",
-                          '04025d84101aa6ba2835995c2e72c0d9f49f382a87ace7e2770a511e1bbe95a40a2800a40bc966b3a51e4d36735e2b5941dd6e10f502f68fbc42a0ba7cec7ab249')
-
-    def encrypt(self, varSource):
-
-        # 在线sm2加密
-
-        # Web_PO = WebPO("noChrome")
-        self._sm2(Web_PO)
-        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", varSource)
-        Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[1]/a[1]", 1)
-        r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", "value")
-        return r
-
-    def decrypt(self, varEncrypt):
-
-        # 在线sm2解密
-
-        # Web_PO = WebPO("chrome")
-        self._sm2(Web_PO)
-        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", varEncrypt)
-        Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[2]/a[1]", 1)
-        r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", "value")
-        Web_PO.cls()
-        return r
-
-
-    def login(self, varUrl, varUser, varPass):
-        # 登录
-        Web_PO.openURL(varUrl)
-        Web_PO.driver.maximize_window()  # 全屏
-        # Web_PO.setTextByX("//input[@placeholder='请输入用户名']", varUser)
-        # Web_PO.setTextByX("//input[@placeholder='输入密码']", varPass)
-        # Web_PO.clkByX("//button[@type='button']", 2)
-
-
-        d_ = Web_PO.getValueXpathByLabel("input", "placeholder")
-        Web_PO.setTextByX(d_['请输入用户名'], varUser)
-        Web_PO.setTextByX(d_['输入密码'], varPass)
-
-        d_ = Web_PO.getTextXpathByLabel("button", "/span")
-        Web_PO.clkByX(d_['登录'], 2)
-
-
-
-
-        # 系统接口404
-        l_ = Web_PO.getTextByXs("//div")
-        if '系统接口404异常' in l_:
-            print('系统接口404异常')
-            self.logger.error('系统接口404异常')
-            Web_PO.cls()
-            sys.exit(0)
-
-    def getDecode(self, varKey, varSm2Data):
-
-        # 在线sm2解密数据
-        d = {}
-        # Web_PO.openURL("https://the-x.cn/zh-cn/cryptography/Sm2.aspx")
-        Web_PO.opnLabel("https://the-x.cn/zh-cn/cryptography/Sm2.aspx")
-        Web_PO.swhLabel(1)
-        # 解密秘钥：124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62
-        Web_PO.setTextByX("/html/body/div/form/div[1]/div[1]/div[1]/textarea", "124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62")
-        Web_PO.setTextByX("/html/body/div/form/div[1]/div[1]/div[2]/textarea", varSm2Data)
-        Web_PO.clkByX("/html/body/div/form/div[2]/div[2]/input[2]", 2)
-        s_result = Web_PO.getAttrValueByX("/html/body/div/form/div[3]/textarea", "value")
-        d_result = eval(s_result)
-        d[varKey] = d_result
-        Web_PO.cls()
-        Web_PO.swhLabel(0)
-        return d
-
-    def getMenu2Url(self):
-
-        # 获取菜单连接
-
-        # 统计ur数量
-        c = Web_PO.getCount("ul")
-        varLabelCount = c-3
-
-        # 获取二级菜单名
-        Web_PO.clsDisplayByTagName("ul", varLabelCount)  # 展开所有二级菜单（去掉display：none）
-        l_menu2 = Web_PO.getTextByXs("//ul/div/a/li/span[2]")
-        # print(l_menu2)  # ['健康档案概况', '个人健康档案', '家庭健康档案', ...
-
-        # 获取二级菜单链接
-        l_menu2Url = Web_PO.getAttrValueByXs("//a", "href")
-        # print(l_menu2Url) # ['http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex', 'http://192.168.0.203:30080/#/phs/HealthRecord/Personal', ...
-
-        # 生成字典{菜单：URL}
-        d_menuUrl = dict(zip(l_menu2, l_menu2Url))
-        # print(d_menuUrl)  # {'健康档案概况': 'http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex',...
-
-        return d_menuUrl
-
-    def menu1(self, varMenu1):
-
-        '''格式化一级菜单'''
-
-        l_menu = Web_PO.getTextByXs("//li")
-        # 去掉''
-        l_menu = [i for i in l_menu if i != '']  # ['首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
-
-        # 序列化成字典
-        d_menu = (dict(enumerate(l_menu, start=1)))
-        # print(d_menu)  # {1: '首页', 2: '基本公卫', 3: '三高共管六病同防', 4: '系统配置', 5: '社区管理', 6: '报表', 7: '更多菜单'}
-
-        # 序列化反转
-        d_menu = {v: k for k, v in d_menu.items()}
-        print(d_menu)  # {'首页': 1, '基本公卫': 2, '三高共管六病同防': 3, '系统配置': 4, '社区管理': 5, '报表': 6, '更多菜单': 7}
-
-        if varMenu1 == '更多菜单':
-            Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li["+ (str(d_menu[varMenu1]))+ "]")
-        else:
-            Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li["+ (str(d_menu[varMenu1]))+ "]")
-                         # /html/body/div[1]/div/div[1]/div[2]/ul/li[2]
-                         # /html/body/div[1]/div/div[2]/div[2]/ul/li[3]
-                         # /html/body/div[1]/div/div[2]/div[2]/ul/li[4]
-            # /html/body/div[1]/div/div[2]/div[2]/ul/li[3]
-            # /html/body/div[1]/div/div[1]/div[2]/ul/li[3]
-            # /html/body/div[1]/div/div[2]/div[2]/ul/li[1]
-        # return d_menu
-
-    def menu2(self, d_menu1, varMenuName):
-
-        '''格式化二级菜单'''
-        # ['健康档案管理', '', '', '', '', '', '儿童健康管理', '', '', '', '', '孕产妇管理', '', '', '', '', '老年人健康管理', '', '', '', '', '', '肺结核患者管理', '', '', '', '', '残疾人健康管理', '', '', '', '', '严重精神障碍健康管理', '', '', '', '', '健康教育', '', '高血压管理', '', '', '', '糖尿病管理', '', '', '', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单', '', '', '', '', '', '', '']
-
-        Web_PO.clkByX('//*[@id="topmenu-container"]/li[' + str(d_menu1[varMenuName]) + ']', 2)
-
-        # 获取二级菜单
-        l_menu2 = Web_PO.getTextByXs("//li")
-
-        # 去掉''
-        l_menu2 = [i for i in l_menu2 if i != '']
-        # print(l_menu2)  # ['健康档案管理', '儿童健康管理', '孕产妇管理', '老年人健康管理', '肺结核患者管理', '残疾人健康管理', '严重精神障碍健康管理', '健康教育', '高血压管理', '糖尿病管理', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
-
-        # 序列化成字典
-        d_menu2 = (dict(enumerate(l_menu2, start=1)))
-        # print(d_menu2)  # {1: '健康档案管理', 2: '儿童健康管理', 3: '孕产妇管理', 4: '老年人健康管理', 5: '肺结核患者管理', 6: '残疾人健康管理', 7: '严重精神障碍健康管理', 8: '健康教育', 9: '高血压管理', 10: '糖尿病管理', 11: '首页', 12: '基本公卫', 13: '三高共管六病同防', 14: '系统配置', 15: '社区管理', 16: '报表', 17: '更多菜单'}
-
-        # 序列化反转
-        d_menu2 = {v: k for k, v in d_menu2.items()}
-        # print(d_menu2)  # {'健康档案管理': 1, '儿童健康管理': 2, '孕产妇管理': 3, '老年人健康管理': 4, '肺结核患者管理': 5, '残疾人健康管理': 6, '严重精神障碍健康管理': 7, '健康教育': 8, '高血压管理': 9, '糖尿病管理': 10, '首页': 11, '基本公卫': 12, '三高共管六病同防': 13, '系统配置': 14, '社区管理': 15, '报表': 16, '更多菜单': 17}
-
-        return d_menu2
-
-        # return d_menu2[varMenuName]
-
-    def menu3(self, d_menu2, varMenu2Name, varMenu3Name):
-
-        '''格式化三级菜单'''
-        # ['健康档案管理', '', '', '', '', '', '儿童健康管理', '', '', '', '', '孕产妇管理', '', '', '', '', '老年人健康管理', '', '', '', '', '', '肺结核患者管理', '', '', '', '', '残疾人健康管理', '', '', '', '', '严重精神障碍健康管理', '', '', '', '', '健康教育', '', '高血压管理\n高血压专项\n高血压随访\n高血压报病', '高血压专项', '高血压随访', '高血压报病', '糖尿病管理', '', '', '', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单', '', '', '', '', '', '', '']
-        # 定位 '高血压管理\n高血压专项\n高血压随访\n高血压报病'
-
-        Web_PO.clk('//*[@id="app"]/div/div[1]/div/div[1]/div/ul/div[' + str(d_menu2[varMenu2Name]) + ']/li', 2)
-
-        # 获取三级菜单
-        l_menu3 = Web_PO.getTexts("//li")
-
-        # 去掉''
-        l_menu3 = [i for i in l_menu3 if i != '']
-        # print(l_menu3)  # ['健康档案管理', '儿童健康管理', '孕产妇管理', '老年人健康管理', '肺结核患者管理', '残疾人健康管理', '严重精神障碍健康管理', '健康教育', '高血压管理\n高血压专项\n高血压随访\n高血压报病', '高血压专项', '高血压随访', '高血压报病', '糖尿病管理', '首页', '基本公卫', '三高共管六病同防', '系统配置', '社区管理', '报表', '更多菜单']
-
-        # 序列化成字典
-        d_menu3 = (dict(enumerate(l_menu3, start=1)))
-        # print(d_menu3)  # {1: '健康档案管理', 2: '儿童健康管理', 3: '孕产妇管理', 4: '老年人健康管理', 5: '肺结核患者管理', 6: '残疾人健康管理', 7: '严重精神障碍健康管理', 8: '健康教育', 9: '高血压管理\n高血压专项\n高血压随访\n高血压报病', 10: '高血压专项', 11: '高血压随访', 12: '高血压报病', 13: '糖尿病管理', 14: '首页', 15: '基本公卫', 16: '三高共管六病同防', 17: '系统配置', 18: '社区管理', 19: '报表', 20: '更多菜单'}
-
-        # 序列化反转
-        d_menu3 = {v: k for k, v in d_menu3.items()}
-        # print(d_menu3)  # {'健康档案管理': 1, '儿童健康管理': 2, '孕产妇管理': 3, '老年人健康管理': 4, '肺结核患者管理': 5, '残疾人健康管理': 6, '严重精神障碍健康管理': 7, '健康教育': 8, '高血压管理\n高血压专项\n高血压随访\n高血压报病': 9, '高血压专项': 10, '高血压随访': 11, '高血压报病': 12, '糖尿病管理': 13, '首页': 14, '基本公卫': 15, '三高共管六病同防': 16, '系统配置': 17, '社区管理': 18, '报表': 19, '更多菜单': 20}
-
-        for k, v in d_menu3.items():
-            if varMenu2Name + "\n" in k:
-                list1 = k.split("\n")  # ['高血压管理', '高血压专项', '高血压随访', '高血压报病']
-                for i in range(len(list1)):
-                    if list1[i] == varMenu3Name:
-                        Web_PO.clk('//*[@id="app"]/div/div[1]/div/div[1]/div/ul/div[' + str(d_menu2[varMenu2Name]) + ']/li/ul/div[' + str(i) + ']/a', 2)
-                        break
-                break
 
     def newMedicalInstitution(self, hospital, hospitalCode, hospitalReg, hospitalLevel, hospitalPerson, hospitalAddress, hospitalPhone, hospitalIntro):
 
@@ -1081,52 +679,22 @@ class GwPO():
 
 
 
-    def _getEleByLabelText(self, k):
-        return Web_PO.getSuperEleByX("//label[text()='" + k + "']", "..")
-
-    def _eleCommon(self, ele, k, varLoc=".."):
-        try:
-            return Web_PO.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
-        except:
-            try:
-                return Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
-            except:
-                try:
-                    return Web_PO.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
-                except:
-                    return Web_PO.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
-
-
-    def _eleLabel(self, ele, k, varLoc=".."):
-        return Web_PO.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
-
-    def _eleDiv(self, ele, k, varLoc=".."):
-        return Web_PO.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
-
-    def _eleSpan(self, ele, k, varLoc=".."):
-        return Web_PO.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
-
-    def _eleTd(self, ele, k, varLoc=".."):
-        return Web_PO.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
-
-
     def _jws(self, ele, k, k_sub, v1, _dropdownByX, varLoc):
 
         if isinstance(v1, list):
-            Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "无")
-            Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "有")
+            Web_PO.eleRadioSplitLabels(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "无")
+            Web_PO.eleRadioSplitLabels(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "有")
             for i in range(len(v1) - 1):
                 # +
-                Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/i", 2)
+                Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/i", 2)
             for i in range(len(v1)):
                 # 名称
-                Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), "./div[2]/div[" + str(varLoc) + "]/div[2]/div[" + str(i + 1) + "]/div[1]/div[2]/div/div/div/input", v1[i][0])
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), "./div[2]/div[" + str(varLoc) + "]/div[2]/div[" + str(i + 1) + "]/div[1]/div[2]/div/div/div/input", v1[i][0])
                 # 时间
-                self.eleDropdownDateByOne(self._eleDiv(ele, k), "./div[2]/div[" + str(varLoc) + "]/div[2]/div[" + str(i + 1) + "]/div[2]/div[1]/div/div/div/input", v1[i][1])
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), "./div[2]/div[" + str(varLoc) + "]/div[2]/div[" + str(i + 1) + "]/div[2]/div[1]/div/div/div/input", v1[i][1])
         else:
             if v1 != "remain":
-                Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "无")
-
+                Web_PO.eleRadioSplitLabels(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varLoc) + "]/div[1]/div[2]/div/div/div", "无")
     def _getRadio(self, varField):
         d_ = {}
         ele2 = Web_PO.getSuperEleByX("//div[text()='" + varField + "']", "..")
@@ -1145,7 +713,6 @@ class GwPO():
         d_[varField] = d_blood
         # print(d_)
         return d_
-
     def _getCheckbox(self, varField):
         d_ = {}
         ele2 = Web_PO.getSuperEleByX("//div[text()='" + varField + "']", "..")
@@ -1156,24 +723,21 @@ class GwPO():
         l_blood_2 = []
         for i in range(len(l_blood_tmp)):
             if l_blood_tmp[i] == 'el-checkbox el-checkbox--default is-disabled is-checked':
-                l_blood_2.append(1)
+                l_blood_2.append('Y')
             else:
-                l_blood_2.append(0)
+                l_blood_2.append('N')
         d_blood = dict(zip(l_blood_1, l_blood_2))
         varField = varField.strip()
         d_[varField] = d_blood
         # print(d_)
         return d_
-
     def _getText(self, varField, varLoc=".."):
         d_ = {}
         ele = Web_PO.getSuperEleByX("//div[text()='" + varField + "']", varLoc)
         l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
         varField = varField.strip()
         d_[varField] = l_
-        # print(d_)
         return d_
-
     def _getTextarea(self, varField):
         d_ = {}
         ele = Web_PO.getSuperEleByX("//div[text()='" + varField + "']", "../..")
@@ -1182,7 +746,6 @@ class GwPO():
         d_[varField] = l_
         # print(d_)
         return d_
-
     def _getJWS(self, varField, varQty, l_):
         l_4 = []
         d_2 = {}
@@ -1190,8 +753,6 @@ class GwPO():
             l_4.append(l_.pop(0))
         d_2[varField] = l_4
         return d_2
-
-
     def __eleRadioLeftLabel(self, ele, varXpaths, v):
         # eleRadioLabels
         # 选择单选框
@@ -1204,7 +765,7 @@ class GwPO():
     def __eleRadioRightLabel(self, ele, varXpaths, v):
         # eleRadioLabels
         # 选择单选框
-        # self.__eleRadioRightLabel(self._eleLabel(ele, k), ".//div/div[1]/label", v)
+        # self.__eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div/div[1]/label", v)
         l_ = Web_PO.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
@@ -1212,228 +773,414 @@ class GwPO():
         Web_PO.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
 
 
-    def _eleCheckboxLL2other(self, ele, varXpathByLL, v, varXpathByText):
-        # 下拉框leftlabel + 其他文本输入框
-        # self._eleCheckboxLL2other(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
-        Web_PO.eleCheckboxLeftLabel(ele, varXpathByLL, v)
-        for i in v:
-            if isinstance(i, dict):
-                Web_PO.eleSetTextByX(ele, varXpathByText, i[list(i.keys())[0]])
-
-    def _eleRadioRL2other(self, ele, varXpathByRL, v, varXpathByText):
-        # 单选框 rightlabel + 其他文本输入框
-
-        Web_PO.eleRadioRightLabel(ele, varXpathByRL, list(v.keys())[0])
-        Web_PO.eleSetTextByX(ele, varXpathByText, v[list(v.keys())[0]][list(v[list(v.keys())[0]].keys())[0]])
-
+  
+ 
+# =========================================================================================================================================
+# =========================================================================================================================================
+# =========================================================================================================================================
 
 
     # todo 2.1.2 基本公卫 - 健康档案管理 - 个人健康档案
 
-    def __healthrecord(self, d_):
-        # 居民健康档案（编辑页）
-        ele = Web_PO.getSuperEleByX("//form", ".")
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+    def _eleCheckboxPay(self, ele, v, default='remain'):
+        # 医疗费用支付方式
+        # 选择复选框的值
 
-        for k, v in d_['data'].items():
-            try:
+        # 1, 全部不勾选
+        if default != "remain":
+            # 城镇职工基本医疗保险
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[1]/div[1]/div/div/div/label", "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[1]/div/div/div/label", 1)
+            # 城镇居民基本医疗保险
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[2]/div/div/label",
+                                                 "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[2]/div/div/label", 1)
+            # 贫困救助
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[1]/div/div/label",
+                                                 "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[1]/div/div/label", 1)
+            # 商业医疗保险
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[4]/label",
+                                                 "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[4]/label", 1)
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[4]/label", 1)
+            # 全公费
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[5]/label",
+                                                 "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[5]/label", 1)
+            # 全自费
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[6]/label",
+                                                 "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[6]/label", 1)
+            # 其他
+            varClass = Web_PO.eleGetAttrValueByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[7]/label",
+                                                 "class")
+            if varClass == 'el-checkbox el-checkbox--default is-checked':
+                Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[7]/label", 1)
+
+        # 更改
+        if isinstance(v, list):
+            Web_PO.eleCheckboxLeftLabelAndText(ele, ".//div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div", v,
+                                               ".//div[2]/div/div/div/div[2]/div[2]/div/div/div/div/input")
+
+        if isinstance(v, dict):
+            for k1, v1 in v.items():
+                if k1 == '城镇职工基本医疗保险':
+                    Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[1]/div/div/div")
+                    Web_PO.eleSetTextByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[1]/div/div/div/input", v1)
+                if k1 == '城镇居民基本医疗保险':
+                    Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[2]/div[2]/div/div")
+                    Web_PO.eleSetTextByX(ele, ".//div[2]/div/div/div/div[1]/div[3]/div/div/div/div/input", v1)
+                if k1 == '贫困救助':
+                    Web_PO.eleClkByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[1]/div/div")
+                    Web_PO.eleSetTextByX(ele, ".//div[2]/div/div/div/div[1]/div[4]/div[2]/div/div/div/input", v1)
+    def __setHealthrecord(self, d_):
+        # 居民健康档案（新增、编辑）
+
+        try:
+            ele = Web_PO.getSuperEleByX("//form", ".")
+
+            for k, v in d_['data'].items():
                 if k in [' 性别 ', ' 民族 ', ' 文化程度 ', ' 职业 ', ' 婚姻状况 ', ' 档案是否开放 ']:
-                    self.__eleDropdown(self._eleDiv(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
-
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
                 elif k in [' 现住址 ']:
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/div/div/input",
-                                       _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[2]/div[1]/div/div/div/div/div/input",
-                                       _dropdownByX, v[1])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[2]/div[2]/div/div/div/div/div/input",
-                                       _dropdownByX, v[2])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[3]/div[1]/div/div/div/div/div/input",
-                                       _dropdownByX, v[3])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[3]/div[2]/div/div/div/div/div/input",
-                                       _dropdownByX, v[4])
-                    Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, "../.."), ".//div[4]/div[2]/div/div/div/input", v[5])
+                    address_selectors = [
+                        ".//div[1]/div[2]/div/div/div/div/div/input",
+                        ".//div[2]/div[1]/div/div/div/div/div/input",
+                        ".//div[2]/div[2]/div/div/div/div/div/input",
+                        ".//div[3]/div[1]/div/div/div/div/div/input",
+                        ".//div[3]/div[2]/div/div/div/div/div/input"
+                    ]
+                    for i in range(5):
+                        Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k), address_selectors[i], self.selectors['dropdown_popper'], v[i])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon2(ele, k), ".//div[4]/div[2]/div/div/div/input", v[5])
 
                 elif k in [' 姓名 ', ' 本人电话 ', ' 联系人姓名 ', ' 联系人电话 ', ' 工作单位 ']:
-                    Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
 
                 elif k in [' 出生日期 ', ' 建档日期 ']:
-                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[2]/div/div/div/input", v)
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
 
                 elif k in [' 血型 ', ' 常住类型 ', ' 血型 ', ' RH血型 ', ' 厨房排风设施 ', ' 燃料类型 ', ' 饮水 ', ' 厕所 ', ' 禽畜栏 ', ' 更新方式 ']:
-                    Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
+                    Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
 
                 elif k in [' 医疗费用支付方式 ']:
                     for i in range(len(v)):
-                        self._eleCheckboxPay(self._eleDiv(ele, k), v[i])
+                        self._eleCheckboxPay(Web_PO.eleCommon(ele, k), v[i])
 
                 elif k in [' 药物过敏史 ']:
-                    self._eleCheckboxLL2other(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div[1]/div",
-                                              v, ".//div[2]/div/div/div/div/textarea")
+                    Web_PO.eleCheckboxLeftLabelAndText(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
 
                 elif k in [' 暴露史 ']:
-                    Web_PO.eleCheckboxLeftLabel(self._eleDiv(ele, k), './/div[2]/div/div/div[1]/div', v)
+                    Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon(ele, k), './/div[2]/div/div/div[1]/div', v)
 
                 elif k in [' 既往史 ']:
                     for k1, v1 in v.items():
                         if k1 == '疾病':
-                            Web_PO.eleRadioRightLabel(self._eleDiv(ele, k),
-                                                      ".//div[2]/div[1]/div[1]/div[2]/div/div/div[1]/label",
-                                                      list(v1.keys())[0])
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/div[1]/label", list(v1.keys())[0])
                             if list(v1.keys())[0] == "有":
                                 for i in range(len(v1['有']) - 1):
-                                    Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/i",
-                                                     2)  # +
+                                    Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/i", 2)  # +
                                 for i in range(len(v1['有'])):
                                     # 疾病名称
-                                    self.__eleDropdown(self._eleDiv(ele, k), ".//div[" + str(
-                                        i + 1) + "]/div[1]/div[2]/div/div/div/div/div/input", _dropdownByX,
-                                                       v1['有'][i][0])
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[" + str(i + 1) + "]/div[1]/div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v1['有'][i][0])
                                     # 确诊时间
-                                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[" + str(
-                                        i + 1) + "]/div[2]/div[1]/div/div/div/input", v1['有'][i][1])
+                                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[" + str(i + 1) + "]/div[2]/div[1]/div/div/div/input", v1['有'][i][1])
 
                         if k1 == '手术':
-                            Web_PO.eleRadioRightLabel(self._eleDiv(ele, k),
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k),
                                                       ".//div[2]/div[2]/div[1]/div[2]/div/div/div[1]/label",
                                                       list(v1.keys())[0])
                             if list(v1.keys())[0] == "有":
                                 for i in range(len(v1['有']) - 1):
-                                    Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[2]/div[1]/div[2]/div/div/i",
+                                    Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div[1]/div[2]/div/div/i",
                                                      2)  # +
                                 for i in range(len(v1['有'])):
                                     # 手术名称
-                                    Web_PO.eleSetTextByX(self._eleDiv(ele, k), ".//div[2]/div[2]/div[" + str(
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div[" + str(
                                         i + 1) + "]/div[1]/div[2]/div/div/div/input", v1['有'][i][0])
                                     # 手术时间
-                                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[2]/div[2]/div[" + str(
+                                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div[" + str(
                                         i + 1) + "]/div[2]/div[1]/div/div/div/input", v1['有'][i][1])
 
                         if k1 == '外伤':
-                            Web_PO.eleRadioRightLabel(self._eleDiv(ele, k),
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k),
                                                       ".//div[2]/div[3]/div[1]/div[2]/div/div/div/label",
                                                       list(v1.keys())[0])
                             if list(v1.keys())[0] == "有":
                                 for i in range(len(v1['有']) - 1):
-                                    Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[3]/div[1]/div[2]/div/div/i",
+                                    Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[3]/div[1]/div[2]/div/div/i",
                                                      2)  # +
                                 for i in range(len(v1['有'])):
                                     # 外伤名称
-                                    Web_PO.eleSetTextByX(self._eleDiv(ele, k), ".//div[3]/div[2]/div[" + str(
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div[2]/div[" + str(
                                         i + 1) + "]/div[1]/div[2]/div/div/div/input", v1['有'][i][0])
                                     # 外伤时间
-                                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[3]/div[2]/div[" + str(
+                                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div[2]/div[" + str(
                                         i + 1) + "]/div[2]/div[1]/div/div/div/input", v1['有'][i][1])
 
                         if k1 == '输血':
-                            Web_PO.eleRadioRightLabel(self._eleDiv(ele, k),
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k),
                                                       ".//div[2]/div[4]/div[1]/div[2]/div/div/div/label",
                                                       list(v1.keys())[0])
                             if list(v1.keys())[0] == "有":
                                 for i in range(len(v1['有']) - 1):
-                                    Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[4]/div[1]/div[2]/div/div/i",
+                                    Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[4]/div[1]/div[2]/div/div/i",
                                                      2)  # +
                                 for i in range(len(v1['有'])):
                                     # 输血原因
-                                    Web_PO.eleSetTextByX(self._eleDiv(ele, k), ".//div[4]/div[2]/div[" + str(
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div[2]/div[" + str(
                                         i + 1) + "]/div[1]/div[2]/div/div/div/input", v1['有'][i][0])
                                     # 输血时间
-                                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[4]/div[2]/div[" + str(
+                                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[4]/div[2]/div[" + str(
                                         i + 1) + "]/div[2]/div[1]/div/div/div/input", v1['有'][i][1])
 
                 elif k in [' 家族史 ']:
-                    Web_PO.eleRadioRightLabel(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/div/label",
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/div/label",
                                               list(v.keys())[0])
                     if list(v.keys())[0] == '有':
                         for i in range(len(v['有']) - 1):
-                            Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/i", 2)  # +
+                            Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/i", 2)  # +
                         for i in range(len(v['有'])):
                             # 疾病名称
-                            self.__eleDropdown(self._eleDiv(ele, k),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k),
                                                ".//div[" + str(i + 1) + "]/div[1]/div[2]/div/div/div/div/div/input",
-                                               _dropdownByX, v['有'][i][0])
+                                               self.selectors['dropdown_popper'], v['有'][i][0])
                             # 与本人关系
-                            self.__eleDropdown(self._eleDiv(ele, k),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k),
                                                ".//div[" + str(i + 1) + "]/div[2]/div[2]/div/div/div/div/div/input",
-                                               _dropdownByX, v['有'][i][1])
+                                               self.selectors['dropdown_popper'], v['有'][i][1])
 
                 elif k in [' 遗传病史 ']:
-                    self._eleRadioRL2other(self._eleDiv(ele, k, "../.."), ".//div[1]/div[2]/div/div/label", v,
-                                           ".//div[2]/div[2]/div/div/div/input")
+                    Web_PO.eleRadioRightLabelAndText(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/label", v, ".//div[2]/div[2]/div/div/div/input")
 
                 elif k in [' 残疾情况 ']:
                     l_ = []
                     for i in range(len(v)):
                         if isinstance(v[i], list):
                             l_ = v[i]
-                            self._eleCheckboxLL2other(self._eleCommon(ele, k), ".//div[2]/div/div/div/div[1]/div", v[i],
+                            Web_PO.eleCheckboxLeftLabelAndText(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div[1]/div", v[i],
                                                       ".//div[2]/div/div/div/div[2]/div/div[1]/input")
                         if isinstance(v[i], dict):
                             # print(l_)
                             # 勾选无残疾时，无法输入残疾证号
                             if "无残疾" not in l_:
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                      ".//div[2]/div[2]/div/div/div/input", v[i][' 残疾证号 '])
 
                 elif k in [' 家庭情况 ']:
                     for k1, v1 in v.items():
                         if k1 in [' 与户主关系 ']:
-                            self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",
-                                               _dropdownByX, v1)
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",
+                                               self.selectors['dropdown_popper'], v1)
                         elif k1 in [' 户主姓名 ', ' 户主身份证号 ', ' 家庭人口数 ', ' 家庭结构 ']:
-                            Web_PO.eleSetTextEnterByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
                         elif k1 in [' 居住情况 ']:
-                            Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k1), ".//div[2]/div/div/div", v1)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div", v1)
 
                 elif k in [' 管理机构 ']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
 
                 elif k in [' 更新内容 ']:
-                    Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, "../.."), ".//div[2]/div/div/div/input", v)
-            except:
-                self.logger.error("更新失败 => " + str(k) + ": " + str(v))
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input", v)
 
-        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 仅保存
-        # Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 保存复核
-        # Web_PO.eleClkByX(ele, ".//button[3]", 2)  # 取消
+            if d_['button'] == '仅保存':
+                Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='仅保存']", ".."), ".", 2)
+            elif d_['button'] == '保存复核':
+                Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='保存复核']", ".."), ".", 2)
+            elif d_['button'] == '取消':
+                Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='取消']", ".."), ".", 2)
 
-        #  关联家庭
-        # Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='关联家庭']", "../.."), ".//div[3]/div/button[1]", 2)  # 确认
-        Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='关联家庭']", "../.."), ".//div[3]/div/button[2]", 2)  # 取消
+            #  关联家庭
+            # Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='关联家庭']", "../.."), ".//div[3]/div/button[1]", 2)  # 确认
+            Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='关联家庭']", "../.."), ".//div[3]/div/button[2]", 2)  # 取消
 
-        self.logger.info("保存 => " + str(d_))
+            self.logger.info("保存 => " + str(d_))
+        except Exception as e:
+            self.logger.error(f"Health record update failed: {e}")
+    def __getHealthrecord(self):
+        # 点击姓名，获取居民健康档案
+
+        d_ = self._getText(' 身份证号码 ')
+        d_.update(self._getText(' 档案编号 '))
+        d_.update(self._getText(' 姓名 '))
+        d_.update(self._getText(' 性别 '))
+        d_.update(self._getText(' 出生日期 '))
+        d_.update(self._getText(' 民族 '))
+        d_.update(self._getText(' 现住址 ', "../.."))
+        d_.update(self._getText(' 本人电话 '))
+        d_.update(self._getText(' 联系人姓名 '))
+        d_.update(self._getText(' 联系人电话 '))
+        d_.update(self._getRadio(' 常住类型 '))
+        d_.update(self._getText(' 文化程度 '))
+        d_.update(self._getText(' 职业 '))
+        d_.update(self._getText(' 工作单位 '))
+        d_.update(self._getText(' 婚姻状况 '))
+        d_.update(self._getRadio(' 血型 '))
+        d_.update(self._getRadio(' RH血型 '))
+
+        # 医疗费用支付方式
+        d_1 = self._getCheckbox(' 医疗费用支付方式 ')
+        if d_1['医疗费用支付方式']['城镇职工基本医疗保险'] == 'Y':
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['城镇职工基本医疗保险'] = {'Y': d_2['医疗费用支付方式'][0]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['城镇居民基本医疗保险'] == 'Y':
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['城镇居民基本医疗保险'] = {'Y': d_2['医疗费用支付方式'][1]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['贫困救助'] == 'Y':
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['贫困救助'] = {'Y': d_2['医疗费用支付方式'][2]}
+            d_.update(d_1)
+        if d_1['医疗费用支付方式']['其他'] == 'Y':
+            d_2 = self._getText(' 医疗费用支付方式 ')
+            d_1['医疗费用支付方式']['其他'] = {'Y': d_2['医疗费用支付方式'][3]}
+            # d_1['医疗费用支付方式']['input'] = d_2['医疗费用支付方式'][3]
+            d_.update(d_1)
+
+        # 药物过敏史
+        d_1 = self._getCheckbox(' 药物过敏史 ')
+        d_.update(d_1)
+        if d_1['药物过敏史']['其他药物过敏源'] == "Y":
+            d_2 = self._getTextarea(' 药物过敏史 ')
+            d_1['药物过敏史']['其他药物过敏源'] = {'Y': d_2['药物过敏史'][0]}
+            d_.update(d_1)
+
+        d_.update(self._getCheckbox(' 暴露史 '))
+
+        # 既往史
+        ele = Web_PO.getSuperEleByX("//div[text()=' 既往史 ']", "..")
+        l_ = Web_PO.eleGetTextByXs(ele, ".//div")
+        a = (l_[1].count("疾病名称"))
+        b = (l_[1].count("手术名称"))
+        c = (l_[1].count("外伤名称"))
+        d = (l_[1].count("输血原因"))
+        l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
+        d_1 = self._getJWS("疾病", a, l_)
+        d_2 = self._getJWS("手术", b, l_)
+        d_1.update(d_2)
+        d_3 = self._getJWS("外伤", c, l_)
+        d_1.update(d_3)
+        d_4 = self._getJWS("输血", d, l_)
+        d_1.update(d_4)
+        d_5 = {}
+        varField = ' 既往史 '.strip()
+        d_5[varField] = d_1
+        d_.update(d_5)
+
+        # 家族史
+        d_1 = self._getRadio(' 家族史 ')
+        if d_1['家族史']['有'] == 1:
+            d_2 = self._getText(' 家族史 ')
+            d_1['家族史']['input'] = d_2['家族史']
+        d_.update(d_1)
+
+        # 遗传病史
+        d_1 = self._getRadio(' 遗传病史 ')
+        d_2 = self._getText(' 遗传病史 ', "../..")
+        d_1['遗传病史']['疾病名称'] = d_2['遗传病史'][0]
+        d_.update(d_1)
+
+        # 残疾情况
+        d_1 = self._getCheckbox(' 残疾情况 ')
+        d_.update(d_1)
+        if d_1['残疾情况']['其他残疾'] == "Y":
+            d_2 = self._getText(' 残疾情况 ')
+            d_1['残疾情况']['其他残疾'] = {'Y': d_2['残疾情况'][0]}
+            d_.update(d_1)
+        d_.update(self._getText(' 残疾证号 '))
+
+        # 家庭情况
+        d_1 = self._getText(' 与户主关系 ')
+        d_1.update(self._getText(' 户主姓名 '))
+        d_1.update(self._getText(' 户主身份证号 '))
+        d_1.update(self._getText(' 家庭人口数 '))
+        d_1.update(self._getText(' 家庭结构 '))
+        d_1.update(self._getRadio(' 居住情况 '))
+        d_.update({'家庭情况': d_1})
+
+        # 生活环境
+        d_1 = self._getRadio(' 厨房排风设施 ')
+        d_1.update(self._getRadio(' 燃料类型 '))
+        d_1.update(self._getRadio(' 饮水 '))
+        d_1.update(self._getRadio(' 厕所 '))
+        d_1.update(self._getRadio(' 禽畜栏 '))
+        d_.update({'生活环境': d_1})
+
+        # 建档单位
+        d_.update(self._getText(' 建档单位 '))
+        d_.update(self._getText(' 管理机构 '))
+        d_.update(self._getText(' 档案是否开放 '))
+
+        # 建档日期
+        d_.update(self._getText(' 建档日期 '))
+        d_.update(self._getText(' 建档人 '))
+
+        # 更新信息
+        d_.update(self._getText(' 更新日期 '))
+        d_.update(self._getRadio(' 更新方式 '))
+        d_.update(self._getText(' 更新人 '))
+        d_.update(self._getText(' 更新内容 ', "../.."))
+
+        Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='关闭']", ".."), ".", 2)
+        return d_
 
     def phs_healthrecord_personal_query(self, d_):
 
         # 个人健康档案 - 查询
 
-        # 1 查询
-        ele = Web_PO.getSuperEleByX("//span[text()='展开']", "../../..")  # form
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
         Web_PO.eleClkByX(ele, "./div/div", 1)  # 展开
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '建档人', '本人电话']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['年龄']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/div/div/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/div/div/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
                 elif k in ['性别', '人群分类', '档案是否开放', '档案状态', '血型', '常住类型', '是否签约', '是否残疾', '今年是否体检', '既往史', '今年是否已更新', '医疗费用支付方式', '档案缺失项目']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", self.selectors['dropdown_popper'], v)
                 elif k in ['出生日期范围', '今年体检日期', '今年更新日期', '建档日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[2]/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div/div[2]/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", self.selectors['dropdown_popper'], v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[2]/div/div/input", self.selectors['dropdown_popper'], v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div/div[2]/div/input", v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
-        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
+        # 查询
+        Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='查询']", ".."), ".", 2)
+
+        # 日志
         self.logger.info("查询 => " + str(d_))
+
+    def phs_healthrecord_personal_new(self, d_):
+
+        # 个人健康档案 - 新增
+
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+        Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='新增']", ".."), ".", 2)
+
+        # 居民健康档案
+        self.__setHealthrecord(d_)
 
     def _phs_healthrecord_personal_operation(self, varOperation, d_option):
 
@@ -1480,7 +1227,6 @@ class GwPO():
         max_key = max(d_1, key=d_1.get)
         # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
         return max_key
-
     def phs_healthrecord_personal_operation(self, d_):
 
         # 个人健康档案 - 操作
@@ -1501,7 +1247,7 @@ class GwPO():
                     Web_PO.eleClkByX(ele3, ".", 2)
                     Web_PO.clkByX("//div[@class='el-popper is-light el-popover' and @role='tooltip' and @aria-hidden='false']/div[2]", 2)
                 elif d_['operate'] == '姓名':
-                    Web_PO.clkByX("//tr[@class='el-table__row']/td[2]/div", 2)
+                    Web_PO.clkByX("//tbody/tr[" + str(self._phs_healthrecord_personal_operation('查看 更新 更多', d_['option'])) + "]/td[2]/div", 2)
                 else:
                     ele3 = Web_PO.getSuperEleByX("(//div[text()='" + d_['operate'] + "'])[position()=" + str(
                         self._phs_healthrecord_personal_operation('查看 更新 更多', d_['option'])) + "]", ".")
@@ -1509,23 +1255,23 @@ class GwPO():
 
             elif d_['operate'] == '仅保存':
                 # 居民健康档案
-                self.__healthrecord(d_)
+                self.__setHealthrecord(d_)
 
             elif d_['operate'] == '终结':
-                ele2 = Web_PO.getSuperEleByX("//span[text()='终结健康档案']", "../..")
+                ele = Web_PO.getSuperEleByX("//span[text()='终结健康档案']", "../..")
                 # 判断档案状态
                 _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
                 for k, v in d_['data']['档案状态'].items():
                     # 选择档案状态
-                    Web_PO.eleRadioRightLabel(self._eleLabel(ele2, '档案状态'), ".//div/div/label", k)
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, '档案状态'), ".//div/div/label", k)
                     if k == '暂不管理':
-                        self.__eleDropdown(self._eleLabel(ele2, '暂不管理原因'), ".//input", _dropdownByX, v['暂不管理原因'])
-                        self.eleDropdownDateByOne(self._eleLabel(ele2, '暂不管理日期'), ".//input", v['暂不管理日期'])
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, '暂不管理原因'), ".//input", _dropdownByX, v['暂不管理原因'])
+                        Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, '暂不管理日期'), ".//input", v['暂不管理日期'])
                     elif k == '已死亡':
-                        self.eleDropdownDateByOne(self._eleLabel(ele2, '档案注销日期'), ".//input", v['档案注销日期'])
-                        self.eleDropdownDateByOne(self._eleLabel(ele2, '死亡日期'), ".//input", v['死亡日期'])
+                        Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, '档案注销日期'), ".//input", v['档案注销日期'])
+                        Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, '死亡日期'), ".//input", v['死亡日期'])
                 # Web_PO.eleClkByX(ele2, ".//button[1]")  # 确认
-                Web_PO.eleClkByX(ele2, ".//button[2]")  # 取消
+                Web_PO.eleClkByX(ele, ".//button[2]")  # 取消
 
             elif d_['operate'] == '更新历史':
                 ele2 = Web_PO.getSuperEleByX("//span[text()='更新历史']", "../..")
@@ -1534,424 +1280,20 @@ class GwPO():
             elif d_['operate'] == '更新':
                 Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='更新']", ".."), ".", 2)
                 # 居民健康档案
-                self.__healthrecord(d_)
+                self.__setHealthrecord(d_)
+
+            elif d_['operate'] == '获取':
+                self.logger.info(str(d_))
+                return self.__getHealthrecord()
 
             else:
                 print("error, 无法操作!")
 
-            self.logger.info("点击" + str(d_))
+            self.logger.info(str(d_))
         except:
-            self.logger.error(str(d_) + "失败！")
+            self.logger.error("失败 =>" + str(d_))
 
 
-    def phs_healthrecord_personal_detail(self):
-
-        # 个人健康档案 - 详情
-
-        print("处理中...")
-        try:
-            d_ = self._getText(' 身份证号码 ')
-            d_.update(self._getText(' 档案编号 '))
-            d_.update(self._getText(' 姓名 '))
-            d_.update(self._getText(' 性别 '))
-            d_.update(self._getText(' 出生日期 '))
-            d_.update(self._getText(' 民族 '))
-            d_.update(self._getText(' 现住址 ', "../.."))
-            d_.update(self._getText(' 本人电话 '))
-            d_.update(self._getText(' 联系人姓名 '))
-            d_.update(self._getText(' 联系人电话 '))
-            d_.update(self._getRadio(' 常住类型 '))
-            d_.update(self._getText(' 文化程度 '))
-            d_.update(self._getText(' 职业 '))
-            d_.update(self._getText(' 工作单位 '))
-            d_.update(self._getText(' 婚姻状况 '))
-            d_.update(self._getRadio(' 血型 '))
-            d_.update(self._getRadio(' RH血型 '))
-
-            d_1 = self._getCheckbox(' 医疗费用支付方式 ')
-            if d_1['医疗费用支付方式']['城镇职工基本医疗保险'] == 1:
-                d_2 = self._getText(' 医疗费用支付方式 ')
-                d_1['医疗费用支付方式']['城镇职工基本医疗保险'] = {1: d_2['医疗费用支付方式'][0]}
-                d_.update(d_1)
-            if d_1['医疗费用支付方式']['城镇居民基本医疗保险'] == 1:
-                d_2 = self._getText(' 医疗费用支付方式 ')
-                d_1['医疗费用支付方式']['城镇居民基本医疗保险'] = {1: d_2['医疗费用支付方式'][1]}
-                d_.update(d_1)
-            if d_1['医疗费用支付方式']['贫困救助'] == 1:
-                d_2 = self._getText(' 医疗费用支付方式 ')
-                d_1['医疗费用支付方式']['贫困救助'] = {1: d_2['医疗费用支付方式'][2]}
-                d_.update(d_1)
-            elif d_1['医疗费用支付方式']['贫困救助'] == 0:
-                d_2 = self._getText(' 医疗费用支付方式 ')
-                d_1['医疗费用支付方式']['贫困救助'] = {0: d_2['医疗费用支付方式'][2]}
-                d_.update(d_1)
-            if d_1['医疗费用支付方式']['其他'] == 1:
-                d_2 = self._getText(' 医疗费用支付方式 ')
-                d_1['医疗费用支付方式']['input'] = d_2['医疗费用支付方式'][3]
-                d_.update(d_1)
-
-            d_1 = self._getCheckbox(' 药物过敏史 ')
-            if d_1['药物过敏史']['其他药物过敏源'] == 1:
-                d_2 = self._getTextarea(' 药物过敏史 ')
-                d_1['药物过敏史']['input'] = d_2['药物过敏史'][0]
-            d_.update(d_1)
-
-            d_.update(self._getCheckbox(' 暴露史 '))
-
-            ele = Web_PO.getSuperEleByX("//div[text()=' 既往史 ']", "..")
-            l_ = Web_PO.eleGetTextByXs(ele, ".//div")
-            a = (l_[1].count("疾病名称"))
-            b = (l_[1].count("手术名称"))
-            c = (l_[1].count("外伤名称"))
-            d = (l_[1].count("输血原因"))
-            l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
-            d_1 = self._getJWS("疾病", a, l_)
-            d_2 = self._getJWS("手术", b, l_)
-            d_1.update(d_2)
-            d_3 = self._getJWS("外伤", c, l_)
-            d_1.update(d_3)
-            d_4 = self._getJWS("输血", d, l_)
-            d_1.update(d_4)
-            d_5 = {}
-            varField = ' 既往史 '.strip()
-            d_5[varField] = d_1
-            d_.update(d_5)
-
-            d_1 = self._getRadio(' 家族史 ')
-            # print('家族史', d_1)
-            if d_1['家族史'] != {}:
-                d_2 = self._getText(' 家族史 ')
-                d_1['家族史']['input'] = d_2['家族史']
-            else:
-                d_1['家族史'] = '无'
-            d_.update(d_1)
-
-            d_1 = self._getRadio(' 遗传病史 ')
-            # print('遗传病史', d_1)
-            if d_1['遗传病史'] != {}:
-                d_2 = self._getText(' 遗传病史 ', "../..")
-                d_1['遗传病史']['疾病名称'] = d_2['遗传病史'][0]
-            else:
-                d_1['遗传病史'] = '无'
-            d_.update(d_1)
-
-            d_1 = self._getCheckbox(' 残疾情况 ')
-            d_2 = self._getText(' 残疾情况 ')
-            # print("d_1", d_1)
-            # print("d_2", d_2)
-            if d_2['残疾情况'] != []:
-                d_1['残疾情况']['input'] = d_2['残疾情况'][0]
-            d_.update(d_1)
-
-            d_.update(self._getText(' 残疾证号 '))
-
-            d_1 = self._getText(' 与户主关系 ')
-            d_1.update(self._getText(' 户主姓名 '))
-            d_1.update(self._getText(' 户主身份证号 '))
-            d_1.update(self._getText(' 家庭人口数 '))
-            d_1.update(self._getText(' 家庭结构 '))
-            d_1.update(self._getRadio(' 居住情况 '))
-            d_.update({'家庭情况': d_1})
-
-            d_1 = self._getRadio(' 厨房排风设施 ')
-            d_1.update(self._getRadio(' 燃料类型 '))
-            d_1.update(self._getRadio(' 饮水 '))
-            d_1.update(self._getRadio(' 厕所 '))
-            d_1.update(self._getRadio(' 禽畜栏 '))
-            d_.update({'生活环境': d_1})
-
-            d_.update(self._getText(' 建档单位 '))
-            d_.update(self._getText(' 管理机构 '))
-            d_.update(self._getText(' 档案是否开放 '))
-            d_.update(self._getText(' 建档日期 '))
-            d_.update(self._getText(' 建档人 '))
-
-            Web_PO.cls()
-            self.logger.info("查看 => " + str(d_))
-            return d_
-        except:
-            self.logger.error("查看失败")
-
-    def phs_healthrecord_personal_modify(self, d_):
-
-        # 个人健康档案 - 更新
-
-        signal.signal(signal.SIGINT, self.__handle_signal)
-        signal.signal(signal.SIGTERM, self.__handle_signal)
-
-        print("更新中...")
-
-        ele = Web_PO.getSuperEleByX("//div[text()='居民健康档案']", "../../..")
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-
-        for k, v in d_.items():
-            try:
-                if k in [' 性别 ', ' 民族 ', ' 文化程度 ', ' 职业 ', ' 婚姻状况 ', ' 与户主关系 ', ' 档案是否开放 ']:
-                    self.__eleDropdown(self._eleDiv(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
-
-                elif k in [' 现住址 ']:
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[2]/div[1]/div/div/div/div/div/input", _dropdownByX, v[1])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[2])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[3]/div[1]/div/div/div/div/div/input", _dropdownByX, v[3])
-                    self.__eleDropdown(self._eleDiv(ele, k, "../.."), ".//div[3]/div[2]/div/div/div/div/div/input", _dropdownByX, v[4])
-                    Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, "../.."), ".//div[4]/div[2]/div/div/div/input", v[5])
-
-                elif k in [' 残疾情况 ']:
-                    # 先判断是否勾选了无，如果勾选，则取消，取消后才能输入残疾证号
-                    varDiv1class = Web_PO.eleGetAttrValueByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div/div[1]/label", "class")
-                    if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
-                        Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div/div[1]/label/span[1]")
-                    Web_PO.eleCheckboxDivs(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[1]/div", v)
-                    for i in range(len(v)):
-                        if isinstance(v[i], list):
-                            # Web_PO.eleScrollViewByX(ele, ".//div[1]/div[2]/div/div/div/div[2]/div/div/input")
-                            Web_PO.eleSetTextByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[2]/div/div/input", v[i][1])
-
-                elif k in [' 姓名 ', ' 本人电话 ', ' 联系人姓名 ', ' 联系人电话 ', ' 工作单位 ', ' 残疾证号 ', ' 户主姓名 ', ' 户主身份证号 ', ' 家庭人口数 ', ' 家庭结构 ']:
-                    Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/input", v)
-
-                elif k in [' 出生日期 ', ' 建档日期 ']:
-                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[2]/div/div/div/input", v)
-
-                elif k in [' 居住情况 ', ' 血型 ', ' 常住类型 ', ' 血型 ', ' RH血型 ', ' 厨房排风设施 ', ' 燃料类型 ', ' 饮水 ', ' 厕所 ', ' 禽畜栏 ', ' 更新方式 ']:
-                    Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
-
-                elif k in [' 医疗费用支付方式 ']:
-                    self._eleCheckboxPay(self._eleDiv(ele, k), v)
-
-                elif k in [' 药物过敏史 ']:
-                    # 先判断是否勾选了无，如果勾选，则取消
-                    varDiv1class = Web_PO.eleGetAttrValueByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[1]/label", "class")
-                    if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
-                        Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[1]/label/span[1]")
-                    Web_PO.eleCheckboxDivs(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
-                    for i in range(len(v)):
-                        if isinstance(v[i], list):
-                            Web_PO.eleSetTextByX(self._eleDiv(ele, k, "../.."), "./div[2]/div/div/div/div/textarea", v[i][1])
-
-                elif k in [' 暴露史 ']:
-                    # 先判断是否勾选了无，如果勾选，则取消
-                    varDiv1class = Web_PO.eleGetAttrValueByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[1]/label", "class")
-                    if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
-                        Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div/div/div/div[1]/label/span[1]")
-                    Web_PO.eleCheckboxDivs(self._eleDiv(ele, k), "./div[2]/div/div/div/div", v, default='clear')
-
-                elif k in [' 既往史 ']:
-                    for k1, v1 in v.items():
-                        if k1 == '疾病':
-                            if isinstance(v1, list):
-                                Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/div", "无")
-                                Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/div", "有")
-                                for i in range(len(v1) - 1):
-                                    Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/i", 2)  # +
-                                for i in range(len(v1)):
-                                    # 疾病名称
-                                    self.__eleDropdown(self._eleDiv(ele, k), ".//div[2]/div[1]/div[2]/div[" + str(i+1) + "]/div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v1[i][0])
-                                    # 确诊时间
-                                    self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[2]/div[1]/div[2]/div[" + str(i+1) + "]/div[2]/div[1]/div/div/div/input", v1[i][1])
-                            else:
-                                if v1 != "remain":
-                                    Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[1]/div[1]/div[2]/div/div/div", "无")
-                        if k1 == '手术':
-                            if isinstance(v1, list):
-                                # self._jws(ele, k, v1, _dropdownByX, 2)
-                                self._jws(ele, k, "手术", v1, _dropdownByX, 2)
-                            else:
-                                if v1 != "remain":
-                                    Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[2]/div[1]/div[2]/div/div/div", "无")
-                        if k1 == '外伤':
-                            if isinstance(v1, list):
-                                # self._jws(ele, k, v1, _dropdownByX, 3)
-                                self._jws(ele, k, "外伤", v1, _dropdownByX, 3)
-                            else:
-                                if v1 != "remain":
-                                    # /html/body/div[1]/div/div[3]div[2]/div[12]/div[2]/div[3]/div[1]/div[2]/div/div/div/label[2]
-                                    Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[3]/div[1]/div[2]/div/div/div", "无")
-                        if k1 == '输血':
-                            if isinstance(v1, list):
-                                self._jws(ele, k, "输血", v1, _dropdownByX, 4)
-                                # self._jws(ele, k, v1, _dropdownByX, 4)
-                            else:
-                                if v1 != "remain":
-                                    # /html/body/div[1]/div/div[3]/section/div/f div[2]/div[4]/div[1]/div[2]/div/div/div/label[2]
-                                    Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[4]/div[1]/div[2]/div/div/div", "无")
-
-                elif k in [' 家族史 ']:
-                    if v == '无':
-                        Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/div", "无")
-                    elif isinstance(v, list):
-                        Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/div", "有")
-                        for i in range(len(v)-1):
-                            Web_PO.eleClkByX(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/i", 2)  # +
-                        for i in range(len(v)):
-                            # 疾病名称
-                            self.__eleDropdown(self._eleDiv(ele, k), ".//div[2]/div[2]/div/div[" + str(i+1) + "]/div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[i][0])
-                            # 与本人关系
-                            self.__eleDropdown(self._eleDiv(ele, k), ".//div[2]/div[2]/div/div[" + str(i+1) + "]/div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[i][1])
-
-                elif k in [' 遗传病史 ']:
-                    if v == '无':
-                        Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k, "../.."), ".//div[1]/div[2]/div/div", "无")
-                    if isinstance(v, list):
-                        Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k, "../.."), ".//div[1]/div[2]/div/div", v[0])
-                        Web_PO.eleSetTextByX(self._eleDiv(ele, k, "../.."), ".//div[2]/div[2]/div/div/div/input", v[1])
-
-                elif k in [' 管理机构 ']:
-                    # self.gljg(ele, k, v)
-                    _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
-                    Web_PO.eleClkByX(self._eleDiv(ele, k),  ".//div[2]/div/div/div/div/input")
-                    l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
-                    # print(l_1) # ['招远市卫健局', '金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
-                    # 招远市卫健局
-                    if l_1[0] == v[0].strip():
-                        Web_PO.clkByX(_dropdownByX2 + "/div/div[1]/div[1]/ul/li/label")
-                    elif v[0].strip() in l_1 and len(v) == 1:
-                        # 卫生院
-                        for i in range(len(l_1)):
-                            if v[0].strip() == l_1[i]:
-                                Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i) + "]/label")
-                    elif v[0].strip() in l_1 and len(v) == 2:
-                        # 卫生室,(先点卫生院再点卫生室)
-                        for i in range(len(l_1)):
-                            if v[0].strip() == l_1[i]:
-                                Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i) + "]/label")
-                                break
-                        # 卫生室
-                        l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
-                        # print(l_3)  # ['金岭镇原疃村卫生室', '金岭镇黄泥沟村卫生室', '金岭镇原疃郭家村卫生室'
-                        if v[1].strip() in l_3:
-                            for i in range(len(l_3)):
-                                if v[1].strip() == l_3[i]:
-                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i) + "]/label")
-
-                elif k in [' 更新内容 ']:
-                    Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, "../.."), ".//div[2]/div/div/div/input", v)
-            except:
-                self.logger.error("更新失败 => " + str(k) + ": " + str(v))
-
-        # 2 保存
-        # Web_PO.eleClkByX(ele, ".//button[1]", 2)
-        self.logger.info("更新 => " + str(d_))
-
-    def phs_healthrecord_personal_info(self):
-        # 点击姓名，获取居民健康档案
-        # Web_PO.opnLabel(varUrl)
-        # Web_PO.swhLabel(2)
-
-        d_ = self._getText(' 身份证号码 ')
-        d_.update(self._getText(' 档案编号 '))
-        d_.update(self._getText(' 姓名 '))
-        d_.update(self._getText(' 性别 '))
-        d_.update(self._getText(' 出生日期 '))
-        d_.update(self._getText(' 民族 '))
-        d_.update(self._getText(' 现住址 ', "../.."))
-        d_.update(self._getText(' 本人电话 '))
-        d_.update(self._getText(' 联系人姓名 '))
-        d_.update(self._getText(' 联系人电话 '))
-        d_.update(self._getRadio(' 常住类型 '))
-        d_.update(self._getText(' 文化程度 '))
-        d_.update(self._getText(' 职业 '))
-        d_.update(self._getText(' 工作单位 '))
-        d_.update(self._getText(' 婚姻状况 '))
-        d_.update(self._getRadio(' 血型 '))
-        d_.update(self._getRadio(' RH血型 '))
-
-        d_1 = self._getCheckbox(' 医疗费用支付方式 ')
-        if d_1['医疗费用支付方式']['城镇职工基本医疗保险'] == 1:
-            d_2 = self._getText(' 医疗费用支付方式 ')
-            d_1['医疗费用支付方式']['城镇职工基本医疗保险'] = {1: d_2['医疗费用支付方式'][0]}
-            d_.update(d_1)
-        if d_1['医疗费用支付方式']['城镇居民基本医疗保险'] == 1:
-            d_2 = self._getText(' 医疗费用支付方式 ')
-            d_1['医疗费用支付方式']['城镇居民基本医疗保险'] = {1: d_2['医疗费用支付方式'][1]}
-            d_.update(d_1)
-        if d_1['医疗费用支付方式']['贫困救助'] == 1:
-            d_2 = self._getText(' 医疗费用支付方式 ')
-            d_1['医疗费用支付方式']['贫困救助'] = {1: d_2['医疗费用支付方式'][2]}
-            d_.update(d_1)
-        elif d_1['医疗费用支付方式']['贫困救助'] == 0:
-            d_2 = self._getText(' 医疗费用支付方式 ')
-            d_1['医疗费用支付方式']['贫困救助'] = {0: d_2['医疗费用支付方式'][2]}
-            d_.update(d_1)
-        if d_1['医疗费用支付方式']['其他'] == 1:
-            d_2 = self._getText(' 医疗费用支付方式 ')
-            d_1['医疗费用支付方式']['input'] = d_2['医疗费用支付方式'][3]
-            d_.update(d_1)
-
-        d_1 = self._getCheckbox(' 药物过敏史 ')
-        if d_1['药物过敏史']['其他药物过敏源'] == 1:
-            d_2 = self._getTextarea(' 药物过敏史 ')
-            d_1['药物过敏史']['input'] = d_2['药物过敏史'][0]
-            d_.update(d_1)
-
-        d_.update(self._getCheckbox(' 暴露史 '))
-
-        ele = Web_PO.getSuperEleByX("//div[text()=' 既往史 ']", "..")
-        l_ = Web_PO.eleGetTextByXs(ele, ".//div")
-        a = (l_[1].count("疾病名称"))
-        b = (l_[1].count("手术名称"))
-        c = (l_[1].count("外伤名称"))
-        d = (l_[1].count("输血原因"))
-        l_ = Web_PO.eleGetShadowByXsByC(ele, ".//div/div/div/input", 'div:nth-last-of-type(1)')
-        d_1 = self._getJWS("疾病", a, l_)
-        d_2 = self._getJWS("手术", b, l_)
-        d_1.update(d_2)
-        d_3 = self._getJWS("外伤", c, l_)
-        d_1.update(d_3)
-        d_4 = self._getJWS("输血", d, l_)
-        d_1.update(d_4)
-        d_5 = {}
-        varField = ' 既往史 '.strip()
-        d_5[varField] = d_1
-        d_.update(d_5)
-
-        d_1 = self._getRadio(' 家族史 ')
-        if d_1['家族史']['有'] == 1:
-            d_2 = self._getText(' 家族史 ')
-            d_1['家族史']['input'] = d_2['家族史']
-        d_.update(d_1)
-
-        d_1 = self._getRadio(' 遗传病史 ')
-        d_2 = self._getText(' 遗传病史 ', "../..")
-        d_1['遗传病史']['疾病名称'] = d_2['遗传病史'][0]
-        d_.update(d_1)
-
-        d_1 = self._getCheckbox(' 残疾情况 ')
-        d_2 = self._getText(' 残疾情况 ')
-        d_1['残疾情况']['input'] = d_2['残疾情况'][0]
-        d_.update(d_1)
-
-        d_.update(self._getText(' 残疾证号 '))
-
-        d_1 = self._getText(' 与户主关系 ')
-        d_1.update(self._getText(' 户主姓名 '))
-        d_1.update(self._getText(' 户主身份证号 '))
-        d_1.update(self._getText(' 家庭人口数 '))
-        d_1.update(self._getText(' 家庭结构 '))
-        d_1.update(self._getRadio(' 居住情况 '))
-        d_.update({'家庭情况': d_1})
-
-        d_1 = self._getRadio(' 厨房排风设施 ')
-        d_1.update(self._getRadio(' 燃料类型 '))
-        d_1.update(self._getRadio(' 饮水 '))
-        d_1.update(self._getRadio(' 厕所 '))
-        d_1.update(self._getRadio(' 禽畜栏 '))
-        d_.update({'生活环境': d_1})
-
-        d_.update(self._getText(' 建档单位 '))
-        d_.update(self._getText(' 管理机构 '))
-        d_.update(self._getText(' 档案是否开放 '))
-        d_.update(self._getText(' 建档日期 '))
-        d_.update(self._getText(' 建档人 '))
-        d_.update(self._getText(' 更新日期 '))
-        d_.update(self._getRadio(' 更新方式 '))
-        d_.update(self._getText(' 更新人 '))
-        d_.update(self._getText(' 更新内容 ', "../.."))
-
-        Web_PO.cls()
-        # print(d_)
-        return d_
 
 
 
@@ -1961,86 +1303,106 @@ class GwPO():
 
         # 家庭健康档案 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '现住址']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
+                elif k in ['是否仅查询机构']:
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div/div/input", self.selectors['dropdown_popper'], v)
                 elif k in ['家庭住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div[1]/div/div/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div[3]/div/div/div/div/input", _dropdownByX, v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/div/div/input", self.selectors['dropdown_popper'], v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/input", self.selectors['dropdown_popper'], v[1])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/div/input", self.selectors['dropdown_popper'], v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
-
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
-        Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
+        # 查询
+        Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='查询']", ".."), ".", 2)
+
+        # 日志
         self.logger.info("查询 => " + str(d_))
 
-    def phs_healthrecord_family_operation(self, varOperation):
+    def _phs_healthrecord_family_operation(self, d_option):
+
+        # 获取字段和xpath字典
+        Web_PO.zoom(50)
+        l_field = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//thead", "."), ".//div")
+        Web_PO.zoom(100)
+        # print(l_field)  # ['姓名', '身份证号', '现住址']
+
+        # 获取字段和类型字典
+        l_value = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//tbody", "."), ".//div")
+        # print(l_value)  # ['王丽丽', '370624195305061323', '山东省烟台市招远市罗峰街道文化区社区居民委员会打撒发生的', '李丽丽', '372922198510281068', '山东省烟台市招远市罗峰街道文化区社区居民委员会阿德']
+        l_group = List_PO.group(l_value, len(l_field))
+        # print(l_group)  # [['王丽丽', '370624195305061323', '山东省烟台市招远市罗峰街道文化区社区居民委员会打撒发生的'], ['李丽丽', '372922198510281068', '山东省烟台市招远市罗峰街道文化区社区居民委员会阿德']]
+
+        # 遍历获取每行数据中全部符合要求的字段索引max_key
+        d_1 = {}
+        s = 0
+        for i in range(len(l_group)):
+            for k, v in d_option.items():
+                if k in l_field:
+                    s_fieldIndex = l_field.index(k)
+                    if l_group[i][s_fieldIndex] == v:
+                        s = s + 1
+                        d_1[i + 1] = s
+            s = 0
+        # print(d_1)  # {2: 1, 3: 2}
+        max_key = max(d_1, key=d_1.get)
+        # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
+        return max_key
+    def phs_healthrecord_family_operation(self, d_):
 
         # 家庭健康档案 - 操作
-
-        # 获取查询数量
-        s_ = self._getQty()
-        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-
-        try:
-            # 操作
-            # 点击姓名等同于更新
-            if s_ == 1 and varOperation == '姓名':
-                Web_PO.clkByX("//tr[@class='el-table__row']/td[1]/div", 2)
-            elif s_ == 1 and varOperation == '查看':
-                Web_PO.clkByX("//tr[@class='el-table__row']", 2)
-                Web_PO.eleClkByX(ele2, ".//tr/td[16]/div/div[1]", 2)
-            elif s_ == 1 and varOperation == '维护家庭成员':
-                Web_PO.clkByX("//tr[@class='el-table__row']", 2)
-                Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div/div/div[2]/div[1]/span[2]/button', 2)  # 点击 +维护家庭成员
-
-            else:
-                print("查询数量多余1个，无法操作")
-            self.logger.info("点击" + varOperation)
-        except:
-            self.logger.error(varOperation + "失败！")
-
-    def phs_healthrecord_family_modify(self, l_):
-
-        # 维护家庭成员 - 更新
 
         signal.signal(signal.SIGINT, self.__handle_signal)
         signal.signal(signal.SIGTERM, self.__handle_signal)
 
+        try:
+            if "data" not in d_:
+                if d_['operate'] == '姓名':
+                    Web_PO.clkByX("//tbody/tr[" + str(self._phs_healthrecord_family_operation(d_['option'])) + "]/td[1]/div", 2)
+
+            elif d_['operate'] == '更新':
+                Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='更新']", ".."), ".", 2)
+                # 居民健康档案
+                self.__setHealthrecord(d_)
+
+            elif d_['operate'] == '获取':
+                self.logger.info(str(d_))
+                # # 居民健康档案
+                return self.__getHealthrecord()
+
+            else:
+                print("error, 无法操作!")
+
+            self.logger.info(str(d_))
+        except:
+            self.logger.error("失败 =>" + str(d_))
+
+    def phs_healthrecord_family_maintenance(self, d_):
+
+        # 维护家庭成员
+
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        Web_PO.clkByX("//tbody/tr[" + str(self._phs_healthrecord_family_operation(d_['option'])) + "]", 2)
+        Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='维护家庭成员']", ".."), ".")
+
         ele = Web_PO.getSuperEleByX("(//span[text()='维护家庭成员'])[last()]", "../..")
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
+        Web_PO.eleSetTextEnterByX(ele, ".//div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[2]/div/div/input", d_['data']['户主姓名'])
+        Web_PO.eleSetTextEnterByX(ele, ".//div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[3]/div/div/input", d_['data']['户主身份证号'])
+        Web_PO.eleDropdown(ele, ".//div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[4]/div/div/div/div/div/input", self.selectors['dropdown_popper'], d_['data']['与户主关系'])
 
-        for d_ in l_:
-            name = Web_PO.eleGetTextByX(ele, "./div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[1]/div")
+        # Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存 ']", ".."), ".", 2)
+        Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='取消']", ".."), ".", 2)
 
-            if name == d_['姓名']:
-                # /html/body/div[1]/div/div[3]/section/div/div/div[2]/div/div/div[2]/div[3]/div/div/div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[1]/div
-                Web_PO.eleSetTextEnterByX(ele, "./div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[2]/div/div/input", d_['户主姓名'])
-                Web_PO.eleSetTextEnterByX(ele, "./div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[3]/div/div/input", d_['户主身份证号'])
-                self.__eleDropdown(ele, "./div[2]/div/form/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr/td[4]/div/div/div/div/div/input", _dropdownByX, d_['与户主关系'])
-        # Web_PO.eleClkByX(ele, ".//button[1]", 2) # 保存
-        # Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 取消
+        self.logger.info("维护家庭成员 => " + str(d_))
 
-        self.logger.info("更新 => " + str(l_))
-
-    def phs_healthrecord_family_export(self, varFile):
-
-        # 家庭健康档案 - 导出
-
-        ele = Web_PO.getSuperEleByX("//form", ".")
-        Web_PO.eleClkByX(ele, ".//button[2]", 2)  # 点击导出
-        if os.access(varFile + ".xlsx", os.F_OK):
-            Web_PO.exportExistFile(varFile)
-        else:
-            Web_PO.exportFile(varFile)
 
 
 
@@ -2051,49 +1413,49 @@ class GwPO():
 
         # 迁入申请 - 查询
 
-        # 1 查询
         ele = Web_PO.getSuperEleByX("//form", ".")
-        _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '申请人']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
-                elif k in ['状态']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
+                elif k in ['状态', '是否仅查询机构']:
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", self.selectors['dropdown_popper'], v)
+
                 elif k in ['申请日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 elif k in ['申请机构']:
-                    _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
-                    Web_PO.eleClkByX(self._eleLabel(ele, k),  ".//input")
-                    l_1 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div/div[1]/ul/li")
-                    # 卫健局
-                    if v == l_1:
-                        # print(l_1)  # ['招远市卫健局']
-                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li/label/span[1]/span")
-                    else:
-                        Web_PO.clkByX(_dropdownByX2 + "/div/div/div[1]/ul/li")
-                        l_2 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[2]/div[1]/ul/li")
-                        # 卫生院
-                        if len(v) == 1:
-                            # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
-                            if v[0] in l_2:
-                                for i in range(len(l_2)):
-                                    if l_2[i] == v[0]:
-                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li["+str(i+1)+"]/label/span[1]/span")
-                        else:
-                            # 卫生室
-                            if v[0] in l_2:
-                                for i in range(len(l_2)):
-                                    if l_2[i] == v[0]:
-                                        Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i+1) + "]")
-                                        l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
-                                        if v[1] in l_3:
-                                            # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
-                                            for i in range(len(l_3)):
-                                                if l_3[i] == v[1]:
-                                                    Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label/span[1]/span")
+                    self.__gljg(Web_PO.eleCommon(ele, k), k, v)
+                    # # _dropdownByX2 = "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']"
+                    # Web_PO.eleClkByX(Web_PO.eleCommon(ele, k),  ".//input")
+                    # l_1 = Web_PO.getTextByXs(self.selectors['dropdown_dropdown1'])
+                    # # 卫健局
+                    # if v == l_1:
+                    #     # print(l_1)  # ['招远市卫健局']
+                    #     Web_PO.clkByX(self.selectors['dropdown_dropdown'] + "/div/div/div[1]/ul/li/label/span[1]/span")
+                    # else:
+                    #     Web_PO.clkByX(self.selectors['dropdown_dropdown1'])
+                    #     l_2 = Web_PO.getTextByXs(self.selectors['dropdown_dropdown'] + "/div/div[2]/div[1]/ul/li")
+                    #     # 卫生院
+                    #     if len(v) == 1:
+                    #         # print(l_2)  # ['金岭镇卫生院', '阜山卫生院', '蚕庄卫生院', '玲珑卫生院', '大秦家卫生院', '道头卫生院', '夏甸卫生院', '毕郭卫生院', '宋家卫生院', '大户卫生院', '南院庄卫生院', '大吴家卫生院', '东庄卫生院', '空挂户', '泉山街道社区卫生服务中心', '梦芝社区卫生服务中心', '辛庄镇卫生院', '张星卫生院', '妇幼保健院']
+                    #         if v[0] in l_2:
+                    #             for i in range(len(l_2)):
+                    #                 if l_2[i] == v[0]:
+                    #                     Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li["+str(i+1)+"]/label/span[1]/span")
+                    #     else:
+                    #         # 卫生室
+                    #         if v[0] in l_2:
+                    #             for i in range(len(l_2)):
+                    #                 if l_2[i] == v[0]:
+                    #                     Web_PO.clkByX(_dropdownByX2 + "/div/div[2]/div[1]/ul/li[" + str(i+1) + "]")
+                    #                     l_3 = Web_PO.getTextByXs(_dropdownByX2 + "/div/div[3]/div[1]/ul/li")
+                    #                     if v[1] in l_3:
+                    #                         # print(l_3)  # ['玲珑镇鲁格庄村卫生室', '玲珑镇官家河村卫生室', '玲珑镇罗山李家村卫生室', '玲珑镇大蒋家村卫生室', '玲珑镇玲珑台上村卫生室']
+                    #                         for i in range(len(l_3)):
+                    #                             if l_3[i] == v[1]:
+                    #                                 Web_PO.clkByX(_dropdownByX2 + "/div/div[3]/div[1]/ul/li[" + str(i + 1) + "]/label/span[1]/span")
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2184,14 +1546,14 @@ class GwPO():
                             if Web_PO.eleGetTextByX(ele, ".//table/tbody/tr[" + str(i+1) + "]/td[2]/div") == v[i]:
                                 Web_PO.eleClkByX(ele, ".//table/tbody/tr[" + str(i+1) + "]/td[1]/div/label")
                 if k in ['申请迁入原因']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['迁入地址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[3]/div/div/div/div/input", _dropdownByX, v[2])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[2]/div[1]/div/div/div/div/input", _dropdownByX, v[3])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[2]/div[2]/div/div/div/div/input", _dropdownByX, v[4])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/div[3]/div/div/input", v[5])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[3]/div/div/div/div/input", _dropdownByX, v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/div/input", _dropdownByX, v[3])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/div/input", _dropdownByX, v[4])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[3]/div/div/input", v[5])
             except:
                 self.logger.error("新增失败 => " + str(k) + ": " + str(v))
 
@@ -2213,14 +1575,14 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '申请人']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['状态']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['申请日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
 
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
@@ -2275,14 +1637,14 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['死亡日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div/div/div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div/div/div[1]/div/input", v[0])
                 elif k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div[1]/div[2]/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div[1]/div[2]/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/input", v[2])
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2317,7 +1679,7 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['身份证号']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2341,14 +1703,14 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['就诊日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div/div/div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div/div/div[1]/div/input", v[0])
                 elif k in ['导入状态']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2372,16 +1734,16 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['就诊日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div/div/div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div/div/div[1]/div/input", v[0])
                 elif k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2432,7 +1794,7 @@ class GwPO():
         ele = Web_PO.getSuperEleByX("(//form)[position()=" + str(index) + "]", ".")
         # ele = Web_PO.getSuperEleByX("//form", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-        self.eleDropdownDateByOne(ele, ".//div[1]/input", d_['value']['随访日期'])
+        Web_PO.eleDropdownDate1(ele, ".//div[1]/input", d_['value']['随访日期'])
         self.__radioLeft(ele, d_['value'], '随访方式', ".//div[2]/div/div/div")
         if '症状' in d_['value']:
             Web_PO.eleScrollViewByX(ele, ".//div[3]/div/div/div[1]/div", 1)
@@ -2470,39 +1832,39 @@ class GwPO():
             Web_PO.eleScrollViewByX(ele, ".//div[25]/div/div/div/div/div/input", 2)
             # Web_PO.eleClsReadonlyByX(ele, ".//div[25]/div/div/div/div/div/input", 2)
             # Web_PO.eleSetTextByX(ele, ".//div[25]/div/div/div/div/div/input", d_['value']['用药情况药物名称1'])
-            self.__eleDropdown(ele, ".//div[25]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称1'])
-            self.__eleDropdown(ele, ".//div[26]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量1每日'])  # 每日
+            Web_PO.eleDropdown(ele, ".//div[25]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称1'])
+            Web_PO.eleDropdown(ele, ".//div[26]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量1每日'])  # 每日
             Web_PO.eleSetTextByX(ele, ".//div[26]/div/div[2]/div/div/input", d_['value']['用药情况用法用量1每次'])  # 每次
         if '用药情况药物名称2' in d_['value']:
             # Web_PO.eleClsReadonlyByX(ele, ".//div[27]/div/div/div/div/div/input", 2)
             # Web_PO.eleSetTextByX(ele, ".//div[27]/div/div/div/div/div/input", d_['value']['用药情况药物名称2'])
-            self.__eleDropdown(ele, ".//div[27]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称2'])
-            self.__eleDropdown(ele, ".//div[28]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量2每日'])
+            Web_PO.eleDropdown(ele, ".//div[27]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称2'])
+            Web_PO.eleDropdown(ele, ".//div[28]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量2每日'])
             Web_PO.eleSetTextByX(ele, ".//div[28]/div/div[2]/div/div/input", d_['value']['用药情况用法用量2每次'])
         if '用药情况药物名称3' in d_['value']:
             # Web_PO.eleClsReadonlyByX(ele, ".//div[29]/div/div/div/div/div/input", 2)
             # Web_PO.eleSetTextByX(ele, ".//div[29]/div/div/div/div/div/input", d_['value']['用药情况药物名称3'])
-            self.__eleDropdown(ele, ".//div[29]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称3'])
-            self.__eleDropdown(ele, ".//div[30]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量3每日'])
+            Web_PO.eleDropdown(ele, ".//div[29]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称3'])
+            Web_PO.eleDropdown(ele, ".//div[30]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量3每日'])
             Web_PO.eleSetTextByX(ele, ".//div[30]/div/div[2]/div/div/input", d_['value']['用药情况用法用量3每次'])
         if '用药调整意见药物名称1' in d_['value']:
             Web_PO.eleScrollViewByX(ele, ".//div[31]/div/div/div/div/div/input", 2)
             # Web_PO.eleClsReadonlyByX(ele, ".//div[31]/div/div/div/div/div/input", 2)
             # Web_PO.eleSetTextByX(ele, ".//div[31]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称1'])
-            self.__eleDropdown(ele, ".//div[31]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称1'])
-            self.__eleDropdown(ele, ".//div[32]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量1每日'])
+            Web_PO.eleDropdown(ele, ".//div[31]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称1'])
+            Web_PO.eleDropdown(ele, ".//div[32]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量1每日'])
             Web_PO.eleSetTextByX(ele, ".//div[32]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量1每次'])
         if '用药调整意见药物名称2' in d_['value']:
             # Web_PO.eleClsReadonlyByX(ele, ".//div[33]/div/div/div/div/div/input", 2)
             # Web_PO.eleSetTextByX(ele, ".//div[33]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称2'])
-            self.__eleDropdown(ele, ".//div[33]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称2'])
-            self.__eleDropdown(ele, ".//div[34]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量2每日'])
+            Web_PO.eleDropdown(ele, ".//div[33]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称2'])
+            Web_PO.eleDropdown(ele, ".//div[34]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量2每日'])
             Web_PO.eleSetTextByX(ele, ".//div[34]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量2每次'])
         if '用药调整意见药物名称3' in d_['value']:
             # Web_PO.eleClsReadonlyByX(ele, ".//div[35]/div/div/div/div/div/input", 2)
             # Web_PO.eleSetTextByX(ele, ".//div[35]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称3'])
-            self.__eleDropdown(ele, ".//div[35]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称3'])
-            self.__eleDropdown(ele, ".//div[36]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量3每日'])
+            Web_PO.eleDropdown(ele, ".//div[35]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称3'])
+            Web_PO.eleDropdown(ele, ".//div[36]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量3每日'])
             Web_PO.eleSetTextByX(ele, ".//div[36]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量3每次'])
         self.__text_value1(ele, d_['value'], '转诊原因', ".//div[37]/div/div/div/input")
         self.__text_value1(ele, d_['value'], '转入医疗机构及科室', ".//div[38]/div/div/div/input")
@@ -2512,10 +1874,10 @@ class GwPO():
         self.__text_value1(ele, d_['value'], '备注', ".//div[42]/div/div/div/input")
         if '下次随访日期' in d_['value']:
             Web_PO.eleScrollViewByX(ele, ".//div[43]/div/div/div/input", 2)
-            self.eleDropdownDateByOne(ele, ".//div[43]/div/div/div/input", d_['value']['下次随访日期'])
+            Web_PO.eleDropdownDate1(ele, ".//div[43]/div/div/div/input", d_['value']['下次随访日期'])
         if '随访医生' in d_['value']:
             Web_PO.eleScrollViewByX(ele, "..//div[44]/div/div/div/div/div/input", 2)
-            self.__eleDropdown(ele, ".//div[44]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
+            Web_PO.eleDropdown(ele, ".//div[44]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
         self.__text_value1(ele, d_['value'], '居民签字', ".//div[45]/div/div/div/input")
 
         ele = Web_PO.getSuperEleByX("//span[text()='保存']", ".")
@@ -2556,17 +1918,17 @@ class GwPO():
         # for k, v in d_.items():
         #     try:
         #         if k in ['上次随访日期', '下次随访日期', '建卡日期', '建档日期', '出生日期范围']:
-        #             self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-        #             self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+        #             Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+        #             Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
         #         elif k in ['收缩压范围', '舒张压范围']:
-        #             Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div[1]/input", v[0])
-        #             Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+        #             Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div[1]/input", v[0])
+        #             Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
         #         if k in ['现住址']:
-        #             self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-        #             self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-        #             Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+        #             Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+        #             Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+        #             Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
         #         else:
-        #             eval(d_g_type_func[d_local[k]])
+        #             eval(self.d_g_type_func[d_local[k]])
         #     except:
         #         self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2577,21 +1939,21 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '建卡医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['收缩压范围', '舒张压范围']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['高血压危险分层', '是否终止管理', '随访提醒分类', '档案状态', '随访评价结果']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['上次随访日期', '下次随访日期', '建卡日期', '建档日期', '出生日期范围']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['档案管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2613,18 +1975,18 @@ class GwPO():
     def _phs_hypertension_gxyregister_operation_common(self, ele, k, varValue, l_):
 
         # 获取所有选项，生成映射字典
-        l_value = Web_PO.eleGetTextByXs(self._eleDiv(ele, k), './/label/span[2]')
+        l_value = Web_PO.eleGetTextByXs(Web_PO.eleCommon(ele, k), './/label/span[2]')
         # print(l_value)
         d_3 = dict(enumerate(l_value, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
         # print(d_4)  # {'男性>55 岁或女性>65 岁': 1, '吸烟': 2, '糖耐量受损': 3, '血脂异常TC≥5.7mmol/L（220mg/dL） 或LDL-C>3.6mmol/L （140mg/dL） 或 HDL-C<1.0mmol/L （40mg/dL）': 4, '早 发 心血 管病家族 史 （一级亲属发病年龄男 性小于 55 岁，女性小于 65 岁）': 5, '腹型肥胖': 6, '血同型半胱氨酸升高': 7, '糖尿病伴微白蛋白尿': 8, '以静息为主的生活方式': 9, '血浆纤维蛋白原增高': 10, '高敏C反应蛋白≥3mg/L或C反应蛋白≥10mg/L': 11, '以上都无': 12}
 
         # 默认已勾选以上都无，先取消勾选
-        Web_PO.eleClkByX(self._eleDiv(ele, k),".//div[2]/div/div/div/div[" + str(d_4[varValue]) + "]/label")  # 不勾选'以上都无'
+        Web_PO.eleClkByX(Web_PO.eleCommon(ele, k),".//div[2]/div/div/div/div[" + str(d_4[varValue]) + "]/label")  # 不勾选'以上都无'
 
         # 勾选选项
         for i in range(len(l_)):
-            Web_PO.eleClkByX(self._eleDiv(ele, k), './/div[2]/div/div/div[1]/div[' + str(d_4[l_[i]]) + ']/label', 2)
+            Web_PO.eleClkByX(Web_PO.eleCommon(ele, k), './/div[2]/div/div/div[1]/div[' + str(d_4[l_[i]]) + ']/label', 2)
     def _phs_hypertension_gxyregister_operation(self, varOperation, d_option):
 
         # 遍历高血压专项、高血压随访的列表页
@@ -2696,28 +2058,28 @@ class GwPO():
                     _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
                     for k, v in d_['value'].items():
                         if k in [' 居住地址 ']:
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'), ".//div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[0])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'), ".//div[2]/div[1]/div/div/div/div/div/input", _dropdownByX, v[1])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'), ".//div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[2])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'), ".//div[3]/div[1]/div/div/div/div/div/input", _dropdownByX, v[3])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'), ".//div[3]/div[2]/div/div/div/div/div/input", _dropdownByX, v[4])
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, '../..'), ".//div[4]/div[2]/div/div/div/input", v[5])
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'), ".//div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[0])
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'), ".//div[2]/div[1]/div/div/div/div/div/input", _dropdownByX, v[1])
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'), ".//div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[2])
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'), ".//div[3]/div[1]/div/div/div/div/div/input", _dropdownByX, v[3])
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'), ".//div[3]/div[2]/div/div/div/div/div/input", _dropdownByX, v[4])
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, '../..'), ".//div[4]/div[2]/div/div/div/input", v[5])
                         elif k in [' 建卡医疗机构 ']:
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//input", v)
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                         elif k in [' 终止管理原因 ']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//input", v)
+                                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                         elif k in [' 终止管理日期 ']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[1]/input", v)
+                                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v)
                         elif k in [' 管理级别 ']:
-                            Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
                         elif k in [' 是否终止管理 ']:
-                            Web_PO.eleRadioRightLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div/label", v)
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
                         elif k in [' 建卡医生 ']:
-                            self.__eleDropdown(self._eleDiv(ele, k), ".//input", _dropdownByX, v)
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                         elif k in [' 确诊日期 ', ' 建卡时间 ']:
-                            self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[1]/input", v)
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v)
                     ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                     Web_PO.eleClkByX(ele2, ".", 2)
 
@@ -2729,10 +2091,10 @@ class GwPO():
                     ele = Web_PO.getSuperEleByX("//div[text()='高血压患者评估']", "..")
                     for k, v in d_['value'].items():
                         if k in [' 身高(cm) ', ' 体重(kg) ']:
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//input", v)
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                         elif k in [' 血压 ']:
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[1]/div/div/input", v[0])
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[2]/div/div/input", v[1])
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
                         elif k in [' 危险因素 ']:
                             if isinstance(v, list):
                                 self._phs_hypertension_gxyregister_operation_common(ele, k, '以上都无', v)
@@ -2743,9 +2105,9 @@ class GwPO():
                             if isinstance(v, list):
                                 self._phs_hypertension_gxyregister_operation_common(ele, k, '以上情况均无', v)
                         elif k in [' 高血压分级 ', ' 危险分层 ']:
-                            Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
                         elif k in [' 评估日期 ']:
-                            self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[1]/input", v)
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v)
                     ele3 = Web_PO.getSuperEleByX("//div[text()='高血压患者评估']", "../../..")
                     Web_PO.eleClkByX(ele3, ".//button[1]", 2)  # 保存
                     # Web_PO.eleClkByX(ele3, ".//button[2]", 2)  # 取消
@@ -2782,21 +2144,21 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '随访医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['收缩压范围', '舒张压范围']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['随访方式', '是否终止管理', '数据源', '随访评价结果']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['随访日期', '出生日期范围']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -2914,7 +2276,7 @@ class GwPO():
         ele = Web_PO.getSuperEleByX("(//form)[position()=" + str(index) + "]", ".")
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
-        self.eleDropdownDateByOne(ele, ".//div[1]/input", d_['value']['随访日期'])
+        Web_PO.eleDropdownDate1(ele, ".//div[1]/input", d_['value']['随访日期'])
         self.__radioLeft(ele, d_['value'], '随访方式', ".//div[2]/div/div/div")
         # Web_PO.eleRadioLeftLabel(ele, ".//div[2]/div/div/div", d_['value']['随访方式'])
         if '症状' in d_['value']:
@@ -2984,69 +2346,69 @@ class GwPO():
 
         if '用药情况药物名称1' in d_['value']:
             Web_PO.eleScrollViewByX(ele, ".//div[24]/div/div/div/div/div/input", 2)
-            self.__eleDropdown(ele, ".//div[24]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称1'])
-            self.__eleDropdown(ele, ".//div[25]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量1每日'])  # 每日
+            Web_PO.eleDropdown(ele, ".//div[24]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称1'])
+            Web_PO.eleDropdown(ele, ".//div[25]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量1每日'])  # 每日
             Web_PO.eleSetTextByX(ele, ".//div[25]/div/div[2]/div/div/input", d_['value']['用药情况用法用量1每次'])  # 每次
 
         # Web_PO.eleClsReadonlyByX(ele, ".//div[24]/div/div/div/div/div/input", 2)
         # Web_PO.eleSetTextByX(ele, ".//div[24]/div/div/div/div/div/input", d_['value']['用药情况药物名称1'])
-        # self.__eleDropdown(ele, ".//div[25]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        # Web_PO.eleDropdown(ele, ".//div[25]/div/div[1]/div/div/div/div/input", _dropdownByX,
         #                      d_['value']['用药情况用法用量1每日'])
 
         if '用药情况药物名称2' in d_['value']:
-            self.__eleDropdown(ele, ".//div[26]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称2'])
-            self.__eleDropdown(ele, ".//div[27]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量2每日'])
+            Web_PO.eleDropdown(ele, ".//div[26]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称2'])
+            Web_PO.eleDropdown(ele, ".//div[27]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量2每日'])
             Web_PO.eleSetTextByX(ele, ".//div[27]/div/div[2]/div/div/input", d_['value']['用药情况用法用量2每次'])
 
         # Web_PO.eleClsReadonlyByX(ele, ".//div[26]/div/div/div/div/div/input", 2)
         # Web_PO.eleSetTextByX(ele, ".//div[26]/div/div/div/div/div/input", d_['value']['用药情况药物名称2'])
-        # self.__eleDropdown(ele, ".//div[27]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        # Web_PO.eleDropdown(ele, ".//div[27]/div/div[1]/div/div/div/div/input", _dropdownByX,
         #                      d_['value']['用药情况用法用量2每日'])
         # Web_PO.eleSetTextByX(ele, ".//div[27]/div/div[2]/div/div/input", d_['value']['用药情况用法用量2每次'])
 
         if '用药情况药物名称3' in d_['value']:
-            self.__eleDropdown(ele, ".//div[28]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称3'])
-            self.__eleDropdown(ele, ".//div[29]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量3每日'])
+            Web_PO.eleDropdown(ele, ".//div[28]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药情况药物名称3'])
+            Web_PO.eleDropdown(ele, ".//div[29]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药情况用法用量3每日'])
             Web_PO.eleSetTextByX(ele, ".//div[29]/div/div[2]/div/div/input", d_['value']['用药情况用法用量3每次'])
 
         # Web_PO.eleClsReadonlyByX(ele, ".//div[28]/div/div/div/div/div/input", 2)
         # Web_PO.eleSetTextByX(ele, ".//div[28]/div/div/div/div/div/input", d_['value']['用药情况药物名称3'])
-        # self.__eleDropdown(ele, ".//div[29]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        # Web_PO.eleDropdown(ele, ".//div[29]/div/div[1]/div/div/div/div/input", _dropdownByX,
         #                      d_['value']['用药情况用法用量3每日'])
         # Web_PO.eleSetTextByX(ele, ".//div[29]/div/div[2]/div/div/input", d_['value']['用药情况用法用量3每次'])
 
         if '用药调整意见药物名称1' in d_['value']:
             Web_PO.eleScrollViewByX(ele, ".//div[30]/div/div/div/div/div/input", 2)
-            self.__eleDropdown(ele, ".//div[30]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称1'])
-            self.__eleDropdown(ele, ".//div[31]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量1每日'])
+            Web_PO.eleDropdown(ele, ".//div[30]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称1'])
+            Web_PO.eleDropdown(ele, ".//div[31]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量1每日'])
             Web_PO.eleSetTextByX(ele, ".//div[31]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量1每次'])
 
         # Web_PO.eleScrollViewByX(ele, ".//div[30]/div/div/div/div/div/input", 2)
         # Web_PO.eleClsReadonlyByX(ele, ".//div[30]/div/div/div/div/div/input", 2)
         # Web_PO.eleSetTextByX(ele, ".//div[30]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称1'])
-        # self.__eleDropdown(ele, ".//div[31]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        # Web_PO.eleDropdown(ele, ".//div[31]/div/div[1]/div/div/div/div/input", _dropdownByX,
         #                      d_['value']['用药调整意见用法用量1每日'])
 
         if '用药调整意见药物名称2' in d_['value']:
-            self.__eleDropdown(ele, ".//div[32]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称2'])
-            self.__eleDropdown(ele, ".//div[33]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量2每日'])
+            Web_PO.eleDropdown(ele, ".//div[32]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称2'])
+            Web_PO.eleDropdown(ele, ".//div[33]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量2每日'])
             Web_PO.eleSetTextByX(ele, ".//div[33]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量2每次'])
 
         # Web_PO.eleSetTextByX(ele, ".//div[31]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量1每次'])
         # Web_PO.eleClsReadonlyByX(ele, ".//div[32]/div/div/div/div/div/input", 2)
         # Web_PO.eleSetTextByX(ele, ".//div[32]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称2'])
-        # self.__eleDropdown(ele, ".//div[33]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        # Web_PO.eleDropdown(ele, ".//div[33]/div/div[1]/div/div/div/div/input", _dropdownByX,
         #                      d_['value']['用药调整意见用法用量2每日'])
 
         if '用药调整意见药物名称3' in d_['value']:
-            self.__eleDropdown(ele, ".//div[34]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称3'])
-            self.__eleDropdown(ele, ".//div[35]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量3每日'])
+            Web_PO.eleDropdown(ele, ".//div[34]/div/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见药物名称3'])
+            Web_PO.eleDropdown(ele, ".//div[35]/div/div[1]/div/div/div/div/input", _dropdownByX, d_['value']['用药调整意见用法用量3每日'])
             Web_PO.eleSetTextByX(ele, ".//div[35]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量3每次'])
 
         # Web_PO.eleSetTextByX(ele, ".//div[33]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量2每次'])
         # Web_PO.eleClsReadonlyByX(ele, ".//div[34]/div/div/div/div/div/input", 2)
         # Web_PO.eleSetTextByX(ele, ".//div[34]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称3'])
-        # self.__eleDropdown(ele, ".//div[35]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        # Web_PO.eleDropdown(ele, ".//div[35]/div/div[1]/div/div/div/div/input", _dropdownByX,
         #                      d_['value']['用药调整意见用法用量3每日'])
         # Web_PO.eleSetTextByX(ele, ".//div[35]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量3每次'])
 
@@ -3066,14 +2428,14 @@ class GwPO():
 
         if '下次随访日期' in d_['value']:
             Web_PO.eleScrollViewByX(ele, ".//div[42]/div/div/div/input", 2)
-            self.eleDropdownDateByOne(ele, ".//div[42]/div/div/div/input", d_['value']['下次随访日期'])
+            Web_PO.eleDropdownDate1(ele, ".//div[42]/div/div/div/input", d_['value']['下次随访日期'])
         if '随访医生' in d_['value']:
             Web_PO.eleScrollViewByX(ele, "..//div[43]/div/div/div/div/div/input", 2)
-            self.__eleDropdown(ele, ".//div[43]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
+            Web_PO.eleDropdown(ele, ".//div[43]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
         self.__text_value1(ele, d_['value'], '居民签字', ".//div[44]/div/div/div/input")
 
-        # self.eleDropdownDateByOne(ele, ".//div[42]/div/div/div/input", d_['value']['下次随访日期'])
-        # self.__eleDropdown(ele, ".//div[43]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
+        # Web_PO.eleDropdownDate1(ele, ".//div[42]/div/div/div/input", d_['value']['下次随访日期'])
+        # Web_PO.eleDropdown(ele, ".//div[43]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
         # Web_PO.eleSetTextByX(ele, ".//div[44]/div/div/div/input", d_['value']['居民签字'])
 
         ele = Web_PO.getSuperEleByX("//span[text()='保存']", ".")
@@ -3145,21 +2507,21 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '建卡医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['是否终止管理', '随访提醒分类', '档案状态', '随访评价结果']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期范围']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['上次随访日期', '下次随访日期', '建卡日期', '建档日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['档案管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -3196,26 +2558,26 @@ class GwPO():
                     _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
                     for k, v in d_['value'].items():
                         if k in [' 居住地址 ']:
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[2]/div/div/div/div/div/input", _dropdownByX, v[0])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[3]/div/div/div/div/div/input", _dropdownByX, v[1])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v[2])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[5]/div/div/div/div/div/input", _dropdownByX, v[3])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[6]/div/div/div/div/div/input", _dropdownByX, v[4])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[2]/div/div/div/div/div/input", _dropdownByX, v[0])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[3]/div/div/div/div/div/input", _dropdownByX, v[1])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v[2])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[5]/div/div/div/div/div/input", _dropdownByX, v[3])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[6]/div/div/div/div/div/input", _dropdownByX, v[4])
                             Web_PO.eleSetTextEnterByX(self._eleTd(ele, k), ".//td[7]/div/div/div/input", v[5])
                         elif k in ['终止管理原因']:
                             if d_['value'][' 是否终止管理 '] == "是":
                                 Web_PO.eleSetTextEnterByX(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
                         elif k in ['终止管理日期']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[6]/div/div/div/input", v)
+                                Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[6]/div/div/div/input", v)
                         elif k in [' 是否终止管理 ']:
                             Web_PO.eleRadioRightLabel(self._eleTd(ele, k), ".//td[4]/div/div/div/label", v)
                         elif k in ['建卡医生']:
-                            self.__eleDropdown(self._eleSpan(ele, k, "../.."), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v)
+                            Web_PO.eleDropdown(self._eleSpan(ele, k, "../.."), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v)
                         elif k in [' 确诊日期 ']:
-                            self.eleDropdownDateByOne(self._eleTd(ele, k), ".//td[2]/div/div/div/input", v)
+                            Web_PO.eleDropdownDate1(self._eleTd(ele, k), ".//td[2]/div/div/div/input", v)
                         elif k in ['建卡时间']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
                     ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                     Web_PO.eleClkByX(ele2, ".", 2)
 
@@ -3233,7 +2595,7 @@ class GwPO():
                         if k in ['管理程度']:
                             Web_PO.eleRadioRightLabel(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/label", v)
                         elif k in ['评估日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/input", v)
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/input", v)
                     ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                     Web_PO.eleClkByX(ele2, ".", 2)
 
@@ -3269,26 +2631,26 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '随访医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['空腹血糖']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['随访方式', '是否终止管理', '数据源', '随访评价结果']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期范围']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['随访日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX,
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX,
                                             v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input",
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input",
                                             _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -3432,7 +2794,7 @@ class GwPO():
 
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
 
-        self.eleDropdownDateByOne(ele, ".//div[1]/input", d_['value']['随访日期'])
+        Web_PO.eleDropdownDate1(ele, ".//div[1]/input", d_['value']['随访日期'])
         Web_PO.eleRadioLeftLabel(ele, ".//div[2]/div/div/div", d_['value']['随访方式'])
         Web_PO.eleCheckboxLeftLabel(ele, ".//div[3]/div/div/div[1]/div", d_['value']['症状'])
         for i in d_['value']['症状']:
@@ -3479,38 +2841,38 @@ class GwPO():
         Web_PO.eleScrollViewByX(ele, ".//div[25]/div/div/div/div/div/input", 2)
         Web_PO.eleClsReadonlyByX(ele, ".//div[25]/div/div/div/div/div/input", 2)
         Web_PO.eleSetTextByX(ele, ".//div[25]/div/div/div/div/div/input", d_['value']['用药情况药物名称1'])
-        self.__eleDropdown(ele, ".//div[26]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        Web_PO.eleDropdown(ele, ".//div[26]/div/div[1]/div/div/div/div/input", _dropdownByX,
                              d_['value']['用药情况用法用量1每日'])
         Web_PO.eleSetTextByX(ele, ".//div[26]/div/div[2]/div/div/input", d_['value']['用药情况用法用量1每次'])
 
         Web_PO.eleClsReadonlyByX(ele, ".//div[27]/div/div/div/div/div/input", 2)
         Web_PO.eleSetTextByX(ele, ".//div[27]/div/div/div/div/div/input", d_['value']['用药情况药物名称2'])
-        self.__eleDropdown(ele, ".//div[28]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        Web_PO.eleDropdown(ele, ".//div[28]/div/div[1]/div/div/div/div/input", _dropdownByX,
                              d_['value']['用药情况用法用量2每日'])
         Web_PO.eleSetTextByX(ele, ".//div[28]/div/div[2]/div/div/input", d_['value']['用药情况用法用量2每次'])
 
         Web_PO.eleClsReadonlyByX(ele, ".//div[29]/div/div/div/div/div/input", 2)
         Web_PO.eleSetTextByX(ele, ".//div[29]/div/div/div/div/div/input", d_['value']['用药情况药物名称3'])
-        self.__eleDropdown(ele, ".//div[30]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        Web_PO.eleDropdown(ele, ".//div[30]/div/div[1]/div/div/div/div/input", _dropdownByX,
                              d_['value']['用药情况用法用量3每日'])
         Web_PO.eleSetTextByX(ele, ".//div[30]/div/div[2]/div/div/input", d_['value']['用药情况用法用量3每次'])
 
         Web_PO.eleScrollViewByX(ele, ".//div[31]/div/div/div/div/div/input", 2)
         Web_PO.eleClsReadonlyByX(ele, ".//div[31]/div/div/div/div/div/input", 2)
         Web_PO.eleSetTextByX(ele, ".//div[31]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称1'])
-        self.__eleDropdown(ele, ".//div[32]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        Web_PO.eleDropdown(ele, ".//div[32]/div/div[1]/div/div/div/div/input", _dropdownByX,
                              d_['value']['用药调整意见用法用量1每日'])
         Web_PO.eleSetTextByX(ele, ".//div[32]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量1每次'])
 
         Web_PO.eleClsReadonlyByX(ele, ".//div[33]/div/div/div/div/div/input", 2)
         Web_PO.eleSetTextByX(ele, ".//div[33]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称2'])
-        self.__eleDropdown(ele, ".//div[34]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        Web_PO.eleDropdown(ele, ".//div[34]/div/div[1]/div/div/div/div/input", _dropdownByX,
                              d_['value']['用药调整意见用法用量2每日'])
         Web_PO.eleSetTextByX(ele, ".//div[34]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量2每次'])
 
         Web_PO.eleClsReadonlyByX(ele, ".//div[35]/div/div/div/div/div/input", 2)
         Web_PO.eleSetTextByX(ele, ".//div[35]/div/div/div/div/div/input", d_['value']['用药调整意见药物名称3'])
-        self.__eleDropdown(ele, ".//div[36]/div/div[1]/div/div/div/div/input", _dropdownByX,
+        Web_PO.eleDropdown(ele, ".//div[36]/div/div[1]/div/div/div/div/input", _dropdownByX,
                              d_['value']['用药调整意见用法用量3每日'])
         Web_PO.eleSetTextByX(ele, ".//div[36]/div/div[2]/div/div/input", d_['value']['用药调整意见用法用量3每次'])
 
@@ -3523,8 +2885,8 @@ class GwPO():
         Web_PO.eleScrollViewByX(ele, ".//div[41]/div/div/div", 2)
         self.__eleRadioLeftLabel(ele, ".//div[41]/div/div/div", d_['value']['结果'])
         Web_PO.eleSetTextByX(ele, ".//div[42]/div/div/div/input", d_['value']['备注'])
-        self.eleDropdownDateByOne(ele, ".//div[43]/div/div/div/input", d_['value']['下次随访日期'])
-        self.__eleDropdown(ele, ".//div[44]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
+        Web_PO.eleDropdownDate1(ele, ".//div[43]/div/div/div/input", d_['value']['下次随访日期'])
+        Web_PO.eleDropdown(ele, ".//div[44]/div/div/div/div/div/input", _dropdownByX, d_['value']['随访医生'])
         Web_PO.eleSetTextByX(ele, ".//div[45]/div/div/div/input", d_['value']['居民签字'])
 
         ele = Web_PO.getSuperEleByX("//span[text()='保存']", ".")
@@ -3543,18 +2905,18 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '联系电话']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['年龄']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['档案状态', '既往疾病史']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -3576,26 +2938,26 @@ class GwPO():
                     _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
                     for k, v in d_['value'].items():
                         if k in [' 居住地址 ']:
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[2]/div/div/div/div/div/input", _dropdownByX, v[0])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[3]/div/div/div/div/div/input", _dropdownByX, v[1])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v[2])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[5]/div/div/div/div/div/input", _dropdownByX, v[3])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[6]/div/div/div/div/div/input", _dropdownByX, v[4])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[2]/div/div/div/div/div/input", _dropdownByX, v[0])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[3]/div/div/div/div/div/input", _dropdownByX, v[1])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v[2])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[5]/div/div/div/div/div/input", _dropdownByX, v[3])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[6]/div/div/div/div/div/input", _dropdownByX, v[4])
                             Web_PO.eleSetTextEnterByX(self._eleTd(ele, k), ".//td[7]/div/div/div/input", v[5])
                         elif k in ['终止管理原因']:
                             if d_['value'][' 是否终止管理 '] == "是":
                                 Web_PO.eleSetTextEnterByX(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
                         elif k in ['终止管理日期']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[6]/div/div/div/input", v)
+                                Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[6]/div/div/div/input", v)
                         elif k in [' 是否终止管理 ']:
                             Web_PO.eleRadioRightLabel(self._eleTd(ele, k), ".//td[4]/div/div/div/label", v)
                         elif k in ['建卡医生']:
-                            self.__eleDropdown(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v)
+                            Web_PO.eleDropdown(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v)
                         elif k in [' 确诊日期 ']:
-                            self.eleDropdownDateByOne(self._eleTd(ele, k), ".//div[1]/input", v)
+                            Web_PO.eleDropdownDate1(self._eleTd(ele, k), ".//div[1]/input", v)
                         elif k in ['建卡时间']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
                     ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                     Web_PO.eleClkByX(ele2, ".", 2)
             else:
@@ -3619,21 +2981,21 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '建卡医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['是否终止管理', '随访提醒分类', '档案状态', '随访评价结果']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期范围']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['上次随访日期', '下次随访日期', '建卡日期', '建档日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['档案管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -3670,26 +3032,26 @@ class GwPO():
                     _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
                     for k, v in d_['value'].items():
                         if k in [' 居住地址 ']:
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[2]/div/div/div/div/div/input", _dropdownByX, v[0])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[3]/div/div/div/div/div/input", _dropdownByX, v[1])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v[2])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[5]/div/div/div/div/div/input", _dropdownByX, v[3])
-                            self.__eleDropdown(self._eleTd(ele, k), ".//td[6]/div/div/div/div/div/input", _dropdownByX, v[4])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[2]/div/div/div/div/div/input", _dropdownByX, v[0])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[3]/div/div/div/div/div/input", _dropdownByX, v[1])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v[2])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[5]/div/div/div/div/div/input", _dropdownByX, v[3])
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[6]/div/div/div/div/div/input", _dropdownByX, v[4])
                             Web_PO.eleSetTextEnterByX(self._eleTd(ele, k), ".//td[7]/div/div/div/input", v[5])
                         elif k in ['终止管理原因']:
                             if d_['value'][' 是否终止管理 '] == "是":
                                 Web_PO.eleSetTextEnterByX(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
                         elif k in ['终止管理日期']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[6]/div/div/div/input", v)
+                                Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[6]/div/div/div/input", v)
                         elif k in [' 是否终止管理 ']:
                             Web_PO.eleRadioRightLabel(self._eleTd(ele, k), ".//td[4]/div/div/div/label", v)
                         elif k in ['建卡医生']:
-                            self.__eleDropdown(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v)
+                            Web_PO.eleDropdown(self._eleSpan(ele, k, '../..'), ".//td[4]/div/div/div/div/div/input", _dropdownByX, v)
                         elif k in [' 确诊日期 ']:
-                            self.eleDropdownDateByOne(self._eleTd(ele, k), ".//div[1]/input", v)
+                            Web_PO.eleDropdownDate1(self._eleTd(ele, k), ".//div[1]/input", v)
                         elif k in ['建卡时间']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, '../..'), ".//td[2]/div/div/div/input", v)
                     ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                     Web_PO.eleClkByX(ele2, ".", 2)
 
@@ -3722,29 +3084,29 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '随访医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['血氧饱和度']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['空腹血糖']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['随访方式', '是否终止管理', '数据源', '随访评价结果']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期范围']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['随访日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 if k in ['现住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX,
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div[1]/div/div/input", _dropdownByX,
                                             v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input",
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input",
                                             _dropdownByX, v[1])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -3787,34 +3149,34 @@ class GwPO():
                     Web_PO.eleClkByX(ele2, ".", 2)
                     for k, v in d_['value'].items():
                         if k in [' 居住地址 ']:
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'),
                                                     ".//div[1]/div[2]/div/div/div/div/div/input", _dropdownByX, v[0])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'),
                                                     ".//div[2]/div[1]/div/div/div/div/div/input", _dropdownByX, v[1])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'),
                                                     ".//div[2]/div[2]/div/div/div/div/div/input", _dropdownByX, v[2])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'),
                                                     ".//div[3]/div[1]/div/div/div/div/div/input", _dropdownByX, v[3])
-                            self.__eleDropdown(self._eleDiv(ele, k, '../..'),
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, '../..'),
                                                     ".//div[3]/div[2]/div/div/div/div/div/input", _dropdownByX, v[4])
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k, '../..'), ".//div[4]/div[2]/div/div/div/input",
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, '../..'), ".//div[4]/div[2]/div/div/div/input",
                                                       v[5])
                         elif k in [' 建卡医疗机构 ']:
-                            Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//input", v)
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                         elif k in [' 终止管理原因 ']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//input", v)
+                                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                         elif k in [' 终止管理日期 ']:
                             if d_['value'][' 是否终止管理 '] == "是":
-                                self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[1]/input", v)
+                                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v)
                         elif k in [' 管理级别 ']:
-                            Web_PO.eleRadioLeftLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
                         elif k in [' 是否终止管理 ']:
-                            Web_PO.eleRadioRightLabel(self._eleDiv(ele, k), ".//div[2]/div/div/div/label", v)
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
                         elif k in [' 建卡医生 ']:
-                            self.__eleDropdown(self._eleDiv(ele, k), ".//input", _dropdownByX, v)
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                         elif k in [' 确诊日期 ', ' 建卡时间 ']:
-                            self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[1]/input", v)
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v)
                     ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
                     Web_PO.eleClkByX(ele2, ".", 2)
 
@@ -3843,18 +3205,18 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '母亲姓名', '父亲姓名', '身份证号', '随访医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['上次完成 检查类型', '管理状态', '管理类别', '月龄', '新生儿异常情况', '喂养方式', '是否满6周岁', '身份证号 是否填写', '是否仅查询机构', '随访提醒分类']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期', '上次 随访日期', '下次 随访日期', '随访日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['出生地址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../../.."), ".//div[11]/div/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k, "../../.."), ".//div[12]/div/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../../.."), ".//div[11]/div/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k, "../../.."), ".//div[12]/div/div/div/input", v[2])
                 elif k in ['儿童管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
 
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
@@ -3875,21 +3237,21 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '母亲姓名',  '母亲身份证号', '母亲联系电话', '父亲姓名', '父亲身份证号', '父亲联系电话']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['出生地址', '家庭住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[3]/div/div/div/div/input", _dropdownByX, v[2])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[4]/div/div/div/div/input", _dropdownByX, v[3])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[5]/div/div/div/div/input", _dropdownByX, v[4])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k), ".//div[6]/div/div/input", v[5])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/div/input", _dropdownByX, v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/div/input", _dropdownByX, v[3])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[5]/div/div/div/div/input", _dropdownByX, v[4])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[6]/div/div/input", v[5])
                 elif k in ['性别', '母亲职业', '父亲职业']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['管理类别']:
-                    self.__eleRadioRightLabel(self._eleLabel(ele, k), ".//div/div[1]/label", v[0])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k), ".//div/div[2]/input", v[1])
+                    self.__eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div/div[1]/label", v[0])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div/div[2]/input", v[1])
                 elif k in ['同步出生地']:
                     if v == "是":
                         Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div/div/div/div[2]/form/div[2]/div/div/div/div/label/span[1]/span', 2)
@@ -3915,21 +3277,21 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '母亲姓名',  '母亲身份证号', '母亲联系电话', '父亲姓名', '父亲身份证号', '父亲联系电话']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['出生地址', '家庭住址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[1]/div/div/input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[3]/div/div/div/div/input", _dropdownByX, v[2])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[4]/div/div/div/div/input", _dropdownByX, v[3])
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//div[5]/div/div/div/div/input", _dropdownByX, v[4])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k), ".//div[6]/div/div/input", v[5])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/div/input", _dropdownByX, v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/div/input", _dropdownByX, v[3])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[5]/div/div/div/div/input", _dropdownByX, v[4])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[6]/div/div/input", v[5])
                 elif k in ['性别', '母亲职业', '父亲职业']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['管理类别']:
-                    self.__eleRadioRightLabel(self._eleLabel(ele, k), ".//div/div[1]/label", v[0])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k), ".//div/div[2]/input", v[1])
+                    self.__eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div/div[1]/label", v[0])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div/div[2]/input", v[1])
                 elif k in ['同步出生地']:
                     if v == "是":
                         Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div/div/div/div[2]/form/div[2]/div/div/div/div/label/span[1]/span', 2)
@@ -4009,16 +3371,16 @@ class GwPO():
 
                     for k, v in d_['新生儿'].items():
                         if k in ['本次访视时间', '下次访视时间']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."), ".//div[1]/input", v)
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."), ".//div[1]/input", v)
                         elif k in ['出生孕周']:
                             Web_PO.eleSetTextByX(self._eleSpan(ele, k, "../.."), ".//div[1]/div/div/input", v[0])
                             Web_PO.eleSetTextByX(self._eleSpan(ele, k, "../.."), ".//div[2]/div/div/input", v[1])
                         elif k in ['母亲妊娠期']:
-                            Web_PO.eleCheckboxRightLabel2(self._eleDiv(ele, k, "../.."), ".//td[4]/div/div/div/label", v)
+                            Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/label", v)
                             for i in v:
                                 if isinstance(i, dict):
                                     if '其他' in i:
-                                        Web_PO.eleSetTextByX(self._eleDiv(ele, k, "../.."), ".//td[5]/div/div/div/input", i['其他'])
+                                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//td[5]/div/div/div/input", i['其他'])
                         elif k in ['出生情况']:
                             Web_PO.eleCheckboxRightLabel2(self._eleSpan(ele, k, "../.."), ".//td[4]/div/div/div/label", v)
                             for i in v:
@@ -4094,7 +3456,7 @@ class GwPO():
                                 Web_PO.eleSetTextByX(ele3, ".//td[4]/div/div/div/input", v[1]['联系方式'])
                                 Web_PO.eleRadioRightLabel(ele3, ".//td[6]/div/div/div/label", v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k), ".//input", _dropdownByX, v)
+                            Web_PO.eleDropdown(self._eleTd(ele, k), ".//input", _dropdownByX, v)
                         elif k in ['家长签名']:
                             Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[4]/div/div/div/input", v)
 
@@ -4118,7 +3480,7 @@ class GwPO():
 
                         for k, v in v1.items():
                             if k in ['随访日期', '下次随访日期']:
-                                self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."), ".//td[" + str(varTd) + "]/div/div/div/input", v)
+                                Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."), ".//td[" + str(varTd) + "]/div/div/div/input", v)
                             elif k in ['本次服务类别']:
                                 for i in v:
                                     if isinstance(i, dict):
@@ -4175,7 +3537,7 @@ class GwPO():
                                     ele3 = Web_PO.eleGetSuperEleByX(ele, ".//td[text()='结果']", "..")
                                     Web_PO.eleRadioRightLabel(ele3, ".//td[" + str(varTd*2-2) + "]/div/div/div/label", v[1]['结果'])
                             elif k in ['随访医生签名']:
-                                self.__eleDropdown(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
+                                Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                             elif k in ['家长签名']:
                                 Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/input", v)
 
@@ -4199,7 +3561,7 @@ class GwPO():
 
                         for k, v in v1.items():
                             if k in ['随访日期', '下次随访日期']:
-                                self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."), ".//td[" + str(varTd) + "]/div/div/div/input", v)
+                                Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."), ".//td[" + str(varTd) + "]/div/div/div/input", v)
                             elif k in ['本次服务类别']:
                                 for i in v:
                                     if isinstance(i, dict):
@@ -4254,7 +3616,7 @@ class GwPO():
                                     ele3 = Web_PO.eleGetSuperEleByX(ele, ".//td[text()='结果']", "..")
                                     Web_PO.eleRadioRightLabel(ele3, ".//td[" + str(varTd*2-2) + "]/div/div/div/label", v[1]['结果'])
                             elif k in ['随访医生签名']:
-                                self.__eleDropdown(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
+                                Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                             elif k in ['家长签名']:
                                 Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/input", v)
 
@@ -4279,7 +3641,7 @@ class GwPO():
 
                         for k, v in v1.items():
                             if k in ['随访日期', '下次随访日期']:
-                                self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."), ".//td[" + str(varTd) + "]/div/div/div/input", v)
+                                Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."), ".//td[" + str(varTd) + "]/div/div/div/input", v)
                             elif k in ['本次服务类别']:
                                 for i in v:
                                     if isinstance(i, dict):
@@ -4335,7 +3697,7 @@ class GwPO():
                                     ele3 = Web_PO.eleGetSuperEleByX(ele, ".//td[text()='结果']", "..")
                                     Web_PO.eleRadioRightLabel(ele3, ".//td[" + str(varTd*2-2) + "]/div/div/div/label", v[1]['结果'])
                             elif k in ['随访医生签名']:
-                                self.__eleDropdown(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
+                                Web_PO.eleDropdown(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                             elif k in ['家长签名']:
                                 Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/input", v)
 
@@ -4373,18 +3735,18 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '随访医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['是否仅查询机构', '检查类型', '管理状态', '管理类型']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['出生日期', '随访日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['家庭地址']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v[0])
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v[0])
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[3]/div/div/input", v[2])
                 elif k in ['儿童管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -4443,16 +3805,16 @@ class GwPO():
 
                 for k, v in d_['data']['新生儿'].items():
                     if k in ['本次访视时间', '下次访视时间']:
-                        self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."), ".//div[1]/input", v)
+                        Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."), ".//div[1]/input", v)
                     elif k in ['出生孕周']:
                         Web_PO.eleSetTextByX(self._eleSpan(ele, k, "../.."), ".//div[1]/div/div/input", v[0])
                         Web_PO.eleSetTextByX(self._eleSpan(ele, k, "../.."), ".//div[2]/div/div/input", v[1])
                     elif k in ['母亲妊娠期']:
-                        Web_PO.eleCheckboxRightLabel2(self._eleDiv(ele, k, "../.."), ".//td[4]/div/div/div/label", v)
+                        Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/label", v)
                         for i in v:
                             if isinstance(i, dict):
                                 if '其他' in i:
-                                    Web_PO.eleSetTextByX(self._eleDiv(ele, k, "../.."), ".//td[5]/div/div/div/input",
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//td[5]/div/div/div/input",
                                                          i['其他'])
                     elif k in ['出生情况']:
                         Web_PO.eleCheckboxRightLabel2(self._eleSpan(ele, k, "../.."), ".//td[4]/div/div/div/label", v)
@@ -4541,7 +3903,7 @@ class GwPO():
                             Web_PO.eleSetTextByX(ele3, ".//td[4]/div/div/div/input", v[1]['联系方式'])
                             Web_PO.eleRadioRightLabel(ele3, ".//td[6]/div/div/div/label", v[1]['结果'])
                     elif k in ['随访医生签名']:
-                        self.__eleDropdown(self._eleTd(ele, k), ".//input", _dropdownByX, v)
+                        Web_PO.eleDropdown(self._eleTd(ele, k), ".//input", _dropdownByX, v)
                     elif k in ['家长签名']:
                         Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[4]/div/div/div/input", v)
 
@@ -4565,7 +3927,7 @@ class GwPO():
 
                     for k, v in v1.items():
                         if k in ['随访日期', '下次随访日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."),
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."),
                                                         ".//td[" + str(varTd) + "]/div/div/div/input", v)
                         elif k in ['本次服务类别']:
                             for i in v:
@@ -4651,7 +4013,7 @@ class GwPO():
                                 Web_PO.eleRadioRightLabel(ele3, ".//td[" + str(varTd * 2 - 2) + "]/div/div/div/label",
                                                           v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k),
+                            Web_PO.eleDropdown(self._eleTd(ele, k),
                                                ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                         elif k in ['家长签名']:
                             Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/input", v)
@@ -4676,7 +4038,7 @@ class GwPO():
 
                     for k, v in v1.items():
                         if k in ['随访日期', '下次随访日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."),
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."),
                                                         ".//td[" + str(varTd) + "]/div/div/div/input", v)
                         elif k in ['本次服务类别']:
                             for i in v:
@@ -4761,7 +4123,7 @@ class GwPO():
                                 Web_PO.eleRadioRightLabel(ele3, ".//td[" + str(varTd * 2 - 2) + "]/div/div/div/label",
                                                           v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k),
+                            Web_PO.eleDropdown(self._eleTd(ele, k),
                                                ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                         elif k in ['家长签名']:
                             Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/input", v)
@@ -4786,7 +4148,7 @@ class GwPO():
 
                     for k, v in v1.items():
                         if k in ['随访日期', '下次随访日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."),
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."),
                                                         ".//td[" + str(varTd) + "]/div/div/div/input", v)
                         elif k in ['本次服务类别']:
                             for i in v:
@@ -4870,7 +4232,7 @@ class GwPO():
                                 Web_PO.eleRadioRightLabel(ele3, ".//td[" + str(varTd * 2 - 2) + "]/div/div/div/label",
                                                           v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k),
+                            Web_PO.eleDropdown(self._eleTd(ele, k),
                                                ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                         elif k in ['家长签名']:
                             Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[" + str(varTd) + "]/div/div/div/input", v)
@@ -4900,22 +4262,22 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['随访医生']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k,"../.."), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k,"../.."), ".//input", v)
                 elif k in ['是否仅查询机构', '检查类型']:
-                    self.__eleDropdown(self._eleLabel(ele, k, "../.."), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), ".//input", _dropdownByX, v)
                 elif k in ['登记日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['随访日期', '下次随访日期', '出生日期']:
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k, "../.."), ".//div[1]/input", v[0])
-                    self.eleDropdownDateByOne(self._eleLabel(ele, k, "../.."), ".//div[2]/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k, "../.."), ".//div[1]/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/input", v[1])
                 elif k in ['血红蛋白']:
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div[1]/input", v[0])
-                    Web_PO.eleSetTextByX(self._eleLabel(ele, k, "../.."), ".//div[2]/div/div[2]/input", v[1])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div[1]/input", v[0])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k, "../.."), ".//div[2]/div/div[2]/input", v[1])
                 elif k in ['儿童管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -4972,16 +4334,16 @@ class GwPO():
 
                 for k, v in d_['data']['新生儿'].items():
                     if k in ['本次访视时间', '下次访视时间']:
-                        self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."), ".//div[1]/input", v)
+                        Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."), ".//div[1]/input", v)
                     elif k in ['出生孕周']:
                         Web_PO.eleSetTextByX(self._eleSpan(ele, k, "../.."), ".//div[1]/div/div/input", v[0])
                         Web_PO.eleSetTextByX(self._eleSpan(ele, k, "../.."), ".//div[2]/div/div/input", v[1])
                     elif k in ['母亲妊娠期']:
-                        Web_PO.eleCheckboxRightLabel2(self._eleDiv(ele, k, "../.."), ".//td[4]/div/div/div/label",v)
+                        Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/label",v)
                         for i in v:
                             if isinstance(i, dict):
                                 if '其他' in i:
-                                    Web_PO.eleSetTextByX(self._eleDiv(ele, k, "../.."),
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                          ".//td[5]/div/div/div/input",
                                                          i['其他'])
                     elif k in ['出生情况']:
@@ -5079,7 +4441,7 @@ class GwPO():
                             Web_PO.eleSetTextByX(ele3, ".//td[4]/div/div/div/input", v[1]['联系方式'])
                             Web_PO.eleRadioRightLabel(ele3, ".//td[6]/div/div/div/label", v[1]['结果'])
                     elif k in ['随访医生签名']:
-                        self.__eleDropdown(self._eleTd(ele, k), ".//input", _dropdownByX, v)
+                        Web_PO.eleDropdown(self._eleTd(ele, k), ".//input", _dropdownByX, v)
                     elif k in ['家长签名']:
                         Web_PO.eleSetTextByX(self._eleTd(ele, k), ".//td[4]/div/div/div/input", v)
 
@@ -5103,7 +4465,7 @@ class GwPO():
 
                     for k, v in v1.items():
                         if k in ['随访日期', '下次随访日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."),
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."),
                                                         ".//td[" + str(varTd) + "]/div/div/div/input", v)
                         elif k in ['本次服务类别']:
                             for i in v:
@@ -5194,7 +4556,7 @@ class GwPO():
                                                           ".//td[" + str(varTd * 2 - 2) + "]/div/div/div/label",
                                                           v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k),
+                            Web_PO.eleDropdown(self._eleTd(ele, k),
                                                ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX,
                                                v)
                         elif k in ['家长签名']:
@@ -5221,7 +4583,7 @@ class GwPO():
 
                     for k, v in v1.items():
                         if k in ['随访日期', '下次随访日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."),
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."),
                                                         ".//td[" + str(varTd) + "]/div/div/div/input", v)
                         elif k in ['本次服务类别']:
                             for i in v:
@@ -5311,7 +4673,7 @@ class GwPO():
                                                           ".//td[" + str(varTd * 2 - 2) + "]/div/div/div/label",
                                                           v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k),
+                            Web_PO.eleDropdown(self._eleTd(ele, k),
                                                ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX,
                                                v)
                         elif k in ['家长签名']:
@@ -5339,7 +4701,7 @@ class GwPO():
 
                     for k, v in v1.items():
                         if k in ['随访日期', '下次随访日期']:
-                            self.eleDropdownDateByOne(self._eleSpan(ele, k, "../.."),
+                            Web_PO.eleDropdownDate1(self._eleSpan(ele, k, "../.."),
                                                         ".//td[" + str(varTd) + "]/div/div/div/input", v)
                         elif k in ['本次服务类别']:
                             for i in v:
@@ -5426,7 +4788,7 @@ class GwPO():
                                                           ".//td[" + str(varTd * 2 - 2) + "]/div/div/div/label",
                                                           v[1]['结果'])
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleTd(ele, k),
+                            Web_PO.eleDropdown(self._eleTd(ele, k),
                                                ".//td[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX,
                                                v)
                         elif k in ['家长签名']:
@@ -5457,14 +4819,14 @@ class GwPO():
             for k, v in d_.items():
                 try:
                     if k in ['姓名', '身份证号', '联系电话']:
-                        Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                        Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                     elif k in ['年龄']:
-                        Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                        Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                        Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                        Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                     elif k in ['档案状态']:
-                        self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                     elif k in ['管理机构']:
-                        self.gljg(ele, k, v)
+                        self.__gljg(ele, k, v)
                 except:
                     self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -5486,149 +4848,149 @@ class GwPO():
                     _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
                     for k, v in d_['data'].items():
                         if k in ['填表日期', '末次月经', '预产期', '建册日期', '下次访视时间']:
-                            self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//input", v)
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
 
                         elif k in ['是否高危产妇', 'RH血型']:
-                            Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div", v)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
 
                         elif k in ['丈夫姓名', '丈夫电话', '孕次', '身高(cm)', '体重(kg)', '体质指数(kg/m²)', '血红蛋白值', '白细胞计数值', '血小板计数值', ' 其他', 'B超', '建册单位', '居民签名']:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//input", v)
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//input", v)
 
                         elif k in ['丈夫年龄', ' 血糖']:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[4]/div/div/div/input", v)
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/input", v)
 
                         elif k in ['产次', '孕周']:
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
 
                         elif k in ['末次月经']:
                             if isinstance(v, str):
-                                Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div", v)
+                                Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div", v)
                             elif isinstance(v, list):
-                                self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//input", v)
+                                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
 
                         elif k in ['既往史']:
-                            Web_PO.eleCheckboxRightLabel2(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
+                            Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
                             for i in v:
                                 if isinstance(i, dict):
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
                         elif k in ['家族史']:
-                            Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k), ".//div[1]/div/div/div/div", v)
+                            Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/div/div", v)
                             for i in v:
                                 if isinstance(i, dict):
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
                         elif k in ['个人史']:
-                            Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/div", v)
+                            Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/div", v)
                             for i in v:
                                 if isinstance(i, dict):
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
                         elif k in ['孕产史']:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/input", v[2])
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[4]/div/div/input", v[3])
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[5]/div/div/input", v[4])
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[6]/div/div/input", v[5])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/input", v[2])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/input", v[3])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[5]/div/div/input", v[4])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[6]/div/div/input", v[5])
 
                         elif k in ['血压(mmHg)']:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
 
                         elif k in ['妇科手术史', '肺部', '外阴', '宫颈', '附件']:
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/label", list(v.keys())[0])
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/label", list(v.keys())[0])
                             if list(v.keys())[0] == '有' or list(v.keys())[0] == '异常':
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/input", v[list(v.keys())[0]])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/input", v[list(v.keys())[0]])
 
                         elif k in ['心脏']:
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[3]/div[1]/div/div/div/label", list(v.keys())[0])
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[3]/div[1]/div/div/div/label", list(v.keys())[0])
                             if list(v.keys())[0] == '异常':
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div[2]/div/div/div/input", v[list(v.keys())[0]])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div[2]/div/div/div/input", v[list(v.keys())[0]])
                         elif k in ['阴道', '子宫']:
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[4]/div[1]/div/div/div/label", list(v.keys())[0])
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[4]/div[1]/div/div/div/label", list(v.keys())[0])
                             if list(v.keys())[0] == '异常':
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[4]/div[2]/div/div/div/input", v[list(v.keys())[0]])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div[2]/div/div/div/input", v[list(v.keys())[0]])
 
                         elif k in ['血常规']:
                             for k1, v1 in v.items():
                                 if k1 == '血红蛋白值':
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div[1]/div[2]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div[1]/div[2]/div/div/div/input", v1)
                                 elif k1 == '白细胞计数值':
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div[1]/div[4]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div[1]/div[4]/div/div/div/input", v1)
                                 elif k1 == '血小板计数值':
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div[2]/div[2]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div[2]/div[2]/div/div/div/input", v1)
                                 elif k1 == '其他':
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div[2]/div[4]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div[2]/div[4]/div/div/div/input", v1)
                         elif k in ['尿常规']:
                             for k1, v1 in v.items():
                                 if k1 == '尿蛋白':
-                                    self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
                                 elif k1 == '尿糖':
-                                    self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
                                 elif k1 == '尿酮体':
-                                    self.__eleDropdown(self._eleCommon(ele, k), ".//div[2]/div[1]/div[3]/div[4]/div/div/div/div/div/input", _dropdownByX, v1)
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[3]/div[4]/div/div/div/div/div/input", _dropdownByX, v1)
                                 elif k1 == '尿潜血':
-                                    self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
                                 elif k1 == '其他':
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[2]/div[4]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div[4]/div/div/div/input", v1)
 
                         elif k in ['血型', ' 梅毒血清学试验']:
-                            Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div/div/div", v)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div", v)
 
                         elif k in ['肝功能']:
                             for k1, v1 in v.items():
                                 if k1 in ['血清谷丙转氨酶', '血清谷草转氨酶', '总胆红素']:
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
                                 elif k1 in ['白蛋白', '结合胆红素']:
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
                         elif k in ['肾功能']:
                             for k1, v1 in v.items():
                                 if k1 in ['血清肌酐']:
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
                                 elif k1 in ['血尿素']:
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
 
                         elif k in ['阴道清洁度', ' HIV抗体检测']:
-                            Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div", v)
+                            Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
 
                         elif k in [' 阴道分泌物']:
-                            Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div/div/div/div", v, 'clear')
+                            Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div/div/div/div", v, 'clear')
                             for i in v:
                                 if isinstance(i, dict):
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[1]/div[2]/div/div/div/input", i[list(i.keys())[0]])
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[2]/div/div/div/input", i[list(i.keys())[0]])
 
                         elif k in ['乙型肝炎五项']:
                             for k1, v1 in v.items():
                                 if k1 in ['乙型肝炎表面抗原', ' 乙型肝炎表面抗体',' 乙型肝炎e抗体']:
-                                    self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v1)
                                 elif k1 in [' 乙型肝炎e抗原',' 乙型肝炎核心抗体']:
-                                    self.__eleDropdown(self._eleCommon(ele, k1), ".//div[4]/div/div/div/div/div/input", _dropdownByX, v1)
+                                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[4]/div/div/div/div/div/input", _dropdownByX, v1)
 
                         elif k in ['总体评估', '建册情况']:
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", list(v.keys())[0])
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", list(v.keys())[0])
                             if list(v.keys())[0] == '异常':
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/div/input", v[list(v.keys())[0]])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/input", v[list(v.keys())[0]])
                             elif list(v.keys())[0] == '已在其他机构建册':
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k,"../.."), ".//div[2]/div/div/div/div/input", v[list(v.keys())[0]])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k,"../.."), ".//div[2]/div/div/div/div/input", v[list(v.keys())[0]])
 
                         elif k in ['保健指导']:
-                            Web_PO.eleCheckboxRightLabel2(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
+                            Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
                             for i in v:
                                 if isinstance(i, dict):
-                                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/div/input", i[list(i.keys())[0]])
+                                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/input", i[list(i.keys())[0]])
 
                         elif k in ['转诊']:
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div[1]/div/div/div/label", list(v.keys())[0])
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div[1]/div/div/div/label", list(v.keys())[0])
                             if list(v.keys())[0] == '有':
                                 for k1, v1 in v[list(v.keys())[0]].items():
                                     if k1 == '原因':
-                                        Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[3]/div/div/div/input", v1)
+                                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[3]/div/div/div/input", v1)
                                     if k1 in ['机构及科室', '联系人', '联系方式']:
-                                        Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
+                                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
                                     if k1 == '结果':
-                                        Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", v1)
+                                        Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v1)
 
                         elif k in ['随访医生签名']:
-                            self.__eleDropdown(self._eleCommon(ele, k), ".//div[4]/div/div/div/div/div/input", _dropdownByX,  v)
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/div/div/input", _dropdownByX,  v)
 
 
                     # ele2 = Web_PO.getSuperEleByX("//span[text()='保存']", "..")
@@ -5655,131 +5017,131 @@ class GwPO():
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
         for k, v in d_.items():
             if k in ['填表日期', '末次月经', '预产期', '建册日期', '下次访视时间']:
-                self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//input", v)
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
             elif k in ['是否高危产妇', 'RH血型']:
-                Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div", v)
+                Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
             elif k in ['丈夫姓名', '丈夫电话', '孕次', '身高(cm)', '体重(kg)', '体质指数(kg/m²)', '血红蛋白值', '白细胞计数值', '血小板计数值',
                        ' 其他', 'B超', '建册单位', '居民签名']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//input", v)
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//input", v)
             elif k in ['丈夫年龄', ' 血糖']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[4]/div/div/div/input", v)
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/input", v)
             elif k in ['产次', '孕周']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
             elif k in ['末次月经']:
                 if isinstance(v, str):
-                    Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div", v)
+                    Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div", v)
                 elif isinstance(v, list):
-                    self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//input", v)
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
             elif k in ['既往史']:
-                Web_PO.eleCheckboxRightLabel2(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
+                Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
                 for i in v:
                     if isinstance(i, dict):
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
             elif k in ['家族史']:
-                Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k), ".//div[1]/div/div/div/div", v)
+                Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/div/div", v)
                 for i in v:
                     if isinstance(i, dict):
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
             elif k in ['个人史']:
-                Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/div", v)
+                Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/div", v)
                 for i in v:
                     if isinstance(i, dict):
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input", i[list(i.keys())[0]])
             elif k in ['孕产史']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/input", v[2])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[4]/div/div/input", v[3])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[5]/div/div/input", v[4])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[6]/div/div/input", v[5])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[1]/div/div/input", v[0])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/input", v[2])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/input", v[3])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[5]/div/div/input", v[4])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[6]/div/div/input", v[5])
             elif k in ['血压(mmHg)']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
             elif k in ['妇科手术史', '肺部', '外阴', '宫颈', '附件']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/label", list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/label", list(v.keys())[0])
                 if list(v.keys())[0] == '有' or list(v.keys())[0] == '异常':
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/input", v[list(v.keys())[0]])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/input", v[list(v.keys())[0]])
             elif k in ['心脏']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[3]/div[1]/div/div/div/label", list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[3]/div[1]/div/div/div/label", list(v.keys())[0])
                 if list(v.keys())[0] == '异常':
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div[2]/div/div/div/input", v[list(v.keys())[0]])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div[2]/div/div/div/input", v[list(v.keys())[0]])
             elif k in ['阴道', '子宫']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[4]/div[1]/div/div/div/label", list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[4]/div[1]/div/div/div/label", list(v.keys())[0])
                 if list(v.keys())[0] == '异常':
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[4]/div[2]/div/div/div/input", v[list(v.keys())[0]])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[4]/div[2]/div/div/div/input", v[list(v.keys())[0]])
             elif k in ['血常规']:
                 for k1, v1 in v.items():
                     if k1 == '血红蛋白值':
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div[1]/div[2]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div[1]/div[2]/div/div/div/input", v1)
                     elif k1 == '白细胞计数值':
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div[1]/div[4]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div[1]/div[4]/div/div/div/input", v1)
                     elif k1 == '血小板计数值':
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div[2]/div[2]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div[2]/div[2]/div/div/div/input", v1)
                     elif k1 == '其他':
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div[2]/div[4]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div[2]/div[4]/div/div/div/input", v1)
             elif k in ['尿常规']:
                 for k1, v1 in v.items():
                     if k1 == '尿蛋白':
-                        self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
                     elif k1 == '尿糖':
-                        self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
                     elif k1 == '尿酮体':
-                        self.__eleDropdown(self._eleCommon(ele, k),".//div[2]/div[1]/div[3]/div[4]/div/div/div/div/div/input",_dropdownByX, v1)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k),".//div[2]/div[1]/div[3]/div[4]/div/div/div/div/div/input",_dropdownByX, v1)
                     elif k1 == '尿潜血':
-                        self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
                     elif k1 == '其他':
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k),".//div[2]/div[2]/div[4]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k),".//div[2]/div[2]/div[4]/div/div/div/input", v1)
             elif k in ['血型', ' 梅毒血清学试验']:
-                Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div/div/div", v)
+                Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div", v)
             elif k in ['肝功能']:
                 for k1, v1 in v.items():
                     if k1 in ['血清谷丙转氨酶', '血清谷草转氨酶', '总胆红素']:
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
                     elif k1 in ['白蛋白', '结合胆红素']:
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
             elif k in ['肾功能']:
                 for k1, v1 in v.items():
                     if k1 in ['血清肌酐']:
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input", v1)
                     elif k1 in ['血尿素']:
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[4]/div/div/div/input", v1)
             elif k in ['阴道清洁度', ' HIV抗体检测']:
-                Web_PO.eleRadioLeftLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div", v)
+                Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
             elif k in [' 阴道分泌物']:
-                Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k),".//div[2]/div[1]/div[1]/div/div/div/div", v, 'clear')
+                Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon(ele, k),".//div[2]/div[1]/div[1]/div/div/div/div", v, 'clear')
                 for i in v:
                     if isinstance(i, dict):
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k),".//div[2]/div[1]/div[2]/div/div/div/input",i[list(i.keys())[0]])
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k),".//div[2]/div[1]/div[2]/div/div/div/input",i[list(i.keys())[0]])
             elif k in ['乙型肝炎五项']:
                 for k1, v1 in v.items():
                     if k1 in ['乙型肝炎表面抗原', ' 乙型肝炎表面抗体', ' 乙型肝炎e抗体']:
-                        self.__eleDropdown(self._eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/div/div/input",_dropdownByX, v1)
                     elif k1 in [' 乙型肝炎e抗原', ' 乙型肝炎核心抗体']:
-                        self.__eleDropdown(self._eleCommon(ele, k1), ".//div[4]/div/div/div/div/div/input",_dropdownByX, v1)
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k1), ".//div[4]/div/div/div/div/div/input",_dropdownByX, v1)
             elif k in ['总体评估', '建册情况']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div/label",list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label",list(v.keys())[0])
                 if list(v.keys())[0] == '异常':
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/div/input",v[list(v.keys())[0]])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/input",v[list(v.keys())[0]])
                 elif list(v.keys())[0] == '已在其他机构建册':
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),".//div[2]/div/div/div/div/input", v[list(v.keys())[0]])
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),".//div[2]/div/div/div/div/input", v[list(v.keys())[0]])
             elif k in ['保健指导']:
-                Web_PO.eleCheckboxRightLabel2(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
+                Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
                 for i in v:
                     if isinstance(i, dict):
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/div/input",i[list(i.keys())[0]])
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/input",i[list(i.keys())[0]])
             elif k in ['转诊']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k),".//div[2]/div[1]/div[1]/div[1]/div/div/div/label",list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k),".//div[2]/div[1]/div[1]/div[1]/div/div/div/label",list(v.keys())[0])
                 if list(v.keys())[0] == '有':
                     for k1, v1 in v[list(v.keys())[0]].items():
                         if k1 == '原因':
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[3]/div/div/div/input",v1)
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[3]/div/div/div/input",v1)
                         if k1 in ['机构及科室', '联系人', '联系方式']:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k1), ".//div[2]/div/div/div/input",v1)
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div[2]/div/div/div/input",v1)
                         if k1 == '结果':
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k),".//div[2]/div/div/div/label", v1)
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k),".//div[2]/div/div/div/label", v1)
             elif k in ['随访医生签名']:
-                self.__eleDropdown(self._eleCommon(ele, k), ".//div[4]/div/div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/div/div/input", _dropdownByX, v)
 
         Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
 
@@ -5801,107 +5163,107 @@ class GwPO():
 
             for k, v in v1.items():
                 if k in ['日期', '下次随访日期']:
-                    self.eleDropdownDateByOne(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon2(ele, k),
                                               ".//div[2]/div[" + str(varTd) + "]/div/div/div/input", v)
                 elif k in ['本次服务类别']:
-                    Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k),
                                               ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/div/label",
                                               list(v.keys())[0])
                     if isinstance(v[list(v.keys())[0]], dict):
                         if '失访原因' in v[list(v.keys())[0]]:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                  ".//div[2]/div[" + str(varTd) + "]/div[2]/div[2]/div/div/div/input",
                                                  v[list(v.keys())[0]]['失访原因'])
                 elif k in ['随访方式']:
-                    Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k),
                                               ".//div[2]/div[" + str(varTd) + "]/div/div/div/label", v)
                 elif k in ['孕周']:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/input", v[0])
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div[2]/div/div/input", v[1])
                 elif k in ['血压（mmHg）']:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div/div[1]/div/div/input", v[0])
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div/div[2]/div/div/input", v[1])
                 elif k in ['产前检查机构名称', '主诉', '体重（kg）', '宫底高度(cm)', '血红蛋白（g/L）', '其他辅助检查', '居民签名']:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div/div/div/input", v)
                 elif k in ['宫底高度(cm)', '腹围(cm)']:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div/div/div/input", v)
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div/div/div/input", v)
                 elif k in ['胎位']:
                     if len(v) == 1:
-                        self.__eleDropdown(self._eleCommon(ele, k),
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k),
                                            ".//div[2]/div[" + str(varTd) + "]/div/div[1]/div/div/div/div/div/input",
                                            _dropdownByX, v[0])
                     else:
-                        self.__eleDropdown(self._eleCommon(ele, k),
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k),
                                            ".//div[2]/div[" + str(varTd) + "]/div/div[1]/div/div/div/div/div/input",
                                            _dropdownByX, v[0])
                         v.pop(0)
                         for i in range(len(v)):
-                            Web_PO.eleClkByX(self._eleCommon(ele, k),
+                            Web_PO.eleClkByX(Web_PO.eleCommon(ele, k),
                                              ".//div[2]/div[" + str(varTd) + "]/div/div[2]")  # 点击 +
-                            self.__eleDropdown(self._eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div[" + str(
+                            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div[" + str(
                                 i + 2) + "]/div[1]/div/div/div/div/div/input", _dropdownByX, v[i])
                 elif k in ['胎心率(次/分钟)']:
                     for i in range(len(v)):
-                        Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div[" + str(
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[" + str(varTd) + "]/div[" + str(
                             i + 1) + "]/div/div/div[1]/input", v[i])
                 elif k in ['尿蛋白', '随访医生签名']:
-                    self.__eleDropdown(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k),
                                        ".//div[2]/div[" + str(varTd) + "]/div/div/div/div/div/input", _dropdownByX, v)
                 elif k in ['免费血清学产前筛查']:
-                    Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k),
                                               ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/div/label",
                                               list(v.keys())[0])
-                    Web_PO.eleCheckboxLeftLabel(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleCheckboxLeftLabel(Web_PO.eleCommon2(ele, k),
                                                 ".//div[2]/div[" + str(varTd) + "]/div[2]/div/div/div[1]/div",
                                                 v[list(v.keys())[0]])
 
                 elif k in ['随访结果分类']:
-                    Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k),
                                               ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/div/label",
                                               list(v.keys())[0])
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div[2]/div/div/div/textarea",
                                          v[list(v.keys())[0]])
                 elif k in ['指导']:
-                    Web_PO.eleCheckboxLeftLabel2(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleCheckboxLeftLabel2(Web_PO.eleCommon2(ele, k),
                                                  ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/div/div", v)
                     for i in v:
                         if isinstance(i, dict):
                             if '其他' in i:
-                                Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                      ".//div[2]/div[" + str(varTd) + "]/div[2]/div/div/div/input", i['其他'])
                 elif k in ['转诊']:
-                    Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k),
                                               ".//div[2]/div[" + str(varTd) + "]/div[1]/div/div/div/label",
                                               list(v.keys())[0])
                     if '有' in v:
                         if '原因' in v[list(v.keys())[0]]:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                  ".//div[2]/div[" + str(varTd) + "]/div[2]/div[2]/div/div/div/input",
                                                  v[list(v.keys())[0]]['原因'])
                         if '机构及科室' in v[list(v.keys())[0]]:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                  ".//div[2]/div[" + str(varTd) + "]/div[3]/div[2]/div/div/div/input",
                                                  v[list(v.keys())[0]]['机构及科室'])
                         if '联系人' in v[list(v.keys())[0]]:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                  ".//div[2]/div[" + str(varTd) + "]/div[4]/div[2]/div/div/div/input",
                                                  v[list(v.keys())[0]]['联系人'])
                         if '联系方式' in v[list(v.keys())[0]]:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                                  ".//div[2]/div[" + str(varTd) + "]/div[5]/div[2]/div/div/div/input",
                                                  v[list(v.keys())[0]]['联系方式'])
                         if '结果' in v[list(v.keys())[0]]:
-                            Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."),
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k),
                                                       ".//div[2]/div[" + str(varTd) + "]/div[6]/div[2]/div/div/div/label",
                                                       v[list(v.keys())[0]]['结果'])
                 elif k in ['居民签名']:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."),
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k),
                                          ".//div[2]/div[" + str(varTd) + "]/div/div/div/input", v)
 
         Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
@@ -5914,38 +5276,38 @@ class GwPO():
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
         for k, v in d_.items():
             if k in ['随访日期', '分娩日期', '出院日期', '下次随访日期']:
-                self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
             elif k in ['本次服务类别']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", list(v.keys())[0])
                 if isinstance(v[list(v.keys())[0]], dict):
                     if '失访原因' in v[list(v.keys())[0]]:
                         ele3 = Web_PO.eleGetSuperEleByX(ele, ".//div[text()='失访原因']", "..")
                         Web_PO.eleSetTextByX(ele3, ".//div[2]/div/div/div/input", v[list(v.keys())[0]]['失访原因'])
             elif k in ['体温(­°C)', '一般健康情况', '一般心理状况', '其他']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
             elif k in ['血压(mmHg)']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
             elif k in ['乳房', '子宫', '分类']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/label",
                                           list(v.keys())[0])
                 if '异常' in v:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input",
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input",
                                          v[list(v.keys())[0]])
             elif k in ['恶露', '伤口']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/label",
                                           list(v.keys())[0])
                 if '异常' in v:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input",
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input",
                                          v[list(v.keys())[0]])
             elif k in ['指导']:
-                Web_PO.eleCheckboxLeftLabel2(self._eleCommon(ele, k), ".//div[2]/div/div/div/div", v)
+                Web_PO.eleCheckboxLeftLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div", v)
                 for i in v:
                     if isinstance(i, dict):
                         if '其他' in i:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/div/input", i['其他'])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/input", i['其他'])
             elif k in ['转诊']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div/div/div/label",
                                           list(v.keys())[0])
                 if '有' in v:
                     if '转诊原因' in v[list(v.keys())[0]]:
@@ -5964,9 +5326,9 @@ class GwPO():
                         ele3 = Web_PO.eleGetSuperEleByX(ele, ".//div[text()='结果']", "..")
                         Web_PO.eleRadioRightLabel(ele3, ".//div[2]/div/div/div/label", v[list(v.keys())[0]]['结果'])
             elif k in ['随访医生签名']:
-                self.__eleDropdown(self._eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
             elif k in ['居民签名']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
 
         Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
 
@@ -5978,44 +5340,44 @@ class GwPO():
         _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
         for k, v in d_.items():
             if k in ['随访日期', '分娩日期', '出院日期']:
-                self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
             elif k in ['本次服务类别']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div/div/div/label", list(v.keys())[0])
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", list(v.keys())[0])
                 if isinstance(v[list(v.keys())[0]], dict):
                     if '失访原因' in v[list(v.keys())[0]]:
                         ele3 = Web_PO.eleGetSuperEleByX(ele, ".//div[text()='失访原因']", "..")
                         Web_PO.eleSetTextByX(ele3, ".//div[2]/div/div/div/input", v[list(v.keys())[0]]['失访原因'])
             elif k in ['一般健康情况', '一般心理状况', '其他', '产后检查机构名称']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
             elif k in ['血压(mmHg)']:
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
-                Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[1]/input", v[0])
+                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div[2]/input", v[1])
             elif k in ['乳房', '子宫']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/label",
                                           list(v.keys())[0])
                 if '异常' in v:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input",
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input",
                                          v[list(v.keys())[0]])
             elif k in ['恶露', '伤口']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/label",
                                           list(v.keys())[0])
                 if '异常' in v:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input",
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input",
                                          v[list(v.keys())[0]])
             elif k in ['分类']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k, "../.."), ".//div[1]/div[2]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div/label",
                                           list(v.keys())[0])
                 if '未恢复' in v:
-                    Web_PO.eleSetTextByX(self._eleCommon(ele, k, "../.."), ".//div[2]/div/div/div/input",
+                    Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/input",
                                          v[list(v.keys())[0]])
             elif k in ['指导']:
-                Web_PO.eleCheckboxLeftLabel2(self._eleCommon(ele, k), ".//div[2]/div/div/div/div", v)
+                Web_PO.eleCheckboxLeftLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div", v)
                 for i in v:
                     if isinstance(i, dict):
                         if '其他' in i:
-                            Web_PO.eleSetTextByX(self._eleCommon(ele, k), ".//div[3]/div/div/div/input", i['其他'])
+                            Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[3]/div/div/div/input", i['其他'])
             elif k in ['处理']:
-                Web_PO.eleRadioRightLabel(self._eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div/div/div/label",
+                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div[1]/div/div/div/label",
                                           list(v.keys())[0])
                 if '转诊' in v:
                     if '转诊原因' in v[list(v.keys())[0]]:
@@ -6034,7 +5396,7 @@ class GwPO():
                         ele3 = Web_PO.eleGetSuperEleByX(ele, ".//div[text()='结果']", "..")
                         Web_PO.eleRadioRightLabel(ele3, ".//div[2]/div/div/div/label", v[list(v.keys())[0]]['结果'])
             elif k in ['随访医生签名']:
-                self.__eleDropdown(self._eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", _dropdownByX, v)
 
         Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
 
@@ -6050,14 +5412,14 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['姓名', '身份证号', '联系电话']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
                 elif k in ['年龄']:
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[1]/input", v[0])
-                    Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div[2]/input", v[1])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
                 elif k in ['档案状态']:
-                    self.__eleDropdown(self._eleLabel(ele, k), ".//input", _dropdownByX, v)
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
                 elif k in ['管理机构']:
-                    self.gljg(ele, k, v)
+                    self.__gljg(ele, k, v)
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -6112,7 +5474,7 @@ class GwPO():
         # 遍历字段和值
         for k, v in d_.items():
             try:
-                eval(d_g_type_func[d_local[k]])
+                eval(self.d_g_type_func[d_local[k]])
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -6220,10 +5582,10 @@ class GwPO():
         for k, v in d_.items():
             try:
                 if k in ['随访日期']:
-                    self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//div[1]/div/input", v[0])
-                    self.eleDropdownDateByOne(self._eleCommon(ele, k), ".//div[3]/div/input", v[1])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                    Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
                 else:
-                    eval(d_g_type_func[d_local[k]])
+                    eval(self.d_g_type_func[d_local[k]])
             except:
                 self.logger.error("查询 => " + str(k) + ": " + str(v))
 
@@ -6324,10 +5686,10 @@ class GwPO():
 
         for k, v in d_.items():
             if k in ['活动地点', '活动形式', '活动主题', '主讲人']:
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//input", v)
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
             elif k in ['活动日期']:
-                 self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[1]/div/input", v[0])
-                 self.eleDropdownDateByOne(self._eleLabel(ele, k), ".//div[3]/div/input", v[1])
+                 Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/div/input", v[0])
+                 Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
 
         Web_PO.eleClkByX(ele, ".//button[1]")  # 查询
 
@@ -6345,22 +5707,22 @@ class GwPO():
 
         for k, v in d_.items():
             if k in ['主讲人', '活动内容', '活动总结评价', '填表人']:
-                Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//input", v)
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
             if k in ['活动地点', '活动人数', '主讲人单位', '负责人', '健康教育资源发放数量']:
-                Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[4]/div/div/div/input", v)
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/input", v)
             if k in ['组织者', '职称']:
-                Web_PO.eleSetTextEnterByX(self._eleDiv(ele, k), ".//div[6]/div/div/div/input", v)
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[6]/div/div/div/input", v)
             elif k in ['活动时间']:
-                self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//input", v)
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
             elif k in ['填表时间']:
-                self.eleDropdownDateByOne(self._eleDiv(ele, k), ".//div[6]/div/div/div/input", v)
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[6]/div/div/div/input", v)
             elif k in ['活动形式', '活动主题', '接受健康教育人员类别']:
-                self.__eleDropdown(self._eleDiv(ele, k), ".//input", _dropdownByX, v)
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", _dropdownByX, v)
             elif k in ['健康教育资源发放种类']:
-                Web_PO.eleRadioSplitLabels(self._eleDiv(ele, k), ".//div[2]/div/div/div", v)
+                Web_PO.eleRadioSplitLabels(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div", v)
             elif k in ['存档资料类型']:
                 if v[0] != []:
-                    Web_PO.eleCheckboxRightLabelByN(self._eleDiv(ele, k), ".//div[2]/div[1]/div/div/div/div", v[0])
+                    Web_PO.eleCheckboxRightLabelByN(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/div", v[0])
                 if v[1] != []:
                     Web_PO.upFile("/html/body/div[1]/div/div[3]/section/div/form/div[10]/div[2]/div[2]/div/div/div/ul/div",
                                   v[1])
@@ -6381,17 +5743,17 @@ class GwPO():
 
         for k, v in d_.items():
             if k in ['姓名', '身份证号']:
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div/input", v)
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div/input", v)
             elif k in ['人群分类']:
-                Web_PO.eleCheckboxLabels(self._eleLabel(ele, k), ".//span[2]", v)
+                Web_PO.eleCheckboxLabels(Web_PO.eleCommon(ele, k), ".//span[2]", v)
             elif k in ['档案状态']:
-                self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div/div/input", _dropdownByX, v)
             elif k in ['现住址']:
-                self.__eleDropdown(self._eleLabel(ele, k, "../.."), "./div[1]/div/div/div/div/input", _dropdownByX, v[0])
-                self.__eleDropdown(self._eleLabel(ele, k, "../.."), "./div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), "./div[3]/div/div/input", v[2])
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), "./div[1]/div/div/div/div/input", _dropdownByX, v[0])
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), "./div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), "./div[3]/div/div/input", v[2])
             elif k in ['管理机构']:
-                self.gljg(ele, k, v)
+                self.__gljg(ele, k, v)
 
         Web_PO.eleClkByX(ele, "./div[2]/div[2]/div/button[1]", 2)  # 点击查询
 
@@ -6438,14 +5800,14 @@ class GwPO():
                         if v1 == v[i][0]:
                             varTdQty = Web_PO.eleGetQtyByXByXs(ele2, "./tr[" + str(k1) + "]", "./td")
                             Web_PO.eleScrollViewByX(ele2, "./tr[" + str(k1) + "]/td["+ str(varTdQty-2) + "]/div/div/div/div/input")
-                            self.eleDropdownDateByOne(ele2, ".//tr[" + str(k1) + "]/td["+ str(varTdQty-2) + "]/div/div/div/div/input", v[i][1])
+                            Web_PO.eleDropdownDate1(ele2, ".//tr[" + str(k1) + "]/td["+ str(varTdQty-2) + "]/div/div/div/div/input", v[i][1])
                             Web_PO.eleSetTextByX(ele2, ".//tr[" + str(k1) + "]/td["+ str(varTdQty-1) + "]/div/div/div/div/input", v[i][2])
 
             elif k in ['评分日期']:
-                self.eleDropdownDateByOne(ele2, ".//tr[" + str(varTrQty) + "]/td[2]/div/div/div/div/input", v)
+                Web_PO.eleDropdownDate1(ele2, ".//tr[" + str(varTrQty) + "]/td[2]/div/div/div/div/input", v)
 
             elif k in ['是否兑换']:
-                self.__eleDropdown(ele2, ".//tr[" + str(varTrQty) + "]/td[3]/div/div/div[1]/div/div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(ele2, ".//tr[" + str(varTrQty) + "]/td[3]/div/div/div[1]/div/div/div/div/div/input", _dropdownByX, v)
 
         Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[2]")  # 取消
         # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[1]")  # 保存
@@ -6503,23 +5865,23 @@ class GwPO():
 
         for k, v in d_.items():
             if k in ['姓名', '身份证号']:
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div/input", v)
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div/input", v)
             elif k in ['得分范围']:
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div/div[1]/div/input", v[0])
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k), ".//div/div/div[3]/div/input", v[1])
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div/div[1]/div/input", v[0])
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div/div[3]/div/input", v[1])
             elif k in ['评分日期']:
-                self.eleDropdownDateByOne(self._eleLabel(ele, k), "./div/div/div[1]/div/input", v[0])
-                self.eleDropdownDateByOne(self._eleLabel(ele, k), "./div/div/div[3]/div/input", v[1])
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), "./div/div/div[1]/div/input", v[0])
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), "./div/div/div[3]/div/input", v[1])
             elif k in ['人群分类']:
-                Web_PO.eleCheckboxLabels(self._eleLabel(ele, k), ".//span[2]", v)
+                Web_PO.eleCheckboxLabels(Web_PO.eleCommon(ele, k), ".//span[2]", v)
             elif k in ['档案状态', '是否兑换']:
-                self.__eleDropdown(self._eleLabel(ele, k), ".//div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div/div/input", _dropdownByX, v)
             elif k in ['现住址']:
-                self.__eleDropdown(self._eleLabel(ele, k, "../.."), "./div[1]/div/div/div/div/input", _dropdownByX, v[0])
-                self.__eleDropdown(self._eleLabel(ele, k, "../.."), "./div[2]/div/div/div/div/input", _dropdownByX, v[1])
-                Web_PO.eleSetTextEnterByX(self._eleLabel(ele, k, "../.."), "./div[3]/div/div/input", v[2])
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), "./div[1]/div/div/div/div/input", _dropdownByX, v[0])
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k, "../.."), "./div[2]/div/div/div/div/input", _dropdownByX, v[1])
+                Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k, "../.."), "./div[3]/div/div/input", v[2])
             elif k in ['管理机构']:
-                self.gljg(ele, k, v)
+                self.__gljg(ele, k, v)
 
         Web_PO.eleClkByX(ele, ".//button[1]", 2)  # 点击查询
 
@@ -6565,14 +5927,14 @@ class GwPO():
                         if v1 == v[i][0]:
                             varTdQty = Web_PO.eleGetQtyByXByXs(ele2, "./tr[" + str(k1) + "]", "./td")
                             Web_PO.eleScrollViewByX(ele2, "./tr[" + str(k1) + "]/td["+ str(varTdQty-2) + "]/div/div/div/div/input")
-                            self.eleDropdownDateByOne(ele2, ".//tr[" + str(k1) + "]/td["+ str(varTdQty-2) + "]/div/div/div/div/input", v[i][1])
+                            Web_PO.eleDropdownDate1(ele2, ".//tr[" + str(k1) + "]/td["+ str(varTdQty-2) + "]/div/div/div/div/input", v[i][1])
                             Web_PO.eleSetTextByX(ele2, ".//tr[" + str(k1) + "]/td["+ str(varTdQty-1) + "]/div/div/div/div/input", v[i][2])
 
             elif k in ['评分日期']:
-                self.eleDropdownDateByOne(ele2, ".//tr[" + str(varTrQty) + "]/td[2]/div/div/div/div/input", v)
+                Web_PO.eleDropdownDate1(ele2, ".//tr[" + str(varTrQty) + "]/td[2]/div/div/div/div/input", v)
 
             elif k in ['是否兑换']:
-                self.__eleDropdown(ele2, ".//tr[" + str(varTrQty) + "]/td[3]/div/div/div[1]/div/div/div/div/div/input", _dropdownByX, v)
+                Web_PO.eleDropdown(ele2, ".//tr[" + str(varTrQty) + "]/td[3]/div/div/div[1]/div/div/div/div/div/input", _dropdownByX, v)
 
         Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[2]")  # 取消
         # Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/button[1]")  # 保存

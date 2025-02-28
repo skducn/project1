@@ -36,7 +36,7 @@ Gw_PO.phs_hypertension_gxyregister_query({"姓名": "胡成", "身份证号": "2
 
 
 # todo 2 导出(17.xls)
-# Gw_PO.phs_hypertension_gxyregister_export("/Users/linghuchong/Desktop/1756")
+Gw_PO.phs_hypertension_gxyregister_export("/Users/linghuchong/Desktop/1756")
 # getattr(Gw_PO, s_func + '_export')("/Users/linghuchong/Desktop/1756")
 
 
