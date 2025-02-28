@@ -39,7 +39,7 @@ Gw_PO.phs_hypertension_gxyregister_query({"姓名": "李丽丽"})
 
 #
 # # todo 3 详情 - 编辑(高血压患者管理卡)
-# Gw_PO.phs_hypertension_gxyregister_operation({'operate': '详情', 'option': {'建卡日期': '2024-07-09'}})
+Gw_PO.phs_hypertension_gxyregister_operation({'operate': '详情', 'option': {'建卡日期': '2024-07-09'}})
 # Gw_PO.phs_hypertension_gxyregister_operation({'operate': '详情', 'operate2': '编辑',
 #                                                'data': {' 居住地址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'],
 #                                                ' 确诊日期 ': [2024, 7, 1], ' 管理级别 ': "二级",
@@ -77,6 +77,7 @@ Gw_PO.phs_hypertension_gxyregister_query({"姓名": "李丽丽"})
 # '用药调整意见药物名称3':'阿莫西林钠/克拉维酸钾', '用药调整意见用法用量3每日':'一次性', '用药调整意见用法用量3每次':'6',
 # '转诊原因':'qqq', '转入医疗机构及科室':'www', '联系人':'eee', '联系人电话':'rrr', '结果':'不到位', '备注':'good',
 # '下次随访日期': [2025, 1, 19], '随访医生':'测试2', '居民签字': '李泽楷'}})
+
 
 # # todo 5.2 随访 - 引入上次新增
 # Gw_PO.phs_hypertension_gxyregister_operation({'operate': '随访', 'option': {'建卡日期': '2025-01-14'}})
