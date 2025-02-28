@@ -978,38 +978,6 @@ class DomPO(object):
         # 检查是否已经选中，如果未选择则勾选，否则不操作。
         if d_default[v] == 0:
             self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-
-    def eleRadioLeftLabel(self, ele, varXpaths, v):
-        # eleRadioDivs
-        # 选择单选框
-        # 独立值（无\n拼接），遍历div
-        # self.eleRadioDivs(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
-        l_ = self.eleGetTextByXs(ele, varXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-
-        # 获取单选框所有值的状态
-        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
-        # print(l_value)  # ['是', '否']
-        # 获取单选框所有值的状态
-        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
-        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
-        l_isChecked = []
-        for i in range(len(l_class)):
-            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[i] == 'el-radio is-disabled is-checked el-radio--default':
-                l_isChecked.append(1)
-            else:
-                l_isChecked.append(0)
-        d_default = dict(zip(l_value, l_isChecked))
-        # print(d_default[v] , v ,d_default, d_4[v])  # {'是': 0, '否': 1}
-
-        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-
-        # # 检查是否已经选中，如果未选择则勾选，否则不操作。
-        # if d_default[v] == 0:
-        #     self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-
     def eleRadioRightLabelByN(self, ele, varXpaths, v):
         # eleRadioSplitLabels
         # 选择单选框
@@ -1040,35 +1008,48 @@ class DomPO(object):
         if d_default[v] == 0:
             self.eleClkByX(ele, varXpaths + "/label[" + str(d_4[v]) + "]", 1)
 
-    def eleRadioRightLabel(self, ele, varXpaths, v):
-        # eleRadioLabels
+    # def _eleRadio(self, ele, varTextByXs, v):
+    #
+    #     # 映射选项的顺序
+    #     l_text = self.eleGetTextByXs(ele, varTextByXs)
+    #     d_3 = dict(enumerate(l_text, start=1))
+    #     d_4 = {v: k for k, v in d_3.items()}
+    #     # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+    #     return d_4
+    #
+    #     # # 映射选项的值
+    #     # l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+    #     # # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+    #     # l_isChecked = []
+    #     # for i in range(len(l_class)):
+    #     #     if l_class[i] in ['el-radio is-checked el-radio--default',
+    #     #                       'el-radio is-disabled is-checked el-radio--default']:
+    #     #         l_isChecked.append(1)
+    #     #     else:
+    #     #         l_isChecked.append(0)
+    #     # d_default = dict(zip(l_text, l_isChecked))
+    #     # # print(d_default)  # {'总院': 0, '分院': 0, '门诊部': 1}
+
+    def eleRadioLeftLabel(self, ele, varTextByXs, v):
         # 选择单选框
-        # 独立值（无\n拼接），遍历label
-        l_ = self.eleGetTextByXs(ele, varXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
+        # self.eleRadioLeftLabel(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
+
+        # 映射选项的顺序
+        d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
         # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
-        # 获取单选框所有值的状态
-        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
-        # print(l_value)  # ['是', '否']
-        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
-        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
-        l_isChecked = []
-        for i in range(len(l_class)):
-            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
-                i] == 'el-radio is-disabled is-checked el-radio--default':
-                l_isChecked.append(1)
-            else:
-                l_isChecked.append(0)
-        d_default = dict(zip(l_value, l_isChecked))
-        # print(d_default)  # {'是': 0, '否': 1}
+        # 选择新的值
+        self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]/label", 1)
 
-        # 检查是否已经选中，如果未选择则勾选，否则不操作。
-        # if d_default[v] == 0:
-            # self.eleClkByX(ele, varXpaths + "[2]", 1)
-        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
-            # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
+    def eleRadioRightLabel(self, ele, varTextByXs, v):
+        # 选择单选框
+
+        # 映射选项的顺序
+        d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+
+        # 选择新的值
+        self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]", 1)
 
     def eleRadioRightLabelAndText(self, ele, varRadioRightLableByX, v, varTextByX):
         # 单选框 rightlabel + 其他文本输入框
@@ -1153,7 +1134,7 @@ class DomPO(object):
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print("d_4: ", d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        # print("d_4: ", d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
@@ -1167,7 +1148,7 @@ class DomPO(object):
                     self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
 
         # 勾选选项(如果已勾选则不操作)
-        print("v:",v)
+        # print("v:",v)
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
@@ -1181,10 +1162,10 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
                 if isinstance(v[i], dict):
-                    print(111, v[i])
-                    print(222, k3)
+                    # print(111, v[i])
+                    # print(222, k3)
                     if list(v[i].keys())[0] == k3:
-                        print('k3', k3)
+                        # print('k3', k3)
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
@@ -1359,25 +1340,25 @@ class DomPO(object):
 
     def eleCommon(self, ele, k, varLoc=".."):
         try:
-            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+            return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
         except:
             try:
-                return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
             except:
                 try:
-                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
                 except:
                     return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
     
     def eleCommon2(self, ele, k, varLoc="../.."):
         try:
-            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+            return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
         except:
             try:
-                return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
             except:
                 try:
-                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
                 except:
                     return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
 
@@ -2328,7 +2309,8 @@ class DomPO(object):
         pyautogui.press('enter', 1)
         sleep(2)
         pyautogui.press('enter', 1)
-        sleep(2)
+        sleep(4)
+        print(9090)
         pyautogui.press('tab', 1)
         sleep(2)
         pyautogui.press('space', 1)

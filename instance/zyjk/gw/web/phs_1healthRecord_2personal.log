@@ -17,3 +17,33 @@
 2025-02-28 10:05:17,071 - INFO - 查询 => {'姓名': '陈'}
 2025-02-28 10:05:24,353 - INFO - {'operate': '姓名', 'option': {'姓名': '陈美'}}
 2025-02-28 10:05:24,355 - INFO - {'operate': '获取', 'data': {}}
+2025-02-28 13:06:51,762 - INFO - 查询 => {'姓名': '陈'}
+2025-02-28 13:06:56,865 - ERROR - 失败 =>{'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500100100157'}}
+2025-02-28 13:06:56,865 - INFO - {'operate': '获取', 'data': {}}
+2025-02-28 13:07:01,424 - INFO - Received signal: SIGINT
+2025-02-28 13:07:01,427 - INFO - Program is terminating...
+2025-02-28 13:07:01,496 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdc28bc1d80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ea45e58fc1642cf90fbfbc99b5a537bd/element
+2025-02-28 13:07:01,499 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdc28bc27a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ea45e58fc1642cf90fbfbc99b5a537bd/element
+2025-02-28 13:07:01,503 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fdc28bc1ff0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ea45e58fc1642cf90fbfbc99b5a537bd/element
+2025-02-28 13:07:01,505 - ERROR - 失败 =>{'operate': '获取', 'data': {}}
+2025-02-28 13:07:20,673 - INFO - 查询 => {'姓名': '李丽丽'}
+2025-02-28 13:07:27,545 - INFO - {'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500100100157'}}
+2025-02-28 13:07:27,545 - INFO - {'operate': '获取', 'data': {}}
+2025-02-28 13:26:23,888 - INFO - 查询 => {'姓名': '李丽丽'}
+2025-02-28 13:26:31,063 - INFO - {'operate': ' 查看 ', 'option': {'身份证号': '372922198510281068'}}
+2025-02-28 13:28:18,714 - INFO - 查询 => {'姓名': '李丽丽'}
+2025-02-28 13:28:25,590 - INFO - {'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500100100157'}}
+2025-02-28 13:28:25,591 - INFO - {'operate': '获取', 'data': {}}
+2025-02-28 16:51:07,591 - INFO - 查询 => {'姓名': '李丽丽'}
+2025-02-28 16:51:14,562 - INFO - {'operate': ' 更新 ', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-28 16:51:26,902 - ERROR - 失败 =>{'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-28 16:51:37,224 - ERROR - 失败 =>{'operate': '姓名', 'operate2': '更新', 'data': {' 姓名 ': '李四', ' 性别 ': '女', ' 出生日期 ': [2024, 2, 2], ' 民族 ': '回族', ' 现住址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'], ' 本人电话 ': '13815161718', ' 联系人姓名 ': '令狐冲', ' 联系人电话 ': '58771234', ' 常住类型 ': '非户籍', ' 文化程度 ': '专科教育', ' 职业 ': '军人', ' 工作单位 ': '上海智赢', ' 婚姻状况 ': '离婚', ' 血型 ': '不详', ' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]], ['手术3', [2025, 2, 4]]]}, '外伤': {'有': [['外伤1', [2025, 4, 11]], ['外伤2', [2025, 5, 5]]]}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}, ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}, ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}], ' 家庭情况 ': {' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居'}, ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': '招远市卫健局', ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
+2025-02-28 16:52:10,889 - INFO - 查询 => {'姓名': '李丽丽'}
+2025-02-28 16:52:17,780 - INFO - {'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-02-28 16:52:28,288 - INFO - Received signal: SIGINT
+2025-02-28 16:52:28,289 - INFO - Program is terminating...
+2025-02-28 16:52:29,198 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc7f631efe0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c7d500af18aa9d81a4a2e9c3fc8b1153/element
+2025-02-28 16:52:29,201 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc7f631f5b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c7d500af18aa9d81a4a2e9c3fc8b1153/element
+2025-02-28 16:52:29,204 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc7f631f250>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c7d500af18aa9d81a4a2e9c3fc8b1153/element
+2025-02-28 16:52:29,206 - ERROR - Health record update failed: not all arguments converted during string formatting
+2025-02-28 16:52:29,206 - INFO - {'operate': '姓名', 'operate2': '更新', 'data': {' 姓名 ': '李四', ' 性别 ': '女', ' 出生日期 ': [2024, 2, 2], ' 民族 ': '回族', ' 现住址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'], ' 本人电话 ': '13815161718', ' 联系人姓名 ': '令狐冲', ' 联系人电话 ': '58771234', ' 常住类型 ': '非户籍', ' 文化程度 ': '专科教育', ' 职业 ': '军人', ' 工作单位 ': '上海智赢', ' 婚姻状况 ': '离婚', ' 血型 ': '不详', ' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]], ['手术3', [2025, 2, 4]]]}, '外伤': {'有': [['外伤1', [2025, 4, 11]], ['外伤2', [2025, 5, 5]]]}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}, ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}, ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}], ' 家庭情况 ': {' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居'}, ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': '招远市卫健局', ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
