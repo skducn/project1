@@ -110,7 +110,7 @@ Gw_PO.phs_hypertension_gxyregister_operation({'operate': '详情', 'option': {'�
 #     }})
 
 # todo 6 姓名（获取）
-# Gw_PO.phs_hypertension_gxyregister_operation({'operate': '姓名', 'option': {"姓名": "刘长春"}})
+Gw_PO.phs_hypertension_gxyregister_operation({'operate': '姓名', 'option': {"姓名": "刘长春"}})
 # # Gw_PO.phs_hypertension_gxyregister_operation({'operate': '姓名', 'option': {"建卡日期": "2024-07-09"}})
 # d_ = Gw_PO.phs_hypertension_gxyregister_operation({'operate': '姓名', 'operate2': '获取', 'data': {}})
 # print(d_)  # {'身份证号码': ['372922198510281068'], '档案编号': ['37068500100100157'], ...

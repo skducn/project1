@@ -71,7 +71,7 @@ Gw_PO.phs_hypertension_gxyjob_query({"身份证号": "340203195002048036"})
 
 
 # # todo 4.2 编辑 - 引用上次新增(高血压随访记录)
-# Gw_PO.phs_hypertension_gxyjob_operation({'operate': '编辑', 'option': {"身份证号": "340203195002048036"}})
+Gw_PO.phs_hypertension_gxyjob_operation({'operate': '编辑', 'option': {"身份证号": "340203195002048036"}})
 # Gw_PO.phs_hypertension_gxyjob_operation({'operate': '编辑', 'operate2': '引入上次新增', "data": {'随访日期': [2025, 3, 9], '下次随访日期': [2025, 5, 9]}})
 
 
