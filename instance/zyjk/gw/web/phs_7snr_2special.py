@@ -31,7 +31,7 @@ Gw_PO.phs_snr_special_query({"身份证号": "370685195905183027"})
 
 # todo 3 批量登记
 # Gw_PO.phs_snr_special_operation({'operate': '批量登记', 'option': 'all', 'data': {}})
-Gw_PO.phs_snr_special_operation({'operate': '批量登记', 'option': {"身份证号": "370685195905183027"}, 'data': {}})
+# Gw_PO.phs_snr_special_operation({'operate': '批量登记', 'option': {"身份证号": "370685195905183027"}, 'data': {}})
 
 
 

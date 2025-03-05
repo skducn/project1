@@ -1122,9 +1122,7 @@ class DomPO(object):
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
     def eleCheckboxLeftLabel(self, ele, _checkboxByX, v, default="remain"):
-        # eleCheckboxDivs
-        # 勾选复选框
-        # 独立值（无\n拼接值），divs
+        # 勾选复选框(默认先全部取消勾选项)
         # self.eleClkCheckbox(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
 
         # 获取所有的选项
@@ -1170,9 +1168,7 @@ class DomPO(object):
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
 
     def eleCheckboxLeftLabel2(self, ele, textByX, v):
-        # eleCheckboxDivs
         # 勾选复选框 (包括字典key)
-        # 独立值（无\n拼接值），divs
         # self.eleCheckboxLeftLabel2(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
 
         # 获取所有的选项
@@ -1218,10 +1214,16 @@ class DomPO(object):
                         # if varClass != 'el-checkbox el-checkbox--default is-checked':
                         self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
 
+    def eleCheckboxLeftLabelAndText(self, ele, varCheckboxLeftLableByX, v, varTextByX):
+        # 复选框，leftlabel + 全部取消 + 文本输入框
+        # self.eleCheckboxLeftLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
+        self.eleCheckboxLeftLabel(ele, varCheckboxLeftLableByX, v)
+        for i in v:
+            if isinstance(i, dict):
+                self.eleSetTextByX(ele, varTextByX, i[list(i.keys())[0]])
+
     def eleCheckboxRightLabel(self, ele, _textByX, v):
-        # eleCheckboxLabels
         # 勾选复选框
-        # 独立值（无\n拼接值），遍历label
 
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, _textByX)
@@ -1230,6 +1232,7 @@ class DomPO(object):
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
         # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
+        # 取消全部已勾选项
         self.eleClrSelectedByXs(ele, ".//td[4]/div/div/div/label[1]")
         # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div[3]/form/table/tbody/tr[5]/td[4]/div/div/div/label[1]/span[1]/input
 
@@ -1271,8 +1274,8 @@ class DomPO(object):
                         self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
 
     def eleCheckboxRightLabel3(self, ele, _textByX, _inputByX, v):
-        # 儿童健康管理 - 健康检查记录 - 1-8月龄儿童健康检查记录表 - 两次随访间患者情况
-        # 取消全部勾选项，再勾选复选框和输入次数
+        # 复选框，取消全部勾选，再勾选复选框，输入次数
+        # Web_PO.eleCheckboxRightLabel3(Web_PO.eleP(ele, k, "../.."), './/div[2]/div/div[1]/div/div/label', './/div[2]/div/div[1]/div/div/div/input', v)
         # 实例：__eleCheckboxRightLabel3(ele, ".//td[4]/div/div/div/label", {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"})
 
         l_v2 = list(v.keys())  # 将字典的键转换为列表
@@ -1298,15 +1301,13 @@ class DomPO(object):
                     self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
                     self.eleSetTextByX(ele, _inputByX + "[" + str(v3-1) + "]/input", v[k3])
 
-    def eleCheckboxLeftLabelAndText(self, ele, varCheckboxLeftLableByX, v, varTextByX):
-        # 下拉框leftlabel + 其他文本输入框
-        # self.eleCheckboxLeftLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
-        self.eleCheckboxLeftLabel(ele, varCheckboxLeftLableByX, v)
+    def eleCheckboxRightLabelAndText(self, ele, varCheckboxRightLableByX, v, varTextByX):
+        # 复选框，rightlabel + 全部取消 + 文本输入框
+        # Web_PO.eleCheckboxRightLabelAndText(Web_PO.eleP(ele, k, "../.."), './/div[2]/div/div[1]/div/div/label', v, './/div[2]/div/div[1]/div/div/div/input')
+        self.eleCheckboxRightLabel2(ele, varCheckboxRightLableByX, v)
         for i in v:
             if isinstance(i, dict):
                 self.eleSetTextByX(ele, varTextByX, i[list(i.keys())[0]])
-
-
 
     def isSelectedByX(self, varXpath):
         # 是否勾选
@@ -1347,7 +1348,11 @@ class DomPO(object):
                 try:
                     return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
                 except:
-                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    try:
+                        return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    except:
+                        return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+
     
     def eleCommon2(self, ele, k, varLoc="../.."):
         try:
@@ -1359,7 +1364,10 @@ class DomPO(object):
                 try:
                     return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
                 except:
-                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    try:
+                        return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    except:
+                        return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
 
     def eleDiv(self, ele, k, varLoc=".."):
         return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
@@ -1372,6 +1380,10 @@ class DomPO(object):
 
     def eleTd(self, ele, k, varLoc=".."):
         return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+
+    def eleP(self, ele, k, varLoc=".."):
+        return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+
 
 
     # todo dropdown

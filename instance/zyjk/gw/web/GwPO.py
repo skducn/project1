@@ -5756,7 +5756,7 @@ class GwPO():
         l_value = List_PO.dels(l_value, '新增评估')
         # print(l_value)
         l_group = (List_PO.group(l_value, 6))
-        print(l_group)  # [['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2024-07-09', '村卫生室', '2024-10-24', '2024-11-30', '详情\n评估\n随访'], ['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2025-01-14', '卫健委', '', '', '详情\n评估\n随访']]
+        # print(l_group)  # [['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2024-07-09', '村卫生室', '2024-10-24', '2024-11-30', '详情\n评估\n随访'], ['37068500100100104', '刘长春', '', '110101199001012256', '35', '男', '13818882732', '罗峰街道文化区社区居民委员会发', '2025-01-14', '卫健委', '', '', '详情\n评估\n随访']]
 
         # 遍历获取每行数据中全部符合要求的字段索引max_key
         d_1 = {}
@@ -5769,9 +5769,9 @@ class GwPO():
                         s = s + 1
                         d_1[i + 1] = s
             s = 0
-        print(d_1)  # {2: 1, 3: 2}
+        # print(d_1)  # {2: 1, 3: 2}
         max_key = max(d_1, key=d_1.get)
-        print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
+        # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
         return max_key
 
     def phs_snr_lnrfiles_operation(self, d_):
@@ -5810,8 +5810,61 @@ class GwPO():
                     ele = Web_PO.getSuperEleByX("//div[text()='国家基本公共卫生服务项目健康体检表']", "../..")
                     for k, v in d_['data'].items():
                         if k in ['体检来源']:
-                            print(1212)
                             Web_PO.eleRadioRightLabel(Web_PO.eleDiv(ele, k), './/div[2]/div/div/div/label', v)
+                        elif k in ['责任医生', '体温', '脉率', '呼吸频率', '腰围', '身高', '体重']:
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
+                        elif k in ['右侧血压']:
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+                            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
+                        elif k in ['症状']:
+                            Web_PO.eleCheckboxRightLabelAndText(Web_PO.eleP(ele, k, "../.."), './/div[2]/div/div[1]/div/div/label', v, './/div[2]/div/div[1]/div/div/div/input')
+                        elif k in [' 老年人健康', ' 老年人生活自理', '饮酒频率', '是否戒酒']:
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), './/div[2]/div/div/div/label', v)
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[8]/div[1]/div[1]/div[2]/div[1]/div/div/label[5]
+                        elif k in ['老年人认知能力', '老年人情感状态']:
+                            if isinstance(v, str):
+                                Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), './/div[4]/div/div/div/label', v)
+                            elif isinstance(v, dict):
+                                Web_PO.eleRadioRightLabel(Web_PO.eleDiv(ele, k), './/div[4]/div/div/div/label', list(v.keys())[0])
+                                Web_PO.eleClsReadonlyByX(Web_PO.eleDiv(ele, k), ".//div[4]/div[2]/div/div/input", 2)
+                                Web_PO.eleSetTextByX(Web_PO.eleDiv(ele, k), ".//div[4]/div[2]/div/div/input", v[list(v.keys())[0]])
+                        elif k in ['体育锻炼']:
+                            Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, '锻炼频率'), ".//div/div/label", v['锻炼频率'])
+                            # sleep(2)
+                            if v['锻炼频率'] != '不锻炼':
+                                for k1, v1 in v.items():
+                                    if k1 != '锻炼频率':
+                                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div/div/input", v1)
+                        elif k in [' 饮食习惯 ']:
+                            Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k),".//div[2]/div/div/div/label", v)
+                        elif k in [' 吸烟情况 ']:
+                            print(1212)
+                            Web_PO.eleDropdown(Web_PO.eleLabel(ele, '吸烟状况'), './/div/div/div/div/input', v['吸烟状况'])
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[8]/div[1]/div[3]/div[2]/div/div/div/div/div/input
+                            if v['吸烟状况'] != '从不吸':
+                                for k1, v1 in v.items():
+                                    if k1 != '吸烟状况':
+                                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//div/div/input", v1)
+                            #  ' 吸烟情况 ': {'吸烟状况': '现在每天吸', '日吸烟量': '4', '开始吸烟年龄': '22', '戒烟年龄': '44'},
+
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[8]/div[1]/div[3]/div[2]/div/div/div/div/div/input
+
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[8]/div[1]/div[2]/div[2]/div/div/div/label[3]
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[6]/div[1]/div[2]/div[4]/div[2]/div/div/input
+
+                            # Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='保存']", "..))
+                            # Web_PO.eleClkByX(Web_PO.eleGetSuperEleByX(ele, ".//span[text()='保存']", ".."), ".", 2)
+
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[6]/div[1]/div[2]/div[4]/div/div/div/label[2]
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[6]/div[1]/div[2]/div[2]/div/div/div/label[4]
+
+                        # elif k in ['性别', '人群分类', '档案是否开放', '档案状态', '血型', '常住类型', '是否签约', '是否残疾', '今年是否体检', '既往史',
+                        #            '今年是否已更新', '医疗费用支付方式', '档案缺失项目']:
+                        #     Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input", self.selectors['dropdown_popper'],
+                        #                        v)
+                        elif k in ['体检日期']:
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[3]/div[1]/div[2]/div/div/div/input
                             # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[2]/div/div[2]/div/div/div/label[4]
 
                         # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[2]/div/div[2]/div/div/div/label[4]
