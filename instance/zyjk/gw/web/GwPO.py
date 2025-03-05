@@ -5747,12 +5747,12 @@ class GwPO():
         Web_PO.zoom(50)
         l_field = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//thead", "."), ".//div")
         Web_PO.zoom(100)
-        print(l_field)  # ['姓名', '性别', '年龄', '身份证号', '联系电话', '现住址', '操作']
+        # print(l_field)  # ['姓名', '性别', '年龄', '身份证号', '联系电话', '现住址', '操作']
 
         # 获取字段和类型字典
         l_value = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//tbody", "."), ".//div")
         # print(l_value)
-        l_value = List_PO.dels(l_value, '详情\n体检记录\n新增评估')
+        l_value = List_PO.dels(l_value, varOperation)
         l_value = List_PO.dels(l_value, '新增评估')
         # print(l_value)
         l_group = (List_PO.group(l_value, 6))
@@ -5769,9 +5769,9 @@ class GwPO():
                         s = s + 1
                         d_1[i + 1] = s
             s = 0
-        # print(d_1)  # {2: 1, 3: 2}
+        print(d_1)  # {2: 1, 3: 2}
         max_key = max(d_1, key=d_1.get)
-        # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
+        print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
         return max_key
 
     def phs_snr_lnrfiles_operation(self, d_):
@@ -5784,77 +5784,78 @@ class GwPO():
         try:
             if "data" not in d_:
                 if d_['operate'] == '详情':
-                    ele3 = Web_PO.getSuperEleByX("(//span[text()='详情'])[position()=" + str(
-                        self._phs_snr_lnrfiles_operation('详情\n体检记录\n新增评估', d_['option'])) + "]", ".")
+                    ele3 = Web_PO.getSuperEleByX("(//span[text()='"+d_['operate']+"'])[position()=" +
+                         str(self._phs_snr_lnrfiles_operation('详情\n体检记录\n新增评估', d_['option'])) + "]", "..")
                     Web_PO.eleClkByX(ele3, ".", 2)
-                    # self.logger.info(str(d_))
-                    # return self.__getHealthrecord('查看')
-
                 elif d_['operate'] == '体检记录':
-                    ele3 = Web_PO.getSuperEleByX("(//span[text()='体检记录'])[position()=" + str(
-                        self._phs_snr_lnrfiles_operation('详情 体检记录 新增评估', d_['option'])) + "]", ".")
+                    ele3 = Web_PO.getSuperEleByX("(//span[text()='"+d_['operate']+"'])[position()=" + str(
+                        self._phs_snr_lnrfiles_operation('详情\n体检记录\n新增评估', d_['option'])+1) + "]", ".")
                     Web_PO.eleClkByX(ele3, ".", 2)
+            else:
+                if d_['operate'] == '详情':
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='编辑']", ".."), ".", 2)
+                    ele = Web_PO.getSuperEleByX("//form", ".")
+                    for k, v in d_['data'].items():
+                        if k in ['生活赡养']:
+                            Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//td[2]/div/div/div/label", v)
+                        elif k in ['护理情况']:
+                            Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/div/div/input",
+                                               self.selectors['dropdown_popper'], v)
+                        elif k in ['登记日期']:
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//td[4]/div/div/div/input", v)
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
+                elif d_['operate'] == '新增体验':
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增体检 ']", ".."), ".", 2)
+                    # 国家基本公共卫生服务项目健康体检表
+                    ele = Web_PO.getSuperEleByX("//div[text()='国家基本公共卫生服务项目健康体检表']", "../..")
+                    for k, v in d_['data'].items():
+                        if k in ['体检来源']:
+                            print(1212)
+                            Web_PO.eleRadioRightLabel(Web_PO.eleDiv(ele, k), './/div[2]/div/div/div/label', v)
+                            # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[2]/div/div[2]/div/div/div/label[4]
+
+                        # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[2]/div/div[2]/div/div/div/label[4]
+
                 elif d_['operate'] == '新增评估':
                     ele3 = Web_PO.getSuperEleByX("(//span[text()=' 新增评估 '])[position()=" + str(
-                        self._phs_snr_lnrfiles_operation('详情 体检记录 新增评估', d_['option'])) + "]", ".")
+                        self._phs_snr_lnrfiles_operation('详情\n体检记录\n新增评估', d_['option'])) + "]", ".")
                     Web_PO.eleClkByX(ele3, ".", 2)
                     Web_PO.clkByX(
                         "//div[@class='el-popper is-light el-popover' and @role='tooltip' and @aria-hidden='false']/div[1]",
                         2)
-                elif d_['operate'] == '更新历史':
-                    ele3 = Web_PO.getSuperEleByX("(//div[text()='更多'])[position()=" + str(
-                        self._phs_snr_lnrfiles_operation('查看 更新 更多', d_['option'])) + "]", ".")
-                    Web_PO.eleClkByX(ele3, ".", 2)
-                    Web_PO.clkByX(
-                        "//div[@class='el-popper is-light el-popover' and @role='tooltip' and @aria-hidden='false']/div[2]",
-                        2)
-                elif d_['operate'] == '姓名':
-                    Web_PO.clkByX("//tbody/tr[" + str(
-                        self._phs_snr_lnrfiles_operation('查看 更新 更多', d_['option'])) + "]/td[2]/div", 2)
-                else:
-                    ele3 = Web_PO.getSuperEleByX("(//div[text()='" + d_['operate'] + "'])[position()=" + str(
-                        self._phs_healthrecord_personal_operation('查看 更新 更多', d_['option'])) + "]", ".")
-                    Web_PO.eleClkByX(ele3, ".", 2)
+                #     if d_['operate'] == '更新历史':
+                #         ele3 = Web_PO.getSuperEleByX("(//div[text()='更多'])[position()=" + str(
+                #             self._phs_snr_lnrfiles_operation('查看 更新 更多', d_['option'])) + "]", ".")
+                #         Web_PO.eleClkByX(ele3, ".", 2)
+                #         Web_PO.clkByX(
+                #             "//div[@class='el-popper is-light el-popover' and @role='tooltip' and @aria-hidden='false']/div[2]",
+                #             2)
+                #     if d_['operate'] == '姓名':
+                #         Web_PO.clkByX("//tbody/tr[" + str(
+                #             self._phs_snr_lnrfiles_operation('查看 更新 更多', d_['option'])) + "]/td[2]/div", 2)
+                #     else:
+                #         ele3 = Web_PO.getSuperEleByX("(//div[text()='" + d_['operate'] + "'])[position()=" + str(
+                #             self._phs_healthrecord_personal_operation('查看 更新 更多', d_['option'])) + "]", ".")
+                #         Web_PO.eleClkByX(ele3, ".", 2)
+                #
+                #
 
-            elif d_['operate'] == '详情':
-                Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='编辑']", ".."), ".", 2)
-                ele = Web_PO.getSuperEleByX("//form", ".")
-                for k, v in d_['data'].items():
-                    if k in ['生活赡养']:
-                        Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//td[2]/div/div/div/label", v)
-                    elif k in ['护理情况']:
-                        Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
-                    elif k in ['登记日期']:
-                        Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//td[4]/div/div/div/input", v)
-                Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
+                # elif d_['operate'] == '更新历史':
+                #     ele2 = Web_PO.getSuperEleByX("//span[text()='更新历史']", "../..")
+                #     Web_PO.eleClkByX(ele2, ".//button[1]")  # 关闭
+                #
+                # elif d_['operate'] == '姓名' and d_['operate2'] == '更新':
+                #     Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='更新']", ".."), ".", 2)
+                #     # 居民健康档案
+                #     self.__setHealthrecord(d_)
+                #
+                # elif d_['operate'] == '姓名' and d_['operate2'] == '获取':
+                #     self.logger.info(str(d_))
+                #     # 居民健康档案
+                #     return self.__getHealthrecord()
 
-            elif d_['operate'] == '新增体验':
-                Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增体检 ']", ".."), ".", 2)
-                # 国家基本公共卫生服务项目健康体检表
-                ele = Web_PO.getSuperEleByX("//form", ".")
-                for k, v in d_['data'].items():
-                    Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k),'div[2]/div/div/div/label', v)
-                    # /html/body/div[1]/div/div[3]/section/div/div/div[1]/div[2]/form/div[2]/div[1]/form/div[2]/div[2]/div/div[2]/div/div/div/label[4]
-
-
-
-
-            elif d_['operate'] == '更新历史':
-                ele2 = Web_PO.getSuperEleByX("//span[text()='更新历史']", "../..")
-                Web_PO.eleClkByX(ele2, ".//button[1]")  # 关闭
-
-            elif d_['operate'] == '姓名' and d_['operate2'] == '更新':
-                Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='更新']", ".."), ".", 2)
-                # 居民健康档案
-                self.__setHealthrecord(d_)
-
-            elif d_['operate'] == '姓名' and d_['operate2'] == '获取':
-                self.logger.info(str(d_))
-                # 居民健康档案
-                return self.__getHealthrecord()
-
-            else:
-                print("error, 无法操作!")
+            # else:
+            #     print("error, 无法操作!")
 
             self.logger.info(str(d_))
         except:

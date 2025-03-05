@@ -1046,8 +1046,7 @@ class DomPO(object):
 
         # 映射选项的顺序
         d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         # 选择新的值
         self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]", 1)
 
