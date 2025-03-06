@@ -13,12 +13,9 @@
 # a = '残\n高\n脂'
 # print(len(a.split("\n")))
 
-a = ['', '', '', '商业医疗保险', '全公费', '全自费', '其他']
-b = a.pop(0)
-print(b)
-b = a.pop(0)
-print(b)
-print(a)
+a = {'缺齿': [1,2,3,4], '龋齿': [11,22,33,44], '龋2齿': [11,22,33,44]}
+if '龋齿' in a:
+    print(999)
 
 # from collections import ChainMap
 #
