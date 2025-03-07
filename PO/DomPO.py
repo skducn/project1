@@ -1008,66 +1008,38 @@ class DomPO(object):
         if d_default[v] == 0:
             self.eleClkByX(ele, varXpaths + "/label[" + str(d_4[v]) + "]", 1)
 
-    # def _eleRadio(self, ele, varTextByXs, v):
-    #
-    #     # 映射选项的顺序
-    #     l_text = self.eleGetTextByXs(ele, varTextByXs)
-    #     d_3 = dict(enumerate(l_text, start=1))
-    #     d_4 = {v: k for k, v in d_3.items()}
-    #     # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-    #     return d_4
-    #
-    #     # # 映射选项的值
-    #     # l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
-    #     # # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
-    #     # l_isChecked = []
-    #     # for i in range(len(l_class)):
-    #     #     if l_class[i] in ['el-radio is-checked el-radio--default',
-    #     #                       'el-radio is-disabled is-checked el-radio--default']:
-    #     #         l_isChecked.append(1)
-    #     #     else:
-    #     #         l_isChecked.append(0)
-    #     # d_default = dict(zip(l_text, l_isChecked))
-    #     # # print(d_default)  # {'总院': 0, '分院': 0, '门诊部': 1}
-
     def eleRadioLeftLabel(self, ele, varTextByXs, v):
-        # 选择单选框
-        # self.eleRadioLeftLabel(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
-
-        # 映射选项的顺序
+        # 单选框LL
         d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
         # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        # 选择新的值
         self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]/label", 1)
 
-    def eleRadioRightLabel(self, ele, varTextByXs, v):
-        # 选择单选框
 
-        # 映射选项的顺序
+    def eleRadioRightLabel(self, ele, varTextByXs, v):
+        # 单选框RL
         d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-        # 选择新的值
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]", 1)
 
     def eleRadioRightLabelAndText(self, ele, varRadioRightLableByX, v, varTextByX):
-        # 单选框 rightlabel + 其他文本输入框
+        # 单选框 + 判断是否选中 + 文本输入框
         # self.eleRadioRightLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/label", v, ".//div[2]/div[2]/div/div/div/input")
-        self.eleRadioRightLabel(ele, varRadioRightLableByX, list(v.keys())[0])
+        # self.eleRadioRightLabel(ele, varRadioRightLableByX, list(v.keys())[0])
+        isRadio = self.eleRadioRightLabelByCheck(ele, varRadioRightLableByX, list(v.keys())[0])
         # self.eleSetTextByX(ele, varTextByX, v[list(v.keys())[0]][list(v[list(v.keys())[0]].keys())[0]])
-        self.eleSetTextByX(ele, varTextByX, v[list(v.keys())[0]])
+        if isRadio == 0:
+            self.eleSetTextByX(ele, varTextByX, v[list(v.keys())[0]])
 
     def eleRadioRightLabelByCheck(self, ele, varXpaths, v):
-        # 选择单选框
-        # 不独立值（有\n拼接），遍历label
+        # 单选框 + 判断是否选中
         l_ = self.eleGetTextByXs(ele, varXpaths)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
-        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
-        # 获取单选框所有值的状态
+        # 获取所有选择值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
         # print(l_value)  # ['是', '否']
-        # 获取单选框所有值的状态
         # l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
         l_class = self.eleGetAttrValueByXs(ele, ".//label[@aria-disabled='false']", "class")
         # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
@@ -1079,10 +1051,14 @@ class DomPO(object):
             else:
                 l_isChecked.append(0)
         d_default = dict(zip(l_value, l_isChecked))
-        print(d_default)  # {'是': 0, '否': 1}
-        # 检查是否已经选中，如果未选择则勾选，否则不操作。
+        print('是否选中 =>', d_default)  # {'是': 0, '否': 1}
+
+        # 判断是否选中，如果未选择则勾选，否则不操作。
         if d_default[v] == 0:
             self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
+            return 0
+        else:
+            return 1
 
 
 
