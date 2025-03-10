@@ -1014,6 +1014,37 @@ class DomPO(object):
         # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]/label", 1)
 
+    def eleRadioLeftLabelByCheck(self, ele, varXpaths, v):
+        # 单选框LL + 判断是否选中 ????
+        l_ = self.eleGetTextByXs(ele, ".//div")
+        print(l_)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+
+        # 获取所有选择值的状态
+        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
+        # print(l_value)  # ['是', '否']
+        # l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        l_class = self.eleGetAttrValueByXs(ele, ".//label[@aria-disabled='false']", "class")
+        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+        l_isChecked = []
+        for i in range(len(l_class)):
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
+                i] == 'el-radio is-disabled is-checked el-radio--default':
+                l_isChecked.append(1)
+            else:
+                l_isChecked.append(0)
+        d_default = dict(zip(l_value, l_isChecked))
+        print('是否选中 =>', d_default)  # {'是': 0, '否': 1}
+
+        # 判断是否选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
+            return 0
+        else:
+            return 1
+
 
     def eleRadioRightLabel(self, ele, varTextByXs, v):
         # 单选框RL
@@ -1150,7 +1181,6 @@ class DomPO(object):
                     self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
 
         # 勾选选项(如果已勾选则不操作)
-        # print("v:",v)
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
@@ -1164,21 +1194,17 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
                 if isinstance(v[i], dict):
-                    # print(111, v[i])
-                    # print(222, k3)
                     if list(v[i].keys())[0] == k3:
-                        # print('k3', k3)
                         varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
 
     def eleCheckboxLeftLabel2(self, ele, textByX, v):
-        # 勾选复选框 (包括字典key)
+        # 勾选复选框 (包括字典key) + 取消全部勾选项
         # self.eleCheckboxLeftLabel2(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
 
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, textByX)
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
         # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
@@ -1186,19 +1212,8 @@ class DomPO(object):
         # 取消全部勾选项
         for i in range(len(l_)):
             varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]/label", "class")
-            # /html/body/div[1]/div/div[3]/section/div/div[2]/div[4]/div[1]/form/div/div[11]/div/div[2]/div/div/div/div[3]/label
             if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
                 self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
-        # # 全部取消勾选项
-        # if default != 'remain':
-        #     l_2 = []
-        #     for i in range(len(l_)):
-        #         l_2.append(self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(i + 1) + "]/label", "class"))
-        #     d_3 = dict(enumerate(l_2, start=1))
-        #     # print(d_3)  # {1: 'el-checkbox el-checkbox--default is-disabled', 2: 'el-checkbox el-checkbox--default is-checked',
-        #     for k2, v2 in d_3.items():
-        #         if v2 == 'el-checkbox el-checkbox--default is-checked':
-        #             self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
 
         # 遍历勾选选项
         for i in range(len(v)):

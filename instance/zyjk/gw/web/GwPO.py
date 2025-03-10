@@ -5812,7 +5812,6 @@ class GwPO():
                     # ele5 = Web_PO.getSuperEleByX("//form", ".")
                     # Web_PO.eleScrollKeysEndByXByX(ele5,".//form", 1)
 
-
                     for k, v in d_['data'].items():
                         if k in ['体检来源']:
                             Web_PO.eleRadioRightLabel(Web_PO.eleDiv(ele, k), './/div[2]/div/div/div/label', v)
@@ -6204,6 +6203,176 @@ class GwPO():
 
 
                     Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", "."), ".", 2)
+
+                elif d_['operate'] == '新增中医药健康管理':
+                    Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div/div[1]/div/div/div/div[3]', 2)
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增评估 ']", ".."), ".", 2)
+                    ele = Web_PO.getSuperEleByX("//form", ".")
+                    for k, v in d_['data'].items():
+                        if k in ["1.你精力充沛吗？(指精神头足,乐于做事)", "2.您容易疲乏吗？(指体力如何，是否稍微活动一下或做一点家务劳动就感觉到累)",
+                            "3.您容易气短，呼吸短促，接不上气吗？", "4.您说话声音低弱无力吗？(指说话没有力气)", "5.您感觉到闷闷不乐，情绪低沉吗？(指心情不愉快，情绪低落)",
+                            "6.您容易情绪紧张吗，焦虑不安吗？(指遇事是否心情紧张)", "7.您因为生活状态改变而感到孤独，失落？", "8.您容易感到害怕或受到惊吓？",
+                            "9.您感到身体超重不轻松吗？(感觉身体沉重)[BMI指数=体重(kg)/身高(m)]", "10.您眼睛干涩吗？","11.您手脚发凉吗？(不包含因周围温度低或穿的少导致的手脚发冷)",
+                            "12.您胃脘部，背部或腰部怕冷吗？(指上腹部，背部，腰部或膝关节等，有一处或多处怕冷)", "13.您比一般人耐受不了寒冷吗？(指比别人容易怕冬天或是夏天的冷空调，电扇等)",
+                            "14.您容易患感冒吗？(指每年感冒次数)", "15.您没有感冒时会鼻塞，流鼻涕吗？", "16.您有口粘口腻，或睡眠打鼾？", "17.您容易过敏吗？(指对药物，食物，气味，花粉或在季节交替，气候变化时)",
+                            "18.您的皮肤容易起荨麻疹吗？(包括风团，风疹块，风疙瘩)", "19.您的皮肤在不知不觉中会出现青紫癫斑，皮下出血吗？(指皮肤在没有外伤的情况下出现青一块紫一块的情况)",
+                            "20.您的皮肤一抓就红，并出现抓痕吗？(指被指甲或钝物或过后皮肤的反应)", "21.您皮肤或口唇干吗？", "22.您有肢体麻木或固定部位疼痛的感觉吗？",
+                            "23.您面部或鼻部有油腻感或者油光发亮吗？(指脸上或鼻子)", "24.您面色或目眶晦暗，或出现褐色板块/斑点吗？",
+                            "25.您有皮肤湿疹，疮疖吗？", "26.您感到口干咽燥，总想喝水吗？", "27.您感到口苦或嘴里有异味吗？(指口苦或口臭)", "28.您腹部肥大吗？(指腹部脂肪肥厚)",
+                            "29.您吃(喝)凉的东西会感到不舒服或者怕吃(喝)凉的东西吗？(指不喜欢凉的食物，或吃了凉的食物后会不舒服)", "30.您有大便黏滞不爽，解不尽的感觉吗？(答辩容易粘在马桶或便坑壁上)",
+                            "31.您容易大便干燥吗？", "32.您舌苔厚腻或有舌苔厚厚的感觉吗？(如果自我感觉不清楚可由调查员观察后填写)", "33.您舌下静脉淤紫或增粗吗？(可由调查人员辅助观察后填写)"]:
+                            Web_PO.eleClkByX(Web_PO.eleCommon2(ele, k), './/div[' + str(int(v) + 1) + ']/label')
+                        if k in ['气虚质', '阳虚质', '阴虚质','痰湿质', '平和质','湿热质','血瘀质','气郁质','特禀质']:
+                            Web_PO.eleScrollViewByX(Web_PO.eleCommon2(ele, k), ".//div[4]/div/div/div")
+                            Web_PO.eleCheckboxLeftLabel2(Web_PO.eleDiv(ele, k, "../.."), ".//div[4]/div/div/div", v)
+                        elif k in ['填表日期']:
+                            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
+
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()=' 保存']", "."), ".", 2)
+
+                elif d_['operate'] == '新增老年人生活自理能力评估表':
+                    Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div/div[1]/div/div/div/div[4]', 2)
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增评估 ']", ".."), ".", 2)
+                    ele = Web_PO.getSuperEleByX("//div[text()='老年人生活自理能力评估表']", "..")
+                    for k, v in d_['data'].items():
+                        if k in ['进餐：使用餐具将饭菜送入口、咀嚼、吞咽等活动']:
+                            d_tmp = {' 独立完成(0) ': 1, '/':2, ' 需要协助，如切碎、搅拌食 物等(3) ':3, ' 完全需要帮助(5) ':4}
+                            s_class = Web_PO.eleGetAttrValueByX(Web_PO.eleP(ele, k, "../.."), ".//div[2]/div[" + str(d_tmp[v]) + "]/label", "class")
+                            if s_class != 'el-checkbox el-checkbox--default is-checked':
+                                Web_PO.eleClkByX(Web_PO.eleP(ele, k, "../.."), ".//div[2]/div[" + str(d_tmp[v]) + "]/label")
+                        if k in ['梳洗：梳头、洗脸、刷牙、剃须洗澡等活动']:
+                            d_tmp = {' 独立完成(0) ': 1, ' 能独立的洗头、梳头、洗脸、刷牙、剃须等；洗澡需要协助(1) ': 2, ' 在协助下和适当的时间内 能完成部分梳洗活动(3) ': 3, ' 完全需要帮助(5) ': 4}
+                            s_class = Web_PO.eleGetAttrValueByX(Web_PO.eleP(ele, k, "../.."),
+                                                                ".//div[2]/div[" + str(d_tmp[v]) + "]/label", "class")
+                            if s_class != 'el-checkbox el-checkbox--default is-checked':
+                                Web_PO.eleClkByX(Web_PO.eleP(ele, k, "../.."),
+                                                 ".//div[2]/div[" + str(d_tmp[v]) + "]/label")
+                        if k in ['穿衣：穿衣裤、袜子、鞋子等活动']:
+                            d_tmp = {' 独立完成(0) ': 1, '/': 2, ' 需要协助，在适当的时间内完成部分穿衣(3) ': 3, ' 完全需要帮助(5) ': 4}
+                            s_class = Web_PO.eleGetAttrValueByX(Web_PO.eleP(ele, k, "../.."),
+                                                                ".//div[2]/div[" + str(d_tmp[v]) + "]/label", "class")
+                            if s_class != 'el-checkbox el-checkbox--default is-checked':
+                                Web_PO.eleClkByX(Web_PO.eleP(ele, k, "../.."),
+                                                 ".//div[2]/div[" + str(d_tmp[v]) + "]/label")
+                        if k in ['如厕：小便、大便等活动及自控']:
+                            d_tmp = {' 不需协助，可自控(0) ': 1, ' 偶尔失禁，但基本上能如厕或 使用便具(1) ': 2, ' 经常失禁，在很多提示和协助下尚能如厕或使用便具(5) ': 3, ' 完全需要帮助(10) ': 4}
+                            s_class = Web_PO.eleGetAttrValueByX(Web_PO.eleP(ele, k, "../.."),
+                                                                ".//div[2]/div[" + str(d_tmp[v]) + "]/label", "class")
+                            if s_class != 'el-checkbox el-checkbox--default is-checked':
+                                Web_PO.eleClkByX(Web_PO.eleP(ele, k, "../.."),
+                                                 ".//div[2]/div[" + str(d_tmp[v]) + "]/label")
+                        if k in ['活动：站立、室内行走、上下楼梯、户外活动']:
+                            d_tmp = {' 独立完成所有活动(0) ': 1, ' 借助较小的外力或辅助装置 能完成站立、行走、上下楼梯等(1) ': 2, ' 借助较大的外力才能完成站立、行走，不能上下楼梯(5) ': 3, ' 卧床不起，活动完全需要帮助(10) ': 4}
+                            s_class = Web_PO.eleGetAttrValueByX(Web_PO.eleP(ele, k, "../.."),
+                                                                ".//div[2]/div[" + str(d_tmp[v]) + "]/label", "class")
+                            if s_class != 'el-checkbox el-checkbox--default is-checked':
+                                Web_PO.eleClkByX(Web_PO.eleP(ele, k, "../.."),
+                                                 ".//div[2]/div[" + str(d_tmp[v]) + "]/label")
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='确 定']", "."), ".", 2)
+
+                elif d_['operate'] == '新增老年人忧郁评估表':
+                    Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div/div[1]/div/div/div/div[5]', 2)
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增评估 ']", ".."), ".", 2)
+                    ele = Web_PO.getSuperEleByX("//div[text()='老年抑郁量表（GDS）']", "..")
+                    for k, v in d_['data'].items():
+                        if k in [' 你对生活基本上满意吗？ '," 你是否已经放弃了许多活动和兴趣？ "," 你是否觉的生活空虚？ "," 你是否常感到厌倦？ "," 你觉的未来有希望吗？ ",
+                                " 你是否因为脑子里有一些想法摆脱不掉而烦恼？ ",
+                                " 你是否大部分时间精力充沛？ ", " 你是否害怕会有不幸的事落在你头上？ ",
+                                " 你是否大部分时间感到幸福？ ",
+                                " 你是否常感到孤立无援？ ",
+                                " 你是否经常坐立不安，心烦意乱？ ",
+                                " 你是否希望呆在家里而不愿意去做些新鲜事？ ",
+                                " 你是否常常担心将来？ ",
+                                " 你是否觉得记忆力比以前差？ ",
+                                " 你觉得现在生活很惬意？ ",
+                                " 你是否常感到心情沉重、郁闷？ ",
+                                " 你是否觉得像现在这样生活毫无意义？ ",
+                                " 你是否常为过去的事忧愁？ ",
+                                " 你开始一件新的工作困难吗？ ",
+                                " 你觉得生活充满活力吗？ ",
+                                " 你是否觉得你的处境毫无希望？ ", " 你是否觉得大多数人比你强的多？ ",
+                                " 你是否常为些小事伤心？ ",
+                                " 你是否常觉得想哭？ ",
+                                " 你集中精力困难吗？ ",
+                                " 你早晨起的很快活吗？ ",
+                                " 你希望避开聚会吗？ ",
+                                " 你的头脑像往常一样清晰吗？ "
+                        ]:
+                            if v == '是':
+                                s_style = Web_PO.eleGetAttrValueByX(Web_PO.eleDiv(ele, k), ".//div[3]/div[1]/div", "style")
+                                # print(s_style)
+                                if 'display: none' in s_style:
+                                    Web_PO.eleClkByX(Web_PO.eleDiv(ele, k), ".//div[3]/div[1]")
+                            else:
+                                s_style = Web_PO.eleGetAttrValueByX(Web_PO.eleDiv(ele, k), ".//div[3]/div[2]/div", "style")
+                                # print(s_style)
+                                if 'display: none' in s_style:
+                                    Web_PO.eleClkByX(Web_PO.eleDiv(ele, k), ".//div[3]/div[2]")
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='确 定']", "."), ".", 2)
+
+                elif d_['operate'] == '新增简易智力检查':
+                    Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div/div[1]/div/div/div/div[6]', 2)
+                    Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增评估 ']", ".."), ".", 2)
+                    ele = Web_PO.getSuperEleByX("//div[text()=' 简易智力状态检查表 (MMSE) ']", "..")
+                    for k, v in d_['data'].items():
+                        #   "2.地点定向力 (5)": {"我们现在在哪个国家?": "0", "我们现在在哪个城市": "0", "我们现在在城市的哪一部分": "0", "我们现在在哪个建筑物": "0", "我们现在在第几层": "0"},
+                    #     "3.即刻回忆 (3)": {"皮球": "0", "国旗": "0", "树": "0"},
+                    #     "4.注意力与计算力 (5)": {"100减7等于? 93": "0", "100减7等于? 86": "0", "100减7等于? 79": "0", "100减7等于? 72": "0", "100减7等于? 65": "0"},
+                    #     "5.回忆能力 (3)": {"皮球": "0", "国旗": "0", "树": "0"},
+                    #     "6.命名能力 (2)": {"问:这是什么? 展示 (铅笔)": "0", "问:这是什么? 展示 (手表)": "0"},
+                    #     "7.语言重复能力 (1)": {"说:我现在让你重复我说的。准备好了吗？瑞雪兆丰年。你说一遍 ": "0"},
+                    #     "8.理解力 (3)": {"左手拿着这张纸": "0", "把它对折": "0", "把它放在你的右腿上": "0"},
+                    #     "9.阅读能力 (1)": {"闭上你的眼睛": "0"},
+                    #     "10.写的能力 (1)": {"说:写一个句子。": "0"},
+                    #     "11.画画的能力 (1)": {"说:照下图画。 ": "0"}
+                        if k in ["1.时间定力 (5)", "2.地点定向力 (5)", "6.命名能力 (2)", "7.语言重复能力 (1)", "10.写的能力 (1)", "11.画画的能力 (1)"
+                                 ]:
+                            # for k1, v1 in v.items():
+                            for index,(k1, v1) in enumerate(v.items()):
+                                #     "1.时间定力 (5)": {"今年是哪一年?": "0", "现在是什么季节": "0", "现在是几月份": "0", "今天是几号": "0", "今天是星期几": "0"},
+                                if v1 == '1':
+                                    # isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[1]/div")
+                                    isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+1) + "]/div[2]/div[1]/div")
+                                    if isDiv == False :
+                                        # Web_PO.eleClkByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[1]")
+                                        Web_PO.eleClkByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+1) + "]/div[2]/div[1]")
+                                else:
+                                    # isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[2]/div")
+                                    isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+1) + "]/div[2]/div[2]/div")
+                                    if isDiv == False:
+                                        # Web_PO.eleClkByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[2]")
+                                        Web_PO.eleClkByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+1) + "]/div[2]/div[2]")
+                        if k in [
+                                 "3.即刻回忆 (3)", "4.注意力与计算力 (5)", "5.回忆能力 (3)", "8.理解力 (3)", "9.阅读能力 (1)"]:
+                            # for k1, v1 in v.items():
+                            for index,(k1, v1) in enumerate(v.items()):
+                                #     "1.时间定力 (5)": {"今年是哪一年?": "0", "现在是什么季节": "0", "现在是几月份": "0", "今天是几号": "0", "今天是星期几": "0"},
+                                if v1 == '1':
+                                    # isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[1]/div")
+                                    isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+2) + "]/div[2]/div[1]/div")
+                                    if isDiv == False :
+                                        # Web_PO.eleClkByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[1]")
+                                        Web_PO.eleClkByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+2) + "]/div[2]/div[1]")
+                                else:
+                                    # isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[2]/div")
+                                    isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+2) + "]/div[2]/div[2]/div")
+                                    if isDiv == False:
+                                        # Web_PO.eleClkByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[2]")
+                                        Web_PO.eleClkByX(Web_PO.eleDiv(ele, k), ".//div[2]/div[" + str(index+2) + "]/div[2]/div[2]")
+
+                        # elif k in ["3.即刻回忆 (3)", "4.注意力与计算力 (5)", "5.回忆能力 (3)", "8.理解力 (3)", "9.阅读能力 (1)"]:
+                        #     for index, (k1, v1) in enumerate(v.items()):
+                        #         if v1 == '1':
+                        #             isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[" + str(index+2) + "]/div[1]/div")
+                        #             if isDiv == False :
+                        #                 Web_PO.eleClkByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[" + str(index+2) + "]/div[1]")
+                        #         else:
+                        #             isDiv = Web_PO.eleIsEleExistByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[" + str(index+2) + "]/div[2]/div")
+                        #             if isDiv == False:
+                        #                 Web_PO.eleClkByX(Web_PO.eleDiv(ele, k1), ".//div[2]/div[" + str(index+2) + "]/div[2]")
+                    # Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='确 定']", "."), ".", 2)
+
+
 
 
 

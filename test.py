@@ -12,10 +12,11 @@
 
 # a = '残\n高\n脂'
 # print(len(a.split("\n")))
-
-a = {'缺齿': [1,2,3,4], '龋齿': [11,22,33,44], '龋2齿': [11,22,33,44]}
-if '龋齿' in a:
-    print(999)
+my_dict = {'a': 1, 'b': 2, 'c': 3}
+print(len(my_dict))
+# 使用enumerate遍历字典项
+for index, (key, value) in enumerate(my_dict.items()):
+    print(f"Index: {index}, Key: {key}, Value: {value}")
 
 # from collections import ChainMap
 #
