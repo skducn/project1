@@ -18,13 +18,13 @@ Web_PO.swhLabel(1)
 
 
 # todo 1 查询
-Gw_PO.phs_memtalDisorder_jsregister_query({"身份证号": "110101194301191302"})
+Gw_PO.phs_memtalDisorder_jsregister_query({"身份证号": "341226199708114773"})
 # Gw_PO.phs_memtalDisorder_jsregister_query({"管理机构": "招远市卫健局", '是否仅查询机构': '是', "档案状态": "在档", "姓名": "胡成", "年龄": [2, 5], "身份证号": "110101195901015999",
 #     '联系电话': '13816109090'})
 
 
 # # # todo 2 操作 - 新增登记及信息补充
-Gw_PO.phs_memtalDisorder_jsregister_operation({'operate': '新增登记及信息补充', 'option': {"身份证号": "110101194301191302"}})
+Gw_PO.phs_memtalDisorder_jsregister_operation({'operate': '新增登记及信息补充', 'option': {"身份证号": "341226199708114773"}})
 Gw_PO.phs_memtalDisorder_jsregister_operation({'operate': '新增登记及信息补充', 'data': {
     '监护人姓名 ': 'A123', ' 与患者关系 ': '本人',
     '监护人地址 ': '上海浦东南路111号', ' 监护人电话 ': '13819181716',
