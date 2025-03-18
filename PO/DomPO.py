@@ -1011,7 +1011,7 @@ class DomPO(object):
     def eleRadioLeftLabel(self, ele, varTextByXs, v):
         # 单选框LL
         d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]/label", 1)
 
     def eleRadioLeftLabelByCheck(self, ele, varXpaths, v):
@@ -1049,7 +1049,7 @@ class DomPO(object):
     def eleRadioRightLabel(self, ele, varTextByXs, v):
         # 单选框RL
         d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]", 1)
 
     def eleRadioRightLabelAndText(self, ele, varRadioRightLableByX, v, varTextByX):
