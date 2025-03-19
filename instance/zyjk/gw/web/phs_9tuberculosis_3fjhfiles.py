@@ -63,6 +63,6 @@ Gw_PO.phs_tuberculosis_fjhfiles_operation({'operate': '访视记录', 'option': 
 # }})
 
 # todo 4.2 操作 - 访视记录 - 历次随访（结案）
-# Gw_PO.phs_tuberculosis_fjhfiles_operation({'operate': '历次随访之结案', 'data': {
-#     '结案原因：': {'其他': '123'}
-# }})
+Gw_PO.phs_tuberculosis_fjhfiles_operation({'operate': '历次随访之结案', 'data': {
+    '结案原因：': {'其他': '123'}
+}})
