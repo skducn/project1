@@ -42,7 +42,7 @@ Gw_PO.phs_healtheducation_healthactivity_query({"活动地点": "上海"})
 
 # todo 3 查看
 Gw_PO.phs_healtheducation_healthactivity_operation({'operate': '查看', 'option': {"主讲人": "阿依达"}})
-Gw_PO.phs_healtheducation_healthactivity_operation({'operate': '编辑', 'data': {
+# Gw_PO.phs_healtheducation_healthactivity_operation({'operate': '编辑', 'data': {
     # '活动时间': [2025, 1, 3], '活动地点': "上海",
     # '活动形式': "开展咨询活动",
     # '活动主题': "普法宣传", '活动人数': "12", '组织者': "白嫖",
@@ -52,6 +52,6 @@ Gw_PO.phs_healtheducation_healthactivity_operation({'operate': '编辑', 'data':
     # '健康教育资源发放数量': "12",
     # '活动内容': "宣传教育",
     # '活动总结评价': "良好",
-    '存档资料类型': [['印刷', '其他资料'], ["/Users/linghuchong/Desktop/16.jpg","/Users/linghuchong/Desktop/17.jpg"]],
-    '填表人': 'test1', '负责人':'jh', '填表时间':[2025,3,4]
-}})
+    # '存档资料类型': [['印刷', '其他资料'], ["/Users/linghuchong/Desktop/16.jpg","/Users/linghuchong/Desktop/17.jpg"]],
+    # '填表人': 'test1', '负责人':'jh', '填表时间':[2025,3,4]
+# }})

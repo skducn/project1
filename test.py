@@ -10,13 +10,53 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-# a = '残\n高\n脂'
-# print(len(a.split("\n")))
-my_dict = {'a': 1, 'b': 2, 'c': 3}
-print(len(my_dict))
-# 使用enumerate遍历字典项
-for index, (key, value) in enumerate(my_dict.items()):
-    print(f"Index: {index}, Key: {key}, Value: {value}")
+from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
+from Foundation import NSBundle
+
+print("导入成功")
+import objc
+from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
+from Foundation import NSBundle
+
+def get_current_input_method():
+    """
+    获取当前输入法
+    :return: 当前输入法的 ID
+    """
+    text_input_context = NSTextInputContext.sharedInputContext()
+    input_method = text_input_context.inputMethod()
+    if input_method:
+        bundle = NSBundle.bundleForClass_(input_method)
+        if bundle:
+            return bundle.bundleIdentifier()
+    return None
+
+def switch_to_english_abc():
+    """
+    切换到英文 ABC 输入法
+    """
+    # 英文 ABC 输入法的 ID
+    english_abc_id = 'com.apple.keylayout.ABC'
+    text_input_context = NSTextInputContext.sharedInputContext()
+    input_methods = text_input_context.availableInputMethods()
+    for method in input_methods:
+        bundle = NSBundle.bundleForClass_(method)
+        if bundle and bundle.bundleIdentifier() == english_abc_id:
+            text_input_context.setInputMethod_(method)
+            break
+
+if __name__ == "__main__":
+    current_id = get_current_input_method()
+    if current_id and 'com.apple.inputmethod.SCIM.ITABC' in current_id:
+        switch_to_english_abc()
+
+# # a = '残\n高\n脂'
+# # print(len(a.split("\n")))
+# my_dict = {'a': 1, 'b': 2, 'c': 3}
+# print(len(my_dict))
+# # 使用enumerate遍历字典项
+# for index, (key, value) in enumerate(my_dict.items()):
+#     print(f"Index: {index}, Key: {key}, Value: {value}")
 
 # from collections import ChainMap
 #

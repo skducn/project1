@@ -5,6 +5,36 @@
 # Description: ChainMap
 # ********************************************************************************************************************
 
+import subprocess
+
+
+def get_current_input_method():
+    try:
+        command = 'defaults read com.apple.HIToolbox AppleSelectedInputSources | grep -i "InputSourceKind" -A 1 | grep -i "KeyboardLayout ID" | awk -F "=" \'{print $2}\' | tr -d \'; \''
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        layout_id = result.stdout.strip()
+        return layout_id
+    except Exception as e:
+        print(f"获取当前输入法时出错: {e}")
+        return None
+
+
+def switch_to_english_input():
+    try:
+        script = 'tell application "System Events" to tell process "SystemUIServer" to click menu bar item 1 of menu bar 2 whose description contains "input menu"'
+        subprocess.run(['osascript', '-e', script], check=True)
+        script = 'tell application "System Events" to tell process "SystemUIServer" to click menu item "ABC" of menu 1 of menu bar item 1 of menu bar 2 whose description contains "input menu"'
+        subprocess.run(['osascript', '-e', script], check=True)
+    except subprocess.CalledProcessError as e:
+        print(f"切换输入法时出错: {e}")
+
+
+if __name__ == "__main__":
+    current_input = get_current_input_method()
+    print(current_input)
+    if current_input and 'zh' in current_input.lower():
+        switch_to_english_input()
+
 # from openai import OpenAI
 #
 # text = input("请输入: \n")
@@ -32,15 +62,15 @@
 #         print(chunk.choices[0].delta.content, end="", flush=True)
 # print() # 换行
 
-
-from refact import Refact
-
-# 假设你的API密钥是'your_api_key_here'
-refact = Refact(api_key='mNF21RSnIIDP7lCzObF9w9JB')
-
-# 示例：重构代码
-result = refact.refactor(code="""def add(a, b): return a + b""")
-print(result)
+#
+# from refact import Refact
+#
+# # 假设你的API密钥是'your_api_key_here'
+# refact = Refact(api_key='mNF21RSnIIDP7lCzObF9w9JB')
+#
+# # 示例：重构代码
+# result = refact.refactor(code="""def add(a, b): return a + b""")
+# print(result)
 
 
 

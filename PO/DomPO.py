@@ -587,6 +587,17 @@ class DomPO(object):
 
     # todo set
 
+    def sendKeysByX(self, varXpath, varKeys, t=1):
+        # 操作键盘
+        # sendKeysByX(Keys.DELETE)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varKeys)
+        sleep(t)
+
+    def eleSendKeysByX(self, ele, varXpath, varKeys, t=1):
+        # ele操作键盘
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varKeys)
+        sleep(t)
+
     def setTextById(self, varId, varText):
         """通过id设置文本"""
         self.find_element(*(By.ID, varId)).clear()
@@ -1141,7 +1152,8 @@ class DomPO(object):
         # 不独立值（有\n拼接值），遍历label
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, textByX)
-        l_ = [i for i in l_ if i]  # 过滤掉空的元素
+        print(l_)
+        # l_ = [i for i in l_ if i]  # 过滤掉空的元素
         l_ = l_[0].split('\n')
         print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
@@ -1155,23 +1167,23 @@ class DomPO(object):
                 self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
 
         # # 遍历勾选选项
-        # for i in range(len(v)):
-        #     for k3, v3 in d_4.items():
-        #         if isinstance(v[i], str):
-        #             if v[i] == k3:
-        #                 self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
-        #         if isinstance(v[i], dict):
-        #             if list(v[i].keys())[0] == k3:
-        #                 self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
-
-        # 勾选选项(如果已勾选则不操作)
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
                     if v[i] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
-                        if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
+                if isinstance(v[i], dict):
+                    if list(v[i].keys())[0] == k3:
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
+
+        # # 勾选选项(如果已勾选则不操作)
+        # for i in range(len(v)):
+        #     for k3, v3 in d_4.items():
+        #         if isinstance(v[i], str):
+        #             if v[i] == k3:
+        #                 varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
+        #                 if varClass != 'el-checkbox el-checkbox--default is-checked':
+        #                     self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
     def eleCheckboxLeftLabel(self, ele, textByX, v, default="remain"):
         # 勾选复选框(默认先全部取消勾选项)
@@ -1397,6 +1409,31 @@ class DomPO(object):
 
     # todo location
 
+    def button1(self, varButton="保存"):
+        # 页面button适配，只限单个按钮
+        try:
+            self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + "'])[last()]", ".."), ".", 2)
+        except:
+            try:
+                self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + "'])[last()]", ".."), ".", 2)
+            except:
+                try:
+                    self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + " '])[last()]", ".."), ".",2)
+                except:
+                    try:
+                        self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + " '])[last()]", ".."),".", 2)
+                    except:
+                        try:
+                            self.eleClkByX(self.getSuperEleByX("(//div[text()='" + str(varButton) + "'])[last()]", ".."), ".", 2)
+                        except:
+                            try:
+                                self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + "'])[last()]", ".."), ".",2)
+                            except:
+                                try:
+                                    self.eleClkByX(self.getSuperEleByX("(//div[text()='" + str(varButton) + " '])[last()]", ".."),".", 2)
+                                except:
+                                    self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + " '])[last()]", ".."),".", 2)
+
     def eleCommon(self, ele, k, varLoc=".."):
         try:
             return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
@@ -1412,7 +1449,6 @@ class DomPO(object):
                     except:
                         return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
 
-    
     def eleCommon2(self, ele, k, varLoc="../.."):
         try:
             return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
@@ -2322,14 +2358,14 @@ class DomPO(object):
         return data_url
 
 
-    def upFile(self, varXpath, l_varFile):
+    def upFile(self, ele, varXpath, l_varFile):
 
-        # 上传文件
+        # 上传文件(for mac)
 
         for i in l_varFile:
 
-            # 点击 +
-            self.clkByX(varXpath)
+            # # 点击 +
+            self.eleClkByX(ele, varXpath)
 
             # 选中文件
             pyautogui.write(i, interval=0.2)
@@ -2395,6 +2431,7 @@ class DomPO(object):
         sleep(2)
         pyautogui.press('enter', 1)
         sleep(2)
+
 
 
 

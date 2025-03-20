@@ -167,7 +167,8 @@ class GwPO():
         # 获取菜单连接
 
         # 统计ur数量
-        c = Web_PO.getCount("ul")
+        # c = Web_PO.getCount("ul")
+        c = Web_PO.getCountByTag("ul")
         varLabelCount = c - 3
 
         # 获取二级菜单名
@@ -8903,7 +8904,7 @@ class GwPO():
         # Web_PO.eleClkByX(ele, ".//button[1]")  # 查询
         Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='查询']", ".."), ".", 2)
 
-    def __healthactivity(self, d_):
+    def __healthactivity(self, d_, varLabel= '新增'):
 
         # 健康教育活动 - 新增
 
@@ -8929,12 +8930,16 @@ class GwPO():
                 Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
             elif k in ['存档资料类型']:
                 if v[0] != []:
-                    # Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/div", v[0])
-                    Web_PO.eleCheckboxRightLabelByN(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/div", v[0])
-                Web_PO.eleClkByX('/html/body/div[1]/div/div[3]/section/div/form/div[10]/div[2]/div[2]/div/div/div/ul/li/i[2]',2)
+                    Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon(ele, k), ".//div[2]/div[1]/div/div/div/div/label", v[0])
+                if varLabel == '编辑':
+                    # 定位元素，按delete
+                    for _ in range(10):
+                        if Web_PO.eleIsEleExistByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/ul/li[1]"):
+                            Web_PO.eleSendKeysByX(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/ul/li[1]", Keys.DELETE)
+                        else:
+                            break
                 if v[1] != []:
-                    Web_PO.upFile(
-                        "/html/body/div[1]/div/div[3]/section/div/form/div[10]/div[2]/div[2]/div/div/div/ul/div", v[1])
+                    Web_PO.upFile(Web_PO.eleCommon(ele, k), ".//div[2]/div[2]/div/div/div/ul/div", v[1])
 
         Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='保存']", ".."), ".", 2)
 
@@ -8988,11 +8993,11 @@ class GwPO():
 
                 if d_['operate'] == '新增':
                     Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='新增']", ".."), ".", 2)
-                    self.__healthactivity(d_['data'])
+                    self.__healthactivity(d_['data'], '新增')
 
                 if d_['operate'] == '编辑':
                     Web_PO.eleClkByX(Web_PO.getSuperEleByX("//span[text()='修改']", ".."), ".", 2)
-                    self.__healthactivity(d_['data'])
+                    self.__healthactivity(d_['data'], '编辑')
 
             self.logger.info(str(d_))
         except:
