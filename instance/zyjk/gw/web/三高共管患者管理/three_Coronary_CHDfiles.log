@@ -1,0 +1,90 @@
+2025-03-21 15:10:26,307 - INFO - 查询 => {'管理机构': '招远市卫健局', '是否仅查询机构': '是', '姓名': '胡成', '身份证号': '372922198510281068', '上次随访日期': [[2025, 1, 2], [2025, 1, 3]], '管理状态': '管理中', '登记时年龄': [2, 5], '登记日期': [[2025, 2, 2], [2025, 2, 3]], '随访提醒分类': '两周内随访', '档案状态': '在档', '现住址': ['泉山街道', '花园社区居民委员会', '123']}
+2025-03-21 15:12:38,148 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-03-21 15:12:44,668 - INFO - {'operate': '访视记录', 'option': {'身份证号': '370685198705183027'}}
+2025-03-21 15:14:35,342 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 15:14:39,788 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:15:40,388 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 15:15:44,774 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:17:55,099 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 15:17:59,493 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:19:35,279 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 15:19:41,823 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:20:20,140 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 15:20:26,635 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:23:10,624 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 15:23:15,251 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:29:21,951 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 15:29:26,560 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:38:42,504 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 15:38:47,483 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:40:21,833 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 15:40:26,482 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 15:50:32,204 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 15:50:36,893 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:02:20,609 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 16:02:25,530 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:35:38,827 - INFO - 查询 => {'登记日期': [[2024, 7, 2], [2024, 10, 30]]}
+2025-03-21 16:35:43,521 - ERROR - 失败 =>{'operate': '访视记录', 'option': {'身份证号': '370685199001012654'}}
+2025-03-21 16:36:03,677 - INFO - Received signal: SIGINT
+2025-03-21 16:36:03,679 - INFO - Program is terminating...
+2025-03-21 16:36:04,177 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c038640>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,180 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c038a60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,183 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c038c40>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,188 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c0390f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,191 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c0392d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,194 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c039480>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,200 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c039840>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,202 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c039ab0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,205 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c039c60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,212 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03a080>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,214 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03a260>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,216 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03a410>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,222 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03a830>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,225 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03aa10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,227 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03abc0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,233 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03afe0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,236 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03b1f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,239 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7e0c03b3a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5e8d003fc9136fd8444b36c785c7d457/element
+2025-03-21 16:36:04,241 - ERROR - 失败 =>{'operate': '个人专项档案_专项记录_结案', 'data': {'结案原因': {'其他': '123'}}}
+2025-03-21 16:36:26,946 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:36:33,459 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:37:16,888 - ERROR - 失败 =>{'operate': '个人专项档案_专项记录_结案', 'data': {'结案原因': {'其他': '123'}}}
+2025-03-21 16:38:02,365 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:38:08,923 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:38:45,830 - INFO - {'operate': '个人专项档案_专项记录_结案', 'data': {'结案原因': {'其他': '123'}}}
+2025-03-21 16:39:09,595 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:39:16,157 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:39:18,349 - ERROR - 失败 =>{'operate': '个人专项档案_专项记录_结案', 'data': {'结案原因': '迁出'}}
+2025-03-21 16:40:45,900 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:40:52,409 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:40:57,810 - INFO - {'operate': '个人专项档案_专项记录_结案', 'data': {'结案原因': '迁出'}}
+2025-03-21 16:44:31,126 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:44:37,639 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:44:41,843 - INFO - {'operate': '个人专项档案_专项记录_删除', 'data': {}}
+2025-03-21 16:57:34,902 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:57:41,417 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:57:56,210 - ERROR - 失败 =>{'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', ' 病情转归 ': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', ' 评估医生 ': '金浩1', ' 评估日期 ': [2025, 1, 4], ' 录入人 ': '1', ' 录入日期 ': [2025, 1, 5]}}
+2025-03-21 16:59:10,071 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 16:59:16,584 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 16:59:28,028 - ERROR - 失败 =>{'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', ' 病情转归 ': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', ' 评估医生 ': '金浩1', ' 评估日期 ': [2025, 1, 4], ' 录入人 ': '1', ' 录入日期 ': [2025, 1, 5]}}
+2025-03-21 17:02:25,655 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:02:32,225 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:02:56,602 - INFO - {'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', ' 病情转归 ': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', ' 评估医生 ': '金浩1', ' 评估日期 ': [2025, 1, 4], ' 录入人 ': '1', ' 录入日期 ': [2025, 1, 5]}}
+2025-03-21 17:04:53,078 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:04:59,636 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:05:24,012 - INFO - {'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', ' 病情转归 ': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', ' 评估医生 ': '金浩1', ' 评估日期 ': [2025, 1, 4], ' 录入人 ': '1', ' 录入日期 ': [2025, 1, 5]}}
+2025-03-21 17:06:02,705 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:06:09,274 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:06:51,208 - INFO - {'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', ' 病情转归 ': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', ' 评估医生 ': '金浩1', ' 评估日期 ': [2025, 1, 4], ' 录入人 ': '1', ' 录入日期 ': [2025, 1, 5]}}
+2025-03-21 17:11:35,386 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:11:41,894 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:12:23,743 - INFO - {'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', '病情转归': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', '评估医生 ': '金浩1', ' 评估日期 ': [2025, 1, 4], ' 录入人 ': '1', ' 录入日期 ': [2025, 1, 5]}}
+2025-03-21 17:18:52,992 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:18:59,552 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:19:10,989 - ERROR - 失败 =>{'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', '病情转归': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', '评估医生': '金浩1', '评估日期': [2025, 1, 4], '录入人': '1', '录入日期': [2025, 1, 5]}}
+2025-03-21 17:22:45,875 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:22:52,456 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:23:03,895 - ERROR - 失败 =>{'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', '病情转归': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', '评估医生': '金浩1', '评估日期': [2025, 1, 4], '录入人': '1', '录入日期': [2025, 1, 5]}}
+2025-03-21 17:24:25,471 - INFO - 查询 => {'身份证号': '110101195907066009'}
+2025-03-21 17:24:31,961 - INFO - {'operate': '访视记录', 'option': {'身份证号': '110101195907066009'}}
+2025-03-21 17:25:14,627 - INFO - {'operate': '个人专项档案_评估记录_新增评估', 'data': {'危险因素控制效果': '较好', '药物治疗效果': '很好', '非药物治疗效果': '一般', '病情转归': '其他', '危险级别转归': '中危险组', '异常详述': '阿里医院', '评估结果': '阿发放', '指导意见': '2121', '评估医生': '金浩1', '评估日期': [2025, 1, 4], '录入人': '1', '录入日期': [2025, 1, 5]}}

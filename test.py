@@ -10,45 +10,57 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
-from Foundation import NSBundle
+def replace_second(list1, list2):
+    for i in range(len(list2)):
+        if i < len(list1):
+            list2[i][1] = list1[i]
+    return list2
 
-print("导入成功")
-import objc
-from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
-from Foundation import NSBundle
 
-def get_current_input_method():
-    """
-    获取当前输入法
-    :return: 当前输入法的 ID
-    """
-    text_input_context = NSTextInputContext.sharedInputContext()
-    input_method = text_input_context.inputMethod()
-    if input_method:
-        bundle = NSBundle.bundleForClass_(input_method)
-        if bundle:
-            return bundle.bundleIdentifier()
-    return None
+list1 = ['a', 'b', 'c']
+list2 = [[1, '', 3], [1, '', 3], [1, '', 3]]
+result = replace_second(list1, list2)
+print(result)
 
-def switch_to_english_abc():
-    """
-    切换到英文 ABC 输入法
-    """
-    # 英文 ABC 输入法的 ID
-    english_abc_id = 'com.apple.keylayout.ABC'
-    text_input_context = NSTextInputContext.sharedInputContext()
-    input_methods = text_input_context.availableInputMethods()
-    for method in input_methods:
-        bundle = NSBundle.bundleForClass_(method)
-        if bundle and bundle.bundleIdentifier() == english_abc_id:
-            text_input_context.setInputMethod_(method)
-            break
-
-if __name__ == "__main__":
-    current_id = get_current_input_method()
-    if current_id and 'com.apple.inputmethod.SCIM.ITABC' in current_id:
-        switch_to_english_abc()
+# from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
+# from Foundation import NSBundle
+#
+# print("导入成功")
+# import objc
+# from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
+# from Foundation import NSBundle
+#
+# def get_current_input_method():
+#     """
+#     获取当前输入法
+#     :return: 当前输入法的 ID
+#     """
+#     text_input_context = NSTextInputContext.sharedInputContext()
+#     input_method = text_input_context.inputMethod()
+#     if input_method:
+#         bundle = NSBundle.bundleForClass_(input_method)
+#         if bundle:
+#             return bundle.bundleIdentifier()
+#     return None
+#
+# def switch_to_english_abc():
+#     """
+#     切换到英文 ABC 输入法
+#     """
+#     # 英文 ABC 输入法的 ID
+#     english_abc_id = 'com.apple.keylayout.ABC'
+#     text_input_context = NSTextInputContext.sharedInputContext()
+#     input_methods = text_input_context.availableInputMethods()
+#     for method in input_methods:
+#         bundle = NSBundle.bundleForClass_(method)
+#         if bundle and bundle.bundleIdentifier() == english_abc_id:
+#             text_input_context.setInputMethod_(method)
+#             break
+#
+# if __name__ == "__main__":
+#     current_id = get_current_input_method()
+#     if current_id and 'com.apple.inputmethod.SCIM.ITABC' in current_id:
+#         switch_to_english_abc()
 
 # # a = '残\n高\n脂'
 # # print(len(a.split("\n")))

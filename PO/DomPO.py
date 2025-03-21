@@ -139,6 +139,17 @@ class DomPO(object):
     def __init__(self, driver):
         self.driver = driver
 
+        self.selectors = {
+            'dropdown_popper': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']",
+            'dropdown_dropdown': "//div[@class='el-popper is-pure is-light el-select__dropdown' and @aria-hidden='false']",
+            'dropdown_dropdown_1': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div/div[1]/ul/li",
+            'dropdown_dropdown_2': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[2]/div[1]/ul/li",
+            'dropdown_dropdown_3': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[3]/div[1]/ul/li",
+            'dropdown_popper_1': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+            'associate_family_confirm': ".//div[3]/div/button[1]",
+            'associate_family_cancel': ".//div[3]/div/button[2]"
+        }
+
 
     def gettest(self, varUrl):
 
@@ -1293,7 +1304,7 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
-    def eleCheckboxRightLabel2(self, ele, textByX, v):
+    def eleCheckboxRightLabel2(self, ele, textByX, v, varClass='el-checkbox el-checkbox--default is-checked'):
         # 勾选复选框（包括字典key）
         # 步骤：先取消全部勾选项，再勾选指定复选框值
         # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}]) ， 只勾选 糖尿病和其他，但不处理123
@@ -1308,8 +1319,11 @@ class DomPO(object):
         # 取消全部勾选项
         for i in range(len(l_)):
             varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i+1) + "]", "class")
-            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+            # if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+            # if varDiv1class == 'el-checkbox el-checkbox--large is-checked':
+            if varDiv1class == varClass:
                 self.eleClkByX(ele, textByX + "[" + str(i+1) + "]")
+
 
         # 遍历勾选选项
         for i in range(len(v)):
@@ -1415,111 +1429,219 @@ class DomPO(object):
             self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + "'])[last()]", ".."), ".", 2)
         except:
             try:
-                self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + "'])[last()]", ".."), ".", 2)
+                self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + " '])[last()]", ".."), ".", 2)
             except:
                 try:
-                    self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + " '])[last()]", ".."), ".",2)
+                    self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + " '])[last()]", ".."), ".", 2)
                 except:
                     try:
-                        self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + " '])[last()]", ".."),".", 2)
+                        self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + "'])[last()]", ".."),".", 2)
                     except:
                         try:
                             self.eleClkByX(self.getSuperEleByX("(//div[text()='" + str(varButton) + "'])[last()]", ".."), ".", 2)
                         except:
                             try:
-                                self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + "'])[last()]", ".."), ".",2)
+                                self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + " '])[last()]", ".."), ".", 2)
                             except:
                                 try:
                                     self.eleClkByX(self.getSuperEleByX("(//div[text()='" + str(varButton) + " '])[last()]", ".."),".", 2)
                                 except:
-                                    self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + " '])[last()]", ".."),".", 2)
+                                    self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + "'])[last()]", ".."),".", 2)
 
     def eleCommon(self, ele, k, varLoc=".."):
         try:
-            return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+            return self.eleSpan(ele, k)
+            # return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
         except:
             try:
-                return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+                return self.eleDiv(ele, k)
+                # return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
             except:
                 try:
-                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                    return self.eleLabel(ele, k)
+                    # return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
                 except:
                     try:
-                        return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                        return self.eleTd(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
                     except:
-                        return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
-
+                        return self.eleP(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
     def eleCommon2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleSpan2(ele, k)
+            # return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleDiv2(ele, k)
+                # return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+            except:
+                try:
+                    return self.eleLabel2(ele, k)
+                    # return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                except:
+                    try:
+                        return self.eleTd2(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    except:
+                        return self.eleP2(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+
+    def eleSpan(self, ele, k, varLoc=".."):
         try:
             return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
         except:
             try:
-                return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+                return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + " ']", varLoc)
             except:
                 try:
-                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + " ']", varLoc)
                 except:
-                    try:
-                        return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
-                    except:
-                        return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+                    return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + "']", varLoc)
+    def eleSpan2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + "']", varLoc)
 
     def eleDiv(self, ele, k, varLoc=".."):
-        return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        try:
+            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + "']", varLoc)
+    def eleDiv2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + "']", varLoc)
 
     def eleLabel(self, ele, k, varLoc=".."):
-        return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
-
-    def eleSpan(self, ele, k, varLoc=".."):
-        return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        try:
+            return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + "']", varLoc)
+    def eleLabel2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + "']", varLoc)
 
     def eleTd(self, ele, k, varLoc=".."):
-        return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+        try:
+            return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + "']", varLoc)
+    def eleTd2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + "']", varLoc)
 
     def eleP(self, ele, k, varLoc=".."):
-        return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+        try:
+            return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + "']", varLoc)
+    def eleP2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + "']", varLoc)
+
 
 
 
     # todo dropdown
 
-    def _dropdown(self, varTextByXs, v):
-        l_ = self.getTextByXs(varTextByXs)
+    def _dropdown(self, varSelectors, v):
+        l_ = self.getTextByXs(varSelectors)
         # print(l_)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
         # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
         if isinstance(v, str):
             # 单选
-            self.clkByX(varTextByXs + "[" + str(d_4[v]) + "]", 1)
+            self.clkByX(varSelectors + "[" + str(d_4[v]) + "]", 1)
         elif isinstance(v, list):
             # 多选
             for i in range(len(v)):
-                self.clkByX(varTextByXs + "[" + str(d_4[v[i]]) + "]", 1)
-    def dropdown(self, varDropdownByX, varTextByXs, v):
+                self.clkByX(varSelectors + "[" + str(d_4[v[i]]) + "]", 1)
+    def dropdown(self, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"):
         # 点击下拉框，遍历文本，选择值
-        # self.dropdown(".//div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
-        # _dropdownByX = "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"
-        self.clkByX(varDropdownByX, 1)
-        self._dropdown(varTextByXs, v)
+        self.clkByX(varXpath, 1)
+        self._dropdown(varSelectors, v)
        
-    def eleDropdown(self, ele, varDropdownByX, varTextByXs, v):
+    def eleDropdown(self, ele, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"):
         # ele点击下拉框，遍历文本，选择值
         # self.eleDropdown(self.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
-        self.eleClkByX(ele, varDropdownByX, 1)
-        self._dropdown(varTextByXs, v)
+        self.eleClkByX(ele, varXpath, 1)
+        self._dropdown(varSelectors, v)
         
 
-    def dropdownDate1(self, varDropdownByX, v):
+    def dropdownDate1(self, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"):
         # 点击单个日期控件下拉框，选择日期
         # self.dropdownDate1(".//input", v)
 
-        self.clkByX(varDropdownByX)
-        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+        self.clkByX(varXpath)
+        # varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
 
         # 1 获取当前年和月
-        defaultY = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
-        defaultM = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
+        defaultY = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[2]")
         defaultYear = int(defaultY.split(" 年")[0])
         defaultMonth = int(defaultM.split(" 月")[0])
         # print("defaultYear", defaultYear)
@@ -1530,31 +1652,31 @@ class DomPO(object):
             year = defaultYear - v[0]
             for i in range(year):
                 # 上年
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[1]")
         elif defaultYear < v[0]:
             year = v[0] - defaultYear
             for i in range(year):
                 # 后年
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[3]")
         # 切换月
         if v[1] < defaultMonth:
             month = defaultMonth - v[1]
             for i in range(month):
                 # 上月
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[2]")
         elif defaultMonth < v[1]:
             month = v[1] - defaultMonth
             for i in range(month):
                 # 后月
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[4]")
 
         # 3 遍历日期列表
-        tr2 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
-        tr3 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
-        tr4 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
-        tr5 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
-        tr6 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
-        tr7 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        tr2 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
         l_1 = []
         l_tr2 = tr2[0].split("\n")
         l_tr2 = [int(i) for i in l_tr2]
@@ -1583,21 +1705,19 @@ class DomPO(object):
         for i in range(len(l_1)):
             for j in range(len(l_1[i])):
                 if l_1[i][j] == v[2]:
-                    self.clkByX(
-                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
-                        2)
+                    self.clkByX(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
-    def eleDropdownDate1(self, ele, varDropdownByX, v):
+    def eleDropdownDate1(self, ele, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"):
         # ele点击单个日期控件下拉框，选择日期
         # self.eleDropdownDate1(self.eleCommon(ele, k), ".//input", v)
 
-        self.eleScrollViewByX(ele, varDropdownByX, 2)
-        self.eleClkByX(ele, varDropdownByX)
-        varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+        self.eleScrollViewByX(ele, varXpath, 2)
+        self.eleClkByX(ele, varXpath)
+        # varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
 
         # 1 获取当前年和月
-        defaultY = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[1]")
-        defaultM = self.getTextByX(varPrefix + "/div/div[1]/div/div[1]/span[2]")
+        defaultY = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[2]")
         defaultYear = int(defaultY.split(" 年")[0])
         defaultMonth = int(defaultM.split(" 月")[0])
         # print("defaultYear", defaultYear)
@@ -1608,31 +1728,31 @@ class DomPO(object):
             year = defaultYear - v[0]
             for i in range(year):
                 # 上年
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[1]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[1]")
         elif defaultYear < v[0]:
             year = v[0] - defaultYear
             for i in range(year):
                 # 后年
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[3]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[3]")
         # 切换月
         if v[1] < defaultMonth:
             month = defaultMonth - v[1]
             for i in range(month):
                 # 上月
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[2]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[2]")
         elif defaultMonth < v[1]:
             month = v[1] - defaultMonth
             for i in range(month):
                 # 后月
-                self.clkByX(varPrefix + "/div/div[1]/div/div[1]/button[4]")
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[4]")
 
         # 3 遍历日期列表
-        tr2 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
-        tr3 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
-        tr4 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
-        tr5 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
-        tr6 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
-        tr7 = self.getTextByXs(varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        tr2 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
         l_1 = []
         l_tr2 = tr2[0].split("\n")
         l_tr2 = [int(i) for i in l_tr2]
@@ -1661,9 +1781,7 @@ class DomPO(object):
         for i in range(len(l_1)):
             for j in range(len(l_1[i])):
                 if l_1[i][j] == v[2]:
-                    self.clkByX(
-                        varPrefix + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]",
-                        2)
+                    self.clkByX(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
 
 
