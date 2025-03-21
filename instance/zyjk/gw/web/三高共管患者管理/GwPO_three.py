@@ -1880,24 +1880,87 @@ class GwPO_three():
                         Web_PO.eleDropdownDate1(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/input", v)
                 Web_PO.button1('取消')
                 # Web_PO.button1('保存')
-
-
-
             elif d_['operate'] == '个人专项档案_评估记录_结案':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[1]/div[2]", 2)
                 Web_PO.button1('结案')
+
             elif d_['operate'] == '个人专项档案_随访记录_新增随访':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[1]/div[3]", 2)
                 Web_PO.button1('新增随访')
+                ele = Web_PO.getSuperEleByX("//form", ".")
+                for k, v in d_['data'].items():
+                    if k in ["随访日期", '下次随访时间']:
+                        Web_PO.eleDropdownDate1(Web_PO.eleCommon2(ele, k), ".//td[2]/div/div/div/input", v)
+                    elif k in ['随访方式']:
+                        Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//td[4]/div/div/div/label", v)
+                    elif k in ['冠心病类型']:
+                        Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k), ".//td[2]/div/div/div/label", v)
+                    elif k in ['目前症状']:
+                        Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon2(ele, k), ".//td[2]/div/div/div/label", v)
+                    elif k in ['体征']:
+                        for k1, v1 in v.items():
+                            if k1 in ['血压']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//tr[6]/td[2]/div/div/div/input", v1[0])
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//tr[6]/td[3]/div/div/div/input", v1[1])
+                                # /html/body/div[1]/div/div[3]/section/div/div[2]/div/form/table/tbody/tr[6]/td[2]/div/div/div/input
+                                # /html/body/div[1]/div/div[3]/section/div/div[2]/div/form/table/tbody/tr[6]/td[3]/div/div/div/input
+                            if k1 in ['体重']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//tr[6]/td[5]/div/div/div/input", v1)
+                                # /html/body/div[1]/div/div[3]/section/div/div[2]/div/form/table/tbody/tr[8]/td[2]/div/div/div/input
+                                # /html/body/div[1]/div/div[3]/section/div/div[2]/div/form/table/tbody/tr[6]/td[5]/div/div/div/input
+                            if k1 in ['身高']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[7]/td[2]/div/div/div/input", v1)
+                                # /html/body/div[1]/div/div[3]/section/div/div[2]/div/form/table/tbody/tr[7]/td[2]/div/div/div/input
+                            if k1 in ['空腹血糖']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[8]/td[2]/div/div/div/input", v1)
+                            if k1 in ['心率']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//tr[8]/td[5]/div/div/div/input", v1)
+                            if k1 in ['其他']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[9]/td[2]/div/div/div/input", v1)
+                    elif k in ['生活方式']:
+                        for k1, v1 in v.items():
+                            if k1 in ['日吸烟量']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[12]/td[2]/div/div/div/input", v1)
+                            if k1 in ['日饮酒量']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[12]/td[4]/div/div/div/input", v1)
+                            if k1 in [ '运动频率']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[13]/td[2]/div/div/div/input", v1)
+                            if k1 in ['每次持续时间']:
+                                Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//tr[13]/td[4]/div/div/div/input", v1)
+                            if k1 in ['摄盐量']:
+                                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k1), ".//tr[14]/td[2]/div/div/div/label", v1)
+                            if k1 in ['心理调整']:
+                                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k1), ".//tr[14]/td[4]/div/div/div/label", v1)
+                            if k1 in ['遵医行为']:
+                                Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k1), ".//tr[15]/td[2]/div/div/div/label", v1)
+                    elif k in ['服药依从性', '此次随访分类']:
+                        Web_PO.eleRadioRightLabel(Web_PO.eleCommon2(ele, k1), ".//td[2]/div/div/div/label", v1)
+                    elif k in ['特殊治疗', '非药物治疗措施']:
+                        Web_PO.eleCheckboxRightLabel2(Web_PO.eleCommon2(ele, k1), ".//td[2]/div/div/div/label", v1)
+                    # elif k in ['非药物治疗措施']:
+                    # elif k in ['此次随访分类']:
+                    elif k in ['健康评价']:
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon2(ele, k1), ".//td[2]/div/div/div/input", v)
+                    elif k in ['医生签名']:
+                        Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k1), ".//td[4]/div/div/div/div/div/input", v)
+                        # /html/body/div[1]/div/div[3]/section/div/div[2]/div/form/table/tbody/tr[21]/td[4]/div/div/div/div/div/input
+                    elif k in ['居民（家属）签名']:
+                        Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k1), ".//td[2]/div/div/div/input", v)
+            
+
+
+
             elif d_['operate'] == '个人专项档案_随访记录_结案':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[1]/div[3]", 2)
                 Web_PO.button1('结案')
+
             elif d_['operate'] == '个人专项档案_体检记录_新增体检':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[1]/div[4]", 2)
                 Web_PO.button1('新增体检')
             elif d_['operate'] == '个人专项档案_体检记录_结案':
                 Web_PO.clkByX("/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[1]/div[4]", 2)
                 Web_PO.button1('结案')
+
             else:
                 print("error, 无法操作!")
 
