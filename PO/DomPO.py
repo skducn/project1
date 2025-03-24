@@ -826,6 +826,11 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
+    def eleTabByX(self, ele, varXpath, t=1):
+        # 定位元素之输入并回车
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
+
     def eleSetTextTabByX(self, ele, varXpath, varText, t=1):
         # 输入框双击后输入文本，按Tab
         ele2 = ele.find_element(*(By.XPATH, varXpath))
