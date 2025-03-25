@@ -6,17 +6,18 @@
 # *****************************************************************
 
 from GwPO import *
-Gw_PO = GwPO()
-
+logName = "./" + os.path.basename(__file__).split('.')[0] + ".log"
+Gw_PO = GwPO(logName)
 
 # 1，登录
-Gw_PO.login('http://192.168.0.203:30080/#/login', '11011', 'HHkk2327447')
+Gw_PO.login('http://192.168.0.203:30080/#/login', '11012', 'Jinhao123')
 
-# 获取家医签约二级菜单连接
-Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[4]", 2)  # 点击一级菜单家医签约
-d_menu_sign = Gw_PO.getMenu2Url()
-print('家医签约 =>', d_menu_sign)
-# 家医签约 => {'签约居民概况': 'http://192.168.0.203:30080/Sign/jmsign/qyindex', '已签约居民': 'http://192.168.0.203:30080/Sign/jmsign/signed', '履约服务': 'http://192.168.0.203:30080/Sign/jmsign/qyservice', '归档记录': 'http://192.168.0.203:30080/Sign/jmsign/qyfile', '履约提醒': 'http://192.168.0.203:30080/Sign/jmsign/qyremind', '档案未签约': 'http://192.168.0.203:30080/Sign/jmsign/ready'}
+# 获取三高共管二级菜单连接
+Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[4]", 2)  # 点击一级菜单三高共管
+d_menu_threeHighs = Gw_PO.getMenu2Url()
+print('d_menu_basicPHS = ', d_menu_threeHighs)
+# d_menu_basicPHS =  {'签约居民概况': 'http://192.168.0.203:30080/Sign/jmsign/qyindex', '已签约居民': 'http://192.168.0.203:30080/Sign/jmsign/signed', '履约服务': 'http://192.168.0.203:30080/Sign/jmsign/qyservice', '归档记录': 'http://192.168.0.203:30080/Sign/jmsign/qyfile', '履约提醒': 'http://192.168.0.203:30080/Sign/jmsign/qyremind', '档案未签约': 'http://192.168.0.203:30080/Sign/jmsign/ready'}
+
 
 # todo 4 家医签约
 

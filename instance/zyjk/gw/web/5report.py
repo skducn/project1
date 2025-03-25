@@ -6,16 +6,26 @@
 # *****************************************************************
 
 from GwPO import *
-Gw_PO = GwPO()
+logName = "./" + os.path.basename(__file__).split('.')[0] + ".log"
+Gw_PO = GwPO(logName)
 
 # 1，登录
-Gw_PO.login('http://192.168.0.203:30080/#/login', '11011', 'HHkk2327447')
+Gw_PO.login('http://192.168.0.203:30080/#/login', '11012', 'Jinhao123')
 
-
-# 获取统计报表二级菜单连接
-Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[5]", 2)  # 点击一级菜单统计报表
+# 获取三高共管二级菜单连接
+Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[5]", 2)  # 点击一级菜单三高共管
 d_menu_report = Gw_PO.getMenu2Url()
-print('统计报表 =>', d_menu_report)
+print('d_menu_report = ', d_menu_report)
+# d_menu_basicPHS =  {'城乡居民健康档案管理报表': 'http://192.168.0.203:30080/report/Statistics/report1', '高血压患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report2', '糖尿病患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report3', '老年人健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report4', '0-6岁儿童健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report5', '孕产妇健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report6', '严重精神障碍患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report7', '肺结核患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report8', '中医药健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report9', '健康教育报表': 'http://192.168.0.203:30080/report/Statistics/report10', '家医签约完成情况报表': 'http://192.168.0.203:30080/report/Statistics/report11', '重点人群签约统计报表': 'http://192.168.0.203:30080/report/Statistics/report12', '签约服务包统计报表': 'http://192.168.0.203:30080/report/Statistics/report13', '慢阻肺病报表': 'http://192.168.0.203:30080/report/Statistics/report19', '健康档案调阅统计': 'http://192.168.0.203:30080/report/Statistics/report20', '慢病管理业务监管': 'http://192.168.0.203:30080/report/Statistics2/report14', '妇幼保健业务监管(孕产妇)': 'http://192.168.0.203:30080/report/Statistics2/report15', '精神疾病业务监管': 'http://192.168.0.203:30080/report/Statistics2/report16', '儿童保健业务监管(新生儿)': 'http://192.168.0.203:30080/report/Statistics2/report17', '儿童保健业务监管(5岁以下)': 'http://192.168.0.203:30080/report/Statistics2/report18'}
+
+# # 1，登录
+# Gw_PO.login('http://192.168.0.203:30080/#/login', '11011', 'HHkk2327447')
+#
+#
+# # 获取统计报表二级菜单连接
+# Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/ul/li[5]", 2)  # 点击一级菜单统计报表
+# d_menu_report = Gw_PO.getMenu2Url()
+# print('统计报表 =>', d_menu_report)
 # 统计报表 => {'城乡居民健康档案管理报表': 'http://192.168.0.203:30080/report/Statistics/report1', '高血压患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report2', '糖尿病患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report3', '老年人健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report4', '0-6岁儿童健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report5', '孕产妇健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report6', '严重精神障碍患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report7', '肺结核患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report8', '中医药健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report9', '健康教育报表': 'http://192.168.0.203:30080/report/Statistics/report10', '家医签约完成情况报表': 'http://192.168.0.203:30080/report/Statistics/report11', '重点人群签约统计报表': 'http://192.168.0.203:30080/report/Statistics/report12', '签约服务包统计报表': 'http://192.168.0.203:30080/report/Statistics/report13', '慢阻肺病报表': 'http://192.168.0.203:30080/report/Statistics/report19', '慢病管理业务监管': 'http://192.168.0.203:30080/report/Statistics2/report14', '妇幼保健业务监管(孕产妇)': 'http://192.168.0.203:30080/report/Statistics2/report15', '精神疾病业务监管': 'http://192.168.0.203:30080/report/Statistics2/report16', '儿童保健业务监管(新生儿)': 'http://192.168.0.203:30080/report/Statistics2/report17', '儿童保健业务监管(5岁以下)': 'http://192.168.0.203:30080/report/Statistics2/report18'}
 
 

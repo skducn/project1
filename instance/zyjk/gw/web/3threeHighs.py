@@ -20,23 +20,23 @@ print('d_menu_basicPHS = ', d_menu_threeHighs)
 
 # todo 3 三高共管
 
-# todo 1.1, 三高共管患者管理 - 三高共管概况
+# todo 1.1, 三高共管 - 三高共管概况
 # Web_PO.opnLabel(d_menu_threeHighs['三高共管概况'])
 # Web_PO.swhLabel(1)
 
-# todo 1.2, 三高共管患者管理 - 三高随访管理
+# todo 1.2, 三高共管 - 三高随访管理
 # Web_PO.opnLabel(d_menu_threeHighs['三高随访管理'])
 # Web_PO.swhLabel(2)
 
-# todo 1.1, 三高共管患者管理 - 心血管评估管理
+# todo 1.1, 三高共管 - 心血管评估管理
 # Web_PO.opnLabel(d_menu_threeHighs['心血管评估管理'])
 # Web_PO.swhLabel(1)
 
-# todo 1.2, 三高共管患者管理 - 并发症管理
+# todo 1.2, 三高共管 - 并发症管理
 # Web_PO.opnLabel(d_menu_threeHighs['心血管评估管理'])
 # Web_PO.swhLabel(2)
 
-# todo 1.1, 三高共管患者管理 - 三高患者管理
+# todo 1.1, 三高共管 - 三高患者管理
 # Web_PO.opnLabel(d_menu_threeHighs['三高患者管理'])
 # Web_PO.swhLabel(1)
 

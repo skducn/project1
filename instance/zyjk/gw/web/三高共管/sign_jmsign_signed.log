@@ -1,0 +1,86 @@
+2025-03-25 10:20:43,658 - ERROR - 查询 => 签约团队: 
+2025-03-25 10:20:44,972 - ERROR - 查询 => 签约服务包: ['', '']
+2025-03-25 10:21:44,408 - INFO - 查询 => {'姓名': '胡成', '身份证号': '372922198510281068', '居民基本情况': ['孕产妇', '糖尿病'], '签约机构': '张星卫生院', '签约团队': '', '签约服务包': ['', ''], '签约状态': '已签约', '家庭住址': '123123', '录入人员': 'zhangsn', '签约类型': '个人', '签约日期': [[2025, 1, 2], [2025, 2, 3]], '出生日期': [[2025, 2, 2], [2025, 3, 3]]}
+2025-03-25 10:24:10,931 - INFO - 查询 => {'姓名': '胡成', '身份证号': '372922198510281068', '居民基本情况': ['孕产妇', '糖尿病'], '签约机构': '张星卫生院', '签约服务包': ['基础服务包（2019版）', '老年人签约服务包（2019版）'], '签约状态': '已签约', '家庭住址': '123123', '录入人员': 'zhangsn', '签约类型': '个人', '签约日期': [[2025, 1, 2], [2025, 2, 3]], '出生日期': [[2025, 2, 2], [2025, 3, 3]]}
+2025-03-25 10:31:26,914 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 10:32:29,882 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 10:32:36,467 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 10:56:36,653 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 10:56:43,245 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 10:56:43,246 - INFO - {'operate': '更新签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['一般人群', '低保'], '签约类型': '个人', '服务包选择': '0-6岁儿童个性签约服务包（2019版）', '签约医生': '个人', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 10:57:34,387 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 10:57:40,973 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 10:57:47,662 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['一般人群', '低保'], '签约类型': '个人', '服务包选择': '0-6岁儿童个性签约服务包（2019版）', '签约医生': '个人', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 10:59:41,236 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 10:59:47,785 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 10:59:54,384 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:01:13,020 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:01:19,602 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:01:26,305 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:02:44,718 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:02:51,297 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:02:59,139 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:04:54,249 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:05:00,810 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:05:10,943 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:07:30,103 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:07:36,664 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:07:46,885 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '家庭(责任)护士': '个人22', '公共卫生人员': 'chen', '签约日期': [2025, 3, 4], '生效日期': [2025, 3, 5], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:10:41,743 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:10:48,414 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:11:51,191 - INFO - Received signal: SIGINT
+2025-03-25 11:11:51,192 - INFO - Program is terminating...
+2025-03-25 11:11:51,197 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23911c60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,200 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23912050>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,234 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23912110>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,305 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23912800>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,327 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac239129e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,330 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23912b90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,335 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23912fb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,338 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23913190>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,341 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23913340>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,346 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23913760>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,349 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23913940>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,351 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fac23913af0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c3a1937b12813c1b9951078157acd132/element
+2025-03-25 11:11:51,354 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '签约日期': [2025, 3, 4], '生效日期': [2025, 3, 5], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:12:11,986 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:12:18,576 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:12:44,764 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '签约日期': [2025, 3, 4], '生效日期': [2025, 3, 5], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:14:36,649 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:14:43,244 - INFO - {'operate': '更新签约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:16:32,388 - ERROR - 失败 =>{'operate': '更新居民签约', 'data': {'居民姓名': '章三', '手机号': '13534343435', '家庭住址': '上海浦东00号', '居民基本情况': ['五保', '低保'], '签约类型': '个人', '服务包选择': '基础服务包（2019版）', '签约医生': '村卫生院', '签约日期': [2025, 3, 4], '生效日期': [2025, 3, 5], '监护人姓名': '章三', '与乙方关系': '里斯本', '联系电话': '58667676', '身份证号': '310101198004110012'}}
+2025-03-25 11:21:15,265 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:21:21,803 - INFO - {'operate': '解约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:21:22,064 - ERROR - 失败 =>{'operate': '解约', 'data': {'申请日期': [2025, 1, 6], '解约原因': '总体风险评估'}}
+2025-03-25 11:23:34,886 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:23:41,406 - INFO - {'operate': '解约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:23:41,670 - ERROR - 失败 =>{'operate': '解约', 'data': {'申请日期': [2025, 1, 6], '解约原因': '总体风险评估'}}
+2025-03-25 11:25:39,860 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:25:46,386 - INFO - {'operate': '解约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:25:56,699 - ERROR - 失败 =>{'operate': '解约', 'data': {'申请日期': [2025, 1, 6], '解约原因': '总体风险评估'}}
+2025-03-25 11:26:33,367 - INFO - 查询 => {'姓名': '李明'}
+2025-03-25 11:26:39,901 - INFO - {'operate': '解约', 'option': {'身份证号': '110107199001012801'}}
+2025-03-25 11:26:50,856 - INFO - {'operate': '解约', 'data': {'申请日期': [2025, 1, 6], '解约原因': '总体风险评估'}}
+2025-03-25 11:41:44,917 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:42:48,617 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:42:53,156 - ERROR - 查询 => 
+2025-03-25 11:42:55,295 - INFO - 查询 => {'option': {'身份证号': '372922198510281068'}}
+2025-03-25 11:44:00,607 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:44:09,529 - ERROR - 查询 => 
+2025-03-25 11:44:11,674 - INFO - 查询 => {'option': {'身份证号': '372922198510281068'}}
+2025-03-25 11:45:41,716 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:45:50,447 - INFO - 查询 => {'option': {'身份证号': '372922198510281068'}}
+2025-03-25 11:46:56,958 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:48:25,076 - INFO - Received signal: SIGINT
+2025-03-25 11:48:25,076 - INFO - Program is terminating...
+2025-03-25 11:48:25,228 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7cd3a4d390>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f1a266d0426904be4e6f8aaf55cd2af5/element
+2025-03-25 11:48:25,231 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7cd3a4df00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f1a266d0426904be4e6f8aaf55cd2af5/element
+2025-03-25 11:48:25,233 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7cd3a4e050>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f1a266d0426904be4e6f8aaf55cd2af5/element
+2025-03-25 11:48:46,016 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:49:05,089 - INFO - 查询 => {'option': {'身份证号': '372922198510281068'}}
+2025-03-25 11:49:53,008 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 11:50:07,583 - INFO - 查询 => {'option': 'all'}
+2025-03-25 13:12:43,474 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 13:13:02,747 - INFO - 查询 => {'option': {'身份证号': '372922198510281068'}, 'data': {'更换原因': '123'}}
+2025-03-25 13:14:14,743 - INFO - 查询 => {'姓名': '丽丽'}
+2025-03-25 13:14:36,251 - INFO - 查询 => {'option': {'身份证号': '372922198510281068'}, 'data': {'更换原因': '123'}}
