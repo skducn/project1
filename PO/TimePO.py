@@ -412,9 +412,9 @@ if __name__ == "__main__":
     # print(time.time())
     # print(Time_PO.sec2hms2(1683352467))
     # print(Time_PO.sec2hms1(time.time()))
-    # print(Time_PO.getYear())  # 2020
-    # print(Time_PO.getMonth())  # 03
-    # print(Time_PO.getDay())  # 19
+    print(Time_PO.getYear())  # 2020
+    print(Time_PO.getMonth())  # 03
+    print(Time_PO.getDay())  # 19
     # print(Time_PO.getYearMonth())  # 202003
     # print(Time_PO.getMonthDay())  # 0319
     #

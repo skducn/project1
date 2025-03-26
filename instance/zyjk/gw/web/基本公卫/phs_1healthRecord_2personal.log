@@ -51,3 +51,935 @@
 2025-03-25 16:47:02,163 - INFO - {'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
 2025-03-25 16:47:09,371 - INFO - Received signal: SIGINT
 2025-03-25 16:47:09,373 - INFO - Program is terminating...
+2025-03-26 13:47:00,488 - ERROR - Health record update failed: Message: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000100e98808 chromedriver + 6105096
+1   chromedriver                        0x0000000100e9040a chromedriver + 6071306
+2   chromedriver                        0x000000010092b600 chromedriver + 415232
+3   chromedriver                        0x000000010093233a chromedriver + 443194
+4   chromedriver                        0x0000000100934c03 chromedriver + 453635
+5   chromedriver                        0x0000000100934cb3 chromedriver + 453811
+6   chromedriver                        0x000000010097416e chromedriver + 713070
+7   chromedriver                        0x00000001009a3612 chromedriver + 906770
+8   chromedriver                        0x0000000100970d68 chromedriver + 699752
+9   chromedriver                        0x00000001009a37ce chromedriver + 907214
+10  chromedriver                        0x00000001009cac3d chromedriver + 1068093
+11  chromedriver                        0x00000001009a33e3 chromedriver + 906211
+12  chromedriver                        0x000000010096f29a chromedriver + 692890
+13  chromedriver                        0x00000001009703f1 chromedriver + 697329
+14  chromedriver                        0x0000000100e57d00 chromedriver + 5840128
+15  chromedriver                        0x0000000100e5bbd4 chromedriver + 5856212
+16  chromedriver                        0x0000000100e32936 chromedriver + 5687606
+17  chromedriver                        0x0000000100e5c5cb chromedriver + 5858763
+18  chromedriver                        0x0000000100e21024 chromedriver + 5615652
+19  chromedriver                        0x0000000100e7e368 chromedriver + 5997416
+20  chromedriver                        0x0000000100e7e52f chromedriver + 5997871
+21  chromedriver                        0x0000000100e8ffe8 chromedriver + 6070248
+22  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+23  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 13:53:37,992 - ERROR - Health record update failed: Message: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000011057c808 chromedriver + 6105096
+1   chromedriver                        0x000000011057440a chromedriver + 6071306
+2   chromedriver                        0x000000011000f600 chromedriver + 415232
+3   chromedriver                        0x000000011001633a chromedriver + 443194
+4   chromedriver                        0x0000000110018c03 chromedriver + 453635
+5   chromedriver                        0x0000000110018cb3 chromedriver + 453811
+6   chromedriver                        0x000000011005816e chromedriver + 713070
+7   chromedriver                        0x0000000110087612 chromedriver + 906770
+8   chromedriver                        0x0000000110054d68 chromedriver + 699752
+9   chromedriver                        0x00000001100877ce chromedriver + 907214
+10  chromedriver                        0x00000001100aec3d chromedriver + 1068093
+11  chromedriver                        0x00000001100873e3 chromedriver + 906211
+12  chromedriver                        0x000000011005329a chromedriver + 692890
+13  chromedriver                        0x00000001100543f1 chromedriver + 697329
+14  chromedriver                        0x000000011053bd00 chromedriver + 5840128
+15  chromedriver                        0x000000011053fbd4 chromedriver + 5856212
+16  chromedriver                        0x0000000110516936 chromedriver + 5687606
+17  chromedriver                        0x00000001105405cb chromedriver + 5858763
+18  chromedriver                        0x0000000110505024 chromedriver + 5615652
+19  chromedriver                        0x0000000110562368 chromedriver + 5997416
+20  chromedriver                        0x000000011056252f chromedriver + 5997871
+21  chromedriver                        0x0000000110573fe8 chromedriver + 6070248
+22  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+23  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:02:53,097 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[1]/div[2]/div/div/div[2]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010292b808 chromedriver + 6105096
+1   chromedriver                        0x000000010292340a chromedriver + 6071306
+2   chromedriver                        0x00000001023be600 chromedriver + 415232
+3   chromedriver                        0x00000001024102c0 chromedriver + 750272
+4   chromedriver                        0x0000000102410511 chromedriver + 750865
+5   chromedriver                        0x0000000102403e76 chromedriver + 700022
+6   chromedriver                        0x000000010243663d chromedriver + 906813
+7   chromedriver                        0x0000000102403d68 chromedriver + 699752
+8   chromedriver                        0x00000001024367ce chromedriver + 907214
+9   chromedriver                        0x000000010245dc3d chromedriver + 1068093
+10  chromedriver                        0x00000001024363e3 chromedriver + 906211
+11  chromedriver                        0x000000010240229a chromedriver + 692890
+12  chromedriver                        0x00000001024033f1 chromedriver + 697329
+13  chromedriver                        0x00000001028ead00 chromedriver + 5840128
+14  chromedriver                        0x00000001028eebd4 chromedriver + 5856212
+15  chromedriver                        0x00000001028c5936 chromedriver + 5687606
+16  chromedriver                        0x00000001028ef5cb chromedriver + 5858763
+17  chromedriver                        0x00000001028b4024 chromedriver + 5615652
+18  chromedriver                        0x0000000102911368 chromedriver + 5997416
+19  chromedriver                        0x000000010291152f chromedriver + 5997871
+20  chromedriver                        0x0000000102922fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:06:46,765 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[1]/div[2]/div/div/div[2]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000106941808 chromedriver + 6105096
+1   chromedriver                        0x000000010693940a chromedriver + 6071306
+2   chromedriver                        0x00000001063d4600 chromedriver + 415232
+3   chromedriver                        0x00000001064262c0 chromedriver + 750272
+4   chromedriver                        0x0000000106426511 chromedriver + 750865
+5   chromedriver                        0x0000000106419e76 chromedriver + 700022
+6   chromedriver                        0x000000010644c63d chromedriver + 906813
+7   chromedriver                        0x0000000106419d68 chromedriver + 699752
+8   chromedriver                        0x000000010644c7ce chromedriver + 907214
+9   chromedriver                        0x0000000106473c3d chromedriver + 1068093
+10  chromedriver                        0x000000010644c3e3 chromedriver + 906211
+11  chromedriver                        0x000000010641829a chromedriver + 692890
+12  chromedriver                        0x00000001064193f1 chromedriver + 697329
+13  chromedriver                        0x0000000106900d00 chromedriver + 5840128
+14  chromedriver                        0x0000000106904bd4 chromedriver + 5856212
+15  chromedriver                        0x00000001068db936 chromedriver + 5687606
+16  chromedriver                        0x00000001069055cb chromedriver + 5858763
+17  chromedriver                        0x00000001068ca024 chromedriver + 5615652
+18  chromedriver                        0x0000000106927368 chromedriver + 5997416
+19  chromedriver                        0x000000010692752f chromedriver + 5997871
+20  chromedriver                        0x0000000106938fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:07:53,042 - INFO - Received signal: SIGINT
+2025-03-26 14:07:53,042 - INFO - Program is terminating...
+2025-03-26 14:07:53,151 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6f2261000>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/265484bbdfaf6766c4c6b8efb0411432/element
+2025-03-26 14:07:53,154 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6f2261900>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/265484bbdfaf6766c4c6b8efb0411432/element
+2025-03-26 14:07:53,156 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6f2261bd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/265484bbdfaf6766c4c6b8efb0411432/element
+2025-03-26 14:07:53,168 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6f2261ff0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/265484bbdfaf6766c4c6b8efb0411432/element
+2025-03-26 14:07:53,189 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6f22621d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/265484bbdfaf6766c4c6b8efb0411432/element
+2025-03-26 14:07:53,192 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fe6f2262380>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/265484bbdfaf6766c4c6b8efb0411432/element
+2025-03-26 14:08:41,298 - ERROR - Health record update failed: Message: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010e483808 chromedriver + 6105096
+1   chromedriver                        0x000000010e47b40a chromedriver + 6071306
+2   chromedriver                        0x000000010df16600 chromedriver + 415232
+3   chromedriver                        0x000000010df1d33a chromedriver + 443194
+4   chromedriver                        0x000000010df1fc03 chromedriver + 453635
+5   chromedriver                        0x000000010df1fcb3 chromedriver + 453811
+6   chromedriver                        0x000000010df5f16e chromedriver + 713070
+7   chromedriver                        0x000000010df8e612 chromedriver + 906770
+8   chromedriver                        0x000000010df5bd68 chromedriver + 699752
+9   chromedriver                        0x000000010df8e7ce chromedriver + 907214
+10  chromedriver                        0x000000010dfb5c3d chromedriver + 1068093
+11  chromedriver                        0x000000010df8e3e3 chromedriver + 906211
+12  chromedriver                        0x000000010df5a29a chromedriver + 692890
+13  chromedriver                        0x000000010df5b3f1 chromedriver + 697329
+14  chromedriver                        0x000000010e442d00 chromedriver + 5840128
+15  chromedriver                        0x000000010e446bd4 chromedriver + 5856212
+16  chromedriver                        0x000000010e41d936 chromedriver + 5687606
+17  chromedriver                        0x000000010e4475cb chromedriver + 5858763
+18  chromedriver                        0x000000010e40c024 chromedriver + 5615652
+19  chromedriver                        0x000000010e469368 chromedriver + 5997416
+20  chromedriver                        0x000000010e46952f chromedriver + 5997871
+21  chromedriver                        0x000000010e47afe8 chromedriver + 6070248
+22  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+23  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:10:41,142 - ERROR - Health record update failed: Message: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x00000001058c9808 chromedriver + 6105096
+1   chromedriver                        0x00000001058c140a chromedriver + 6071306
+2   chromedriver                        0x000000010535c600 chromedriver + 415232
+3   chromedriver                        0x000000010536333a chromedriver + 443194
+4   chromedriver                        0x0000000105365c03 chromedriver + 453635
+5   chromedriver                        0x0000000105365cb3 chromedriver + 453811
+6   chromedriver                        0x00000001053a516e chromedriver + 713070
+7   chromedriver                        0x00000001053d4612 chromedriver + 906770
+8   chromedriver                        0x00000001053a1d68 chromedriver + 699752
+9   chromedriver                        0x00000001053d47ce chromedriver + 907214
+10  chromedriver                        0x00000001053fbc3d chromedriver + 1068093
+11  chromedriver                        0x00000001053d43e3 chromedriver + 906211
+12  chromedriver                        0x00000001053a029a chromedriver + 692890
+13  chromedriver                        0x00000001053a13f1 chromedriver + 697329
+14  chromedriver                        0x0000000105888d00 chromedriver + 5840128
+15  chromedriver                        0x000000010588cbd4 chromedriver + 5856212
+16  chromedriver                        0x0000000105863936 chromedriver + 5687606
+17  chromedriver                        0x000000010588d5cb chromedriver + 5858763
+18  chromedriver                        0x0000000105852024 chromedriver + 5615652
+19  chromedriver                        0x00000001058af368 chromedriver + 5997416
+20  chromedriver                        0x00000001058af52f chromedriver + 5997871
+21  chromedriver                        0x00000001058c0fe8 chromedriver + 6070248
+22  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+23  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:11:39,584 - INFO - Received signal: SIGINT
+2025-03-26 14:11:39,584 - INFO - Program is terminating...
+2025-03-26 14:11:40,018 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee28668a90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,021 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee286693c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,024 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee28669540>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,030 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee28669960>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,032 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee28669b40>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,034 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee28669cf0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,039 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee2866a110>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,042 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee2866a2f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:40,044 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fee2866a4a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/2df0967c34054e86c5ecfdbf7022499d/element
+2025-03-26 14:11:59,590 - ERROR - Health record update failed: Message: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000109255808 chromedriver + 6105096
+1   chromedriver                        0x000000010924d40a chromedriver + 6071306
+2   chromedriver                        0x0000000108ce8600 chromedriver + 415232
+3   chromedriver                        0x0000000108cef33a chromedriver + 443194
+4   chromedriver                        0x0000000108cf1c03 chromedriver + 453635
+5   chromedriver                        0x0000000108cf1cb3 chromedriver + 453811
+6   chromedriver                        0x0000000108d3116e chromedriver + 713070
+7   chromedriver                        0x0000000108d60612 chromedriver + 906770
+8   chromedriver                        0x0000000108d2dd68 chromedriver + 699752
+9   chromedriver                        0x0000000108d607ce chromedriver + 907214
+10  chromedriver                        0x0000000108d87c3d chromedriver + 1068093
+11  chromedriver                        0x0000000108d603e3 chromedriver + 906211
+12  chromedriver                        0x0000000108d2c29a chromedriver + 692890
+13  chromedriver                        0x0000000108d2d3f1 chromedriver + 697329
+14  chromedriver                        0x0000000109214d00 chromedriver + 5840128
+15  chromedriver                        0x0000000109218bd4 chromedriver + 5856212
+16  chromedriver                        0x00000001091ef936 chromedriver + 5687606
+17  chromedriver                        0x00000001092195cb chromedriver + 5858763
+18  chromedriver                        0x00000001091de024 chromedriver + 5615652
+19  chromedriver                        0x000000010923b368 chromedriver + 5997416
+20  chromedriver                        0x000000010923b52f chromedriver + 5997871
+21  chromedriver                        0x000000010924cfe8 chromedriver + 6070248
+22  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+23  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:12:39,896 - INFO - Received signal: SIGINT
+2025-03-26 14:12:39,898 - INFO - Program is terminating...
+2025-03-26 14:12:40,109 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb050a60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,112 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb051150>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,114 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb051270>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,119 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb051690>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,122 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb051870>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,124 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb051a20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,129 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb051e40>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,131 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb052020>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,134 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb0521d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,139 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb0525f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,141 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb0527d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,143 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb052980>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,147 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb052da0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,150 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb052f80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:12:40,152 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f87fb053130>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/cada440bc0bf303c8f2053500c0d1cf9/element
+2025-03-26 14:13:01,685 - ERROR - Health record update failed: Message: invalid element state: Element is not currently interactable and may not be manipulated
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010dd03808 chromedriver + 6105096
+1   chromedriver                        0x000000010dcfb40a chromedriver + 6071306
+2   chromedriver                        0x000000010d796600 chromedriver + 415232
+3   chromedriver                        0x000000010d79d33a chromedriver + 443194
+4   chromedriver                        0x000000010d79fc03 chromedriver + 453635
+5   chromedriver                        0x000000010d79fcb3 chromedriver + 453811
+6   chromedriver                        0x000000010d7df16e chromedriver + 713070
+7   chromedriver                        0x000000010d80e612 chromedriver + 906770
+8   chromedriver                        0x000000010d7dbd68 chromedriver + 699752
+9   chromedriver                        0x000000010d80e7ce chromedriver + 907214
+10  chromedriver                        0x000000010d835c3d chromedriver + 1068093
+11  chromedriver                        0x000000010d80e3e3 chromedriver + 906211
+12  chromedriver                        0x000000010d7da29a chromedriver + 692890
+13  chromedriver                        0x000000010d7db3f1 chromedriver + 697329
+14  chromedriver                        0x000000010dcc2d00 chromedriver + 5840128
+15  chromedriver                        0x000000010dcc6bd4 chromedriver + 5856212
+16  chromedriver                        0x000000010dc9d936 chromedriver + 5687606
+17  chromedriver                        0x000000010dcc75cb chromedriver + 5858763
+18  chromedriver                        0x000000010dc8c024 chromedriver + 5615652
+19  chromedriver                        0x000000010dce9368 chromedriver + 5997416
+20  chromedriver                        0x000000010dce952f chromedriver + 5997871
+21  chromedriver                        0x000000010dcfafe8 chromedriver + 6070248
+22  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+23  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:14:24,694 - INFO - Received signal: SIGINT
+2025-03-26 14:14:24,695 - INFO - Program is terminating...
+2025-03-26 14:16:46,664 - ERROR - Health record update failed: 0
+2025-03-26 14:24:46,105 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div[1]/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010db1e808 chromedriver + 6105096
+1   chromedriver                        0x000000010db1640a chromedriver + 6071306
+2   chromedriver                        0x000000010d5b1600 chromedriver + 415232
+3   chromedriver                        0x000000010d6032c0 chromedriver + 750272
+4   chromedriver                        0x000000010d603511 chromedriver + 750865
+5   chromedriver                        0x000000010d5f6e76 chromedriver + 700022
+6   chromedriver                        0x000000010d62963d chromedriver + 906813
+7   chromedriver                        0x000000010d5f6d68 chromedriver + 699752
+8   chromedriver                        0x000000010d6297ce chromedriver + 907214
+9   chromedriver                        0x000000010d650c3d chromedriver + 1068093
+10  chromedriver                        0x000000010d6293e3 chromedriver + 906211
+11  chromedriver                        0x000000010d5f529a chromedriver + 692890
+12  chromedriver                        0x000000010d5f63f1 chromedriver + 697329
+13  chromedriver                        0x000000010daddd00 chromedriver + 5840128
+14  chromedriver                        0x000000010dae1bd4 chromedriver + 5856212
+15  chromedriver                        0x000000010dab8936 chromedriver + 5687606
+16  chromedriver                        0x000000010dae25cb chromedriver + 5858763
+17  chromedriver                        0x000000010daa7024 chromedriver + 5615652
+18  chromedriver                        0x000000010db04368 chromedriver + 5997416
+19  chromedriver                        0x000000010db0452f chromedriver + 5997871
+20  chromedriver                        0x000000010db15fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:37:44,914 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010f609808 chromedriver + 6105096
+1   chromedriver                        0x000000010f60140a chromedriver + 6071306
+2   chromedriver                        0x000000010f09c600 chromedriver + 415232
+3   chromedriver                        0x000000010f0ee2c0 chromedriver + 750272
+4   chromedriver                        0x000000010f0ee511 chromedriver + 750865
+5   chromedriver                        0x000000010f0e1e76 chromedriver + 700022
+6   chromedriver                        0x000000010f11463d chromedriver + 906813
+7   chromedriver                        0x000000010f0e1d68 chromedriver + 699752
+8   chromedriver                        0x000000010f1147ce chromedriver + 907214
+9   chromedriver                        0x000000010f13bc3d chromedriver + 1068093
+10  chromedriver                        0x000000010f1143e3 chromedriver + 906211
+11  chromedriver                        0x000000010f0e029a chromedriver + 692890
+12  chromedriver                        0x000000010f0e13f1 chromedriver + 697329
+13  chromedriver                        0x000000010f5c8d00 chromedriver + 5840128
+14  chromedriver                        0x000000010f5ccbd4 chromedriver + 5856212
+15  chromedriver                        0x000000010f5a3936 chromedriver + 5687606
+16  chromedriver                        0x000000010f5cd5cb chromedriver + 5858763
+17  chromedriver                        0x000000010f592024 chromedriver + 5615652
+18  chromedriver                        0x000000010f5ef368 chromedriver + 5997416
+19  chromedriver                        0x000000010f5ef52f chromedriver + 5997871
+20  chromedriver                        0x000000010f600fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:40:35,629 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010df15808 chromedriver + 6105096
+1   chromedriver                        0x000000010df0d40a chromedriver + 6071306
+2   chromedriver                        0x000000010d9a8600 chromedriver + 415232
+3   chromedriver                        0x000000010d9fa2c0 chromedriver + 750272
+4   chromedriver                        0x000000010d9fa511 chromedriver + 750865
+5   chromedriver                        0x000000010d9ede76 chromedriver + 700022
+6   chromedriver                        0x000000010da2063d chromedriver + 906813
+7   chromedriver                        0x000000010d9edd68 chromedriver + 699752
+8   chromedriver                        0x000000010da207ce chromedriver + 907214
+9   chromedriver                        0x000000010da47c3d chromedriver + 1068093
+10  chromedriver                        0x000000010da203e3 chromedriver + 906211
+11  chromedriver                        0x000000010d9ec29a chromedriver + 692890
+12  chromedriver                        0x000000010d9ed3f1 chromedriver + 697329
+13  chromedriver                        0x000000010ded4d00 chromedriver + 5840128
+14  chromedriver                        0x000000010ded8bd4 chromedriver + 5856212
+15  chromedriver                        0x000000010deaf936 chromedriver + 5687606
+16  chromedriver                        0x000000010ded95cb chromedriver + 5858763
+17  chromedriver                        0x000000010de9e024 chromedriver + 5615652
+18  chromedriver                        0x000000010defb368 chromedriver + 5997416
+19  chromedriver                        0x000000010defb52f chromedriver + 5997871
+20  chromedriver                        0x000000010df0cfe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:41:00,618 - INFO - Received signal: SIGINT
+2025-03-26 14:41:00,618 - INFO - Program is terminating...
+2025-03-26 14:41:01,029 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d4bb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,032 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d5030>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,035 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d4fa0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,041 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d5600>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,044 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d57e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,048 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d5990>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,053 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d5db0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,055 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d5f90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,061 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d6140>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,066 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d6560>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,068 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d6740>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,071 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d68f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,075 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d6d10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,077 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d6ef0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,080 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d70a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,104 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d74c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,114 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d76a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:01,117 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa3301d7850>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/ad2e7f8247b864b50d3cbb45e843b536/element
+2025-03-26 14:41:20,275 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000110026808 chromedriver + 6105096
+1   chromedriver                        0x000000011001e40a chromedriver + 6071306
+2   chromedriver                        0x000000010fab9600 chromedriver + 415232
+3   chromedriver                        0x000000010fb0b2c0 chromedriver + 750272
+4   chromedriver                        0x000000010fb0b511 chromedriver + 750865
+5   chromedriver                        0x000000010fafee76 chromedriver + 700022
+6   chromedriver                        0x000000010fb3163d chromedriver + 906813
+7   chromedriver                        0x000000010fafed68 chromedriver + 699752
+8   chromedriver                        0x000000010fb317ce chromedriver + 907214
+9   chromedriver                        0x000000010fb58c3d chromedriver + 1068093
+10  chromedriver                        0x000000010fb313e3 chromedriver + 906211
+11  chromedriver                        0x000000010fafd29a chromedriver + 692890
+12  chromedriver                        0x000000010fafe3f1 chromedriver + 697329
+13  chromedriver                        0x000000010ffe5d00 chromedriver + 5840128
+14  chromedriver                        0x000000010ffe9bd4 chromedriver + 5856212
+15  chromedriver                        0x000000010ffc0936 chromedriver + 5687606
+16  chromedriver                        0x000000010ffea5cb chromedriver + 5858763
+17  chromedriver                        0x000000010ffaf024 chromedriver + 5615652
+18  chromedriver                        0x000000011000c368 chromedriver + 5997416
+19  chromedriver                        0x000000011000c52f chromedriver + 5997871
+20  chromedriver                        0x000000011001dfe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:46:50,837 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000104954808 chromedriver + 6105096
+1   chromedriver                        0x000000010494c40a chromedriver + 6071306
+2   chromedriver                        0x00000001043e7600 chromedriver + 415232
+3   chromedriver                        0x00000001044392c0 chromedriver + 750272
+4   chromedriver                        0x0000000104439511 chromedriver + 750865
+5   chromedriver                        0x000000010442ce76 chromedriver + 700022
+6   chromedriver                        0x000000010445f63d chromedriver + 906813
+7   chromedriver                        0x000000010442cd68 chromedriver + 699752
+8   chromedriver                        0x000000010445f7ce chromedriver + 907214
+9   chromedriver                        0x0000000104486c3d chromedriver + 1068093
+10  chromedriver                        0x000000010445f3e3 chromedriver + 906211
+11  chromedriver                        0x000000010442b29a chromedriver + 692890
+12  chromedriver                        0x000000010442c3f1 chromedriver + 697329
+13  chromedriver                        0x0000000104913d00 chromedriver + 5840128
+14  chromedriver                        0x0000000104917bd4 chromedriver + 5856212
+15  chromedriver                        0x00000001048ee936 chromedriver + 5687606
+16  chromedriver                        0x00000001049185cb chromedriver + 5858763
+17  chromedriver                        0x00000001048dd024 chromedriver + 5615652
+18  chromedriver                        0x000000010493a368 chromedriver + 5997416
+19  chromedriver                        0x000000010493a52f chromedriver + 5997871
+20  chromedriver                        0x000000010494bfe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:49:02,819 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010623e808 chromedriver + 6105096
+1   chromedriver                        0x000000010623640a chromedriver + 6071306
+2   chromedriver                        0x0000000105cd1600 chromedriver + 415232
+3   chromedriver                        0x0000000105d232c0 chromedriver + 750272
+4   chromedriver                        0x0000000105d23511 chromedriver + 750865
+5   chromedriver                        0x0000000105d16e76 chromedriver + 700022
+6   chromedriver                        0x0000000105d4963d chromedriver + 906813
+7   chromedriver                        0x0000000105d16d68 chromedriver + 699752
+8   chromedriver                        0x0000000105d497ce chromedriver + 907214
+9   chromedriver                        0x0000000105d70c3d chromedriver + 1068093
+10  chromedriver                        0x0000000105d493e3 chromedriver + 906211
+11  chromedriver                        0x0000000105d1529a chromedriver + 692890
+12  chromedriver                        0x0000000105d163f1 chromedriver + 697329
+13  chromedriver                        0x00000001061fdd00 chromedriver + 5840128
+14  chromedriver                        0x0000000106201bd4 chromedriver + 5856212
+15  chromedriver                        0x00000001061d8936 chromedriver + 5687606
+16  chromedriver                        0x00000001062025cb chromedriver + 5858763
+17  chromedriver                        0x00000001061c7024 chromedriver + 5615652
+18  chromedriver                        0x0000000106224368 chromedriver + 5997416
+19  chromedriver                        0x000000010622452f chromedriver + 5997871
+20  chromedriver                        0x0000000106235fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:50:47,441 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//div[2]/div/div/div/div[2]/div[1]/div/div/div/div[1]/label"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000107709808 chromedriver + 6105096
+1   chromedriver                        0x000000010770140a chromedriver + 6071306
+2   chromedriver                        0x000000010719c600 chromedriver + 415232
+3   chromedriver                        0x00000001071ee2c0 chromedriver + 750272
+4   chromedriver                        0x00000001071ee511 chromedriver + 750865
+5   chromedriver                        0x00000001071e1e76 chromedriver + 700022
+6   chromedriver                        0x000000010721463d chromedriver + 906813
+7   chromedriver                        0x00000001071e1d68 chromedriver + 699752
+8   chromedriver                        0x00000001072147ce chromedriver + 907214
+9   chromedriver                        0x000000010723bc3d chromedriver + 1068093
+10  chromedriver                        0x00000001072143e3 chromedriver + 906211
+11  chromedriver                        0x00000001071e029a chromedriver + 692890
+12  chromedriver                        0x00000001071e13f1 chromedriver + 697329
+13  chromedriver                        0x00000001076c8d00 chromedriver + 5840128
+14  chromedriver                        0x00000001076ccbd4 chromedriver + 5856212
+15  chromedriver                        0x00000001076a3936 chromedriver + 5687606
+16  chromedriver                        0x00000001076cd5cb chromedriver + 5858763
+17  chromedriver                        0x0000000107692024 chromedriver + 5615652
+18  chromedriver                        0x00000001076ef368 chromedriver + 5997416
+19  chromedriver                        0x00000001076ef52f chromedriver + 5997871
+20  chromedriver                        0x0000000107700fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 14:51:48,353 - INFO - Received signal: SIGINT
+2025-03-26 14:51:48,363 - INFO - Program is terminating...
+2025-03-26 14:51:48,773 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5760ac0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,789 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5761390>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,792 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5761570>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,797 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5761990>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,799 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5761b70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,802 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5761d20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,807 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5762140>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,810 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb5762320>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:51:48,813 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fabb57624d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7075f632d1c4d1a6698af87e4fffa017/element
+2025-03-26 14:52:08,019 - ERROR - Health record update failed: name 'Web_PO' is not defined
+2025-03-26 14:52:30,985 - INFO - Received signal: SIGINT
+2025-03-26 14:52:30,985 - INFO - Program is terminating...
+2025-03-26 14:52:31,283 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6cee0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,285 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6cf70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,288 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6d3c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,293 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6d9c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,295 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6dba0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,297 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6dd50>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,302 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6e170>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,305 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6e350>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,307 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6e500>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,311 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6e920>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,313 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6eb00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,315 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6ecb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,320 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6f0d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,323 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6f2b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,325 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6f460>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,330 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6f880>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,333 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6fa60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:52:31,336 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd06fe6fc10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/b36dce1b7ea0d11610fd5a5dbddb8eaa/element
+2025-03-26 14:55:01,513 - ERROR - Health record update failed: 0
+2025-03-26 15:04:35,342 - ERROR - Health record update failed: '有'
+2025-03-26 15:05:24,273 - INFO - Received signal: SIGINT
+2025-03-26 15:05:24,273 - INFO - Program is terminating...
+2025-03-26 15:05:24,694 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326970250>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,696 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326970400>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,703 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326970a60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,708 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326970e80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,710 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326971060>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,713 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326971210>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,718 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326971630>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,723 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326971810>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,725 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff3269719c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,730 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326971de0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,732 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326971fc0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:05:24,734 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7ff326972170>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/31ee6456544086d082789f810aca3eff/element
+2025-03-26 15:06:27,087 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//p[text()='  更新方式 ']"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010f1e0808 chromedriver + 6105096
+1   chromedriver                        0x000000010f1d840a chromedriver + 6071306
+2   chromedriver                        0x000000010ec73600 chromedriver + 415232
+3   chromedriver                        0x000000010ecc52c0 chromedriver + 750272
+4   chromedriver                        0x000000010ecc5511 chromedriver + 750865
+5   chromedriver                        0x000000010ecb8e76 chromedriver + 700022
+6   chromedriver                        0x000000010eceb63d chromedriver + 906813
+7   chromedriver                        0x000000010ecb8d68 chromedriver + 699752
+8   chromedriver                        0x000000010eceb7ce chromedriver + 907214
+9   chromedriver                        0x000000010ed12c3d chromedriver + 1068093
+10  chromedriver                        0x000000010eceb3e3 chromedriver + 906211
+11  chromedriver                        0x000000010ecb729a chromedriver + 692890
+12  chromedriver                        0x000000010ecb83f1 chromedriver + 697329
+13  chromedriver                        0x000000010f19fd00 chromedriver + 5840128
+14  chromedriver                        0x000000010f1a3bd4 chromedriver + 5856212
+15  chromedriver                        0x000000010f17a936 chromedriver + 5687606
+16  chromedriver                        0x000000010f1a45cb chromedriver + 5858763
+17  chromedriver                        0x000000010f169024 chromedriver + 5615652
+18  chromedriver                        0x000000010f1c6368 chromedriver + 5997416
+19  chromedriver                        0x000000010f1c652f chromedriver + 5997871
+20  chromedriver                        0x000000010f1d7fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:20:01,851 - ERROR - Health record update failed: unhashable type: 'dict'
+2025-03-26 15:23:56,578 - ERROR - Health record update failed: unhashable type: 'dict'
+2025-03-26 15:26:02,265 - ERROR - Health record update failed: unhashable type: 'dict'
+2025-03-26 15:27:12,219 - INFO - Received signal: SIGINT
+2025-03-26 15:27:12,219 - INFO - Program is terminating...
+2025-03-26 15:27:12,342 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d1fa27fa0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f83a90e031b4546c8771934cf8d6b0b7/element
+2025-03-26 15:27:12,355 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d1fa709a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f83a90e031b4546c8771934cf8d6b0b7/element
+2025-03-26 15:27:12,357 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d1fa70be0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f83a90e031b4546c8771934cf8d6b0b7/element
+2025-03-26 15:27:12,362 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d1fa710c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f83a90e031b4546c8771934cf8d6b0b7/element
+2025-03-26 15:27:12,368 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d1fa712a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f83a90e031b4546c8771934cf8d6b0b7/element
+2025-03-26 15:27:12,370 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9d1fa71450>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f83a90e031b4546c8771934cf8d6b0b7/element
+2025-03-26 15:28:21,241 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//p[text()=' 更新方式']"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000109b87808 chromedriver + 6105096
+1   chromedriver                        0x0000000109b7f40a chromedriver + 6071306
+2   chromedriver                        0x000000010961a600 chromedriver + 415232
+3   chromedriver                        0x000000010966c2c0 chromedriver + 750272
+4   chromedriver                        0x000000010966c511 chromedriver + 750865
+5   chromedriver                        0x000000010965fe76 chromedriver + 700022
+6   chromedriver                        0x000000010969263d chromedriver + 906813
+7   chromedriver                        0x000000010965fd68 chromedriver + 699752
+8   chromedriver                        0x00000001096927ce chromedriver + 907214
+9   chromedriver                        0x00000001096b9c3d chromedriver + 1068093
+10  chromedriver                        0x00000001096923e3 chromedriver + 906211
+11  chromedriver                        0x000000010965e29a chromedriver + 692890
+12  chromedriver                        0x000000010965f3f1 chromedriver + 697329
+13  chromedriver                        0x0000000109b46d00 chromedriver + 5840128
+14  chromedriver                        0x0000000109b4abd4 chromedriver + 5856212
+15  chromedriver                        0x0000000109b21936 chromedriver + 5687606
+16  chromedriver                        0x0000000109b4b5cb chromedriver + 5858763
+17  chromedriver                        0x0000000109b10024 chromedriver + 5615652
+18  chromedriver                        0x0000000109b6d368 chromedriver + 5997416
+19  chromedriver                        0x0000000109b6d52f chromedriver + 5997871
+20  chromedriver                        0x0000000109b7efe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:31:57,923 - ERROR - Health record update failed: Message: element click intercepted: Element <input class="el-input__inner" type="text" readonly="" autocomplete="off" placeholder="请选择"> is not clickable at point (804, 230). Other element would receive the click: <div class="el-overlay-message-box">...</div>
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000109c5f808 chromedriver + 6105096
+1   chromedriver                        0x0000000109c5740a chromedriver + 6071306
+2   chromedriver                        0x00000001096f2600 chromedriver + 415232
+3   chromedriver                        0x000000010974b160 chromedriver + 778592
+4   chromedriver                        0x0000000109748fc1 chromedriver + 769985
+5   chromedriver                        0x0000000109746652 chromedriver + 759378
+6   chromedriver                        0x0000000109745d50 chromedriver + 757072
+7   chromedriver                        0x00000001097383ed chromedriver + 701421
+8   chromedriver                        0x000000010976a612 chromedriver + 906770
+9   chromedriver                        0x0000000109737d68 chromedriver + 699752
+10  chromedriver                        0x000000010976a7ce chromedriver + 907214
+11  chromedriver                        0x0000000109791c3d chromedriver + 1068093
+12  chromedriver                        0x000000010976a3e3 chromedriver + 906211
+13  chromedriver                        0x000000010973629a chromedriver + 692890
+14  chromedriver                        0x00000001097373f1 chromedriver + 697329
+15  chromedriver                        0x0000000109c1ed00 chromedriver + 5840128
+16  chromedriver                        0x0000000109c22bd4 chromedriver + 5856212
+17  chromedriver                        0x0000000109bf9936 chromedriver + 5687606
+18  chromedriver                        0x0000000109c235cb chromedriver + 5858763
+19  chromedriver                        0x0000000109be8024 chromedriver + 5615652
+20  chromedriver                        0x0000000109c45368 chromedriver + 5997416
+21  chromedriver                        0x0000000109c4552f chromedriver + 5997871
+22  chromedriver                        0x0000000109c56fe8 chromedriver + 6070248
+23  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+24  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:37:51,859 - ERROR - Health record update failed: DomPO.eleIsEleExistByX() missing 1 required positional argument: 'varXpath'
+2025-03-26 15:38:22,071 - INFO - Received signal: SIGINT
+2025-03-26 15:38:22,071 - INFO - Program is terminating...
+2025-03-26 15:38:22,490 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66d270>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,492 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66d5a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,495 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66d810>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,500 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66dcc0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,502 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66dea0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,505 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66e050>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,510 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66e470>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,512 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66e650>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,515 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66e800>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,520 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66ec20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,523 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66ee00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,526 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66efb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,530 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66f3d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,533 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66f5b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,536 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66f760>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,541 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66fb80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,545 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66fd60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:38:22,548 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7faa8f66ff10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/711ad9a7dc053cafb6727208b184fcec/element
+2025-03-26 15:39:07,168 - ERROR - Health record update failed: Message: element click intercepted: Element <input class="el-input__inner" type="text" readonly="" autocomplete="off" placeholder="请选择"> is not clickable at point (804, 115). Other element would receive the click: <div class="el-overlay-message-box">...</div>
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010d420808 chromedriver + 6105096
+1   chromedriver                        0x000000010d41840a chromedriver + 6071306
+2   chromedriver                        0x000000010ceb3600 chromedriver + 415232
+3   chromedriver                        0x000000010cf0c160 chromedriver + 778592
+4   chromedriver                        0x000000010cf09fc1 chromedriver + 769985
+5   chromedriver                        0x000000010cf07652 chromedriver + 759378
+6   chromedriver                        0x000000010cf06d50 chromedriver + 757072
+7   chromedriver                        0x000000010cef93ed chromedriver + 701421
+8   chromedriver                        0x000000010cf2b612 chromedriver + 906770
+9   chromedriver                        0x000000010cef8d68 chromedriver + 699752
+10  chromedriver                        0x000000010cf2b7ce chromedriver + 907214
+11  chromedriver                        0x000000010cf52c3d chromedriver + 1068093
+12  chromedriver                        0x000000010cf2b3e3 chromedriver + 906211
+13  chromedriver                        0x000000010cef729a chromedriver + 692890
+14  chromedriver                        0x000000010cef83f1 chromedriver + 697329
+15  chromedriver                        0x000000010d3dfd00 chromedriver + 5840128
+16  chromedriver                        0x000000010d3e3bd4 chromedriver + 5856212
+17  chromedriver                        0x000000010d3ba936 chromedriver + 5687606
+18  chromedriver                        0x000000010d3e45cb chromedriver + 5858763
+19  chromedriver                        0x000000010d3a9024 chromedriver + 5615652
+20  chromedriver                        0x000000010d406368 chromedriver + 5997416
+21  chromedriver                        0x000000010d40652f chromedriver + 5997871
+22  chromedriver                        0x000000010d417fe8 chromedriver + 6070248
+23  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+24  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:44:31,352 - ERROR - Health record update failed: Message: element click intercepted: Element <input class="el-input__inner" type="text" readonly="" autocomplete="off" placeholder="请选择"> is not clickable at point (804, 230). Other element would receive the click: <div class="el-overlay-message-box">...</div>
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010882d808 chromedriver + 6105096
+1   chromedriver                        0x000000010882540a chromedriver + 6071306
+2   chromedriver                        0x00000001082c0600 chromedriver + 415232
+3   chromedriver                        0x0000000108319160 chromedriver + 778592
+4   chromedriver                        0x0000000108316fc1 chromedriver + 769985
+5   chromedriver                        0x0000000108314652 chromedriver + 759378
+6   chromedriver                        0x0000000108313d50 chromedriver + 757072
+7   chromedriver                        0x00000001083063ed chromedriver + 701421
+8   chromedriver                        0x0000000108338612 chromedriver + 906770
+9   chromedriver                        0x0000000108305d68 chromedriver + 699752
+10  chromedriver                        0x00000001083387ce chromedriver + 907214
+11  chromedriver                        0x000000010835fc3d chromedriver + 1068093
+12  chromedriver                        0x00000001083383e3 chromedriver + 906211
+13  chromedriver                        0x000000010830429a chromedriver + 692890
+14  chromedriver                        0x00000001083053f1 chromedriver + 697329
+15  chromedriver                        0x00000001087ecd00 chromedriver + 5840128
+16  chromedriver                        0x00000001087f0bd4 chromedriver + 5856212
+17  chromedriver                        0x00000001087c7936 chromedriver + 5687606
+18  chromedriver                        0x00000001087f15cb chromedriver + 5858763
+19  chromedriver                        0x00000001087b6024 chromedriver + 5615652
+20  chromedriver                        0x0000000108813368 chromedriver + 5997416
+21  chromedriver                        0x000000010881352f chromedriver + 5997871
+22  chromedriver                        0x0000000108824fe8 chromedriver + 6070248
+23  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+24  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:45:13,409 - INFO - Received signal: SIGINT
+2025-03-26 15:45:13,409 - INFO - Program is terminating...
+2025-03-26 15:45:13,505 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086d660>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,510 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086ddb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,514 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086df30>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,519 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086e350>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,523 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086e530>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,532 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086e6e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,548 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086eb00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,551 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086ece0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,556 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086ee90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,561 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086f2b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,568 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086f490>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:13,570 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa9a086f640>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/0b9fd522db24f4e4278b9c36abef30f6/element
+2025-03-26 15:45:50,826 - ERROR - Health record update failed: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000104243808 chromedriver + 6105096
+1   chromedriver                        0x000000010423b40a chromedriver + 6071306
+2   chromedriver                        0x0000000103cd6600 chromedriver + 415232
+3   chromedriver                        0x0000000103cdd33a chromedriver + 443194
+4   chromedriver                        0x0000000103cdfc03 chromedriver + 453635
+5   chromedriver                        0x0000000103cdfcb3 chromedriver + 453811
+6   chromedriver                        0x0000000103d27d86 chromedriver + 748934
+7   chromedriver                        0x0000000103d28511 chromedriver + 750865
+8   chromedriver                        0x0000000103d1be76 chromedriver + 700022
+9   chromedriver                        0x0000000103d4e63d chromedriver + 906813
+10  chromedriver                        0x0000000103d1bd68 chromedriver + 699752
+11  chromedriver                        0x0000000103d4e7ce chromedriver + 907214
+12  chromedriver                        0x0000000103d75c3d chromedriver + 1068093
+13  chromedriver                        0x0000000103d4e3e3 chromedriver + 906211
+14  chromedriver                        0x0000000103d1a29a chromedriver + 692890
+15  chromedriver                        0x0000000103d1b3f1 chromedriver + 697329
+16  chromedriver                        0x0000000104202d00 chromedriver + 5840128
+17  chromedriver                        0x0000000104206bd4 chromedriver + 5856212
+18  chromedriver                        0x00000001041dd936 chromedriver + 5687606
+19  chromedriver                        0x00000001042075cb chromedriver + 5858763
+20  chromedriver                        0x00000001041cc024 chromedriver + 5615652
+21  chromedriver                        0x0000000104229368 chromedriver + 5997416
+22  chromedriver                        0x000000010422952f chromedriver + 5997871
+23  chromedriver                        0x000000010423afe8 chromedriver + 6070248
+24  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+25  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:45:52,994 - ERROR - Health record update failed: 'data'
+2025-03-26 15:46:05,440 - ERROR - 失败 =>{'operate': '姓名', 'option': {'姓名': '李丽丽', '档案编号': '37068500000000047'}}
+2025-03-26 15:46:15,830 - ERROR - 失败 =>{'operate': '姓名', 'operate2': '更新', 'data': {' 姓名 ': '李四', ' 性别 ': '女', ' 出生日期 ': [2024, 2, 2], ' 民族 ': '回族', ' 现住址 ': ['上海市', '市辖区', '虹口区', '广中路街道', '商业一村居委会', '多媒体100号'], ' 本人电话 ': '13815161718', ' 联系人姓名 ': '令狐冲', ' 联系人电话 ': '58771234', ' 常住类型 ': '非户籍', ' 文化程度 ': '专科教育', ' 职业 ': '军人', ' 工作单位 ': '上海智赢', ' 婚姻状况 ': '离婚', ' 血型 ': '不详', ' RH血型 ': 'Rh阳性', ' 医疗费用支付方式 ': [['全自费', {'其他': '123'}], {'城镇职工基本医疗保险': '555', '城镇居民基本医疗保险': '666', '贫困救助': '777'}], ' 药物过敏史 ': ['青霉素类抗生素', '含碘药品', {'其他药物过敏源': '12345'}], ' 暴露史 ': ['化学品', '不详'], ' 既往史 ': {'疾病': {'有': [['高血压', [2025, 1, 1]], ['冠心病', [2025, 2, 1]]]}, '手术': {'有': [['手术1', [2025, 1, 3]], ['手术2', [2025, 1, 4]], ['手术3', [2025, 2, 4]]]}, '外伤': {'有': [['外伤1', [2025, 4, 11]], ['外伤2', [2025, 5, 5]]]}, '输血': {'有': [['输血1', [2025, 3, 3]], ['输血2', [2025, 4, 4]]]}}, ' 家族史 ': {'有': [['高血压', '母亲'], ['高血压', '母亲'], ['脑卒中', '子女']]}, ' 遗传病史 ': {'有': {'疾病名称': '帕金森'}}, ' 残疾情况 ': [['听力残疾', '精神残疾', {'其他残疾': '90'}], {' 残疾证号 ': 'ab123'}], ' 家庭情况 ': {' 与户主关系 ': '子', ' 户主姓名 ': '李四2', ' 户主身份证号 ': '310101198004110013', ' 家庭人口数 ': '4', ' 家庭结构 ': '3', ' 居住情况 ': '独居'}, ' 厨房排风设施 ': '烟囱', ' 燃料类型 ': '煤', ' 饮水 ': '自来水', ' 厕所 ': '马桶', ' 禽畜栏 ': '无', ' 管理机构 ': '招远市卫健局', ' 档案是否开放 ': '否', ' 建档日期 ': [2025, 1, 16], ' 更新方式 ': '门诊', ' 更新内容 ': '测试三峡'}}
+2025-03-26 15:46:50,620 - ERROR - Health record update failed: Message: stale element reference: stale element not found in the current frame
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x0000000109c70808 chromedriver + 6105096
+1   chromedriver                        0x0000000109c6840a chromedriver + 6071306
+2   chromedriver                        0x0000000109703600 chromedriver + 415232
+3   chromedriver                        0x000000010970a33a chromedriver + 443194
+4   chromedriver                        0x000000010970cc03 chromedriver + 453635
+5   chromedriver                        0x000000010970ccb3 chromedriver + 453811
+6   chromedriver                        0x0000000109754d86 chromedriver + 748934
+7   chromedriver                        0x0000000109755511 chromedriver + 750865
+8   chromedriver                        0x0000000109748e76 chromedriver + 700022
+9   chromedriver                        0x000000010977b63d chromedriver + 906813
+10  chromedriver                        0x0000000109748d68 chromedriver + 699752
+11  chromedriver                        0x000000010977b7ce chromedriver + 907214
+12  chromedriver                        0x00000001097a2c3d chromedriver + 1068093
+13  chromedriver                        0x000000010977b3e3 chromedriver + 906211
+14  chromedriver                        0x000000010974729a chromedriver + 692890
+15  chromedriver                        0x00000001097483f1 chromedriver + 697329
+16  chromedriver                        0x0000000109c2fd00 chromedriver + 5840128
+17  chromedriver                        0x0000000109c33bd4 chromedriver + 5856212
+18  chromedriver                        0x0000000109c0a936 chromedriver + 5687606
+19  chromedriver                        0x0000000109c345cb chromedriver + 5858763
+20  chromedriver                        0x0000000109bf9024 chromedriver + 5615652
+21  chromedriver                        0x0000000109c56368 chromedriver + 5997416
+22  chromedriver                        0x0000000109c5652f chromedriver + 5997871
+23  chromedriver                        0x0000000109c67fe8 chromedriver + 6070248
+24  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+25  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 15:53:20,394 - INFO - Received signal: SIGINT
+2025-03-26 15:53:20,395 - INFO - Program is terminating...
+2025-03-26 15:53:20,586 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd390f47d60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/05d168157e8d20b15e75cfc29896bdc6/element
+2025-03-26 15:53:20,588 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd390fea140>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/05d168157e8d20b15e75cfc29896bdc6/element
+2025-03-26 15:53:20,590 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fd390fea320>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/05d168157e8d20b15e75cfc29896bdc6/element
+2025-03-26 15:53:20,592 - ERROR - Health record update failed: not all arguments converted during string formatting
+2025-03-26 16:01:59,616 - ERROR - Health record update failed: '<' not supported between instances of 'str' and 'int'
+2025-03-26 16:07:01,661 - ERROR - Health record update failed: '<' not supported between instances of 'str' and 'int'
+2025-03-26 16:08:14,356 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//p[text()=' 更新方式']"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x00000001019d3808 chromedriver + 6105096
+1   chromedriver                        0x00000001019cb40a chromedriver + 6071306
+2   chromedriver                        0x0000000101466600 chromedriver + 415232
+3   chromedriver                        0x00000001014b82c0 chromedriver + 750272
+4   chromedriver                        0x00000001014b8511 chromedriver + 750865
+5   chromedriver                        0x00000001014abe76 chromedriver + 700022
+6   chromedriver                        0x00000001014de63d chromedriver + 906813
+7   chromedriver                        0x00000001014abd68 chromedriver + 699752
+8   chromedriver                        0x00000001014de7ce chromedriver + 907214
+9   chromedriver                        0x0000000101505c3d chromedriver + 1068093
+10  chromedriver                        0x00000001014de3e3 chromedriver + 906211
+11  chromedriver                        0x00000001014aa29a chromedriver + 692890
+12  chromedriver                        0x00000001014ab3f1 chromedriver + 697329
+13  chromedriver                        0x0000000101992d00 chromedriver + 5840128
+14  chromedriver                        0x0000000101996bd4 chromedriver + 5856212
+15  chromedriver                        0x000000010196d936 chromedriver + 5687606
+16  chromedriver                        0x00000001019975cb chromedriver + 5858763
+17  chromedriver                        0x000000010195c024 chromedriver + 5615652
+18  chromedriver                        0x00000001019b9368 chromedriver + 5997416
+19  chromedriver                        0x00000001019b952f chromedriver + 5997871
+20  chromedriver                        0x00000001019cafe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 16:10:55,398 - ERROR - Health record update failed: '<' not supported between instances of 'str' and 'int'
+2025-03-26 16:12:03,171 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//p[text()=' 更新方式']"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010ebe3808 chromedriver + 6105096
+1   chromedriver                        0x000000010ebdb40a chromedriver + 6071306
+2   chromedriver                        0x000000010e676600 chromedriver + 415232
+3   chromedriver                        0x000000010e6c82c0 chromedriver + 750272
+4   chromedriver                        0x000000010e6c8511 chromedriver + 750865
+5   chromedriver                        0x000000010e6bbe76 chromedriver + 700022
+6   chromedriver                        0x000000010e6ee63d chromedriver + 906813
+7   chromedriver                        0x000000010e6bbd68 chromedriver + 699752
+8   chromedriver                        0x000000010e6ee7ce chromedriver + 907214
+9   chromedriver                        0x000000010e715c3d chromedriver + 1068093
+10  chromedriver                        0x000000010e6ee3e3 chromedriver + 906211
+11  chromedriver                        0x000000010e6ba29a chromedriver + 692890
+12  chromedriver                        0x000000010e6bb3f1 chromedriver + 697329
+13  chromedriver                        0x000000010eba2d00 chromedriver + 5840128
+14  chromedriver                        0x000000010eba6bd4 chromedriver + 5856212
+15  chromedriver                        0x000000010eb7d936 chromedriver + 5687606
+16  chromedriver                        0x000000010eba75cb chromedriver + 5858763
+17  chromedriver                        0x000000010eb6c024 chromedriver + 5615652
+18  chromedriver                        0x000000010ebc9368 chromedriver + 5997416
+19  chromedriver                        0x000000010ebc952f chromedriver + 5997871
+20  chromedriver                        0x000000010ebdafe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 16:13:42,676 - ERROR - Health record update failed: Message: no such element: Unable to locate element: {"method":"xpath","selector":".//p[text()=' 更新方式']"}
+  (Session info: chrome=134.0.6998.165)
+Stacktrace:
+0   chromedriver                        0x000000010d54b808 chromedriver + 6105096
+1   chromedriver                        0x000000010d54340a chromedriver + 6071306
+2   chromedriver                        0x000000010cfde600 chromedriver + 415232
+3   chromedriver                        0x000000010d0302c0 chromedriver + 750272
+4   chromedriver                        0x000000010d030511 chromedriver + 750865
+5   chromedriver                        0x000000010d023e76 chromedriver + 700022
+6   chromedriver                        0x000000010d05663d chromedriver + 906813
+7   chromedriver                        0x000000010d023d68 chromedriver + 699752
+8   chromedriver                        0x000000010d0567ce chromedriver + 907214
+9   chromedriver                        0x000000010d07dc3d chromedriver + 1068093
+10  chromedriver                        0x000000010d0563e3 chromedriver + 906211
+11  chromedriver                        0x000000010d02229a chromedriver + 692890
+12  chromedriver                        0x000000010d0233f1 chromedriver + 697329
+13  chromedriver                        0x000000010d50ad00 chromedriver + 5840128
+14  chromedriver                        0x000000010d50ebd4 chromedriver + 5856212
+15  chromedriver                        0x000000010d4e5936 chromedriver + 5687606
+16  chromedriver                        0x000000010d50f5cb chromedriver + 5858763
+17  chromedriver                        0x000000010d4d4024 chromedriver + 5615652
+18  chromedriver                        0x000000010d531368 chromedriver + 5997416
+19  chromedriver                        0x000000010d53152f chromedriver + 5997871
+20  chromedriver                        0x000000010d542fe8 chromedriver + 6070248
+21  libsystem_pthread.dylib             0x00007ff81e8734e1 _pthread_start + 125
+22  libsystem_pthread.dylib             0x00007ff81e86ef6b thread_start + 15
+
+2025-03-26 16:16:05,746 - INFO - 保存 => {'button': '取消', 'data': {'建档日期': [2025, 3, 26]}}
+2025-03-26 16:16:44,646 - INFO - 保存 => {'button': '仅保存', 'data': {'建档日期': [2025, 3, 26]}}
+2025-03-26 17:40:05,582 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed8b20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,585 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed8b80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,587 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed8f40>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,593 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed9420>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,596 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed9600>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,598 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed97b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,603 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed9bd0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,605 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed9db0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,607 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bed9f60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,611 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3beda380>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,613 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3beda560>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,616 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3beda710>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,621 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedab30>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,623 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedad10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,625 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedaec0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,631 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedb2e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,634 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedb4c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,636 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedb670>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,641 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedba90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,644 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedbc70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,646 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bedbe20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,652 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bf14160>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,654 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bf14340>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:40:05,657 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fed3bf14700>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/f5c7c166e9140206cfbb29cd7fae11a8/element
+2025-03-26 17:41:21,605 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99000>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,608 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99060>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,611 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99210>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,616 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99690>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,619 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99870>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,622 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99a20>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,627 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e99e40>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,630 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9a020>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,632 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9a1d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,639 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9a5f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,641 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9a7d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,643 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9a980>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,649 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9ada0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,651 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9af80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,653 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9b130>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,660 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9b550>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,663 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9b730>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,665 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9b8e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,670 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9bd00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,672 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984e9bee0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,675 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984ed4880>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,680 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984ed43d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,682 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984ed45b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:21,684 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f9984ed4760>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/7c367466baf74ae6f42204deb8f6cb0b/element
+2025-03-26 17:41:52,635 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc8176f7f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,637 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc8176f7c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,639 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc8176f940>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,644 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc8176fdc0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,646 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc8176ffa0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,648 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cc040>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,653 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cc460>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,655 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cc640>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,657 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cc7f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,661 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817ccc10>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,663 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817ccdf0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,667 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817ccfa0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,672 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cd3c0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,674 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cd5a0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,676 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cd750>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,684 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cdb70>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,686 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cdd50>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,688 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cdf00>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,692 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817ce320>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,695 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817ce500>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,697 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817ce6b0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,701 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cead0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,704 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cecb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
+2025-03-26 17:41:52,706 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fcc817cee60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/299a01633c0ed6a36173806127a2286b/element
