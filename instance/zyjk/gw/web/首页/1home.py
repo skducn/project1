@@ -58,7 +58,7 @@ for k in range(len(d_left['重点人群分布情况'])):
     img = Image.open(image_path)
     recognized_text = pytesseract.image_to_string(img, lang='chi_sim+eng')
     l_result = recognized_text.strip().split()
-    # print(d_left['重点人群分布情况'][k], l_result)
+    print(d_left['重点人群分布情况'][k], l_result)
     l_1 = []
     for i in range(len(l_result)):
         if '%' in l_result[i]:
@@ -71,6 +71,10 @@ for k in range(len(d_left['重点人群分布情况'])):
             l_1.append('8')
         elif l_result[i] == '20A':
             l_1.append('20')
+        elif l_result[i] == '3A':
+            l_1.append('3')
+        elif l_result[i] == '1A':
+            l_1.append('1')
     # print(l_1)
     d_[d_left['重点人群分布情况'][k]] = l_1
 # print(d_)

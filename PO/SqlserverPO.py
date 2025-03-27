@@ -496,11 +496,11 @@ class SqlServerPO:
                 if l_d_[i]['COMMENT'] == None:
                     l_comment.append(l_d_[i]['COMMENT'])
                 else:
-                    l_comment.append(l_d_[i]['COMMENT'].decode(encoding="utf-8", errors="strict"))  # 上传
-                    # l_comment.append(l_d_[i]['COMMENT'].decode(encoding="GBK", errors="strict"))  # 打开页面
+                    # l_comment.append(l_d_[i]['COMMENT'].decode(encoding="utf-8", errors="strict"))  # 上传
+                    l_comment.append(l_d_[i]['COMMENT'].decode(encoding="GBK", errors="strict"))  # 打开页面
             return dict(zip(l_field, l_comment))
         except Exception as e:
-            print(e, ",[error], getFields()异常!")
+            print(e, ",[error2], getFields()异常!")
             self.conn.close()
     def getFieldCommentGBK(self, varTable):
 
@@ -1636,6 +1636,7 @@ class SqlServerPO:
                                 Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
 
                                 if varIsRecord == True:
+
                                     for j in range(len(l_result)):
                                         print(l_result[j])
                                         s = s + str(l_result[j]) + "<br>"
@@ -1725,19 +1726,20 @@ class SqlServerPO:
 
                     # 遍历所有字段
                     for i in range(len(l_field)):
-                        l_result = self.select(
-                            "select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                        l_result = self.select("select * from %s where [%s] like '%s'" % (dboTable, l_field[i], varValue))
+                        # print(dboTable, l_field[i], varValue)
+                        # print(l_result)
                         if len(l_result) != 0:
                             print("--" * 50)
                             # Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
+                            # print(dboTable, d_tableComment[str(dboTable)])
                             Color_PO.consoleColor("31", "36",
-                                                  str(l_field[i]) + " = " + str(varValue) + " >> " + dboTable + "(" +
-                                                  d_tableComment[dboTable] + ")" + " >> " + str(len(l_result)) + "条 ",
+                                                  str(l_field[i]) + " = " + str(varValue) + " >> " + str(dboTable) + "(" +
+                                                  str(d_tableComment[dboTable]) + ")" + " >> " + str(len(l_result)) + "条 ",
                                                   "")
 
                             # 输出字段注释
                             Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
-                            # print(self.getFieldComment(dboTable))
 
                             if varIsRecord == True:
                                 for j in range(len(l_result)):

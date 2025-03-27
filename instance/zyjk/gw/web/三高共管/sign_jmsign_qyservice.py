@@ -26,16 +26,14 @@ Web_PO.swhLabel(1)
 
 
 # todo 1 查询
-# Gw_PO_three.query({"身份证号": "110101199001014999"})
-# Gw_PO_three.query({"姓名": "丽丽"})
-Gw_PO_three.query({"姓名": "胡成", "身份证号": "110101199001014999", '签约日期': [[2025,1,2],[2025,2,3]], "签约服务包": '基础服务包（2019版）',
-                   '签约机构': '张星卫生院','履约情况': '未履约', '居民基本信息': ['一般人群', '孕产妇'], '家庭地址': '123个人'
-})
-# '签约团队': '',   //无数据
+Gw_PO_three.query({"身份证号": "310101197712137029"})
+# Gw_PO_three.query({"姓名": "胡成", "身份证号": "110101199001014999", '签约日期': [[2025,1,2],[2025,2,3]], "签约服务包": '基础服务包（2019版）',
+#                    '签约团队': 'testAuto', '履约情况': '未履约', '居民基本信息': ['一般人群', '孕产妇'], '家庭地址': '123个人'
+# })
 
 
 
-# # todo 2 批量履约（没有数据）
+# # todo 2 批量履约
 # # 选几个
 # Gw_PO_three.batch({'option': {"身份证号": "372922198510281068"}, 'data': {
 #     # '更换团队': '',
@@ -49,3 +47,10 @@ Gw_PO_three.query({"姓名": "胡成", "身份证号": "110101199001014999", '�
 #     '更换原因':'123'
 # }})
 
+# # todo 3。1 查看
+Gw_PO_three.sign_jmsign_qyservice_operation({'operate': '查看', 'option': {'身份证号': '310101197712137029'}})
+Gw_PO_three.sign_jmsign_qyservice_operation({'operate': '查看', 'data': {}})
+
+# # # todo 3。2 履约
+Gw_PO_three.sign_jmsign_qyservice_operation({'operate': '履约', 'option': {'身份证号': '310101197712137029'}})
+Gw_PO_three.sign_jmsign_qyservice_operation({'operate': '履约', 'data': {}})

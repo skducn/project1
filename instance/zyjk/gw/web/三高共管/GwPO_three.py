@@ -1080,7 +1080,7 @@ class GwPO_three():
                 return self.__getHealthrecord()
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -1254,7 +1254,7 @@ class GwPO_three():
 
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -1357,7 +1357,7 @@ class GwPO_three():
                 self._newCardiovascularAssessment(d_)
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -1433,7 +1433,7 @@ class GwPO_three():
                 self._newCardiovascularAssessment(d_)
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -1723,7 +1723,7 @@ class GwPO_three():
                 self._yfrh(d_)
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -1784,7 +1784,7 @@ class GwPO_three():
                 self._coronary_patient_registry(d_)
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -2487,7 +2487,7 @@ class GwPO_three():
                 Web_PO.button1('结案')
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -2570,7 +2570,7 @@ class GwPO_three():
                 self._stroke_patient_registry(d_)
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -2766,7 +2766,7 @@ class GwPO_three():
                 Web_PO.button1('结案')
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -2877,7 +2877,7 @@ class GwPO_three():
                 # Web_PO.button1('保存')
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -3000,7 +3000,7 @@ class GwPO_three():
 
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -3060,7 +3060,7 @@ class GwPO_three():
                 ...
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -3083,6 +3083,8 @@ class GwPO_three():
                 Web_PO.eleRadioRightLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/label", v)
             elif k in ['服务包选择']:
                 Web_PO.eleRadioLeftLabel(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div", v)
+            elif k in ['签约团队']:
+                Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[4]/div/div/div/div/div/input", v)
             elif k in ['签约医生']:
                 Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", v)
             elif k in ['公共卫生人员']:
@@ -3101,9 +3103,8 @@ class GwPO_three():
                 Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[5]/div/div/div/input", v)
             elif k in ['身份证号']:
                 Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, '监护人姓名'), ".//div[2]/div/div[7]/div/div/div/input", v)
-        Web_PO.button1('关闭')
-
-        # Web_PO.button1('保存')
+        # Web_PO.button1('关闭')
+        Web_PO.button1('保存')
 
     def _sign_jmsign_signed_operation(self, varOperation, d_option):
 
@@ -3168,12 +3169,73 @@ class GwPO_three():
                 Web_PO.button1('关 闭')
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
             self.logger.error("失败 =>" + str(d_))
 
+
+    # todo 4.1.3 基本公卫 - 家医签约 - 履约服务
+
+    def _sign_jmsign_qyservice_operation(self, varOperation, d_option):
+
+        # 获取字段和xpath字典
+        Web_PO.zoom(50)
+        l_field = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//thead", "."), ".//div")
+        Web_PO.zoom(100)
+        # print(l_field)  # ['姓名', '三高分类', '性别', '身份证号', '年龄', '联系电话', '评估日期', '评估结果', '随访人', '评估机构', '操作']
+
+        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+
+        # 获取列表所有值
+        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
+        # print(l_value)
+
+        # 获取字段和类型字典
+        l_group = (List_PO.split2(l_value, varOperation))
+        print(l_group)
+
+        # 遍历获取每行数据中全部符合要求的字段索引max_key
+        d_1 = {}
+        s = 0
+        for i in range(len(l_group)):
+            for k, v in d_option.items():
+                if k in l_field:
+                    s_fieldIndex = l_field.index(k)
+                    if l_group[i][s_fieldIndex] == v:
+                        s = s + 1
+                        d_1[i + 1] = s
+            s = 0
+        # print(d_1)  # {2: 1, 3: 2}
+        max_key = max(d_1, key=d_1.get)
+        # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
+        return max_key
+    def sign_jmsign_qyservice_operation(self, d_):
+
+        # 履约服务 - 操作
+
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        try:
+            if "data" not in d_:
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + d_['operate'] + "'])[position()=" + str(
+                    self._sign_jmsign_signed_operation('查看\n履约', d_['option'])) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
+
+            elif d_['operate'] == '查看':
+                Web_PO.button1('关 闭')
+
+            elif d_['operate'] == '履约':
+                Web_PO.button1('取消')
+
+            else:
+                print("error, 请检查函数名是否正确、operate是否存在!")
+
+            self.logger.info(str(d_))
+        except:
+            self.logger.error("失败 =>" + str(d_))
 
 
     # todo 4.1.4 基本公卫 - 家医签约 - 归档记录
@@ -3228,7 +3290,7 @@ class GwPO_three():
                 Web_PO.button1('关 闭')
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:
@@ -3296,7 +3358,7 @@ class GwPO_three():
                 self.__jmqy(d_)
 
             else:
-                print("error, 无法操作!")
+                print("error, 请检查函数名是否正确、operate是否存在!")
 
             self.logger.info(str(d_))
         except:

@@ -39,12 +39,13 @@ Color_PO = ColorPO()
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
 
+from PO.TimePO import *
+Time_PO = TimePO()
 
-class Gw_i_PO():
+class GwPO_i():
 
     def __init__(self):
 
-        # self.ipAddr = "http://192.168.0.202:38080"
         self.ipAddr = Configparser_PO.HTTP("url")
 
 
@@ -212,7 +213,43 @@ class Gw_i_PO():
         # 刷新
         return self.curl("POST", '/auth/refresh')
 
+    def newHypertensionManagementCard(self, s_d_idCard, d_):
 
+        # 新增高血压管理卡
+
+        # 步骤1：通过身份证获取基本信息，从而获取cid值
+        # 接口：REST- 高血压，高血压管理卡-获取基本信息
+        # http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/getEhrInfoUsingGET_1
+        r = self.curl('GET', "/serverExport/gxy/getEhrInfo?0=" + self.encrypt(s_d_idCard))
+        print(r) # {'code': 200, 'msg': None, 'data': {'id': None, 'bbId': None, 'cid': 'dedadc417a84419ea7ac972a31dcf5f3', 'ehrNum': None, 'xm': '尤亮柏', 'xb': '1', 'xbmc': '男', 'csrq': '1950-01-29T00:00:00.000+08:00', 'lxdh': '15831052116', 'zjhm': '310101195001293595', 'zhiyedm': '70000', 'zhiyemc': '军人', 'xxlybm': None, 'xxlymc': None, 'xxlysm': None, 'sg': None, 'tz': None, 'jzsbm': None, 'jzsmc': None, 'shxgxy': None, 'jyksrq': None, 'ksxynl': None, 'shxgyj': None, 'ksyjnl': None, 'sfyjgl': None, 'shxgdl': None, 'zyblbz': None, 'zyblysmc': None, 'zyblyszldm': None, 'zyblyszlmc': None, 'whysjtzy': None, 'cswhzysc': None, 'fhcsbz': None, 'shzlnlbm': None, 'shzlnlmc': None, 'wfysp': None, 'wfydp': None, 'wxfcbm': None, 'wxfcmc': None, 'gljbbm': None, 'gxylxbm': None, 'sfzzgl': None, 'zzglyy': None, 'zzglrq': None, 'jkysgh': None, 'jkysxm': None, 'jksj': None, 'jktdbm': None, 'jktdmc': None, 'jkyljgdm': None, 'jkyljgmc': None, 'jzdShebm': '31', 'jzdShe': '上海市', 'jzdShibm': '310100000000', 'jzdShi': '市辖区', 'jzdXiabm': '310109000000', 'jzdXia': '虹口区', 'jzdXngbm': '310109011000', 'jzdXng': '广中路街道', 'jzdJwbm': '310109011003', 'jzdJw': '商业一村居委会', 'jzdXx': '多媒体100号', 'qzrq': None, 'sfgxjkda': None}}
+
+        # 步骤2：新增高血压管理卡，填入cid值
+        # 接口：REST- 高血压，高血压管理卡 新增或编辑
+        # http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST
+        d_param = {"ehrNum": "", "cid": r['data']['cid'], "csrq": "2009-05-27T00:00:00.000+08:00", "cswhzysc": "",
+                   "fhcsbz": "", "gljbbm": "3", "gxylxbm": "", "id": "",
+                   "jksj": str(Time_PO.getDateByMinus()), "jktdbm": "", "jktdmc": "", "jkyljgdm": "370685008",
+                   "jkyljgmc": "大秦家卫生院", "jkysgh": 10180,
+                   "jkysxm": "张飞", "jyksrq": "", "jzdJw": r['data']['jzdJw'], "jzdJwbm": r['data']['jzdJwbm'],
+                   "jzdShe": r['data']['jzdShe'], "jzdShebm": r['data']['jzdShebm'], "jzdShi": r['data']['jzdShi'],
+                   "jzdShibm": r['data']['jzdShibm'], "jzdXia": r['data']['jzdXia'], "jzdXiabm": r['data']['jzdXiabm'],
+                   "jzdXng": r['data']['jzdXng'], "jzdXngbm": r['data']['jzdXngbm'], "jzdXx": r['data']['jzdXx'],
+                   "jzsbm": [], "jzsmc": [], "ksxynl": "", "ksyjnl": "",
+                   "lxdh": "13448117092", "sfyjgl": "", "sfzzgl": "0", "sg": "", "shxgdl": "", "shxgxy": "",
+                   "shxgyj": "",
+                   "tz": "", "wfydp": "", "wfysp": "",
+                   "whysjtzy": "", "wxfcbm": "", "wxfcmc": "", "xb": "1", "xbmc": "", "xm": r['data']['xm'],
+                   "xxlybm": "",
+                   "xxlymc": "", "xxlysm": "", "zhiyemc": "",
+                   "zjhm": r['data']['zjhm'], "zyblbz": "", "zyblysmc": "", "zyblyszldm": [], "zyblyszlmc": [],
+                   "zzglrq": "",
+                   "zzglyy": "", "shzlnlbm": "",
+                   "qzrq": "2025-01-01", "sfgxjkda": "1"}
+        d_param.update(d_)
+        encrypted_params = self.encrypt(json.dumps(d_param))
+        url = f"/server/gxy/createOrUpdateHzglk' -d '{encrypted_params}'"
+        r = self.curl('POST', url)
+        print(r)
 
 
 # *****************************************************************
@@ -221,26 +258,26 @@ if __name__ == "__main__":
 
 
     # 登录(testwjw, Qa@123456)
-    gw_i_PO = Gw_i_PO('9580414215bd76bf8ddd310c894fdfb155f439b427a43fb3dbb13a142055e4b7236fd7498a6e8d2febc7a44688c45d68c11606a34632ce07aa94d037124c0c15c0a19ab3c9f35bab234dd5bc8a3b37d419786c17b2e26d46d0f378e3691f2823e48804aecfb23ebc8511fd66e9b927bb5344d97a9f6c9c001ba4e76865f4890a5c6f7c21810fdedf6bbe85625e6ca990e1fe1cef025760c3382326c993')
+    Gw_PO_i = GwPO_i('9580414215bd76bf8ddd310c894fdfb155f439b427a43fb3dbb13a142055e4b7236fd7498a6e8d2febc7a44688c45d68c11606a34632ce07aa94d037124c0c15c0a19ab3c9f35bab234dd5bc8a3b37d419786c17b2e26d46d0f378e3691f2823e48804aecfb23ebc8511fd66e9b927bb5344d97a9f6c9c001ba4e76865f4890a5c6f7c21810fdedf6bbe85625e6ca990e1fe1cef025760c3382326c993')
 
     # todo chc-system, REST-用户信息表
-    print(gw_i_PO.getDocByOrg())  # 根据当前所在的机构获取医生
-    print(gw_i_PO.getFamilyDoc())  # 获取家庭医生
-    print(gw_i_PO.getOrgUser())  # 当前登录用户所在机构及子机构用户
-    # print(gw_i_PO.getUser())  # 根据用户名获取用户信息
-    # print(gw_i_PO.getUserByOrg())  # 根据机构获取医生
-    # print(gw_i_PO.getVisitUser())  # 根据机构获取医生--随访使用
-    print(gw_i_PO.selectUserInfo())  # 根据token获取用户信息
-    # print(gw_i_PO.sysUser(id))  # 单条查询
+    print(Gw_PO_i.getDocByOrg())  # 根据当前所在的机构获取医生
+    print(Gw_PO_i.getFamilyDoc())  # 获取家庭医生
+    print(Gw_PO_i.getOrgUser())  # 当前登录用户所在机构及子机构用户
+    # print(Gw_PO_i.getUser())  # 根据用户名获取用户信息
+    # print(Gw_PO_i.getUserByOrg())  # 根据机构获取医生
+    # print(Gw_PO_i.getVisitUser())  # 根据机构获取医生--随访使用
+    print(Gw_PO_i.selectUserInfo())  # 根据token获取用户信息
+    # print(Gw_PO_i.sysUser(id))  # 单条查询
 
 
     # todo chc-system, REST-系统信息表
-    # print(gw_i_PO.querySystemRole(userId))  # 获取所有系统的角色
-    print(gw_i_PO.systemMenuInfoBySystemId())  # 根据用户ID获取能够使用的系统
-    print(gw_i_PO.systemMenuInfoByUserId())  # 根据用户ID获取能够使用的系统及菜单
-    # print(gw_i_PO.systemMenuInfo(systemId))  # 获取系统菜单
-    # print(gw_i_PO.systemMenuInfoBySystemId(systemId))  # 根据系统Id获取所有菜单
-    # print(gw_i_PO.sysSystem(Id))  # 单条查询
+    # print(Gw_PO_i.querySystemRole(userId))  # 获取所有系统的角色
+    print(Gw_PO_i.systemMenuInfoBySystemId())  # 根据用户ID获取能够使用的系统
+    print(Gw_PO_i.systemMenuInfoByUserId())  # 根据用户ID获取能够使用的系统及菜单
+    # print(Gw_PO_i.systemMenuInfo(systemId))  # 获取系统菜单
+    # print(Gw_PO_i.systemMenuInfoBySystemId(systemId))  # 根据系统Id获取所有菜单
+    # print(Gw_PO_i.sysSystem(Id))  # 单条查询
 
 
 
