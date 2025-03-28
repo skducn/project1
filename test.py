@@ -10,17 +10,27 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-def replace_second(list1, list2):
-    for i in range(len(list2)):
-        if i < len(list1):
-            list2[i][1] = list1[i]
-    return list2
+def outer_function(x):
+    def inner_function(y):
+        return x + y
+    return inner_function
 
+closure = outer_function(10)  # 外部函数执行完毕，x 被设置为 10
+closure(5)
+print(closure(5))  # 内部函数仍然可以访问 x，输出 15
+# print(closure(5))  # 内部函数仍然可以访问 x，输出 15
 
-list1 = ['a', 'b', 'c']
-list2 = [[1, '', 3], [1, '', 3], [1, '', 3]]
-result = replace_second(list1, list2)
-print(result)
+# def replace_second(list1, list2):
+#     for i in range(len(list2)):
+#         if i < len(list1):
+#             list2[i][1] = list1[i]
+#     return list2
+#
+#
+# list1 = ['a', 'b', 'c']
+# list2 = [[1, '', 3], [1, '', 3], [1, '', 3]]
+# result = replace_second(list1, list2)
+# print(result)
 
 # from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
 # from Foundation import NSBundle

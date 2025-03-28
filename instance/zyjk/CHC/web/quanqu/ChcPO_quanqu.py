@@ -7,8 +7,7 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 from PO.WebPO import *
-# Web_PO = WebPO("chrome")
-# Web_PO = WebPO("noChrome")
+Web_PO = WebPO("chrome")
 
 from PO.CaptchaPO import *
 Captcha_PO = CaptchaPO()
@@ -16,32 +15,45 @@ Captcha_PO = CaptchaPO()
 from PO.Base64PO import *
 Base64_PO = Base64PO()
 
-from PO.FilePO import *
-File_PO = FilePO()
+from PO.ListPO import *
+List_PO = ListPO()
 
-from bs4 import BeautifulSoup
+from PO.TimePO import *
+Time_PO = TimePO()
+
+from PO.DataPO import *
+Data_PO = DataPO()
+
+from PO.SysPO import *
+Sys_PO = SysPO()
 
 from PO.HttpPO import *
 Http_PO = HttpPO()
+
+from bs4 import BeautifulSoup
+import logging, os
+import signal
 import ddddocr
 
-class ChcWebPO_quan():
+class ChcPO_quanqu():
 
-    # def __init__(self):
-    #
-    #     from ConfigparserPO import *
-    #     Configparser_PO = ConfigparserPO('config.ini')
-    #
-    #     self.varUrl = Configparser_PO.HTTP("url")
+    def __init__(self, varFile):
+        # 配置日志
+        if os.name == 'nt':
+            logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
+        else:
+            logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+        self.logger = logging.getLogger(__name__)
+        # print(varFile, datetime.datetime.now())
+
+    def __handle_signal(self, signum, frame):
+        # 定义信号处理函数
+        self.logger.info('Received signal: {}'.format(signal.Signals(signum).name))
+        self.logger.info('Program is terminating...')
+        # 在这里可以添加额外的清理代码或日志记录
+
+
     def clsApp(self, varApp):
-
-        '''
-        关闭应用程序
-        :param varApp:
-        :return:
-         # clsApp("chrome.exe")
-        '''
-
         l_pid = []
         pids = psutil.pids()
         for pid in pids:
@@ -54,40 +66,77 @@ class ChcWebPO_quan():
 
     def login(self, varUrl, varUser, varPass):
         # 登录
-        self.Web_PO = WebPO("chrome")
-        # self.Web_PO.set_window_size(1366,768)  # 按分辨率1366*768打开
-        # self.Web_PO.maximize_window()  # 全屏
-        # self.Web_PO.openURL(varURL)
-        self.Web_PO.openURL(varUrl)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 3)
+        Web_PO.openURL(varUrl)
+        Web_PO.driver.maximize_window()  # 全屏
+        # Web_PO.setTextByX("//input[@placeholder='请输入用户名']", varUser)
+        # Web_PO.setTextByX("//input[@placeholder='输入密码']", varPass)
+        # Web_PO.clkByX("//button[@type='button']", 2)
 
-        # 居民健康服务 - 健康评估及干预
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li", 2)
-        self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li/ul/div[2]/a/li", 2)
+        Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
+        Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
+        Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
+        Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 3)
 
-        # # 人群分类
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[3]/div/div/div/div/div/input", 2)
-        # # 老年人
-        # self.Web_PO.clkByX("/html/body/div[2]/div[2]/div/div/div[1]/ul/li[4]", 2)
-        #
-        # # 家庭医生
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input",2)
-        # self.Web_PO.clkByX("/html/body/div[2]/div[3]/div/div/div[1]/ul/li[1]")
-        #
-        # # 本年度上传情况
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[1]/div/div/div/div/div/input", 2)
-        # self.Web_PO.clkByX("/html/body/div[2]/div[12]/div/div/div[1]/ul/li[1]", 2)
-        #
-        #
-        # # 查询
-        # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[2]/div/button")
+        # d_ = Web_PO.getValueXpathByLabel("input", "placeholder")
+        # Web_PO.setTextByX(d_['请输入用户名'], varUser)
+        # Web_PO.setTextByX(d_['输入密码'], varPass)
+        # d_ = Web_PO.getTextXpathByLabel("button", "/span")
+        # Web_PO.clkByX(d_['登录'], 2)
 
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", 1, 5)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", 2, 5)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", 3, 5)
+        # 系统接口404
+        # l_ = Web_PO.getTextByXs("//div")
+        # if '系统接口404异常' in l_:
+        #     print('系统接口404异常')
+        #     self.logger.error('系统接口404异常')
+        #     Web_PO.cls()
+        #     sys.exit(0)
+
+    def getMenu2Url(self):
+
+        # 获取菜单链接
+        c = Web_PO.getCountByTag("ul")
+
+        # 获取二级菜单名
+        Web_PO.clsDisplayByTagName("ul", c)  # 展开所有二级菜单（去掉display：none）
+        l_menu2 = Web_PO.getTextByXs("//ul/div/a/li/div/span")
+        # print(l_menu2)  # ['健康档案概况', '个人健康档案', '家庭健康档案', ...
+        # print(len(l_menu2))
+
+        # 获取二级菜单链接
+        l_menu2Url = Web_PO.getAttrValueByXs("//a", "href")
+        # print(l_menu2Url) # ['http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex', 'http://192.168.0.203:30080/#/phs/HealthRecord/Personal', ...
+        l_menu2Url.pop(0)
+        # print(len(l_menu2Url))
+        # 生成字典{菜单：URL}
+        d_menuUrl = dict(zip(l_menu2, l_menu2Url))
+        # print(d_menuUrl)  # {'健康档案概况': 'http://192.168.0.203:30080/#/phs/HealthRecord/ehrindex',...
+        return d_menuUrl
+
+
+        # # 居民健康服务 - 健康评估及干预
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li", 2)
+        # self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div[2]/div[1]/div/ul/div[2]/li/ul/div[2]/a/li", 2)
+        #
+        # # # 人群分类
+        # # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[3]/div/div/div/div/div/input", 2)
+        # # # 老年人
+        # # self.Web_PO.clkByX("/html/body/div[2]/div[2]/div/div/div[1]/ul/li[4]", 2)
+        # #
+        # # # 家庭医生
+        # # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[1]/div[4]/div/div/div/div/div/input",2)
+        # # self.Web_PO.clkByX("/html/body/div[2]/div[3]/div/div/div[1]/ul/li[1]")
+        # #
+        # # # 本年度上传情况
+        # # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[1]/div/div/div/div/div/input", 2)
+        # # self.Web_PO.clkByX("/html/body/div[2]/div[12]/div/div/div[1]/ul/li[1]", 2)
+        # #
+        # #
+        # # # 查询
+        # # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[1]/form/div[3]/div[2]/div/button")
+        #
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", 1, 5)
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", 2, 5)
+        # self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", 3, 5)
 
         # 每次点击列表第一条
         # self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[2]/div/div[1]/div[3]/div/div[1]/div/table/tbody/tr[1]/td[12]/div/button",2)
@@ -106,6 +155,157 @@ class ChcWebPO_quan():
         #     Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 2)
         #     if Web_PO.isBooleanByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button") == False:
         #         break
+
+
+
+    # todo common
+
+    def __setData2(self, ele, k, v):
+        # 日期控件 - 内部调用
+        Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[1]/input", v[0])
+        try:
+            Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[5]/input", v[1])
+        except:
+            try:
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
+            except:
+                Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//div[3]/div/input", v[1])
+
+    def __setAge2(self, ele, k, v):
+        # 年龄控件 - 内部调用
+        Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v[0])
+        try:
+            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/input", v[1])
+        except:
+            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div[2]/input", v[1])
+
+    def __setAddress3(self, ele, k, v):
+        # 地址控件 - 内部调用
+
+        if Web_PO.eleIsEleExistByX(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/div/input") and Web_PO.eleIsEleExistByX(Web_PO.eleCommon2(ele, k), ".//div[3]/div/div/input"):
+            Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k), ".//div[1]/div/div/div/div/input", v[0])
+            Web_PO.eleDropdown(Web_PO.eleCommon2(ele, k), ".//div[2]/div/div/div/div/input", v[1])
+            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon2(ele, k), ".//div[3]/div/div/input", v[2])
+        elif Web_PO.eleIsEleExistByX(Web_PO.eleCommon(ele, k), ".//div/div[2]/div/div/div/input") and Web_PO.eleIsEleExistByX(Web_PO.eleCommon(ele, k), ".//div/div/div[3]/div/input"):
+            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div[1]/div/div/div/input", v[0])
+            Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div[2]/div/div/div/input", v[1])
+            Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//div/div/div[3]/div/input", v[2])
+
+    def query(self, d_):
+        # common - 查询 - 外部调用
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        ele = Web_PO.getSuperEleByX("//form", ".")
+
+        for k, v in d_.items():
+            try:
+                if k in ['姓名', '身份证号', '联系电话', '随访医生', '家庭住址', '录入人员', '家庭住址']:
+                    Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
+                elif k in ['人群分类','家庭医生','是否仅查询机构', '是否终止管理', '档案状态', '管理状态', '数据源',
+                            '三高分类',  '并发症筛查', '并发症类型', '当年患者补充表', '评估结果',
+                            '随访方式', '随访提醒分类','随访评价结果', '随访评估结果（高血压）', '随访评估结果（糖尿病）', '随访评估结果（高血脂）',
+                           '签约类型', '签约状态', '签约机构', '签约团队', '签约服务包', '居民基本情况', '履约情况', '居民基本信息']:
+                    Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input",  v)
+                elif k in ['上次服务日期', '签约日期', '评估日期', '填表日期', '采集日期', '随访日期', '上次随访日期', '下次随访日期', '登记日期', '建卡日期', '建档日期','预期服务时间']:
+                    self.__setData2(ele, k, v)
+                elif k in ['年龄', '登记时年龄']:
+                    self.__setAge2(ele, k, v)
+                if k in ['现住址']:
+                    self.__setAddress3(ele, k, v)
+
+            except:
+                self.logger.error("查询 => " + str(k) + ": " + str(v))
+
+        # 查询
+        Web_PO.button1('查询 ')
+
+        # 日志
+        self.logger.info("查询 => " + str(d_))
+
+
+
+    # todo 2.1 居民健康服务 - 健康服务
+
+    def _signManage_service_operation(self, varOperation, d_option):
+
+        # 获取字段和xpath字典
+        Web_PO.zoom(50)
+        l_field = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//thead", "."), ".//div")
+        Web_PO.zoom(100)
+        # print(l_field)  # ['姓名', '三高分类', '性别', '身份证号', '年龄', '联系电话', '评估日期', '评估结果', '随访人', '评估机构', '操作']
+
+        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+
+        # 获取列表所有值
+        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
+        # print(l_value)
+
+        # 获取字段和类型字典
+        l_group = (List_PO.split2(l_value, varOperation))
+        print(l_group)
+
+        # 遍历获取每行数据中全部符合要求的字段索引max_key
+        d_1 = {}
+        s = 0
+        for i in range(len(l_group)):
+            for k, v in d_option.items():
+                if k in l_field:
+                    s_fieldIndex = l_field.index(k)
+                    if l_group[i][s_fieldIndex] == v:
+                        s = s + 1
+                        d_1[i + 1] = s
+            s = 0
+        # print(d_1)  # {2: 1, 3: 2}
+        max_key = max(d_1, key=d_1.get)
+        # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
+        return max_key
+    def signManage_service_operation(self, d_):
+
+        # 健康服务 - 操作
+
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        try:
+            if "data" not in d_:
+                ele3 = Web_PO.getSuperEleByX("(//span[text()='" + d_['operate'] + "'])[position()=" + str(
+                    self._signManage_service_operation('服务记录\n新增服务', d_['option'])) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
+
+            elif d_['operate'] == '服务记录':
+                Web_PO.button1('关闭')
+
+            elif d_['operate'] == '新增服务':
+                ele = Web_PO.getSuperEleByX("(//form)[last()]", ".")
+                for k, v in d_['data'].items():
+                    if k in ['服务时间']:
+                        # Web_PO.eleDropdownDate1(Web_PO.eleLabel(ele, k), ".//div/div/input", v)
+                        Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
+                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[1]/div/div/input
+                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[1]/div/div/input
+
+                    elif k in ['服务形式']:
+                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[2]/div/div/div/div/input
+                        Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div/div/input", v)
+                        # Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
+                    elif k in ['服务内容']:
+                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[3]/div/div[1]/label[1]
+                        Web_PO.eleCheckboxRightLabelAndText(Web_PO.eleCommon(ele, k), ".//div/div[1]/label", v, './/div/div[2]/div/div/input')
+                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[3]/div/div[2]/div/div/input
+                Web_PO.button1('取消')
+
+            else:
+                print("error, 请检查函数名是否正确、operate是否存在!")
+
+            self.logger.info(str(d_))
+        except:
+            self.logger.error("失败 =>" + str(d_))
+
+
+
+
+
 
     def clkMenu(self, html_source, varMenuName, t=2):
         """点击菜单"""

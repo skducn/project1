@@ -2260,7 +2260,8 @@ class DomPO(object):
 
     def clsDisplayByTagName(self, varLabel, varLen, t=1):
         # 通过tagname去掉隐藏属性
-        # 如：清除30个ul标签的display，30是ul数量，可以通过其他方式获取。 jsDisplayByTagName(30, "ul")
+        # 如：clsDisplayByTagName("ul"，30)
+        # 表示清除30个ul标签的display，可以通过Web_PO.getCountByTag("ul")方式获取ul数量。
         for i in range(varLen):
             self.driver.execute_script('document.getElementsByTagName("' + varLabel + '")[' + str(i) + '].style.display=""')
         sleep(t)

@@ -77,12 +77,6 @@ class GwPO():
         # 在这里可以添加额外的清理代码或日志记录
 
     def clsApp(self, varApp):
-
-        '''
-        关闭应用程序
-         # clsApp("chrome.exe")
-        '''
-
         l_pid = []
         pids = psutil.pids()
         for pid in pids:
@@ -170,7 +164,6 @@ class GwPO():
         # 获取菜单连接
 
         # 统计ur数量
-        # c = Web_PO.getCount("ul")
         c = Web_PO.getCountByTag("ul")
         varLabelCount = c - 3
 

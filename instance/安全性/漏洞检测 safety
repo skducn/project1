@@ -1,0 +1,29 @@
+需要翻墙注册，已注册 skducn@163.com lhc123
+
+4. Safety（依赖库漏洞检测）
+简介：扫描requirements.txt中的 Python 包，检测已知漏洞（如 CVE）。
+核心功能：防止供应链攻击（如 Log4j 类似事件）。
+示例代码：
+bash
+# 安装
+pip install safety
+
+# 扫描当前环境依赖
+safety scan --full-report
+
+# 生成JSON报告（供CI/CD使用）
+safety check --json > safety_report.json
+输出示例：
+json
+{
+  "vulnerabilities": [
+    {
+      "package_name": "urllib3",
+      "version": "1.26.12",
+      "vulnerability_id": "CVE-2023-34123",
+      "title": "Insecure TLS version fallback"
+    }
+  ]
+}
+
+优势：实时同步 NVD 漏洞库，5 秒内完成扫描。

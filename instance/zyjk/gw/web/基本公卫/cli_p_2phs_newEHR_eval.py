@@ -35,7 +35,7 @@ def main(user, password, d_param):
 
     # todo 3 新增
     # 表：T_EHR_INFO
-    # 转义函数名
+    # 转义函数名, 将字符串 "Data_PO.getIdCard()",转义为函数 Data_PO.getIdCard()，生成身份证
     d_param['身份证号码'] = eval(d_param['身份证号码'])
     d_param['姓名'] = eval(d_param['姓名'])
     d_param['本人电话'] = eval(d_param['本人电话'])
