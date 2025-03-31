@@ -5,9 +5,9 @@
 # Description:
 # https://chromedriver.storage.googleapis.com/index.html
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-import sys
-sys.path.append("/Users/linghuchong/Downloads/51/Python/project/")
-# sys.path.append('../../..')
+import logging, os, sys
+import signal
+import ddddocr
 
 from PO.WebPO import *
 Web_PO = WebPO("chrome")
@@ -24,16 +24,16 @@ Sys_PO = SysPO()
 from PO.Base64PO import *
 Base64_PO = Base64PO()
 
-import logging, os, sys
-import signal
-import ddddocr
 
-from collections import ChainMap
+# 获取当前文件的绝对路径
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# 获取 上层 目录的绝对路径
+project_dir = os.path.abspath(os.path.join(current_dir, '..'))
+# 将 上层 目录添加到 sys.path
+sys.path.insert(0, project_dir)
 
-# d_g_type_func = {}
+from ConfigparserPO import *
 
-# exec("""for i in range(2):
-#     self.dropdownDateByOne(dd_text_xpath[k], v[i])""")
 
 
 class GwPO_report():
@@ -62,6 +62,36 @@ class GwPO_report():
                          '单下拉框': "Web_PO.dropdown(dd_text_xpath[k],  v)",
                          '管理机构': 'self.__gljg(ele, k, v)',
                          '日期': 'Web_PO.dropdownDate1(dd_text_xpath[k], v)'}
+
+        Configparser_PO = ConfigparserPO('../config.ini')
+
+        # 登录
+        self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"),
+                   Configparser_PO.ACCOUNT("password"))
+        # 菜单
+        d_menu_report = {'城乡居民健康档案管理报表': 'http://192.168.0.203:30080/report/Statistics/report1',
+                         '高血压患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report2',
+                         '糖尿病患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report3',
+                         '老年人健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report4',
+                         '0-6岁儿童健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report5',
+                         '孕产妇健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report6',
+                         '严重精神障碍患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report7',
+                         '肺结核患者健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report8',
+                         '中医药健康管理报表': 'http://192.168.0.203:30080/report/Statistics/report9',
+                         '健康教育报表': 'http://192.168.0.203:30080/report/Statistics/report10',
+                         '家医签约完成情况报表': 'http://192.168.0.203:30080/report/Statistics/report11',
+                         '重点人群签约统计报表': 'http://192.168.0.203:30080/report/Statistics/report12',
+                         '签约服务包统计报表': 'http://192.168.0.203:30080/report/Statistics/report13',
+                         '慢阻肺病报表': 'http://192.168.0.203:30080/report/Statistics/report19',
+                         '健康档案调阅统计': 'http://192.168.0.203:30080/report/Statistics/report20',
+                         '慢病管理业务监管': 'http://192.168.0.203:30080/report/Statistics2/report14',
+                         '妇幼保健业务监管(孕产妇)': 'http://192.168.0.203:30080/report/Statistics2/report15',
+                         '精神疾病业务监管': 'http://192.168.0.203:30080/report/Statistics2/report16',
+                         '儿童保健业务监管(新生儿)': 'http://192.168.0.203:30080/report/Statistics2/report17',
+                         '儿童保健业务监管(5岁以下)': 'http://192.168.0.203:30080/report/Statistics2/report18'}
+
+        Web_PO.opnLabel(d_menu_basicPHS[varMenu])
+        Web_PO.swhLabel(1)
 
     def __handle_signal(self, signum, frame):
         # 定义信号处理函数

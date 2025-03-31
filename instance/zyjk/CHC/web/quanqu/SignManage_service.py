@@ -40,9 +40,9 @@ Chc_PO_quanqu.query({"身份证号": "410203196112238333"})
 
 
 # todo 新增服务
-Chc_PO_quanqu.signManage_service_operation({'operate': '新增服务', 'option': {'身份证号': '410203196112238333'}})
-Chc_PO_quanqu.signManage_service_operation({'operate': '新增服务', 'data': {
-    '服务时间': [2025,1,2],
-    '服务形式': '微信',
-    '服务内容': ['随访管理：医嘱及用药记录', {'其他服务': '123'}]
-}})
+# Chc_PO_quanqu.signManage_service_operation({'operate': '新增服务', 'option': {'身份证号': '410203196112238333'}})
+# Chc_PO_quanqu.signManage_service_operation({'operate': '新增服务', 'data': {
+#     '服务时间': [2025,1,2],
+#     '服务形式': '微信',
+#     '服务内容': ['随访管理：医嘱及用药记录', {'其他服务': '123'}]
+# }})

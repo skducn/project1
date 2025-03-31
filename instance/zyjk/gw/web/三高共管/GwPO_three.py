@@ -5,8 +5,11 @@
 # Description:
 # https://chromedriver.storage.googleapis.com/index.html
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-import sys
-sys.path.append("/Users/linghuchong/Downloads/51/Python/project/")
+
+import logging, os, sys
+import signal
+import ddddocr
+# sys.path.append("/Users/linghuchong/Downloads/51/Python/project/")
 # sys.path.append('../../..')
 
 from PO.WebPO import *
@@ -24,28 +27,26 @@ Sys_PO = SysPO()
 from PO.Base64PO import *
 Base64_PO = Base64PO()
 
-import logging, os, sys
-import signal
-import ddddocr
+# 获取当前文件的绝对路径
+current_dir = os.path.dirname(os.path.abspath(__file__))
+# 获取 上层 目录的绝对路径
+project_dir = os.path.abspath(os.path.join(current_dir, '..'))
+# 将 上层 目录添加到 sys.path
+sys.path.insert(0, project_dir)
 
-from collections import ChainMap
+from ConfigparserPO import *
 
-# d_g_type_func = {}
-
-# exec("""for i in range(2):
-#     self.dropdownDateByOne(dd_text_xpath[k], v[i])""")
 
 
 class GwPO_three():
 
-    def __init__(self, varFile):
+    def __init__(self, varFile, varMenu):
         # 配置日志
         if os.name == 'nt':
             logging.basicConfig(filename=varFile, level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
         else:
             logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
         self.logger = logging.getLogger(__name__)
-        # print(varFile, datetime.datetime.now())
 
         self.selectors = {
             'dropdown_popper': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']",
@@ -62,6 +63,29 @@ class GwPO_three():
                          '单下拉框': "Web_PO.dropdown(dd_text_xpath[k],  v)",
                          '管理机构': 'self.__gljg(ele, k, v)',
                          '日期': 'Web_PO.dropdownDate1(dd_text_xpath[k], v)'}
+
+        Configparser_PO = ConfigparserPO('../config.ini')
+
+        # 登录
+        self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"),
+                          Configparser_PO.ACCOUNT("password"))
+        # 菜单
+        d_menu_basicPHS = {'三高共管概况': 'http://192.168.0.203:30080/three/ThreeHighs/general',
+                           '医防融合信息表': 'http://192.168.0.203:30080/three/ThreeHighs/supplement',
+                           '三高随访管理': 'http://192.168.0.203:30080/three/ThreeHighs/ThnVisitList',
+                           '心血管评估管理': 'http://192.168.0.203:30080/three/ThreeHighs/cardiovascularCheck',
+                           '并发症管理': 'http://192.168.0.203:30080/three/ThreeHighs/Complications',
+                           '三高患者管理': 'http://192.168.0.203:30080/three/ThreeHighs/ThnList',
+                           '冠心病登记': 'http://192.168.0.203:30080/three/Coronary/CHDregister',
+                           '冠心病管理': 'http://192.168.0.203:30080/three/Coronary/CHDfiles',
+                           '脑卒中登记': 'http://192.168.0.203:30080/three/Stroke/DNTregister',
+                           '脑卒中管理': 'http://192.168.0.203:30080/three/Stroke/DNTfiles',
+                           '高血脂登记': 'http://192.168.0.203:30080/three/Hyperlipidemia/gxzregister',
+                           '高血脂专项': 'http://192.168.0.203:30080/three/Hyperlipidemia/gxzspecial',
+                           '高血脂随访': 'http://192.168.0.203:30080/three/Hyperlipidemia/gxzsvisit'}
+
+        Web_PO.opnLabel(d_menu_basicPHS[varMenu])
+        Web_PO.swhLabel(1)
 
     def __handle_signal(self, signum, frame):
         # 定义信号处理函数

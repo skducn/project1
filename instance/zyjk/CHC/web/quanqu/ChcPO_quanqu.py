@@ -200,14 +200,11 @@ class ChcPO_quanqu():
 
         for k, v in d_.items():
             try:
-                if k in ['姓名', '身份证号', '联系电话', '随访医生', '家庭住址', '录入人员', '家庭住址']:
+                if k in ['姓名', '身份证号']:
                     Web_PO.eleSetTextEnterByX(Web_PO.eleCommon(ele, k), ".//input", v)
-                elif k in ['人群分类','家庭医生','是否仅查询机构', '是否终止管理', '档案状态', '管理状态', '数据源',
-                            '三高分类',  '并发症筛查', '并发症类型', '当年患者补充表', '评估结果',
-                            '随访方式', '随访提醒分类','随访评价结果', '随访评估结果（高血压）', '随访评估结果（糖尿病）', '随访评估结果（高血脂）',
-                           '签约类型', '签约状态', '签约机构', '签约团队', '签约服务包', '居民基本情况', '履约情况', '居民基本信息']:
+                elif k in ['人群分类', '家庭医生', '年度评估状态', '重点人群', '本年度上传情况', '已点击上传']:
                     Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//input",  v)
-                elif k in ['上次服务日期', '签约日期', '评估日期', '填表日期', '采集日期', '随访日期', '上次随访日期', '下次随访日期', '登记日期', '建卡日期', '建档日期','预期服务时间']:
+                elif k in ['上次服务日期', '签约日期范围', '最近一次评估日期', '最近一次确认日期']:
                     self.__setData2(ele, k, v)
                 elif k in ['年龄', '登记时年龄']:
                     self.__setAge2(ele, k, v)
@@ -280,20 +277,13 @@ class ChcPO_quanqu():
                 ele = Web_PO.getSuperEleByX("(//form)[last()]", ".")
                 for k, v in d_['data'].items():
                     if k in ['服务时间']:
-                        # Web_PO.eleDropdownDate1(Web_PO.eleLabel(ele, k), ".//div/div/input", v)
                         Web_PO.eleDropdownDate1(Web_PO.eleCommon(ele, k), ".//input", v)
-                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[1]/div/div/input
-                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[1]/div/div/input
-
                     elif k in ['服务形式']:
-                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[2]/div/div/div/div/input
                         Web_PO.eleDropdown(Web_PO.eleCommon(ele, k), ".//div/div/div/div/input", v)
-                        # Web_PO.eleSetTextByX(Web_PO.eleCommon(ele, k), ".//div[2]/div/div/div/input", v)
                     elif k in ['服务内容']:
-                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[3]/div/div[1]/label[1]
                         Web_PO.eleCheckboxRightLabelAndText(Web_PO.eleCommon(ele, k), ".//div/div[1]/label", v, './/div/div[2]/div/div/input')
-                        # /html/body/div[1]/div/div[2]/section/div/div/div[1]/div/div/div[2]/form/div[3]/div/div[2]/div/div/input
                 Web_PO.button1('取消')
+                # Web_PO.button1('确认')
 
             else:
                 print("error, 请检查函数名是否正确、operate是否存在!")
@@ -301,6 +291,87 @@ class ChcPO_quanqu():
             self.logger.info(str(d_))
         except:
             self.logger.error("失败 =>" + str(d_))
+
+
+    # todo 2.1 居民健康服务 - 健康评估及干预
+
+    def _signManage_signAssess_operation(self, varOperation, d_option):
+
+        # 获取字段和xpath字典
+        Web_PO.zoom(50)
+        l_field = Web_PO.eleGetTextByXs(Web_PO.getSuperEleByX("//thead", "."), ".//div")
+        Web_PO.zoom(100)
+        # print(l_field)  # ['姓名', '三高分类', '性别', '身份证号', '年龄', '联系电话', '评估日期', '评估结果', '随访人', '评估机构', '操作']
+
+        ele2 = Web_PO.getSuperEleByX("//tbody", ".")
+
+        # 获取列表所有值
+        l_value = Web_PO.eleGetTextByXs(ele2, ".//div")
+
+        # 获取字段和类型字典
+        l_group = (List_PO.split2(l_value, varOperation))
+        # print(l_group)
+
+        for i in l_group:
+            if "\n" in i[5]:
+                t = len(i[5].split("\n"))
+                # print(t)
+                for j in range(t + 1):
+                    i.pop(6)
+        print(l_group)
+
+
+        # 遍历获取每行数据中全部符合要求的字段索引max_key
+        d_1 = {}
+        s = 0
+        for i in range(len(l_group)):
+            for k, v in d_option.items():
+                if k in l_field:
+                    s_fieldIndex = l_field.index(k)
+                    if l_group[i][s_fieldIndex] == v:
+                        s = s + 1
+                        d_1[i + 1] = s
+            s = 0
+        # print(d_1)  # {2: 1, 3: 2}
+        max_key = max(d_1, key=d_1.get)
+        # print(max_key)  # 3   表示有2条记录，分别是第二和第三行记录，其中第三条记录有两个条件命中，返回命中多的哪一行记录，所以返回3
+        return max_key
+    def signManage_signAssess_operation(self, d_):
+
+        # 健康评估及干预 - 操作
+
+        signal.signal(signal.SIGINT, self.__handle_signal)
+        signal.signal(signal.SIGTERM, self.__handle_signal)
+
+        try:
+            if "data" not in d_:
+                ele2 = Web_PO.getSuperEleByX("//main", ".")
+                ele3 = Web_PO.eleGetSuperEleByX(ele2, "(.//span[text()='" + d_['operate'] + "'])[position()=" + str(
+                    self._signManage_signAssess_operation('健康评估', d_['option'])) + "]", ".")
+                Web_PO.eleClkByX(ele3, ".", 2)
+
+            elif d_['operate'] == '健康评估之新增评估':
+                Web_PO.button1('新增评估')
+                Web_PO.button1('确认')
+
+            elif d_['operate'] == '健康评估之重现评估':
+                Web_PO.button1('重现评估')
+
+            elif d_['operate'] == '健康评估之删除评估':
+                Web_PO.button1('删除评估')
+                Web_PO.button1('确认')
+
+            else:
+                print("error, 请检查函数名是否正确、operate是否存在!")
+
+            self.logger.info(str(d_))
+        except:
+            self.logger.error("失败 =>" + str(d_))
+
+
+
+
+
 
 
 
