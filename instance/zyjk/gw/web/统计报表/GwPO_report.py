@@ -38,7 +38,7 @@ from ConfigparserPO import *
 
 class GwPO_report():
 
-    def __init__(self, varFile):
+    def __init__(self, varFile, varMenu):
         # 配置日志
         if os.name == 'nt':
             logging.basicConfig(filename=varFile, level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
@@ -90,7 +90,7 @@ class GwPO_report():
                          '儿童保健业务监管(新生儿)': 'http://192.168.0.203:30080/report/Statistics2/report17',
                          '儿童保健业务监管(5岁以下)': 'http://192.168.0.203:30080/report/Statistics2/report18'}
 
-        Web_PO.opnLabel(d_menu_basicPHS[varMenu])
+        Web_PO.opnLabel(d_menu_report[varMenu])
         Web_PO.swhLabel(1)
 
     def __handle_signal(self, signum, frame):

@@ -59,10 +59,10 @@ class GwPO_three():
             'associate_family_cancel': ".//div[3]/div/button[2]"
         }
 
-        self.d_g_type_func = {'文本': 'Web_PO.setTextEnterByX(dd_text_xpath[k], v)',
-                         '单下拉框': "Web_PO.dropdown(dd_text_xpath[k],  v)",
-                         '管理机构': 'self.__gljg(ele, k, v)',
-                         '日期': 'Web_PO.dropdownDate1(dd_text_xpath[k], v)'}
+        # self.d_g_type_func = {'文本': 'Web_PO.setTextEnterByX(dd_text_xpath[k], v)',
+        #                  '单下拉框': "Web_PO.dropdown(dd_text_xpath[k],  v)",
+        #                  '管理机构': 'self.__gljg(ele, k, v)',
+        #                  '日期': 'Web_PO.dropdownDate1(dd_text_xpath[k], v)'}
 
         Configparser_PO = ConfigparserPO('../config.ini')
 
