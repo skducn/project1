@@ -10,14 +10,64 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-def outer_function(x):
-    def inner_function(y):
-        return x + y
-    return inner_function
+import markdown
 
-closure = outer_function(10)  # 外部函数执行完毕，x 被设置为 10
-closure(5)
-print(closure(5))  # 内部函数仍然可以访问 x，输出 15
+# 定义Markdown文本
+markdown_text = "# 标题\n这是一段Markdown文本。"
+
+# 将Markdown文本转换为HTML
+html = markdown.markdown(markdown_text)
+
+print(html)
+
+def text_to_markdown_with_headers(text, header_level=1):
+    lines = text.splitlines()
+    markdown_lines = []
+    for line in lines:
+        if line.strip():
+            header = '#' * header_level + ' ' + line
+            markdown_lines.append(header)
+        else:
+            markdown_lines.append(line)
+    return '\n'.join(markdown_lines)
+
+text = "这是一个标题\n这是正文内容"
+markdown_text = text_to_markdown_with_headers(text)
+print(markdown_text)
+
+
+import re
+
+def text_to_markdown(text):
+    lines = text.splitlines()
+    markdown_lines = []
+    for line in lines:
+        if re.match(r'^\s*$', line):
+            markdown_lines.append(line)
+        elif re.match(r'^\s*\d+\.\s', line):
+            markdown_lines.append(line)
+        elif re.match(r'^\s*[-+*]\s', line):
+            markdown_lines.append(line)
+        elif len(line) > 0 and line[0].isupper():
+            markdown_lines.append('# ' + line)
+        else:
+            markdown_lines.append(line)
+    return '\n'.join(markdown_lines)
+
+text = "这是一个标题\n这是第一点\n这是第二点"
+markdown_text = text_to_markdown(text)
+print(markdown_text)
+
+
+
+# def outer_function(x):
+#     def inner_function(y):
+#         return x + y
+#     return inner_function
+#
+# closure = outer_function(10)  # 外部函数执行完毕，x 被设置为 10
+# closure(5)
+# print(closure(5))  # 内部函数仍然可以访问 x，输出 15
 # print(closure(5))  # 内部函数仍然可以访问 x，输出 15
 
 # def replace_second(list1, list2):
