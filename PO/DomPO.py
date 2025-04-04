@@ -139,6 +139,8 @@ class DomPO(object):
     def __init__(self, driver):
         self.driver = driver
 
+        # print(type(self.driver))
+
         self.selectors = {
             'dropdown_popper': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']",
             'dropdown_dropdown': "//div[@class='el-popper is-pure is-light el-select__dropdown' and @aria-hidden='false']",

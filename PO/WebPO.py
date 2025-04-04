@@ -101,7 +101,7 @@
 from PO.DomPO import *
 import requests, bs4, subprocess
 from selenium.webdriver.support.ui import Select
-import os
+import os,json
 
 class WebPO(DomPO):
 
@@ -209,6 +209,7 @@ class WebPO(DomPO):
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
+            # print(s)
             self.driver = webdriver.Chrome(service=s, options=options)
 
             # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
@@ -229,6 +230,16 @@ class WebPO(DomPO):
             #     # os.system("curl -o chromedriver-mac-x64.zip https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/mac-x64/chromedriver-mac-x64.zip")
             #     # shutil.unpack_archive('./chromedriver-mac-x64.zip', './', 'zip')
             #     # # sys.exit(0)
+
+    def load_cookies(self, driver, file_path):
+        """从文件加载 Cookies 到当前会话"""
+        try:
+            with open(file_path, 'r') as f:
+                cookies = json.load(f)
+                for cookie in cookies:
+                    driver.add_cookie(cookie)
+        except FileNotFoundError:
+            print("未找到保存的 Cookies 文件。")
 
     def _openURL(self, varURL):
 
@@ -282,7 +293,15 @@ class WebPO(DomPO):
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
 
+            # print(type(self.driver))
+            # # self.load_cookies(self.driver, 'cookies.json')
+            #
             self.driver.get(varURL)
+            #
+            # cookies = self.driver.get_cookies()
+            # with open('cookies.json', 'w') as f:
+            #     json.dump(cookies, f)
+
             return self.driver
 
         elif self.driver == "noChrome":
@@ -304,7 +323,6 @@ class WebPO(DomPO):
 
             # 更新下载chromedriver
             self.updateChromedriver(options)
-
             self.driver.get(varURL)
             return self.driver
 
@@ -353,6 +371,8 @@ class WebPO(DomPO):
 
     def openURL(self, varURL):
         self._openURL(varURL)
+
+
 
 
     def opn(self, varUrl, t=1):

@@ -10,53 +10,150 @@
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
 
-import markdown
 
-# 定义Markdown文本
-markdown_text = "# 标题\n这是一段Markdown文本。"
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import json
+import time
 
-# 将Markdown文本转换为HTML
-html = markdown.markdown(markdown_text)
 
-print(html)
+class ZhihuAutoAuth:
+    def __init__(self, cookie_path="zhihu_cookies.json"):
+        self.driver = webdriver.Chrome()
+        self.cookie_path = cookie_path
+        self.base_url = "https://www.zhihu.com"
+        self.login_url = f"{self.base_url}/signin"
+        self.user_home_xpath = '//div[@class="UserProfileHeader"]//a[contains(@href, "/people/")]'
 
-def text_to_markdown_with_headers(text, header_level=1):
-    lines = text.splitlines()
-    markdown_lines = []
-    for line in lines:
-        if line.strip():
-            header = '#' * header_level + ' ' + line
-            markdown_lines.append(header)
+    def _save_cookies(self):
+        """保存当前会话的Cookie到文件"""
+        with open(self.cookie_path, "w") as f:
+            json.dump(self.driver.get_cookies(), f)
+        print(f"✅ Cookie已保存到 {self.cookie_path}")
+
+    def _load_cookies(self):
+        """从文件加载Cookie并注入浏览器"""
+        try:
+            with open(self.cookie_path, "r") as f:
+                cookies = json.load(f)
+                # 过滤无效Cookie（如过期或非当前域）
+                valid_cookies = [c for c in cookies if c.get('domain') in self.base_url]
+                for cookie in valid_cookies:
+                    # 处理Expiry时间（Selenium要求int类型）
+                    if 'expiry' in cookie and isinstance(cookie['expiry'], float):
+                        cookie['expiry'] = int(cookie['expiry'])
+                    self.driver.add_cookie(cookie)
+                print(f"✅ 加载{len(valid_cookies)}个有效Cookie")
+                return True
+        except FileNotFoundError:
+            print("❌ 未找到Cookie文件，需手动登录")
+            return False
+
+    def _is_logged_in(self):
+        """验证是否已登录（通过用户头像元素存在性）"""
+        try:
+            WebDriverWait(self.driver, 5).until(
+                EC.presence_of_element_located((By.XPATH, self.user_home_xpath))
+            )
+            return True
+        except:
+            return False
+
+    def auth(self, force_login=False):
+        """自动鉴权主流程"""
+        self.driver.get(self.base_url)
+
+        # 尝试加载本地Cookie（非强制登录时）
+        if not force_login and self._load_cookies():
+            self.driver.refresh()  # 刷新页面使Cookie生效
+            if self._is_logged_in():
+                print("🎉 已通过Cookie自动登录")
+                return
+
+        # 触发手动登录流程
+        print("🔑 开始手动登录（请在30秒内完成）")
+        self.driver.get(self.login_url)
+        WebDriverWait(self.driver, 30).until(
+            EC.url_changes(self.login_url)  # 等待登录成功跳转
+        )
+
+        # 保存新Cookie
+        if self._is_logged_in():
+            self._save_cookies()
         else:
-            markdown_lines.append(line)
-    return '\n'.join(markdown_lines)
+            raise Exception("❌ 登录失败，请检查账号密码")
 
-text = "这是一个标题\n这是正文内容"
-markdown_text = text_to_markdown_with_headers(text)
-print(markdown_text)
+    def close(self):
+        self.driver.quit()
 
 
-import re
+# 使用示例
+if __name__ == "__main__":
+    auth = ZhihuAutoAuth()
+    try:
+        auth.auth()  # 首次运行需手动登录，后续自动复用Cookie
+        # 执行需要登录的操作（例如访问个人主页）
+        auth.driver.get(f"{auth.base_url}/people/your-username")
+        time.sleep(3)  # 演示停留
+    finally:
+        auth.close()
 
-def text_to_markdown(text):
-    lines = text.splitlines()
-    markdown_lines = []
-    for line in lines:
-        if re.match(r'^\s*$', line):
-            markdown_lines.append(line)
-        elif re.match(r'^\s*\d+\.\s', line):
-            markdown_lines.append(line)
-        elif re.match(r'^\s*[-+*]\s', line):
-            markdown_lines.append(line)
-        elif len(line) > 0 and line[0].isupper():
-            markdown_lines.append('# ' + line)
-        else:
-            markdown_lines.append(line)
-    return '\n'.join(markdown_lines)
 
-text = "这是一个标题\n这是第一点\n这是第二点"
-markdown_text = text_to_markdown(text)
-print(markdown_text)
+
+
+
+
+
+
+# import markdown
+#
+# # 定义Markdown文本
+# markdown_text = "# 标题\n这是一段Markdown文本。"
+#
+# # 将Markdown文本转换为HTML
+# html = markdown.markdown(markdown_text)
+#
+# print(html)
+#
+# def text_to_markdown_with_headers(text, header_level=1):
+#     lines = text.splitlines()
+#     markdown_lines = []
+#     for line in lines:
+#         if line.strip():
+#             header = '#' * header_level + ' ' + line
+#             markdown_lines.append(header)
+#         else:
+#             markdown_lines.append(line)
+#     return '\n'.join(markdown_lines)
+#
+# text = "这是一个标题\n这是正文内容"
+# markdown_text = text_to_markdown_with_headers(text)
+# print(markdown_text)
+
+#
+# import re
+#
+# def text_to_markdown(text):
+#     lines = text.splitlines()
+#     markdown_lines = []
+#     for line in lines:
+#         if re.match(r'^\s*$', line):
+#             markdown_lines.append(line)
+#         elif re.match(r'^\s*\d+\.\s', line):
+#             markdown_lines.append(line)
+#         elif re.match(r'^\s*[-+*]\s', line):
+#             markdown_lines.append(line)
+#         elif len(line) > 0 and line[0].isupper():
+#             markdown_lines.append('# ' + line)
+#         else:
+#             markdown_lines.append(line)
+#     return '\n'.join(markdown_lines)
+#
+# text = "这是一个标题\n这是第一点\n这是第二点"
+# markdown_text = text_to_markdown(text)
+# print(markdown_text)
 
 
 

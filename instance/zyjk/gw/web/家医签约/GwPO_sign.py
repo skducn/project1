@@ -35,7 +35,7 @@ project_dir = os.path.abspath(os.path.join(current_dir, '..'))
 sys.path.insert(0, project_dir)
 
 from ConfigparserPO import *
-
+import json
 
 
 class GwPO_sign():
@@ -59,16 +59,19 @@ class GwPO_sign():
             'associate_family_cancel': ".//div[3]/div/button[2]"
         }
 
-        # self.d_g_type_func = {'文本': 'Web_PO.setTextEnterByX(dd_text_xpath[k], v)',
-        #                  '单下拉框': "Web_PO.dropdown(dd_text_xpath[k],  v)",
-        #                  '管理机构': 'self.__gljg(ele, k, v)',
-        #                  '日期': 'Web_PO.dropdownDate1(dd_text_xpath[k], v)'}
-
         Configparser_PO = ConfigparserPO('../config.ini')
 
-        # 登录
+        # # 登录
         self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"),
                           Configparser_PO.ACCOUNT("password"))
+
+        # 尝试加载保存的 Cookies
+        # load_cookies(Web_PO.driver, cookies_file)
+        """保存当前会话的 Cookies 到文件"""
+        cookies = Web_PO.driver.get_cookies()
+        with open("cookies.json", 'w') as f:
+            json.dump(cookies, f)
+
         # 菜单
         d_menu_basicPHS = {'签约居民概况': 'http://192.168.0.203:30080/Sign/jmsign/qyindex',
                            '已签约居民': 'http://192.168.0.203:30080/Sign/jmsign/signed',
@@ -79,6 +82,22 @@ class GwPO_sign():
 
         Web_PO.opnLabel(d_menu_basicPHS[varMenu])
         Web_PO.swhLabel(1)
+
+    def save_cookies(self, driver, file_path):
+        """保存当前会话的 Cookies 到文件"""
+        cookies = driver.get_cookies()
+        with open(file_path, 'w') as f:
+            json.dump(cookies, f)
+
+    def load_cookies(self, driver, file_path):
+        """从文件加载 Cookies 到当前会话"""
+        try:
+            with open(file_path, 'r') as f:
+                cookies = json.load(f)
+                for cookie in cookies:
+                    driver.add_cookie(cookie)
+        except FileNotFoundError:
+            print("未找到保存的 Cookies 文件。")
 
     def __handle_signal(self, signum, frame):
         # 定义信号处理函数

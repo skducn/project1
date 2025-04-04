@@ -18,7 +18,7 @@ Gw_PO_sign.query({"身份证号": "110101202307019439"})
 
 
 # # todo 2 查看
-Gw_PO_sign.sign_jmsign_qyfile_operation({'operate': '查看', 'option': {'身份证号': '110101202307019439'}})
-Gw_PO_sign.sign_jmsign_qyfile_operation({'operate': '查看', 'data': {  }})
+# Gw_PO_sign.sign_jmsign_qyfile_operation({'operate': '查看', 'option': {'身份证号': '110101202307019439'}})
+# Gw_PO_sign.sign_jmsign_qyfile_operation({'operate': '查看', 'data': {  }})
 
 
