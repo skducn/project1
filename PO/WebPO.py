@@ -208,6 +208,7 @@ class WebPO(DomPO):
                 os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
+            # print(currPath + "/chromedriver-mac-x64/chromedriver")
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
             # print(s)
             self.driver = webdriver.Chrome(service=s, options=options)
@@ -248,7 +249,54 @@ class WebPO(DomPO):
         # 1 配置项
         options = Options()
 
-        if self.driver == "chrome":
+        if self.driver == "chromeCookies":
+
+            # todo 屏幕
+            options.add_argument("--start-maximized")  # 最大化浏览器
+            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
+            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
+            # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
+            # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
+            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
+
+            # todo 浏览器
+            options.add_experimental_option("detach", True)  # 浏览器永不关闭
+            options.add_argument('--incognito')  # 无痕模式
+            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
+            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+            # options.headless = True  # 无界面模式
+            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+            # todo 安全性
+            options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
+            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
+            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
+            # 禁用“保存密码”弹出窗口
+            options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
+
+            # todo 系统
+            # options.add_argument("disable-cache")  # 禁用缓存
+            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+            options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+            options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+            options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+            # 更新下载chromedriver
+            self.updateChromedriver(options)
+
+
+
+            self.driver.get(varURL)
+            return self.driver
+
+        elif self.driver == "chrome":
 
             # todo 屏幕
             options.add_argument("--start-maximized")  # 最大化浏览器
@@ -293,15 +341,7 @@ class WebPO(DomPO):
             # # 绕过检测（滑动验证码）
             # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
 
-            # print(type(self.driver))
-            # # self.load_cookies(self.driver, 'cookies.json')
-            #
             self.driver.get(varURL)
-            #
-            # cookies = self.driver.get_cookies()
-            # with open('cookies.json', 'w') as f:
-            #     json.dump(cookies, f)
-
             return self.driver
 
         elif self.driver == "noChrome":
@@ -323,6 +363,7 @@ class WebPO(DomPO):
 
             # 更新下载chromedriver
             self.updateChromedriver(options)
+
             self.driver.get(varURL)
             return self.driver
 
@@ -366,14 +407,125 @@ class WebPO(DomPO):
 
             self.driver.get(varURL)
             return self.driver
-
-
-
     def openURL(self, varURL):
         self._openURL(varURL)
 
+    def _openUrlByCookies(self, varUrl, varProtectedUrl, varCookiesFile):
+
+        # 1.1 # cookies鉴权自动化 打开chrome
+
+        # 1 配置项
+        options = Options()
+
+        if self.driver == "chromeCookies":
+
+            # todo 屏幕
+            options.add_argument("--start-maximized")  # 最大化浏览器
+            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
+            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
+            # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
+            # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
+            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
+
+            # todo 浏览器
+            options.add_experimental_option("detach", True)  # 浏览器永不关闭
+            options.add_argument('--incognito')  # 无痕模式
+            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+            options.add_experimental_option("excludeSwitches",
+                                            ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
+            options.add_experimental_option("excludeSwitches",
+                                            ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+            # options.headless = True  # 无界面模式
+            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+            # todo 安全性
+            options.add_argument(
+                "--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
+            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
+            options.add_argument(
+                "--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
+            # 禁用“保存密码”弹出窗口
+            options.add_experimental_option("prefs", {"credentials_enable_service": False,
+                                                      "profile.password_manager_enabled": False})
+
+            # todo 系统
+            # options.add_argument("disable-cache")  # 禁用缓存
+            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+            options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+            options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+            options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+            # 更新下载chromedriver
+            self.updateChromedriver(options)
+
+            # 导航到目标域名下的某个页面
+            self.driver.get(varUrl)
+            # 如：driver.get('http://192.168.0.243:8010/')
+
+            try:
+                # cookies鉴权自动化
+                session = requests.Session()
 
 
+                # 读取 cookies文件
+                with open(varCookiesFile, 'r') as f:
+                    loaded_cookies = json.load(f)
+                    # print("Loaded cookies:", loaded_cookies)  # 打印内容
+                    # print("Type of loaded_cookies:", type(loaded_cookies))  # 打印类型
+
+                    # 添加 cookies
+                    for cookie in loaded_cookies:
+                        self.driver.add_cookie(cookie)
+
+                    # 如果 loaded_cookies 是列表，转换为字典
+                    if isinstance(loaded_cookies, list):
+                        loaded_cookies = {item['name']: item['value'] for item in loaded_cookies}
+                    elif isinstance(loaded_cookies, dict):
+                        pass  # 已经是字典，无需处理
+                    else:
+                        raise ValueError("Invalid format of loaded_cookies")
+
+
+
+                # 使用加载的 cookies 访问受保护的页面
+                new_session = requests.Session()
+                new_session.cookies.update(loaded_cookies)
+                protected_response = new_session.get(varProtectedUrl)
+                if protected_response.status_code == 200:
+                    # print("成功访问受保护页面！")
+                    self.driver.get(varProtectedUrl)
+                    # driver.get('http://192.168.0.243:8010/#/SignManage/service')
+                    # input("按 Enter 键关闭浏览器...")
+                else:
+                    print(f"访问受保护页面失败，状态码: {protected_response.status_code}")
+
+                # 关闭会话
+                session.close()
+                if 'new_session' in locals():
+                    new_session.close()
+
+            except FileNotFoundError:
+                print("未找到保存的 cookies 文件。")
+            except Exception as e:
+                print(f"发生错误: {e}")
+
+            return self.driver
+
+
+    def openUrlByCookies(self, varUrl, varCookiesFile, varProtectedUrl):
+        # cookies鉴权自动化，通过cookies访问授权页面
+        # varUrl, 导航到目标域名下的某个页面
+        # varCookiesFile, cookies.json
+        # varProtectedUrl, 打开受保护页面
+        # Web_PO.openUrlByCookies('http://192.168.0.243:8010/','cookies.json','http://192.168.0.243:8010/#/SignManage/signAssess')
+
+        self._openUrlByCookies(varUrl, varCookiesFile, varProtectedUrl)
 
     def opn(self, varUrl, t=1):
         # 1.1 打开网页

@@ -46,7 +46,8 @@ from ConfigparserPO import *
 
 class ChcPO_quanqu():
 
-    def __init__(self, varFile, varMenu):
+    def __init__(self, varFile, varMenu, varCookies='cookies.json'):
+
         # 配置日志
         if os.name == 'nt':
             logging.basicConfig(filename=varFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
@@ -61,6 +62,14 @@ class ChcPO_quanqu():
         # 登录
         self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"),
                           Configparser_PO.ACCOUNT("password"))
+
+        # 保存当前会话的 Cookies 到文件
+        cookies = Web_PO.driver.get_cookies()
+        # with open("cookies.json", 'w') as f:
+        with open(varCookies, 'w') as f:
+            json.dump(cookies, f)
+
+
         # 菜单
         d_menu = {'首页': 'http://192.168.0.243:8010/#/index', '健康服务': 'http://192.168.0.243:8010/#/SignManage/service',
                   '健康评估及干预': 'http://192.168.0.243:8010/#/SignManage/signAssess',

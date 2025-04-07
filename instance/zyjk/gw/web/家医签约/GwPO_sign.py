@@ -40,7 +40,7 @@ import json
 
 class GwPO_sign():
 
-    def __init__(self, varFile, varMenu):
+    def __init__(self, varFile, varMenu, varCookies='cookies.json'):
         # 配置日志
         if os.name == 'nt':
             logging.basicConfig(filename=varFile, level=logging.INFO,format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
@@ -65,11 +65,11 @@ class GwPO_sign():
         self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"),
                           Configparser_PO.ACCOUNT("password"))
 
-        # 尝试加载保存的 Cookies
-        # load_cookies(Web_PO.driver, cookies_file)
-        """保存当前会话的 Cookies 到文件"""
+
+        # 保存当前会话的 Cookies 到文件
         cookies = Web_PO.driver.get_cookies()
-        with open("cookies.json", 'w') as f:
+        # with open("cookies.json", 'w') as f:
+        with open(varCookies, 'w') as f:
             json.dump(cookies, f)
 
         # 菜单
