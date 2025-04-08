@@ -36,8 +36,12 @@ from PO.WebPO import *
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-from ConfigparserPO import *
-Configparser_PO = ConfigparserPO('config.ini')
+from .ConfigparserPO import ConfigparserPO
+# config_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'config.ini'))
+config_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.ini'))
+print(f"Config file path: {config_file_path}")
+Configparser_PO = ConfigparserPO(config_file_path)
+# Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.TimePO import *
 Time_PO = TimePO()
@@ -45,7 +49,6 @@ Time_PO = TimePO()
 class GwPO_i():
 
     def __init__(self):
-
         self.ipAddr = Configparser_PO.HTTP("url")
 
 
@@ -108,6 +111,7 @@ class GwPO_i():
         d_['token'] = self.token
         Color_PO.outColor([{"35": d_}])
         # print("token =>", self.token)
+        return d_
 
     def curl(self, varMethod, varUrl):
 

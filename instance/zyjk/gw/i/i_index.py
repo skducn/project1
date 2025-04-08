@@ -12,7 +12,7 @@
 # https://docs.qq.com/sheet/DYmZMVmFTeXFWRFpQ?tab=BB08J2
 # *****************************************************************
 from GwPO_i import *
-gw_i_PO = Gw_i_PO()
+Gw_PO_i = GwPO_i()
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlServerPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"), Configparser_PO.DB("charset"))  # 测试环境
 
@@ -23,8 +23,8 @@ login_data = {
         "code": "",
         "uuid": ""
     }
-encrypt_data = gw_i_PO.encrypt(json.dumps(login_data))
-gw_i_PO.curlLogin(encrypt_data)  # {'user': '11012', 'token': 'eyJhbG...
+encrypt_data = Gw_PO_i.encrypt(json.dumps(login_data))
+Gw_PO_i.curlLogin(encrypt_data)  # {'user': '11012', 'token': 'eyJhbG...
 
 
 # todo 新增高血压管理卡
@@ -32,8 +32,8 @@ gw_i_PO.curlLogin(encrypt_data)  # {'user': '11012', 'token': 'eyJhbG...
 
 # 步骤1, 高血压管理卡-获取基本信息
 params = '{"idCard":"310101195001293595"}'
-encrypted_params = gw_i_PO.encrypt(params)
-r = gw_i_PO.curl('GET', "/serverExport/gxy/getEhrInfo?0=" + encrypted_params)
+encrypted_params = Gw_PO_i.encrypt(params)
+r = Gw_PO_i.curl('GET', "/serverExport/gxy/getEhrInfo?0=" + encrypted_params)
 print(r)
 # {'code': 200, 'msg': None, 'data': {'id': None, 'bbId': None, 'cid': 'dedadc417a84419ea7ac972a31dcf5f3', 'ehrNum': None, 'xm': '尤亮柏', 'xb': '1', 'xbmc': '男', 'csrq': '1950-01-29T00:00:00.000+08:00', 'lxdh': '15831052116', 'zjhm': '310101195001293595', 'zhiyedm': '70000', 'zhiyemc': '军人', 'xxlybm': None, 'xxlymc': None, 'xxlysm': None, 'sg': None, 'tz': None, 'jzsbm': None, 'jzsmc': None, 'shxgxy': None, 'jyksrq': None, 'ksxynl': None, 'shxgyj': None, 'ksyjnl': None, 'sfyjgl': None, 'shxgdl': None, 'zyblbz': None, 'zyblysmc': None, 'zyblyszldm': None, 'zyblyszlmc': None, 'whysjtzy': None, 'cswhzysc': None, 'fhcsbz': None, 'shzlnlbm': None, 'shzlnlmc': None, 'wfysp': None, 'wfydp': None, 'wxfcbm': None, 'wxfcmc': None, 'gljbbm': None, 'gxylxbm': None, 'sfzzgl': None, 'zzglyy': None, 'zzglrq': None, 'jkysgh': None, 'jkysxm': None, 'jksj': None, 'jktdbm': None, 'jktdmc': None, 'jkyljgdm': None, 'jkyljgmc': None, 'jzdShebm': '31', 'jzdShe': '上海市', 'jzdShibm': '310100000000', 'jzdShi': '市辖区', 'jzdXiabm': '310109000000', 'jzdXia': '虹口区', 'jzdXngbm': '310109011000', 'jzdXng': '广中路街道', 'jzdJwbm': '310109011003', 'jzdJw': '商业一村居委会', 'jzdXx': '多媒体100号', 'qzrq': None, 'sfgxjkda': None}}
 # 获取cid值，如 r['data']['cid']
@@ -50,22 +50,22 @@ print(r)
 #           "qzrq":"2025-03-27","sfgxjkda":"1"}
 # encrypted_params = gw_i_PO.encrypt(json.dumps(params))
 # url = f"/server/gxy/createOrUpdateHzglk' -d '{encrypted_params}'"
-# r = gw_i_PO.curl('POST', url)
+# r = Gw_PO_i.curl('POST', url)
 # print(r)
 
 
 # # todo 首页 - 档案概况，三高概况，重点人群分布情况，健康档案
-# r = gw_i_PO.curl('GET', "/server/tHome/getHomePageData")
+# r = Gw_PO_i.curl('GET', "/server/tHome/getHomePageData")
 # print(r)  # {'code': 200, 'msg': None, 'data': {'total': 129, 'familyTotal': 109, 'signTotal': None, 'currentSignTotal': None, 'threeHighResidents': 1, 'residentsOfLianggao': 6, 'gxyTotal': 19, 'tnbTotal': 11, 'gxzTotal': 11, 'dbtTotal': 4, 'chdTotal': 3, 'tbTotal': 5, 'disTotal': 7, 'smiTotal': 9, 'snrTotal': 16, 'pwTotal': 7, 'childTotal': 20, 'gxyTotalRate': 14.73, 'tnbTotalRate': 8.53, 'gxzTotalRate': 8.53, 'dbtTotalRate': 3.1, 'chdTotalRate': 2.33, 'tbTotalRate': 3.88, 'disTotalRate': 5.43, 'smiTotalRate': 6.98, 'snrTotalRate': 12.4, 'pwTotalRate': 5.43, 'childTotalRate': 15.5, 'transferOutNum': 0, 'switchTeamNum': 0, 'rescindNum': 0, 'deathToll': 14, 'notYetManagedToll': 3}}
 #
 #
 # # todo 首页 - 任务提醒
-# # r = gw_i_PO.curl('GET', "/server/tHome/getHomeSumData?0=" + gw_i_PO.encrypt('{"type":"1"}'))
+# # r = Gw_PO_i.curl('GET', "/server/tHome/getHomeSumData?0=" + gw_i_PO.encrypt('{"type":"1"}'))
 # # print(r)  # {'code': 200, 'msg': None, 'data': {'gxyNum': 10, 'tnbNum': 8, 'childNum': 8, 'pwNum': 3, 'tbNum': 6, 'disNum': 2, 'smiNum': 2}}
 # params = {"type": "1"}
 # encrypted_params = gw_i_PO.encrypt(json.dumps(params))
 # url = f"/server/tHome/getHomeSumData?0={encrypted_params}"
-# r = gw_i_PO.curl('GET', url)
+# r = Gw_PO_i.curl('GET', url)
 # print(r)
 
 

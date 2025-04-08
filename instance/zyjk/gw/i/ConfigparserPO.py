@@ -13,15 +13,25 @@ class ConfigparserPO:
         self.cf.read(file, encoding="utf-8-sig")
         self.file = file
 
+        # 调试信息
+        print(f"Read config file: {file}")
+        print(f"Sections: {self.cf.sections()}")
+
     def HTTP(self, name):
+        if 'HTTP' not in self.cf.sections():
+            raise configparser.NoSectionError(f"No section: 'HTTP'")
         value = self.cf.get("HTTP", name)
         return value
 
     def ACCOUNT(self, name):
+        if 'ACCOUNT' not in self.cf.sections():
+            raise configparser.NoSectionError(f"No section: 'ACCOUNT'")
         value = self.cf.get("ACCOUNT", name)
         return value
 
     def DB(self, name):
+        if 'DB' not in self.cf.sections():
+            raise configparser.NoSectionError(f"No section: 'DB'")
         value = self.cf.get("DB", name)
         return value
 

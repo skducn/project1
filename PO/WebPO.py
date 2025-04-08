@@ -291,8 +291,6 @@ class WebPO(DomPO):
             # 更新下载chromedriver
             self.updateChromedriver(options)
 
-
-
             self.driver.get(varURL)
             return self.driver
 
@@ -410,9 +408,9 @@ class WebPO(DomPO):
     def openURL(self, varURL):
         self._openURL(varURL)
 
-    def _openUrlByCookies(self, varUrl, varProtectedUrl, varCookiesFile):
+    def _openUrlByAuth(self, varAuthFile, varPrefixUrl, varProtectedUrl):
 
-        # 1.1 # cookies鉴权自动化 打开chrome
+        # 1.1 # 鉴权token，cookies鉴权自动化 打开chrome
 
         # 1 配置项
         options = Options()
@@ -464,68 +462,76 @@ class WebPO(DomPO):
             # 更新下载chromedriver
             self.updateChromedriver(options)
 
-            # 导航到目标域名下的某个页面
-            self.driver.get(varUrl)
+
+            # 导航到目标域名下的某个页面（用于鉴权）
+            self.driver.get(varPrefixUrl)
             # 如：driver.get('http://192.168.0.243:8010/')
 
-            try:
-                # cookies鉴权自动化
-                session = requests.Session()
+            # try:
+            session = requests.Session()
 
+            # 读取 cookies文件
+            with open(varAuthFile, 'r') as f:
+                loaded_cookies = json.load(f)
+                # print("1genAuthorization :", loaded_cookies)  # 打印内容
+                # print("Type of loaded_cookies:", type(loaded_cookies))  # 打印类型
 
-                # 读取 cookies文件
-                with open(varCookiesFile, 'r') as f:
-                    loaded_cookies = json.load(f)
-                    # print("Loaded cookies:", loaded_cookies)  # 打印内容
-                    # print("Type of loaded_cookies:", type(loaded_cookies))  # 打印类型
+                if 'Admin-Token' in loaded_cookies:
+                    # 手动设置 Admin-Token 到 local storage
+                    self.driver.execute_script(f"window.localStorage.setItem('Admin-Token', '{loaded_cookies['Admin-Token']}');")
+                    # 打开受保护页面
+                    self.driver.get(varProtectedUrl)
+                    print("成功访问受保护页面 =>", varProtectedUrl)
 
-                    # 添加 cookies
+                    # 设置Selenium的请求头
+                    # self.driver.execute_cdp_cmd('Network.setExtraHTTPHeaders', {"headers": headers})
+
+                else:
+                    # # 添加 cookies
                     for cookie in loaded_cookies:
                         self.driver.add_cookie(cookie)
 
                     # 如果 loaded_cookies 是列表，转换为字典
                     if isinstance(loaded_cookies, list):
                         loaded_cookies = {item['name']: item['value'] for item in loaded_cookies}
+                        # print(loaded_cookies)
                     elif isinstance(loaded_cookies, dict):
                         pass  # 已经是字典，无需处理
                     else:
                         raise ValueError("Invalid format of loaded_cookies")
 
+                    # 使用加载的 cookies 访问受保护的页面
+                    new_session = requests.Session()
+                    new_session.cookies.update(loaded_cookies)
+                    protected_response = new_session.get(varProtectedUrl)
+                    if protected_response.status_code == 200:
+                        print("成功访问受保护页面 =>", varProtectedUrl)
+                        self.driver.get(varProtectedUrl)
+                        # driver.get('http://192.168.0.243:8010/#/SignManage/service')
+                        # input("按 Enter 键关闭浏览器...")
+                    else:
+                        print(f"访问受保护页面失败，状态码: {protected_response.status_code}")
 
+                    # 关闭会话
+                    session.close()
+                    if 'new_session' in locals():
+                        new_session.close()
 
-                # 使用加载的 cookies 访问受保护的页面
-                new_session = requests.Session()
-                new_session.cookies.update(loaded_cookies)
-                protected_response = new_session.get(varProtectedUrl)
-                if protected_response.status_code == 200:
-                    # print("成功访问受保护页面！")
-                    self.driver.get(varProtectedUrl)
-                    # driver.get('http://192.168.0.243:8010/#/SignManage/service')
-                    # input("按 Enter 键关闭浏览器...")
-                else:
-                    print(f"访问受保护页面失败，状态码: {protected_response.status_code}")
-
-                # 关闭会话
-                session.close()
-                if 'new_session' in locals():
-                    new_session.close()
-
-            except FileNotFoundError:
-                print("未找到保存的 cookies 文件。")
-            except Exception as e:
-                print(f"发生错误: {e}")
+            # except FileNotFoundError:
+            #     print("未找到保存的 cookies 文件。")
+            # except Exception as e:
+            #     print(f"发生错误: {e}")
 
             return self.driver
 
 
-    def openUrlByCookies(self, varUrl, varCookiesFile, varProtectedUrl):
+    def openUrlByAuth(self, varAuthFile, varPrefixUrl, varProtectedUrl):
         # cookies鉴权自动化，通过cookies访问授权页面
-        # varUrl, 导航到目标域名下的某个页面
-        # varCookiesFile, cookies.json
+        # varAuthFile, cookies.json
+        # varPrefixUrl, 导航到目标域名下的某个页面
         # varProtectedUrl, 打开受保护页面
-        # Web_PO.openUrlByCookies('http://192.168.0.243:8010/','cookies.json','http://192.168.0.243:8010/#/SignManage/signAssess')
-
-        self._openUrlByCookies(varUrl, varCookiesFile, varProtectedUrl)
+        # Web_PO.openUrlByAuth('1genAuthorization.json','http://192.168.0.243:8010/','http://192.168.0.243:8010/#/SignManage/signAssess')
+        self._openUrlByAuth(varAuthFile, varPrefixUrl, varProtectedUrl)
 
     def opn(self, varUrl, t=1):
         # 1.1 打开网页

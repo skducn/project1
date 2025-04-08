@@ -17,7 +17,7 @@
 # pip3 install allure-pytest
 # pytest --alluredir ./result -vs
 # pytest --alluredir ./result -vs --clean-alluredir
-# pytest serve ./result
+# allure serve ./result
 # allure generate ./result
 # allure open -h 127.0.0.1 -p 8883 ./allure-report
 # allure open -h 192.168.1.105 -p 8883 ./allure-report
@@ -56,6 +56,16 @@
 # @allure.attachment()
 # 参数值：附件。
 # 参数说明：向测试报告中添加附件，如日志文件、截图等，辅助理解测试结果 。
+
+# Hogwarts $ pytest --help|grep allure
+# --allure-severities=SEVERITIES_SET
+# --allure-epics=EPICS_SET
+# --allure-features=FEATURES_SET
+# --allure-stories=STORIES_SET
+# --allure-link-pattern=LINK_TYPE:LINK_PATTERN
+# --alluredir=DIR Generate Allure report in the specified directory (may
+# --clean-alluredir Clean alluredir folder if it exists
+# --allure-no-capture Do not attach pytest captured logging/stdout/stderr to
 #***************************************************************
 
 import pytest
