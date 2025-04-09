@@ -76,47 +76,80 @@ Sqlserver_PO = SqlServerPO(
     Configparser_PO.DB("charset")
 )  # 测试环境
 
-@allure.feature('登录接口')
-class TestLogin(object):
+d_ = {
+    '登录': {"username": Configparser_PO.ACCOUNT("user"), "password": Configparser_PO.ACCOUNT("password")},
+    '获取高血压管理卡基本信息': {'i':"/serverExport/gxy/getEhrInfo?0=", 'p':'{"idCard":"310101195001293595"}'},
+    '查询已签约居民': {'i':"/server/tSignInfo/findPage?0=", 'p':'{"current":1,"size":20}', 'd':'{"signStatus":1,"orgCode":"","basicInfoCode":"","basicInfoNames":[],"idcard":"","name":"","teamId":"","teamIds":[],"serviceIds":[],"current":1,"size":10}'}
+}
 
+
+
+@allure.feature('登录模块')
+class TestLogin(object):
     @pytest.mark.run(order=1)
+    @allure.severity(allure.severity_level.CRITICAL)
     @allure.story('获取token')
     def test_login(self):
-        login_data = {
-                "username": Configparser_PO.ACCOUNT("user"),
-                "password": Configparser_PO.ACCOUNT("password"),
-                "code": "",
-                "uuid": ""
-            }
-        encrypt_data = Gw_PO_i.encrypt(json.dumps(login_data))
-        d_user_token = Gw_PO_i.curlLogin(encrypt_data)  # {'user': '11012', 'token': 'eyJhbG...
-        # print(d_user_token)
+        d_user_token = Gw_PO_i.curlLogin(Gw_PO_i.encrypt(json.dumps(d_['登录接口'])))  # {'user': '11012', 'token': 'eyJhbG...
         allure.attach(str(d_user_token), name='获取user和token')
+
 
 @allure.feature('高血压管理卡')
 class TestEHR(object):
-
-    @pytest.mark.run(order=3)
-    @allure.title("获取高血压管理卡基本信息")
+    @pytest.mark.run(order=4)
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.link("https://config.net.cn/tools/sm2.html", name="在线SM2公钥私钥对生成")
+    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST", name="高血压管理卡 新增或编辑")
+    @allure.title("高血压管理卡 新增")
     def test_get_ehr_info(self):
-        # todo 新增高血压管理卡
-        # http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST
-        # 步骤1, 高血压管理卡-获取基本信息
         with allure.step("步骤1：获取高血压管理卡-获取基本信息"):
-            allure.attach('{"idCard":"310101195001293595"}', name='查询身份证')
-        r = Gw_PO_i.curl('GET', "/serverExport/gxy/getEhrInfo?0=" + Gw_PO_i.encrypt('{"idCard":"310101195001293595"}'))
+            allure.attach(d_['获取高血压管理卡基本信息']['p'], name='查询身份证')
+        r = Gw_PO_i.curlGET(d_['获取高血压管理卡基本信息']['i'], d_['获取高血压管理卡基本信息']['p'])
+        css = r[0].replace(d_['获取高血压管理卡基本信息']['p'], '<span class="red-text">' + d_['获取高血压管理卡基本信息']['p'] + '</span>')
+        allure.attach('<style>.red-text {color: red;}}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
+        allure.attach(r[1], "加密的curl", allure.attachment_type.HTML)
         with allure.step("步骤2：输出信息"):
-            allure.attach(str(r), name='结果')
-            # print(r) # {'code': 200, 'msg': None, 'data': {'id': None, 'bbId': None, 'cid': 'dedadc417a84419ea7ac972a31dcf5f3', 'ehrNum': None, 'xm': '尤亮柏', 'xb': '1', 'xbmc': '男', 'csrq': '1950-01-29T00:00:00.000+08:00', 'lxdh': '15831052116', 'zjhm': '310101195001293595', 'zhiyedm': '70000', 'zhiyemc': '军人', 'xxlybm': None, 'xxlymc': None, 'xxlysm': None, 'sg': None, 'tz': None, 'jzsbm': None, 'jzsmc': None, 'shxgxy': None, 'jyksrq': None, 'ksxynl': None, 'shxgyj': None, 'ksyjnl': None, 'sfyjgl': None, 'shxgdl': None, 'zyblbz': None, 'zyblysmc': None, 'zyblyszldm': None, 'zyblyszlmc': None, 'whysjtzy': None, 'cswhzysc': None, 'fhcsbz': None, 'shzlnlbm': None, 'shzlnlmc': None, 'wfysp': None, 'wfydp': None, 'wxfcbm': None, 'wxfcmc': None, 'gljbbm': None, 'gxylxbm': None, 'sfzzgl': None, 'zzglyy': None, 'zzglrq': None, 'jkysgh': None, 'jkysxm': None, 'jksj': None, 'jktdbm': None, 'jktdmc': None, 'jkyljgdm': None, 'jkyljgmc': None, 'jzdShebm': '31', 'jzdShe': '上海市', 'jzdShibm': '310100000000', 'jzdShi': '市辖区', 'jzdXiabm': '310109000000', 'jzdXia': '虹口区', 'jzdXngbm': '310109011000', 'jzdXng': '广中路街道', 'jzdJwbm': '310109011003', 'jzdJw': '商业一村居委会', 'jzdXx': '多媒体100号', 'qzrq': None, 'sfgxjkda': None}}
-        # 获取cid值，如 r['data']['cid']
+            allure.attach(str(r[2]), name='结果')
+
+
+@allure.feature('已签约居民')
+class TestSigned(object):
+    @pytest.mark.run(order=8)
+    @allure.severity(allure.severity_level.MINOR)
+    @allure.link("https://config.net.cn/tools/sm2.html", name="在线SM2公钥私钥对生成")
+    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST", name="高血压管理卡 新增或编辑")
+    @allure.title("查询已签约居民")
+    def test_get_signed_info(self):
+        with allure.step("步骤1：查询"):
+            allure.attach('默认查询条件')
+            # allure.attach(d_['获取高血压管理卡基本信息']['p'], name='查询')
+            # allure.attach('{"idCard":"310101195001293595"}', name='查询身份证')
+        r = Gw_PO_i.curlPOST(d_['查询已签约居民']['i'], d_['查询已签约居民']['p'], d_['查询已签约居民']['d'])
+        css = r[0].replace(d_['查询已签约居民']['p'], '<span class="red-text">' + d_['查询已签约居民']['p'] + '</span>')
+        css = css.replace(d_['查询已签约居民']['d'], '<span class="blue-text">' + d_['查询已签约居民']['d'] + '</span>')
+        allure.attach('<style>.red-text {color: red;}.blue-text {color: blue;}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
+        allure.attach(r[1], "加密的curl", allure.attachment_type.HTML)
+        with allure.step("步骤2：输出信息"):
+            allure.attach(str(r[2]), name='结果')
+
 
 
 @allure.feature('allure功能介绍')
 class TestFunction(object):
 
     def test_step(self):
+        # 创建一个包含红色文本的 HTML 字符串
+        red_text_html = '<p style="color: red;">这是红色的文本</p>'
+        # 使用 allure.attach 方法将 HTML 附件添加到测试报告中
+        allure.attach(red_text_html, "红色文本示例", allure.attachment_type.HTML)
+        assert True
+
         with allure.step("步骤1：test1"):
             print("打开页面")
+            # 使用 allure.attach 方法将 HTML 附件添加到测试报告中
+            allure.attach( '<p style="color: red;">这是红色的文本11</p>', "红色文本示例11", allure.attachment_type.HTML)
+
+            # allure.attach('<span style="color: red;">这是红色的文本</span>', "是否为红色？", allure.attachment_type.HTML)
             allure.attach("这是一堵啊蚊子",name='文本展示')
         with allure.step("步骤1：test2"):
             print("访问链接")

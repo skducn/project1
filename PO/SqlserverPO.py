@@ -111,7 +111,7 @@
 
 3.1 设置表注释（添加，修改，删除） setTableComment(varTable, varComment)
 3.2 设置字段注释（添加、修改、删除） setFieldComment(varTable, varField, varComment)
-3.3 设置数据类型 setFieldType(varTable, varField, varType)
+3.3 设置字段类型 setFieldType(varTable, varField, varType)
 3.4 设置自增主键 setIdentityPrimaryKey(varTable, varField)
 3.5 自动生成第一条记录 genFirstRecord()
 3.6 所有空表自动生成第一条记录 genFirstRecordByAll()
@@ -149,6 +149,11 @@
 8.6 插入，插入1条记录，插入多条记录
 8.7 更新
 8.8 删除，删除1条记录，删除所有记录
+8.9 删除表的所有外键关系
+
+添加字段 setField()
+
+9 复制表， copyTable(source,target)
 
 
 """
@@ -1984,15 +1989,180 @@ class SqlServerPO:
             if varFk[i]['relatingTable'] == varTable:
                 self.execute("ALTER table %s DROP %s" % (varFk[i]['table'], varFk[i]['foreignKey']))
 
+    def copyTable(self, source_table, target_table):
+        # 9 复制表
+        # source_table = 'original_table'
+        # target_table = 'copied_table'
+
+        try:
+            # 创建目标表（结构与源表相同）
+            create_table_query = f"SELECT * INTO {target_table} FROM {source_table} WHERE 1 = 0"
+            self.execute(create_table_query)
+
+            # 复制数据
+            insert_data_query = f"INSERT INTO {target_table} SELECT * FROM {source_table}"
+            self.execute(insert_data_query)
+
+            self.conn.commit()
+            print("表复制成功！")
+        except Exception as e:
+            print(f"发生错误: {e}")
+            self.conn.rollback()
+        finally:
+            # 关闭连接
+            self.close()
+            self.conn.close()
+
+
+    def setField(self, varTable, column_name, column_type):
+
+        # 10 添加字段
+        # setField('a_phs_auth_app','status','VARCHAR(11)')
+        # 表名和要添加的字段信息
+        # table_name = 'your_table_name'
+        # column_name = 'status'
+        # column_type = 'VARCHAR(11)'
+
+        try:
+            # 执行 ALTER TABLE 语句添加字段
+            alter_table_query = f"ALTER TABLE {varTable} ADD {column_name} {column_type}"
+            self.execute(alter_table_query)
+
+            # 提交更改
+            self.conn.commit()
+            print(f"成功为表 {varTable} 添加字段 {column_name}。")
+        except Exception as e:
+            print(f"发生错误: {e}")
+            self.conn.rollback()
+        finally:
+            # 关闭连接
+            self.close()
+            self.conn.close()
+
+    def insertBeforeField(self, table_name, reference_column, new_column_name, new_column_type):
+
+        # 表名、要添加的字段信息以及参考字段
+        # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'tags', 'status', 'VARCHAR(12)')
+        # table_name = 'your_table_name'
+        # new_column_name = 'new_column'
+        # new_column_type = 'VARCHAR(255)'
+        # reference_column = 'existing_column'
+
+
+        # try:
+            # 获取表的所有列名
+            columns = self.select(f"SELECT COLUMN_NAME, DATA_TYPE, CHARACTER_MAXIMUM_LENGTH FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{table_name}'")
+            print(columns)  # [{'COLUMN_NAME': 'status', 'DATA_TYPE': 'varchar', 'CHARACTER_MAXIMUM_LENGTH': 12}, {'
+
+
+            # self.execute(f"SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '{table_name}'")
+            # columns = [row[0] for row in self.cur.fetchall()]
+            # columns = [row[0] for row in columns]
+            # columns = ['']
+            # print(columns)  # [{'COLUMN_NAME': 'tags'}, {'COLUMN_NAME': 'summary'}, {'COLUMN_NAME': 'path'}, {'COLUMN_NAME': 'method'}, {'COLUMN_NAME': 'consumes'}, {'COLUMN_NAME': 'query'}, {'COLUMN_NAME': 'body'}, {'COLUMN_NAME': 'url'}, {'COLUMN_NAME': 'status'}]
+            l_tmp = []
+            l_tmp2 = []
+            for i in range(len(columns)):
+                # print(columns[i]['COLUMN_NAME'])
+                l_tmp.append(columns[i]['COLUMN_NAME'])
+                l_tmp2.append(columns[i]['COLUMN_NAME'] + " " + columns[i]['DATA_TYPE'] + '(' + str(columns[i]['CHARACTER_MAXIMUM_LENGTH']) + ')')
+            print(l_tmp)  # ['tags', 'summary', 'path', 'method', 'consumes', 'query', 'body', 'url']
+            print(l_tmp2)  # ['tags varchar(-1)', 'summary varchar(-1)', 'path varchar(-1)',
+
+
+            # 找到参考字段的索引
+            # try:
+            # ref_index = l_tmp.index('query')
+            ref_index = l_tmp.index(reference_column)
+            print(ref_index)
+            # except ValueError:
+            #     raise ValueError(f"参考字段 {reference_column} 不存在于表 {table_name} 中。")
+
+            # sys.exit(0)
+            # 构建新表的列定义
+            # new_columns = l_tmp[:ref_index] + [f"{new_column_name}"] + l_tmp[ref_index:]
+            new_columns = l_tmp[:ref_index] + [f"{new_column_name} {new_column_type}"] + l_tmp[ref_index:]
+            print(new_columns)  # ['tags', 'summary', 'path', 'method', 'consumes', 'query', 'body', 'case VARCHAR(111)', 'url']
+
+            # new_columns = 'status VARCHAR(12), tags VARCHAR(12), summary VARCHAR(12), path VARCHAR(122), method VARCHAR(122), consumes VARCHAR(122), query VARCHAR(212), body VARCHAR(122), url VARCHAR(122)'
+            new_columns = ['status VARCHAR(12)', 'tags VARCHAR(122)', 'summary VARCHAR(122)', 'path VARCHAR(122)', 'method VARCHAR(122)', 'consumes VARCHAR(122)', 'query VARCHAR(122)', 'body VARCHAR(122)', 'url VARCHAR(222)']
+            print(new_columns)
+
+            # new_columns = l_tmp2
+            print(new_columns)
+            new_columns_str = ', '.join(new_columns)
+            print(new_columns_str)
+
+            # sys.exit(0)
+
+            # new_columns_str = 'status VARCHAR(12), tags VARCHAR(12), summary VARCHAR(12), path VARCHAR(122), method VARCHAR(122), consumes VARCHAR(122), query VARCHAR(212), body VARCHAR(122), url VARCHAR(122)'
+
+            # 创建新表
+            create_new_table_query = f"CREATE TABLE {table_name}_new ({new_columns_str})"
+            self.execute(create_new_table_query)
+
+
+
+            # 构建插入数据的列列表
+
+            a = ['status', 'tags', 'summary', 'path', 'method', 'consumes', 'query', 'body', 'url']
+            insert_columns = ', '.join([col if col != new_column_name else "status" for col in a])
+            print(insert_columns)
+
+            # insert_columns = ', '.join(new_columns)
+            select_columns = l_tmp[:ref_index] + ["NULL"] + l_tmp[ref_index:]
+            print(select_columns)
+            select_columns_str = ', '.join(select_columns)
+            insert_query = f"INSERT INTO {table_name}_new ({insert_columns}) SELECT {select_columns_str} FROM {table_name}"
+            self.execute(insert_query)
+
+            # a = ['status', 'tags', 'summary', 'path', 'method', 'consumes', 'query', 'body', 'url']
+            # insert_columns = ', '.join([col if col != new_column_name else "status" for col in a])
+            # print(insert_columns)
+            # insert_query = f"INSERT INTO {table_name}_new ({insert_columns}) SELECT {', '.join(l_tmp)} FROM {table_name}"
+            # self.execute(insert_query)
+            # insert_query = f"-- INSERT INTO {temp_table_name} ({', '.join(column_definitions)}) SELECT {', '.join(l_tmp)} FROM {table_name}"
+
+
+
+            # 删除原表
+            drop_table_query = f"DROP TABLE {table_name}"
+            self.execute(drop_table_query)
+
+            # 重命名新表为原表名
+            rename_table_query = f"EXEC sp_rename '{table_name}_new', '{table_name}'"
+            self.execute(rename_table_query)
+
+            # 提交更改
+            self.conn.commit()
+            print(f"成功在表 {table_name} 的字段 {reference_column} 前添加字段 {new_column_name}。")
+        # except Exception as e:
+        #     print(f"发生错误: {e}")
+        #     self.conn.rollback()
+        # finally:
+        #     # 关闭连接
+        #     self.close()
+        #     self.conn.close()
+
 
 if __name__ == "__main__":
     # todo 社区健康平台（静安）
     # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
     # todo 社区健康平台（全市）
-    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+
+    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
+    # print(Sqlserver_PO.isTable("a_phs_auth"))
+
+    # 复制表
+    # Sqlserver_PO.copyTable('a_phs_auth', 'a_phs_auth_app')
+
+    # 在tags前插入字段status
+    Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'url', 'case', 'VARCHAR(111)')
 
 
+    # Sqlserver_PO.setField('a_phs_auth_app', 'status', 'VARCHAR(11)')
     # # print("4.1 判断表是否存在".center(100, "-"))
     # print(Sqlserver_PO.isTable("aaa"))
     #

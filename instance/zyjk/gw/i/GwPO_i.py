@@ -113,27 +113,64 @@ class GwPO_i():
         # print("token =>", self.token)
         return d_
 
-    def curl(self, varMethod, varUrl):
+    def curlGET(self, varI, varP):
 
         # 执行接口
-        if varMethod == "GET":
-            command = "curl -X " + varMethod + " '" + self.ipAddr + varUrl + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
-        elif varMethod == 'POST':
-            command = "curl -X " + varMethod + " '" + self.ipAddr + varUrl + " -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization':'" + self.token + "'"
+
+        # 未加密
+        unencryptedCURL = "curl -X GET '" + self.ipAddr + varI + varP + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+        # print(unencryptedCURL)
+
+        # 已加密
+        encryptedCURL = "curl -X GET '" + self.ipAddr + varI + self.encrypt(varP) + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
         # print(command)
 
-        p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        p = subprocess.Popen(encryptedCURL, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         str_r = bytes.decode(out)
         d_r = json.loads(str_r)
+
+        print("在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html\n")
+        print("privateKey = 00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681\n")
+        print("publicKey = 047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9\n")
+
+        return unencryptedCURL, encryptedCURL, d_r
         # print(d_r)  # {'code': 200, 'msg': None, 'data': {'manageEhrNum': 100, 。。。
-        try:
-            if d_r['code'] == 200:
-                return d_r
-        except:
-            # {'code': 500, 'msg': '非法参数！'}
-            d_r = 500
-        return d_r
+        # try:
+        #     if d_r['code'] == 200:
+        #         return d_r
+        # except:
+        #     # {'code': 500, 'msg': '非法参数！'}
+        #     d_r = 500
+        # return d_r
+
+    def curlPOST(self, varI, varP, varD):
+
+        # 执行接口
+
+        unencryptedCURL = "curl -X POST '" + self.ipAddr + varI + varP + "' -d '" + varD + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+
+        varP = self.encrypt(varP)
+        varD = self.encrypt(varD)
+        encryptedCURL = "curl -X POST '" + self.ipAddr + varI + varP + "' -d '" + varD + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+        # print(command)
+        p = subprocess.Popen(encryptedCURL, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = p.communicate()
+        str_r = bytes.decode(out)
+        d_r = json.loads(str_r)
+
+        print("在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html\n")
+        print("privateKey = 00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681\n")
+        print("publicKey = 047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9\n")
+
+        return unencryptedCURL, encryptedCURL, d_r
+        #
+        # try:
+        #     if d_r['code'] == 200:
+        #         return d_r, command1
+        # except:
+        #     # {'code': 500, 'msg': '非法参数！'}
+        #     return d_r['code'], command1
 
 
 
