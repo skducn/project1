@@ -36,11 +36,11 @@ def importDb(d_varMenu_varDbTable):
 # Swagger_PO.getAll("phs-third-api")
 
 # todo 导入数据库
-# importDb({"phs-auth": "a_phs_auth"})
+importDb({"phs-auth": "a_phs_auth"})
 # importDb({"phs-job": "a_phs_job"})
 # importDb({"phs-system": "a_phs_system"})
 # importDb({"phs-server": "a_phs_server"})
-importDb({"phs-server-export": "a_phs_server_export"})
+# importDb({"phs-server-export": "a_phs_server_export"})
 # importDb({"phs-third-api": "a_phs_third_api"})
 
 
