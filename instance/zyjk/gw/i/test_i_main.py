@@ -27,8 +27,8 @@
 #   --allure-no-capture   Do not attach pytest captured logging/stdout/stderr to
 
 
-# pytest --alluredir ./result  --clean-alluredir
-# allure serve ./result
+# todo pytest --alluredir ./result  --clean-alluredir
+# todo allure serve ./result
 # 对issue号进行bug关联，如@allure.issue('12092', "禅道号：12092")，关联到地址http://103.25.65.103:8089/biz/bug-view-12092.html
 # pytest test_i_main.py --alluredir ./result --allure-link-pattern=issue:http://103.25.65.103:8089/biz/bug-view-{}.html
 
@@ -55,6 +55,14 @@
 # @allure.severity()	用例等级	blocker、critical、normal、minor、trivial
 # @allure.link()	定义连接	用于定义一个需要在测试报告中展示的连接
 # @allure.attachment()	附件	添加测试报告附件
+
+# todo flask
+# # 第一步：生成 Allure 结果数据
+# pytest --alluredir=allure-results
+#
+# # 第二步：基于结果数据生成 Allure 报告
+# allure generate allure-results -o allure-report
+
 # *****************************************************************
 import pytest, allure
 
@@ -90,7 +98,7 @@ class TestLogin(object):
     @allure.severity(allure.severity_level.CRITICAL)
     @allure.story('获取token')
     def test_login(self):
-        d_user_token = Gw_PO_i.curlLogin(Gw_PO_i.encrypt(json.dumps(d_['登录接口'])))  # {'user': '11012', 'token': 'eyJhbG...
+        d_user_token = Gw_PO_i.curlLogin(Gw_PO_i.encrypt(json.dumps(d_['登录'])))  # {'user': '11012', 'token': 'eyJhbG...
         allure.attach(str(d_user_token), name='获取user和token')
 
 

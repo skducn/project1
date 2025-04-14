@@ -1966,9 +1966,8 @@ class SqlServerPO:
         try:
             df = pd.DataFrame(l_value, columns=l_col)
             engine = self.getEngine_pymssql()
-            # 定义数据类型字典，假设所有列都是 varchar(255)，可按需修改
-            # getEngine_pymssql
 
+            # 定义数据类型字典，假设所有列都是 varchar(255)，如果没有dtype语句，则默认varchar（-1）
             dtype = {col: sqlalchemy.types.VARCHAR(length=255) for col in df.columns}
 
             if index == "False":
