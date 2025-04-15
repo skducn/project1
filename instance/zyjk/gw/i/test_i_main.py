@@ -61,7 +61,7 @@
 # pytest --alluredir=allure-results
 #
 # # 第二步：基于结果数据生成 Allure 报告
-# allure generate allure-results -o allure-report
+# allure generate allure-results -o allureReport --clean
 
 # *****************************************************************
 import warnings
