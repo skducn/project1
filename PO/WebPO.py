@@ -157,8 +157,8 @@ class WebPO(DomPO):
         if os.name == "nt":
             # for win
 
-            varChromePath = "C:\Program Files\Google\Chrome\Application\chrome.exe"
-            varDriverPath = "C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
+            varChromePath = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+            varDriverPath = r"C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
 
             # 1 本机chrome程序路径
             chromeVer = subprocess.check_output("powershell -command \"&{(Get-Item '" + varChromePath + "').VersionInfo.ProductVersion}\"", shell=True)
@@ -185,10 +185,10 @@ class WebPO(DomPO):
         elif os.name == "posix":
             # for mac
 
-            varDriverPath = "/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+            varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
 
             # 1 本机chrome程序路径
-            chromeVer = subprocess.check_output("/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
             chromeVer = bytes.decode(chromeVer).replace("\n", '')
             chromeVer = chromeVer.split('Google Chrome ')[1].strip()
             chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
@@ -346,7 +346,10 @@ class WebPO(DomPO):
 
             # 1 配置项
 
-            options.headless = True  # 无界面模式
+            # 无界面模式
+            # options.headless = True  # 弃用
+            options.add_argument('--headless=new')  # 如果你使用的是 Chrome 109 及以上版本，推荐使用 '--headless=new'
+            options.add_argument('--headless') # 如果你使用的是旧版本 Chrome，使用 '--headless'
 
             # todo 系统
             # options.add_argument("disable-cache")  # 禁用缓存

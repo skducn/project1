@@ -64,14 +64,19 @@
 # allure generate allure-results -o allure-report
 
 # *****************************************************************
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="pkg_resources")
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="rubicon")
+
 import pytest, allure
 
 from .GwPO_i import *
 Gw_PO_i = GwPO_i()
 
+
 from .ConfigparserPO import *
 config_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.ini'))
-print(f"Config file path: {config_file_path}")
+# print(f"Config file path: {config_file_path}")
 Configparser_PO = ConfigparserPO(config_file_path)
 # Configparser_PO = ConfigparserPO('./config.ini')
 

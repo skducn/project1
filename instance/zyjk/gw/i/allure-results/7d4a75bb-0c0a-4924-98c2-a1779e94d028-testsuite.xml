@@ -1,0 +1,31 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1744680959109" stop="1744680959109">
+  <description>This is the tests collection phase. Failures are modules that failed to collect.</description>
+  <name>test_collection_phase</name>
+  <title>Collection phase</title>
+  <labels/>
+  <test-cases>
+    <test-case start="1744680959109" status="broken" stop="1744680959109">
+      <name>test_i_main</name>
+      <failure>
+        <message>failed</message>
+        <stack-trace>/Users/linghuchong/.pyenv/versions/2.7.10/lib/python2.7/site-packages/_pytest/python.py:448: in _importtestmodule
+    mod = self.fspath.pyimport(ensuresyspath=importmode)
+/Users/linghuchong/.pyenv/versions/2.7.10/lib/python2.7/site-packages/py/_path/local.py:668: in pyimport
+    __import__(modname)
+/Users/linghuchong/.pyenv/versions/2.7.10/lib/python2.7/site-packages/_pytest/assertion/rewrite.py:294: in load_module
+    six.exec_(co, mod.__dict__)
+/Users/linghuchong/.pyenv/versions/2.7.10/lib/python2.7/site-packages/six.py:709: in exec_
+    exec("""exec _code_ in _globs_, _locs_""")
+&lt;string&gt;:1: in &lt;module&gt;
+    ???
+test_i_main.py:69: in &lt;module&gt;
+    from .GwPO_i import *
+E     File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/gw/i/GwPO_i.py", line 4
+E   SyntaxError: Non-ASCII character '\xe5' in file /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/gw/i/GwPO_i.py on line 4, but no encoding declared; see http://python.org/dev/peps/pep-0263/ for details</stack-trace>
+      </failure>
+      <attachments/>
+      <labels/>
+      <steps/>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

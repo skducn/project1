@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.safety-project.ini" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../instance/report.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../instance/zyjk/gw/web/report.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../instance/安全性/漏洞检测 safety" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../instance/安全性/静态代码分析 Bandit" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../instance/zyjk/gw/web/基本公卫/cli_p_2phs_newEHR_eval.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../instance/zyjk/gw/web/基本公卫/cli_p_2phs_newEHR_eval.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../test.py" afterDir="false" />
-    </list>
+    <list default="true" id="140a0527-e7f8-4d9a-8756-3cb601f8e0d9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -433,6 +425,7 @@
       <workItem from="1740359048238" duration="10000" />
       <workItem from="1740754113918" duration="3000" />
       <workItem from="1743144546313" duration="871000" />
+      <workItem from="1744678744336" duration="351000" />
     </task>
     <servers />
   </component>
