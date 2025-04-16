@@ -9,28 +9,30 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
-
-from fabric import Connection
-
-
-def upload_directory():
-    # 建立 SSH 连接
-    c = Connection(host='192.168.0.243', user='root', connect_kwargs={"password": "Benetech79$#-"})
-    local_dir = '/Users/linghuchong/Downloads/51/Python/project/flask/flask_gw_i/allureReport'
-    remote_dir = '/home/flask_gw_i/4446'
-    try:
-        # 使用 rsync 上传整个目录
-        c.run(f'rsync -avz {local_dir}/ {remote_dir}/')
-        # result = c.put(local_dir, remote=remote_dir, recursive=True)
-        # print(f"上传成功: {result}")
-    except Exception as e:
-        print(f"上传失败: {e}")
-    finally:
-        c.close()
-
-
-if __name__ == "__main__":
-    upload_directory()
+import json
+a = json.loads('{"id":190}')
+print(a, type(a))
+# from fabric import Connection
+#
+#
+# def upload_directory():
+#     # 建立 SSH 连接
+#     c = Connection(host='192.168.0.243', user='root', connect_kwargs={"password": "Benetech79$#-"})
+#     local_dir = '/Users/linghuchong/Downloads/51/Python/project/flask/flask_gw_i/allureReport'
+#     remote_dir = '/home/flask_gw_i/4446'
+#     try:
+#         # 使用 rsync 上传整个目录
+#         c.run(f'rsync -avz {local_dir}/ {remote_dir}/')
+#         # result = c.put(local_dir, remote=remote_dir, recursive=True)
+#         # print(f"上传成功: {result}")
+#     except Exception as e:
+#         print(f"上传失败: {e}")
+#     finally:
+#         c.close()
+#
+#
+# if __name__ == "__main__":
+#     upload_directory()
 
 
 # import markdown

@@ -2,8 +2,8 @@
 # *****************************************************************
 # Author        : John
 # Date          : 2024-6-18
-# Description   : 公卫接口，使用pytest框架执行公卫接口，生成报告
-# pip install allure-pytest
+# Description   : 公卫接口，使用pytest框架执行公卫接口，生成allure报告
+# pip install pytest-order
 # 接口文档：http://192.168.0.203:38080/doc.html
 # web：http://192.168.0.203:30080  11012, Jinhao123
 # 在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html
@@ -12,9 +12,11 @@
 # 【腾讯文档】项目信息表
 # https://docs.qq.com/sheet/DYmZMVmFTeXFWRFpQ?tab=BB08J2
 
+# todo 使用方法：数据源来自数据库（如a_phs_gxy_app表，此表数据由i_gw.xlsx导入），第一步通过d_inner（表和路径或其他字段）定位到记录，第二步执行接口_query(), 第三步更新表。
+
+# todo pytest和allure
 # 官网：https://docs.qameta.io/allure/#_pytest
 # 源码example：https://github.com/allure-examples/allure-examples/
-
 # (py310) localhost-2:i linghuchong$ pytest --help | grep allure
 #   --allure-severities=SEVERITIES_SET
 #   --allure-epics=EPICS_SET
@@ -26,7 +28,6 @@
 #   --alluredir=DIR       Generate Allure report in the specified directory (may
 #   --clean-alluredir     Clean alluredir folder if it exists
 #   --allure-no-capture   Do not attach pytest captured logging/stdout/stderr to
-
 
 # todo pytest --alluredir ./result  --clean-alluredir
 # todo allure serve ./result
@@ -43,7 +44,6 @@
 # pytest test_i_main.py --alluredir ./result --allure-severities=critical,normal --clean-alluredir
 # pytest test_i_main.py --alluredir ./result --allure-feature="allure功能介绍" --clean-alluredir
 
-
 # 使用方法	参数值	参数说明
 # @allure.epic()	epic 描述	定义项目，当有多个项目时使用。往下是 Feature
 # @allure.feature()	模块名称	用例按照模块区分，有多个模块时给每个起名字
@@ -57,154 +57,314 @@
 # @allure.link()	定义连接	用于定义一个需要在测试报告中展示的连接
 # @allure.attachment()	附件	添加测试报告附件
 
-# todo flask
+# todo 终端执行
 # # 第一步：生成 Allure 结果数据
-# pytest --alluredir=allure-results
-#
+# pytest --alluredir=allure-results --clean-alluredir
+# allure serve ./allure-results
+
+# todo flask
 # # 第二步：基于结果数据生成 Allure 报告
-# allure generate allure-results -o allure-report
+# pytest --alluredir=allure-results --clean-alluredir
+# allure generate allure-results -o allureReport --clean
 
 # *****************************************************************
-import pytest, allure
+import sys, os, pytest, allure, warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="pkg_resources")
+warnings.filterwarnings("ignore", category=DeprecationWarning, module="rubicon")
+
+# 将当前目录添加到 sys.path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from GwPO_i import *
 Gw_PO_i = GwPO_i()
 
 from ConfigparserPO import *
 config_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.ini'))
-# print(f"Config file path: {config_file_path}")
 Configparser_PO = ConfigparserPO(config_file_path)
-# Configparser_PO = ConfigparserPO('./config.ini')
 
 from PO.SqlserverPO import SqlServerPO
-Sqlserver_PO = SqlServerPO(
-    Configparser_PO.DB("host"),
-    Configparser_PO.DB("user"),
-    Configparser_PO.DB("password"),
-    Configparser_PO.DB("database"),
-    Configparser_PO.DB("charset")
-)  # 测试环境
+Sqlserver_PO = SqlServerPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"), Configparser_PO.DB("charset"))
 
-d_ = {
-    '登录': {"username": Configparser_PO.ACCOUNT("user"), "password": Configparser_PO.ACCOUNT("password")},
-    '获取高血压管理卡基本信息': {'i':"/serverExport/gxy/getEhrInfo?0=", 'p':'{"idCard":"310101195001293595"}'},
-    '查询已签约居民': {'i':"/server/tSignInfo/findPage?0=", 'p':'{"current":1,"size":20}', 'd':'{"signStatus":1,"orgCode":"","basicInfoCode":"","basicInfoNames":[],"idcard":"","name":"","teamId":"","teamIds":[],"serviceIds":[],"current":1,"size":10}'}
-}
+# 数据源
+# # todo 登录模块
+# d_auth = {
+#     '登录': {'path': '/auth/login', 'method': 'POST', 'body': '{"username":"11012","password":"Jinhao123"}'},
+#     '确认用户是否已经登录': {'path': '/auth/logined', 'method': 'POST', 'body': 'userName=11012'},
+#     '登出': {'path': '/auth/logout', 'method': 'DELETE'}
+# }
+#
+# # todo 高血压
+# d_gxy = {
+#     '高血压管理卡-获取基本信息': {'path': "/serverExport/gxy/getEhrInfo", 'method': 'GET', 'query': '{"idCard":"310101195001293595"}'},
+#     '高血压管理卡-详情': {'path': "/server/gxy/hzglk/{id}", 'method': 'GET', 'query': {"id": "190"}},
+# }
+#
+# # todo 签约信息表
+# d_tSignInfo = {'分页查询': {'path': "/server/tSignInfo/findPage", 'method': 'POST', 'query': '{"current":1,"size":20}', 'body': '{"signStatus":1,"orgCode":"","basicInfoCode":"","basicInfoNames":[],"idcard":"","name":"","teamId":"","teamIds":[],"serviceIds":[],"current":1,"size":10}'}
+# }
+
+# ************************************************************************************************************************
+# ************************************************************************************************************************
+# ************************************************************************************************************************
+
+def _query(path, method, query):
+    d_rps = Gw_PO_i.curl(path, method, query)
+    # 未加密的curl
+    css = d_rps['unEncryptedCurl'].replace(d_rps['unEncryptedCurl_query'], '<span class="red-text">' + d_rps['unEncryptedCurl_query'] + '</span>')
+    allure.attach('<style>.red-text {color: red;}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
+    # 加密的curl
+    css = d_rps['encryptedCurl'].replace(d_rps['encryptedCurl_query'], '<span class="blue-text">' + d_rps['encryptedCurl_query'] + '</span>')
+    allure.attach('<style>.blue-text {color: blue;}</style>' + css, "加密的curl", allure.attachment_type.HTML)
+    # 参考
+    with allure.step("参考"):
+        allure.attach("https://config.net.cn/tools/sm2.html", name='在线SM2公钥私钥对生成')
+        allure.attach("00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681", name='私钥')
+        allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
+    # 返回值
+    allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
+
+def _query_id(path, method, query):
+    d_rps = Gw_PO_i.curl(path, method, query)
+    # 未加密的curl
+    css = d_rps['unEncryptedCurl'].replace(str(d_rps['unEncryptedCurl_query']), '<span class="red-text">' + str(d_rps['unEncryptedCurl_query']) + '</span>')
+    allure.attach('<style>.red-text {color: red;}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
+    # 参考
+    with allure.step("参考"):
+        allure.attach("https://config.net.cn/tools/sm2.html", name='在线SM2公钥私钥对生成')
+        allure.attach("00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681", name='私钥')
+        allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
+    # 返回值
+    allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
+
+def _body(path, method, body):
+    d_rps = Gw_PO_i.curl(path, method, '', body)
+    # 未加密的curl
+    css = d_rps['unEncryptedCurl'].replace(d_rps['unEncryptedCurl_body'], '<span class="red-text">' + d_rps['unEncryptedCurl_body'] + '</span>')
+    allure.attach('<style>.red-text {color: red;}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
+    # 加密的curl
+    css = d_rps['encryptedCurl'].replace(d_rps['encryptedCurl_body'],'<span class="blue-text">' + d_rps['encryptedCurl_body'] + '</span>')
+    allure.attach('<style>.blue-text {color: blue;}</style>' + css, "加密的curl", allure.attachment_type.HTML)
+    # 参考
+    with allure.step("参考"):
+        allure.attach("https://config.net.cn/tools/sm2.html", name='在线SM2公钥私钥对生成')
+        allure.attach("00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681", name='私钥')
+        allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
+    # 返回值
+    allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
+
+def _noParam(path, method):
+    d_rps = Gw_PO_i.curl(path, method, '', '')
+    # 参考
+    with allure.step("参考"):
+        allure.attach("https://config.net.cn/tools/sm2.html", name='在线SM2公钥私钥对生成')
+        allure.attach("00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681", name='私钥')
+        allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
+    # 返回值
+    allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
+
+def _queryBody(path, method, query, body):
+    d_rps = Gw_PO_i.curl(path, method, query, body)
+    # 未加密的curl
+    css = d_rps['unEncryptedCurl'].replace(d_rps['unEncryptedCurl_query'], '<span class="red-text">' + d_rps['unEncryptedCurl_query'] + '</span>')
+    css = css.replace(d_rps['unEncryptedCurl_body'], '<span class="red-text">' + d_rps['unEncryptedCurl_body'] + '</span>')
+    allure.attach('<style>.red-text {color: red;}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
+    # 加密的curl
+    css = d_rps['encryptedCurl'].replace(d_rps['encryptedCurl_query'], '<span class="blue-text">' + d_rps['encryptedCurl_query'] + '</span>')
+    css = css.replace(d_rps['encryptedCurl_body'], '<span class="blue-text">' + d_rps['encryptedCurl_body'] + '</span>')
+    allure.attach('<style>.blue-text {color: blue;}</style>' + css, "加密的curl", allure.attachment_type.HTML)
+    # 参考
+    with allure.step("参考"):
+        allure.attach("https://config.net.cn/tools/sm2.html", name='在线SM2公钥私钥对生成')
+        allure.attach("00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681", name='私钥')
+        allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
+    # 返回值
+    allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
+
+def updateDB(d_db):
+    # updateDB(d_db) = {'tableName':'a_phs_auth_app','summary':'确认用户是否已经登录','path':'111','tester':'金浩','rpsDetail':json.dumps(d_r)}
+    # 更新数据库表
+    # 更新返回值描述
+    if 'summary' in d_db:
+        Sqlserver_PO.execute("update %s set rpsDetail='%s' where summary='%s'" % (d_db['tableName'], d_db['rpsDetail'], d_db['summary']))
+        # Sqlserver_PO.execute("update %s set rpsDetail='%s' where summary='%s'" % ('a_phs_auth_app', str(json.dumps(d_r)), '确认用户是否已经登录'))
+        if '{"code": 200' in d_db['rpsDetail']:
+            # 更新状态
+            Sqlserver_PO.execute("update %s set status='%s' where summary='%s'" % (d_db['tableName'], '已通过', d_db['summary']))
+        else:
+            Sqlserver_PO.execute("update %s set status='%s' where summary='%s'" % (d_db['tableName'], '失败', d_db['summary']))
+        # 测试人
+        Sqlserver_PO.execute("update %s set tester='%s' where summary='%s'" % (d_db['tableName'], d_db['tester'], d_db['summary']))
+        # 更新日期
+        Sqlserver_PO.execute("update %s set updateDate=CONVERT(DATE, '%s') where summary='%s'" % (d_db['tableName'], str(Time_PO.getDateByMinus()), d_db['summary']))
+        # Sqlserver_PO.execute("update %s set updateDate=CAST('%s' AS DATE) where summary='%s'" % ('a_phs_auth_app', str(Time_PO.getDateByMinus()), '确认用户是否已经登录'))
+    elif 'path' in d_db:
+        Sqlserver_PO.execute("update %s set rpsDetail='%s' where path='%s'" % (d_db['tableName'], d_db['rpsDetail'], d_db['path']))
+        if '{"code": 200' in d_db['rpsDetail']:
+            # 更新状态
+            Sqlserver_PO.execute("update %s set status='%s' where path='%s'" % (d_db['tableName'], '已通过', d_db['path']))
+        else:
+            Sqlserver_PO.execute("update %s set status='%s' where path='%s'" % (d_db['tableName'], '失败', d_db['path']))
+        # 测试人
+        Sqlserver_PO.execute("update %s set tester='%s' where path='%s'" % (d_db['tableName'], d_db['tester'], d_db['path']))
+        # 更新日期
+        Sqlserver_PO.execute("update %s set updateDate=CONVERT(DATE, '%s') where path='%s'" % (d_db['tableName'], str(Time_PO.getDateByMinus()), d_db['path']))
 
 
+# 可用参数
+dd_ = {}
 
 @allure.feature('登录模块')
-class TestLogin(object):
-    # @pytest.mark.run(order=1)
+class TestAuth(object):
     @pytest.mark.order(order=1)
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.story('获取token')
-    def test_login(self):
-        d_user_token = Gw_PO_i.curlLogin(Gw_PO_i.encrypt(json.dumps(d_['登录'])))  # {'user': '11012', 'token': 'eyJhbG...
-        allure.attach(str(d_user_token), name='获取user和token')
+    @allure.link('这里填写url', name='登录')
+    @allure.title('登录')
+    def test_auth_login(self):
+        r = Sqlserver_PO.select("SELECT tags,summary,path,method,query,body,url FROM %s where summary='%s'" % ('a_phs_auth_app', '登录'))[0]
+        d_user_token = Gw_PO_i.curlLogin(r['path'], r['body'])
+        allure.attach(str(d_user_token), name='返回值')
+
+    @pytest.mark.order(order=2)
+    @allure.severity(allure.severity_level.MINOR)
+    @allure.link('http://192.168.0.203:38080/doc.html#/phs-auth/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97/loginedUsingPOST', name='确认用户是否已经登录')
+    @allure.title('确认用户是否已经登录')
+    def test_auth_logined(self):
+        d_inner = {'tableName':'a_phs_auth_app', 'summary': '确认用户是否已经登录'}
+        r = Sqlserver_PO.select("SELECT tags,summary,path,method,query,body,url FROM %s where summary='%s'" % (d_inner['tableName'], d_inner['summary']))[0]
+        d_r = _body(r['path'], str(r['method']).upper(), r['body'])
+        # 更新数据库表
+        updateDB({'tableName':d_inner['tableName'], 'summary': d_inner['summary'], 'tester': '金浩', 'rpsDetail': str(json.dumps(d_r))})
+
+    # @pytest.mark.order(order=3)
+    # @allure.severity(allure.severity_level.MINOR)
+    # @allure.link("http://192.168.0.203:38080/doc.html#/phs-auth/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97/logoutUsingDELETE", name="登出")
+    # @allure.title('登出')
+    # def test_auth_logout(self):
+    #     d_inner = {'tableName':'a_phs_auth_app', 'summary': '登出'}
+    #     r = Sqlserver_PO.select("SELECT tags,summary,path,method,query,body,url FROM %s where summary='%s'" % (d_inner['tableName'], d_inner['summary']))[0]
+    #     d_r = _noParam(r['path'], str(r['method']).upper())
+    #     # 更新数据库表
+    #     updateDB({'tableName': d_inner['tableName'], 'summary': d_inner['summary'], 'tester': '金浩', 'rpsDetail': str(json.dumps(d_r))})
 
 
-@allure.feature('高血压管理卡')
-class TestEHR(object):
-    @pytest.mark.order(order=4)
+@allure.feature('高血压')
+class TestGXY(object):
+    @pytest.mark.order(order=10)
     @allure.severity(allure.severity_level.CRITICAL)
-    @allure.link("https://config.net.cn/tools/sm2.html", name="在线SM2公钥私钥对生成")
-    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST", name="高血压管理卡 新增或编辑")
-    @allure.title("高血压管理卡 新增")
-    def test_get_ehr_info(self):
-        with allure.step("步骤1：获取高血压管理卡-获取基本信息"):
-            allure.attach(d_['获取高血压管理卡基本信息']['p'], name='查询身份证')
-        r = Gw_PO_i.curlGET(d_['获取高血压管理卡基本信息']['i'], d_['获取高血压管理卡基本信息']['p'])
-        css = r[0].replace(d_['获取高血压管理卡基本信息']['p'], '<span class="red-text">' + d_['获取高血压管理卡基本信息']['p'] + '</span>')
-        allure.attach('<style>.red-text {color: red;}}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
-        allure.attach(r[1], "加密的curl", allure.attachment_type.HTML)
-        with allure.step("步骤2：输出信息"):
-            allure.attach(str(r[2]), name='结果')
+    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server-export/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/getEhrInfoUsingGET_1", name="高血压管理卡-获取基本信息")
+    @allure.title("高血压管理卡-获取基本信息")
+    def test_serverExport_gxy_getEhrInfo(self):
+        d_inner = {'tableName':'a_phs_gxy_app', 'path': '/serverExport/gxy/getEhrInfo'}
+        r = Sqlserver_PO.select("SELECT tags,summary,path,method,query,body,url FROM %s where path='%s'" % (d_inner['tableName'], d_inner['path']))[0]
+        d_r = _query(r['path'], str(r['method']).upper(), r['query'])
+        # 更新数据库表
+        updateDB({'tableName': d_inner['tableName'], 'path': d_inner['path'], 'tester': '金浩', 'rpsDetail': str(json.dumps(d_r))})
 
 
+    @pytest.mark.order(order=41)
+    @allure.severity(allure.severity_level.NORMAL)
+    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/getHzglkInfoByIdUsingGET", name="高血压管理卡-详情")
+    @allure.title("高血压管理卡-详情")
+    def test_server_gxy_hzglk(self):
+        d_inner = {'tableName':'a_phs_gxy_app', 'path': '/server/gxy/hzglk/{id}'}
+        r = Sqlserver_PO.select("SELECT tags,summary,path,method,query,body,url FROM %s where path='%s'" % (d_inner['tableName'], d_inner['path']))[0]
+        d_r = _query_id(r['path'], str(r['method']).upper(), r['query'])
+        # 更新数据库表
+        updateDB({'tableName': d_inner['tableName'], 'path': d_inner['path'], 'tester': '金浩', 'rpsDetail': str(json.dumps(d_r))})
+        d_tmp = {}
+        d_tmp['cid'] = d_r['data']['cid']
+        s_path = str(r['path']).replace("/", "_").replace("{", "").replace("}", "")
+        dd_[s_path] = d_tmp
+        allure.attach(str(dd_), name='可用参数')
+#
+# #
 @allure.feature('已签约居民')
 class TestSigned(object):
-    @pytest.mark.order(order=8)
-    @allure.severity(allure.severity_level.MINOR)
-    @allure.link("https://config.net.cn/tools/sm2.html", name="在线SM2公钥私钥对生成")
-    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST", name="高血压管理卡 新增或编辑")
-    @allure.title("查询已签约居民")
-    def test_get_signed_info(self):
-        with allure.step("步骤1：查询"):
-            allure.attach('默认查询条件')
-            # allure.attach(d_['获取高血压管理卡基本信息']['p'], name='查询')
-            # allure.attach('{"idCard":"310101195001293595"}', name='查询身份证')
-        r = Gw_PO_i.curlPOST(d_['查询已签约居民']['i'], d_['查询已签约居民']['p'], d_['查询已签约居民']['d'])
-        css = r[0].replace(d_['查询已签约居民']['p'], '<span class="red-text">' + d_['查询已签约居民']['p'] + '</span>')
-        css = css.replace(d_['查询已签约居民']['d'], '<span class="blue-text">' + d_['查询已签约居民']['d'] + '</span>')
-        allure.attach('<style>.red-text {color: red;}.blue-text {color: blue;}</style>' + css, "未加密的curl", allure.attachment_type.HTML)
-        allure.attach(r[1], "加密的curl", allure.attachment_type.HTML)
-        with allure.step("步骤2：输出信息"):
-            allure.attach(str(r[2]), name='结果')
-
-
-
-@allure.feature('allure功能介绍')
-class TestFunction(object):
-
-    def test_step(self):
-        # 创建一个包含红色文本的 HTML 字符串
-        red_text_html = '<p style="color: red;">这是红色的文本</p>'
-        # 使用 allure.attach 方法将 HTML 附件添加到测试报告中
-        allure.attach(red_text_html, "红色文本示例", allure.attachment_type.HTML)
-        assert True
-
-        with allure.step("步骤1：test1"):
-            print("打开页面")
-            # 使用 allure.attach 方法将 HTML 附件添加到测试报告中
-            allure.attach( '<p style="color: red;">这是红色的文本11</p>', "红色文本示例11", allure.attachment_type.HTML)
-
-            # allure.attach('<span style="color: red;">这是红色的文本</span>', "是否为红色？", allure.attachment_type.HTML)
-            allure.attach("这是一堵啊蚊子",name='文本展示')
-        with allure.step("步骤1：test2"):
-            print("访问链接")
-        with allure.step("步骤1：test3"):
-            print("关闭")
-            allure.attach('<div class="col-xs-4 text-center"><img src="http://103.25.65.103:8089/?mode=getlogo"></div>',name="html展示", attachment_type=allure.attachment_type.HTML)
-
-    @allure.link("http://103.25.65.103:8089/biz/bug-view-12092.html")
-    def test_get_tnb1_info(self):
-        print('link：超链接功能，显示具体链接')
-
-    @allure.link("http://www.baidu.com", name="百度")
-    def test_get_tnb2_info(self):
-        print('link：超链接功能，使用别名显示')
-
-    @allure.issue('12092', "禅道号：12092")
-    def test_get_issue_info(self):
-        print('issue：参数1是bug号，参数2是注释')
-        allure.attach.file("/Users/linghuchong/Desktop/test.jpg",name='测试截图', attachment_type=allure.attachment_type.JPG, extension='.JPG')
-
-    @allure.testcase("http://www.jd.com", "测试用例管理平台")
-    def test_get_testcase_info(self):
-        print('testcase：同link')
-
-    @allure.severity(allure.severity_level.TRIVIAL)
-    def test_with_trivial_severity(self):
-        print('trivial：')
-
-    @allure.title('这是一个normal级别的问题')
+    @pytest.mark.order(order=30)
     @allure.severity(allure.severity_level.NORMAL)
-    def test_with_normal_severity(self):
-        print('normal1212：')
+    @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E7%AD%BE%E7%BA%A6%E4%BF%A1%E6%81%AF%E8%A1%A8/findPageUsingPOST_26", name="分页查询")
+    @allure.title("REST - 签约信息表")
+    def test_server_tSignInfo_findPage(self):
+        d_inner = {'tableName':'a_phs_tSignInfo_app', 'path': '/server/tSignInfo/findPage'}
+        r = Sqlserver_PO.select("SELECT tags,summary,path,method,query,body,url FROM %s where path='%s'" % (d_inner['tableName'], d_inner['path']))[0]
+        d_r = _queryBody(r['path'], str(r['method']).upper(), r['query'], r['body'])
+        # 更新数据库表
+        updateDB({'tableName': d_inner['tableName'], 'path': d_inner['path'], 'tester': '金浩', 'rpsDetail': str(json.dumps(d_r))})
+        d_tmp = {}
+        d_tmp['id'] = d_r['data']['records'][0]['id']
+        d_tmp['orgCode'] = d_r['data']['records'][0]['orgCode']
+        s_path = str(r['path']).replace("/", "_").replace("{", "").replace("}", "")
+        dd_[s_path] = d_tmp
+        allure.attach(str(dd_), name='可用参数')
 
-    @allure.severity(allure.severity_level.BLOCKER)
-    def test_with_blocker_severity(self):
-        print('blocker：')
 
-    @allure.severity(allure.severity_level.CRITICAL)
-    def test_with_critical_severity(self):
-        print('critical：')
 
-    @allure.severity(allure.severity_level.MINOR)
-    def test_with_minor_severity(self):
-        print('minor：')
-
+# @allure.feature('allure功能介绍')
+# class TestFunction(object):
+#
+#     def test_step(self):
+#         # 创建一个包含红色文本的 HTML 字符串
+#         red_text_html = '<p style="color: red;">这是红色的文本</p>'
+#         # 使用 allure.attach 方法将 HTML 附件添加到测试报告中
+#         allure.attach(red_text_html, "红色文本示例", allure.attachment_type.HTML)
+#         assert True
+#
+#         with allure.step("步骤1：test1"):
+#             print("打开页面")
+#             # 使用 allure.attach 方法将 HTML 附件添加到测试报告中
+#             allure.attach( '<p style="color: red;">这是红色的文本11</p>', "红色文本示例11", allure.attachment_type.HTML)
+#
+#             # allure.attach('<span style="color: red;">这是红色的文本</span>', "是否为红色？", allure.attachment_type.HTML)
+#             allure.attach("这是一堵啊蚊子",name='文本展示')
+#         with allure.step("步骤1：test2"):
+#             print("访问链接")
+#         with allure.step("步骤1：test3"):
+#             print("关闭")
+#             allure.attach('<div class="col-xs-4 text-center"><img src="http://103.25.65.103:8089/?mode=getlogo"></div>',name="html展示", attachment_type=allure.attachment_type.HTML)
+#
+#     @allure.link("http://103.25.65.103:8089/biz/bug-view-12092.html")
+#     def test_get_tnb1_info(self):
+#         print('link：超链接功能，显示具体链接')
+#
+#     @allure.link("http://www.baidu.com", name="百度")
+#     def test_get_tnb2_info(self):
+#         print('link：超链接功能，使用别名显示')
+#
+#     @allure.issue('12092', "禅道号：12092")
+#     def test_get_issue_info(self):
+#         print('issue：参数1是bug号，参数2是注释')
+#         allure.attach.file("/Users/linghuchong/Desktop/test.jpg",name='测试截图', attachment_type=allure.attachment_type.JPG, extension='.JPG')
+#
+#     @allure.testcase("http://www.jd.com", "测试用例管理平台")
+#     def test_get_testcase_info(self):
+#         print('testcase：同link')
+#
+#     @allure.severity(allure.severity_level.TRIVIAL)
+#     def test_with_trivial_severity(self):
+#         print('trivial：')
+#
+#     @allure.title('这是一个normal级别的问题')
+#     @allure.severity(allure.severity_level.NORMAL)
+#     def test_with_normal_severity(self):
+#         print('normal1212：')
+#
+#     @allure.severity(allure.severity_level.BLOCKER)
+#     def test_with_blocker_severity(self):
+#         print('blocker：')
+#
+#     @allure.severity(allure.severity_level.CRITICAL)
+#     def test_with_critical_severity(self):
+#         print('critical：')
+#
+#     @allure.severity(allure.severity_level.MINOR)
+#     def test_with_minor_severity(self):
+#         print('minor：')
+#
 
 
 

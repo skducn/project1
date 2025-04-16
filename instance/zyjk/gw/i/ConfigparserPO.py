@@ -14,8 +14,8 @@ class ConfigparserPO:
         self.file = file
 
         # 调试信息
-        print(f"Read config file: {file}")
-        print(f"Sections: {self.cf.sections()}")
+        # print(f"Read config file: {file}")
+        # print(f"Sections: {self.cf.sections()}")
 
     def HTTP(self, name):
         if 'HTTP' not in self.cf.sections():
