@@ -23,7 +23,7 @@
 
 # pip3 install locust
 # 步骤：
-# 1, 启动脚本：locust -f 1genAuthorization.py  or  locust -f 1genAuthorization.py -host=http://www.baidu.com
+# 1, 启动脚本：locust -f 1genCookies.py  or  locust -f 1genCookies.py -host=http://www.baidu.com
 # 2，打开 localhost:8089
 # Number of users 并发数
 # Spawn rate 孵化率，每秒启动用户数

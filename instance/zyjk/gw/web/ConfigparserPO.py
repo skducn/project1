@@ -25,8 +25,8 @@ class ConfigparserPO:
         value = self.cf.get("DB_SQL", name)
         return value
 
-    def AUTHORIZATION(self, name):
-        value = self.cf.get("AUTHORIZATION", name)
+    def AUTH(self, name):
+        value = self.cf.get("AUTH", name)
         return value
 
 

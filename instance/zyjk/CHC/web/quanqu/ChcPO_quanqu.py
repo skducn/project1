@@ -47,7 +47,7 @@ Configparser_PO = ConfigparserPO('config.ini')
 
 class ChcPO_quanqu():
 
-    def __init__(self, varLogFile, varMenu='无log', varCookies='1genAuthorization.json'):
+    def __init__(self, varLogFile, varMenu='无log', varCookies='1genCookies.json'):
 
         # 配置日志
         if varMenu != '无log':
@@ -63,8 +63,9 @@ class ChcPO_quanqu():
             self.Web_PO = WebPO("noChrome")
 
         # 登录
-        self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"),
-                          Configparser_PO.ACCOUNT("password"))
+        # 登录后，可以先从 Local storage中获取 Admin-Token，如果没有则从cookies中去获取。
+        self.login(Configparser_PO.HTTP("url"), Configparser_PO.ACCOUNT("user"), Configparser_PO.ACCOUNT("password"))
+
 
         # 获取token两种方式：
         # 1、从Local storage中获取 Admin-Token （从 Application - Storage - Local storage）
@@ -75,9 +76,10 @@ class ChcPO_quanqu():
             with open(varCookies, 'w') as f:
                 json.dump(token, f)
         else:
-            # 2、从Cookies中获取token
+            # 2、从Cookies中获取token（当前使用这种）
             # 保存当前会话的 Cookies 到文件"""
             cookies = self.Web_PO.driver.get_cookies()
+            print('cookies:',cookies)
             with open(varCookies, 'w') as f:
                 json.dump(cookies, f)
 

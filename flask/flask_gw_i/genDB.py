@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 # *********************************************************************
 # Author        : John
-# Date          : 2025-3-27
-# Description   : 将i_gw表格导入db，并转换所有字段类型
+# Date          : 2025-4-16
+# Description   : 生成数据源
+# 将i_gw表格导入db，并转换所有字段类型
 # *********************************************************************
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
 
-def import1(tableName, tableSheet):
+def excel2db(tableName, tableSheet):
+
     # 将表格导入db
     Sqlserver_PO.xlsx2db('i_gw.xlsx', tableName, tableSheet)
     
@@ -28,6 +30,6 @@ def import1(tableName, tableSheet):
     Sqlserver_PO.setFieldType(tableName, 'updateDate', ' DATE')
 
 
-# import1('a_phs_auth_app', '登录')
-import1('a_phs_tSignInfo_app', '签约')
-import1('a_phs_gxy_app', '高血压')
+# excel2db('a_phs_auth_app', '登录')
+# excel2db('a_phs_tSignInfo_app', '签约')
+# excel2db('a_phs_gxy_app', '高血压')

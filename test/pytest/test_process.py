@@ -59,7 +59,7 @@ class Test_login():
 #第二种方式：如果文件是以test开头，直接执行 pytest -s
 #第三种方式：直接在代码里写执行入口:
 # if __name__ == '__main__':
-#     pytest.main(['1genAuthorization.py','-s'])
+#     pytest.main(['1genCookies.py','-s'])
 
 
 if __name__ == '__main__':

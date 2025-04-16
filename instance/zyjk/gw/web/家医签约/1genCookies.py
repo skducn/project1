@@ -7,6 +7,6 @@
 #***************************************************************
 
 from GwPO_sign import *
-Chc_PO_quanqu = GwPO_sign('不打开浏览器，自动生成1genAuthorization.json')
+Chc_PO_quanqu = GwPO_sign('不打开浏览器，自动生成1genCookies.json')
 
 
