@@ -58,7 +58,7 @@
 
 # todo flask
 # # 第一步：生成 Allure 结果数据
-# pytest --alluredir=allure-results --clean-alluredir  & allure serve ./allure-results
+# pytest --alluredir=allure-results --clean-alluredir
 # allure serve ./allure-results
 
 # # 第二步：基于结果数据生成 Allure 报告
@@ -84,16 +84,20 @@ Sqlserver_PO = SqlServerPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"
 
 
 # todo 登录
-d_ = {
+d_auth = {
     '登录': {'path': '/auth/login', 'method': 'POST', 'body': '{"username":"11012","password":"Jinhao123"}'},
     '确认用户是否已经登录': {'path': '/auth/logined', 'method': 'POST', 'body': 'userName=11012'},
-    '分页查询': {'path': "/server/tSignInfo/findPage", 'method': 'POST', 'query': '{"current":1,"size":20}', 'body': '{"signStatus":1,"orgCode":"","basicInfoCode":"","basicInfoNames":[],"idcard":"","name":"","teamId":"","teamIds":[],"serviceIds":[],"current":1,"size":10}'}
+    '登出': {'path': '/auth/logout', 'method': 'DELETE'}
 }
 
 # todo 高血压
 d_gxy = {
     '高血压管理卡-获取基本信息': {'path': "/serverExport/gxy/getEhrInfo", 'method': 'GET', 'query': '{"idCard":"310101195001293595"}'},
     '高血压管理卡-详情': {'path': "/server/gxy/hzglk/{id}", 'method': 'GET', 'query': {"id": "190"}},
+}
+
+# todo 签约信息表
+d_tSignInfo = { '分页查询': {'path': "/server/tSignInfo/findPage", 'method': 'POST', 'query': '{"current":1,"size":20}', 'body': '{"signStatus":1,"orgCode":"","basicInfoCode":"","basicInfoNames":[],"idcard":"","name":"","teamId":"","teamIds":[],"serviceIds":[],"current":1,"size":10}'}
 }
 
 # ************************************************************************************************************************
@@ -115,6 +119,7 @@ def _query(path, method, query):
         allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
     # 返回值
     allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
 
 def _query_id(path, method, query):
     d_rps = Gw_PO_i.curl(path, method, query)
@@ -128,6 +133,7 @@ def _query_id(path, method, query):
         allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
     # 返回值
     allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
 
 def _body(path, method, body):
     d_rps = Gw_PO_i.curl(path, method, '', body)
@@ -144,6 +150,18 @@ def _body(path, method, body):
         allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
     # 返回值
     allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
+
+def _noParam(path, method):
+    d_rps = Gw_PO_i.curl(path, method, '', '')
+    # 参考
+    with allure.step("参考"):
+        allure.attach("https://config.net.cn/tools/sm2.html", name='在线SM2公钥私钥对生成')
+        allure.attach("00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681", name='私钥')
+        allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
+    # 返回值
+    allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
 
 def _queryBody(path, method, query, body):
     d_rps = Gw_PO_i.curl(path, method, query, body)
@@ -162,8 +180,10 @@ def _queryBody(path, method, query, body):
         allure.attach("047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9", name='公钥')
     # 返回值
     allure.attach(str(d_rps['r']), name='返回值')
+    return d_rps['r']
 
 
+dd_= {}
 
 @allure.feature('登录')
 class TestLogin(object):
@@ -172,7 +192,7 @@ class TestLogin(object):
     @allure.link("http://192.168.0.203:38080/doc.html#/phs-auth/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97/loginUsingPOST", name="登录")
     @allure.title('登录')
     def test_auth_login(self):
-        d_user_token = Gw_PO_i.curlLogin(d_['登录']['path'], d_['登录']['body'])  # {'user': '11012', 'token': 'eyJhbG...
+        d_user_token = Gw_PO_i.curlLogin(d_auth['登录']['path'], d_auth['登录']['body'])  # {'user': '11012', 'token': 'eyJhbG...
         allure.attach(str(d_user_token), name='返回值')
 
     @pytest.mark.run(order=2)
@@ -180,8 +200,14 @@ class TestLogin(object):
     @allure.link("http://192.168.0.203:38080/doc.html#/phs-auth/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97/loginedUsingPOST", name="确认用户是否已经登录")
     @allure.title('确认用户是否已经登录')
     def test_auth_logined(self):
-        _body(d_['确认用户是否已经登录']['path'], d_['确认用户是否已经登录']['method'], d_['确认用户是否已经登录']['body'])
+        _body(d_auth['确认用户是否已经登录']['path'], d_auth['确认用户是否已经登录']['method'], d_auth['确认用户是否已经登录']['body'])
 
+    # @pytest.mark.run(order=3)
+    # @allure.severity(allure.severity_level.MINOR)
+    # @allure.link("http://192.168.0.203:38080/doc.html#/phs-auth/%E7%99%BB%E5%BD%95%E6%A8%A1%E5%9D%97/logoutUsingDELETE", name="登出")
+    # @allure.title('登出')
+    # def test_auth_logout(self):
+    #     _noParam(d_auth['登出']['path'], d_auth['登出']['method'])
 
 
 @allure.feature('高血压')
@@ -193,12 +219,16 @@ class TestEHR(object):
     def test_serverExport_gxy_getEhrInfo(self):
         _query(d_gxy['高血压管理卡-获取基本信息']['path'], d_gxy['高血压管理卡-获取基本信息']['method'], d_gxy['高血压管理卡-获取基本信息']['query'])
 
-    @pytest.mark.run(order=11)
+    @pytest.mark.run(order=41)
     @allure.severity(allure.severity_level.NORMAL)
     @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/getHzglkInfoByIdUsingGET", name="高血压管理卡-详情")
     @allure.title("高血压管理卡-详情")
-    def test_server_gxy_hzglk_id(self):
-        _query_id(d_gxy['高血压管理卡-详情']['path'], d_gxy['高血压管理卡-详情']['method'], d_gxy['高血压管理卡-详情']['query'])
+    def test_server_gxy_hzglk(self):
+        d_r = _query_id(d_gxy['高血压管理卡-详情']['path'], d_gxy['高血压管理卡-详情']['method'], d_gxy['高血压管理卡-详情']['query'])
+        d_tmp = {}
+        d_tmp['cid'] = d_r['data']['cid']
+        dd_['server_gxy_hzglk'] = d_tmp
+        allure.attach(str(dd_), name='可用参数')
 
 
 @allure.feature('已签约居民')
@@ -208,8 +238,12 @@ class TestSigned(object):
     @allure.link("http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E7%AD%BE%E7%BA%A6%E4%BF%A1%E6%81%AF%E8%A1%A8/findPageUsingPOST_26", name="分页查询")
     @allure.title("REST - 签约信息表")
     def test_server_tSignInfo_findPage(self):
-        _queryBody(d_['分页查询']['path'], d_['分页查询']['method'], d_['分页查询']['query'], d_['分页查询']['body'])
-
+        d_r = _queryBody(d_tSignInfo['分页查询']['path'], d_tSignInfo['分页查询']['method'], d_tSignInfo['分页查询']['query'], d_tSignInfo['分页查询']['body'])
+        d_tmp = {}
+        d_tmp['id'] = d_r['data']['records'][0]['id']
+        d_tmp['orgCode'] = d_r['data']['records'][0]['orgCode']
+        dd_['server_tSignInfo_findPage'] = d_tmp
+        allure.attach(str(dd_), name='可用参数')
 
 
 

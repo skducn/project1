@@ -106,7 +106,7 @@ class GwPO_i():
 
         d_['user'] = Configparser_PO.ACCOUNT("user")
         d_['token'] = self.token
-        Color_PO.outColor([{"35": d_}])
+        # Color_PO.outColor([{"35": d_}])
         # print("token =>", self.token)
         return d_
 
@@ -115,8 +115,7 @@ class GwPO_i():
         # 执行接口
 
         d_rps = {}
-
-        if 'GET' in varMethod:
+        if 'GET' in varMethod or 'DELETE' in varMethod:
             if '{' in varPath:
                 # 如/server/gxy/hzglk/{id}
                 # get未加密
@@ -129,18 +128,24 @@ class GwPO_i():
                     d_rps['unEncryptedCurl_query'] = varQuery[key]
                     p = subprocess.Popen(unEncryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 else:
-                    print("error, 不是字典！")
+                    print("error, varQuery不是字典！")
             else:
                 # get未加密
-                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
-                d_rps['unEncryptedCurl'] = unEncryptedCurl
-                d_rps['unEncryptedCurl_query'] = varQuery
-                # get已加密
-                varQuery = self.encrypt(varQuery)
-                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
-                d_rps['encryptedCurl'] = encryptedCurl
-                d_rps['encryptedCurl_query'] = varQuery
-                p = subprocess.Popen(encryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                if varQuery != '':
+                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+                    d_rps['unEncryptedCurl'] = unEncryptedCurl
+                    d_rps['unEncryptedCurl_query'] = varQuery
+                    # get已加密
+                    varQuery = self.encrypt(varQuery)
+                    encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+                    d_rps['encryptedCurl'] = encryptedCurl
+                    d_rps['encryptedCurl_query'] = varQuery
+                    p = subprocess.Popen(encryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                else:
+                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+                    d_rps['unEncryptedCurl'] = unEncryptedCurl
+                    d_rps['unEncryptedCurl_query'] = varQuery
+                    p = subprocess.Popen(unEncryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
         elif 'POST' in varMethod:
 
