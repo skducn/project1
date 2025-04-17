@@ -1,9 +1,13 @@
+import os
+import paramiko
+import subprocess
+
 from flask import Flask, send_from_directory
-import sys, os, paramiko, subprocess
+
 from PO.LogPO import *
+
 # _path = os.path.dirname(__file__)  # 获取当前文件路径
 Log_PO = LogPO('nohup.out', level="debug")
-from datetime import date, datetime, timedelta
 # import fabric
 # print(f"Fabric version: {fabric.__version__}")
 
@@ -95,6 +99,7 @@ def index():
     logger.error('这是一条错误级别的日志')
     logger.critical('这是一条严重错误级别的日志')
     return send_from_directory(ALLURE_REPORT_DIR, 'index.html')
+
 
 @app.route('/<path:path>')
 def send_report(path):

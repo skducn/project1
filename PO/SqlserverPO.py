@@ -155,6 +155,10 @@
 5.12 db2dict  数据库sql导出字典
 5.13 db2html  数据库sql导出html
 5.14 db2df    数据库sql导出DataFrame
+
+# todo【ROW_NUMBER()定位行号】
+# 6.1 获取某列中为Null值的行号集合，如获取body列中为空值的行号集合
+# 6.2 更改第N行的字段值，如修改第三行的query和body值
 """
 
 from collections import Counter, ChainMap
@@ -2096,6 +2100,42 @@ class SqlServerPO:
         return df
 
 
+    def get_row_number_with_null(self, tableName, colName):
+        # 6.1 获取某列中为Null值的行号集合，如获取body列中为空值的行号集合
+        # 获取某字段为Null值的集结行号
+        # 执行 SQL 查询，使用 ROW_NUMBER() 函数为结果集添加行号
+        # print(get_row_number_with_null('a_phs_auth_app', 'body')) # [{'_body': 4}, {'_body': 5}]
+
+        query = f"""
+            SELECT _{colName}
+            FROM (
+                SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS _{colName}, {colName}
+                FROM {tableName}
+            ) subquery
+            WHERE {colName} IS NULL
+        """
+        rows = Sqlserver_PO.select(query)
+        return rows
+
+
+    def setValue_with_row_number(self,tableName, row_number, d_value, valid_field):
+        # 6.2 更改第N行的字段值，如修改第三行的query和body值
+        # valid_field 是一个有效的列名，用于连接，必须要有值。如果表中没有唯一标识列，需要根据实际表结构选择合适的列进行连接
+        # 构造 SET 子句
+        set_clause = ', '.join([f"{column} = '{value}'" for column, value in d_value.items()])
+        print(set_clause)  # query = 'test', body = 'hello'
+        # 执行更新操作
+        update_query = f"""
+            UPDATE {tableName}
+            SET {set_clause}
+            FROM {tableName} t
+            JOIN (
+                SELECT ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS rn, *
+                FROM {tableName}
+            ) subquery ON t.[{valid_field}] = subquery.[{valid_field}]
+            WHERE subquery.rn = {row_number}
+        """
+        Sqlserver_PO.execute(update_query)
 
 
 

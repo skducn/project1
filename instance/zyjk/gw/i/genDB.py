@@ -20,8 +20,8 @@ def excel2db(tableName, tableSheet):
     Sqlserver_PO.setFieldType(tableName, 'summary', 'varchar(100)')
     Sqlserver_PO.setFieldType(tableName, 'path', 'varchar(100)')
     Sqlserver_PO.setFieldType(tableName, 'method', 'varchar(10)')
-    Sqlserver_PO.setFieldType(tableName, 'rpsStatus', 'varchar(1000)')
-    Sqlserver_PO.setFieldType(tableName, 'rpsDetail', 'varchar(5000)')
+    Sqlserver_PO.setFieldType(tableName, 'rpsStatus', 'varchar(8)')
+    Sqlserver_PO.setFieldType(tableName, 'rpsDetail', 'float(23)')
     Sqlserver_PO.setFieldType(tableName, 'sql', 'varchar(255)')
     Sqlserver_PO.setFieldType(tableName, 'tester', 'varchar(10)')
     Sqlserver_PO.setFieldType(tableName, 'memo', 'varchar(500)')
@@ -30,6 +30,6 @@ def excel2db(tableName, tableSheet):
     Sqlserver_PO.setFieldType(tableName, 'updateDate', ' DATE')
 
 
-# excel2db('a_phs_auth_app', '登录')
+excel2db('a_phs_auth_app', '登录')
 # excel2db('a_phs_tSignInfo_app', '签约')
 # excel2db('a_phs_gxy_app', '高血压')

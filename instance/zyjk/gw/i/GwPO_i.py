@@ -30,42 +30,45 @@
 #   #   enabled: false    //去掉验证码
 # *****************************************************************
 from PO.WebPO import *
-
 from PO.ColorPO import *
+from ConfigparserPO import ConfigparserPO
+from PO.TimePO import *
+
 Color_PO = ColorPO()
 
-from ConfigparserPO import ConfigparserPO
+
 # config_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..', 'config.ini'))
 config_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), 'config.ini'))
 # print(f"Config file path: {config_file_path}")
 Configparser_PO = ConfigparserPO(config_file_path)
 # Configparser_PO = ConfigparserPO('config.ini')
 
-from PO.TimePO import *
+
 Time_PO = TimePO()
 
-class GwPO_i():
+
+def _sm2(Web_PO):
+
+    # 在线sm2加密/解密
+
+    Web_PO.openURL("https://config.net.cn/tools/sm2.html")
+    # 私钥
+    Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[1]", Configparser_PO.HTTP("privateKey"))
+    # 公钥
+    Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[2]", Configparser_PO.HTTP("publicKey"))
+
+
+class GwPO_i:
 
     def __init__(self):
         self.ipAddr = Configparser_PO.HTTP("url")
-
-
-    def _sm2(self, Web_PO):
-
-        # 在线sm2加密/解密
-
-        Web_PO.openURL("https://config.net.cn/tools/sm2.html")
-        # 私钥
-        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[1]", Configparser_PO.HTTP("privateKey"))
-        # 公钥
-        Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[1]/textarea[2]", Configparser_PO.HTTP("publicKey"))
 
     def encrypt(self, varSource):
 
         # 在线sm2加密
 
         Web_PO = WebPO("noChrome")
-        self._sm2(Web_PO)
+        _sm2(Web_PO)
         Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", varSource)
         Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[1]/a[1]", 1)
         r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", "value")
@@ -78,19 +81,19 @@ class GwPO_i():
 
         # Web_PO = WebPO("noChrome")
         Web_PO = WebPO("chrome")
-        self._sm2(Web_PO)
+        _sm2(Web_PO)
         Web_PO.setTextByX("/html/body/div[2]/div/div[1]/div[2]/textarea[2]", varEncrypt)
         Web_PO.clkByX("/html/body/div[2]/div/div[1]/div[2]/div[2]/a[1]", 1)
         r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", "value")
         Web_PO.cls()
         return r
 
-
     def curlLogin(self, varPath, varBody):
         # 登录
         # 注意需要关闭验证码
         d_ = {}
-        command = "curl -X POST '" + self.ipAddr + varPath + "' -d '" + self.encrypt(varBody) + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json'"
+        command = "curl -X POST '" + self.ipAddr + varPath + "' -d '" + self.encrypt(
+            varBody) + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json'"
         # print(command)
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
@@ -112,6 +115,7 @@ class GwPO_i():
 
         # 执行接口
 
+        global unEncryptedCurl, encryptedCurl
         d_rps = {}
         if 'GET' in varMethod or 'DELETE' in varMethod:
             if '{' in varPath:
@@ -120,9 +124,10 @@ class GwPO_i():
                 varQuery = json.loads(varQuery)
                 if isinstance(varQuery, dict):
                     key = list(varQuery.keys())[0]
-                    varPath = varPath.replace('{'+key+'}', str(varQuery[key]))
+                    varPath = varPath.replace('{' + key + '}', str(varQuery[key]))
                     # print(varPath)  # /server/disManage/register/getInfo/111
-                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                        self.token) + "'"
                     d_rps['unEncryptedCurl'] = unEncryptedCurl
                     d_rps['unEncryptedCurl_query'] = varQuery[key]
                     p = subprocess.Popen(unEncryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -136,17 +141,20 @@ class GwPO_i():
             else:
                 # get未加密
                 if varQuery != '':
-                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                        self.token) + "'"
                     d_rps['unEncryptedCurl'] = unEncryptedCurl
                     d_rps['unEncryptedCurl_query'] = varQuery
                     # get已加密
                     varQuery = self.encrypt(varQuery)
-                    encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                    encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                        self.token) + "'"
                     d_rps['encryptedCurl'] = encryptedCurl
                     d_rps['encryptedCurl_query'] = varQuery
                     p = subprocess.Popen(encryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 else:
-                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                    unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                        self.token) + "'"
                     d_rps['unEncryptedCurl'] = unEncryptedCurl
                     d_rps['unEncryptedCurl_query'] = varQuery
                     p = subprocess.Popen(unEncryptedCurl, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -159,25 +167,31 @@ class GwPO_i():
 
             # post未加密
             if varQuery != '' and varBody == '':
-                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                    self.token) + "'"
             elif varQuery != '' and varBody != '':
-                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                    self.token) + "'"
             elif varQuery == '' and varBody != '':
-                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                unEncryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                    self.token) + "'"
             d_rps['unEncryptedCurl'] = unEncryptedCurl
             d_rps['unEncryptedCurl_query'] = varQuery
             d_rps['unEncryptedCurl_body'] = varBody
             # post加密
             if varQuery != '' and varBody == '':
                 varQuery = self.encrypt(varQuery)
-                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                    self.token) + "'"
             elif varQuery != '' and varBody != '':
                 varQuery = self.encrypt(varQuery)
                 varBody = self.encrypt(varBody)
-                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "?0=" + varQuery + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                    self.token) + "'"
             elif varQuery == '' and varBody != '':
                 varBody = self.encrypt(varBody)
-                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(self.token) + "'"
+                encryptedCurl = f"curl -X {varMethod} '" + self.ipAddr + varPath + "' -d '" + varBody + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + str(
+                    self.token) + "'"
             d_rps['encryptedCurl'] = encryptedCurl
             d_rps['encryptedCurl_query'] = varQuery
             d_rps['encryptedCurl_body'] = varBody
@@ -188,7 +202,6 @@ class GwPO_i():
             d_rps['r'] = d_r
             return d_rps
 
-
     def curlGET(self, varPath, varQuery):
 
         # 执行接口
@@ -198,7 +211,8 @@ class GwPO_i():
         # print(unencryptedCURL)
 
         # 已加密
-        encryptedCURL = "curl -X GET '" + self.ipAddr + varPath + self.encrypt(varQuery) + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
+        encryptedCURL = "curl -X GET '" + self.ipAddr + varPath + self.encrypt(
+            varQuery) + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Content-Type:application/json' -H 'Authorization:" + self.token + "'"
         # print(command)
 
         p = subprocess.Popen(encryptedCURL, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -208,7 +222,8 @@ class GwPO_i():
 
         print("在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html\n")
         print("privateKey = 00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681\n")
-        print("publicKey = 047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9\n")
+        print(
+            "publicKey = 047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9\n")
 
         return unencryptedCURL, encryptedCURL, d_r
         # print(d_r)  # {'code': 200, 'msg': None, 'data': {'manageEhrNum': 100, 。。。
@@ -237,173 +252,7 @@ class GwPO_i():
 
         print("在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html\n")
         print("privateKey = 00c68ee01f14a927dbe7f106ae63608bdb5d2355f18735f7bf1aa9f2e609672681\n")
-        print("publicKey = 047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9\n")
+        print(
+            "publicKey = 047e2c1440d05e86f9677f710ddfd125aaea7f3a390ce0662f9ef9f5ff1fa860d5174251dfa99e922e224a51519a53cd71063d81e64345a0c352c4eb68d88b0cc9\n")
 
         return unencryptedCURL, encryptedCURL, d_r
-        #
-        # try:
-        #     if d_r['code'] == 200:
-        #         return d_r, command1
-        # except:
-        #     # {'code': 500, 'msg': '非法参数！'}
-        #     return d_r['code'], command1
-
-
-
-
-    # todo REST-用户信息表
-
-    def getDocByOrg(self):
-        # 根据当前所在的机构获取医生
-        return self.curl("GET", "/system/sysUser/getDocByOrg")
-
-    def getFamilyDoc(self):
-        # 获取家庭医生
-        return self.curl("GET", "/system/sysUser/getFamilyDoc")
-
-    def getOrgUser(self):
-        # 当前登录用户所在机构及子机构用户
-        return self.curl("GET", "/system/sysUser/getOrgUser")
-
-    def getUser(self):
-        # 根据用户名获取用户信息（chc-system, REST-用户信息表）
-        return self.curl("GET", "/system/sysUser/getUser/lbl")
-
-    def getUserByOrg(self):
-        # 根据机构获取医生
-        return self.curl("GET", "/system/sysUser/getUserByOrg")
-
-    def getVisitUser(self):
-        # 根据机构获取医生--随访使用
-        return self.curl("GET", "/system/sysUser/getVisitUser")
-
-    def selectUserInfo(self):
-        # 根据token获取用户信息（chc-system, REST-用户信息表）
-        return self.curl("GET", "/system/sysUser/selectUserInfo?0=61b9ee3ad031da7b01c6429d5ad3b21757ee9766d5b9e964a77ce621d29bbf7e296f482360155e6e01b29bc557eeedf702b643456ba5b39fe6febf284537a91f88468105d513684ae1abd790025a95df6590470dcc6c5a21c79a105cce1cdbdd5d45")
-
-    def sysUser(self, id):
-        # 单条查询
-        return self.curl("GET", "/system/sysUser/" + str(id))
-
-
-
-    # todo phs-system, REST-系统信息表
-
-    def querySystemRole(self, userId):
-        # 获取所有系统的角色
-        return self.curl("GET", "/system/sysSystem/querySystemRole?" + str(userId))
-
-    def systemMenuInfoBySystemId(self):
-        # 根据系统Id获取所有菜单
-        return self.curl("GET", "/system/sysSystem/systemMenuInfoBySystemId?0=950c364d4694618ca13897b742ac7db1752f96c4a778dcb046847e4004d3b62f96e6a125ec604492a0915a47d3b6f6ef87df2f8ec7e718dd308e52f74135ed223adbfeac733f4cc9616f97146cc572d8e748ce23514798982364bd5171e5291ff8c3c34ac2aa8d2d8796e92a4f3d")
-
-    def systemMenuInfo(self, systemId):
-        # 获取系统菜单
-        return self.curl("GET", "/system/sysSystem/systemMenuInfo?" + str(systemId))
-
-    def systemMenuInfoBySystemId(self, systemId):
-        # 根据系统Id获取所有菜单
-        return self.curl("GET", "/system/sysSystem/systemMenuInfoBySystemId?" + str(systemId))
-
-    def systemMenuInfoByUserId(self):
-        # 根据用户ID获取能够使用的系统及菜单
-        return self.curl("GET", "/system/sysSystem/systemMenuInfoByUserId")
-
-
-    def sysSystem(self, Id):
-        # 单条查询
-        return self.curl("GET", "/system/sysSystem/?" + str(Id))
-
-
-
-    # todo phs-auth, 登录模块
-
-    def logined(self, userName):
-        # 确认用户是否已经登录
-        return self.curl("POST", '/auth/logined')
-
-    def logout(self):
-        # 登出
-        return self.curl("DELETE", '/auth/logout')
-
-    def refresh(self):
-        # 刷新
-        return self.curl("POST", '/auth/refresh')
-
-    def newHypertensionManagementCard(self, s_d_idCard, d_):
-
-        # 新增高血压管理卡
-
-        # 步骤1：通过身份证获取基本信息，从而获取cid值
-        # 接口：REST- 高血压，高血压管理卡-获取基本信息
-        # http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/getEhrInfoUsingGET_1
-        r = self.curl('GET', "/serverExport/gxy/getEhrInfo?0=" + self.encrypt(s_d_idCard))
-        print(r) # {'code': 200, 'msg': None, 'data': {'id': None, 'bbId': None, 'cid': 'dedadc417a84419ea7ac972a31dcf5f3', 'ehrNum': None, 'xm': '尤亮柏', 'xb': '1', 'xbmc': '男', 'csrq': '1950-01-29T00:00:00.000+08:00', 'lxdh': '15831052116', 'zjhm': '310101195001293595', 'zhiyedm': '70000', 'zhiyemc': '军人', 'xxlybm': None, 'xxlymc': None, 'xxlysm': None, 'sg': None, 'tz': None, 'jzsbm': None, 'jzsmc': None, 'shxgxy': None, 'jyksrq': None, 'ksxynl': None, 'shxgyj': None, 'ksyjnl': None, 'sfyjgl': None, 'shxgdl': None, 'zyblbz': None, 'zyblysmc': None, 'zyblyszldm': None, 'zyblyszlmc': None, 'whysjtzy': None, 'cswhzysc': None, 'fhcsbz': None, 'shzlnlbm': None, 'shzlnlmc': None, 'wfysp': None, 'wfydp': None, 'wxfcbm': None, 'wxfcmc': None, 'gljbbm': None, 'gxylxbm': None, 'sfzzgl': None, 'zzglyy': None, 'zzglrq': None, 'jkysgh': None, 'jkysxm': None, 'jksj': None, 'jktdbm': None, 'jktdmc': None, 'jkyljgdm': None, 'jkyljgmc': None, 'jzdShebm': '31', 'jzdShe': '上海市', 'jzdShibm': '310100000000', 'jzdShi': '市辖区', 'jzdXiabm': '310109000000', 'jzdXia': '虹口区', 'jzdXngbm': '310109011000', 'jzdXng': '广中路街道', 'jzdJwbm': '310109011003', 'jzdJw': '商业一村居委会', 'jzdXx': '多媒体100号', 'qzrq': None, 'sfgxjkda': None}}
-
-        # 步骤2：新增高血压管理卡，填入cid值
-        # 接口：REST- 高血压，高血压管理卡 新增或编辑
-        # http://192.168.0.203:38080/doc.html#/phs-server/REST%20-%20%E9%AB%98%E8%A1%80%E5%8E%8B/createOrUpdateHzglkUsingPOST
-        d_param = {"ehrNum": "", "cid": r['data']['cid'], "csrq": "2009-05-27T00:00:00.000+08:00", "cswhzysc": "",
-                   "fhcsbz": "", "gljbbm": "3", "gxylxbm": "", "id": "",
-                   "jksj": str(Time_PO.getDateByMinus()), "jktdbm": "", "jktdmc": "", "jkyljgdm": "370685008",
-                   "jkyljgmc": "大秦家卫生院", "jkysgh": 10180,
-                   "jkysxm": "张飞", "jyksrq": "", "jzdJw": r['data']['jzdJw'], "jzdJwbm": r['data']['jzdJwbm'],
-                   "jzdShe": r['data']['jzdShe'], "jzdShebm": r['data']['jzdShebm'], "jzdShi": r['data']['jzdShi'],
-                   "jzdShibm": r['data']['jzdShibm'], "jzdXia": r['data']['jzdXia'], "jzdXiabm": r['data']['jzdXiabm'],
-                   "jzdXng": r['data']['jzdXng'], "jzdXngbm": r['data']['jzdXngbm'], "jzdXx": r['data']['jzdXx'],
-                   "jzsbm": [], "jzsmc": [], "ksxynl": "", "ksyjnl": "",
-                   "lxdh": "13448117092", "sfyjgl": "", "sfzzgl": "0", "sg": "", "shxgdl": "", "shxgxy": "",
-                   "shxgyj": "",
-                   "tz": "", "wfydp": "", "wfysp": "",
-                   "whysjtzy": "", "wxfcbm": "", "wxfcmc": "", "xb": "1", "xbmc": "", "xm": r['data']['xm'],
-                   "xxlybm": "",
-                   "xxlymc": "", "xxlysm": "", "zhiyemc": "",
-                   "zjhm": r['data']['zjhm'], "zyblbz": "", "zyblysmc": "", "zyblyszldm": [], "zyblyszlmc": [],
-                   "zzglrq": "",
-                   "zzglyy": "", "shzlnlbm": "",
-                   "qzrq": "2025-01-01", "sfgxjkda": "1"}
-        d_param.update(d_)
-        encrypted_params = self.encrypt(json.dumps(d_param))
-        url = f"/server/gxy/createOrUpdateHzglk' -d '{encrypted_params}'"
-        r = self.curl('POST', url)
-        print(r)
-
-
-# *****************************************************************
-
-if __name__ == "__main__":
-
-
-    # 登录(testwjw, Qa@123456)
-    Gw_PO_i = GwPO_i('9580414215bd76bf8ddd310c894fdfb155f439b427a43fb3dbb13a142055e4b7236fd7498a6e8d2febc7a44688c45d68c11606a34632ce07aa94d037124c0c15c0a19ab3c9f35bab234dd5bc8a3b37d419786c17b2e26d46d0f378e3691f2823e48804aecfb23ebc8511fd66e9b927bb5344d97a9f6c9c001ba4e76865f4890a5c6f7c21810fdedf6bbe85625e6ca990e1fe1cef025760c3382326c993')
-
-    # todo chc-system, REST-用户信息表
-    print(Gw_PO_i.getDocByOrg())  # 根据当前所在的机构获取医生
-    print(Gw_PO_i.getFamilyDoc())  # 获取家庭医生
-    print(Gw_PO_i.getOrgUser())  # 当前登录用户所在机构及子机构用户
-    # print(Gw_PO_i.getUser())  # 根据用户名获取用户信息
-    # print(Gw_PO_i.getUserByOrg())  # 根据机构获取医生
-    # print(Gw_PO_i.getVisitUser())  # 根据机构获取医生--随访使用
-    print(Gw_PO_i.selectUserInfo())  # 根据token获取用户信息
-    # print(Gw_PO_i.sysUser(id))  # 单条查询
-
-
-    # todo chc-system, REST-系统信息表
-    # print(Gw_PO_i.querySystemRole(userId))  # 获取所有系统的角色
-    print(Gw_PO_i.systemMenuInfoBySystemId())  # 根据用户ID获取能够使用的系统
-    print(Gw_PO_i.systemMenuInfoByUserId())  # 根据用户ID获取能够使用的系统及菜单
-    # print(Gw_PO_i.systemMenuInfo(systemId))  # 获取系统菜单
-    # print(Gw_PO_i.systemMenuInfoBySystemId(systemId))  # 根据系统Id获取所有菜单
-    # print(Gw_PO_i.sysSystem(Id))  # 单条查询
-
-
-
-
-
-
-    # todo chc-auth, 登录模块
-    # print(gw_i_PO.logined())  # 确认用户是否已经登录
-    print(gw_i_PO.logout())  # 登出
-    # print(gw_i_PO.refresh())  # 刷新
-
-
