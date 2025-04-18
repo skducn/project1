@@ -1,11 +1,10 @@
-# todo 以下是使用 Python 测试 RabbitMQ 的详细教程和具体实例，我们将使用 pika 库来实现。pika 是一个用于与 RabbitMQ 进行交互的 Python 库。
+# todo 以下是使用 Python 测试 RabbitMQ 的详细教程和具体实例，我们将使用 pika 库来实现。
+# todo pika 是一个用于与 RabbitMQ 进行交互的 Python 库。
 
-1. 安装依赖库
-首先，你需要安装 pika 库，可以使用以下命令进行安装：
-bash
+# todo 1. 安装依赖库
 pip install pika
 
-2. 启动 RabbitMQ 服务
+# todo 2. 启动 RabbitMQ 服务
 在进行测试之前，确保你的 RabbitMQ 服务已经启动。如果你使用的是本地 RabbitMQ 服务，可以通过以下命令启动：
 bash
 # 对于 Ubuntu 系统
@@ -14,9 +13,11 @@ sudo systemctl start rabbitmq-server
 # 对于 macOS 系统（使用 Homebrew 安装）
 brew services start rabbitmq
 
-3. 编写 Python 代码进行测试
-示例 1：简单的生产者 - 消费者模型
-以下是一个简单的生产者 - 消费者模型的示例代码，生产者发送消息到队列，消费者从队列中接收消息。
+localhost-2:Downloads linghuchong$ brew services start rabbitmq
+==> Successfully started `rabbitmq` (label: homebrew.mxcl.rabbitmq)
+
+# todo 3. 编写 Python 代码进行测试
+示例 1：简单的生产者 - 消费者模型, 生产者发送消息到队列，消费者从队列中接收消息。
 生产者代码（producer.py）：
 
 代码解释

@@ -2,8 +2,12 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2025-4-18
-# Description: # 生产者和消费者，1对1，1对多
-# 视频：https://www.bilibili.com/video/BV1hS4y1R7f2?spm_id_from=333.788.videopod.episodes&vd_source=be21f48b876460dfe25064d745fdc372&p=2
+# Description: # publish/Subscribe 发布者/订阅者
+# 视频：https://www.bilibili.com/video/BV1hS4y1R7f2?spm_id_from=333.788.player.switch&vd_source=be21f48b876460dfe25064d745fdc372&p=4
+# 步骤：
+# 1，执行 consumer_subscriber.py  订阅者1
+# 2，执行 consumer_subscriber2.py  订阅者2
+# 3，执行 producer_publisher.py  发布者，发布消息后订阅1和订阅者2都收到消息（消费）
 
 # brew services start rabbitmq
 # http://localhost:15672/#/queues  guest，guest
@@ -19,17 +23,15 @@ credentials = pika.PlainCredentials('guest', 'guest')
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost', credentials=credentials))
 channel = connection.channel()
 
-varQueue = 'hello6'
+channel.exchange_declare(exchange='m1', exchange_type='fanout')
 
-# 声明一个队列(支持队列持久化)
-channel.queue_declare(queue=varQueue, durable=True)
 
 # 发送消息到队列
 message = 'Hello, RabbitMQ!'
-channel.basic_publish(exchange='',
-                      routing_key=varQueue,
-                      body=message,
-                      properties=pika.BasicProperties(delivery_mode=2)) # 数据持久化
+channel.basic_publish(exchange='m1',
+                      routing_key='',
+                      body=message
+                      )
 print(f" [x] Sent '{message}'")
 
 # 关闭连接

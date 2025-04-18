@@ -1,0 +1,115 @@
+# todo 安装 rabbitmq：
+brew install rabbitmq
+
+# todo 启动 rabbitmq 服务：
+brew services start rabbitmq
+
+# todo 检查 rabbitmq 服务状态（可选）：
+brew services list   //查看 rabbitmq 的状态是否为 started。
+localhost-2:Downloads linghuchong$ brew services list
+Name          Status   User        File
+chronograf    started  linghuchong ~/Library/LaunchAgents/homebrew.mxcl.chronograf.plist
+dbus          none
+grafana       started  linghuchong ~/Library/LaunchAgents/homebrew.mxcl.grafana.plist
+influxdb      none
+jenkins-lts   other    linghuchong ~/Library/LaunchAgents/homebrew.mxcl.jenkins-lts.plist
+kapacitor     other    linghuchong ~/Library/LaunchAgents/homebrew.mxcl.kapacitor.plist
+memcached     none
+mysql         started  linghuchong ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
+openvpn       none     root
+postgresql@14 none
+rabbitmq      started  linghuchong ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
+redis         started  linghuchong ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
+telegraf      error  1 linghuchong ~/Library/LaunchAgents/homebrew.mxcl.telegraf.plist
+unbound       none
+
+# todo 默认用户名 guest，guest
+
+生产消费过程：
+Broker: 接收和分发消息的应用，RabbitMQ Server 就是 Message Broker
+Virtual host: Virtual host 是一个虚拟主机的概念，一个 Broker 中可以有多个 Virtual host，每个 Virtual host 都有一套自己的 Exchange 和 Queue，同一个 Virtual host 中的 Exchange 和 Queue 不能重名，不同的 Virtual host 中的 Exchange 和 Queue 名字可以一样。这样，不同的用户在访问同一个 RabbitMQ Broker 时，可以创建自己单独的 Virtual host，然后在自己的 Virtual host 中创建 Exchange 和 Queue，很好地做到了不同用户之间相互隔离的效果。
+Connection: publisher/consumer 和 broker 之间的 TCP 连接
+Channel: 发送消息的通道，如果每一次访问 RabbitMQ 都建立一个 Connection，在消息量大的时候建立 TCP Connection 的开销将是巨大的，效率也较低。Channel 是在 connection 内部建立的逻辑连接，如果应用程序支持多线程，通常每个 thread 创建单独的 channel 进行通讯，AMQP method 包含了 channel id 帮助客户端和 message broker 识别 channel，所以 channel 之间是完全隔离的。Channel 作为轻量级的 Connection 极大减少了操作系统建立 TCP connection 的开销
+Exchange: message 到达 broker 的第一站，根据分发规则，匹配查询表中的 routing key，分发消息到 queue 中去。常用的类型有：direct (point-to-point), topic (publish-subscribe) and fanout (multicast)
+Queue: Queue 是一个用来存放消息的队列，生产者发送的消息会被放到 Queue 中，消费者消费消息时也是从 Queue 中取走消息。
+Binding: exchange 和 queue 之间的虚拟连接，binding 中可以包含 routing key，Binding 信息被保存到 exchange 中的查询表中，用于 message 的分发依据
+
+
+
+# 实例代码java
+package comm.xc.rabbit;
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+public class Producer {
+    // 无使用情况标识
+    public static void main(String[] args) throws Exception {
+
+        String queueName = 'xc_queue_name';
+        String exchangeName = 'xc_exchange_name';
+
+        // 创建一个连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        // 服务地址
+        factory.setHost("192.168.16.137");
+        // 账号
+        factory.setUsername("admin");
+        // 密码
+        factory.setPassword("123456");
+        // 端口号
+        factory.setPort(5672);
+        // 创建连接
+        Connection connection = factory.newConnection();
+        // 创建信道
+        Channel channel = connection.createChannel();
+
+
+        /**
+        创建交换机
+        交换机名称
+        交换机类型，direct, topic, fanout 和 headers
+        指定交换机是否需要持久化，如果设置为 true，那么交换机的元数据要持久化
+        指定交换机在没有队列绑定时，是否需要删除，设置 false 表示不删除
+        Map<String, Object> 类型，用来指定我们交换机其他的一些结构化参数，我们在这里直接设置成 null
+        */
+        channel.exchangeDeclare ("xc_exchange_name", BuiltinExchangeType.DIRECT, true, false, null);
+
+        /**
+        生成一个队列
+        队列名称
+        队列是否需要持久化，但是要注意，这里的持久化只是队列名称等这些元数据的持久化，不是队列中消息的持久化
+        表示队列是不是私有的，如果是私有的，只有创建它的应用程序才能消费消息
+        队列在没有消费者订阅的情况下是否自动删除
+        队列的一些结构化信息，比如声明死信队列，磁盘队列会用到
+        */
+        channel.queueDeclare ("xc_queue_name", true, false, false, null);
+
+
+        /**
+        将我们的交换机和队列绑定
+        1队列名称
+        2交换机名称
+        3路由键，在我们直连模式下，可以为我们的队列名称
+        */
+        channel.queueBind (queueName, exchangeName, queueName);
+
+        // 发送消息
+        String message = "hello rabbitmq";
+
+        /**
+        发送消息
+        1发送到哪个交换机
+        2队列名称
+        3其他参数信息
+        4发送消息的消息体
+        */
+        channel.basicPublish(exchangeName,queueName，null,message.getBytes());
+
+        channel.close();
+        connection.close();
+
+    }
+}
