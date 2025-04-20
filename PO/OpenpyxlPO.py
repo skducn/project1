@@ -135,7 +135,7 @@ from openpyxl import load_workbook
 from datetime import date
 from time import sleep
 import psutil
-import xlwings as xw
+# import xlwings as xw
 
 import openpyxl, platform, os
 # import openpyxl.styles
