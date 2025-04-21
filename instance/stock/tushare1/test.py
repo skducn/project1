@@ -22,12 +22,12 @@ pro = ts.pro_api('894e80b70503f5cda0d86f75820c5871ff391cf7344e55931169bb2a')
 # 获取上交所股票代码和名称
 # data = pro.stock_basic(exchange='SSE', list_status='L', fields='ts_code,symbol,name')
 # 获取深交所股票代码和名称
-# data = pro.stock_basic(exchange='SZSE', list_status='L', fields='symbol,name')
-# # 打印结果
-# for index, row in data.iterrows():
-#     print(f"股票代码: {row['symbol']}, 股票名称: {row['name']}")
-#
-# sys.exit(0)
+data = pro.stock_basic(exchange='SZSE', list_status='L', fields='ts_code,symbol,name')
+# 打印结果
+for index, row in data.iterrows():
+    print(f"股票代码: {row['symbol']}, 股票名称: {row['name']}")
+
+sys.exit(0)
 
 
 Openpyxl_PO = OpenpyxlPO("all.xlsx")
