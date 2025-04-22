@@ -597,6 +597,10 @@ class DomPO(object):
         ele = self.find_element(*(By.CLASS_NAME, className))
         return ele
 
+    def getEleById(self, varId):
+        ele = self.find_element(*(By.ID, varId))
+        return ele
+
 
     # todo set
 
@@ -2043,13 +2047,13 @@ class DomPO(object):
     def swhIframeByX(self, varXpath, t=1):
         """通过Xpath切换到iframe"""
         # 如：swhIframeByX("//body[@class='gray-bg top-navigation']/div[4]/iframe")
-        self.driver.switch_to_frame(self.find_element(*(By.XPATH, varXpath)))
+        self.driver.switch_to.frame(self.find_element(*(By.XPATH, varXpath)))
         sleep(t)
 
     def swhIframeById(self, varId, t=1):
         """通过id切换到iframe"""
         #如：swhIframeById（"layui-layer-iframe1"）
-        self.driver.switch_to_frame(self.find_element(*(By.ID, varId)))
+        self.driver.switch_to.frame(self.find_element(*(By.ID, varId)))
         sleep(t)
 
     def swhIframeFromApcByXs(self, varXpaths, varAttr, varValue, t=1):
@@ -2057,8 +2061,8 @@ class DomPO(object):
         # 如：swhIframeFromApcByXs（"//iframe", "src", "/general/workflow/new/"）
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varValue in a.get_attribute(varAttr):
-                self.driver.switch_to_frame(self.find_element(*(By.XPATH, varXpaths)))
-                # self.driver.switch_to_frame(self.driver.find_element_by_xpath(varXpaths))
+                self.driver.switch_to.frame(self.find_element(*(By.XPATH, varXpaths)))
+                # self.driver.switch_to.frame(self.driver.find_element_by_xpath(varXpaths))
                 break
         sleep(t)
 
@@ -2079,7 +2083,7 @@ class DomPO(object):
         # Home_PO.inIframeDiv("[@class='cetc-popup-content']/div", 2)
         iframe = self.driver.find_element_by_xpath("//div" + varXpath + "/iframe")
         # print iframe.get_attribute("src")
-        self.driver.switch_to_frame(iframe)
+        self.driver.switch_to.frame(iframe)
         sleep(t)
 
 

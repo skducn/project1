@@ -742,8 +742,8 @@ if __name__ == "__main__":
     # Web_PO = WebPO("firefox")
 
     # # print("1.1 打开网站".center(100, "-"))
-    Web_PO.openURL("http://192.168.0.243:5000/")
-    Web_PO.clkByX("/html/body/div[1]/div[3]/form/input")
+    Web_PO.openURL("https://quote.eastmoney.com/sz002132.html#fullScreenChart")
+    # Web_PO.clkByX("/html/body/div[1]/div[3]/form/input")
 
     # Web_PO.clkByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select")
     Web_PO.sltTextByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", '健康干预')

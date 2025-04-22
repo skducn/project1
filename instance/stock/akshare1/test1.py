@@ -2,7 +2,7 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2023-05-4
-# Description:  www.akshare.xyz
+# Description:   www.akshare.xyz
 # conda activate py310
 # pip install aksare
 # https://ke.qq.com/webcourse/index.html?r=1683091325369#cid=5835909&term_id=106048134&taid=13742014157360261&type=3072&source=PC_COURSE_DETAIL&vid=387702306339866276
