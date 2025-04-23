@@ -349,7 +349,7 @@ class WebPO(DomPO):
             # 无界面模式
             # options.headless = True  # 弃用
             options.add_argument('--headless=new')  # 如果你使用的是 Chrome 109 及以上版本，推荐使用 '--headless=new'
-            options.add_argument('--headless') # 如果你使用的是旧版本 Chrome，使用 '--headless'
+            options.add_argument('--headless')  # 如果你使用的是旧版本 Chrome，使用 '--headless'
 
             # todo 系统
             # options.add_argument("disable-cache")  # 禁用缓存
