@@ -5,7 +5,9 @@
 # Description: # 延迟任务 apply_async()
 # 视频：https://www.bilibili.com/video/BV1bvPXeeEqL?spm_id_from=333.788.player.switch&vd_source=be21f48b876460dfe25064d745fdc372&p=10
 # 步骤：
-# 1, 启动worker监控，执行 celery -A celeryPO worker -l info
+# 1, 启动worker监控
+# celery -A celeryPO worker -l info  //for mac
+# celery -A celeryPO worker -l info -P eventlet   //for win
 # 2, 运行 延迟任务.py 执行延迟5s任务
 # 3，观察worker监控console，received后等了5s后执行 显示jd
 # [2025-04-21 16:57:01,628: INFO/MainProcess] Connected to redis://localhost:6379/1
@@ -24,6 +26,7 @@
 from celeryPO.crawl_task import crawl_jd
 from datetime import datetime, timedelta
 
+# 延迟5s执行crawl_jd函数
 eta = datetime.utcnow() + timedelta(seconds=5)
 res = crawl_jd.apply_async(args=['参数1'], eta=eta)
 print(res)  # 2e7b09c1-b460-4d00-89be-3eee37d9800c

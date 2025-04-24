@@ -5,7 +5,9 @@
 # Description: # 异步任务 函数.delay()
 # 视频：https://www.bilibili.com/video/BV1bvPXeeEqL?spm_id_from=333.788.player.switch&vd_source=be21f48b876460dfe25064d745fdc372&p=8
 # 步骤：
-# 1, 启动worker监控，执行 celery -A celeryPO worker -l info
+# 1, 启动worker监控
+# celery -A celeryPO worker -l info  //for mac
+# celery -A celeryPO worker -l info -P eventlet   //for win
 # 2, 运行 异步任务.py
 # 3，查看redis
 # ***************************************************************u**

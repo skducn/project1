@@ -121,7 +121,7 @@ def run(file1, file2):
             d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
 
             if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损'  and\
-                    float(d_curr['涨幅']) > -3 and float(d_curr['涨幅']) < 3 and\
+                    float(d_curr['涨幅']) > 3 and float(d_curr['涨幅']) < 9 and\
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 100:
                 # print(i + 1, d_curr, varUrl)
                 l_dd.append(l_tmp[i])
