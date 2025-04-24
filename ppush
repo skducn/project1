@@ -2,9 +2,9 @@ cd /Users/linghuchong/Downloads/51/Python/project/
 git add .
 git commit -m 'fromMac'
 
-git push origin HEAD:master
+git push -f origin HEAD:master
 
-git push github HEAD:master
+git push -f github HEAD:master
 
 osascript -e "tell application \"System Events\" to keystroke \"q\" using command down"
 
