@@ -2,7 +2,7 @@
 # ********************************************************************************************************************
 # Author     : John
 # Date       : 2025-1-25
-# Description: deepseek cli模式
+# Description: ds cli模式
 # https://platform.deepseek.com/usage  # 查看余款
 # https://api-docs.deepseek.com/zh-cn/guides/reasoning_model  # 查看R1模型
 # ********************************************************************************************************************
@@ -19,11 +19,11 @@ client = OpenAI(api_key="sk-e2bf2354c1924fbeb55c41e4d7bd151d", base_url="https:/
 
 # 使用 stream=True 启用流式响应，默认情况下，返回的响应会被解析为一个 list，
 # https://api-docs.deepseek.com/zh-cn/
-# * deepseek-chat 模型已全面升级为 DeepSeek-V3，接口不变。 通过指定 model='deepseek-chat' 即可调用 DeepSeek-V3。
-# * deepseek-reasoner 是 DeepSeek 最新推出的推理模型 DeepSeek-R1。通过指定 model='deepseek-reasoner'，即可调用 DeepSeek-R1。
+# * ds-chat 模型已全面升级为 DeepSeek-V3，接口不变。 通过指定 model='ds-chat' 即可调用 DeepSeek-V3。
+# * ds-reasoner 是 DeepSeek 最新推出的推理模型 DeepSeek-R1。通过指定 model='ds-reasoner'，即可调用 DeepSeek-R1。
 response = client.chat.completions.create(
-    # model="deepseek-chat",
-    model="deepseek-reasoner",
+    # model="ds-chat",
+    model="ds-reasoner",
     messages=[
         {"role": "system", "content": "you are a helpful assistant"},
         {"role": "user", "content": sys.argv[1]},

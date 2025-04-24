@@ -1,0 +1,76 @@
+# todo 以下是使用 Python 测试 RabbitMQ 的详细教程和具体实例，我们将使用 pika 库来实现。
+# todo pika 是一个用于与 RabbitMQ 进行交互的 Python 库。
+
+# todo 1. 安装依赖库
+pip install pika
+
+# todo 2. 启动 RabbitMQ 服务
+在进行测试之前，确保你的 RabbitMQ 服务已经启动。如果你使用的是本地 RabbitMQ 服务，可以通过以下命令启动：
+bash
+# 对于 Ubuntu 系统
+sudo systemctl start rabbitmq-server
+
+# 对于 macOS 系统（使用 Homebrew 安装）
+brew services start rabbitmq
+
+localhost-2:Downloads linghuchong$ brew services start rabbitmq
+==> Successfully started `rabbitmq` (label: homebrew.mxcl.rabbitmq)
+
+# todo 3. 编写 Python 代码进行测试
+示例 1：简单的生产者 - 消费者模型, 生产者发送消息到队列，消费者从队列中接收消息。
+生产者代码（producer.py）：
+
+代码解释
+生产者：
+建立与 RabbitMQ 服务器的连接。
+声明一个名为 hello 的队列。
+发送一条消息到该队列。
+关闭连接。
+消费者：
+建立与 RabbitMQ 服务器的连接。
+声明一个名为 hello 的队列。
+定义一个回调函数 callback 来处理接收到的消息。
+告诉 RabbitMQ 使用这个回调函数从队列中接收消息。
+开始消费消息。
+运行代码
+首先运行消费者代码：
+bash
+python consumer.py
+
+然后运行生产者代码：
+bash
+python producer.py
+
+你会看到消费者输出接收到的消息。
+示例 2：使用交换机和路由键
+以下是一个使用交换机和路由键的示例，生产者根据不同的路由键发送消息，消费者根据绑定的路由键接收消息。
+生产者代码（producer_exchange.py）：
+
+消费者代码（consumer_exchange.py）：
+
+代码解释
+生产者：
+建立与 RabbitMQ 服务器的连接。
+声明一个名为 direct_logs 的直连交换机。
+根据命令行参数获取路由键和消息。
+发送消息到交换机，指定路由键。
+关闭连接。
+消费者：
+建立与 RabbitMQ 服务器的连接。
+声明一个名为 direct_logs 的直连交换机。
+创建一个临时队列。
+根据命令行参数绑定队列到交换机，并指定路由键。
+定义一个回调函数 callback 来处理接收到的消息。
+告诉 RabbitMQ 使用这个回调函数从队列中接收消息。
+开始消费消息。
+
+运行代码
+运行消费者代码，指定要绑定的路由键：
+bash
+python consumer_exchange.py info warning error
+
+运行生产者代码，指定路由键和消息：
+bash
+python producer_exchange.py info "This is an info message"
+
+你会看到消费者根据绑定的路由键接收到相应的消息。

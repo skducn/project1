@@ -1,0 +1,70 @@
+{
+  "uid" : "d5959df3069bcbd",
+  "name" : "test_failure",
+  "fullName" : "test_allure_command#test_failure",
+  "historyId" : "45ca17d263822c8490205f9b7d863d97",
+  "time" : {
+    "start" : 1744018270162,
+    "stop" : 1744018270162,
+    "duration" : 0
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert False",
+  "statusTrace" : "def test_failure():\n>       assert False\nE       assert False\n\ntest_allure_command.py:21: AssertionError",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1744018270023,
+      "stop" : 1744018270093,
+      "duration" : 70
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_allure_command"
+  }, {
+    "name" : "host",
+    "value" : "localhost-2.local"
+  }, {
+    "name" : "thread",
+    "value" : "18330-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_allure_command"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "d5959df3069bcbd.json",
+  "parameterValues" : [ ]
+}

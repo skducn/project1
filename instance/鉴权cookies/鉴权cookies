@@ -1,0 +1,8 @@
+# todo 获取token两种方式：
+# 1、从Local storage中获取 Admin-Token （F12, Application - Storage - Local storage）
+如：社区健康
+参考：CHC - web - quanqu - 2testAuthorization.py
+
+# 2、从Cookies中获取token
+如：公卫
+参考：gw - web - 家医签约 - 2testAuthorization.py

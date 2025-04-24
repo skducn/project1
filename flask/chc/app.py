@@ -387,7 +387,7 @@ def list123(ruleName):
 
     # 重构表格标题
     # 获取字典{字段:注释}
-    d_field_comment = Sqlserver_PO.getFieldCommentGBK(d_ruleName_tbl[ruleName])
+    d_field_comment = Sqlserver_PO.getFieldComment(d_ruleName_tbl[ruleName])
     print("({})d_field_comment =>".format(sys._getframe().f_lineno), ruleName, d_field_comment)
     # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
     # 重新排序排序id，将id放在第一位
@@ -644,7 +644,7 @@ def list4(ruleName, result):
 
     # 重构表格标题
     # 获取字典{字段:注释}
-    d_field_comment = Sqlserver_PO.getFieldCommentGBK(d_ruleName_tbl[ruleName])
+    d_field_comment = Sqlserver_PO.getFieldComment(d_ruleName_tbl[ruleName])
     # print(d_field_comment)  # {'result': '结果', 'updateDate': '更新日期', 'step': '步骤', 'rule': '规则集', 'case': '用例', 'ruleParam': '参数', 'assessName': '评估因素名称', 'assessRule': '取值规则', 'tester': '测试者', 'id': None}
     # 重新排序排序id，将id放在第一位
     if 'id' in d_field_comment:

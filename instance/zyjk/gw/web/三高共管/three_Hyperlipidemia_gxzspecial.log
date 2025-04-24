@@ -1,0 +1,62 @@
+2025-03-24 17:03:01,227 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:06:11,017 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:06:17,618 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:06:49,991 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:06:56,585 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:12:43,326 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:12:49,900 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:13:28,910 - INFO - Received signal: SIGINT
+2025-03-24 17:13:28,910 - INFO - Program is terminating...
+2025-03-24 17:13:28,994 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc3219113f0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,002 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321911810>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,023 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321911cc0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,044 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321912050>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,047 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321912230>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,050 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc3219123e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,057 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321912800>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,060 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc3219129e0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,063 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321912b90>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,068 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321912fb0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,071 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321913190>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,074 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321913340>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,080 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321913760>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,083 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321913940>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,085 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fc321913af0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/5a53d81a42a7ccd21ff1598802c4fa6a/element
+2025-03-24 17:13:29,088 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5]}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:14:16,074 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:14:22,670 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:14:39,730 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5]}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:15:40,169 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:15:46,687 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:16:20,303 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5]}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:25:55,562 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:26:02,154 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:26:40,957 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:27:15,129 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:27:21,651 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:27:53,068 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:29:53,520 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:30:00,040 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:30:35,286 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:31:40,118 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:31:46,694 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:32:21,601 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:33:31,356 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:33:37,940 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:34:31,883 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:35:53,643 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:36:00,235 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:36:50,707 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:38:01,635 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:38:08,218 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:39:02,121 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:40:15,727 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:40:22,477 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:41:05,416 - ERROR - 失败 =>{'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-24 17:43:34,828 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-24 17:43:41,397 - INFO - {'operate': '查看', 'option': {'身份证号': '370685202205080014'}}
+2025-03-24 17:44:29,307 - INFO - {'operate': '高血脂患者管理卡_编辑', 'data': {'病例来源': '其他', '居住地址': ['上海市', '市辖区', '黄浦区', '外滩街道', '北京居委会', '123'], '高血脂分层结果': '高危', '确诊日期': [2025, 1, 2], '是否终止管理': ['是', {'终止管理日期': [2025, 2, 5], '终止管理原因': '121212'}], '建卡时间': [2025, 1, 5], '建卡医生': '金浩1'}}
+2025-03-25 09:41:08,850 - INFO - 查询 => {'身份证号': '370685202205080014'}
+2025-03-25 09:41:15,417 - INFO - {'operate': '随访', 'option': {'身份证号': '370685202205080014'}}
+2025-03-25 09:41:19,962 - INFO - {'operate': '高血脂随访记录_新增', 'data': {}}
+2025-03-25 09:41:24,278 - INFO - {'operate': '高血脂随访记录_引入上次新增', 'data': {}}

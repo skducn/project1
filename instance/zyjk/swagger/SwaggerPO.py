@@ -29,20 +29,26 @@ class SwaggerPO():
         Web_PO.openURL(self.iUrl + self.iDoc)
 
         # 1.1 获取菜单名
-        l_menu = Web_PO.getTextListByX("//option")
-        # print(l_project)  # ['phs-auth', 'phs-job', 'phs-system', 'phs-server', 'phs-server-export', 'phs-third-api']
+        l_menu = Web_PO.getTextByXs("//option")
+        print("接口菜单 =>", l_menu)  # ['phs-auth', 'phs-job', 'phs-system', 'phs-server', 'phs-server-export', 'phs-third-api']
+
         # 1.2 获取菜单与url键值对
-        d_url = Web_PO.getTextAttrValueDictByX("//option", "data-url")
-        # print(d_url)  # {'auth': '/v2/api-docs', 'oss': '/oss//v2/api-docs', 'hypertension': '/hypertension//v2/api-docs', 'ecg': '/ecg//v2/api-docs', 'cms': '/cms//v2/api-docs', 'saascrf': '/saascrf//v2/api-docs', 'cuser': '/cuser//v2/api-docs', 'saasuser': '/saasuser//v2/api-docs'}
+        # d_url = Web_PO.getTextAttrValueDictByX("//option", "data-url")
+        d_url = Web_PO.getDictTextAttrValueByXs("//option", "data-url")
+        # print(d_url)  # {'phs-auth': '/auth/v2/api-docs', 'phs-job': '/schedule/v2/api-docs', 'phs-system': '/system/v2/api-docs', 'phs-server': '/server/v2/api-docs', 'phs-server-export': '/serverExport/v2/api-docs', 'phs-third-api': '/thirdApi/v2/api-docs'}
+
         # 1.3 合成列表
         l_url = [self.iUrl + v for k, v in d_url.items()]
         # print(l_url)  # ['http://192.168.0.203:38080/auth/v2/api-docs', 'http://192.168.0.203:38080/schedule/v2/api-docs', 'http://192.168.0.203:38080/system/v2/api-docs', 'http://192.168.0.203:38080/server/v2/api-docs', 'http://192.168.0.203:38080/serverExport/v2/api-docs', 'http://192.168.0.203:38080/thirdApi/v2/api-docs']
+
         # 1.4 合成字典
         d_interfaceUrl = dict(zip(l_menu, l_url))
-        # print(d_all)  # {'phs-auth': 'http://192.168.0.203:38080/auth/v2/api-docs', 'phs-job': 'http://192.168.0.203:38080/schedule/v2/api-docs', 'phs-system': 'http://192.168.0.203:38080/system/v2/api-docs', 'phs-server': 'http://192.168.0.203:38080/server/v2/api-docs', 'phs-server-export': 'http://192.168.0.203:38080/serverExport/v2/api-docs', 'phs-third-api': 'http://192.168.0.203:38080/thirdApi/v2/api-docs'}
+        print("全部接口api文档 =>", d_interfaceUrl)  # {'phs-auth': 'http://192.168.0.203:38080/auth/v2/api-docs', 'phs-job': 'http://192.168.0.203:38080/schedule/v2/api-docs', 'phs-system': 'http://192.168.0.203:38080/system/v2/api-docs', 'phs-server': 'http://192.168.0.203:38080/server/v2/api-docs', 'phs-server-export': 'http://192.168.0.203:38080/serverExport/v2/api-docs', 'phs-third-api': 'http://192.168.0.203:38080/thirdApi/v2/api-docs'}
+
         Web_PO.cls()
 
-        print(d_interfaceUrl[varMenu])  # http://192.168.0.203:38080/thirdApi/v2/api-docs
+        print("当前接口api地址 =>", d_interfaceUrl[varMenu])  # http://192.168.0.203:38080/auth/v2/api-docs
+        print("\n")
         html = requests.get(d_interfaceUrl[varMenu])
         html.encoding = 'utf-8'
         d = json.loads(html.text)
@@ -272,12 +278,14 @@ class SwaggerPO():
         # 1 获取并解析接口页面地址
         d = self._getInterfaceUrl(varMenu)
 
+        # print(d['basePath'])
+
         # 2 遍历接口
         for k, v in d['paths'].items():
 
-            # 2.1 路径
+            # 2.1 接口地址
             paths = k
-            # print(paths)  # /afPreoperativeCounselingInfo/addMassMessage
+            # print(paths)  # /login
 
             # 2.2 提交方式
             l_method = list(d['paths'][k])
@@ -437,6 +445,7 @@ class SwaggerPO():
 
             l_1.append(tags)
             l_1.append(summary)
+            paths = d['basePath'] + paths
             l_1.append(paths)
             l_1.append(l_method[0])
             l_1.append(consumes)

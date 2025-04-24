@@ -4,6 +4,8 @@
 # Date          : 2019-12-23
 # Description   : 列表对象层
 # *********************************************************************
+
+
 """
 todo：【转换】
 1.1 两列表合并字典（后覆盖） print(dict(zip([1, 2], ['skducn', 'yoyo']))) # {1: 'skducn', 2: 'yoyo'}
@@ -117,6 +119,11 @@ List_PO = ListPO()
 # print(list(map(str,[123, "a"])))  # ['123', 'a']
 
 # print("2.3 列表分裂".center(100, "-"))
+print(List_PO.split2([1, 2, 3, '测试', 4, 5, 6, "测试", 7, 8, 9], '测试'))  # [1,2,3]
+print(List_PO.split2([1, 2, 3, '测试', 4, 5, 6, "测试"], '测试'))  # [1,2,3]
+
+
+
 # print(List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 0))  # [1,2,3]
 # print(List_PO.split([1, 2, 3, '测试', 4, 5, 6], '测试', 1))  # [4,5,6]
 # print(List_PO.split([1, 2, 3, '测试', 4, 5, "测试", 6], '测试', 1))  # [4, 5, '测试', 6]   只处理第一个参数
@@ -242,7 +249,7 @@ List_PO = ListPO()
 # print([int(x) for x in str(12345)])  # [1, 2, 3, 4, 5]
 
 # # # print("7.5 两列表相乘".center(100, "-"))
-b1 = [100, 200, 300]
-b2 = [1, 2, 3]
-iterator = map(lambda x,y : x*y, b1, b2)
-print(list(iterator))  # 输出：[100, 400, 900]
+# b1 = [100, 200, 300]
+# b2 = [1, 2, 3]
+# iterator = map(lambda x,y : x*y, b1, b2)
+# print(list(iterator))  # 输出：[100, 400, 900]

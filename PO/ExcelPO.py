@@ -4,7 +4,7 @@
 # Date          : 2019-9-26
 # Description   : excel 对象层
 
-# python 处理 Excel 表格  http://www.cnblogs.com/snow-backup/p/4021554.html
+# python 处理 Excel excel  http://www.cnblogs.com/snow-backup/p/4021554.html
 # xlrd（读excel）表、xlwt（写excel）表、openpyxl（可读写excel表）
 # xlrd读数据较大的excel表时效率高于 openpyxl
 # Working with Excel Files in Python   下载地址：http://www.python-excel.org/

@@ -5,6 +5,151 @@
 # Description: ChainMap
 # ********************************************************************************************************************
 
+from fabric import Connection
+
+
+def upload_directory_to_server(local_dir, remote_dir, host, user, password):
+    try:
+        # 建立与服务器的连接
+        with Connection(host=host, user=user, connect_kwargs={"password": password}) as c:
+            # # 递归上传本地目录到远程服务器
+            # result = c.put(local_dir, remote=remote_dir, recursive=True)
+            # print(f"成功上传 {local_dir} 到 {remote_dir}，上传的文件: {result.files}")
+            # 构建 rsync 命令
+            rsync_command = f"rsync -avz {local_dir}/ {user}@{host}:{remote_dir}"
+            # 执行 rsync 命令
+            result = c.run(rsync_command, hide=True)
+            if result.exited == 0:
+                print(f"成功上传 {local_dir} 到 {remote_dir}")
+            else:
+                print(f"上传失败，错误信息: {result.stderr}")
+    except Exception as e:
+        print(f"上传过程中出现错误: {e}")
+
+
+if __name__ == "__main__":
+    # 本地要上传的目录
+    # local_directory = 'your_local_directory'
+    local_directory = '/Users/linghuchong/Downloads/51/Python/project/flask/flask_gw_i/allureReport'
+
+    # 服务器上的目标目录
+    # remote_directory = 'your_remote_directory'
+    remote_directory = '/home/flask_gw_i/4446'
+    # 服务器主机名或 IP 地址
+    server_host = '192.168.0.243'
+    # 服务器用户名
+    server_user = 'root'
+    # 服务器密码
+    server_password = 'Benetech79$#-'
+
+    upload_directory_to_server(local_directory, remote_directory, server_host, server_user, server_password)
+
+   # c = Connection(host='192.168.0.243', user='root', connect_kwargs={"password": "Benetech79$#-"})
+   #  local_dir = '/Users/linghuchong/Downloads/51/Python/project/flask/flask_gw_i/allureReport'
+   #  remote_dir = '/home/flask_gw_i/4446'
+
+# import time
+# from selenium import webdriver
+# from selenium.webdriver.common.by import By
+# import json
+#
+#
+# def save_cookies(driver, file_path):
+#     """保存当前会话的 Cookies 到文件"""
+#     cookies = driver.get_cookies()
+#     with open(file_path, 'w') as f:
+#         json.dump(cookies, f)
+#
+#
+# def load_cookies(driver, file_path):
+#     """从文件加载 Cookies 到当前会话"""
+#     try:
+#         with open(file_path, 'r') as f:
+#             cookies = json.load(f)
+#             for cookie in cookies:
+#                 driver.add_cookie(cookie)
+#     except FileNotFoundError:
+#         print("未找到保存的 Cookies 文件。")
+#
+#
+# def main():
+#     # 初始化浏览器驱动
+#     driver = webdriver.Chrome()
+#     # 目标网站的登录页面 URL
+#     login_url = "http://192.168.0.203:30080/#/login"
+#     # 目标网站的受保护页面 URL
+#     protected_url = "https://example.com/protected"
+#     # 保存 Cookies 的文件路径
+#     cookies_file = "cookies.json"
+#
+#     # 打开登录页面
+#     driver.get(login_url)
+#
+#     # 尝试加载保存的 Cookies
+#     load_cookies(driver, cookies_file)
+#
+#     # 重新加载页面以应用 Cookies
+#     driver.get(protected_url)
+#
+#     # 检查是否成功登录
+#     if "login" in driver.current_url:
+#         print("需要手动登录。请在浏览器中完成登录操作。")
+#         # 等待用户手动登录
+#         input("登录完成后按回车键继续...")
+#         # 保存新的 Cookies
+#         save_cookies(driver, cookies_file)
+#         # 重新加载受保护页面
+#         driver.get(protected_url)
+#
+#     # 在这里可以进行更多的自动化操作，例如查找元素并点击等
+#     try:
+#         # 假设页面上有一个按钮，其 ID 为 "my-button"
+#         button = driver.find_element(By.ID, "my-button")
+#         button.click()
+#         print("按钮点击成功。")
+#     except Exception as e:
+#         print(f"操作失败: {e}")
+#
+#     # 等待一段时间，以便查看操作结果
+#     time.sleep(5)
+#
+#     # 关闭浏览器
+#     driver.quit()
+#
+#
+# if __name__ == "__main__":
+#     main()
+
+# import subprocess
+#
+#
+# def get_current_input_method():
+#     try:
+#         command = 'defaults read com.apple.HIToolbox AppleSelectedInputSources | grep -i "InputSourceKind" -A 1 | grep -i "KeyboardLayout ID" | awk -F "=" \'{print $2}\' | tr -d \'; \''
+#         result = subprocess.run(command, shell=True, capture_output=True, text=True)
+#         layout_id = result.stdout.strip()
+#         return layout_id
+#     except Exception as e:
+#         print(f"获取当前输入法时出错: {e}")
+#         return None
+#
+#
+# def switch_to_english_input():
+#     try:
+#         script = 'tell application "System Events" to tell process "SystemUIServer" to click menu bar item 1 of menu bar 2 whose description contains "input menu"'
+#         subprocess.run(['osascript', '-e', script], check=True)
+#         script = 'tell application "System Events" to tell process "SystemUIServer" to click menu item "ABC" of menu 1 of menu bar item 1 of menu bar 2 whose description contains "input menu"'
+#         subprocess.run(['osascript', '-e', script], check=True)
+#     except subprocess.CalledProcessError as e:
+#         print(f"切换输入法时出错: {e}")
+#
+#
+# if __name__ == "__main__":
+#     current_input = get_current_input_method()
+#     print(current_input)
+#     if current_input and 'zh' in current_input.lower():
+#         switch_to_english_input()
+
 # from openai import OpenAI
 #
 # text = input("请输入: \n")
@@ -15,7 +160,7 @@
 #
 # # 使用 stream=True 启用流式响应，默认情况下，返回的响应会被解析为一个 list，
 # response = client.chat.completions.create(
-#     model="deepseek-chat",  # 确保模型名称正确
+#     model="ds-chat",  # 确保模型名称正确
 #     messages=[
 #         {"role": "system", "content": "you are a helpful assistant"},
 #         {"role": "user", "content": text},
@@ -32,15 +177,15 @@
 #         print(chunk.choices[0].delta.content, end="", flush=True)
 # print() # 换行
 
-
-from refact import Refact
-
-# 假设你的API密钥是'your_api_key_here'
-refact = Refact(api_key='mNF21RSnIIDP7lCzObF9w9JB')
-
-# 示例：重构代码
-result = refact.refactor(code="""def add(a, b): return a + b""")
-print(result)
+#
+# from refact import Refact
+#
+# # 假设你的API密钥是'your_api_key_here'
+# refact = Refact(api_key='mNF21RSnIIDP7lCzObF9w9JB')
+#
+# # 示例：重构代码
+# result = refact.refactor(code="""def add(a, b): return a + b""")
+# print(result)
 
 
 

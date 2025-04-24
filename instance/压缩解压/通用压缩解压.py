@@ -13,7 +13,7 @@ import patoolib
 
 
 # 压缩zip，注意zip文件不能存咋
-# patoolib.create_archive('/Users/linghuchong/Downloads/51/Python/project/PO/zip/example1.zip', ['readme','zip.py'])
+# patoolib.create_archive('/Users/linghuchong/Downloads/51/Python/project/PO/zip/example1.zip', ['readme.txt','zip.py'])
 
 # 解压zip
 # patoolib.extract_archive('/Users/linghuchong/Downloads/51/Python/project/PO/zip/example1.zip', outdir='/Users/linghuchong/Downloads/51/Python/project/PO/2/')
