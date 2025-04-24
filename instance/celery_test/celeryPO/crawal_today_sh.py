@@ -6,7 +6,6 @@
 # 需求，打开all.xlsx 获取上海股票代码，遍历获取上一日和当天的收盘价，开盘价，成交量，
 # 判断，当天收盘价 大于 上一日的开盘价，且成交量小于上一日的票。
 # 参考：https://quote.eastmoney.com/sz002494.html#fullScreenChart
-# https://www.sse.com.cn/market/price/report/
 # *****************************************************************
 
 import sys
@@ -16,10 +15,8 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 from multiprocessing import Pool, cpu_count
 import time
 
-import tushare as ts
 from PO.ListPO import *
 List_PO = ListPO()
-
 
 from PO.ColorPO import *
 Color_PO = ColorPO()
@@ -27,8 +24,9 @@ Color_PO = ColorPO()
 from PO.WebPO import *
 from PO.OpenpyxlPO import *
 
+from .celery import app
 
-
+@app.task # 被装饰器才是celery的任务
 def genData():
 
     # 1，打开页面，获取数据
@@ -52,7 +50,7 @@ def genData():
     # print(l_page[0].split("\n"))
     # print(l_page[0].split("\n")[7])
     page = int(l_page[0].split("\n")[7])
-    print("【共", page, "页】")
+    print("【共" + str(page) + "页】")
 
     # 4，设置标题
     Openpyxl_PO.appendRows([['序号','证券代码','证券简称','类型','最新','涨跌幅','涨跌','成交量(手)','成交额(万元)','前收','开盘','最高','最低']])
@@ -64,7 +62,7 @@ def genData():
         l_all = Web_PO.getTextByXs("//tr")
         # print(l_all)
         l_all.pop(0)
-        print("已完成 =>", i+1)
+        print("done =>" + str(i+1))
         for j in range(len(l_all)):
             l_tmp = l_all[j].split(" ")
             # print(l_tmp)

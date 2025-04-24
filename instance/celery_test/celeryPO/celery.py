@@ -1,19 +1,13 @@
 from celery import Celery
-import time
-from datetime import timedelta
 from celery.schedules import crontab
-import config  # 导入配置文件
-
-# export PYTHONPATH=/Users/linghuchong/Downloads/51/Python/project/instance/celery_test/celeryPO
+import config
 
 # 消息中间件，使用redis 1库
 broker = 'redis://localhost:6379/1'
 # 结果存储，使用redis 2库
 backend = 'redis://localhost:6379/2'
 
-app = Celery('demo', broker=broker, backend=backend,
-             include=['celeryPO.user_task', 'celeryPO.order_task',
-                      'celeryPO.crawl_task', 'celeryPO.add_task', 'celeryPO.runStock'])
+app = Celery('demo', broker=broker, backend=backend, include=config.filename)
 
 # # 配置 Celery
 # app.conf.update(

@@ -1,0 +1,27 @@
+2025-02-21 15:55:31,735 - ERROR - 查询 => 管理机构: ['招远市卫健局']
+2025-02-21 15:55:40,529 - INFO - 查询 => {'管理机构': ['招远市卫健局'], '是否仅查询机构': '是', '档案状态': '在档', '姓名': '胡成', '身份证号': '370685198705183027', '上次完成检查类型': '第2次产前检查'}
+2025-02-21 15:56:50,059 - ERROR - 查询 => 管理机构: ['招远市卫健局']
+2025-02-21 15:57:01,217 - INFO - 查询 => {'管理机构': ['招远市卫健局'], '是否仅查询机构': '是', '档案状态': '在档', '姓名': '胡成', '身份证号': '370685198705183027', '上次完成 检查类型': '第2次产前检查'}
+2025-02-21 16:25:37,350 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-21 16:26:45,817 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-21 16:29:03,500 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-21 17:14:17,815 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-21 17:16:56,300 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-21 17:33:59,355 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-21 17:35:47,593 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:06:28,338 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:13:26,773 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:43:55,127 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:46:28,909 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:49:26,984 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:51:23,557 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 09:55:14,643 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 10:02:32,365 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 10:11:43,491 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 10:16:03,915 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 10:22:28,090 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 14:35:44,291 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 14:37:12,496 - INFO - 查询 => {'身份证号': '370685198705183027'}
+2025-02-24 14:37:59,478 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))': /session/c135c68a63b106ede00b0f00b6d73088/element/f.3F5E76D15E67A36F59415A74E1308E87.d.37E8E3A74635361CE9F54D73D11B2DC0.e.22653/text
+2025-02-24 14:37:59,481 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7a13c940d0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c135c68a63b106ede00b0f00b6d73088/element/f.3F5E76D15E67A36F59415A74E1308E87.d.37E8E3A74635361CE9F54D73D11B2DC0.e.22653/text
+2025-02-24 14:37:59,484 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f7a13c94fa0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/c135c68a63b106ede00b0f00b6d73088/element/f.3F5E76D15E67A36F59415A74E1308E87.d.37E8E3A74635361CE9F54D73D11B2DC0.e.22653/text
