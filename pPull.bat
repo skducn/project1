@@ -2,7 +2,7 @@
 
 git stash
 
-git pull origin master
+git pull gitee master
 git pull github master
 
 pause
