@@ -1,0 +1,28 @@
+静态代码分析（开发阶段防护）
+3. Bandit（Python 代码安全扫描）
+简介：由 PyPA 维护的静态分析工具，扫描代码中的硬编码密钥、SQL 注入风险、不安全的加密算法等。
+核心功能：集成到 IDE（如 PyCharm）或 CI/CD（如 GitHub Actions），在代码提交前发现漏洞。
+使用场景：检测 Django/Flask 应用的代码逻辑漏洞。
+示例配置（扫描项目并生成 HTML 报告）：
+bash
+# 安装
+pip install bandit
+
+# 扫描指定目录（排除测试文件）
+bandit -r myproject/ -x '*/tests/*' -f html -o report.html
+
+如：对/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/gw/web/基本公卫，里所有文件进行代码分析, 生成html文件。
+cd /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/gw/web/
+bandit -r 基本公卫/ -f html -o report.html
+
+
+典型漏洞示例：
+python
+# 危险：硬编码API密钥（Bandit规则 B105）
+API_KEY = "1234567890"  # 会被Bandit标记
+
+# 安全写法：从环境变量获取
+API_KEY = os.environ.get('API_KEY')
+
+
+优势：规则覆盖 OWASP Top 10，支持自定义插件扩展。

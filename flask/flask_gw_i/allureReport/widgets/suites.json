@@ -1,0 +1,1 @@
+{"total":2,"items":[{"uid":"66dca8ade5e2ab2d54395614b22c9ead","name":"Collection phase","statistic":{"failed":0,"broken":1,"skipped":0,"passed":0,"unknown":0,"total":1}},{"uid":"3c8acb8ff3f424d8f956fb801ab80ff5","name":"test_i_main","statistic":{"failed":0,"broken":0,"skipped":0,"passed":22,"unknown":0,"total":22}}]}

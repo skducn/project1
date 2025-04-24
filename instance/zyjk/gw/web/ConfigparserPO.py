@@ -25,6 +25,10 @@ class ConfigparserPO:
         value = self.cf.get("DB_SQL", name)
         return value
 
+    def AUTH(self, name):
+        value = self.cf.get("AUTH", name)
+        return value
+
 
     def write(self, folder, key, value):
         self.cf[folder][key] = value  #  # Configparser_PO.cf['EXCEL']['sheetName'] = '55'  # 重新赋值

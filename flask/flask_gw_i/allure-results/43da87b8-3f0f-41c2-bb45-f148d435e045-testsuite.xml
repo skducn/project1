@@ -1,0 +1,20 @@
+<ns0:test-suite xmlns:ns0="urn:model.allure.qatools.yandex.ru" start="1744681200560" stop="1744681200560">
+  <description>This is the tests collection phase. Failures are modules that failed to collect.</description>
+  <name>test_collection_phase</name>
+  <title>Collection phase</title>
+  <labels/>
+  <test-cases>
+    <test-case start="1744681200560" status="broken" stop="1744681200560">
+      <name>test_i_main</name>
+      <failure>
+        <message>failed</message>
+        <stack-trace>test_i_main.py:69: in &lt;module&gt;
+    from .GwPO_i import *
+E   ValueError: Attempted relative import in non-package</stack-trace>
+      </failure>
+      <attachments/>
+      <labels/>
+      <steps/>
+    </test-case>
+  </test-cases>
+</ns0:test-suite>

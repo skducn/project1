@@ -1,0 +1,15 @@
+2025-03-11 17:19:29,719 - INFO - 查询 => {'姓名': '胡成', '身份证号': '110101193801014615', '出生日期': [[2025, 1, 1], [2025, 2, 2]], '评估日期': [[2025, 1, 13], [2025, 2, 12]], '管理机构': '招远市卫健局', '是否仅查询机构': '是', '现住址': ['泉山街道', '花园社区居民委员会', '123']}
+2025-03-11 17:20:09,862 - INFO - 查询 => {'身份证号': '110101195901015999'}
+2025-03-11 17:20:16,449 - INFO - {'operate': '编辑', 'option': {'身份证号': '110101195901015999'}}
+2025-03-11 17:20:23,988 - INFO - Received signal: SIGINT
+2025-03-11 17:20:23,988 - INFO - Program is terminating...
+2025-03-11 17:20:24,887 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa88124eaa0>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/3e32f533cfa69d0ef6a2b1e2f964aebd/element/f.304ECF3176BF0AE3C040BB08B6E0D66D.d.2DC277358BF64ADE413D420CC52A0BAC.e.10698/element
+2025-03-11 17:20:24,890 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa88124ef80>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/3e32f533cfa69d0ef6a2b1e2f964aebd/element/f.304ECF3176BF0AE3C040BB08B6E0D66D.d.2DC277358BF64ADE413D420CC52A0BAC.e.10698/element
+2025-03-11 17:20:24,892 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7fa88124ee60>: Failed to establish a new connection: [Errno 61] Connection refused')': /session/3e32f533cfa69d0ef6a2b1e2f964aebd/element/f.304ECF3176BF0AE3C040BB08B6E0D66D.d.2DC277358BF64ADE413D420CC52A0BAC.e.10698/element
+2025-03-11 17:20:24,895 - ERROR - 失败 =>{'operate': '编辑', 'data': {'1.时间定力 (5)': {'今年是哪一年?': '0', '现在是什么季节': '0', '现在是几月份': '0', '今天是几号': '0', '今天是星期几': '0'}, '2.地点定向力 (5)': {'我们现在在哪个国家?': '0', '我们现在在哪个城市': '0', '我们现在在城市的哪一部分': '0', '我们现在在哪个建筑物': '0', '我们现在在第几层': '0'}, '3.即刻回忆 (3)': {'皮球': '0', '国旗': '0', '树': '0'}, '4.注意力与计算力 (5)': {'100减7等于? 93': '0', '100减7等于? 86': '0', '100减7等于? 79': '0', '100减7等于? 72': '0', '100减7等于? 65': '0'}, '5.回忆能力 (3)': {'皮球': '0', '国旗': '0', '树': '0'}, '6.命名能力 (2)': {'问:这是什么? 展示 (铅笔)': '0', '问:这是什么? 展示 (手表)': '0'}, '7.语言重复能力 (1)': {'说:我现在让你重复我说的。准备好了吗？瑞雪兆丰年。你说一遍 ': '0'}, '8.理解力 (3)': {'左手拿着这张纸': '0', '把它对折': '0', '把它放在你的右腿上': '0'}, '9.阅读能力 (1)': {'闭上你的眼睛': '0'}, '10.写的能力 (1)': {'说:写一个句子。': '0'}, '11.画画的能力 (1)': {'说:照下图画。 ': '0'}}}
+2025-03-11 17:20:52,606 - INFO - 查询 => {'身份证号': '110101195901015999'}
+2025-03-11 17:21:09,651 - ERROR - 失败 =>{'operate': '删除', 'option': {'身份证号': '110101195901015999'}}
+2025-03-11 17:21:36,971 - INFO - 查询 => {'身份证号': '110101195901015999'}
+2025-03-11 17:21:45,625 - INFO - {'operate': '删除', 'option': {'身份证号': '110101195901015999'}}
+2025-03-12 13:14:19,855 - INFO - 查询 => {'身份证号': '110101195901015999'}
+2025-03-12 13:14:28,587 - INFO - {'operate': '删除', 'option': {'身份证号': '110101195901015999'}}

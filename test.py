@@ -9,12 +9,170 @@
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
 # pip3 install --upgrade --force-reinstall pyobjc
+import json
+a = json.loads('{"id":190}')
+print(a, type(a))
+# from fabric import Connection
+#
+#
+# def upload_directory():
+#     # 建立 SSH 连接
+#     c = Connection(host='192.168.0.243', user='root', connect_kwargs={"password": "Benetech79$#-"})
+#     local_dir = '/Users/linghuchong/Downloads/51/Python/project/flask/flask_gw_i/allureReport'
+#     remote_dir = '/home/flask_gw_i/4446'
+#     try:
+#         # 使用 rsync 上传整个目录
+#         c.run(f'rsync -avz {local_dir}/ {remote_dir}/')
+#         # result = c.put(local_dir, remote=remote_dir, recursive=True)
+#         # print(f"上传成功: {result}")
+#     except Exception as e:
+#         print(f"上传失败: {e}")
+#     finally:
+#         c.close()
+#
+#
+# if __name__ == "__main__":
+#     upload_directory()
 
-yyyy
 
-my_dict = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
-print(list(my_dict.keys()))  # 将字典的键转换为列表
-print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+
+# import markdown
+#
+# # 定义Markdown文本
+# markdown_text = "# 标题\n这是一段Markdown文本。"
+#
+# # 将Markdown文本转换为HTML
+# html = markdown.markdown(markdown_text)
+#
+# print(html)
+#
+# def text_to_markdown_with_headers(text, header_level=1):
+#     lines = text.splitlines()
+#     markdown_lines = []
+#     for line in lines:
+#         if line.strip():
+#             header = '#' * header_level + ' ' + line
+#             markdown_lines.append(header)
+#         else:
+#             markdown_lines.append(line)
+#     return '\n'.join(markdown_lines)
+#
+# text = "这是一个标题\n这是正文内容"
+# markdown_text = text_to_markdown_with_headers(text)
+# print(markdown_text)
+
+#
+# import re
+#
+# def text_to_markdown(text):
+#     lines = text.splitlines()
+#     markdown_lines = []
+#     for line in lines:
+#         if re.match(r'^\s*$', line):
+#             markdown_lines.append(line)
+#         elif re.match(r'^\s*\d+\.\s', line):
+#             markdown_lines.append(line)
+#         elif re.match(r'^\s*[-+*]\s', line):
+#             markdown_lines.append(line)
+#         elif len(line) > 0 and line[0].isupper():
+#             markdown_lines.append('# ' + line)
+#         else:
+#             markdown_lines.append(line)
+#     return '\n'.join(markdown_lines)
+#
+# text = "这是一个标题\n这是第一点\n这是第二点"
+# markdown_text = text_to_markdown(text)
+# print(markdown_text)
+
+
+
+# def outer_function(x):
+#     def inner_function(y):
+#         return x + y
+#     return inner_function
+#
+# closure = outer_function(10)  # 外部函数执行完毕，x 被设置为 10
+# closure(5)
+# print(closure(5))  # 内部函数仍然可以访问 x，输出 15
+# print(closure(5))  # 内部函数仍然可以访问 x，输出 15
+
+# def replace_second(list1, list2):
+#     for i in range(len(list2)):
+#         if i < len(list1):
+#             list2[i][1] = list1[i]
+#     return list2
+#
+#
+# list1 = ['a', 'b', 'c']
+# list2 = [[1, '', 3], [1, '', 3], [1, '', 3]]
+# result = replace_second(list1, list2)
+# print(result)
+
+# from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
+# from Foundation import NSBundle
+#
+# print("导入成功")
+# import objc
+# from AppKit import NSWorkspace, NSRunningApplication, NSTextInputContext
+# from Foundation import NSBundle
+#
+# def get_current_input_method():
+#     """
+#     获取当前输入法
+#     :return: 当前输入法的 ID
+#     """
+#     text_input_context = NSTextInputContext.sharedInputContext()
+#     input_method = text_input_context.inputMethod()
+#     if input_method:
+#         bundle = NSBundle.bundleForClass_(input_method)
+#         if bundle:
+#             return bundle.bundleIdentifier()
+#     return None
+#
+# def switch_to_english_abc():
+#     """
+#     切换到英文 ABC 输入法
+#     """
+#     # 英文 ABC 输入法的 ID
+#     english_abc_id = 'com.apple.keylayout.ABC'
+#     text_input_context = NSTextInputContext.sharedInputContext()
+#     input_methods = text_input_context.availableInputMethods()
+#     for method in input_methods:
+#         bundle = NSBundle.bundleForClass_(method)
+#         if bundle and bundle.bundleIdentifier() == english_abc_id:
+#             text_input_context.setInputMethod_(method)
+#             break
+#
+# if __name__ == "__main__":
+#     current_id = get_current_input_method()
+#     if current_id and 'com.apple.inputmethod.SCIM.ITABC' in current_id:
+#         switch_to_english_abc()
+
+# # a = '残\n高\n脂'
+# # print(len(a.split("\n")))
+# my_dict = {'a': 1, 'b': 2, 'c': 3}
+# print(len(my_dict))
+# # 使用enumerate遍历字典项
+# for index, (key, value) in enumerate(my_dict.items()):
+#     print(f"Index: {index}, Key: {key}, Value: {value}")
+
+# from collections import ChainMap
+#
+# d_global = {
+#
+#         }
+#
+# d_1 = {'身份证号': 'shuzi', "33":'44'}
+#
+# d6 = dict(ChainMap(d_global, d_1))
+# print(d6)
+#
+# dd = {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"}
+# # print(list(my_dict.keys()))  # 将字典的键转换为列表
+# # print(list(my_dict.keys())[0])  # 将字典的键转换为列表
+#
+# if "外3伤" in dd:
+#     print(dd['外伤'])
 
 # import qwen
 #

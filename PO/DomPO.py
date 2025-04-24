@@ -11,7 +11,7 @@
 # 使用 nth-of-type(n)，可以指定选择的元素是父元素的第几个某类型的子节点。, 如 span:nth-of-type(2) 定位父元素第二个span类型子节点
 # nth-last-of-type(n)，可以倒过来， 选择父元素的倒数第几个某类型的子节点。
 # ***************************************************************
-'''
+"""
 重新定义
 find_element
 find_elements
@@ -20,7 +20,7 @@ sendKeysByX
 sendKeysById
 sendKeysByname
 
-todo clk
+todo clk菜单
 单点击 clkByX(varXpath)
 多点击 clkByXs(varXpaths)
 单点击某个索引号 clkIndexByXs(varXpaths, varIndex)
@@ -35,7 +35,7 @@ clkByTagname
 clkByLinktext(varText)
 clkByLinkstext(varText)
 
-todo get
+todo get菜单
 获取标签数量 getCountByXs(varXpaths)
 获取文本 getTextByX(varXpath)
 获取文本列表 getListTextByX(varXpaths)
@@ -52,7 +52,7 @@ todo get
 通过标签下文本获取上一层元素 getUpEleByX(varLabel, varText)
 通过标签下文本获取上层或上上层元素 getSuperEleByX(varLabel, varText, varXpath)
 
-todo set
+todo set菜单
 通过id设置文本 setTextById()
 通过id追加文本 appendTextById()
 通过name设置文本 setTextByName()
@@ -62,24 +62,24 @@ todo set
 通过xpath键盘设置文本 setTextEnterByX()
 通过xpath键盘追加文本  appendTextEnterByX()
 
-todo checkbox
+todo checkbox菜单
 是否选中复选框 isSelectedByX(varXpath)
 取消所有已勾选的复选框clsSelected(varXpaths)
 
-todo select
+todo select菜单
 通过id选择文本 sltTextById(varId, varText)
 通过id选择值 sltValueById(varId, varValue)
 通过name选择文本 sltTextByName(varName, varText)
 通过name选择值 sltValueByName(varName, varValue)
 
-todo iframe
+todo iframe菜单
 通过Xpath切换到iframe swhIframeByX(varXpath)
 通过id切换到iframe   swhIframeById(varId)
 通过xpaths遍历遍历属性中包含指定值切换iframe  swhIframeFromApcByXs(varXpaths,varAttr,varValue,2)
 多个iframe之间切换  swhIframe(0)
 退出iframe  quitIframe(0)
 
-todo js
+todo js菜单
 清除input输入框内容 clsText()
 清除readonly属性，是元素可见  clsReadonlyByX(varXpath)
 通过id去掉控件只读属性 clsReadonlyById(varId)
@@ -87,7 +87,7 @@ todo js
 通过name去掉隐藏属性 clsDisplayByName(varName)
 通过tagname去掉隐藏属性 clsDisplayByTagName(varLabel, varLen)
 
-todo boolean
+todo boolean菜单
 通过xpath判断ture或false isEleExistByX(varXpath)
 通过xpath判断属性是否存在 isBooleanAttr(varXpath, varAttr)
 通过xpath判断属性值是否存在 isBooleanAttrValue(varXpath, varAttr, varValue)
@@ -97,25 +97,26 @@ todo boolean
 通过超链接判断是否存在varText isEleExistByL(varText)
 通过xpath判断varText是否存在  isEleTextExistByX(varXpath, varText)
 
-todo alert(system)
+todo alert(system)菜单
 点击弹框中的确认 alertAccept()
 点击弹框中的取消 alertDismiss()
 获取弹框中的文案 alertText()
-'''
+"""
 
-import sys, os, platform, platform, psutil, ddddocr, requests, bs4, subprocess
-# import pyscreeze, pyautogui, cv2
-import pyautogui
+import requests, pyautogui
+# import sys, os, platform, platform, psutil, ddddocr, bs4, subprocess, pyscreeze, pyautogui, cv2
 
 from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.abstract_event_listener import *
 from selenium.webdriver.support.event_firing_webdriver import *
+from lxml import etree
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.abstract_event_listener import *
 from selenium.webdriver.support.expected_conditions import *
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -124,23 +125,35 @@ from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image, ImageDraw, ImageGrab
 from pytesseract import *
 # from seleniumwire import webdriver
-
 # from lxml import etree
-import lxml.html
-from lxml import etree
+# import lxml.html
 # from lxml.html.clean import Cleaner
+# from lxml_html_clean import clean_html
+# pip3 install lxml_html_clean
 
-from lxml_html_clean import clean_html
-#  pip3 install lxml_html_clean
+from PO.ListPO import *
+List_PO = ListPO()
 
 class DomPO(object):
 
     def __init__(self, driver):
         self.driver = driver
 
+        # print(type(self.driver))
+
+        self.selectors = {
+            'dropdown_popper': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']",
+            'dropdown_dropdown': "//div[@class='el-popper is-pure is-light el-select__dropdown' and @aria-hidden='false']",
+            'dropdown_dropdown_1': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div/div[1]/ul/li",
+            'dropdown_dropdown_2': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[2]/div[1]/ul/li",
+            'dropdown_dropdown_3': "//div[@class='el-popper is-pure is-light el-cascader__dropdown' and @aria-hidden='false']/div/div[3]/div[1]/ul/li",
+            'dropdown_popper_1': "//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li",
+            'associate_family_confirm': ".//div[3]/div/button[1]",
+            'associate_family_cancel': ".//div[3]/div/button[2]"
+        }
+
 
     def gettest(self, varUrl):
-
 
         # cleaned_html = clean_html(raw_html)
         # cleaner = Cleaner()
@@ -188,6 +201,17 @@ class DomPO(object):
         print(xpath)  # 输出: /html/body/div/ul/li[1]
 
 
+
+    def find_elementNoWait(self, *loc):
+        # 重写元素定位(无需等待)
+        try:
+            # Python特性，将入参放在元组里，入参loc，加*，变成元组。
+            # WebDriverWait(self.driver,5).until(lambda driver: driver.find_element(*loc).is_displayed())
+            # 注意：以下loc入参本身就是元组，所以不需要再加*
+            # WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+            return self.driver.find_element(*loc)
+        except:
+            print("未找到元素 %s " % (loc))
 
     def find_element(self, *loc):
         """重写元素定位"""
@@ -404,8 +428,8 @@ class DomPO(object):
     def eleGetCountByTag(self, ele, varLabel):
         # tag方式获取ele标签的数量
         # 获取tbody标签下所有的tr变迁数量
-        # ele2 = Web_PO.getSuperEleByX("//tbody", ".")
-        # Web_PO.eleGetCountByLabel(ele2, "tr")
+        # ele2 = self.getSuperEleByX("//tbody", ".")
+        # self.eleGetCountByLabel(ele2, "tr")
         c = ele.find_elements(*(By.TAG_NAME, varLabel))
         return len(c)
 
@@ -440,10 +464,18 @@ class DomPO(object):
 
 
 
-    def getTextByX(self, varXpath):
+    # def getTextByXnoWait(self, varXpath):
+    #     # 获取文本
+    #     # 如：getTextByX(u"//input[@class='123']")
+    #     return self.find_elementNoWait(*(By.XPATH, varXpath)).text
+
+    def getTextByX(self, varXpath, wait='no'):
         # 获取文本
         # 如：getTextByX(u"//input[@class='123']")
-        return self.find_element(*(By.XPATH, varXpath)).text
+        if wait == 'no':
+            return self.find_elementNoWait(*(By.XPATH, varXpath)).text
+        else:
+            return self.find_element(*(By.XPATH, varXpath)).text
 
 
     def getTextByXs(self, varXpaths):
@@ -485,10 +517,13 @@ class DomPO(object):
                 l_beforeText.append(a.text)
         return l_beforeText
 
-    def getAttrValueByX(self, varXpath, varAttr):
+    def getAttrValueByX(self, varXpath, varAttr, wait='no'):
         # 获取属性值
         # 如：getAttrValueByX(u"//input[@class='123']","href")
-        return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
+        if wait == 'no':
+            return self.find_elementNoWait(*(By.XPATH, varXpath)).get_attribute(varAttr)
+        else:
+            return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
 
 
@@ -545,11 +580,11 @@ class DomPO(object):
 
     def getSuperEleByX(self, varXpath, varXpath2=".."):
         # 通过标签下文本获取上层或上上层元素
-        # ele = Web_PO.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 通过位置定位， 定位到第三个元素
+        # ele = self.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 通过位置定位， 定位到第三个元素
         # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 通过文本定位， 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
         # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 通过文本定位， 获取span标签下文本上上层的元素
-        # ele = Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[2]/div[1]/div/div','.')  # 通过决绝路径定位， 获取当前路径
-        # ele = Web_PO.getSuperEleByX("//div[@class='formList']", '.')  # 通过相对路径定位
+        # ele = self.getSuperEleByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[2]/div[1]/div/div','.')  # 通过决绝路径定位， 获取当前路径
+        # ele = self.getSuperEleByX("//div[@class='formList']", '.')  # 通过相对路径定位
         ele = self.find_element(*(By.XPATH, varXpath))
         return ele.find_element(*(By.XPATH, varXpath2))
 
@@ -562,8 +597,23 @@ class DomPO(object):
         ele = self.find_element(*(By.CLASS_NAME, className))
         return ele
 
+    def getEleById(self, varId):
+        ele = self.find_element(*(By.ID, varId))
+        return ele
+
 
     # todo set
+
+    def sendKeysByX(self, varXpath, varKeys, t=1):
+        # 操作键盘
+        # sendKeysByX(Keys.DELETE)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varKeys)
+        sleep(t)
+
+    def eleSendKeysByX(self, ele, varXpath, varKeys, t=1):
+        # ele操作键盘
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(varKeys)
+        sleep(t)
 
     def setTextById(self, varId, varText):
         """通过id设置文本"""
@@ -782,6 +832,11 @@ class DomPO(object):
         ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
+    def eleTabByX(self, ele, varXpath, t=1):
+        # 定位元素之输入并回车
+        ele.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
+
     def eleSetTextTabByX(self, ele, varXpath, varText, t=1):
         # 输入框双击后输入文本，按Tab
         ele2 = ele.find_element(*(By.XPATH, varXpath))
@@ -956,38 +1011,6 @@ class DomPO(object):
         # 检查是否已经选中，如果未选择则勾选，否则不操作。
         if d_default[v] == 0:
             self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-
-    def eleRadioLeftLabel(self, ele, varXpaths, v):
-        # eleRadioDivs
-        # 选择单选框
-        # 独立值（无\n拼接），遍历div
-        # self.eleRadioDivs(ele, "/html/body/div[2]/div[6]/div/div[2]/div[1]/ul/li", v)
-        l_ = self.eleGetTextByXs(ele, varXpaths)
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v: k for k, v in d_3.items()}
-        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
-
-        # 获取单选框所有值的状态
-        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
-        # print(l_value)  # ['是', '否']
-        # 获取单选框所有值的状态
-        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
-        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
-        l_isChecked = []
-        for i in range(len(l_class)):
-            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[i] == 'el-radio is-disabled is-checked el-radio--default':
-                l_isChecked.append(1)
-            else:
-                l_isChecked.append(0)
-        d_default = dict(zip(l_value, l_isChecked))
-        # print(d_default[v] , v ,d_default, d_4[v])  # {'是': 0, '否': 1}
-
-        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-
-        # # 检查是否已经选中，如果未选择则勾选，否则不操作。
-        # if d_default[v] == 0:
-        #     self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]/label", 1)
-
     def eleRadioRightLabelByN(self, ele, varXpaths, v):
         # eleRadioSplitLabels
         # 选择单选框
@@ -1018,19 +1041,25 @@ class DomPO(object):
         if d_default[v] == 0:
             self.eleClkByX(ele, varXpaths + "/label[" + str(d_4[v]) + "]", 1)
 
-    def eleRadioRightLabel(self, ele, varXpaths, v):
-        # eleRadioLabels
-        # 选择单选框
-        # 独立值（无\n拼接），遍历label
-        l_ = self.eleGetTextByXs(ele, varXpaths)
+    def eleRadioLeftLabel(self, ele, varTextByXs, v):
+        # 单选框LL
+        d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]/label", 1)
+
+    def eleRadioLeftLabelByCheck(self, ele, varXpaths, v):
+        # 单选框LL + 判断是否选中 ????
+        l_ = self.eleGetTextByXs(ele, ".//div")
+        print(l_)
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v: k for k, v in d_3.items()}
         print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
 
-        # 获取单选框所有值的状态
+        # 获取所有选择值的状态
         l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
         # print(l_value)  # ['是', '否']
-        l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        # l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        l_class = self.eleGetAttrValueByXs(ele, ".//label[@aria-disabled='false']", "class")
         # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
         l_isChecked = []
         for i in range(len(l_class)):
@@ -1040,151 +1069,185 @@ class DomPO(object):
             else:
                 l_isChecked.append(0)
         d_default = dict(zip(l_value, l_isChecked))
-        # print(d_default)  # {'是': 0, '否': 1}
+        print('是否选中 =>', d_default)  # {'是': 0, '否': 1}
 
-        # 检查是否已经选中，如果未选择则勾选，否则不操作。
-        # if d_default[v] == 0:
-            # self.eleClkByX(ele, varXpaths + "[2]", 1)
-        self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
-            # 如 /html/body/div[1]/div/div[3]/section/div/form/div[2]/div[8]/div[1]/div[2]/div/div/div/label[2]
+        # 判断是否选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
+            return 0
+        else:
+            return 1
+
+
+    def eleRadioRightLabel(self, ele, varTextByXs, v):
+        # 单选框RL
+        d_4 = {v: k for k, v in dict(enumerate(self.eleGetTextByXs(ele, varTextByXs), start=1)).items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        self.eleClkByX(ele, varTextByXs + "[" + str(d_4[v]) + "]", 1)
+
+    def eleRadioRightLabelAndText(self, ele, varRadioRightLableByX, v, varTextByX):
+        # 单选框 + 判断是否选中 + 文本输入框
+        # 适配：{'有':'123'}
+        # self.eleRadioRightLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/label", v, ".//div[2]/div[2]/div/div/div/input")
+        # self.eleRadioRightLabel(ele, varRadioRightLableByX, list(v.keys())[0])
+        isRadio = self.eleRadioRightLabelByCheck(ele, varRadioRightLableByX, list(v.keys())[0])
+        # self.eleSetTextByX(ele, varTextByX, v[list(v.keys())[0]][list(v[list(v.keys())[0]].keys())[0]])
+        if isRadio == 0:
+            self.eleSetTextByX(ele, varTextByX, v[list(v.keys())[0]])
+
+    def eleRadioRightLabelByCheck(self, ele, varXpaths, v):
+        # 单选框 + 判断是否选中
+        l_ = self.eleGetTextByXs(ele, varXpaths)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+
+        # 获取所有选择值的状态
+        l_value = self.eleGetTextByXs(ele, ".//label/span[2]")
+        # print(l_value)  # ['是', '否']
+        # l_class = self.eleGetAttrValueByXs(ele, ".//label", "class")
+        l_class = self.eleGetAttrValueByXs(ele, ".//label[@aria-disabled='false']", "class")
+        # print(l_class)  # ['el-radio el-radio--default', 'el-radio is-checked el-radio--default']
+        l_isChecked = []
+        for i in range(len(l_class)):
+            if l_class[i] == 'el-radio is-checked el-radio--default' or l_class[
+                i] == 'el-radio is-disabled is-checked el-radio--default':
+                l_isChecked.append(1)
+            else:
+                l_isChecked.append(0)
+        d_default = dict(zip(l_value, l_isChecked))
+        print('是否选中 =>', d_default)  # {'是': 0, '否': 1}
+
+        # 判断是否选中，如果未选择则勾选，否则不操作。
+        if d_default[v] == 0:
+            self.eleClkByX(ele, varXpaths + "[" + str(d_4[v]) + "]", 1)
+            return 0
+        else:
+            return 1
 
 
 
     # todo checkbox
 
-    def eleCheckboxLeftLabelByN(self, ele, _checkboxByX, v, default="remain"):
+    def eleCheckboxLeftLabelByN(self, ele, textByX, v, default="remain"):
         # eleCheckboxSplitDivs
         # 勾选复选框
         # 不独立值（有\n拼接值），divs
         # self._eleClkCheckbox(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
 
         # 获取所有的选项
-        l_ = self.eleGetTextByXs(ele, _checkboxByX)
+        l_ = self.eleGetTextByXs(ele, textByX)
+        print(l_)
         l_ = [i for i in l_ if i]  # 过滤掉空的元素
+        print(l_)
         l_ = l_[0].split('\n')
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
         if default != 'remain':
             l_2 = []
             for i in range(len(l_)):
-                l_2.append(self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(i + 1) + "]/label", "class"))
+                l_2.append(self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]/label", "class"))
             d_3 = dict(enumerate(l_2, start=1))
             # print(d_3)  # {1: 'el-checkbox el-checkbox--default is-disabled', 2: 'el-checkbox el-checkbox--default is-checked',
             for k2, v2 in d_3.items():
                 if v2 == 'el-checkbox el-checkbox--default is-checked':
-                    self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
+                    self.eleClkByX(ele, textByX + "[" + str(k2) + "]/label", 1)
 
         # 勾选选项(如果已勾选则不操作)
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
                     if v[i] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
+                            self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
                 elif isinstance(v[i], list):
                     if v[i][0] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
-
-    def eleCheckboxRightLabelByN(self, ele, _textByX, v):
-        # eleCheckboxSplitLabels
-        # 勾选复选框
-        # 不独立值（有\n拼接值），遍历label
-        # 获取所有的选项
-        l_ = self.eleGetTextByXs(ele, _textByX)
-        l_ = [i for i in l_ if i]  # 过滤掉空的元素
-        l_ = l_[0].split('\n')
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
-        d_3 = dict(enumerate(l_, start=1))
-        d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
-
-        # 勾选选项(如果已勾选则不操作)
-        for i in range(len(v)):
-            for k3, v3 in d_4.items():
-                if isinstance(v[i], str):
-                    if v[i] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
+                            self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+                if isinstance(v[i], dict):
+                    if list(v[i].keys())[0] == k3:
+                        varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+                            self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+    def eleCheckboxLeftLabelAndTextByN(self, ele, textByX, v, text2ByX):
+        # LLN复选框（全部取消 + 文本输入）
+        # self.eleCheckboxLeftLabelAndTextByN(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
+        self.eleCheckboxLeftLabelByN(ele, textByX, v)
+        for i in v:
+            if isinstance(i, dict):
+                self.eleSetTextByX(ele, text2ByX, i[list(i.keys())[0]])
 
-    def eleCheckboxLeftLabel(self, ele, _checkboxByX, v, default="remain"):
-        # eleCheckboxDivs
-        # 勾选复选框
-        # 独立值（无\n拼接值），divs
+    def eleCheckboxLeftLabel(self, ele, textByX, v, default="remain"):
+        # LL复选框(全部取消)
         # self.eleClkCheckbox(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
 
         # 获取所有的选项
-        l_ = self.eleGetTextByXs(ele, _checkboxByX)
+        l_ = self.eleGetTextByXs(ele, textByX)
+        # l_= List_PO.dels(l_, "")
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+        # print("d_4: ", d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 全部取消勾选项
-        if default != 'remain':
-            l_2 = []
-            for i in range(len(l_)):
-                l_2.append(self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(i + 1) + "]/label", "class"))
-            d_3 = dict(enumerate(l_2, start=1))
-            # print(d_3)  # {1: 'el-checkbox el-checkbox--default is-disabled', 2: 'el-checkbox el-checkbox--default is-checked',
-            for k2, v2 in d_3.items():
-                if v2 == 'el-checkbox el-checkbox--default is-checked':
-                    self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
+        # if default != 'remain':
+        l_2 = []
+        for i in range(len(l_)):
+            if self.eleIsEleExistByX(ele, textByX + "[" + str(i + 1) + "]/label"):
+                l_2.append(self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]/label", "class"))
+        d_3 = dict(enumerate(l_2, start=1))
+        # print(d_3)  # {1: 'el-checkbox el-checkbox--default is-disabled', 2: 'el-checkbox el-checkbox--default is-checked',
+        for k2, v2 in d_3.items():
+            if v2 == 'el-checkbox el-checkbox--default is-checked':
+                self.eleClkByX(ele, textByX + "[" + str(k2) + "]/label", 1)
 
-        # 勾选选项(如果已勾选则不操作)
+        # 勾选选项
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
                     if v[i] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
-                elif isinstance(v[i], list):
+                            self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+                if isinstance(v[i], list):
                     if v[i][0] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
-                elif isinstance(v[i], dict):
+                            self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+                if isinstance(v[i], dict):
                     if list(v[i].keys())[0] == k3:
-                        varClass = self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(v3) + "]/label", "class")
+                        varClass = self.eleGetAttrValueByX(ele, textByX + "[" + str(v3) + "]/label", "class")
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
-                            self.eleClkByX(ele, _checkboxByX + "[" + str(v3) + "]/label", 1)
+                            self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
+    def eleCheckboxLeftLabelAndText(self, ele, textByX, v, text2ByX):
+        # LL复选框（全部取消 + 文本输入）
+        # self.eleCheckboxLeftLabelAndText(self.eleCommon2(ele, k), ".//div[1]/div[2]/div/div/div[1]/div", v, ".//div[2]/div/div/div/div/textarea")
+        self.eleCheckboxLeftLabel(ele, textByX, v)
+        for i in v:
+            if isinstance(i, dict):
+                self.eleSetTextByX(ele, text2ByX, i[list(i.keys())[0]])
 
     def eleCheckboxLeftLabel2(self, ele, textByX, v):
-        # eleCheckboxDivs
-        # 勾选复选框 (包括字典key)
-        # 独立值（无\n拼接值），divs
+        # LL复选框 (全部取消 + 包括字典key)
         # self.eleCheckboxLeftLabel2(self._eleDiv(ele, k, "../.."), "./div[1]/div[2]/div/div/div/div", v)
 
         # 获取所有的选项
         l_ = self.eleGetTextByXs(ele, textByX)
-        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
         # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
         # 取消全部勾选项
         for i in range(len(l_)):
-            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]", "class")
+            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]/label", "class")
             if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
                 self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
-        # # 全部取消勾选项
-        # if default != 'remain':
-        #     l_2 = []
-        #     for i in range(len(l_)):
-        #         l_2.append(self.eleGetAttrValueByX(ele, _checkboxByX + "[" + str(i + 1) + "]/label", "class"))
-        #     d_3 = dict(enumerate(l_2, start=1))
-        #     # print(d_3)  # {1: 'el-checkbox el-checkbox--default is-disabled', 2: 'el-checkbox el-checkbox--default is-checked',
-        #     for k2, v2 in d_3.items():
-        #         if v2 == 'el-checkbox el-checkbox--default is-checked':
-        #             self.eleClkByX(ele, _checkboxByX + "[" + str(k2) + "]/label", 1)
 
         # 遍历勾选选项
         for i in range(len(v)):
@@ -1205,18 +1268,19 @@ class DomPO(object):
                         # if varClass != 'el-checkbox el-checkbox--default is-checked':
                         self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
 
-    def eleCheckboxRightLabel(self, ele, _textByX, v):
-        # eleCheckboxLabels
+
+
+    def eleCheckboxRightLabel(self, ele, textByX, v):
         # 勾选复选框
-        # 独立值（无\n拼接值），遍历label
 
         # 获取所有的选项
-        l_ = self.eleGetTextByXs(ele, _textByX)
+        l_ = self.eleGetTextByXs(ele, textByX)
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
         # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
 
+        # 取消全部已勾选项
         self.eleClrSelectedByXs(ele, ".//td[4]/div/div/div/label[1]")
         # /html/body/div[1]/div/div[3]/section/div/main/div[2]/div[3]/form/table/tbody/tr[5]/td[4]/div/div/div/label[1]/span[1]/input
 
@@ -1229,7 +1293,7 @@ class DomPO(object):
                         if varClass != 'el-checkbox el-checkbox--default is-checked':
                             self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
 
-    def eleCheckboxRightLabel2(self, ele, textByX, v):
+    def eleCheckboxRightLabel2(self, ele, textByX, v, varClass='el-checkbox el-checkbox--default is-checked'):
         # 勾选复选框（包括字典key）
         # 步骤：先取消全部勾选项，再勾选指定复选框值
         # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}]) ， 只勾选 糖尿病和其他，但不处理123
@@ -1239,13 +1303,16 @@ class DomPO(object):
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
 
         # 取消全部勾选项
         for i in range(len(l_)):
             varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i+1) + "]", "class")
-            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+            # if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+            # if varDiv1class == 'el-checkbox el-checkbox--large is-checked':
+            if varDiv1class == varClass:
                 self.eleClkByX(ele, textByX + "[" + str(i+1) + "]")
+
 
         # 遍历勾选选项
         for i in range(len(v)):
@@ -1257,9 +1324,70 @@ class DomPO(object):
                     if list(v[i].keys())[0] == k3:
                         self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
 
+    def eleCheckbox(self, ele, textByX, v):
+        # 勾选复选框（包括字典key）,1个
+        # 步骤：先取消全部勾选项，再勾选指定复选框值
+        # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}]) ， 只勾选 糖尿病和其他，但不处理123
+
+        # 获取所有选项
+        l_ = self.eleGetTextByXs(ele, textByX)  # ".//td[4]/div/div/div/label"
+        # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他']
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
+
+        # 取消全部勾选项
+        for i in range(len(l_)):
+            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i+1) + "]", "class")
+            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+                self.eleClkByX(ele, textByX + "[" + str(i+1) + "]")
+
+        # 遍历勾选选项
+        for k3, v3 in d_4.items():
+            self.eleClkByX(ele,  ".//div[2]/div[" + str(v3+1) + "]/div[1]/div/label", 1)
+
+    def eleCheckboxRightLabelByN(self, ele, textByX, v):
+        # eleCheckboxSplitLabels
+        # 勾选复选框
+        # 不独立值（有\n拼接值），遍历label
+        # 获取所有的选项
+        l_ = self.eleGetTextByXs(ele, textByX)
+        print(l_)
+        # l_ = [i for i in l_ if i]  # 过滤掉空的元素
+        l_ = l_[0].split('\n')
+        print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他药物过敏源']
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v1: k1 for k1, v1 in d_3.items()}
+        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他药物过敏源': 8}
+
+        # 取消全部勾选项
+        for i in range(len(l_)):
+            varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i + 1) + "]", "class")
+            if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
+                self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
+
+        # # 遍历勾选选项
+        for i in range(len(v)):
+            for k3, v3 in d_4.items():
+                if isinstance(v[i], str):
+                    if v[i] == k3:
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
+                if isinstance(v[i], dict):
+                    if list(v[i].keys())[0] == k3:
+                        self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
+
+        # # 勾选选项(如果已勾选则不操作)
+        # for i in range(len(v)):
+        #     for k3, v3 in d_4.items():
+        #         if isinstance(v[i], str):
+        #             if v[i] == k3:
+        #                 varClass = self.eleGetAttrValueByX(ele, ".//div/div/label[" + str(v3) + "]", "class")
+        #                 if varClass != 'el-checkbox el-checkbox--default is-checked':
+        #                     self.eleClkByX(ele, ".//div/div/label[" + str(v3) + "]", 1)
+
     def eleCheckboxRightLabel3(self, ele, _textByX, _inputByX, v):
-        # 儿童健康管理 - 健康检查记录 - 1-8月龄儿童健康检查记录表 - 两次随访间患者情况
-        # 取消全部勾选项，再勾选复选框和输入次数
+        # 复选框，取消全部勾选，再勾选复选框，输入次数
+        # Web_PO.eleCheckboxRightLabel3(Web_PO.eleP(ele, k, "../.."), './/div[2]/div/div[1]/div/div/label', './/div[2]/div/div[1]/div/div/div/input', v)
         # 实例：__eleCheckboxRightLabel3(ele, ".//td[4]/div/div/div/label", {'无':"",'肺炎': '12', '外伤': '44', '其他': "3333"})
 
         l_v2 = list(v.keys())  # 将字典的键转换为列表
@@ -1284,7 +1412,15 @@ class DomPO(object):
                 if l_v2[i] == k3 and k3 != "无":
                     self.eleClkByX(ele, _textByX + "[" + str(v3) + "]", 1)
                     self.eleSetTextByX(ele, _inputByX + "[" + str(v3-1) + "]/input", v[k3])
-           
+
+    def eleCheckboxRightLabelAndText(self, ele, varCheckboxRightLableByX, v, varTextByX):
+        # 复选框，rightlabel + 全部取消 + 文本输入框
+        # Web_PO.eleCheckboxRightLabelAndText(Web_PO.eleP(ele, k, "../.."), './/div[2]/div/div[1]/div/div/label', v, './/div[2]/div/div[1]/div/div/div/input')
+        self.eleCheckboxRightLabel2(ele, varCheckboxRightLableByX, v)
+        for i in v:
+            if isinstance(i, dict):
+                self.eleSetTextByX(ele, varTextByX, i[list(i.keys())[0]])
+
 
     def isSelectedByX(self, varXpath):
         # 是否勾选
@@ -1313,6 +1449,367 @@ class DomPO(object):
                 a.click()
 
 
+    # todo location
+
+    def button1(self, varButton="保存"):
+        # 页面button适配，只限单个按钮
+        try:
+            self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + "'])[last()]", ".."), ".", 2)
+        except:
+            try:
+                self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + " '])[last()]", ".."), ".", 2)
+            except:
+                try:
+                    self.eleClkByX(self.getSuperEleByX("(//span[text()='" + str(varButton) + " '])[last()]", ".."), ".", 2)
+                except:
+                    try:
+                        self.eleClkByX(self.getSuperEleByX("(//span[text()=' " + str(varButton) + "'])[last()]", ".."),".", 2)
+                    except:
+                        try:
+                            self.eleClkByX(self.getSuperEleByX("(//div[text()='" + str(varButton) + "'])[last()]", ".."), ".", 2)
+                        except:
+                            try:
+                                self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + " '])[last()]", ".."), ".", 2)
+                            except:
+                                try:
+                                    self.eleClkByX(self.getSuperEleByX("(//div[text()='" + str(varButton) + " '])[last()]", ".."),".", 2)
+                                except:
+                                    self.eleClkByX(self.getSuperEleByX("(//div[text()=' " + str(varButton) + "'])[last()]", ".."),".", 2)
+
+    def eleCommon(self, ele, k, varLoc=".."):
+        try:
+            return self.eleSpan(ele, k)
+            # return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleDiv(ele, k)
+                # return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+            except:
+                try:
+                    return self.eleLabel(ele, k)
+                    # return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                except:
+                    try:
+                        return self.eleTd(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    except:
+                        return self.eleP(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+    def eleCommon2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleSpan2(ele, k)
+            # return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleDiv2(ele, k)
+                # return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+            except:
+                try:
+                    return self.eleLabel2(ele, k)
+                    # return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+                except:
+                    try:
+                        return self.eleTd2(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+                    except:
+                        return self.eleP2(ele, k)
+                        # return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+
+    def eleSpan(self, ele, k, varLoc=".."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + "']", varLoc)
+    def eleSpan2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//span[text()=' " + k + "']", varLoc)
+
+    def eleDiv(self, ele, k, varLoc=".."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + "']", varLoc)
+    def eleDiv2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//div[text()=' " + k + "']", varLoc)
+
+    def eleLabel(self, ele, k, varLoc=".."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + "']", varLoc)
+    def eleLabel2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//label[text()=' " + k + "']", varLoc)
+
+    def eleTd(self, ele, k, varLoc=".."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + "']", varLoc)
+    def eleTd2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//td[text()=' " + k + "']", varLoc)
+
+    def eleP(self, ele, k, varLoc=".."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + "']", varLoc)
+    def eleP2(self, ele, k, varLoc="../.."):
+        try:
+            return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + "']", varLoc)
+        except:
+            try:
+                return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + " ']", varLoc)
+            except:
+                try:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()='" + k + " ']", varLoc)
+                except:
+                    return self.eleGetSuperEleByX(ele, ".//p[text()=' " + k + "']", varLoc)
+
+
+
+
+    # todo dropdown
+
+    def _dropdown(self, varSelectors, v):
+        l_ = self.getTextByXs(varSelectors)
+        # print(l_)
+        d_3 = dict(enumerate(l_, start=1))
+        d_4 = {v: k for k, v in d_3.items()}
+        # print(d_4)  # {'总院': 1, '分院': 2, '门诊部': 3}
+        if isinstance(v, str):
+            # 单选
+            self.clkByX(varSelectors + "[" + str(d_4[v]) + "]", 1)
+        elif isinstance(v, list):
+            # 多选
+            for i in range(len(v)):
+                self.clkByX(varSelectors + "[" + str(d_4[v[i]]) + "]", 1)
+    def dropdown(self, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"):
+        # 点击下拉框，遍历文本，选择值
+        self.clkByX(varXpath, 1)
+        self._dropdown(varSelectors, v)
+       
+    def eleDropdown(self, ele, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-select__popper' and @aria-hidden='false']/div/div/div[1]/ul/li"):
+        # ele点击下拉框，遍历文本，选择值
+        # self.eleDropdown(self.eleCommon(ele, k), ".//div[2]/div/div/div/div/div/input", self.selectors['dropdown_popper'], v)
+        self.eleClkByX(ele, varXpath, 1)
+        self._dropdown(varSelectors, v)
+        
+
+    def dropdownDate1(self, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"):
+        # 点击单个日期控件下拉框，选择日期
+        # self.dropdownDate1(".//input", v)
+
+        self.clkByX(varXpath)
+        # varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取当前年和月
+        defaultY = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[2]")
+        defaultYear = int(defaultY.split(" 年")[0])
+        defaultMonth = int(defaultM.split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                # 上年
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[1]")
+        elif defaultYear < v[0]:
+            year = v[0] - defaultYear
+            for i in range(year):
+                # 后年
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[3]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                # 上月
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[2]")
+        elif defaultMonth < v[1]:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                # 后月
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[4]")
+
+        # 3 遍历日期列表
+        tr2 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+
+        # 选择日期
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    self.clkByX(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
+
+    def eleDropdownDate1(self, ele, varXpath, v, varSelectors="//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"):
+        # ele点击单个日期控件下拉框，选择日期
+        # self.eleDropdownDate1(self.eleCommon(ele, k), ".//input", v)
+
+        self.eleScrollViewByX(ele, varXpath, 2)
+        self.eleClkByX(ele, varXpath)
+        # varPrefix = "//div[@class='el-popper is-pure is-light el-picker__popper' and @aria-hidden='false']"
+
+        # 1 获取当前年和月
+        defaultY = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[1]")
+        defaultM = self.getTextByX(varSelectors + "/div/div[1]/div/div[1]/span[2]")
+        defaultYear = int(defaultY.split(" 年")[0])
+        defaultMonth = int(defaultM.split(" 月")[0])
+        # print("defaultYear", defaultYear)
+        # print("defaultMonth", defaultMonth)
+
+        # 2 切换年
+        if v[0] < defaultYear:
+            year = defaultYear - v[0]
+            for i in range(year):
+                # 上年
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[1]")
+        elif defaultYear < v[0]:
+            year = v[0] - defaultYear
+            for i in range(year):
+                # 后年
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[3]")
+        # 切换月
+        if v[1] < defaultMonth:
+            month = defaultMonth - v[1]
+            for i in range(month):
+                # 上月
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[2]")
+        elif defaultMonth < v[1]:
+            month = v[1] - defaultMonth
+            for i in range(month):
+                # 后月
+                self.clkByX(varSelectors + "/div/div[1]/div/div[1]/button[4]")
+
+        # 3 遍历日期列表
+        tr2 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[2]")
+        tr3 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[3]")
+        tr4 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[4]")
+        tr5 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[5]")
+        tr6 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[6]")
+        tr7 = self.getTextByXs(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[7]")
+        l_1 = []
+        l_tr2 = tr2[0].split("\n")
+        l_tr2 = [int(i) for i in l_tr2]
+        l_tr2 = [0 if i > 10 else i for i in l_tr2]
+        l_1.append(l_tr2)
+        l_tr3 = tr3[0].split("\n")
+        l_tr3 = [int(i) for i in l_tr3]
+        l_1.append(l_tr3)
+        l_tr4 = tr4[0].split("\n")
+        l_tr4 = [int(i) for i in l_tr4]
+        l_1.append(l_tr4)
+        l_tr5 = tr5[0].split("\n")
+        l_tr5 = [int(i) for i in l_tr5]
+        l_1.append(l_tr5)
+        l_tr6 = tr6[0].split("\n")
+        l_tr6 = [int(i) for i in l_tr6]
+        l_tr6 = [0 if i < 10 else i for i in l_tr6]
+        l_1.append(l_tr6)
+        l_tr7 = tr7[0].split("\n")
+        l_tr7 = [int(i) for i in l_tr7]
+        l_tr7 = [0 if i < 10 else i for i in l_tr7]
+        l_1.append(l_tr7)
+        # print("日期列表", l_1)  # [[0, 0, 0, 0, 0, 0, 1], [2, 3, 4, 5, 6, 7, 8], [9, 10, 11, 12, 13, 14, 15], [16, 17, 18, 19, 20, 21, 22], [23, 24, 25, 26, 27, 28, 29], [30, 31, 0, 0, 0, 0, 0]]
+
+        # 选择日期
+        for i in range(len(l_1)):
+            for j in range(len(l_1[i])):
+                if l_1[i][j] == v[2]:
+                    self.clkByX(varSelectors + "/div/div[1]/div/div[2]/table/tbody/tr[" + str(i + 2) + "]/td[" + str(j + 1) + "]", 2)
 
 
 
@@ -1550,13 +2047,13 @@ class DomPO(object):
     def swhIframeByX(self, varXpath, t=1):
         """通过Xpath切换到iframe"""
         # 如：swhIframeByX("//body[@class='gray-bg top-navigation']/div[4]/iframe")
-        self.driver.switch_to_frame(self.find_element(*(By.XPATH, varXpath)))
+        self.driver.switch_to.frame(self.find_element(*(By.XPATH, varXpath)))
         sleep(t)
 
     def swhIframeById(self, varId, t=1):
         """通过id切换到iframe"""
         #如：swhIframeById（"layui-layer-iframe1"）
-        self.driver.switch_to_frame(self.find_element(*(By.ID, varId)))
+        self.driver.switch_to.frame(self.find_element(*(By.ID, varId)))
         sleep(t)
 
     def swhIframeFromApcByXs(self, varXpaths, varAttr, varValue, t=1):
@@ -1564,8 +2061,8 @@ class DomPO(object):
         # 如：swhIframeFromApcByXs（"//iframe", "src", "/general/workflow/new/"）
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varValue in a.get_attribute(varAttr):
-                self.driver.switch_to_frame(self.find_element(*(By.XPATH, varXpaths)))
-                # self.driver.switch_to_frame(self.driver.find_element_by_xpath(varXpaths))
+                self.driver.switch_to.frame(self.find_element(*(By.XPATH, varXpaths)))
+                # self.driver.switch_to.frame(self.driver.find_element_by_xpath(varXpaths))
                 break
         sleep(t)
 
@@ -1586,7 +2083,7 @@ class DomPO(object):
         # Home_PO.inIframeDiv("[@class='cetc-popup-content']/div", 2)
         iframe = self.driver.find_element_by_xpath("//div" + varXpath + "/iframe")
         # print iframe.get_attribute("src")
-        self.driver.switch_to_frame(iframe)
+        self.driver.switch_to.frame(iframe)
         sleep(t)
 
 
@@ -1769,7 +2266,8 @@ class DomPO(object):
 
     def clsDisplayByTagName(self, varLabel, varLen, t=1):
         # 通过tagname去掉隐藏属性
-        # 如：清除30个ul标签的display，30是ul数量，可以通过其他方式获取。 jsDisplayByTagName(30, "ul")
+        # 如：clsDisplayByTagName("ul"，30)
+        # 表示清除30个ul标签的display，可以通过Web_PO.getCountByTag("ul")方式获取ul数量。
         for i in range(varLen):
             self.driver.execute_script('document.getElementsByTagName("' + varLabel + '")[' + str(i) + '].style.display=""')
         sleep(t)
@@ -1827,6 +2325,17 @@ class DomPO(object):
         flag = False
         try:
             ele = self.find_element(*(By.XPATH, varXpath))
+            if ele.get_attribute(varAttr):
+                flag = True
+        except:
+            flag = False
+        return flag
+
+    def eleIsEleAttrExistByX(self, ele, varXpath, varAttr):
+        # 判断元素属性是否存在
+        flag = False
+        try:
+            ele = ele.find_element(*(By.XPATH, varXpath))
             if ele.get_attribute(varAttr):
                 flag = True
         except:
@@ -1996,14 +2505,14 @@ class DomPO(object):
         return data_url
 
 
-    def upFile(self, varXpath, l_varFile):
+    def upFile(self, ele, varXpath, l_varFile):
 
-        # 上传文件
+        # 上传文件(for mac)
 
         for i in l_varFile:
 
-            # 点击 +
-            self.clkByX(varXpath)
+            # # 点击 +
+            self.eleClkByX(ele, varXpath)
 
             # 选中文件
             pyautogui.write(i, interval=0.2)
@@ -2045,7 +2554,7 @@ class DomPO(object):
 
     def exportExistFile(self, varFile):
 
-        # 导出文件(文件已存在，覆盖)
+        # 导出文件(覆盖)
 
         # 选中文件
         pyautogui.write(varFile, interval=0.2)
@@ -2070,5 +2579,124 @@ class DomPO(object):
         pyautogui.press('enter', 1)
         sleep(2)
 
+
+
+
+    def getXpathByLabel(self, varLabel):
+        # 获取所有标签的XPath路径
+        # 如 getXpathByLabel('button')
+        l_ = []
+        varLabel = self.find_elements(*(By.TAG_NAME, varLabel))
+        # varLabel = self.driver.find_elements(By.TAG_NAME, varLabel)
+        for i, button in enumerate(varLabel):
+            xpath = self.driver.execute_script("""
+                  function getElementXPath(element) {
+                      if (element.id !== '') {
+                          return 'id("' + element.id + '")';
+                      }
+                      if (element === document.body) {
+                          return element.tagName;
+                      }
+
+                      var ix = 0;
+                      var siblings = element.parentNode.childNodes;
+                      for (var i = 0; i < siblings.length; i++) {
+                          var sibling = siblings[i];
+                          if (sibling === element) {
+                              return getElementXPath(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+                          }
+                          if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+                              ix++;
+                          }
+                      }
+                  }
+                  return getElementXPath(arguments[0]);
+                  """, button)
+            # print(f'Button {i + 1}: XPath = {xpath}')
+            l_.append(xpath)
+        return l_
+
+    def eleGetXpathByLabel(self, ele, varLabel):
+        # 获取所有标签的XPath路径
+        # 如 getXpathByLabel('button')
+        l_ = []
+        varLabel = ele.find_elements(*(By.TAG_NAME, varLabel))
+        # varLabel = ele.find_elements(By.TAG_NAME, varLabel)
+        for i, button in enumerate(varLabel):
+            xpath = self.driver.execute_script("""
+                  function getElementXPath(element) {
+                      if (element.id !== '') {
+                          return 'id("' + element.id + '")';
+                      }
+                      if (element === document.body) {
+                          return element.tagName;
+                      }
+
+                      var ix = 0;
+                      var siblings = element.parentNode.childNodes;
+                      for (var i = 0; i < siblings.length; i++) {
+                          var sibling = siblings[i];
+                          if (sibling === element) {
+                              return getElementXPath(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+                          }
+                          if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+                              ix++;
+                          }
+                      }
+                  }
+                  return getElementXPath(arguments[0]);
+                  """, button)
+            # print(f'Button {i + 1}: XPath = {xpath}')
+            l_.append(xpath)
+        return l_
+
+    def getTextXpathByLabel(self, varLabel, varLabel2):
+        # 获取路径及标签
+        # 如 获取button和下级文本，getTextXpathByLabel("button", "/span")
+        # {'登录': 'id("app")/DIV[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/FORM[1]/DIV[4]/BUTTON[1]'}
+        d_ = {}
+        l_ = self.getXpathByLabel(varLabel)
+        try:
+            for i, xpath in enumerate(l_):
+                # print(xpath, self.getTextByX(xpath + varLabel2))
+                # d_[xpath] = self.getTextByX(xpath + varLabel2)
+                d_[self.getTextByX(xpath + varLabel2, wait='no')] = xpath
+        except:
+            ...
+        finally:
+            return d_
+
+    def getValueXpathByLabel(self, varLabel, attr):
+        # 获取路径及标签的属性值
+        # 如 获取input的placehoder值，getValueXpathByLabel("input", "placeholder")
+        # {'请输入用户名': 'id("app")/DIV[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/FORM[1]/DIV[1]/DIV[1]/DIV[1]/INPUT[1]', '输入密码': 'id("app")/DIV[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/FORM[1]/DIV[2]/DIV[1]/DIV[1]/INPUT[1]'}
+
+        d_ = {}
+        l_ = self.getXpathByLabel(varLabel)
+        try:
+            for i, xpath in enumerate(l_):
+                d_[self.getAttrValueByX(xpath, attr, wait='no')] = xpath
+        except:
+            ...
+        finally:
+            return d_
+
+    def getTextByLabel(self, varLabel):
+        # 获取指定标签的所有文本
+        # 如 getTextByLabel('button')
+        l_1 = []
+        l_ = self.getXpathByLabel(varLabel)
+        for i, xpath in enumerate(l_):
+            l_1.append(self.getTextByX(xpath))
+        return l_1
+
+    def eleGetTextByLabel(self, ele, varLabel):
+        # 获取ele指定标签的所有文本
+        l_1 = []
+        l_ = self.eleGetXpathByLabel(ele, varLabel)
+        for i, xpath in enumerate(l_):
+            l_1.append(self.getTextByX(xpath))
+            # print(self.getTextByX(xpath))
+        return l_1
 
 

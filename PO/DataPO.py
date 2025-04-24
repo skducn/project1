@@ -319,6 +319,10 @@ class DataPO:
             check_digit = "X"
         return areaCode + str(check_digit)
 
+
+
+
+
     def getBirthday(self, varIdcard):
 
         """2.1.1，获取身份证的出生年月"""
@@ -858,10 +862,10 @@ if __name__ == "__main__":
     # print("1.7.3，随机获取用户代理3(解析fake地址另存为json，本地访问json文件) ".center(100, "-"))
     # print(Data_PO.getUserAgent3("userAgent.json", "None"))  # 不解析fake，直接访问json文件
     # print(Data_PO.getUserAgent3("userAgent.json"))  # 解析fake，生成并访问json
-    print(Data_PO.getUserAgent3("userAgent.json", "https://fake-useragent.herokuapp.com/browsers/0.1.11")) # 解析fake，生成并访问json
+    # print(Data_PO.getUserAgent3("userAgent.json", "https://fake-useragent.herokuapp.com/browsers/0.1.11")) # 解析fake，生成并访问json
 
     # print("2.1，生成身份证号".center(100, "-"))
-    # print(Data_PO.getIdCard())   # 441427196909022802
+    print(Data_PO.getIdCard())   # 441427196909022802
     #
     # print("2.1.1，获取身份证出生年月".center(100, "-"))
     # print(Data_PO.getBirthday(Data_PO.getIdCard()))  # ('1965', '04', '16')

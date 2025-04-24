@@ -1,0 +1,8 @@
+
+参考：gw - web - 家医签约
+执行 1testAuthorization.py
+
+Admin-Token: eyJhbGciOiJIUzUxMiJ9.eyJhZmZpbGlhdGVkX2lkIjoiMzcwNjg1MDA4MDAxIiwidXNlcl9pZCI6MTAxODAsInVzZXJfa2V5IjoiOTMxZDI4NWUtMDI4OC00OGU2LTkyNjktNWNlMjQ1OTA5YTc3IiwibG9naW5fdXNlcm5hbWUiOiIxMTAxMiIsImhvc3BpdGFsX2lkIjoiMzcwNjg1MDA4MDAxIiwidXNlcm5hbWUiOiLlvKDpo54iLCJob3NwaXRhbF9uYW1lIjoi5aSn56em5a626ZWH5bCP5p2o5a625p2R5Y2r55Sf5a6kIiwiYWZmaWxpYXRlZF9uYW1lIjoi5aSn56em5a626ZWH5bCP5p2o5a625p2R5Y2r55Sf5a6kIn0.YBPJZRwnE6j-3hNXXgugVR7r89c0IjNXBlHwj5G0BaDI1nTH7Z9Rc5VRLBgONWOXX8ES3P5_2tvyaUsTG6jmSg
+成功访问受保护页面 => http://192.168.0.203:30080/Sign/jmsign/qyfile
+成功访问受保护页面 => http://192.168.0.203:30080/Sign/jmsign/qyservice
+

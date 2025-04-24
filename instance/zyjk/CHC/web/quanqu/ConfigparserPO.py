@@ -13,8 +13,8 @@ class ConfigparserPO:
         self.cf.read(file, encoding="utf-8-sig")
         self.file = file
 
-    def USER(self, name):
-        value = self.cf.get("USER", name)
+    def ACCOUNT(self, name):
+        value = self.cf.get("ACCOUNT", name)
         return value
 
     def HTTP(self, name):
@@ -25,6 +25,9 @@ class ConfigparserPO:
         value = self.cf.get("DB_SQL", name)
         return value
 
+    def AUTHORIZATION(self, name):
+        value = self.cf.get("AUTHORIZATION", name)
+        return value
 
     def write(self, folder, key, value):
         self.cf[folder][key] = value  #  # Configparser_PO.cf['EXCEL']['sheetName'] = '55'  # 重新赋值

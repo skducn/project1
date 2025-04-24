@@ -1,0 +1,70 @@
+{
+  "uid" : "fad9e7bd87f55ce9",
+  "name" : "test_dkej[utf-8-selenium]",
+  "fullName" : "test_3#test_dkej",
+  "historyId" : "c210b0bc5a8b0ddbff7800f08cc83263",
+  "time" : {
+    "start" : 1744018270123,
+    "stop" : 1744018270123,
+    "duration" : 0
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1744018270023,
+      "stop" : 1744018270093,
+      "duration" : 70
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "suite",
+    "value" : "test_3"
+  }, {
+    "name" : "host",
+    "value" : "localhost-2.local"
+  }, {
+    "name" : "thread",
+    "value" : "18330-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "test_3"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "code",
+    "value" : "'utf-8'"
+  }, {
+    "name" : "wd",
+    "value" : "'selenium'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "fad9e7bd87f55ce9.json",
+  "parameterValues" : [ "'utf-8'", "'selenium'" ]
+}

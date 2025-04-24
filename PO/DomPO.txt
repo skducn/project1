@@ -1,0 +1,113 @@
+在 Selenium 中，动态 XPath 用于定位属性或位置动态变化的元素（如含随机 ID、动态文本、位置不固定的元素）。以下是常见场景及实战方法，附代码示例：
+
+# todo 一、核心语法：动态定位的 5 大武器
+场景	XPath 表达式示例	说明
+部分属性匹配	//div[contains(@class, "dynamic-")]	匹配 class 包含 "dynamic-" 的 div
+文本模糊匹配	//a[contains(text(), "下一步")]	匹配文本含 "下一步" 的链接
+动态 ID 开头匹配	//input[starts-with(@id, "user-")]	匹配 ID 以 "user-" 开头的输入框
+父子 / 兄弟关系定位	//div[@class="parent"]/following-sibling::div	定位父节点的下一个兄弟 div
+多条件组合	//button[@type="submit" and @disabled]	匹配同时满足 type 和 disabled 的按钮
+
+# todo 二、实战场景与代码示例
+# todo 场景 1：属性值动态变化（如随机 ID）
+网页元素：
+html
+<input id="user_123456" class="input" type="text"> <!-- ID 每次刷新变化 -->
+动态 XPath：
+python
+# 方法 1：用 starts-with 匹配前缀
+xpath = '//input[starts-with(@id, "user_") and @class="input"]'
+
+# 方法 2：用 contains 匹配任意位置
+xpath = '//input[contains(@id, "user_") and @type="text"]'
+
+
+# todo 场景 2：文本内容动态（如时间、计数）
+网页元素：
+html
+<div>订单号：20250403-12345</div> <!-- 每天日期变化 -->
+动态 XPath：
+python
+# 匹配含当天日期的订单号（假设日期格式固定）
+today = "20250403"
+xpath = f'//div[contains(text(), "{today}") and contains(text(), "订单号")]'
+
+# 或忽略日期，直接匹配前缀
+xpath = '//div[starts-with(text(), "订单号：")]'  # 只要开头是固定文本
+
+# todo 场景 3：层级关系复杂（非直系父子）
+网页结构：
+html
+<div class="card">
+  <h3>标题</h3>
+  <div class="content">
+    <p>动态内容</p>
+    <button>操作按钮</button> <!-- 无唯一属性，需通过父层级定位 -->
+  </div>
+</div>
+动态 XPath：
+python
+# 定位含 "标题" 的卡片下的按钮
+xpath = '//h3[text()="标题"]/ancestor::div[@class="card"]//button'
+
+# 或通过兄弟元素定位（按钮在 p 标签之后）
+xpath = '//p[text()="动态内容"]/following-sibling::button[1]'
+
+# todo 场景 4：动态表格行（根据某列内容定位整行）
+网页表格：
+html
+<table>
+  <tr><td>用户A</td><td>北京</td><button>删除</button></tr> <!-- 行顺序动态 -->
+  <tr><td>用户B</td><td>上海</td><button>删除</button></tr>
+</table>
+动态 XPath（定位 “用户 B” 所在行的删除按钮）：
+python
+username = "用户B"
+xpath = f'//tr[td[text()="{username}"]]/td[last()]/button[text()="删除"]'
+# 解释：先找到含用户名的行，再定位最后一列的按钮
+
+# todo 三、高级技巧：处理复杂动态元素
+1. 结合逻辑运算符
+python
+# 匹配 class 包含 "active" 且不包含 "disabled" 的元素
+xpath = '//div[contains(@class, "active") and not(contains(@class, "disabled"))]'
+2. 使用函数匹配文本长度
+python
+# 定位文本长度为 11 的手机号输入框
+xpath = '//input[@type="tel" and string-length(@value)=11]'
+3. 动态索引（避免写死位置）
+python
+# 定位倒数第 2 个元素
+xpath = '(//div[@class="item"])[last()-1]'
+# 定位第 3 个之后的所有元素
+xpath = '//div[@class="item"][position()>3]'
+
+# todo 四、避坑指南
+验证 XPath：
+在浏览器开发者工具中按 Ctrl+F 输入 XPath，检查是否唯一匹配目标元素。
+避免使用 //* 开头的模糊路径，层级越深越不稳定。
+# todo 等待元素加载：
+配合显式等待（WebDriverWait），避免元素未渲染导致的定位失败：
+python
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+element = WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.XPATH, xpath))
+)
+
+# todo 转义特殊字符：
+文本含引号时用 concat() 或转义符：
+python
+text_with_quote = "用户'名称"
+xpath = f'//div[text()="{text_with_quote.replace("'", "''")}"]'
+# 或
+xpath = f'//div[text()=concat("用户'", "名称")]'
+
+
+# todo 五、总结：动态 XPath 最佳实践
+优先唯一属性：尽量用 @id/@name 等稳定属性，动态属性作为补充。
+组合条件：多属性 + 文本 + 层级组合，缩小匹配范围（如 contains(@class, "btn") and text()="提交"）。
+避免绝对路径：从 /html/body/... 开始的路径易因页面结构变化失效。
+动态文本处理：用 contains()/starts-with() 替代精确匹配，允许前后有其他内容。
+通过以上方法，可大幅提升动态页面元素的定位稳定性，减少因前端更新导致的自动化脚本维护成本。

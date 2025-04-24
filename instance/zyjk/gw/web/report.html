@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+    Bandit Report
+</title>
+
+<style>
+
+html * {
+    font-family: "Arial", sans-serif;
+}
+
+pre {
+    font-family: "Monaco", monospace;
+}
+
+.bordered-box {
+    border: 1px solid black;
+    padding-top:.5em;
+    padding-bottom:.5em;
+    padding-left:1em;
+}
+
+.metrics-box {
+    font-size: 1.1em;
+    line-height: 130%;
+}
+
+.metrics-title {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: .25em;
+}
+
+.issue-description {
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.candidate-issues {
+    margin-left: 2em;
+    border-left: solid 1px; LightGray;
+    padding-left: 5%;
+    margin-top: .2em;
+    margin-bottom: .2em;
+}
+
+.issue-block {
+    border: 1px solid LightGray;
+    padding-left: .5em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
+}
+
+.issue-sev-high {
+    background-color: Pink;
+}
+
+.issue-sev-medium {
+    background-color: NavajoWhite;
+}
+
+.issue-sev-low {
+    background-color: LightCyan;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="metrics">
+    <div class="metrics-box bordered-box">
+        <div class="metrics-title">
+            Metrics:<br>
+        </div>
+        Total lines of code: <span id="loc">9221</span><br>
+        Total lines skipped (#nosec): <span id="nosec">0</span>
+    </div>
+</div>
+
+
+
+
+<br>
+<div id="results">
+    
+<div id="issue-0">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/GwPO.py" target="_blank">基本公卫/GwPO.py</a><br>
+    <b>Line number: </b>139<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+138	        s_result = Web_PO.getAttrValueByX(&quot;/html/body/div/form/div[3]/textarea&quot;, &quot;value&quot;)
+139	        d_result = eval(s_result)
+140	        d[varKey] = d_result
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-1">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/GwPO.py" target="_blank">基本公卫/GwPO.py</a><br>
+    <b>Line number: </b>5377<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+5376	            try:
+5377	                eval(self.d_g_type_func[d_local[k]])
+5378	            except:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-2">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/GwPO.py" target="_blank">基本公卫/GwPO.py</a><br>
+    <b>Line number: </b>5483<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+5482	                else:
+5483	                    eval(self.d_g_type_func[d_local[k]])
+5484	            except:
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-3">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>39<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+38	    # 转义函数名, 将字符串 &quot;Data_PO.getIdCard()&quot;,转义为函数 Data_PO.getIdCard()，生成身份证
+39	    d_param[&#x27;身份证号码&#x27;] = eval(d_param[&#x27;身份证号码&#x27;])
+40	    d_param[&#x27;姓名&#x27;] = eval(d_param[&#x27;姓名&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-4">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>40<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+39	    d_param[&#x27;身份证号码&#x27;] = eval(d_param[&#x27;身份证号码&#x27;])
+40	    d_param[&#x27;姓名&#x27;] = eval(d_param[&#x27;姓名&#x27;])
+41	    d_param[&#x27;本人电话&#x27;] = eval(d_param[&#x27;本人电话&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-5">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>41<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+40	    d_param[&#x27;姓名&#x27;] = eval(d_param[&#x27;姓名&#x27;])
+41	    d_param[&#x27;本人电话&#x27;] = eval(d_param[&#x27;本人电话&#x27;])
+42	    d_param[&#x27;联系人姓名&#x27;] = eval(d_param[&#x27;联系人姓名&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-6">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>42<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+41	    d_param[&#x27;本人电话&#x27;] = eval(d_param[&#x27;本人电话&#x27;])
+42	    d_param[&#x27;联系人姓名&#x27;] = eval(d_param[&#x27;联系人姓名&#x27;])
+43	    d_param[&#x27;联系人电话&#x27;] = eval(d_param[&#x27;联系人电话&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-7">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>43<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+42	    d_param[&#x27;联系人姓名&#x27;] = eval(d_param[&#x27;联系人姓名&#x27;])
+43	    d_param[&#x27;联系人电话&#x27;] = eval(d_param[&#x27;联系人电话&#x27;])
+44	    d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-8">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>44<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+43	    d_param[&#x27;联系人电话&#x27;] = eval(d_param[&#x27;联系人电话&#x27;])
+44	    d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;])
+45	    d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-9">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>45<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+44	    d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;])
+45	    d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;])
+46	    d_param[&#x27;建档日期&#x27;][0] = eval(d_param[&#x27;建档日期&#x27;][0])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-10">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>46<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+45	    d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;])
+46	    d_param[&#x27;建档日期&#x27;][0] = eval(d_param[&#x27;建档日期&#x27;][0])
+47	    d_param[&#x27;建档日期&#x27;][1] = eval(d_param[&#x27;建档日期&#x27;][1])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-11">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>47<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+46	    d_param[&#x27;建档日期&#x27;][0] = eval(d_param[&#x27;建档日期&#x27;][0])
+47	    d_param[&#x27;建档日期&#x27;][1] = eval(d_param[&#x27;建档日期&#x27;][1])
+48	    d_param[&#x27;建档日期&#x27;][2] = eval(d_param[&#x27;建档日期&#x27;][2])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-12">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/cli_p_2phs_newEHR_eval.py" target="_blank">基本公卫/cli_p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>48<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+47	    d_param[&#x27;建档日期&#x27;][1] = eval(d_param[&#x27;建档日期&#x27;][1])
+48	    d_param[&#x27;建档日期&#x27;][2] = eval(d_param[&#x27;建档日期&#x27;][2])
+49	    print(user, d_param)
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-13">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>39<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+38	    # 转义函数名
+39	    d_param[&#x27;身份证号码&#x27;] = eval(d_param[&#x27;身份证号码&#x27;])
+40	    d_param[&#x27;姓名&#x27;] = eval(d_param[&#x27;姓名&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-14">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>40<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+39	    d_param[&#x27;身份证号码&#x27;] = eval(d_param[&#x27;身份证号码&#x27;])
+40	    d_param[&#x27;姓名&#x27;] = eval(d_param[&#x27;姓名&#x27;])
+41	    d_param[&#x27;本人电话&#x27;] = eval(d_param[&#x27;本人电话&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-15">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>41<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+40	    d_param[&#x27;姓名&#x27;] = eval(d_param[&#x27;姓名&#x27;])
+41	    d_param[&#x27;本人电话&#x27;] = eval(d_param[&#x27;本人电话&#x27;])
+42	    d_param[&#x27;联系人姓名&#x27;] = eval(d_param[&#x27;联系人姓名&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-16">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>42<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+41	    d_param[&#x27;本人电话&#x27;] = eval(d_param[&#x27;本人电话&#x27;])
+42	    d_param[&#x27;联系人姓名&#x27;] = eval(d_param[&#x27;联系人姓名&#x27;])
+43	    d_param[&#x27;联系人电话&#x27;] = eval(d_param[&#x27;联系人电话&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-17">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>43<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+42	    d_param[&#x27;联系人姓名&#x27;] = eval(d_param[&#x27;联系人姓名&#x27;])
+43	    d_param[&#x27;联系人电话&#x27;] = eval(d_param[&#x27;联系人电话&#x27;])
+44	    d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-18">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>44<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+43	    d_param[&#x27;联系人电话&#x27;] = eval(d_param[&#x27;联系人电话&#x27;])
+44	    d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;])
+45	    d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-19">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>45<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+44	    d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主姓名&#x27;])
+45	    d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;])
+46	    d_param[&#x27;建档日期&#x27;][0] = eval(d_param[&#x27;建档日期&#x27;][0])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-20">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>46<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+45	    d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;] = eval(d_param[&#x27;家庭情况&#x27;][&#x27;户主身份证号&#x27;])
+46	    d_param[&#x27;建档日期&#x27;][0] = eval(d_param[&#x27;建档日期&#x27;][0])
+47	    d_param[&#x27;建档日期&#x27;][1] = eval(d_param[&#x27;建档日期&#x27;][1])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-21">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>47<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+46	    d_param[&#x27;建档日期&#x27;][0] = eval(d_param[&#x27;建档日期&#x27;][0])
+47	    d_param[&#x27;建档日期&#x27;][1] = eval(d_param[&#x27;建档日期&#x27;][1])
+48	    d_param[&#x27;建档日期&#x27;][2] = eval(d_param[&#x27;建档日期&#x27;][2])
+</pre>
+</div>
+
+
+</div>
+</div>
+
+<div id="issue-22">
+<div class="issue-block issue-sev-medium">
+    <b>blacklist: </b> Use of possibly insecure function - consider using safer ast.literal_eval.<br>
+    <b>Test ID:</b> B307<br>
+    <b>Severity: </b>MEDIUM<br>
+    <b>Confidence: </b>HIGH<br>
+    <b>CWE: </b><a href="https://cwe.mitre.org/data/definitions/78.html" target="_blank">CWE-78</a><br>
+    <b>File: </b><a href="基本公卫/p_2phs_newEHR_eval.py" target="_blank">基本公卫/p_2phs_newEHR_eval.py</a><br>
+    <b>Line number: </b>48<br>
+    <b>More info: </b><a href="https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval" target="_blank">https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b307-eval</a><br>
+
+<div class="code">
+<pre>
+47	    d_param[&#x27;建档日期&#x27;][1] = eval(d_param[&#x27;建档日期&#x27;][1])
+48	    d_param[&#x27;建档日期&#x27;][2] = eval(d_param[&#x27;建档日期&#x27;][2])
+49	
+</pre>
+</div>
+
+
+</div>
+</div>
+
+</div>
+
+</body>
+</html>

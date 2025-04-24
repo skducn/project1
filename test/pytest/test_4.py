@@ -41,4 +41,4 @@ class TestFix():
         assert 2==2
 
 if __name__ == '__main__':
-    pytest.main(["-s","test_4.py"])
+    pytest.main(["-s","test_3.py"])
