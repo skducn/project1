@@ -9,6 +9,7 @@ from time import strftime, localtime, sleep
 from datetime import date, datetime, timedelta
 import calendar, datetime, time
 from time import strftime, gmtime
+import pandas as pd
 
 # from workalendar.asia import China
 # cal = China()
@@ -386,19 +387,30 @@ class TimePO:
         return strftime("%H:%M:%S", gmtime(varSec))  # 00:02:50
 
 
+    def getPreviousWorkingDay(self, l_date):
+        # getPreviousWorkingDay([2025,4,21])
+        # 获取上一个工作日日期
+        date = datetime.date(l_date[0], l_date[1], l_date[2])
+        # 将日期转换为 pandas 的 Timestamp 类型
+        timestamp = pd.Timestamp(date)
+        # 获取前一个工作日
+        previous_working_day = timestamp - pd.tseries.offsets.BusinessDay()
+        # print(previous_working_day.date())
+        return previous_working_day.date()
+
 if __name__ == "__main__":
 
     Time_PO = TimePO()
 
     # print(Time_PO.getDate())  # 20200319
-    print(Time_PO.getDateByMinus())  # 2020-03-19  # <class 'datetime.date'>
-    print(str(Time_PO.getDateByMinus()))  # 2020-03-19
+    # print(Time_PO.getDateByMinus())  # 2020-03-19  # <class 'datetime.date'>
+    # print(str(Time_PO.getDateByMinus()))  # 2020-03-19
     # print(Time_PO.getDateByDivide())  # 2020/03/19
     # print(Time_PO.getDateTime())  # 20200319151928
     # print(Time_PO.getDateTimeByDivide())  # 2020/03/19 15:19:28
     # print(time.strftime("%H:%M:%S"))  # 15:19:28
 
-
+    print(Time_PO.getPreviousWorkingDay([2025, 4, 21]))  # 获取上一个工作日 2025-04-18
     # print(Time_PO.getDateByMinus())  # 2022-11-29   //当前日期
     # print(Time_PO.getDateByMinusPeriod(2))  # 2022-12-01  //2天后
     # print(Time_PO.getDateByMinusPeriod(-3))  # 2022-11-26  //3天前

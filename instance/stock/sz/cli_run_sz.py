@@ -3,9 +3,10 @@
 # Author     : John
 # Date       : 2025-04-20
 # Description: 执行两个文档数据
+# 深圳交易证券所 https://www.szse.cn/market/trend/index.html
 # 步骤：
-# 1，2025-04-23.xlsx和2025-04-24.xlsx两个文件
-# 2，执行 run("4-22", "4-23")
+# 1，获取4-22.xlsx和4-23.xlsx两个文件，从深圳交易证券所下载
+# 2，执行 python cliRun.py 4-22 4-23
 # 第一轮筛选逻辑：
 # *****************************************************************
 import sys
@@ -21,16 +22,26 @@ Color_PO = ColorPO()
 from PO.WebPO import *
 from PO.OpenpyxlPO import *
 
-def run(file1, file2):
+from PO.TimePO import *
+Time_PO = TimePO()
 
-    file11 = file1 + ".xlsx"
-    file22 = file2 + ".xlsx"
+def run(fileName2):
+
+    # 通过 0424获取前一个工作日0423
+    full_filename2 = fileName2 + ".xlsx"
+    date_filename = (Time_PO.getPreviousWorkingDay([2025, int(fileName2[:2]), int(fileName2[2:])]))
+    # print(str(date_filename)) # 2025-04-23
+    l_fileName1 = str(date_filename).split("-")
+    fileName1 = str(l_fileName1[1]) + str(l_fileName1[2])
+    full_filename1 = fileName1 + ".xlsx"
 
     # 判断文件是否存在
-    if os.access(file11, os.F_OK) and os.access(file22, os.F_OK):
+    if os.access(full_filename1, os.F_OK) and os.access(full_filename2, os.F_OK):
+
+        l_result = []
 
         # 读取
-        Openpyxl_PO = OpenpyxlPO(file11)
+        Openpyxl_PO = OpenpyxlPO(full_filename1)
         l_code = (Openpyxl_PO.getOneCol(2, '股票行情'))
         l_open = (Openpyxl_PO.getOneCol(5, '股票行情'))
         l_close = (Openpyxl_PO.getOneCol(8, '股票行情'))
@@ -41,7 +52,7 @@ def run(file1, file2):
         # print(l_TV_1)
         l_PE = (Openpyxl_PO.getOneCol(12, '股票行情'))
 
-        Openpyxl_PO2 = OpenpyxlPO(file22)
+        Openpyxl_PO2 = OpenpyxlPO(full_filename2)
         l_code2 = (Openpyxl_PO2.getOneCol(2, '股票行情'))
         l_open2 = (Openpyxl_PO2.getOneCol(5, '股票行情'))
         l_close2 = (Openpyxl_PO2.getOneCol(8, '股票行情'))
@@ -69,24 +80,19 @@ def run(file1, file2):
         l_PE2_2.pop(0)
 
         # 筛选符合条件的
-        if len(l_code) == len(l_code2):
-            s = 0
-            l_tmp = []
-            for i in range(len(l_code)):
-                if l_code[i] == l_code2[i]:
-                    if float(l_open[i]) > float(l_close[i]) and\
-                            float(l_close2[i]) > ((float(l_open[i]) - float(l_close[i])) * 0.8 + float(l_close[i])) and\
-                            float(l_TV_1[i]) > float(l_TV_2[i]) and float(l_PE2_2[i]) > 1:
-                        # print(l_code[i], float(l_PE2_2[i]))
-                    # if float(l_open[index]) > float(l_close[index]) and float(l_close2[index]) > float(l_open[index]) and float(l_TV_1[index]) > float(l_TV_2[index]) and float(l_PE2[index]) > 0:
-                    #     varUrl = "https://quote.eastmoney.com/sz" + str(l_code[i]) + ".html#fullScreenChart"
-
+        l_tmp = []
+        for i in range(len(l_code)):
+            for j in range(len(l_code2)):
+                if l_code[i] == l_code2[j]:
+                    if float(l_open[i]) > float(l_close[i]) and \
+                            float(l_close2[j]) > ((float(l_open[i]) - float(l_close[i])) * 0.8 + float(l_close[i])) and \
+                            float(l_TV_1[i]) > float(l_TV_2[j]) and float(l_PE2_2[i]) > 1:
                         if int(l_code[i]) > 300000 or int(l_code[i]) < 100000:
-                            # Color_PO.consoleColor2({"35": str(s) + ", " + str(i) + ", " + str(l_code[i])})
                             l_tmp.append(l_code[i])
-                        s = s + 1
+        varData = str(fileName1) + " ~ " + str(fileName2)
+        l_result.append(varData)
 
-        Color_PO.outColor([{"35": "[" + str(file1) + ' ~ ' + str(file2) + ']' + " => "+ str(len(l_tmp)) + "条"}])
+        Color_PO.outColor([{"35": "[" + str(fileName1) + ' ~ ' + str(fileName2) + ']' + " => "+ str(len(l_tmp)) + "条"}])
         # print(len(l_tmp))
         l_dd = []
         for i in range(len(l_tmp)):
@@ -120,20 +126,30 @@ def run(file1, file2):
             d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
 
             if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损'  and\
-                    float(d_curr['涨幅']) > 3 and float(d_curr['涨幅']) < 9 and\
+                    float(d_curr['涨幅']) > -3 and float(d_curr['涨幅']) < 3 and\
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 100:
                 # print(i + 1, d_curr, varUrl)
                 l_dd.append(l_tmp[i])
                 if float(d_curr['涨幅']) < 0:
                     Color_PO.outColor([{"32": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SZ" + str(l_tmp[i])}])
+                    varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
+                    l_result.append(varUrl)
                 else:
                     Color_PO.outColor([{"31": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SZ" + str(l_tmp[i])}])
+                    varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
+                    l_result.append(varUrl)
+
+                Openpyxl_PO3 = OpenpyxlPO("history_sz.xlsx")
+                Openpyxl_PO3.appendCols([l_result])
     else:
-        if os.access(file1, os.F_OK) == False :
-            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(file1) + " 文件不存在！"}])
-        if os.access(file2, os.F_OK) == False :
-            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(file2) + " 文件不存在！"}])
+        if os.access(full_filename1, os.F_OK) == False :
+            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(fileName1) + " 文件不存在！"}])
+        if os.access(full_filename2, os.F_OK) == False :
+            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(fileName2) + " 文件不存在！"}])
+
 
 if __name__ == "__main__":
 
-    run("4-22", "4-23")
+    run(sys.argv[1])
+
+    # python cliRun.py 4-23

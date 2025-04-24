@@ -27,8 +27,6 @@ Color_PO = ColorPO()
 from PO.WebPO import *
 from PO.OpenpyxlPO import *
 
-
-
 def genData():
 
     # 1，打开页面，获取数据

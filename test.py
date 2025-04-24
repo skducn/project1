@@ -8,11 +8,29 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
+# import pandas as pd
+# import datetime
+#
+# # 示例日期
+# date = datetime.date(2025, 4, 20)
+# # 将日期转换为 pandas 的 Timestamp 类型
+# timestamp = pd.Timestamp(date)
+# # 获取前一个工作日
+# previous_working_day = timestamp - pd.tseries.offsets.BusinessDay()
+# print(previous_working_day.date())
+
+f = '0424'
+print(f[:2])
+print(f[2:])
+
+print(str(f[:2]) + (f[2:]))
+
+
 # pip3 install --upgrade --force-reinstall pyobjc
-import json
-a = json.loads('{"id":190}')
-print(a, type(a))
-# from fabric import Connection
+# import json
+# a = json.loads('{"id":190}')
+# print(a, type(a))
+# # from fabric import Connection
 #
 #
 # def upload_directory():
