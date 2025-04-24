@@ -6,7 +6,9 @@
 # 视频：https://www.bilibili.com/video/BV1bvPXeeEqL?spm_id_from=333.788.player.switch&vd_source=be21f48b876460dfe25064d745fdc372&p=8
 # 步骤：
 # 1，执行任务
-# 2, 启动worker监控，执行 celery -A celeryPO worker -l info
+# 2, 启动worker监控
+# celery -A celeryPO worker -l info  //for mac
+# celery -A celeryPO worker -l info -P eventlet   //for win
 # 3, 提供任务id
 # ***************************************************************u**
 from celeryPO.celery import app

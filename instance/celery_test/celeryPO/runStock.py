@@ -22,7 +22,12 @@ Color_PO = ColorPO()
 from PO.WebPO import *
 from PO.OpenpyxlPO import *
 
+import time
+from .celery import app
+
+@app.task # 被装饰器才是celery的任务
 def run(file1, file2):
+    #     run("4-22", "4-23")
 
     file11 = file1 + ".xlsx"
     file22 = file2 + ".xlsx"
@@ -135,6 +140,5 @@ def run(file1, file2):
         if os.access(file2, os.F_OK) == False :
             Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(file2) + " 文件不存在！"}])
 
-if __name__ == "__main__":
 
-    run("4-22", "4-23")
+    return 1
