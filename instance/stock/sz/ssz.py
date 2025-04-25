@@ -5,8 +5,8 @@
 # Description: 执行两个文档数据
 # 深圳交易证券所 https://www.szse.cn/market/trend/index.html
 # 步骤：
-# 1，获取4-22.xlsx和4-23.xlsx两个文件，从深圳交易证券所下载
-# 2，执行 python cliRun.py 4-22 4-23
+# 1，获取0422.xlsx和0423.xlsx两个文件，从深圳交易证券所下载
+# 2，执行 run("0423")  0423是文件名0423.xlsx
 # 第一轮筛选逻辑：
 # *****************************************************************
 import sys
@@ -25,75 +25,78 @@ from PO.OpenpyxlPO import *
 from PO.TimePO import *
 Time_PO = TimePO()
 
-def run(fileName2):
+def run(varMD2):
 
-    # 通过 0424获取前一个工作日0423
-    full_filename2 = fileName2 + ".xlsx"
-    date_filename = (Time_PO.getPreviousWorkingDay([2025, int(fileName2[:2]), int(fileName2[2:])]))
-    # print(str(date_filename)) # 2025-04-23
-    l_fileName1 = str(date_filename).split("-")
-    fileName1 = str(l_fileName1[1]) + str(l_fileName1[2])
-    full_filename1 = fileName1 + ".xlsx"
+    # 通过varMD2获取上一个工作日，如0424获取到0423
+    varYMD2file = varMD2 + ".xlsx"
+    varYMD1 = (Time_PO.getPreviousWorkingDay([2025, int(varMD2[:2]), int(varMD2[2:])])) # 2025-04-23
+    l_varYMD1 = str(varYMD1).split("-")
+    varMD1 = str(l_varYMD1[1]) + str(l_varYMD1[2])
+    varYMD1file = varMD1 + ".xlsx"
 
-    # 判断文件是否存在
-    if os.access(full_filename1, os.F_OK) and os.access(full_filename2, os.F_OK):
+    # 判断两个文件是否存在
+    if os.access(varYMD1file, os.F_OK) and os.access(varYMD2file, os.F_OK):
 
         l_result = []
 
-        # 读取
-        Openpyxl_PO = OpenpyxlPO(full_filename1)
+        # 读取文件1
+        Openpyxl_PO = OpenpyxlPO(varYMD1file)
         l_code = (Openpyxl_PO.getOneCol(2, '股票行情'))
+        l_name = (Openpyxl_PO.getOneCol(3, '股票行情'))
         l_open = (Openpyxl_PO.getOneCol(5, '股票行情'))
         l_close = (Openpyxl_PO.getOneCol(8, '股票行情'))
         l_TV = (Openpyxl_PO.getOneCol(10, '股票行情'))
         l_TV_1 = []
         for i in range(len(l_TV)):
             l_TV_1.append(l_TV[i].replace(",", ""))
-        # print(l_TV_1)
         l_PE = (Openpyxl_PO.getOneCol(12, '股票行情'))
+        l_code.pop(0)
+        l_name.pop(0)
+        l_open.pop(0)
+        l_close.pop(0)
+        l_TV_1.pop(0)
+        l_PE.pop(0)
 
-        Openpyxl_PO2 = OpenpyxlPO(full_filename2)
+        # 读取文件2
+        Openpyxl_PO2 = OpenpyxlPO(varYMD2file)
         l_code2 = (Openpyxl_PO2.getOneCol(2, '股票行情'))
+        l_name2 = (Openpyxl_PO2.getOneCol(3, '股票行情'))
         l_open2 = (Openpyxl_PO2.getOneCol(5, '股票行情'))
         l_close2 = (Openpyxl_PO2.getOneCol(8, '股票行情'))
         l_TV2 = (Openpyxl_PO2.getOneCol(10, '股票行情'))
         l_TV_2 = []
         for i in range(len(l_TV2)):
             l_TV_2.append(l_TV2[i].replace(",", ""))
-        # print(l_TV_2)
         l_PE2 = (Openpyxl_PO2.getOneCol(12, '股票行情'))
         l_PE2_2 = []
         for i in range(len(l_PE2)):
             l_PE2_2.append(l_PE2[i].replace(",", ""))
-
-        # 去掉标题
-        l_code.pop(0)  # ['600000', '600004', ...
-        l_open.pop(0)
-        l_close.pop(0)
-        l_TV_1.pop(0)
-        l_PE.pop(0)
-        l_code2.pop(0) # ['600000', '600004', ...
+        l_code2.pop(0)
+        l_name2.pop(0)
         l_open2.pop(0)
         l_close2.pop(0)
         l_TV_2.pop(0)
         l_PE2.pop(0)
         l_PE2_2.pop(0)
 
-        # 筛选符合条件的
+        # 第一轮筛选，两文件比较筛选符合条件的股票列表
         l_tmp = []
+        d_tmp = {}
         for i in range(len(l_code)):
             for j in range(len(l_code2)):
                 if l_code[i] == l_code2[j]:
-                    if float(l_open[i]) > float(l_close[i]) and \
-                            float(l_close2[j]) > ((float(l_open[i]) - float(l_close[i])) * 0.8 + float(l_close[i])) and \
+                    if float(l_open[i]) > float(l_close[i]) and\
+                            float(l_close2[j]) > ((float(l_open[i]) - float(l_close[i])) * 0.8 + float(l_close[i])) and\
                             float(l_TV_1[i]) > float(l_TV_2[j]) and float(l_PE2_2[i]) > 1:
                         if int(l_code[i]) > 300000 or int(l_code[i]) < 100000:
                             l_tmp.append(l_code[i])
-        varData = str(fileName1) + " ~ " + str(fileName2)
+                            d_tmp[l_code[i]] = l_name[i]
+        varData = str(varMD1) + " ~ " + str(varMD2)
         l_result.append(varData)
+        Color_PO.outColor([{"35": "sz => [" + str(varMD1) + ' ~ ' + str(varMD2) + ']' + " => "+ str(len(l_tmp)) + "条"}])
+        # print(len(l_tmp)) # [0424 ~ 0425] => 114条
 
-        Color_PO.outColor([{"35": "[" + str(fileName1) + ' ~ ' + str(fileName2) + ']' + " => "+ str(len(l_tmp)) + "条"}])
-        # print(len(l_tmp))
+        # 第二轮筛选，将第一轮筛选出的股票与时事动态价格比较，得到符合条件的结果
         l_dd = []
         for i in range(len(l_tmp)):
             varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str(l_tmp[i])
@@ -126,30 +129,27 @@ def run(fileName2):
             d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
 
             if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损'  and\
-                    float(d_curr['涨幅']) > -3 and float(d_curr['涨幅']) < 3 and\
+                    float(d_curr['涨幅']) > 2 and float(d_curr['涨幅']) < 9 and\
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 100:
                 # print(i + 1, d_curr, varUrl)
                 l_dd.append(l_tmp[i])
                 if float(d_curr['涨幅']) < 0:
-                    Color_PO.outColor([{"32": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SZ" + str(l_tmp[i])}])
+                    Color_PO.outColor([{"32": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_tmp[str(l_tmp[i])]}])
                     varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
                     l_result.append(varUrl)
                 else:
-                    Color_PO.outColor([{"31": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SZ" + str(l_tmp[i])}])
+                    Color_PO.outColor([{"31": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_tmp[str(l_tmp[i])]}])
                     varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
                     l_result.append(varUrl)
 
-                Openpyxl_PO3 = OpenpyxlPO("history_sz.xlsx")
-                Openpyxl_PO3.appendCols([l_result])
+        Openpyxl_PO3 = OpenpyxlPO("history_sz.xlsx")
+        Openpyxl_PO3.appendCols([l_result])
     else:
-        if os.access(full_filename1, os.F_OK) == False :
-            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(fileName1) + " 文件不存在！"}])
-        if os.access(full_filename2, os.F_OK) == False :
-            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(fileName2) + " 文件不存在！"}])
-
+        if os.access(varYMD1file, os.F_OK) == False :
+            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(varMD1) + " 文件不存在！"}])
+        if os.access(varYMD2file, os.F_OK) == False :
+            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(varMD2) + " 文件不存在！"}])
 
 if __name__ == "__main__":
 
-    run(sys.argv[1])
-
-    # python cliRun.py 4-23
+    run(Time_PO.getMonth() + Time_PO.getDay())

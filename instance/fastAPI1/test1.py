@@ -19,16 +19,24 @@
 # include_router 将不同子应用的路由进行分发和解耦
 # *****************************************************************
 from fastapi import FastAPI
-from apps.app01.urls import shop
-from apps.app02.urls import user
 
 # app = FastAPI()
 # 返回交互式API文档
 app = FastAPI(docs_url="/docs", redoc_url="/redoc")
 
-app.include_router(shop, prefix="/shop", tags=['购物中心接口'])
-app.include_router(user, prefix="/user", tags=['用户接口'])
+@app.get("/")
+def home():
+    return {"Hello": "World123"}
+
+@app.get("/shop")
+async def shop():
+    return {"shop": "ttttttt"}
+
+@app.post("/items", tags=['这是一个items接口'], summary='关于items的summary', description='关于items的description',
+          response_description="返回值的descrpition", deprecated=True)
+async def itmes():
+    return {"shop": "13123"}
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8001, reload=True)
+    uvicorn.run("test1:app", host="127.0.0.1", port=8001, reload=True)

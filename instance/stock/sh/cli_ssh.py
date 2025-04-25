@@ -10,73 +10,84 @@
 # *****************************************************************
 import sys
 import os
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
 import warnings
+
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl.styles.stylesheet")
 
 from PO.ColorPO import *
+
 Color_PO = ColorPO()
 
 from PO.WebPO import *
 from PO.OpenpyxlPO import *
 
 from PO.TimePO import *
+
 Time_PO = TimePO()
 
-def run(fileName2):
 
+def run(varMD2):
+
+    # varMD2 = Time_PO.getMonth() + Time_PO.getDay()
     # 通过 0424获取前一个工作日0423
-    full_filename2 = "2025-" + fileName2[:2] + "-" + fileName2[2:] + ".xlsx"
-    date_filename = (Time_PO.getPreviousWorkingDay([2025, int(fileName2[:2]), int(fileName2[2:])]))
-    # print(str(date_filename)) # 2025-04-23
-    l_fileName1 = str(date_filename).split("-")
-    fileName1 = str(l_fileName1[1]) + str(l_fileName1[2])
-    full_filename1 = str(date_filename) + ".xlsx"
-    # print(full_filename1)
-
+    varYMD2file = "2025-" + varMD2[:2] + "-" + varMD2[2:] + ".xlsx"
+    varYMD1 = (Time_PO.getPreviousWorkingDay([2025, int(varMD2[:2]), int(varMD2[2:])]))  # 2025-04-23
+    l_varYMD1 = str(varYMD1).split("-")
+    varMD1 = str(l_varYMD1[1]) + str(l_varYMD1[2])
+    varYMD1file = str(varYMD1) + ".xlsx"
 
     # 判断文件是否存在
-    if os.access(full_filename1, os.F_OK) and os.access(full_filename2, os.F_OK):
-        l_totle = []
+    if os.access(varYMD1file, os.F_OK) and os.access(varYMD2file, os.F_OK):
+
         l_result = []
 
-        # 读取
-        Openpyxl_PO = OpenpyxlPO(full_filename1)
+        # 读取表格1
+        Openpyxl_PO = OpenpyxlPO(varYMD1file)
         l_code = (Openpyxl_PO.getOneCol(2, 'Sheet1'))
+        l_name = (Openpyxl_PO.getOneCol(3, 'Sheet1'))
         l_open = (Openpyxl_PO.getOneCol(11, 'Sheet1'))
         l_close = (Openpyxl_PO.getOneCol(5, 'Sheet1'))
-        l_TV = (Openpyxl_PO.getOneCol(8, 'Sheet1'))  # 成交量
-        Openpyxl_PO2 = OpenpyxlPO(full_filename2)
-        l_code2 = (Openpyxl_PO2.getOneCol(2, 'Sheet1'))
-        l_open2 = (Openpyxl_PO2.getOneCol(11, 'Sheet1'))
-        l_close2 = (Openpyxl_PO2.getOneCol(5, 'Sheet1'))
-        l_TV2 = (Openpyxl_PO2.getOneCol(8, 'Sheet1'))
-
-        # 去掉标题
-        l_code.pop(0)  # ['600000', '600004', ...
+        l_TV = (Openpyxl_PO.getOneCol(8, 'Sheet1'))
+        l_code.pop(0)
+        l_name.pop(0)
         l_open.pop(0)
         l_close.pop(0)
         l_TV.pop(0)
-        l_code2.pop(0) # ['600000', '600004', ...
+
+        # 读取表格2
+        Openpyxl_PO2 = OpenpyxlPO(varYMD2file)
+        l_code2 = (Openpyxl_PO2.getOneCol(2, 'Sheet1'))
+        l_name2 = (Openpyxl_PO2.getOneCol(3, 'Sheet1'))
+        l_open2 = (Openpyxl_PO2.getOneCol(11, 'Sheet1'))
+        l_close2 = (Openpyxl_PO2.getOneCol(5, 'Sheet1'))
+        l_TV2 = (Openpyxl_PO2.getOneCol(8, 'Sheet1'))
+        l_code2.pop(0)
+        l_name2.pop(0)
         l_open2.pop(0)
         l_close2.pop(0)
         l_TV2.pop(0)
 
         # 筛选符合条件的
         l_tmp = []
+        d_tmp = {}
         for i in range(len(l_code)):
             for j in range(len(l_code2)):
                 if l_code[i] == l_code2[j]:
-                    if float(l_open[i]) > float(l_close[i]) and\
-                            float(l_close2[j]) > ((float(l_open[i]) - float(l_close[i])) * 0.8 + float(l_close[i])) and\
+                    if float(l_open[i]) > float(l_close[i]) and \
+                            float(l_close2[j]) > ((float(l_open[i]) - float(l_close[i])) * 0.8 + float(l_close[i])) and \
                             float(l_TV[i]) > float(l_TV2[j]):
                         l_tmp.append(l_code[i])
+                        d_tmp[l_code[i]] = l_name[i]
 
-        varData = str(fileName1) + " ~ " + str(fileName2)
+        varData = str(varMD1) + " ~ " + str(varMD2)
         l_result.append(varData)
-        Color_PO.outColor([{"35": "[" + str(fileName1) + ' ~ ' + str(fileName2) + ']' + " => "+ str(len(l_tmp)) + "条"}])
-        # print(len(l_tmp))
+        Color_PO.outColor(
+            [{"35": "sh => [" + str(varMD1) + ' ~ ' + str(varMD2) + ']' + " => " + str(len(l_tmp)) + "条"}])
+        # print(d_tmp)
+
         l_dd = []
         for i in range(len(l_tmp)):
             varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str(l_tmp[i])
@@ -108,30 +119,31 @@ def run(fileName2):
             # print(l_4)
             d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
 
-            if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损'  and\
-                    float(d_curr['涨幅']) > 3 and float(d_curr['涨幅']) < 9 and\
+            if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损' and \
+                    float(d_curr['涨幅']) > 2 and float(d_curr['涨幅']) < 9 and \
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 100:
                 # print(i + 1, d_curr, varUrl)
                 l_dd.append(l_tmp[i])
                 if float(d_curr['涨幅']) < 0:
-                    Color_PO.outColor([{"32": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SH" + str(l_tmp[i])}])
-                    varUrl ="https://xueqiu.com/S/SH" + str(l_tmp[i])
-                    l_result.append(varUrl)
-                else:
-                    Color_PO.outColor([{"31": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SH" + str(l_tmp[i])}])
+                    Color_PO.outColor([{"32": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SH" + str(
+                        l_tmp[i]) + " , " + d_tmp[str(l_tmp[i])]}])
                     varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
                     l_result.append(varUrl)
-
+                else:
+                    Color_PO.outColor([{"31": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SH" + str(
+                        l_tmp[i]) + " , " + d_tmp[str(l_tmp[i])]}])
+                    varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
+                    l_result.append(varUrl)
 
         Openpyxl_PO3 = OpenpyxlPO("history_sh.xlsx")
         Openpyxl_PO3.appendCols([l_result])
 
     else:
-        if os.access(full_filename1, os.F_OK) == False :
-            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(fileName1) + " 文件不存在！"}])
-        if os.access(full_filename2, os.F_OK) == False :
-            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(fileName2) + " 文件不存在！"}])
+        if os.access(varYMD1file, os.F_OK) == False:
+            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(varMD1) + " 文件不存在！"}])
+        if os.access(varYMD2file, os.F_OK) == False:
+            Color_PO.outColor([{"31": "errorrrrrrrrrr, " + str(varMD2) + " 文件不存在！"}])
 
 if __name__ == "__main__":
 
-    run("0424")
+    run(sys.argv[1])

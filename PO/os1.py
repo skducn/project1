@@ -169,7 +169,7 @@ print(os.path.isfile("./data/1.jpg"))  # True    //相对路径
 # # os.mknod("/Users/linghuchong/Downloads/51/Python/project/PO/SQL2/test123.txt", mode)
 #
 # print("重命名文件或目录".center(100, "-"))
-# # os.rename("/Users/linghuchong/Downloads/51/Python/project/test1.py", "/Users/linghuchong/Downloads/51/Python/project/test12.py")  # 重命名文件
+# # os.rename("/Users/linghuchong/Downloads/51/Python/project/socket1.py", "/Users/linghuchong/Downloads/51/Python/project/test12.py")  # 重命名文件
 # # os.rename("/Users/linghuchong/Downloads/51/Python/project/PO/SQL1", "/Users/linghuchong/Downloads/51/Python/project/PO/SQL2")  # 重命名目录
 #
 # print("修改文件权限和时间戳".center(100, "-"))
@@ -227,7 +227,7 @@ print(os.path.isfile("./data/1.jpg"))  # True    //相对路径
 # print(mimetypes.guess_type('/Users/linghuchong/fineagent.jar'))  # ('application/java-archive', None)
 #
 # print("获取文件大小".center(100, "-"))
-# print(os.path.getsize("/Users/linghuchong/Downloads/51/Python/project/test1.py"))  # 19964
+# print(os.path.getsize("/Users/linghuchong/Downloads/51/Python/project/socket1.py"))  # 19964
 #
 # print("获取文件属性".center(100, "-"))
 # print(os.stat("/Users/linghuchong/Downloads/51/Python/project/test2.py")) # os.stat_result(st_mode=33188, st_ino=8624741169, st_dev=16777220, st_nlink=1, st_uid=501, st_gid=20, st_size=5097, st_atime=1709374037, st_mtime=1669197988, st_ctime=1669197988)
