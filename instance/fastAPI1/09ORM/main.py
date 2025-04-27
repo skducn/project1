@@ -2,8 +2,11 @@ import uvicorn
 from fastapi import FastAPI
 from tortoise.contrib.fastapi import register_tortoise
 from setting import TORTOISE_ORM
+from api.student import student_api
 
 app = FastAPI(docs_url="/docs", redoc_url="/redoc")
+app.include_router(student_api, prefix="/student", tags=['选课学生接口'])
+
 
 # 该方法会在 fastapi 启动时触发，内部通过传递进去的 app 对象，监听服务启动和终止事件
 # 当检测到启动事件时，会初始化 Tortoise 对象，如果 generate_schemas 为 True 则还会进行数据库迁移

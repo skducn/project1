@@ -26,6 +26,8 @@ class Course(Model):
     teacher = fields.ForeignKeyField("models.Teacher", related_name="courses")
     addr = fields.CharField(max_length=100, decription="教室",default="")
 
+    # students = fields.ManyToManyField("models.Student", related_name="courses")
+
 class Teacher(Model):
     id = fields.IntField(pk=True)
     name = fields.CharField(max_length=100, decription="姓名")
