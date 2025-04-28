@@ -103,9 +103,10 @@ todo alert(system)菜单
 获取弹框中的文案 alertText()
 """
 
-import requests, pyautogui
-# import sys, os, platform, platform, psutil, ddddocr, bs4, subprocess, pyscreeze, pyautogui, cv2
+import requests
 
+import pyautogui
+# import sys, os, platform, platform, psutil, ddddocr, bs4, subprocess, pyscreeze, pyautogui, cv2
 from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
@@ -137,6 +138,7 @@ List_PO = ListPO()
 class DomPO(object):
 
     def __init__(self, driver):
+
         self.driver = driver
 
         # print(type(self.driver))

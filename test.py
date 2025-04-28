@@ -8,22 +8,33 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
-# import pandas as pd
-# import datetime
-#
-# # 示例日期
-# date = datetime.date(2025, 4, 20)
-# # 将日期转换为 pandas 的 Timestamp 类型
-# timestamp = pd.Timestamp(date)
-# # 获取前一个工作日
-# previous_working_day = timestamp - pd.tseries.offsets.BusinessDay()
-# print(previous_working_day.date())
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from webdriver_manager.chrome import ChromeDriverManager
 
-f = '0424'
-print(f[:2])
-print(f[2:])
+def init_driver():
+    options = Options()
+    options.add_argument("--start-maximized")  # 最大化浏览器
+    options.add_argument("--disable-extensions")  # 禁用扩展插件
+    options.add_argument("--no-sandbox")  # 关闭沙盒模式
+    options.add_argument("--disable-dev-shm-usage")  # 禁用 /dev/shm 使用
+    options.add_argument("--disable-gpu")  # 禁用 GPU 加速
 
-print(str(f[:2]) + (f[2:]))
+    # 自动下载并管理 chromedriver
+    service = Service(ChromeDriverManager(driver_version="135.0.7049.96").install())
+    driver = webdriver.Chrome(service=service, options=options)
+    return driver
+
+if __name__ == "__main__":
+    driver = init_driver()
+    try:
+        driver.get("https://www.baidu.com")
+        print("Page loaded successfully.")
+    except Exception as e:
+        print(f"Error: {e}")
+        driver.quit()
+
 
 
 # pip3 install --upgrade --force-reinstall pyobjc

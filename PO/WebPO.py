@@ -23,6 +23,8 @@
 # todo chrome驱动
 # 下载1：https://googlechromelabs.github.io/chrome-for-testing/#stable （新）
 # https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.122/mac-x64/chrome-mac-x64.zip
+# https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.96/mac-x64/https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/mac-arm64/chromedriver-mac-arm64.zip
+# https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.96/mac-x64/chromedriver-mac-x64.zip
 # 下载2：http://chromedriver.storage.googleapis.com/index.html （旧）
 # 下载3：https://registry.npmmirror.com/binary.html?path=chromedriver （旧）
 
@@ -31,6 +33,7 @@
 # ChromeDriverManager().install()
 # self.driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
 # mac系统默认调用路径：/Users/linghuchong/.wdm/drivers/chromedriver/mac64/120.0.6099.109/chromedriver-mac-x64/chromedriver
+# python -m pip install --upgrade pip && python -m pip install chromedriver-binary==135.0.7049.97.0
 
 # todo 设置配置
 # for win 路径：C:\Python38\Scripts\chromedrive.exe
@@ -99,6 +102,7 @@
 """
 
 from PO.DomPO import *
+
 import requests, bs4, subprocess
 from selenium.webdriver.support.ui import Select
 import os,json
@@ -189,6 +193,7 @@ class WebPO(DomPO):
 
             # 1 本机chrome程序路径
             chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            # chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome\ for\ Testing --version", shell=True)
             chromeVer = bytes.decode(chromeVer).replace("\n", '')
             chromeVer = chromeVer.split('Google Chrome ')[1].strip()
             chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
@@ -208,10 +213,15 @@ class WebPO(DomPO):
                 os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
-            # print(currPath + "/chromedriver-mac-x64/chromedriver")
+            print(currPath + "/chromedriver-mac-x64/chromedriver")
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
             # print(s)
             self.driver = webdriver.Chrome(service=s, options=options)
+
+            print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+            print("chrome驱动版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+
+
 
             # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
             # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
@@ -296,6 +306,7 @@ class WebPO(DomPO):
 
         elif self.driver == "chrome":
 
+
             # todo 屏幕
             options.add_argument("--start-maximized")  # 最大化浏览器
             # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
@@ -332,6 +343,7 @@ class WebPO(DomPO):
             options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
             # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
 
             # 更新下载chromedriver
             self.updateChromedriver(options)
@@ -742,13 +754,14 @@ if __name__ == "__main__":
     # Web_PO = WebPO("firefox")
 
     # # print("1.1 打开网站".center(100, "-"))
-    Web_PO.openURL("https://quote.eastmoney.com/sz002132.html#fullScreenChart")
+    Web_PO.openURL("https://www.baidu.com")
+    # Web_PO.openURL("https://quote.eastmoney.com/sz002132.html#fullScreenChart")
     # Web_PO.clkByX("/html/body/div[1]/div[3]/form/input")
 
     # Web_PO.clkByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select")
-    Web_PO.sltTextByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", '健康干预')
-    Web_PO.sltValueByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", 'none')
-    Web_PO.sltIndexByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", 3)
+    # Web_PO.sltTextByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", '健康干预')
+    # Web_PO.sltValueByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", 'none')
+    # Web_PO.sltIndexByX("/html/body/article/section/div/div/div/div/div/div[1]/div[2]/form/div/div[1]/div/div/select", 3)
     # assert s.first_selected_option.text == '健康干预_已患疾病组合'
 
     # 定位下拉框

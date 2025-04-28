@@ -37,7 +37,8 @@
 
 
 from PO.WebPO import *
-Web_PO = WebPO("chrome")
+Web_PO = WebPO("noChrome")
+# Web_PO = WebPO("chrome")
 
 
 # # print("1.1 打开网站".center(100, "-"))
