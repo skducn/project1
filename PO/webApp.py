@@ -37,13 +37,14 @@
 
 
 from PO.WebPO import *
-Web_PO = WebPO("noChrome")
-# Web_PO = WebPO("chrome")
+# Web_PO = WebPO("noChrome")
+Web_PO = WebPO("chrome")
 
 
 # # print("1.1 打开网站".center(100, "-"))
 # Web_PO.openURL("https://baijiahao.baidu.com/s?id=1753450036624046728&wfr=spider&for=pc")
-Web_PO.openURL("https://kyfw.12306.cn/otn/resources/login.html")
+Web_PO.openURL("https://www.baidu.com")
+# Web_PO.openURL("https://kyfw.12306.cn/otn/resources/login.html")
 # Web_PO.openURL("https://www.xvideos.com/video76932809/_")
 # Xvideos_PO.getInfo("https://www.xvideos.com/video76932809/_")
 

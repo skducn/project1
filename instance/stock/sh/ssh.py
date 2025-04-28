@@ -145,4 +145,5 @@ def run(varMD2):
 
 if __name__ == "__main__":
 
-    run(Time_PO.getMonth() + Time_PO.getDay())
+    run("0425")
+    # run(Time_PO.getMonth() + Time_PO.getDay())

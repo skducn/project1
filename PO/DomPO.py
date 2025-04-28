@@ -104,9 +104,10 @@ todo alert(system)菜单
 """
 
 import requests
+import sys, os, platform, psutil, ddddocr, bs4, subprocess, pyscreeze
+import cv2
 
-import pyautogui
-# import sys, os, platform, platform, psutil, ddddocr, bs4, subprocess, pyscreeze, pyautogui, cv2
+# import pyautogui
 from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys

@@ -24,7 +24,7 @@
 # 下载1：https://googlechromelabs.github.io/chrome-for-testing/#stable （新）
 # https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.122/mac-x64/chrome-mac-x64.zip
 # https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.96/mac-x64/https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/mac-arm64/chromedriver-mac-arm64.zip
-# https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.96/mac-x64/chromedriver-mac-x64.zip
+# https://storage.googleapis.com/chrome-for-testing-public/123.0.6312.122/mac-x64/chromedriver-mac-x64.zip
 # 下载2：http://chromedriver.storage.googleapis.com/index.html （旧）
 # 下载3：https://registry.npmmirror.com/binary.html?path=chromedriver （旧）
 
@@ -103,9 +103,10 @@
 
 from PO.DomPO import *
 
-import requests, bs4, subprocess
+import requests, subprocess, os, json
+import bs4
 from selenium.webdriver.support.ui import Select
-import os,json
+
 
 class WebPO(DomPO):
 
