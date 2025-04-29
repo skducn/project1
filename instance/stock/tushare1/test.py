@@ -16,8 +16,8 @@ print(stock_df) # ['600000', '浦发银行', '2025-04-28', '10.60', '10.74', '10
 
 
 
-import akshare as ak
-import pandas as pd
+# import akshare as ak
+# import pandas as pd
 
 # # 定义股票代码和日期范围
 # stock_code = '600000'
