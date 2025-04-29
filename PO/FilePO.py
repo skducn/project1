@@ -156,6 +156,19 @@ class FilePO():
         else:
             shutil.copyfile(srcFilePath, tgtFilePath)
 
+    def renameFile(self, old_name, new_name):
+        try:
+            os.rename(old_name, new_name)
+            print(f"文件 {old_name} 已成功重命名为 {new_name}")
+        except FileNotFoundError:
+            print(f"错误: 未找到文件 {old_name}")
+        except FileExistsError:
+            print(f"错误: 文件 {new_name} 已存在")
+        except PermissionError:
+            print("错误: 没有权限重命名该文件")
+        except Exception as e:
+            print(f"错误: 发生了未知错误: {e}")
+
     def delFile(self, varPath, varFile):
         # 删除文件
         # File_PO.delFile("c:\\a", "13.txt")  # 删除13.txt文件

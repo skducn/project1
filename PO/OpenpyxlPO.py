@@ -1376,9 +1376,10 @@ class OpenpyxlPO:
 
 if __name__ == "__main__":
 
-    Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/fold.xlsx")
-    Openpyxl_PO.renameSheet("1231", "444")
-    Openpyxl_PO.open()
+    # Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/fold.xlsx")
+    Openpyxl_PO = OpenpyxlPO("d:\\51\\python\\project\\PO\\data\\11.xlsx")
+    # Openpyxl_PO.renameSheet("1231", "444")
+    # Openpyxl_PO.open()
 
 
     # print("1.1 新建".center(100, "-"))
@@ -1539,8 +1540,8 @@ if __name__ == "__main__":
     # print(Openpyxl_PO.getOneRow(1))  # ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字']
     #
     # print("3.4 获取一列数据".center(100, "-"))
-    # print(Openpyxl_PO.getOneCol(2))  # ['高地', 40, 44, 50, 30, 25, 150]
-    # print(Openpyxl_PO.getOneCol('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
+    print(Openpyxl_PO.getOneCol(1))  # ['高地', 40, 44, 50, 30, 25, 150]
+    print(Openpyxl_PO.getOneCol('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
 
     # print("3.5.1 获取每行数据".center(100, "-"))
     # print(Openpyxl_PO.getRow())  # [['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], [2, 40, 30, 'ok', 'jinhao'],...]

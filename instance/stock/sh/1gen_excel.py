@@ -16,20 +16,26 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../.
 from multiprocessing import Pool, cpu_count
 import time
 
-import tushare as ts
+from PO.WebPO import *
+
+from PO.OpenpyxlPO import *
+
+from PO.FilePO import *
+File_PO = FilePO()
+
 from PO.ListPO import *
 List_PO = ListPO()
-
 
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-from PO.WebPO import *
-from PO.OpenpyxlPO import *
+from PO.TimePO import *
+Time_PO = TimePO()
 
-def genData():
+def run():
 
     # 1，打开页面，获取数据
+    # Web_PO = WebPO("chrome")
     Web_PO = WebPO("noChrome")
     varUrl = "https://www.sse.com.cn/market/price/report/"
     Web_PO.openURL(varUrl)
@@ -43,7 +49,15 @@ def genData():
     l_time = Web_PO.getTextByXs("//h2[@class='title_lev2']")
     fileName = l_time[0].split("更新时间：")[1].split(" ")[0]
     fileName = fileName + ".xlsx"
-    Openpyxl_PO = OpenpyxlPO(fileName)
+    varTodayFile2 = Time_PO.getMonth() + Time_PO.getDay() + ".xlsx"
+    File_PO.renameFile(fileName, varTodayFile2)
+    Openpyxl_PO = OpenpyxlPO(varTodayFile2)
+    if os.name == "nt":
+        pathFile = "d:\\51\\python\\stock\\sh\\" + varTodayFile2
+    else:
+        pathFile = "/Users/linghuchong/Downloads/51/Python/stock/sh/" + varTodayFile2
+    Openpyxl_PO = OpenpyxlPO(pathFile)
+
 
     # 3，获取page数量
     l_page = Web_PO.getTextByXs("//div[@class='pagination-box']/ul")
@@ -74,4 +88,4 @@ def genData():
 
 if __name__ == "__main__":
 
-    genData()
+    run()

@@ -7,15 +7,15 @@
 # 1，2025-04-23.xlsx和2025-04-24.xlsx两个文件
 # 2，执行 run("4-22", "4-23")
 # 第一轮筛选逻辑：
+# https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000120
+# https://www.sse.com.cn/market/price/report/
 # *****************************************************************
 import sys
 import os
-
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl.styles.stylesheet")
-
 
 from PO.WebPO import *
 
@@ -27,7 +27,9 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-def run(varMD2):
+
+def run():
+
 
     # 获取上一个交易日与上上交易日的数据
     varCurrMD = Time_PO.getMonth() + Time_PO.getDay()
@@ -45,6 +47,15 @@ def run(varMD2):
 
     # print(varYMD1file)
     # print(varYMD2file)
+
+    # 下载的数据文件放在project之外，不被git
+    if os.name == "nt":
+        varYMD1file = "D:\\51\\python\\stock\\sz\\" + varYMD1file
+        varYMD2file = "D:\\51\\python\\stock\\sz\\" + varYMD2file
+    else:
+        varYMD1file = "/Users/linghuchong/Downloads/51/Python/stock/sz/" + varYMD1file
+        varYMD2file = "/Users/linghuchong/Downloads/51/Python/stock/sz/" + varYMD2file
+
 
     # 判断文件是否存在
     if os.access(varYMD1file, os.F_OK) and os.access(varYMD2file, os.F_OK):
@@ -89,61 +100,10 @@ def run(varMD2):
                         l_tmp.append(l_code[i])
                         d_tmp[l_code[i]] = l_name[i]
 
-        varData = str(varMD1) + " ~ " + str(varMD2)
-        l_result.append(varData)
-        Color_PO.outColor(
-            [{"35": "sh => [" + str(varMD1) + ' ~ ' + str(varMD2) + ']' + " => " + str(len(l_tmp)) + "条"}])
-        # print(d_tmp)
-
-        l_dd = []
-        for i in range(len(l_tmp)):
-            varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str(l_tmp[i])
-            Web_PO = WebPO("noChrome")
-            Web_PO.openURL(varUrl)
-            sleep(1)
-            d_curr = {}
-
-            # 获取当前价格
-            l_curr = Web_PO.getTextByXs("//div[@class='price_box fl icons_box']")
-            l_curr = l_curr[0].split("\n")
-            d_curr['现价'] = l_curr[0]
-            d_curr['涨幅'] = l_curr[2].replace("%", "")
-
-            l_1 = Web_PO.getTextByXs("//div[@class='new_detail fl']/ul/li[1]/span")
-            # print(l_1)
-            # d_curr['今开'] = l_1[0].replace('今开：','')
-            # d_curr['成交量'] = l_1[1].replace('成交量：','').replace('万','').strip()
-
-            l_2 = Web_PO.getTextByXs("//div[@class='new_detail fl']/ul/li[2]/span")
-            # print(l_2)
-            d_curr['换手'] = l_2[2].replace('换手：', '').replace('%', '').strip()
-
-            # l_3 = Web_PO.getTextByXs("//div[@class='new_detail fl']/ul/li[3]/span")
-            # print(l_3)
-            # d_curr['市净率'] = l_3[2].replace('市净率：', '').strip()
-
-            l_4 = Web_PO.getTextByXs("//div[@class='new_detail fl']/ul/li[4]/span")
-            # print(l_4)
-            d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
-
-            if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损' and \
-                    float(d_curr['涨幅']) > 2 and float(d_curr['涨幅']) < 9 and \
-                    float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 100:
-                # print(i + 1, d_curr, varUrl)
-                l_dd.append(l_tmp[i])
-                if float(d_curr['涨幅']) < 0:
-                    Color_PO.outColor([{"32": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SH" + str(
-                        l_tmp[i]) + " , " + d_tmp[str(l_tmp[i])]}])
-                    varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
-                    l_result.append(varUrl)
-                else:
-                    Color_PO.outColor([{"31": str(i + 1) + "，" + str(d_curr) + "，" + "https://xueqiu.com/S/SH" + str(
-                        l_tmp[i]) + " , " + d_tmp[str(l_tmp[i])]}])
-                    varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
-                    l_result.append(varUrl)
-
-        Openpyxl_PO3 = OpenpyxlPO("4save_stock.xlsx")
-        Openpyxl_PO3.appendCols([l_result])
+        varTitle = str(varMD1) + " - " + str(varMD2)
+        Color_PO.outColor([{"35": "sh > [" + varTitle + ']' + " > " + str(len(l_tmp))}])
+        # print(l_tmp)
+        print("d_stock =", d_tmp)
 
     else:
         if os.access(varYMD1file, os.F_OK) == False:
@@ -153,4 +113,4 @@ def run(varMD2):
 
 if __name__ == "__main__":
 
-    run(sys.argv[1])
+    run()
