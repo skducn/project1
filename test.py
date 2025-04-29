@@ -10,30 +10,26 @@
 # ***************************************************************u**
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+import time
+# import numpy
+# import pyautogui
 
-def init_driver():
-    options = Options()
-    options.add_argument("--start-maximized")  # 最大化浏览器
-    options.add_argument("--disable-extensions")  # 禁用扩展插件
-    options.add_argument("--no-sandbox")  # 关闭沙盒模式
-    options.add_argument("--disable-dev-shm-usage")  # 禁用 /dev/shm 使用
-    options.add_argument("--disable-gpu")  # 禁用 GPU 加速
+# 设置Chrome选项
+chrome_options = Options()
+# chrome_options.add_argument("--headless")  # 无头模式
+chrome_options.add_argument("--disable-gpu")  # 禁用GPU加速
+chrome_options.add_argument("--no-sandbox")  # 禁用沙盒模式
+chrome_options.add_argument("--disable-dev-shm-usage")  # 解决内存不足的问题
 
-    # 自动下载并管理 chromedriver
-    service = Service(ChromeDriverManager(driver_version="135.0.7049.96").install())
-    driver = webdriver.Chrome(service=service, options=options)
-    return driver
+# 初始化WebDriver
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-if __name__ == "__main__":
-    driver = init_driver()
-    try:
-        driver.get("https://www.baidu.com")
-        print("Page loaded successfully.")
-    except Exception as e:
-        print(f"Error: {e}")
-        driver.quit()
+# 打开URL
+driver.get("https://www.baidu.com")
+time.sleep(5)  # 等待页面加载
+driver.quit()
 
 
 

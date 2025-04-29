@@ -34,8 +34,8 @@
 
 """
 
-import os, socket, uuid, psutil, pyautogui
-
+import os, socket, uuid, psutil
+# improt pyautogui
 class SysPO:
 
     def getPlatform(self):

@@ -12,6 +12,7 @@ import ddddocr
 from PO.WebPO import *
 Web_PO = WebPO("chrome")
 
+
 from PO.ListPO import *
 List_PO = ListPO()
 
@@ -26,7 +27,6 @@ Sys_PO = SysPO()
 
 from PO.Base64PO import *
 Base64_PO = Base64PO()
-
 
 
 # 获取当前文件的绝对路径

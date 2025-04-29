@@ -104,10 +104,13 @@ todo alert(system)菜单
 """
 
 import requests
-import sys, os, platform, psutil, ddddocr, bs4, subprocess, pyscreeze
-import cv2
-
+# import psutil,pyscreeze
+import sys, os, platform, subprocess
+# import cv2
 # import pyautogui
+from lxml import etree
+from pytesseract import *
+
 from time import sleep
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
@@ -115,8 +118,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.event_firing_webdriver import *
-from lxml import etree
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.abstract_event_listener import *
 from selenium.webdriver.support.expected_conditions import *
@@ -125,7 +126,6 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from PIL import Image, ImageDraw, ImageGrab
-from pytesseract import *
 # from seleniumwire import webdriver
 # from lxml import etree
 # import lxml.html

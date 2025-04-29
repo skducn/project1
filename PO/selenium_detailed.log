@@ -1,0 +1,125 @@
+2025-04-28 17:52:44,973 - INFO - ====== WebDriver manager ======
+2025-04-28 17:52:45,217 - INFO - Driver [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver] found in cache
+2025-04-28 17:52:45,217 - DEBUG - Skipping Selenium Manager; path to chrome driver specified in Service class: /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver
+2025-04-28 17:52:45,221 - DEBUG - Started executable: `/Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver` in a child process with pid: 7890 using 0 to output -3
+2025-04-28 17:52:45,306 - DEBUG - POST http://localhost:56123/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'detach': True, 'excludeSwitches': ['enable-automation'], 'prefs': {'credentials_enable_service': False, 'profile.password_manager_enabled': False}, 'extensions': [], 'args': ['--verbose', '--start-maximized', '--incognito', '--disable-popup-blocking', '--hide-scrollbars', '--allow-running-insecure-content', '--disable-blink-features=AutomationControlled', '--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/', '--disable-extensions', '--no-sandbox', '-disable-dev-shm-usage', '--disable-gpu', '--disable-logging']}}}}
+2025-04-28 17:52:45,308 - DEBUG - Starting new HTTP connection (1): localhost:56123
+2025-04-28 17:52:51,790 - DEBUG - http://localhost:56123 "POST /session HTTP/1.1" 200 0
+2025-04-28 17:52:51,790 - DEBUG - Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"135.0.7049.115","chrome":{"chromedriverVersion":"135.0.7049.114 (63fd8a7d9d09e41ba37b84386c85d5f249f848f7-refs/branch-heads/7049@{#2175})","userDataDir":"/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.UCRIHX"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:56128"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"mac","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"399c0b2e634d78e08466b7f93f78c3d7"}} | headers=HTTPHeaderDict({'Content-Length': '892', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-28 17:52:51,791 - DEBUG - Finished Request
+2025-04-28 17:52:51,791 - DEBUG - POST http://localhost:56123/session/399c0b2e634d78e08466b7f93f78c3d7/url {'url': 'https://www.baidu.com'}
+2025-04-28 17:52:51,793 - DEBUG - http://localhost:56123 "POST /session/399c0b2e634d78e08466b7f93f78c3d7/url HTTP/1.1" 500 0
+2025-04-28 17:52:51,794 - DEBUG - Remote response: status=500 | data={"value":{"error":"tab crashed","message":"tab crashed\n  (Session info: chrome=135.0.7049.115)","stacktrace":"0   chromedriver                        0x000000010cea12c8 chromedriver + 6197960\n1   chromedriver                        0x000000010ce988ea chromedriver + 6162666\n2   chromedriver                        0x000000010c91dc23 chromedriver + 416803\n3   chromedriver                        0x000000010c904c3a chromedriver + 314426\n4   chromedriver                        0x000000010c902b3d chromedriver + 305981\n5   chromedriver                        0x000000010c90346f chromedriver + 308335\n6   chromedriver                        0x000000010c912aa3 chromedriver + 371363\n7   chromedriver                        0x000000010c92cc1b chromedriver + 478235\n8   chromedriver                        0x000000010c9bce97 chromedriver + 1068695\n9   chromedriver                        0x000000010c995793 chromedriver + 907155\n10  chromedriver                        0x000000010c961b25 chromedriver + 695077\n11  chromedriver                        0x000000010c962791 chromedriver + 698257\n12  chromedriver                        0x000000010ce5dcc0 chromedriver + 5921984\n13  chromedriver                        0x000000010ce61bb1 chromedriver + 5938097\n14  chromedriver                        0x000000010ce38004 chromedriver + 5767172\n15  chromedriver                        0x000000010ce625db chromedriver + 5940699\n16  chromedriver                        0x000000010ce26704 chromedriver + 5695236\n17  chromedriver                        0x000000010ce860c8 chromedriver + 6086856\n18  chromedriver                        0x000000010ce86290 chromedriver + 6087312\n19  chromedriver                        0x000000010ce984b1 chromedriver + 6161585\n20  libsystem_pthread.dylib             0x00007ff801fb74e1 _pthread_start + 125\n21  libsystem_pthread.dylib             0x00007ff801fb2f6b thread_start + 15\n"}} | headers=HTTPHeaderDict({'Content-Length': '1924', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-28 17:52:51,794 - DEBUG - Finished Request
+2025-04-28 17:52:51,794 - ERROR - 发生错误: Message: tab crashed
+  (Session info: chrome=135.0.7049.115)
+Stacktrace:
+0   chromedriver                        0x000000010cea12c8 chromedriver + 6197960
+1   chromedriver                        0x000000010ce988ea chromedriver + 6162666
+2   chromedriver                        0x000000010c91dc23 chromedriver + 416803
+3   chromedriver                        0x000000010c904c3a chromedriver + 314426
+4   chromedriver                        0x000000010c902b3d chromedriver + 305981
+5   chromedriver                        0x000000010c90346f chromedriver + 308335
+6   chromedriver                        0x000000010c912aa3 chromedriver + 371363
+7   chromedriver                        0x000000010c92cc1b chromedriver + 478235
+8   chromedriver                        0x000000010c9bce97 chromedriver + 1068695
+9   chromedriver                        0x000000010c995793 chromedriver + 907155
+10  chromedriver                        0x000000010c961b25 chromedriver + 695077
+11  chromedriver                        0x000000010c962791 chromedriver + 698257
+12  chromedriver                        0x000000010ce5dcc0 chromedriver + 5921984
+13  chromedriver                        0x000000010ce61bb1 chromedriver + 5938097
+14  chromedriver                        0x000000010ce38004 chromedriver + 5767172
+15  chromedriver                        0x000000010ce625db chromedriver + 5940699
+16  chromedriver                        0x000000010ce26704 chromedriver + 5695236
+17  chromedriver                        0x000000010ce860c8 chromedriver + 6086856
+18  chromedriver                        0x000000010ce86290 chromedriver + 6087312
+19  chromedriver                        0x000000010ce984b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff801fb74e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff801fb2f6b thread_start + 15
+
+2025-04-28 17:56:00,146 - INFO - ====== WebDriver manager ======
+2025-04-28 17:56:00,399 - INFO - Driver [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver] found in cache
+2025-04-28 17:56:00,400 - DEBUG - Skipping Selenium Manager; path to chrome driver specified in Service class: /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver
+2025-04-28 17:56:00,405 - DEBUG - Started executable: `/Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver` in a child process with pid: 7984 using 0 to output -3
+2025-04-28 17:56:00,426 - DEBUG - POST http://localhost:56234/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'detach': True, 'excludeSwitches': ['enable-automation'], 'prefs': {'credentials_enable_service': False, 'profile.password_manager_enabled': False}, 'extensions': [], 'args': ['--verbose', '--start-maximized', '--incognito', '--disable-popup-blocking', '--start-maximized', '--incognito', '--disable-popup-blocking', '--hide-scrollbars', '--allow-running-insecure-content', '--disable-blink-features=AutomationControlled', '--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/', '--disable-extensions', '--no-sandbox', '-disable-dev-shm-usage', '--disable-gpu', '--disable-logging']}}}}
+2025-04-28 17:56:00,427 - DEBUG - Starting new HTTP connection (1): localhost:56234
+2025-04-28 17:56:06,598 - DEBUG - http://localhost:56234 "POST /session HTTP/1.1" 200 0
+2025-04-28 17:56:06,599 - DEBUG - Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"135.0.7049.115","chrome":{"chromedriverVersion":"135.0.7049.114 (63fd8a7d9d09e41ba37b84386c85d5f249f848f7-refs/branch-heads/7049@{#2175})","userDataDir":"/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.71zqn3"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:56238"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"mac","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"f92fa2342eb3710708040de3b2975895"}} | headers=HTTPHeaderDict({'Content-Length': '892', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-28 17:56:06,599 - DEBUG - Finished Request
+2025-04-28 17:56:06,599 - DEBUG - POST http://localhost:56234/session/f92fa2342eb3710708040de3b2975895/url {'url': 'https://www.baidu.com'}
+2025-04-28 17:56:06,601 - DEBUG - http://localhost:56234 "POST /session/f92fa2342eb3710708040de3b2975895/url HTTP/1.1" 500 0
+2025-04-28 17:56:06,601 - DEBUG - Remote response: status=500 | data={"value":{"error":"tab crashed","message":"tab crashed\n  (Session info: chrome=135.0.7049.115)","stacktrace":"0   chromedriver                        0x000000010e1f92c8 chromedriver + 6197960\n1   chromedriver                        0x000000010e1f08ea chromedriver + 6162666\n2   chromedriver                        0x000000010dc75c23 chromedriver + 416803\n3   chromedriver                        0x000000010dc5cc3a chromedriver + 314426\n4   chromedriver                        0x000000010dc5ab3d chromedriver + 305981\n5   chromedriver                        0x000000010dc5b46f chromedriver + 308335\n6   chromedriver                        0x000000010dc6aaa3 chromedriver + 371363\n7   chromedriver                        0x000000010dc84c1b chromedriver + 478235\n8   chromedriver                        0x000000010dd14e97 chromedriver + 1068695\n9   chromedriver                        0x000000010dced793 chromedriver + 907155\n10  chromedriver                        0x000000010dcb9b25 chromedriver + 695077\n11  chromedriver                        0x000000010dcba791 chromedriver + 698257\n12  chromedriver                        0x000000010e1b5cc0 chromedriver + 5921984\n13  chromedriver                        0x000000010e1b9bb1 chromedriver + 5938097\n14  chromedriver                        0x000000010e190004 chromedriver + 5767172\n15  chromedriver                        0x000000010e1ba5db chromedriver + 5940699\n16  chromedriver                        0x000000010e17e704 chromedriver + 5695236\n17  chromedriver                        0x000000010e1de0c8 chromedriver + 6086856\n18  chromedriver                        0x000000010e1de290 chromedriver + 6087312\n19  chromedriver                        0x000000010e1f04b1 chromedriver + 6161585\n20  libsystem_pthread.dylib             0x00007ff801fb74e1 _pthread_start + 125\n21  libsystem_pthread.dylib             0x00007ff801fb2f6b thread_start + 15\n"}} | headers=HTTPHeaderDict({'Content-Length': '1924', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-28 17:56:06,601 - DEBUG - Finished Request
+2025-04-28 17:56:06,602 - ERROR - 发生错误: Message: tab crashed
+  (Session info: chrome=135.0.7049.115)
+Stacktrace:
+0   chromedriver                        0x000000010e1f92c8 chromedriver + 6197960
+1   chromedriver                        0x000000010e1f08ea chromedriver + 6162666
+2   chromedriver                        0x000000010dc75c23 chromedriver + 416803
+3   chromedriver                        0x000000010dc5cc3a chromedriver + 314426
+4   chromedriver                        0x000000010dc5ab3d chromedriver + 305981
+5   chromedriver                        0x000000010dc5b46f chromedriver + 308335
+6   chromedriver                        0x000000010dc6aaa3 chromedriver + 371363
+7   chromedriver                        0x000000010dc84c1b chromedriver + 478235
+8   chromedriver                        0x000000010dd14e97 chromedriver + 1068695
+9   chromedriver                        0x000000010dced793 chromedriver + 907155
+10  chromedriver                        0x000000010dcb9b25 chromedriver + 695077
+11  chromedriver                        0x000000010dcba791 chromedriver + 698257
+12  chromedriver                        0x000000010e1b5cc0 chromedriver + 5921984
+13  chromedriver                        0x000000010e1b9bb1 chromedriver + 5938097
+14  chromedriver                        0x000000010e190004 chromedriver + 5767172
+15  chromedriver                        0x000000010e1ba5db chromedriver + 5940699
+16  chromedriver                        0x000000010e17e704 chromedriver + 5695236
+17  chromedriver                        0x000000010e1de0c8 chromedriver + 6086856
+18  chromedriver                        0x000000010e1de290 chromedriver + 6087312
+19  chromedriver                        0x000000010e1f04b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff801fb74e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff801fb2f6b thread_start + 15
+
+2025-04-29 08:53:05,350 - INFO - ====== WebDriver manager ======
+2025-04-29 08:53:05,590 - DEBUG - Starting new HTTPS connection (1): googlechromelabs.github.io:443
+2025-04-29 08:53:06,950 - DEBUG - https://googlechromelabs.github.io:443 "GET /chrome-for-testing/known-good-versions-with-downloads.json HTTP/1.1" 200 89206
+2025-04-29 08:53:07,712 - INFO - WebDriver version 135.0.7049.114 selected
+2025-04-29 08:53:07,715 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/mac-x64/chromedriver-mac-x64.zip
+2025-04-29 08:53:07,715 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/135.0.7049.114/mac-x64/chromedriver-mac-x64.zip
+2025-04-29 08:53:07,718 - DEBUG - Starting new HTTPS connection (1): storage.googleapis.com:443
+2025-04-29 08:53:08,261 - DEBUG - https://storage.googleapis.com:443 "GET /chrome-for-testing-public/135.0.7049.114/mac-x64/chromedriver-mac-x64.zip HTTP/1.1" 200 9358028
+2025-04-29 08:53:08,262 - INFO - Driver downloading response is 200
+2025-04-29 08:53:10,635 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114]
+2025-04-29 08:53:10,637 - DEBUG - Skipping Selenium Manager; path to chrome driver specified in Service class: /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver
+2025-04-29 08:53:10,642 - DEBUG - Started executable: `/Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.114/chromedriver-mac-x64/chromedriver` in a child process with pid: 1028 using 0 to output -3
+2025-04-29 08:53:10,660 - DEBUG - POST http://localhost:49391/session {'capabilities': {'firstMatch': [{}], 'alwaysMatch': {'browserName': 'chrome', 'pageLoadStrategy': <PageLoadStrategy.normal: 'normal'>, 'goog:chromeOptions': {'detach': True, 'excludeSwitches': ['enable-automation'], 'prefs': {'credentials_enable_service': False, 'profile.password_manager_enabled': False}, 'extensions': [], 'args': ['--verbose', '--start-maximized', '--incognito', '--disable-popup-blocking', '--start-maximized', '--incognito', '--disable-popup-blocking', '--hide-scrollbars', '--allow-running-insecure-content', '--disable-blink-features=AutomationControlled', '--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/', '--disable-extensions', '--no-sandbox', '-disable-dev-shm-usage', '--disable-gpu', '--disable-logging']}}}}
+2025-04-29 08:53:10,660 - DEBUG - Starting new HTTP connection (1): localhost:49391
+2025-04-29 08:53:17,665 - DEBUG - http://localhost:49391 "POST /session HTTP/1.1" 200 0
+2025-04-29 08:53:17,665 - DEBUG - Remote response: status=200 | data={"value":{"capabilities":{"acceptInsecureCerts":false,"browserName":"chrome","browserVersion":"135.0.7049.115","chrome":{"chromedriverVersion":"135.0.7049.114 (63fd8a7d9d09e41ba37b84386c85d5f249f848f7-refs/branch-heads/7049@{#2175})","userDataDir":"/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.aviJMS"},"fedcm:accounts":true,"goog:chromeOptions":{"debuggerAddress":"localhost:49395"},"networkConnectionEnabled":false,"pageLoadStrategy":"normal","platformName":"mac","proxy":{},"setWindowRect":true,"strictFileInteractability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify","webauthn:extension:credBlob":true,"webauthn:extension:largeBlob":true,"webauthn:extension:minPinLength":true,"webauthn:extension:prf":true,"webauthn:virtualAuthenticators":true},"sessionId":"127573c1ce7b36bd49f459c4112b314a"}} | headers=HTTPHeaderDict({'Content-Length': '892', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-29 08:53:17,665 - DEBUG - Finished Request
+2025-04-29 08:53:17,665 - DEBUG - POST http://localhost:49391/session/127573c1ce7b36bd49f459c4112b314a/url {'url': 'https://www.baidu.com'}
+2025-04-29 08:53:17,667 - DEBUG - http://localhost:49391 "POST /session/127573c1ce7b36bd49f459c4112b314a/url HTTP/1.1" 500 0
+2025-04-29 08:53:17,667 - DEBUG - Remote response: status=500 | data={"value":{"error":"tab crashed","message":"tab crashed\n  (Session info: chrome=135.0.7049.115)","stacktrace":"0   chromedriver                        0x0000000101e232c8 chromedriver + 6197960\n1   chromedriver                        0x0000000101e1a8ea chromedriver + 6162666\n2   chromedriver                        0x000000010189fc23 chromedriver + 416803\n3   chromedriver                        0x0000000101886c3a chromedriver + 314426\n4   chromedriver                        0x0000000101884b3d chromedriver + 305981\n5   chromedriver                        0x000000010188546f chromedriver + 308335\n6   chromedriver                        0x0000000101894aa3 chromedriver + 371363\n7   chromedriver                        0x00000001018aec1b chromedriver + 478235\n8   chromedriver                        0x000000010193ee97 chromedriver + 1068695\n9   chromedriver                        0x0000000101917793 chromedriver + 907155\n10  chromedriver                        0x00000001018e3b25 chromedriver + 695077\n11  chromedriver                        0x00000001018e4791 chromedriver + 698257\n12  chromedriver                        0x0000000101ddfcc0 chromedriver + 5921984\n13  chromedriver                        0x0000000101de3bb1 chromedriver + 5938097\n14  chromedriver                        0x0000000101dba004 chromedriver + 5767172\n15  chromedriver                        0x0000000101de45db chromedriver + 5940699\n16  chromedriver                        0x0000000101da8704 chromedriver + 5695236\n17  chromedriver                        0x0000000101e080c8 chromedriver + 6086856\n18  chromedriver                        0x0000000101e08290 chromedriver + 6087312\n19  chromedriver                        0x0000000101e1a4b1 chromedriver + 6161585\n20  libsystem_pthread.dylib             0x00007ff80b61a4e1 _pthread_start + 125\n21  libsystem_pthread.dylib             0x00007ff80b615f6b thread_start + 15\n"}} | headers=HTTPHeaderDict({'Content-Length': '1924', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-29 08:53:17,668 - DEBUG - Finished Request
+2025-04-29 08:53:17,668 - ERROR - 发生错误: Message: tab crashed
+  (Session info: chrome=135.0.7049.115)
+Stacktrace:
+0   chromedriver                        0x0000000101e232c8 chromedriver + 6197960
+1   chromedriver                        0x0000000101e1a8ea chromedriver + 6162666
+2   chromedriver                        0x000000010189fc23 chromedriver + 416803
+3   chromedriver                        0x0000000101886c3a chromedriver + 314426
+4   chromedriver                        0x0000000101884b3d chromedriver + 305981
+5   chromedriver                        0x000000010188546f chromedriver + 308335
+6   chromedriver                        0x0000000101894aa3 chromedriver + 371363
+7   chromedriver                        0x00000001018aec1b chromedriver + 478235
+8   chromedriver                        0x000000010193ee97 chromedriver + 1068695
+9   chromedriver                        0x0000000101917793 chromedriver + 907155
+10  chromedriver                        0x00000001018e3b25 chromedriver + 695077
+11  chromedriver                        0x00000001018e4791 chromedriver + 698257
+12  chromedriver                        0x0000000101ddfcc0 chromedriver + 5921984
+13  chromedriver                        0x0000000101de3bb1 chromedriver + 5938097
+14  chromedriver                        0x0000000101dba004 chromedriver + 5767172
+15  chromedriver                        0x0000000101de45db chromedriver + 5940699
+16  chromedriver                        0x0000000101da8704 chromedriver + 5695236
+17  chromedriver                        0x0000000101e080c8 chromedriver + 6086856
+18  chromedriver                        0x0000000101e08290 chromedriver + 6087312
+19  chromedriver                        0x0000000101e1a4b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80b61a4e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80b615f6b thread_start + 15
+

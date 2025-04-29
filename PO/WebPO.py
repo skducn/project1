@@ -104,9 +104,20 @@
 from PO.DomPO import *
 
 import requests, subprocess, os, json
-import bs4
+# import bs4, ddddocr
 from selenium.webdriver.support.ui import Select
 
+import logging
+from selenium.webdriver.remote.remote_connection import LOGGER
+
+# 配置日志
+logging.basicConfig(
+    level=logging.DEBUG,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    filename='selenium_detailed.log'
+)
+# 设置 Selenium 远程连接日志级别
+LOGGER.setLevel(logging.DEBUG)
 
 class WebPO(DomPO):
 
@@ -189,18 +200,22 @@ class WebPO(DomPO):
 
         elif os.name == "posix":
             # for mac
+            # chromedriver --version
+            # (py310) localhost-2:project linghuchong$ which chromedriver
+            # /usr/local/bin/chromedriver
 
             varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
 
             # 1 本机chrome程序路径
             chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
-            # chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome\ for\ Testing --version", shell=True)
             chromeVer = bytes.decode(chromeVer).replace("\n", '')
             chromeVer = chromeVer.split('Google Chrome ')[1].strip()
             chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
+            print("chromeVer3", chromeVer3)
 
             # 2 驱动路径
             currPath = varDriverPath + chromeVer3
+            print(currPath)
 
             # 3 检查chromedriver主版本是否存在
             if os.path.isdir(currPath) == False:
@@ -217,8 +232,11 @@ class WebPO(DomPO):
             print(currPath + "/chromedriver-mac-x64/chromedriver")
             s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
             # print(s)
-            self.driver = webdriver.Chrome(service=s, options=options)
-
+            # self.driver = webdriver.Chrome(service=s, options=options)
+            # from webdriver_manager.chrome import ChromeDriverManager
+            # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="135.0.7049.114").install()),
+                                      options=options)
             print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
             print("chrome驱动版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
 
@@ -307,6 +325,10 @@ class WebPO(DomPO):
 
         elif self.driver == "chrome":
 
+            options.add_argument("--verbose")
+            options.add_argument('--start-maximized')
+            options.add_argument('--incognito')
+            options.add_argument('--disable-popup-blocking')
 
             # todo 屏幕
             options.add_argument("--start-maximized")  # 最大化浏览器
@@ -345,14 +367,16 @@ class WebPO(DomPO):
             # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
+            try:
+                # 更新下载chromedriver
+                self.updateChromedriver(options)
 
-            # 更新下载chromedriver
-            self.updateChromedriver(options)
+                # # 绕过检测（滑动验证码）
+                # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
 
-            # # 绕过检测（滑动验证码）
-            # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
-
-            self.driver.get(varURL)
+                self.driver.get(varURL)
+            except Exception as e:
+                logging.error(f"发生错误: {e}")
             return self.driver
 
         elif self.driver == "noChrome":
