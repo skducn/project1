@@ -36,7 +36,7 @@ def run():
 
     # 1，打开页面，获取数据
     # Web_PO = WebPO("chrome")
-    Web_PO = WebPO("noChrome")
+    Web_PO = WebPO("chrome")
     varUrl = "https://www.sse.com.cn/market/price/report/"
     Web_PO.openURL(varUrl)
     sleep(4)
@@ -51,7 +51,7 @@ def run():
     fileName = fileName + ".xlsx"
     varTodayFile2 = Time_PO.getMonth() + Time_PO.getDay() + ".xlsx"
     File_PO.renameFile(fileName, varTodayFile2)
-    Openpyxl_PO = OpenpyxlPO(varTodayFile2)
+    # Openpyxl_PO = OpenpyxlPO(varTodayFile2)
     if os.name == "nt":
         pathFile = "d:\\51\\python\\stock\\sh\\" + varTodayFile2
     else:

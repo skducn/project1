@@ -143,7 +143,7 @@ def run(fileName2):
                     varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
                     l_result.append(varUrl)
 
-        Openpyxl_PO3 = OpenpyxlPO("3save_stock.xlsx")
+        Openpyxl_PO3 = OpenpyxlPO("sz.xlsx")
         Openpyxl_PO3.appendCols([l_result])
     else:
         if os.access(full_filename1, os.F_OK) == False :

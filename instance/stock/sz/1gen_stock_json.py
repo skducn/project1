@@ -2,14 +2,11 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2025-04-20
-# Description: 执行两个文档数据
-# 深圳交易证券所 https://www.szse.cn/market/trend/index.html
-# https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000120
-#
+# Description: 深圳，第一轮筛选stock
 # 步骤：
-# 1，获取0422.xlsx和0423.xlsx两个文件，从深圳交易证券所下载
-# 2，执行 run("0423")  0423是文件名0423.xlsx
-# 第一轮筛选逻辑：
+# 1，手工从深圳交易证券所下载每日数据源，深圳交易证券所 https://www.szse.cn/market/trend/index.html
+# 2，匹配连续2天（如0422.xlsx和0423.xlsx两个文件）的数据，筛选出符合要求的stock
+# 3，保存到sz.json
 # *****************************************************************
 import sys
 import os
@@ -27,6 +24,14 @@ Time_PO = TimePO()
 
 from PO.ColorPO import *
 Color_PO = ColorPO()
+
+from ConfigparserPO import *
+Configparser_PO = ConfigparserPO('config.ini')
+
+# 第一轮筛选stock的文件
+jsonFile = Configparser_PO.DATA("jsonfile")
+
+
 
 def run():
 
@@ -49,11 +54,11 @@ def run():
 
     # 下载的数据文件放在project之外，不被git
     if os.name == "nt":
-        varYMD1file = "D:\\51\\python\\stock\\sz\\" + varYMD1file
-        varYMD2file = "D:\\51\\python\\stock\\sz\\" + varYMD2file
+        varYMD1file = Configparser_PO.PATH("nt") + varYMD1file
+        varYMD2file = Configparser_PO.PATH("nt") + varYMD2file
     else:
-        varYMD1file = "/Users/linghuchong/Downloads/51/Python/stock/sz/" + varYMD1file
-        varYMD2file = "/Users/linghuchong/Downloads/51/Python/stock/sz/" + varYMD2file
+        varYMD1file = Configparser_PO.PATH("mac") + varYMD1file
+        varYMD2file = Configparser_PO.PATH("mac") + varYMD2file
 
     # 判断两个文件是否存在
     if os.access(varYMD1file, os.F_OK) and os.access(varYMD2file, os.F_OK):
@@ -121,6 +126,16 @@ def run():
         Color_PO.outColor([{"35": "sz > [" + varTitle + ']' + " > " + str(len(l_tmp))}])
         # print(l_tmp)  # ['000630', '000953', '001259',...
         print("d_stock =", d_tmp)  # {'000630': '铜陵有色', '000953': '河化股份',
+
+        try:
+            # 打开文件并写入 JSON 数据
+            with open(jsonFile, 'w', encoding='utf-8') as file:
+                # 使用 json.dump 将字典写入文件
+                json.dump(d_tmp, file, ensure_ascii=False, indent=4)
+            print(f"数据已成功保存到 {jsonFile}")
+        except Exception as e:
+            print(f"保存文件时出现错误: {e}")
+
 
     else:
         if os.access(varYMD1file, os.F_OK) == False :

@@ -2,19 +2,17 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2025-04-20
-# Description: 执行两个文档数据
-# 深圳交易证券所 https://www.szse.cn/market/trend/index.html
-# https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000120
-#
+# Description:深圳，第二轮筛选stock，实时查询匹配符合要求的stock
+# 实时数据源：https://stockpage.10jqka.com.cn/realHead_v2.html#hs_002564
 # 步骤：
-# 1，获取0422.xlsx和0423.xlsx两个文件，从深圳交易证券所下载
-# 2，执行 run("0423")  0423是文件名0423.xlsx
-# 第一轮筛选逻辑：
+# 1，读取 sz.json
+# 2，与实时数据源进行匹配，筛选出服药要求的stock。
+# 3，生成日志并保存到 sz.xlsx
 # *****************************************************************
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-
+import logging
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl.styles.stylesheet")
 
@@ -28,10 +26,13 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-import logging
+from ConfigparserPO import *
+Configparser_PO = ConfigparserPO('config.ini')
 
-excelFile = "3save_stock.xlsx"
-logName = "4sz.log"
+jsonFile = Configparser_PO.DATA("jsonfile")  # 第一轮筛选stock的文件
+excelFile = Configparser_PO.DATA("excelfile")  # 第二轮筛选stock后的文件
+logFile = Configparser_PO.DATA("logfile")  # 日志文件
+
 
 
 # 创建一个日志记录器
@@ -39,7 +40,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # 创建一个文件处理器
-file_handler = logging.FileHandler(logName)
+file_handler = logging.FileHandler(logFile)
 # file_handler.setLevel(logging.DEBUG)
 file_handler.setLevel(logging.INFO)
 
@@ -58,7 +59,23 @@ logger.addHandler(file_handler)
 # logger.addHandler(console_handler)
 
 
-def run(d_stock):
+def run():
+
+    # 1, 读取 JSON 文件
+    try:
+        # 打开 JSON 文件
+        with open(jsonFile, 'r', encoding='utf-8') as file:
+            # 使用 json.load 函数将文件内容转换为字典
+            d_stock = json.load(file)
+        print("成功读取数据：")
+        print(d_stock)
+    except FileNotFoundError:
+        print(f"错误：未找到文件 {jsonFile}")
+    except json.JSONDecodeError:
+        print(f"错误：无法解析 {jsonFile} 中的 JSON 数据")
+    except Exception as e:
+        print(f"发生未知错误：{e}")
+
 
     try:
 
@@ -83,13 +100,14 @@ def run(d_stock):
         varTitle = str(varMD1) + " - " + str(varMD2)
         l_result.append(varTitle)
 
-        Color_PO.outColor([{"35": "sz > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle +  " > " + str(len(d_stock)) }])
+        Color_PO.outColor([{"35": "sz > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle + " > " + str(len(d_stock)) }])
         logger.info("sz > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle + " > " + str(len(d_stock)))
         logger.info(d_stock)
 
         for i in range(len(l_tmp)):
             varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str(l_tmp[i])
             Web_PO = WebPO("noChrome")
+            # Web_PO = WebPO("chrome")
             Web_PO.openURL(varUrl)
             sleep(1)
             d_curr = {}
@@ -153,10 +171,10 @@ def run(d_stock):
 
         print("已保存", excelFile)
 
-        if os.name == 'nt':
-            os.system("start " + excelFile)
-        else:
-            os.system("open " + excelFile)
+        # if os.name == 'nt':
+        #     os.system("start " + excelFile)
+        # else:
+        #     os.system("open " + excelFile)
 
     except Exception as e:
         logger.error(f"发生错误: {e}")
@@ -164,7 +182,4 @@ def run(d_stock):
 
 if __name__ == "__main__":
 
-    # 4-29
-    d_stock = {'000630': '铜陵有色', '000953': '河化股份', '001259': '利仁科技', '002165': '红 宝 丽', '002278': '神开股份', '002564': '天沃科技', '002592': 'ST八菱', '002827': '高争民爆', '002836': '新宏泽', '003007': '直真科技', '003017': '大洋生物', '300263': '隆华科技', '300442': '润泽科技', '300661': '圣邦股份', '300666': '江丰电子', '300789': '唐源电气', '300870': '欧陆通', '301119': '正强股份', '301335': '天元宠物', '301529': '福赛科技'}
-
-    run(d_stock)
+    run()

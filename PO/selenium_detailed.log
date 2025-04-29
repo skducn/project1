@@ -123,3 +123,15 @@ Stacktrace:
 20  libsystem_pthread.dylib             0x00007ff80b61a4e1 _pthread_start + 125
 21  libsystem_pthread.dylib             0x00007ff80b615f6b thread_start + 15
 
+2025-04-29 14:29:52,290 - DEBUG - POST http://localhost:12553/session/5c74816234eaa31c999b91c85b429448/url {'url': 'https://www.baidu.com'}
+2025-04-29 14:30:04,935 - DEBUG - http://localhost:12553 "POST /session/5c74816234eaa31c999b91c85b429448/url HTTP/1.1" 200 14
+2025-04-29 14:30:04,935 - DEBUG - Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-29 14:30:04,935 - DEBUG - Finished Request
+2025-04-29 14:33:51,852 - DEBUG - POST http://localhost:13083/session/c3c3955423e9cd398adfc79b7cf83cc0/url {'url': 'https://www.baidu.com'}
+2025-04-29 14:33:52,460 - DEBUG - http://localhost:13083 "POST /session/c3c3955423e9cd398adfc79b7cf83cc0/url HTTP/1.1" 200 14
+2025-04-29 14:33:52,460 - DEBUG - Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-29 14:33:52,460 - DEBUG - Finished Request
+2025-04-29 14:35:59,881 - DEBUG - POST http://localhost:13476/session/9064d39852413f20ffc7c3fece736392/url {'url': 'https://www.baidu.com'}
+2025-04-29 14:36:00,806 - DEBUG - http://localhost:13476 "POST /session/9064d39852413f20ffc7c3fece736392/url HTTP/1.1" 200 14
+2025-04-29 14:36:00,806 - DEBUG - Remote response: status=200 | data={"value":null} | headers=HTTPHeaderDict({'Content-Length': '14', 'Content-Type': 'application/json; charset=utf-8', 'cache-control': 'no-cache'})
+2025-04-29 14:36:00,806 - DEBUG - Finished Request

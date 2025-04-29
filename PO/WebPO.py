@@ -110,225 +110,30 @@ from selenium.webdriver.support.ui import Select
 import logging
 from selenium.webdriver.remote.remote_connection import LOGGER
 
-# 配置日志
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    filename='selenium_detailed.log'
-)
-# 设置 Selenium 远程连接日志级别
-LOGGER.setLevel(logging.DEBUG)
 
 class WebPO(DomPO):
 
-    def delRequests(self):
-
-        # 清除浏览器的请求历史记录
-        del self.driver.requests
-
-    def requests(self, varInterFace):
-
-        # 获取页面接口请求
-        for request in self.driver.requests:
-            if varInterFace in request.url:
-                return str(request.url).split(varInterFace)[1]
-                # return request.url
-
-    def requestsExcept(self, varIgnore):
-
-        # 获取当前页面除以下之外的所有请求地址
-
-        # # 清除浏览器的请求历史记录
-        # self.driver.execute_cdp_cmd("Network.clearBrowserCookies", {})
-        # self.driver.execute_cdp_cmd("Network.clearBrowserCache", {})
-
-        for request in self.driver.requests:
-            if (request.url)[-3:] in varIgnore or (request.url)[-4:] in varIgnore:
-                ...
-            else:
-                print(request.method, request.url)
-                # print(request.method)
-                # print(request.body)
-                # print(request.headers)
-                # print(request.response.status_code)
-                # print(request.response.body.decode('utf-8'))  # 解决中文乱码
-                # return request.method, request.url
-            # return None
-
-    def saveas(self):
-
-        # 等待并接受"另存为"弹框
-        try:
-            save_as = WebDriverWait(self.driver, 10).until(
-                element_to_be_clickable((By.CSS_SELECTOR, "存储"))  # "Save As"
-            )
-            save_as.click()  # 或者
-            # save_as.send_keys("/Users/linghuchong/Downloads/123.xlsx") # 手动指定保存位置和文件名
-        except Exception as e:
-            print(f"未找到'另存为'弹框: {e}")
-
-    def updateChromedriver(self, options):
-
-        # 获取浏览器版本及主版本（前三位如果相同，则为同一版本）
-        if os.name == "nt":
-            # for win
-
-            varChromePath = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
-            varDriverPath = r"C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
-
-            # 1 本机chrome程序路径
-            chromeVer = subprocess.check_output("powershell -command \"&{(Get-Item '" + varChromePath + "').VersionInfo.ProductVersion}\"", shell=True)
-            chromeVer = bytes.decode(chromeVer).replace("\n", '')
-            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')  # 120.0.6099.
-
-            # 2 驱动路径
-            currPath = varDriverPath + chromeVer3
-
-            # 3 检查chromedriver主版本是否存在
-            if os.path.isdir(currPath) == False:
-                # 自动下载chrome驱动并修改成主板本
-                print("chromedriver downloading...")
-                Service(ChromeDriverManager().install())
-                l_folder = os.listdir(varDriverPath)
-                for i in range(len(l_folder)):
-                    if chromeVer3 in l_folder[i]:
-                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
-                        break
-                os.chdir(varDriverPath + chromeVer3 + "\\chromedriver-win32")
-            s = Service(varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
-            self.driver = webdriver.Chrome(service=s, options=options)
-
-        elif os.name == "posix":
-            # for mac
-            # chromedriver --version
-            # (py310) localhost-2:project linghuchong$ which chromedriver
-            # /usr/local/bin/chromedriver
-
-            varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
-
-            # 1 本机chrome程序路径
-            chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
-            chromeVer = bytes.decode(chromeVer).replace("\n", '')
-            chromeVer = chromeVer.split('Google Chrome ')[1].strip()
-            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
-            print("chromeVer3", chromeVer3)
-
-            # 2 驱动路径
-            currPath = varDriverPath + chromeVer3
-            print(currPath)
-
-            # 3 检查chromedriver主版本是否存在
-            if os.path.isdir(currPath) == False:
-                print("chromedriver downloading...")
-                Service(ChromeDriverManager().install())
-                l_folder = os.listdir(varDriverPath)
-                for i in range(len(l_folder)):
-                    if chromeVer3 in l_folder[i]:
-                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
-                        break
-                os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
-                os.system("chmod 775 chromedriver")
-                # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
-            print(currPath + "/chromedriver-mac-x64/chromedriver")
-            s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
-            # print(s)
-            # self.driver = webdriver.Chrome(service=s, options=options)
-            # from webdriver_manager.chrome import ChromeDriverManager
-            # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="135.0.7049.114").install()),
-                                      options=options)
-            print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-            print("chrome驱动版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+    def __init__(self, browser_type="chrome"):
+        self.browser_type = browser_type
+        self.driver = self._initialize_driver()
+        # 配置日志
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s',
+            filename='selenium_detailed.log'
+        )
+        # 设置 Selenium 远程连接日志级别
+        LOGGER.setLevel(logging.INFO)
 
 
-
-            # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
-            # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
-
-
-            # try:
-            #     self.driver = webdriver.Chrome(service=s, options=options)
-            # except:
-            #     # 下载失败通过网站下载文件
-            #     print("chromedriver updated failed!")
-            #     print("download from https://googlechromelabs.github.io/chrome-for-testing/#stable")
-            #     sys.exit(0)
-            #     # shutil.rmtree("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
-            #     # os.mkdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
-            #     # os.chdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
-            #     # print(os.getcwd())
-            #     # os.system("curl -o chromedriver-mac-x64.zip https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/mac-x64/chromedriver-mac-x64.zip")
-            #     # shutil.unpack_archive('./chromedriver-mac-x64.zip', './', 'zip')
-            #     # # sys.exit(0)
-
-    def load_cookies(self, driver, file_path):
-        """从文件加载 Cookies 到当前会话"""
-        try:
-            with open(file_path, 'r') as f:
-                cookies = json.load(f)
-                for cookie in cookies:
-                    driver.add_cookie(cookie)
-        except FileNotFoundError:
-            print("未找到保存的 Cookies 文件。")
-
-    def _openURL(self, varURL):
+    def _initialize_driver(self):
 
         # 1.1 打开chrome
 
         # 1 配置项
         options = Options()
 
-        if self.driver == "chromeCookies":
-
-            # todo 屏幕
-            options.add_argument("--start-maximized")  # 最大化浏览器
-            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
-            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
-            # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
-            # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
-            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
-
-            # todo 浏览器
-            options.add_experimental_option("detach", True)  # 浏览器永不关闭
-            options.add_argument('--incognito')  # 无痕模式
-            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
-            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
-            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
-            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
-            # options.headless = True  # 无界面模式
-            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
-
-            # todo 安全性
-            options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
-            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
-            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
-            # 禁用“保存密码”弹出窗口
-            options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
-
-            # todo 系统
-            # options.add_argument("disable-cache")  # 禁用缓存
-            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
-            options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
-            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
-            options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
-            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
-            options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
-            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
-            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
-
-            # 更新下载chromedriver
-            self.updateChromedriver(options)
-
-            self.driver.get(varURL)
-            return self.driver
-
-        elif self.driver == "chrome":
-
-            options.add_argument("--verbose")
-            options.add_argument('--start-maximized')
-            options.add_argument('--incognito')
-            options.add_argument('--disable-popup-blocking')
+        if self.browser_type == "chromeCookies":
 
             # todo 屏幕
             options.add_argument("--start-maximized")  # 最大化浏览器
@@ -370,16 +175,62 @@ class WebPO(DomPO):
             try:
                 # 更新下载chromedriver
                 self.updateChromedriver(options)
-
-                # # 绕过检测（滑动验证码）
-                # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
-
-                self.driver.get(varURL)
             except Exception as e:
                 logging.error(f"发生错误: {e}")
+
             return self.driver
 
-        elif self.driver == "noChrome":
+        elif self.browser_type == "chrome":
+
+            # todo 屏幕
+            options.add_argument("--start-maximized")  # 最大化浏览器
+            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
+            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
+            # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
+            # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
+            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
+
+            # todo 浏览器
+            options.add_experimental_option("detach", True)  # 浏览器永不关闭
+            options.add_argument('--incognito')  # 无痕模式
+            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
+            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+            # options.headless = True  # 无界面模式
+            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+            # todo 安全性
+            options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
+            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
+            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
+            # 禁用“保存密码”弹出窗口
+            options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
+
+            # todo 系统
+            # options.add_argument("disable-cache")  # 禁用缓存
+            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+            options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+            options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+            options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+            # # 绕过检测（滑动验证码）
+            # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
+
+            try:
+                # 更新下载chromedriver
+                self.updateChromedriver(options)
+            except Exception as e:
+                logging.error(f"发生错误: {e}")
+
+            return self.driver
+
+        elif self.browser_type == "noChrome":
 
             # 1 配置项
 
@@ -399,13 +250,15 @@ class WebPO(DomPO):
             # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
-            # 更新下载chromedriver
-            self.updateChromedriver(options)
+            try:
+                # 更新下载chromedriver
+                self.updateChromedriver(options)
+            except Exception as e:
+                logging.error(f"发生错误: {e}")
 
-            self.driver.get(varURL)
             return self.driver
 
-        elif self.driver == "appChrome":
+        elif self.browser_type == "appChrome":
 
             # 1 配置项
 
@@ -440,13 +293,16 @@ class WebPO(DomPO):
             # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
             # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
-            # 更新下载chromedriver
-            self.updateChromedriver(options)
+            try:
+                # 更新下载chromedriver
+                self.updateChromedriver(options)
+            except Exception as e:
+                logging.error(f"发生错误: {e}")
 
-            self.driver.get(varURL)
             return self.driver
     def openURL(self, varURL):
-        self._openURL(varURL)
+        # self._openURL(varURL)
+        self.driver.get(varURL)
 
     def _openUrlByAuth(self, var1genCookies, varPrefixUrl, varProtectedUrl):
 
@@ -567,6 +423,165 @@ class WebPO(DomPO):
         # 1.1 打开网页
         self.driver.get(varUrl)
         sleep(t)
+
+
+
+    def delRequests(self):
+
+        # 清除浏览器的请求历史记录
+        del self.driver.requests
+
+    def requests(self, varInterFace):
+
+        # 获取页面接口请求
+        for request in self.driver.requests:
+            if varInterFace in request.url:
+                return str(request.url).split(varInterFace)[1]
+                # return request.url
+
+    def requestsExcept(self, varIgnore):
+
+        # 获取当前页面除以下之外的所有请求地址
+
+        # # 清除浏览器的请求历史记录
+        # self.driver.execute_cdp_cmd("Network.clearBrowserCookies", {})
+        # self.driver.execute_cdp_cmd("Network.clearBrowserCache", {})
+
+        for request in self.driver.requests:
+            if (request.url)[-3:] in varIgnore or (request.url)[-4:] in varIgnore:
+                ...
+            else:
+                print(request.method, request.url)
+                # print(request.method)
+                # print(request.body)
+                # print(request.headers)
+                # print(request.response.status_code)
+                # print(request.response.body.decode('utf-8'))  # 解决中文乱码
+                # return request.method, request.url
+            # return None
+
+    def saveas(self):
+
+        # 等待并接受"另存为"弹框
+        try:
+            save_as = WebDriverWait(self.driver, 10).until(
+                element_to_be_clickable((By.CSS_SELECTOR, "存储"))  # "Save As"
+            )
+            save_as.click()  # 或者
+            # save_as.send_keys("/Users/linghuchong/Downloads/123.xlsx") # 手动指定保存位置和文件名
+        except Exception as e:
+            print(f"未找到'另存为'弹框: {e}")
+
+    def updateChromedriver(self, options):
+
+        # 获取浏览器版本及主版本（前三位如果相同，则为同一版本）
+        if os.name == "nt":
+            # for win
+
+            varChromePath = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+            varDriverPath = r"C:\\Users\\jh\\.wdm\\drivers\\chromedriver\\win64\\"
+
+            # 1 本机chrome程序路径
+            chromeVer = subprocess.check_output("powershell -command \"&{(Get-Item '" + varChromePath + "').VersionInfo.ProductVersion}\"", shell=True)
+            chromeVer = bytes.decode(chromeVer).replace("\n", '')
+            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')  # 120.0.6099.
+
+            # 2 驱动路径
+            currPath = varDriverPath + chromeVer3
+
+            # 3 检查chromedriver主版本是否存在
+            if os.path.isdir(currPath) == False:
+                # 自动下载chrome驱动并修改成主板本
+                print("chromedriver downloading...")
+                Service(ChromeDriverManager().install())
+                l_folder = os.listdir(varDriverPath)
+                for i in range(len(l_folder)):
+                    if chromeVer3 in l_folder[i]:
+                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
+                        break
+                os.chdir(varDriverPath + chromeVer3 + "\\chromedriver-win32")
+            s = Service(varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
+            self.driver = webdriver.Chrome(service=s, options=options)
+            # print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+            # print("chrome驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[
+            #     0])  # 114.0.5735.90  //chrome驱动版本
+
+
+        elif os.name == "posix":
+            # for mac
+            # chromedriver --version
+            # (py310) localhost-2:project linghuchong$ which chromedriver
+            # /usr/local/bin/chromedriver
+
+            varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+
+            # 1 本机chrome程序路径
+            chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            chromeVer = bytes.decode(chromeVer).replace("\n", '')
+            chromeVer = chromeVer.split('Google Chrome ')[1].strip()
+            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
+            print("chromeVer3", chromeVer3)
+
+            # 2 驱动路径
+            currPath = varDriverPath + chromeVer3
+            print(currPath)
+
+            # 3 检查chromedriver主版本是否存在
+            if os.path.isdir(currPath) == False:
+                print("chromedriver downloading...")
+                Service(ChromeDriverManager().install())
+                l_folder = os.listdir(varDriverPath)
+                for i in range(len(l_folder)):
+                    if chromeVer3 in l_folder[i]:
+                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
+                        break
+                os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
+                os.system("chmod 775 chromedriver")
+                # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
+            print(currPath + "/chromedriver-mac-x64/chromedriver")
+            s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
+            # print(s)
+            # self.driver = webdriver.Chrome(service=s, options=options)
+            # from webdriver_manager.chrome import ChromeDriverManager
+            # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="135.0.7049.114").install()),
+                                      options=options)
+            print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+            print("chrome驱动版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+
+
+
+            # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
+            # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
+
+
+            # try:
+            #     self.driver = webdriver.Chrome(service=s, options=options)
+            # except:
+            #     # 下载失败通过网站下载文件
+            #     print("chromedriver updated failed!")
+            #     print("download from https://googlechromelabs.github.io/chrome-for-testing/#stable")
+            #     sys.exit(0)
+            #     # shutil.rmtree("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
+            #     # os.mkdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
+            #     # os.chdir("/Users/linghuchong/.wdm/drivers/chromedriver/mac64/" + chromeVer3)
+            #     # print(os.getcwd())
+            #     # os.system("curl -o chromedriver-mac-x64.zip https://storage.googleapis.com/chrome-for-testing-public/127.0.6533.88/mac-x64/chromedriver-mac-x64.zip")
+            #     # shutil.unpack_archive('./chromedriver-mac-x64.zip', './', 'zip')
+            #     # # sys.exit(0)
+
+    def load_cookies(self, driver, file_path):
+        """从文件加载 Cookies 到当前会话"""
+        try:
+            with open(file_path, 'r') as f:
+                cookies = json.load(f)
+                for cookie in cookies:
+                    driver.add_cookie(cookie)
+        except FileNotFoundError:
+            print("未找到保存的 Cookies 文件。")
+
+
+
 
     def getSource(self):
         # 1. 获取源码

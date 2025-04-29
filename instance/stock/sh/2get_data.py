@@ -2,7 +2,7 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2025-04-20
-# Description: 执行两个文档数据
+# Description: 上海，第一轮筛选stock
 # 步骤：
 # 1，2025-04-23.xlsx和2025-04-24.xlsx两个文件
 # 2，执行 run("4-22", "4-23")
@@ -27,15 +27,22 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
+from ConfigparserPO import *
+Configparser_PO = ConfigparserPO('config.ini')
+
+# 第一轮筛选stock的文件
+jsonFile = Configparser_PO.DATA("jsonfile")
 
 def run():
 
 
     # 获取上一个交易日与上上交易日的数据
-    varCurrMD = Time_PO.getMonth() + Time_PO.getDay()
-    varYMD2 = (Time_PO.getPreviousWorkingDay([2025, int(varCurrMD[:2]), int(varCurrMD[2:])]))  # 2025-04-28
-    l_varYMD2 = str(varYMD2).split("-")
-    varMD2 = str(l_varYMD2[1]) + str(l_varYMD2[2])
+    # varCurrMD = Time_PO.getMonth() + Time_PO.getDay()
+    # varYMD2 = (Time_PO.getPreviousWorkingDay([2025, int(varCurrMD[:2]), int(varCurrMD[2:])]))  # 2025-04-28
+    # l_varYMD2 = str(varYMD2).split("-")
+    # varMD2 = str(l_varYMD2[1]) + str(l_varYMD2[2])
+    # varYMD2file = varMD2 + ".xlsx"
+    varMD2 = Time_PO.getMonth() + Time_PO.getDay()
     varYMD2file = varMD2 + ".xlsx"
 
     # 通过varMD2获取上一个工作日，如今天是0429，varMD2=0428
@@ -45,16 +52,16 @@ def run():
     varMD1 = str(l_varYMD1[1]) + str(l_varYMD1[2])
     varYMD1file = varMD1 + ".xlsx"
 
-    # print(varYMD1file)
-    # print(varYMD2file)
+    print(varYMD1file)
+    print(varYMD2file)
 
     # 下载的数据文件放在project之外，不被git
     if os.name == "nt":
-        varYMD1file = "D:\\51\\python\\stock\\sz\\" + varYMD1file
-        varYMD2file = "D:\\51\\python\\stock\\sz\\" + varYMD2file
+        varYMD1file = Configparser_PO.PATH("nt") + varYMD1file
+        varYMD2file = Configparser_PO.PATH("nt") + varYMD2file
     else:
-        varYMD1file = "/Users/linghuchong/Downloads/51/Python/stock/sz/" + varYMD1file
-        varYMD2file = "/Users/linghuchong/Downloads/51/Python/stock/sz/" + varYMD2file
+        varYMD1file = Configparser_PO.PATH("mac") + varYMD1file
+        varYMD2file = Configparser_PO.PATH("mac") + varYMD2file
 
 
     # 判断文件是否存在
@@ -104,6 +111,16 @@ def run():
         Color_PO.outColor([{"35": "sh > [" + varTitle + ']' + " > " + str(len(l_tmp))}])
         # print(l_tmp)
         print("d_stock =", d_tmp)
+
+        try:
+            # 打开文件并写入 JSON 数据
+            with open(jsonFile, 'w', encoding='utf-8') as file:
+                # 使用 json.dump 将字典写入文件
+                json.dump(d_tmp, file, ensure_ascii=False, indent=4)
+            print(f"数据已成功保存到 {jsonFile}")
+        except Exception as e:
+            print(f"保存文件时出现错误: {e}")
+
 
     else:
         if os.access(varYMD1file, os.F_OK) == False:
