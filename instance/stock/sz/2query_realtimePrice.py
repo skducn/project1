@@ -61,13 +61,30 @@ logger.addHandler(file_handler)
 
 def run():
 
+    # 先合并json,将sh.json合并到sz.json
+
+    # try:
+    #     # 打开 JSON 文件
+    #     with open("D:\\51\\python\\project\\instance\\stock\\sh\\sh.json", 'r', encoding='utf-8') as file:
+    #         # 使用 json.load 函数将文件内容转换为字典
+    #         d_stock_sh = json.load(file)
+    #     print("成功读取sh数据：")
+    #     print(d_stock_sh)
+    # except FileNotFoundError:
+    #     print(f"错误：未找到文件 {jsonFile}")
+    # except json.JSONDecodeError:
+    #     print(f"错误：无法解析 {jsonFile} 中的 JSON 数据")
+    # except Exception as e:
+    #     print(f"发生未知错误：{e}")
+
+
     # 1, 读取 JSON 文件
     try:
         # 打开 JSON 文件
         with open(jsonFile, 'r', encoding='utf-8') as file:
             # 使用 json.load 函数将文件内容转换为字典
             d_stock = json.load(file)
-        print("成功读取数据：")
+        print("成功读取sz数据：")
         print(d_stock)
     except FileNotFoundError:
         print(f"错误：未找到文件 {jsonFile}")
@@ -75,6 +92,10 @@ def run():
         print(f"错误：无法解析 {jsonFile} 中的 JSON 数据")
     except Exception as e:
         print(f"发生未知错误：{e}")
+
+    # d_stock.update(d_stock_sh)
+    # print(d_stock)
+    # sys.exit(0)
 
 
     try:
@@ -142,14 +163,26 @@ def run():
                 # print(i + 1, d_curr, varUrl)
                 l_dd.append(l_tmp[i])
                 if float(d_curr['涨幅']) < 0:
-                    Color_PO.outColor([{"32": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
-                    varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
+                    if int(l_tmp[i]) >= 600000:
+                        Color_PO.outColor([{"32": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SH" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
+                        varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
+                        logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SH" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
+                    else:
+                        Color_PO.outColor([{"32": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
+                        varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
+                        logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
+
                     l_result.append(varUrl)
                 else:
-                    Color_PO.outColor([{"31": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
-                    varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
+                    if int(l_tmp[i]) >= 600000:
+                        Color_PO.outColor([{"31": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SH" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
+                        varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
+                        logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SH" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
+                    else:
+                        Color_PO.outColor([{"31": str(i + 1) + " , " + str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
+                        varUrl = "https://xueqiu.com/S/SZ" + str(l_tmp[i])
+                        logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
                     l_result.append(varUrl)
-                logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
 
                 Openpyxl_PO3 = OpenpyxlPO(excelFile)
                 l_row_data = Openpyxl_PO3.getOneRow(1)
