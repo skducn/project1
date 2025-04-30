@@ -1,3 +1,86 @@
-2025-04-29 15:29:38,487 - INFO - sz > ʵʱ��ѯ 2025/04/29 15:29:38 > 0425 - 0428 > 49
-2025-04-29 15:29:38,487 - INFO - {'600039': '�Ĵ�·��', '600050': '�й���ͨ', '600058': '���չ', '600067': '�ڳ��²�', '600094': '������', '600273': '�λ���Դ', '600302': '��׼�ɷ�', '600323': '�������', '600351': '�Ǳ�ҩҵ', '600380': '����Ԫ', '600460': 'ʿ��΢', '600490': '������Դ', '600503': '��������', '600637': '��������', '600763': 'ͨ��ҽ��', '600866': '�Ǻ��Ƽ�', '600873': '÷������', '600996': '�������', '601021': '���ﺽ��', '601169': '��������', '601229': '�Ϻ�����', '601298': '�ൺ��', '601398': '��������', '601567': '����ҽ��', '601818': '�������', '601921': '��洫ý', '601928': '��˴�ý', '601939': '��������', '603025': '����Ƽ�', '603061': '��ͨ', '603066': '���ɴ���', '603086': '�ȴ�ɷ�', '603098': 'ɭ�عɷ�', '603163': 'ʥ�ͼ���', '603182': '�λ��ɷ�', '603191': '�������', '603330': '�����²�', '603506': '�϶���ҵ', '603601': '�����Ƽ�', '603609': '�̷�ɷ�', '603709': '��Դ�Ҿ�', '603737': '������', '603882': '����ҽѧ', '603901': '��������', '603997': '�̷�ɷ�', '605133': '��̩�ɷ�', '605151': '���Ϻ�', '605186': '������Ϣ', '605577': '���洫ý'}
-2025-04-29 15:30:47,968 - ERROR - ��������: name 'd_tmp' is not defined
+2025-04-30 16:42:27,652 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/2get_data.py[line:130] - WARNING: d_stock ={'600126': '杭钢股份', '600131': '国网信通', '600166': '福田汽车', '600182': 'S佳通', '600183': '生益科技', '600221': '海航控股', '600338': '西藏珠峰', '600477': '杭萧钢构', '600530': '交大昂立', '600538': '国发股份', '600550': '保变电气', '600563': '法拉电子', '600630': '龙头股份', '600676': '交运股份', '600686': '金龙汽车', '600733': '北汽蓝谷', '600759': '洲际油气', '600776': '东方通信', '600777': 'ST新潮', '601007': '金陵饭店', '601118': '海南橡胶', '601218': '吉鑫科技', '601700': '风范股份', '601808': '中海油服', '603023': '*ST威帝', '603036': '如通股份', '603073': '彩蝶实业', '603099': '长白山', '603178': '圣龙股份', '603181': '皇马科技', '603195': '公牛集团', '603312': '西典新能', '603322': '超讯通信', '603338': '浙江鼎力', '603369': '今世缘', '603516': '淳中科技', '603533': '掌阅科技', '603557': 'ST起步', '603586': '金麒麟', '603587': '地素时尚', '603605': '珀莱雅', '603786': '科博达', '603806': '福斯特', '605060': '联德股份', '605080': '浙江自然', '605099': '共创草坪', '605333': '沪光股份', '605555': '德昌股份'}
+2025-04-30 16:45:23,662 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:76] - INFO: 已完成 =>1
+2025-04-30 16:45:36,804 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:76] - INFO: 已完成 =>2
+2025-04-30 16:48:59,244 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:91] - ERROR: (<class 'TypeError'>, TypeError('not all arguments converted during string formatting'), <traceback object at 0x1157ab7c0>)
+2025-04-30 16:51:26,347 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:95] - ERROR: 发生错误: invalid literal for int() with base 10: 'a'
+2025-04-30 16:52:05,510 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:96] - ERROR: 发生错误: invalid literal for int() with base 10: 'a'
+2025-04-30 16:52:13,217 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:96] - INFO: 发生错误: invalid literal for int() with base 10: 'a'
+2025-04-30 16:55:07,190 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:99] - ERROR: 发生错误: not all arguments converted during string formatting
+2025-04-30 16:56:02,582 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:99] - ERROR: 发生错误: not all arguments converted during string formatting
+2025-04-30 17:01:10,625 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:99] - ERROR: 发生错误: can only concatenate str (not "int") to str
+2025-04-30 17:01:52,371 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:69] - INFO: 【共68页】
+2025-04-30 17:01:54,993 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>1
+2025-04-30 17:01:57,626 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>2
+2025-04-30 17:02:00,323 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>3
+2025-04-30 17:02:03,105 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>4
+2025-04-30 17:02:05,973 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>5
+2025-04-30 17:02:08,915 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>6
+2025-04-30 17:02:11,990 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>7
+2025-04-30 17:02:15,105 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>8
+2025-04-30 17:02:18,347 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>9
+2025-04-30 17:02:21,632 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>10
+2025-04-30 17:02:24,934 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>11
+2025-04-30 17:02:28,338 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>12
+2025-04-30 17:02:31,821 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>13
+2025-04-30 17:02:35,354 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>14
+2025-04-30 17:02:38,990 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>15
+2025-04-30 17:02:42,741 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>16
+2025-04-30 17:02:46,586 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>17
+2025-04-30 17:02:50,559 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>18
+2025-04-30 17:02:54,622 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>19
+2025-04-30 17:02:58,688 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>20
+2025-04-30 17:03:02,844 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>21
+2025-04-30 17:03:07,210 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>22
+2025-04-30 17:03:11,571 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>23
+2025-04-30 17:03:15,963 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>24
+2025-04-30 17:03:20,448 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>25
+2025-04-30 17:03:24,980 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>26
+2025-04-30 17:03:29,664 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>27
+2025-04-30 17:03:34,405 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>28
+2025-04-30 17:03:39,308 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>29
+2025-04-30 17:03:44,185 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>30
+2025-04-30 17:03:49,401 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>31
+2025-04-30 17:03:54,462 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>32
+2025-04-30 17:03:59,596 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>33
+2025-04-30 17:04:04,771 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>34
+2025-04-30 17:04:10,043 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>35
+2025-04-30 17:04:15,405 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>36
+2025-04-30 17:04:20,802 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>37
+2025-04-30 17:04:26,254 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>38
+2025-04-30 17:04:31,851 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>39
+2025-04-30 17:04:37,472 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>40
+2025-04-30 17:04:43,245 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>41
+2025-04-30 17:04:49,081 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>42
+2025-04-30 17:04:54,988 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>43
+2025-04-30 17:05:00,964 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>44
+2025-04-30 17:05:07,041 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>45
+2025-04-30 17:05:13,185 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>46
+2025-04-30 17:05:19,385 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>47
+2025-04-30 17:05:25,652 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>48
+2025-04-30 17:05:32,106 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>49
+2025-04-30 17:05:38,540 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>50
+2025-04-30 17:05:45,113 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>51
+2025-04-30 17:05:51,696 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>52
+2025-04-30 17:05:58,468 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>53
+2025-04-30 17:06:05,250 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>54
+2025-04-30 17:06:12,179 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>55
+2025-04-30 17:06:19,075 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>56
+2025-04-30 17:06:26,101 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>57
+2025-04-30 17:06:33,263 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>58
+2025-04-30 17:06:40,526 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>59
+2025-04-30 17:06:47,815 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>60
+2025-04-30 17:06:55,209 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>61
+2025-04-30 17:07:02,762 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>62
+2025-04-30 17:07:10,262 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>63
+2025-04-30 17:07:17,830 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>64
+2025-04-30 17:07:25,482 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>65
+2025-04-30 17:07:33,326 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>66
+2025-04-30 17:07:41,346 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>67
+2025-04-30 17:07:49,179 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1down_sourceData.py[line:83] - INFO: 已完成 =>68
+2025-04-30 17:16:55,699 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/2get_data.py[line:117] - INFO: sh > [0429 - 0430] > 57
+2025-04-30 17:16:55,699 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/2get_data.py[line:121] - WARNING: d_stock ={'600126': '杭钢股份', '600131': '国网信通', '600166': '福田汽车', '600182': 'S佳通', '600183': '生益科技', '600221': '海航控股', '600338': '西藏珠峰', '600477': '杭萧钢构', '600530': '交大昂立', '600538': '国发股份', '600550': '保变电气', '600563': '法拉电子', '600630': '龙头股份', '600676': '交运股份', '600686': '金龙汽车', '600733': '北汽蓝谷', '600759': '洲际油气', '600776': '东方通信', '600777': 'ST新潮', '601007': '金陵饭店', '601118': '海南橡胶', '601218': '吉鑫科技', '601700': '风范股份', '601808': '中海油服', '603023': '*ST威帝', '603036': '如通股份', '603073': '彩蝶实业', '603099': '长白山', '603178': '圣龙股份', '603181': '皇马科技', '603195': '公牛集团', '603312': '西典新能', '603322': '超讯通信', '603338': '浙江鼎力', '603369': '今世缘', '603516': '淳中科技', '603533': '掌阅科技', '603557': 'ST起步', '603586': '金麒麟', '603587': '地素时尚', '603605': '珀莱雅', '603786': '科博达', '603806': '福斯特', '605060': '联德股份', '605080': '浙江自然', '605099': '共创草坪', '605333': '沪光股份', '605555': '德昌股份'}
+2025-04-30 17:24:59,870 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3query_realtimePrice.py[line:81] - INFO: sz > 实时查询 2025/04/30 17:24:59 > 0428 - 0429 > 48
+2025-04-30 17:24:59,870 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3query_realtimePrice.py[line:82] - INFO: {'600126': '杭钢股份', '600131': '国网信通', '600166': '福田汽车', '600182': 'S佳通', '600183': '生益科技', '600221': '海航控股', '600338': '西藏珠峰', '600477': '杭萧钢构', '600530': '交大昂立', '600538': '国发股份', '600550': '保变电气', '600563': '法拉电子', '600630': '龙头股份', '600676': '交运股份', '600686': '金龙汽车', '600733': '北汽蓝谷', '600759': '洲际油气', '600776': '东方通信', '600777': 'ST新潮', '601007': '金陵饭店', '601118': '海南橡胶', '601218': '吉鑫科技', '601700': '风范股份', '601808': '中海油服', '603023': '*ST威帝', '603036': '如通股份', '603073': '彩蝶实业', '603099': '长白山', '603178': '圣龙股份', '603181': '皇马科技', '603195': '公牛集团', '603312': '西典新能', '603322': '超讯通信', '603338': '浙江鼎力', '603369': '今世缘', '603516': '淳中科技', '603533': '掌阅科技', '603557': 'ST起步', '603586': '金麒麟', '603587': '地素时尚', '603605': '珀莱雅', '603786': '科博达', '603806': '福斯特', '605060': '联德股份', '605080': '浙江自然', '605099': '共创草坪', '605333': '沪光股份', '605555': '德昌股份'}
+2025-04-30 17:25:10,396 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3query_realtimePrice.py[line:130] - INFO: {'现价': '2.62', '涨幅': '3.56', '换手': '3.23', '市盈率': '11.90'} , https://xueqiu.com/S/SZ600166 , 福田汽车
+2025-04-30 17:27:37,683 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3query_realtimePrice.py[line:130] - INFO: {'现价': '25.90', '涨幅': '4.18', '换手': '5.63', '市盈率': '9.55'} , https://xueqiu.com/S/SZ605080 , 浙江自然
+2025-04-30 17:27:47,797 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3query_realtimePrice.py[line:151] - INFO: 已保存sh.xlsx

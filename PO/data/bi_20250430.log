@@ -1,0 +1,6 @@
+2025-04-30 16:29:52,605 - /Users/linghuchong/Downloads/51/Python/project/PO/LogPO.py[line:61] - WARNING: 警告3
+2025-04-30 16:29:52,605 - /Users/linghuchong/Downloads/51/Python/project/PO/LogPO.py[line:62] - ERROR: 报错4
+2025-04-30 16:29:52,605 - /Users/linghuchong/Downloads/51/Python/project/PO/LogPO.py[line:63] - CRITICAL: 严重5
+2025-04-30 16:30:04,712 - /Users/linghuchong/Downloads/51/Python/project/PO/LogPO.py[line:61] - WARNING: 警告3
+2025-04-30 16:30:04,712 - /Users/linghuchong/Downloads/51/Python/project/PO/LogPO.py[line:62] - ERROR: 报错4
+2025-04-30 16:30:04,712 - /Users/linghuchong/Downloads/51/Python/project/PO/LogPO.py[line:63] - CRITICAL: 严重5

@@ -18,6 +18,7 @@ sys.path.insert(0, project_dir)
 
 from GwPO import *
 logName = "./" + os.path.basename(__file__).split('.')[0] + ".log"
+
 Gw_PO = GwPO(logName)
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('../config.ini')

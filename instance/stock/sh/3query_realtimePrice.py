@@ -2,13 +2,10 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2025-04-20
-# Description: 执行两个文档数据
-# 步骤：
-# 1，2025-04-23.xlsx和2025-04-24.xlsx两个文件
-# 2，执行 run("4-22", "4-23")
+# Description: 上海，第二轮筛选stock, 保存到sh.xlsx
+# 上海证交所官网：https://www.sse.com.cn/market/price/report/
 # 第一轮筛选逻辑：
-# https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000120
-# https://www.sse.com.cn/market/price/report/
+# 匹配数据 https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000120
 # *****************************************************************
 import sys
 import os
@@ -31,36 +28,13 @@ import logging
 
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
-
+from PO.LogPO import *
+Log_PO = LogPO(filename=Configparser_PO.DATA("logfile"), level="info")
 jsonFile = Configparser_PO.DATA("jsonfile")  # 第一轮筛选stock的文件
 excelFile = Configparser_PO.DATA("excelfile")  # 第二轮筛选stock后的文件
-logFile = Configparser_PO.DATA("logfile")  # 日志文件
 
 
-# 创建一个日志记录器
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
-# 创建一个文件处理器
-file_handler = logging.FileHandler(logFile)
-# file_handler.setLevel(logging.DEBUG)
-file_handler.setLevel(logging.INFO)
-
-# 创建一个控制台处理器
-# console_handler = logging.StreamHandler()
-# console_handler.setLevel(logging.INFO)
-
-# 定义日志格式
-# formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(formatter)
-# console_handler.setFormatter(formatter)
-
-# 将处理器添加到日志记录器
-logger.addHandler(file_handler)
-# logger.addHandler(console_handler)
-
-def run():
+def run(d_data):
 
     # 1, 读取 JSON 文件
     try:
@@ -101,8 +75,9 @@ def run():
         l_result.append(varTitle)
 
         Color_PO.outColor([{"35": "sh > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle +  " > " + str(len(d_stock)) }])
-        logger.info("sz > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle + " > " + str(len(d_stock)))
-        logger.info(d_stock)
+        Log_PO.logger.info("sz > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle + " > " + str(len(d_stock)))
+        Log_PO.logger.info(d_stock)
+
 
         for i in range(len(l_tmp)):
             varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str(l_tmp[i])
@@ -135,7 +110,7 @@ def run():
             d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
 
             if float(d_curr['换手']) > 3 and d_curr['市盈率'] != '亏损' and \
-                    float(d_curr['涨幅']) > 2 and float(d_curr['涨幅']) < 9 and \
+                    float(d_curr['涨幅']) > d_data['涨幅'][0] and float(d_curr['涨幅']) < d_data['涨幅'][1] and \
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 100:
                 # print(i + 1, d_curr, varUrl)
                 l_dd.append(l_tmp[i])
@@ -149,7 +124,7 @@ def run():
                         l_tmp[i]) + " , " + d_stock[str(l_tmp[i])]}])
                     varUrl = "https://xueqiu.com/S/SH" + str(l_tmp[i])
                     l_result.append(varUrl)
-                logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
+                Log_PO.logger.info(str(d_curr) + " , " + "https://xueqiu.com/S/SZ" + str(l_tmp[i]) + " , " + d_stock[str(l_tmp[i])])
 
                 Openpyxl_PO3 = OpenpyxlPO(excelFile)
                 l_row_data = Openpyxl_PO3.getOneRow(1)
@@ -170,6 +145,7 @@ def run():
                     Openpyxl_PO3.save()
 
         print("已保存", excelFile)
+        Log_PO.logger.info("已保存" + excelFile)
 
         if os.name == 'nt':
             os.system("start " + excelFile)
@@ -177,8 +153,17 @@ def run():
             os.system("open " + excelFile)
 
     except Exception as e:
-        logger.error(f"发生错误: {e}")
+        Log_PO.logger.error(f"发生错误: {e}")
 
 if __name__ == "__main__":
 
-    run()
+    try:
+        # 收盘后，下载数据后执行
+        # run({"涨幅": [2,9]})
+
+        # 盘中执行
+        run({"涨幅": [-3, 3]})
+
+    except Exception as e:
+        print(f"发生错误: {e}")
+        Log_PO.logger.error(f"发生错误: {e}")

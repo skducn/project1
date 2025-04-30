@@ -54,7 +54,8 @@ class LogPO(object):
 
 if __name__ == "__main__":
 
-    # 生成warning及之后的日志，包括 warning, error，critical
+    # level = warning, 表示只显示level及之后的日志，如：显示 warning, error，critical
+
     log = LogPO("data/bi_" + Time_PO.getDate() + ".log", level="warning")
     log.logger.debug("debug1") # 不会生成
     log.logger.info("info2")  # 不会生成
@@ -62,6 +63,6 @@ if __name__ == "__main__":
     log.logger.error("报错4")
     log.logger.critical("严重5")
 
-    # 生成error及之后的日志，包括 error, critical
+    # 生成error, critical的日志
     logError = LogPO("data/bi_error" + Time_PO.getDate() + ".log", level="error")
     logError.logger.error("error213123123")
