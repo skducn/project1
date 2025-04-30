@@ -1,0 +1,539 @@
+[1745990832.903][INFO]: Starting ChromeDriver 135.0.7049.114 (63fd8a7d9d09e41ba37b84386c85d5f249f848f7-refs/branch-heads/7049@{#2175}) on port 59504
+[1745990832.903][INFO]: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1745990832.907][INFO]: ChromeDriver was started successfully on port 59504
+[1745990832.915][INFO]: [7d43fb0c876898383a37de30275a0f70] COMMAND InitSession {
+   "capabilities": {
+      "alwaysMatch": {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [ "--start-maximized", "--incognito", "--hide-scrollbars", "--allow-running-insecure-content", "--disable-extensions", "-disable-dev-shm-usage" ],
+            "detach": true,
+            "excludeSwitches": [ "enable-automation" ],
+            "extensions": [  ],
+            "prefs": {
+               "credentials_enable_service": false,
+               "profile.password_manager_enabled": false
+            }
+         },
+         "pageLoadStrategy": "normal"
+      },
+      "firstMatch": [ {
+      } ]
+   }
+}
+[1745990832.915][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.915][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.915][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/Google Chrome.app/Contents/MacOS/Google Chrome
+[1745990832.915][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/Chromium.app/Contents/MacOS/Chromium
+[1745990832.916][INFO]: Browser search. Trying... /Users/linghuchong/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/envs/py311/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/local/opt/openjdk@11/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/local/opt/openjdk@11/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /Library/Frameworks/Python.framework/Versions/3.9/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /Users/linghuchong/.pyenv/shims/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.916][INFO]: Browser search. Trying... /opt/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /opt/local/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/jmeter/apache-jmeter-5.6.3/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/android/platform-tools/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/mongodb/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/Python/allure/allure-2.32.2/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/envs/py311/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/opt/openjdk@11/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/opt/openjdk@11/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Library/Frameworks/Python.framework/Versions/3.9/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/.pyenv/shims/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /opt/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /opt/local/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/jmeter/apache-jmeter-5.6.3/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/android/platform-tools/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /usr/local/mongodb/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/Python/allure/allure-2.32.2/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1745990832.917][INFO]: Browser search. Trying... /Users/linghuchong/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[1745990832.917][INFO]: Browser search. Trying... /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[1745990832.917][INFO]: Browser search. Found at  /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[1745990832.918][INFO]: Populating Preferences file: {
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autofill": {
+      "enabled": false
+   },
+   "browser": {
+      "check_default_browser": false
+   },
+   "credentials_enable_service": false,
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "profile": {
+      "content_settings": {
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         }
+      },
+      "default_content_setting_values": {
+         "geolocation": 1
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
+[1745990832.919][INFO]: Populating Local State file: {
+   "background_mode": {
+      "enabled": false
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   }
+}
+[1745990832.919][INFO]: ChromeDriver supports communication with Chrome via pipes. This is more reliable and more secure.
+[1745990832.919][INFO]: Use the --remote-debugging-pipe Chrome switch instead of the default --remote-debugging-port to enable this communication mode.
+[1745990832.919][INFO]: Launching chrome: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome -disable-dev-shm-usage --allow-pre-commit-input --allow-running-insecure-content --disable-background-networking --disable-client-side-phishing-detection --disable-default-apps --disable-extensions --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-logging --hide-scrollbars --incognito --log-level=0 --no-first-run --no-service-autorun --password-store=basic --remote-debugging-port=0 --start-maximized --test-type=webdriver --use-mock-keychain --user-data-dir=/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.pvB9nx data:,
+[3180:75476:0430/132713.241259:ERROR:trust_store_mac.cc(817)] Error parsing certificate:
+ERROR: Failed parsing extensions
+
+
+DevTools listening on ws://127.0.0.1:59509/devtools/browser/14f381e5-c544-47e8-9197-45f7f4952298
+[1745990833.397][DEBUG]: DevTools HTTP Request: http://localhost:59509/json/version
+[3184:75487:0430/132713.847640:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990833.897][DEBUG]: DevTools HTTP Response: {
+   "Browser": "Chrome/135.0.7049.115",
+   "Protocol-Version": "1.3",
+   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36",
+   "V8-Version": "13.5.212.10",
+   "WebKit-Version": "537.36 (@e624ba5948ffb9b6dcc98ae635ebe92ee09d242c)",
+   "webSocketDebuggerUrl": "ws://localhost:59509/devtools/browser/14f381e5-c544-47e8-9197-45f7f4952298"
+}
+
+[1745990833.897][DEBUG]: DevTools HTTP Request: http://localhost:59509/json/list
+[1745990833.963][DEBUG]: DevTools HTTP Response: [ {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@e624ba5948ffb9b6dcc98ae635ebe92ee09d242c/inspector.html?ws=localhost:59509/devtools/page/A3D1D5874BF501F535FF47413FEAAA50",
+   "id": "A3D1D5874BF501F535FF47413FEAAA50",
+   "title": "",
+   "type": "page",
+   "url": "data:,",
+   "webSocketDebuggerUrl": "ws://localhost:59509/devtools/page/A3D1D5874BF501F535FF47413FEAAA50"
+} ]
+
+[1745990833.979][INFO]: resolved localhost to ["127.0.0.1"]
+[3184:75487:0430/132713.979757:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990833.988][DEBUG]: DevTools WebSocket Command: Target.getTargets (id=1) (session_id=) browser {
+   "filter": [ {
+      "exclude": true,
+      "type": "browser"
+   }, {
+      "exclude": true,
+      "type": "page"
+   }, {
+      "exclude": false
+   } ]
+}
+[3184:75487:0430/132714.021345:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990834.054][DEBUG]: DevTools WebSocket Response: Target.getTargets (id=1) (session_id=) browser {
+   "targetInfos": [ {
+      "attached": false,
+      "browserContextId": "62292C8E792DE244C360695FC5B36EAD",
+      "canAccessOpener": false,
+      "targetId": "363516EC18FA8385CAF7DFEE95270486",
+      "title": "data:,",
+      "type": "tab",
+      "url": "data:,"
+   } ]
+}
+[1745990834.054][DEBUG]: DevTools WebSocket Command: Target.attachToTarget (id=2) (session_id=) browser {
+   "flatten": true,
+   "targetId": "363516EC18FA8385CAF7DFEE95270486"
+}
+[1745990834.056][DEBUG]: DevTools WebSocket Event: Target.attachedToTarget (session_id=) browser {
+   "sessionId": "E80E235800DA57D4C8332E276C220B97",
+   "targetInfo": {
+      "attached": true,
+      "browserContextId": "62292C8E792DE244C360695FC5B36EAD",
+      "canAccessOpener": false,
+      "targetId": "363516EC18FA8385CAF7DFEE95270486",
+      "title": "data:,",
+      "type": "tab",
+      "url": "data:,"
+   },
+   "waitingForDebugger": false
+}
+[1745990834.056][DEBUG]: DevTools WebSocket Response: Target.attachToTarget (id=2) (session_id=) browser {
+   "sessionId": "E80E235800DA57D4C8332E276C220B97"
+}
+[1745990834.057][DEBUG]: DevTools WebSocket Command: Target.setAutoAttach (id=3) (session_id=E80E235800DA57D4C8332E276C220B97) 363516EC18FA8385CAF7DFEE95270486 {
+   "autoAttach": true,
+   "flatten": true,
+   "waitForDebuggerOnStart": false
+}
+[1745990834.058][DEBUG]: DevTools WebSocket Event: Target.attachedToTarget (session_id=E80E235800DA57D4C8332E276C220B97) 363516EC18FA8385CAF7DFEE95270486 {
+   "sessionId": "9661571493751CCAFFE9545F9A84B7F1",
+   "targetInfo": {
+      "attached": true,
+      "browserContextId": "62292C8E792DE244C360695FC5B36EAD",
+      "canAccessOpener": false,
+      "targetId": "A3D1D5874BF501F535FF47413FEAAA50",
+      "title": "data:,",
+      "type": "page",
+      "url": "data:,"
+   },
+   "waitingForDebugger": false
+}
+[3184:75487:0430/132714.059321:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990834.065][DEBUG]: DevTools WebSocket Command: Page.enable (id=4) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.066][DEBUG]: DevTools WebSocket Command: Page.addScriptToEvaluateOnNewDocument (id=5) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "source": "(function () {window.cdc_adoQpoasnfa76pfcZLmcfl_Array = window.Array;window.cdc_adoQpoasnfa76pfcZLmcfl_Object = window.Object;window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;window.cdc_a..."
+}
+[1745990834.066][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=6) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "expression": "(function () {window.cdc_adoQpoasnfa76pfcZLmcfl_Array = window.Array;window.cdc_adoQpoasnfa76pfcZLmcfl_Object = window.Object;window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;window.cdc_a..."
+}
+[1745990834.067][DEBUG]: DevTools WebSocket Command: Log.enable (id=7) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.067][DEBUG]: DevTools WebSocket Command: Target.setAutoAttach (id=8) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "autoAttach": true,
+   "flatten": true,
+   "waitForDebuggerOnStart": false
+}
+[1745990834.069][DEBUG]: DevTools WebSocket Response: Target.setAutoAttach (id=3) (session_id=E80E235800DA57D4C8332E276C220B97) 363516EC18FA8385CAF7DFEE95270486 {
+}
+[1745990834.069][DEBUG]: DevTools WebSocket Response: Page.enable (id=4) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.069][DEBUG]: DevTools WebSocket Response: Page.addScriptToEvaluateOnNewDocument (id=5) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "identifier": "1"
+}
+[1745990834.069][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=6) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "result": {
+      "type": "undefined"
+   }
+}
+[1745990834.069][DEBUG]: DevTools WebSocket Response: Log.enable (id=7) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.072][DEBUG]: DevTools WebSocket Response: Target.setAutoAttach (id=8) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.072][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=9) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[3184:75487:0430/132714.077516:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990834.078][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "context": {
+      "auxData": {
+         "frameId": "A3D1D5874BF501F535FF47413FEAAA50",
+         "isDefault": true,
+         "type": "default"
+      },
+      "id": 1,
+      "name": "",
+      "origin": "://",
+      "uniqueId": "4619605521208374813.5169640879446597084"
+   }
+}
+[1745990834.078][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=9) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.078][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=10) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.079][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=10) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.079][INFO]: [7d43fb0c876898383a37de30275a0f70] RESPONSE InitSession {
+   "capabilities": {
+      "acceptInsecureCerts": false,
+      "browserName": "chrome",
+      "browserVersion": "135.0.7049.115",
+      "chrome": {
+         "chromedriverVersion": "135.0.7049.114 (63fd8a7d9d09e41ba37b84386c85d5f249f848f7-refs/branch-heads/7049@{#2175})",
+         "userDataDir": "/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.pvB9nx"
+      },
+      "fedcm:accounts": true,
+      "goog:chromeOptions": {
+         "debuggerAddress": "localhost:59509"
+      },
+      "networkConnectionEnabled": false,
+      "pageLoadStrategy": "normal",
+      "platformName": "mac",
+      "proxy": {
+      },
+      "setWindowRect": true,
+      "strictFileInteractability": false,
+      "timeouts": {
+         "implicit": 0,
+         "pageLoad": 300000,
+         "script": 30000
+      },
+      "unhandledPromptBehavior": "dismiss and notify",
+      "webauthn:extension:credBlob": true,
+      "webauthn:extension:largeBlob": true,
+      "webauthn:extension:minPinLength": true,
+      "webauthn:extension:prf": true,
+      "webauthn:virtualAuthenticators": true
+   },
+   "sessionId": "7d43fb0c876898383a37de30275a0f70"
+}
+[1745990834.085][INFO]: [7d43fb0c876898383a37de30275a0f70] COMMAND Navigate {
+   "url": "https://www.baidu.com"
+}
+[1745990834.085][INFO]: Waiting for pending navigations...
+[1745990834.085][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=11) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "expression": "1"
+}
+[1745990834.086][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=11) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1745990834.086][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=12) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "expression": "document",
+   "objectGroup": "92c94244-8826-4be4-9f85-2f958b88e223"
+}
+[1745990834.086][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=12) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "result": {
+      "className": "HTMLDocument",
+      "description": "#document",
+      "objectId": "172734798780958498.1.1",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1745990834.086][DEBUG]: DevTools WebSocket Command: DOM.describeNode (id=13) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "objectId": "172734798780958498.1.1"
+}
+[1745990834.087][DEBUG]: DevTools WebSocket Response: DOM.describeNode (id=13) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "node": {
+      "backendNodeId": 1,
+      "baseURL": "data:,",
+      "childNodeCount": 1,
+      "compatibilityMode": "NoQuirksMode",
+      "documentURL": "data:,",
+      "localName": "",
+      "nodeId": 0,
+      "nodeName": "#document",
+      "nodeType": 9,
+      "nodeValue": "",
+      "xmlVersion": ""
+   }
+}
+[1745990834.087][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=14) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "objectGroup": "92c94244-8826-4be4-9f85-2f958b88e223"
+}
+[1745990834.087][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=15) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "awaitPromise": false,
+   "expression": "document.readyState",
+   "returnByValue": true,
+   "uniqueContextId": "4619605521208374813.5169640879446597084"
+}
+[1745990834.088][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=14) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.088][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=15) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "result": {
+      "type": "string",
+      "value": "complete"
+   }
+}
+[1745990834.088][INFO]: Done waiting for pending navigations. Status: ok
+[1745990834.088][DEBUG]: DevTools WebSocket Command: Page.navigate (id=16) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "url": "https://www.baidu.com"
+}
+[1745990834.093][DEBUG]: DevTools WebSocket Event: Page.frameStartedNavigating (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "frameId": "A3D1D5874BF501F535FF47413FEAAA50",
+   "loaderId": "4E41D7771BEF2F78651001B790691E55",
+   "navigationType": "differentDocument",
+   "url": "https://www.baidu.com/"
+}
+[1745990834.094][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "frameId": "A3D1D5874BF501F535FF47413FEAAA50"
+}
+[3184:75487:0430/132714.112619:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.141809:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.205328:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990834.206][DEBUG]: DevTools WebSocket Response: Page.navigate (id=16) (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "frameId": "A3D1D5874BF501F535FF47413FEAAA50",
+   "loaderId": "4E41D7771BEF2F78651001B790691E55"
+}
+[1745990834.206][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.206][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+}
+[1745990834.206][DEBUG]: DevTools WebSocket Event: Page.frameNavigated (session_id=9661571493751CCAFFE9545F9A84B7F1) A3D1D5874BF501F535FF47413FEAAA50 {
+   "frame": {
+      "adFrameStatus": {
+         "adFrameType": "none"
+      },
+      "crossOriginIsolatedContextType": "NotIsolated",
+      "domainAndRegistry": "baidu.com",
+      "gatedAPIFeatures": [  ],
+      "id": "A3D1D5874BF501F535FF47413FEAAA50",
+      "loaderId": "4E41D7771BEF2F78651001B790691E55",
+      "mimeType": "text/html",
+      "secureContextType": "Secure",
+      "securityOrigin": "https://www.baidu.com",
+      "securityOriginDetails": {
+         "isLocalhost": false
+      },
+      "url": "https://www.baidu.com/"
+   },
+   "type": "Navigation"
+}
+[1745990834.206][INFO]: Waiting for pending navigations...
+[1745990834.206][INFO]: Done waiting for pending navigations. Status: ok
+[1745990834.207][INFO]: [7d43fb0c876898383a37de30275a0f70] RESPONSE Navigate
+[3184:75487:0430/132714.250328:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.254693:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.289049:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.305215:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.333527:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.452557:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.469179:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.474243:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.564947:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.587268:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.598948:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.617663:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.631366:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.648657:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.690274:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.736727:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.738228:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.741848:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.764885:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.784810:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.799400:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.816166:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.827225:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.837889:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.854398:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.871446:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.888749:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.908185:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.921930:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.938715:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132714.954909:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.032860:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.033846:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.034788:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.037810:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.055371:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.073135:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.087777:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.107386:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.120828:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.138463:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.159669:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.172941:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/13WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1745990891.423691   76350 voice_transcription.cc:58] Registering VoiceTranscriptionCapability
+[3104:73560:0430/132811.468711:ERROR:service_client.cc(36)] Unexpected on_device_model service disconnect: 
+age (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.238138:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.255414:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.271536:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.288549:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1745990835.310][INFO]: [7d43fb0c876898383a37de30275a0f70] COMMAND QuitAll {
+}
+[1745990835.310][INFO]: [7d43fb0c876898383a37de30275a0f70] RESPONSE QuitAll
+[1745990835.310][DEBUG]: Log type 'driver' lost 0 entries on destruction
+[1745990835.310][DEBUG]: Log type 'browser' lost 0 entries on destruction
+[1745990835.310][WARNING]: Chrome quit unexpectedly, leaving behind temporary directoriesfor debugging:
+[3184:75487:0430/132715.315202:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.324624:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.338166:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.356447:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.373334:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.391073:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.403985:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.424317:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.437792:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.456016:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.470747:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.489922:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.504939:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.521292:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.538880:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.554513:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.571429:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.587329:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.603636:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.621085:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.637662:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.655473:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.671956:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.688049:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.704014:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.721630:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.737375:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.754289:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.771233:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.787959:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.803972:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.820837:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.838149:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.854298:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.870352:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.887213:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.904552:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.920610:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.936908:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.954548:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.970249:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132715.987948:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3184:75487:0430/132716.014645:ERROR:shared_image_manager.cc(484)] SharedImageManager::ProduceOverlay: Trying to Produce a Overlay representation from a non-existent mailbox.
+[3184:75487:0430/132716.014745:ERROR:skia_output_device_buffer_queue.cc(264)] Invalid mailbox.
+[3184:75487:0430/132716.014828:ERROR:gl_display.cc(495)] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[3185:75535:0430/132830.049595:ERROR:ssl_client_socket_impl.cc(877)] handshake failed; returned -1, SSL error code 1, net_error -101
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          [3147:74651:0430/132813.962670:ERROR:ssl_client_socket_impl.cc(877)] handshake failed; returned -1, SSL error code 1, net_error -101
+[3147:74651:0430/132828.623499:ERROR:ssl_client_socket_impl.cc(877)] handshake failed; returned -1, SSL error code 1, net_error -101
