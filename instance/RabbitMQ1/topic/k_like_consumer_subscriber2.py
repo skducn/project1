@@ -21,7 +21,7 @@ channel.exchange_declare(exchange='m3', exchange_type='topic')
 result = channel.queue_declare(queue='', exclusive=True)
 queue_name = result.method.queue
 
-# 3, 让exchange和queue进行绑定，路由键为old.# ，表示命中old.后N个字符串，如 old.test.py, old.hello.txt
+# 3, 让exchange和queue进行绑定，路由键为old.# ，表示命中old.后N个字符串，如 old.shtest.py, old.hello.txt
 channel.queue_bind(exchange='m3', queue=queue_name, routing_key='old.*')
 
 # 4, 定义一个回调函数来处理接收到的消息

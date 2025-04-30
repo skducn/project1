@@ -56,7 +56,7 @@ for i in range(len(l_code)):
     print(i+1, stock_df) # ['600000', '浦发银行', '2025-04-28', '10.60', '10.74', '10.74', '10.59', '483822', '517574620.00', '1.42', '1.42', '0.15', '0.16']
     # logger.info(stock_df)
 
-    d_1[stock_df[0]] = stock_df
+    d_1[i+1] = stock_df
 
 try:
     # 打开文件并写入 JSON 数据
