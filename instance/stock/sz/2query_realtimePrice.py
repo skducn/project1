@@ -198,7 +198,7 @@ def run():
                     # print(l_col_data) # ['0425 - 0428', 'https://xueqiu.com/S/SZ002564'
                     for i in range(len(l_result)):
                         if l_result[i] not in l_col_data:
-                            # print(len(l_col_data)+1, l_col[0], l_result[i])
+                            print(len(l_col_data)+1, l_col[0], l_result[i])
                             Openpyxl_PO3.setCell(len(l_col_data)+1, l_col[0], l_result[i])
                     Openpyxl_PO3.save()
 

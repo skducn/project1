@@ -120,7 +120,7 @@ class WebPO(DomPO):
         logging.basicConfig(
             level=logging.INFO,
             format='%(asctime)s - %(levelname)s - %(message)s',
-            filename='selenium_detailed.log'
+            filename='Web_selenium_detailed.log'
         )
         # 设置 Selenium 远程连接日志级别
         LOGGER.setLevel(logging.INFO)
@@ -495,10 +495,13 @@ class WebPO(DomPO):
                         os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
                         break
                 os.chdir(varDriverPath + chromeVer3 + "\\chromedriver-win32")
-            s = Service(varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
+            # s = Service(varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
+            currPath = varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe"
+            s = Service(executable_path=currPath, service_args=["--verbose"],log_output='Web_chromedriver_win.log')
             self.driver = webdriver.Chrome(service=s, options=options)
-            print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-            print("chrome驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+
+            # print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+            # print("chrome驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
 
         elif os.name == "posix":
             # for mac
@@ -537,12 +540,12 @@ class WebPO(DomPO):
             # self.driver = webdriver.Chrome(service=s, options=options)
             # from webdriver_manager.chrome import ChromeDriverManager
             # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-            s = Service(executable_path=currPath, service_args=["--verbose"],log_output='chromedriver_verbose.log', options=options)
+            s = Service(executable_path=currPath, service_args=["--verbose"],log_output='Web_chromedriver_mac.log')
             # s = Service(executable_path='/usr/local/bin/chromedriver', service_args=["--verbose"],log_output='chromedriver_verbose.log')
             self.driver = webdriver.Chrome(service=s, options=options)
 
-            print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-            print("chromedriver版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+            # print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+            # print("chromedriver版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
 
 
 
