@@ -502,9 +502,8 @@ class WebPO(DomPO):
                 os.chdir(varDriverPath + chromeVer3 + "\\chromedriver-win32")
             s = Service(varDriverPath + chromeVer3 + "\\chromedriver-win32\\chromedriver.exe")
             self.driver = webdriver.Chrome(service=s, options=options)
-            # print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-            # print("chrome驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[
-            #     0])  # 114.0.5735.90  //chrome驱动版本
+            print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+            print("chrome驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
 
 
         elif os.name == "posix":
@@ -539,11 +538,14 @@ class WebPO(DomPO):
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
             print(currPath + "/chromedriver-mac-x64/chromedriver")
-            s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
+            # s = Service(currPath + "/chromedriver-mac-x64/chromedriver")
+            # s = Service("/usr/local/bin/chromedriver")
             # print(s)
             # self.driver = webdriver.Chrome(service=s, options=options)
             # from webdriver_manager.chrome import ChromeDriverManager
             # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+            s = Service(executable_path='/usr/local/bin/chromedriver', service_args=["--verbose"])
+
             self.driver = webdriver.Chrome(service=Service(ChromeDriverManager(driver_version="135.0.7049.114").install()),
                                       options=options)
             print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
