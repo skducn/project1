@@ -19,7 +19,7 @@ Gw_PO.phs_hypertension_gxyjob_query({"身份证号": "340203195002048036"})
 
 
 # todo 2 导出
-# Gw_PO.export("/Users/linghuchong/Desktop/phs_hypertension_gxyjob.xlsx")
+Gw_PO.export("/Users/linghuchong/Desktop/phs_hypertension_gxyjob.xlsx")
 
 
 

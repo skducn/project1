@@ -25,6 +25,9 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
+
+
+
 varUrl = "https://www.szse.cn/market/trend/index.html"
 Web_PO = WebPO("chrome")
 Web_PO.openURL(varUrl)
@@ -39,3 +42,5 @@ Web_PO.clkByX("/html/body/div[5]/div/div/div[2]/div[2]/div[2]/div[2]/div/div[3]/
 # 查询和下载
 Web_PO.clkByX("/html/body/div[5]/div/div/div[2]/div[2]/div[2]/div[2]/div/div[6]/button")
 Web_PO.clkByX("/html/body/div[5]/div/div/div[2]/div[2]/div[2]/div[4]/div/div[1]/div[2]/a")
+
+Web_PO.exportExistFile('/Users/linghuchong/Desktop/ttt.xlsx')
