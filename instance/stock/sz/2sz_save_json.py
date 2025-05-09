@@ -36,22 +36,33 @@ def run(varYMD1file='', varYMD2file=''):
 
 
 
-    # 获取上一个交易日与上上交易日的数据
+    # # 获取上一个交易日与上上交易日的数据
+    # if varYMD2file == '':
+    #     varCurrMD = Time_PO.getMonth() + Time_PO.getDay()
+    #     varYMD2 = (Time_PO.getPreviousWorkingDay([2025, int(varCurrMD[:2]), int(varCurrMD[2:])]))  # 2025-04-28
+    #     l_varYMD2 = str(varYMD2).split("-")
+    #     varMD2 = str(l_varYMD2[1]) + str(l_varYMD2[2])
+    #     varYMD2file = varMD2 + ".xlsx"
+    #
+    # if varYMD1file == '':
+    #     # 通过varMD2获取上一个工作日，如今天是0429，varMD2=0428
+    #     # varYMD2file = varMD2 + ".xlsx"
+    #     varYMD1 = (Time_PO.getPreviousWorkingDay([2025, int(varMD2[:2]), int(varMD2[2:])])) # 2025-04-28
+    #     l_varYMD1 = str(varYMD1).split("-")
+    #     varMD1 = str(l_varYMD1[1]) + str(l_varYMD1[2])
+    #     varYMD1file = varMD1 + ".xlsx"
+
     if varYMD2file == '':
-        varCurrMD = Time_PO.getMonth() + Time_PO.getDay()
-        varYMD2 = (Time_PO.getPreviousWorkingDay([2025, int(varCurrMD[:2]), int(varCurrMD[2:])]))  # 2025-04-28
-        l_varYMD2 = str(varYMD2).split("-")
-        varMD2 = str(l_varYMD2[1]) + str(l_varYMD2[2])
+        varMD2 = Time_PO.getMonth() + Time_PO.getDay()
         varYMD2file = varMD2 + ".xlsx"
 
+    # 通过varMD2获取上一个工作日，如今天是0429，varMD2=0428
+    # varYMD2file = varMD2 + ".xlsx"
     if varYMD1file == '':
-        # 通过varMD2获取上一个工作日，如今天是0429，varMD2=0428
-        # varYMD2file = varMD2 + ".xlsx"
-        varYMD1 = (Time_PO.getPreviousWorkingDay([2025, int(varMD2[:2]), int(varMD2[2:])])) # 2025-04-28
+        varYMD1 = (Time_PO.getPreviousWorkingDay([2025, int(varMD2[:2]), int(varMD2[2:])]))  # 2025-04-28
         l_varYMD1 = str(varYMD1).split("-")
         varMD1 = str(l_varYMD1[1]) + str(l_varYMD1[2])
         varYMD1file = varMD1 + ".xlsx"
-
 
 
     # 下载的数据文件放在project之外，不被git
@@ -64,6 +75,7 @@ def run(varYMD1file='', varYMD2file=''):
 
     print(varYMD1file_path)
     print(varYMD2file_path)
+
 
     # 判断两个文件是否存在
     if os.access(varYMD1file_path, os.F_OK) and os.access(varYMD2file_path, os.F_OK):
@@ -155,8 +167,8 @@ def run(varYMD1file='', varYMD2file=''):
 
 
 try:
-    # run()
-    run("0506.xlsx", '0507.xlsx')
+    run()
+    # run("0507.xlsx", '0508.xlsx')
 
 except Exception as e:
     print(f"发生错误: {e}")

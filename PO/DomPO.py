@@ -104,9 +104,8 @@ todo alert(system)菜单
 """
 
 import requests
-import pyautogui
-print(pyautogui.position())
-
+# import pyautogui
+# print(pyautogui.position())
 # import psutil,pyscreeze
 import sys, os, platform, subprocess
 # import cv2

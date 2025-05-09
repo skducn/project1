@@ -11,6 +11,7 @@
 # *****************************************************************
 import sys
 import os
+import datetime
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl.styles.stylesheet")
@@ -187,12 +188,18 @@ if __name__ == "__main__":
 
     try:
 
-        # 收盘后，下载数据后执行
-        # run({"涨幅": [2, 9]})
-
-        # 盘中执行
-        run({"涨幅": [-3, 5]})
-
+        # 获取当前时间
+        now = datetime.datetime.now().time()
+        # 创建一个表示 15:00 的时间对象
+        target_time = datetime.time(15, 0)
+        # 判断当前时间是否大于 15:00
+        if now > target_time:
+            run({"涨幅": [2, 9]})
+            print("盘后结果")
+        else:
+            # 盘中执行
+            run({"涨幅": [-3, 5]})
+            print("盘中结果")
 
     except Exception as e:
 

@@ -489,6 +489,7 @@ class WebPO(DomPO):
                 # 自动下载chrome驱动并修改成主板本
                 print("chromedriver downloading...")
                 Service(ChromeDriverManager().install())
+                print("done")
                 l_folder = os.listdir(varDriverPath)
                 for i in range(len(l_folder)):
                     if chromeVer3 in l_folder[i]:
@@ -526,6 +527,7 @@ class WebPO(DomPO):
             if os.path.isdir(currPath) == False:
                 print("chromedriver downloading...")
                 Service(ChromeDriverManager().install())
+                print("done")
                 l_folder = os.listdir(varDriverPath)
                 for i in range(len(l_folder)):
                     if chromeVer3 in l_folder[i]:
@@ -534,23 +536,23 @@ class WebPO(DomPO):
                 os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
-            # print(111, currPath + "/chromedriver-mac-x64/chromedriver")  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/chromedriver
-            currPath = currPath + "/chromedriver-mac-x64/chromedriver"
+                print(currPath + "/chromedriver-mac-x64/chromedriver")  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/chromedriver
+                currPath = currPath + "/chromedriver-mac-x64/chromedriver"
+                s = Service(executable_path=currPath, service_args=["--verbose"], log_output='Web_chromedriver_mac.log')
+                self.driver = webdriver.Chrome(service=s, options=options)
+                print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+                print("chromedriver版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+            else:
+                currPath = currPath + "/chromedriver-mac-x64/chromedriver"
+                # self.driver = webdriver.Chrome(service=s, options=options)
+                # from webdriver_manager.chrome import ChromeDriverManager
+                # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+                s = Service(executable_path=currPath, service_args=["--verbose"],log_output='Web_chromedriver_mac.log')
+                # s = Service(executable_path='/usr/local/bin/chromedriver', service_args=["--verbose"],log_output='chromedriver_verbose.log')
+                self.driver = webdriver.Chrome(service=s, options=options)
+                # print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+                # print("chromedriver版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
 
-            # self.driver = webdriver.Chrome(service=s, options=options)
-            # from webdriver_manager.chrome import ChromeDriverManager
-            # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-            s = Service(executable_path=currPath, service_args=["--verbose"],log_output='Web_chromedriver_mac.log')
-            # s = Service(executable_path='/usr/local/bin/chromedriver', service_args=["--verbose"],log_output='chromedriver_verbose.log')
-            self.driver = webdriver.Chrome(service=s, options=options)
-
-            # print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-            # print("chromedriver版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
-
-
-
-            # print("chromeVer:", self.driver.capabilities['browserVersion'])  # 115.0.5790.170  //获取浏览器版本
-            # print("chromedriver:", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 115.0.5790.170 //获取chrome驱动版本
 
 
             # try:

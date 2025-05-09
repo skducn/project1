@@ -2,7 +2,7 @@
 # ***************************************************************
 # Author     : John
 # Data       : 2019-04-16
-# Description: SqlServerPO 对象层
+# Description: SqlserverPO 对象层
 # /usr/local/pip3.7 install pymssql
 # sql server 查询数据库所有的表名 + 字段  https://www.cnblogs.com/TF12138/p/4064752.html
 
@@ -126,6 +126,9 @@
 3.15 设置自增主键 setIdentityPrimaryKey(varTable, varField)
 3.16 删除自增主键 delIdentityPrimaryKey(varTable, varField)
 
+3.14 设置数据类型与备注 setFieldTypeComment(varTable, varField, varType, varComment)
+
+
 # todo【记录】
 4.1 获取记录数 getRecordCount(varTable)
 4.2 插入记录（1条或多条记录）
@@ -184,7 +187,7 @@ from PO.FilePO import *
 File_PO = FilePO()
 
 
-class SqlServerPO:
+class SqlserverPO:
 
     def __init__(self, server, user, password, database, charset="utf8"):
 
@@ -1258,6 +1261,24 @@ class SqlServerPO:
         self.execute("alter table %s DROP CONSTRAINT %s" % (varTable, varField))
 
 
+    def setFieldTypeComment(self, varTable, varField, varType, varComment):
+
+        # 3.14 设置字段类型与备注
+        # 应用于pandas带入数据
+        # Sqlserver_PO.setFieldTypeComment(varTable, 'pResult', 'varchar(100)', '正向测试结果')  //修改pResult数据类型和备注
+        self.execute("ALTER table %s alter column %s %s" % (varTable, varField, varType))
+
+        try:
+            # 1 获取所有字段的备注
+            d_comments = self.getFieldComment(varTable)
+
+            if d_comments[varField] == None:
+                self.setFieldComment(varTable, varField, varComment)
+            else:
+                self.reviseFieldComment(varTable, varField, varComment)
+        except Exception as e:
+            print(e)
+
 
     # todo 记录
 
@@ -2141,12 +2162,12 @@ class SqlServerPO:
 
 if __name__ == "__main__":
     # todo 社区健康平台（静安）
-    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
+    # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
     # todo 社区健康平台（全市）
-    # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
-    Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
+    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
     # print(Sqlserver_PO.isTable("a_phs_auth"))
 
 

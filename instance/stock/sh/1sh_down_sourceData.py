@@ -66,7 +66,7 @@ def run():
     # 4，获取page数量
     l_page = Web_PO.getTextByXs("//div[@class='pagination-box']/ul")
     page = int(l_page[0].split("\n")[7])
-    print("【共", page, "页】")
+    # print("【共", page, "页】")
     Log_PO.logger.info("【共" + str(page) + "页】")
 
 
@@ -80,7 +80,7 @@ def run():
         l_all = Web_PO.getTextByXs("//tr")
         # print(l_all)
         l_all.pop(0)
-        print(">", i+1, "/ " + str(page))
+        print(">", str(i+1) + "/" + str(page))
         Log_PO.logger.info("> " + str(i+1) + "/" + str(page))
         for j in range(len(l_all)):
             l_tmp = l_all[j].split(" ")
@@ -94,7 +94,7 @@ def run():
 if __name__ == "__main__":
 
     try:
-        run()
+        # run()
         os.system("open /Users/linghuchong/Downloads/51/Python/stock/sh")
         os.system("python 2sh_save_json.py")
 

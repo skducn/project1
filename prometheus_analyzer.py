@@ -8,31 +8,251 @@
 # 学习：https://www.cnblogs.com/wj5633/p/6931187.html
 # 学习：https://blog.csdn.net/zwbzwbzwbzwbzwbzwb/article/details/52824154
 # ***************************************************************u**
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.options import Options
-import time
-# import numpy
+# from pynput.mouse import Button, Controller
 # import pyautogui
 
-# 设置Chrome选项
-chrome_options = Options()
-# chrome_options.add_argument("--headless")  # 无头模式
-chrome_options.add_argument("--disable-gpu")  # 禁用GPU加速
-chrome_options.add_argument("--no-sandbox")  # 禁用沙盒模式
-chrome_options.add_argument("--disable-dev-shm-usage")  # 解决内存不足的问题
+# test_quartz.py
+# import Quartz
+# print("Quartz 导入成功！")
 
-# 初始化WebDriver
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+# test_pyobjc.py
+# import objc
+# print("pyobjc 导入成功！")
 
-# 打开URL
-driver.get("https://www.baidu.com")
-time.sleep(5)  # 等待页面加载
-driver.quit()
+# !/usr/bin/env python3
+"""Prometheus 数据查询与分析脚本"""
+
+import argparse
+from datetime import datetime, timedelta
+import matplotlib.pyplot as plt
+import numpy as np
+from prometheus_api_client import PrometheusConnect, MetricRangeDataFrame
+from prometheus_api_client.utils import parse_datetime
+import pandas as pd
+import seaborn as sns
+from typing import List, Dict, Any, Tuple
+
+# 设置中文字体支持
+plt.rcParams["font.family"] = ["SimHei", "WenQuanYi Micro Hei", "Heiti TC"]
+plt.rcParams["axes.unicode_minus"] = False  # 解决负号显示问题
 
 
+class PrometheusAnalyzer:
+    """Prometheus 数据查询与分析工具"""
 
+    def __init__(self, prometheus_url: str = "http://localhost:9099"):
+        """初始化 Prometheus 连接"""
+        self.prom = PrometheusConnect(url=prometheus_url, disable_ssl=True)
+
+    def query_current_metric(self, query: str) -> List[Dict[str, Any]]:
+        """查询当前时间的指标数据"""
+        return self.prom.custom_query(query=query)
+
+    def query_metric_range(
+            self,
+            query: str,
+            start_time: str,
+            end_time: str = "now",
+            step: str = "1m"
+    ) -> pd.DataFrame:
+        """查询时间范围内的指标数据并转换为 DataFrame"""
+        start = parse_datetime(start_time)
+        end = parse_datetime(end_time)
+
+        metric_data = self.prom.custom_query_range(
+            query=query,
+            start_time=start,
+            end_time=end,
+            step=step,
+        )
+
+        # 转换为 DataFrame 便于分析
+        return MetricRangeDataFrame(metric_data)
+
+    def analyze_metric(self, metric_df: pd.DataFrame) -> Dict[str, Any]:
+        """分析指标数据，计算统计信息"""
+        if metric_df.empty:
+            return {"error": "No data available for analysis"}
+
+        # 确保 value 列为数值类型
+        metric_df["value"] = pd.to_numeric(metric_df["value"])
+
+        # 按时间戳分组，计算统计信息
+        stats = metric_df.groupby(pd.Grouper(freq='1H')).agg({
+            "value": ["mean", "min", "max", "std", "sum"]
+        })
+
+        # 重命名列
+        stats.columns = ["平均值", "最小值", "最大值", "标准差", "总和"]
+
+        return {
+            "overall_stats": {
+                "average": metric_df["value"].mean(),
+                "min": metric_df["value"].min(),
+                "max": metric_df["value"].max(),
+                "std_dev": metric_df["value"].std(),
+                "total": metric_df["value"].sum()
+            },
+            "hourly_stats": stats
+        }
+
+    def plot_metric(self, metric_df: pd.DataFrame, title: str, output_file: str = None):
+        """绘制指标随时间变化的图表"""
+        if metric_df.empty:
+            print("No data to plot")
+            return
+
+        # 确保 value 列为数值类型
+        metric_df["value"] = pd.to_numeric(metric_df["value"])
+
+        # 转换时间戳
+        metric_df.index = pd.to_datetime(metric_df.index, unit='s')
+
+        # 创建图表
+        plt.figure(figsize=(12, 6))
+
+        # 按 instance 绘制不同线条
+        for instance, group in metric_df.groupby("instance"):
+            plt.plot(group.index, group["value"], label=instance, linewidth=1.5)
+
+        plt.title(title)
+        plt.xlabel("时间")
+        plt.ylabel("值")
+        plt.grid(True, linestyle='--', alpha=0.7)
+        plt.legend()
+        plt.tight_layout()
+
+        if output_file:
+            plt.savefig(output_file, dpi=300, bbox_inches='tight')
+            print(f"图表已保存至: {output_file}")
+        else:
+            plt.show()
+
+    def plot_histogram(self, metric_df: pd.DataFrame, title: str, output_file: str = None):
+        """绘制指标分布直方图"""
+        if metric_df.empty:
+            print("No data to plot")
+            return
+
+        # 确保 value 列为数值类型
+        metric_df["value"] = pd.to_numeric(metric_df["value"])
+
+        plt.figure(figsize=(10, 6))
+        sns.histplot(metric_df["value"], kde=True, bins=20)
+        plt.title(f"{title} 分布直方图")
+        plt.xlabel("值")
+        plt.ylabel("频率")
+        plt.grid(True, linestyle='--', alpha=0.7)
+        plt.tight_layout()
+
+        if output_file:
+            plt.savefig(output_file, dpi=300, bbox_inches='tight')
+            print(f"直方图已保存至: {output_file}")
+        else:
+            plt.show()
+
+    def export_to_csv(self, metric_df: pd.DataFrame, filename: str):
+        """将数据导出到 CSV 文件"""
+        if metric_df.empty:
+            print("No data to export")
+            return
+
+        metric_df.to_csv(filename)
+        print(f"数据已导出至: {filename}")
+
+
+def main():
+    """主函数"""
+    parser = argparse.ArgumentParser(description="Prometheus 数据查询与分析工具")
+    parser.add_argument("--prometheus-url", default="http://localhost:9099", help="Prometheus 服务器地址")
+    parser.add_argument("--query", required=True, help="PromQL 查询语句")
+    parser.add_argument("--start", default="24h", help="开始时间，如 '1h', '2d', '2023-01-01T00:00:00Z'")
+    parser.add_argument("--end", default="now", help="结束时间，如 'now', '2023-01-02T00:00:00Z'")
+    parser.add_argument("--step", default="1m", help="采样步长，如 '1m', '5m', '1h'")
+    parser.add_argument("--plot", action="store_true", help="绘制时间序列图表")
+    parser.add_argument("--histogram", action="store_true", help="绘制分布直方图")
+    parser.add_argument("--csv", help="导出数据到 CSV 文件")
+    parser.add_argument("--title", help="图表标题")
+    parser.add_argument("--output", help="图表输出文件名")
+
+    args = parser.parse_args()
+
+    analyzer = PrometheusAnalyzer(args.prometheus_url)
+
+    print(f"查询 Prometheus: {args.prometheus_url}")
+    print(f"查询语句: {args.query}")
+    print(f"时间范围: {args.start} 到 {args.end}")
+
+    # 查询时间范围数据
+    metric_df = analyzer.query_metric_range(
+        query=args.query,
+        start_time=args.start,
+        end_time=args.end,
+        step=args.step
+    )
+
+    if metric_df.empty:
+        print("查询结果为空")
+        return
+
+    print(f"查询结果: {len(metric_df)} 条数据")
+
+    # 分析数据
+    analysis = analyzer.analyze_metric(metric_df)
+
+    print("\n==== 数据分析结果 ====")
+    print(f"平均值: {analysis['overall_stats']['average']:.2f}")
+    print(f"最小值: {analysis['overall_stats']['min']:.2f}")
+    print(f"最大值: {analysis['overall_stats']['max']:.2f}")
+    print(f"标准差: {analysis['overall_stats']['std_dev']:.2f}")
+    print(f"总和: {analysis['overall_stats']['total']:.2f}")
+
+    # 绘制图表
+    title = args.title or args.query
+    if args.plot:
+        analyzer.plot_metric(metric_df, title, args.output)
+
+    if args.histogram:
+        hist_output = args.output.replace(".png", "_hist.png") if args.output else None
+        analyzer.plot_histogram(metric_df, title, hist_output)
+
+    # 导出数据
+    if args.csv:
+        analyzer.export_to_csv(metric_df, args.csv)
+
+
+if __name__ == "__main__":
+    main()
+
+# # 创建鼠标控制器
+# mouse = Controller()
+#
+# # 移动鼠标到指定位置
+# mouse.position = (100, 100)
+#
+# # 点击鼠标左键
+# mouse.click(Button.left, 1)
+#
+# print(121212)
+# from AppKit import NSEvent, NSLeftMouseDown, NSLeftMouseUp
+#
+# def click(x, y):
+#     # 创建鼠标按下事件
+#     down_event = NSEvent.mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure_(
+#         NSLeftMouseDown, (x, y), 0, 0, 0, -1, None, 1, 0
+#     )
+#     # 发布鼠标按下事件
+#     NSEvent.postEvent(down_event, True)
+#
+#     # 创建鼠标释放事件
+#     up_event = NSEvent.mouseEventWithType_location_modifierFlags_timestamp_windowNumber_context_eventNumber_clickCount_pressure_(
+#         NSLeftMouseUp, (x, y), 0, 0, 0, -1, None, 1, 0
+#     )
+#     # 发布鼠标释放事件
+#     NSEvent.postEvent(up_event, True)
+#
+# # 调用函数进行鼠标点击
+# click(100, 100)
 # pip3 install --upgrade --force-reinstall pyobjc
 # import json
 # a = json.loads('{"id":190}')

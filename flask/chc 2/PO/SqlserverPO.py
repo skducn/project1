@@ -929,7 +929,7 @@ class SqlServerPO:
                 "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
                 varComment, varTable, varField))
 
-    def setFieldTypeComment(self, varTable, varField, varType, varComment):
+    def setFieldTypeComment1(self, varTable, varField, varType, varComment):
 
         # 3.14 设置字段类型与备注
         # 应用于pandas带入数据

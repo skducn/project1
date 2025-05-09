@@ -2,6 +2,8 @@
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/flask/chc 2/PO" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/flask/chc/PO" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/instance/RabbitMQ1/topic" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11 (py311)" jdkType="Python SDK" />
@@ -10,6 +12,13 @@
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />
+  </component>
+  <component name="PyNamespacePackagesService">
+    <option name="namespacePackageFolders">
+      <list>
+        <option value="$MODULE_DIR$/instance/zyjk/CHC/rule/weight/1.0" />
+      </list>
+    </option>
   </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="py.test" />

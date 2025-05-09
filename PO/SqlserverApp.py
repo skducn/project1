@@ -12,8 +12,8 @@ from PO.SqlserverPO import *
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
 # todo 社区健康平台（全市）
-Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
-Sqlserver_PO2 = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "ZYCONFIG", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
+Sqlserver_PO2 = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "ZYCONFIG", "GBK")
 
 # print("7.1 查看表结构".center(100, "-"))
 # Sqlserver_PO.desc()
