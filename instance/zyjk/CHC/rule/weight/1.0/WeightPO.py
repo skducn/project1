@@ -17,7 +17,7 @@ warnings.simplefilter("ignore")
 # sys.path.append("../../../../")
 # sys.path.append("/Users/linghuchong/Downloads/51/Python/project")
 
-
+import random, re
 import subprocess, json
 
 from ConfigparserPO import *
@@ -25,6 +25,9 @@ Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"))  # 测试环境
+
+from ThreeFieldPO import *
+ThreeField_PO = ThreeFieldPO()
 
 class WeightPO():
 
@@ -61,112 +64,361 @@ class WeightPO():
 
     def main(self, varTable, varRun='all'):
 
+
         if varRun != 'all':
             l_d_row = Sqlserver_PO.select("select * from %s where pResult != 'ok' or nResult != 'ok'" % (varTable))
             # print("l_d_row => ", l_d_row)
 
         else:
             l_d_row = Sqlserver_PO.select("select id,f_result,f_updateDate,f_ruleName,f_evaluationFactorJudgmentRules_N,f_evaluationRuleCoding from %s" % (varTable))
-            print("l_d_row => ", l_d_row)  # [{'s_value': None, 'o_value': None, 's_field': None, 'o_field': None, 's_comment': None, 'o_comment': None, 's_type': None, 'o_type': None, 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'y', 'tester': '郭斐', 's_sql': "SELECT * FROM T_CHILD_INFO where id='1189'", 'o_sql': "SELECT * FROM DIP.TB_EB_ETJBQK where ETBSFID='1189'"}, {'s_value': '1189', 'o_value': '1189', 's_field': 'ID', 'o_field': 'ETBSFID', 's_comment': '主键', 'o_comment': 'None', 's_type': 'int', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '111', 'o_value': '111', 's_field': 'CREATE_ORG_CODE', 'o_field': 'YLJGDM', 's_comment': '创建机构代码', 'o_comment': 'None', 's_type': 'varchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '马德勇', 'o_value': '马德勇', 's_field': 'NAME', 'o_field': 'XM', 's_comment': '姓名', 'o_comment': 'None', 's_type': 'nvarchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '1', 'o_value': '1', 's_field': 'SEX_CODE', 'o_field': 'XBDM', 's_comment': '性别代码', 'o_comment': 'None', 's_type': 'varchar', 'o_type': 'CHAR', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '220621199012163357', 'o_value': '220621199012163357', 's_field': 'IDCARD', 'o_field': 'ZJHM', 's_comment': '身份证', 'o_comment': 'None', 's_type': 'varchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '测试', 'o_value': '测试', 's_field': 'MOTHER_NAME', 'o_field': 'MQXM', 's_comment': '母亲姓名', 'o_comment': 'None', 's_type': 'nvarchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '222222222222222222', 'o_value': '222222222222222222', 's_field': 'MOTHER_IDCARD', 'o_field': 'MQSFZ_HM', 's_comment': '母亲身份证号', 'o_comment': 'None', 's_type': 'varchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '370685001001', 'o_value': '370685001001', 's_field': 'PRESENT_VILLAGE_CODE', 'o_field': 'XZDZ_JWBM', 's_comment': '现住址-居委编码', 'o_comment': 'None', 's_type': 'varchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '文化区社区居民委员会', 'o_value': '文化区社区居民委员会', 's_field': 'PRESENT_VILLAGE_NAME', 'o_field': 'XZDZ_JW', 's_comment': '现住址-居委', 'o_comment': 'None', 's_type': 'varchar', 'o_type': 'VARCHAR2', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}, {'s_value': '2024-01-06 00:00:00', 'o_value': '2024-01-06 00:00:00', 's_field': 'BIRTH', 'o_field': 'CSRQSJ', 's_comment': '出生日期', 'o_comment': 'None', 's_type': 'datetime', 'o_type': 'DATE', 's_table': 'T_CHILD_INFO', 'o_table': 'TB_EB_ETJBQK', 's_tc': None, 'o_tc': None, 'result': 'ok', 'tester': '郭斐', 's_sql': None, 'o_sql': None}]
+            # print("l_d_row => ", l_d_row)
+            # [{'id': 1, 'f_result': None, 'f_updateDate': None, 'f_ruleName': '成人体重超重或肥胖',
+            # 'f_evaluationFactorJudgmentRules_N': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_evaluationRuleCoding': 'TZ_STZB001'}, ...
+
+        # 测试第一条记录
+        i = 6
+        id = l_d_row[i]['id']
+        f_result = l_d_row[i]['f_result']
+        f_updateDate = l_d_row[i]['f_updateDate']
+        f_ruleName = l_d_row[i]['f_ruleName']
+        f_evaluationFactorJudgmentRules_N = l_d_row[i]['f_evaluationFactorJudgmentRules_N']
+        f_evaluationRuleCoding = l_d_row[i]['f_evaluationRuleCoding']
+
+        # 获取条件
+        print(f_evaluationFactorJudgmentRules_N)  # BMI>=24 and 年龄>=18 and 年龄<65
+
+        # 优先处理or，再处理and
+        print("----------------------------------------")
+        if "or" in f_evaluationFactorJudgmentRules_N:
+            ...
+            print("orororor")
+            l_N = f_evaluationFactorJudgmentRules_N.split("or")
+            l_N = [i.replace("(",'').replace(")",'').strip() for i in l_N]
+            l_N = [i.split("and") for i in l_N]
+            l_l_N = [[item.strip() for item in sublist] for sublist in l_N]
+            # print(l_l_N)
+            print(len(l_l_N))  # 16 ， 16个组合条件
+            varCount = sum = 0
+            l_1 = []
+            for k in l_l_N:
+                d_cases = ThreeField_PO.generate_all_cases(k)
+                # print(d_cases)
+                # print(len(d_cases))
+                print(d_cases['satisfied'][0])  # {'BMI': 44.5, '年龄': 14.4, '性别': '男'}
+
+                (varCount, d_caseConditionName) = self.checkRule3(d_cases['satisfied'][0], id, f_evaluationRuleCoding, varTable)
+                sum = sum + varCount
+                l_1.append(d_caseConditionName)
+            if sum == len(l_l_N):
+                print("ok > ", len(l_l_N), "个组合条件全部命中")
+
+                # 反向用例，不符合条件的其他都没有命中
+                l_2 = list(d_cases.keys())
+                print(l_2)
+                l_2.remove('satisfied')
+                print(l_2) # ['BMI满足且年龄满足且性别不满足', 'BMI满足且年龄不满足且性别满足', 'BMI满足且年龄不满足且性别不满足', 'BMI不满足且年龄满足且性别满足', 'BMI不满足且年龄满足且性别不满足', 'BMI不满足且年龄不满足且性别满足', 'BMI不满足且年龄不满足且性别不满足']
+                varCount = 0
+                for j in l_2:
+                    print(d_cases[j][0])
+                    (varCount, d_caseConditionName) = self.checkRule3(d_cases[j][0], id, f_evaluationRuleCoding, varTable)
+                    if varCount == 1:
+                        # 反向如果命中就错，并且终止循环
+                        print("error > ", d_cases[j][0], "组合条件命中！")
+                        break
+                if varCount == 0:
+                    # 回写数据库f_resut, f_updateDate
+                    print("ok")
+                    Sqlserver_PO.execute("update %s set f_result = 'ok', f_updateDate = GETDATE() where id = %s" % (varTable, id))
+                else:
+                    print("error")
+                    Sqlserver_PO.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where id = %s" % (varTable, id))
+
+            else:
+                print("error > ", len(l_l_N), "个组合条件中, 只命中", sum, "个！未命中的组合为：", l_1)
+                Sqlserver_PO.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where id = %s" % (varTable, id))
+
+            sys.exit(0)
+
+        elif "and" in f_evaluationFactorJudgmentRules_N:
+            l_N = f_evaluationFactorJudgmentRules_N.split("and")
+            l_N = [i.strip() for i in l_N]
+            print(l_N)  # ['BMI>=24', '年龄>=18', '年龄<65']
+
+            cases = ThreeField_PO.generate_all_cases(l_N)
+            print(cases)
+            sys.exit(0)
+        else:
+            print("没有or和and")
+            sys.exit(0)
+
+        # 生成每种情况的样本数据，1个满足，3个不满足
+        d_cases = self.generate_all_cases(l_N)
+        print(d_cases)  # {'satisfied': [{'BMI': 26.9, '年龄': 26}], 'not1': [{'BMI': 41.8, '年龄': 7}], 'not2': [{'BMI': 21.9, '年龄': 33}], 'not3': [{'BMI': 19.0, '年龄': 14}]}
+        # print(cases['satisfied'][0]['BMI'])  #  26.9
 
         sys.exit(0)
 
-        for i, index in enumerate(l_d_row):
+        # # 遍历每条记录
+        # for i, index in enumerate(l_d_row):
+        #     id = l_d_row[i]['id']
+        #     f_result = l_d_row[i]['f_result']
+        #     f_updateDate = l_d_row[i]['f_updateDate']
+        #     f_ruleName = l_d_row[i]['f_ruleName']
+        #     f_evaluationFactorJudgmentRules_N = l_d_row[i]['f_evaluationFactorJudgmentRules_N']
+        #     f_evaluationRuleCoding = l_d_row[i]['f_evaluationRuleCoding']
+        #     print(id)
 
-            QC_type = l_d_row[i]['QC_type']
-            QC_rule = l_d_row[i]['QC_rule']
-            QC_desc = l_d_row[i]['QC_desc']
-            QC_ruleID = l_d_row[i]['QC_ruleID']
+    def checkRule2(self, d_cases, id, f_evaluationRuleCoding, varTable):
+        # 不嵌套判断，2个字段（BMI和年龄）
+        # 更新测试记录，确保满足
+        Sqlserver_PO.execute("update %s set BMI = %s and '年龄' = %s where id = %s" % (varTable, d_cases['satisfied'][0]['BMI'], d_cases['satisfied'][0]['年龄'], id))   # 修改测试记录的BMI和年龄值
 
-            idcard = l_d_row[i]['runQC']
-            pCase = l_d_row[i]['pCase']
-            pCheck = l_d_row[i]['pCheck']
-            nCase = l_d_row[i]['nCase']
-            nCheck = l_d_row[i]['nCheck']
+        # 跑接口
 
-            def runQC(idcard):
+        # 查询是否命中 f_evaluationRuleCoding
+        f_evaluationRuleCoding_actual = Sqlserver_PO.select("select f_evaluationRuleCoding from %s where id = %s" % (varTable, id))
+        if f_evaluationRuleCoding == f_evaluationRuleCoding_actual:
+            # 回写数据库f_resut, f_updateDate
+            print("ok")
+            Sqlserver_PO.execute("update %s set f_result = 'ok', f_updateDate = GETDATE() where id = %s" % (varTable, id))
+        else:
+            print("error")
+            Sqlserver_PO.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where id = %s" % (varTable, id))
 
-                # 步骤2：根据档案编号对单个档案执行质控
-                command = 'curl -X GET "http://192.168.0.243:8090/healthRecordRules/rulesEngine/execute/' + str(idcard) + '" -H "accept: */*"'
-                p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                out, err = p.communicate()
-                str_r = bytes.decode(out)
-                d_r = json.loads(str_r)
-                # print(d_r)   # {'code': 200, 'msg': '成功', 'data': None}
-                if d_r['code'] == 200:
-                    return 1
-                return str_r
+    def checkRule3(self, d_cases, id, f_evaluationRuleCoding, varTable):
+        # 嵌套判断，3个字段（BMI，年龄，性别）
+        # 更新测试记录，确保满足
+        # d_cases = {'BMI': 41.0, '年龄': 14.4, '性别': '男'}
+        # Sqlserver_PO.execute("update %s set BMI = %s and '年龄' = %s and '性别' = %s where id = %s" % (varTable, d_cases['BMI'], d_cases['年龄'], d_cases['性别'], id))   # 修改测试记录的BMI、年龄及性别值
+
+        # 跑接口
+
+        # 查询是否输出评估规则编码，输出则命中，查询是否命中 f_evaluationRuleCoding
+        # f_evaluationRuleCoding_actual = Sqlserver_PO.select("select f_evaluationRuleCoding from %s where id = %s" % (varTable, id))
+        # if f_evaluationRuleCoding == f_evaluationRuleCoding_actual:
+        #     return (1, d_cases['satisfied'][0])
+        # else:
+        #     return (0, d_cases['satisfied'][0])
+
+        return (1, d_cases)
 
 
-            # todo 正向
-            # 步骤1: 执行用例
-            Sqlserver_PO.execute(pCase)
 
-            # 步骤2：根据档案编号对单个档案执行质控
-            status = runQC(idcard)  # {'code': 200, 'msg': '成功', 'data': None}
 
-            if status == 1:
-                # 步骤3：查询结果
-                l_d_r = Sqlserver_PO.select(pCheck)
-                # print(l_d_r)
+    def generate_all_cases(self, conditions, num_samples=1):
+        """
+        生成所有4种可能的条件组合情况
 
-                # 步骤4: 验证结果
-                if l_d_r == [] :
-                    Sqlserver_PO.execute("update %s set pResult='error' where QC_rule='%s' and QC_ruleID='%s'" % (varTable, QC_rule, QC_ruleID))
-                    Color_PO.consoleColor("31", "31", str(i+1) + " [ERROR] => ", "[正向] " + QC_type + ", " + QC_rule + ", " + QC_ruleID + ", 预期值：" + QC_desc + "，返回值：空, 请检查pCase语句！")
-                elif l_d_r[0]['Comment'] == QC_desc:
-                    Sqlserver_PO.execute("update %s set pResult='ok' where QC_rule='%s' and QC_ruleID='%s'" % (varTable, QC_rule, QC_ruleID))
-                    # print("[正向 ok], " + QC_rule + ", " + QC_ruleID)
-                    print(str(i+1))
-                else:
-                    Sqlserver_PO.execute("update %s set pResult='error' where QC_rule='%s' and QC_ruleID='%s'" % (varTable, QC_rule, QC_ruleID))
-                    Color_PO.consoleColor("31", "31", str(i + 1) + " [ERROR] => ", "[正向] " + QC_type + ", " + QC_rule + ", " + QC_ruleID + ", 预期值：" + QC_desc + "，返回值：空, 请检查pCase语句！")
-                    print(str(i + 1))
-                Sqlserver_PO.execute("update %s set updateDate='%s' where QC_ruleID='%s'" % (varTable, Time_PO.getDateTimeByDivide(), QC_ruleID))
+        参数:
+        conditions (list): 条件列表，例如 ['BMI>=24', '年龄>=18', '年龄<65']
+        num_samples (int): 每种情况生成的样本数量
 
+        返回:
+        dict: 包含4种情况的样本字典
+        """
+        # 分离BMI和年龄条件
+        bmi_conditions = [c for c in conditions if c.startswith('BMI')]
+        age_conditions = [c for c in conditions if c.startswith('年龄')]
+
+        # 生成每种情况的样本
+        return {
+            "satisfied": [self.generate_sample(bmi_conditions, age_conditions, True, True) for _ in range(num_samples)],
+            "not1": [self.generate_sample(bmi_conditions, age_conditions, True, False) for _ in range(num_samples)],
+            "not2": [self.generate_sample(bmi_conditions, age_conditions, False, True) for _ in range(num_samples)],
+            "not3": [self.generate_sample(bmi_conditions, age_conditions, False, False) for _ in range(num_samples)]
+        }
+
+    def generate_sample(self, bmi_conditions, age_conditions, satisfy_bmi, satisfy_age):
+        """
+        生成一个符合指定条件组合的样本
+
+        参数:
+        bmi_conditions (list): BMI相关条件
+        age_conditions (list): 年龄相关条件
+        satisfy_bmi (bool): 是否满足BMI条件
+        satisfy_age (bool): 是否满足年龄条件
+
+        返回:
+        dict: 包含BMI和年龄的字典
+        """
+        # 生成BMI值
+        if satisfy_bmi:
+            bmi = self.generate_valid_bmi(bmi_conditions)
+        else:
+            bmi = self.generate_invalid_bmi(bmi_conditions)
+
+        # 生成年龄值
+        if satisfy_age:
+            age = self.generate_valid_age(age_conditions)
+        else:
+            age = self.generate_invalid_age(age_conditions)
+
+        # 返回字典格式
+        return {'BMI': bmi, '年龄': age}
+
+    def generate_valid_bmi(self, conditions):
+        """生成符合所有BMI条件的值"""
+        bmi_min = 10.0
+        bmi_max = 60.0
+
+        for condition in conditions:
+            match = re.match(r'BMI([<>=]+)(\d+)', condition)
+            if not match:
+                continue
+
+            operator, value = match.groups()
+            value = float(value)
+
+            if operator == '>':
+                bmi_min = max(bmi_min, value + 0.1)
+            elif operator == '>=':
+                bmi_min = max(bmi_min, value)
+            elif operator == '<':
+                bmi_max = min(bmi_max, value - 0.1)
+            elif operator == '<=':
+                bmi_max = min(bmi_max, value)
+
+        return round(random.uniform(bmi_min, bmi_max), 1)
+
+    def generate_invalid_bmi(self, conditions):
+        """生成不符合所有BMI条件的值"""
+        if not conditions:
+            return round(random.uniform(10.0, 60.0), 1)
+
+        # 计算所有BMI条件的有效范围
+        bmi_min = 10.0
+        bmi_max = 60.0
+
+        for condition in conditions:
+            match = re.match(r'BMI([<>=]+)(\d+)', condition)
+            if not match:
+                continue
+
+            operator, value = match.groups()
+            value = float(value)
+
+            if operator == '>':
+                bmi_min = max(bmi_min, value + 0.1)
+            elif operator == '>=':
+                bmi_min = max(bmi_min, value)
+            elif operator == '<':
+                bmi_max = min(bmi_max, value - 0.1)
+            elif operator == '<=':
+                bmi_max = min(bmi_max, value)
+
+        # 如果有效范围存在，生成范围外的值
+        if bmi_min <= bmi_max:
+            # 有效范围外有两个区间：[10.0, bmi_min) 和 (bmi_max, 60.0]
+            if random.random() < 0.5:
+                # 选择下界区间
+                return round(random.uniform(10.0, bmi_min - 0.1), 1)
             else:
-                # print("[error], 执行档案编号对单个档案执行质控 失败！" + status)
-                Color_PO.consoleColor("31", "31", str(i+1) + "[ERROR], ", "执行档案编号对单个档案执行质控 失败！" + status)
+                # 选择上界区间
+                return round(random.uniform(bmi_max + 0.1, 60.0), 1)
+        else:
+            # 条件矛盾，所有值都不符合条件
+            return round(random.uniform(10.0, 60.0), 1)
 
-            # todo 反向
-            # 步骤1: 执行用例
-            Sqlserver_PO.execute(nCase)
+    def generate_valid_age(self, conditions):
+        """生成符合所有年龄条件的值"""
+        age_min = 0
+        age_max = 120
 
-            # 步骤2：根据档案编号对单个档案执行质控
-            runQC(idcard)
+        for condition in conditions:
+            match = re.match(r'年龄([<>=]+)(\d+)', condition)
+            if not match:
+                continue
 
-            if status == 1:
-                # 步骤3：查询结果
-                l_d_r = Sqlserver_PO.select(nCheck)
+            operator, value = match.groups()
+            value = float(value)
 
-                # 步骤4: 验证结果
-                if l_d_r == []:
-                    Sqlserver_PO.execute("update %s set nResult='ok' where QC_desc='%s' and QC_ruleID='%s'" % (varTable, QC_desc, QC_ruleID))
-                    # print("[反向 ok], " + QC_rule + ", " + QC_ruleID)
-                    # print(str(i + 1))
+            if operator == '>':
+                age_min = max(age_min, value + 1)
+            elif operator == '>=':
+                age_min = max(age_min, value)
+            elif operator == '<':
+                age_max = min(age_max, value - 1)
+            elif operator == '<=':
+                age_max = min(age_max, value)
+
+        return random.randint(int(age_min), int(age_max))
+
+    def generate_invalid_age(self, conditions):
+        """生成不符合所有年龄条件的值"""
+        if not conditions:
+            return random.randint(0, 120)
+
+        # 计算所有年龄条件的有效范围
+        age_min = 0
+        age_max = 120
+
+        for condition in conditions:
+            match = re.match(r'年龄([<>=]+)(\d+)', condition)
+            if not match:
+                continue
+
+            operator, value = match.groups()
+            value = float(value)
+
+            if operator == '>':
+                age_min = max(age_min, value + 1)
+            elif operator == '>=':
+                age_min = max(age_min, value)
+            elif operator == '<':
+                age_max = min(age_max, value - 1)
+            elif operator == '<=':
+                age_max = min(age_max, value)
+
+        # 如果有效范围存在，生成范围外的值
+        if age_min <= age_max:
+            # 有效范围外有两个区间：[0, age_min) 和 (age_max, 120]
+            if random.random() < 0.5:
+                # 选择下界区间
+                if age_min > 0:
+                    return random.randint(0, int(age_min - 1))
                 else:
-                    Sqlserver_PO.execute("update %s set nResult='error' where QC_desc='%s' and QC_ruleID='%s'" % (varTable, QC_desc, QC_ruleID))
-                    Color_PO.consoleColor("31", "31", str(i+1) + " [ERROR] => ", "[反向] " + QC_type + ", " + QC_rule + ", " + QC_ruleID + ", 预期值：" + QC_desc + "，返回值：空, 请检查nCase语句！")
-                    # Color_PO.consoleColor("31", "31", "[ERROR], ", "[反向], " + QC_rule + ", " + QC_ruleID)
-                Sqlserver_PO.execute("update %s set updateDate='%s' where QC_ruleID='%s'" % (varTable, Time_PO.getDateTimeByDivide(), QC_ruleID))
-
+                    # 如果 age_min 是 0，无法再生成更小的数，就返回一个固定值
+                    return random.randint(0, 120)
             else:
-                # print("[error], 执行档案编号对单个档案执行质控 失败！" + status)
-                Color_PO.consoleColor("31", "31", str(i+1) + "[ERROR], ", "执行档案编号对单个档案执行质控 失败！" + status)
+                # 选择上界区间
+                if age_max < 120:
+                    return random.randint(int(age_max + 1), 120)
+                else:
+                    # 如果 age_max 是 120，无法再生成更大的数，就返回一个固定值
+                    return random.randint(0, 120)
+        else:
+            # 条件矛盾，所有值都不符合条件
+            return random.randint(0, 120)
 
+        # if age_min <= age_max:
+        #     # 有效范围外有两个区间：[0, age_min) 和 (age_max, 120]
+        #     if random.random() < 0.5:
+        #         # 选择下界区间
+        #         return random.randint(0, int(age_min - 1))
+        #     else:
+        #         # 选择上界区间
+        #         return random.randint(int(age_max + 1), 120)
+        # else:
+        #     # 条件矛盾，所有值都不符合条件
+        #     return random.randint(0, 120)
 
-    def db2html(self):
+    # 使用示例
+    if __name__ == "__main__":
+        # 条件列表
+        conditions = ['BMI>=24', '年龄>=18', '年龄<65']
 
-        # db导出html
+        try:
+            # 生成每种情况的样本
+            cases = generate_all_cases(conditions)
 
-        # 导出所有值
-        Sqlserver_PO.db2html("select ID, updateDate as 更新时间, pResult as 正向结果, nResult as 反向结果, QC_type as 类型, QC_field as 质控字段, QC_rule as 质控规则, QC_desc as 错我描述, pCase as 正向用例, nCase as 反向用例, pCheck as 正向校验 from %s" % (Configparser_PO.DB("table")), Configparser_PO.FILE("html"))
+            # 打印结果
+            for case_name, samples in cases.items():
+                print(f"\n情况: {case_name}")
+                for i, (bmi, age) in enumerate(samples, 1):
+                    print(f"样本 {i}: BMI = {bmi}, 年龄 = {age}")
 
-        # 导出错误记录
-        # Sqlserver_PO.db2html("select ID, updateDate as 更新时间, pResult as 正向结果, nResult as 反向结果, QC_type as 类型, QC_field as 质控字段, QC_rule as 质控规则, QC_desc as 错我描述, pCase as 正向用例, nCase as 反向用例, pCheck as 正向校验 from %s where pResult='error' or nResult='error'" % (Configparser_PO.DB("table")), Configparser_PO.FILE("html"))
-
-
-
+        except ValueError as e:
+            print(f"错误: {e}")
 
 
 
