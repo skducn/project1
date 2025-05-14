@@ -156,7 +156,7 @@ if __name__ == "__main__":
         else:
             # 盘中执行
             run({"涨幅": [-3, 5]})
-            print("盘中结果")
+            print("done,盘中结果。")
 
     except Exception as e:
         print(f"发生错误: {e}")

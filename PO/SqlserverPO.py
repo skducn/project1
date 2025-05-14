@@ -176,6 +176,7 @@ from time import sleep
 # from adodbapi import connect
 from sqlalchemy import create_engine, text
 import sqlalchemy
+from sqlalchemy import types as sqltypes
 
 from PO.ColorPO import *
 Color_PO = ColorPO()
@@ -221,6 +222,10 @@ class SqlserverPO:
         return create_engine(
             "mssql+pymssql://" + self.user + ":" + self.password + "@" + self.server + "/" + self.database)
 
+        # 确保连接字符串包含了 charset=utf8 或 charset=utf8mb4，以便支持非 gbk 字符
+        # return create_engine(
+        #     "mssql+pymssql://" + self.user + ":" + self.password + "@" + self.server + "/" + self.database + "?charset=utf8mb4"
+        # )
 
     def selectParam(self, sql, param):
 
@@ -989,11 +994,33 @@ class SqlserverPO:
             print(e, ",[error], getFields()异常!")
             self.conn.close()
 
+    # def getFieldComment(self, varTable, varEncoding="utf-8"):
     def getFieldComment(self, varTable, varEncoding="GBK"):
+
+        l_d_ = self.select(
+            "SELECT B.name as FIELD_NAME, C.value as COMMENT FROM sys.tables A INNER JOIN sys.columns B ON B.object_id = A.object_id LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id inner join systypes d on B.user_type_id=d.xusertype WHERE A.name ='%s'"
+            % (varTable)
+        )
+        # print(l_d_)  # [{'FIELD_NAME': 'GHRQ', 'COMMENT': b'\xe6\x8c\x8...]
+        l_field = []
+        l_comment = []
+        for i in range(len(l_d_)):
+            l_field.append(l_d_[i]['FIELD_NAME'])
+            if l_d_[i]['COMMENT'] == None:
+                l_comment.append(l_d_[i]['COMMENT'])
+            else:
+                l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于上传\导入数据库
+                # l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于打开页面
+        return dict(zip(l_field, l_comment))
+
+
+    def getFieldComment2(self, varTable, varEncoding="utf-8"):
+    # def getFieldComment(self, varTable, varEncoding="GBK"):
 
         ''' 3.4 获取字段名与字段注释 '''
         # getFieldComment(varTable, varEncoding="utf-8")
 
+        # print("11varEncoding:", varEncoding)
         try:
             l_d_ = self.select(
                 "SELECT B.name as FIELD_NAME, C.value as COMMENT FROM sys.tables A INNER JOIN sys.columns B ON B.object_id = A.object_id LEFT JOIN sys.extended_properties C ON C.major_id = B.object_id AND C.minor_id = B.column_id inner join systypes d on B.user_type_id=d.xusertype WHERE A.name ='%s'"
@@ -1007,10 +1034,11 @@ class SqlserverPO:
                 if l_d_[i]['COMMENT'] == None:
                     l_comment.append(l_d_[i]['COMMENT'])
                 else:
-                    # l_comment.append(l_d_[i]['COMMENT'].decode(encoding="utf-8", errors="strict"))  # 用于上传
-                    l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于打开页面
+                    l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于上传\导入数据库
+                    # l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于打开页面
             return dict(zip(l_field, l_comment))
         except Exception as e:
+            print("varEncoding:",varEncoding)
             print(e, ",[error2], getFields()异常!")
             self.conn.close()
 
@@ -1214,30 +1242,30 @@ class SqlserverPO:
         #     self.close()
         #     self.conn.close()
 
-    def setFieldComment(self, varTable, varField, varComment, isDrop=False):
+    def setFieldComment(self, varTable, varField, varComment, varEncoding="GBK"):
 
         # 3.13 设置字段注释
         # setFieldComment('t_user','ID','编号')   //表名，字段，注释
         # setFieldComment('t_user','ID','编号', True) //表名，字段，注释，True表示删除此注释
 
-        if isDrop == True:
-            # 删除注释
-            self.execute(
-                "EXECUTE sp_dropextendedproperty N'MS_Description', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-                    varTable, varField))
-        else:
-            d_field_comment = self.getFieldComment(varTable)
-            for k, v in d_field_comment.items():
-                if k == varField and v == None:
-                    # 添加注释
-                    self.execute(
-                        "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-                            varComment, varTable, varField))
-                elif k == varField and v != None:
-                    # 修改注释
-                    self.execute(
-                        "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
-                            varComment, varTable, varField))
+
+        # # 删除注释
+        # self.execute(
+        #     "EXECUTE sp_dropextendedproperty N'MS_Description', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+        #         varTable, varField))
+
+        d_field_comment = self.getFieldComment(varTable, varEncoding=varEncoding)
+        for k, v in d_field_comment.items():
+            if k == varField and v == None:
+                # 添加注释
+                self.execute(
+                    "EXECUTE sp_addextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+                        varComment, varTable, varField))
+            elif k == varField and v != None:
+                # 修改注释
+                self.execute(
+                    "EXECUTE sp_updateextendedproperty N'MS_Description', N'%s', N'SCHEMA', N'dbo',N'TABLE', N'%s', N'COLUMN', N'%s'" % (
+                        varComment, varTable, varField))
 
     def setFieldType(self, varTable, varField, varType):
 
@@ -1261,7 +1289,7 @@ class SqlserverPO:
         self.execute("alter table %s DROP CONSTRAINT %s" % (varTable, varField))
 
 
-    def setFieldTypeComment(self, varTable, varField, varType, varComment):
+    def setFieldTypeComment(self, varTable, varField, varType, varComment, varEncoding='utf-8'):
 
         # 3.14 设置字段类型与备注
         # 应用于pandas带入数据
@@ -1270,10 +1298,11 @@ class SqlserverPO:
 
         try:
             # 1 获取所有字段的备注
-            d_comments = self.getFieldComment(varTable)
+            d_comments = self.getFieldComment(varTable, varEncoding)
+            # d_comments = self.getFieldComment(varTable, "utf-8")
 
             if d_comments[varField] == None:
-                self.setFieldComment(varTable, varField, varComment)
+                self.setFieldComment(varTable, varField, varComment, varEncoding)
             else:
                 self.reviseFieldComment(varTable, varField, varComment)
         except Exception as e:
@@ -1912,7 +1941,41 @@ class SqlserverPO:
         try:
             df = pd.read_excel(varPathFile, sheet_name=varSheetName)
             engine = self.getEngine_pymssql()
+            # df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
+            df.to_sql(varDbTable, con=engine, if_exists='replace', index=False, chunksize=1000)
+
+            # # 定义列的数据类型
+            # dtype = {
+            #     'column_with_non_gbk': sqltypes.VARCHAR(length=255, collation='utf8mb4_unicode_ci'),  # 自定义字符集
+            #     'other_column': sqltypes.INTEGER()
+            # }
+            #
+            # df.to_sql(varDbTable, con=engine, if_exists="replace", index=False, dtype=dtype)
+
+        except Exception as e:
+            print(e)
+
+    def xlsx2db2(self, varPathFile, varDbTable, varSheetName, varColName):
+
+        '''
+        5.3，xlsx全量导入数据库（覆盖）
+        # 定义列的数据类型
+        xlsx2db2('2.xlsx', "tableName", "sheet1", "colName")
+        excel表格第一行数据对应db表中字段，建议用英文
+        '''
+
+        try:
+            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            engine = self.getEngine_pymssql()
             df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
+
+            # # 定义列的数据类型
+            dtype = {
+                varColName : sqltypes.VARCHAR(length=255, collation='utf8mb4_unicode_ci')  # 自定义字符集
+                # 'other_column': sqltypes.INTEGER()
+            }
+
+            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False, dtype=dtype)
 
         except Exception as e:
             print(e)

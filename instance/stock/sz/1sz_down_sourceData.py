@@ -6,6 +6,7 @@
 # 步骤：
 # 1，手工从深圳交易证券所下载每日数据源，深圳交易证券所 https://www.szse.cn/market/trend/index.html
 # 2，匹配连续2天（如0422.xlsx和0423.xlsx两个文件）的数据，筛选出符合要求的stock
+# /Users/linghuchong/Downloads/51/Python/stock
 # 3，保存到sz.json
 # *****************************************************************
 import sys

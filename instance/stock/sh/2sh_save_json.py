@@ -137,8 +137,8 @@ def run(varYMD1file='', varYMD2file=''):
 if __name__ == "__main__":
 
     try:
-        run()
-        # run("0506.xlsx", '0507.xlsx')
+        # run()
+        run("0512.xlsx", '0513.xlsx')
 
     except Exception as e:
         print(f"发生错误: {e}")

@@ -54,6 +54,7 @@ class BmiAgePO():
         """
         # 分离BMI和年龄条件
         bmi_conditions = [c for c in conditions if c.startswith('BMI')]
+        # sex_conditions = [c for c in conditions if c.startswith('性别')]
         # print("bmi_conditions", bmi_conditions)
         age_conditions = [c for c in conditions if c.startswith('年龄')]
 

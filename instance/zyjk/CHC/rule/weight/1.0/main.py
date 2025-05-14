@@ -11,37 +11,24 @@
 # pip install sqlalchemy
 
 #***************************************************************
-
 from WeightPO import *
 Weight_PO = WeightPO()
 
+# from PO.LogPO import *
+# Log_PO = LogPO(filename='log.log', level="info")
 
 # todo 1, excel导入db
-# Weight_PO.excel2db(Configparser_PO.FILE("case"), Configparser_PO.DB("table"))
-
+# Weight_PO.excel2db_ER(Configparser_PO.FILE("case"), "ER", "a_weight10_ER")
+# Weight_PO.excel2db_IR(Configparser_PO.FILE("case"), "IR", "a_weight10_IR")
+# Weight_PO.excel2db_WS(Configparser_PO.FILE("case"), "WEIGHT_STATUS", "a_weight10_WS")
 
 # # todo 2, 运行主程序
-# Weight_PO.main(Configparser_PO.DB_SQL("table"), 'error')  # 执行错误记录
-Weight_PO.main(Configparser_PO.DB("table"), 'all')  # 执行全部记录
-#
-#
-# # todo 3, 导出html
-# ehr_rule_PO.db2html()
+# Weight_PO.testWS(Configparser_PO.DB_SQL("table"), 'error')  # 执行错误记录
+# Weight_PO.main(Configparser_PO.DB("tableER"), 'all')  # 执行全部记录
+
+Weight_PO.WS(Configparser_PO.DB("tableWS"))  # 执行全部记录
 
 
-# # if c > 0:
-# # #     # todo 4，如结果中有错误记录，则发邮件
-# from PO.NetPO import *
-# Net_PO = NetPO()
-# Net_PO.sendEmail("测试组23", ['h.jin@zy-healthtech.com'], None,
-#           "EHR规则自动化测试报告", "htmlFile", "<h3>您好，h.jin：</h3>", Configparser_PO.FILE("html"), """<br>
-#    <h3>本邮件由智赢测试系统自动发出，请勿直接回复！</h3>
-#    <h3>如您不愿意接收此类邮件，请联系我们，如有打扰请谅解。</h3>
-#    <h3>谢谢</h3>
-#    """)
-
-
-# os.system("open " + Configparser_PO.FILE("html"))
 
 
 

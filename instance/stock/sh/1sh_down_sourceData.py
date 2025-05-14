@@ -94,9 +94,9 @@ def run():
 if __name__ == "__main__":
 
     try:
-        # run()
-        os.system("open /Users/linghuchong/Downloads/51/Python/stock/sh")
-        os.system("python 2sh_save_json.py")
+        run()
+        # os.system("open /Users/linghuchong/Downloads/51/Python/stock/sh")
+        # os.system("python 2sh_save_json.py")
 
     except Exception as e:
         print(f"发生错误: {e}")
