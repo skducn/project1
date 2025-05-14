@@ -790,131 +790,6 @@ class BmiAgeSexPO():
         # 自动判断样本数
         if num_samples is None:
             has_gte_or_lte = any(
-                '>=' in cond or '<=' in cond for cond in conditions if cond.startswith('年龄')
-            )
-            num_samples = 2 if has_gte_or_lte else 1
-
-        # 解析条件
-        parsed_conditions = {
-            "BMI": [],
-            "年龄": [],
-            "性别": []
-        }
-
-        for cond in conditions:
-            field = None
-            if cond.startswith("BMI"):
-                field = "BMI"
-            elif cond.startswith("年龄"):
-                field = "年龄"
-            elif cond.startswith("性别"):
-                field = "性别"
-
-            if field:
-                parsed_conditions[field].append(cond)
-
-        for field in ["BMI", "年龄", "性别"]:
-            if not parsed_conditions[field]:
-                parsed_conditions[field] = ["always_true"]
-
-        # 生成所有组合
-        cases = {}
-        from itertools import product
-
-        for bmi_satisfied, age_satisfied, gender_satisfied in product([True, False], repeat=3):
-
-            case_name = self.get_case_name(bmi_satisfied, age_satisfied, gender_satisfied)
-            if case_name == 'BMI满足且年龄满足且性别满足':
-                case_name = 'satisfied'
-
-            samples = []
-
-            while len(samples) < num_samples:
-                sample = {}
-
-                # # 强制插入第一个样本为边界值
-                # if bmi_satisfied and len(samples) == 0:
-                #     min_val = None
-                #     for cond in parsed_conditions["BMI"]:
-                #         if '>=' in cond:
-                #             parts = cond.split('>=')
-                #             if 'BMI' in parts[0]:
-                #                 min_val = float(parts[1].strip())
-                #         elif '<=' in cond:
-                #             parts = cond.split('<=')
-                #             if 'BMI' in parts[0]:
-                #                 min_val = float(parts[1].strip())
-                #
-                #     if min_val is not None:
-                #         sample["BMI"] = round(min_val, 1)
-                #     else:
-                #         sample["BMI"] = self.generate_valid_bmi(parsed_conditions["BMI"])
-                # else:
-                #     sample["BMI"] = self.generate_valid_bmi(parsed_conditions["BMI"])
-
-                # 强制插入第一个样本为边界值
-                if age_satisfied and len(samples) == 0:
-                    min_val = None
-                    for cond in parsed_conditions["年龄"]:
-                        if '>=' in cond:
-                            parts = cond.split('>=')
-                            if '年龄' in parts[0]:
-                                min_val = float(parts[1].strip())
-                        elif '<=' in cond:
-                            parts = cond.split('<=')
-                            if '年龄' in parts[0]:
-                                min_val = float(parts[1].strip())
-
-                    if min_val is not None:
-                        sample["年龄"] = round(min_val, 1)
-                    else:
-                        sample["年龄"] = self.generate_valid_age(parsed_conditions["年龄"])
-                else:
-                    sample["年龄"] = self.generate_valid_age(parsed_conditions["年龄"])
-
-                # 生成其他字段
-                if bmi_satisfied:
-                    sample["BMI"] = self.generate_valid_bmi(parsed_conditions["BMI"])
-                else:
-                    sample["BMI"] = self.generate_invalid_bmi(parsed_conditions["BMI"])
-
-                # if age_satisfied:
-                #     sample["年龄"] = self.generate_valid_age(parsed_conditions["年龄"])
-                # else:
-                #     sample["年龄"] = self.generate_invalid_age(parsed_conditions["年龄"])
-
-                if gender_satisfied:
-                    sample["性别"] = self.generate_valid_gender(parsed_conditions["性别"])
-                else:
-                    sample["性别"] = self.generate_invalid_gender(parsed_conditions["性别"])
-
-                # 校验是否满足组合条件
-                if (
-                        self.is_match(sample["BMI"], parsed_conditions["BMI"] if bmi_satisfied else []) and
-                        self.is_match(sample["年龄"], parsed_conditions["年龄"] if age_satisfied else []) and
-                        self.is_match(sample["性别"], parsed_conditions["性别"] if gender_satisfied else [])
-                ):
-                    samples.append(sample)
-
-            if samples:
-                cases[case_name] = samples
-
-        return cases
-    def generate_all_cases_bmi(self, conditions, num_samples=None):
-        """
-        生成所有可能的条件组合情况（支持多个同字段条件）
-
-        参数:
-            conditions (list): 条件列表，例如 ['BMI>=24', '年龄>=18', '性别=男']
-            num_samples (int): 每种情况生成的样本数量（默认根据条件自动判断）
-
-        返回:
-            dict: 包含各种情况的样本字典
-        """
-
-        # 自动判断样本数
-        if num_samples is None:
-            has_gte_or_lte = any(
                 '>=' in cond or '<=' in cond for cond in conditions if cond.startswith('BMI')
             )
             num_samples = 2 if has_gte_or_lte else 1
@@ -957,7 +832,7 @@ class BmiAgeSexPO():
             while len(samples) < num_samples:
                 sample = {}
 
-                # # 强制插入第一个样本为边界值
+                # 强制插入第一个样本为边界值
                 if bmi_satisfied and len(samples) == 0:
                     min_val = None
                     for cond in parsed_conditions["BMI"]:
@@ -977,10 +852,7 @@ class BmiAgeSexPO():
                 else:
                     sample["BMI"] = self.generate_valid_bmi(parsed_conditions["BMI"])
 
-
                 # 生成其他字段
-
-
                 if age_satisfied:
                     sample["年龄"] = self.generate_valid_age(parsed_conditions["年龄"])
                 else:
@@ -1692,21 +1564,106 @@ if __name__ == "__main__":
     po = BmiAgeSexPO()
 
     # 示例 1: 包含 >= 和 <=，应输出 2 个样本
-    conditions1 = ['BMI>=16.4', 'BMI<17.7', '年龄=1', '性别=男']
-    # conditions1 = ['年龄>=6', '年龄<6.5', 'BMI<13.4', '性别=男']
+    # conditions1 = ['BMI>=16.4', 'BMI<17.7', '年龄=1', '性别=男']
+    conditions1 = ['年龄>=6', '年龄<6.5', 'BMI<13.4', '性别=男']
     print("Condition 1:", conditions1)
-    for i in conditions1:
-        if ('>=' or '<=') in i :
-            if '年龄' in i:
-                d_cases1 = po.generate_all_cases(conditions1)
-                print(d_cases1)
-                # for idx, sample in enumerate(d_cases1.get('satisfied', []), 1):
-                #     print(f"✅ 第{idx}个样本: {sample}")
-                break
-            if 'BMI' in i:
-                d_cases1 = po.generate_all_cases_bmi(conditions1)
-                print(d_cases1)
-                # for idx, sample in enumerate(d_cases1.get('satisfied', []), 1):
-                #     print(f"✅ 第{idx}个样本: {sample}")
-                break
+    d_cases1 = po.generate_all_cases(conditions1)
+    print(d_cases1)
+    for idx, sample in enumerate(d_cases1.get('satisfied', []), 1):
+        print(f"✅ 第{idx}个样本: {sample}")
 
+    # 示例 2: 只包含 > 和 <，应输出 1 个样本
+    conditions2 = ['BMI>16.4', 'BMI<17.7', '年龄=1', '性别=男']
+    print("\nCondition 2:")
+    d_cases2 = po.generate_all_cases(conditions2)
+    print(d_cases2)
+
+    for idx, sample in enumerate(d_cases2.get('satisfied', []), 1):
+        print(f"✅ 第{idx}个样本: {sample}")
+
+    sys.exit(0)
+    po = BmiAgeSexPO()
+    conditions = ['年龄=1', 'BMI>16.4', 'BMI<17.7', '性别=男']
+
+    l_3_value = []
+    for cond in conditions:
+        if "BMI" in cond:
+            l_3_value.extend(po.splitMode(cond))
+        elif "年龄" in cond:
+            l_3_value.extend(po.splitMode(cond))
+        else:
+            l_3_value.append(cond)
+
+    print("解析后的条件:", l_3_value)
+
+    d_cases = po.generate_all_cases(l_3_value, num_samples=2)
+    print(d_cases)
+
+    if 'satisfied' in d_cases:
+        for idx, sample in enumerate(d_cases['satisfied'], 1):
+            print(f"✅ 第{idx}个样本: {sample}")
+    else:
+        print("❌ 未生成满足条件的样本，请检查逻辑或范围")
+
+    # po = BmiAgeSexPO()
+    # conditions = ['年龄>6', '年龄<6.5', 'BMI<13.4', '性别=男']
+    #
+    # l_1 = []
+    # for i in conditions:
+    #     if "BMI" in i:
+    #         l_simple_conditions = po.splitMode(i)
+    #         l_1.extend(l_simple_conditions)
+    #     elif "年龄" in i:
+    #         l_simple_conditions = po.splitMode(i)
+    #         l_1.extend(l_simple_conditions)
+    #     else:
+    #         l_1.append(i)
+    #
+    # print("解析后的条件:", l_1)
+    #
+    # cases = po.generate_all_cases(l_1)
+    # print(cases)
+    #
+    # # 查看 satisfied 是否包含符合条件的数据
+    # if 'satisfied' in cases:
+    #     for sample in cases['satisfied']:
+    #         print("✅ 满足条件的样本:", sample)
+    # else:
+    #     print("❌ 未生成满足条件的数据，请检查条件范围或逻辑")
+
+
+    # # 条件列表
+    # # l_conditions = ['14<年龄<14.5', '22.3<=BMI', '性别=男']
+    # # l_conditions = ['年龄=3', '14.3>BMI', '性别=女']
+    # # l_conditions = ['年龄=5', '14.7>BMI', '性别=女']
+    # l_conditions = ['年龄=5', '14.7<BMI<14.9', '性别=女']
+    #
+    # BmiAgeSex_PO = BmiAgeSexPO()
+    # l_1 = []
+    # for i in l_conditions:
+    #     if "BMI" in i:
+    #         l_simple_conditions = BmiAgeSex_PO.split_compound_condition(i)
+    #         l_1.extend(l_simple_conditions)
+    #     elif "年龄" in i:
+    #         l_simple_conditions = BmiAgeSex_PO.split_compound_condition(i)
+    #         l_1.extend(l_simple_conditions)
+    #     else:
+    #         l_1.append(i)
+    # print(l_1)
+    #
+    #
+    # try:
+    #     # 生成每种情况的样本
+    #     cases = BmiAgeSex_PO.generate_all_cases(l_1)
+    #     print(cases)
+    #
+    #     # # 打印结果
+    #     # for case_name, samples in cases.items():
+    #     #     print(f"\n情况: {case_name}")
+    #     #     for i, sample in enumerate(samples, 1):
+    #     #         print(f"样本 {i}: {sample}")
+    #
+    # except ValueError as e:
+    #     print(f"错误: {e}")
+    #
+    #
