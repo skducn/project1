@@ -19,14 +19,15 @@ Weight_PO = WeightPO()
 
 # todo 1, excel导入db
 # Weight_PO.excel2db_ER(Configparser_PO.FILE("case"), "ER", "a_weight10_ER")
+# Weight_PO.ER(Configparser_PO.DB("tableER"),6)  # 执行全部记录
+
+
 # Weight_PO.excel2db_IR(Configparser_PO.FILE("case"), "IR", "a_weight10_IR")
+# Weight_PO.ER(Configparser_PO.DB("tableIR"),6)  # 执行全部记录
+
+
 # Weight_PO.excel2db_WS(Configparser_PO.FILE("case"), "WEIGHT_STATUS", "a_weight10_WS")
-
-# # todo 2, 运行主程序
-# Weight_PO.testWS(Configparser_PO.DB_SQL("table"), 'error')  # 执行错误记录
-# Weight_PO.main(Configparser_PO.DB("tableER"), 'all')  # 执行全部记录
-
-Weight_PO.WS(Configparser_PO.DB("tableWS"))  # 执行全部记录
+Weight_PO.weightStatus(1)  # 执行全部记录
 
 
 
