@@ -6,3 +6,6 @@ l_1 = []
 l_1.append(a)
 l_1.append(b)
 print(l_1)
+
+a = str(a)
+print(str(a), type(a))

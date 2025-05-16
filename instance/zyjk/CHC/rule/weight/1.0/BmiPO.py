@@ -88,7 +88,7 @@ class BmiPO:
 
         return {
             "satisfied": unique_satisfied,
-            "not1": not1_samples
+            "notSatisfied": not1_samples
         }
 
     def _generate_invalid_bmi(self, conditions):

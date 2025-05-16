@@ -27,13 +27,13 @@ from PO.SqlserverPO import *
 Sqlserver_PO_CHC5G = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"))  # 测试环境
 Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))  # 测试环境
 
-from AgePO3 import *
+from AgePO import *
 Age_PO = AgePO()
 
 from BmiPO import *
 Bmi_PO = BmiPO()
 
-from BmiAgePO6 import *
+from BmiAgePO import *
 BmiAge_PO = BmiAgePO()
 
 from BmiAgeSexPO import *
@@ -242,7 +242,7 @@ class WeightPO():
                     # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
                     varCount = self.checkRule3(d_cases['satisfied'][0], id, f_ERcode, varTable)
                     if varCount == 1:
-                        print("ok > 条件：", lln, "，满足：", d_cases['satisfied'][0] , " > 命中。")
+                        print("ok > 条件：", lln, "，测试数据：", d_cases['satisfied'][0] , " > 命中。")
 
                         # 反向用例, 不满足条件的v[0]，预期不命中。
                         del d_cases['satisfied']
@@ -252,13 +252,13 @@ class WeightPO():
                             varCount = self.checkRule4(v[0], id, f_ERcode, varTable)
                             if varCount == 1:
                                 # 反向如果命中就错，并且终止循环
-                                print("error > 条件：", lln, "，不满足：", v[0], " > 命中！")
+                                print("error > 条件：", lln, "，测试数据：", v[0], " > 命中！")
                                 break
                             else:
-                                print("ok > 条件：", lln, "，不满足：", v[0], " > 不命中。")
+                                print("ok > 条件：", lln, "，测试数据：", v[0], " > 不命中。")
                                 Ellipsis
                     else:
-                        print("error > 条件：", lln, "，满足：", d_cases['satisfied'][0] , " > 不命中！")
+                        print("error > 条件：", lln, "，测试数据：", d_cases['satisfied'][0] , " > 不命中！")
                         Ellipsis
                         # Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where id = %s" % (varTable, id))
 
@@ -296,7 +296,7 @@ class WeightPO():
                 # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
                 varCount = self.checkRule3(d_cases['satisfied'][0], id, f_ERcode, varTable)
                 if varCount == 1:
-                    print("ok > 条件：", l_N, "，满足：", d_cases['satisfied'][0], " > 命中。")
+                    print("ok > 条件：", l_N, "，测试数据：", d_cases['satisfied'][0], " > 命中。")
 
                     # 反向用例, 不满足条件的v[0]，预期不命中。
                     del d_cases['satisfied']
@@ -306,13 +306,13 @@ class WeightPO():
                         varCount = self.checkRule4(v[0], id, f_ERcode, varTable)
                         if varCount == 1:
                             # 反向如果命中就错，并且终止循环
-                            print("error > 条件：", l_N, "，不满足：", v[0], " > 命中！")
+                            print("error > 条件：", l_N, "，测试数据：", v[0], " > 命中！")
                             break
                         else:
-                            print("ok > 条件：", l_N, "，不满足：", v[0], " > 不命中。")
+                            print("ok > 条件：", l_N, "，测试数据：", v[0], " > 不命中。")
                             Ellipsis
                 else:
-                    print("error > 条件：", l_N, "，满足：", d_cases['satisfied'][0], " > 不命中！")
+                    print("error > 条件：", l_N, "，测试数据：", d_cases['satisfied'][0], " > 不命中！")
                     Ellipsis
                     # Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where id = %s" % (varTable, id))
 
@@ -347,7 +347,7 @@ class WeightPO():
                 # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
                 varCount = self.checkRule3(d_cases['satisfied'][0], id, f_ERcode, varTable)
                 if varCount == 1:
-                    print("ok > 条件：", l_N, "，满足：", d_cases['satisfied'][0], " > 命中。")
+                    print("ok > 条件：", l_N, "，测试数据：", d_cases['satisfied'][0], " > 命中。")
 
                     # 反向用例, 不满足条件的v[0]，预期不命中。
                     del d_cases['satisfied']
@@ -357,13 +357,13 @@ class WeightPO():
                         varCount = self.checkRule4(v[0], id, f_ERcode, varTable)
                         if varCount == 1:
                             # 反向如果命中就错，并且终止循环
-                            print("error > 条件：", l_N, "，不满足：", v[0], " > 命中！")
+                            print("error > 条件：", l_N, "，测试数据：", v[0], " > 命中！")
                             break
                         else:
-                            print("ok > 条件：", l_N, "，不满足：", v[0], " > 不命中。")
+                            print("ok > 条件：", l_N, "，测试数据：", v[0], " > 不命中。")
                             Ellipsis
                 else:
-                    print("error > 条件：", l_N, "，满足：", d_cases['satisfied'][0], " > 不命中！")
+                    print("error > 条件：", l_N, "，测试数据：", d_cases['satisfied'][0], " > 不命中！")
                     Ellipsis
                     # Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where id = %s" % (varTable, id))
 
@@ -385,31 +385,34 @@ class WeightPO():
 
 
     # WS
-    def weightStatus(self, varTestID="all"):
+    def DRWS(self, varTestID="all"):
 
-        # 体重状态 , a_weight10_WS
+        # 判定居民体重状态 Determine Residents' Weight Status
+        # a_weight10_WS
 
         # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_value from %s" % (self.tableWS))
         # print("l_d_row =>", l_d_row)  # [{'ID': 1, 'f_value': 'BMI＜18.5'}, ...
-        for i, index in enumerate(l_d_row):
+        if varTestID > len(l_d_row):
+            print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围" )
+            sys.exit(0)
+        for i in enumerate(l_d_row):
             i = varTestID - 1
             ID = l_d_row[i]['ID']
             f_value = l_d_row[i]['f_value']
 
             # 获取原始数据
-            print("数据源 => [表: " + self.tableWS + "], [ID: " + str(ID) + "], [f_value: " + str(f_value) + "]")
+            print("判定居民体重状态DRWS => {表: " + self.tableWS + ", ID: " + str(ID) + ", 条件: " + str(f_value) + "}")
             varTestCount = f_value.count("or")
             # print(varTestCount)  # 输出or的数量: 2
             # Color_PO.outColor([{"32": "p1, id = " + str(id) + ", f_value = " + str(f_value)}])
-            Log_PO.logger.info("ID = " + str(ID) + ", 条件：" + str(f_value))
+            Log_PO.logger.info("判定居民体重状态DRWS => {'数据库表': '" + self.tableWS + "', 'ID': " + str(ID) + "}")
 
             # 清洗不规则数据，包括 清除运算符左右的空格、换行符、括号、等
             f_value = f_value.replace("月", '')
             f_value = f_value.replace('＞', '>').replace('＜', '<').replace('＝', '=')
 
-
-
+            # todo DRWS 复杂条件组合
             if "or" in f_value:
                 # 转换列表，结构化原始数据为列表，生成l_l_N
                 l_value = f_value.split("or")
@@ -449,20 +452,23 @@ class WeightPO():
                     for i in l_3_value:
                         if ('>=' or '<=') in i:
                             if '年龄' in i:
-                                d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                                # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                                d_cases = BmiAgeSex_PO.main(l_3_value)
                                 break
                             if 'BMI' in i:
-                                d_cases = BmiAgeSex_PO.generate_all_cases_bmi(l_3_value)
+                                # d_cases = BmiAgeSex_PO.generate_all_cases_bmi(l_3_value)
+                                d_cases = BmiAgeSex_PO.main(l_3_value)
                                 break
                         else:
-                            d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                            # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                            d_cases = BmiAgeSex_PO.main(l_3_value)
 
-                    # print("--------------------")
-                    # print("d_case", d_cases)
+                    print("--------------------")
+                    print("d_case", d_cases)
                     # sys.exit(0)
 
                     # 判断输出结果
-                    varTestcase, varCount = self.resultOR(d_cases, id, l_2_value, lln+1, varTestCount+1)
+                    varTestcase, varCount = self.resultOR(d_cases, ID, l_2_value, lln+1, varTestCount+1)
                     l_result.append(varCount)
                     sum = sum + varTestcase
 
@@ -470,51 +476,51 @@ class WeightPO():
 
                 # 回写数据库f_resut, f_updateDate
                 if 0 not in l_result:
-                    Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
-                    Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                        self.tableWS, sum, id))
+                    Color_PO.outColor([{"32": "ID = " + str(ID) + ", => ok"}])
+                    Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableWS, sum, ID))
 
                 else:
-                    Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
+                    Color_PO.outColor([{"32": "ID = " + str(ID) + ", => error"}])
                     Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                        self.tableWS, sum, id))
+                        "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableWS, sum, ID))
 
+            # todo DRWS 简单条件组合
             elif "and" in f_value:
 
                 # 转换成列表
                 l_value = f_value.split("and")
                 l_value = [i.strip() for i in l_value]
-                print("730 实际参数 =", l_value)  # ['18.5<BMI', 'BMI<24.0']
+                print("730 实际参数 =>", l_value)  # ['18.5<BMI', 'BMI<24.0']
 
                 l_2_value = []
                 # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
                 for i in l_value:
                     l_simple_conditions = BmiAgeSex_PO.splitMode(i)
                     l_2_value.extend(l_simple_conditions)
-                print("737 分解参数 =", l_2_value)
+                print("737 分解参数 =>", l_2_value)
 
                 # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
                 l_3_value = []
                 for i in l_2_value:
                     l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
                     l_3_value.extend(l_simple_conditions)
-                print("744 结构化参数 =", l_3_value)  #  ['BMI>18.5', 'BMI<24.0']
+                print("744 结构化参数 =>", l_3_value)  #  ['BMI>18.5', 'BMI<24.0']
 
                 # 读取BMI模块，生成随机数据d_cases
                 d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
 
-                # todo weightStatus_case for and
                 # 测试数据
-                self.weightStatus_case(d_cases, id, l_value)
+                # todo DRWS_case for and
+                self.DRWS_case(d_cases, ID, l_value)
 
+            # todo DRWS 无条件组合
             elif "and" not in f_value:
 
                 l_2_value = []
                 # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
                 l_simple_conditions = Bmi_PO.splitMode(f_value)
                 l_2_value.extend(l_simple_conditions)
-                print("539 分解参数 =", l_2_value)
+                print("517 分解条件 =>", l_2_value)
 
                 # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
                 l_3_value = []
@@ -525,87 +531,90 @@ class WeightPO():
 
                 # 读取BMI模块，生成随机数据d_cases
                 d_cases = Bmi_PO.generate_all_cases(l_3_value)
-                print("生成 =>", d_cases)  # {'satisfied': [{'BMI': 16.8}], 'not1': [{'BMI': 19.6}]}
+                print("测试数据 =>", d_cases)  # {'satisfied': [{'BMI': 16.8}], 'not1': [{'BMI': 19.6}]}
 
-                # todo weightStatus_case for not and
+                # todo DRWS_case for not and
                 # 测试数据
-                self.weightStatus_case(d_cases, ID, l_2_value)
+                self.DRWS_case(d_cases, ID, l_2_value)
 
             else:
                 print("[not or & and ]")
             print("-".center(100, "-"))
 
             break
-    def weightStatus_case(self, d_cases, ID, l_2_value):
+    def DRWS_case(self, d_cases, ID, l_2_value):
 
         # d_cases = {'satisfied': [{'BMI': 14.2}], 'not1': [{'BMI': 53.4}]}
         # ID = 1
-        # l_2_value = ['BMI<18.5'] //分解数据
+        # l_2_value = ['BMI<18.5']
 
         varTestcase = 0
 
-        # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
         if len(d_cases['satisfied']) == 1:
-            # todo weightStatus_run_p_1
-            d_tmp = self.weightStatus_run_p(d_cases['satisfied'][0], ID)
+            # 一条数据，正向用例
+            l_count = []
+            # todo DRWS_run_p_1
+            d_tmp = self.DRWS_run_p(d_cases['satisfied'][0], ID)
             if d_tmp['result'] == 1:
-                s_print = "[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])
+                s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
                 Color_PO.outColor([{"34": s_print}])
                 Log_PO.logger.info(s_print)
+                l_count.append(1)
             else:
-                s_print = "[正向error], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])
+                s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
                 Color_PO.outColor([{"31": s_print}])
                 Log_PO.logger.info(s_print)
                 Color_PO.outColor([{"33": d_tmp}])
                 Log_PO.logger.info(d_tmp)
+                l_count.append(0)
             varTestcase = varTestcase + 1
 
-            # 反向用例, 不满足条件的v[0]，预期不命中。
-            del d_cases['satisfied']
-            varCount = 2
-            for k, v in d_cases.items():
-                # print(v[0])
-                # todo weightStatus_run_n
-                d_tmp = self.weightStatus_run_n(v[0], ID)
-                if d_tmp['result'] == 1:
-                    s_print = "[反向error], 条件：" + str(l_2_value) + "，不满足：" + str(v[0])
-                    Color_PO.outColor([{"31": s_print}])
-                    Log_PO.logger.info(s_print)
-
-                    Color_PO.outColor([{"33": d_tmp}])
-                    Log_PO.logger.info(d_tmp)
-
-                else:
-                    s_print = "[反向ok], 条件：" + str(l_2_value) + "，满足：" + str(v[0])
-                    Color_PO.outColor([{"34": s_print}])
-                    Log_PO.logger.info(s_print)
-                varTestcase = varTestcase + 1
+            # 一条数据，反向用例
+            # del d_cases['satisfied']
+            # for k, v in d_cases.items():
+            # print(v[0])
+            # todo DRWS_run_n
+            d_tmp = self.DRWS_run_p(d_cases['notSatisfied'][0], ID)
+            # d_tmp = self.DRWS_run_n(v[0], ID)
+            if d_tmp['result'] == 1:
+                # s_print = "[反向error], 条件：" + str(l_2_value) + "，满足：" + str(v[0])
+                s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
+                Color_PO.outColor([{"31": s_print}])
+                Log_PO.logger.info(s_print)
+                Color_PO.outColor([{"33": d_tmp}])
+                Log_PO.logger.info(d_tmp)
+                l_count.append(0)
+            else:
+                s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
+                Color_PO.outColor([{"36": s_print}])
+                Log_PO.logger.info(s_print)
+                l_count.append(1)
+            varTestcase = varTestcase + 1
 
             # 回写数据库f_resut, f_updateDate
-            if varCount == 2:
-                Color_PO.outColor([{"32": "ID = " + str(ID) + " => ok"}])
+            if 0 not in l_count:
+                Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => ok"}])
                 Log_PO.logger.info([{"32": "ok, id=" + str(ID)}])
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                    self.tableWS, varTestcase, ID))
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableWS, varTestcase, ID))
             else:
-                Color_PO.outColor([{"32": "ID = " + str(ID) + ", => error"}])
+                Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => error"}])
                 Log_PO.logger.info([{"31": "error, id=" + str(ID)}])
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                    self.tableWS, varTestcase, ID))
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableWS, varTestcase, ID))
         else:
+            # 正向用例, N个数据
+            l_count = []
             for i in range(len(d_cases['satisfied'])):
                 # print(d_cases)
-                # todo weightStatus_run_p_n
-                d_tmp = self.weightStatus_run_p(d_cases['satisfied'][i], ID, self.tableWS)
+                # todo DRWS_run_p_n
+                d_tmp = self.DRWS_run_p(d_cases['satisfied'][i], ID)
                 if d_tmp['result'] == 1:
-                    s_print = "[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][i])
+                    s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
                     Color_PO.outColor([{"34": s_print}])
                     Log_PO.logger.info(s_print)
                     varTestcase = varTestcase + 1
+                    l_count.append(1)
                 else:
-                    s_print = "[正向error], 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][i])
+                    s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
                     Color_PO.outColor([{"31": s_print}])
                     Log_PO.logger.info(s_print)
                     Color_PO.outColor([{"33": d_tmp}])
@@ -613,21 +622,24 @@ class WeightPO():
                     Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
                     Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
                     varTestcase = varTestcase + 1
+                    l_count.append(0)
 
-            # 反向用例, 不满足条件的v[0]，预期不命中。
-            del d_cases['satisfied']
-            varCount = 2
-            for k, v in d_cases.items():
-                # todo weightStatus_run_n_n
-                varCount = self.weightStatus_run_n(v[0], ID)
-                if varCount == 1:
+            # 反向用例, N个数据
+            # del d_cases['satisfied']
+
+            for i in range(len(d_cases['notSatisfied'])):
+            # for k, v in d_cases.items():
+                # todo DRWS_run_n_n
+                # d_tmp = self.DRWS_run_n(v[0], ID)
+                d_tmp = self.DRWS_run_p(d_cases['notSatisfied'][i], ID)
+
+                if d_tmp['result'] == 1:
                     # 反向如果命中就错，并且终止循环
-                    s_print = "[反向error], 条件：" + str(l_2_value) + "，不满足：" + str(v[0])
+                    s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
                     Color_PO.outColor([{"31": s_print}])
                     Log_PO.logger.info(s_print)
                     # varTestcase = varTestcase + 1
                     # Color_PO.outColor([{"33": d_tmp}])
-
                     # print("步骤1 => ", d_tmp["i"])
                     # print("步骤2 => ", d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
                     # print("步骤3 => ", d_tmp['QYYH_WEIGHT_STATUS'])
@@ -635,33 +647,33 @@ class WeightPO():
                     Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
                     Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
                     varTestcase = varTestcase + 1
+                    l_count.append(0)
                 else:
-                    s_print = "[反向ok], 条件：" + str(l_2_value) + "，满足：" + str(v[0])
-                    Color_PO.outColor([{"34": s_print}])
+                    s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
+                    Color_PO.outColor([{"36": s_print}])
                     Log_PO.logger.info(s_print)
                     varTestcase = varTestcase + 1
+                    l_count.append(1)
 
                 # 回写数据库f_resut, f_updateDate
-            if varCount == 2:
-                s_print = "ID = " + str(id) + ", 结果：ok"
+            if 0 not in l_count:
+                s_print = "[ID: " + str(ID) + "] => OK"
                 Color_PO.outColor([{"32": s_print}])
                 Log_PO.logger.info([{"32": s_print}])
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                    self.tableWS, varTestcase, ID))
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableWS, varTestcase, ID))
             else:
-                s_print = "ID = " + str(id) + ", 结果：error"
+                s_print = "[ID: " + str(ID) + "] => ERROR"
                 Color_PO.outColor([{"31": s_print}])
                 Log_PO.logger.info([{"31": s_print}])
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                    self.tableWS, varTestcase, ID))
-    def _weightStatus_run(self, d_cases_satisfied, ID):
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableWS, varTestcase, ID))
+    def _DRWS_run(self, d_cases_satisfied, ID):
 
         # 公共测试用例
 
         # d_cases_satisfied = {'BMI': 16.8}
         # ID = 1
+
+        d_tmp = {}
 
         # 参数
         # 获取f_type, f_typeCode, f_weightStatus, f_weightStatusCode
@@ -669,11 +681,17 @@ class WeightPO():
         # print(l_d_row)  # [{'f_type': '普通人群', 'f_typeCode': '3', 'f_weightStatus': '体重偏低', 'f_weightStatusCode': '1'}]
         f_type = l_d_row[0]['f_type']  # 普通人群
         f_typeCode = l_d_row[0]['f_typeCode']  # 3
+        f_weightStatus = l_d_row[0]['f_weightStatus']  # 1
         f_weightStatusCode = l_d_row[0]['f_weightStatusCode']  # 1
+        d_tmp['人群分类'] = f_type
+        d_tmp['人群分类编码'] = f_typeCode
+        d_tmp['体重状态'] = f_weightStatus
+        d_tmp['体重状态编码'] = f_weightStatusCode
 
         # 参数化
         WEIGHT_REPORT__ID = 2   #//测试id，位于WEIGHT_REPORT表
-        idcard = '420204202201011268'
+        d_tmp['WEIGHT_REPORT__ID'] = 2
+        d_tmp['身份证'] = '420204202201011268'
 
         # BMI
         varBMI = d_cases_satisfied['BMI']
@@ -702,15 +720,12 @@ class WeightPO():
         else:
             varAgeMonth = 0
 
-        # 返回字典
-        d_tmp = {}
-        d_tmp['f_weightStatusCode'] = int(f_weightStatusCode)  # 预期值
-
         # 跑接口
         command = 'curl -X POST "http://192.168.0.243:8014/weight/saveOrUpdateWeightManage" -H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Authorization:" -H "Content-Type:application/json" -d "{\\"age\\":12,\\"ageFloat\\":' + str(varAge) + ',\\"ageMonth\\":' + str(varAgeMonth) + ',\\"basicIntake\\":100,\\"bmi\\":' + str(
-            varBMI) + ',\\"categoryCode\\":\\"' + str(f_typeCode) + '\\",\\"disease\\":\\"无\\",\\"foodAdvice\\":\\"建议饮食\\",\\"height\\":175,\\"hipline\\":33,\\"id\\":' + str(WEIGHT_REPORT__ID) + ',\\"idCard\\":\\"' + str(idcard) + '\\",\\"orgCode\\":\\"0000001\\",\\"orgName\\":\\"静安精神病院\\",\\"sex\\":\\"' + str(varSex) +'\\",\\"sexCode\\":\\"' + str(varSexCode) +'\\",\\"sportAdvice\\":\\"建议运动\\",\\"targetWeight\\":50,\\"waistHip\\":0.9,\\"waistline\\":33,\\"weight\\":55,\\"weightRecordId\\":0}"'
+            varBMI) + ',\\"categoryCode\\":\\"' + str(d_tmp['人群分类编码']) + '\\",\\"disease\\":\\"无\\",\\"foodAdvice\\":\\"建议饮食\\",\\"height\\":175,\\"hipline\\":33,\\"id\\":' + str(d_tmp['WEIGHT_REPORT__ID']) + ',\\"idCard\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"0000001\\",\\"orgName\\":\\"静安精神病院\\",\\"sex\\":\\"' + str(varSex) +'\\",\\"sexCode\\":\\"' + str(varSexCode) +'\\",\\"sportAdvice\\":\\"建议运动\\",\\"targetWeight\\":50,\\"waistHip\\":0.9,\\"waistline\\":33,\\"weight\\":55,\\"weightRecordId\\":0}"'
         # print(command)
-
+        # curl -X POST "http://192.168.0.243:8014/weight/saveOrUpdateWeightManage" -H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Authorization:" -H "Content-Type:application/json" -d "{\"age\":12,\"ageFloat\":6.0,\"ageMonth\":0,\"basicIntake\":100,\"bmi\":13.3,\"categoryCode\":\"2\",\"disease\":\"无\",\"foodAdvice\":\"建议饮食\",\"height\":175,\"hipline\":33,\"id\":2,\"idCard\":\"420204202201011268\",\"orgCode\":\"0000001\",\"orgName\":\"静安精神病院\",\"sex\":\"男\",\"sexCode\":\"1\",\"sportAdvice\":\"建议运动\",\"targetWeight\":50,\"waistHip\":0.9,\"waistline\":33,\"weight\":55,\"weightRecordId\":0}"
+        # sys.exit(0)
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
         str_r = bytes.decode(out)
@@ -720,92 +735,82 @@ class WeightPO():
 
         if d_r['code'] == 200:
             l_d_1 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from WEIGHT_REPORT where ID = %s" % (WEIGHT_REPORT__ID))
-            l_d_2 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from QYYH where SFZH = '%s'" % (str(idcard)))
-            d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'] = "select WEIGHT_STATUS from WEIGHT_REPORT where ID = " + str(WEIGHT_REPORT__ID)
-            d_tmp['QYYH_WEIGHT_STATUS'] = "select WEIGHT_STATUS from QYYH where SFZH = '" + str(idcard) + "'"
+            l_d_2 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from QYYH where SFZH = '%s'" % (str(d_tmp['身份证'])))
+            d_tmp['sql__WEIGHT_REPORT'] = "select WEIGHT_STATUS from WEIGHT_REPORT where ID = " + str(WEIGHT_REPORT__ID)
+            d_tmp['sql__QYYH'] = "select WEIGHT_STATUS from QYYH where SFZH = '" + str(d_tmp['身份证']) + "'"
             # print("l_d_1", l_d_1)
             # print("l_d_2", l_d_2)
             # print("l_d_1[0]['WEIGHT_STATUS']", l_d_2[0]['WEIGHT_STATUS'])
             # print("f_weightStatusCode", f_weightStatusCode)
-            d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值'] = l_d_1[0]['WEIGHT_STATUS']  # 预期值
-            d_tmp['QYYH__WEIGHT_STATUS实际值'] = l_d_2[0]['WEIGHT_STATUS']  # 预期值
+            d_tmp['WEIGHT_REPORT__WEIGHT_STATUS'] = l_d_1[0]['WEIGHT_STATUS']
+            d_tmp['QYYH__WEIGHT_STATUS'] = l_d_2[0]['WEIGHT_STATUS']
             d_tmp['l_d_1'] = l_d_1
             d_tmp['l_d_2'] = l_d_2
             d_tmp['WEIGHT_STATUS'] = l_d_1[0]['WEIGHT_STATUS']
             return d_tmp
 
-            # if l_d_1 == l_d_2 and str(l_d_1[0]['WEIGHT_STATUS']) == str(f_weightStatusCode):
-            #     d_tmp['result'] = 1
-            #     return d_tmp
-            # else:
-            #     d_tmp['result'] = 0
-            #     return d_tmp
         else:
             print("638, error ", d_r['code'])
             sys.exit(0)
-    def weightStatus_run_p(self, d_cases_satisfied, ID):
+    def DRWS_run_p(self, d_cases_satisfied, ID):
 
-        d_tmp = self._weightStatus_run(d_cases_satisfied, ID)
+        d_tmp = self._DRWS_run(d_cases_satisfied, ID)
         # print(d_tmp)
-
-        if d_tmp['l_d_1'] == d_tmp['l_d_2'] and d_tmp['WEIGHT_STATUS'] == d_tmp['f_weightStatusCode']:
+        if d_tmp['l_d_1'] == d_tmp['l_d_2'] and d_tmp['WEIGHT_STATUS'] == int(d_tmp['体重状态编码']):
             d_tmp['result'] = 1
-            return d_tmp
         else:
             d_tmp['result'] = 0
-            return d_tmp
-    def weightStatus_run_n(self, d_cases_satisfied, ID):
+        return d_tmp
+    def DRWS_run_n(self, d_cases_satisfied, ID):
 
-        d_tmp = self._weightStatus_run(d_cases_satisfied, ID)
+        d_tmp = self._DRWS_run(d_cases_satisfied, ID)
         # print(d_tmp)
-
-        if d_tmp['l_d_1'] == d_tmp['l_d_2'] and d_tmp['WEIGHT_STATUS'] != d_tmp['f_weightStatusCode']:
-            d_tmp['result'] = 2
-            return d_tmp
-        else:
+        if d_tmp['l_d_1'] == d_tmp['l_d_2'] and d_tmp['WEIGHT_STATUS'] != int(d_tmp['体重状态编码']):
             d_tmp['result'] = 0
-            return d_tmp
+        else:
+            d_tmp['result'] = 1
+        return d_tmp
 
 
 
     # ER
-    def resultOR(self, d_cases, id, l_2_value, lln, varTestCount):
+    def resultOR(self, d_cases, id, l_2_value, Numerator, Denominator):
 
         varTestcase = 0
 
-        l_result = []
-        # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
-        # print(len(d_cases['satisfied']))
+        # 获取 f_type, f_typeCode,f_weightStatus,f_weightStatusCode
+        l_d_row = Sqlserver_PO_CHC5G.select("select f_type, f_typeCode,f_weightStatus,f_weightStatusCode from %s where ID=%s" % (self.tableWS, id))
+        # print(l_d_row)
+        f_type1 = l_d_row[0]['f_type']
+        f_typeCode1 = l_d_row[0]['f_typeCode']
+        f_weightStatus1 = l_d_row[0]['f_weightStatus']
+        f_weightStatusCode1 = l_d_row[0]['f_weightStatusCode']
+
+
         if len(d_cases['satisfied']) == 1:
-            d_tmp = self.weightStatus_run_p(d_cases['satisfied'][0], id, self.tableWS)
+            # 一条数据，正向用例
+            l_count = []
+            d_tmp = self.DRWS_run_p(d_cases['satisfied'][0], id)
             if d_tmp['result'] == 1:
-                Color_PO.outColor([{"34": str(lln) + "/" + str(varTestCount) + ",[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])}])
-
-                # Color_PO.outColor([{"34": "p1, 正向ok, 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])}])
-                # Color_PO.outColor([{"34": "run接口：", "33": d_tmp["i"].replace("\\\\", "\\")}])
-                # Color_PO.outColor([{"34": "查询1：", "33": d_tmp['WEIGHT_REPORT_WEIGHT_STATUS']}])
-                # Color_PO.outColor([{"34": "查询2：", "33": d_tmp['QYYH_WEIGHT_STATUS']}])
-                # Color_PO.outColor([{"34": "f_weightStatusCode预期值：", "33": d_tmp['f_weightStatusCode预期值']}])
-                # Color_PO.outColor([{"34": "WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                # Color_PO.outColor([{"34": "WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                # # print("p1, 正向ok, 条件：", l_N, "，满足：", d_cases['satisfied'][0])
-                l_result.append(1)
-                varTestcase = varTestcase + 1
+                s_print = str(Numerator) + "/" + str(Denominator) + ",[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
+                Color_PO.outColor([{"34": s_print}])
+                Log_PO.logger.info(s_print)
+                l_count.append(1)
             else:
-                Color_PO.outColor([{"31": "ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][0])}])
-                Color_PO.outColor([{"31":"run接口：", "33": d_tmp["i"].replace("\\\\", "\\")}])
-                Color_PO.outColor([{"31":"查询1：", "33": d_tmp['WEIGHT_REPORT_WEIGHT_STATUS']}])
-                Color_PO.outColor([{"31":"查询2：", "33": d_tmp['QYYH_WEIGHT_STATUS']}])
-                Color_PO.outColor([{"31":"f_weightStatusCode预期值：", "33": d_tmp['f_weightStatusCode预期值']}])
-                Color_PO.outColor([{"31":"WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                Color_PO.outColor([{"31":"WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                # print("步骤1 => ", d_tmp["i"])
-                # print("步骤2 => ", d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-                # print("步骤3 => ", d_tmp['QYYH_WEIGHT_STATUS'])
-                Log_PO.logger.info("ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][0]))
+                s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
+                Color_PO.outColor([{"31": s_print}])
+                Log_PO.logger.info(s_print)
+                Color_PO.outColor([{"33": d_tmp}])
                 Log_PO.logger.info(d_tmp)
+                l_count.append(0)
+                # Color_PO.outColor([{"31": "ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][0])}])
+                # Color_PO.outColor([{"31":"run接口：", "33": d_tmp["i"].replace("\\\\", "\\")}])
+                # Color_PO.outColor([{"31":"查询1：", "33": d_tmp['WEIGHT_REPORT_WEIGHT_STATUS']}])
+                # Color_PO.outColor([{"31":"查询2：", "33": d_tmp['QYYH_WEIGHT_STATUS']}])
+                # Color_PO.outColor([{"31":"f_weightStatusCode预期值：", "33": d_tmp['f_weightStatusCode预期值']}])
+                # Color_PO.outColor([{"31":"WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
+                # Color_PO.outColor([{"31":"WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
 
-                varTestcase = varTestcase + 1
                 # 将错误条件写入数据库，以备复测。
                 l_d_row = Sqlserver_PO_CHC5G.select("select f_type, f_typeCode,f_weightStatus,f_weightStatusCode from %s where ID=%s" % (self.tableWS,id))
                 # print(l_d_row)
@@ -816,7 +821,6 @@ class WeightPO():
                 f_errInfo1 = d_tmp
                 # 将列表转换字符串
                 f_2_value = (self.convert_conditions(l_2_value))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
-
                 # Sqlserver_PO_CHC5G.execute("insert into %s (f_type, f_typeCode, f_weightStatus, f_weightStatusCode, f_value, f_errID) values (%s,%s,%s,%s,'%s',%s) "
                 #                            % (varTable, f_type1, f_typeCode1, f_weightStatus1, f_weightStatusCode1, str(l_2_value), int(id)))
                 sql = """
@@ -834,108 +838,145 @@ class WeightPO():
                     f_errInfo1
                 )
                 Sqlserver_PO_CHC5G.execute(sql)
+            varTestcase = varTestcase + 1
 
-                l_result.append(0)
+            # 一条数据，反向用例
+            # todo
+            d_tmp = self.DRWS_run_p(d_cases['notSatisfied'][0], id)
+            # d_tmp = self.DRWS_run_n(v[0], ID)
+            if d_tmp['result'] == 1:
+                # s_print = "[反向error], 条件：" + str(l_2_value) + "，满足：" + str(v[0])
+                s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
+                Color_PO.outColor([{"31": s_print}])
+                Log_PO.logger.info(s_print)
+                Color_PO.outColor([{"33": d_tmp}])
+                Log_PO.logger.info(d_tmp)
+                l_count.append(0)
+            else:
+                s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
+                Color_PO.outColor([{"36": s_print}])
+                Log_PO.logger.info(s_print)
+                l_count.append(1)
+            varTestcase = varTestcase + 1
+
+            if 0 in l_count:
+                Color_PO.outColor([{"31": "ID = " + str(id) + ", " + str(l_count)}])
+                Log_PO.logger.info("ID = " + str(id) + ", " + str(l_count))
+                return varTestcase, 0
+            else:
+                return varTestcase, 1
+
         else:
+            # 正向用例, N个数据
+            l_count = []
             for i in range(len(d_cases['satisfied'])):
-                d_tmp = self.weightStatus_run_p(d_cases['satisfied'][i], id)
+                d_tmp = self.DRWS_run_p(d_cases['satisfied'][i], id)
                 if d_tmp['result'] == 1:
-                    Color_PO.outColor([{"34": str(lln) + "(" + str(i+1) + ")/" + str(varTestCount) + ",[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][i])}])
-                    # Color_PO.outColor([{"34": "run接口：", "33": d_tmp["i"].replace("\\\\", "\\")}])
-                    # Color_PO.outColor([{"34": "查询1：", "33": d_tmp['WEIGHT_REPORT_WEIGHT_STATUS']}])
-                    # Color_PO.outColor([{"34": "查询2：", "33": d_tmp['QYYH_WEIGHT_STATUS']}])
-                    # Color_PO.outColor([{"34": "f_weightStatusCode预期值：", "33": d_tmp['f_weightStatusCode预期值']}])
-                    # Color_PO.outColor([{"34": "WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                    # Color_PO.outColor([{"34": "WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                    # # print("p1, 正向ok, 条件：", l_N, "，满足：", d_cases['satisfied'][0])
-                    l_result.append(1)
+                    # Color_PO.outColor([{"34": str(Numerator) + "(" + str(i+1) + ")/" + str(Denominator) + ",[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][i])}])
+                    s_print = str(Numerator) + "(" + str(i+1) + ")/" + str(Denominator) + ",[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
+                    Color_PO.outColor([{"34": s_print}])
+                    # Log_PO.logger.info(s_print)
                     varTestcase = varTestcase + 1
+                    l_count.append(1)
                 else:
-                    Color_PO.outColor([{"31": "ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][i])}])
-                    Color_PO.outColor([{"31": "run接口：", "33": d_tmp["i"].replace("\\\\", "\\")}])
-                    Color_PO.outColor([{"31": "查询1：", "33": d_tmp['WEIGHT_REPORT_WEIGHT_STATUS']}])
-                    Color_PO.outColor([{"31": "查询2：", "33": d_tmp['QYYH_WEIGHT_STATUS']}])
-                    Color_PO.outColor([{"31": "f_weightStatusCode预期值：", "33": d_tmp['f_weightStatusCode预期值']}])
-                    Color_PO.outColor([{"31": "WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-                    Color_PO.outColor([{"31": "WEIGHT_REPORT__WEIGHT_STATUS实际值：", "33": d_tmp['WEIGHT_REPORT__WEIGHT_STATUS实际值']}])
-
-                    # print("步骤1 => ", d_tmp["i"])
-                    # print("步骤2 => ", d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-                    # print("步骤3 => ", d_tmp['QYYH_WEIGHT_STATUS'])
-                    Log_PO.logger.info("ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][i]))
-                    Log_PO.logger.info(d_tmp)
-
+                    s = "要求 => {'ID': " + str(id) + ", '正向': 'error', '条件': " + str(l_2_value) + ", '测试数据': " + str(d_cases['satisfied'][i]) + "}"
+                    Color_PO.outColor([{"31": s}])
+                    Log_PO.logger.info(s)
+                    s = "步骤1 => " + str(d_tmp["i"])
+                    print(s)
+                    Log_PO.logger.info(s)
+                    s = "步骤2 => " + "{'sql': " + str(d_tmp['sql__WEIGHT_REPORT']) + ", 'WEIGHT_STATUS': " + str(d_tmp['WEIGHT_REPORT__WEIGHT_STATUS']) + "}"
+                    print(s)
+                    Log_PO.logger.info(s)
+                    s = "步骤3 => " + "{'sql': " + str(d_tmp['sql__QYYH']) + ", 'WEIGHT_STATUS': " + str(d_tmp['QYYH__WEIGHT_STATUS']) + "}"
+                    print(s)
+                    Log_PO.logger.info(s)
+                    s = "返回值 => " + "{'结果': '正向不满足', '" + d_tmp['人群分类'] + "(人群分类：" + str(d_tmp['人群分类编码']) +")': '" + d_tmp['体重状态'] + "', '预期值': " + str(d_tmp['体重状态编码']) + ", '实际值': " + str(d_tmp['WEIGHT_REPORT__WEIGHT_STATUS']) + "}"
+                    print(s)
+                    Log_PO.logger.info(s)
+                    Log_PO.logger.info("---------------------------------------------------------------------")
                     varTestcase = varTestcase + 1
+                    l_count.append(0)
+
                     # 将错误条件写入数据库，以备复测。
-                    l_d_row = Sqlserver_PO_CHC5G.select(
-                        "select f_type, f_typeCode,f_weightStatus,f_weightStatusCode from %s where ID=%s" % (
-                        self.tableWS, id))
-                    # print(l_d_row)
-                    f_type1 = l_d_row[0]['f_type']
-                    f_typeCode1 = l_d_row[0]['f_typeCode']
-                    f_weightStatus1 = l_d_row[0]['f_weightStatus']
-                    f_weightStatusCode1 = l_d_row[0]['f_weightStatusCode']
-                    f_errInfo1 = d_tmp
                     # 将列表转换字符串
                     f_2_value = (self.convert_conditions(l_2_value))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
+                    # print("f_2_value", f_2_value, type(f_2_value))
+                    d_tmp['条件'] = str(l_2_value)
+                    d_tmp['测试数据'] = str(d_cases['satisfied'][i])
+                    d_tmp['用例类型'] = '正向不满足'
+                    s_tmp = str(d_tmp)
+                    s_tmp = s_tmp.replace("'", "''")
+                    s_tmp = s_tmp.replace("\\\\", "\\")
 
-                    # Sqlserver_PO_CHC5G.execute("insert into %s (f_type, f_typeCode, f_weightStatus, f_weightStatusCode, f_value, f_errID) values (%s,%s,%s,%s,'%s',%s) "
-                    #                            % (varTable, f_type1, f_typeCode1, f_weightStatus1, f_weightStatusCode1, str(l_2_value), int(id)))
-                    sql = """
-                                    INSERT INTO [%s] 
-                                    (f_type, f_typeCode, f_weightStatus, f_weightStatusCode, f_value, f_errID, f_errInfo) 
-                                    VALUES ('%s', '%s', '%s', '%s', '%s', %d, '%s')
-                                """ % (
-                        self.tableWS,
-                        f_type1,
-                        f_typeCode1,
-                        f_weightStatus1,
-                        f_weightStatusCode1,
-                        str(f_2_value).replace("'", "''"),  # 防止内部有单引号导致 SQL 错误
-                        int(id),
-                        f_errInfo1
-                    )
-                    Sqlserver_PO_CHC5G.execute(sql)
+                    Sqlserver_PO_CHC5G.execute(
+                        "insert into %s (f_type, f_typeCode, f_weightStatus, f_weightStatusCode, f_value, f_errID, f_errInfo) values ('%s','%s','%s','%s','%s',%s,'%s') "
+                        % (self.tableWS, d_tmp['人群分类'], d_tmp['人群分类编码'], d_tmp['体重状态'], d_tmp['体重状态编码'], d_tmp['条件'], id, s_tmp))
 
-                    l_result.append(0)
+            # 反向用例, N个数据
+            for i in range(len(d_cases['notSatisfied'])):
+                # d_tmp = self.DRWS_run_n(v[0], ID)
+                d_tmp = self.DRWS_run_p(d_cases['notSatisfied'][i], id)
+                if d_tmp['result'] == 1:
+                    # 反向如果命中就错，并且终止循环
+                    s = "要求 => {'ID': " + str(id) + ", '反向': 'error', '条件': " + str(l_2_value) + ", '测试数据': " + str(d_cases['notSatisfied'][i]) + "}"
+                    Color_PO.outColor([{"31": s}])
+                    Log_PO.logger.info(s)
+                    s = "步骤1 => " + str(d_tmp["i"])
+                    print(s)
+                    Log_PO.logger.info(s)
+                    s = "步骤2 => " + "{'sql': " + str(d_tmp['sql__WEIGHT_REPORT']) + ", 'WEIGHT_STATUS': " + str(d_tmp['WEIGHT_REPORT__WEIGHT_STATUS']) + "}"
+                    print(s)
+                    Log_PO.logger.info(s)
+                    s = "步骤3 => " + "{'sql': " + str(d_tmp['sql__QYYH']) + ", 'WEIGHT_STATUS': " + str(d_tmp['QYYH__WEIGHT_STATUS']) + "}"
+                    print(s)
+                    Log_PO.logger.info(s)
+                    s = "返回值 => " + "{'结果': '反向满足', '" + d_tmp['人群分类'] + "(人群分类：" + str(d_tmp['人群分类编码']) + ")': '" + d_tmp['体重状态'] + "', '预期值': " + str(d_tmp['体重状态编码']) + ", '实际值': " + str(d_tmp['WEIGHT_REPORT__WEIGHT_STATUS']) + "}"
+                    print(s)
+                    Log_PO.logger.info(s)
+                    Log_PO.logger.info("---------------------------------------------------------------------")
+                    varTestcase = varTestcase + 1
+                    l_count.append(0)
 
-        # 反向用例, 不满足条件的v[0]，预期不命中。
-        del d_cases['satisfied']
-        for k, v in d_cases.items():
-            # print(v[0])
-            varCount = self.weightStatus_run_n(v[0], id, self.tableWS)
-            if varCount == 1:
-                # 反向如果命中就错，并且终止循环
-                Color_PO.outColor([{"31": "ID = " + str(id) + ", p3, 反向error, 条件：" + str(l_2_value) + "，满足：" + str(v[0])}])
-                # Log_PO.logger.info("ID = " + str(id) + ", p3, 反向error, 条件：" + str(l_2_value) + "，满足：" + str(v[0]))
-                # Color_PO.outColor([{"33": d_tmp}])
+                    # 将错误条件写入数据库，以备复测。
+                    # 将列表转换字符串
+                    f_2_value = (self.convert_conditions(l_2_value))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
+                    # print("f_2_value", f_2_value, type(f_2_value))
 
-                Log_PO.logger.info("ID = " + str(id) + ", p3, 反向error, 条件：" + str(l_2_value) + "，不满足：" + str(v[0]))
-                # Log_PO.logger.info(d_tmp)
+                    d_tmp['条件'] = str(f_2_value)
+                    d_tmp['测试数据'] = str(d_cases['notSatisfied'][i])
+                    d_tmp['用例类型'] = "反向满足"
+                    s_tmp = str(d_tmp)
+                    s_tmp = s_tmp.replace("'", "''")
+                    s_tmp = s_tmp.replace("\\\\", "\\")
+                    print(d_tmp)
+                    Sqlserver_PO_CHC5G.execute(
+                        "insert into %s (f_type, f_typeCode, f_weightStatus, f_weightStatusCode, f_value, f_errID, f_errInfo) values ('%s','%s','%s','%s','%s',%s,'%s') "
+                        % (self.tableWS, d_tmp['人群分类'], d_tmp['人群分类编码'], d_tmp['体重状态'], d_tmp['体重状态编码'], d_tmp['条件'], id, s_tmp))
 
-                varTestcase = varTestcase + 1
-                l_result.append(0)
+                else:
+                    s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
+                    Color_PO.outColor([{"36": s_print}])
+                    varTestcase = varTestcase + 1
+                    l_count.append(1)
 
+            if 0 in l_count:
+                Color_PO.outColor([{"31": "ID = " + str(id) + ", " + str(l_count)}])
+                # Log_PO.logger.info("ID = " + str(id) + ", " + str(l_count))
+                return varTestcase, 0
             else:
-                Color_PO.outColor([{"33": "p4, [反向ok], 条件：" + str(l_2_value) + "，不满足：" + str(v[0])}])
-                # print("p4, 反向ok, 条件：", l_N, "，不满足：", v[0], " > 不命中")
-                # Ellipsis
-                l_result.append(1)
-                varTestcase = varTestcase + 1
+                return varTestcase, 1
 
-        if 0 in l_result:
-            Color_PO.outColor([{"31": "ID = " + str(id) + ", " + str(l_result)}])
-            Log_PO.logger.info("ID = " + str(id) + ", " + str(l_result))
-            return varTestcase,0
-        else:
-            return varTestcase,1
-    def ER(self, varTable, varI):
 
-        # 评估因素规则库
+
+
+    def EFRB(self, varI):
+
+        # 评估因素规则库 Evaluation Factor Rule Base
 
         # 获取每行数据
         # l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_type, f_typeCode, f_weightStatus, f_weightStatusCode,f_value from %s" % (varTable))
-        l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_ER, f_ERcode from %s" % (varTable))
+        l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_ER, f_ERcode from %s" % (self.tableER))
         # print("l_d_row => ", l_d_row)
 
         # 测试某条记录
@@ -1010,7 +1051,7 @@ class WeightPO():
                     # sys.exit(0)
 
                     # 判断输出结果
-                    varTestcase, varCount = self.caseES_or(d_cases, id, l_2_value, varTable, lln+1, varTestCount+1)
+                    varTestcase, varCount = self.EFRB_case_or(d_cases, id, l_2_value, lln+1, varTestCount+1)
                     l_result.append(varCount)
                     sum = sum + varTestcase
 
@@ -1020,45 +1061,44 @@ class WeightPO():
                 if 0 not in l_result:
                     Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
                     Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                        varTable, sum, id))
+                        self.tableER, sum, id))
 
                 else:
                     Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
                     Sqlserver_PO_CHC5G.execute(
                         "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (
-                        varTable, sum, id))
+                        self.tableER, sum, id))
 
             elif "and" in f_ER:
 
-                print("-------------------------")
+                print("----------------------------------------------------------------")
 
                 # 转换成列表
                 l_ER = f_ER.split("and")
                 l_ER = [i.strip() for i in l_ER]
-                # print("948 实际参数 =", l_ER)  # ['18.5<BMI', 'BMI<24.0']
+                # print("1039 实际参数 =", l_ER)  # ['18.5<BMI', 'BMI<24.0']
 
                 l_2_value = []
                 # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
                 for i in l_ER:
                     l_simple_conditions = BmiAgeSex_PO.splitMode(i)
                     l_2_value.extend(l_simple_conditions)
-                # print("955 分解参数 =", l_2_value)
+                # print("1046 分解参数 =", l_2_value)
 
                 # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
                 l_3_value = []
                 for i in l_2_value:
                     l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
                     l_3_value.extend(l_simple_conditions)
-                print("1150 结构化参数 =", l_3_value)  #  ['BMI>18.5', 'BMI<24.0']
+                print("1053 结构化参数 =", l_3_value)  #  ['BMI>18.5', 'BMI<24.0']
 
                 # 读取BMI模块，生成随机数据d_cases
-                # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
-                d_cases = BmiAge_PO.generate_all_cases(l_3_value)
+                d_cases = BmiAge_PO.main(l_3_value)
                 print(d_cases)
-                # sys.exit(0)
 
-                # 测试用例
-                self.caseES(d_cases, id, l_ER, varTable)
+                # 测试数据
+                # todo ERFB_case for and
+                self.EFRB_case(d_cases, id, l_ER)
 
             elif "and" not in f_ER:
 
@@ -1078,22 +1118,24 @@ class WeightPO():
                 # 读取BMI模块，生成随机数据d_cases
                 d_cases = Bmi_PO.generate_all_cases(l_3_value)
                 print(d_cases)  # {'satisfied': [{'BMI': 16.8}], 'not1': [{'BMI': 19.6}]}
+                sys.exit(0)
 
                 # 判断输出结果
-                self.result(d_cases, id, l_2_value, varTable)
+                self.result(d_cases, id, l_2_value)
 
             else:
                 print("[not or & and ]")
             print("-".center(100, "-"))
 
             break
-    def caseES(self, d_cases, id, l_2_value, varTable):
+    def EFRB_case(self, d_cases, id, l_2_value):
 
         varTestcase = 0
 
         # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
         if len(d_cases['satisfied']) == 1:
-            result = self.checkES_ok(d_cases['satisfied'][0], id, varTable)
+            # todo EFRB_run_p_1
+            result = self.EFRB_run_p(d_cases['satisfied'][0], id, self.tableER)
             if result == 1:
                 Color_PO.outColor([{"34": "p1, 正向ok, 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])}])
                 Log_PO.logger.info("p1, 正向ok, 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0]))
@@ -1105,7 +1147,8 @@ class WeightPO():
                 varCount = 2
                 for k, v in d_cases.items():
                     # print(v[0])
-                    varCount = self.checkES_error(v[0], id, varTable)
+                    # todo EFRB_run_n
+                    varCount = self.EFRB_run_n(v[0], id, self.tableER)
                     if varCount == 1:
                         # 反向如果命中就错，并且终止循环
                         Color_PO.outColor([{"31": "p3, 反向error, 条件：" + str(l_2_value) + "，满足：" + str(v[0])}])
@@ -1156,15 +1199,16 @@ class WeightPO():
             if varCount == 2:
                 Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
                 Log_PO.logger.info([{"32": "ok, id=" + str(id)}])
-                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (varTable, varTestcase, id))
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableER, varTestcase, id))
             else:
                 Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
                 Log_PO.logger.info([{"31": "error, id=" + str(id)}])
-                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (varTable, varTestcase, id))
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableER, varTestcase, id))
         else:
             for i in range(len(d_cases['satisfied'])):
                 # print(d_cases)
-                result = self.checkES_ok(d_cases['satisfied'][i], id, varTable)
+                # todo EFRB_run_p_n
+                result = self.EFRB_run_p(d_cases['satisfied'][i], id, self.tableER)
                 if result == 1:
                     s_print = "[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][i])
                     Color_PO.outColor([{"34": s_print}])
@@ -1185,7 +1229,8 @@ class WeightPO():
             del d_cases['satisfied']
             varCount = 2
             for k, v in d_cases.items():
-                varCount = self.checkES_error(v[0], id, varTable)
+                # todo EFRB_run_n_n
+                varCount = self.EFRB_run_n(v[0], id, self.tableER)
                 if varCount == 1:
                     # 反向如果命中就错，并且终止循环
                     s_print = "[反向error], 条件：" + str(l_2_value) + "，不满足：" + str(v[0])
@@ -1212,21 +1257,28 @@ class WeightPO():
                 s_print = "ID = " + str(id) + ", 结果：ok"
                 Color_PO.outColor([{"32": s_print}])
                 Log_PO.logger.info([{"32": s_print}])
-                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (varTable, varTestcase, id))
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableER, varTestcase, id))
             else:
                 s_print = "ID = " + str(id) + ", 结果：error"
                 Color_PO.outColor([{"31": s_print}])
                 Log_PO.logger.info([{"31": s_print}])
-                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (varTable, varTestcase, id))
-    def caseES_or(self, d_cases, id, l_2_value, varTable, lln, varTestCount):
+                Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableER, varTestcase, id))
+    def EFRB_case_or(self, d_cases, id, l_2_value, lln, varTestCount):
 
         varTestcase = 0
+
+        l_d_row = Sqlserver_PO_CHC5G.select("select f_type, f_typeCode,f_weightStatus,f_weightStatusCode from %s where ID=%s" % (self.tableER, id))
+        # print(l_d_row)
+        f_type1 = l_d_row[0]['f_type']
+        f_typeCode1 = l_d_row[0]['f_typeCode']
+        f_weightStatus1 = l_d_row[0]['f_weightStatus']
+        f_weightStatusCode1 = l_d_row[0]['f_weightStatusCode']
 
         l_result = []
         # 正向用例，满足条件的d_cases['satisfied'][0]，预期要命中
         # print(len(d_cases['satisfied']))
         if len(d_cases['satisfied']) == 1:
-            d_tmp = self.checkES_ok(d_cases['satisfied'][0], id, varTable)
+            d_tmp = self.EFRB_run_p(d_cases['satisfied'][0], id, self.tableER)
             if d_tmp['result'] == 1:
                 Color_PO.outColor([{"34": str(lln) + "/" + str(varTestCount) + ",[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])}])
 
@@ -1256,13 +1308,8 @@ class WeightPO():
 
                 varTestcase = varTestcase + 1
                 # 将错误条件写入数据库，以备复测。
-                l_d_row = Sqlserver_PO_CHC5G.select("select f_type, f_typeCode,f_weightStatus,f_weightStatusCode from %s where ID=%s" % (varTable,id))
-                # print(l_d_row)
-                f_type1 = l_d_row[0]['f_type']
-                f_typeCode1 = l_d_row[0]['f_typeCode']
-                f_weightStatus1 = l_d_row[0]['f_weightStatus']
-                f_weightStatusCode1 = l_d_row[0]['f_weightStatusCode']
-                f_errInfo1 = d_tmp
+
+
                 # 将列表转换字符串
                 f_2_value = (self.convert_conditions(l_2_value))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
 
@@ -1280,14 +1327,14 @@ class WeightPO():
                     f_weightStatusCode1,
                     str(f_2_value).replace("'", "''"),  # 防止内部有单引号导致 SQL 错误
                     int(id),
-                    f_errInfo1
+                    d_tmp
                 )
                 Sqlserver_PO_CHC5G.execute(sql)
 
                 l_result.append(0)
         else:
             for i in range(len(d_cases['satisfied'])):
-                result = self.checkES_ok(d_cases['satisfied'][i], id, varTable)
+                result = self.EFRB_run_p(d_cases['satisfied'][i], id, varTable)
                 if result == 1:
                     Color_PO.outColor([{"34": str(lln) + "(" + str(i+1) + ")/" + str(varTestCount) + ",[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][i])}])
                     # Color_PO.outColor([{"34": "run接口：", "33": d_tmp["i"].replace("\\\\", "\\")}])
@@ -1352,7 +1399,7 @@ class WeightPO():
         del d_cases['satisfied']
         for k, v in d_cases.items():
             # print(v[0])
-            varCount = self.checkES_error(v[0], id, varTable)
+            varCount = self.EFRB_run_n(v[0], id, varTable)
             if varCount == 1:
                 # 反向如果命中就错，并且终止循环
                 Color_PO.outColor([{"31": "ID = " + str(id) + ", p3, 反向error, 条件：" + str(l_2_value) + "，满足：" + str(v[0])}])
@@ -1378,7 +1425,7 @@ class WeightPO():
             return varTestcase,0
         else:
             return varTestcase,1
-    def checkES_ok(self, d_cases_satisfied, ID, varTable):
+    def EFRB_run_p(self, d_cases_satisfied, ID, varTable):
 
         # d_cases_satisfied = {'BMI': 16.8}
         # id = 1
@@ -1425,7 +1472,7 @@ class WeightPO():
         else:
             print("428, error ", d_r['code'])
             sys.exit(0)
-    def checkES_error(self, d_cases_satisfied, ID, varTable):
+    def EFRB_run_n(self, d_cases_satisfied, ID, varTable):
 
         # d_cases_satisfied = {'BMI': 16.8}
         # id = 1
