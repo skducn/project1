@@ -66,9 +66,25 @@ class BmiPO:
         # 去重并保留指定数量的样本
         unique_satisfied = list({frozenset(item.items()): item for item in satisfied_samples}.values())[:target_count]
 
-        # 生成不满足条件的样本
-        not1_sample = self._generate_invalid_bmi(bmi_conditions)
-        not1_samples.append(not1_sample)
+        # # 生成不满足条件的样本
+        # 替换原来的 not1 样本生成逻辑
+        not1_samples = []
+
+        # 如果有多个 BMI 条件，尝试从不同区间各取一个
+        if len(bmi_conditions) > 1:
+            # 第一次强制生成小于下限的值
+            low_sample = self._generate_invalid_bmi([c for c in bmi_conditions if 'BMI<' in c or 'BMI<=' in c])
+            not1_samples.append(low_sample)
+
+            # 第二次强制生成大于等于上限的值
+            high_sample = self._generate_invalid_bmi([c for c in bmi_conditions if 'BMI>' in c or 'BMI>=' in c])
+            if low_sample['BMI'] != high_sample['BMI']:
+                not1_samples.append(high_sample)
+        else:
+            # 单一条件只生成一个样本
+            not1_sample = self._generate_invalid_bmi(bmi_conditions)
+            not1_samples.append(not1_sample)
+
 
         return {
             "satisfied": unique_satisfied,
@@ -197,7 +213,14 @@ class BmiPO:
 if __name__ == "__main__":
     bmi_po = BmiPO()
 
-    print("测试条件: ['BMI<18.5']")
+    # 18.5<=BMI<24.0
+    # 24.0<=BMI<28.0
+    # 18.5<=BMI<24.0
+    # 24.0<=BMI<28.0
+    print("\n测试条件: ['BMI>=18.5','BMI<24.0']")
+    print(bmi_po.generate_all_cases(['BMI>=18.5','BMI<24.0']))
+
+    print("\n测试条件: ['BMI<18.5']")
     print(bmi_po.generate_all_cases(['BMI<18.5']))
 
     print("\n测试条件: ['BMI<=18.5']")

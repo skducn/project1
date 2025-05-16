@@ -998,3 +998,7 @@
 2025-05-15 17:53:53,542 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:914] - INFO: [正向ok], 条件：['BMI<18.5']，满足：{'BMI': 15.3}
 2025-05-15 17:53:53,600 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:940] - INFO: [反向ok], 条件：['BMI<18.5']，满足：{'BMI': 54.5}
 2025-05-15 17:53:53,601 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:948] - INFO: [{'32': 'ok, id=1'}]
+2025-05-15 19:16:53,935 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:428] - INFO: ID = 1, 条件：BMI＜18.5
+2025-05-15 19:16:54,127 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:914] - INFO: [正向ok], 条件：['BMI<18.5']，满足：{'BMI': 17.4}
+2025-05-15 19:16:54,245 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:940] - INFO: [反向ok], 条件：['BMI<18.5']，满足：{'BMI': 53.9}
+2025-05-15 19:16:54,245 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:948] - INFO: [{'32': 'ok, id=1'}]

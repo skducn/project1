@@ -154,3 +154,74 @@
 2025-05-15 13:16:29,060 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3sh_query_realtimePrice.py[line:111] - INFO: {'现价': '3.72', '涨幅': '4.49', '换手': '4.97', '市盈率': '13.03'} , https://xueqiu.com/S/SZ600758 , 辽宁能源
 2025-05-15 13:16:33,004 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3sh_query_realtimePrice.py[line:111] - INFO: {'现价': '4.83', '涨幅': '4.32', '换手': '3.69', '市盈率': '64.91'} , https://xueqiu.com/S/SZ600805 , 悦达投资
 2025-05-15 13:18:50,651 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/3sh_query_realtimePrice.py[line:140] - ERROR: 发生错误: not all arguments converted during string formatting
+2025-05-15 17:54:45,694 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:70] - INFO: 【共68页】
+2025-05-15 17:54:48,743 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 1/68
+2025-05-15 17:54:52,160 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 2/68
+2025-05-15 17:54:55,399 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 3/68
+2025-05-15 17:54:58,852 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 4/68
+2025-05-15 17:55:01,992 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 5/68
+2025-05-15 17:55:05,615 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 6/68
+2025-05-15 17:55:08,750 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 7/68
+2025-05-15 17:55:12,158 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 8/68
+2025-05-15 17:55:15,604 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 9/68
+2025-05-15 17:55:18,964 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 10/68
+2025-05-15 17:55:22,995 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 11/68
+2025-05-15 17:55:26,639 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 12/68
+2025-05-15 17:55:30,352 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 13/68
+2025-05-15 17:55:34,089 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 14/68
+2025-05-15 17:55:37,903 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 15/68
+2025-05-15 17:55:41,967 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 16/68
+2025-05-15 17:55:45,940 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 17/68
+2025-05-15 17:55:50,072 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 18/68
+2025-05-15 17:55:54,317 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 19/68
+2025-05-15 17:55:58,695 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 20/68
+2025-05-15 17:56:04,510 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 21/68
+2025-05-15 17:56:09,137 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 22/68
+2025-05-15 17:56:14,116 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 23/68
+2025-05-15 17:56:18,954 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 24/68
+2025-05-15 17:56:23,755 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 25/68
+2025-05-15 17:56:28,523 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 26/68
+2025-05-15 17:56:33,562 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 27/68
+2025-05-15 17:56:38,605 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 28/68
+2025-05-15 17:56:43,984 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 29/68
+2025-05-15 17:56:49,347 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 30/68
+2025-05-15 17:56:54,711 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 31/68
+2025-05-15 17:57:01,340 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 32/68
+2025-05-15 17:57:07,600 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 33/68
+2025-05-15 17:57:13,136 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 34/68
+2025-05-15 17:57:18,692 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 35/68
+2025-05-15 17:57:24,420 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 36/68
+2025-05-15 17:57:30,419 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 37/68
+2025-05-15 17:57:36,523 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 38/68
+2025-05-15 17:57:43,144 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 39/68
+2025-05-15 17:57:54,907 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 40/68
+2025-05-15 17:58:05,212 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 41/68
+2025-05-15 17:58:12,903 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 42/68
+2025-05-15 17:58:20,136 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 43/68
+2025-05-15 17:58:30,410 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 44/68
+2025-05-15 17:58:37,947 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 45/68
+2025-05-15 17:58:45,533 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 46/68
+2025-05-15 17:58:53,563 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 47/68
+2025-05-15 17:59:01,371 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 48/68
+2025-05-15 17:59:09,872 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 49/68
+2025-05-15 17:59:18,235 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 50/68
+2025-05-15 17:59:26,705 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 51/68
+2025-05-15 17:59:34,411 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 52/68
+2025-05-15 17:59:41,866 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 53/68
+2025-05-15 17:59:49,662 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 54/68
+2025-05-15 17:59:57,411 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 55/68
+2025-05-15 18:00:05,996 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 56/68
+2025-05-15 18:00:14,164 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 57/68
+2025-05-15 18:00:21,981 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 58/68
+2025-05-15 18:00:30,731 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 59/68
+2025-05-15 18:00:40,811 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 60/68
+2025-05-15 18:00:51,760 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 61/68
+2025-05-15 18:01:01,354 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 62/68
+2025-05-15 18:01:10,137 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 63/68
+2025-05-15 18:01:19,048 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 64/68
+2025-05-15 18:01:27,352 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 65/68
+2025-05-15 18:01:36,823 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 66/68
+2025-05-15 18:01:46,595 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 67/68
+2025-05-15 18:01:54,284 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/1sh_down_sourceData.py[line:84] - INFO: > 68/68
+2025-05-15 18:02:05,162 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/2sh_save_json.py[line:113] - INFO: sh > [0514.xlsx - 0515.xlsx] > 21
+2025-05-15 18:02:05,163 - /Users/linghuchong/Downloads/51/Python/project/instance/stock/sh/2sh_save_json.py[line:118] - WARNING: d_stock ={'600073': '光明肉业', '600232': '金鹰股份', '600721': '百花医药', '600741': '华域汽车', '600802': '福建水泥', '600847': '万里股份', '601069': '西部黄金', '601089': '福元医药', '603021': 'ST华鹏', '603075': '热威股份', '603170': '宝立食品', '603183': '建研院', '603307': '扬州金泉', '603337': '杰克股份', '603557': 'ST起步', '603665': '康隆达', '603668': '天马科技', '603843': '*ST正平', '603968': '醋化股份', '605177': '东亚药业', '605259': '绿田机械', 'date': '0514.xlsx - 0515.xlsx'}
