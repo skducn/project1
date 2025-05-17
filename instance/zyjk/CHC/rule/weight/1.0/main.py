@@ -18,16 +18,18 @@ Weight_PO = WeightPO()
 # Log_PO = LogPO(filename='log.log', level="info")
 
 # todo 1, excel导入db
+# 评估因素规则库 Evaluation Factor Rule Base
 # Weight_PO.excel2db_ER(Configparser_PO.FILE("case"), "ER", "a_weight10_ER")
-# Weight_PO.EFRB(1)  # 评估因素规则库 Evaluation Factor Rule Base
+Weight_PO.EFRB(1)
 
 
 # Weight_PO.excel2db_IR(Configparser_PO.FILE("case"), "IR", "a_weight10_IR")
 # Weight_PO.HIRB(Configparser_PO.DB("tableIR"),6)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
 
 
+# 判定居民体重状态 Determine Residents' Weight Status
 # Weight_PO.excel2db_WS(Configparser_PO.FILE("case"), "WEIGHT_STATUS", "a_weight10_WS")
-Weight_PO.DRWS(17)  # 判定居民体重状态 Determine Residents' Weight Status
+# Weight_PO.DRWS(17)
 
 
 
