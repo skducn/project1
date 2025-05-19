@@ -4,6 +4,7 @@
 # Date          : 2020-4-26
 # Description   : Logging 日志模块
 # python中logging日志模块详解， https://www.cnblogs.com/xianyulouie/p/11041777.html
+# 2025-05-18 10:40:39,624 - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CHC/rule/weight/1.0/WeightPO.py[line:598] - INFO: [{'32': 'ok, id=1'}]
 # *********************************************************************
 
 import logging
@@ -28,7 +29,8 @@ class LogPO(object):
         level="debug",
         when="D",
         backCount=3,
-        fmt="%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s",
+        # fmt="%(asctime)s - %(pathname)s[line:%(lineno)d] - %(levelname)s: %(message)s",
+        fmt="%(asctime)s - %(levelname)s: %(message)s",
     ):
         self.logger = logging.getLogger(filename)
         # fmt = '%(levelname)s - %(message)s - %(filename)s[line:%(lineno)d] - %(asctime)s'

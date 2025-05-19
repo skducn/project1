@@ -178,7 +178,7 @@ class BmiAgePO():
         d_ = {}
         valid, invalid = self.combinations(merged_conditions, test_points)
         d_['satisfied'] = valid
-        d_['not1'] = invalid
+        d_['notSatisfied'] = invalid
 
         # print(d_)
         return d_

@@ -43,12 +43,12 @@ class AgePO:
                 upper_bounds.append(val - 0.1)
 
         # 计算合法区间
-        年龄_min = max(lower_bounds) if lower_bounds else 10.0
+        年龄_min = max(lower_bounds) if lower_bounds else 1.0
         年龄_max = min(upper_bounds) if upper_bounds else 60.0
 
         # 如果没有有效范围，设置默认值
         if not lower_bounds:
-            年龄_min = 10.0
+            年龄_min = 1.0
         if not upper_bounds:
             年龄_max = 60.0
 
@@ -217,17 +217,17 @@ if __name__ == "__main__":
     # 24.0<=年龄<28.0
     # 18.5<=年龄<24.0
     # 24.0<=年龄<28.0
-    print("\n测试条件: ['年龄>=18.5','年龄<24.0']")
-    print(age_po.generate_all_cases(['年龄>=18.5','年龄<24.0']))
+    # print("\n测试条件: ['年龄>=18.5','年龄<24.0']")
+    # print(age_po.generate_all_cases(['年龄>=18.5','年龄<24.0']))
+    #
+    # print("\n测试条件: ['年龄<18.5']")
+    # print(age_po.generate_all_cases(['年龄<18.5']))
 
-    print("\n测试条件: ['年龄<18.5']")
-    print(age_po.generate_all_cases(['年龄<18.5']))
+    print("\n测试条件: ['年龄<=3']")
+    print(age_po.generate_all_cases(['年龄<=3']))
 
-    print("\n测试条件: ['年龄<=18.5']")
-    print(age_po.generate_all_cases(['年龄<=18.5']))
-
-    print("\n测试条件: ['年龄>24']")
-    print(age_po.generate_all_cases(['年龄>24']))
-
-    print("\n测试条件: ['年龄>=24']")
-    print(age_po.generate_all_cases(['年龄>=24']))
+    # print("\n测试条件: ['年龄>24']")
+    # print(age_po.generate_all_cases(['年龄>24']))
+    #
+    # print("\n测试条件: ['年龄>=24']")
+    # print(age_po.generate_all_cases(['年龄>=24']))

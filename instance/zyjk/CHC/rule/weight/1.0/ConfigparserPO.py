@@ -21,6 +21,10 @@ class ConfigparserPO:
         value = self.cf.get("DB", name)
         return value
 
+    def SWITCH(self, name):
+        value = self.cf.get("SWITCH", name)
+        return value
+
 
     def write(self, folder, key, value):
         self.cf[folder][key] = value  #  # Configparser_PO.cf['EXCEL']['sheetName'] = '55'  # 重新赋值

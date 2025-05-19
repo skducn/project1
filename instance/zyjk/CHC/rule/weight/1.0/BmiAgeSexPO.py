@@ -82,7 +82,7 @@ class BmiAgeSexPO():
                 ]
             else:
                 threshold = float(re.search(r'([<>=!]+)\s*([\d.]+)', cond).group(2))
-                points = [threshold - 0.1, threshold, threshold + 0.1]
+                points = [threshold - 10.1, threshold, threshold + 10.1]
 
             test_points[var_name] = list(set(points))
 
@@ -283,18 +283,18 @@ if __name__ == "__main__":
 
     BmiAgeSex_PO = BmiAgeSexPO()
 
-    print("\n测试条件: ['BMI<20', '年龄>=65', '性别=女']")
-    print(BmiAgeSex_PO.main(['BMI<20', '年龄>=65', '性别=女']))
+    print("\n测试条件: ['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']")
+    print(BmiAgeSex_PO.main(['年龄>=69', '年龄<=72', 'BMI<13.1', '性别=男']))
 
-    print("\n测试条件: ['BMI>=24', '年龄>=18', '年龄<65', '性别=男']")
-    print(BmiAgeSex_PO.main(['BMI>=24', '年龄>=18', '年龄<65', '性别=男']))
-
-    print("\n测试条件: ['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']")
-    print(BmiAgeSex_PO.main(['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']))
-
-    print("\n测试条件: ['BMI>=27', '年龄>=65', '性别=男']")
-    print(BmiAgeSex_PO.main(['BMI>=27', '年龄>=65', '性别=男']))
-
-    print("\n测试条件: ['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']")
-    print(BmiAgeSex_PO.main(['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']))
+    # print("\n测试条件: ['BMI>=24', '年龄>=18', '年龄<65', '性别=男']")
+    # print(BmiAgeSex_PO.main(['BMI>=24', '年龄>=18', '年龄<65', '性别=男']))
+    #
+    # print("\n测试条件: ['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']")
+    # print(BmiAgeSex_PO.main(['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']))
+    #
+    # print("\n测试条件: ['BMI>=27', '年龄>=65', '性别=男']")
+    # print(BmiAgeSex_PO.main(['BMI>=27', '年龄>=65', '性别=男']))
+    #
+    # print("\n测试条件: ['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']")
+    # print(BmiAgeSex_PO.main(['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']))
 
