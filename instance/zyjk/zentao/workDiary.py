@@ -18,6 +18,10 @@ Mysql_PO = MysqlPO("192.168.0.211", "readonly", "benetech123", "zentaoep", 3306)
 
 from PO.OpenpyxlPO import *
 
+from PO.NetPO import *
+Net_PO = NetPO()
+
+
 
 def getRecord(varStartDate, varEndDate, l_varWho):
 
@@ -122,7 +126,7 @@ def getRecord(varStartDate, varEndDate, l_varWho):
 # getRecord("2024-5-24", "2024-5-30", ['陈晓东'])
 # df = getRecord("2024-7-16", "2024-7-16", ['舒阳阳'])
 # df = getRecord("2025-2-6", "2025-2-10", ['舒阳阳', '陈晓东'])
-df = getRecord("2025-2-6", "2025-2-10", ['舒阳阳', '陈晓东','金浩'])
+df = getRecord("2025-5-20", "2025-5-20", ['舒阳阳', '陈晓东','金浩'])
 
 
 title = "工作日志"
@@ -139,3 +143,16 @@ with open(rptNameDate, 'w') as f:
 
 # 浏览器中打开
 webbrowser.open('file:///Users/linghuchong/Downloads/51/Python/project/instance/zyjk/zentao/' + rptNameDate)
+
+
+file = "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/zentao/" + rptNameDate
+print("1.3.2 发邮件之html正文(html文件)".center(100, "-"))
+varHead = "<h3>您好！</h3>"
+varFoot = """<br>
+   <h5>这是一封自动发送的电子邮件，如有打扰请谅解。</h5>
+   <h5>智赢测试组</h5>
+   <h5>Best Regards</h5>
+   """
+Net_PO.sendEmail("测试组", ['h.jin@zy-healthtech.com'], None,
+          "测试组工作日志", "htmlFile", varHead, file, varFoot,
+          )
