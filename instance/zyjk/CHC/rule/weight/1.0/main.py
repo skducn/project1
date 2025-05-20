@@ -20,7 +20,14 @@ Weight_PO = WeightPO()
 # todo 1, excel导入db
 # 评估因素规则库 Evaluation Factor Rule Base
 # Weight_PO.excel2db_ER(Configparser_PO.FILE("case"), "ER", "a_weight10_ER")
-# Weight_PO.EFRB(54)
+# Weight_PO.EFRB(41)
+
+# Weight_PO.EFRB(19)
+# Weight_PO.EFRB(46)
+# Weight_PO.EFRB(46, "n")
+
+# Weight_PO.EFRB(1, {'categoryCode': 3, 'disease': '脑卒中'})  # 只测试1条
+
 
 
 # 判定居民体重状态 Determine Residents' Weight Status
@@ -29,7 +36,9 @@ Weight_PO = WeightPO()
 
 
 # Weight_PO.excel2db_HIRB(Configparser_PO.FILE("case"), "HIRB", "a_weight10_HIRB")
-Weight_PO.HIRB(1)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
+
+# Weight_PO.HIRB(94)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
+Weight_PO.HIRB(107)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
 
 
 
