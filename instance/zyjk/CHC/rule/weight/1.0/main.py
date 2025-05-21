@@ -11,16 +11,17 @@
 # pip install sqlalchemy
 
 #***************************************************************
-from WeightPO import *
-Weight_PO = WeightPO()
+# from WeightPO import *
+# Weight_PO = WeightPO()
 
-# from PO.LogPO import *
-# Log_PO = LogPO(filename='log.log', level="info")
+from DrwsPO import *
+Drws_PO = DrwsPO()
+
 
 # todo 1, excel导入db
 # 评估因素规则库 Evaluation Factor Rule Base
 # Weight_PO.excel2db_ER(Configparser_PO.FILE("case"), "ER", "a_weight10_ER")
-# Weight_PO.EFRB(41)
+# Weight_PO.EFRB(44)
 
 # Weight_PO.EFRB(19)
 # Weight_PO.EFRB(46)
@@ -29,16 +30,15 @@ Weight_PO = WeightPO()
 # Weight_PO.EFRB(1, {'categoryCode': 3, 'disease': '脑卒中'})  # 只测试1条
 
 
+# todo 判定居民体重状态 Determine Residents' Weight Status
+# Drws_PO.excel2db_DRWS()
+Drws_PO.DRWS(1)
 
-# 判定居民体重状态 Determine Residents' Weight Status
-# Weight_PO.excel2db_WS(Configparser_PO.FILE("case"), "WEIGHT_STATUS", "a_weight10_WS")
-# Weight_PO.DRWS(8)
 
 
 # Weight_PO.excel2db_HIRB(Configparser_PO.FILE("case"), "HIRB", "a_weight10_HIRB")
-
 # Weight_PO.HIRB(94)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
-Weight_PO.HIRB(107)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
+# Weight_PO.HIRB(107)  # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
 
 
 

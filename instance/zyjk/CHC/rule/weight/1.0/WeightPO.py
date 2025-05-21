@@ -510,7 +510,8 @@ class WeightPO():
                 print("744 结构化参数 =>", l_3_value)  #  ['BMI>18.5', 'BMI<24.0']
 
                 # 读取BMI模块，生成随机数据d_cases
-                d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                d_cases = BmiAgeSex_PO.main(l_3_value)
+                # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
 
                 # 测试数据
                 # todo DRWS_case for and

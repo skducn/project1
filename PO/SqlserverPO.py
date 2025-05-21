@@ -186,7 +186,7 @@ Time_PO = TimePO()
 
 from PO.FilePO import *
 File_PO = FilePO()
-
+from sqlalchemy import TIMESTAMP
 
 class SqlserverPO:
 
@@ -259,9 +259,9 @@ class SqlserverPO:
         ''' 1.2 执行 '''
 
         try:
-            self.conn.commit()
+            # self.conn.commit()
             self.cur.execute(sql)
-            self.conn.commit()
+            # self.conn.commit()
         except Exception as e:
             print(repr(e))
 
@@ -1281,7 +1281,8 @@ class SqlserverPO:
         # 3.15 设置自增主键
         # 新的主键在最后列
         self.execute("alter table %s ADD %s INT identity(1,1) primary key" % (varTable, varField))
-
+        # self.execute("alter table %s ADD CONSTRAINT PK_a_weight10_EFRB_id PRIMARY KEY (%s)" % (varTable, varField))
+        # ALTER TABLE a_weight10_EFRB ADD CONSTRAINT PK_a_weight10_EFRB_id PRIMARY KEY (id);
     def delIdentityPrimaryKey(self, varTable, varField):
 
         # 3.16 删除自增主键
@@ -1955,6 +1956,34 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
+    def df2db3(self, df, varTable):
+
+        '''
+        5.3，xlsx全量导入数据库（覆盖）
+        xlsx2db('2.xlsx', "tableName", "sheet1")
+        excel表格第一行数据对应db表中字段，建议用英文
+        '''
+
+        engine = self.getEngine_pymssql()
+
+        try:
+
+            # 开始数据库事务
+            with engine.begin() as connection:
+                # 使用 pandas 的 to_sql 方法将数据写入数据库
+                # 如果表已存在，可以选择 'fail', 'replace', 或 'append' 模式
+                df.to_sql(
+                    name=varTable,
+                    con=connection,
+                    if_exists='replace',  # 根据需要修改此参数
+                    index=False
+                )
+
+            return True
+
+        except Exception as e:
+            print(e)
+
     def xlsx2db2(self, varPathFile, varDbTable, varSheetName, varColName):
 
         '''
@@ -2065,15 +2094,16 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
-    def df2db(self, varDF, varDbTable):
+    def df2db(self, varDF, varTable):
 
         # 5.9，dataframe导入数据库
+        engine = self.getEngine_pymssql()
 
         try:
-            engine = self.getEngine_pymssql()
-            varDF.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
+            varDF.to_sql(name=varTable, con=engine, if_exists="replace", index=False, chunksize=1000)
         except Exception as e:
             print(e)
+
 
     def db2csv(self, sql, varExcelFile, header=1):
 

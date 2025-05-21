@@ -208,3 +208,34 @@
 2025-05-20 14:47:22,324 - INFO - {'现价': '21.98', '涨幅': '-0.36', '换手': '5.44', '市盈率': '93.23'} , https://xueqiu.com/S/SZ300922 , 天秦装备
 2025-05-20 14:48:05,711 - INFO - {'现价': '29.69', '涨幅': '-0.03', '换手': '8.57', '市盈率': '58.32'} , https://xueqiu.com/S/SZ301658 , 首航新能
 2025-05-20 14:48:19,712 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-05-21 09:48:01,855 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-05-21 13:09:42,030 - INFO - {'现价': '15.29', '涨幅': '-1.99', '换手': '6.86', '市盈率': '64.40'} , https://xueqiu.com/S/SZ001356 , 富岭股份
+2025-05-21 13:10:12,388 - INFO - {'现价': '13.21', '涨幅': '2.32', '换手': '3.77', '市盈率': '26.84'} , https://xueqiu.com/S/SZ002245 , 蔚蓝锂芯
+2025-05-21 13:11:41,145 - INFO - {'现价': '23.12', '涨幅': '-2.78', '换手': '9.74', '市盈率': '21.98'} , https://xueqiu.com/S/SZ002553 , 南方精工
+2025-05-21 13:12:57,934 - ERROR - 发生错误: Message: session not created
+from chrome not reachable
+Stacktrace:
+0   chromedriver                        0x000000010fb578b8 chromedriver + 5986488
+1   chromedriver                        0x000000010fb4e9ea chromedriver + 5949930
+2   chromedriver                        0x000000010f607443 chromedriver + 414787
+3   chromedriver                        0x000000010f5f2a42 chromedriver + 330306
+4   chromedriver                        0x000000010f647399 chromedriver + 676761
+5   chromedriver                        0x000000010f64276e chromedriver + 657262
+6   chromedriver                        0x000000010f63d516 chromedriver + 636182
+7   chromedriver                        0x000000010f68dba2 chromedriver + 965538
+8   chromedriver                        0x000000010f68d096 chromedriver + 962710
+9   chromedriver                        0x000000010f67f0e3 chromedriver + 905443
+10  chromedriver                        0x000000010f64b61d chromedriver + 693789
+11  chromedriver                        0x000000010f64c281 chromedriver + 696961
+12  chromedriver                        0x000000010fb15580 chromedriver + 5715328
+13  chromedriver                        0x000000010fb19445 chromedriver + 5731397
+14  chromedriver                        0x000000010faefed0 chromedriver + 5562064
+15  chromedriver                        0x000000010fb19e7b chromedriver + 5734011
+16  chromedriver                        0x000000010fadede4 chromedriver + 5492196
+17  chromedriver                        0x000000010fb3ca98 chromedriver + 5876376
+18  chromedriver                        0x000000010fb3cc60 chromedriver + 5876832
+19  chromedriver                        0x000000010fb4e5b1 chromedriver + 5948849
+20  libsystem_pthread.dylib             0x00007ff8158964e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff815891f6b thread_start + 15
+
+2025-05-21 13:12:57,934 - ERROR - 发生错误: 'WebPO' object has no attribute 'driver'
