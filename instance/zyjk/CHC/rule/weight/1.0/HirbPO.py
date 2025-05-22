@@ -1451,18 +1451,20 @@ class HirbPO():
         return d_tmp
 
 
-    def ss(self, f_conditions):
+    def str2dict(self, f_conditions):
         # 字符串转字典，将 （TZ_STZB042 = '是' and TZ_JWJB001 = '否' ） 转为字典{'TZ_STZB042': '是', 'TZ_JWJB001': '否'}
         pairs = [pair.strip() for pair in f_conditions.split('and')]
-        d_IR = {}
+        d_conditions = {}
         for pair in pairs:
             if '=' in pair:
                 key, value = pair.split('=')
-                d_IR[key.strip()] = value.strip().replace("'", "")
-        # print(d_IR) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
-        return d_IR
+                d_conditions[key.strip()] = value.strip().replace("'", "")
+        # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        return d_conditions
 
-    # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
+
+
+    # todo 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
     def HIRB(self, varTestID="all"):
 
         # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
@@ -1486,50 +1488,52 @@ class HirbPO():
             # 获取原始数据
             d_tmp['表'] = self.tableHI
             d_tmp['ID'] = IR_ID
-            d_tmp['干预规则f_conditions'] = f_conditions
-            s = "健康干预规则库（其他分类）HIRB => " + str(d_tmp)
+            d_tmp['f_conditions'] = f_conditions
+            d_tmp['标注释'] = '健康干预规则库（其他分类）HIRB'
+            s = "测试项 => " + str(d_tmp)
             print(s)
             Log_PO.logger.info(s)
 
             # # 字符串转字典，{'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
             # pairs = [pair.strip() for pair in f_conditions.split('and')]
-            # d_IR = {}
+            # d_conditions = {}
             # for pair in pairs:
             #     if '=' in pair:
             #         key, value = pair.split('=')
-            #         d_IR[key.strip()] = value.strip().replace("'", "")
-            # # print(d_IR) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+            #         d_conditions[key.strip()] = value.strip().replace("'", "")
+            # # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
 
 
+            # todo TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
             if "or" in f_conditions and "and" not in f_conditions:
-                ...
-                # TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
+                 
                 l_value = f_conditions.split("or")
                 # print(l_value)
                 l_4 = []
                 for i in l_value:
-                    l_4.append(self.ss(i))
+                    l_4.append(self.str2dict(i))
                 # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
                 # l_value = [i.split("and") for i in l_value]
                 # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
                 # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
                 print(l_4)
                 # sys.exit(0)
-                # d_IR = self.ss(f_conditions)
+                # d_conditions = self.str2dict(f_conditions)
                 self.HIRB_case_or(IR_ID, f_code, l_4)
 
-            # todo HIRB 复杂条件组合
+
+            # todo HIRB  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
             if "or" in f_conditions and "and" in f_conditions:
-                # (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
+                
 
                 # # 字符串转字典，{'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
                 # pairs = [pair.strip() for pair in f_conditions.split('and')]
-                # d_IR = {}
+                # d_conditions = {}
                 # for pair in pairs:
                 #     if '=' in pair:
                 #         key, value = pair.split('=')
-                #         d_IR[key.strip()] = value.strip().replace("'", "")
-                # print(d_IR) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+                #         d_conditions[key.strip()] = value.strip().replace("'", "")
+                # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
 
                 # 转换列表，结构化原始数据为列表，生成l_l_N
                 l_value = f_conditions.split("or")
@@ -1537,14 +1541,14 @@ class HirbPO():
                 l_4 = []
                 for i in l_value:
                     i = i.replace("(",'').replace(")",'')
-                    l_4.append(self.ss(i))
+                    l_4.append(self.str2dict(i))
                 # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
                 # l_value = [i.split("and") for i in l_value]
                 # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
                 # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
                 print(l_4)
                 # sys.exit(0)
-                # d_IR = self.ss(f_conditions)
+                # d_conditions = self.str2dict(f_conditions)
                 self.HIRB_case_or(IR_ID, f_code, l_4)
                 sys.exit(0)
 
@@ -1593,7 +1597,7 @@ class HirbPO():
 
                     # 判断输出结果
                     # todo HIRB_case for or
-                    # self.HIRB_case(IR_ID, f_code, d_IR)
+                    # self.HIRB_case(IR_ID, f_code, d_conditions)
                     varTestCount = 0
                     varTestcase, varCount = self.HIRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
                     # varTestcase, varCount = self.EFRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
@@ -1615,13 +1619,12 @@ class HirbPO():
                         "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
                             self.tableEF, sum, id))
 
-            # todo HIRB 简单条件组合
+
+            # todo HIRB "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
             elif "and" in f_conditions:
                 # 测试数据
-                # todo HIRB for and
-
-                d_IR = self.ss(f_conditions)
-                self.HIRB_case(IR_ID, f_code, d_IR)
+                d_conditions = self.str2dict(f_conditions)
+                self.HIRB_case(IR_ID, f_code, d_conditions)
 
             # todo HIRB 无条件组合
             elif "and" not in f_conditions:
@@ -1646,20 +1649,20 @@ class HirbPO():
 
                 # todo EFRB_case for not and
                 # 判断输出结果
-                d_IR = self.ss(f_conditions)
-                print(d_IR)
-                self.HIRB_case(IR_ID, f_code, d_IR)
+                d_conditions = self.str2dict(f_conditions)
+                print(d_conditions)
+                self.HIRB_case(IR_ID, f_code, d_conditions)
 
             else:
                 print("[not or & and ]")
             print("-".center(100, "-"))
 
             break
-    def HIRB_case(self, IR_ID, f_code, d_IR):
+    def HIRB_case(self, IR_ID, f_code, d_conditions):
 
         # 执行ER中规则
         # print("f_code", f_code)  # TZ_YS001
-        # print("d_IR", d_IR)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        # print("d_conditions", d_conditions)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
         # sys.exit(0)
 
         d_tmp = {}
@@ -1673,7 +1676,7 @@ class HirbPO():
         # print(d_f_code)  # {'TZ_STZB001': 1, 'TZ_STZB002': 2,
 
         #  过滤掉TZ_STZB开头的key
-        d_filtered = {key: value for key, value in d_IR.items() if 'TZ_STZB' not in key}
+        d_filtered = {key: value for key, value in d_conditions.items() if 'TZ_STZB' not in key}
         print("过滤掉TZ_STZB开头的key：", d_filtered) # {'TZ_RQFL001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
 
         # 先遍历否
@@ -1710,7 +1713,7 @@ class HirbPO():
 
 
         # 获取 TZ_STZB开头的key
-        l_matching_keys = [key for key in d_IR if 'TZ_STZB' in key]
+        l_matching_keys = [key for key in d_conditions if 'TZ_STZB' in key]
         print(l_matching_keys) # ['TZ_STZB001']
         if l_matching_keys != []:
             l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
@@ -1724,7 +1727,7 @@ class HirbPO():
                 print("warning, 匹配到多个值：",l_matching_keys)
                 sys.exit(0)
 
-        l_matching_keys = [key for key in d_IR if 'TZ_RQFL' in key]
+        l_matching_keys = [key for key in d_conditions if 'TZ_RQFL' in key]
         print(l_matching_keys)  # ['TZ_STZB001']
         if l_matching_keys != []:
             l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
@@ -1735,7 +1738,7 @@ class HirbPO():
                 print("warning, 匹配到多个值：",l_matching_keys)
                 sys.exit(0)
 
-        l_matching_keys = [key for key in d_IR if 'TZ_AGE' in key]
+        l_matching_keys = [key for key in d_conditions if 'TZ_AGE' in key]
         print(l_matching_keys)  # ['TZ_STZB001']
         if l_matching_keys != []:
             l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
@@ -2052,7 +2055,7 @@ class HirbPO():
 
         # 执行ER中规则
         # print("f_code", f_code)  # TZ_YS001
-        # print("d_IR", d_IR)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        # print("d_conditions", d_conditions)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
         # sys.exit(0)
 
         d_tmp = {}

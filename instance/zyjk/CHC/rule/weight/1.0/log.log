@@ -592,3 +592,8 @@
 2025-05-22 17:43:43,495 - INFO: {'正向': 'ok', '人群分类': '3'}
 2025-05-22 17:43:43,495 - INFO: {'ID': 48, 'result': 'ok'}
 2025-05-22 17:43:43,524 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-22 18:03:15,581 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-22 18:03:15,861 - INFO: {'规则库': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, 'f_conditions': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'categoryCode': 3, 'disease': '脑卒中', '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-22 18:03:16,100 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-22 18:03:16,100 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-22 18:03:16,125 - INFO: [{'31': 'error, id=<built-in function id>'}]
