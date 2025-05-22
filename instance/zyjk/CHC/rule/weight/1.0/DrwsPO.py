@@ -138,7 +138,7 @@ class DrwsPO():
         # print("l_d_row =>", l_d_row)  # [{'ID': 1, 'f_conditions': 'BMI＜18.5'}, ...
 
         d_['table'] = self.tableWS
-        for i,index in enumerate(l_d_row):
+        for i, index in enumerate(l_d_row):
             # print(l_d_row[i], i)
             if varTestID == "all":
                 ...
@@ -323,15 +323,17 @@ class DrwsPO():
         d_result = {}
         if 0 not in count:
             d_result['ID'] = ID
-            d_result['结果'] = 'ok'
-            Color_PO.outColor([{"32": "返回值 => " + str(d_result)}])
-            Log_PO.logger.info("返回值 => " + str(d_result))
+            d_result['result'] = 'ok'
+            s = "结果 => " + str(d_result)
+            Color_PO.outColor([{"32": s}])
+            Log_PO.logger.info(s)
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableWS, caseTotal, ID))
         else:
             d_result['ID'] = ID
-            d_result['结果'] = 'error'
-            Color_PO.outColor([{"31": "返回值 => " + str(d_result)}])
-            Log_PO.logger.info("返回值 => " + str(d_result))
+            d_result['result'] = 'error'
+            s = "结果 => " + str(d_result)
+            Color_PO.outColor([{"31": s}])
+            Log_PO.logger.info(s)
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableWS, caseTotal, ID))
         Log_PO.logger.info("---------------------------------------------------------------------")
 

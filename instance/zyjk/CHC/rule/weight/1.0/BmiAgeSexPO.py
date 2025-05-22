@@ -161,7 +161,12 @@ class BmiAgeSexPO():
         return merged_conditions
 
     def main(self, conditions):
-        merged_conditions = self.merge_conditions(conditions)
+        l_3_value = []
+        for i in conditions:
+            l_simple_conditions = self.interconvertMode(i)
+            l_3_value.extend(l_simple_conditions)
+
+        merged_conditions = self.merge_conditions(l_3_value)
         test_points = self.generate_test_points(merged_conditions)
         valid, invalid = self.combinations(merged_conditions, test_points)
 
@@ -284,7 +289,9 @@ if __name__ == "__main__":
     BmiAgeSex_PO = BmiAgeSexPO()
 
     print("\n测试条件: ['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']")
-    print(BmiAgeSex_PO.main(['年龄>=69', '年龄<=72', 'BMI<13.1', '性别=男']))
+    print(BmiAgeSex_PO.main(['66<=年龄<69', '13.1>BMI', '性别=男']))
+    # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']))
+    # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', 'BMI<13.1', '性别=男']))
 
     # print("\n测试条件: ['BMI>=24', '年龄>=18', '年龄<65', '性别=男']")
     # print(BmiAgeSex_PO.main(['BMI>=24', '年龄>=18', '年龄<65', '性别=男']))

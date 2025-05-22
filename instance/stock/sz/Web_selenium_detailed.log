@@ -239,3 +239,11 @@ Stacktrace:
 21  libsystem_pthread.dylib             0x00007ff815891f6b thread_start + 15
 
 2025-05-21 13:12:57,934 - ERROR - 发生错误: 'WebPO' object has no attribute 'driver'
+2025-05-22 09:24:27,207 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-05-22 09:37:12,225 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-05-22 14:24:50,935 - INFO - {'现价': '15.15', '涨幅': '1.81', '换手': '8.62', '市盈率': '14.76'} , https://xueqiu.com/S/SZ002734 , 利民股份
+2025-05-22 14:25:08,403 - INFO - {'现价': '8.66', '涨幅': '-1.70', '换手': '3.90', '市盈率': '17.33'} , https://xueqiu.com/S/SZ300009 , 安科生物
+2025-05-22 14:25:40,417 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-05-22 14:41:16,367 - INFO - {'现价': '15.16', '涨幅': '1.88', '换手': '9.34', '市盈率': '14.77'} , https://xueqiu.com/S/SZ002734 , 利民股份
+2025-05-22 14:41:34,065 - INFO - {'现价': '8.66', '涨幅': '-1.70', '换手': '4.01', '市盈率': '17.33'} , https://xueqiu.com/S/SZ300009 , 安科生物
+2025-05-22 14:42:01,718 - ERROR - 发生错误: not all arguments converted during string formatting
