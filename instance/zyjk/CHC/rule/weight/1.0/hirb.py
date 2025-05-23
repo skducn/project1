@@ -21,6 +21,9 @@ Hirb_PO = HirbPO()
 # todo 2, 健康干预 Health Intervention  Rule Base
 # Hirb_PO.EFRB("all")
 Hirb_PO.HIRB(1)
+# Hirb_PO.HIRB(7)
+# Hirb_PO.HIRB(101)
+# Hirb_PO.HIRB(108)
 
 
 

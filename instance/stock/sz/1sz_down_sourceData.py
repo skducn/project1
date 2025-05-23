@@ -26,8 +26,8 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-
-
+# import pyautogui
+# Process finished with exit code 139 (interrupted by signal 11: SIGSEGV)
 
 varUrl = "https://www.szse.cn/market/trend/index.html"
 Web_PO = WebPO("chrome")

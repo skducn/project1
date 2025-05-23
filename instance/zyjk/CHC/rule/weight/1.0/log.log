@@ -597,3 +597,296 @@
 2025-05-22 18:03:16,100 - INFO: {'正向': 'ok', '人群分类': '3'}
 2025-05-22 18:03:16,100 - INFO: {'ID': 48, 'result': 'ok'}
 2025-05-22 18:03:16,125 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:27:10,391 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:27:11,020 - INFO: {'规则库': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, 'f_conditions': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'categoryCode': 3, 'disease': '脑卒中', '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:27:11,219 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:27:11,220 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:27:11,247 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:34:52,790 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:34:53,034 - INFO: {'规则库': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, 'f_conditions': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'categoryCode': 3, 'disease': '脑卒中', '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:34:53,244 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:34:53,245 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:34:53,267 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:43:44,922 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:43:45,155 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'categoryCode': 3, 'disease': '脑卒中', '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:43:45,351 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:43:45,351 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:43:45,374 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:49:04,029 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:49:04,229 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:49:04,433 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:49:04,433 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:49:04,455 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:50:26,102 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:50:26,307 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:50:26,498 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:50:26,498 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:50:26,542 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:52:52,030 - INFO: 测试项 => {'table': 'a_weight10_EFRB', 'ID': 1, 'f_conditions': 'BMI>=24 and 年龄>=18 and 年龄<65', '表注释': '评估因素规则库EFRB'}
+2025-05-23 09:52:52,228 - INFO: {'正向': 'ok', '条件': ['BMI>=24', '年龄>=18', '年龄<65'], '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:52:52,412 - INFO: {'正向': 'ok', '条件': ['BMI>=24', '年龄>=18', '年龄<65'], '测试数据': {'BMI': 24.0, '年龄': 18.1}}
+2025-05-23 09:52:52,595 - INFO: {'正向': 'ok', '条件': ['BMI>=24', '年龄>=18', '年龄<65'], '测试数据': {'BMI': 24.1, '年龄': 18.0}}
+2025-05-23 09:52:52,786 - INFO: {'正向': 'ok', '条件': ['BMI>=24', '年龄>=18', '年龄<65'], '测试数据': {'BMI': 24.1, '年龄': 18.1}}
+2025-05-23 09:52:52,786 - INFO: 结果 => {'ID': 1, 'result': 'ok'}
+2025-05-23 09:52:52,791 - INFO: ---------------------------------------------------------------------
+2025-05-23 09:53:34,208 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '标注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:53:34,422 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:53:34,609 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:53:34,609 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:53:34,636 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:56:43,092 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:56:43,307 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:56:43,511 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:56:43,512 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:56:43,535 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:58:02,549 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:58:02,773 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:58:02,968 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:58:02,969 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:58:02,992 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 09:59:11,480 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 09:59:11,692 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 09:59:11,882 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 09:59:11,882 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 09:59:11,904 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 10:01:06,983 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:01:07,187 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 10:01:07,504 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 10:01:07,505 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 10:01:07,527 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 10:27:25,118 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:27:25,423 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 10:27:25,634 - INFO: {'正向': 'ok', '人群分类': '3'}
+2025-05-23 10:27:25,635 - INFO: {'ID': 48, 'result': 'ok'}
+2025-05-23 10:27:25,658 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 10:29:03,538 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:29:03,747 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 10:29:03,767 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:29:03,768 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 10:30:06,561 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:30:06,787 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 10:30:06,807 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:30:06,808 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 10:31:57,356 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:31:57,649 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 10:31:57,669 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:31:57,669 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 10:32:15,419 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': "TZ_RQFL005='是'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:32:15,617 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 10:32:15,618 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 10:32:15,640 - INFO: {'实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:32:15,641 - INFO: {'result': 'ok', 'ID': 101}
+2025-05-23 10:32:38,290 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 108, 'f_conditions': "TZ_AGE001 ='是'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:32:38,578 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 54, '条件': '年龄<=3', 'f_code': 'TZ_AGE001', 'categoryCode': 100, 'disease': '脑卒中', '正向': 'ok', '测试数据': {'年龄': 3}}
+2025-05-23 10:32:38,598 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB045', 'TZ_SRL003', 'TZ_YS043', 'TZ_MBTZ003', 'TZ_YD043'], '预期值': 'TZ_SRL003', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:32:38,599 - INFO: {'result': 'ok', 'ID': 108}
+2025-05-23 10:34:38,173 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 108, 'f_conditions': "TZ_AGE001 ='是'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:34:38,377 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 54, '条件': '年龄<=3', 'f_code': 'TZ_AGE001', 'categoryCode': 100, 'disease': '脑卒中', '正向': 'ok', '测试数据': {'年龄': 3}}
+2025-05-23 10:34:38,400 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB045', 'TZ_SRL003', 'TZ_YS043', 'TZ_MBTZ003', 'TZ_YD043'], '预期值': 'TZ_SRL003', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:34:38,400 - INFO: {'result': 'ok', 'ID': 108}
+2025-05-23 10:37:55,091 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:37:55,313 - INFO: {'表注释': '评估因素规则库EFRB', '表': 'a_weight10_EFRB', 'ID': 1, '条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 10:37:55,335 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:37:55,335 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 10:42:19,589 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 10:42:19,808 - INFO: 1/16, {'正向': 'ok', '条件':['年龄>=14', '年龄<14.5', '22.3<= BMI', '性别=男'], '测试数据': {'年龄': 14.0, 'BMI': 32.4, '性别': '男'}}
+2025-05-23 10:42:19,829 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 10:42:19,829 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:25:27,545 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:25:27,765 - INFO: 1/16, {'正向': 'ok', '条件':['年龄>=14', '年龄<14.5', '22.3<= BMI', '性别=男'], '测试数据': {'年龄': 14.0, 'BMI': 32.4, '性别': '男'}}
+2025-05-23 13:25:27,785 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:25:27,785 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:27:09,197 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:27:09,456 - INFO: 1/16, {'正向': 'ok', '条件':['年龄>=14', '年龄<14.5', '22.3<= BMI', '性别=男'], '测试数据': {'年龄': 14.0, 'BMI': 32.4, '性别': '男'}}
+2025-05-23 13:27:09,476 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:27:09,476 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:42:40,528 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:43:39,000 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:44:09,223 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:45:19,384 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:45:20,225 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:45:20,230 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:51:05,898 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:51:06,723 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:51:06,726 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:52:06,023 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:52:06,873 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:52:06,873 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:52:57,106 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:52:57,971 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:52:57,971 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:53:40,793 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 13:53:41,712 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 13:53:41,713 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 13:57:56,372 - INFO: 测试项 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'", '表注释': '健康干预规则库（其他分类）HIRB'}
+2025-05-23 14:04:16,049 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'"}
+2025-05-23 14:04:57,312 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': "TZ_STZB007='是' and TZ_JB001='否' and TZ_JB002='否'"}
+2025-05-23 14:06:16,785 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:06:17,656 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:06:17,657 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:12:23,757 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:12:24,549 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:12:24,550 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:16:37,167 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:18:36,978 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:24:12,625 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:24:13,472 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:24:13,472 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:24:52,664 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:25:04,839 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:25:04,839 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:26:14,493 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:26:15,384 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:26:15,384 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:26:46,052 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:26:46,865 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:26:46,865 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:33:44,565 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:35:37,694 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:36:28,803 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:37:25,603 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:38:27,413 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:38:28,202 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:38:28,203 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:40:48,688 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:40:49,498 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:40:49,499 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:47:42,914 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:47:55,193 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:47:55,194 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:50:49,991 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:51:02,929 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:51:02,929 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:51:51,876 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:52:03,842 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:52:16,455 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:52:16,456 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:52:28,057 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'f_code': 'TZ_YS007', 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:52:40,365 - INFO: {'实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:52:40,366 - INFO: {'result': 'ok', 'ID': 7}
+2025-05-23 14:55:09,805 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:55:34,751 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:55:34,972 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 14:55:34,993 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:55:34,994 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 14:58:00,936 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:58:01,141 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 14:58:01,160 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:58:01,161 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 14:59:28,406 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:59:28,608 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 14:59:28,628 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:59:28,628 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 14:59:50,892 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 14:59:51,097 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 14:59:51,118 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 14:59:51,118 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 15:11:13,133 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:11:13,336 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '非糖尿病', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:11:13,356 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:12:08,790 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:12:08,989 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '非糖尿病', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:12:09,010 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:12:22,745 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:12:22,991 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '非糖尿病', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:12:23,012 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:12:29,880 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:12:30,079 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '非糖尿病', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:12:30,099 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:12:37,768 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:12:37,983 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '非糖尿病', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:12:38,002 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:12:48,137 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:12:48,325 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '非糖尿病', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:12:48,345 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:12:59,408 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:12:59,612 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:12:59,633 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:12:59,633 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 15:15:53,533 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:15:53,745 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, 'f_conditions': ['BMI>=24', '年龄>=18', '年龄<65'], '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:15:53,765 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:15:53,765 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 15:17:09,842 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:17:10,049 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:17:10,070 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:17:10,070 - INFO: {'result': 'ok', 'ID': 1}
+2025-05-23 15:17:53,247 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:17:53,449 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:17:53,469 - INFO: {'实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2', 'result': 'ok', 'ID': 1}
+2025-05-23 15:20:22,530 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:20:22,730 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:20:22,750 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:21:02,233 - INFO: 测试项 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:21:02,438 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'f_code': 'TZ_STZB001', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:21:02,457 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:23:47,482 - INFO: 测试 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+2025-05-23 15:23:47,700 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:23:47,720 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:24:49,625 - INFO: 测试 => {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:24:49,825 - INFO: {'表': 'a_weight10_EFRB', '表注释': '评估因素规则库EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:24:49,845 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:29:53,834 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:29:54,037 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:29:54,058 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:30:45,326 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS007'}
+2025-05-23 15:30:57,506 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:31:38,548 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:32:44,927 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:34:41,676 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:34:41,881 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:34:41,882 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:35:04,248 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:35:04,448 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:35:04,448 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:35:04,471 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 101, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:37:50,346 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:37:50,552 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:37:50,552 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:37:50,574 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 101, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:39:02,780 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:39:02,988 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:39:02,989 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:39:03,012 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 101, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:43:18,699 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:43:39,493 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:44:32,912 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:45:11,117 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:45:28,097 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:45:28,317 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:45:28,318 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:45:28,341 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 101, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:45:49,094 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:45:49,288 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:45:49,288 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:45:49,310 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 101, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:46:07,843 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 101, 'f_conditions': {'TZ_RQFL005': '是'}, 'f_code': 'TZ_YD050'}
+2025-05-23 15:46:08,050 - INFO: {'正向': 'ok', '人群分类': '6'}
+2025-05-23 15:46:08,051 - INFO: {'ID': 52, 'result': 'ok'}
+2025-05-23 15:46:08,076 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 101, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_RQFL005', 'TZ_SRL003', 'TZ_YS050', 'TZ_YD050'], '预期值': 'TZ_YD050', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:47:59,767 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:47:59,978 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 100, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:47:59,998 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:48:10,525 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 7, 'f_conditions': {'TZ_STZB007': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS007'}
+2025-05-23 15:48:22,709 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 7, 'result': 'ok', '实际值': ['TZ_AGE001', 'TZ_STZB007', 'TZ_SRL003', 'TZ_YS007', 'TZ_MBTZ002', 'TZ_YD007'], '预期值': 'TZ_YS007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:48:33,303 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:48:33,503 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 100, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:48:33,524 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:49:27,030 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:49:27,222 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 100, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:49:27,242 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:49:31,915 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:49:32,108 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 100, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:49:32,129 - INFO: [{'31': 'error, id=<built-in function id>'}]
+2025-05-23 15:50:59,888 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:51:00,098 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 100, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:51:00,118 - INFO: [{'31': 'error, id=1'}]
+2025-05-23 15:51:39,009 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:51:39,267 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 100, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:51:39,298 - INFO: [{'31': 'error, id=1'}]
+2025-05-23 15:54:22,169 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:54:22,372 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:54:22,391 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-05-23 15:55:12,407 - INFO: 测试健康干预规则库 => {'表': 'a_weight10_HIRB', 'ID': 1, 'f_conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}, 'f_code': 'TZ_YS001'}
+2025-05-23 15:55:12,612 - INFO: {'表': 'a_weight10_EFRB', 'f_code': 'TZ_STZB001', 'ID': 1, '所有条件': 'BMI>=24 and 年龄>=18 and 年龄<65', 'disease': '脑卒中', 'categoryCode': 3, 'f_conditions_total': 1, '正向': 'ok', '测试数据': {'BMI': 24.0, '年龄': 18.0}}
+2025-05-23 15:55:12,632 - INFO: {'表': 'a_weight10_HIRB', '表注释': '健康干预规则库（其他分类）HIRB', 'ID': 1, 'result': 'ok', '实际值': ['TZ_RQFL001', 'TZ_STZB001', 'TZ_SRL001', 'TZ_YS001', 'TZ_MBTZ002', 'TZ_YD001'], '预期值': 'TZ_YS001', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}

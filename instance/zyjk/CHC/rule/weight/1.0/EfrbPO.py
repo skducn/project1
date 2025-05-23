@@ -51,7 +51,7 @@ class EfrbPO():
     def __init__(self):
         self.tableEF = Configparser_PO.DB("tableWS")
         self.tableEF = Configparser_PO.DB("tableEF")
-        self.tableIR = Configparser_PO.DB("tableIR")
+        self.tableHI = Configparser_PO.DB("tableHI")
 
     def convert_conditions(self, conditions):
         valid_operators = ['=', '>', '<', '>=', '<=']
