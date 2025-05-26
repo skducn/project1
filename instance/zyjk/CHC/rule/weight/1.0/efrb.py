@@ -16,14 +16,18 @@ Efrb_PO = EfrbPO()
 
 
 # todo 1, excel导入db
-Efrb_PO.excel2db_EFRB()
+# Efrb_PO.excel2db_EFRB()
 
 # todo 2, 评估因素规则库 Evaluation Factor Rule Base
 # Efrb_PO.EFRB("all")
-Efrb_PO.EFRB(1)
-# Efrb_PO.EFRB(18)
+Efrb_PO.EFRB(3)
+# Efrb_PO.EFRB(7)
+# Efrb_PO.EFRB(55)
 # Efrb_PO.EFRB(56)
-# Weight_PO.EFRB(46, "n")
+# Efrb_PO.EFRB(47)
+# Efrb_PO.EFRB(48)
+# Efrb_PO.EFRB(54)
+
 
 # Weight_PO.EFRB(1, {'categoryCode': 3, 'disease': '脑卒中'})  # 只测试1条
 

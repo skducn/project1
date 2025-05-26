@@ -19,11 +19,15 @@ Hirb_PO = HirbPO()
 # Hirb_PO.excel2db_HIRB()
 
 # todo 2, 健康干预 Health Intervention  Rule Base
-# Hirb_PO.EFRB("all")
-Hirb_PO.HIRB(1)
-# Hirb_PO.HIRB(7)
-# Hirb_PO.HIRB(101)
+# Hirb_PO.HIRB("all")
+Hirb_PO.HIRB(106)
+# Hirb_PO.HIRB(43)
+# Hirb_PO.HIRB(44)
+# Hirb_PO.HIRB(51)
+# Hirb_PO.HIRB(97)
 # Hirb_PO.HIRB(108)
+# Hirb_PO.HIRB(101)
+# Hirb_PO.HIRB(109)
 
 
 

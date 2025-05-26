@@ -1141,3 +1141,7 @@ Stacktrace:
 2025-05-23 16:10:05,769 - INFO - > 66/68
 2025-05-23 16:10:19,069 - INFO - > 67/68
 2025-05-23 16:10:32,464 - INFO - > 68/68
+2025-05-26 09:52:56,773 - INFO - {'现价': '28.48', '涨幅': '1.57', '换手': '3.24', '市盈率': '24.59'} , https://xueqiu.com/S/SZ603163 , 圣晖集成
+2025-05-26 09:53:27,483 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-05-26 09:55:43,425 - INFO - {'现价': '28.40', '涨幅': '1.28', '换手': '3.33', '市盈率': '24.52'} , https://xueqiu.com/S/SZ603163 , 圣晖集成
+2025-05-26 09:56:14,820 - ERROR - 发生错误: not all arguments converted during string formatting

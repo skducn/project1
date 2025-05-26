@@ -45,6 +45,9 @@ Color_PO = ColorPO()
 from PO.LogPO import *
 Log_PO = LogPO(filename='log.log', level="info")
 
+from EfrbPO import *
+Efrb_PO = EfrbPO()
+
 
 class HirbPO():
 
@@ -224,15 +227,15 @@ class HirbPO():
     # 评估因素规则库 Evaluation Factor Rule Base
     def EFRB_1(self, d_param_EFRB):
 
-        # EFRB(self, varTestID, varPN="p")
         # 评估因素规则库 Evaluation Factor Rule Base
-        # a_weight10_EFRB
+
+        # d_param_EFRB = {'table': 'a_weight10_EFRB', 'ID': 43, 'categoryCode': 100, 'disease': '脑卒中', 'sex': '男'}
+
         # varTestID = 1, 执行ID=1的测试数据 ； varTestID = 'all',执行所有的测试数据
         # varPN = p 执行正向（默认值p），n 执行反向；
         # print(236, d_param_EFRB)  # {'disease': '脑卒中', 'categoryCode': 100, 'ID': 7}
 
-
-        d_tmp = {}
+        d_tmp = d_param_EFRB
 
         # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC5G.select("select f_conditions, f_code from %s where ID =%s" % (self.tableEF, d_param_EFRB['ID']))
@@ -240,13 +243,13 @@ class HirbPO():
         # print(l_d_row[0]['f_conditions'])
         f_conditions = (l_d_row[0]['f_conditions'])
         # f_code = (l_d_row[0]['f_code'])
-        d_tmp['表'] = self.tableEF
+        # d_tmp['表'] = d_param_EFRB['table']
         # d_tmp['表注释'] = '评估因素规则库EFRB'
         d_tmp['f_code'] = l_d_row[0]['f_code']
-        d_tmp['ID'] = d_param_EFRB['ID']
-        d_tmp['所有条件'] = l_d_row[0]['f_conditions']
+        # d_tmp['ID'] = d_param_EFRB['ID']
+        d_tmp['f_conditions'] = l_d_row[0]['f_conditions']
 
-        d_tmp.update(d_param_EFRB)
+        # d_tmp.update(d_param_EFRB)
 
         # 统计所有组合的数量
         varTestCount = f_conditions.count("or")
@@ -285,7 +288,8 @@ class HirbPO():
 
             # 测试数据
             # todo EFRB for and
-            count = self.EFRB_case_1(d_cases, l_ER, d_tmp)
+            # count = self.EFRB_case_1(d_cases, l_ER, d_tmp)
+            count = self.EFRB_case_1(d_cases, d_tmp)
             # print("358count", count)
             return count
 
@@ -392,7 +396,7 @@ class HirbPO():
 
             # 读取BMI模块，生成随机数据d_cases
             d_cases = BmiAge_PO.main(l_3_value)
-            # print("测试数据集合 =>", d_cases)
+            print("测试数据集合 =>", d_cases)
 
             # 测试数据
             # todo EFRB for and
@@ -1268,6 +1272,7 @@ class HirbPO():
 
         # 公共测试用例
 
+        # print(1272, d_param)
         # d_cases_satisfied = {'BMI': 16.8}
         # id = 1
         # d_param = {'categoryCode': 1, 'disease': '脑卒中'}
@@ -1387,25 +1392,203 @@ class HirbPO():
         # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
         return d_conditions
 
+    def str2dict_or(self, f_conditions):
+        # 字符串转字典，将 （TZ_STZB042 = '是' and TZ_JWJB001 = '否' ） 转为字典{'TZ_STZB042': '是', 'TZ_JWJB001': '否'}
+        pairs = [pair.strip() for pair in f_conditions.split('or')]
+        d_conditions = {}
+        for pair in pairs:
+            if '=' in pair:
+                key, value = pair.split('=')
+                d_conditions[key.strip()] = value.strip().replace("'", "")
+        # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        return d_conditions
+
 
 
     # todo 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
-    def HIRB(self, varTestID="all"):
+    def HIRB(self, varTestID, d_param={}):
 
         # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
         # a_weight10_HIRB
 
-        d_param = {}
         # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_code, f_conditions from %s" % (self.tableHI))
-        # print("l_d_row => ", l_d_row)  # [{'ID': 1, 'f_code': 'TZ_YS001', 'f_conditions': "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JWJB001='否' and TZ_JWJB002='否'"},...
-        # sys.exit(0)
-        if varTestID > len(l_d_row):
+        # print("l_d_row => ", l_d_row)
+        if varTestID == "all":
+            self._HIRB(d_param)
+        elif varTestID > len(l_d_row) or varTestID <= 0:
             print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
             sys.exit(0)
+        else:
+            self._HIRB2(varTestID, d_param)
 
-        for i in enumerate(l_d_row):
-            i = varTestID - 1
+    # def _HIRB(self, d_param):
+    #
+    #     d_ = {}
+    #
+    #     # 获取每行测试数据
+    #     l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_code, f_conditions from %s" % (self.tableHI))
+    #     # print("l_d_row => ", l_d_row)
+    #
+    #     d_['table'] = self.tableHI
+    #
+    #     for i,index in enumerate(l_d_row):
+    #         ID = l_d_row[i]['ID']
+    #         f_code = l_d_row[i]['f_code']
+    #         f_conditions = l_d_row[i]['f_conditions']
+    #
+    #         # 测试项
+    #         d_param['表'] = self.tableHI
+    #         d_param['ID'] = ID
+    #         # d_conditions = self.str2dict(f_conditions)
+    #         # d_param['f_conditions'] = d_conditions
+    #         d_param['f_conditions'] = f_conditions
+    #         d_param['f_code'] = f_code
+    #         s = "测试健康干预规则库 => " + str(d_param)
+    #         print(s)
+    #         Log_PO.logger.info(s)
+    #
+    #         # todo TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
+    #         if "or" in f_conditions and "and" not in f_conditions:
+    #
+    #             l_value = f_conditions.split("or")
+    #             # print(l_value)
+    #             l_4 = []
+    #             for i in l_value:
+    #                 l_4.append(self.str2dict(i))
+    #             # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
+    #             # l_value = [i.split("and") for i in l_value]
+    #             # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
+    #             # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
+    #             print(l_4)
+    #             # sys.exit(0)
+    #             # d_conditions = self.str2dict(f_conditions)
+    #             self.HIRB_case_or(ID, f_code, l_4)
+    #
+    #
+    #         # todo HIRB  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
+    #         if "or" in f_conditions and "and" in f_conditions:
+    #
+    #             # # 字符串转字典，{'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+    #             # pairs = [pair.strip() for pair in f_conditions.split('and')]
+    #             # d_conditions = {}
+    #             # for pair in pairs:
+    #             #     if '=' in pair:
+    #             #         key, value = pair.split('=')
+    #             #         d_conditions[key.strip()] = value.strip().replace("'", "")
+    #             # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+    #
+    #             # 转换列表，结构化原始数据为列表，生成l_l_N
+    #             l_value = f_conditions.split("or")
+    #             # print(l_value)
+    #             l_4 = []
+    #             for i in l_value:
+    #                 i = i.replace("(",'').replace(")",'')
+    #                 l_4.append(self.str2dict(i))
+    #             # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
+    #             # l_value = [i.split("and") for i in l_value]
+    #             # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
+    #             # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
+    #             print(l_4)
+    #             # sys.exit(0)
+    #             # d_conditions = self.str2dict(f_conditions)
+    #             self.HIRB_case_or(ID, f_code, l_4)
+    #             # sys.exit(0)
+    #             #
+    #             # l_result = []
+    #             # sum = 0
+    #             # for lln in range(len(l_l_value)):
+    #             #     l_2_value = []
+    #             #     # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
+    #             #     # print(l_l_value(lln))
+    #             #     for i in l_l_value[lln]:
+    #             #         if "BMI" in i:
+    #             #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+    #             #             l_2_value.extend(l_simple_conditions)
+    #             #         if "年龄" in i:
+    #             #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+    #             #             l_2_value.extend(l_simple_conditions)
+    #             #         elif "性别" in i:
+    #             #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+    #             #             l_2_value.extend(l_simple_conditions)
+    #             #     # print("611 分解参数 =", l_2_value)
+    #             #
+    #             #     # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
+    #             #     l_3_value = []
+    #             #     for i in l_2_value:
+    #             #         l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
+    #             #         l_3_value.extend(l_simple_conditions)
+    #             #     # print("618 结构化参数 =", l_3_value)
+    #             #
+    #             #     # 读取BmiAgeSex模块，生成随机数据d_cases
+    #             #     # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+    #             #
+    #             #     for i in l_3_value:
+    #             #         if ('>=' or '<=') in i:
+    #             #             if '年龄' in i:
+    #             #                 d_cases = BmiAgeSex_PO.main(l_3_value)
+    #             #                 break
+    #             #             if 'BMI' in i:
+    #             #                 d_cases = BmiAgeSex_PO.main(l_3_value)
+    #             #                 break
+    #             #         else:
+    #             #             d_cases = BmiAgeSex_PO.main(l_3_value)
+    #             #
+    #             #     print("--------------------")
+    #             #     print("测试数据集合 =>", d_cases)
+    #             #     sys.exit(0)
+    #             #
+    #             #     # 判断输出结果
+    #             #     # todo HIRB_case for or
+    #             #     # self.HIRB_case(ID, f_code, d_conditions)
+    #             #     varTestCount = 0
+    #             #     varTestcase, varCount = self.HIRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
+    #             #     # varTestcase, varCount = self.EFRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
+    #             #     l_result.append(varCount)
+    #             #     sum = sum + varTestcase
+    #             #
+    #             # # print(l_result)
+    #             #
+    #             # # 回写数据库f_resut, f_updateDate
+    #             # if 0 not in l_result:
+    #             #     Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
+    #             #     Sqlserver_PO_CHC5G.execute(
+    #             #         "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+    #             #             self.tableEF, sum, id))
+    #             #
+    #             # else:
+    #             #     Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
+    #             #     Sqlserver_PO_CHC5G.execute(
+    #             #         "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+    #             #             self.tableEF, sum, id))
+    #             #
+    #
+    #         # todo HIRB "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
+    #         elif "and" in f_conditions:
+    #             # 测试数据
+    #             # print(1570, "HIRB_case")
+    #             self.HIRB_case(d_param)
+    #
+    #
+    #         # todo HIRB TZ_RQFL005='是'
+    #         elif "and" not in f_conditions:
+    #             self.HIRB_case(d_param)
+    #
+    #         else:
+    #             print("[not or & and ]")
+    #
+    #         print("-".center(100, "-"))
+
+
+    def _HIRB(self, d_param):
+
+        # 获取每行测试数据
+        l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_code, f_conditions from %s" % (self.tableHI))
+        # print("l_d_row => ", l_d_row)
+
+        # d_['table'] = self.tableHI
+
+        for i,index in enumerate(l_d_row):
             ID = l_d_row[i]['ID']
             f_code = l_d_row[i]['f_code']
             f_conditions = l_d_row[i]['f_conditions']
@@ -1413,34 +1596,35 @@ class HirbPO():
             # 测试项
             d_param['表'] = self.tableHI
             d_param['ID'] = ID
-            d_conditions = self.str2dict(f_conditions)
-            d_param['f_conditions'] = d_conditions
+            # d_conditions = self.str2dict(f_conditions)
+            # d_param['f_conditions'] = d_conditions
+            d_param['f_conditions'] = f_conditions
             d_param['f_code'] = f_code
-            s = "测试健康干预规则库 => " + str(d_param)
-            print(s)
+            d_param['表注释'] = '测试健康干预规则库'
+            s = "测试项 => " + str(d_param)
+            Color_PO.outColor([{"35": s}])
             Log_PO.logger.info(s)
 
             # todo TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
             if "or" in f_conditions and "and" not in f_conditions:
-                 
-                l_value = f_conditions.split("or")
-                # print(l_value)
-                l_4 = []
-                for i in l_value:
-                    l_4.append(self.str2dict(i))
-                # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
-                # l_value = [i.split("and") for i in l_value]
-                # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
-                # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
-                print(l_4)
-                # sys.exit(0)
-                # d_conditions = self.str2dict(f_conditions)
-                self.HIRB_case_or(ID, f_code, l_4)
+
+                # 字符串转列表
+                l_conditions = f_conditions.split("or")
+                # print(l_conditions) # ["TZ_STZB043='是' ", " TZ_STZB044='是'  ", " TZ_STZB045='是'"]
+                l_d_conditions = []
+                for i in l_conditions:
+                    l_d_conditions.append(self.str2dict(i))
+                # print(1614, l_d_conditions)  # [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
+                d_param['l_d_conditions'] = l_d_conditions
+                # print(1624, d_param)
+
+                self.HIRB_case_or(d_param)
+                # self.HIRB_case_or(ID, f_code, l_d_conditions)
 
 
             # todo HIRB  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
-            if "or" in f_conditions and "and" in f_conditions:
-                
+            elif "or" in f_conditions and "and" in f_conditions:
+
 
                 # # 字符串转字典，{'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
                 # pairs = [pair.strip() for pair in f_conditions.split('and')]
@@ -1452,88 +1636,247 @@ class HirbPO():
                 # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
 
                 # 转换列表，结构化原始数据为列表，生成l_l_N
-                l_value = f_conditions.split("or")
+                l_conditions = f_conditions.split("or")
                 # print(l_value)
-                l_4 = []
-                for i in l_value:
+                l_d_conditions = []
+                for i in l_conditions:
                     i = i.replace("(",'').replace(")",'')
-                    l_4.append(self.str2dict(i))
+                    l_d_conditions.append(self.str2dict(i))
                 # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
                 # l_value = [i.split("and") for i in l_value]
                 # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
                 # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
-                print(l_4)
+                # print(l_4)
                 # sys.exit(0)
                 # d_conditions = self.str2dict(f_conditions)
-                self.HIRB_case_or(ID, f_code, l_4)
-                sys.exit(0)
+                d_param['l_d_conditions'] = l_d_conditions
+                # self.HIRB_case_or(ID, f_code, l_4)
+                self.HIRB_case_or(d_param)
+                # sys.exit(0)
 
-                l_result = []
-                sum = 0
-                for lln in range(len(l_l_value)):
-                    l_2_value = []
-                    # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
-                    # print(l_l_value(lln))
-                    for i in l_l_value[lln]:
-                        if "BMI" in i:
-                            l_simple_conditions = BmiAgeSex_PO.splitMode(i)
-                            l_2_value.extend(l_simple_conditions)
-                        if "年龄" in i:
-                            l_simple_conditions = BmiAgeSex_PO.splitMode(i)
-                            l_2_value.extend(l_simple_conditions)
-                        elif "性别" in i:
-                            l_simple_conditions = BmiAgeSex_PO.splitMode(i)
-                            l_2_value.extend(l_simple_conditions)
-                    # print("611 分解参数 =", l_2_value)
+                # l_result = []
+                # sum = 0
+                # for lln in range(len(l_l_value)):
+                #     l_2_value = []
+                #     # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
+                #     # print(l_l_value(lln))
+                #     for i in l_l_value[lln]:
+                #         if "BMI" in i:
+                #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+                #             l_2_value.extend(l_simple_conditions)
+                #         if "年龄" in i:
+                #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+                #             l_2_value.extend(l_simple_conditions)
+                #         elif "性别" in i:
+                #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+                #             l_2_value.extend(l_simple_conditions)
+                #     # print("611 分解参数 =", l_2_value)
+                #
+                #     # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
+                #     l_3_value = []
+                #     for i in l_2_value:
+                #         l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
+                #         l_3_value.extend(l_simple_conditions)
+                #     # print("618 结构化参数 =", l_3_value)
+                #
+                #     # 读取BmiAgeSex模块，生成随机数据d_cases
+                #     # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                #
+                #     for i in l_3_value:
+                #         if ('>=' or '<=') in i:
+                #             if '年龄' in i:
+                #                 d_cases = BmiAgeSex_PO.main(l_3_value)
+                #                 break
+                #             if 'BMI' in i:
+                #                 d_cases = BmiAgeSex_PO.main(l_3_value)
+                #                 break
+                #         else:
+                #             d_cases = BmiAgeSex_PO.main(l_3_value)
+                #
+                #     print("--------------------")
+                #     print("测试数据集合 =>", d_cases)
+                #     sys.exit(0)
+                #
+                #     # 判断输出结果
+                #     # todo HIRB_case for or
+                #     # self.HIRB_case(ID, f_code, d_conditions)
+                #     varTestCount = 0
+                #     varTestcase, varCount = self.HIRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
+                #     # varTestcase, varCount = self.EFRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
+                #     l_result.append(varCount)
+                #     sum = sum + varTestcase
+                #
+                # # print(l_result)
+                #
+                # # 回写数据库f_resut, f_updateDate
+                # if 0 not in l_result:
+                #     Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
+                #     Sqlserver_PO_CHC5G.execute(
+                #         "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+                #             self.tableEF, sum, id))
+                #
+                # else:
+                #     Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
+                #     Sqlserver_PO_CHC5G.execute(
+                #         "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+                #             self.tableEF, sum, id))
 
-                    # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
-                    l_3_value = []
-                    for i in l_2_value:
-                        l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
-                        l_3_value.extend(l_simple_conditions)
-                    # print("618 结构化参数 =", l_3_value)
 
-                    # 读取BmiAgeSex模块，生成随机数据d_cases
-                    # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+            # todo HIRB "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
+            elif "and" in f_conditions:
+                # 测试数据
+                # print(1570, "HIRB_case")
+                self.HIRB_case(d_param)
 
-                    for i in l_3_value:
-                        if ('>=' or '<=') in i:
-                            if '年龄' in i:
-                                d_cases = BmiAgeSex_PO.main(l_3_value)
-                                break
-                            if 'BMI' in i:
-                                d_cases = BmiAgeSex_PO.main(l_3_value)
-                                break
-                        else:
-                            d_cases = BmiAgeSex_PO.main(l_3_value)
 
-                    print("--------------------")
-                    print("测试数据集合 =>", d_cases)
-                    sys.exit(0)
+            # todo HIRB TZ_RQFL005='是'
+            elif "and" not in f_conditions:
+                self.HIRB_case(d_param)
 
-                    # 判断输出结果
-                    # todo HIRB_case for or
-                    # self.HIRB_case(ID, f_code, d_conditions)
-                    varTestCount = 0
-                    varTestcase, varCount = self.HIRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
-                    # varTestcase, varCount = self.EFRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
-                    l_result.append(varCount)
-                    sum = sum + varTestcase
+            else:
+                print("[not or & and ]")
 
-                # print(l_result)
+    def _HIRB2(self, varTestID, d_param):
 
-                # 回写数据库f_resut, f_updateDate
-                if 0 not in l_result:
-                    Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
-                    Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                            self.tableEF, sum, id))
+        # 获取每行测试数据
+        l_d_row = Sqlserver_PO_CHC5G.select("select ID, f_code, f_conditions from %s" % (self.tableHI))
+        # print("l_d_row => ", l_d_row)
 
-                else:
-                    Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
-                    Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                            self.tableEF, sum, id))
+        # d_['table'] = self.tableHI
+
+        for i in enumerate(l_d_row):
+            i = varTestID - 1
+            ID = l_d_row[i]['ID']
+            f_code = l_d_row[i]['f_code']
+            f_conditions = l_d_row[i]['f_conditions']
+
+            # 测试项
+            d_param['表'] = self.tableHI
+            d_param['ID'] = ID
+            # d_conditions = self.str2dict(f_conditions)
+            # d_param['f_conditions'] = d_conditions
+            d_param['f_conditions'] = f_conditions
+            d_param['f_code'] = f_code
+            d_param['表注释'] = '测试健康干预规则库'
+            s = "测试项 => " + str(d_param)
+            Color_PO.outColor([{"35": s}])
+            Log_PO.logger.info(s)
+
+            # todo TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
+            if "or" in f_conditions and "and" not in f_conditions:
+
+                # 字符串转列表
+                l_conditions = f_conditions.split("or")
+                # print(l_conditions) # ["TZ_STZB043='是' ", " TZ_STZB044='是'  ", " TZ_STZB045='是'"]
+                l_d_conditions = []
+                for i in l_conditions:
+                    l_d_conditions.append(self.str2dict(i))
+                # print(1614, l_d_conditions)  # [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
+                d_param['l_d_conditions'] = l_d_conditions
+                # print(1624, d_param)
+
+                self.HIRB_case_or(d_param)
+                # self.HIRB_case_or(ID, f_code, l_d_conditions)
+
+
+            # todo HIRB  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
+            elif "or" in f_conditions and "and" in f_conditions:
+
+
+                # # 字符串转字典，{'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+                # pairs = [pair.strip() for pair in f_conditions.split('and')]
+                # d_conditions = {}
+                # for pair in pairs:
+                #     if '=' in pair:
+                #         key, value = pair.split('=')
+                #         d_conditions[key.strip()] = value.strip().replace("'", "")
+                # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+
+                # 转换列表，结构化原始数据为列表，生成l_l_N
+                l_conditions = f_conditions.split("or")
+                # print(l_value)
+                l_d_conditions = []
+                for i in l_conditions:
+                    i = i.replace("(",'').replace(")",'')
+                    l_d_conditions.append(self.str2dict(i))
+                # l_value = [i.replace("(", '').replace(")", '').strip() for i in l_value]
+                # l_value = [i.split("and") for i in l_value]
+                # l_l_value = [[item.strip() for item in sublist] for sublist in l_value]
+                # print(l_l_value)  # [['14<= 年龄＜14.5', '22.3<= BMI', '性别=男'], ['14.5<= 年龄＜15', '22.6<= BMI', '性别=男'],...
+                # print(l_4)
+                # sys.exit(0)
+                # d_conditions = self.str2dict(f_conditions)
+                d_param['l_d_conditions'] = l_d_conditions
+                # self.HIRB_case_or(ID, f_code, l_4)
+                self.HIRB_case_or(d_param)
+                # sys.exit(0)
+
+                # l_result = []
+                # sum = 0
+                # for lln in range(len(l_l_value)):
+                #     l_2_value = []
+                #     # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄'and 年龄<6.5'
+                #     # print(l_l_value(lln))
+                #     for i in l_l_value[lln]:
+                #         if "BMI" in i:
+                #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+                #             l_2_value.extend(l_simple_conditions)
+                #         if "年龄" in i:
+                #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+                #             l_2_value.extend(l_simple_conditions)
+                #         elif "性别" in i:
+                #             l_simple_conditions = BmiAgeSex_PO.splitMode(i)
+                #             l_2_value.extend(l_simple_conditions)
+                #     # print("611 分解参数 =", l_2_value)
+                #
+                #     # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
+                #     l_3_value = []
+                #     for i in l_2_value:
+                #         l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
+                #         l_3_value.extend(l_simple_conditions)
+                #     # print("618 结构化参数 =", l_3_value)
+                #
+                #     # 读取BmiAgeSex模块，生成随机数据d_cases
+                #     # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
+                #
+                #     for i in l_3_value:
+                #         if ('>=' or '<=') in i:
+                #             if '年龄' in i:
+                #                 d_cases = BmiAgeSex_PO.main(l_3_value)
+                #                 break
+                #             if 'BMI' in i:
+                #                 d_cases = BmiAgeSex_PO.main(l_3_value)
+                #                 break
+                #         else:
+                #             d_cases = BmiAgeSex_PO.main(l_3_value)
+                #
+                #     print("--------------------")
+                #     print("测试数据集合 =>", d_cases)
+                #     sys.exit(0)
+                #
+                #     # 判断输出结果
+                #     # todo HIRB_case for or
+                #     # self.HIRB_case(ID, f_code, d_conditions)
+                #     varTestCount = 0
+                #     varTestcase, varCount = self.HIRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
+                #     # varTestcase, varCount = self.EFRB_case_or(d_cases, id, l_2_value, lln + 1, varTestCount + 1)
+                #     l_result.append(varCount)
+                #     sum = sum + varTestcase
+                #
+                # # print(l_result)
+                #
+                # # 回写数据库f_resut, f_updateDate
+                # if 0 not in l_result:
+                #     Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
+                #     Sqlserver_PO_CHC5G.execute(
+                #         "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+                #             self.tableEF, sum, id))
+                #
+                # else:
+                #     Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
+                #     Sqlserver_PO_CHC5G.execute(
+                #         "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+                #             self.tableEF, sum, id))
 
 
             # todo HIRB "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
@@ -1553,6 +1896,8 @@ class HirbPO():
             print("-".center(100, "-"))
 
             break
+
+
     def HIRB_case(self, d_param):
 
         # 执行ER中规则
@@ -1562,11 +1907,24 @@ class HirbPO():
         # sys.exit(0)
 
         d_tmp = {}
-
+        # print(d_param)
         # 生成EFRB参数 d_param_EFRB
         d_param_EFRB = {}
-        # 过滤评估因素规则（过滤掉TZ_STZB开头的key）
-        d_filtered = {key: value for key, value in d_param['f_conditions'].items() if 'TZ_STZB' not in key}
+
+        # print(d_param['f_conditions'])
+        if 'or' in d_param['f_conditions'] and 'and' not in d_param['f_conditions']:
+            d_param['f_conditions'] = self.str2dict_or(d_param['f_conditions'])
+            # print(d_param)
+        elif 'and' not in d_param['f_conditions']:
+            key, value = d_param['f_conditions'].split('=')
+            result = {key: value.strip("'")}
+            # print(result)  # 输出: {'TZ_RQFL005': '是'}
+            d_param['f_conditions'] = result
+            # 过滤评估因素规则（过滤掉TZ_STZB开头的key）
+        elif 'and' in d_param['f_conditions']:
+            d_param['f_conditions'] = self.str2dict(d_param['f_conditions'])
+
+        d_filtered = {key: value for key, value in d_param['f_conditions'] .items() if 'TZ_STZB' not in key}
         # print("过滤掉TZ_STZB开头的key：", d_filtered) # {'TZ_RQFL001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
 
         # 先遍历否
@@ -1600,19 +1958,30 @@ class HirbPO():
 
         # 获取 TZ_STZB开头的key
         l_matching_keys = [key for key in d_param['f_conditions'] if 'TZ_STZB' in key]
-        # print(l_matching_keys) # ['TZ_STZB001']
+        # print(1800, l_matching_keys) # ['TZ_STZB001']
         if l_matching_keys != []:
-            l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
             # print(l_1) # [{'ID': '3'}]
             # d_param['ID']
+            d_1 = {}
             if len(l_matching_keys) == 1:
+                l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
+                d_1['table'] = self.tableEF
+                d_1['ID'] = l_1[0]['ID']
+                d_1.update(d_param_EFRB)
                 # print(l_1[0]['ID'], d_param)
                 # print(1714, l_1[0]['ID'])
                 # print(1671)
-                d_param_EFRB['ID'] = l_1[0]['ID']
-                self.EFRB_1(d_param_EFRB)
+                # d_param_EFRB['ID'] = l_1[0]['ID']
+                # self.EFRB_1(d_1)
+                Efrb_PO.EFRB(d_1['ID'], d_1)
             else:
-                print("warning, 匹配到多个值：", l_matching_keys)
+                # for i in range(len(l_matching_keys)):
+                #     l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[i]))
+                #     d_param_EFRB['ID'] = l_1[0]['ID']
+                #     self.EFRB_1(d_param_EFRB)
+                # print(1816, i )
+
+                print("warning, 匹配到多个值1：", l_matching_keys)
                 sys.exit(0)
 
         else:
@@ -1624,9 +1993,11 @@ class HirbPO():
                     # print(l_1[0]['ID'], d_param)
                     # self.EFRB_1(l_1[0]['ID'], d_4)
                     d_param_EFRB['ID'] = l_1[0]['ID']
-                    self.EFRB_1(d_param_EFRB)
+                    # self.EFRB_1(d_param_EFRB)
+                    Efrb_PO.EFRB(d_param_EFRB['ID'], d_param_EFRB)
+
                 else:
-                    print("warning, 匹配到多个值：", l_matching_keys)
+                    print("warning, 匹配到多个值2：", l_matching_keys)
                     sys.exit(0)
 
             # 匹配年龄
@@ -1638,9 +2009,11 @@ class HirbPO():
                     # print(l_1[0]['ID'], d_param)
                     # self.EFRB_1(l_1[0]['ID'], d_4)
                     d_param_EFRB['ID'] = l_1[0]['ID']
-                    self.EFRB_1(d_param_EFRB)
+                    # self.EFRB_1(d_param_EFRB)
+                    Efrb_PO.EFRB(d_param_EFRB['ID'], d_param_EFRB)
+
                 else:
-                    print("warning, 匹配到多个值：", l_matching_keys)
+                    print("warning, 匹配到多个值3：", l_matching_keys)
                     sys.exit(0)
 
         # 检查是否命中f_code
@@ -1676,284 +2049,11 @@ class HirbPO():
             Log_PO.logger.info([{"31": "error, id=" + str(d_param['ID'])}])
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, d_param['ID']))
 
-
-
-
-
-        sys.exit(0)
-
-        # 检查是否命中f_code
-        sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2"
-        l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
-        l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
-        d_tmp['f_code'] = f_code
-        d_tmp['实际值'] = l_d_RULE_CODE_actual
-        d_tmp['预期值'] = f_code
-        d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
-        l_count = []
-        if d_tmp['预期值'] in l_d_RULE_CODE_actual:
-            # s_print = "[正向ok], 既往疾病包含：" + str(varDisease)
-            Color_PO.outColor([{"34": d_tmp}])
-            Log_PO.logger.info(d_tmp)
-
-            Color_PO.outColor([{"32": "[ID: " + str(id) + "] => ok"}])
-            Log_PO.logger.info([{"32": "ok, id=" + str(id)}])
-            Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE()  where ID = %s" % (self.tableHI, id))
-
-        else:
-            Color_PO.outColor([{"32": "[ID: " + str(id) + "] => error"}])
-            Log_PO.logger.info([{"31": "error, id=" + str(id)}])
-            Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, id))
-
-        sys.exit(0)
-
-        if len(d_cases['satisfied']) == 1:
-            # 一条数据，正向用例
-            l_count = []
-            # todo EFRB_run_p_1
-            d_tmp = self.EFRB_run_p(d_cases['satisfied'][0], ID)
-            if d_tmp['result'] == 1:
-                if d_tmp['result'] == 1:
-                    s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
-                    Color_PO.outColor([{"34": s_print}])
-                    Color_PO.outColor([{"34": d_tmp}])
-                    Log_PO.logger.info(s_print)
-                    l_count.append(1)
-                else:
-                    s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
-                    Color_PO.outColor([{"31": s_print}])
-                    Log_PO.logger.info(s_print)
-                    Color_PO.outColor([{"33": d_tmp}])
-                    Log_PO.logger.info(d_tmp)
-                    l_count.append(0)
-                varTestcase = varTestcase + 1
-
-                # 一条数据，反向用例
-                # todo EFRB_run_n
-                if Configparser_PO.SWITCH("testNegative") == "on":
-
-                    if Configparser_PO.SWITCH("testNegative") == "on":
-                        d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], ID)
-                        if d_tmp['result'] == 1:
-                            s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
-                            Color_PO.outColor([{"31": s_print}])
-                            Log_PO.logger.info(s_print)
-                            Color_PO.outColor([{"33": d_tmp}])
-                            Log_PO.logger.info(d_tmp)
-                            l_count.append(0)
-                        else:
-                            s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
-                            Color_PO.outColor([{"36": s_print}])
-                            Log_PO.logger.info(s_print)
-                            l_count.append(1)
-                        varTestcase = varTestcase + 1
-
-                # 回写数据库f_resut, f_updateDate
-                if 0 not in l_count:
-                    Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => ok"}])
-                    Log_PO.logger.info([{"32": "ok, id=" + str(ID)}])
-                    Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                        self.tableWS, varTestcase, ID))
-                else:
-                    Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => error"}])
-                    Log_PO.logger.info([{"31": "error, id=" + str(ID)}])
-                    Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                        self.tableWS, varTestcase, ID))
-        else:
-            # 正向用例, N个数据
-            l_count = []
-            for i in range(len(d_cases['satisfied'])):
-                # print(d_cases)
-                # todo EFRB_run_p_n
-                d_tmp = self.EFRB_run_p(d_cases['satisfied'][i], ID)
-                if d_tmp['result'] == 1:
-                    s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
-                    Color_PO.outColor([{"34": s_print}])
-                    s_tmp = str(d_tmp)
-                    s_tmp = s_tmp.replace("\\\\","\\")
-                    Color_PO.outColor([{"34": s_tmp}])
-                    Log_PO.logger.info(s_print)
-                    varTestcase = varTestcase + 1
-                    l_count.append(1)
-                else:
-                    s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
-                    Color_PO.outColor([{"31": s_print}])
-                    Log_PO.logger.info(s_print)
-                    Color_PO.outColor([{"33": d_tmp}])
-                    Log_PO.logger.info(d_tmp['i'])
-                    # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-                    # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-                    varTestcase = varTestcase + 1
-                    l_count.append(0)
-
-            # 反向用例, N个数据
-            if Configparser_PO.SWITCH("testNegative") == "on":
-                for i in range(len(d_cases['notSatisfied'])):
-                    # todo DRWS_run_n_n
-                    d_tmp = self.EFRB_run_n(d_cases['notSatisfied'][i], ID)
-                    if d_tmp['result'] == 1:
-                        # 反向如果命中就错，并且终止循环
-                        s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
-                        Color_PO.outColor([{"31": s_print}])
-                        Log_PO.logger.info(s_print)
-                        s_tmp = str(d_tmp)
-                        s_tmp = s_tmp.replace("\\\\", "\\")
-                        Log_PO.logger.info(s_tmp)
-                        Color_PO.outColor([{"31": s_tmp}])
-
-                        # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-                        # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-                        varTestcase = varTestcase + 1
-                        l_count.append(0)
-                    else:
-                        s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
-                        Color_PO.outColor([{"36": s_print}])
-                        Log_PO.logger.info(s_print)
-                        varTestcase = varTestcase + 1
-                        l_count.append(1)
-
-            # 回写数据库f_resut, f_updateDate
-            if 0 not in l_count:
-                s_print = "[ID: " + str(ID) + "] => OK"
-                Color_PO.outColor([{"32": s_print}])
-                Log_PO.logger.info(s_print)
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                    self.tableEF, varTestcase, ID))
-            else:
-                s_print = "[ID: " + str(ID) + "] => ERROR"
-                Color_PO.outColor([{"31": s_print}])
-                Log_PO.logger.info(s_print)
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                    self.tableEF, varTestcase, ID))
-
-        #         # 反向用例, 不满足条件的v[0]，预期不命中。
-        #         del d_cases['satisfied']
-        #         varCount = 2
-        #         for k, v in d_cases.items():
-        #             # print(v[0])
-        #             # todo EFRB_run_n
-        #             varCount = self.EFRB_run_n(v[0], id, self.tableEF)
-        #             if varCount == 1:
-        #                 # 反向如果命中就错，并且终止循环
-        #                 Color_PO.outColor([{"31": "p3, 反向error, 条件：" + str(l_2_value) + "，满足：" + str(v[0])}])
-        #                 # Log_PO.logger.info("p3, 反向error, 条件：" + str(l_2_value) + "，满足：" + str(v[0]))
-        #                 # varTestcase = varTestcase + 1
-        #                 # Color_PO.outColor([{"33": d_tmp}])
-        #
-        #                 # print("步骤1 => ", d_tmp["i"])
-        #                 # print("步骤2 => ", d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #                 # print("步骤3 => ", d_tmp['QYYH_WEIGHT_STATUS'])
-        #                 Log_PO.logger.info("ID = " + str(id) + ", p3, 反向error, 条件：" + str(l_2_value) + "，不满足：" + str(
-        #                     str(v[0])))
-        #                 # Log_PO.logger.info(d_tmp['i'])
-        #                 # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #                 # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-        #                 varTestcase = varTestcase + 1
-        #
-        #                 # print("p3, 反向error, 条件：", l_N, "，不满足：", v[0])
-        #                 break
-        #             else:
-        #                 Color_PO.outColor([{"34": "p4, 反向ok, 条件：" + str(l_2_value) + "，满足：" + str(v[0])}])
-        #                 Log_PO.logger.info("p4, 反向ok, 条件：" + str(l_2_value) + "，满足：" + str(v[0]))
-        #                 varTestcase = varTestcase + 1
-        #                 # print("p4, 反向ok, 条件：", l_N, "，不满足：", v[0], " > 不命中")
-        #                 # Ellipsis
-        #     else:
-        #         Color_PO.outColor([{"31": "ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(
-        #             d_cases['satisfied'][0])}])
-        #         # Color_PO.outColor([{"33": d_tmp}])
-        #
-        #         # print("步骤1 => ", d_tmp["i"])
-        #         # print("步骤2 => ", d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #         # print("步骤3 => ", d_tmp['QYYH_WEIGHT_STATUS'])
-        #         Log_PO.logger.info("ID = " + str(id) + ", p2, 正向error, 条件：" + str(l_2_value) + "，不满足：" + str(
-        #             d_cases['satisfied'][0]))
-        #         # Log_PO.logger.info(d_tmp['i'])
-        #         # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #         # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-        #         varTestcase = varTestcase + 1
-        #
-        #         # Color_PO.outColor([{"31": "p2, 正向error, 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0])}])
-        #         # Log_PO.logger.info("p2, 正向error, 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][0]))
-        #         # varTestcase = varTestcase + 1
-        #         # print("p2, 正向error, 条件：", l_N, "，满足：", d_cases['satisfied'][0], varCount)
-        #         # Ellipsis
-        #
-        #     # 回写数据库f_resut, f_updateDate
-        #     if varCount == 2:
-        #         Color_PO.outColor([{"32": "ID = " + str(id) + ", => ok"}])
-        #         Log_PO.logger.info([{"32": "ok, id=" + str(id)}])
-        #         Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableEF, varTestcase, id))
-        #     else:
-        #         Color_PO.outColor([{"32": "ID = " + str(id) + ", => error"}])
-        #         Log_PO.logger.info([{"31": "error, id=" + str(id)}])
-        #         Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableEF, varTestcase, id))
-        # else:
-        #     for i in range(len(d_cases['satisfied'])):
-        #         # print(d_cases)
-        #         # todo EFRB_run_p_n
-        #         result = self.EFRB_run_p(d_cases['satisfied'][i], id, self.tableEF)
-        #         if result == 1:
-        #             s_print = "[正向ok], 条件：" + str(l_2_value) + "，满足：" + str(d_cases['satisfied'][i])
-        #             Color_PO.outColor([{"34": s_print}])
-        #             Log_PO.logger.info(s_print)
-        #             varTestcase = varTestcase + 1
-        #         else:
-        #             s_print = "[正向error], 条件：" + str(l_2_value) + "，不满足：" + str(d_cases['satisfied'][i])
-        #             Color_PO.outColor([{"31": s_print}])
-        #             Log_PO.logger.info(s_print)
-        #             # Color_PO.outColor([{"33": d_tmp}])
-        #             # Log_PO.logger.info(d_tmp['i'])
-        #             # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #             # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-        #             varTestcase = varTestcase + 1
-        #
-        #
-        #     # 反向用例, 不满足条件的v[0]，预期不命中。
-        #     del d_cases['satisfied']
-        #     varCount = 2
-        #     for k, v in d_cases.items():
-        #         # todo EFRB_run_n_n
-        #         varCount = self.EFRB_run_n(v[0], id, self.tableEF)
-        #         if varCount == 1:
-        #             # 反向如果命中就错，并且终止循环
-        #             s_print = "[反向error], 条件：" + str(l_2_value) + "，不满足：" + str(v[0])
-        #             Color_PO.outColor([{"31": s_print}])
-        #             Log_PO.logger.info(s_print)
-        #             # varTestcase = varTestcase + 1
-        #             # Color_PO.outColor([{"33": d_tmp}])
-        #
-        #             # print("步骤1 => ", d_tmp["i"])
-        #             # print("步骤2 => ", d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #             # print("步骤3 => ", d_tmp['QYYH_WEIGHT_STATUS'])
-        #             # Log_PO.logger.info(d_tmp['i'])
-        #             # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-        #             # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-        #             varTestcase = varTestcase + 1
-        #         else:
-        #             s_print = "[反向ok], 条件：" + str(l_2_value) + "，不满足：" + str(v[0])
-        #             Color_PO.outColor([{"34": s_print}])
-        #             Log_PO.logger.info(s_print)
-        #             varTestcase = varTestcase + 1
-        #
-        #         # 回写数据库f_resut, f_updateDate
-        #     if varCount == 2:
-        #         s_print = "ID = " + str(id) + ", 结果：ok"
-        #         Color_PO.outColor([{"32": s_print}])
-        #         Log_PO.logger.info([{"32": s_print}])
-        #         Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableEF, varTestcase, id))
-        #     else:
-        #         s_print = "ID = " + str(id) + ", 结果：error"
-        #         Color_PO.outColor([{"31": s_print}])
-        #         Log_PO.logger.info([{"31": s_print}])
-        #         Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where id = %s" % (self.tableEF, varTestcase, id))
-    def HIRB_case_or(self, ID, f_code, l_4):
+    def HIRB_case_or(self, d_param):
 
         # 执行ER中规则
+        # ID, f_code, l_4
+
         # print("f_code", f_code)  # TZ_YS001
         # print("d_conditions", d_conditions)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
         # sys.exit(0)
@@ -1969,20 +2069,22 @@ class HirbPO():
         # print(d_f_code)  # {'TZ_STZB001': 1, 'TZ_STZB002': 2,
 
         sum = 0
-        print("l_4", l_4)
+        # print("l_4", l_4)
+        # print(1901, d_param['f_conditions'])
 
-        for d_ in l_4:
+        for d_ in d_param['l_d_conditions']:
+        # for k,v in d_param['d_conditions'].itmes():
 
             #  过滤掉TZ_STZB开头的key
             d_filtered = {key: value for key, value in d_.items() if 'TZ_STZB' not in key}
             # print("过滤掉TZ_STZB开头的key：", d_filtered) # {'TZ_RQFL001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
-
+            # sys.exit(0)
             # 先遍历否
             # 定义遍历顺序
             order = ['否', '是']
 
             # 按照定义的顺序遍历字典
-            d_param = {}
+            d_param_EFRB = {}
             for value in order:
                 for key, val in d_filtered.items():
                     if val == value:
@@ -1990,28 +2092,28 @@ class HirbPO():
                         l_ = Sqlserver_PO_CHC5G.select("select f_conditions from a_weight10_EFRB where f_code='%s'" % (key))
                         # print(l_) # [{'f_conditions': '3'}]
                         if val == "否" and "TZ_RQFL" in key:
-                            d_param['categoryCode'] = 100
-                        if key == 'TZ_JWJB001' and val == "否":
-                            d_param['disease'] = "脑卒中"
-                        if key == 'TZ_JWJB002' and val == "否":
-                            d_param['disease'] = "脑卒中"
+                            d_param_EFRB['categoryCode'] = 100
+                        if key == 'TZ_JB001' and val == "否":
+                            d_param_EFRB['disease'] = "脑卒中"
+                        if key == 'TZ_JB002' and val == "否":
+                            d_param_EFRB['disease'] = "脑卒中"
                         if val == "是" and "TZ_RQFL" in key:
-                            d_param['categoryCode'] = int(l_[0]['f_conditions'])
-                        if key == 'TZ_JWJB001' and val == "是":
-                            d_param['disease'] = l_[0]['f_conditions']
-                        if key == 'TZ_JWJB002' and val == "是":
-                            d_param['disease'] = l_[0]['f_conditions']
+                            d_param_EFRB['categoryCode'] = int(l_[0]['f_conditions'])
+                        if key == 'TZ_JB001' and val == "是":
+                            d_param_EFRB['disease'] = l_[0]['f_conditions']
+                        if key == 'TZ_JB002' and val == "是":
+                            d_param_EFRB['disease'] = l_[0]['f_conditions']
                     if key == "性别":
-                        d_param['sex'] = val
+                        d_param_EFRB['sex'] = val
 
-            if "categoryCode" not in d_param:
-                d_param['categoryCode'] = 100
-            if "disease" not in d_param:
-                d_param['disease'] = "脑卒中"
-            if "sex" not in d_param:
-                d_param['sex'] = "男"
-            print(d_param)
+            if "categoryCode" not in d_param_EFRB:
+                d_param_EFRB['categoryCode'] = 100
+            if "disease" not in d_param_EFRB:
+                d_param_EFRB['disease'] = "脑卒中"
+            if "sex" not in d_param_EFRB:
+                d_param_EFRB['sex'] = "男"
 
+            # print(d_param_EFRB)  # {'sex': '女', 'categoryCode': 3, 'disease': '脑卒中'}
 
 
             # 获取 TZ_STZB开头的key
@@ -2019,52 +2121,69 @@ class HirbPO():
             # print(l_matching_keys) # ['TZ_STZB001']
             if l_matching_keys != []:
                 l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
+                d_1 = {}
+                d_1['table'] = 'a_weight10_EFRB'
                 if len(l_matching_keys) == 1:
                     # print(l_1[0]['ID'], d_param)
-                    count = self.EFRB_1(l_1[0]['ID'], d_param)
+                    d_1['ID'] = l_1[0]['ID']
+                    d_1.update(d_param_EFRB)
+
+                    # print(1958, d_1)  # {'table': 'a_weight10_EFRB', 'ID': 43, 'categoryCode': 100, 'disease': '脑卒中', 'sex': '男'}
+                    # self.EFRB_1(d_1)
+                    Efrb_PO.EFRB(d_1['ID'], d_1)
+                    # count = self.EFRB_1(d_param)
+                    # count = self.EFRB_1(l_1[0]['ID'], d_param)
                     # print(count)
                     # sum = sum + int(count)
                 else:
-                    print("warning, 匹配到多个值：",l_matching_keys)
+                    print("warning, 匹配到多个值4：", l_matching_keys)
                     sys.exit(0)
 
-            l_matching_keys = [key for key in d_ if 'TZ_RQFL' in key]
-            # print(l_matching_keys) # ['TZ_STZB001']
-            if l_matching_keys != []:
-                l_1 = Sqlserver_PO_CHC5G.select(
-                    "select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
-                if len(l_matching_keys) == 1:
-                    # print(l_1[0]['ID'], d_param)
-                    count = self.EFRB_1(l_1[0]['ID'], d_param)
-                else:
-                    print("warning, 匹配到多个值：", l_matching_keys)
-                    sys.exit(0)
+            else:
+                # # 匹配人群分类
+                l_matching_keys = [key for key in d_ if 'TZ_RQFL' in key]
+                if l_matching_keys != []:
+                    l_1 = Sqlserver_PO_CHC5G.select("select ID from a_weight10_EFRB where f_code='%s'" % (l_matching_keys[0]))
+                    d_1 = {}
+                    d_1['table'] = 'a_weight10_EFRB'
+                    if len(l_matching_keys) == 1:
+                        # print(l_1[0]['ID'], d_param)
+                        d_1['ID'] = l_1[0]['ID']
+                        d_1.update(d_param_EFRB)
+                        # print(2128, d_1)
+                        # print(2129, d_param)
+                        # d_param['ID'] = l_1[0]['ID']
+                        # count = self.EFRB_1(d_param)
+                        Efrb_PO.EFRB(d_1['ID'], d_1)
+
+                        # count = self.EFRB_1(l_1[0]['ID'], d_param)
+                    else:
+                        print("warning, 匹配到多个值5：", l_matching_keys)
+                        sys.exit(0)
 
             # 检查是否命中f_code
             sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2"
             l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
-
             l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
             # print(l_d_RULE_CODE_actual) # ['TZ_STZB001', 'TZ_RQFL001', 'TZ_SRL001', 'TZ_MBTZ002', 'TZ_YD001', 'TZ_YS001']
 
             d_tmp['实际值'] = l_d_RULE_CODE_actual
-            d_tmp['预期值'] = f_code
+            d_tmp['预期值'] = d_param['f_code']
             d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
-            l_count = []
             d_result = {}
-
-            if d_tmp['预期值']  in l_d_RULE_CODE_actual:
+            d_result['表'] = self.tableHI
+            d_result['ID'] = d_param['ID']
+            if d_tmp['预期值'] in l_d_RULE_CODE_actual:
                 # s_print = "[正向ok], 既往疾病包含：" + str(varDisease)
-                Color_PO.outColor([{"34": d_tmp}])
-                Log_PO.logger.info(d_tmp)
                 d_result['result'] = "ok"
-                d_result['ID'] = ID
-                Color_PO.outColor([{"32": d_result}])
+                d_result.update(d_tmp)
+                Color_PO.outColor([{"34": d_result}])
                 Log_PO.logger.info(d_result)
+                # Color_PO.outColor([{"32": d_result}])
+                # Log_PO.logger.info(d_result)
                 sum = sum + 1
             else:
                 d_result['result'] = "error"
-                d_result['ID'] = ID
                 Color_PO.outColor([{"31": d_result}])
                 Log_PO.logger.info(d_result)
                 s_tmp = str(d_tmp)
@@ -2072,165 +2191,172 @@ class HirbPO():
                 Color_PO.outColor([{"31": s_tmp}])
                 sum = sum + 0
 
-
-        if sum == len(l_4):
-
-            Sqlserver_PO_CHC5G.execute(
-                "update %s set f_result = 'ok', f_updateDate = GETDATE()  where ID = %s" % (self.tableHI, ID))
+        d_1 = {}
+        d_1['表'] = self.tableHI
+        d_1['表注释'] = "健康干预规则库（其他分类）HIRB"
+        d_1['ID'] = d_param['ID']
+        if sum == len(d_param['l_d_conditions']):
+            Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE()  where ID = %s" % (self.tableHI, d_param['ID']))
+            d_1['result'] = "ok"
+            d_1.update(d_tmp)
+            Color_PO.outColor([{"32": "结果 => " + str(d_1)}])
         else:
+            Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, d_param['ID']))
+            d_1['result'] = "error"
+            d_1.update(d_tmp)
+            Color_PO.outColor([{"31": "结果 => " + str(d_1)}])
+        Log_PO.logger.info(d_1)
 
-            Sqlserver_PO_CHC5G.execute(
-                "update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, ID))
 
-        sys.exit(0)
-
-        # 检查是否命中f_code
-        sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2"
-        l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
-        l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
-        d_tmp['f_code'] = f_code
-        d_tmp['实际值'] = l_d_RULE_CODE_actual
-        d_tmp['预期值'] = f_code
-        d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
-        l_count = []
-        if d_tmp['预期值'] in l_d_RULE_CODE_actual:
-            # s_print = "[正向ok], 既往疾病包含：" + str(varDisease)
-            Color_PO.outColor([{"34": d_tmp}])
-            Log_PO.logger.info(d_tmp)
-
-            Color_PO.outColor([{"32": "[ID: " + str(id) + "] => ok"}])
-            Log_PO.logger.info([{"32": "ok, id=" + str(id)}])
-            Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE()  where ID = %s" % (self.tableHI, id))
-
-        else:
-            Color_PO.outColor([{"32": "[ID: " + str(id) + "] => error"}])
-            Log_PO.logger.info([{"31": "error, id=" + str(id)}])
-            Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, id))
-
-        sys.exit(0)
-
-        if len(d_cases['satisfied']) == 1:
-            # 一条数据，正向用例
-            l_count = []
-            # todo EFRB_run_p_1
-            d_tmp = self.EFRB_run_p(d_cases['satisfied'][0], ID)
-            if d_tmp['result'] == 1:
-                if d_tmp['result'] == 1:
-                    s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
-                    Color_PO.outColor([{"34": s_print}])
-                    Color_PO.outColor([{"34": d_tmp}])
-                    Log_PO.logger.info(s_print)
-                    l_count.append(1)
-                else:
-                    s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
-                    Color_PO.outColor([{"31": s_print}])
-                    Log_PO.logger.info(s_print)
-                    Color_PO.outColor([{"33": d_tmp}])
-                    Log_PO.logger.info(d_tmp)
-                    l_count.append(0)
-                varTestcase = varTestcase + 1
-
-                # 一条数据，反向用例
-                # todo EFRB_run_n
-                if Configparser_PO.SWITCH("testNegative") == "on":
-
-                    if Configparser_PO.SWITCH("testNegative") == "on":
-                        d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], ID)
-                        if d_tmp['result'] == 1:
-                            s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
-                            Color_PO.outColor([{"31": s_print}])
-                            Log_PO.logger.info(s_print)
-                            Color_PO.outColor([{"33": d_tmp}])
-                            Log_PO.logger.info(d_tmp)
-                            l_count.append(0)
-                        else:
-                            s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
-                            Color_PO.outColor([{"36": s_print}])
-                            Log_PO.logger.info(s_print)
-                            l_count.append(1)
-                        varTestcase = varTestcase + 1
-
-                # 回写数据库f_resut, f_updateDate
-                if 0 not in l_count:
-                    Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => ok"}])
-                    Log_PO.logger.info([{"32": "ok, id=" + str(ID)}])
-                    Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                        self.tableWS, varTestcase, ID))
-                else:
-                    Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => error"}])
-                    Log_PO.logger.info([{"31": "error, id=" + str(ID)}])
-                    Sqlserver_PO_CHC5G.execute(
-                        "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                        self.tableWS, varTestcase, ID))
-        else:
-            # 正向用例, N个数据
-            l_count = []
-            for i in range(len(d_cases['satisfied'])):
-                # print(d_cases)
-                # todo EFRB_run_p_n
-                d_tmp = self.EFRB_run_p(d_cases['satisfied'][i], ID)
-                if d_tmp['result'] == 1:
-                    s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
-                    Color_PO.outColor([{"34": s_print}])
-                    s_tmp = str(d_tmp)
-                    s_tmp = s_tmp.replace("\\\\","\\")
-                    Color_PO.outColor([{"34": s_tmp}])
-                    Log_PO.logger.info(s_print)
-                    varTestcase = varTestcase + 1
-                    l_count.append(1)
-                else:
-                    s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
-                    Color_PO.outColor([{"31": s_print}])
-                    Log_PO.logger.info(s_print)
-                    Color_PO.outColor([{"33": d_tmp}])
-                    Log_PO.logger.info(d_tmp['i'])
-                    # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-                    # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-                    varTestcase = varTestcase + 1
-                    l_count.append(0)
-
-            # 反向用例, N个数据
-            if Configparser_PO.SWITCH("testNegative") == "on":
-                for i in range(len(d_cases['notSatisfied'])):
-                    # todo DRWS_run_n_n
-                    d_tmp = self.EFRB_run_n(d_cases['notSatisfied'][i], ID)
-                    if d_tmp['result'] == 1:
-                        # 反向如果命中就错，并且终止循环
-                        s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
-                        Color_PO.outColor([{"31": s_print}])
-                        Log_PO.logger.info(s_print)
-                        s_tmp = str(d_tmp)
-                        s_tmp = s_tmp.replace("\\\\", "\\")
-                        Log_PO.logger.info(s_tmp)
-                        Color_PO.outColor([{"31": s_tmp}])
-
-                        # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
-                        # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
-                        varTestcase = varTestcase + 1
-                        l_count.append(0)
-                    else:
-                        s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
-                        Color_PO.outColor([{"36": s_print}])
-                        Log_PO.logger.info(s_print)
-                        varTestcase = varTestcase + 1
-                        l_count.append(1)
-
-            # 回写数据库f_resut, f_updateDate
-            if 0 not in l_count:
-                s_print = "[ID: " + str(ID) + "] => OK"
-                Color_PO.outColor([{"32": s_print}])
-                Log_PO.logger.info(s_print)
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                    self.tableEF, varTestcase, ID))
-            else:
-                s_print = "[ID: " + str(ID) + "] => ERROR"
-                Color_PO.outColor([{"31": s_print}])
-                Log_PO.logger.info(s_print)
-                Sqlserver_PO_CHC5G.execute(
-                    "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
-                    self.tableEF, varTestcase, ID))
+        # sys.exit(0)
+        #
+        # # 检查是否命中f_code
+        # sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2"
+        # l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
+        # l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
+        # d_tmp['f_code'] = f_code
+        # d_tmp['实际值'] = l_d_RULE_CODE_actual
+        # d_tmp['预期值'] = f_code
+        # d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
+        # l_count = []
+        # if d_tmp['预期值'] in l_d_RULE_CODE_actual:
+        #     # s_print = "[正向ok], 既往疾病包含：" + str(varDisease)
+        #     Color_PO.outColor([{"34": d_tmp}])
+        #     Log_PO.logger.info(d_tmp)
+        #
+        #     Color_PO.outColor([{"32": "[ID: " + str(id) + "] => ok"}])
+        #     Log_PO.logger.info([{"32": "ok, id=" + str(id)}])
+        #     Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE()  where ID = %s" % (self.tableHI, id))
+        #
+        # else:
+        #     Color_PO.outColor([{"32": "[ID: " + str(id) + "] => error"}])
+        #     Log_PO.logger.info([{"31": "error, id=" + str(id)}])
+        #     Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, id))
+        #
+        # sys.exit(0)
+        #
+        # if len(d_cases['satisfied']) == 1:
+        #     # 一条数据，正向用例
+        #     l_count = []
+        #     # todo EFRB_run_p_1
+        #     d_tmp = self.EFRB_run_p(d_cases['satisfied'][0], ID)
+        #     if d_tmp['result'] == 1:
+        #         if d_tmp['result'] == 1:
+        #             s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
+        #             Color_PO.outColor([{"34": s_print}])
+        #             Color_PO.outColor([{"34": d_tmp}])
+        #             Log_PO.logger.info(s_print)
+        #             l_count.append(1)
+        #         else:
+        #             s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][0])
+        #             Color_PO.outColor([{"31": s_print}])
+        #             Log_PO.logger.info(s_print)
+        #             Color_PO.outColor([{"33": d_tmp}])
+        #             Log_PO.logger.info(d_tmp)
+        #             l_count.append(0)
+        #         varTestcase = varTestcase + 1
+        #
+        #         # 一条数据，反向用例
+        #         # todo EFRB_run_n
+        #         if Configparser_PO.SWITCH("testNegative") == "on":
+        #
+        #             if Configparser_PO.SWITCH("testNegative") == "on":
+        #                 d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], ID)
+        #                 if d_tmp['result'] == 1:
+        #                     s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
+        #                     Color_PO.outColor([{"31": s_print}])
+        #                     Log_PO.logger.info(s_print)
+        #                     Color_PO.outColor([{"33": d_tmp}])
+        #                     Log_PO.logger.info(d_tmp)
+        #                     l_count.append(0)
+        #                 else:
+        #                     s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][0])
+        #                     Color_PO.outColor([{"36": s_print}])
+        #                     Log_PO.logger.info(s_print)
+        #                     l_count.append(1)
+        #                 varTestcase = varTestcase + 1
+        #
+        #         # 回写数据库f_resut, f_updateDate
+        #         if 0 not in l_count:
+        #             Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => ok"}])
+        #             Log_PO.logger.info([{"32": "ok, id=" + str(ID)}])
+        #             Sqlserver_PO_CHC5G.execute(
+        #                 "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+        #                 self.tableWS, varTestcase, ID))
+        #         else:
+        #             Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => error"}])
+        #             Log_PO.logger.info([{"31": "error, id=" + str(ID)}])
+        #             Sqlserver_PO_CHC5G.execute(
+        #                 "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+        #                 self.tableWS, varTestcase, ID))
+        # else:
+        #     # 正向用例, N个数据
+        #     l_count = []
+        #     for i in range(len(d_cases['satisfied'])):
+        #         # print(d_cases)
+        #         # todo EFRB_run_p_n
+        #         d_tmp = self.EFRB_run_p(d_cases['satisfied'][i], ID)
+        #         if d_tmp['result'] == 1:
+        #             s_print = "[正向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
+        #             Color_PO.outColor([{"34": s_print}])
+        #             s_tmp = str(d_tmp)
+        #             s_tmp = s_tmp.replace("\\\\","\\")
+        #             Color_PO.outColor([{"34": s_tmp}])
+        #             Log_PO.logger.info(s_print)
+        #             varTestcase = varTestcase + 1
+        #             l_count.append(1)
+        #         else:
+        #             s_print = "[正向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['satisfied'][i])
+        #             Color_PO.outColor([{"31": s_print}])
+        #             Log_PO.logger.info(s_print)
+        #             Color_PO.outColor([{"33": d_tmp}])
+        #             Log_PO.logger.info(d_tmp['i'])
+        #             # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
+        #             # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
+        #             varTestcase = varTestcase + 1
+        #             l_count.append(0)
+        #
+        #     # 反向用例, N个数据
+        #     if Configparser_PO.SWITCH("testNegative") == "on":
+        #         for i in range(len(d_cases['notSatisfied'])):
+        #             # todo DRWS_run_n_n
+        #             d_tmp = self.EFRB_run_n(d_cases['notSatisfied'][i], ID)
+        #             if d_tmp['result'] == 1:
+        #                 # 反向如果命中就错，并且终止循环
+        #                 s_print = "[反向error], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
+        #                 Color_PO.outColor([{"31": s_print}])
+        #                 Log_PO.logger.info(s_print)
+        #                 s_tmp = str(d_tmp)
+        #                 s_tmp = s_tmp.replace("\\\\", "\\")
+        #                 Log_PO.logger.info(s_tmp)
+        #                 Color_PO.outColor([{"31": s_tmp}])
+        #
+        #                 # Log_PO.logger.info(d_tmp['WEIGHT_REPORT_WEIGHT_STATUS'])
+        #                 # Log_PO.logger.info(d_tmp['QYYH_WEIGHT_STATUS'])
+        #                 varTestcase = varTestcase + 1
+        #                 l_count.append(0)
+        #             else:
+        #                 s_print = "[反向ok], 条件：" + str(l_2_value) + "，测试数据：" + str(d_cases['notSatisfied'][i])
+        #                 Color_PO.outColor([{"36": s_print}])
+        #                 Log_PO.logger.info(s_print)
+        #                 varTestcase = varTestcase + 1
+        #                 l_count.append(1)
+        #
+        #     # 回写数据库f_resut, f_updateDate
+        #     if 0 not in l_count:
+        #         s_print = "[ID: " + str(ID) + "] => OK"
+        #         Color_PO.outColor([{"32": s_print}])
+        #         Log_PO.logger.info(s_print)
+        #         Sqlserver_PO_CHC5G.execute(
+        #             "update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+        #             self.tableEF, varTestcase, ID))
+        #     else:
+        #         s_print = "[ID: " + str(ID) + "] => ERROR"
+        #         Color_PO.outColor([{"31": s_print}])
+        #         Log_PO.logger.info(s_print)
+        #         Sqlserver_PO_CHC5G.execute(
+        #             "update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (
+        #             self.tableEF, varTestcase, ID))
 
         #         # 反向用例, 不满足条件的v[0]，预期不命中。
         #         del d_cases['satisfied']
