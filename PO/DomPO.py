@@ -474,6 +474,12 @@ class DomPO(object):
     #     # 如：getTextByX(u"//input[@class='123']")
     #     return self.find_elementNoWait(*(By.XPATH, varXpath)).text
 
+    def getTextById(self, id):
+        # 获取文本
+        # 如：getTextByX(u"//input[@class='123']")
+            return self.find_element(*(By.ID, id)).text
+
+
     def getTextByX(self, varXpath, wait='no'):
         # 获取文本
         # 如：getTextByX(u"//input[@class='123']")

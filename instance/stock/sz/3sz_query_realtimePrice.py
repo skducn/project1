@@ -78,7 +78,8 @@ def run(d_data):
 
     try:
 
-        # 第二轮筛选，将第一轮筛选出的股票与时事动态价格比较，得到符合条件的结果
+
+        # # 第二轮筛选，将第一轮筛选出的股票与时事动态价格比较，得到符合条件的结果
         l_dd = []
         l_tmp = list(d_stock.keys())
         l_result = []
@@ -92,10 +93,12 @@ def run(d_data):
         Log_PO.logger.info("sz > 实时查询 " + str(Time_PO.getDateTimeByDivide()) + " > " + varTitle + " > " + str(len(d_stock)))
         Log_PO.logger.info(d_stock)
 
+        # print(d_stock)
         for i in range(len(l_tmp)):
+
             varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str(l_tmp[i])
+            # print(varUrl)  https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000001
             Web_PO = WebPO("noChrome")
-            # Web_PO = WebPO("chrome")
             Web_PO.openURL(varUrl)
             sleep(1)
             d_curr = {}

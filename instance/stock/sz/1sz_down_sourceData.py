@@ -34,7 +34,6 @@ Web_PO = WebPO("chrome")
 Web_PO.openURL(varUrl)
 
 # 选择时间
-Web_PO.clkByX("/html/body/div[5]/div/div/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/input")
 Web_PO.clkByX("/html/body/div[5]/div/div/div[2]/div[2]/div[2]/div[2]/div/div[2]/div/ul/div[2]/div/div/table/tbody/tr[1]/td[2]/div")
 
 Web_PO.clkByX("/html/body/div[5]/div/div/div[2]/div[2]/div[2]/div[2]/div/div[3]/div/input")
