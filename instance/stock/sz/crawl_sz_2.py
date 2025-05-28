@@ -13,68 +13,22 @@ import sys
 import os
 import datetime
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
+
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl.styles.stylesheet")
 
-from PO.OpenpyxlPO import *
-
 from PO.WebPO import *
-
-from PO.TimePO import *
-Time_PO = TimePO()
 
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
+jsonFile = Configparser_PO.DATA("json_sz")
+
 from PO.LogPO import *
 Log_PO = LogPO(filename=Configparser_PO.DATA("logfile"), level="info")
-# jsonFile = Configparser_PO.DATA("jsonfile")  # 第一轮筛选stock的文件
-excelFile = Configparser_PO.DATA("excelfile")  # 第二轮筛选stock后的文件
-logFile = Configparser_PO.DATA("logfile")  # 日志文件
-jsonFile = 'sz.json'
 
-
-# # 创建一个日志记录器
-# logger = logging.getLogger(__name__)
-# logger.setLevel(logging.DEBUG)
-#
-# # 创建一个文件处理器
-# file_handler = logging.FileHandler(logFile)
-# # file_handler.setLevel(logging.DEBUG)
-# file_handler.setLevel(logging.INFO)
-#
-# # 创建一个控制台处理器
-# # console_handler = logging.StreamHandler()
-# # console_handler.setLevel(logging.INFO)
-#
-# # 定义日志格式
-# # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-# file_handler.setFormatter(formatter)
-# # console_handler.setFormatter(formatter)
-#
-# # 将处理器添加到日志记录器
-# logger.addHandler(file_handler)
-# # logger.addHandler(console_handler)
-
-
-# varUrl = "https://stockpage.10jqka.com.cn/realHead_v2.html#hs_" + str("000001")
-# # print(varUrl)  https://stockpage.10jqka.com.cn/realHead_v2.html#hs_000001
-# Web_PO = WebPO("noChrome")
-# Web_PO.openURL(varUrl)
-# sleep(1)
-# d_curr = {}
-#
-# # 获取当前价格
-# l_curr = Web_PO.getTextByXs("//div[@class='price_box fl icons_box']")
-# l_curr = l_curr[0].split("\n")
-# d_curr['现价'] = l_curr[0]
-# d_curr['涨幅'] = l_curr[2].replace("%", "")
-# print(d_curr)
-# s_volume = Web_PO.getTextById("tamount")
-# print(s_volume)  # 6581.8万
 
 def run():
 
@@ -141,7 +95,6 @@ def run():
                 Color_PO.outColor([{"32": str(k) + ", https://xueqiu.com/S/SZ" + str(code) + ", " + str(name)}])
 
 
-
     except Exception as e:
         Log_PO.logger.error(f"发生错误: {e}")
 
@@ -149,23 +102,3 @@ def run():
 if __name__ == "__main__":
 
     run()
-    # try:
-    #
-    #     # 获取当前时间
-    #     now = datetime.datetime.now().time()
-    #     # 创建一个表示 15:00 的时间对象
-    #     target_time = datetime.time(15, 0)
-    #     # 判断当前时间是否大于 15:00
-    #     if now > target_time:
-    #         run({"涨幅": [2, 9]})
-    #         print("盘后结果")
-    #     else:
-    #         # 盘中执行
-    #         run({"涨幅": [-3, 5]})
-    #         print("done, 盘中结果.")
-    #
-    # except Exception as e:
-    #
-    #     print(f"发生错误: {e}")
-    #
-    #     Log_PO.logger.error(f"发生错误: {e}")
