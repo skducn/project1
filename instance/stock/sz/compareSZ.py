@@ -2,12 +2,11 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2025-04-20
-# Description:深圳，第二轮筛选stock，实时查询匹配符合要求的stock
+# Description:深圳，盘中，输出缩量反包的票
 # 实时数据源：https://stockpage.10jqka.com.cn/realHead_v2.html#hs_002564
 # 步骤：
 # 1，读取 sz.json
 # 2，与实时数据源进行匹配，筛选出服药要求的stock。
-# 3，生成日志并保存到 sz.xlsx
 # *****************************************************************
 import sys
 import os
@@ -38,7 +37,7 @@ def run():
         with open(jsonFile, 'r', encoding='utf-8') as file:
             # 使用 json.load 函数将文件内容转换为字典
             d_stock = json.load(file)
-        print("成功读取数据：", d_stock)
+        # print("成功读取数据：", d_stock)
     except FileNotFoundError:
         print(f"错误：未找到文件 {jsonFile}")
     except json.JSONDecodeError:
@@ -88,11 +87,11 @@ def run():
             # print(l_4)
             d_curr['市盈率'] = l_4[2].replace('市盈率(动)：', '').strip()
 
-            if float(d_curr['换手']) > 1 and d_curr['市盈率'] != '亏损'  and\
+            if float(d_curr['换手']) > 0 and d_curr['市盈率'] != '亏损'  and\
                     float(d_curr['涨幅']) > 1 and float(d_curr['涨幅']) < 6 and\
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 200 and\
-                    d_curr['成交量'] < volume and int(d_curr['现价']) > yesterdayStartPrice:
-                Color_PO.outColor([{"32": str(k) + ", https://xueqiu.com/S/SZ" + str(code) + ", " + str(name)}])
+                    d_curr['成交量'] < volume and float(d_curr['现价']) > float(yesterdayStartPrice):
+                Color_PO.outColor([{"31": str(k) + ", https://xueqiu.com/S/SZ" + str(code) + ", " + str(name)}])
 
 
     except Exception as e:
@@ -102,3 +101,4 @@ def run():
 if __name__ == "__main__":
 
     run()
+    # 88, https://xueqiu.com/S/SZ301017, 漱玉平民

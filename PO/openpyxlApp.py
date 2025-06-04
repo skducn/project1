@@ -5,6 +5,10 @@
 # Description   : openpyxl 应用层
 # https://pypi.org/project/openpyxl/#files
 # https://foss.heptapod.net/openpyxl/openpyxl/-/issues
+https://www.cnblogs.com/MrLJC/p/3715783.html
+http://www.cnblogs.com/jane0912/p/4195253.html
+ https://www.cnblogs.com/zhoujie/p/python18.html
+https://blog.csdn.net/samed/article/details/49936409
 
 # *********************************************************************
 

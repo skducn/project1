@@ -58,7 +58,7 @@ for j in range(int(pageTotal)-1):
         # print(l7)
         # l7 = l_[7].replace("%", '').replace("-", '')  # 涨跌幅
         l17 = l_[17].replace("%", '')  # 换手率
-        if l7 > -8 and l7 < -1 and float(l17) < 10 and float(l_[18]) > 0 and float(l_[18]) < 100:
+        if l7 > -8 and l7 < -1 and float(l17) < 10 and float(l_[18]) > 0 and float(l_[18]) < 200:
             d_all[int(l_[0])] = l_
 
         # 判断涨跌幅是否大于0，大于0则退出循环
