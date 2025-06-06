@@ -176,11 +176,11 @@ print(os.path.isfile("./data/1.jpg"))  # True    //相对路径
 # # os.chmod(file)
 
 # print("分割文件名和扩展名(不校验正确性)".center(100, "-"))
-# print(os.path.splitext("/Users/linghuchong/Downloads/51/Python/project/test2.py"))  # ('/Users/linghuchong/Downloads/51/Python/project/test2', '.py')
+# print(os.path.splitext("/Users/linghuchong/Downloads/51/Python/project/getYesterday.py"))  # ('/Users/linghuchong/Downloads/51/Python/project/test2', '.py')
 # print(os.path.splitext("/Users/linghuchong/Downloads/51/Pyth2on/proj2ect/t.est2.py"))  # ('/Users/linghuchong/Downloads/51/Python/project/test2', '.py')
 #
 # print("分割路径和文件名(不校验正确性)".center(100, "-"))
-# print(os.path.split("/Users/linghuchong/Downloads/51/Python/proj2ect/test2.py"))  # ('/Users/linghuchong/Downloads/51/Python/project', 'test2.py')
+# print(os.path.split("/Users/linghuchong/Downloads/51/Python/proj2ect/getYesterday.py"))  # ('/Users/linghuchong/Downloads/51/Python/project', 'getYesterday.py')
 
 
 
@@ -219,7 +219,7 @@ print(os.path.isfile("./data/1.jpg"))  # True    //相对路径
 # print(os.path.join(os.getcwd(), "\ddd", "/eee"))  # /eee
 
 # print("获取文件名".center(100, "-"))
-# print(os.path.basename("/Users/linghuchong/Downloads/51/Python/project/test2.py"))  # test2.py
+# print(os.path.basename("/Users/linghuchong/Downloads/51/Python/project/getYesterday.py"))  # getYesterday.py
 #
 # print("获取文件类型".center(100, "-"))
 # print(mimetypes.guess_type('/Users/linghuchong/jmeter.log'))  # ('text/plain', None)
@@ -230,7 +230,7 @@ print(os.path.isfile("./data/1.jpg"))  # True    //相对路径
 # print(os.path.getsize("/Users/linghuchong/Downloads/51/Python/project/socket1.py"))  # 19964
 #
 # print("获取文件属性".center(100, "-"))
-# print(os.stat("/Users/linghuchong/Downloads/51/Python/project/test2.py")) # os.stat_result(st_mode=33188, st_ino=8624741169, st_dev=16777220, st_nlink=1, st_uid=501, st_gid=20, st_size=5097, st_atime=1709374037, st_mtime=1669197988, st_ctime=1669197988)
+# print(os.stat("/Users/linghuchong/Downloads/51/Python/project/getYesterday.py")) # os.stat_result(st_mode=33188, st_ino=8624741169, st_dev=16777220, st_nlink=1, st_uid=501, st_gid=20, st_size=5097, st_atime=1709374037, st_mtime=1669197988, st_ctime=1669197988)
 
 # print("获取文件最后修改日期和时间".center(100, "-"))
 # # 将修改时间转换为日期格式

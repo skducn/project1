@@ -20,9 +20,12 @@ from time import strftime, localtime
 # 1，初始化数据
 folder_name = '7涨停股池'
 # l_date = ['20250106', '20250107', '20250108']
-# l_date = ['20250107', '20250108']
-l_date = ['20251213']
-file_name = folder_name + '.xlsx'
+l_date = ['20250604', '20250605']
+# l_date = ['20250603']
+# print(l_date[0][:6])
+# print(l_date[0][6:])
+file_name = l_date[0][:6] + '.xlsx'
+# file_name = folder_name + '.xlsx'
 
 # 2，生成目录结构
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -36,12 +39,19 @@ file_dir_name = '{}/{}'.format(file_dir, file_name)
 for i in l_date:
     data = ak.stock_zt_pool_em(date=i)
     print(data)
+    json_data = data.to_json(orient="records", force_ascii=False)
+    # print(json_data)
+    fileName = str(i) + ".json"
+    with open(fileName, "w", encoding="utf-8") as f:
+    # with open("zt_pool_data.json", "w", encoding="utf-8") as f:
+        f.write(json_data)
+
     if os.path.isfile(file_dir_name):
         with pd.ExcelWriter(file_dir_name, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
-            data.to_excel(writer, sheet_name=i, index=False)
+            data.to_excel(writer, sheet_name=i[6:], index=False)
     else:
         with pd.ExcelWriter(file_dir_name, engine='openpyxl', mode='w') as writer:
-            data.to_excel(writer, sheet_name=i, index=False)
+            data.to_excel(writer, sheet_name=i[6:], index=False)
 
 # # 4，打开文档
 # if platform.system() == "Darwin":

@@ -1,0 +1,402 @@
+{
+    "600844": {
+        "date": "2025-06-06",
+        "code": "600844",
+        "name": "丹化科技",
+        "todayStartPrice": "3.06",
+        "yesterdayEndPrice": "3.05",
+        "volume": "55.51万"
+    },
+    "600322": {
+        "date": "2025-06-06",
+        "code": "600322",
+        "name": "津投城开",
+        "todayStartPrice": "2.46",
+        "yesterdayEndPrice": "2.46",
+        "volume": "88.34万"
+    },
+    "600800": {
+        "date": "2025-06-06",
+        "code": "600800",
+        "name": "渤海化学",
+        "todayStartPrice": "3.98",
+        "yesterdayEndPrice": "3.96",
+        "volume": "145.22万"
+    },
+    "600151": {
+        "date": "2025-06-06",
+        "code": "600151",
+        "name": "航天机电",
+        "todayStartPrice": "6.59",
+        "yesterdayEndPrice": "6.56",
+        "volume": "96.76万"
+    },
+    "603680": {
+        "date": "2025-06-06",
+        "code": "603680",
+        "name": "今创集团",
+        "todayStartPrice": "10.98",
+        "yesterdayEndPrice": "10.46",
+        "volume": "14.00万"
+    },
+    "603032": {
+        "date": "2025-06-06",
+        "code": "603032",
+        "name": "德新科技",
+        "todayStartPrice": "13.25",
+        "yesterdayEndPrice": "13.25",
+        "volume": "9.01万"
+    },
+    "600232": {
+        "date": "2025-06-06",
+        "code": "600232",
+        "name": "金鹰股份",
+        "todayStartPrice": "5.77",
+        "yesterdayEndPrice": "5.78",
+        "volume": "12.33万"
+    },
+    "603879": {
+        "date": "2025-06-06",
+        "code": "603879",
+        "name": "永悦科技",
+        "todayStartPrice": "5.62",
+        "yesterdayEndPrice": "5.88",
+        "volume": "80.52万"
+    },
+    "603045": {
+        "date": "2025-06-06",
+        "code": "603045",
+        "name": "福达合金",
+        "todayStartPrice": "16.85",
+        "yesterdayEndPrice": "16.85",
+        "volume": "11.70万"
+    },
+    "603937": {
+        "date": "2025-06-06",
+        "code": "603937",
+        "name": "丽岛新材",
+        "todayStartPrice": "9.51",
+        "yesterdayEndPrice": "9.48",
+        "volume": "6.17万"
+    },
+    "603017": {
+        "date": "2025-06-06",
+        "code": "603017",
+        "name": "中衡设计",
+        "todayStartPrice": "12.04",
+        "yesterdayEndPrice": "11.28",
+        "volume": "81.46万"
+    },
+    "603042": {
+        "date": "2025-06-06",
+        "code": "603042",
+        "name": "华脉科技",
+        "todayStartPrice": "18.00",
+        "yesterdayEndPrice": "16.97",
+        "volume": "80.69万"
+    },
+    "603679": {
+        "date": "2025-06-06",
+        "code": "603679",
+        "name": "华体科技",
+        "todayStartPrice": "15.60",
+        "yesterdayEndPrice": "14.18",
+        "volume": "6.25万"
+    },
+    "601212": {
+        "date": "2025-06-06",
+        "code": "601212",
+        "name": "白银有色",
+        "todayStartPrice": "2.99",
+        "yesterdayEndPrice": "2.90",
+        "volume": "240.84万"
+    },
+    "605099": {
+        "date": "2025-06-06",
+        "code": "605099",
+        "name": "XD共创草",
+        "todayStartPrice": "35.60",
+        "yesterdayEndPrice": "33.21",
+        "volume": "17.69万"
+    },
+    "603829": {
+        "date": "2025-06-06",
+        "code": "603829",
+        "name": "洛凯股份",
+        "todayStartPrice": "16.38",
+        "yesterdayEndPrice": "16.01",
+        "volume": "3.82万"
+    },
+    "605033": {
+        "date": "2025-06-06",
+        "code": "605033",
+        "name": "美邦股份",
+        "todayStartPrice": "19.31",
+        "yesterdayEndPrice": "19.63",
+        "volume": "17.24万"
+    },
+    "603585": {
+        "date": "2025-06-06",
+        "code": "603585",
+        "name": "苏利股份",
+        "todayStartPrice": "18.22",
+        "yesterdayEndPrice": "17.33",
+        "volume": "17.59万"
+    },
+    "600735": {
+        "date": "2025-06-06",
+        "code": "600735",
+        "name": "新华锦",
+        "todayStartPrice": "8.45",
+        "yesterdayEndPrice": "8.42",
+        "volume": "53.28万"
+    },
+    "605122": {
+        "date": "2025-06-06",
+        "code": "605122",
+        "name": "四方新材",
+        "todayStartPrice": "11.63",
+        "yesterdayEndPrice": "11.63",
+        "volume": "6.67万"
+    },
+    "603226": {
+        "date": "2025-06-06",
+        "code": "603226",
+        "name": "菲林格尔",
+        "todayStartPrice": "10.93",
+        "yesterdayEndPrice": "9.94",
+        "volume": "7.46万"
+    },
+    "600468": {
+        "date": "2025-06-06",
+        "code": "600468",
+        "name": "百利电气",
+        "todayStartPrice": "7.02",
+        "yesterdayEndPrice": "7.23",
+        "volume": "281.59万"
+    },
+    "600082": {
+        "date": "2025-06-06",
+        "code": "600082",
+        "name": "海泰发展",
+        "todayStartPrice": "4.53",
+        "yesterdayEndPrice": "4.12",
+        "volume": "9.40万"
+    },
+    "601789": {
+        "date": "2025-06-06",
+        "code": "601789",
+        "name": "宁波建工",
+        "todayStartPrice": "5.34",
+        "yesterdayEndPrice": "5.34",
+        "volume": "234.64万"
+    },
+    "600403": {
+        "date": "2025-06-06",
+        "code": "600403",
+        "name": "大有能源",
+        "todayStartPrice": "3.78",
+        "yesterdayEndPrice": "3.73",
+        "volume": "37.91万"
+    },
+    "600939": {
+        "date": "2025-06-06",
+        "code": "600939",
+        "name": "重庆建工",
+        "todayStartPrice": "3.30",
+        "yesterdayEndPrice": "3.34",
+        "volume": "127.89万"
+    },
+    "300765": {
+        "date": "2025-06-06",
+        "code": "300765",
+        "name": "新诺威",
+        "todayStartPrice": "52.42",
+        "yesterdayEndPrice": "52.50",
+        "volume": "12.66万"
+    },
+    "300584": {
+        "date": "2025-06-06",
+        "code": "300584",
+        "name": "海辰药业",
+        "todayStartPrice": "29.04",
+        "yesterdayEndPrice": "28.60",
+        "volume": "22.99万"
+    },
+    "300255": {
+        "date": "2025-06-06",
+        "code": "300255",
+        "name": "常山药业",
+        "todayStartPrice": "38.04",
+        "yesterdayEndPrice": "37.71",
+        "volume": "69.07万"
+    },
+    "000889": {
+        "date": "2025-06-06",
+        "code": "000889",
+        "name": "中嘉博创",
+        "todayStartPrice": "3.60",
+        "yesterdayEndPrice": "3.27",
+        "volume": "12.02万"
+    },
+    "000701": {
+        "date": "2025-06-06",
+        "code": "000701",
+        "name": "厦门信达",
+        "todayStartPrice": "6.66",
+        "yesterdayEndPrice": "6.05",
+        "volume": "68.37万"
+    },
+    "002546": {
+        "date": "2025-06-06",
+        "code": "002546",
+        "name": "新联电子",
+        "todayStartPrice": "5.71",
+        "yesterdayEndPrice": "5.47",
+        "volume": "119.63万"
+    },
+    "002467": {
+        "date": "2025-06-06",
+        "code": "002467",
+        "name": "二六三",
+        "todayStartPrice": "6.01",
+        "yesterdayEndPrice": "6.07",
+        "volume": "245.83万"
+    },
+    "000815": {
+        "date": "2025-06-06",
+        "code": "000815",
+        "name": "美利云",
+        "todayStartPrice": "12.90",
+        "yesterdayEndPrice": "12.35",
+        "volume": "121.86万"
+    },
+    "003040": {
+        "date": "2025-06-06",
+        "code": "003040",
+        "name": "楚天龙",
+        "todayStartPrice": "14.61",
+        "yesterdayEndPrice": "14.16",
+        "volume": "29.10万"
+    },
+    "002153": {
+        "date": "2025-06-06",
+        "code": "002153",
+        "name": "石基信息",
+        "todayStartPrice": "8.88",
+        "yesterdayEndPrice": "8.19",
+        "volume": "29.87万"
+    },
+    "002213": {
+        "date": "2025-06-06",
+        "code": "002213",
+        "name": "大为股份",
+        "todayStartPrice": "15.67",
+        "yesterdayEndPrice": "14.99",
+        "volume": "21.71万"
+    },
+    "000603": {
+        "date": "2025-06-06",
+        "code": "000603",
+        "name": "盛达资源",
+        "todayStartPrice": "14.60",
+        "yesterdayEndPrice": "14.00",
+        "volume": "39.44万"
+    },
+    "000599": {
+        "date": "2025-06-06",
+        "code": "000599",
+        "name": "青岛双星",
+        "todayStartPrice": "5.09",
+        "yesterdayEndPrice": "5.10",
+        "volume": "85.87万"
+    },
+    "002992": {
+        "date": "2025-06-06",
+        "code": "002992",
+        "name": "宝明科技",
+        "todayStartPrice": "56.00",
+        "yesterdayEndPrice": "56.11",
+        "volume": "7.77万"
+    },
+    "000506": {
+        "date": "2025-06-06",
+        "code": "000506",
+        "name": "中润资源",
+        "todayStartPrice": "7.95",
+        "yesterdayEndPrice": "8.11",
+        "volume": "89.85万"
+    },
+    "002951": {
+        "date": "2025-06-06",
+        "code": "002951",
+        "name": "金时科技",
+        "todayStartPrice": "12.34",
+        "yesterdayEndPrice": "11.22",
+        "volume": "28.74万"
+    },
+    "002629": {
+        "date": "2025-06-06",
+        "code": "002629",
+        "name": "仁智股份",
+        "todayStartPrice": "5.68",
+        "yesterdayEndPrice": "5.21",
+        "volume": "29.51万"
+    },
+    "002940": {
+        "date": "2025-06-06",
+        "code": "002940",
+        "name": "昂利康",
+        "todayStartPrice": "17.83",
+        "yesterdayEndPrice": "17.84",
+        "volume": "29.55万"
+    },
+    "000722": {
+        "date": "2025-06-06",
+        "code": "000722",
+        "name": "湖南发展",
+        "todayStartPrice": "13.00",
+        "yesterdayEndPrice": "13.03",
+        "volume": "64.87万"
+    },
+    "002826": {
+        "date": "2025-06-06",
+        "code": "002826",
+        "name": "易明医药",
+        "todayStartPrice": "16.21",
+        "yesterdayEndPrice": "14.74",
+        "volume": "1.56万"
+    },
+    "002298": {
+        "date": "2025-06-06",
+        "code": "002298",
+        "name": "中电鑫龙",
+        "todayStartPrice": "7.95",
+        "yesterdayEndPrice": "7.23",
+        "volume": "126.95万"
+    },
+    "002391": {
+        "date": "2025-06-06",
+        "code": "002391",
+        "name": "长青股份",
+        "todayStartPrice": "5.64",
+        "yesterdayEndPrice": "5.63",
+        "volume": "74.87万"
+    },
+    "002522": {
+        "date": "2025-06-06",
+        "code": "002522",
+        "name": "浙江众成",
+        "todayStartPrice": "4.83",
+        "yesterdayEndPrice": "4.83",
+        "volume": "81.07万"
+    },
+    "002716": {
+        "date": "2025-06-06",
+        "code": "002716",
+        "name": "湖南白银",
+        "todayStartPrice": "3.73",
+        "yesterdayEndPrice": "3.54",
+        "volume": "163.46万"
+    }
+}

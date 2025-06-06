@@ -322,3 +322,49 @@ Stacktrace:
 21  libsystem_pthread.dylib             0x00007ff81e25bf6b thread_start + 15
 
 2025-06-03 10:07:59,815 - ERROR - 发生错误: not all arguments converted during string formatting
+2025-06-06 09:44:06,030 - INFO - ====== WebDriver manager ======
+2025-06-06 09:44:06,030 - INFO - ====== WebDriver manager ======
+2025-06-06 09:44:06,251 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:06,252 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:07,604 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:09,142 - INFO - There is no [mac64] chromedriver "137.0.7151.68" for browser google-chrome "137.0.7151" in cache
+2025-06-06 09:44:09,154 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:09,950 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:12,371 - INFO - There is no [mac64] chromedriver "137.0.7151.68" for browser google-chrome "137.0.7151" in cache
+2025-06-06 09:44:12,377 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:16,205 - INFO - WebDriver version 137.0.7151.68 selected
+2025-06-06 09:44:16,209 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.68/mac-x64/chromedriver-mac-x64.zip
+2025-06-06 09:44:16,209 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.68/mac-x64/chromedriver-mac-x64.zip
+2025-06-06 09:44:16,913 - INFO - Driver downloading response is 200
+2025-06-06 09:44:20,711 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:21,687 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/137.0.7151.68]
+2025-06-06 09:44:28,004 - INFO - WebDriver version 137.0.7151.68 selected
+2025-06-06 09:44:28,007 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.68/mac-x64/chromedriver-mac-x64.zip
+2025-06-06 09:44:28,009 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/137.0.7151.68/mac-x64/chromedriver-mac-x64.zip
+2025-06-06 09:44:29,491 - INFO - Driver downloading response is 200
+2025-06-06 09:44:37,621 - INFO - Get LATEST chromedriver version for google-chrome
+2025-06-06 09:44:38,298 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/137.0.7151.68]
+2025-06-06 09:48:13,777 - ERROR - 发生错误: Message: session not created: DevToolsActivePort file doesn't exist
+Stacktrace:
+0   chromedriver                        0x000000010c259728 chromedriver + 5891880
+1   chromedriver                        0x000000010c250e7a chromedriver + 5856890
+2   chromedriver                        0x000000010bd21400 chromedriver + 418816
+3   chromedriver                        0x000000010bd60bfd chromedriver + 678909
+4   chromedriver                        0x000000010bd5afa4 chromedriver + 655268
+5   chromedriver                        0x000000010bd5741e chromedriver + 640030
+6   chromedriver                        0x000000010bda7e3a chromedriver + 970298
+7   chromedriver                        0x000000010bda74c6 chromedriver + 967878
+8   chromedriver                        0x000000010bd992b3 chromedriver + 910003
+9   chromedriver                        0x000000010bd65507 chromedriver + 697607
+10  chromedriver                        0x000000010bd66171 chromedriver + 700785
+11  chromedriver                        0x000000010c2174d0 chromedriver + 5620944
+12  chromedriver                        0x000000010c21b45f chromedriver + 5637215
+13  chromedriver                        0x000000010c1f28e2 chromedriver + 5470434
+14  chromedriver                        0x000000010c21bdcf chromedriver + 5639631
+15  chromedriver                        0x000000010c1e10a4 chromedriver + 5398692
+16  chromedriver                        0x000000010c23e688 chromedriver + 5781128
+17  chromedriver                        0x000000010c23e850 chromedriver + 5781584
+18  chromedriver                        0x000000010c250a41 chromedriver + 5855809
+19  libsystem_pthread.dylib             0x00007ff8117a74e1 _pthread_start + 125
+20  libsystem_pthread.dylib             0x00007ff8117a2f6b thread_start + 15
+

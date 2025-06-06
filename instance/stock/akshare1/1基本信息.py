@@ -26,8 +26,8 @@ pd.set_option('display.width', None)
 
 
 # 1，参数化
-# stock_id = '300795'
-stock_id = sys.argv[1]
+stock_id = '300795'
+# stock_id = sys.argv[1]
 
 # 2，初始化数据
 folder_name = '1基本信息'

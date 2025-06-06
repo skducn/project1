@@ -1,3 +1,5 @@
+# 获取某个股票（600671），昨天的开盘价，收盘价，成交量，换手率
+
 import akshare as ak
 from datetime import datetime, timedelta
 import sys
@@ -29,3 +31,5 @@ if not filtered_data.empty:
     print(f"昨天（{yesterday_str}）开盘价：{open_price} 收盘价：{close_price} 成交量：{volume} 换手率：{hsl}")
 else:
     print(f"未能获取到 {yesterday_str} 的股票数据，请检查日期或网络连接。")
+
+
