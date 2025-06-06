@@ -46,8 +46,8 @@ def run():
 
     # try:
     for k, v in d_stock.items():
-            print(k)
-            print(v)  # ['6', '603365', '水星家纺', '股吧', '资金流', '数据', '19.52', '-7.88%', '-1.67', '6.16万', '1.26亿', '12.08%', '21.87', '19.31', '20.98', '21.19', '1.69', '2.39%', '14.28', '1.67']
+            # print(k)
+            # print(v)  # ['6', '603365', '水星家纺', '股吧', '资金流', '数据', '19.52', '-7.88%', '-1.67', '6.16万', '1.26亿', '12.08%', '21.87', '19.31', '20.98', '21.19', '1.69', '2.39%', '14.28', '1.67']
             # sys.exit(0)
             code = v[1]
             name = v[2]
@@ -92,7 +92,7 @@ def run():
             # d_curr['昨天现价'] = yesterdayStartPrice
             # print("d_curr =>", d_curr)
             if float(d_curr['换手']) > 0 and d_curr['市盈率'] != '亏损'  and\
-                    float(d_curr['涨幅']) > 1 and float(d_curr['涨幅']) < 6 and\
+                    float(d_curr['涨幅']) > 1 and float(d_curr['涨幅']) < 5 and\
                     float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 200 and\
                     d_curr['成交量'] < volume and float(d_curr['现价']) > float(yesterdayStartPrice):
                 Color_PO.outColor([{"31": str(k) + ", https://xueqiu.com/S/SH" + str(code) + ", " + str(name)}])

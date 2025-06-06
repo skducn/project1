@@ -21,8 +21,6 @@ from PO.WebPO import *
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-# from ConfigparserPO import *
-# Configparser_PO = ConfigparserPO('config.ini')
 jsonFile = "all.json"
 
 from PO.LogPO import *
@@ -44,10 +42,9 @@ def run():
         print(f"发生未知错误：{e}")
 
     # try:
-    # for k, v in d_all.items():
     count = len(d_all)
     for index, (k, v) in enumerate(d_all.items(), start=1):
-        print(index,"/",count)  # 600844
+        print(index, "/", count)
         # print(v)  # {'date': '2025-06-06', 'code': '600844', 'name': '丹化科技', 'todayStartPrice': '3.06', 'yesterdayEndPrice': '3.05', 'volume': '55.51万'}
         code = v['code']
         name = v['name']
@@ -93,10 +90,10 @@ def run():
         # d_curr['昨天成交量'] = volume
         # d_curr['昨天现价'] = yesterdayStartPrice
         # print("d_curr =>", d_curr)
-        if float(d_curr['换手']) > 0 and d_curr['市盈率'] != '亏损'  and\
-                float(d_curr['涨幅']) > 1 and float(d_curr['涨幅']) < 6 and\
-                float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 200 and\
-                d_curr['成交量'] < volume and float(d_curr['现价']) > float(price):
+        # if float(d_curr['换手']) > 0 and d_curr['市盈率'] != '亏损'  and\
+        if float(d_curr['涨幅']) > 1 and float(d_curr['涨幅']) < 5 and\
+            float(d_curr['现价']) < 30 and float(d_curr['市盈率']) < 800 and\
+            d_curr['成交量'] < volume and float(d_curr['现价']) > float(price):
             if int(k) > 600000:
                 Color_PO.outColor([{"31": str(k) + ", https://xueqiu.com/S/SH" + str(code) + ", " + str(name)}])
             else:
@@ -111,4 +108,4 @@ if __name__ == "__main__":
 
     run()
 
-    # 106, https://xueqiu.com/S/SH603298, XD杭叉集
+

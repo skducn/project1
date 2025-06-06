@@ -4,12 +4,12 @@
 # Date       : 2025-04-20
 # Description: 获取东方财富网，上海和深圳今日涨停板票（包含9.5%以上）
 # 步骤：
-# 1, main.py （收盘后执行）, 爬取数据 ,保存3份（/Users/linghuchong/Desktop/stock/20250606.txt, 2025-06-06.json, all.json）
+# 1, 1getStock.py （收盘后执行）, 爬取数据 ,保存3份（/Users/linghuchong/Desktop/stock/20250606.txt, 2025-06-06.json, all.json）
 # /Users/linghuchong/Desktop/stock/20250606.txt 用于导入
 # 2025-06-06.json 当天的涨停板票，备用
 # all.json 记录历史涨停板票，当天收盘价，成交量，用于匹配
 
-# 2，compareStock.py （盘中执行）匹配现价与历史涨停板昨日价格，符合要求的输出。
+# 2，2compareStock.py （盘中执行）匹配现价与历史涨停板昨日价格，符合要求的输出。
 # *****************************************************************
 import sys
 import os
@@ -30,7 +30,7 @@ from PO.LogPO import *
 # Log_PO = LogPO(filename=Configparser_PO.DATA("logfile"), level="info")
 
 # 带路径的文件
-fileNameBycurrDate = str(Time_PO.getDateByMinus()) + ".json"  # 20205-06-06.json
+fileNameBycurrDate = str(Time_PO.getDateByMinus()) + ".json"  # 2025-06-06.json
 fileNameByAll  = "all.json"
 fileNameByPath = "/Users/linghuchong/Desktop/stock/" + str(Time_PO.getDateByMinus()) + ".txt"
 
@@ -102,7 +102,7 @@ def getLimitUp(l_area):
             sleep(2)
 
     try:
-        with open(fileNameBycurrDate, 'w', encoding='utf-8') as file:
+        with open("./history/" + fileNameBycurrDate, 'w', encoding='utf-8') as file:
             json.dump(d_curr, file, ensure_ascii=False, indent=4)
         Color_PO.outColor([{"35": f"数据已成功保存到 {fileNameBycurrDate}, 今日涨停数：{len(d_curr)}"}])
 

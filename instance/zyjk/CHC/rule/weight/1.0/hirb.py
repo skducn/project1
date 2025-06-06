@@ -18,8 +18,13 @@ Hirb_PO = HirbPO()
 # todo 1, excel导入db
 # Hirb_PO.excel2db_HIRB()
 
+
 # todo 2, 健康干预 Health Intervention  Rule Base
-# Hirb_PO.HIRB("all")
+# 执行所有测试
+Hirb_PO.HIRB("all")  # 测试所有
+
+# 执行单行测试
+# Hirb_PO.HIRB(109)
 # Hirb_PO.HIRB(106)
 # Hirb_PO.HIRB(43)
 # Hirb_PO.HIRB(44)
@@ -27,7 +32,9 @@ Hirb_PO = HirbPO()
 # Hirb_PO.HIRB(97)
 # Hirb_PO.HIRB(108)
 # Hirb_PO.HIRB(101)
-Hirb_PO.HIRB(109)
+
+
+
 
 
 

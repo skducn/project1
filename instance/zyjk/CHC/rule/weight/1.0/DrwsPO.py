@@ -335,7 +335,6 @@ class DrwsPO():
             Color_PO.outColor([{"31": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableWS, caseTotal, ID))
-        Log_PO.logger.info("---------------------------------------------------------------------")
 
     def DRWS_case(self, ID, l_conditions, d_cases):
 
@@ -517,7 +516,7 @@ class DrwsPO():
                     s_tmp = s_tmp.replace("\\\\", "\\")
                     Sqlserver_PO_CHC5G.execute("UPDATE %s SET f_log = '%s' where ID=%s" % (self.tableWS, s_tmp, d_tmp['ID']))
                 caseTotal = caseTotal + 1
-                Log_PO.logger.info("---------------------------------------------------------------------")
+                # Log_PO.logger.info("---------------------------------------------------------------------")
 
             # 反向用例, N个数据
             if Configparser_PO.SWITCH("testNegative") == "on":

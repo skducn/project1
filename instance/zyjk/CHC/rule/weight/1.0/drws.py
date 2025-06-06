@@ -19,8 +19,12 @@ Drws_PO = DrwsPO()
 
 
 # todo 2, 判定居民体重状态 Determine Residents' Weight Status
-# Drws_PO.DRWS(10)
-Drws_PO.DRWS()
+# 执行所有测试
+# Drws_PO.DRWS('all')
+
+# 测试单行
+Drws_PO.DRWS(16)
+
 
 
 
