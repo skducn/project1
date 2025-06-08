@@ -11,6 +11,7 @@ import calendar, datetime, time
 from time import strftime, gmtime
 import pandas as pd
 
+
 # from workalendar.asia import China
 # cal = China()
 
@@ -398,9 +399,45 @@ class TimePO:
         # print(previous_working_day.date())
         return previous_working_day.date()
 
+
+
+    def get_fridays_until_today(self, start_date=None):
+        """获取从指定日期到今天之间的所有周五日期"""
+
+        from datetime import datetime, timedelta
+
+        if start_date is None:
+            # 默认从 2023 年 1 月 1 日开始
+            start_date = datetime(2023, 1, 1)
+
+        today = datetime.now()
+        fridays = []
+
+        # 计算下一个周五的日期
+        current_date = start_date
+        days_ahead = 4 - current_date.weekday()  # 4 代表周五
+        if days_ahead < 0:
+            days_ahead += 7
+        next_friday = current_date + timedelta(days=days_ahead)
+
+        # 收集所有在今天之前的周五
+        while next_friday <= today:
+            fridays.append(next_friday.strftime('%Y%m%d'))
+            next_friday += timedelta(days=7)
+
+        return fridays
+
+
+
 if __name__ == "__main__":
 
     Time_PO = TimePO()
+
+    # 获取并打印所有周五的日期
+    from datetime import datetime
+    l_fridays = Time_PO.get_fridays_until_today(datetime(2025, 1, 1))
+    print(l_fridays)
+
 
     # print(Time_PO.getDate())  # 20200319
     # print(Time_PO.getDateByMinus())  # 2020-03-19  # <class 'datetime.date'>
@@ -410,7 +447,7 @@ if __name__ == "__main__":
     # print(Time_PO.getDateTimeByDivide())  # 2020/03/19 15:19:28
     # print(time.strftime("%H:%M:%S"))  # 15:19:28
 
-    print(Time_PO.getPreviousWorkingDay([2025, 4, 21]))  # 获取上一个工作日 2025-04-18
+    # print(Time_PO.getPreviousWorkingDay([2025, 4, 21]))  # 获取上一个工作日 2025-04-18
     # print(Time_PO.getDateByMinus())  # 2022-11-29   //当前日期
     # print(Time_PO.getDateByMinusPeriod(2))  # 2022-12-01  //2天后
     # print(Time_PO.getDateByMinusPeriod(-3))  # 2022-11-26  //3天前
