@@ -21,10 +21,10 @@ Hirb_PO = HirbPO()
 
 # todo 2, 健康干预 Health Intervention  Rule Base
 # 执行所有测试
-Hirb_PO.HIRB("all")  # 测试所有
+# Hirb_PO.HIRB("all")  # 测试所有
 
 # 执行单行测试
-# Hirb_PO.HIRB(109)
+Hirb_PO.HIRB(109)
 # Hirb_PO.HIRB(106)
 # Hirb_PO.HIRB(43)
 # Hirb_PO.HIRB(44)

@@ -596,7 +596,9 @@ class DrwsPO():
         # 参数化
         WEIGHT_REPORT__ID = 2  # //测试id，位于WEIGHT_REPORT表
         d_tmp['WEIGHT_REPORT__ID'] = 2
+        # d_tmp['WEIGHT_REPORT__ID'] = 9
         d_tmp['身份证'] = '420204202201011268'
+        # d_tmp['身份证'] = '513434195806074844'
 
         # BMI
         varBMI = d_cases_satisfied['BMI']

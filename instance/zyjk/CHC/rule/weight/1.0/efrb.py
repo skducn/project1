@@ -26,10 +26,10 @@ Efrb_PO = EfrbPO()
 
 # todo 2, 评估因素规则库 Evaluation Factor Rule Base
 # 执行所有测试
-Efrb_PO.EFRB('all')
+# Efrb_PO.EFRB('all')
 
 # 执行单行测试
-# Efrb_PO.EFRB(1)  # 测试单行，
+Efrb_PO.EFRB(1)  # 测试单行，
 # Efrb_PO.EFRB(7)  # (14<= 年龄＜14.5 and 22.3<= BMI and 性别=男) or (14.5<= 年龄＜15 and 22.6<= BMI and 性别=男) or (15<= 年龄＜15.5 and 22.9<= BMI and 性别=男) or (15.5<= 年龄＜16 and 23.1<= BMI and 性别=男) or (16<= 年龄＜16.5 and 23.3<= BMI and 性别=男) or (16.5<= 年龄＜17 and 23.5<= BMI and 性别=男) or (17<= 年龄＜17.5 and 23.7<= BMI and 性别=男) or (17.5<= 年龄＜18 and 23.8<= BMI and 性别=男) or (14<= 年龄＜14.5 and 22.8<= BMI and 性别=女) or (14.5<= 年龄＜15 and 23.0<= BMI and 性别=女) or (15<= 年龄＜15.5 and 23.2<= BMI and 性别=女) or (15.5<= 年龄＜16 and 23.4<= BMI and 性别=女) or (16<= 年龄＜16.5 and 23.6<= BMI and 性别=女) or (16.5<= 年龄＜17 and 23.7<= BMI and 性别=女) or (17<= 年龄＜17.5 and 23.8<= BMI and 性别=女) or (17.5<= 年龄＜18 and 23.9<= BMI and 性别=女)
 # Efrb_PO.EFRB(55)  # 年龄>=4 and 年龄＜10
 # Efrb_PO.EFRB(56)  # 年龄=10

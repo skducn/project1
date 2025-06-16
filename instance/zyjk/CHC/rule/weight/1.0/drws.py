@@ -23,7 +23,7 @@ Drws_PO = DrwsPO()
 # Drws_PO.DRWS('all')
 
 # 测试单行
-Drws_PO.DRWS(16)
+Drws_PO.DRWS(1)
 
 
 
