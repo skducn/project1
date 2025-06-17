@@ -239,6 +239,20 @@ class SqlserverPO:
         except Exception as e:
             print(repr(e))
 
+    def selectOne(self, sql):
+
+        ''' 1.1 查询 '''
+
+        try:
+            self.cur.execute(sql)
+            result = self.cur.fetchone()
+            return result
+        except Exception as e:
+            # print(e.args)  # ('table hh already exists',)
+            # print(str(e))  # table hh already exists
+            # print(NameError(e))  # table hh already exists
+            print(repr(e))  # OperationalError('table hh already exists')
+
     def select(self, sql):
 
         ''' 1.1 查询 '''

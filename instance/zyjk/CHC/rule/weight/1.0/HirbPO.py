@@ -2,30 +2,28 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 评估因素判断规则自动化,
+# Description: 体重管理1.0 - 健康干预 Health Intervention  Rule Base
 # 需求：体重管理1.18
 # 【腾讯文档】体重管理1.18规则自动化
 # https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
-#***************************************************************
+
+# 数据源：weight10.xlsx - a_weight10_HIRB 导入数据库
+# 测试数据库表：CHC-5G - a_weight10_HIRB
+# 测试数据：CHC - WEIGHT_REPORT(体重报告记录表) - ID=2的记录
+# 比对规则：CHC-5G - T_ASSESS_RULE_RECORD
+
 # 警告如下：D:\dwp_backup\python study\GUI_wxpython\lib\site-packages\openpyxl\worksheet\_reader.py:312: UserWarning: Unknown extension is not supported and will be removed warn(msg)
 # 解决方法：
-import sys
 import warnings
 warnings.simplefilter("ignore")
-# *****************************************************************
-# 要切换到 $ cd /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/EHR/rule 下执行 python p_main.py
-# sys.path.append("../../../../")
-# sys.path.append("/Users/linghuchong/Downloads/51/Python/project")
-
-import random, re
-import subprocess, json
+#***************************************************************
 
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
-Sqlserver_PO_CHC5G = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"))  # 测试环境
-Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))  # 测试环境
+Sqlserver_PO_CHC5G = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"))
+Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))
 
 from AgePO import *
 Age_PO = AgePO()
@@ -42,11 +40,9 @@ BmiAgeSex_PO = BmiAgeSexPO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-# from PO.LogPO import *
-# Log_PO = LogPO(filename='log.log', level="info")
-
 from EfrbPO import *
 Efrb_PO = EfrbPO()
+
 
 
 class HirbPO():
@@ -54,8 +50,19 @@ class HirbPO():
     def __init__(self):
         self.tableEF = Configparser_PO.DB("tableEF")
         self.tableHI = Configparser_PO.DB("tableHI")
+        self.WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
+        self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
+
+        # # 判断测试数据是否存在 ID=2
+        result = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID = %s) SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__ID))
+        # print(result['RecordExists'])
+        if result['RecordExists'] != 1:
+            print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
+            sys.exit(0)
 
     def convert_conditions(self, conditions):
+        # 列表转字符串
+
         valid_operators = ['=', '>', '<', '>=', '<=']
         result = []
 
@@ -79,7 +86,6 @@ class HirbPO():
                 result.append(f"{left}{current_op}{right}")
 
         return " and ".join(result)
-
     def excel2db_HIRB(self):
 
         # excel文件导入db
@@ -114,7 +120,6 @@ class HirbPO():
 
         # 6, 设置自增主键（最后）
         Sqlserver_PO_CHC5G.setIdentityPrimaryKey(varTable, "ID")
-
     def str2dict(self, f_conditions):
         # 字符串转字典，将 （TZ_STZB042 = '是' and TZ_JWJB001 = '否' ） 转为字典{'TZ_STZB042': '是', 'TZ_JWJB001': '否'}
         pairs = [pair.strip() for pair in f_conditions.split('and')]
@@ -125,7 +130,6 @@ class HirbPO():
                 d_conditions[key.strip()] = value.strip().replace("'", "")
         # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
         return d_conditions
-
     def str2dict_or(self, f_conditions):
         # 字符串转字典，将 （TZ_STZB042 = '是' and TZ_JWJB001 = '否' ） 转为字典{'TZ_STZB042': '是', 'TZ_JWJB001': '否'}
         pairs = [pair.strip() for pair in f_conditions.split('or')]
@@ -139,10 +143,10 @@ class HirbPO():
 
 
 
-    # todo 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
+    # todo 执行健康干预规则
     def HIRB(self, varTestID):
 
-        # 健康干预规则库（其他分类）Health Intervention Rule Base (Other Categories)
+        # 执行健康干预规则
         # a_weight10_HIRB
 
         # 获取每行测试数据

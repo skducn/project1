@@ -2,23 +2,25 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 评估因素判断规则自动化,
+# Description: 体重管理1.0 - 评估因素规则库 Evaluation Factor Rule Base
 # 需求：体重管理1.18
 # 【腾讯文档】体重管理1.18规则自动化
 # https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
-#***************************************************************
+
+# 数据源：weight10.xlsx - a_weight10_EFRB 导入数据库
+# 测试数据库表：CHC-5G - a_weight10_EFRB
+# 测试数据：CHC - WEIGHT_REPORT(体重报告记录表) - ID=2的记录
+# 比对规则：CHC-5G - T_ASSESS_RULE_RECORD
+
 # 警告如下：D:\dwp_backup\python study\GUI_wxpython\lib\site-packages\openpyxl\worksheet\_reader.py:312: UserWarning: Unknown extension is not supported and will be removed warn(msg)
 # 解决方法：
 import sys
 import warnings
 warnings.simplefilter("ignore")
 # *****************************************************************
-# 要切换到 $ cd /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/EHR/rule 下执行 python p_main.py
-# sys.path.append("../../../../")
-# sys.path.append("/Users/linghuchong/Downloads/51/Python/project")
 
-import random, re
-import subprocess, json
+
+import subprocess
 
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
@@ -53,7 +55,21 @@ class EfrbPO():
         self.tableEF = Configparser_PO.DB("tableEF")
         self.tableHI = Configparser_PO.DB("tableHI")
 
+        self.WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
+        self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
+
+        # # 判断测试数据是否存在 ID=2
+        result = Sqlserver_PO_CHC.selectOne(
+            "IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID = %s) SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
+                self.WEIGHT_REPORT__ID))
+        # print(result['RecordExists'])
+        if result['RecordExists'] != 1:
+            print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
+            sys.exit(0)
+
     def convert_conditions(self, conditions):
+        # 列表转字符串
+
         valid_operators = ['=', '>', '<', '>=', '<=']
         result = []
 
@@ -507,7 +523,7 @@ class EfrbPO():
                 l_count.append(0)
 
                 # 将错误写入数据库log
-                f_conditions = (self.convert_conditions(l_conditions))  # # 将列表转换字符串
+                f_conditions = (self.convert_conditions(l_conditions))  # 将列表转换字符串
                 d_tmp['条件'] = str(f_conditions)
                 d_tmp['测试数据'] = str(d_cases['satisfied'][0])
                 d_tmp['用例类型'] = "正向不满足"

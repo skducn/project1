@@ -2,7 +2,7 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 评估因素判断规则自动化,
+# Description: 体重管理1.0 - 健康干预 Health Intervention  Rule Base
 # 需求：体重管理1.18
 # 【腾讯文档】体重管理1.18规则自动化
 # https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
@@ -15,15 +15,15 @@ from HirbPO import *
 Hirb_PO = HirbPO()
 
 
-# todo 1, excel导入db
+# todo 步骤1, excel导入db
 # Hirb_PO.excel2db_HIRB()
 
 
-# todo 2, 健康干预 Health Intervention  Rule Base
-# 执行所有测试
+# todo 步骤2, 执行健康干预
+# 2.1 测试所有
 # Hirb_PO.HIRB("all")  # 测试所有
 
-# 执行单行测试
+# 2.2 测试单行
 Hirb_PO.HIRB(109)
 # Hirb_PO.HIRB(106)
 # Hirb_PO.HIRB(43)

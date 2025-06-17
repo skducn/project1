@@ -2,30 +2,25 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 评估因素判断规则自动化,
-# 需求：体重管理1.18
-# 【腾讯文档】体重管理1.18规则自动化
-# https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
-#***************************************************************
+# Description: 体重管理1.0 - 判定居民体重状态 Determine Residents' Weight Status
+# 数据源：weight10.xlsx - a_weight10_DRWS 导入数据库
+# 测试数据库表：CHC-5G  - a_weight10_DRWS
+# 测试数据：CHC - WEIGHT_REPORT(体重报告记录表) - ID=2的记录
+# *****************************************************************
+
 # 警告如下：D:\dwp_backup\python study\GUI_wxpython\lib\site-packages\openpyxl\worksheet\_reader.py:312: UserWarning: Unknown extension is not supported and will be removed warn(msg)
 # 解决方法：
-import sys
 import warnings
 warnings.simplefilter("ignore")
-# *****************************************************************
-# 要切换到 $ cd /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/EHR/rule 下执行 python p_main.py
-# sys.path.append("../../../../")
-# sys.path.append("/Users/linghuchong/Downloads/51/Python/project")
 
-import random, re
-import subprocess, json
+import subprocess
 
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
-Sqlserver_PO_CHC5G = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"))  # 测试环境
-Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))  # 测试环境
+Sqlserver_PO_CHC5G = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database"))
+Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))
 
 from AgePO import *
 Age_PO = AgePO()
@@ -50,10 +45,20 @@ class DrwsPO():
 
     def __init__(self):
         self.tableWS = Configparser_PO.DB("tableWS")
+        self.WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
+        self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
+
+        # # 判断测试数据是否存在 ID=2 (Configparser_PO.FILE("testID"))
+        result = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID = %s) SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__ID))
+        # print(result['RecordExists'])
+        if result['RecordExists'] != 1:
+            print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
+            sys.exit(0)
+
 
     def convert_conditions(self, conditions):
-
         # 将列表转换字符串
+
         valid_operators = ['=', '>', '<', '>=', '<=']
         result = []
 
@@ -89,11 +94,9 @@ class DrwsPO():
                 return "浮点数"
         else:
             return "不是数字类型"
-
     def excel2db_DRWS(self):
 
-        # excel文件导入db
-        # Configparser_PO.FILE("case"), "WEIGHT_STATUS", "a_weight10_WS"
+        # excel导入db
         varTable = varSheet = "a_weight10_DRWS"
 
         # 1, db中删除已有的表
@@ -105,10 +108,10 @@ class DrwsPO():
         # 3, 设置表注释
         Sqlserver_PO_CHC5G.setTableComment(varTable, '体重管理1.0_判定居民体重状态_自动化')
 
-        # 4， 替换换行符为空格
+        # 4, 替换换行符为空格
         Sqlserver_PO_CHC5G.execute("UPDATE %s SET f_conditions = REPLACE(REPLACE(f_conditions, CHAR(10), ' '), CHAR(13), ' ');" % (varTable))
 
-        # # 5, 设置字段类型与描述
+        # 5, 设置字段类型与描述
         Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'f_result', 'varchar(50)', '测试结果', "utf-8")
         Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'f_updateDate', 'varchar(50)', '更新日期', "utf-8")
         Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'f_log', 'varchar(8000)', '日志信息', "utf-8")
@@ -125,11 +128,10 @@ class DrwsPO():
         Sqlserver_PO_CHC5G.setIdentityPrimaryKey(varTable, "ID")
 
 
-    # todo 1 判定居民体重状态 Determine Residents' Weight Status
+    # todo 1 测试取值条件
     def DRWS(self, varTestID="all"):
 
-        # 判定居民体重状态 Determine Residents' Weight Status
-        # a_weight10_DRWS
+        # 测试取值条件
 
         d_ = {}
 
@@ -226,35 +228,6 @@ class DrwsPO():
                 # 更新记录
                 self._DRWS_result(l_count, sum, ID)
 
-            # # todo 3 DRWS 多个条件（年龄=2月 and 14.2≤BMI＜18.1 and 性别=男）
-            # elif "and" in f_conditions:
-            #
-            #     # 格式化数据，字符串转列表，生成l_conditions
-            #     l_conditions = f_conditions.split("and")
-            #     l_conditions = [i.strip() for i in l_conditions]
-            #     # print("730 实际参数 =>", l_conditions)  # ['18.5<BMI', 'BMI<24.0']
-            #
-            #     l_2_value = []
-            #     # 拆分，如 '6<=年龄<6.5' 拆分为 或 6<=年龄' and 年龄<6.5'
-            #     for i in l_conditions:
-            #         l_simple_conditions = BmiAgeSex_PO.splitMode(i)
-            #         l_2_value.extend(l_simple_conditions)
-            #     print("737 分解参数 =>", l_2_value)
-            #
-            #     # 转换位置（要求前面是左边是关键字，右边是值），如将 18.5>BMI 转换 BMI<18.5
-            #     l_3_value = []
-            #     for i in l_2_value:
-            #         l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
-            #         l_3_value.extend(l_simple_conditions)
-            #     print("744 结构化参数 =>", l_3_value)  #  ['BMI>18.5', 'BMI<24.0']
-            #
-            #     # 读取BMI模块，生成随机数据d_cases
-            #     d_cases = BmiAgeSex_PO.main(l_3_value)
-            #     # d_cases = BmiAgeSex_PO.generate_all_cases(l_3_value)
-            #
-            #     # 测试数据
-            #     # todo DRWS_case for and
-            #     self.DRWS_case(ID, l_conditions, d_cases)
 
             # todo 4 DRWS 单个条件（BMI＜18.5）
             elif "and" not in f_conditions:
@@ -595,10 +568,11 @@ class DrwsPO():
 
         # 参数化
         WEIGHT_REPORT__ID = 2  # //测试id，位于WEIGHT_REPORT表
-        d_tmp['WEIGHT_REPORT__ID'] = 2
-        # d_tmp['WEIGHT_REPORT__ID'] = 9
-        d_tmp['身份证'] = '420204202201011268'
-        # d_tmp['身份证'] = '513434195806074844'
+        # WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
+        # d_tmp['WEIGHT_REPORT__ID'] = 2
+        # d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
+        # # d_tmp['身份证'] = '420204202201011268'
+        # d_tmp['身份证'] = self.WEIGHT_REPORT__IDCARD
 
         # BMI
         varBMI = d_cases_satisfied['BMI']
@@ -639,8 +613,8 @@ class DrwsPO():
             varAgeMonth) + ',\\"basicIntake\\":100,\\"bmi\\":' + str(
             varBMI) + ',\\"categoryCode\\":\\"' + str(d_tmp[
                                                           '人群分类编码']) + '\\",\\"disease\\":\\"无\\",\\"foodAdvice\\":\\"建议饮食\\",\\"height\\":175,\\"hipline\\":33,\\"id\\":' + str(
-            d_tmp['WEIGHT_REPORT__ID']) + ',\\"idCard\\":\\"' + str(
-            d_tmp['身份证']) + '\\",\\"orgCode\\":\\"0000001\\",\\"orgName\\":\\"静安精神病院\\",\\"sex\\":\\"' + str(
+            self.WEIGHT_REPORT__ID) + ',\\"idCard\\":\\"' + str(
+            self.WEIGHT_REPORT__IDCARD) + '\\",\\"orgCode\\":\\"0000001\\",\\"orgName\\":\\"静安精神病院\\",\\"sex\\":\\"' + str(
             varSex) + '\\",\\"sexCode\\":\\"' + str(
             varSexCode) + '\\",\\"sportAdvice\\":\\"建议运动\\",\\"targetWeight\\":50,\\"waistHip\\":0.9,\\"waistline\\":33,\\"weight\\":55,\\"weightRecordId\\":0}"'
 
@@ -657,23 +631,24 @@ class DrwsPO():
 
         if d_r['code'] == 200:
             l_d_1 = Sqlserver_PO_CHC.select(
-                "select WEIGHT_STATUS from WEIGHT_REPORT where ID = %s" % (WEIGHT_REPORT__ID))
-            l_d_2 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from QYYH where SFZH = '%s'" % (str(d_tmp['身份证'])))
-            d_tmp['sql__WEIGHT_REPORT'] = "select WEIGHT_STATUS from WEIGHT_REPORT where ID = " + str(WEIGHT_REPORT__ID)
-            d_tmp['sql__QYYH'] = "select WEIGHT_STATUS from QYYH where SFZH = '" + str(d_tmp['身份证']) + "'"
+                "select WEIGHT_STATUS from WEIGHT_REPORT where ID = %s" % (self.WEIGHT_REPORT__ID))
+            l_d_2 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from QYYH where SFZH = '%s'" % (str(self.WEIGHT_REPORT__IDCARD)))
+            d_tmp['sql__WEIGHT_REPORT'] = "select WEIGHT_STATUS from WEIGHT_REPORT where ID = " + str(self.WEIGHT_REPORT__ID)
+            d_tmp['sql__QYYH'] = "select WEIGHT_STATUS from QYYH where SFZH = '" + str(self.WEIGHT_REPORT__IDCARD) + "'"
             d_tmp['WEIGHT_REPORT__WEIGHT_STATUS'] = l_d_1[0]['WEIGHT_STATUS']
             d_tmp['QYYH__WEIGHT_STATUS'] = l_d_2[0]['WEIGHT_STATUS']
-            d_tmp['l_d_1'] = l_d_1
-            d_tmp['l_d_2'] = l_d_2
-            d_tmp['WEIGHT_STATUS'] = l_d_1[0]['WEIGHT_STATUS']
+            # d_tmp['l_d_1'] = l_d_1
+            # d_tmp['l_d_2'] = l_d_2
+            # d_tmp['WEIGHT_STATUS'] = l_d_1[0]['WEIGHT_STATUS']
+            # print(d_tmp)
             return d_tmp
         else:
-            print("682, error ", d_r['code'])
+            print("679, error ", d_r['code'])
             sys.exit(0)
     def DRWS_run_p(self, d_cases_satisfied, ID):
 
         d_tmp = self._DRWS_run(d_cases_satisfied, ID)
-        if d_tmp['l_d_1'] == d_tmp['l_d_2'] and d_tmp['WEIGHT_STATUS'] == int(d_tmp['体重状态编码']):
+        if d_tmp['WEIGHT_REPORT__WEIGHT_STATUS'] == d_tmp['QYYH__WEIGHT_STATUS'] and d_tmp['QYYH__WEIGHT_STATUS'] == int(d_tmp['体重状态编码']):
             d_tmp['result'] = 1
         else:
             d_tmp['result'] = 0
@@ -681,7 +656,7 @@ class DrwsPO():
     def DRWS_run_n(self, d_cases_satisfied, ID):
 
         d_tmp = self._DRWS_run(d_cases_satisfied, ID)
-        if d_tmp['l_d_1'] == d_tmp['l_d_2'] and d_tmp['WEIGHT_STATUS'] != int(d_tmp['体重状态编码']):
+        if d_tmp['WEIGHT_REPORT__WEIGHT_STATUS'] == d_tmp['QYYH__WEIGHT_STATUS'] and d_tmp['QYYH__WEIGHT_STATUS'] != int(d_tmp['体重状态编码']):
             d_tmp['result'] = 0
         else:
             d_tmp['result'] = 1
