@@ -125,8 +125,7 @@
 3.14 设置字段类型 setFieldType(varTable, varField, varType)
 3.15 设置自增主键 setIdentityPrimaryKey(varTable, varField)
 3.16 删除自增主键 delIdentityPrimaryKey(varTable, varField)
-
-3.14 设置数据类型与备注 setFieldTypeComment(varTable, varField, varType, varComment)
+3.17 设置字段类型与备注 setFieldTypeComment(varTable, varField, varType, varComment)
 
 
 # todo【记录】
@@ -142,6 +141,8 @@
  生成类型值 _genTypeValue(self, varTable)
  生成必填项类型值 _genNotNullTypeValue(self, varTable)
  执行insert _execInsert(self, varTable, d_init,{})
+4.10 判断记录是否存在 isRecord("QYYH", "SFZH", "310101198004110014"))
+
 
 # todo【导入、导出】
 5.1 csv2dbByType()  csv2db自定义字段类型
@@ -1315,7 +1316,7 @@ class SqlserverPO:
 
     def setFieldTypeComment(self, varTable, varField, varType, varComment, varEncoding='utf-8'):
 
-        # 3.14 设置字段类型与备注
+        # 3.17 设置字段类型与备注
         # 应用于pandas带入数据
         # Sqlserver_PO.setFieldTypeComment(varTable, 'pResult', 'varchar(100)', '正向测试结果')  //修改pResult数据类型和备注
         self.execute("ALTER table %s alter column %s %s" % (varTable, varField, varType))
@@ -1918,7 +1919,13 @@ class SqlserverPO:
             print("[ok], " + str(sql))
 
 
+    def isRecord(self, varTable, varField, varValue):
 
+        # 4.10 判断记录是否存在 isRecord("QYYH","SFZH","310101198004110014")
+
+        d_table_field = self.selectOne("IF EXISTS (SELECT 1 FROM %s WHERE %s = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (varTable, varField, varValue))
+        # print(d_table_field)
+        return d_table_field['RecordExists']
 
     # todo 导入导出
 
@@ -2277,26 +2284,28 @@ class SqlserverPO:
 
 
 if __name__ == "__main__":
+
     # todo 社区健康平台（静安）
     # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
     # todo 社区健康平台（全市）
-    # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
-    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
+    # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
     # print(Sqlserver_PO.isTable("a_phs_auth"))
+
 
 
     # 复制表(覆盖)
     # Sqlserver_PO.copyTable('a_phs_auth', 'a_phs_auth_app')
     #
     # # 在url前插入字段case1
-    Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'url', 'case1', 'varchar(111)')
+    # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'url', 'case1', 'varchar(111)')
     # # 在tags前插入字段status
     # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'tags', 'status', 'varchar(66)')
 
     # 追加字段
-    Sqlserver_PO.appendField('a_phs_auth_app', 'status123', 'VARCHAR(11)')
+    # Sqlserver_PO.appendField('a_phs_auth_app', 'status123', 'VARCHAR(11)')
 
     # Sqlserver_PO.setField('a_phs_auth_app', 'status', 'VARCHAR(11)')
     # # print("4.1 判断表是否存在".center(100, "-"))
@@ -2308,6 +2317,10 @@ if __name__ == "__main__":
     # # print("4.3 判断是否有自增主键".center(100, "-"))
     # print(Sqlserver_PO.isIdentity('bbb'))
     # print(Sqlserver_PO.isIdentity('aaa'))
+
+    # # print("4.10 判断记录是否存在".center(100, "-"))
+    # print(Sqlserver_PO.isRecord("QYYH", "SFZH", "310101198004110014"))
+
 
     # # print("5.1 csv2db自定义字段类型".center(100, "-"))
     # Sqlserver_PO.csv2dbByType('./data/test12.csv', "test555")

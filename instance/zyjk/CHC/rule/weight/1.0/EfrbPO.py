@@ -55,14 +55,10 @@ class EfrbPO():
         self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
 
         # 判断QYYH中是否存在此身份证
-        d_QYYH_idcard = Sqlserver_PO_CHC.selectOne(
-            "IF EXISTS (SELECT 1 FROM QYYH WHERE SFZH = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
-                self.WEIGHT_REPORT__IDCARD))
-        # # 判断WEIGHT_REPORT中是否存在此身份证
-        d_WEIGHT_REPORT_idcard = Sqlserver_PO_CHC.selectOne(
-            "IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID_CARD = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
-                self.WEIGHT_REPORT__IDCARD))
-        if d_QYYH_idcard['RecordExists'] != 1 or d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
+        isSFZH__QYYH = Sqlserver_PO_CHC.isRecord("QYYH", "SFZH", self.WEIGHT_REPORT__IDCARD)
+        # 判断WEIGHT_REPORT中是否存在此身份证
+        isID_CARD__WEIGHT_REPORT = Sqlserver_PO_CHC.isRecord("WEIGHT_REPORT", "ID_CARD", self.WEIGHT_REPORT__IDCARD)
+        if isSFZH__QYYH != 1 or isID_CARD__WEIGHT_REPORT != 1:
             s = f'error, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!'
             Color_PO.outColor([{"35": s}])
             sys.exit(0)
