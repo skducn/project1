@@ -45,16 +45,24 @@ class DrwsPO():
 
     def __init__(self):
         self.tableWS = Configparser_PO.DB("tableWS")
-        self.WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
         self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
 
-        # # 判断测试数据是否存在 ID=2 (Configparser_PO.FILE("testID"))
-        result = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID = %s) SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__ID))
-        # print(result['RecordExists'])
-        if result['RecordExists'] != 1:
+        # 判断QYYH中是否存在此身份证
+        d_QYYH_idcard = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM QYYH WHERE SFZH = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__IDCARD))
+        if d_QYYH_idcard['RecordExists'] != 1:
+            print(f'warning, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!')
+            sys.exit(0)
+
+        # # 判断WEIGHT_REPORT中是否存在此身份证
+        d_WEIGHT_REPORT_idcard = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID_CARD = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__IDCARD))
+        if d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
             print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
             sys.exit(0)
 
+        # 获取ID
+        l_d_ID = Sqlserver_PO_CHC.select("select ID from WEIGHT_REPORT where ID_CARD = '%s'" % (self.WEIGHT_REPORT__IDCARD))
+        # print(l_d_ID[0]['ID'])  # 1644
+        self.WEIGHT_REPORT__ID = l_d_ID[0]['ID']
 
     def convert_conditions(self, conditions):
         # 将列表转换字符串
@@ -566,14 +574,6 @@ class DrwsPO():
         d_tmp['体重状态'] = l_d_row[0]['f_weightStatus']  # 1
         d_tmp['体重状态编码'] = l_d_row[0]['f_weightStatusCode']  # 1
 
-        # 参数化
-        WEIGHT_REPORT__ID = 2  # //测试id，位于WEIGHT_REPORT表
-        # WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
-        # d_tmp['WEIGHT_REPORT__ID'] = 2
-        # d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
-        # # d_tmp['身份证'] = '420204202201011268'
-        # d_tmp['身份证'] = self.WEIGHT_REPORT__IDCARD
-
         # BMI
         varBMI = d_cases_satisfied['BMI']
 
@@ -630,8 +630,7 @@ class DrwsPO():
         d_tmp["i"] = command
 
         if d_r['code'] == 200:
-            l_d_1 = Sqlserver_PO_CHC.select(
-                "select WEIGHT_STATUS from WEIGHT_REPORT where ID = %s" % (self.WEIGHT_REPORT__ID))
+            l_d_1 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from WEIGHT_REPORT where ID = %s" % (self.WEIGHT_REPORT__ID))
             l_d_2 = Sqlserver_PO_CHC.select("select WEIGHT_STATUS from QYYH where SFZH = '%s'" % (str(self.WEIGHT_REPORT__IDCARD)))
             d_tmp['sql__WEIGHT_REPORT'] = "select WEIGHT_STATUS from WEIGHT_REPORT where ID = " + str(self.WEIGHT_REPORT__ID)
             d_tmp['sql__QYYH'] = "select WEIGHT_STATUS from QYYH where SFZH = '" + str(self.WEIGHT_REPORT__IDCARD) + "'"

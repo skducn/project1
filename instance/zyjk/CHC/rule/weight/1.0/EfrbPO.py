@@ -54,18 +54,30 @@ class EfrbPO():
         self.tableEF = Configparser_PO.DB("tableWS")
         self.tableEF = Configparser_PO.DB("tableEF")
         self.tableHI = Configparser_PO.DB("tableHI")
-
-        self.WEIGHT_REPORT__ID = Configparser_PO.FILE("testID")
         self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
 
-        # # 判断测试数据是否存在 ID=2
-        result = Sqlserver_PO_CHC.selectOne(
-            "IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID = %s) SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
-                self.WEIGHT_REPORT__ID))
-        # print(result['RecordExists'])
-        if result['RecordExists'] != 1:
+        # 判断QYYH中是否存在此身份证
+        d_QYYH_idcard = Sqlserver_PO_CHC.selectOne(
+            "IF EXISTS (SELECT 1 FROM QYYH WHERE SFZH = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
+                self.WEIGHT_REPORT__IDCARD))
+        if d_QYYH_idcard['RecordExists'] != 1:
+            print(f'warning, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!')
+            sys.exit(0)
+
+        # # 判断WEIGHT_REPORT中是否存在此身份证
+        d_WEIGHT_REPORT_idcard = Sqlserver_PO_CHC.selectOne(
+            "IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID_CARD = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
+                self.WEIGHT_REPORT__IDCARD))
+        if d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
             print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
             sys.exit(0)
+
+        # 获取ID
+        l_d_ID = Sqlserver_PO_CHC.select(
+            "select ID from WEIGHT_REPORT where ID_CARD = '%s'" % (self.WEIGHT_REPORT__IDCARD))
+        # print(l_d_ID[0]['ID'])  # 1644
+        self.WEIGHT_REPORT__ID = l_d_ID[0]['ID']
+
 
     def convert_conditions(self, conditions):
         # 列表转字符串
@@ -643,10 +655,7 @@ class EfrbPO():
 
 
         # 参数化
-        # d_tmp['WEIGHT_REPORT__ID'] = 2  # //测试id，位于WEIGHT_REPORT表
-        # d_tmp['身份证'] = '420204202201011268'
-
-        d_tmp['WEIGHT_REPORT__ID'] = Configparser_PO.FILE("testID")  # //测试id，位于WEIGHT_REPORT表
+        d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
         d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
 
 
@@ -696,7 +705,7 @@ class EfrbPO():
 
 
         # 跑接口
-        command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":' + str(varBMI) + ',\\"categoryCode\\":\\"' + str(categoryCode) + '\\",\\"disease\\":\\"' + str(disease) + '\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"' + str(varSex) + '\\",\\"sexCode\\":\\"' + str(varSexCode) + '\\",\\"weight\\":55,\\"weightReportId\\":' + str(d_tmp['WEIGHT_REPORT__ID']) + '}"'
+        command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":' + str(varBMI) + ',\\"categoryCode\\":\\"' + str(categoryCode) + '\\",\\"disease\\":\\"' + str(disease) + '\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"' + str(varSex) + '\\",\\"sexCode\\":\\"' + str(varSexCode) + '\\",\\"weight\\":55,\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
 
         if Configparser_PO.SWITCH("curl") == "on":
             print(command)
@@ -709,7 +718,7 @@ class EfrbPO():
 
         if d_r['code'] == 200:
 
-            sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (d_tmp['WEIGHT_REPORT__ID'])
+            sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (self.WEIGHT_REPORT__ID)
             l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
             # 可能命中多条
             # print(l_d_RULE_CODE_actual)  # [{'RULE_CODE': 'TZ_RQFL004'}, {'RULE_CODE': 'TZ_AGE001'}, {'RULE_CODE': 'TZ_JWJB001'}]
@@ -759,9 +768,7 @@ class EfrbPO():
         d_tmp['评估因素编码'] = l_d_row[0]['f_code']
 
         # 参数化
-        # d_tmp['WEIGHT_REPORT__ID'] = 2  # //测试id，位于WEIGHT_REPORT表
-        # d_tmp['身份证'] = '420204202201011268'
-        d_tmp['WEIGHT_REPORT__ID'] = Configparser_PO.FILE("testID")  # //测试id，位于WEIGHT_REPORT表
+        d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
         d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
 
         varAge = 0
@@ -770,7 +777,7 @@ class EfrbPO():
         varBMI = 10.1
 
         # 跑接口
-        command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":'+str(varBMI)+',\\"categoryCode\\":1,\\"disease\\":\\"'+str(d_param['disease'])+'\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"\\",\\"sexCode\\":\\"1\\",\\"weight\\":55,\\"weightReportId\\":' + str(d_tmp['WEIGHT_REPORT__ID']) + '}"'
+        command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":'+str(varBMI)+',\\"categoryCode\\":1,\\"disease\\":\\"'+str(d_param['disease'])+'\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"\\",\\"sexCode\\":\\"1\\",\\"weight\\":55,\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
 
         if Configparser_PO.SWITCH("curl") == "on":
             print(command)
@@ -833,79 +840,7 @@ class EfrbPO():
         else:
             print("1750, error ", d_r['code'])
             sys.exit(0)
-    # def EFRB_run_disease_n(self, varDisease, ID):
-    #
-    #     # 既往疾病(执行反向用例)
-    #     # varDisease = 脑卒中
-    #     # id = 46
-    #
-    #     d_tmp = {}
-    #
-    #     # 参数
-    #     l_d_row = Sqlserver_PO_CHC5G.select("select f_code from %s where ID= %s" % (self.tableEF, ID))
-    #     d_tmp['评估因素编码'] = l_d_row[0]['f_code']
-    #
-    #     # 参数化
-    #     d_tmp['WEIGHT_REPORT__ID'] = 2  # //测试id，位于WEIGHT_REPORT表
-    #     d_tmp['身份证'] = '420204202201011268'
-    #
-    #     varAge = 0
-    #     varAgeFloat = 0.0
-    #     varAgeMonth = 0
-    #     varBMI = 10.1
-    #
-    #     # 跑接口
-    #     command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":'+str(varBMI)+',\\"categoryCode\\":1,\\"disease\\":\\"'+str(varDisease)+'\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"\\",\\"sexCode\\":\\"1\\",\\"weight\\":55,\\"weightReportId\\":' + str(d_tmp['WEIGHT_REPORT__ID']) + '}"'
-    #
-    #     if Configparser_PO.SWITCH("curl") == "on":
-    #         print(command)
-    #
-    #     p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    #     out, err = p.communicate()
-    #     str_r = bytes.decode(out)
-    #     d_r = json.loads(str_r)
-    #     d_tmp["i"] = command
-    #     # print(d_r)
-    #
-    #     if d_r['code'] == 200:
-    #         sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2"
-    #         l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
-    #         # 可能命中多条
-    #         # print(l_d_RULE_CODE_actual)  # [{'RULE_CODE': 'TZ_RQFL004'}, {'RULE_CODE': 'TZ_AGE001'}, {'RULE_CODE': 'TZ_JWJB001'}]
-    #         l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
-    #
-    #         d_tmp['实际值'] = l_d_RULE_CODE_actual
-    #         d_tmp['预期值'] = l_d_row[0]['f_code']
-    #         d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
-    #         l_count = []
-    #         d_2 = {}
-    #         if d_tmp['预期值'] in l_d_RULE_CODE_actual:
-    #             d_2['反向'] = 'error'
-    #             d_2['既往疾病'] = varDisease
-    #             s_tmp = str(d_2)
-    #             s_tmp = s_tmp.replace("\\\\", "\\")
-    #             Color_PO.outColor([{"31": s_tmp}])
-    #             Log_PO.logger.info(s_tmp)
-    #         else:
-    #             d_2['反向'] = "ok"
-    #             d_2['既往疾病'] = varDisease
-    #             Color_PO.outColor([{"36": d_2}])
-    #             Log_PO.logger.info(d_2)
-    #
-    #
-    #
-    #         # # 回写数据库f_resut, f_updateDate
-    #         # if 0 not in l_count:
-    #         #     Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => ok"}])
-    #         #     Log_PO.logger.info([{"32": "ok, id=" + str(ID)}])
-    #         #     Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE() where ID = %s" % (self.tableEF, ID))
-    #         # else:
-    #         #     Color_PO.outColor([{"32": "[ID: " + str(ID) + "] => error"}])
-    #         #     Log_PO.logger.info([{"31": "error, id=" + str(ID)}])
-    #         #     Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableEF, ID))
-    #     else:
-    #         print("1750, error ", d_r['code'])
-    #         sys.exit(0)
+
     def EFRB_run_crowd(self, d_param):
 
         # 人群分类
@@ -913,20 +848,12 @@ class EfrbPO():
         # id = 46
         d_tmp = {}
 
-        # print(1246,d_param)
-
-        # if "categoryCode" in d_param:
-        #     d_param['f_conditions'] = int(d_param['categoryCode'])
-
-
         # 参数
         l_d_row = Sqlserver_PO_CHC5G.select("select f_code from %s where ID= %s" % (self.tableEF, d_param['ID']))
         d_tmp['评估因素编码'] = l_d_row[0]['f_code']
 
         # 参数化
-        # d_tmp['WEIGHT_REPORT__ID'] = 2  # //测试id，位于WEIGHT_REPORT表
-        # d_tmp['身份证'] = '420204202201011268'
-        d_tmp['WEIGHT_REPORT__ID'] = Configparser_PO.FILE("testID")  # //测试id，位于WEIGHT_REPORT表
+        d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
         d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
 
         varAge = 0
@@ -947,7 +874,7 @@ class EfrbPO():
 
 
         # 跑接口
-        command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":'+str(varBMI)+',\\"categoryCode\\":'+str(d_param['categoryCode'])+',\\"disease\\":\\"\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"' + str(varSex) + '\\",\\"sexCode\\":' + str(varSexCode) + ',\\"weight\\":55,\\"weightReportId\\":' + str(d_tmp['WEIGHT_REPORT__ID']) + '}"'
+        command = 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":'+ str(varAge) +',\\"ageFloat\\":'+ str(varAgeFloat) +',\\"ageMonth\\":'+ str(varAgeMonth) +',\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":'+str(varBMI)+',\\"categoryCode\\":'+str(d_param['categoryCode'])+',\\"disease\\":\\"\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\\":\\"' + str(d_tmp['身份证']) + '\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"' + str(varSex) + '\\",\\"sexCode\\":' + str(varSexCode) + ',\\"weight\\":55,\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
 
         if Configparser_PO.SWITCH("curl") == "on":
             print(command)
