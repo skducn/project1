@@ -51,26 +51,22 @@ Log_PO = LogPO(filename='log.log', level="info")
 class EfrbPO():
 
     def __init__(self):
-        self.tableEF = Configparser_PO.DB("tableWS")
         self.tableEF = Configparser_PO.DB("tableEF")
-        self.tableHI = Configparser_PO.DB("tableHI")
         self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
 
         # 判断QYYH中是否存在此身份证
         d_QYYH_idcard = Sqlserver_PO_CHC.selectOne(
             "IF EXISTS (SELECT 1 FROM QYYH WHERE SFZH = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
                 self.WEIGHT_REPORT__IDCARD))
-        if d_QYYH_idcard['RecordExists'] != 1:
-            print(f'warning, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!')
-            sys.exit(0)
-
         # # 判断WEIGHT_REPORT中是否存在此身份证
         d_WEIGHT_REPORT_idcard = Sqlserver_PO_CHC.selectOne(
             "IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID_CARD = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (
                 self.WEIGHT_REPORT__IDCARD))
-        if d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
-            print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
+        if d_QYYH_idcard['RecordExists'] != 1 or d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
+            s = f'error, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!'
+            Color_PO.outColor([{"35": s}])
             sys.exit(0)
+
 
         # 获取ID
         l_d_ID = Sqlserver_PO_CHC.select(

@@ -268,6 +268,15 @@ class SqlserverPO:
             # print(NameError(e))  # table hh already exists
             print(repr(e))  # OperationalError('table hh already exists')
 
+    def executeParams(self, sql, params=None):
+        with self.conn.cursor() as cursor:
+            if params:
+                cursor.execute(sql, params)
+            else:
+                cursor.execute(sql)
+            self.conn.commit()
+
+
     def execute(self, sql):
 
         ''' 1.2 执行 '''

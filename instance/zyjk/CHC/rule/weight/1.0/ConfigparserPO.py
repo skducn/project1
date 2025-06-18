@@ -34,22 +34,29 @@ if __name__ == '__main__':
 
     Configparser_PO = ConfigparserPO('config.ini')
 
-    # Configparser_PO.cf.read('config.ini')  # 读
 
-    # Configparser_PO.write('EXCEL', 'sheetName', '355')
-    # print(Configparser_PO.EXCEL('sheetName'))  # 355
+    # 获取key的值
+    # print(Configparser_PO.cf.get("DB",'host'))  # 192.168.0.234
+    # 获取所有key
+    # print(Configparser_PO.cf.options('DB'))  # ['host', 'user', 'password', 'database', 'database2', 'tablews', 'tableef', 'tablehi']
+
+    # 直接修改
+    # Configparser_PO.write('DB', 'user', 'sa1')
+    # print(Configparser_PO.DB('host'))  # sa1
+
 
     sectionName = Configparser_PO.cf.sections()  # 获取所有section名
-    print(sectionName)
-
-    # 判断配置文件中是否有已存在的section，如果不存在则创建section，并设置相应的key和value
-    if 'section' not in sectionName:
-        Configparser_PO.cf.add_section('section')  # 新增section, 如果已存在则报错
-        Configparser_PO.cf.set('section', 'name1', 'jh2333')  # 新增 key和value （覆盖）
+    # print(sectionName)  # ['FILE', 'DB', 'SWITCH']
+    # 新增
+    if 'FILE' not in sectionName:
+        Configparser_PO.cf.add_section('FILE')  # 新增section, 如果已存在则报错
+        Configparser_PO.cf.set('FILE', 'testIdcard', '310101198004110014')  # 新增 key和value
+        Configparser_PO.cf.write(open('config.ini', 'w'))  # 写保存
+    # 修改
+    if 'FILE' in sectionName:
+        Configparser_PO.cf.set('FILE', 'testIdcard', '310101198004110014')  # 新增 key和value （覆盖）或修改
         Configparser_PO.cf.write(open('config.ini', 'w'))  # 写保存
 
-    # Configparser_PO.cf.get("EXCEL",'rrr')
 
-    print(Configparser_PO.cf.options('EXCEL'))  # ['filename', 'sheetname', 'title']
 
 

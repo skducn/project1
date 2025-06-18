@@ -49,20 +49,22 @@ class DrwsPO():
 
         # 判断QYYH中是否存在此身份证
         d_QYYH_idcard = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM QYYH WHERE SFZH = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__IDCARD))
-        if d_QYYH_idcard['RecordExists'] != 1:
-            print(f'warning, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!')
-            sys.exit(0)
-
-        # # 判断WEIGHT_REPORT中是否存在此身份证
+        # 判断WEIGHT_REPORT中是否存在此身份证
         d_WEIGHT_REPORT_idcard = Sqlserver_PO_CHC.selectOne("IF EXISTS (SELECT 1 FROM WEIGHT_REPORT WHERE ID_CARD = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (self.WEIGHT_REPORT__IDCARD))
-        if d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
-            print(f'warning, ID = {Configparser_PO.FILE("testID")} 的记录不存在!')
-            sys.exit(0)
+        if d_QYYH_idcard['RecordExists'] != 1 or d_WEIGHT_REPORT_idcard['RecordExists'] != 1:
+            s = f'error, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!'
+            Color_PO.outColor([{"35": s}])
 
-        # 获取ID
+            # 如果不存在，自动生成一条记录
+            self.WEIGHT_REPORT__IDCARD = self.insert_data_auto_match()
+            Configparser_PO.write('FILE', 'testIdcard', self.WEIGHT_REPORT__IDCARD)  # 更新配置文件
+            # sys.exit(0)
+
+        # 通过身份证获取ID
         l_d_ID = Sqlserver_PO_CHC.select("select ID from WEIGHT_REPORT where ID_CARD = '%s'" % (self.WEIGHT_REPORT__IDCARD))
         # print(l_d_ID[0]['ID'])  # 1644
         self.WEIGHT_REPORT__ID = l_d_ID[0]['ID']
+
 
     def convert_conditions(self, conditions):
         # 将列表转换字符串
@@ -135,6 +137,82 @@ class DrwsPO():
         # 6, 设置自增主键（最后）
         Sqlserver_PO_CHC5G.setIdentityPrimaryKey(varTable, "ID")
 
+    def get_table_columns(self, varTable):
+        """获取表的所有列名"""
+        l_columns = []
+        l_d_columns = Sqlserver_PO_CHC.select("SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = '%s'" % (varTable))
+        # print(l_d_columns)  # [{'COLUMN_NAME': 'ID'}, {'COLUMN_NAME': 'ID_CARD'},...
+        for i in l_d_columns:
+            l_columns.append(i['COLUMN_NAME'])
+        # print(l_columns)  # ['ID', 'ID_CARD', 'AGE', 'AGE_FLOAT',...
+        return l_columns
+
+
+    def insert_data_auto_match(self):
+        # 自动匹配QYYH身份证，插入到WEIGHT_REPORT
+        # 逻辑：先从QYYH中随机获取一条记录的身份证，然后在WEIGHT_REPORT中获取一条记录（如复制ID=2）字段和值，清洗字段（去掉ID、REPORT_DATA，及更换QYYH身份证），插入数据。
+
+        # 步骤1：从QYYH中随机获取一条记录的身份证
+        # 方法1: 使用 SQL Server 的 NEWID() 函数进行随机排序，然后取第一条记录。这种方法适用于中小型表，但在处理大数据集时性能可能较差。
+        # 方法2: 使用随机行号 (适用于大表，需要有自增ID列)
+        # 方法 2（注释中）：先获取表的总行数，然后生成一个随机行号，直接查询该行。这种方法需要表中有自增的 ID 列，适用于大型表。
+        # 取消下面注释并替换ID_COLUMN为实际的自增ID列名
+        # cursor.execute(f"SELECT COUNT(*) FROM {table_name}")
+        # row_count = cursor.fetchone()[0]
+        # if row_count == 0:
+        #     return None
+        # random_id = random.randint(1, row_count)
+        # query = f"SELECT * FROM {table_name} WHERE ID_COLUMN = {random_id}"
+        l_d_randomRecord__QYYH = Sqlserver_PO_CHC.select("select top 1 SFZH from QYYH order by newid()")
+        # print(l_d_randomRecord__QYYH)
+        # print(l_d_randomRecord__QYYH[0]['SFZH'])  # 31011019541107122X
+
+
+        # 步骤2：WEIGHT_REPORT中获取一条记录（如复制ID=2）字段和值，去掉ID、REPORT_DATA，及更换QYYH身份证
+        l_d_record = Sqlserver_PO_CHC.select("select * from WEIGHT_REPORT where ID=2")
+        # print(l_d_record)
+        # [{'ID': 2, 'ID_CARD': '420204202201011268', 'AGE': 0, 'AGE_FLOAT': Decimal('0.0'), 'AGE_MONTH': 0, 'SEX_CODE': '1', 'SEX': '男', 'HEIGHT': Decimal('175.0'), 'WEIGHT': Decimal('55.0'), 'BMI': Decimal('13.2'), 'DISEASE': '无', 'WEIGHT_STATUS': 1, 'WAISTLINE': Decimal('33.0'), 'HIPLINE': Decimal('33.0'), 'WAIST_HIP': Decimal('0.90'), 'FOOD_ADVICE': '建议饮食', 'SPORT_ADVICE': '建议运动', 'TARGET_WEIGHT': Decimal('50.0'), 'BASIC_INTAKE': Decimal('100.0'), 'CATEGORY_CODE': '3', 'REPORT_DATE': datetime.datetime(2025, 6, 18, 9, 39, 1, 493000), 'REPORT_TYPE': 1, 'REPORT_DOC_ID': 0, 'REPORT_DOC_NAME': '', 'REPORT_THIRD_NO': '', 'REPORT_ORG_CODE': '', 'ASSESSMENT_STATUS': 1, 'REPORT_STATUS': 1, 'REPORT_ORG_NAME': ''}]
+
+
+        # 步骤3：清洗字段（去掉ID、REPORT_DATA，及更换QYYH身份证）
+        l_d_record[0].pop('ID')
+        l_d_record[0].pop('REPORT_DATE')
+        l_d_record[0]['ID_CARD'] = l_d_randomRecord__QYYH[0]['SFZH']
+
+        # print(l_d_record)
+        # [{'ID_CARD': '310110195405235427', 'AGE': 0, 'AGE_FLOAT': Decimal('0.0'), 'AGE_MONTH': 0, 'SEX_CODE': '1', 'SEX': '男', 'HEIGHT': Decimal('175.0'), 'WEIGHT': Decimal('55.0'), 'BMI': Decimal('13.2'), 'DISEASE': '无', 'WEIGHT_STATUS': 1, 'WAISTLINE': Decimal('33.0'), 'HIPLINE': Decimal('33.0'), 'WAIST_HIP': Decimal('0.90'), 'FOOD_ADVICE': '建议饮食', 'SPORT_ADVICE': '建议运动', 'TARGET_WEIGHT': Decimal('50.0'), 'BASIC_INTAKE': Decimal('100.0'), 'CATEGORY_CODE': '3', 'REPORT_TYPE': 1, 'REPORT_DOC_ID': 0, 'REPORT_DOC_NAME': '', 'REPORT_THIRD_NO': '', 'REPORT_ORG_CODE': '', 'ASSESSMENT_STATUS': 1, 'REPORT_STATUS': 1, 'REPORT_ORG_NAME': ''}]
+
+        # 获取表的所有字段
+        l_columns = self.get_table_columns('WEIGHT_REPORT')
+        # print(l_columns)
+
+        # 遍历数据列表，逐条插入
+        for data in l_d_record:
+            # 过滤出存在的列
+            valid_columns = [col for col in data.keys() if col in l_columns]
+
+            if not valid_columns:
+                print("警告: 没有找到有效的列，跳过当前记录")
+                continue
+
+            # 构建SQL语句
+            column_names = ", ".join(valid_columns)
+            placeholders = ", ".join(["%s"] * len(valid_columns))
+            values = [data[col] for col in valid_columns]
+
+            # 步骤4：插入数据
+            insert_query = f"INSERT INTO WEIGHT_REPORT ({column_names}) VALUES ({placeholders})"
+            tuple_values = tuple(values)
+            # 执行插入
+            Sqlserver_PO_CHC.executeParams(insert_query, tuple_values)
+            # print(f"ok, 成功插入记录: {values}")
+            s = (f"ok, 成功插入记录: {values}")
+            Color_PO.outColor([{"32": s}])
+
+
+        return l_d_randomRecord__QYYH[0]['SFZH']
+
+
 
     # todo 1 测试取值条件
     def DRWS(self, varTestID="all"):
@@ -161,6 +239,8 @@ class DrwsPO():
             f_conditions = l_d_row[i]['f_conditions']
             d_['ID'] = ID
             d_['f_conditions'] = f_conditions
+            d_['WEIGHT_REPORT__IDCARD'] = self.WEIGHT_REPORT__IDCARD
+
 
             # 获取原始数据
             print("判定居民体重状态DRWS =>", d_)
