@@ -385,6 +385,8 @@ class EfrbPO():
             f_conditions = l_d_row[i]['f_conditions']
             d_param['f_conditions'] = f_conditions
             d_param['表注释'] = '评估因素规则库EFRB'
+            d_param['WEIGHT_REPORT__IDCARD'] = self.WEIGHT_REPORT__IDCARD
+
             s = "测试 => " + str(d_param)
             Color_PO.outColor([{"35": s}])
             Log_PO.logger.info(s)
@@ -410,6 +412,7 @@ class EfrbPO():
         d_['ID'] = varTestID
         d_['f_conditions'] = f_conditions
         d_['表注释'] = '评估因素规则库EFRB'
+        d_['WEIGHT_REPORT__IDCARD'] = self.WEIGHT_REPORT__IDCARD
         d_.update(d_param)
         s = "测试 => " + str(d_)
         Color_PO.outColor([{"35": s}])
@@ -936,12 +939,14 @@ class EfrbPO():
         d_result['ID'] = d_param['ID']
         if 0 not in d_param['l_count']:
             d_result['result'] = 'ok'
-            Color_PO.outColor([{"32": "结果 => " + str(d_result)}])
-            Log_PO.logger.info("结果 => " + str(d_result))
+            s = "结果 => " + str(d_result)
+            Color_PO.outColor([{"32": s}])
+            Log_PO.logger.info(s)
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'ok', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableEF, d_param['caseTotal'], d_param['ID']))
         else:
             d_result['result'] = 'error'
-            Color_PO.outColor([{"31": "结果 => " + str(d_result)}])
-            Log_PO.logger.info("结果 => " + str(d_result))
+            s = "结果 => " + str(d_result)
+            Color_PO.outColor([{"31": s}])
+            Log_PO.logger.info(s)
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE(), f_caseTotal=%s where ID = %s" % (self.tableEF, d_param['caseTotal'], d_param['ID']))
 

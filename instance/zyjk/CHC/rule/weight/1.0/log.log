@@ -128,3 +128,96 @@
 2025-06-18 16:41:07,310 - INFO: {'正向': 'ok', '条件': ['BMI>=18.5', 'BMI<24.0'], '测试数据': {'BMI': 18.5}, '人群分类': '普通人群', '人群分类编码': '3', '体重状态': '正常', '体重状态编码': '2', 'i': 'curl -X POST "http://192.168.0.243:8014/weight/saveOrUpdateWeightManage" -H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Authorization:" -H "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"basicIntake\":100,\"bmi\":18.5,\"categoryCode\":\"3\",\"disease\":\"无\",\"foodAdvice\":\"建议饮食\",\"height\":175,\"hipline\":33,\"id\":1808,\"idCard\":\"310110194905162418\",\"orgCode\":\"0000001\",\"orgName\":\"静安精神病院\",\"sex\":\"男\",\"sexCode\":\"1\",\"sportAdvice\":\"建议运动\",\"targetWeight\":50,\"waistHip\":0.9,\"waistline\":33,\"weight\":55,\"weightRecordId\":0}"', 'sql__WEIGHT_REPORT': 'select WEIGHT_STATUS from WEIGHT_REPORT where ID = 1808', 'sql__QYYH': "select WEIGHT_STATUS from QYYH where SFZH = '310110194905162418'", 'WEIGHT_REPORT__WEIGHT_STATUS': 2, 'QYYH__WEIGHT_STATUS': 2, 'result': 1}
 2025-06-18 16:41:07,375 - INFO: {'正向': 'ok', '条件': ['BMI>=18.5', 'BMI<24.0'], '测试数据': {'BMI': 21.5}, '人群分类': '普通人群', '人群分类编码': '3', '体重状态': '正常', '体重状态编码': '2', 'i': 'curl -X POST "http://192.168.0.243:8014/weight/saveOrUpdateWeightManage" -H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Authorization:" -H "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"basicIntake\":100,\"bmi\":21.5,\"categoryCode\":\"3\",\"disease\":\"无\",\"foodAdvice\":\"建议饮食\",\"height\":175,\"hipline\":33,\"id\":1808,\"idCard\":\"310110194905162418\",\"orgCode\":\"0000001\",\"orgName\":\"静安精神病院\",\"sex\":\"男\",\"sexCode\":\"1\",\"sportAdvice\":\"建议运动\",\"targetWeight\":50,\"waistHip\":0.9,\"waistline\":33,\"weight\":55,\"weightRecordId\":0}"', 'sql__WEIGHT_REPORT': 'select WEIGHT_STATUS from WEIGHT_REPORT where ID = 1808', 'sql__QYYH': "select WEIGHT_STATUS from QYYH where SFZH = '310110194905162418'", 'WEIGHT_REPORT__WEIGHT_STATUS': 2, 'QYYH__WEIGHT_STATUS': 2, 'result': 1}
 2025-06-18 16:41:07,375 - INFO: 结果 => {'ID': 2, 'result': 'ok'}
+2025-06-18 16:59:34,165 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB'}
+2025-06-18 16:59:34,173 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 16:59:34,174 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 16:59:34,510 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 16:59:34,787 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 16:59:34,788 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 16:59:34,817 - INFO: 结果 => {'table': 'a_weight10_HIRB', 'ID': 109, 'result': 'ok', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_SRL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-06-18 17:00:25,464 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'self.WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:00:25,473 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:00:25,474 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:00:25,714 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:00:25,927 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:00:25,928 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:00:25,957 - INFO: 结果 => {'table': 'a_weight10_HIRB', 'ID': 109, 'result': 'ok', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_SRL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-06-18 17:00:52,814 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB'}
+2025-06-18 17:00:53,036 - INFO: {'正向': 'error', '人群分类': '人群分类=1', '评估因素编码': 'TZ_RQFL004', 'WEIGHT_REPORT__ID': 1808, '身份证': '310110194905162418', 'i': 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"assessRuleRecord\":[{\"assessId\":0,\"createDate\":\"\",\"id\":0,\"riskFactor\":\"\",\"riskFactorRuleCodes\":[],\"ruleCode\":\"\",\"ruleGroup\":\"\",\"suggestedValue\":\"\",\"weightReportId\":0}],\"bmi\":10.1,\"categoryCode\":1,\"disease\":\"\",\"enableRule\":[{\"description\":\"\",\"diseaseCode\":\"\",\"diseaseName\":\"\",\"enable\":0,\"id\":0,\"interveneType\":0,\"judgment\":\"\",\"orgCode\":\"\",\"ruleCode\":\"\",\"ruleGroup\":\"\",\"ruleName\":\"\",\"serialNumber\":0}],\"height\":175,\"idCard\":\"310110194905162418\",\"orgCode\":\"\",\"orgName\":\"\",\"sex\":\"男\",\"sexCode\":1,\"weight\":55,\"weightReportId\":1808}"', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_RQFL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-06-18 17:00:53,039 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'error'}
+2025-06-18 17:01:59,820 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB'}
+2025-06-18 17:02:00,048 - INFO: {'正向': 'error', '人群分类': '人群分类=1', '评估因素编码': 'TZ_RQFL004', 'WEIGHT_REPORT__ID': 1808, '身份证': '310110194905162418', 'i': 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"assessRuleRecord\":[{\"assessId\":0,\"createDate\":\"\",\"id\":0,\"riskFactor\":\"\",\"riskFactorRuleCodes\":[],\"ruleCode\":\"\",\"ruleGroup\":\"\",\"suggestedValue\":\"\",\"weightReportId\":0}],\"bmi\":10.1,\"categoryCode\":1,\"disease\":\"\",\"enableRule\":[{\"description\":\"\",\"diseaseCode\":\"\",\"diseaseName\":\"\",\"enable\":0,\"id\":0,\"interveneType\":0,\"judgment\":\"\",\"orgCode\":\"\",\"ruleCode\":\"\",\"ruleGroup\":\"\",\"ruleName\":\"\",\"serialNumber\":0}],\"height\":175,\"idCard\":\"310110194905162418\",\"orgCode\":\"\",\"orgName\":\"\",\"sex\":\"男\",\"sexCode\":1,\"weight\":55,\"weightReportId\":1808}"', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_RQFL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-06-18 17:02:00,049 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'error'}
+2025-06-18 17:02:56,796 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:02:57,022 - INFO: {'正向': 'error', '人群分类': '人群分类=1', '评估因素编码': 'TZ_RQFL004', 'WEIGHT_REPORT__ID': 1808, '身份证': '310110194905162418', 'i': 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"assessRuleRecord\":[{\"assessId\":0,\"createDate\":\"\",\"id\":0,\"riskFactor\":\"\",\"riskFactorRuleCodes\":[],\"ruleCode\":\"\",\"ruleGroup\":\"\",\"suggestedValue\":\"\",\"weightReportId\":0}],\"bmi\":10.1,\"categoryCode\":1,\"disease\":\"\",\"enableRule\":[{\"description\":\"\",\"diseaseCode\":\"\",\"diseaseName\":\"\",\"enable\":0,\"id\":0,\"interveneType\":0,\"judgment\":\"\",\"orgCode\":\"\",\"ruleCode\":\"\",\"ruleGroup\":\"\",\"ruleName\":\"\",\"serialNumber\":0}],\"height\":175,\"idCard\":\"310110194905162418\",\"orgCode\":\"\",\"orgName\":\"\",\"sex\":\"男\",\"sexCode\":1,\"weight\":55,\"weightReportId\":1808}"', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_RQFL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-06-18 17:02:57,022 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'error'}
+2025-06-18 17:03:27,725 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '420204202201011268'}
+2025-06-18 17:03:27,948 - INFO: {'正向': 'ok', '人群分类': '人群分类=1'}
+2025-06-18 17:03:27,948 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'ok'}
+2025-06-18 17:03:40,387 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '420204202201011268'}
+2025-06-18 17:03:40,599 - INFO: {'正向': 'ok', '人群分类': '人群分类=1'}
+2025-06-18 17:03:40,599 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'ok'}
+2025-06-18 17:03:50,482 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '420204202201011268'}
+2025-06-18 17:03:50,699 - INFO: {'正向': 'ok', '人群分类': '人群分类=1'}
+2025-06-18 17:03:50,699 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'ok'}
+2025-06-18 17:07:21,135 - INFO: 判定居民体重状态DRWS =>{'table': 'a_weight10_DRWS', 'ID': 1, 'f_conditions': 'BMI＜18.5', 'WEIGHT_REPORT__IDCARD': '420204202201011268'}
+2025-06-18 17:07:21,136 - INFO: 测试数据集合 => {'satisfied': [{'BMI': 12.8}], 'notSatisfied': [{'BMI': 26.2}]}
+2025-06-18 17:07:21,211 - INFO: {'正向': 'ok', '条件': ['BMI<18.5'], '测试数据': {'BMI': 12.8}, '人群分类': '普通人群', '人群分类编码': '3', '体重状态': '体重偏低', '体重状态编码': '1', 'i': 'curl -X POST "http://192.168.0.243:8014/weight/saveOrUpdateWeightManage" -H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Authorization:" -H "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"basicIntake\":100,\"bmi\":12.8,\"categoryCode\":\"3\",\"disease\":\"无\",\"foodAdvice\":\"建议饮食\",\"height\":175,\"hipline\":33,\"id\":2,\"idCard\":\"420204202201011268\",\"orgCode\":\"0000001\",\"orgName\":\"静安精神病院\",\"sex\":\"男\",\"sexCode\":\"1\",\"sportAdvice\":\"建议运动\",\"targetWeight\":50,\"waistHip\":0.9,\"waistline\":33,\"weight\":55,\"weightRecordId\":0}"', 'sql__WEIGHT_REPORT': 'select WEIGHT_STATUS from WEIGHT_REPORT where ID = 2', 'sql__QYYH': "select WEIGHT_STATUS from QYYH where SFZH = '420204202201011268'", 'WEIGHT_REPORT__WEIGHT_STATUS': 1, 'QYYH__WEIGHT_STATUS': 1, 'result': 1}
+2025-06-18 17:07:21,211 - INFO: 结果 => {'ID': 1, 'result': 'ok'}
+2025-06-18 17:07:55,972 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '420204202201011268'}
+2025-06-18 17:07:56,203 - INFO: {'正向': 'ok', '人群分类': '人群分类=1'}
+2025-06-18 17:07:56,203 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'ok'}
+2025-06-18 17:08:33,813 - INFO: 判定居民体重状态DRWS =>{'table': 'a_weight10_DRWS', 'ID': 1, 'f_conditions': 'BMI＜18.5', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:08:33,814 - INFO: 测试数据集合 => {'satisfied': [{'BMI': 16.0}], 'notSatisfied': [{'BMI': 22.9}]}
+2025-06-18 17:08:33,902 - INFO: {'正向': 'ok', '条件': ['BMI<18.5'], '测试数据': {'BMI': 16.0}, '人群分类': '普通人群', '人群分类编码': '3', '体重状态': '体重偏低', '体重状态编码': '1', 'i': 'curl -X POST "http://192.168.0.243:8014/weight/saveOrUpdateWeightManage" -H "Request-Origion:SwaggerBootstrapUi" -H "accept:*/*" -H "Authorization:" -H "Content-Type:application/json" -d "{\"age\":0,\"ageFloat\":0.0,\"ageMonth\":0,\"basicIntake\":100,\"bmi\":16.0,\"categoryCode\":\"3\",\"disease\":\"无\",\"foodAdvice\":\"建议饮食\",\"height\":175,\"hipline\":33,\"id\":1808,\"idCard\":\"310110194905162418\",\"orgCode\":\"0000001\",\"orgName\":\"静安精神病院\",\"sex\":\"男\",\"sexCode\":\"1\",\"sportAdvice\":\"建议运动\",\"targetWeight\":50,\"waistHip\":0.9,\"waistline\":33,\"weight\":55,\"weightRecordId\":0}"', 'sql__WEIGHT_REPORT': 'select WEIGHT_STATUS from WEIGHT_REPORT where ID = 1808', 'sql__QYYH': "select WEIGHT_STATUS from QYYH where SFZH = '310110194905162418'", 'WEIGHT_REPORT__WEIGHT_STATUS': 1, 'QYYH__WEIGHT_STATUS': 1, 'result': 1}
+2025-06-18 17:08:33,903 - INFO: 结果 => {'ID': 1, 'result': 'ok'}
+2025-06-18 17:08:47,911 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 51, 'f_conditions': '人群分类=1', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:08:48,131 - INFO: {'正向': 'ok', '人群分类': '人群分类=1'}
+2025-06-18 17:08:48,131 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 51, 'result': 'ok'}
+2025-06-18 17:09:00,260 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:09:00,271 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:09:00,272 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:09:00,501 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:09:00,716 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:09:00,717 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:09:00,746 - INFO: [{'31': 'error, id=109'}]
+2025-06-18 17:09:39,157 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:09:39,165 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:09:39,166 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:09:40,384 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:09:40,601 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:09:40,601 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:09:40,629 - INFO: [{'31': 'error, id=109'}]
+2025-06-18 17:10:04,022 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:10:04,030 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:10:04,031 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:10:04,246 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:10:04,468 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:10:04,468 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:10:04,496 - INFO: [{'31': 'error, id=109'}]
+2025-06-18 17:11:44,456 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:11:44,465 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:11:44,466 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:11:44,685 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:11:44,912 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:11:44,913 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:11:44,941 - INFO: [{'31': '[ID: 109] => error'}]
+2025-06-18 17:12:38,838 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'WEIGHT_REPORT__IDCARD': '420204202201011268'}
+2025-06-18 17:12:38,847 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '420204202201011268', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:12:38,848 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:12:39,074 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:12:39,285 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:12:39,285 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:12:39,312 - INFO: 结果 => {'table': 'a_weight10_HIRB', 'ID': 109, 'result': 'ok', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_SRL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}
+2025-06-18 17:13:01,576 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:13:01,578 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:13:01,797 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:13:02,008 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:13:02,009 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:13:11,119 - INFO: 测试 => {'table': 'a_weight10_HIRB', 'ID': 109, 'f_conditions': "TZ_AGE002 ='是'", 'f_code': 'TZ_SRL004', '表注释': '测试健康干预规则库HIRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418'}
+2025-06-18 17:13:11,129 - INFO: 测试 => {'table': 'a_weight10_EFRB', 'ID': 55, 'f_conditions': '年龄>=4 and 年龄＜10', '表注释': '评估因素规则库EFRB', 'WEIGHT_REPORT__IDCARD': '310110194905162418', 'categoryCode': 100, 'disease': '脑卒中'}
+2025-06-18 17:13:11,130 - INFO: 测试数据集 => {'satisfied': [{'年龄': 4}, {'年龄': 9}], 'notSatisfied': [{'年龄': 0}, {'年龄': 3}, {'年龄': 10}, {'年龄': 19}]}
+2025-06-18 17:13:11,350 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 4}}
+2025-06-18 17:13:11,563 - INFO: {'正向': 'ok', '条件': '年龄>=4 and 年龄＜10', '测试数据': {'年龄': 9}}
+2025-06-18 17:13:11,564 - INFO: 结果 => {'table': 'a_weight10_EFRB', 'ID': 55, 'result': 'ok'}
+2025-06-18 17:13:11,591 - INFO: 结果 => {'table': 'a_weight10_HIRB', 'ID': 109, 'result': 'ok', '实际值': ['TZ_AGE002', 'TZ_SRL004'], '预期值': 'TZ_SRL004', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 2'}

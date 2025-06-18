@@ -199,6 +199,7 @@ class HirbPO():
         d_param['f_conditions'] = f_conditions
         d_param['f_code'] =  l_d_row[0]['f_code']
         d_param['表注释'] = '测试健康干预规则库HIRB'
+        d_param['WEIGHT_REPORT__IDCARD'] = self.WEIGHT_REPORT__IDCARD
         s = "测试 => " + str(d_param)
         Color_PO.outColor([{"35": s}])
         Log_PO.logger.info(s)
@@ -376,8 +377,9 @@ class HirbPO():
         else:
             # print("预期值:", d_tmp['预期值'] )
             # print("实际值:", d_tmp['实际值'])
-            Color_PO.outColor([{"32": "[ID: " + str(d_param['ID']) + "] => error"}])
-            Log_PO.logger.info([{"31": "error, id=" + str(d_param['ID'])}])
+            s = "[ID: " + str(d_param['ID']) + "] => error"
+            Color_PO.outColor([{"31": s}])
+            Log_PO.logger.info(s)
             Sqlserver_PO_CHC5G.execute("update %s set f_result = 'error', f_updateDate = GETDATE() where ID = %s" % (self.tableHI, d_param['ID']))
 
     def HIRB_case_or(self, d_param):

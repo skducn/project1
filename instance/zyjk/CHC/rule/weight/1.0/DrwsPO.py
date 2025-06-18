@@ -243,8 +243,9 @@ class DrwsPO():
 
 
             # 获取原始数据
-            print("判定居民体重状态DRWS =>", d_)
-            Log_PO.logger.info("判定居民体重状态DRWS =>" + str(d_))
+            s = "判定居民体重状态DRWS =>" + str(d_)
+            print(s)
+            Log_PO.logger.info(s)
 
             # 统计所有组合的数量
             varTestCount = f_conditions.count("or")
