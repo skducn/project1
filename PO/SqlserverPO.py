@@ -1193,10 +1193,13 @@ class SqlserverPO:
         #     self.close()
         #     self.conn.close()
 
+
+
+
     def insertBeforeField(self, table_name, reference_column, new_column_name, new_column_type):
 
-        # 3.12 插入字段，在某个字段前插入字段
-        # 表名、要添加的字段信息以及参考字段
+        # 3.12 插入字段，在参考字段前插入新字段
+        # 表名，参考字段，新字段，新字段类型
         # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'tags', 'status', 'VARCHAR(12)')
         # table_name = 'your_table_name'
         # new_column_name = 'new_column'
@@ -2289,7 +2292,8 @@ if __name__ == "__main__":
     # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
     # todo 社区健康平台（全市）
-    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
 
     # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
     # print(Sqlserver_PO.isTable("a_phs_auth"))
@@ -2300,7 +2304,7 @@ if __name__ == "__main__":
     # Sqlserver_PO.copyTable('a_phs_auth', 'a_phs_auth_app')
     #
     # # 在url前插入字段case1
-    # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'url', 'case1', 'varchar(111)')
+    Sqlserver_PO.insertBeforeField('a_weight10_EFRB', 'id', 'id_pk', 'int(5)')
     # # 在tags前插入字段status
     # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'tags', 'status', 'varchar(66)')
 
