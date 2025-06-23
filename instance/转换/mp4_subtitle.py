@@ -1,3 +1,13 @@
+# coding=utf-8
+#***************************************************************
+# Author     : John
+# Created on : 2025-6-23
+# Description: # 获取mp4的字幕文件
+# 使用：python mp4_subtitle.py /Users/linghuchong/Desktop/400.mp4 -o test33.txt
+# pip install moviepy==1.0.3  # 稳定版本
+# /Applications/Python\ 3.9/Install\ Certificates.command
+#***************************************************************
+
 import os
 import argparse
 import tempfile
@@ -7,9 +17,6 @@ from moviepy.editor import VideoFileClip
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
-#  python test3.py /Users/linghuchong/Desktop/400.mp4 -o test33.srt
-# pip install moviepy==1.0.3  # 稳定版本
-# /Applications/Python\ 3.9/Install\ Certificates.command
 
 
 def extract_audio(video_path, audio_output_path):
@@ -83,4 +90,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()    
+    main()

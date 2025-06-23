@@ -30,9 +30,13 @@ from PO.LogPO import *
 # Log_PO = LogPO(filename=Configparser_PO.DATA("logfile"), level="info")
 
 # 带路径的文件
-fileNameBycurrDate = str(Time_PO.getDateByMinus()) + ".json"  # 2025-06-06.json
 fileNameByAll  = "all.json"
-fileNameByPath = "/Users/linghuchong/Desktop/stock/" + str(Time_PO.getDateByMinus()) + ".txt"
+
+# fileNameBycurrDate = str(Time_PO.getDateByMinus()) + ".json"  # 2025-06-06.json
+# fileNameByPath = "/Users/linghuchong/Desktop/stock/" + str(Time_PO.getDateByMinus()) + ".txt"
+
+fileNameBycurrDate = "2025-06-19.json"
+fileNameByPath = "/Users/linghuchong/Desktop/stock/2025-06-19.txt"
 
 
 def getLimitUp(l_area):
@@ -73,6 +77,7 @@ def getLimitUp(l_area):
                 # print(l_)  # ['1', '600805', '悦达投资', '股吧', '资金流', '数据', '5.34', '10.10%', '0.49', '70.91万', '3.72亿',
                 # '10.31%', '5.34', '4.84', '4.84', '4.85', '1.82', '8.34%', '71.77', '1.04']
                 d_['date'] = str(Time_PO.getDateByMinus())
+                # d_['date'] = '2025-06-19'
                 d_['code'] = l_[1]
                 d_['name'] = l_[2]
                 d_['todayStartPrice'] = l_[14]  # 今开
