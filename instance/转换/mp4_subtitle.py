@@ -4,6 +4,7 @@
 # Created on : 2025-6-23
 # Description: # 获取mp4的字幕文件
 # 使用：python mp4_subtitle.py /Users/linghuchong/Desktop/400.mp4 -o test33.txt
+# python mp4_subtitle.py /Users/linghuchong/Desktop/throughAcross.mp4 -o throughAcross.txt
 # pip install moviepy==1.0.3  # 稳定版本
 # /Applications/Python\ 3.9/Install\ Certificates.command
 #***************************************************************
