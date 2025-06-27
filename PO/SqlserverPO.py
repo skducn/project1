@@ -306,6 +306,7 @@ class SqlserverPO:
         # 定义要执行的存储过程及其参数（若有）
             # varProcedureName = '存储过程名'
             # params = ('参数1值', '参数2值', ...)'''
+        # Sqlserver_PO.execCall("CreateTestData100", (3,))
 
         try:
             self.cur.callproc(varProcedureName, params)
