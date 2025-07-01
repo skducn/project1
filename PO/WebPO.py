@@ -105,6 +105,8 @@ from PO.DomPO import *
 
 import requests, subprocess, os, json
 # import bs4, ddddocr
+import random
+
 from selenium.webdriver.support.ui import Select
 
 import logging
@@ -784,6 +786,91 @@ class WebPO(DomPO):
         return len_cur
 
 
+
+    # test_count = 10
+    def click_random_element(self):
+        # 点击随机元素
+
+        action_type = "点击随机元素"
+        try:
+            # 查找所有可点击的元素
+            clickable_elements = self.driver.find_elements(By.CSS_SELECTOR, 'a, button, input[type="submit"]')
+            if clickable_elements:
+                random_element = random.choice(clickable_elements)
+                # 获取元素的 XPath 地址
+                element_xpath = self.get_element_xpath(random_element)
+                element_text = random_element.text if random_element.text else "无文本内容"
+                logging.info(f"操作类型: {action_type}, 输入: 点击元素 - XPath: {element_xpath}, 文本内容: {element_text}")
+                random_element.click()
+                logging.info(f"操作类型: {action_type}, 结果: 成功")
+            else:
+                logging.info(f"操作类型: {action_type}, 结果: 未找到可点击元素")
+        except Exception as e:
+            logging.error(f"操作类型: {action_type}, 结果: 出错 - {e}")
+
+    # 1 usage
+    def input_random_text(self):
+        # 输入随机文本
+        action_type = "输入随机文本"
+        try:
+            # 查找所有输入框
+            input_elements = self.driver.find_elements(By.CSS_SELECTOR, 'input[type="text"], textarea')
+            if input_elements:
+                random_input = random.choice(input_elements)
+                # 获取输入框元素的 XPath 地址
+                input_xpath = self.get_element_xpath(random_input)
+                random_text = ''.join(random.choices('abcdefghijklmnopqrstuvwxyz', k=5))
+                logging.info(f"操作类型: {action_type}, 输入: 在 XPath 为 {input_xpath} 的输入框输入 - {random_text}")
+                random_input.send_keys(random_text)
+                logging.info(f"操作类型: {action_type}, 结果: 成功")
+            else:
+                logging.info(f"操作类型: {action_type}, 结果: 未找到输入框")
+        except Exception as e:
+            logging.error(f"操作类型: {action_type}, 结果: 出错 - {e}")
+
+    # 1 usage
+    def scroll_page(self):
+        action_type = "滚动页面"
+        try:
+            # 随机滚动页面
+            scroll_distance = random.randint(100, 500)
+            logging.info(f"操作类型: {action_type}, 输入: 滚动距离 - {scroll_distance}")
+            self.driver.execute_script(f"window.scrollBy(0, {scroll_distance});")
+            logging.info(f"操作类型: {action_type}, 结果: 成功")
+        except Exception as e:
+            logging.error(f"操作类型: {action_type}, 结果: 出错 - {e}")
+
+
+    def get_element_xpath(self, element):
+        """
+        获取元素的 XPath 地址
+        """
+        xpath = self.driver.execute_script('''
+            var getPathTo = function (element) {
+                if (element.id!=='') {
+                    return '//*[@id="' + element.id + '"]';
+                }
+
+                if (element === document.body) {
+                    return element.tagName;
+                }
+
+                var ix = 0;
+                var siblings = element.parentNode.childNodes;
+                for (var i = 0; i < siblings.length; i++) {
+                    var sibling = siblings[i];
+                    if (sibling === element) {
+                        return getPathTo(element.parentNode) + '/' + element.tagName + '[' + (ix + 1) + ']';
+                    }
+
+                    if (sibling.nodeType === 1 && sibling.tagName === element.tagName) {
+                        ix++;
+                    }
+                }
+            };
+            return getPathTo(arguments[0]);
+        ''', element)
+        return xpath
 
 
 if __name__ == "__main__":

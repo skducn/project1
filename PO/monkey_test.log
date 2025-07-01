@@ -1,0 +1,210 @@
+2025-07-01 11:13:51,583 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 300
+2025-07-01 11:13:51,594 - INFO - 操作类型: 滚动页面, 结果: 成功
+2025-07-01 11:13:54,593 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 239
+2025-07-01 11:13:54,601 - INFO - 操作类型: 滚动页面, 结果: 成功
+2025-07-01 11:13:57,032 - INFO - 操作类型: 点击随机元素, 输入: 点击元素 - XPath: //*[@id="ssr-content"]/DIV[2]/DIV[1]/DIV[2]/DIV[2]/DIV[3]/DIV[1]/DIV[4]/DIV[1]/DIV[1]/A[1], 文本内容: 生活趣闻侃百科
+2025-07-01 11:13:57,120 - INFO - 操作类型: 点击随机元素, 结果: 成功
+2025-07-01 11:13:59,229 - INFO - 操作类型: 点击随机元素, 输入: 点击元素 - XPath: //*[@id="ssr-content"]/DIV[1]/DIV[1]/DIV[2]/A[1], 文本内容: 百度首页
+2025-07-01 11:14:00,916 - INFO - 操作类型: 点击随机元素, 结果: 成功
+2025-07-01 11:14:02,745 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 132
+2025-07-01 11:14:02,756 - INFO - 操作类型: 滚动页面, 结果: 成功
+2025-07-01 11:14:21,226 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="xcp-publish-main-right_1751339658820"]/DIV[1]/DIV[1]/DIV[1]/TEXTAREA[1] 的输入框输入 - oseui
+2025-07-01 11:14:21,412 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:23,033 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="ssr-content"]/DIV[1]/DIV[1]/DIV[1]/FORM[1]/DIV[2]/DIV[1]/INPUT[1] 的输入框输入 - xficb
+2025-07-01 11:14:23,082 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:24,138 - INFO - 操作类型: 点击随机元素, 输入: 点击元素 - XPath: //*[@id="ssr-content"]/DIV[2]/DIV[1]/DIV[2]/DIV[2]/DIV[3]/DIV[1]/DIV[1]/DIV[1]/DIV[1]/A[1], 文本内容: 城市壹周刊
+2025-07-01 11:14:24,211 - INFO - 操作类型: 点击随机元素, 结果: 成功
+2025-07-01 11:14:26,711 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 252
+2025-07-01 11:14:26,722 - INFO - 操作类型: 滚动页面, 结果: 成功
+2025-07-01 11:14:28,249 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="xcp-publish-main-right_1751339658820"]/DIV[1]/DIV[1]/DIV[1]/TEXTAREA[1] 的输入框输入 - pgqwf
+2025-07-01 11:14:28,287 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:46,236 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="xcp-publish-main-right_1751339684899"]/DIV[1]/DIV[1]/DIV[1]/TEXTAREA[1] 的输入框输入 - lcxkj
+2025-07-01 11:14:46,472 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:48,131 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="xcp-publish-main-right_1751339684899"]/DIV[1]/DIV[1]/DIV[1]/TEXTAREA[1] 的输入框输入 - mbihw
+2025-07-01 11:14:48,161 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:50,986 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 116
+2025-07-01 11:14:50,994 - INFO - 操作类型: 滚动页面, 结果: 成功
+2025-07-01 11:14:53,324 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="xcp-publish-main-right_1751339684899"]/DIV[1]/DIV[1]/DIV[1]/TEXTAREA[1] 的输入框输入 - tcxss
+2025-07-01 11:14:53,359 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:54,564 - INFO - 操作类型: 输入随机文本, 输入: 在 XPath 为 //*[@id="xcp-publish-main-right_1751339684899"]/DIV[1]/DIV[1]/DIV[1]/TEXTAREA[1] 的输入框输入 - zbnrg
+2025-07-01 11:14:54,592 - INFO - 操作类型: 输入随机文本, 结果: 成功
+2025-07-01 11:14:56,698 - INFO - 操作类型: 点击随机元素, 输入: 点击元素 - XPath: //*[@id="ssr-content"]/DIV[4]/DIV[1]/DIV[1]/DIV[1]/A[3], 文本内容: 意见反馈
+2025-07-01 11:14:56,778 - INFO - 操作类型: 点击随机元素, 结果: 成功
+2025-07-01 11:14:58,207 - INFO - 操作类型: 点击随机元素, 输入: 点击元素 - XPath: //*[@id="ssr-content"]/DIV[2]/DIV[1]/DIV[2]/DIV[2]/DIV[4]/DIV[1]/DIV[1]/A[1], 文本内容: 无文本内容
+2025-07-01 11:14:59,244 - ERROR - 操作类型: 点击随机元素, 结果: 出错 - Message: element click intercepted: Element <a class="YHR87" href="https://top.baidu.com/board?platform=pc&amp;sa=pcindex_entry" target="_blank" data-testid="top-entry">...</a> is not clickable at point (964, 9). Other element would receive the click: <div class="MtsE-">...</div>
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001075490b0 chromedriver + 782512
+4   chromedriver                        0x0000000107546f0b chromedriver + 773899
+5   chromedriver                        0x00000001075445a2 chromedriver + 763298
+6   chromedriver                        0x0000000107543cc0 chromedriver + 761024
+7   chromedriver                        0x000000010753634d chromedriver + 705357
+8   chromedriver                        0x00000001075684e2 chromedriver + 910562
+9   chromedriver                        0x0000000107535cc8 chromedriver + 703688
+10  chromedriver                        0x000000010756869e chromedriver + 911006
+11  chromedriver                        0x0000000107590073 chromedriver + 1073267
+12  chromedriver                        0x00000001075682b3 chromedriver + 910003
+13  chromedriver                        0x0000000107534507 chromedriver + 697607
+14  chromedriver                        0x0000000107535171 chromedriver + 700785
+15  chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+16  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+17  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+18  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+19  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+20  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+21  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+22  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+23  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+24  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+
+2025-07-01 11:15:00,830 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 250
+2025-07-01 11:15:00,837 - INFO - 操作类型: 滚动页面, 结果: 成功
+2025-07-01 11:15:03,073 - INFO - 操作类型: 输入随机文本, 结果: 未找到输入框
+2025-07-01 11:15:05,604 - INFO - 操作类型: 滚动页面, 输入: 滚动距离 - 434
+2025-07-01 11:15:05,607 - ERROR - 操作类型: 滚动页面, 结果: 出错 - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001074c4ad0 chromedriver + 240336
+4   chromedriver                        0x0000000107570ba8 chromedriver + 945064
+5   chromedriver                        0x000000010758fa1c chromedriver + 1071644
+6   chromedriver                        0x00000001075682b3 chromedriver + 910003
+7   chromedriver                        0x0000000107534507 chromedriver + 697607
+8   chromedriver                        0x0000000107535171 chromedriver + 700785
+9   chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+10  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+11  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+12  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+13  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+14  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+15  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+16  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+17  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+
+2025-07-01 11:15:07,956 - ERROR - 操作类型: 输入随机文本, 结果: 出错 - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001074c4ad0 chromedriver + 240336
+4   chromedriver                        0x0000000107570ba8 chromedriver + 945064
+5   chromedriver                        0x000000010758fa1c chromedriver + 1071644
+6   chromedriver                        0x00000001075682b3 chromedriver + 910003
+7   chromedriver                        0x0000000107534507 chromedriver + 697607
+8   chromedriver                        0x0000000107535171 chromedriver + 700785
+9   chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+10  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+11  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+12  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+13  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+14  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+15  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+16  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+17  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+
+2025-07-01 11:15:08,987 - ERROR - 操作类型: 输入随机文本, 结果: 出错 - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001074c4ad0 chromedriver + 240336
+4   chromedriver                        0x0000000107570ba8 chromedriver + 945064
+5   chromedriver                        0x000000010758fa1c chromedriver + 1071644
+6   chromedriver                        0x00000001075682b3 chromedriver + 910003
+7   chromedriver                        0x0000000107534507 chromedriver + 697607
+8   chromedriver                        0x0000000107535171 chromedriver + 700785
+9   chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+10  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+11  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+12  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+13  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+14  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+15  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+16  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+17  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+
+2025-07-01 11:15:11,684 - ERROR - 操作类型: 输入随机文本, 结果: 出错 - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001074c4ad0 chromedriver + 240336
+4   chromedriver                        0x0000000107570ba8 chromedriver + 945064
+5   chromedriver                        0x000000010758fa1c chromedriver + 1071644
+6   chromedriver                        0x00000001075682b3 chromedriver + 910003
+7   chromedriver                        0x0000000107534507 chromedriver + 697607
+8   chromedriver                        0x0000000107535171 chromedriver + 700785
+9   chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+10  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+11  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+12  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+13  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+14  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+15  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+16  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+17  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+
+2025-07-01 11:15:14,151 - ERROR - 操作类型: 输入随机文本, 结果: 出错 - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001074c4ad0 chromedriver + 240336
+4   chromedriver                        0x0000000107570ba8 chromedriver + 945064
+5   chromedriver                        0x000000010758fa1c chromedriver + 1071644
+6   chromedriver                        0x00000001075682b3 chromedriver + 910003
+7   chromedriver                        0x0000000107534507 chromedriver + 697607
+8   chromedriver                        0x0000000107535171 chromedriver + 700785
+9   chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+10  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+11  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+12  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+13  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+14  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+15  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+16  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+17  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+
+2025-07-01 11:15:15,727 - ERROR - 操作类型: 点击随机元素, 结果: 出错 - Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=137.0.7151.120)
+Stacktrace:
+0   chromedriver                        0x0000000107a28728 chromedriver + 5891880
+1   chromedriver                        0x0000000107a1fe7a chromedriver + 5856890
+2   chromedriver                        0x00000001074f0400 chromedriver + 418816
+3   chromedriver                        0x00000001074c4ad0 chromedriver + 240336
+4   chromedriver                        0x0000000107570ba8 chromedriver + 945064
+5   chromedriver                        0x000000010758fa1c chromedriver + 1071644
+6   chromedriver                        0x00000001075682b3 chromedriver + 910003
+7   chromedriver                        0x0000000107534507 chromedriver + 697607
+8   chromedriver                        0x0000000107535171 chromedriver + 700785
+9   chromedriver                        0x00000001079e64d0 chromedriver + 5620944
+10  chromedriver                        0x00000001079ea45f chromedriver + 5637215
+11  chromedriver                        0x00000001079c18e2 chromedriver + 5470434
+12  chromedriver                        0x00000001079eadcf chromedriver + 5639631
+13  chromedriver                        0x00000001079b00a4 chromedriver + 5398692
+14  chromedriver                        0x0000000107a0d688 chromedriver + 5781128
+15  chromedriver                        0x0000000107a0d850 chromedriver + 5781584
+16  chromedriver                        0x0000000107a1fa41 chromedriver + 5855809
+17  libsystem_pthread.dylib             0x00007ff807f9e4e1 _pthread_start + 125
+18  libsystem_pthread.dylib             0x00007ff807f99f6b thread_start + 15
+

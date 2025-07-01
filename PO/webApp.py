@@ -35,16 +35,19 @@
 获取验证码 getCode()
 """
 
+import time
+
+import logging
+logging.basicConfig(filename='monkey_test.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 from PO.WebPO import *
-
 # Web_PO = WebPO("noChrome")
 Web_PO = WebPO("chrome")
 
 
 # # print("1.1 打开网站".center(100, "-"))
-# Web_PO.openURL("https://baijiahao.baidu.com/s?id=1753450036624046728&wfr=spider&for=pc")
-Web_PO.openURL("https://www.baidu.com")
+Web_PO.openURL("https://baijiahao.baidu.com/s?id=1753450036624046728&wfr=spider&for=pc")
+# Web_PO.openURL("https://www.baidu.com")
 # Web_PO.openURL("https://kyfw.12306.cn/otn/resources/login.html")
 # Web_PO.openURL("https://www.xvideos.com/video76932809/_")
 # Xvideos_PO.getInfo("https://www.xvideos.com/video76932809/_")
@@ -119,3 +122,23 @@ Web_PO.openURL("https://www.baidu.com")
 #
 # print("4.2 退出浏览器应用".center(100, "-"))
 # Web_PO.quit()
+
+
+
+# http://www.51testing.com/html/70/n-7806070.html
+# 不懂Selenium离线Monkey测试，Web测试中一定遭了不少罪！
+# 操作列表
+actions = [Web_PO.click_random_element, Web_PO.input_random_text, Web_PO.scroll_page]
+
+# 开始 Monkey 测试
+for i in range(15):
+    print(f"第 {i + 1} 次测试")
+    # 随机选择一个操作
+    random_action = random.choice(actions)
+    random_action()
+    # 随机等待一段时间，模拟用户操作间隔
+    wait_time = random.uniform(1, 3)
+    time.sleep(wait_time)
+
+# # 关闭浏览器
+# driver.quit()
