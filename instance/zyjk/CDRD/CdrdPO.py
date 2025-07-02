@@ -68,30 +68,30 @@ class CdrdPO(object):
 
         # 用户管理 - 用户表
         Sqlserver_PO.crtTableByCover('a_sys_user',
-                                     '''
-                                       user_id	int	IDENTITY(1,1) PRIMARY KEY,
-                                       nick_name nvarchar(20),
-                                       user_name nvarchar(20),
-    user_type	nvarchar(2),
-    password	nvarchar(100),
-    job_num	nvarchar(20),
-    email	nvarchar(50),
-    phonenumber	nvarchar(20),
-    sex 	int 	,
-    avatar 	nvarchar(100),
-    department_id	int	,
-    department_code	nvarchar(20),
-    department_name	nvarchar(20),
-    user_account_state	int	,
-    remark	nvarchar(500),
-    creater_by	nvarchar(20),
-    create_time	datetime	,
-    update_by	nvarchar(20),
-    update_time	datetime	,
-    pwd_update_state	int	,
-    pwd_update_time	datetime,	
-    pwd_next_update_time	datetime	
-                                    ''')
+            '''
+            user_id	int	IDENTITY(1,1) PRIMARY KEY,
+            nick_name nvarchar(20),
+            user_name nvarchar(20),
+            user_type	nvarchar(2),
+            password	nvarchar(100),
+            job_num	nvarchar(20),
+            email	nvarchar(50),
+            phonenumber	nvarchar(20),
+            sex 	int 	,
+            avatar 	nvarchar(100),
+            department_id	int	,
+            department_code	nvarchar(20),
+            department_name	nvarchar(20),
+            user_account_state	int	,
+            remark	nvarchar(500),
+            creater_by	nvarchar(20),
+            create_time	datetime	,
+            update_by	nvarchar(20),
+            update_time	datetime	,
+            pwd_update_state	int	,
+            pwd_update_time	datetime,	
+            pwd_next_update_time	datetime	
+            ''')
         Sqlserver_PO.setTableComment('a_sys_user', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_sys_user', 'user_id', '用户ID'),
         Sqlserver_PO.setFieldComment('a_sys_user', 'nick_name', '姓名'),
@@ -119,10 +119,10 @@ class CdrdPO(object):
 
         # 用户管理 - 用户角色关系表
         Sqlserver_PO.crtTableByCover('a_sys_user_role',
-                                     '''
-                                       user_id	int	,
-                                       role_id int 	
-                                    ''')
+            '''
+            user_id	int	,
+            role_id int 	
+            ''')
         Sqlserver_PO.setTableComment('a_sys_user_role', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_sys_user_role', 'user_id', '用户ID')
         Sqlserver_PO.setFieldComment('a_sys_user_role', 'role_id', '角色ID')
@@ -131,19 +131,19 @@ class CdrdPO(object):
 
         # 角色管理 - 角色表
         Sqlserver_PO.crtTableByCover('a_sys_role',
-                                     '''
-                                      role_id	int	,
-role_name	nvarchar	(20),
-role_key	nvarchar	(20),
-role_sort	int,	
-status	int	,
-menu_check_strictly	int	,
-role_creater_name	nvarchar	(20),
-role_create_time	datetime,	
-update_by	nvarchar	(20),
-update_time	datetime	,
-remark	nvarchar	(500)
-                                    ''')
+            '''
+            role_id	int	IDENTITY(1,1) PRIMARY KEY,
+            role_name	nvarchar	(20),
+            role_key	nvarchar	(20),
+            role_sort	int,	
+            status	int	,
+            menu_check_strictly	int	,
+            role_creater_name	nvarchar	(20),
+            role_create_time	datetime,	
+            update_by	nvarchar	(20),
+            update_time	datetime	,
+            remark	nvarchar	(500)
+            ''')
         Sqlserver_PO.setTableComment('a_sys_role', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_sys_role', 'role_id', '角色ID'),
         Sqlserver_PO.setFieldComment('a_sys_role', 'role_name', '角色名称'),
@@ -160,10 +160,10 @@ remark	nvarchar	(500)
 
         # 角色管理 - 角色菜单关系表
         Sqlserver_PO.crtTableByCover('a_sys_role_menu',
-                                     '''
-                                       rold_id	int	,
-                                       menu_id int 	
-                                    ''')
+            '''
+            rold_id	int	,
+            menu_id int 	
+            ''')
         Sqlserver_PO.setTableComment('a_sys_role_menu', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_sys_role_menu', 'rold_id', '角色ID')
         Sqlserver_PO.setFieldComment('a_sys_role_menu', 'menu_id', '菜单ID')
@@ -173,28 +173,28 @@ remark	nvarchar	(500)
 
         # 菜单管理 - 菜单表
         Sqlserver_PO.crtTableByCover('a_sys_menu',
-                                     '''
-                                       menu_id	int	,
-menu_name	nvarchar	(50),
-parent_id 	int	,
-order_num	int	,
-path	nvarchar	(200),
-component	nvarchar	(255),
-query	nvarchar	(255),
-route_name	nvarchar	(50),
-is_frame	int	,
-is_cache	int	,
-menu_type	char	(1),
-status	int	,
-visible 	int,	
-perms	nvarchar	(100),
-icon	nvarchar	(100),
-create_by	nvarchar	(64),
-create_time	datetime	,
-update_by	nvarchar	(64),
-update_time	datetime	,
-remark	nvarchar	(500)
-                                    ''')
+            '''
+            menu_id	int	IDENTITY(1,1) PRIMARY KEY,
+            menu_name	nvarchar	(50),
+            parent_id 	int	,
+            order_num	int	,
+            path	nvarchar	(200),
+            component	nvarchar	(255),
+            query	nvarchar	(255),
+            route_name	nvarchar	(50),
+            is_frame	int	,
+            is_cache	int	,
+            menu_type	char	(1),
+            status	int	,
+            visible 	int,	
+            perms	nvarchar	(100),
+            icon	nvarchar	(100),
+            create_by	nvarchar	(64),
+            create_time	datetime	,
+            update_by	nvarchar	(64),
+            update_time	datetime	,
+            remark	nvarchar	(500)
+            ''')
         Sqlserver_PO.setTableComment('a_sys_menu', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_sys_menu', 'menu_id', '菜单ID'),
         Sqlserver_PO.setFieldComment('a_sys_menu', 'menu_name', '菜单名称'),
@@ -220,12 +220,37 @@ remark	nvarchar	(500)
 
 
 
-    def procedure(self, varParam, varQty):
-        # 创建存储过程
+    def procedure(self, varProcedure, varQty=0):
+        # 通用 - 创建存储过程
 
-        varParamSql = varParam + ".sql"
-        execParam = "exec " + varParam + " @RecordCount=" + str(varQty) + ";"
+        varParamSql = varProcedure + ".sql"
+        execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
 
+        with open(varParamSql, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+        Sqlserver_PO.execute(sql_script)
+        Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+
+    def procedureMenu(self, varProcedure, l_param):
+        # 菜单管理 - 创建存储过程
+        # Cdrd_PO.procedureMenu("a_sys_menu__data",['无','m', '系统管理'])
+        # Cdrd_PO.procedureMenu("a_sys_menu__data",['系统管理', 'c', '用户管理'])
+        # Cdrd_PO.procedureMenu("a_sys_menu__data",[ '用户管理', 'f', '查询'])
+
+        if len(l_param) != 3:
+            print("error, 缺少参数")
+            exit(0)
+        else:
+            execParam = "exec " + varProcedure + " @menuType=" + str(l_param[0]) + ", @menuName=" + str(l_param[1]) + ", @menuParentName=" + str(l_param[2]) + ";"
+            print(execParam)
+
+
+            # if l_param[1] != 'm':
+            #     execParam = "exec " + varProcedure + " @menuParentName=" + str(l_param[0]) + ", @menuName=" + str(l_param[2]) + ";"
+            # else:
+            #     execParam = "exec " + varProcedure + " @menuName=" + str(l_param[2]) + ";"
+
+        varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
             sql_script = file.read()
         Sqlserver_PO.execute(sql_script)

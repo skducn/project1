@@ -33,11 +33,13 @@ BEGIN
             INSERT INTO a_sys_department (department_name, department_code, department_charge_id, department_charge_job_num,
             department_charge_name,department_creater_name,department_create_time)
             VALUES (
-                @RandomDepartment + CAST(ABS(CHECKSUM(NEWID())) % 10000 AS NVARCHAR(10)), --科室名称
+                @RandomDepartment + RIGHT('0000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000), 4), -- 科室名称 + 固定4位数
+--                 @RandomDepartment + CAST(ABS(CHECKSUM(NEWID())) % 10000 AS NVARCHAR(10)), --科室名称
                 RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 10000000 AS VARCHAR(20)), 7), -- 科室编码
                 CAST(ABS(CHECKSUM(NEWID())) % 10000 AS int), -- 科室负责人ID
                 CAST(ABS(CHECKSUM(NEWID())) % 10000 AS NVARCHAR(10)), -- 科室负责人工号
-                @RandomName + RIGHT('00000' + CAST(ABS(CHECKSUM(NEWID())) % 100000 AS VARCHAR(20)), 5), -- 科室负责人姓名
+                @RandomName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- 科室负责人姓名 + 固定5位数
+--                 @RandomName + RIGHT('00000' + CAST(ABS(CHECKSUM(NEWID())) % 100000 AS VARCHAR(20)), 5), -- 科室负责人姓名
                 @RandomName, -- 创建人
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()) -- 创建时间
             );

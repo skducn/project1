@@ -28,15 +28,13 @@ BEGIN
             DECLARE @RandomDepartment_treat_group_id int;
             SELECT TOP 1 @RandomDepartment_treat_group_id = department_treat_group_id FROM a_sys_dept_medgp ORDER BY NEWID();
 
---             DECLARE @RandomDepartment_treat_group_id int;
---             SELECT @RandomDepartment_treat_group_id = department_treat_group_id FROM a_treat WHERE department_id = @RandomId;
-
             -- 插入单条随机数据
             INSERT INTO a_sys_dept_medgp_person (department_treat_group_id, user_id, user_name, user_job_num)
             VALUES (
                     @RandomDepartment_treat_group_id,   -- 治疗组ID
                     CAST(ABS(CHECKSUM(NEWID())) % 10000 AS int),   -- 用户ID
-                    @RandomName + CAST(ABS(CHECKSUM(NEWID())) % 1000 AS NVARCHAR(10)),  -- 姓名
+                    @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 姓名 + 固定3位数
+--                     @RandomName + CAST(ABS(CHECKSUM(NEWID())) % 1000 AS NVARCHAR(10)),  -- 姓名
                     CAST(ABS(CHECKSUM(NEWID())) % 100000 AS NVARCHAR(10)) -- 工号
             );
 

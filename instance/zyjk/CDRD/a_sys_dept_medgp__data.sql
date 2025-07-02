@@ -28,15 +28,13 @@ BEGIN
             DECLARE @department_id int;
             SELECT TOP 1 @department_id = department_id FROM a_sys_department ORDER BY NEWID();
 
---             DECLARE @department_id int;
---             SELECT @department_id = department_id FROM a_sys_department WHERE department_id = ABS(CHECKSUM(NEWID())) % 10 + 1;
-
             -- 插入单条随机数据
             INSERT INTO a_sys_dept_medgp (department_id, department_treat_group_id, department_treat_group_name, department_treat_create_time)
             VALUES (
                     @department_id,   -- 科室ID
                     CAST(ABS(CHECKSUM(NEWID())) % 1000 AS int),   -- 医疗组ID
-                    @RandomTreat + CAST(ABS(CHECKSUM(NEWID())) % 1000 AS NVARCHAR(10)),  -- 医疗组名称
+                    @RandomTreat + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 医疗组名称 + 固定4位数
+--                     @RandomTreat + CAST(ABS(CHECKSUM(NEWID())) % 1000 AS NVARCHAR(10)),  -- 医疗组名称
                     DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()) -- 医疗组创建时间
             );
 
