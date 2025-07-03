@@ -268,6 +268,26 @@ class SqlserverPO:
             # print(str(e))  # table hh already exists
             # print(NameError(e))  # table hh already exists
             print(repr(e))  # OperationalError('table hh already exists')
+    def select2(self, sql):
+
+        ''' 1.1 查询 '''
+
+        try:
+            self.conn.commit()
+            self.cur.execute(sql)
+            result = self.cur.fetchall()
+            # 获取 PRINT 消息
+            print("\nPRINT 输出内容:")
+            for message in self.cur.messages:
+                print(message[1])  # message[1] 是实际的字符串信息
+
+
+            return result
+        except Exception as e:
+            # print(e.args)  # ('table hh already exists',)
+            # print(str(e))  # table hh already exists
+            # print(NameError(e))  # table hh already exists
+            print(repr(e))  # OperationalError('table hh already exists')
 
     def executeParams(self, sql, params=None):
         with self.conn.cursor() as cursor:
@@ -1965,11 +1985,59 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
-    def xlsx2db(self, varPathFile, varDbTable, varSheetName=0):
+    def xlsx2db_deduplicated(self, varPathFile, varDbTable, varField, varSheetName=0):
+
+        '''
+        5.3，xlsx导入数据库（保留原来字段，追加数据，对字段重复值去重）
+        xlsx2db('2.xlsx', "tableName", "字段","sheet1")
+        excel表格第一行数据对应db表中字段，建议用英文
+        '''
+
+        try:
+            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            df_deduplicated = df.drop_duplicates(subset=[varField])  # 去重
+            engine = self.getEngine_pymssql()
+            df_deduplicated.to_sql(varDbTable, con=engine, if_exists='append', index=False)
+        except Exception as e:
+            print(e)
+
+    def xlsx2db_append(self, varPathFile, varDbTable, varSheetName=0):
+
+        '''
+        5.3，xlsx导入数据库（保留原来字段，追加数据）
+        xlsx2db_append('2.xlsx', "tableName", "sheet1")
+        excel表格第一行数据对应db表中字段，建议用英文
+        '''
+
+        try:
+            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            engine = self.getEngine_pymssql()
+            df.to_sql(varDbTable, con=engine, if_exists='append', index=False, chunksize=1000)
+        except Exception as e:
+            print(e)
+
+    def xlsx2db_replace(self, varPathFile, varDbTable, varSheetName=0):
+
+        '''
+        5.3，xlsx全量导入数据库（不保留原来字段，覆盖数据）
+        xlsx2db_replace('2.xlsx', "tableName", "sheet1")
+        excel表格第一行数据对应db表中字段，建议用英文
+        '''
+
+        try:
+            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            engine = self.getEngine_pymssql()
+            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
+        except Exception as e:
+            print(e)
+
+
+    def xlsx2db2(self, varPathFile, varDbTable, varSheetName, varColName):
 
         '''
         5.3，xlsx全量导入数据库（覆盖）
-        xlsx2db('2.xlsx', "tableName", "sheet1")
+        # 定义列的数据类型
+        xlsx2db2('2.xlsx', "tableName", "sheet1", "colName")
         excel表格第一行数据对应db表中字段，建议用英文
         '''
 
@@ -1977,15 +2045,14 @@ class SqlserverPO:
             df = pd.read_excel(varPathFile, sheet_name=varSheetName)
             engine = self.getEngine_pymssql()
             # df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
-            df.to_sql(varDbTable, con=engine, if_exists='replace', index=False, chunksize=1000)
 
             # # 定义列的数据类型
-            # dtype = {
-            #     'column_with_non_gbk': sqltypes.VARCHAR(length=255, collation='utf8mb4_unicode_ci'),  # 自定义字符集
-            #     'other_column': sqltypes.INTEGER()
-            # }
-            #
-            # df.to_sql(varDbTable, con=engine, if_exists="replace", index=False, dtype=dtype)
+            dtype = {
+                varColName : sqltypes.VARCHAR(length=255, collation='utf8mb4_unicode_ci')  # 自定义字符集
+                # 'other_column': sqltypes.INTEGER()
+            }
+
+            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False, dtype=dtype)
 
         except Exception as e:
             print(e)
@@ -2018,30 +2085,6 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
-    def xlsx2db2(self, varPathFile, varDbTable, varSheetName, varColName):
-
-        '''
-        5.3，xlsx全量导入数据库（覆盖）
-        # 定义列的数据类型
-        xlsx2db2('2.xlsx', "tableName", "sheet1", "colName")
-        excel表格第一行数据对应db表中字段，建议用英文
-        '''
-
-        try:
-            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
-            engine = self.getEngine_pymssql()
-            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
-
-            # # 定义列的数据类型
-            dtype = {
-                varColName : sqltypes.VARCHAR(length=255, collation='utf8mb4_unicode_ci')  # 自定义字符集
-                # 'other_column': sqltypes.INTEGER()
-            }
-
-            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False, dtype=dtype)
-
-        except Exception as e:
-            print(e)
 
     def xlsx2dbByConverters(self, varPathFile, varDbTable, var_d, varSheetName=0):
 

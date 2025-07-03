@@ -14,6 +14,14 @@ from CdrdPO import *
 Cdrd_PO = CdrdPO()
 
 
+# todo 数据字典配置
+# Cdrd_PO._a_sys_dict_type('字典类型表')
+# Sqlserver_PO.xlsx2db_deduplicated('CDRB20250623.xlsx', "a_sys_dict_type", "dict_name", "dict1")
+
+# Cdrd_PO._a_sys_dict_data('字典数据表')
+# Sqlserver_PO.xlsx2db_append('CDRB20250623.xlsx', "a_sys_dict_data", "dict2")
+
+
 
 
 # todo 科室管理
@@ -68,13 +76,13 @@ Cdrd_PO = CdrdPO()
 # todo 参数配置
 # Cdrd_PO._a_sys_config('参数配置')
 
-
 # todo 登录日志
 # Cdrd_PO._a_sys_logininfo('登录日志')
 
-
 # todo 患者基本信息
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
+Cdrd_PO.procedure("cdrd_patient_info__data", 1)  # exec cdrd_patient_info__data @RecordCount=1;
+
 
 # todo 诊断表
 # Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
@@ -83,7 +91,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 
 # todo 症状信息
-Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
+# Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
 
 # todo 体征信息
 # Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
@@ -117,6 +125,9 @@ Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
 
 # todo 死亡记录
 # Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
+
+
+
 
 
 

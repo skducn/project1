@@ -1068,6 +1068,74 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_reason', '死亡原因'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_source_key', '数据来源')
+    def _a_sys_dict_type(self, varCommon):
+
+        # 数据字典配置 - 字典类型表
+
+        Sqlserver_PO.crtTableByCover('a_sys_dict_type',
+            '''
+                dict_id	int	IDENTITY(1,1) PRIMARY KEY,
+                dict_name nvarchar(100),
+                dict_type nvarchar(100),
+                status int,
+                create_by nvarchar(64),
+                create_time datetime,
+                update_by nvarchar(64),
+                update_time datetime,
+                remark nvarchar(500)
+            ''')
+        Sqlserver_PO.setTableComment('a_sys_dict_type', varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'dict_id', '字典主键'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'dict_name', '字典名称'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'dict_type', '字典类型'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'status', '状态'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'create_by', '创建者'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'create_time', '创建时间'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'update_by', '更新者'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'remark', '备注')
+
+    def importExcel(self, varFile, varSheet):
+        # 'CDRB20250623.xlsx', '数据字典表'
+        # ...
+        Sqlserver_PO.xlsx2db_deduplicated((varFile, "a_sys_dict_type", "dict_name", "dict1"))
+
+    def _a_sys_dict_data(self, varCommon):
+
+        # 数据字典配置 - 字典数据表
+
+        Sqlserver_PO.crtTableByCover('a_sys_dict_data',
+            '''
+                dict_code int,
+                dict_sort int,
+                dict_label varchar(100),
+                dict_value varchar(100),
+                dict_type varchar(100),
+                css_class varchar(100),
+                list_class varchar(100),
+                is_default int,
+                status int,
+                create_by varchar(64),
+                create_time datetime,
+                update_by varchar(64),
+                update_time datetime,
+                remark varchar(500)
+            ''')
+        Sqlserver_PO.setTableComment('a_sys_dict_data', varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_code', '字典编码'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_sort', '字典排序'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_label', '字典标签'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_value', '字典键值'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_type', '字典类型'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'css_class', '样式属性（其他样式扩展）'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'list_class', '表格回显样式'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'is_default', '是否默认'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'status', '状态'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'create_by', '创建者'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'create_time', '创建时间'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'update_by', '更新者'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'remark', '备注')
 
 
     def procedure(self, varProcedure, varQty=0):
@@ -1082,6 +1150,9 @@ class CdrdPO(object):
         execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
         print(execParam)
         Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+        # Sqlserver_PO.select2(execParam)  # 执行存储过程, 插入N条记录
+
+
 
     def procedureMenu(self, varProcedure, l_param):
         # 菜单管理 - 创建存储过程
