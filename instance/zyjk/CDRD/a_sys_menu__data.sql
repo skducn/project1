@@ -4,18 +4,15 @@ CREATE OR ALTER PROCEDURE a_sys_menu__data
     @menuParentName nvarchar(50)
 AS
 BEGIN
---     SET NOCOUNT ON;
---     SET XACT_ABORT ON;
 
     -- 统计顺序
     DECLARE @isCount INT = 0;
     -- 父ID
     DECLARE @parent_id NVARCHAR(50);
 
-
     BEGIN TRY
         BEGIN TRANSACTION;
---         # ['c', '用户管理', '系统管理']
+        --  ['c', '用户管理', '系统管理']
         DECLARE @isExist NVARCHAR(50);
         SELECT @isExist = menu_id FROM a_sys_menu WHERE menu_name = @menuName and menu_type = @menuType;
 

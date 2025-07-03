@@ -15,27 +15,30 @@ BEGIN
         -- 预生成随机数据所需的基础数据
         IF OBJECT_ID('tempdb..#Names') IS NOT NULL DROP TABLE #Names;
 
-        CREATE TABLE #Names (ID INT IDENTITY(1,1), Name NVARCHAR(50));
-        INSERT INTO #Names (Name) VALUES ('科主任'),('副主任'),('医疗组长'),('主治医生'),('门/急诊医生、住院医生');
+        CREATE TABLE #Names (ID INT IDENTITY(1,1), Role NVARCHAR(50), RoleKey NVARCHAR(50));
+        INSERT INTO #Names (Role, RoleKey) VALUES ('运营负责人','director'),('科主任','chief_doctor'),('副主任','deputy_chief'),('医疗组长','group_leader'),('主治医生','attending_doctor'),('门/急诊医生、住院医生','doctor');
         DECLARE @InsertedNamesCount INT = @@ROWCOUNT; -- 快速获取上一条插入/更新/删除的行数
 
         -- 循环插入指定数量的记录
         WHILE @Counter <= @InsertedNamesCount
         BEGIN
-            -- 随机选择姓名和域名
-            DECLARE @RoleName NVARCHAR(50);
-            SELECT @RoleName = Name FROM #Names WHERE ID = @Counter;
+            -- 获取角色名称和权限标识
+            DECLARE @RoleName NVARCHAR(50), @RoleKey NVARCHAR(50);
+            SELECT @RoleName = Role, @RoleKey = RoleKey FROM #Names WHERE ID = @Counter;
+
             -- 增加非空校验
             IF @RoleName IS NULL OR @RoleName = ''
             BEGIN
-                SET @RoleName = '默认名称'; -- 设置默认值
+                PRINT '错误：RoleName不存在！';
+                ROLLBACK TRANSACTION; -- 如果已经开启事务，则回滚
+                RETURN; -- 退出存储过程
             END
 
             -- 插入单条随机数据
             INSERT INTO a_sys_role (role_name,role_key,role_sort,status,menu_check_strictly,role_creater_name,role_create_time,update_by,update_time,remark)
             VALUES (
-                    @RoleName , -- 角色名称 + 固定3位数
-                    @RoleName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- 角色权限字符串 + 固定5位数
+                    @RoleName ,
+                    @RoleKey ,
                     '0', -- 显示顺序
                     '0', -- 角色状态
                     '1', -- 菜单树选择项是否关联显示
