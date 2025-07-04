@@ -283,7 +283,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_info',
             '''
-                patient_id int,
+                patient_id	int	IDENTITY(1,1) PRIMARY KEY,
                 patient_name nvarchar(50),
                 patient_sex_key int,
                 patient_sex_value nvarchar(100),
@@ -361,7 +361,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_diag_info',
             '''
-                patient_diag_id int,
+                patient_diag_id	int	IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -409,7 +409,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_visit_info',
             '''
-                patient_visit_id int,
+                patient_visit_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_visit_type_key int,
                 patient_visit_type_value nvarchar(100),
                 patient_id int,
@@ -550,7 +550,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_symptom_info',
             '''
-                patient_symptom_id int,
+                patient_symptom_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -584,7 +584,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_physical_sign_info',
             '''
-                patient_physical_sign_id int,
+                patient_physical_sign_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -626,7 +626,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_lab_examination_info',
             '''
-               patient_lab_examination_id int,
+               patient_lab_examination_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -674,7 +674,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_assit_examination_info',
             '''
-                patient_assit_examination_id int,
+                patient_assit_examination_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_assit_examination_type_key int,
                 patient_assit_examination_type_value nvarchar(100),
                 patient_id int,
@@ -746,7 +746,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_test_project_info',
             '''
-                patient_test_id int,
+                patient_test_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_report_num nvarchar(50),
                 patient_test_item_name nvarchar(50),
                 patient_test_numerical_value nvarchar(50),
@@ -776,7 +776,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_clinic_advice_info',
             '''
-                patient_clinic_advice_id int,
+                patient_clinic_advice_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -812,7 +812,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_hosptial_advice_info',
             '''
-                patient_hosptial_advice_id int,
+                patient_hosptial_advice_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_hosptial_advice_type_key int,
                 patient_hosptial_advice_type_value nvarchar(100),
                 patient_id int,
@@ -862,7 +862,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_drug_info',
             '''
-                patient_drug_id int,
+                patient_drug_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_recipe_advice_num nvarchar(50),
@@ -902,7 +902,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_out_hospital_info',
             '''
-                patient_out_hospital_id int,
+                patient_out_hospital_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_out_hospital_type_key int,
                 patient_out_hospital_type_value nvarchar(100),
                 patient_id int,
@@ -946,7 +946,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_operation_info',
             '''
-                patient_operation_id int,
+                patient_operation_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -1012,7 +1012,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_nurse_info',
             '''
-                patient_nurse_id int,
+                patient_nurse_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_hospital_code nvarchar(50),
@@ -1044,7 +1044,7 @@ class CdrdPO(object):
 
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_death_info',
             '''
-                patient_death_id int,
+                patient_death_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_hosipital_visit_id nvarchar(50),
                 patient_death_record_id nvarchar(50),
@@ -1068,6 +1068,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_reason', '死亡原因'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_source_key', '数据来源')
+
     def _a_sys_dict_type(self, varCommon):
 
         # 数据字典配置 - 字典类型表
@@ -1151,6 +1152,17 @@ class CdrdPO(object):
         print(execParam)
         Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
         # Sqlserver_PO.select2(execParam)  # 执行存储过程, 插入N条记录
+
+    def subProcedure(self, varProcedure):
+
+        # 子存储过程
+        # 创建存储过程，不执行
+
+        varParamSql = varProcedure + ".sql"
+        with open(varParamSql, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+        Sqlserver_PO.execute(sql_script)
+
 
 
 

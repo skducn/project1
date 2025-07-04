@@ -72,6 +72,18 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedureMenu("a_sys_menu__data", ['F',  '编辑', '用户管理'])
 # Cdrd_PO.procedureMenu("a_sys_menu__data", ['F',  '新增123', '客户管理'])
 
+# 子存储过程
+# Cdrd_PO.subProcedure("p_marriage")
+# Cdrd_PO.subProcedure("p_job")
+# Cdrd_PO.subProcedure("p_cert_type")
+# Cdrd_PO.subProcedure("p_nationality")
+# Cdrd_PO.subProcedure("p_patient_relation")
+# Cdrd_PO.subProcedure("p_address")
+Cdrd_PO.subProcedure("p_birth_place")
+# Cdrd_PO.subProcedure("p_idcard")
+# Cdrd_PO.subProcedure("p_dept")
+# Cdrd_PO.subProcedure("p_gen_names")
+
 
 # todo 参数配置
 # Cdrd_PO._a_sys_config('参数配置')
@@ -81,8 +93,7 @@ Cdrd_PO = CdrdPO()
 
 # todo 患者基本信息
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
-Cdrd_PO.procedure("cdrd_patient_info__data", 1)  # exec cdrd_patient_info__data @RecordCount=1;
-
+Cdrd_PO.procedure("cdrd_patient_info__data", 10)  # exec cdrd_patient_info__data @RecordCount=1;
 
 # todo 诊断表
 # Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
@@ -90,40 +101,40 @@ Cdrd_PO.procedure("cdrd_patient_info__data", 1)  # exec cdrd_patient_info__data 
 # todo 门(急)诊住院就诊信息
 # Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 
-# todo 症状信息
+# # todo 症状信息
 # Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
-
-# todo 体征信息
+#
+# # todo 体征信息
 # Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
-
-# todo 实验室检查报告
+#
+# # todo 实验室检查报告
 # Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
-
-# todo 辅助检查报告
+#
+# # todo 辅助检查报告
 # Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
-
-# todo 检查项目明细
+#
+# # todo 检查项目明细
 # Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-
-# todo 门诊医嘱
+#
+# # todo 门诊医嘱
 # Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-
-# todo 住院医嘱
+#
+# # todo 住院医嘱
 # Cdrd_PO._a_cdrd_patient_hosptial_advice_info('住院医嘱')
-
-# todo 用药信息
+#
+# # todo 用药信息
 # Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
-
-# todo 出院记录
+#
+# # todo 出院记录
 # Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
-
-# todo 手术记录
+#
+# # todo 手术记录
 # Cdrd_PO._a_cdrd_patient_operation_info('手术记录')
-
-# todo 护理记录
+#
+# # todo 护理记录
 # Cdrd_PO._a_cdrd_patient_nurse_info('护理记录')
-
-# todo 死亡记录
+#
+# # todo 死亡记录
 # Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
 
 

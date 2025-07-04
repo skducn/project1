@@ -1,5 +1,5 @@
 CREATE OR ALTER PROCEDURE cdrd_patient_info__data
-    @RecordCount INT = 3 -- 可通过参数控制记录数，默认100条
+    @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -12,84 +12,105 @@ BEGIN
         DECLARE @TotalCount INT =0;
         DECLARE @MaxRecords INT = @RecordCount;
 
-        -- 预生成随机数据所需的基础数据
-        IF OBJECT_ID('tempdb..#Names') IS NOT NULL DROP TABLE #Names;
-
-        CREATE TABLE #Names (ID INT IDENTITY(1,1), Department NVARCHAR(50), Name NVARCHAR(50));
-        INSERT INTO #Names (Department, Name) VALUES ('内科','东大名'),('外科','朴志镐'),('妇产科','洁神明'),('儿科','苗胸'),('肿瘤科','格格'),('五官科','张桂芳'),('其他临床科室','金制成'),('医技科室','孙俪'),('内分泌科','濮存昕'),('骨科','黎明');
-
         -- 循环插入指定数量的记录
         WHILE @Counter <= @MaxRecords
         BEGIN
-            --             随机获取手机号
-            DECLARE @phone NVARCHAR(50);
-            SELECT @phone = '1' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
-            PRINT'生成手机号: ' + @phone;
 
-            IF OBJECT_ID('tempdb..#Debug') IS NOT NULL DROP TABLE #Debug;
-            CREATE TABLE #Debug (Msg NVARCHAR(MAX));
+            -- 随机手机号
+            DECLARE @phone1 NVARCHAR(11);
+            DECLARE @phone2 NVARCHAR(11);
+            DECLARE @phone3 NVARCHAR(8);
+            SELECT @phone1 = '138' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
+            SELECT @phone2 = '130' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
+            SELECT @phone3 = '5' + RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7);
 
-            -- 在需要打印的地方插入记录
-            INSERT INTO #Debug (Msg) VALUES ('生成手机号: ' + @phone);
-
-            -- 最后输出调试信息
-            SELECT * FROM #Debug;
-
---             添加延迟让 PRINT 内容有机会输出
---             WAITFOR DELAY '00:00:07'; -- 等待2秒
---             ROLLBACK TRANSACTION; -- 如果已经开启事务，则回滚
---             RETURN;
---             SELECT '1' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8) AS Mobile
---             SELECT @RandomDepartment = Department FROM #Names WHERE ID = ABS(CHECKSUM(NEWID())) % 10;
-
-
-            -- 随机出生日期（年龄范围：18-60岁）
-            SELECT DATEADD(YEAR, - (18 + ABS(CHECKSUM(NEWID())) % 43), GETDATE()) AS BirthDate
-
-            -- 随机身份证号（中国大陆格式
-            -- 前6位模拟地区码（可替换为真实省份编码）
-            DECLARE @AreaCode CHAR(6) = '440000'; -- 示例：广东
-            -- 生成年份（1960-2005）
-            DECLARE @Year INT = 1960 + ABS(CHECKSUM(NEWID())) % 45;
-            -- 月份和日期
-            DECLARE @Month INT = 1 + ABS(CHECKSUM(NEWID())) % 12;
-            DECLARE @Day INT = 1 + ABS(CHECKSUM(NEWID())) % 28;
-
-            -- 构造身份证号前17位
-            DECLARE @BaseID NVARCHAR(17) = @AreaCode +
-                                           RIGHT('00' + CAST(@Year AS VARCHAR), 4) +
-                                           RIGHT('00' + CAST(@Month AS VARCHAR), 2) +
-                                           RIGHT('00' + CAST(@Day AS VARCHAR), 2) +
-                                           RIGHT('000' + CAST(ABS(CHECKSUM(NEWID())) % 999 AS VARCHAR), 3);
-            -- 校验位计算（简化处理）
-            SELECT @BaseID + 'X' AS IDCardNumber
-
-            -- 随机地址（街道+门牌号）
---             SELECT @RandomProvince + '某路' + CAST(ABS(CHECKSUM(NEWID())) % 100 AS VARCHAR) + '号' AS Address
-
-            -- 随机选择科室和姓
-            DECLARE @RandomDepartment NVARCHAR(50);
-            SELECT @RandomDepartment = Department FROM #Names WHERE ID = ABS(CHECKSUM(NEWID())) % 10;
+            -- 存储过程
+            -- 姓名
             DECLARE @RandomName NVARCHAR(50);
-            SELECT @RandomName = Name FROM #Names WHERE ID = ABS(CHECKSUM(NEWID())) % 10;
+            EXEC p_gen_names @FullName = @RandomName OUTPUT;
 
---             -- 插入单条随机数据
---             INSERT INTO a_sys_department (department_name, department_code, department_charge_id, department_charge_job_num,
---             department_charge_name,department_creater_name,department_create_time)
---             VALUES (
---                 @RandomDepartment + RIGHT('0000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000), 4), -- 科室名称 + 固定4位数
--- --                 @RandomDepartment + CAST(ABS(CHECKSUM(NEWID())) % 10000 AS NVARCHAR(10)), --科室名称
---                 RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 10000000 AS VARCHAR(20)), 7), -- 科室编码
---                 CAST(ABS(CHECKSUM(NEWID())) % 10000 AS int), -- 科室负责人ID
---                 CAST(ABS(CHECKSUM(NEWID())) % 10000 AS NVARCHAR(10)), -- 科室负责人工号
---                 @RandomName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- 科室负责人姓名 + 固定5位数
--- --                 @RandomName + RIGHT('00000' + CAST(ABS(CHECKSUM(NEWID())) % 100000 AS VARCHAR(20)), 5), -- 科室负责人姓名
---                 @RandomName, -- 创建人
---                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()) -- 创建时间
---             );
+            -- 婚姻
+            DECLARE @RandomMarriageKey NVARCHAR(50), @RandomMarriage NVARCHAR(50);
+            EXEC p_marriage @k = @RandomMarriageKey OUTPUT, @v = @RandomMarriage OUTPUT;
+
+            -- 职业
+            DECLARE @RandomJob NVARCHAR(50);
+            EXEC p_job @v = @RandomJob OUTPUT;
+
+            -- 证件类型
+            DECLARE @RandomIdtypeKey NVARCHAR(50), @RandomIdtype NVARCHAR(50);
+            EXEC p_cert_type @k = @RandomIdtypeKey OUTPUT, @v = @RandomIdtype OUTPUT;
+
+            -- 民族
+            DECLARE @RandomNationKey NVARCHAR(50), @RandomNation NVARCHAR(50);
+            EXEC p_nationality @k = @RandomNationKey OUTPUT, @v = @RandomNation OUTPUT;
+
+            -- 与患者关系
+            DECLARE @RandomRelation NVARCHAR(50);
+            EXEC p_patient_relation @v = @RandomRelation OUTPUT;
+
+            -- 住址
+            DECLARE @RandomAddress1 NVARCHAR(150), @RandomAddress2 NVARCHAR(150);
+            EXEC p_address @v1 = @RandomAddress1 OUTPUT, @v2 = @RandomAddress2 OUTPUT;
+
+            -- 出生地
+            DECLARE @provinceKey NVARCHAR(150), @province NVARCHAR(150);
+            DECLARE @cityKey NVARCHAR(150), @city NVARCHAR(150);
+            DECLARE @countyKey NVARCHAR(150), @county NVARCHAR(150);
+            EXEC p_birth_place @provinceKey = @provinceKey OUTPUT, @province = @province OUTPUT,
+                @cityKey = @cityKey OUTPUT, @city = @city OUTPUT,
+                @countyKey = @countyKey OUTPUT, @county = @county OUTPUT;
+
+            -- 身份证，性别，性别key，出生日期,年龄
+            DECLARE @idcard NVARCHAR(18), @gender NVARCHAR(10);
+            DECLARE @genderKey NVARCHAR(10), @birthday NVARCHAR(18), @age NVARCHAR(150);
+            EXEC p_idcard @countyKey = @countyKey, @idcard = @idcard OUTPUT, @gender = @gender OUTPUT,
+                 @genderKey = @genderKey OUTPUT, @birthday = @birthday OUTPUT,
+                 @age = @age OUTPUT;
+
+
+
+            -- 插入单条随机数据
+            INSERT INTO a_cdrd_patient_info (patient_name,patient_sex_key,patient_sex_value,patient_birth_date,patient_age,patient_birth_address_province_key,patient_birth_address_province,patient_birth_address_city_key,patient_birth_address_city,patient_birth_address_country_key,patient_birth_address_country,patient_country,patient_native_province_key,patient_native_province,patient_native_city_key,patient_native_city,patient_nation_key,patient_nation_value,patient_phone_num,patient_home_address,patient_profession,patient_marriage_key,patient_marriage_value,patient_id_type_key,patient_id_type_value,patient_id_num,patient_home_phone,patient_account_address,patient_contact_name,patient_contact_relation,patient_contact_phone,patient_contact_address,patient_update_time,patient_data_source_key)
+            VALUES (
+                @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 姓名 + 固定5位数
+                @GenderKey, -- 性别key
+                @Gender, -- 性别
+                @birthday, -- 出生日期
+                @age, -- 年龄
+                @provinceKey, -- 出生地-省key
+                @province, -- 出生地-省
+                @cityKey, -- 出生地-市key
+                @city, -- 出生地-市
+                @countyKey, -- 出生地-县key
+                @county, -- 出生地-县
+                '中国', -- 国籍
+                @provinceKey, -- 籍贯省key
+                @province, -- 籍贯省名称
+                @cityKey, -- 籍贯市key
+                @city, -- 籍贯市名称
+                @RandomNationKey, -- 民族key
+                @RandomNation, -- 民族
+                @phone1, -- 联系电话
+                @RandomAddress1, -- 现住址
+                @RandomJob, -- 职业
+                @RandomMarriageKey, -- 婚姻key
+                @RandomMarriage, -- 婚姻
+                @RandomIdtypeKey, --证件类型key
+                @RandomIdtype, --证件类型
+                @idcard, --证件号码 IDCardNumber
+                @phone3, -- 家庭电话
+                @RandomAddress1, -- 户口地址
+                @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 联系人姓名
+                @RandomRelation, -- 与患者关系
+                @phone2, -- 联系人电话
+                @RandomAddress2, -- 联系人地址
+                DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
+                '1' -- 数据来源
+            );
 
             SET @Counter = @Counter + 1;
-            SET @TotalCount = (select count(*) from a_sys_department);
+            SET @TotalCount = (select count(*) from a_cdrd_patient_info);
         END;
 
         -- 返回插入的记录数
