@@ -1,4 +1,4 @@
--- todo 出生地-省市县
+-- todo 随机出生地-省市县
 
 CREATE OR ALTER PROCEDURE p_birth_place
     @provinceKey nvarchar(150) OUTPUT,

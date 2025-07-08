@@ -10,7 +10,7 @@ BEGIN
     -- 生成临时表
     IF OBJECT_ID('tempdb..#tb_temp') IS NOT NULL DROP TABLE #tb_temp;
     CREATE TABLE #tb_temp (ID INT IDENTITY(1,1), k NVARCHAR(50), v NVARCHAR(50));
-    INSERT INTO #tb_temp (k, v) VALUES ('01','汉族'),('02','蒙古族'),('03','回族'),('04','藏族'),('05','维吾尔族'),('06','苗族'),('07','彝族'),('08','壮族'),('09','布依族'),('10','朝鲜族');
+    INSERT INTO #tb_temp (k, v) VALUES ('01',N'汉族'),('02',N'蒙古族'),('03',N'回族'),('04',N'藏族'),('05',N'维吾尔族'),('06',N'苗族'),('07',N'彝族'),('08',N'壮族'),('09',N'布依族'),('10',N'朝鲜族');
 
     -- 随机选择一个 ID
     DECLARE @RandomID INT = CAST(RAND() * (SELECT COUNT(*) FROM #tb_temp) AS INT) + 1;

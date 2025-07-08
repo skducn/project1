@@ -13,8 +13,105 @@
 from CdrdPO import *
 Cdrd_PO = CdrdPO()
 
+# 子存储过程
+# Cdrd_PO.subProcedure("p_marriage")
+# Cdrd_PO.subProcedure("p_job")
+# Cdrd_PO.subProcedure("p_cert_type")
+# Cdrd_PO.subProcedure("p_nationality")
+# Cdrd_PO.subProcedure("p_patient_relation")
+# Cdrd_PO.subProcedure("p_address")
+# Cdrd_PO.subProcedure("p_birth_place")
+# Cdrd_PO.subProcedure("p_idcard")
+# Cdrd_PO.subProcedure("p_dept")
+# Cdrd_PO.subProcedure("p_gen_names")
+# Cdrd_PO.subProcedure("p_hospital")
+# Cdrd_PO.subProcedure("p_operation_level")
+# Cdrd_PO.subProcedure("p_operation_type")
+# Cdrd_PO.subProcedure("p_out_hospital_type")
+Cdrd_PO.subProcedure("p_hospital_advice")
 
-# todo 数据字典配置
+
+# todo 1，专病库字段表
+# 患者基本信息
+# Cdrd_PO._a_cdrd_patient_info('患者基本信息')
+# Cdrd_PO.procedure("cdrd_patient_info__data", 10)  # exec cdrd_patient_info__data @RecordCount=1;
+
+# 诊断表
+# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+# Cdrd_PO.procedure("cdrd_patient_diag_info__data", 3)
+
+
+# 门(急)诊住院就诊信息
+# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
+# Cdrd_PO.procedure("cdrd_patient_visit_info__data", 3)
+
+
+# # 症状信息
+# Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
+# Cdrd_PO.procedure("cdrd_patient_symptom_info__data", 3)
+
+
+# #
+# # 体征信息
+# Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
+# Cdrd_PO.procedure("cdrd_patient_physical_sign_info__data", 3)
+
+# #
+# # 实验室检查报告
+# Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
+# Cdrd_PO.procedure("cdrd_patient_lab_examination_info__data", 3)
+
+# #
+# # 辅助检查报告
+# Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
+# Cdrd_PO.procedure("cdrd_patient_assit_examination_info__data", 3)
+
+# #
+# # 检查项目明细
+# Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
+# Cdrd_PO.procedure("cdrd_patient_test_project_info__data", 3)
+
+# #
+# # 门诊医嘱
+# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
+Cdrd_PO.procedure("cdrd_patient_clinic_advice_info__data", 3)
+
+# #
+# #  住院医嘱
+# Cdrd_PO._a_cdrd_patient_hosptial_advice_info('住院医嘱')
+# Cdrd_PO.procedure("cdrd_patient_hosptial_advice_info__data", 3)
+
+# #
+# #  用药信息
+# Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
+# Cdrd_PO.procedure("cdrd_patient_drug_info__data", 3)
+
+# #
+# # 出院记录
+# Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
+# Cdrd_PO.procedure("cdrd_patient_out_hospital_info__data", 3)
+
+# #
+# # 手术记录
+# Cdrd_PO._a_cdrd_patient_operation_info('手术记录')
+# Cdrd_PO.procedure("cdrd_patient_operation_info__data", 3)
+
+# #
+# # 护理记录
+# Cdrd_PO._a_cdrd_patient_nurse_info('护理记录')
+# Cdrd_PO.procedure("cdrd_patient_nurse_info__data", 3)
+
+# #
+# # 死亡记录
+# Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
+# Cdrd_PO.procedure("cdrd_patient_death_info__data", 3)
+
+
+
+
+
+
+# todo 2，数据字典配置
 # Cdrd_PO._a_sys_dict_type('字典类型表')
 # Sqlserver_PO.xlsx2db_deduplicated('CDRB20250623.xlsx', "a_sys_dict_type", "dict_name", "dict1")
 
@@ -23,26 +120,31 @@ Cdrd_PO = CdrdPO()
 
 
 
+# todo 3，医院管理
+# Cdrd_PO.dept__a_sys_hopital('医院信息表')
 
-# todo 科室管理
+
+
+# todo 4，科室管理
 # Cdrd_PO.dept__a_sys_department('科室表')  # 创建或重构科室表
-# Cdrd_PO.procedure("a_sys_department__data", 1)  # exec a_sys_department__data @RecordCount=1;
+# Cdrd_PO.procedure("a_sys_department__data", 2)  # exec a_sys_department__data @RecordCount=1;
 
 # Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
-# Cdrd_PO.procedure("a_sys_dept_medgp__data", 1)  # exec a_sys_dept_medgp__data @RecordCount=1;
+# Cdrd_PO.procedure("a_sys_dept_medgp__data", 3)  # exec a_sys_dept_medgp__data @RecordCount=1;
 #
 # Cdrd_PO.dept__a_sys_dept_medgp_person('医疗组人员')
-# Cdrd_PO.procedure("a_sys_dept_medgp_person__data", 1)  # exec a_sys_dept_medgp_person__data @RecordCount=1;
+# Cdrd_PO.procedure("a_sys_dept_medgp_person__data", 3)  # exec a_sys_dept_medgp_person__data @RecordCount=1;
 
 
 
-# todo 用户管理(ok)
+# todo 5，用户管理(ok)
 # Cdrd_PO.user__a_sys_user('用户表')
 # Cdrd_PO.procedure("a_sys_user__data", 1)  # exec a_sys_user__data @RecordCount=1;
 
 # Cdrd_PO.user__a_sys_user_role('用户角色关系表')
 # Cdrd_PO.procedureUserRole("a_sys_user_role__data", {3: [1, 3, 4]})  # 一个用户可多个角色，用户3关联角色1，3，4
 
+# Cdrd_PO.user__a_sys_user_pwdptc('用户问题关系表')
 
 
 # todo 角色管理(ok)
@@ -72,17 +174,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedureMenu("a_sys_menu__data", ['F',  '编辑', '用户管理'])
 # Cdrd_PO.procedureMenu("a_sys_menu__data", ['F',  '新增123', '客户管理'])
 
-# 子存储过程
-# Cdrd_PO.subProcedure("p_marriage")
-# Cdrd_PO.subProcedure("p_job")
-# Cdrd_PO.subProcedure("p_cert_type")
-# Cdrd_PO.subProcedure("p_nationality")
-# Cdrd_PO.subProcedure("p_patient_relation")
-# Cdrd_PO.subProcedure("p_address")
-Cdrd_PO.subProcedure("p_birth_place")
-# Cdrd_PO.subProcedure("p_idcard")
-# Cdrd_PO.subProcedure("p_dept")
-# Cdrd_PO.subProcedure("p_gen_names")
+
 
 
 # todo 参数配置
@@ -90,55 +182,6 @@ Cdrd_PO.subProcedure("p_birth_place")
 
 # todo 登录日志
 # Cdrd_PO._a_sys_logininfo('登录日志')
-
-# todo 患者基本信息
-# Cdrd_PO._a_cdrd_patient_info('患者基本信息')
-Cdrd_PO.procedure("cdrd_patient_info__data", 10)  # exec cdrd_patient_info__data @RecordCount=1;
-
-# todo 诊断表
-# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-
-# todo 门(急)诊住院就诊信息
-# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
-
-# # todo 症状信息
-# Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
-#
-# # todo 体征信息
-# Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
-#
-# # todo 实验室检查报告
-# Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
-#
-# # todo 辅助检查报告
-# Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
-#
-# # todo 检查项目明细
-# Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-#
-# # todo 门诊医嘱
-# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-#
-# # todo 住院医嘱
-# Cdrd_PO._a_cdrd_patient_hosptial_advice_info('住院医嘱')
-#
-# # todo 用药信息
-# Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
-#
-# # todo 出院记录
-# Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
-#
-# # todo 手术记录
-# Cdrd_PO._a_cdrd_patient_operation_info('手术记录')
-#
-# # todo 护理记录
-# Cdrd_PO._a_cdrd_patient_nurse_info('护理记录')
-#
-# # todo 死亡记录
-# Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
-
-
-
 
 
 

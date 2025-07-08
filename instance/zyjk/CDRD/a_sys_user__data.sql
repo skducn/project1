@@ -16,7 +16,7 @@ BEGIN
         IF OBJECT_ID('tempdb..#Names') IS NOT NULL DROP TABLE #Names;
 
         CREATE TABLE #Names (ID INT IDENTITY(1,1), Name NVARCHAR(50));
-        INSERT INTO #Names (Name) VALUES ('东大名'),('朴志镐'),('洁神明'),('苗胸'),('格格'),('张桂芳'),('金制成'),('孙俪'),('濮存昕'),('黎明');
+        INSERT INTO #Names (Name) VALUES (N'东大名'),(N'朴志镐'),(N'洁神明'),('苗胸'),('格格'),('张桂芳'),('金制成'),('孙俪'),('濮存昕'),('黎明');
 
         -- 循环插入指定数量的记录
         WHILE @Counter <= @MaxRecords

@@ -1,4 +1,4 @@
--- todo 身份证
+-- todo 随机身份证
 
 CREATE OR ALTER PROCEDURE p_idcard
     @countyKey nvarchar(6),
@@ -11,7 +11,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
 
-    -- 随机生成身份证号
+    -- 1 随机生成身份证号
     -- 使用县级编码作为身份证前6位
     DECLARE @AreaCode CHAR(6);
     SET @AreaCode = @countyKey; -- 替换原来的 '440000'
@@ -30,29 +30,28 @@ BEGIN
     -- 简化校验码处理（实际应根据 ISO 7064:1983.MOD 11-2 计算）
     DECLARE @IDCardNumber VARCHAR(18) = @BaseID + 'X'; -- 临时使用 'X' 表示最后一位校验码
 
-    -- 3获取性别
+    -- 2 获取性别
 --     DECLARE @Gender NVARCHAR(10);
 --     DECLARE @genderKey NVARCHAR(10);
     -- 提取第17位数字
     DECLARE @genderDigit INT = CAST(SUBSTRING(@IDCardNumber, 17, 1) AS INT);
-    -- 判断性别
+    -- 2 判断性别
     IF @genderDigit % 2 = 1
     BEGIN
-        SET @Gender = '男';
+        SET @Gender = N'男';
         SET @genderKey = 0;
     END
     ELSE
     BEGIN
-        SET @Gender = '女';
+        SET @Gender = N'女';
         SET @genderKey = 1;
     END
 
 
-    -- 4出生日期
---     DECLARE @birthday NVARCHAR(50);
+    -- 3 出生日期
     SET @birthday = CAST(CAST(@Year AS VARCHAR) + '-' + CAST(@Month AS VARCHAR) + '-' + CAST(@Day AS VARCHAR) AS DATE);
 
-    -- 5年龄
+    -- 4 年龄
 --     DECLARE @age INT = DATEDIFF(YEAR, @birthday, GETDATE()) -
     set @age  = DATEDIFF(YEAR, @birthday, GETDATE()) -
     CASE

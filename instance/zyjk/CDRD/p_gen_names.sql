@@ -1,3 +1,5 @@
+-- todo 随机姓名
+
 CREATE OR ALTER PROCEDURE p_gen_names
     @Count INT = 1,        -- 生成姓名总数量
     @MaxChinese INT = 3,   -- 最大中文姓名数量（默认3个）

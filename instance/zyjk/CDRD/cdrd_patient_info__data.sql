@@ -1,3 +1,5 @@
+-- todo 患者基本信息表(造数据)
+
 CREATE OR ALTER PROCEDURE cdrd_patient_info__data
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
@@ -24,7 +26,7 @@ BEGIN
             SELECT @phone2 = '130' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
             SELECT @phone3 = '5' + RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7);
 
-            -- 存储过程
+            -- 子存储过程
             -- 姓名
             DECLARE @RandomName NVARCHAR(50);
             EXEC p_gen_names @FullName = @RandomName OUTPUT;
@@ -84,7 +86,7 @@ BEGIN
                 @city, -- 出生地-市
                 @countyKey, -- 出生地-县key
                 @county, -- 出生地-县
-                '中国', -- 国籍
+                N'中国', -- 国籍
                 @provinceKey, -- 籍贯省key
                 @province, -- 籍贯省名称
                 @cityKey, -- 籍贯市key
