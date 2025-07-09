@@ -1,6 +1,6 @@
--- todo 住院医嘱类型
+-- todo 体征
 
-CREATE OR ALTER PROCEDURE p_hospital_advice
+CREATE OR ALTER PROCEDURE p_physical_sign
     @k nvarchar(50) OUTPUT,
     @v nvarchar(50) OUTPUT
 AS
@@ -10,7 +10,8 @@ BEGIN
     -- 生成临时表
     IF OBJECT_ID('tempdb..#tb_temp') IS NOT NULL DROP TABLE #tb_temp;
     CREATE TABLE #tb_temp (ID INT IDENTITY(1,1), k NVARCHAR(50), v NVARCHAR(50));
-    INSERT INTO #tb_temp (k, v) VALUES ('1',N'住院药物医嘱'),('2',N'住院非药物医嘱');
+    INSERT INTO #tb_temp (k, v) VALUES ('1',N'体温'),('2',N'脉搏'),('3',N'心率'),('4',N'呼吸'),
+                                       ('5',N'收缩压'),('6',N'舒张压'),('7',N'指尖血氧饱和度'),('8',N'其他');
 
     -- 随机选择一个 ID
     DECLARE @RandomID INT = CAST(RAND() * (SELECT COUNT(*) FROM #tb_temp) AS INT) + 1;

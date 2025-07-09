@@ -135,7 +135,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_user', 'department_id', '所属科室ID'),
         Sqlserver_PO.setFieldComment('a_sys_user', 'department_code', '所属科室code'),
         Sqlserver_PO.setFieldComment('a_sys_user', 'department_name', '所属科室名称'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'user_account_state', '账号状态'),
+        Sqlserver_PO.setFieldComment('a_sys_user', 'status', '账号状态'),
         Sqlserver_PO.setFieldComment('a_sys_user', 'remark', '备注'),
         Sqlserver_PO.setFieldComment('a_sys_user', 'creater_by', '创建人'),
         Sqlserver_PO.setFieldComment('a_sys_user', 'create_time', '创建时间'),
@@ -1193,34 +1193,74 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_dict_data', 'remark', '备注')
 
 
-    def procedure(self, varProcedure, varQty=0):
-        # 通用 - 创建存储过程
+    def procedure(self, varProcedure, varDesc, varQty=1):
+        # 通用存储过程
         # 创建并执行存储过程，插入N条记录
+
+        # 删除存储过程（用于）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
             sql_script = file.read()
         Sqlserver_PO.execute(sql_script)
 
+        # 添加描述
+        # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")
+        desc = f"""
+                        EXEC sp_addextendedproperty 
+                            @name = N'MS_Description', 
+                            @value = N'{varDesc_escaped}',
+                            @level0type = N'Schema', 
+                            @level0name = 'dbo', 
+                            @level1type = N'Procedure', 
+                            @level1name = '{varProcedure}';
+                    """
+        Sqlserver_PO.execute(desc)
+
+        # 执行存储过程
         execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
-        print(execParam)
+        print(execParam + " //" + varDesc)  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
         Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
-        # Sqlserver_PO.select2(execParam)  # 执行存储过程, 插入N条记录
 
-    def subProcedure(self, varProcedure):
-
+    def subProcedure(self, varProcedure, varDesc):
         # 子存储过程
         # 创建存储过程，不执行
 
+        # 删除存储过程（用于添加描述）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+
         varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
             sql_script = file.read()
         Sqlserver_PO.execute(sql_script)
 
+        # 添加描述
+        # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")
+        desc = f"""
+                EXEC sp_addextendedproperty 
+                    @name = N'MS_Description', 
+                    @value = N'{varDesc_escaped}',
+                    @level0type = N'Schema', 
+                    @level0name = 'dbo', 
+                    @level1type = N'Procedure', 
+                    @level1name = '{varProcedure}';
+            """
+        Sqlserver_PO.execute(desc)
+
+        # IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE major_id = OBJECT_ID('dbo.p_outcome_state') AND name = 'MS_Description')
+        # 修改
+        #     EXEC sp_updateextendedproperty ...
+        # ELSE
+        # 添加
+        #     EXEC sp_addextendedproperty ...
 
 
 
-    def procedureMenu(self, varProcedure, l_param):
+
+    def procedureMenu(self, varProcedure, varDesc, l_param):
         # 菜单管理 - 创建存储过程
         # Cdrd_PO.procedureMenu("a_sys_menu__data",['无','m', '系统管理'])
         # Cdrd_PO.procedureMenu("a_sys_menu__data",['系统管理', 'c', '用户管理'])
@@ -1231,13 +1271,15 @@ class CdrdPO(object):
         # 参数3：parent_id 父级菜单ID
         # 注意：None表示无父级菜单，
 
+        # 删除存储过程（用于添加描述）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+
         if len(l_param) != 3:
             print("error, 缺少参数")
             exit(0)
         else:
             execParam = "exec " + varProcedure + " @menuType=" + str(l_param[0]) + ", @menuName=" + str(l_param[1]) + ", @menuParentName=" + str(l_param[2]) + ";"
             print(execParam)
-
 
             # if l_param[1] != 'm':
             #     execParam = "exec " + varProcedure + " @menuParentName=" + str(l_param[0]) + ", @menuName=" + str(l_param[2]) + ";"
@@ -1248,15 +1290,47 @@ class CdrdPO(object):
         with open(varParamSql, 'r', encoding='utf-8') as file:
             sql_script = file.read()
         Sqlserver_PO.execute(sql_script)
+
+        # 添加描述
+        # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")
+        desc = f"""
+                EXEC sp_addextendedproperty 
+                    @name = N'MS_Description', 
+                    @value = N'{varDesc_escaped}',
+                    @level0type = N'Schema', 
+                    @level0name = 'dbo', 
+                    @level1type = N'Procedure', 
+                    @level1name = '{varProcedure}';
+            """
+        Sqlserver_PO.execute(desc)
+
         Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
-    def procedureRoleMenu(self, varProcedure, d_):
+    def procedureRoleMenu(self, varProcedure, varDesc, d_):
         #  角色菜单关系表
         # exec a_sys_role_menu__data @roleName=副主任, @menu_id=18;
+
+        # 删除存储过程（用于添加描述）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
             sql_script = file.read()
         Sqlserver_PO.execute(sql_script)
+
+        # 添加描述
+        # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")
+        desc = f"""
+                                EXEC sp_addextendedproperty 
+                                    @name = N'MS_Description', 
+                                    @value = N'{varDesc_escaped}',
+                                    @level0type = N'Schema', 
+                                    @level0name = 'dbo', 
+                                    @level1type = N'Procedure', 
+                                    @level1name = '{varProcedure}';
+                            """
+        Sqlserver_PO.execute(desc)
 
         keys = list(d_.keys())[0]
         values = list(d_.values())[0]  # [18, 20, 21]
@@ -1265,14 +1339,31 @@ class CdrdPO(object):
             print(execParam)
             Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
-    def procedureUserRole(self, varProcedure, d_):
+    def procedureUserRole(self, varProcedure, varDesc, d_):
         #  用户角色关系表
         # Cdrd_PO.procedureUserRole("a_sys_user_role__data", {3: 5})  # 用户3关联角色5
+
+        # 删除存储过程（用于添加描述）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
             sql_script = file.read()
         Sqlserver_PO.execute(sql_script)
+
+        # 添加描述
+        # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")
+        desc = f"""
+                        EXEC sp_addextendedproperty 
+                            @name = N'MS_Description', 
+                            @value = N'{varDesc_escaped}',
+                            @level0type = N'Schema', 
+                            @level0name = 'dbo', 
+                            @level1type = N'Procedure', 
+                            @level1name = '{varProcedure}';
+                    """
+        Sqlserver_PO.execute(desc)
 
         keys = list(d_.keys())[0]
         values = list(d_.values())[0]  # [18, 20, 21]

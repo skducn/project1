@@ -1,6 +1,6 @@
 -- todo 患者基本信息表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_info__data
+CREATE OR ALTER PROCEDURE cdrd_patient_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -69,7 +69,6 @@ BEGIN
             EXEC p_idcard @countyKey = @countyKey, @idcard = @idcard OUTPUT, @gender = @gender OUTPUT,
                  @genderKey = @genderKey OUTPUT, @birthday = @birthday OUTPUT,
                  @age = @age OUTPUT;
-
 
 
             -- 插入单条随机数据

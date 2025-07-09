@@ -1,4 +1,6 @@
-CREATE OR ALTER PROCEDURE a_sys_role__data
+-- todo 角色表(造数据)
+
+CREATE OR ALTER PROCEDURE sys_role
     @RecordCount INT = 10 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -35,7 +37,7 @@ BEGIN
             END
 
             -- 插入单条随机数据
-            INSERT INTO a_sys_role (role_name,role_key,role_sort,status,menu_check_strictly,role_creater_name,role_create_time,update_by,update_time,remark)
+            INSERT INTO a_sys_role (role_name,role_key,role_sort,status,menu_check_strictly,create_by,create_time,update_by,update_time,remark)
             VALUES (
                     @RoleName ,
                     @RoleKey ,

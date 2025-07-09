@@ -1,6 +1,6 @@
 -- todo 医疗组人员表(造数据)
 
-CREATE OR ALTER PROCEDURE a_sys_dept_medgp_person__data
+CREATE OR ALTER PROCEDURE sys_dept_medgp_person
     @RecordCount INT = 10 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN

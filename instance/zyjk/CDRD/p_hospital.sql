@@ -1,4 +1,4 @@
--- todo 随机医院
+-- todo 医院
 
 CREATE OR ALTER PROCEDURE p_hospital
     @v nvarchar(350) OUTPUT

@@ -1,4 +1,4 @@
--- todo 随机姓名
+-- todo 姓名
 
 CREATE OR ALTER PROCEDURE p_gen_names
     @Count INT = 1,        -- 生成姓名总数量

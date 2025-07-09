@@ -1,4 +1,4 @@
--- todo 随机职业
+-- todo 职业
 
 CREATE OR ALTER PROCEDURE p_job
     @v nvarchar(50) OUTPUT

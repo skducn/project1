@@ -1,4 +1,4 @@
--- todo 随机证件类型
+-- todo 证件类型
 
 CREATE OR ALTER PROCEDURE p_cert_type
     @k nvarchar(50) OUTPUT,

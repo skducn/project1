@@ -1,6 +1,6 @@
 -- todo 诊断表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_diag_info__data
+CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -27,9 +27,21 @@ BEGIN
             DECLARE @patient_id int;
             SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
 
+            -- 入院病情
+            DECLARE @RandomInStateIdKey NVARCHAR(50), @RandomInStateIdValue NVARCHAR(50);
+            EXEC p_in_state @k = @RandomInStateIdKey OUTPUT, @v = @RandomInStateIdValue OUTPUT;
+
+            -- 出院情况
+            DECLARE @RandomOutcomeStateIdKey NVARCHAR(50), @RandomOutcomeStateIdValue NVARCHAR(50);
+            EXEC p_outcome_state @k = @RandomOutcomeStateIdKey OUTPUT, @v = @RandomOutcomeStateIdValue OUTPUT;
+
+            -- 主要诊断
+            DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
+            EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_diag_info (patient_id,patient_hosipital_visit_id,patient_hospital_code,patient_hospital_name,patient_case_num,patient_diag_num,patient_diag_class,patient_diag_name,patient_diag_is_primary_key,patient_diag_is_primary_value,patient_diag_code,patient_in_state_key,patient_in_state_value,patient_outcome_state_key,patient_outcome_state_value,patient_diag_date,patient_diag_delete_state_key,patient_diag_update_time,patient_diag_data_source_key
+            INSERT INTO a_cdrd_patient_diag_info (patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_case_num,patient_diag_num,patient_diag_class,patient_diag_name,patient_diag_is_primary_key,patient_diag_is_primary_value,patient_diag_code,patient_in_state_key,patient_in_state_value,patient_outcome_state_key,patient_outcome_state_value,patient_diag_date,patient_diag_delete_state_key,patient_diag_update_time,patient_diag_data_source_key
 )
             VALUES (
                 @patient_id, -- 患者ID
@@ -40,13 +52,13 @@ BEGIN
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 病人诊断序号
                 '诊断类型', -- 诊断类型
                 '诊断名称', -- 诊断名称
-                '主要诊断key', -- 主要诊断key
-                '主要诊断', -- 主要诊断
+                @RandomTrueFalseIdKey, -- 主要诊断key
+                @RandomTrueFalseIdValue, -- 主要诊断
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- ICD10编码
-                '入院病情key', -- 入院病情key
-                '入院病情', -- 入院病情
-                '出院病情key', -- 出院病情key
-                '出院病情', -- 出院病情
+                @RandomInStateIdKey, -- 入院病情key
+                @RandomInStateIdValue, -- 入院病情
+                @RandomOutcomeStateIdKey, -- 出院病情key
+                @RandomOutcomeStateIdValue, -- 出院病情
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 诊断日期
                 '1', -- 删除状态
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间

@@ -1,4 +1,4 @@
--- todo 随机科室
+-- todo 科室
 
 CREATE OR ALTER PROCEDURE p_dept
     @v nvarchar(50) OUTPUT

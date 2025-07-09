@@ -1,4 +1,4 @@
--- todo 随机切口愈合等级
+-- todo 切口愈合等级
 
 CREATE OR ALTER PROCEDURE p_operation_incision_healing_grade
     @k nvarchar(50) OUTPUT,

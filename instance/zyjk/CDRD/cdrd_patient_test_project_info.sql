@@ -1,6 +1,6 @@
 -- todo  检查项目明细(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_test_project_info__data
+CREATE OR ALTER PROCEDURE cdrd_patient_test_project_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -28,9 +28,10 @@ BEGIN
                 '定性结果', -- 定性结果
                 '异常标识', -- 异常标识
                 '参考值（范围）', -- 参考值（范围）
-                '删除状态', -- 删除状态
+                ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '1' -- 数据来源
+                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
+
             );
 
             SET @Counter = @Counter + 1;

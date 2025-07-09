@@ -1,6 +1,6 @@
 -- todo 科室表(造数据)
 
-CREATE OR ALTER PROCEDURE a_sys_department__data
+CREATE OR ALTER PROCEDURE sys_department
     @RecordCount INT = 3 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN

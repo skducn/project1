@@ -1,4 +1,6 @@
-CREATE OR ALTER PROCEDURE a_sys_user__data
+-- todo 用户表
+
+CREATE OR ALTER PROCEDURE sys_user
     @RecordCount INT = 10 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -44,7 +46,7 @@ BEGIN
             SELECT TOP 1 @department_name = department_name FROM a_sys_department where department_id=@department_id;
 
             -- 插入单条随机数据
-            INSERT INTO a_sys_user (nick_name,user_name,user_type,password,job_num,email,phonenumber,sex,avatar,department_id,department_code,department_name,user_account_state,remark,creater_by,create_time,update_by,update_time,pwd_update_state,pwd_update_time,pwd_next_update_time
+            INSERT INTO a_sys_user (nick_name,user_name,user_type,password,job_num,email,phonenumber,sex,avatar,department_id,department_code,department_name,status,remark,creater_by,create_time,update_by,update_time,pwd_update_state,pwd_update_time,pwd_next_update_time
 )
             VALUES (
                     @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- nick_name: 姓名 + 固定3位数

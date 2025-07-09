@@ -1,4 +1,4 @@
--- todo 随机身份证
+-- todo 身份证
 
 CREATE OR ALTER PROCEDURE p_idcard
     @countyKey nvarchar(6),

@@ -1,4 +1,6 @@
-CREATE OR ALTER PROCEDURE a_sys_menu__data
+-- todo 菜单表(造数据)
+
+CREATE OR ALTER PROCEDURE sys_menu
     @menuType nvarchar(50),
     @menuName nvarchar(50),
     @menuParentName nvarchar(50)

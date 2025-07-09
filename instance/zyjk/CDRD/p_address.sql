@@ -1,4 +1,4 @@
--- todo 随机住址
+-- todo 住址
 
 CREATE OR ALTER PROCEDURE p_address
     @v1 nvarchar(150) OUTPUT,

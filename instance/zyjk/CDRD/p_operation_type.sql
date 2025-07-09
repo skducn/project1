@@ -1,4 +1,4 @@
--- todo 随机手术类型
+-- todo 手术类型
 
 CREATE OR ALTER PROCEDURE p_operation_type
     @k nvarchar(50) OUTPUT,

@@ -1,6 +1,6 @@
 -- todo  住院医嘱表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_hosptial_advice_info__data
+CREATE OR ALTER PROCEDURE cdrd_patient_hosptial_advice_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN

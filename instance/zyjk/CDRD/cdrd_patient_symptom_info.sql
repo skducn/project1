@@ -1,6 +1,6 @@
 -- todo 症状信息表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_symptom_info__data
+CREATE OR ALTER PROCEDURE cdrd_patient_symptom_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -40,9 +40,9 @@ BEGIN
                 '具体描述', -- 具体描述
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 出现时间
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 结束时间
-                '删除状态', -- 删除状态
+                ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '1' -- 数据来源
+                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
             );
 
             SET @Counter = @Counter + 1;

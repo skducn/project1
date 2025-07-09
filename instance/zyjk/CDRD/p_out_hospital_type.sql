@@ -1,4 +1,4 @@
--- todo 随机出院记录类型
+-- todo 出院记录类型
 
 CREATE OR ALTER PROCEDURE p_out_hospital_type
     @k nvarchar(50) OUTPUT,

@@ -1,4 +1,4 @@
--- todo 随机手术级别
+-- todo 手术级别
 
 CREATE OR ALTER PROCEDURE p_operation_level
     @k nvarchar(50) OUTPUT,

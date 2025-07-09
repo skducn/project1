@@ -1,6 +1,6 @@
 -- todo  辅助检查报告表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_assit_examination_info__data
+CREATE OR ALTER PROCEDURE cdrd_patient_assit_examination_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -27,12 +27,15 @@ BEGIN
             DECLARE @patient_id int;
             SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
 
+            -- 随机辅助检查类型
+            DECLARE @RandomAssitExaminationTypeIdKey NVARCHAR(50), @RandomAssitExaminationTypeIdValue NVARCHAR(50);
+            EXEC p_assit_examination_type @k = @RandomAssitExaminationTypeIdKey OUTPUT, @v = @RandomAssitExaminationTypeIdValue OUTPUT;
 
             -- 插入单条随机数据
             INSERT INTO a_cdrd_patient_assit_examination_info (patient_assit_examination_type_key,patient_assit_examination_type_value,patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_assit_examination_report_num,patient_assit_examination_source_report_num,patient_assit_examination_report_name,patient_assit_examination_check_method,patient_assit_examination_body_site,patient_assit_examination_sample_body,patient_assit_examination_eye_find,patient_assit_examination_microscope_find,patient_assit_examination_check_find,patient_assit_examination_check_conclusion,patient_assit_examination_check_time,patient_assit_examination_report_time,patient_assit_examination_delete_state_key,patient_assit_examination_update_time,patient_assit_examination_data_source_key)
             VALUES (
-                '辅助检查类型-key', -- 辅助检查类型-key
-                '辅助检查类型', -- 辅助检查类型
+                @RandomAssitExaminationTypeIdKey, -- 辅助检查类型-key
+                @RandomAssitExaminationTypeIdValue, -- 辅助检查类型
                 @patient_id, -- 患者ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
@@ -49,9 +52,9 @@ BEGIN
                 '检查结论', -- 检查结论
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 检查日期
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 报告日期
-                '删除状态', -- 删除状态
+                ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '1' -- 数据来源
+                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
             );
 
             SET @Counter = @Counter + 1;
