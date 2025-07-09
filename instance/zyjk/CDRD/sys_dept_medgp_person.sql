@@ -21,7 +21,7 @@ BEGIN
             -- 子存储过程
             -- 姓名
             DECLARE @RandomName NVARCHAR(50);
-            EXEC p_gen_names @FullName = @RandomName OUTPUT;
+            EXEC p_name @FullName = @RandomName OUTPUT;
 
             DECLARE @RandomDepartment_treat_group_id int;
             SELECT TOP 1 @RandomDepartment_treat_group_id = department_treat_group_id FROM a_sys_dept_medgp ORDER BY NEWID();

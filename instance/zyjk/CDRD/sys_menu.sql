@@ -18,6 +18,24 @@ BEGIN
         DECLARE @isExist NVARCHAR(50);
         SELECT @isExist = menu_id FROM a_sys_menu WHERE menu_name = @menuName and menu_type = @menuType;
 
+        -- 子存储过程
+        -- 是否为外链
+        DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
+        EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+
+        -- 是否缓存
+        DECLARE @RandomIsCacheIdKey NVARCHAR(50), @RandomIsCacheIdValue NVARCHAR(50);
+        EXEC p_is_cache @k = @RandomIsCacheIdKey OUTPUT, @v = @RandomIsCacheIdValue OUTPUT;
+
+        -- 菜单状态
+        DECLARE @RandomStatusIdKey NVARCHAR(50), @RandomStatusIdValue NVARCHAR(50);
+        EXEC p_status @k = @RandomStatusIdKey OUTPUT, @v = @RandomStatusIdValue OUTPUT;
+
+        -- 是否显示
+        DECLARE @RandomVisibleIdKey NVARCHAR(50), @RandomVisibleIdValue NVARCHAR(50);
+        EXEC p_visible @k = @RandomVisibleIdKey OUTPUT, @v = @RandomVisibleIdValue OUTPUT;
+
+
         -- 判断, 如果不存在且是M
         IF @isExist IS NULL and @menuType = 'M'
         BEGIN
@@ -34,11 +52,11 @@ BEGIN
                     '/user/', -- 组件路径
                     'param', -- 路由参数
                     'test', -- 路由名称
-                    '1',-- 是否为外链
-                    '0', -- 是否缓存
+                    @RandomTrueFalseIdKey,-- 是否为外链
+                    @RandomIsCacheIdKey, -- 是否缓存
                     @menuType, -- 菜单类型
-                    '0',-- 菜单状态
-                    '1', -- 显示状态
+                    @RandomStatusIdKey,-- 菜单状态
+                    @RandomVisibleIdKey, -- 显示状态
                     '11', -- 权限字符
                     '3', -- 菜单图标
                     'admin', -- 创建人
@@ -70,11 +88,11 @@ BEGIN
                         '/user/', -- 组件路径
                         'param', -- 路由参数
                         'test', -- 路由名称
-                        '1',-- 是否为外链
-                        '0', -- 是否缓存
+                        @RandomTrueFalseIdKey,-- 是否为外链
+                        @RandomIsCacheIdKey, -- 是否缓存
                         @menuType, -- 菜单类型
-                        '0',-- 菜单状态
-                        '1', -- 显示状态
+                        @RandomStatusIdKey,-- 菜单状态
+                        @RandomVisibleIdKey, -- 显示状态
                         '11', -- 权限字符
                         '3', -- 菜单图标
                         'admin', -- 创建人
@@ -107,11 +125,11 @@ BEGIN
                         '/user/', -- 组件路径
                         'param', -- 路由参数
                         'test', -- 路由名称
-                        '1',-- 是否为外链
-                        '0', -- 是否缓存
+                        @RandomTrueFalseIdKey,-- 是否为外链
+                        @RandomIsCacheIdKey, -- 是否缓存
                         @menuType, -- 菜单类型
-                        '0',-- 菜单状态
-                        '1', -- 显示状态
+                        @RandomStatusIdKey,-- 菜单状态
+                        @RandomVisibleIdKey, -- 显示状态
                         '11', -- 权限字符
                         '3', -- 菜单图标
                         'admin', -- 创建人

@@ -29,7 +29,7 @@ BEGIN
             -- 子存储过程
             -- 姓名
             DECLARE @RandomName NVARCHAR(50);
-            EXEC p_gen_names @FullName = @RandomName OUTPUT;
+            EXEC p_name @FullName = @RandomName OUTPUT;
 
             -- 婚姻
             DECLARE @RandomMarriageKey NVARCHAR(50), @RandomMarriage NVARCHAR(50);
@@ -107,7 +107,7 @@ BEGIN
                 @phone2, -- 联系人电话
                 @RandomAddress2, -- 联系人地址
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '1' -- 数据来源
+                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
             );
 
             SET @Counter = @Counter + 1;

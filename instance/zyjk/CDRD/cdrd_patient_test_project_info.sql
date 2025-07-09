@@ -1,4 +1,4 @@
--- todo  检查项目明细(造数据)
+-- todo 检查项目明细(造数据)
 
 CREATE OR ALTER PROCEDURE cdrd_patient_test_project_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
@@ -18,10 +18,24 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 获取 取值实验室检查ID或者辅助检查ID
+            DECLARE @patient_superior_examination_id int;
+            if ABS(CHECKSUM(NEWID())) % 2 = 0
+            BEGIN
+                -- 50% 概率：获取 patient_lab_examination_id
+                SELECT TOP 1 @patient_superior_examination_id = patient_lab_examination_id FROM a_cdrd_patient_lab_examination_info ORDER BY NEWID();
+            END
+            ELSE
+            BEGIN
+                 -- 50% 概率：获取 patient_assit_examination_id
+                SELECT TOP 1 @patient_superior_examination_id = patient_assit_examination_id FROM a_cdrd_patient_assit_examination_info ORDER BY NEWID();
+            END
+
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_test_project_info (patient_report_num,patient_test_item_name,patient_test_numerical_value,patient_test_unit_name,patient_test_text_value,patient_test_abnormal_flag,patient_test_reference_range,patient_test_delete_state_key,patient_test_update_time,patient_test_data_source_key)
+            INSERT INTO a_cdrd_patient_test_project_info (patient_superior_examination_id,patient_report_num,patient_test_item_name,patient_test_numerical_value,patient_test_unit_name,patient_test_text_value,patient_test_abnormal_flag,patient_test_reference_range,patient_test_delete_state_key,patient_test_update_time,patient_test_data_source_key)
             VALUES (
-                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
+                @patient_superior_examination_id, -- 上级检查ID
+                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
                 '项目名称', -- 项目名称
                 '定量结果', -- 定量结果
                 '定量结果单位', -- 定量结果单位

@@ -18,14 +18,26 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 获取 patient_id 和 patient_visit_id
+            DECLARE @patient_id int;
+            DECLARE @patient_visit_id int;
+            if ABS(CHECKSUM(NEWID())) % 2 = 0
+            BEGIN
+                -- 50% 概率：仅获取 patient_id（不关联就诊
+                SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
+                SET @patient_visit_id = NULL;
+            END
+            ELSE
+            BEGIN
+                 -- 50% 概率：获取 patient_id 和 patient_visit_id
+                SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
+            END
+
+
             -- 子存储过程
             -- 医院
             DECLARE @RandomHospital NVARCHAR(350);
             EXEC p_hospital @v = @RandomHospital OUTPUT;
-
-            -- 随机获取患者ID
-            DECLARE @patient_id int;
-            SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
 
             -- 入院病情
             DECLARE @RandomInStateIdKey NVARCHAR(50), @RandomInStateIdValue NVARCHAR(50);
@@ -41,10 +53,11 @@ BEGIN
 
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_diag_info (patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_case_num,patient_diag_num,patient_diag_class,patient_diag_name,patient_diag_is_primary_key,patient_diag_is_primary_value,patient_diag_code,patient_in_state_key,patient_in_state_value,patient_outcome_state_key,patient_outcome_state_value,patient_diag_date,patient_diag_delete_state_key,patient_diag_update_time,patient_diag_data_source_key
+            INSERT INTO a_cdrd_patient_diag_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_case_num,patient_diag_num,patient_diag_class,patient_diag_name,patient_diag_is_primary_key,patient_diag_is_primary_value,patient_diag_code,patient_in_state_key,patient_in_state_value,patient_outcome_state_key,patient_outcome_state_value,patient_diag_date,patient_diag_delete_state_key,patient_diag_update_time,patient_diag_data_source_key
 )
             VALUES (
                 @patient_id, -- 患者ID
+                @patient_visit_id, -- 就诊记录ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 诊断医疗机构编号
                 @RandomHospital, -- 医院名称
@@ -60,9 +73,9 @@ BEGIN
                 @RandomOutcomeStateIdKey, -- 出院病情key
                 @RandomOutcomeStateIdValue, -- 出院病情
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 诊断日期
-                '1', -- 删除状态
+                ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '1' -- 数据来源
+                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
             );
 
             SET @Counter = @Counter + 1;

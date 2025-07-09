@@ -25,7 +25,7 @@ BEGIN
 
             -- 姓名
             DECLARE @RandomName NVARCHAR(50);
-            EXEC p_gen_names @FullName = @RandomName OUTPUT;
+            EXEC p_name @FullName = @RandomName OUTPUT;
 
 
             -- 插入单条随机数据

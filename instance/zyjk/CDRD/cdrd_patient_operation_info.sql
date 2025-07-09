@@ -40,7 +40,6 @@ BEGIN
             EXEC p_operation_incision_healing_grade @k = @RandomOperationIncisionHealingGradeIdKey OUTPUT, @v = @RandomOperationIncisionHealingGradeIdValue OUTPUT;
 
 
-
             -- 插入单条随机数据
             INSERT INTO a_cdrd_patient_operation_info (patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_operation_num,patient_operation_source_num,patient_operation_name,patient_operation_doc_name,patient_operation_assist_I,patient_operation_assit_II,patient_operation_before_diga,patient_operation_during_diga,patient_operation_after_diga,patient_operation_level_key,patient_operation_level_value,patient_operation_type_key,patient_operation_type_value,patient_operation_incision_healing_grade_key,patient_operation_incision_healing_grade_value,patient_operation_anesthesiologist,patient_operation_anesthesia_type,patient_operation_step_process,patient_operation_begin_time,patient_operation_end_time,patient_operation_delete_state_key,patient_operation_update_time,patient_operation_source_key)
             VALUES (

@@ -24,6 +24,13 @@ BEGIN
         -- 循环插入指定数量的记录
         WHILE @Counter <= @InsertedNamesCount
         BEGIN
+
+             -- 子存储过程
+             -- 角色状态
+            DECLARE @RandomStatusIdKey NVARCHAR(50), @RandomStatusIdValue NVARCHAR(50);
+            EXEC p_status @k = @RandomStatusIdKey OUTPUT, @v = @RandomStatusIdValue OUTPUT;
+
+
             -- 获取角色名称和权限标识
             DECLARE @RoleName NVARCHAR(50), @RoleKey NVARCHAR(50);
             SELECT @RoleName = Role, @RoleKey = RoleKey FROM #Names WHERE ID = @Counter;
@@ -42,7 +49,7 @@ BEGIN
                     @RoleName ,
                     @RoleKey ,
                     '0', -- 显示顺序
-                    '0', -- 角色状态
+                    @RandomStatusIdKey, -- 角色状态
                     '1', -- 菜单树选择项是否关联显示
                     'admin', -- 创建人
                     GETDATE(), -- 创建时间

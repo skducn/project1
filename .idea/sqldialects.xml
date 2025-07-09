@@ -24,14 +24,15 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_cert_type.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_dept.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_drug_allergy_type.sql" dialect="TSQL" />
-    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_gen_names.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_hospital.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_hospital_advice.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_idcard.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_in_state.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_is_cache.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_job.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_marriage.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_medical_payment_type.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_name.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_nationality.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_operation_incision_healing_grade.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_operation_level.sql" dialect="TSQL" />
@@ -42,13 +43,19 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_patient_relation.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_physical_sign.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_physical_sign_unit.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_pwd_update_state.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_rh_type.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_sex.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_status.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_trueFalse.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_visible.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_visit_type.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/p_visit_way.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_config.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_department.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_dept_medgp.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_dept_medgp_person.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_logininfo.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_menu.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_role.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/sys_role_menu.sql" dialect="TSQL" />
