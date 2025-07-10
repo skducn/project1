@@ -38,6 +38,10 @@ BEGIN
             DECLARE @RandomHospital NVARCHAR(350);
             EXEC p_hospital @v = @RandomHospital OUTPUT;
 
+             -- 症状名称，症状编号，具体描述
+            DECLARE @RandomSymptomName NVARCHAR(50), @RandomSymptomNum NVARCHAR(50), @RandomSymptomDescription NVARCHAR(50);
+            EXEC symptom_info__ @v1 = @RandomSymptomName OUTPUT, @v2 = @RandomSymptomNum OUTPUT, @v3 = @RandomSymptomDescription OUTPUT;
+
 
             -- 插入单条随机数据
             INSERT INTO a_cdrd_patient_symptom_info (patient_id,patient_visit_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_symptom_num,patient_symptom_name,patient_symptom_description,patient_symptom_start_time,patient_symptom_end_time,patient_symptom_delete_state_key,patient_symptom_update_time,patient_symptom_data_source_key)
@@ -47,9 +51,9 @@ BEGIN
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
                 @RandomHospital, -- 医院名称
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 症状编号
-                '症状名称', -- 症状名称
-                '具体描述', -- 具体描述
+                @RandomSymptomNum, -- 症状编号
+                @RandomSymptomName, -- 症状名称
+                @RandomSymptomDescription, -- 具体描述
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 出现时间
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 结束时间
                 ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2

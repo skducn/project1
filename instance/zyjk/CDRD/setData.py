@@ -53,22 +53,24 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 1，专病库字段表
-# 患者基本信息
+# 患者基本信息 30000
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
-# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息', 10)
+# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息', 4)
 #
 # # 诊断表
 # Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', 2)
+# Cdrd_PO.subProcedure("diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
 #
 #
 # # 门(急)诊住院就诊信息
-# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
-# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', 3)
+Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
+Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', None)
 #
 #
 # # # 症状信息
 # Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
+# Cdrd_PO.subProcedure("symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
 # Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息', 3)
 #
 #
@@ -93,22 +95,22 @@ Cdrd_PO = CdrdPO()
 # #
 # # # #
 # # # # 门诊医嘱
-Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 3)
+# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
+# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 3)
 #
 # # #
 # # #  住院医嘱
-# # Cdrd_PO._a_cdrd_patient_hosptial_advice_info('住院医嘱')
-# Cdrd_PO.procedure("cdrd_patient_hosptial_advice_info", '住院医嘱', 3)
+# Cdrd_PO._a_cdrd_patient_hospital_advice_info('住院医嘱')
+# Cdrd_PO.procedure("cdrd_patient_hospital_advice_info", '住院医嘱', 3)
 # #
 # # # #
 # # # #  用药信息
-# # Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
+# Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
 # Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息', 3)
 #
 # # #
 # # # 出院记录
-# # Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
+# Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
 # Cdrd_PO.procedure("cdrd_patient_out_hospital_info", '出院记录', 3)
 #
 # # #

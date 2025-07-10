@@ -98,7 +98,7 @@ BEGIN
                 @RandomMarriageKey, -- 婚姻key
                 @RandomMarriage, -- 婚姻
                 @RandomIdtypeKey, --证件类型key
-                @RandomIdtype, --证件类型
+                '身份证号', --证件类型 @RandomIdtype
                 @idcard, --证件号码 IDCardNumber
                 @phone3, -- 家庭电话
                 @RandomAddress1, -- 户口地址

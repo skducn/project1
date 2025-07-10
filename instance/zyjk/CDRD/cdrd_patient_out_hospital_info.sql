@@ -18,25 +18,28 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 出院记录表的患者ID和就诊编号ID均来自 就诊信息
+            DECLARE @patient_id int;
+            DECLARE @patient_visit_id int;
+            SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
+
+
             -- 子存储过程
             -- 医院
             DECLARE @RandomHospital NVARCHAR(350);
             EXEC p_hospital @v = @RandomHospital OUTPUT;
-
-            -- 随机获取患者ID
-            DECLARE @patient_id int;
-            SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
 
             -- 出院记录类型
             DECLARE @RandomHospitalTypeIdKey NVARCHAR(50), @RandomHospitalTypeIdValue NVARCHAR(50);
             EXEC p_out_hospital_type @k = @RandomHospitalTypeIdKey OUTPUT, @v = @RandomHospitalTypeIdValue OUTPUT;
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_out_hospital_info (patient_out_hospital_type_key,patient_out_hospital_type_value,patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_out_hospital_record_num,patient_out_hospital_main_describe,patient_out_hospital_in_situation,patient_out_hospital_in_diag,patient_out_hospital_diga_process,patient_out_hospital_diag,patient_out_hospital_situation,patient_out_hospital_advice,patient_out_hospital_record_time,patient_out_hospital_update_time,patient_out_hospital_source_key)
+            INSERT INTO a_cdrd_patient_out_hospital_info (patient_out_hospital_type_key,patient_out_hospital_type_value,patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_out_hospital_record_num,patient_out_hospital_main_describe,patient_out_hospital_in_situation,patient_out_hospital_in_diag,patient_out_hospital_diag_process,patient_out_hospital_diag,patient_out_hospital_situation,patient_out_hospital_advice,patient_out_hospital_record_time,patient_out_hospital_update_time,patient_out_hospital_source_key)
             VALUES (
                 @RandomHospitalTypeIdKey, -- 出院记录类型-key
                 @RandomHospitalTypeIdValue, -- 出院记录类型
                 @patient_id, -- 患者ID
+                @patient_visit_id, -- 就诊记录ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
                 @RandomHospital, -- 医院名称

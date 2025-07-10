@@ -1,4 +1,4 @@
--- todo  门诊医嘱表(造数据)
+-- todo 门诊医嘱表(造数据)
 
 CREATE OR ALTER PROCEDURE cdrd_patient_clinic_advice_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
@@ -18,14 +18,15 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 门诊医嘱表的患者ID和就诊编号ID均来自 就诊信息
+            DECLARE @patient_id int;
+            DECLARE @patient_visit_id int;
+            SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
+
             -- 子存储过程
             -- 医院
             DECLARE @RandomHospital NVARCHAR(350);
             EXEC p_hospital @v = @RandomHospital OUTPUT;
-
-            -- 随机获取患者ID
-            DECLARE @patient_id int;
-            SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
 
             -- 随机是否药品 true false
             DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
@@ -33,9 +34,10 @@ BEGIN
 
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_clinic_advice_info (patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_outpat_recipe_detail_num,patient_recipe_class,patient_recipe_name,patient_recipe_drug_flag_key,patient_recipe_drug_flag_value,patient_recipe_time,patient_recipe_exec_dept_name,patient_clinic_advice_update_time,patient_clinic_advice_source_key)
+            INSERT INTO a_cdrd_patient_clinic_advice_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_outpat_recipe_detail_num,patient_recipe_class,patient_recipe_name,patient_recipe_drug_flag_key,patient_recipe_drug_flag_value,patient_recipe_time,patient_recipe_exec_dept_name,patient_clinic_advice_update_time,patient_clinic_advice_source_key)
             VALUES (
                 @patient_id, -- 患者ID
+                @patient_visit_id, -- 就诊记录ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
                 @RandomHospital, -- 医院名称

@@ -18,6 +18,20 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 获取 取值门诊医嘱ID或者住院医嘱ID
+            DECLARE @patient_superior_advice_id int;
+            -- 50% 概率：
+            if ABS(CHECKSUM(NEWID())) % 2 = 0
+            BEGIN
+                -- 随机获取门诊医嘱表的门诊医嘱ID
+                SELECT TOP 1 @patient_superior_advice_id = patient_clinic_advice_id FROM a_cdrd_patient_clinic_advice_info ORDER BY NEWID();
+            END
+            ELSE
+            BEGIN
+                -- 随机获取住院医嘱表的住院医嘱ID
+                SELECT TOP 1 @patient_superior_advice_id = patient_hospital_advice_id FROM a_cdrd_patient_hospital_advice_info ORDER BY NEWID();
+            END
+
             -- 子存储过程
             -- 医院
             DECLARE @RandomHospital NVARCHAR(350);
@@ -29,9 +43,10 @@ BEGIN
 
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_drug_info (patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
+            INSERT INTO a_cdrd_patient_drug_info (patient_id,patient_superior_advice_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
             VALUES (
                 @patient_id, -- 患者ID
+                @patient_superior_advice_id, -- 取值门诊医嘱ID或者住院医嘱ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
                 @RandomHospital, -- 医院名称

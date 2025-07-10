@@ -434,9 +434,9 @@ if __name__ == "__main__":
     Time_PO = TimePO()
 
     # 获取并打印所有周五的日期
-    from datetime import datetime
-    l_fridays = Time_PO.get_fridays_until_today(datetime(2025, 1, 1))
-    print(l_fridays)
+    # from datetime import datetime
+    # l_fridays = Time_PO.get_fridays_until_today(datetime(2025, 1, 1))
+    # print(l_fridays)
 
 
     # print(Time_PO.getDate())  # 20200319
@@ -496,12 +496,14 @@ if __name__ == "__main__":
     # print(date_end - date_start)  # 0 days 00:00:06.010230
     #
     #
-    # print("求时间差，输出秒".center(100, "-"))
-    # time_start = time.time()
-    # sleep(6)  # ----这里是程序执行部分----
-    # time_end = time.time()
-    # time = time_end - time_start
-    # print('耗时：%s 秒' % time)  # 耗时：6.008593320846558 秒
+    print("求时间差，输出秒".center(100, "-"))
+    time_start = time.time()
+    sleep(6)  # ----这里是程序执行部分----
+    time_end = time.time()
+    time = time_end - time_start
+    print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
+    print(f"\n程序运行时间: {time:.4f} 秒")  # 6.0036 秒
+
     #
 
     # print("秒转时分秒1".center(100, "-"))

@@ -1,6 +1,6 @@
 -- todo  住院医嘱表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_hosptial_advice_info
+CREATE OR ALTER PROCEDURE cdrd_patient_hospital_advice_info
     @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -18,14 +18,16 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 住院医嘱表的患者ID和就诊编号ID均来自 就诊信息
+            DECLARE @patient_id int;
+            DECLARE @patient_visit_id int;
+            SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
+
+
             -- 子存储过程
             -- 医院
             DECLARE @RandomHospital NVARCHAR(350);
             EXEC p_hospital @v = @RandomHospital OUTPUT;
-
-            -- 随机获取患者ID
-            DECLARE @patient_id int;
-            SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
 
             -- 住院医嘱类型
             DECLARE @RandomHospitalAdviceIdKey NVARCHAR(50), @RandomHospitalAdviceIdValue NVARCHAR(50);
@@ -33,11 +35,12 @@ BEGIN
 
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_hosptial_advice_info (patient_hosptial_advice_type_key,patient_hosptial_advice_type_value,patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_hosptial_advice_num,patient_hosptial_advice_source_num,patient_hosptial_advice_class,patient_hosptial_advice_name,patient_hosptial_advice_remark,patient_hosptial_advice_begin_time,patient_hosptial_advice_end_time,patient_hosptial_advice_exec_dept_name,patient_hosptial_advice_update_time,patient_hosptial_advice_source_key)
+            INSERT INTO a_cdrd_patient_hospital_advice_info (patient_hospital_advice_type_key,patient_hospital_advice_type_value,patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_hospital_advice_num,patient_hospital_advice_source_num,patient_hospital_advice_class,patient_hospital_advice_name,patient_hospital_advice_remark,patient_hospital_advice_begin_time,patient_hospital_advice_end_time,patient_hospital_advice_exec_dept_name,patient_hospital_advice_update_time,patient_hospital_advice_source_key)
             VALUES (
                 @RandomHospitalAdviceIdKey, -- 住院医嘱类型-key
                 @RandomHospitalAdviceIdValue, -- 住院医嘱类型
                 @patient_id, -- 患者ID
+                @patient_visit_id, -- 就诊记录ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
                 @RandomHospital, -- 医院名称
@@ -54,7 +57,7 @@ BEGIN
             );
 
             SET @Counter = @Counter + 1;
-            SET @TotalCount = (select count(*) from a_cdrd_patient_hosptial_advice_info);
+            SET @TotalCount = (select count(*) from a_cdrd_patient_hospital_advice_info);
         END;
 
         -- 返回插入的记录数

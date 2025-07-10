@@ -18,20 +18,23 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
+            -- 护理记录表的患者ID和就诊编号ID均来自 就诊信息
+            DECLARE @patient_id int;
+            DECLARE @patient_visit_id int;
+            SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
+
+
             -- 子存储过程
             -- 医院
             DECLARE @RandomHospital NVARCHAR(350);
             EXEC p_hospital @v = @RandomHospital OUTPUT;
 
-            -- 随机获取患者ID
-            DECLARE @patient_id int;
-            SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
-
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_nurse_info (patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_nurse_record_num,patient_nurse_record_time,patient_nurse_record_name,patient_nurse_value,patient_nurse_unit,patient_nurse_update_time,patient_nurse_source_key)
+            INSERT INTO a_cdrd_patient_nurse_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_nurse_record_num,patient_nurse_record_time,patient_nurse_record_name,patient_nurse_value,patient_nurse_unit,patient_nurse_update_time,patient_nurse_source_key)
             VALUES (
                 @patient_id, -- 患者ID
+                @patient_visit_id, -- 就诊记录ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
                 @RandomHospital, -- 医院名称

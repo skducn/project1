@@ -1,4 +1,4 @@
-# coding=utf-8
+# -*- coding: utf-8 -*-
 # *****************************************************************
 # Author     : John
 # Date       : 2025-7-1
@@ -25,15 +25,15 @@ class CdrdPO(object):
         # 医院管理 - 医院信息表 a_sys_hopital
 
         Sqlserver_PO.crtTableByCover('a_sys_hopital',
-                                           '''hosptial_id INT IDENTITY(1,1) PRIMARY KEY,
-                                            hosptial_name NVARCHAR(50),
-                                            hosptial_code NVARCHAR(50),
+                                           '''hospital_id INT IDENTITY(1,1) PRIMARY KEY,
+                                            hospital_name NVARCHAR(50),
+                                            hospital_code NVARCHAR(50),
                                             hospital_picture_address NVARCHAR(20),
                                           ''')
         Sqlserver_PO.setTableComment('a_sys_hopital', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hosptial_id', '医院ID')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hosptial_name', '医院名称')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hosptial_code', '医院编码')
+        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_id', '医院ID')
+        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_name', '医院名称')
+        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_code', '医院编码')
         Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_picture_address', '图片地址')
 
 
@@ -839,6 +839,7 @@ class CdrdPO(object):
             '''
                 patient_clinic_advice_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
+                patient_visit_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name nvarchar(50),
@@ -855,6 +856,7 @@ class CdrdPO(object):
         Sqlserver_PO.setTableComment('a_cdrd_patient_clinic_advice_info', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_clinic_advice_id', '门诊医嘱ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_visit_id', '就诊记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_hospital_code', '检查医疗机构编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_hospital_name', '医院名称'),
@@ -867,55 +869,57 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_exec_dept_name', '执行科室'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_clinic_advice_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_clinic_advice_source_key', '数据来源')
-    def _a_cdrd_patient_hosptial_advice_info(self, varCommon):
+    def _a_cdrd_patient_hospital_advice_info(self, varCommon):
 
         # 住院医嘱
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_hosptial_advice_info',
+        Sqlserver_PO.crtTableByCover('a_cdrd_patient_hospital_advice_info',
             '''
-                patient_hosptial_advice_id int IDENTITY(1,1) PRIMARY KEY,
-                patient_hosptial_advice_type_key varchar(100),
-                patient_hosptial_advice_type_value nvarchar(100),
+                patient_hospital_advice_id int IDENTITY(1,1) PRIMARY KEY,
+                patient_hospital_advice_type_key varchar(100),
+                patient_hospital_advice_type_value nvarchar(100),
                 patient_id int,
+                patient_visit_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name nvarchar(50),
-                patient_hosptial_advice_num varchar(100),
-                patient_hosptial_advice_source_num varchar(100),
-                patient_hosptial_advice_class nvarchar(50),
-                patient_hosptial_advice_name nvarchar(50),
-                patient_hosptial_advice_remark nvarchar(2000),
-                patient_hosptial_advice_begin_time datetime,
-                patient_hosptial_advice_end_time datetime,
-                patient_hosptial_advice_exec_dept_name nvarchar(50),
-                patient_hosptial_advice_update_time datetime,
-                patient_hosptial_advice_source_key varchar(100)
+                patient_hospital_advice_num varchar(100),
+                patient_hospital_advice_source_num varchar(100),
+                patient_hospital_advice_class nvarchar(50),
+                patient_hospital_advice_name nvarchar(50),
+                patient_hospital_advice_remark nvarchar(2000),
+                patient_hospital_advice_begin_time datetime,
+                patient_hospital_advice_end_time datetime,
+                patient_hospital_advice_exec_dept_name nvarchar(50),
+                patient_hospital_advice_update_time datetime,
+                patient_hospital_advice_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_hosptial_advice_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_id', '住院医嘱ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_type_key',
+        Sqlserver_PO.setTableComment('a_cdrd_patient_hospital_advice_info', varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_id', '住院医嘱ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_type_key',
                                      '住院医嘱类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_type_value',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_type_value',
                                      '住院医嘱类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_num', '医嘱编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_source_num',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_num', '医嘱编号'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_source_num',
                                      '源系统医嘱编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_class', '医嘱类别'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_name', '医嘱名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_remark', '备注'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_begin_time',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_class', '医嘱类别'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_name', '医嘱名称'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_remark', '备注'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_begin_time',
                                      '医嘱开始时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_end_time',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_end_time',
                                      '医嘱结束时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_exec_dept_name',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_exec_dept_name',
                                      '执行科室'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_update_time',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_update_time',
                                      '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hosptial_advice_info', 'patient_hosptial_advice_source_key',
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_source_key',
                                      '数据来源')
     def _a_cdrd_patient_drug_info(self, varCommon):
 
@@ -924,7 +928,8 @@ class CdrdPO(object):
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_drug_info',
             '''
                 patient_drug_id int IDENTITY(1,1) PRIMARY KEY,
-                patient_id varchar(100),
+                patient_id int,
+                patient_superior_advice_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name varchar(50),
@@ -945,6 +950,7 @@ class CdrdPO(object):
         Sqlserver_PO.setTableComment('a_cdrd_patient_drug_info', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_id', '用药信息ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_superior_advice_id', '取值门诊医嘱ID或者住院医嘱ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_code', '就诊医疗机构编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_name', '医院名称'),
@@ -971,6 +977,7 @@ class CdrdPO(object):
                 patient_out_hospital_type_key varchar(100),
                 patient_out_hospital_type_value nvarchar(100),
                 patient_id int,
+                patient_visit_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name nvarchar(50),
@@ -978,7 +985,7 @@ class CdrdPO(object):
                 patient_out_hospital_main_describe nvarchar(500),
                 patient_out_hospital_in_situation nvarchar(max),
                 patient_out_hospital_in_diag nvarchar(500),
-                patient_out_hospital_diga_process nvarchar(max),
+                patient_out_hospital_diag_process nvarchar(max),
                 patient_out_hospital_diag nvarchar(500),
                 patient_out_hospital_situation nvarchar(max),
                 patient_out_hospital_advice nvarchar(500),
@@ -991,6 +998,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_type_key', '出院记录类型-key'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_type_value', '出院记录类型-value'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_visit_id', '就诊记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_hospital_code', '就诊医疗机构编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_hospital_name', '医院名称'),
@@ -998,7 +1006,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_main_describe', '主诉'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_in_situation', '入院情况'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_in_diag', '入院诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_diga_process', '诊疗经过'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_diag_process', '诊疗经过'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_diag', '出院诊断'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_situation', '出院情况'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_advice', '出院医嘱'),
@@ -1013,6 +1021,7 @@ class CdrdPO(object):
             '''
                 patient_operation_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
+                patient_visit_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name nvarchar(50),
@@ -1022,9 +1031,9 @@ class CdrdPO(object):
                 patient_operation_doc_name nvarchar(50),
                 patient_operation_assist_I nvarchar(50),
                 patient_operation_assit_II nvarchar(50),
-                patient_operation_before_diga nvarchar(500),
-                patient_operation_during_diga nvarchar(500),
-                patient_operation_after_diga nvarchar(500),
+                patient_operation_before_diag nvarchar(500),
+                patient_operation_during_diag nvarchar(500),
+                patient_operation_after_diag nvarchar(500),
                 patient_operation_level_key varchar(100),
                 patient_operation_level_value nvarchar(100),
                 patient_operation_type_key varchar(100),
@@ -1043,6 +1052,7 @@ class CdrdPO(object):
         Sqlserver_PO.setTableComment('a_cdrd_patient_operation_info', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_id', '手术记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_visit_id', '就诊记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_hospital_code', '就诊医疗机构编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_hospital_name', '医院名称'),
@@ -1052,9 +1062,9 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_doc_name', '主刀/手术者'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_assist_I', 'I助'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_assit_II', 'II助'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_before_diga', '术前诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_during_diga', '术中诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_after_diga', '术后诊断'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_before_diag', '术前诊断'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_during_diag', '术中诊断'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_after_diag', '术后诊断'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_level_key', '手术级别-key'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_level_value', '手术级别'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_type_key', '手术类型-key'),
@@ -1079,6 +1089,7 @@ class CdrdPO(object):
             '''
                 patient_nurse_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
+                patient_visit_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name nvarchar(50),
@@ -1093,6 +1104,7 @@ class CdrdPO(object):
         Sqlserver_PO.setTableComment('a_cdrd_patient_nurse_info', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_id', '护理记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_visit_id', '就诊记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_hospital_code', '就诊医疗机构编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_hospital_name', '医院名称'),
@@ -1111,12 +1123,13 @@ class CdrdPO(object):
             '''
                 patient_death_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
+                patient_visit_id int,
                 patient_hospital_visit_id varchar(100),
                 patient_death_record_id varchar(100),
                 patient_death_time datetime,
                 patient_death_in_situation nvarchar(max),
                 patient_death_in_diag nvarchar(500),
-                patient_death_diga_process nvarchar(max),
+                patient_death_diag_process nvarchar(max),
                 patient_death_reason nvarchar(500),
                 patient_death_diag nvarchar(500),
                 patient_death_update_time datetime,
@@ -1125,12 +1138,13 @@ class CdrdPO(object):
         Sqlserver_PO.setTableComment('a_cdrd_patient_death_info', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_id', '死亡记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_visit_id', '就诊记录ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_record_id', '文书编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_time', '死亡时间'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_in_situation', '入院情况'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_in_diag', '入院诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_diga_process', '诊疗经过（抢救经过）'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_diag_process', '诊疗经过（抢救经过）'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_reason', '死亡原因'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_diag', '死亡诊断'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_update_time', '更新时间'),
@@ -1205,7 +1219,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_dict_data', 'remark', '备注')
 
 
-    def procedure(self, varProcedure, varDesc, varQty=1):
+    def procedure(self, varProcedure, varDesc, varQty=None):
         # 通用存储过程
         # 创建并执行存储过程，插入N条记录
 
@@ -1232,7 +1246,10 @@ class CdrdPO(object):
         Sqlserver_PO.execute(desc)
 
         # 执行存储过程
-        execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
+        if varQty == None:
+            execParam = "exec " + varProcedure + ";"
+        else:
+            execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
         print(execParam + " //" + varDesc)  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
         Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 

@@ -20,14 +20,15 @@ BEGIN
 
             -- 获取 取值实验室检查ID或者辅助检查ID
             DECLARE @patient_superior_examination_id int;
+            -- 50% 概率
             if ABS(CHECKSUM(NEWID())) % 2 = 0
             BEGIN
-                -- 50% 概率：获取 patient_lab_examination_id
+                -- 随机获取实验室检查报告表的实验室检查ID
                 SELECT TOP 1 @patient_superior_examination_id = patient_lab_examination_id FROM a_cdrd_patient_lab_examination_info ORDER BY NEWID();
             END
             ELSE
             BEGIN
-                 -- 50% 概率：获取 patient_assit_examination_id
+                -- 随机获取辅助检查报告表的辅助检查ID
                 SELECT TOP 1 @patient_superior_examination_id = patient_assit_examination_id FROM a_cdrd_patient_assit_examination_info ORDER BY NEWID();
             END
 

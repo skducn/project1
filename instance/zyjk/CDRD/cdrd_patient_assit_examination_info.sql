@@ -18,18 +18,18 @@ BEGIN
         WHILE @Counter <= @MaxRecords
         BEGIN
 
-            -- 获取 patient_id 和 patient_visit_id
+            -- 随机获取50% 概率
             DECLARE @patient_id int;
             DECLARE @patient_visit_id int;
             if ABS(CHECKSUM(NEWID())) % 2 = 0
             BEGIN
-                -- 50% 概率：仅获取 patient_id（不关联就诊
+                -- 获取 基本信息表的患者ID
                 SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
                 SET @patient_visit_id = NULL;
             END
             ELSE
             BEGIN
-                 -- 50% 概率：获取 patient_id 和 patient_visit_id
+                 -- 获取就诊信息表的患者ID和就诊记录ID
                 SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
             END
 
