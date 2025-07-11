@@ -1,6 +1,6 @@
 -- todo 症状信息 - 症状名称，症状编号，具体描述
 
-CREATE OR ALTER PROCEDURE symptom_info__
+CREATE OR ALTER PROCEDURE r_symptom_info__
     @v1 nvarchar(50) OUTPUT,
     @v2 nvarchar(50) OUTPUT,
     @v3 nvarchar(50) OUTPUT

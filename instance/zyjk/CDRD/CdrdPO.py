@@ -1247,11 +1247,19 @@ class CdrdPO(object):
 
         # 执行存储过程
         if varQty == None:
-            execParam = "exec " + varProcedure + ";"
+
+            row = Sqlserver_PO.select(f"""
+                DECLARE @R int;
+                EXEC {varProcedure} @result = @R OUTPUT;
+                SELECT @R as ReturnValue;
+            """)
+            # print(row)  # [{'ReturnValue': 4}]
+            print(varProcedure + "(" + varDesc + ") => 生成数据", int(row[0]['ReturnValue'])*5, "条")
+
         else:
             execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
-        print(execParam + " //" + varDesc)  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
-        Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+            print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
+            Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
     def subProcedure(self, varProcedure, varDesc):
         # 子存储过程
@@ -1278,6 +1286,39 @@ class CdrdPO(object):
                     @level1name = '{varProcedure}';
             """
         Sqlserver_PO.execute(desc)
+
+        # IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE major_id = OBJECT_ID('dbo.p_outcome_state') AND name = 'MS_Description')
+        # 修改
+        #     EXEC sp_updateextendedproperty ...
+        # ELSE
+        # 添加
+        #     EXEC sp_addextendedproperty ...
+
+    def subFunction(self, varProcedure):
+        # 子存储过程
+        # 创建存储过程，不执行
+
+        # 删除存储过程（用于添加描述）
+        Sqlserver_PO.execute(f"DROP FUNCTION IF EXISTS dbo.{varProcedure};")
+
+        varParamSql = varProcedure + ".sql"
+        with open(varParamSql, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+        Sqlserver_PO.execute(sql_script)
+
+        # # 添加描述
+        # # 转义所有单引号
+        # varDesc_escaped = varDesc.replace("'", "''")
+        # desc = f"""
+        #         EXEC sp_addextendedproperty
+        #             @name = N'MS_Description',
+        #             @value = N'{varDesc_escaped}',
+        #             @level0type = N'Schema',
+        #             @level0name = 'dbo',
+        #             @level1type = N'Procedure',
+        #             @level1name = '{varProcedure}';
+        #     """
+        # Sqlserver_PO.execute(desc)
 
         # IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE major_id = OBJECT_ID('dbo.p_outcome_state') AND name = 'MS_Description')
         # 修改

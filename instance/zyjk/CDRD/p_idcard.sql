@@ -16,7 +16,7 @@ BEGIN
     DECLARE @AreaCode CHAR(6);
     SET @AreaCode = @countyKey; -- 替换原来的 '440000'
 
-    DECLARE @Year INT = 1960 + ABS(CHECKSUM(NEWID())) % 60; -- 年份范围：1960 - 2019
+    DECLARE @Year INT = 1925 + ABS(CHECKSUM(NEWID())) % 101; -- 年份范围：1925 到 2025今年
     DECLARE @Month INT = 1 + ABS(CHECKSUM(NEWID())) % 12; -- 月份
     DECLARE @Day INT = 1 + ABS(CHECKSUM(NEWID())) % 28; -- 日期（避免非法日期）
 

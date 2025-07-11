@@ -51,27 +51,30 @@ Cdrd_PO = CdrdPO()
 
 
 
+# Cdrd_PO.subFunction("fn_name")
+
 
 # todo 1，专病库字段表
 # 患者基本信息 30000
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
-# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息', 4)
+# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息', '4')
 #
-# # 诊断表
-# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-# Cdrd_PO.subProcedure("diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
+# # 诊断表 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表)
+Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
 #
 #
 # # 门(急)诊住院就诊信息
-Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
-Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', None)
+# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
+# Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
+# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', None)
 #
 #
 # # # 症状信息
 # Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
-# Cdrd_PO.subProcedure("symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
-# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息', 3)
+# Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
+# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息', None)
 #
 #
 # # # 体征信息

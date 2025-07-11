@@ -228,6 +228,10 @@ class SqlserverPO:
         #     "mssql+pymssql://" + self.user + ":" + self.password + "@" + self.server + "/" + self.database + "?charset=utf8mb4"
         # )
 
+    def getCursor(self):
+        return self.cur
+
+
     def selectParam(self, sql, param):
 
         ''' 1.0 查询带参数 '''
@@ -305,6 +309,17 @@ class SqlserverPO:
         try:
             # self.conn.commit()
             self.cur.execute(sql)
+            # self.conn.commit()
+        except Exception as e:
+            print(repr(e))
+
+    def execute2(self, sql, value):
+
+        ''' 1.2 执行 '''
+
+        try:
+            # self.conn.commit()
+            self.cur.execute(sql, value)
             # self.conn.commit()
         except Exception as e:
             print(repr(e))

@@ -1,11 +1,14 @@
 -- todo 门(急)诊住院就诊信息(造数据)
 
 CREATE OR ALTER PROCEDURE cdrd_patient_visit_info
-    @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
+    @RecordCount INT = 1, -- 可通过参数控制记录数，默认100条
+    @result INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
+
+    select @result = count(*) from a_cdrd_patient_info;
 
     BEGIN
         BEGIN TRANSACTION;
@@ -27,7 +30,7 @@ BEGIN
 
                 -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
                 DECLARE @i INT = 1;
-                DECLARE @ExampleText NVARCHAR(200) = N'用于测试性能测试，以下这是一个长度为200个字符的字符串变量，包含中英文和标点符号。This is a variable with 200 characters, including Chinese and English text. 它可以用于测试字段长度、存储过程参数或数据库约束等场景。';
+                DECLARE @ExampleText NVARCHAR(max) = N'用于测试性能测试，以下这是一个长度为200个字符的字符串变量，包含中英文和标点符号。This is a variable with 200 characters, including Chinese and English text. 它可以用于测试字段长度、存储过程参数或数据库约束等场景。';
 
                  -- 获取患者ID
                 DECLARE @patient_id int;
@@ -71,6 +74,12 @@ BEGIN
                 DECLARE @RandomRhTypeIdKey NVARCHAR(50), @RandomRhTypeIdValue NVARCHAR(50);
                 EXEC p_rh_type @k = @RandomRhTypeIdKey OUTPUT, @v = @RandomRhTypeIdValue OUTPUT;
 
+
+                -- 就诊诊断
+                DECLARE @RandomVisitDiag NVARCHAR(max);
+                EXEC r_visit_info__ @v1 = @RandomVisitDiag OUTPUT;
+
+
                 -- 3次门诊
                 WHILE @i <= 3
                 BEGIN
@@ -91,7 +100,7 @@ BEGIN
                         '入院病房', -- 入院病房
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医生编号
                         '就诊医生', -- 就诊医生
-                        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 就诊日期
+                        DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 就诊日期，从2022年06月01日至今随机精确到秒
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 文书编号
                         @ExampleText, -- 主诉
                         @ExampleText, -- 现病史
@@ -103,7 +112,7 @@ BEGIN
                         @ExampleText, -- 体格检查
                         @ExampleText, -- 专科检查
                         @ExampleText, -- 辅助检查
-                        '就诊诊断', -- 就诊诊断
+                        @RandomVisitDiag, -- 就诊诊断
                         @ExampleText, -- 处置
                         DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 记录时间
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 病案号
@@ -117,12 +126,12 @@ BEGIN
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 出院科室编码
                         '出院科室', -- 出院科室
                         '出院病房', -- 出院病房
-                        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 出院日期
+                        DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 出院日期，同就诊日期
                         '门（急）诊诊断', -- 门（急）诊诊断
                         '入院诊断', -- 入院诊断
                         @RandomDrugAllergyTypeIdKey, -- 药物过敏key
                         @RandomDrugAllergyTypeIdValue, -- 药物过敏
-                        '过敏药物', -- 过敏药物
+                        '青霉素', -- 过敏药物
                         @RandomAboTypeIdKey, -- ABO血型key
                         @RandomAboTypeIdValue, -- ABO血型
                         @RandomRhTypeIdKey, -- Rh血型key
@@ -139,8 +148,8 @@ BEGIN
                         @RandomOutHospitalWayIdValue, -- 离院方式
                         '医嘱转院，拟接收机构', -- 医嘱转院，拟接收机构
                         '医嘱转让社区卫生机构，拟接收机构', -- 医嘱转让社区卫生机构，拟接收机构
-                        '77', -- 住院费用-总费用
-                        '88', -- 住院费用-自付金额
+                        '4000.1234', -- 住院费用-总费用
+                        '6000.12345678', -- 住院费用-自付金额
                          DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
                          ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
                     );
@@ -166,7 +175,7 @@ BEGIN
                         '入院病房', -- 入院病房
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医生编号
                         '就诊医生', -- 就诊医生
-                        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 就诊日期
+                        DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 就诊日期，从2022年06月01日至今随机精确到秒
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 文书编号
                         @ExampleText, -- 主诉
                         @ExampleText, -- 现病史
@@ -178,7 +187,7 @@ BEGIN
                         @ExampleText, -- 体格检查
                         @ExampleText, -- 专科检查
                         @ExampleText, -- 辅助检查
-                        '就诊诊断', -- 就诊诊断
+                        @RandomVisitDiag, -- 就诊诊断
                         @ExampleText, -- 处置
                         DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 记录时间
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 病案号
@@ -192,12 +201,12 @@ BEGIN
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 出院科室编码
                         '出院科室', -- 出院科室
                         '出院病房', -- 出院病房
-                        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 出院日期
+                        DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 出院日期，同就诊日期
                         '门（急）诊诊断', -- 门（急）诊诊断
                         '入院诊断', -- 入院诊断
                         @RandomDrugAllergyTypeIdKey, -- 药物过敏key
                         @RandomDrugAllergyTypeIdValue, -- 药物过敏
-                        '过敏药物', -- 过敏药物
+                        '青霉素', -- 过敏药物
                         @RandomAboTypeIdKey, -- ABO血型key
                         @RandomAboTypeIdValue, -- ABO血型
                         @RandomRhTypeIdKey, -- Rh血型key
@@ -214,8 +223,8 @@ BEGIN
                         @RandomOutHospitalWayIdValue, -- 离院方式
                         '医嘱转院，拟接收机构', -- 医嘱转院，拟接收机构
                         '医嘱转让社区卫生机构，拟接收机构', -- 医嘱转让社区卫生机构，拟接收机构
-                        '55', -- 住院费用-总费用
-                        '66', -- 住院费用-自付金额
+                        '23.00123', -- 住院费用-总费用
+                        '456.1212', -- 住院费用-自付金额
                          DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
                          ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
                     );

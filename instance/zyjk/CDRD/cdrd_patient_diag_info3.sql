@@ -1,14 +1,11 @@
 -- todo 诊断表(造数据)
 
 CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
-    @RecordCount INT = 1, -- 可通过参数控制记录数，默认100条
-    @result INT OUTPUT
+    @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
-
-    select @result = count(*) from a_cdrd_patient_info;
 
     BEGIN
         BEGIN TRANSACTION;
