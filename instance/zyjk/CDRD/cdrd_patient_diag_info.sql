@@ -52,7 +52,7 @@ BEGIN
 
                 -- 诊断类型，诊断名称，ICD10编码
                 DECLARE @RandomDiagClass NVARCHAR(50), @RandomDiagName NVARCHAR(50), @RandomDiagCode NVARCHAR(50);
-                EXEC diag_info__ @v1 = @RandomDiagClass OUTPUT, @v2 = @RandomDiagName OUTPUT, @v3 = @RandomDiagCode OUTPUT;
+                EXEC r_diag_info__ @v1 = @RandomDiagClass OUTPUT, @v2 = @RandomDiagName OUTPUT, @v3 = @RandomDiagCode OUTPUT;
 
 
                 -- 先执行 2 次 （仅 patient_id）

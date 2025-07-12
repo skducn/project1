@@ -60,9 +60,9 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息', '4')
 #
 # # 诊断表 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表)
-Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
+# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
 #
 #
 # # 门(急)诊住院就诊信息
@@ -79,22 +79,23 @@ Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
 #
 # # # 体征信息
 # Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
-# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息', 3)
+# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息', None)
 #
 # # #
 # # # 实验室检查报告
 # Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
-# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告', 3)
+# Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
+# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告', None)
 #
 # # #
 # # # 辅助检查报告
 # Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
-# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告', 3)
+# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告', None)
 #
 # # #
 # # # 检查项目明细
-# Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-# Cdrd_PO.procedure("cdrd_patient_test_project_info", '检查项目明细', 3)
+Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
+Cdrd_PO.procedure("cdrd_patient_test_project_info", '检查项目明细', 3)
 # #
 # # # #
 # # # # 门诊医嘱

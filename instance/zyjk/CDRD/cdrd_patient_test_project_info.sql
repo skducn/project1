@@ -37,12 +37,12 @@ BEGIN
             VALUES (
                 @patient_superior_examination_id, -- 上级检查ID
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
-                '项目名称', -- 项目名称
-                '定量结果', -- 定量结果
-                '定量结果单位', -- 定量结果单位
-                '定性结果', -- 定性结果
-                '异常标识', -- 异常标识
-                '参考值（范围）', -- 参考值（范围）
+                '空腹血糖（GLU）', -- 项目名称
+                '5。8', -- 定量结果
+                'mmol', -- 定量结果单位
+                '正常', -- 定性结果
+                '异常', -- 异常标识
+                '3.9-6.1', -- 参考值（范围）
                 ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
                 ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
