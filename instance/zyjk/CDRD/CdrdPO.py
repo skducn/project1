@@ -1261,6 +1261,48 @@ class CdrdPO(object):
             print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
             Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
+    def procedure20(self, varProcedure, varDesc, varQty=None):
+        # 通用存储过程
+        # 创建并执行存储过程，插入N条记录
+
+        # 删除存储过程（用于）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+
+        varParamSql = varProcedure + ".sql"
+        with open(varParamSql, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+        Sqlserver_PO.execute(sql_script)
+
+        # 添加描述
+        # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")
+        desc = f"""
+                        EXEC sp_addextendedproperty 
+                            @name = N'MS_Description', 
+                            @value = N'{varDesc_escaped}',
+                            @level0type = N'Schema', 
+                            @level0name = 'dbo', 
+                            @level1type = N'Procedure', 
+                            @level1name = '{varProcedure}';
+                    """
+        Sqlserver_PO.execute(desc)
+
+        # 执行存储过程
+        if varQty == None:
+
+            row = Sqlserver_PO.select(f"""
+                DECLARE @R int;
+                EXEC {varProcedure} @result = @R OUTPUT;
+                SELECT @R as ReturnValue;
+            """)
+            # print(row)  # [{'ReturnValue': 4}]
+            print(varProcedure + "(" + varDesc + ") => 生成数据", int(row[0]['ReturnValue'])*20, "条")
+
+        else:
+            execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
+            print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
+            Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+
     def subProcedure(self, varProcedure, varDesc):
         # 子存储过程
         # 创建存储过程，不执行

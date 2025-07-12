@@ -94,13 +94,13 @@ Cdrd_PO = CdrdPO()
 #
 # # #
 # # # 检查项目明细
-Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-Cdrd_PO.procedure("cdrd_patient_test_project_info", '检查项目明细', 3)
+# Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
+# Cdrd_PO.procedure20("cdrd_patient_test_project_info", '检查项目明细', None)
 # #
 # # # #
 # # # # 门诊医嘱
-# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 3)
+Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
+Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 3)
 #
 # # #
 # # #  住院医嘱
