@@ -32,6 +32,10 @@ BEGIN
                 DECLARE @i INT = 1;
                 DECLARE @patient_id INT;
                 DECLARE @patient_visit_id INT;
+                DECLARE @patient_hospital_visit_id NVARCHAR(100);
+                DECLARE @patient_hospital_code NVARCHAR(100);
+                DECLARE @patient_hospital_name NVARCHAR(50);
+                DECLARE @patient_visit_in_time DATETIME;
 
 
                 -- 子存储过程
@@ -47,9 +51,15 @@ BEGIN
                 -- 先执行 2 次 （仅 patient_id）
                 WHILE @i <= 2
                 BEGIN
-                    SELECT TOP 1 @patient_id = patient_id
-                    FROM a_cdrd_patient_info
-                    ORDER BY NEWID();
+                    -- 按照记录顺序获取
+                    SELECT @patient_id = patient_id
+                    FROM (
+                        SELECT
+                            patient_id,
+                            ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
+                        FROM a_cdrd_patient_info
+                    ) AS subquery
+                    WHERE row_num = @Counter1;
 
                     SET @patient_visit_id = NULL;
 
@@ -78,21 +88,42 @@ BEGIN
                 -- 再执行 3 次（patient_id + patient_visit_id）
                 WHILE @i <= 5
                 BEGIN
-                    SELECT TOP 1
-                        @patient_id = patient_id,
-                        @patient_visit_id = patient_visit_id
-                    FROM a_cdrd_patient_visit_info
-                    WHERE patient_id IS NOT NULL
-                    ORDER BY NEWID();
+
+--                     -- 按照记录顺序获取
+--                     SELECT @patient_id = patient_id, @patient_visit_id = patient_visit_id
+--                     FROM (
+--                         SELECT
+--                             patient_visit_id, patient_id,
+--                             ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_id) AS row_num2
+--                         FROM a_cdrd_patient_visit_info
+--                     ) AS subquery2
+--                     WHERE row_num2 = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
+
+                    -- 按照记录顺序获取
+                    SELECT @patient_visit_id = patient_visit_id,
+                           @patient_id = patient_id,
+                           @patient_hospital_visit_id = patient_hospital_visit_id, -- 就诊编号
+                           @patient_hospital_code = patient_hospital_code,  -- 医疗机构编号
+                           @patient_hospital_name = patient_hospital_name, -- 医院名称
+                           @patient_visit_in_time = patient_visit_in_time -- 入院时间
+                    FROM (
+                        SELECT
+                            patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
+                            patient_visit_in_time, patient_visit_in_dept_name,patient_visit_diag,
+                            ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
+                        FROM a_cdrd_patient_visit_info
+                    ) AS subquery
+                    WHERE row_num = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
+
 
                     -- 插入单条随机数据
                     INSERT INTO a_cdrd_patient_lab_examination_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_lab_examination_report_num,patient_lab_examination_source_report_num,patient_lab_examination_report_name,patient_lab_examination_sample_type,patient_lab_examination_test_time,patient_lab_examination_sampling_time,patient_lab_examination_report_time,patient_lab_examination_delete_state_key,patient_lab_examination_update_time,patient_lab_examination_data_source_key)
                     VALUES (
                         @patient_id, -- 患者ID
                         @patient_visit_id, -- 就诊记录ID
-                        RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
-                        RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
-                        @RandomHospital, -- 医院名称
+                        @patient_hospital_visit_id, -- 就诊编号
+                        @patient_hospital_code, -- 就诊医疗机构编号
+                        @patient_hospital_name, -- 医院名称
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
                         RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统报告编号
                         @RandomReportName, -- 报告名称

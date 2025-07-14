@@ -62,75 +62,76 @@ Cdrd_PO = CdrdPO()
 # # 诊断表 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表)
 # Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
 # Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', None)
+# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', 5)
 #
 #
 # # 门(急)诊住院就诊信息
 # Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
-# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', None)
+# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', 5)
 #
 #
 # # # 症状信息
 # Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
 # Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
-# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息', None)
+# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息', 5)
 #
 #
 # # # 体征信息
 # Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
-# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息', None)
+# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息', 5)
 #
 # # #
 # # # 实验室检查报告
 # Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
 # Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
-# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告', None)
+# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告', 5)
 #
 # # #
 # # # 辅助检查报告
 # Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
-# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告', None)
+# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告', 5)
 #
 # # #
 # # # 检查项目明细
 # Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-# Cdrd_PO.procedure20("cdrd_patient_test_project_info", '检查项目明细', None)
+# Cdrd_PO.procedure20("cdrd_patient_test_project_info", '检查项目明细', 5)
 # #
 # # # #
 # # # # 门诊医嘱
-Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 3)
+# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
+# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 1)
 #
 # # #
 # # #  住院医嘱
 # Cdrd_PO._a_cdrd_patient_hospital_advice_info('住院医嘱')
-# Cdrd_PO.procedure("cdrd_patient_hospital_advice_info", '住院医嘱', 3)
+# Cdrd_PO.procedure("cdrd_patient_hospital_advice_info", '住院医嘱', 1)
 # #
 # # # #
 # # # #  用药信息
 # Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
-# Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息', 3)
+# Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
+# Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息', 1)
 #
 # # #
 # # # 出院记录
 # Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
-# Cdrd_PO.procedure("cdrd_patient_out_hospital_info", '出院记录', 3)
+# Cdrd_PO.procedure("cdrd_patient_out_hospital_info", '出院记录', 1)
 #
 # # #
 # # # 手术记录
 # Cdrd_PO._a_cdrd_patient_operation_info('手术记录')
-# Cdrd_PO.procedure("cdrd_patient_operation_info", '手术记录', 3)
+# Cdrd_PO.procedure("cdrd_patient_operation_info", '手术记录', 5)
 
 # #
 # # 护理记录
 # Cdrd_PO._a_cdrd_patient_nurse_info('护理记录')
-# Cdrd_PO.procedure("cdrd_patient_nurse_info", '护理记录', 3)
+# Cdrd_PO.procedure("cdrd_patient_nurse_info", '护理记录', 1)
 #
 # # #
 # # # 死亡记录
-# Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
-# Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录', 3)
+Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
+Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录', 1)
 
 
 

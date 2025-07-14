@@ -37,8 +37,8 @@ BEGIN
                 set @patient_id = @Counter1
 
                  -- 获取 科室名称和科室ID
-                DECLARE @department_name NVARCHAR;
-                DECLARE @department_code NVARCHAR;
+                DECLARE @department_name NVARCHAR(50);
+                DECLARE @department_code NVARCHAR(100);
                 SELECT TOP 1 @department_name = department_name, @department_code = department_code FROM a_sys_department ORDER BY NEWID();
 
                 -- 子存储过程

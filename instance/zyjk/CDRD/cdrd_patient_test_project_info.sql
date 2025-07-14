@@ -92,7 +92,7 @@ BEGIN
             WHILE @Counter <= @MaxRecords
             BEGIN
 
-                -- 获取 实验室检查ID，报告编号，报告名称
+                -- 按照记录顺序 获取 实验室检查ID，报告编号，报告名称
                 DECLARE @j INT = 1;
                 DECLARE @patient_visit_id INT;
                 DECLARE @patient_superior_examination_id INT;

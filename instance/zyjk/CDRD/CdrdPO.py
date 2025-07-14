@@ -1219,7 +1219,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_dict_data', 'remark', '备注')
 
 
-    def procedure(self, varProcedure, varDesc, varQty=None):
+    def procedure(self, varProcedure, varDesc, varQty=1):
         # 通用存储过程
         # 创建并执行存储过程，插入N条记录
 
@@ -1246,20 +1246,19 @@ class CdrdPO(object):
         Sqlserver_PO.execute(desc)
 
         # 执行存储过程
-        if varQty == None:
+        # if varQty == None:
+        row = Sqlserver_PO.select(f"""
+            DECLARE @R int;
+            EXEC {varProcedure} @result = @R OUTPUT;
+            SELECT @R as ReturnValue;
+        """)
+        # print(row)  # [{'ReturnValue': 4}]
+        print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']) * varQty, "条")
 
-            row = Sqlserver_PO.select(f"""
-                DECLARE @R int;
-                EXEC {varProcedure} @result = @R OUTPUT;
-                SELECT @R as ReturnValue;
-            """)
-            # print(row)  # [{'ReturnValue': 4}]
-            print(varProcedure + "(" + varDesc + ") => 生成数据", int(row[0]['ReturnValue'])*5, "条")
-
-        else:
-            execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
-            print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
-            Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+        # else:
+        #     execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
+        #     print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
+        #     Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
     def procedure20(self, varProcedure, varDesc, varQty=None):
         # 通用存储过程

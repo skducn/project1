@@ -58,9 +58,16 @@ BEGIN
                 -- 先执行 2 次 （仅 patient_id）
                 WHILE @i <= 2
                 BEGIN
-                    SELECT TOP 1 @patient_id = patient_id
-                    FROM a_cdrd_patient_info
-                    ORDER BY NEWID();
+
+                    -- 按照记录顺序获取
+                    SELECT @patient_id = patient_id
+                    FROM (
+                        SELECT
+                            patient_id,
+                            ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
+                        FROM a_cdrd_patient_info
+                    ) AS subquery
+                    WHERE row_num = @Counter1;
 
                     SET @patient_visit_id = NULL;
 
@@ -95,12 +102,16 @@ BEGIN
                 -- 再执行 3 次（patient_id + patient_visit_id）
                 WHILE @i <= 5
                 BEGIN
-                    SELECT TOP 1
-                        @patient_id = patient_id,
-                        @patient_visit_id = patient_visit_id
-                    FROM a_cdrd_patient_visit_info
-                    WHERE patient_id IS NOT NULL
-                    ORDER BY NEWID();
+                    -- 按照记录顺序获取
+                    SELECT @patient_id = patient_id, @patient_visit_id = patient_visit_id
+                    FROM (
+                        SELECT
+                            patient_visit_id, patient_id,
+                            ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_id) AS row_num2
+                        FROM a_cdrd_patient_visit_info
+                    ) AS subquery2
+                    WHERE row_num2 = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
+
 
                     -- 插入单条随机数据
                     INSERT INTO a_cdrd_patient_diag_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_case_num,patient_diag_num,patient_diag_class,patient_diag_name,patient_diag_is_primary_key,patient_diag_is_primary_value,patient_diag_code,patient_in_state_key,patient_in_state_value,patient_outcome_state_key,patient_outcome_state_value,patient_diag_date,patient_diag_delete_state_key,patient_diag_update_time,patient_diag_data_source_key)
