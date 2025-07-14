@@ -27,14 +27,6 @@ BEGIN
         WHILE @Counter1 <= @totalRecords
         BEGIN
 
-            DECLARE @Counter INT = 1;
-            DECLARE @TotalCount INT =0;
-            DECLARE @MaxRecords INT = @RecordCount;
-
-
-            -- 循环插入指定数量的记录
-            WHILE @Counter <= @MaxRecords
-            BEGIN
 
                 -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
                 DECLARE @i INT = 1;
@@ -86,7 +78,7 @@ BEGIN
                         '2'  -- 数据来源1或2
                     );
 
-                    SET @i = @i + 1;
+
                 END
 
                 -- 再执行 300 次（patient_id + patient_visit_id）
@@ -114,7 +106,7 @@ BEGIN
                             ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
                         FROM a_cdrd_patient_visit_info
                     ) AS subquery
-                    WHERE row_num = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
+                    WHERE  patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
 
 
                     -- 插入单条随机数据
@@ -137,8 +129,7 @@ BEGIN
 
                 END
 
-            SET @Counter = @Counter + 1;
-            END;
+
 
         SET @Counter1 = @Counter1 + 1;
         END;
