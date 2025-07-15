@@ -525,8 +525,8 @@ class CdrdPO(object):
                 patient_case_out_hospital_type_value nvarchar(100),
                 patient_case_transfer_to_hospital nvarchar(50),
                 patient_case_make_over_hospital nvarchar(50),
-                patient_case_in_total_cost decimal(12,8),
-                patient_case_in_selfpay_cost decimal(12,8),
+                patient_case_in_total_cost decimal(20,8),
+                patient_case_in_selfpay_cost decimal(20,8),
                 patient_visit_update_time datetime,
                 patient_visit_data_source_key varchar(100)
             ''')
@@ -807,6 +807,7 @@ class CdrdPO(object):
             '''
                 patient_test_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_superior_examination_id int,
+                patient_superior_examination_type int,
                 patient_report_num varchar(100),
                 patient_test_item_name nvarchar(50),
                 patient_test_numerical_value nvarchar(50),
@@ -821,6 +822,7 @@ class CdrdPO(object):
         Sqlserver_PO.setTableComment('a_cdrd_patient_test_project_info', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_id', '项目ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_superior_examination_id', '上级检查ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_superior_examination_type', '上级检查类型，实验室检查为1，辅助检查为2'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_report_num', '报告编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_item_name', '项目名称'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_numerical_value', '定量结果'),
@@ -930,6 +932,7 @@ class CdrdPO(object):
                 patient_drug_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
                 patient_superior_advice_id int,
+                patient_superior_advice_type int,
                 patient_hospital_visit_id varchar(100),
                 patient_hospital_code varchar(100),
                 patient_hospital_name varchar(50),
@@ -951,6 +954,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_id', '用药信息ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_id', '患者ID'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_superior_advice_id', '取值门诊医嘱ID或者住院医嘱ID'),
+        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_superior_advice_type', '上级医嘱类型，门诊医嘱为1，住院医嘱为2'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_visit_id', '就诊编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_code', '就诊医疗机构编号'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_name', '医院名称'),
@@ -1119,6 +1123,8 @@ class CdrdPO(object):
 
         # 死亡记录
 
+        # Sqlserver_PO.delTable('a_cdrd_patient_death_info')
+
         Sqlserver_PO.crtTableByCover('a_cdrd_patient_death_info',
             '''
                 patient_death_id int IDENTITY(1,1) PRIMARY KEY,
@@ -1219,7 +1225,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_dict_data', 'remark', '备注')
 
 
-    def procedure(self, varProcedure, varDesc, varQty=1):
+    def procedure(self, varProcedure, varDesc):
         # 通用存储过程
         # 创建并执行存储过程，插入N条记录
 
@@ -1232,33 +1238,46 @@ class CdrdPO(object):
         Sqlserver_PO.execute(sql_script)
 
         # 添加描述
-        # 转义所有单引号
-        varDesc_escaped = varDesc.replace("'", "''")
-        desc = f"""
-                        EXEC sp_addextendedproperty 
-                            @name = N'MS_Description', 
-                            @value = N'{varDesc_escaped}',
-                            @level0type = N'Schema', 
-                            @level0name = 'dbo', 
-                            @level1type = N'Procedure', 
-                            @level1name = '{varProcedure}';
-                    """
-        Sqlserver_PO.execute(desc)
+        varDesc_escaped = varDesc.replace("'", "''") # 转义所有单引号
+        Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}',@level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
 
         # 执行存储过程
-        # if varQty == None:
-        row = Sqlserver_PO.select(f"""
-            DECLARE @R int;
-            EXEC {varProcedure} @result = @R OUTPUT;
-            SELECT @R as ReturnValue;
+        # # need @result
+        row = Sqlserver_PO.select(f"""DECLARE @R int;
+        EXEC {varProcedure} @result = @R OUTPUT;
+        SELECT @R as ReturnValue;
         """)
-        # print(row)  # [{'ReturnValue': 4}]
-        print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']) * varQty, "条")
+        print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']), "条！")
 
-        # else:
-        #     execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
-        #     print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
-        #     Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+
+    def procedure5(self, varProcedure, varDesc, varQty=1):
+        # 通用存储过程
+        # 创建并执行存储过程，插入N条记录
+
+        # 删除存储过程（用于）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+
+        varParamSql = varProcedure + ".sql"
+        with open(varParamSql, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+        Sqlserver_PO.execute(sql_script)
+
+        # 添加描述
+        varDesc_escaped = varDesc.replace("'", "''") # 转义所有单引号
+        Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}',@level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
+
+        # 执行存储过程
+        # need @result
+        row = Sqlserver_PO.select(f"""DECLARE @R int;
+        EXEC {varProcedure} @result = @R OUTPUT;
+        SELECT @R as ReturnValue;
+        """)
+        print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']) * varQty, "条!")
+# EXEC cdrd_patient_diag_info @RecordCount = 5, @result = @output OUTPUT;
+#         execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ", @result = @output OUTPUT;"
+        # print(varProcedure + "(" + varDesc + ") => 生成", varQty, "条!")
+        # Sqlserver_PO.execute(execParam)
+
 
     def procedure20(self, varProcedure, varDesc, varQty=None):
         # 通用存储过程
@@ -1273,34 +1292,19 @@ class CdrdPO(object):
         Sqlserver_PO.execute(sql_script)
 
         # 添加描述
-        # 转义所有单引号
-        varDesc_escaped = varDesc.replace("'", "''")
-        desc = f"""
-                        EXEC sp_addextendedproperty 
-                            @name = N'MS_Description', 
-                            @value = N'{varDesc_escaped}',
-                            @level0type = N'Schema', 
-                            @level0name = 'dbo', 
-                            @level1type = N'Procedure', 
-                            @level1name = '{varProcedure}';
-                    """
-        Sqlserver_PO.execute(desc)
+        varDesc_escaped = varDesc.replace("'", "''") # 转义所有单引号
+        Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}', @level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
 
         # 执行存储过程
         if varQty == None:
-
-            row = Sqlserver_PO.select(f"""
-                DECLARE @R int;
-                EXEC {varProcedure} @result = @R OUTPUT;
-                SELECT @R as ReturnValue;
-            """)
-            # print(row)  # [{'ReturnValue': 4}]
-            print(varProcedure + "(" + varDesc + ") => 生成数据", int(row[0]['ReturnValue'])*20, "条")
-
+            # need @result
+            row = Sqlserver_PO.select(f"""DECLARE @R int;EXEC {varProcedure} @result = @R OUTPUT;SELECT @R as ReturnValue;""")
+            print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']) * 20, "条!")
         else:
+            # no need @result
             execParam = "exec " + varProcedure + " @RecordCount=" + str(varQty) + ";"
-            print(varProcedure + "(" + varDesc + ") => 生成数据", varQty, "条")  # exec cdrd_patient_info @RecordCount=10; //患者基本信息
-            Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+            print(varProcedure + "(" + varDesc + ") => 生成", varQty, "条!")
+            Sqlserver_PO.execute(execParam)
 
     def subProcedure(self, varProcedure, varDesc):
         # 子存储过程
@@ -1315,18 +1319,8 @@ class CdrdPO(object):
         Sqlserver_PO.execute(sql_script)
 
         # 添加描述
-        # 转义所有单引号
-        varDesc_escaped = varDesc.replace("'", "''")
-        desc = f"""
-                EXEC sp_addextendedproperty 
-                    @name = N'MS_Description', 
-                    @value = N'{varDesc_escaped}',
-                    @level0type = N'Schema', 
-                    @level0name = 'dbo', 
-                    @level1type = N'Procedure', 
-                    @level1name = '{varProcedure}';
-            """
-        Sqlserver_PO.execute(desc)
+        varDesc_escaped = varDesc.replace("'", "''") # 转义所有单引号
+        Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}',@level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
 
         # IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE major_id = OBJECT_ID('dbo.p_outcome_state') AND name = 'MS_Description')
         # 修改

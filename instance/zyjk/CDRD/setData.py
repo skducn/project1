@@ -55,86 +55,109 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 1，专病库字段表
-# 患者基本信息 30000
+# 患者基本信息
+# 数据量：30000
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
-# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息', '4')
-#
-# # 诊断表 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表)
-# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表', 5)
-#
-#
+# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
+
 # # 门(急)诊住院就诊信息
+# 数据量：每个患者5条（3条门诊，2条住院），共15万
 # Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
-# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息', 5)
+# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息')
+
+# # # 诊断表
+# 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
+# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 #
-#
-# # # 症状信息
+
+# # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
 # Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
-# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息', 5)
+# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息')
 #
 #
 # # # 体征信息
+# 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
-# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息', 5)
+# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息')
 #
 # # #
 # # # 实验室检查报告
+# 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
 # Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
-# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告', 5)
+# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告')
 #
 # # #
 # # # 辅助检查报告
+# 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
-# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告', 5)
+# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告')
 #
 # # #
 # # # 检查项目明细
+# 数据量：每个实验室检查记录对应一份检查项目明细(每份明细预计20条左右数据，总量预计300万左右)  15W * 20 = 300W
 # Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-# Cdrd_PO.procedure20("cdrd_patient_test_project_info", '检查项目明细', 5)
+# Cdrd_PO.procedure("cdrd_patient_test_project_info", '检查项目明细')
 # #
 # # # #
 # # # # 门诊医嘱
+# 数据量：每名患者3条（共9万）
 # Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱', 1)
+# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
 #
 # # #
 # # #  住院医嘱
+# 数据量：每名患者2条（共6万）
 # Cdrd_PO._a_cdrd_patient_hospital_advice_info('住院医嘱')
-# Cdrd_PO.procedure("cdrd_patient_hospital_advice_info", '住院医嘱', 1)
+# Cdrd_PO.procedure("cdrd_patient_hospital_advice_info", '住院医嘱')
 # #
 # # # #
 # # # #  用药信息
+# 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
 # Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
 # Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
-# Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息', 1)
+# Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息')
 #
 # # #
 # # # 出院记录
+# 数据量：每名患者2条（共6万）
 # Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
-# Cdrd_PO.procedure("cdrd_patient_out_hospital_info", '出院记录', 1)
+# Cdrd_PO.procedure("cdrd_patient_out_hospital_info", '出院记录')
 #
 # # #
 # # # 手术记录
+# 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO._a_cdrd_patient_operation_info('手术记录')
-# Cdrd_PO.procedure("cdrd_patient_operation_info", '手术记录', 5)
+# Cdrd_PO.procedure("cdrd_patient_operation_info", '手术记录')
 
 # #
 # # 护理记录
+# 数据量：每条住院记录3条护理记录（共9万）
 # Cdrd_PO._a_cdrd_patient_nurse_info('护理记录')
-# Cdrd_PO.procedure("cdrd_patient_nurse_info", '护理记录', 1)
+# Cdrd_PO.procedure("cdrd_patient_nurse_info", '护理记录')
 #
 # # #
 # # # 死亡记录
-Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
-Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录', 1)
+# 数据量：从3万名患者中随机500人有死亡记录，其中200均有patientid、patient_visit_id，剩余300只有patientid
+# Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
+# Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录')
 
 
 
+# 登录日志
+# 数据量：50万
+# Cdrd_PO._a_sys_logininfo('登录登出表')
+# Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
+# Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
+
+
+# =======================================================================================================
+# =======================================================================================================
+# =======================================================================================================
 
 
 # todo 2，数据字典配置
@@ -153,13 +176,13 @@ Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录', 1)
 
 # todo 4，科室管理
 # # Cdrd_PO.dept__a_sys_department('科室表')  # 创建或重构科室表
-# Cdrd_PO.procedure("sys_department", '科室表', 2)
+# Cdrd_PO.procedure("sys_department", '科室表', 4)
 #
-# # Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
-# Cdrd_PO.procedure("sys_dept_medgp", '医疗组', 3)
+# Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
+# Cdrd_PO.procedure("sys_dept_medgp", '医疗组', 10)
 # #
-# # Cdrd_PO.dept__a_sys_dept_medgp_person('医疗组人员')
-# Cdrd_PO.procedure("sys_dept_medgp_person", '医疗组人员', 3)
+# Cdrd_PO.dept__a_sys_dept_medgp_person('医疗组人员')
+# Cdrd_PO.procedure("sys_dept_medgp_person", '医疗组人员', 20)
 
 
 
@@ -198,11 +221,6 @@ Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录', 1)
 # todo 参数配置
 # Cdrd_PO._a_sys_config('参数配置')
 # Cdrd_PO.procedure("sys_config", '参数配置', 4)
-
-
-# todo 登录日志
-# Cdrd_PO._a_sys_logininfo('登录登出表')
-# Cdrd_PO.procedure("sys_logininfo", '登录登出表', 4)
 
 
 

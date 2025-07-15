@@ -2,6 +2,7 @@
 -- 数据量：每名患者2条（共6万）
 
 CREATE OR ALTER PROCEDURE cdrd_patient_out_hospital_info
+    @RecordCount INT = 2,
     @result INT OUTPUT
 AS
 BEGIN
@@ -9,7 +10,10 @@ BEGIN
     SET XACT_ABORT ON;
 
     -- 获取就诊表中住院记录数量
-    select @result = count(*) from a_cdrd_patient_visit_info where patient_visit_type_key=2;
+    DECLARE @re INT = 1;
+    select @re = count(*) from a_cdrd_patient_info;
+    SET @result = @re * @RecordCount;
+--     select @result = count(*) from a_cdrd_patient_visit_info where patient_visit_type_key=2;
 
     DECLARE @ThousandChars NVARCHAR(MAX);
     SET @ThousandChars = REPLICATE(N'哈喽你好', 250); -- 每句4个字符，重复250次=1000字符
@@ -19,7 +23,6 @@ BEGIN
 
     BEGIN
         BEGIN TRANSACTION;
-        DECLARE @totalRecords INT = 0;
         DECLARE @patient_visit_id INT = 0;
         DECLARE @patient_id INT = 0;
         DECLARE @patient_hospital_visit_id NVARCHAR(100);
@@ -30,12 +33,9 @@ BEGIN
         DECLARE @patient_visit_diag NVARCHAR(1000);
         DECLARE @Counter1 INT = 1;
 
-        -- 获取就诊表中门诊记录数量
-        SET @totalRecords = @result
-
 
         -- 遍历就诊表
-        WHILE @Counter1 <= @totalRecords
+        WHILE @Counter1 <= @result
         BEGIN
 
             -- 子存储过程
@@ -83,7 +83,7 @@ BEGIN
                 @TwoHundredChars, -- 出院医嘱
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 记录时间
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
+                '1'  -- 数据来源1或2
             );
 
             SET @Counter1 = @Counter1 + 1;

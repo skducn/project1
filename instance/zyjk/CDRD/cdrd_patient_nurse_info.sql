@@ -1,6 +1,8 @@
 -- todo  护理记录表(造数据)
+-- 数据量：每条住院记录3条护理记录（共9万）
 
 CREATE OR ALTER PROCEDURE cdrd_patient_nurse_info
+    @RecordCount INT = 3,
     @result INT OUTPUT
 AS
 BEGIN
@@ -47,7 +49,7 @@ BEGIN
         --  如果前面的 SELECT 语句成功查到了至少一行数据（即当前 @Counter 对应的记录存在），才执行插入护理记录的操作。
         BEGIN
             DECLARE @i INT = 1;
-            WHILE @i <= 3
+            WHILE @i <= @RecordCount
             BEGIN
                 INSERT INTO a_cdrd_patient_nurse_info (
                     patient_id,

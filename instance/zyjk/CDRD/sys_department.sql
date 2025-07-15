@@ -1,7 +1,7 @@
 -- todo 科室表(造数据)
 
 CREATE OR ALTER PROCEDURE sys_department
-    @RecordCount INT = 3 -- 可通过参数控制记录数，默认100条
+    @RecordCount INT = 4 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -37,7 +37,6 @@ BEGIN
                 CAST(ABS(CHECKSUM(NEWID())) % 10000 AS int), -- 科室负责人ID
                 CAST(ABS(CHECKSUM(NEWID())) % 10000 AS NVARCHAR(10)), -- 科室负责人工号
                 @RandomName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- 科室负责人姓名 + 固定5位数
---                 @RandomName + RIGHT('00000' + CAST(ABS(CHECKSUM(NEWID())) % 100000 AS VARCHAR(20)), 5), -- 科室负责人姓名
                 @RandomName, -- 创建人
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()) -- 创建时间
             );

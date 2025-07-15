@@ -2,6 +2,7 @@
 -- 数据量：每名患者3条（共9万）
 
 CREATE OR ALTER PROCEDURE cdrd_patient_clinic_advice_info
+    @RecordCount INT = 3,
     @result INT OUTPUT
 AS
 BEGIN
@@ -9,11 +10,12 @@ BEGIN
     SET XACT_ABORT ON;
 
     -- 获取就诊表中门诊记录数量
-    select @result = count(*) from a_cdrd_patient_visit_info where patient_visit_type_key=1;
+    DECLARE @re INT = 1;
+    select @re = count(*) from a_cdrd_patient_info;
+    SET @result = @re * @RecordCount;
 
     BEGIN
         BEGIN TRANSACTION;
-        DECLARE @totalRecords INT = 0;
         DECLARE @patient_visit_id INT = 0;
         DECLARE @patient_id INT = 0;
         DECLARE @patient_hospital_visit_id NVARCHAR(100);
@@ -23,8 +25,6 @@ BEGIN
         DECLARE @patient_visit_in_dept_name NVARCHAR(50);
         DECLARE @Counter1 INT = 1;
 
-        -- 获取就诊表中门诊记录数量
-        SET @totalRecords = @result
 
         -- 子存储过程
         -- 随机是否药品 true false
@@ -33,7 +33,7 @@ BEGIN
 
 
         -- 遍历就诊表
-        WHILE @Counter1 <= @totalRecords
+        WHILE @Counter1 <= @result
         BEGIN
 
             -- 按照记录顺序获取

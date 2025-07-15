@@ -1,7 +1,7 @@
 -- todo 科室医疗组表(造数据)
 
 CREATE OR ALTER PROCEDURE sys_dept_medgp
-    @RecordCount INT = 10 -- 可通过参数控制记录数，默认100条
+    @RecordCount INT = 6 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
     SET NOCOUNT ON;

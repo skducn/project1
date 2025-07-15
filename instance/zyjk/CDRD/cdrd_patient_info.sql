@@ -1,89 +1,112 @@
--- todo 检查项目明细(造数据)
+-- todo 患者基本信息表(造数据)
 
-CREATE OR ALTER PROCEDURE cdrd_patient_test_project_info
-    @RecordCount INT = 1, -- 可通过参数控制记录数，默认100条
+CREATE OR ALTER PROCEDURE cdrd_patient_info
     @result INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    select @result = count(*) from a_cdrd_patient_lab_examination_info;
+    SET @result = 6;  -- 修改为30000
 
+    -- 循环@RecordCount
+    DECLARE @Counter INT = 1;
+    WHILE @Counter <= @result
     BEGIN
-        BEGIN TRANSACTION;
-        DECLARE @totalRecords INT = 0;
-        DECLARE @Counter1 INT = 1;
-        SELECT @totalRecords = COUNT(*)  FROM a_cdrd_patient_lab_examination_info;
 
-        -- 遍历实验室检查报告表 a_cdrd_patient_lab_examination_info
-        WHILE @Counter1 <= @totalRecords
-        BEGIN
+        -- 随机手机号
+        DECLARE @phone1 NVARCHAR(11);
+        DECLARE @phone2 NVARCHAR(11);
+        DECLARE @phone3 NVARCHAR(8);
+        SELECT @phone1 = '138' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
+        SELECT @phone2 = '130' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
+        SELECT @phone3 = '5' + RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7);
 
-            DECLARE @Counter INT = 1;
-            DECLARE @TotalCount INT =0;
-            DECLARE @MaxRecords INT = @RecordCount;
+        -- 子存储过程
+        -- 姓名
+        DECLARE @RandomName NVARCHAR(50);
+        EXEC p_name @FullName = @RandomName OUTPUT;
 
-            -- 循环插入指定数量的记录
-            WHILE @Counter <= @MaxRecords
-            BEGIN
+        -- 婚姻
+        DECLARE @RandomMarriageKey NVARCHAR(50), @RandomMarriage NVARCHAR(50);
+        EXEC p_marriage @k = @RandomMarriageKey OUTPUT, @v = @RandomMarriage OUTPUT;
 
-                -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
-                DECLARE @i INT = 1;
-                -- DECLARE @patient_id INT;
-                -- DECLARE @patient_visit_id INT;
+        -- 职业
+        DECLARE @RandomJob NVARCHAR(50);
+        EXEC p_job @v = @RandomJob OUTPUT;
 
-                # 获取 patient_lab_examination_id
-                SELECT patient_lab_examination_id
-                FROM (
-                    SELECT 
-                        patient_lab_examination_id,
-                        ROW_NUMBER() OVER (ORDER BY patient_lab_examination_id) AS row_num
-                    FROM a_cdrd_patient_lab_examination_info
-                ) AS subquery
-                WHERE row_num = @Counter1;
+        -- 证件类型
+        DECLARE @RandomIdtypeKey NVARCHAR(50), @RandomIdtype NVARCHAR(50);
+        EXEC p_cert_type @k = @RandomIdtypeKey OUTPUT, @v = @RandomIdtype OUTPUT;
 
-                -- -- 子存储过程
-                -- -- 医院
-                -- DECLARE @RandomHospital NVARCHAR(350);
-                -- EXEC p_hospital @v = @RandomHospital OUTPUT;
+        -- 民族
+        DECLARE @RandomNationKey NVARCHAR(50), @RandomNation NVARCHAR(50);
+        EXEC p_nationality @k = @RandomNationKey OUTPUT, @v = @RandomNation OUTPUT;
 
-                -- -- 辅助检查类型
-                -- DECLARE @RandomAssitExaminationTypeIdKey NVARCHAR(50), @RandomAssitExaminationTypeIdValue NVARCHAR(50);
-                -- EXEC p_assit_examination_type @k = @RandomAssitExaminationTypeIdKey OUTPUT, @v = @RandomAssitExaminationTypeIdValue OUTPUT;
+        -- 与患者关系
+        DECLARE @RandomRelation NVARCHAR(50);
+        EXEC p_patient_relation @v = @RandomRelation OUTPUT;
+
+        -- 住址
+        DECLARE @RandomAddress1 NVARCHAR(150), @RandomAddress2 NVARCHAR(150);
+        EXEC p_address @v1 = @RandomAddress1 OUTPUT, @v2 = @RandomAddress2 OUTPUT;
+
+        -- 出生地
+        DECLARE @provinceKey NVARCHAR(150), @province NVARCHAR(150);
+        DECLARE @cityKey NVARCHAR(150), @city NVARCHAR(150);
+        DECLARE @countyKey NVARCHAR(150), @county NVARCHAR(150);
+        EXEC p_birth_place @provinceKey = @provinceKey OUTPUT, @province = @province OUTPUT,
+            @cityKey = @cityKey OUTPUT, @city = @city OUTPUT,
+            @countyKey = @countyKey OUTPUT, @county = @county OUTPUT;
+
+        -- 身份证，性别，性别key，出生日期,年龄
+        DECLARE @idcard NVARCHAR(18), @gender NVARCHAR(10);
+        DECLARE @genderKey NVARCHAR(10), @birthday NVARCHAR(18), @age NVARCHAR(150);
+        EXEC p_idcard @countyKey = @countyKey, @idcard = @idcard OUTPUT, @gender = @gender OUTPUT,
+             @genderKey = @genderKey OUTPUT, @birthday = @birthday OUTPUT,
+             @age = @age OUTPUT;
 
 
-                -- 执行 20 次 
-                WHILE @i <= 20
-                BEGIN
+        -- 插入单条随机数据
+        INSERT INTO a_cdrd_patient_info (patient_name,patient_sex_key,patient_sex_value,patient_birth_date,patient_age,patient_birth_address_province_key,patient_birth_address_province,patient_birth_address_city_key,patient_birth_address_city,patient_birth_address_country_key,patient_birth_address_country,patient_country,patient_native_province_key,patient_native_province,patient_native_city_key,patient_native_city,patient_nation_key,patient_nation_value,patient_phone_num,patient_home_address,patient_profession,patient_marriage_key,patient_marriage_value,patient_id_type_key,patient_id_type_value,patient_id_num,patient_home_phone,patient_account_address,patient_contact_name,patient_contact_relation,patient_contact_phone,patient_contact_address,patient_update_time,patient_data_source_key)
+        VALUES (
+            @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 姓名 + 固定5位数
+            @GenderKey, -- 性别key
+            @Gender, -- 性别
+            @birthday, -- 出生日期, 从1925 到 2025今年
+            @age, -- 年龄
+            @provinceKey, -- 出生地-省key
+            @province, -- 出生地-省
+            @cityKey, -- 出生地-市key
+            @city, -- 出生地-市
+            @countyKey, -- 出生地-县key
+            @county, -- 出生地-县
+            N'中国', -- 国籍
+            @provinceKey, -- 籍贯省key
+            @province, -- 籍贯省名称
+            @cityKey, -- 籍贯市key
+            @city, -- 籍贯市名称
+            @RandomNationKey, -- 民族key
+            @RandomNation, -- 民族
+            @phone1, -- 联系电话
+            @RandomAddress1, -- 现住址
+            @RandomJob, -- 职业
+            @RandomMarriageKey, -- 婚姻key
+            @RandomMarriage, -- 婚姻
+            @RandomIdtypeKey, --证件类型key
+            '身份证号', --证件类型 @RandomIdtype
+            @idcard, --证件号码 IDCardNumber
+            @phone3, -- 家庭电话
+            @RandomAddress1, -- 户口地址
+            @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 联系人姓名
+            @RandomRelation, -- 与患者关系
+            @phone2, -- 联系人电话
+            @RandomAddress2, -- 联系人地址
+            DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
+            '1'  -- 数据来源1或2
+        );
 
-                    -- 插入单条随机数据
-                    INSERT INTO a_cdrd_patient_test_project_info (patient_superior_examination_id,patient_report_num,patient_test_item_name,patient_test_numerical_value,patient_test_unit_name,patient_test_text_value,patient_test_abnormal_flag,patient_test_reference_range,patient_test_delete_state_key,patient_test_update_time,patient_test_data_source_key)
-                    VALUES (
-                        @patient_superior_examination_id, -- 上级检查ID (取值实验室检查ID或者辅助检查ID)
-                        RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
-                        '空腹血糖（GLU）', -- 项目名称
-                        '5。8', -- 定量结果
-                        'mmol', -- 定量结果单位
-                        '正常', -- 定性结果
-                        '异常', -- 异常标识
-                        '3.9-6.1', -- 参考值（范围）
-                        ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                        ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
-                    );
+        SET @Counter = @Counter + 1;
+    END;
 
-                    SET @i = @i + 1;
-                END
-
-                
-            SET @Counter = @Counter + 1;
-            END;
-
-        SET @Counter1 = @Counter1 + 1;
-        END;
-
-        COMMIT TRANSACTION;
-    END
-
-END
+END;

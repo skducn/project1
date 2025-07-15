@@ -384,6 +384,23 @@ class SqlserverPO:
 
     # todo 表
 
+    def delTable(self, varTable):
+
+        # #-- 创建新表（结构与原表相同）
+        # self.execute("SELECT * INTO NewTable FROM %s WHERE 1=0;" % (varTable))
+        #
+        # # -- 禁用索引和约束
+        # self.execute("ALTER TABLE %s DISABLE TRIGGER ALL;" % (varTable))
+        # self.execute("ALTER TABLE %s DISABLE CONSTRAINT ALL;" % (varTable))
+        #
+        # # -- 交换表名（原子操作，几乎瞬间完成）
+        # self.execute("EXEC sp_rename '" + varTable + "', OldTable';")
+        # self.execute("EXEC sp_rename 'NewTable', '" + varTable + "';")
+
+        # -- （可选）异步删除旧表
+        self.execute(f"DROP TABLE {varTable};")
+
+
     def isTable(self, varTable):
 
         # 2.1 判断表是否存在
