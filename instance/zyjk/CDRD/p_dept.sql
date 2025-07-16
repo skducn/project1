@@ -1,7 +1,8 @@
 -- todo 科室
 
 CREATE OR ALTER PROCEDURE p_dept
-    @v nvarchar(50) OUTPUT
+    @RandomID INT,
+    @v NVARCHAR(50) OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -13,8 +14,8 @@ BEGIN
                                     (N'医技科室'),(N'内分泌科'),(N'骨科');
 
     -- 随机选择一个 ID
-    DECLARE @RandomID INT = CAST(RAND() * (SELECT COUNT(*) FROM #tb_temp) AS INT) + 1;
+--     DECLARE @RandomID INT = CAST(RAND() * (SELECT COUNT(*) FROM #tb_temp) AS INT) + 1;
 
     -- 赋值输出参数
-    SELECT @v = v FROM #tb_temp WHERE ID = @RandomID;
+    SELECT @v = v FROM #tb_temp WHERE ID = @RandomID; -- 默认按顺序输出
 END

@@ -19,7 +19,6 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.subProcedure("p_assit_examination_type", "辅助检查类型, {'1': '电生理检查', '2': '放射学检查', '3': '超声检查', '4': '内镜检查', '5': '其他检查', '6': '病理检查'}")
 # Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
 # Cdrd_PO.subProcedure("p_cert_type", "证件类型, {'1': '居民身份证', '2': '居民户口簿', '3': '护照', '4': '军官证', '5': '驾驶证', '6': '港澳居民来往内地通行证', '7': '台湾居民来往内地通行证', '9': '其他法定有效证件'}")
-# Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
 # Cdrd_PO.subProcedure("p_drug_allergy_type", "药物过敏,  {'1': '否', '2': '有'}")
 # Cdrd_PO.subProcedure("p_hospital", "医院, ['东方医院','复旦大学附属眼耳鼻喉科医院','上海交通大学医学院附属第九人民医院','上海市第一人民医院','上海交通大学医学院附属新华医院']")
 # Cdrd_PO.subProcedure("p_hospital_advice", "住院医嘱类型, {'1': '住院药物医嘱', '2': '住院非药物医嘱'}")
@@ -175,14 +174,18 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 4，科室管理
-# # Cdrd_PO.dept__a_sys_department('科室表')  # 创建或重构科室表
-# Cdrd_PO.procedure("sys_department", '科室表', 4)
-#
+# 数据量：1个科室
+# Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
+# Cdrd_PO.dept__a_sys_department('科室表')
+# Cdrd_PO.procedure("sys_department", '科室表')
+
+# 数据量：每个科室下3个医疗组
 # Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
-# Cdrd_PO.procedure("sys_dept_medgp", '医疗组', 10)
-# #
+# Cdrd_PO.procedure("sys_dept_medgp", '医疗组')
+
+# 数据量：每个医疗组下5名成员
 # Cdrd_PO.dept__a_sys_dept_medgp_person('医疗组人员')
-# Cdrd_PO.procedure("sys_dept_medgp_person", '医疗组人员', 20)
+# Cdrd_PO.procedure("sys_dept_medgp_person", '医疗组人员')
 
 
 
