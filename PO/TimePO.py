@@ -501,8 +501,8 @@ if __name__ == "__main__":
     sleep(6)  # ----这里是程序执行部分----
     time_end = time.time()
     time = time_end - time_start
-    print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
-    print(f"\n程序运行时间: {time:.4f} 秒")  # 6.0036 秒
+    # print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
+    print(f"\n耗时: {time:.4f} 秒")  # 6.0036 秒
 
     #
 

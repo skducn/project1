@@ -10,6 +10,7 @@
 # 3，请继续优化，将每行数据转换成 Sqlserver_PO.setFieldComment('a_sys_logininfo', '参数1', '参数2'),替换参数1和参数2
 # *****************************************************************
 
+
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
 
@@ -1241,13 +1242,21 @@ class CdrdPO(object):
         varDesc_escaped = varDesc.replace("'", "''") # 转义所有单引号
         Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}',@level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
 
+        import time
+        time_start = time.time()
         # 执行存储过程
         # # need @result
         row = Sqlserver_PO.select(f"""DECLARE @R int;
-        EXEC {varProcedure} @result = @R OUTPUT;
-        SELECT @R as ReturnValue;
-        """)
+                EXEC {varProcedure} @result = @R OUTPUT;
+                SELECT @R as ReturnValue;
+                """)
         print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']), "条！")
+
+        time_end = time.time()
+        time = time_end - time_start
+        # print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
+        print(f"\n耗时: {time:.4f} 秒")  # 6.0036 秒
+
 
 
     def procedure5(self, varProcedure, varDesc, varQty=1):

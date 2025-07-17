@@ -67,9 +67,9 @@ Cdrd_PO = CdrdPO()
 
 # # # 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
+Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 #
 
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万

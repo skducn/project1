@@ -1,4 +1,7 @@
 -- todo 门(急)诊住院就诊信息(造数据)
+-- 数据量：每个患者5条（3条门诊，2条住院），共15万
+-- 生成 150000 条！,耗时: 545.8609 秒，1,233,534,976字节  约1.15GB
+
 
 CREATE OR ALTER PROCEDURE cdrd_patient_visit_info
     @RecordCount INT = 5,

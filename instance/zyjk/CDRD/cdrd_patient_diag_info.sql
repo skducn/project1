@@ -1,4 +1,5 @@
 -- todo 诊断表(造数据)
+-- 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 
 CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
     @RecordCount INT = 5,

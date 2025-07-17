@@ -1,4 +1,7 @@
 -- todo 患者基本信息表(造数据)
+-- 数据量：30000
+-- 生成 10000 条！,耗时: 79.5720 秒, 3,678,208字节
+-- 生成 30000 条！,耗时: 244.6608 秒, 10,887,168字节 约10MB
 
 CREATE OR ALTER PROCEDURE cdrd_patient_info
     @result INT OUTPUT
@@ -7,7 +10,7 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    SET @result = 6;  -- 修改为30000
+    SET @result = 30000;  -- 修改为30000
 
     -- 循环@RecordCount
     DECLARE @Counter INT = 1;
