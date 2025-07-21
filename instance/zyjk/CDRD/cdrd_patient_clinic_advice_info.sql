@@ -28,8 +28,11 @@ BEGIN
 
         -- 子存储过程
         -- 随机是否药品 true false
-        DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
-        EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+        DECLARE @RandomTrueFalseIdKey NVARCHAR(100)
+        DECLARE @RandomTrueFalseIdValue NVARCHAR(100)
+        SELECT TOP 1 @RandomTrueFalseIdKey=n_key, @RandomTrueFalseIdValue=n_value FROM ab_boolean ORDER BY NEWID()
+--         DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
+--         EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
 
 
         -- 遍历就诊表

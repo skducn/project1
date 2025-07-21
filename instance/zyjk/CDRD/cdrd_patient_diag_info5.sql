@@ -1,119 +1,99 @@
-CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
-    @RecordCount INT = 1, -- 控制每组生成多少“批次”的5条记录，默认每个患者生成1组
-    @result INT OUTPUT
+-- 创建或修改存储过程 cdrd_patient_diag_info5
+-- 用于批量生成诊断信息模拟数据
+CREATE OR ALTER PROCEDURE cdrd_patient_diag_info5
+    @RecordCount INT = 5,          -- 每个患者生成的诊断记录数（默认5条）
+    @result INT OUTPUT             -- 输出总生成记录数
 AS
 BEGIN
-
     SET NOCOUNT ON;
-    SET XACT_ABORT ON;
+    SET XACT_ABORT ON; -- 出错时回滚整个事务
 
-    BEGIN TRANSACTION;
+    BEGIN TRY
+        -- 获取患者总数
+        DECLARE @TotalPatients INT;
+        SELECT @TotalPatients = COUNT(*) FROM a_cdrd_patient_info;
 
-    select @result = count(*) from a_cdrd_patient_info;
-
-    -- 获取总患者数
-    DECLARE @totalRecords INT = (SELECT COUNT(*) FROM a_cdrd_patient_info);
-    DECLARE @Counter1 INT = 1;
-
-    -- 创建临时表用于批量插入
-    CREATE TABLE #TempDiag (
-        patient_id INT,
-        patient_visit_id INT NULL,
-        patient_hospital_visit_id NVARCHAR(7),
-        patient_hospital_code NVARCHAR(7),
-        patient_hospital_name NVARCHAR(350),
-        patient_case_num NVARCHAR(7),
-        patient_diag_num NVARCHAR(7),
-        patient_diag_class NVARCHAR(50),
-        patient_diag_name NVARCHAR(50),
-        patient_diag_is_primary_key NVARCHAR(50),
-        patient_diag_is_primary_value NVARCHAR(50),
-        patient_diag_code NVARCHAR(50),
-        patient_in_state_key NVARCHAR(50),
-        patient_in_state_value NVARCHAR(50),
-        patient_outcome_state_key NVARCHAR(50),
-        patient_outcome_state_value NVARCHAR(50),
-        patient_diag_date DATE,
-        patient_diag_delete_state_key INT,
-        patient_diag_update_time DATETIME,
-        patient_diag_data_source_key NVARCHAR(10)
-    );
-
-    WHILE @Counter1 <= @totalRecords
-    BEGIN
-        DECLARE @i INT = 1;
-        DECLARE @TotalToInsert INT = @RecordCount * 5;
-
-        WHILE @i <= @TotalToInsert
+        -- 如果没有患者数据，直接退出
+        IF @TotalPatients = 0
         BEGIN
-            DECLARE
-                @patient_id INT,
-                @patient_visit_id INT,
-                @RandomHospital NVARCHAR(350),
-                @RandomInStateIdKey NVARCHAR(50), @RandomInStateIdValue NVARCHAR(50),
-                @RandomOutcomeStateIdKey NVARCHAR(50), @RandomOutcomeStateIdValue NVARCHAR(50),
-                @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50),
-                @RandomDiagClass NVARCHAR(50), @RandomDiagName NVARCHAR(50), @RandomDiagCode NVARCHAR(50);
-
-            -- 获取 patient_id
-            SELECT TOP 1 @patient_id = patient_id FROM a_cdrd_patient_info ORDER BY NEWID();
-
-            -- 如果当前为第1~2条，则不带 patient_visit_id
-            IF @i % 5 + 1 <= 2
-            BEGIN
-                SET @patient_visit_id = NULL;
-            END
-            ELSE
-            BEGIN
-                -- 否则从就诊表中获取一个 patient_visit_id
-                SELECT TOP 1 @patient_visit_id = patient_visit_id
-                FROM a_cdrd_patient_visit_info
-                WHERE patient_id = @patient_id AND patient_visit_id IS NOT NULL
-                ORDER BY NEWID();
-            END
-
-            -- 调用子存储过程获取随机值
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
-            EXEC p_in_state @k = @RandomInStateIdKey OUTPUT, @v = @RandomInStateIdValue OUTPUT;
-            EXEC p_outcome_state @k = @RandomOutcomeStateIdKey OUTPUT, @v = @RandomOutcomeStateIdValue OUTPUT;
-            EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
-            EXEC r_diag_info__ @v1 = @RandomDiagClass OUTPUT, @v2 = @RandomDiagName OUTPUT, @v3 = @RandomDiagCode OUTPUT;
-
-            INSERT INTO #TempDiag
-            VALUES (
-                @patient_id,
-                @patient_visit_id,
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7),
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7),
-                @RandomHospital,
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7),
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7),
-                @RandomDiagClass,
-                @RandomDiagName,
-                @RandomTrueFalseIdKey,
-                @RandomTrueFalseIdValue,
-                @RandomDiagCode,
-                @RandomInStateIdKey,
-                @RandomInStateIdValue,
-                @RandomOutcomeStateIdKey,
-                @RandomOutcomeStateIdValue,
-                DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01'),
-                ABS(CHECKSUM(NEWID())) % 2 + 1,
-                DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()),
-                CASE WHEN @i % 5 + 1 <= 2 THEN '2' ELSE '1' END
-            );
-
-            SET @i = @i + 1;
+            PRINT '警告：a_cdrd_patient_info 表中没有患者数据，无法生成诊断信息。';
+            SET @result = 0;
+            RETURN;
         END
 
-        -- 插入主表
-        INSERT INTO a_cdrd_patient_diag_info
-        SELECT * FROM #TempDiag;
+        -- 设置总记录数
+        SET @result = @TotalPatients * @RecordCount;
 
-        TRUNCATE TABLE #TempDiag;
+        -- 生成患者ID与行号映射
+        ;WITH PatientCTE AS (
+            SELECT patient_id, ROW_NUMBER() OVER (ORDER BY patient_id) AS RowNum
+            FROM a_cdrd_patient_info
+        ),
+        -- 生成就诊记录映射（每个患者最多3条就诊记录）
+        VisitCTE AS (
+            SELECT
+                patient_id,
+                patient_visit_id,
+                patient_hospital_visit_id,
+                patient_hospital_code,
+                patient_case_num,
+                ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_id) AS VisitRow
+            FROM a_cdrd_patient_visit_info
+        )
+        -- 插入诊断信息
+        INSERT INTO a_cdrd_patient_diag_info (
+            patient_id, patient_visit_id, patient_hospital_visit_id, patient_hospital_code, patient_hospital_name,
+            patient_case_num, patient_diag_num, patient_diag_class, patient_diag_name, patient_diag_is_primary_key,
+            patient_diag_is_primary_value, patient_diag_code, patient_in_state_key, patient_in_state_value,
+            patient_outcome_state_key, patient_outcome_state_value, patient_diag_date,
+            patient_diag_delete_state_key, patient_diag_update_time, patient_diag_data_source_key
+        )
+        SELECT
+            p.patient_id,
+            CASE WHEN seq <= 2 THEN NULL ELSE v.patient_visit_id END AS patient_visit_id,
+            CASE WHEN seq <= 2 THEN NULL ELSE v.patient_hospital_visit_id END AS patient_hospital_visit_id,
+            CASE WHEN seq <= 2 THEN NULL ELSE v.patient_hospital_code END AS patient_hospital_code,
+            h.hospital_name,
+            CASE WHEN seq <= 2 THEN NULL ELSE v.patient_case_num END AS patient_case_num,
+            RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7) AS patient_diag_num,
+            d.diag_class,
+            d.diag_name,
+            t.key_value AS patient_diag_is_primary_key,
+            t.display_value AS patient_diag_is_primary_value,
+            d.diag_code,
+            i.state_key AS patient_in_state_key,
+            i.state_value AS patient_in_state_value,
+            o.state_key AS patient_outcome_state_key,
+            o.state_value AS patient_outcome_state_value,
+            DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS patient_diag_date,
+            ABS(CHECKSUM(NEWID())) % 2 + 1 AS patient_diag_delete_state_key,
+            DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()) AS patient_diag_update_time,
+            CASE WHEN seq <= 2 THEN '2' ELSE '1' END AS patient_diag_data_source_key
+        FROM PatientCTE p
+        CROSS JOIN (VALUES (1),(2),(3),(4),(5)) AS Seq(seq)
+        CROSS APPLY (
+            SELECT TOP 1 hospital_name FROM a_hospital ORDER BY NEWID()
+        ) h
+        CROSS APPLY (
+            SELECT TOP 1 diag_class, diag_name, diag_code FROM a_diag_info ORDER BY NEWID()
+        ) d
+        CROSS APPLY (
+            SELECT TOP 1 key_value, display_value FROM a_true_false_info ORDER BY NEWID()
+        ) t
+        CROSS APPLY (
+            SELECT TOP 1 state_key, state_value FROM a_in_state_info ORDER BY NEWID()
+        ) i
+        CROSS APPLY (
+            SELECT TOP 1 state_key, state_value FROM a_outcome_state_info ORDER BY NEWID()
+        ) o
+        LEFT JOIN VisitCTE v ON p.patient_id = v.patient_id AND v.VisitRow = seq - 2
+        WHERE seq <= 2 OR v.patient_visit_id IS NOT NULL;
 
-        SET @Counter1 = @Counter1 + 1;
-    END
+        PRINT '成功插入 ' + CAST(@result AS NVARCHAR(10)) + ' 条诊断信息记录。';
 
-    COMMIT TRANSACTION;
-END
+    END TRY
+    BEGIN CATCH
+        PRINT '发生错误：' + ERROR_MESSAGE();
+        THROW;
+    END CATCH;
+END;

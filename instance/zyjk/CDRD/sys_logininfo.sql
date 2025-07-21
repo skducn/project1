@@ -21,12 +21,18 @@ BEGIN
         EXEC p_name @FullName = @RandomName OUTPUT;
 
         -- 系统内置
-        DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
-        EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+        DECLARE @RandomTrueFalseIdKey NVARCHAR(100)
+        DECLARE @RandomTrueFalseIdValue NVARCHAR(100)
+        SELECT TOP 1 @RandomTrueFalseIdKey=n_key,@RandomTrueFalseIdValue=n_value FROM ab_boolean ORDER BY NEWID()
+--         DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
+--         EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
 
         -- 登录类型，方式
-        DECLARE @RandomLoginType NVARCHAR(50), @RandomWay NVARCHAR(50);
-        EXEC r_logininfo__ @v1 = @RandomLoginType OUTPUT, @v2 = @RandomWay OUTPUT;
+--         DECLARE @RandomLoginType NVARCHAR(50), @RandomWay NVARCHAR(50);
+--         EXEC r_logininfo__ @v1 = @RandomLoginType OUTPUT, @v2 = @RandomWay OUTPUT;
+        DECLARE @RandomLoginType NVARCHAR(100)
+        DECLARE @RandomWay NVARCHAR(100)
+        SELECT TOP 1 @RandomLoginType=n_key,@RandomWay=n_value FROM ab_loginout ORDER BY NEWID()
 
 
         -- 插入单条随机数据

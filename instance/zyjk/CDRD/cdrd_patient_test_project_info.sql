@@ -1,6 +1,6 @@
 -- todo 检查项目明细(造数据)
 -- 数据量：每个实验室检查记录对应一份检查项目明细(每份明细预计20条左右数据，总量预计300万左右)
-
+-- 100w, 耗时: 1127.5087 秒, 114,237,440
 CREATE OR ALTER PROCEDURE cdrd_patient_test_project_info
     @RecordCount INT = 20,
     @result INT OUTPUT

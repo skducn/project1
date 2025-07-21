@@ -1,4 +1,4 @@
--- todo 诊断表 - 诊断类型，诊断名称，ICD10编码
+-- todo 诊断病史 - 诊断类型，诊断名称，ICD10编码
 
 CREATE OR ALTER PROCEDURE r_diag_info__
     @v1 nvarchar(50) OUTPUT,

@@ -27,25 +27,43 @@ BEGIN
             DECLARE @patient_visit_id INT;
 
             -- 子存储过程
+            -- ab表
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+
 
             -- 入院病情
-            DECLARE @RandomInStateIdKey NVARCHAR(50), @RandomInStateIdValue NVARCHAR(50);
-            EXEC p_in_state @k = @RandomInStateIdKey OUTPUT, @v = @RandomInStateIdValue OUTPUT;
+            DECLARE @RandomInStateIdKey NVARCHAR(50)
+            DECLARE @RandomInStateIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomInStateIdKey=n_key, @RandomInStateIdValue=n_value FROM _ab_admissionCondition ORDER BY NEWID()
+
+--             DECLARE @RandomInStateIdKey NVARCHAR(50), @RandomInStateIdValue NVARCHAR(50);
+--             EXEC p_in_state @k = @RandomInStateIdKey OUTPUT, @v = @RandomInStateIdValue OUTPUT;
 
             -- 出院情况
-            DECLARE @RandomOutcomeStateIdKey NVARCHAR(50), @RandomOutcomeStateIdValue NVARCHAR(50);
-            EXEC p_outcome_state @k = @RandomOutcomeStateIdKey OUTPUT, @v = @RandomOutcomeStateIdValue OUTPUT;
+            DECLARE @RandomOutcomeStateIdKey NVARCHAR(50)
+            DECLARE @RandomOutcomeStateIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomOutcomeStateIdKey=n_key, @RandomOutcomeStateIdValue=n_value FROM _ab_dischargeStatus ORDER BY NEWID()
 
-            -- 主要诊断
-            DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
-            EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+--             DECLARE @RandomOutcomeStateIdKey NVARCHAR(50), @RandomOutcomeStateIdValue NVARCHAR(50);
+--             EXEC p_outcome_state @k = @RandomOutcomeStateIdKey OUTPUT, @v = @RandomOutcomeStateIdValue OUTPUT;
 
-            -- 诊断类型，诊断名称，ICD10编码
-            DECLARE @RandomDiagClass NVARCHAR(50), @RandomDiagName NVARCHAR(50), @RandomDiagCode NVARCHAR(50);
-            EXEC r_diag_info__ @v1 = @RandomDiagClass OUTPUT, @v2 = @RandomDiagName OUTPUT, @v3 = @RandomDiagCode OUTPUT;
+            -- 主要诊断 _ab_boolean
+            DECLARE @RandomTrueFalseIdKey NVARCHAR(50)
+            DECLARE @RandomTrueFalseIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomTrueFalseIdKey=n_key, @RandomTrueFalseIdValue=n_value FROM _ab_boolean ORDER BY NEWID()
+
+--             DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
+--             EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+
+            -- 诊断类型，诊断名称，ICD10编码  _ab_diagnosticHistory
+            DECLARE @RandomDiagClass NVARCHAR(50)
+            DECLARE @RandomDiagName NVARCHAR(50)
+            DECLARE @RandomDiagCode NVARCHAR(50)
+            SELECT TOP 1 @RandomDiagClass=diag_class, @RandomDiagName=diag_name,@RandomDiagCode=diag_code FROM _ab_diagnosticHistory ORDER BY NEWID()
+--             DECLARE @RandomDiagClass NVARCHAR(50), @RandomDiagName NVARCHAR(50), @RandomDiagCode NVARCHAR(50);
+--             EXEC r_diag_info__ @v1 = @RandomDiagClass OUTPUT, @v2 = @RandomDiagName OUTPUT, @v3 = @RandomDiagCode OUTPUT;
 
 
             -- 先执行 2 次 （仅 patient_id）

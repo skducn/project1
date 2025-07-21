@@ -1,6 +1,6 @@
 -- todo 患者基本信息表(造数据)
 -- 数据量：30000
--- 生成 10000 条！,耗时: 79.5720 秒, 3,678,208字节
+-- 生成 10000 条！,耗时: 44.4379 秒, 3,678,208字节
 -- 生成 30000 条！,耗时: 244.6608 秒, 10,887,168字节 约10MB
 
 CREATE OR ALTER PROCEDURE cdrd_patient_info
@@ -10,7 +10,7 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    SET @result = 30000;  -- 修改为30000
+    SET @result = 10000;  -- 修改为30000
 
     -- 循环@RecordCount
     DECLARE @Counter INT = 1;
@@ -25,30 +25,36 @@ BEGIN
         SELECT @phone2 = '130' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
         SELECT @phone3 = '5' + RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7);
 
+        -- ab表
+        -- 婚姻
+        DECLARE @RandomMarriageKey NVARCHAR(100)
+        DECLARE @RandomMarriage NVARCHAR(100)
+        SELECT TOP 1 @RandomMarriageKey = n_key, @RandomMarriage = n_value FROM ab_marriage ORDER BY NEWID()
+
+        -- 职业
+        DECLARE @RandomJob NVARCHAR(100)
+        SELECT TOP 1 @RandomJob = n_value FROM ab_job ORDER BY NEWID()
+
+        -- 证件类型
+        DECLARE @RandomIdtypeKey NVARCHAR(100)
+        DECLARE @RandomIdtype NVARCHAR(100)
+        SELECT TOP 1 @RandomIdtypeKey = n_key, @RandomIdtype = n_value FROM ab_IDtype ORDER BY NEWID()
+
+        -- 民族
+        DECLARE @RandomNationKey NVARCHAR(100)
+        DECLARE @RandomNation NVARCHAR(100)
+        SELECT TOP 1 @RandomNationKey = n_key, @RandomNation = n_value FROM ab_ethnicGroup ORDER BY NEWID()
+
+        -- 与患者关系
+        DECLARE @RandomRelation NVARCHAR(100)
+        SELECT TOP 1 @RandomRelation = n_value FROM ab_relationship ORDER BY NEWID()
+
+
         -- 子存储过程
         -- 姓名
         DECLARE @RandomName NVARCHAR(50);
         EXEC p_name @FullName = @RandomName OUTPUT;
 
-        -- 婚姻
-        DECLARE @RandomMarriageKey NVARCHAR(50), @RandomMarriage NVARCHAR(50);
-        EXEC p_marriage @k = @RandomMarriageKey OUTPUT, @v = @RandomMarriage OUTPUT;
-
-        -- 职业
-        DECLARE @RandomJob NVARCHAR(50);
-        EXEC p_job @v = @RandomJob OUTPUT;
-
-        -- 证件类型
-        DECLARE @RandomIdtypeKey NVARCHAR(50), @RandomIdtype NVARCHAR(50);
-        EXEC p_cert_type @k = @RandomIdtypeKey OUTPUT, @v = @RandomIdtype OUTPUT;
-
-        -- 民族
-        DECLARE @RandomNationKey NVARCHAR(50), @RandomNation NVARCHAR(50);
-        EXEC p_nationality @k = @RandomNationKey OUTPUT, @v = @RandomNation OUTPUT;
-
-        -- 与患者关系
-        DECLARE @RandomRelation NVARCHAR(50);
-        EXEC p_patient_relation @v = @RandomRelation OUTPUT;
 
         -- 住址
         DECLARE @RandomAddress1 NVARCHAR(150), @RandomAddress2 NVARCHAR(150);
@@ -108,6 +114,7 @@ BEGIN
             DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
             '1'  -- 数据来源1或2
         );
+
 
         SET @Counter = @Counter + 1;
     END;

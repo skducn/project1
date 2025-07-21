@@ -18,29 +18,420 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK
 
 class CdrdPO(object):
 
-    def __init__(self):
-        ...
+
+    def _ab_admissionCondition(self, varCommon):
+
+        # 创建表，插入数据
+        # 入院病情
+        Sqlserver_PO.crtTableByCover('ab_admissionCondition',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                n_key NVARCHAR(10),
+                                n_value NVARCHAR(100)
+                                ''')
+        Sqlserver_PO.execute("INSERT INTO ab_admissionCondition (n_key, n_value) "
+                             "VALUES ('1',N'有'),('2',N'临床未确定'),('3',N'情况不明'),('4',N'无')")
+        Sqlserver_PO.setTableComment('ab_admissionCondition', varCommon + '(测试用)')
+    def _ab_boolean(self, varCommon):
+
+        # 创建表，插入数据
+        # 主要诊断标识表
+        Sqlserver_PO.crtTableByCover('ab_boolean',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                n_key NVARCHAR(10),
+                                n_value NVARCHAR(100)
+                                ''')
+        Sqlserver_PO.execute("INSERT INTO ab_boolean (n_key, n_value) "
+                             "VALUES ('0',N'是'),('1',N'否')")
+        Sqlserver_PO.setTableComment('ab_boolean', varCommon + '(测试用)')
+    def _ab_dischargeStatus(self, varCommon):
+
+        # 创建表，插入数据
+        # 出院情况
+        Sqlserver_PO.crtTableByCover('ab_dischargeStatus',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                n_key NVARCHAR(10),
+                                n_value NVARCHAR(100)
+                                ''')
+        Sqlserver_PO.execute("INSERT INTO ab_dischargeStatus (n_key, n_value) "
+                             "VALUES ('1',N'治愈'),('2',N'好转'),('3',N'未愈'),('4',N'死亡'),('5',N'其他')")
+        Sqlserver_PO.setTableComment('ab_dischargeStatus', varCommon + '(测试用)')
+    def _ab_diagnosticHistory(self, varCommon):
+
+        # 创建表，插入数据
+        # 诊断病史
+        # -- 诊断病史
+        Sqlserver_PO.crtTableByCover('ab_diagnosticHistory',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                diag_class NVARCHAR(50),
+                                diag_name NVARCHAR(100),
+                                diag_code NVARCHAR(50)
+                                ''')
+        sql = ''' INSERT INTO ab_diagnosticHistory (diag_class, diag_name, diag_code) VALUES
+                        ('心血管慢性病', '原发性高血压 2 级', 'I10'),
+                        ('心律失常', '持续性心房颤动', 'I48.1'),
+                        ('代谢性疾病', '2 型糖尿病伴周围神经病变', 'E11.4'),
+                        ('缺血性心脏病', '稳定性心绞痛', 'I25.1'),
+                        ('呼吸系统慢性病', 'COPD 急性加重期', 'J44.1'),
+                        ('神经系统急症', '急性脑梗死（左侧基底节区）', 'I63.9'),
+                        ('消化系统疾病', '反流性食管炎（LA-B 级）', 'K21.0'),
+                        ('骨骼代谢性疾病', '骨质疏松伴腰椎压缩性骨折', 'M80.8'),
+                        ('内分泌疾病', 'Graves 病', 'E05.0'),
+                        ('泌尿系统疾病', '慢性肾脏病 3 期（高血压肾病）', 'N18.3')'''
+        Sqlserver_PO.execute(sql)
+
+        Sqlserver_PO.setTableComment('ab_diagnosticHistory', varCommon + '(测试用)')
+    def _ab_ethnicGroup(self, varCommon):
+
+        # 创建表，插入数据
+        # 种族
+        Sqlserver_PO.crtTableByCover('ab_ethnicGroup',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_ethnicGroup (n_key, n_value) "
+                             "VALUES ('01',N'汉族'),('02',N'蒙古族'),('03',N'回族'),('04',N'藏族'),('05',N'维吾尔族'),('06',N'苗族'),('07',N'彝族'),('08',N'壮族'),('09',N'布依族'),('10',N'朝鲜族')")
+        Sqlserver_PO.setTableComment('ab_ethnicGroup', varCommon + '(测试用)')
+    def _ab_hospital(self, varCommon):
+
+        # 创建表，插入数据
+        # 医院
+        Sqlserver_PO.crtTableByCover('ab_hospital',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                name NVARCHAR(350)
+                                ''')
+        Sqlserver_PO.execute("INSERT INTO ab_hospital (name) "
+                             "VALUES ('东方医院'),('复旦大学附属眼耳鼻喉科医院'),('上海交通大学医学院附属第九人民医院'),('上海市第一人民医院'),('上海交通大学医学院附属新华医院')")
+        Sqlserver_PO.setTableComment('ab_hospital', varCommon + '(测试用)')
+    def _ab_job(self, varCommon):
+
+        # 创建表，插入数据
+        # 职业
+        Sqlserver_PO.crtTableByCover('ab_job',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                n_value NVARCHAR(100)
+                                ''')
+        Sqlserver_PO.execute("INSERT INTO ab_job (n_value) "
+                             "VALUES (N'军人'),(N'医生'),(N'自由职业者'),(N'技术人员'),(N'工程师'),(N'学生'),(N'老师'),(N'服务人员')")
+        Sqlserver_PO.setTableComment('ab_job', varCommon + '(测试用)')
+    def _ab_relationship(self, varCommon):
+
+        # 创建表，插入数据
+        # 与患者关系
+        Sqlserver_PO.crtTableByCover('ab_relationship',
+                                '''id INT IDENTITY PRIMARY KEY,
+                                n_value NVARCHAR(100)
+                                ''')
+        Sqlserver_PO.execute("INSERT INTO ab_relationship (n_value) "
+                             "VALUES (N'本人'),(N'父亲'),(N'母亲'),(N'配偶'),(N'子女'),(N'兄弟姐妹'),(N'父母'),(N'祖父母'),(N'外祖父母'),(N'子女（多人）'), (N'亲戚'), (N'朋友'), (N'同事'), (N'监护人'), (N'代理人'), (N'其他')")
+        Sqlserver_PO.setTableComment('ab_relationship', varCommon + '(测试用)')
+    def _ab_marriage(self, varCommon):
+
+        # 创建表，插入数据
+        # 婚姻
+        Sqlserver_PO.crtTableByCover('ab_marriage',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_marriage (n_key, n_value) "
+                             "VALUES ('1',N'未婚'),('2',N'已婚'),('3',N'丧偶'),('4',N'离婚'),('9',N'其他')")
+        Sqlserver_PO.setTableComment('ab_marriage', varCommon + '(测试用)')
+
+    def _ab_IDtype(self, varCommon):
+
+        # 创建表，插入数据
+        # 证件类型
+        Sqlserver_PO.crtTableByCover('ab_IDtype',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_IDtype (n_key, n_value) "
+                             "VALUES ('1',N'居民身份证'),('2',N'居民户口簿'),('3',N'护照'),('4',N'军官证'),('5',N'驾驶证'),('6',N'港澳居民来往内地通行证'),('7',N'台湾居民来往内地通行证'),('9',N'其他法定有效证件')")
+        Sqlserver_PO.setTableComment('ab_IDtype', varCommon + '(测试用)')
+    def _ab_visitType(self, varCommon):
+
+        # 创建表，插入数据
+        # 就诊类型
+        Sqlserver_PO.crtTableByCover('ab_visitType',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_visitType (n_key, n_value) "
+                             "VALUES ('1', N'门诊'), ('2', N'住院')")
+        Sqlserver_PO.setTableComment('ab_visitType', varCommon + '(测试用)')
+    def _ab_paymentMethod(self, varCommon):
+
+        # 创建表，插入数据
+        # 就诊类型
+        Sqlserver_PO.crtTableByCover('ab_paymentMethod',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_paymentMethod (n_key, n_value) "
+                             "VALUES ('1',N'城镇职工基本医疗保险'),('2',N'城镇居民基本医疗保险'),('3',N'新型农村合作医疗'),('4',N'贫困救助'),('5',N'商业医疗保险'),('6',N'全公费'),('7',N'全自费'),('8',N'其他社会保险(指生育保险、工伤保险、农民工保险等)'),('9',N'其他')")
+        Sqlserver_PO.setTableComment('ab_paymentMethod', varCommon + '(测试用)')
+    def _ab_dischargeMethod(self, varCommon):
+
+        # 创建表，插入数据
+        # 出院方式
+        Sqlserver_PO.crtTableByCover('ab_dischargeMethod',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_dischargeMethod (n_key, n_value) "
+                             "VALUES ('1', N'医嘱离院'), ('2', N'医嘱转院'), ('3', N'医嘱转社区卫生服务机构/乡镇卫生院'), ('4', N'非医嘱离院'),('5', N'死亡'), ('9', N'其他')")
+        Sqlserver_PO.setTableComment('ab_dischargeMethod', varCommon + '(测试用)')
+    def _ab_admissionRoute(self, varCommon):
+
+        # 创建表，插入数据
+        # 入院途径
+        Sqlserver_PO.crtTableByCover('ab_admissionRoute',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_admissionRoute (n_key, n_value) "
+                             "VALUES ('1',N'本院急诊诊疗后入院'),('2',N'本院门诊诊疗后入院'),('3',N'其他医疗机构诊治后转诊入院'),('9',N'其他途径入院')")
+        Sqlserver_PO.setTableComment('ab_admissionRoute', varCommon + '(测试用)')
+    def _ab_drugAllergy(self, varCommon):
+
+        # 创建表，插入数据
+        # 药物过敏
+        Sqlserver_PO.crtTableByCover('ab_drugAllergy',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_drugAllergy (n_key, n_value) "
+                             "VALUES ('1',N'无'),('2',N'有')")
+        Sqlserver_PO.setTableComment('ab_drugAllergy', varCommon + '(测试用)')
+    def _ab_ABO_bloodType(self, varCommon):
+
+        # 创建表，插入数据
+        # 药物过敏
+        Sqlserver_PO.crtTableByCover('ab_ABO_bloodType',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_ABO_bloodType (n_key, n_value) "
+                             "VALUES ('1',N'A型'),('2',N'B型'),('3',N'O型'),('4',N'AB型'),('5',N'不详'),('6',N'未查')")
+        Sqlserver_PO.setTableComment('ab_ABO_bloodType', varCommon + '(测试用)')
+    def _ab_rh_bloodType(self, varCommon):
+
+        # 创建表，插入数据
+        # 药物过敏
+        Sqlserver_PO.crtTableByCover('ab_rh_bloodType',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(10),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("INSERT INTO ab_rh_bloodType (n_key, n_value) "
+                             "VALUES ('1',N'阴性'),('2',N'阳性'),('3',N'不详'),('4',N'未查')")
+        Sqlserver_PO.setTableComment('ab_rh_bloodType', varCommon + '(测试用)')
+    def _ab_visitDiagnosis(self, varCommon):
+
+        # 创建表，插入数据
+        # 就诊诊断
+        Sqlserver_PO.crtTableByCover('ab_visitDiagnosis',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_visitDiagnosis (n_value) VALUES ('患者因 "反复头晕 1 月余，血压波动在 150-160/95-100mmHg" 入院，伴视物模糊，无恶心呕吐'),
+            ('入院主诉 "心悸、气短 3 周"，心电图示房颤心律，心室率 110 次 / 分，心超示左房增大（42mm）'),
+            ('因 "双足麻木刺痛半年，加重伴行走困难 1 月" 入院，随机血糖 15.6mmol/L，肌电图示周围神经传导速度减慢'),
+            ('以 "反复胸痛 3 个月，劳累后加重" 收治，冠脉 CTA 示前降支狭窄 70%，运动负荷试验阳性'),
+            ('因 "咳嗽咳痰加重伴气促 1 周" 急诊入院，血气分析示 PaO2 55mmHg，肺功能 FEV1 占预计值 48%'),
+            ('突发 "右侧肢体无力伴言语含糊 6 小时" 入院，NIHSS 评分 8 分，头 MRI 示左侧基底节区新鲜梗死灶（1.5×2.0cm）'),
+            ('因 "反酸烧心半年，加重伴胸痛 2 周" 入院，胃镜见食管下段多发纵向糜烂，最长径＞5mm'),
+            ('以 "腰部剧痛 1 天" 入院，X 线示 L1 椎体压缩性骨折（椎体高度丢失约 30%），骨密度 T 值 - 3.5'),
+            ('因 "心悸、消瘦 3 月（体重下降 8kg）" 收治，甲功示 FT3 15.2pmol/L，TRAb 阳性，甲状腺超声示弥漫性肿大'),
+            ('因 "夜尿增多伴乏力半年" 入院，eGFR 42ml/min，尿蛋白定量 1.2g/24h，肾穿示高血压性肾小球硬化')""")
+        Sqlserver_PO.setTableComment('ab_visitDiagnosis', varCommon + '(测试用)')
+    def _ab_symptom(self, varCommon):
+
+        # 创建表，插入数据
+        # 症状信息 - 症状名称，症状编号，具体描述
+        Sqlserver_PO.crtTableByCover('ab_symptom',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     name NVARCHAR(100),
+                                     code NVARCHAR(100),
+                                     desc1 NVARCHAR(1000)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_symptom (name,code,desc1) VALUES ('头晕', N'SYM101', N'患者反复头晕 1 个月，血压 150-160/95-100mmHg，无靶器官损害'),
+            ('心悸', N'SYM102', N'自觉心跳不规则，心电图示 P 波消失，心室率 110 次 / 分'),
+            ('手足麻木', N'SYM103', N'双足对称性刺痛感，HbA1c 8.5%，神经传导速度减慢'),
+            ('胸痛', N'SYM104', N'劳累后胸骨后压榨性疼痛，持续 3-5 分钟，硝酸甘油可缓解'),
+            ('气促', N'SYM105', N'活动后呼吸困难加重，FEV1/FVC 65%，伴咳嗽、黄痰'),
+            ('肢体无力', N'SYM106', N'突发右侧肢体乏力，NIHSS 评分 6 分，MRI 示 DWI 高信号'),
+            ('反酸', N'SYM107', N'餐后胸骨后烧灼感，胃镜见食管下段条状糜烂'),
+            ('腰背痛', N'SYM108', N'轻微外伤后 L1 椎体压缩性骨折，骨密度 T 值 - 3.2'),
+            ('体重下降', N'SYM109', N'3 个月体重减轻 8kg，FT3 12.5pmol/L，TSH<0.01mIU/L'),
+            ('夜尿增多', N'SYM110', N'夜间排尿 3-4 次，eGFR 45ml/min/1.73m2，尿蛋白 1+')""")
+        Sqlserver_PO.setTableComment('ab_symptom', varCommon + '(测试用)')
+    def _ab_physicalSign(self, varCommon):
+
+        # 创建表，插入数据
+        # 体征
+        Sqlserver_PO.crtTableByCover('ab_physicalSign',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_physicalSign (n_key,n_value) 
+                            VALUES ('1',N'体温'),('2',N'脉搏'),('3',N'心率'),('4',N'呼吸'),('5',N'收缩压'),('6',N'舒张压'),('7',N'指尖血氧饱和度'),('8',N'其他')""")
+        Sqlserver_PO.setTableComment('ab_physicalSign', varCommon + '(测试用)')
+    def _ab_physicalSignUnit(self, varCommon):
+
+        # 创建表，插入数据
+        # 体征单位
+        Sqlserver_PO.crtTableByCover('ab_physicalSignUnit',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_physicalSignUnit (n_key,n_value) 
+                            VALUES ('1',N'℃'),('2',N'次/分'),('3',N'mmHg'),('4',N'%'),('5',N'其他')""")
+        Sqlserver_PO.setTableComment('ab_physicalSignUnit', varCommon + '(测试用)')
+    def _ab_lab(self, varCommon):
+
+        # 创建表，插入数据
+        # 实验室检查报告表(造数据)
+        Sqlserver_PO.crtTableByCover('ab_lab',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     reportname NVARCHAR(100),
+                                     sampletype NVARCHAR(100),
+                                     projectname NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_lab (reportname,sampletype,projectname) 
+                            VALUES ('血生化检测', '全血', '无'), ('凝血功能检验', '全血', '无')""")
+        Sqlserver_PO.setTableComment('ab_lab', varCommon + '(测试用)')
+    def _ab_drug(self, varCommon):
+
+        # 创建表，插入数据
+        # 用药信息表
+        Sqlserver_PO.crtTableByCover('ab_drug',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     v1 NVARCHAR(100),
+                                     v2 NVARCHAR(100),
+                                     v3 NVARCHAR(100),
+                                     v4 NVARCHAR(100),
+                                     v5 NVARCHAR(100),
+                                     v6 NVARCHAR(100),
+                                     v7 NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_drug (v1,v2,v3,v4,v5,v6,v7) 
+                            VALUES ('氨氯地平片', '5mg', '每日 1 次', '1', '片', '口服', '30片/月'),
+        ('厄贝沙坦片', '150mg', '每日 1 次', '1', '片', '口服', '30片/月'),
+        ('利伐沙班片', '20mg', '每日 1 次', '1', '片', '口服', '30片/月'),
+        ('美托洛尔缓释片', '47.5mg', '每日 1 次', '1', '片', '口服', '30片/月'),
+        ('二甲双胍缓释片', '0.5g', '每日 2 次', '1', '片', '口服', '60片/月'),
+        ('度拉糖肽注射液', '1.5mg', '每周 1 次', '1', '支', '皮下注射', '4支/月'),
+        ('单硝酸异山梨酯片', '20mg', '每日 2 次', '1', '片', '口服', '60片/月'),
+        ('阿托伐他汀钙片', '20mg', '每晚 1 次', '1', '片', '口服', '30片/月'),
+        ('布地奈德福莫特罗', '160/4.5μg', '每日 2 次', '1', '吸', '吸入', '60吸/月'),
+        ('莫西沙星片', '400mg', '每日 1 次', '1', '片', '口服', '7片/疗程'),
+        ('阿司匹林肠溶片', '100mg', '每日 1 次', '1', '片', '口服', '30片/月'),
+        ('阿托伐他汀钙片', '40mg', '每晚 1 次', '1', '片', '口服', '30片/月'),
+        ('奥美拉唑肠溶胶囊', '20mg', '每日 2 次', '1', '粒', '口服', '60粒/月'),
+        ('铝碳酸镁咀嚼片', '0.5g', '每日 3 次', '2', '片', '嚼服', '180片/月'),
+        ('阿仑膦酸钠片', '70mg', '每周 1 次', '1', '片', '口服', '4片/月'),
+        ('骨化三醇软胶囊', '0.25μg', '每日 1 次', '1', '粒', '口服', '30粒/月'),
+        ('甲巯咪唑片', '5mg', '每日 3 次', '1', '片', '口服', '90片/月'),
+        ('普萘洛尔片', '10mg', '每日 3 次', '1', '片', '口服', '90片/月'),
+        ('缬沙坦胶囊', '80mg', '每日 1 次', '1', '粒', '口服', '30粒/月'),
+        ('碳酸司维拉姆片', '800mg', '每日 3 次', '1', '片', '口服', '90片/月')""")
+        Sqlserver_PO.setTableComment('ab_drug', varCommon + '(测试用)')
+    def _ab_dischargeHospital(self, varCommon):
+
+        # 创建表，插入数据
+        # 出院记录
+        Sqlserver_PO.crtTableByCover('ab_dischargeHospital',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_dischargeHospital (n_key,n_value) 
+                            VALUES ('1',N'出院记录'),('2',N'24小时内入出院记录')""")
+        Sqlserver_PO.setTableComment('ab_dischargeHospital', varCommon + '(测试用)')
+    def _ab_operationLevel(self, varCommon):
+
+        # 创建表，插入数据
+        # 手术级别
+        Sqlserver_PO.crtTableByCover('ab_operationLevel',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_operationLevel (n_key,n_value) 
+                            VALUES ('1',N'一级手术'),('2',N'二级手术'),('3',N'三级手术'),('4',N'四级手术')""")
+        Sqlserver_PO.setTableComment('ab_operationLevel', varCommon + '(测试用)')
+    def _ab_operationType(self, varCommon):
+
+        # 创建表，插入数据
+        # 手术类型
+        Sqlserver_PO.crtTableByCover('ab_operationType',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_operationType (n_key,n_value) 
+                            VALUES ('1',N'择期手术'),('2',N'急诊手术'),('3',N'限期手术')""")
+        Sqlserver_PO.setTableComment('ab_operationType', varCommon + '(测试用)')
+    def _ab_operationIncisionHealingGrade(self, varCommon):
+
+        # 创建表，插入数据
+        # qiekou切口愈合登记
+        Sqlserver_PO.crtTableByCover('ab_operationIncisionHealingGrade',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_operationIncisionHealingGrade (n_key,n_value) 
+                            VALUES ('1',N'0类切口'),('2',N'Ⅰ类切口'),('3',N'Ⅱ类切口'),('4',N'Ⅲ类切口')""")
+        Sqlserver_PO.setTableComment('ab_operationIncisionHealingGrade', varCommon + '(测试用)')
+    def _ab_loginout(self, varCommon):
+
+        # 创建表，插入数据
+        # 登录登出
+        Sqlserver_PO.crtTableByCover('ab_loginout',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                     n_key NVARCHAR(100),
+                                     n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_loginout (n_key,n_value) 
+                            VALUES ('登录', '账号密码登录'),('登出', '手动登出')""")
+        Sqlserver_PO.setTableComment('ab_loginout', varCommon + '(测试用)')
+
+
+
+
+
 
     def dept__a_sys_hopital(self, varCommon):
 
+        # 创建表
         # 医院管理 - 医院信息表 a_sys_hopital
 
         Sqlserver_PO.crtTableByCover('a_sys_hopital',
-                                           '''hospital_id INT IDENTITY(1,1) PRIMARY KEY,
-                                            hospital_name NVARCHAR(50),
-                                            hospital_code NVARCHAR(50),
-                                            hospital_picture_address NVARCHAR(20),
-                                          ''')
+                                   '''hospital_id INT IDENTITY(1,1) PRIMARY KEY,
+                                    hospital_name NVARCHAR(50),
+                                    hospital_code NVARCHAR(50),
+                                    hospital_picture_address NVARCHAR(20),
+                                  ''')
         Sqlserver_PO.setTableComment('a_sys_hopital', varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_id', '医院ID')
         Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_name', '医院名称')
         Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_code', '医院编码')
         Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_picture_address', '图片地址')
-
-
-
     def dept__a_sys_department(self, varCommon):
 
+        # 创建表
         # 科室管理 - 科室表 a_sys_department
         Sqlserver_PO.crtTableByCover('a_sys_department',
                                            '''department_id INT IDENTITY(1,1) PRIMARY KEY,
@@ -62,6 +453,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_department', 'department_create_time', '创建时间')
     def dept__a_sys_dept_medgp(self, varCommon):
 
+        # 创建表
         # 科室管理 - 医疗组 a_sys_dept_medgp
         Sqlserver_PO.crtTableByCover('a_sys_dept_medgp',
                                            '''
@@ -77,6 +469,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_dept_medgp', 'department_treat_create_time', '医疗组创建时间')
     def dept__a_sys_dept_medgp_person(self,varCommon):
 
+        # 创建表
         # 科室管理 - 人员 a_sys_dept_medgp_person
         Sqlserver_PO.crtTableByCover('a_sys_dept_medgp_person',
                                      '''
@@ -92,6 +485,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'department_treat_group_id', '医疗组ID')
         Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'user_name', '姓名')
         Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'user_job_num', '工号')
+
 
 
     def user__a_sys_user(self, varCommon):
@@ -227,6 +621,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_role_menu', 'menu_id', '菜单ID')
 
 
+
     def menu__a_sys_menu(self, varCommon):
 
         # 菜单管理 - 菜单表
@@ -330,6 +725,9 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_logininfo', 'status', '结果'),
         Sqlserver_PO.setFieldComment('a_sys_logininfo', 'msg', '备注'),
         Sqlserver_PO.setFieldComment('a_sys_logininfo', 'client_info', '客户端信息')
+
+
+
     def _a_cdrd_patient_info(self, varCommon):
 
         # 患者基本信息
@@ -1250,6 +1648,7 @@ class CdrdPO(object):
                 EXEC {varProcedure} @result = @R OUTPUT;
                 SELECT @R as ReturnValue;
                 """)
+        # print(row)
         print(varProcedure + "(" + varDesc + ") => 生成", int(row[0]['ReturnValue']), "条！")
 
         time_end = time.time()

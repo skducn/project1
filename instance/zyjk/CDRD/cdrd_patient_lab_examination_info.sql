@@ -1,4 +1,5 @@
 -- todo 实验室检查报告表(造数据)
+-- 5w, 耗时: 1808.7591 秒, 7,020,544
 
 CREATE OR ALTER PROCEDURE cdrd_patient_lab_examination_info
     @RecordCount INT = 5,
@@ -30,14 +31,24 @@ BEGIN
             DECLARE @patient_visit_in_time DATETIME;
 
 
-            -- 子存储过程
+--             -- 子存储过程
+--             -- 医院
+--             DECLARE @RandomHospital NVARCHAR(350);
+--             EXEC p_hospital @v = @RandomHospital OUTPUT;
+            -- ab表
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+
 
             -- 诊断类型，诊断名称，ICD10编码
-            DECLARE @RandomReportName NVARCHAR(50), @RandomSampleType NVARCHAR(50), @RandomProjectName NVARCHAR(50);
-            EXEC r_lab_examination_info__ @v1 = @RandomReportName OUTPUT, @v2 = @RandomSampleType OUTPUT, @v3 = @RandomProjectName OUTPUT;
+            DECLARE @RandomReportName NVARCHAR(100)
+            DECLARE @RandomSampleType NVARCHAR(100)
+            DECLARE @RandomProjectName NVARCHAR(100)
+            SELECT TOP 1 @RandomReportName=reportname,@RandomSampleType=sampletype,@RandomProjectName=projectname FROM ab_lab ORDER BY NEWID()
+
+--             DECLARE @RandomReportName NVARCHAR(50), @RandomSampleType NVARCHAR(50), @RandomProjectName NVARCHAR(50);
+--             EXEC r_lab_examination_info__ @v1 = @RandomReportName OUTPUT, @v2 = @RandomSampleType OUTPUT, @v3 = @RandomProjectName OUTPUT;
 
 
             -- 先执行 2 次 （仅 patient_id）

@@ -31,10 +31,15 @@ BEGIN
         DECLARE @patient_hospital_name NVARCHAR(50);
         DECLARE @patient_visit_in_time DATETIME;
 
-        -- 子存储过程
+--         -- 子存储过程
+--         -- 医院
+--         DECLARE @RandomHospital NVARCHAR(350);
+--         EXEC p_hospital @v = @RandomHospital OUTPUT;
+        -- ab表
         -- 医院
-        DECLARE @RandomHospital NVARCHAR(350);
-        EXEC p_hospital @v = @RandomHospital OUTPUT;
+        DECLARE @RandomHospital NVARCHAR(100)
+        SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+
 
         -- 步骤1
         -- 先执行 300 次 （仅 patient_id）

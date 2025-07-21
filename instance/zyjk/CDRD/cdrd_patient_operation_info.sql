@@ -34,22 +34,39 @@ BEGIN
             DECLARE @patient_visit_doc_name NVARCHAR(50);
 
 
-            -- 子存储过程
+--             -- 子存储过程
+--             -- 医院
+--             DECLARE @RandomHospital NVARCHAR(350);
+--             EXEC p_hospital @v = @RandomHospital OUTPUT;
+            -- ab表
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+
 
             -- 手术级别
-            DECLARE @RandomOperationLevelIdKey NVARCHAR(50), @RandomOperationLevelIdValue NVARCHAR(50);
-            EXEC p_operation_level @k = @RandomOperationLevelIdKey OUTPUT, @v = @RandomOperationLevelIdValue OUTPUT;
+            DECLARE @RandomOperationLevelIdKey NVARCHAR(100)
+            DECLARE @RandomOperationLevelIdValue NVARCHAR(100)
+            SELECT TOP 1 @RandomOperationLevelIdKey=n_key, @RandomOperationLevelIdValue=n_value FROM ab_operationLevel ORDER BY NEWID()
+
+--             DECLARE @RandomOperationLevelIdKey NVARCHAR(50), @RandomOperationLevelIdValue NVARCHAR(50);
+--             EXEC p_operation_level @k = @RandomOperationLevelIdKey OUTPUT, @v = @RandomOperationLevelIdValue OUTPUT;
 
             -- 手术类型
-            DECLARE @RandomOperationTypeIdKey NVARCHAR(50), @RandomOperationTypeIdValue NVARCHAR(50);
-            EXEC p_operation_type @k = @RandomOperationTypeIdKey OUTPUT, @v = @RandomOperationTypeIdValue OUTPUT;
+            DECLARE @RandomOperationTypeIdKey NVARCHAR(100)
+            DECLARE @RandomOperationTypeIdValue NVARCHAR(100)
+            SELECT TOP 1 @RandomOperationTypeIdKey=n_key, @RandomOperationTypeIdValue=n_value FROM ab_operationType ORDER BY NEWID()
+
+--             DECLARE @RandomOperationTypeIdKey NVARCHAR(50), @RandomOperationTypeIdValue NVARCHAR(50);
+--             EXEC p_operation_type @k = @RandomOperationTypeIdKey OUTPUT, @v = @RandomOperationTypeIdValue OUTPUT;
 
             -- 切口愈合等级
-            DECLARE @RandomOperationIncisionHealingGradeIdKey NVARCHAR(50), @RandomOperationIncisionHealingGradeIdValue NVARCHAR(50);
-            EXEC p_operation_incision_healing_grade @k = @RandomOperationIncisionHealingGradeIdKey OUTPUT, @v = @RandomOperationIncisionHealingGradeIdValue OUTPUT;
+            DECLARE @RandomOperationIncisionHealingGradeIdKey NVARCHAR(100)
+            DECLARE @RandomOperationIncisionHealingGradeIdValue NVARCHAR(100)
+            SELECT TOP 1 @RandomOperationIncisionHealingGradeIdKey=n_key, @RandomOperationIncisionHealingGradeIdValue=n_value FROM ab_operationIncisionHealingGrade ORDER BY NEWID()
+
+--             DECLARE @RandomOperationIncisionHealingGradeIdKey NVARCHAR(50), @RandomOperationIncisionHealingGradeIdValue NVARCHAR(50);
+--             EXEC p_operation_incision_healing_grade @k = @RandomOperationIncisionHealingGradeIdKey OUTPUT, @v = @RandomOperationIncisionHealingGradeIdValue OUTPUT;
 
 
 
@@ -163,7 +180,6 @@ BEGIN
                 );
                 SET @i = @i + 1;
             END
-
 
         END;
 

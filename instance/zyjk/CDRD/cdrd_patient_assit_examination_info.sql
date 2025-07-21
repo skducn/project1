@@ -1,4 +1,6 @@
 -- todo  辅助检查报告表(造数据)
+-- 5w, 耗时: 1807.5582 秒, 547,831,808
+
 
 CREATE OR ALTER PROCEDURE cdrd_patient_assit_examination_info
     @RecordCount INT = 5,
@@ -33,10 +35,14 @@ BEGIN
             DECLARE @patient_hospital_name NVARCHAR(50);
             DECLARE @patient_visit_in_time DATETIME;
 
-            -- 子存储过程
+--             -- 子存储过程
+--             -- 医院
+--             DECLARE @RandomHospital NVARCHAR(350);
+--             EXEC p_hospital @v = @RandomHospital OUTPUT;
+            -- ab表
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
 
 
             -- 先执行 2 次 （仅 patient_id）

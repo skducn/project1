@@ -1,6 +1,7 @@
 -- todo 门(急)诊住院就诊信息(造数据)
 -- 数据量：每个患者5条（3条门诊，2条住院），共15万
 -- 生成 150000 条！,耗时: 545.8609 秒，1,233,534,976字节  约1.15GB
+-- 生成 50000 条！,耗时: 64.9912 秒, 411,181,056字节
 
 
 CREATE OR ALTER PROCEDURE cdrd_patient_visit_info
@@ -56,40 +57,76 @@ BEGIN
 
             -- 子存储过程
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+--             DECLARE @RandomHospital NVARCHAR(350);
+--             EXEC p_hospital @v = @RandomHospital OUTPUT;
+            -- ab表
+            -- 医院
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+
 
             -- 就诊类型
-            DECLARE @RandomVisitTypeIdKey NVARCHAR(50), @RandomVisitTypeIdValue NVARCHAR(50);
-            EXEC p_visit_type @k = @RandomVisitTypeIdKey OUTPUT, @v = @RandomVisitTypeIdValue OUTPUT;
+            DECLARE @RandomVisitTypeIdKey NVARCHAR(50)
+            DECLARE @RandomVisitTypeIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomVisitTypeIdKey=n_key, @RandomVisitTypeIdValue = n_value FROM ab_visitType ORDER BY NEWID()
+--
+--             DECLARE @RandomVisitTypeIdKey NVARCHAR(50), @RandomVisitTypeIdValue NVARCHAR(50);
+--             EXEC p_visit_type @k = @RandomVisitTypeIdKey OUTPUT, @v = @RandomVisitTypeIdValue OUTPUT;
 
             -- 医疗付费方式
-            DECLARE @RandomMedicalPaymentTypeIdKey NVARCHAR(50), @RandomMedicalPaymentTypeIdValue NVARCHAR(50);
-            EXEC p_medical_payment_type @k = @RandomMedicalPaymentTypeIdKey OUTPUT, @v = @RandomMedicalPaymentTypeIdValue OUTPUT;
+            DECLARE @RandomMedicalPaymentTypeIdKey NVARCHAR(50)
+            DECLARE @RandomMedicalPaymentTypeIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomMedicalPaymentTypeIdKey=n_key, @RandomMedicalPaymentTypeIdValue = n_value FROM ab_paymentMethod ORDER BY NEWID()
+--
+--             DECLARE @RandomMedicalPaymentTypeIdKey NVARCHAR(50), @RandomMedicalPaymentTypeIdValue NVARCHAR(50);
+--             EXEC p_medical_payment_type @k = @RandomMedicalPaymentTypeIdKey OUTPUT, @v = @RandomMedicalPaymentTypeIdValue OUTPUT;
 
             -- 离院方式
-            DECLARE @RandomOutHospitalWayIdKey NVARCHAR(50), @RandomOutHospitalWayIdValue NVARCHAR(50);
-            EXEC p_out_hospital_way @k = @RandomOutHospitalWayIdKey OUTPUT, @v = @RandomOutHospitalWayIdValue OUTPUT;
+            DECLARE @RandomOutHospitalWayIdKey NVARCHAR(50)
+            DECLARE @RandomOutHospitalWayIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomOutHospitalWayIdKey=n_key, @RandomOutHospitalWayIdValue = n_value FROM ab_dischargeMethod ORDER BY NEWID()
+--
+--             DECLARE @RandomOutHospitalWayIdKey NVARCHAR(50), @RandomOutHospitalWayIdValue NVARCHAR(50);
+--             EXEC p_out_hospital_way @k = @RandomOutHospitalWayIdKey OUTPUT, @v = @RandomOutHospitalWayIdValue OUTPUT;
 
             -- 入院途径
-            DECLARE @RandomVisitWayIdKey NVARCHAR(50), @RandomVisitWayIdValue NVARCHAR(50);
-            EXEC p_visit_way @k = @RandomVisitWayIdKey OUTPUT, @v = @RandomVisitWayIdValue OUTPUT;
+            DECLARE @RandomVisitWayIdKey NVARCHAR(50)
+            DECLARE @RandomVisitWayIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomVisitWayIdKey=n_key, @RandomVisitWayIdValue = n_value FROM ab_admissionRoute ORDER BY NEWID()
+--
+--             DECLARE @RandomVisitWayIdKey NVARCHAR(50), @RandomVisitWayIdValue NVARCHAR(50);
+--             EXEC p_visit_way @k = @RandomVisitWayIdKey OUTPUT, @v = @RandomVisitWayIdValue OUTPUT;
 
             -- 药物过敏
-            DECLARE @RandomDrugAllergyTypeIdKey NVARCHAR(50), @RandomDrugAllergyTypeIdValue NVARCHAR(50);
-            EXEC p_drug_allergy_type @k = @RandomDrugAllergyTypeIdKey OUTPUT, @v = @RandomDrugAllergyTypeIdValue OUTPUT;
+            DECLARE @RandomDrugAllergyTypeIdKey NVARCHAR(50)
+            DECLARE @RandomDrugAllergyTypeIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomDrugAllergyTypeIdKey=n_key, @RandomDrugAllergyTypeIdValue = n_value FROM ab_drugAllergy ORDER BY NEWID()
+--
+--             DECLARE @RandomDrugAllergyTypeIdKey NVARCHAR(50), @RandomDrugAllergyTypeIdValue NVARCHAR(50);
+--             EXEC p_drug_allergy_type @k = @RandomDrugAllergyTypeIdKey OUTPUT, @v = @RandomDrugAllergyTypeIdValue OUTPUT;
 
             -- ABO血型
-            DECLARE @RandomAboTypeIdKey NVARCHAR(50), @RandomAboTypeIdValue NVARCHAR(50);
-            EXEC p_abo_type @k = @RandomAboTypeIdKey OUTPUT, @v = @RandomAboTypeIdValue OUTPUT;
+            DECLARE @RandomAboTypeIdKey NVARCHAR(50)
+            DECLARE @RandomAboTypeIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomAboTypeIdKey=n_key, @RandomAboTypeIdValue = n_value FROM ab_ABO_bloodType ORDER BY NEWID()
+--
+--             DECLARE @RandomAboTypeIdKey NVARCHAR(50), @RandomAboTypeIdValue NVARCHAR(50);
+--             EXEC p_abo_type @k = @RandomAboTypeIdKey OUTPUT, @v = @RandomAboTypeIdValue OUTPUT;
 
             -- Rh血型
-            DECLARE @RandomRhTypeIdKey NVARCHAR(50), @RandomRhTypeIdValue NVARCHAR(50);
-            EXEC p_rh_type @k = @RandomRhTypeIdKey OUTPUT, @v = @RandomRhTypeIdValue OUTPUT;
+            DECLARE @RandomRhTypeIdKey NVARCHAR(50)
+            DECLARE @RandomRhTypeIdValue NVARCHAR(50)
+            SELECT TOP 1 @RandomRhTypeIdKey=n_key, @RandomRhTypeIdValue = n_value FROM ab_rh_bloodType ORDER BY NEWID()
+--
+--             DECLARE @RandomRhTypeIdKey NVARCHAR(50), @RandomRhTypeIdValue NVARCHAR(50);
+--             EXEC p_rh_type @k = @RandomRhTypeIdKey OUTPUT, @v = @RandomRhTypeIdValue OUTPUT;
 
             -- 就诊诊断
-            DECLARE @RandomVisitDiag NVARCHAR(max);
-            EXEC r_visit_info__ @v1 = @RandomVisitDiag OUTPUT;
+            DECLARE @RandomVisitDiag NVARCHAR(max)
+            SELECT TOP 1 @RandomVisitDiag = n_value FROM ab_rh_bloodType ORDER BY NEWID()
+--
+--             DECLARE @RandomVisitDiag NVARCHAR(max);
+--             EXEC r_visit_info__ @v1 = @RandomVisitDiag OUTPUT;
 
             -- 就诊日期
             DECLARE @jzrq DATETIME;

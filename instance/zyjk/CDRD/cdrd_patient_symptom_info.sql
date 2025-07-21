@@ -1,4 +1,5 @@
 -- todo 症状信息(造数据)
+-- 5w，耗时: 1902.2599 秒， 8,986,624字节
 
 CREATE OR ALTER PROCEDURE cdrd_patient_symptom_info
     @RecordCount INT = 5,
@@ -30,14 +31,24 @@ BEGIN
             DECLARE @patient_visit_in_time DATETIME;
 
 
-            -- 子存储过程
+--             -- 子存储过程
+--             -- 医院
+--             DECLARE @RandomHospital NVARCHAR(350);
+--             EXEC p_hospital @v = @RandomHospital OUTPUT;
+            -- ab表
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
 
-             -- 症状名称，症状编号，具体描述
-            DECLARE @RandomSymptomName NVARCHAR(50), @RandomSymptomNum NVARCHAR(50), @RandomSymptomDescription NVARCHAR(50);
-            EXEC r_symptom_info__ @v1 = @RandomSymptomName OUTPUT, @v2 = @RandomSymptomNum OUTPUT, @v3 = @RandomSymptomDescription OUTPUT;
+
+            -- 症状名称，症状编号，具体描述
+            DECLARE @RandomSymptomName NVARCHAR(100)
+            DECLARE @RandomSymptomNum NVARCHAR(100)
+            DECLARE @RandomSymptomDescription NVARCHAR(100)
+            SELECT TOP 1 @RandomSymptomName=name,@RandomSymptomNum=code,@RandomSymptomDescription=desc1 FROM ab_symptom ORDER BY NEWID()
+
+--             DECLARE @RandomSymptomName NVARCHAR(50), @RandomSymptomNum NVARCHAR(50), @RandomSymptomDescription NVARCHAR(50);
+--             EXEC r_symptom_info__ @v1 = @RandomSymptomName OUTPUT, @v2 = @RandomSymptomNum OUTPUT, @v3 = @RandomSymptomDescription OUTPUT;
 
 
             -- 先执行 2 次 （仅 patient_id）

@@ -53,6 +53,40 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.subFunction("fn_name")
 
 
+
+
+# 创建表和数据
+# Cdrd_PO._ab_IDtype('证件类型')
+# Cdrd_PO._ab_admissionCondition('入院病情')
+# Cdrd_PO._ab_boolean('布尔值_主要诊断')
+# Cdrd_PO._ab_diagnosticHistory('诊断病史')
+# Cdrd_PO._ab_dischargeStatus('出院情况')
+# Cdrd_PO._ab_ethnicGroup('民族')
+# Cdrd_PO._ab_hospital('医院')
+# Cdrd_PO._ab_job('职业')
+# Cdrd_PO._ab_marriage('婚姻')
+# Cdrd_PO._ab_relationship('与患者关系')
+# Cdrd_PO._ab_visitType('就诊类型')
+# Cdrd_PO._ab_paymentMethod('付费方式')
+# Cdrd_PO._ab_dischargeMethod('出院方式')
+# Cdrd_PO._ab_admissionRoute('入院途径')
+# Cdrd_PO._ab_drugAllergy('药物过敏')
+# Cdrd_PO._ab_ABO_bloodType('ABO血型')
+# Cdrd_PO._ab_rh_bloodType('ABO血型')
+# Cdrd_PO._ab_visitDiagnosis('就诊诊断')
+# Cdrd_PO._ab_symptom('诊断信息')
+# Cdrd_PO._ab_lab('实验室检查报告')
+# Cdrd_PO._ab_physicalSign('体征')
+# Cdrd_PO._ab_physicalSignUnit('体征单位')
+# Cdrd_PO._ab_dischargeHospital('出院记录')
+# Cdrd_PO._ab_operationLevel('手术级别')
+# Cdrd_PO._ab_operationType('手术类型')
+# Cdrd_PO._ab_operationIncisionHealingGrade('切口愈合等级')
+# Cdrd_PO._ab_loginout('登录登出')
+
+
+
+
 # todo 1，专病库字段表
 # 患者基本信息
 # 数据量：30000
@@ -61,15 +95,16 @@ Cdrd_PO = CdrdPO()
 
 # # 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
+# Sqlserver_PO.delTable('a_cdrd_patient_visit_info')
 # Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
 # Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息')
 
 # # # 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
+# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+# Cdrd_PO.procedure("cdrd_patient_diag_info3", '诊断表')
 #
 
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
@@ -87,8 +122,9 @@ Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 # # # 实验室检查报告
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
-# Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
 # Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告')
+# Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
+
 #
 # # #
 # # # 辅助检查报告
@@ -105,8 +141,8 @@ Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 # # # #
 # # # # 门诊医嘱
 # 数据量：每名患者3条（共9万）
-# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
+Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
+Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
 #
 # # #
 # # #  住院医嘱
@@ -118,8 +154,9 @@ Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 # # # #  用药信息
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
 # Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
-# Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
 # Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息')
+# Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
+
 #
 # # #
 # # # 出院记录
@@ -150,8 +187,8 @@ Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 # 登录日志
 # 数据量：50万
 # Cdrd_PO._a_sys_logininfo('登录登出表')
-# Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 # Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
+# Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 
 
 # =======================================================================================================

@@ -1,4 +1,5 @@
 -- todo 体征信息表(造数据)
+-- 5w, 耗时: 1836.6717 秒, 7,086,080字节
 
 CREATE OR ALTER PROCEDURE cdrd_patient_physical_sign_info
     @RecordCount INT = 5,
@@ -29,14 +30,21 @@ BEGIN
             DECLARE @patient_hospital_name NVARCHAR(50);
             DECLARE @patient_visit_in_time DATETIME;
 
-            -- 子存储过程
+--             -- 子存储过程
+--             -- 医院
+--             DECLARE @RandomHospital NVARCHAR(350);
+--             EXEC p_hospital @v = @RandomHospital OUTPUT;
+            -- ab表
             -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
+            DECLARE @RandomHospital NVARCHAR(100)
+            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
 
             -- 体征
-            DECLARE @RandomPhysicalSignIdKey NVARCHAR(50), @RandomPhysicalSignIdValue NVARCHAR(50);
-            EXEC p_physical_sign @k = @RandomPhysicalSignIdKey OUTPUT, @v = @RandomPhysicalSignIdValue OUTPUT;
+            DECLARE @RandomPhysicalSignIdKey NVARCHAR(100)
+            DECLARE @RandomPhysicalSignIdValue NVARCHAR(100)
+            SELECT TOP 1 @RandomPhysicalSignIdKey=n_key, @RandomPhysicalSignIdValue=n_value FROM ab_physicalSign ORDER BY NEWID()
+--             DECLARE @RandomPhysicalSignIdKey NVARCHAR(50), @RandomPhysicalSignIdValue NVARCHAR(50);
+--             EXEC p_physical_sign @k = @RandomPhysicalSignIdKey OUTPUT, @v = @RandomPhysicalSignIdValue OUTPUT;
 
             -- 体征单位
             DECLARE @RandomPhysicalSignUnitIdKey NVARCHAR(50), @RandomPhysicalSignUnitIdValue NVARCHAR(50);
