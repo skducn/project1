@@ -1,8 +1,10 @@
--- todo 体征信息表(造数据)
--- 5w, 耗时: 1836.6717 秒, 7,086,080字节
+-- 体征信息表(造数据)优化版
+-- 数据量：每名患者5条（共15万）
+-- 优化目标：提升性能，避免嵌套循环
+-- 耗时: 0.3652 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_physical_sign_info
-    @RecordCount INT = 5,
+    @RecordCount INT = 5, -- 每位患者生成5条体征记录
     @result INT OUTPUT
 AS
 BEGIN
@@ -10,136 +12,144 @@ BEGIN
     SET XACT_ABORT ON;
 
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
+    SELECT @re = COUNT(*) FROM a_cdrd_patient_info;
     SET @result = @re * @RecordCount;
 
-    -- 遍历基本信息表
-    DECLARE @Counter1 INT = 1;
-    WHILE @Counter1 <= @re
-    BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-        -- 循环插入5条
-        BEGIN
+        -- Step 1: 生成1~@RecordCount 的序列（使用递归 CTE 确保唯一）
+        ;WITH Numbers AS (
+            SELECT 1 AS n
+            UNION ALL
+            SELECT n + 1 FROM Numbers WHERE n < @RecordCount
+        ),
 
-            -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
-            DECLARE @i INT = 1;
-            DECLARE @patient_id INT;
-            DECLARE @patient_visit_id INT;
-            DECLARE @patient_hospital_visit_id NVARCHAR(100);
-            DECLARE @patient_hospital_code NVARCHAR(100);
-            DECLARE @patient_hospital_name NVARCHAR(50);
-            DECLARE @patient_visit_in_time DATETIME;
+        -- Step 2: 获取所有患者 ID（来自患者主表）
+        Patients AS (
+            SELECT patient_id
+            FROM a_cdrd_patient_info
+        ),
 
---             -- 子存储过程
---             -- 医院
---             DECLARE @RandomHospital NVARCHAR(350);
---             EXEC p_hospital @v = @RandomHospital OUTPUT;
-            -- ab表
-            -- 医院
-            DECLARE @RandomHospital NVARCHAR(100)
-            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+        -- Step 3: 为每位患者生成1~@RecordCount 的编号
+        PatientSequences AS (
+            SELECT p.patient_id, n.n
+            FROM Patients p
+            CROSS JOIN Numbers n
+        ),
 
-            -- 体征
-            DECLARE @RandomPhysicalSignIdKey NVARCHAR(100)
-            DECLARE @RandomPhysicalSignIdValue NVARCHAR(100)
-            SELECT TOP 1 @RandomPhysicalSignIdKey=n_key, @RandomPhysicalSignIdValue=n_value FROM ab_physicalSign ORDER BY NEWID()
---             DECLARE @RandomPhysicalSignIdKey NVARCHAR(50), @RandomPhysicalSignIdValue NVARCHAR(50);
---             EXEC p_physical_sign @k = @RandomPhysicalSignIdKey OUTPUT, @v = @RandomPhysicalSignIdValue OUTPUT;
+        -- Step 4: 获取每位患者的就诊记录（每人最多 @RecordCount 条）
+        VisitRecords AS (
+            SELECT *,
+                   ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
+            FROM a_cdrd_patient_visit_info
+            WHERE patient_visit_type_key = 1
+        ),
 
-            -- 体征单位
-            DECLARE @RandomPhysicalSignUnitIdKey NVARCHAR(50), @RandomPhysicalSignUnitIdValue NVARCHAR(50);
-            EXEC p_physical_sign_unit @k = @RandomPhysicalSignUnitIdKey OUTPUT, @v = @RandomPhysicalSignUnitIdValue OUTPUT;
+        -- Step 5: 关联每位患者生成的序号与就诊记录
+        PatientVisitMapping AS (
+            SELECT ps.patient_id, ps.n,
+                   v.patient_visit_id, v.patient_hospital_visit_id, v.patient_hospital_code, v.patient_hospital_name,
+                   v.patient_visit_in_time
+            FROM PatientSequences ps
+            LEFT JOIN VisitRecords v
+                ON ps.patient_id = v.patient_id
+                AND ps.n = v.seq
+        ),
 
+        -- Step 6: 一次性生成随机字段（避免逐条生成）
+        RandomFields AS (
+            SELECT
+                   pm.patient_id,
+                   pm.n,
+                   pm.patient_visit_id,
+                   pm.patient_hospital_visit_id,
+                   pm.patient_hospital_code,
+                   pm.patient_hospital_name,
+                   pm.patient_visit_in_time,
 
+                   h.RandomHospitalName,
+                   ps.type_key AS sign_type_key,
+                   ps.type_value AS sign_type_value,
+                   pu.unit_key AS sign_unit_key,
+                   pu.unit_value AS sign_unit_value
+            FROM PatientVisitMapping pm
+            CROSS APPLY (
+                SELECT TOP 1 name AS RandomHospitalName FROM ab_hospital ORDER BY NEWID()
+            ) h
+            CROSS APPLY (
+                SELECT TOP 1 n_key AS type_key, n_value AS type_value FROM ab_physicalSign ORDER BY NEWID()
+            ) ps
+            CROSS APPLY (
+                SELECT TOP 1 n_key AS unit_key, n_value AS unit_value FROM ab_physicalSignUnit ORDER BY NEWID()
+            ) pu
+        ),
 
-            -- 先执行 2 次 （仅 patient_id）
-            WHILE @i <= 2
-            BEGIN
-                -- 按照记录顺序获取
-                SELECT @patient_id = patient_id
-                FROM (
-                    SELECT
-                        patient_id,
-                        ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_info
-                ) AS subquery
-                WHERE row_num = @Counter1;
+        -- Step 7: 生成最终字段
+        FinalData AS (
+            SELECT *,
+                   RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(patient_id * 10000 + n)) % 10000000), 7) AS sign_value,
+                   DATEADD(DAY, ABS(CHECKSUM(patient_id * 10000 + n)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS sign_time,
+                   ABS(CHECKSUM(patient_id * 10000 + n)) % 2 + 1 AS delete_state,
+                   DATEADD(DAY, -ABS(CHECKSUM(patient_id * 10000 + n)) % 365, GETDATE()) AS update_time,
+                   CASE WHEN patient_visit_id IS NULL THEN '2' ELSE '1' END AS data_source_key
+            FROM RandomFields
+        ),
 
-                SET @patient_visit_id = NULL;
+        -- Step 8: 去重并确保每位患者生成5条记录
+        Deduplicated AS (
+            SELECT *,
+                   ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY n) AS seq
+            FROM FinalData
+        )
 
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_physical_sign_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_physical_sign_type_key,patient_physical_sign_type_value,patient_physical_sign_other,patient_physical_sign_value,patient_physical_sign_unit_key,patient_physical_sign_unit_value,patient_physical_sign_other_unit,patient_physical_sign_time,patient_physical_sign_delete_state_key,patient_physical_sign_update_time,patient_physical_sign_data_source_key)
-                VALUES (
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊编号ID
-                    @patient_visit_id, -- 就诊编号
-                    @patient_visit_id, -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    @RandomPhysicalSignIdKey, -- 体征key
-                    @RandomPhysicalSignIdValue, -- 体征
-                    '其他体征', -- 其他体征
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 体征数值
-                    @RandomPhysicalSignUnitIdKey, -- 体征单位key
-                    @RandomPhysicalSignUnitIdValue, -- 体征单位
-                    '其他体征单位', -- 其他体征单位
-                    DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01'), -- 检查时间, 从2022年06月01日至今随机，精确到秒
-                    ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '2'  -- 数据来源1或2
-                );
+        -- Step 9: 一次性插入数据（使用 TABLOCKX 提高性能）
+        INSERT INTO a_cdrd_patient_physical_sign_info WITH (TABLOCKX) (
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            patient_hospital_name,
+            patient_physical_sign_type_key,
+            patient_physical_sign_type_value,
+            patient_physical_sign_other,
+            patient_physical_sign_value,
+            patient_physical_sign_unit_key,
+            patient_physical_sign_unit_value,
+            patient_physical_sign_other_unit,
+            patient_physical_sign_time,
+            patient_physical_sign_delete_state_key,
+            patient_physical_sign_update_time,
+            patient_physical_sign_data_source_key
+        )
+        SELECT
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            RandomHospitalName AS patient_hospital_name,
+            sign_type_key AS patient_physical_sign_type_key,
+            sign_type_value AS patient_physical_sign_type_value,
+            '其他体征' AS patient_physical_sign_other,
+            sign_value AS patient_physical_sign_value,
+            sign_unit_key AS patient_physical_sign_unit_key,
+            sign_unit_value AS patient_physical_sign_unit_value,
+            '其他体征单位' AS patient_physical_sign_other_unit,
+            sign_time AS patient_physical_sign_time,
+            delete_state AS patient_physical_sign_delete_state_key,
+            update_time AS patient_physical_sign_update_time,
+            data_source_key AS patient_physical_sign_data_source_key
+        FROM Deduplicated
+        WHERE seq <= @RecordCount
+        ORDER BY patient_id, n;
 
-                SET @i = @i + 1;
-            END
+        -- Step 10: 设置输出参数
+--         SELECT @result = COUNT(*) FROM Deduplicated WHERE seq <= @RecordCount;
 
-            -- 再执行 3 次（patient_id + patient_visit_id）
-            WHILE @i <= 5
-            BEGIN
-
-                -- 按照记录顺序获取
-                SELECT @patient_visit_id = patient_visit_id,
-                       @patient_id = patient_id,
-                       @patient_hospital_visit_id = patient_hospital_visit_id, -- 就诊编号
-                       @patient_hospital_code = patient_hospital_code,  -- 医疗机构编号
-                       @patient_hospital_name = patient_hospital_name, -- 医院名称
-                       @patient_visit_in_time = patient_visit_in_time -- 入院时间
-                FROM (
-                    SELECT
-                        patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
-                        patient_visit_in_time, patient_visit_in_dept_name,patient_visit_diag,
-                        ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_visit_info
-                ) AS subquery
-                WHERE row_num = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
-
-
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_physical_sign_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_physical_sign_type_key,patient_physical_sign_type_value,patient_physical_sign_other,patient_physical_sign_value,patient_physical_sign_unit_key,patient_physical_sign_unit_value,patient_physical_sign_other_unit,patient_physical_sign_time,patient_physical_sign_delete_state_key,patient_physical_sign_update_time,patient_physical_sign_data_source_key)
-                VALUES (
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊编号ID
-                    @patient_hospital_visit_id, -- 就诊编号
-                    @patient_hospital_code, -- 就诊医疗机构编号
-                    @patient_hospital_name, -- 医院名称
-                    @RandomPhysicalSignIdKey, -- 体征key
-                    @RandomPhysicalSignIdValue, -- 体征
-                    '其他体征', -- 其他体征
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 体征数值
-                    @RandomPhysicalSignUnitIdKey, -- 体征单位key
-                    @RandomPhysicalSignUnitIdValue, -- 体征单位
-                    '其他体征单位', -- 其他体征单位
-                    DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01'), -- 检查时间, 从2022年06月01日至今随机，精确到秒
-                    ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '1'  -- 数据来源1或2
-                );
-
-                SET @i = @i + 1;
-            END
-
-        END;
-
-    SET @Counter1 = @Counter1 + 1;
-    END;
-
-
-END
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;

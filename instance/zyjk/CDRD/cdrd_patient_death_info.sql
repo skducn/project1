@@ -1,6 +1,3 @@
--- todo  死亡记录表(造数据)
--- 数据量：从3万名患者中随机500人有死亡记录，其中200均有patientid、patient_visit_id，剩余300只有patientid
-
 CREATE OR ALTER PROCEDURE cdrd_patient_death_info
     @result INT OUTPUT
 AS
@@ -8,112 +5,100 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    select @result = 5;  --修改为500
+    -- 设置输出参数
+    SET @result = 500;
 
+    -- 固定长字符串
+    DECLARE @ThousandChars NVARCHAR(MAX) = REPLICATE(N'哈喽你好', 250);
+    DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'你好', 100);
 
-    DECLARE @ThousandChars NVARCHAR(MAX);
-    SET @ThousandChars = REPLICATE(N'哈喽你好', 250); -- 每句4个字符，重复250次=1000字符
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-    DECLARE @TwoHundredChars NVARCHAR(MAX);
-    SET @TwoHundredChars = REPLICATE(N'你好', 100); -- 每句4个字符，重复250次=1000字符
+        -- Step 1: 随机生成 300 条无就诊记录的死亡数据
+        ;WITH NoVisitRecords AS (
+            SELECT TOP 300
+                p.patient_id,
+                NULL AS patient_visit_id,
+                NULL AS patient_hospital_visit_id,
+                '2' AS patient_death_source_key
+            FROM a_cdrd_patient_info p
+            ORDER BY NEWID()
+        ),
 
-    -- 取3条，（500条）
-    DECLARE @Counter1 INT = 1;
-    WHILE @Counter1 <= @result
-    BEGIN
+        -- Step 2: 随机生成 200 条有就诊记录的死亡数据
+        VisitRecords AS (
+            SELECT TOP 200
+                v.patient_id,
+                v.patient_visit_id,
+                v.patient_hospital_visit_id,
+                '1' AS patient_death_source_key
+            FROM a_cdrd_patient_visit_info v
+            ORDER BY NEWID()
+        ),
 
-        -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
-        DECLARE @patient_id INT;
-        DECLARE @patient_visit_id INT;
-        DECLARE @AssitExaminationTypeIdValue NVARCHAR(50);
-        DECLARE @patient_hospital_visit_id NVARCHAR(100);
-        DECLARE @patient_hospital_code NVARCHAR(100);
-        DECLARE @patient_hospital_name NVARCHAR(50);
-        DECLARE @patient_visit_in_time DATETIME;
+        -- Step 3: 合并两组数据
+        AllRecords AS (
+            SELECT * FROM NoVisitRecords
+            UNION ALL
+            SELECT * FROM VisitRecords
+        ),
 
---         -- 子存储过程
---         -- 医院
---         DECLARE @RandomHospital NVARCHAR(350);
---         EXEC p_hospital @v = @RandomHospital OUTPUT;
-        -- ab表
-        -- 医院
-        DECLARE @RandomHospital NVARCHAR(100)
-        SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+        -- Step 4: 生成所有字段
+        FinalData AS (
+            SELECT
+                ar.patient_id,
+                ar.patient_visit_id,
+                ar.patient_hospital_visit_id,
+                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(ar.patient_id * 1000)) % 10000000), 7) AS patient_death_record_id,
+--                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 10000000), 7) AS patient_death_record_id,
+                DATEADD(DAY, ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS patient_death_time,
+                @ThousandChars AS patient_death_in_situation,
+                @TwoHundredChars AS patient_death_in_diag,
+                @ThousandChars AS patient_death_diag_process,
+                @TwoHundredChars AS patient_death_reason,
+                @TwoHundredChars AS patient_death_diag,
+                DATEADD(DAY, -ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 365, GETDATE()) AS patient_death_update_time,
+                ar.patient_death_source_key
+            FROM AllRecords ar
+        )
 
+        -- Step 5: 一次性插入数据（使用 TABLOCKX 提高性能）
+        INSERT INTO a_cdrd_patient_death_info WITH (TABLOCKX) (
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_death_record_id,
+            patient_death_time,
+            patient_death_in_situation,
+            patient_death_in_diag,
+            patient_death_diag_process,
+            patient_death_reason,
+            patient_death_diag,
+            patient_death_update_time,
+            patient_death_source_key
+        )
+        SELECT
+            fd.patient_id,
+            fd.patient_visit_id,
+            fd.patient_hospital_visit_id,
+            fd.patient_death_record_id,
+            fd.patient_death_time,
+            fd.patient_death_in_situation,
+            fd.patient_death_in_diag,
+            fd.patient_death_diag_process,
+            fd.patient_death_reason,
+            fd.patient_death_diag,
+            fd.patient_death_update_time,
+            fd.patient_death_source_key
+        FROM FinalData fd;
 
-        -- 步骤1
-        -- 先执行 300 次 （仅 patient_id）
-        IF @Counter1 <= 3   -- 修改为300
-        BEGIN
+        SET @result = @@ROWCOUNT;
 
-            -- 按照记录顺序获取
-            SELECT @patient_id = patient_id
-            FROM (
-                SELECT
-                    patient_id,
-                    ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                FROM a_cdrd_patient_info
-            ) AS subquery
-            WHERE row_num = @Counter1;
-
-            SET @patient_visit_id = NULL;
-
-            -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_death_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_death_record_id,patient_death_time,patient_death_in_situation,patient_death_in_diag,patient_death_diag_process,patient_death_reason,patient_death_diag,patient_death_update_time,patient_death_source_key)
-            VALUES (
-                @patient_id, -- 患者ID
-                @patient_visit_id, -- 就诊记录ID
-                @patient_visit_id, -- 就诊编号
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 文书编号
-                DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 死亡时间
-                @ThousandChars, -- 入院情况
-                @TwoHundredChars, -- 入院诊断
-                @ThousandChars, -- 诊疗经过（抢救经过）
-                @TwoHundredChars, -- 死亡原因
-                @TwoHundredChars, -- 死亡诊断
-                DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '2'  -- 数据来源1或2
-            );
-
-        END
-
-        -- 步骤2
-        -- 再执行 200 次（patient_id + patient_visit_id）
-        IF @Counter1 >= 4  -- 修改为301
-        BEGIN
-            -- 按照记录顺序获取
-            SELECT @patient_visit_id = patient_visit_id,
-                   @patient_id = patient_id,
-                   @patient_hospital_visit_id = patient_hospital_visit_id, -- 就诊编号
-                   @patient_visit_in_time = patient_visit_in_time -- 就诊日期
-            FROM (
-                SELECT
-                    patient_visit_id,patient_id, patient_hospital_visit_id,patient_visit_in_time,
-                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
-                FROM a_cdrd_patient_visit_info
-            ) AS subquery
-            WHERE row_num = @Counter1 and patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
-
-
-            -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_death_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_death_record_id,patient_death_time,patient_death_in_situation,patient_death_in_diag,patient_death_diag_process,patient_death_reason,patient_death_diag,patient_death_update_time,patient_death_source_key)
-            VALUES (
-                @patient_id, -- 患者ID
-                @patient_visit_id, -- 就诊记录ID
-                @patient_hospital_visit_id, -- 就诊编号
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 文书编号
-                @patient_visit_in_time, -- 死亡时间
-                @ThousandChars, -- 入院情况
-                @TwoHundredChars, -- 入院诊断
-                @ThousandChars, -- 诊疗经过（抢救经过）
-                @TwoHundredChars, -- 死亡原因
-                @TwoHundredChars, -- 死亡诊断
-                DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                '1'  -- 数据来源1或2
-            );
-        END
-
-        SET @Counter1 = @Counter1 + 1;
-    END;
-
-END
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;

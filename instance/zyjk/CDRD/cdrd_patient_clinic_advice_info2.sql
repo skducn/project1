@@ -1,36 +1,61 @@
 -- todo 门诊医嘱表(造数据)
+-- 数据量：每名患者3条（共9万）
+-- 3w, 耗时: 1286.0387 秒, 4,005,888字节
 
 CREATE OR ALTER PROCEDURE cdrd_patient_clinic_advice_info
-    @RecordCount INT = 1 -- 可通过参数控制记录数，默认100条
+    @RecordCount INT = 3,
+    @result INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    BEGIN TRY
+    -- 获取就诊表中门诊记录数量
+    DECLARE @re INT = 1;
+    select @re = count(*) from a_cdrd_patient_info;
+    SET @result = @re * @RecordCount;
+
+    BEGIN
         BEGIN TRANSACTION;
+        DECLARE @patient_visit_id INT = 0;
+        DECLARE @patient_id INT = 0;
+        DECLARE @patient_hospital_visit_id NVARCHAR(100);
+        DECLARE @patient_hospital_code NVARCHAR(100);
+        DECLARE @patient_hospital_name NVARCHAR(50);
+        DECLARE @patient_visit_in_time DATETIME;
+        DECLARE @patient_visit_in_dept_name NVARCHAR(50);
+        DECLARE @Counter1 INT = 1;
 
-        DECLARE @Counter INT = 1;
-        DECLARE @TotalCount INT =0;
-        DECLARE @MaxRecords INT = @RecordCount;
 
-        -- 循环插入指定数量的记录
-        WHILE @Counter <= @MaxRecords
+        -- 子存储过程
+        -- 随机是否药品 true false
+        DECLARE @RandomTrueFalseIdKey NVARCHAR(100)
+        DECLARE @RandomTrueFalseIdValue NVARCHAR(100)
+        SELECT TOP 1 @RandomTrueFalseIdKey=n_key, @RandomTrueFalseIdValue=n_value FROM ab_boolean ORDER BY NEWID()
+--         DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
+--         EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+
+
+        -- 遍历就诊表
+        WHILE @Counter1 <= @result
         BEGIN
 
-            -- 门诊医嘱表的患者ID和就诊编号ID均来自 就诊信息
-            DECLARE @patient_id int;
-            DECLARE @patient_visit_id int;
-            SELECT TOP 1 @patient_id = patient_id, @patient_visit_id = patient_visit_id FROM a_cdrd_patient_visit_info ORDER BY NEWID();
-
-            -- 子存储过程
-            -- 医院
-            DECLARE @RandomHospital NVARCHAR(350);
-            EXEC p_hospital @v = @RandomHospital OUTPUT;
-
-            -- 随机是否药品 true false
-            DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
-            EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
+            -- 按照记录顺序获取
+            SELECT @patient_visit_id = patient_visit_id,
+                   @patient_id = patient_id,
+                   @patient_hospital_visit_id = patient_hospital_visit_id,
+                   @patient_hospital_code = patient_hospital_code,
+                   @patient_hospital_name = patient_hospital_name,
+                   @patient_visit_in_time = patient_visit_in_time,
+                   @patient_visit_in_dept_name = patient_visit_in_dept_name
+            FROM (
+                SELECT
+                    patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
+                    patient_visit_in_time, patient_visit_in_dept_name,
+                    ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
+                FROM a_cdrd_patient_visit_info where patient_visit_type_key=1
+            ) AS subquery
+            WHERE row_num = @Counter1;
 
 
             -- 插入单条随机数据
@@ -38,33 +63,24 @@ BEGIN
             VALUES (
                 @patient_id, -- 患者ID
                 @patient_visit_id, -- 就诊记录ID
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
-                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
-                @RandomHospital, -- 医院名称
+                @patient_hospital_visit_id, -- 就诊编号
+                @patient_hospital_code, -- 就诊医疗机构编号
+                @patient_hospital_name, -- 医院名称
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 处方明细编号
                 '处方类别', -- 处方类别
                 '处方名称', -- 处方名称
                 @RandomTrueFalseIdKey, -- 是否药品key
                 @RandomTrueFalseIdValue, -- 是否药品
-                DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 开放时间
-                '执行科室', -- 执行科室
+                @patient_visit_in_time, -- 开放时间, 同就诊日期
+                @patient_visit_in_dept_name,  -- 执行科室, 同就诊科室
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                ABS(CHECKSUM(NEWID())) % 2 + 1  -- 数据来源1或2
+                '1' -- 数据来源1或2
             );
 
-            SET @Counter = @Counter + 1;
-            SET @TotalCount = (select count(*) from a_cdrd_patient_clinic_advice_info);
+            SET @Counter1 = @Counter1 + 1;
         END;
 
-        -- 返回插入的记录数
-        SELECT @RecordCount AS RequestedCount, @TotalCount AS TotalCount;
-
         COMMIT TRANSACTION;
-    END TRY
-    BEGIN CATCH
-        IF @@TRANCOUNT > 0
-            ROLLBACK TRANSACTION;
+    END
 
-        THROW;
-    END CATCH;
-END;
+END

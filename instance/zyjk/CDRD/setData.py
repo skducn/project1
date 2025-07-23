@@ -8,6 +8,16 @@
 # 如：密码最后更新时间	pwd_update_time
 # 密码下次更新时间	pwd_next_update_time，请将以上数据中字段与字段英文名互换位置，并用逗号分隔输出
 # 请优化，在每一行前加上Sqlserver_PO.setFieldComment('a_sys_user',
+
+# 💡 注意事项
+# 主键索引：如果字段已经是主键，则自动拥有聚集索引，无需重复创建。
+# 索引维护成本：索引会提升查询性能，但会影响插入/更新性能，建议在数据导入完成后创建。
+# 统计信息更新：创建索引后建议更新统计信息：
+# UPDATE STATISTICS a_cdrd_patient_info;
+# UPDATE STATISTICS a_sys_department;
+# UPDATE STATISTICS ab_hospital;
+# UPDATE STATISTICS a_sys_dept_medgp;
+# UPDATE STATISTICS a_sys_dept_medgp_person;
 # *********************************************************************
 
 from CdrdPO import *
@@ -55,7 +65,8 @@ Cdrd_PO = CdrdPO()
 
 
 
-# 创建表和数据
+# todo 创建表和数据
+
 # Cdrd_PO._ab_IDtype('证件类型')
 # Cdrd_PO._ab_admissionCondition('入院病情')
 # Cdrd_PO._ab_boolean('布尔值_主要诊断')
@@ -63,6 +74,8 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_dischargeStatus('出院情况')
 # Cdrd_PO._ab_ethnicGroup('民族')
 # Cdrd_PO._ab_hospital('医院')
+# Cdrd_PO.index('IX_ab_hospital_name', 'ab_hospital', 'name')
+# Cdrd_PO.updateStatistics('ab_hospital')
 # Cdrd_PO._ab_job('职业')
 # Cdrd_PO._ab_marriage('婚姻')
 # Cdrd_PO._ab_relationship('与患者关系')
@@ -83,6 +96,9 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_operationType('手术类型')
 # Cdrd_PO._ab_operationIncisionHealingGrade('切口愈合等级')
 # Cdrd_PO._ab_loginout('登录登出')
+# Cdrd_PO._ab_lab_project('实验室检查+项目明细')
+# Cdrd_PO._ab_drug('用药信息')
+# Cdrd_PO._ab_dischargeRecordType('出院记录类型')
 
 
 
@@ -91,25 +107,28 @@ Cdrd_PO = CdrdPO()
 # 患者基本信息
 # 数据量：30000
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
+# Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
+# Cdrd_PO.updateStatistics('a_cdrd_patient_info')
 # Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
+
 
 # # 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
 # Sqlserver_PO.delTable('a_cdrd_patient_visit_info')
-# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
+# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
 # Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息')
 
 # # # 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
 # Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-# Cdrd_PO.procedure("cdrd_patient_diag_info3", '诊断表')
+# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
+# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 #
 
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
 # Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
+# Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
 # Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息')
 #
 #
@@ -133,7 +152,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告')
 #
 # # #
-# # # 检查项目明细
+# # # 检查项目明细??
 # 数据量：每个实验室检查记录对应一份检查项目明细(每份明细预计20条左右数据，总量预计300万左右)  15W * 20 = 300W
 # Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
 # Cdrd_PO.procedure("cdrd_patient_test_project_info", '检查项目明细')
@@ -141,8 +160,8 @@ Cdrd_PO = CdrdPO()
 # # # #
 # # # # 门诊医嘱
 # 数据量：每名患者3条（共9万）
-Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
+# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
+# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
 #
 # # #
 # # #  住院医嘱
@@ -186,8 +205,8 @@ Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
 
 # 登录日志
 # 数据量：50万
-# Cdrd_PO._a_sys_logininfo('登录登出表')
-# Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
+Cdrd_PO._a_sys_logininfo('登录登出表')
+Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
 # Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 
 
@@ -210,17 +229,28 @@ Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
 
 
 
+
 # todo 4，科室管理
 # 数据量：1个科室
 # Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
+# Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
+Cdrd_PO.updateStatistics('a_sys_department')
 # Cdrd_PO.dept__a_sys_department('科室表')
 # Cdrd_PO.procedure("sys_department", '科室表')
 
 # 数据量：每个科室下3个医疗组
+# Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
+Cdrd_PO.updateStatistics('a_sys_dept_medgp')
+
 # Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
 # Cdrd_PO.procedure("sys_dept_medgp", '医疗组')
 
 # 数据量：每个医疗组下5名成员
+# Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
+Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
+
+
+
 # Cdrd_PO.dept__a_sys_dept_medgp_person('医疗组人员')
 # Cdrd_PO.procedure("sys_dept_medgp_person", '医疗组人员')
 

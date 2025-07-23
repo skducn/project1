@@ -12,7 +12,9 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_diag_info4.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_diag_info5.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_drug_info.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_drug_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_hospital_advice_info.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_hospital_advice_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_info3.sql" dialect="TSQL" />
@@ -24,9 +26,11 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_out_hospital_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_out_hospital_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_physical_sign_info.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_physical_sign_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_symptom_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_symptom_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_test_project_info.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_test_project_info3.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_visit_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/cdrd_patient_visit_info2.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/fn_name.sql" dialect="TSQL" />

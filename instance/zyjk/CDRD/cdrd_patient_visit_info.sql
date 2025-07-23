@@ -1,291 +1,210 @@
--- todo 门(急)诊住院就诊信息(造数据)
--- 数据量：每个患者5条（3条门诊，2条住院），共15万
--- 生成 150000 条！,耗时: 545.8609 秒，1,233,534,976字节  约1.15GB
--- 生成 50000 条！,耗时: 64.9912 秒, 411,181,056字节
-
+-- 门(急)诊住院就诊信息(造数据)优化版
+-- 数据量：每个患者5条（3条门诊，2条住院），共15万条
+-- 优化目标：提升性能，避免嵌套循环
+-- 5w, 耗时: 6.5393 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_visit_info
-    @RecordCount INT = 5,
+    @RecordCount INT = 5, -- 每位患者生成5条就诊记录（3门诊+2住院）
     @result INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
-    SET @result = @re * @RecordCount;
+    -- 生成100个字符的重复字段
+    DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'职能', 100);
 
-    DECLARE @TwoHundredChars NVARCHAR(MAX);
-    SET @TwoHundredChars = REPLICATE(N'职能', 100);
+    -- 计算总记录数：患者数 × 每人生成就诊记录数
+    SELECT @result = COUNT(*) * @RecordCount FROM a_cdrd_patient_info;
 
-    -- 遍历基本信息表
-    DECLARE @Counter1 INT = 1;
-    WHILE @Counter1 <= @re
+    IF @result <= 0
     BEGIN
-
-        -- 循环插入5条
-        BEGIN
-
-            DECLARE @i INT = 1;
-
-             -- 按照记录顺序获取患者ID
-            DECLARE @patient_id int;
-            SELECT @patient_id = patient_id
-            FROM (
-                SELECT
-                    patient_id,
-                    ROW_NUMBER() OVER (ORDER BY @patient_id) AS row_num
-                FROM a_cdrd_patient_info
-            ) AS subquery
-            WHERE row_num = @Counter1;
-
-
-             -- 科室表，获取 科室名称、科室编码、科室ID
-            DECLARE @department_id INT;
-            DECLARE @department_name NVARCHAR(20);
-            DECLARE @department_code NVARCHAR(20);
-            SELECT TOP 1 @department_id = department_id, @department_name = department_name, @department_code = department_code FROM a_sys_department ORDER BY NEWID();
-            -- 科室医疗组，获取医疗组ID
-            DECLARE @department_treat_group_id INT;
-            SELECT @department_treat_group_id = department_treat_group_id FROM a_sys_dept_medgp WHERE @department_id = department_id;
-            -- 科室组人员，获取 姓名和工号
-            DECLARE @user_name NVARCHAR(20);
-            DECLARE @user_job_num NVARCHAR(20);
-            SELECT @user_name = user_name, @user_job_num=user_job_num FROM a_sys_dept_medgp_person WHERE @department_treat_group_id = department_treat_group_id;
-
-
-            -- 子存储过程
-            -- 医院
---             DECLARE @RandomHospital NVARCHAR(350);
---             EXEC p_hospital @v = @RandomHospital OUTPUT;
-            -- ab表
-            -- 医院
-            DECLARE @RandomHospital NVARCHAR(100)
-            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
-
-
-            -- 就诊类型
-            DECLARE @RandomVisitTypeIdKey NVARCHAR(50)
-            DECLARE @RandomVisitTypeIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomVisitTypeIdKey=n_key, @RandomVisitTypeIdValue = n_value FROM ab_visitType ORDER BY NEWID()
---
---             DECLARE @RandomVisitTypeIdKey NVARCHAR(50), @RandomVisitTypeIdValue NVARCHAR(50);
---             EXEC p_visit_type @k = @RandomVisitTypeIdKey OUTPUT, @v = @RandomVisitTypeIdValue OUTPUT;
-
-            -- 医疗付费方式
-            DECLARE @RandomMedicalPaymentTypeIdKey NVARCHAR(50)
-            DECLARE @RandomMedicalPaymentTypeIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomMedicalPaymentTypeIdKey=n_key, @RandomMedicalPaymentTypeIdValue = n_value FROM ab_paymentMethod ORDER BY NEWID()
---
---             DECLARE @RandomMedicalPaymentTypeIdKey NVARCHAR(50), @RandomMedicalPaymentTypeIdValue NVARCHAR(50);
---             EXEC p_medical_payment_type @k = @RandomMedicalPaymentTypeIdKey OUTPUT, @v = @RandomMedicalPaymentTypeIdValue OUTPUT;
-
-            -- 离院方式
-            DECLARE @RandomOutHospitalWayIdKey NVARCHAR(50)
-            DECLARE @RandomOutHospitalWayIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomOutHospitalWayIdKey=n_key, @RandomOutHospitalWayIdValue = n_value FROM ab_dischargeMethod ORDER BY NEWID()
---
---             DECLARE @RandomOutHospitalWayIdKey NVARCHAR(50), @RandomOutHospitalWayIdValue NVARCHAR(50);
---             EXEC p_out_hospital_way @k = @RandomOutHospitalWayIdKey OUTPUT, @v = @RandomOutHospitalWayIdValue OUTPUT;
-
-            -- 入院途径
-            DECLARE @RandomVisitWayIdKey NVARCHAR(50)
-            DECLARE @RandomVisitWayIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomVisitWayIdKey=n_key, @RandomVisitWayIdValue = n_value FROM ab_admissionRoute ORDER BY NEWID()
---
---             DECLARE @RandomVisitWayIdKey NVARCHAR(50), @RandomVisitWayIdValue NVARCHAR(50);
---             EXEC p_visit_way @k = @RandomVisitWayIdKey OUTPUT, @v = @RandomVisitWayIdValue OUTPUT;
-
-            -- 药物过敏
-            DECLARE @RandomDrugAllergyTypeIdKey NVARCHAR(50)
-            DECLARE @RandomDrugAllergyTypeIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomDrugAllergyTypeIdKey=n_key, @RandomDrugAllergyTypeIdValue = n_value FROM ab_drugAllergy ORDER BY NEWID()
---
---             DECLARE @RandomDrugAllergyTypeIdKey NVARCHAR(50), @RandomDrugAllergyTypeIdValue NVARCHAR(50);
---             EXEC p_drug_allergy_type @k = @RandomDrugAllergyTypeIdKey OUTPUT, @v = @RandomDrugAllergyTypeIdValue OUTPUT;
-
-            -- ABO血型
-            DECLARE @RandomAboTypeIdKey NVARCHAR(50)
-            DECLARE @RandomAboTypeIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomAboTypeIdKey=n_key, @RandomAboTypeIdValue = n_value FROM ab_ABO_bloodType ORDER BY NEWID()
---
---             DECLARE @RandomAboTypeIdKey NVARCHAR(50), @RandomAboTypeIdValue NVARCHAR(50);
---             EXEC p_abo_type @k = @RandomAboTypeIdKey OUTPUT, @v = @RandomAboTypeIdValue OUTPUT;
-
-            -- Rh血型
-            DECLARE @RandomRhTypeIdKey NVARCHAR(50)
-            DECLARE @RandomRhTypeIdValue NVARCHAR(50)
-            SELECT TOP 1 @RandomRhTypeIdKey=n_key, @RandomRhTypeIdValue = n_value FROM ab_rh_bloodType ORDER BY NEWID()
---
---             DECLARE @RandomRhTypeIdKey NVARCHAR(50), @RandomRhTypeIdValue NVARCHAR(50);
---             EXEC p_rh_type @k = @RandomRhTypeIdKey OUTPUT, @v = @RandomRhTypeIdValue OUTPUT;
-
-            -- 就诊诊断
-            DECLARE @RandomVisitDiag NVARCHAR(max)
-            SELECT TOP 1 @RandomVisitDiag = n_value FROM ab_rh_bloodType ORDER BY NEWID()
---
---             DECLARE @RandomVisitDiag NVARCHAR(max);
---             EXEC r_visit_info__ @v1 = @RandomVisitDiag OUTPUT;
-
-            -- 就诊日期
-            DECLARE @jzrq DATETIME;
-            SET @jzrq = DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01');
-
-            -- 3条门诊
-            WHILE @i <= 3
-            BEGIN
-
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_visit_info (patient_visit_type_key,patient_visit_type_value,patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_mz_zy_num,patient_visit_age,patient_visit_in_dept_num,patient_visit_in_dept_name,patient_visit_in_ward_name,patient_visit_doc_num,patient_visit_doc_name,patient_visit_in_time,patient_visit_record_num,patient_visit_main_describe,patient_visit_present_illness,patient_visit_past_illness,patient_visit_personal_illness,patient_visit_menstrual_history,patient_visit_obsterical_history,patient_visit_family_history,patient_visit_physical_examination,patient_visit_speciality_examination,patient_visit_assit_examination,patient_visit_diag,patient_visit_deal,patient_visit_record_time,patient_case_num,patient_case_health_card_num,patient_case_medical_payment_type_key,patient_case_medical_payment_type_value,patient_case_visit_time,patient_case_visit_in_way_key,patient_case_visit_in_way_value,patient_case_visit_in_days,patient_visit_out_dept_num,patient_visit_out_dept_name,patient_visit_out_ward_name,patient_visit_out_time,patient_case_clinic_diag,patient_case_diag_name,patient_case_drug_allergy_type_key,patient_case_drug_allergy_type_value,patient_case_drug_allergy_name,patient_case_abo_type_key,patient_case_abo_type_value,patient_case_rh_type_key,patient_case_rh_type_value,patient_case_dept_chief_doc_num,patient_case_dept_chief_doc_name,patient_case_director_doc_num,patient_case_director_doc_name,patient_case_attend_doc_num,patient_case_attend_doc_name,patient_case_resident_num,patient_case_resident_name,patient_case_out_hospital_type_key,patient_case_out_hospital_type_value,patient_case_transfer_to_hospital,patient_case_make_over_hospital,patient_case_in_total_cost,patient_case_in_selfpay_cost,patient_visit_update_time,patient_visit_data_source_key)
-                VALUES (
-                    '1', -- 就诊类型key
-                    '门诊', -- 就诊类型
-                    @patient_id, -- 患者id
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统门诊/住院号
-                    RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2), -- 就诊年龄（岁）
-                    @department_code, -- 就诊科室编码
-                    @department_name, -- 就诊科室
-                    '入院病房', -- 入院病房
-                    @user_job_num, -- 就诊医生编号
-                    @user_name, -- 就诊医生
-                    @jzrq, -- 就诊日期，从2022年06月01日至今随机精确到秒
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 文书编号
-                    @TwoHundredChars, -- 主诉
-                    @TwoHundredChars, -- 现病史
-                    @TwoHundredChars, -- 既往史
-                    @TwoHundredChars, -- 个人史
-                    @TwoHundredChars, -- 月经史
-                    @TwoHundredChars, -- 婚育史
-                    @TwoHundredChars, -- 家族史
-                    @TwoHundredChars, -- 体格检查
-                    @TwoHundredChars, -- 专科检查
-                    @TwoHundredChars, -- 辅助检查
-                    @RandomVisitDiag, -- 就诊诊断
-                    @TwoHundredChars, -- 处置
-                    @jzrq, -- 记录时间
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 病案号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 健康卡号
-                    @RandomMedicalPaymentTypeIdKey, -- 医疗付费方式key
-                    @RandomMedicalPaymentTypeIdValue, -- 医疗付费方式
-                    RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2), -- 住院次数
-                    @RandomVisitWayIdKey, -- 入院途径key
-                    @RandomVisitWayIdValue, -- 入院途径
-                    RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2), -- 实际住院天数
-                    @department_code, -- 出院科室编码
-                    @department_name, -- 出院科室
-                    '出院病房', -- 出院病房
-                    @jzrq, -- 出院日期，同就诊日期
-                    '门（急）诊诊断', -- 门（急）诊诊断
-                    '入院诊断', -- 入院诊断
-                    @RandomDrugAllergyTypeIdKey, -- 药物过敏key
-                    @RandomDrugAllergyTypeIdValue, -- 药物过敏
-                    '青霉素', -- 过敏药物
-                    @RandomAboTypeIdKey, -- ABO血型key
-                    @RandomAboTypeIdValue, -- ABO血型
-                    @RandomRhTypeIdKey, -- Rh血型key
-                    @RandomRhTypeIdValue, -- Rh血型
-                     RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 科主任编号
-                    '科主任', -- 科主任
-                     RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 主任（副主任）医师编号
-                    '主任（副主任）医师', -- 主任（副主任）医师
-                    @user_job_num, -- 主治医师编号
-                    @user_name, -- 主治医师
-                     RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 住院医师编号
-                    '住院医师', -- 住院医师
-                    @RandomOutHospitalWayIdKey, -- 离院方式key
-                    @RandomOutHospitalWayIdValue, -- 离院方式
-                    '', -- 医嘱转院，拟接收机构
-                    '', -- 医嘱转让社区卫生机构，拟接收机构
-                    '40000.1234', -- 住院费用-总费用
-                    '6000.12345678', -- 住院费用-自付金额
-                     DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                     '1' -- 数据来源1或2
-                );
-                SET @i = @i + 1;
-            END
-
-            -- 2 次住院
-            WHILE @i <= 5
-            BEGIN
-                 -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_visit_info (patient_visit_type_key,patient_visit_type_value,patient_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_mz_zy_num,patient_visit_age,patient_visit_in_dept_num,patient_visit_in_dept_name,patient_visit_in_ward_name,patient_visit_doc_num,patient_visit_doc_name,patient_visit_in_time,patient_visit_record_num,patient_visit_main_describe,patient_visit_present_illness,patient_visit_past_illness,patient_visit_personal_illness,patient_visit_menstrual_history,patient_visit_obsterical_history,patient_visit_family_history,patient_visit_physical_examination,patient_visit_speciality_examination,patient_visit_assit_examination,patient_visit_diag,patient_visit_deal,patient_visit_record_time,patient_case_num,patient_case_health_card_num,patient_case_medical_payment_type_key,patient_case_medical_payment_type_value,patient_case_visit_time,patient_case_visit_in_way_key,patient_case_visit_in_way_value,patient_case_visit_in_days,patient_visit_out_dept_num,patient_visit_out_dept_name,patient_visit_out_ward_name,patient_visit_out_time,patient_case_clinic_diag,patient_case_diag_name,patient_case_drug_allergy_type_key,patient_case_drug_allergy_type_value,patient_case_drug_allergy_name,patient_case_abo_type_key,patient_case_abo_type_value,patient_case_rh_type_key,patient_case_rh_type_value,patient_case_dept_chief_doc_num,patient_case_dept_chief_doc_name,patient_case_director_doc_num,patient_case_director_doc_name,patient_case_attend_doc_num,patient_case_attend_doc_name,patient_case_resident_num,patient_case_resident_name,patient_case_out_hospital_type_key,patient_case_out_hospital_type_value,patient_case_transfer_to_hospital,patient_case_make_over_hospital,patient_case_in_total_cost,patient_case_in_selfpay_cost,patient_visit_update_time,patient_visit_data_source_key)
-                VALUES (
-                    '2', -- 就诊类型key
-                    '住院', -- 就诊类型
-                    @patient_id, -- 患者id
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊编号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统门诊/住院号
-                    RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2), -- 就诊年龄（岁）
-                    @department_code, -- 就诊科室编码
-                    @department_name, -- 就诊科室
-                    '入院病房', -- 入院病房
-                    @user_job_num, -- 就诊医生编号
-                    @user_name, -- 就诊医生
-                    @jzrq, -- 就诊日期，从2022年06月01日至今随机精确到秒
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 文书编号
-                    @TwoHundredChars, -- 主诉
-                    @TwoHundredChars, -- 现病史
-                    @TwoHundredChars, -- 既往史
-                    @TwoHundredChars, -- 个人史
-                    @TwoHundredChars, -- 月经史
-                    @TwoHundredChars, -- 婚育史
-                    @TwoHundredChars, -- 家族史
-                    @TwoHundredChars, -- 体格检查
-                    @TwoHundredChars, -- 专科检查
-                    @TwoHundredChars, -- 辅助检查
-                    @RandomVisitDiag, -- 就诊诊断
-                    @TwoHundredChars, -- 处置
-                    @jzrq, -- 记录时间
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 病案号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 健康卡号
-                    @RandomMedicalPaymentTypeIdKey, -- 医疗付费方式key
-                    @RandomMedicalPaymentTypeIdValue, -- 医疗付费方式
-                    RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2), -- 住院次数
-                    @RandomVisitWayIdKey, -- 入院途径key
-                    @RandomVisitWayIdValue, -- 入院途径
-                    RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2), -- 实际住院天数
-                    @department_code, -- 出院科室编码
-                    @department_name, -- 出院科室
-                    '出院病房', -- 出院病房
-                    @jzrq, -- 出院日期，同就诊日期
-                    '门（急）诊诊断', -- 门（急）诊诊断
-                    '入院诊断', -- 入院诊断
-                    @RandomDrugAllergyTypeIdKey, -- 药物过敏key
-                    @RandomDrugAllergyTypeIdValue, -- 药物过敏
-                    '青霉素', -- 过敏药物
-                    @RandomAboTypeIdKey, -- ABO血型key
-                    @RandomAboTypeIdValue, -- ABO血型
-                    @RandomRhTypeIdKey, -- Rh血型key
-                    @RandomRhTypeIdValue, -- Rh血型
-                     RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 科主任编号
-                    '科主任', -- 科主任
-                     RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 主任（副主任）医师编号
-                    '主任（副主任）医师', -- 主任（副主任）医师
-                    @user_job_num, -- 主治医师编号
-                    @user_name, -- 主治医师
-                     RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 住院医师编号
-                    '住院医师', -- 住院医师
-                    @RandomOutHospitalWayIdKey, -- 离院方式key
-                    @RandomOutHospitalWayIdValue, -- 离院方式
-                    '', -- 医嘱转院，拟接收机构
-                    '', -- 医嘱转让社区卫生机构，拟接收机构
-                    '35000.55', -- 住院费用-总费用
-                    '6300.66', -- 住院费用-自付金额
-                     DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                     '1' -- 数据来源1或2
-                );
-                SET @i = @i + 1;
-            END
-
-        END;
-
-    SET @Counter1 = @Counter1 + 1;
+        PRINT 'No eligible patient records found.';
+        RETURN;
     END;
 
-END
+    -- 获取每位患者生成的就诊记录编号（1~5）
+    -- 为每位患者生成 @RecordCount 条记录（默认 5 条）。
+    -- 使用 CROSS JOIN 和 ROW_NUMBER() 实现每位患者生成多个记录。
+    ;WITH PatientSequences AS (
+        SELECT p.patient_id, n.n
+        FROM a_cdrd_patient_info p
+        CROSS JOIN (
+            SELECT TOP (@RecordCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
+            FROM sys.all_columns
+        ) n
+    ),
+
+    -- 构造就诊类型（门诊/住院）分布：3门诊 + 2住院
+    -- 前 3 条记录为门诊（type=1），后 2 条为住院（type=2）
+    VisitTypeMapping AS (
+        SELECT *,
+               CASE WHEN n <= 3 THEN '1' ELSE '2' END AS patient_visit_type_key,
+               CASE WHEN n <= 3 THEN '门诊' ELSE '住院' END AS patient_visit_type_value
+        FROM PatientSequences
+    ),
+
+    -- 生成随机字段（医院、就诊类型、医疗付费方式等）
+    -- 使用 CROSS APPLY 从多个参考表中随机选取字段值（如医院、就诊类型、医疗付费方式等）。
+    RandomFields AS (
+        SELECT vt.*,
+               h.name AS RandomHospital,
+               t.n_key AS VisitTypeKey, t.n_value AS VisitTypeValue,
+               pmt.n_key AS MedicalPaymentTypeKey, pmt.n_value AS MedicalPaymentTypeValue,
+               ohw.n_key AS OutHospitalWayKey, ohw.n_value AS OutHospitalWayValue,
+               vw.n_key AS VisitWayKey, vw.n_value AS VisitWayValue,
+               da.n_key AS DrugAllergyKey, da.n_value AS DrugAllergyValue,
+               abo.n_key AS AboTypeKey, abo.n_value AS AboTypeValue,
+               rh.n_key AS RhTypeKey, rh.n_value AS RhTypeValue,
+               diag.n_value AS VisitDiagnosis
+        FROM VisitTypeMapping vt
+        CROSS APPLY (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h -- 医院
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_visitType ORDER BY NEWID()) t -- 就诊类型
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_paymentMethod ORDER BY NEWID()) pmt -- 医疗付费方式
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_dischargeMethod ORDER BY NEWID()) ohw -- 离院方式
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_admissionRoute ORDER BY NEWID()) vw -- 入院途径
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_drugAllergy ORDER BY NEWID()) da -- 药物过敏
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_ABO_bloodType ORDER BY NEWID()) abo -- ABO血型
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_rh_bloodType ORDER BY NEWID()) rh -- RH血型
+        CROSS APPLY (SELECT TOP 1 n_value FROM ab_visitDiagnosis ORDER BY NEWID()) diag -- 就诊诊断
+    ),
+
+    -- 获取科室信息（随机科室、医生）
+    -- 为每位患者随机分配一个科室和医生。
+    DeptInfo AS (
+        SELECT rf.*,
+               d.department_id, d.department_name, d.department_code,
+               p.user_name, p.user_job_num
+        FROM RandomFields rf
+        CROSS APPLY (
+            SELECT TOP 1 department_id, department_name, department_code
+            FROM a_sys_department
+            ORDER BY NEWID()
+        ) d
+        CROSS APPLY (
+            SELECT TOP 1 user_name, user_job_num
+            FROM a_sys_dept_medgp_person
+            WHERE department_treat_group_id = (
+                SELECT TOP 1 department_treat_group_id
+                FROM a_sys_dept_medgp
+                WHERE department_id = d.department_id
+                ORDER BY department_treat_group_id
+            )
+            ORDER BY NEWID()
+        ) p
+    ),
+
+    -- 生成就诊日期（随机时间）
+    -- 生成就诊时间、年龄、住院天数、随机编号等字段。
+    FinalData AS (
+        SELECT *,
+               DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS jzrq, --就诊时间
+               RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_age, -- 年龄
+               RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_days, -- 住院天数
+               RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7) AS seq_num -- 随机编号
+        FROM DeptInfo
+    )
+
+    -- 插入数据
+    INSERT INTO a_cdrd_patient_visit_info (
+        patient_visit_type_key, patient_visit_type_value, patient_id,
+        patient_hospital_visit_id, patient_hospital_code, patient_hospital_name,
+        patient_mz_zy_num, patient_visit_age, patient_visit_in_dept_num,
+        patient_visit_in_dept_name, patient_visit_in_ward_name,
+        patient_visit_doc_num, patient_visit_doc_name, patient_visit_in_time,
+        patient_visit_record_num, patient_visit_main_describe,
+        patient_visit_present_illness, patient_visit_past_illness,
+        patient_visit_personal_illness, patient_visit_menstrual_history,
+        patient_visit_obsterical_history, patient_visit_family_history,
+        patient_visit_physical_examination, patient_visit_speciality_examination,
+        patient_visit_assit_examination, patient_visit_diag, patient_visit_deal,
+        patient_visit_record_time, patient_case_num, patient_case_health_card_num,
+        patient_case_medical_payment_type_key, patient_case_medical_payment_type_value,
+        patient_case_visit_time, patient_case_visit_in_way_key,
+        patient_case_visit_in_way_value, patient_case_visit_in_days,
+        patient_visit_out_dept_num, patient_visit_out_dept_name,
+        patient_visit_out_ward_name, patient_visit_out_time,
+        patient_case_clinic_diag, patient_case_diag_name,
+        patient_case_drug_allergy_type_key, patient_case_drug_allergy_type_value,
+        patient_case_drug_allergy_name, patient_case_abo_type_key,
+        patient_case_abo_type_value, patient_case_rh_type_key,
+        patient_case_rh_type_value, patient_case_dept_chief_doc_num,
+        patient_case_dept_chief_doc_name, patient_case_director_doc_num,
+        patient_case_director_doc_name, patient_case_attend_doc_num,
+        patient_case_attend_doc_name, patient_case_resident_num,
+        patient_case_resident_name, patient_case_out_hospital_type_key,
+        patient_case_out_hospital_type_value, patient_case_transfer_to_hospital,
+        patient_case_make_over_hospital, patient_case_in_total_cost,
+        patient_case_in_selfpay_cost, patient_visit_update_time,
+        patient_visit_data_source_key
+    )
+    SELECT
+        patient_visit_type_key,
+        patient_visit_type_value,
+        patient_id,
+        seq_num AS patient_hospital_visit_id,
+        seq_num AS patient_hospital_code,
+        RandomHospital AS patient_hospital_name,
+        seq_num AS patient_mz_zy_num,
+        visit_age AS patient_visit_age,
+        department_code AS patient_visit_in_dept_num,
+        department_name AS patient_visit_in_dept_name,
+        N'入院病房' AS patient_visit_in_ward_name,
+        user_job_num AS patient_visit_doc_num,
+        user_name AS patient_visit_doc_name,
+        jzrq AS patient_visit_in_time,
+        seq_num AS patient_visit_record_num,
+        @TwoHundredChars AS patient_visit_main_describe,
+        @TwoHundredChars AS patient_visit_present_illness,
+        @TwoHundredChars AS patient_visit_past_illness,
+        @TwoHundredChars AS patient_visit_personal_illness,
+        @TwoHundredChars AS patient_visit_menstrual_history,
+        @TwoHundredChars AS patient_visit_obsterical_history,
+        @TwoHundredChars AS patient_visit_family_history,
+        @TwoHundredChars AS patient_visit_physical_examination,
+        @TwoHundredChars AS patient_visit_speciality_examination,
+        @TwoHundredChars AS patient_visit_assit_examination,
+        VisitDiagnosis AS patient_visit_diag,
+        @TwoHundredChars AS patient_visit_deal,
+        jzrq AS patient_visit_record_time,
+        seq_num AS patient_case_num,
+        seq_num AS patient_case_health_card_num,
+        MedicalPaymentTypeKey AS patient_case_medical_payment_type_key,
+        MedicalPaymentTypeValue AS patient_case_medical_payment_type_value,
+        visit_days AS patient_case_visit_time,
+        VisitWayKey AS patient_case_visit_in_way_key,
+        VisitWayValue AS patient_case_visit_in_way_value,
+        visit_days AS patient_case_visit_in_days,
+        department_code AS patient_visit_out_dept_num,
+        department_name AS patient_visit_out_dept_name,
+        N'出院病房' AS patient_visit_out_ward_name,
+        jzrq AS patient_visit_out_time,
+        N'门（急）诊诊断' AS patient_case_clinic_diag,
+        N'入院诊断' AS patient_case_diag_name,
+        DrugAllergyKey AS patient_case_drug_allergy_type_key,
+        DrugAllergyValue AS patient_case_drug_allergy_type_value,
+        N'青霉素' AS patient_case_drug_allergy_name,
+        AboTypeKey AS patient_case_abo_type_key,
+        AboTypeValue AS patient_case_abo_type_value,
+        RhTypeKey AS patient_case_rh_type_key,
+        RhTypeValue AS patient_case_rh_type_value,
+        seq_num AS patient_case_dept_chief_doc_num,
+        N'科主任' AS patient_case_dept_chief_doc_name,
+        seq_num AS patient_case_director_doc_num,
+        N'主任（副主任）医师' AS patient_case_director_doc_name,
+        user_job_num AS patient_case_attend_doc_num,
+        user_name AS patient_case_attend_doc_name,
+        seq_num AS patient_case_resident_num,
+        N'住院医师' AS patient_case_resident_name,
+        OutHospitalWayKey AS patient_case_out_hospital_type_key,
+        OutHospitalWayValue AS patient_case_out_hospital_type_value,
+        N'' AS patient_case_transfer_to_hospital,
+        N'' AS patient_case_make_over_hospital,
+        CASE WHEN patient_visit_type_key = '2' THEN '35000.55' ELSE '40000.1234' END AS patient_case_in_total_cost,
+        CASE WHEN patient_visit_type_key = '2' THEN '6300.66' ELSE '6000.12345678' END AS patient_case_in_selfpay_cost,
+        DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()) AS patient_visit_update_time,
+        '1' AS patient_visit_data_source_key
+    FROM FinalData
+    ORDER BY patient_id, n;
+
+END;

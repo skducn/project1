@@ -408,6 +408,79 @@ class CdrdPO(object):
                             VALUES ('登录', '账号密码登录'),('登出', '手动登出')""")
         Sqlserver_PO.setTableComment('ab_loginout', varCommon + '(测试用)')
 
+    def _ab_lab_project(self, varCommon):
+
+        # 创建表，插入数据
+        # 实验室检查+项目明细
+        # Cdrd_PO._ab_lal_project('实验室检查+项目明细')
+
+        Sqlserver_PO.crtTableByCover('ab_lab_project',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                        report_id INT,
+                                        report_name NVARCHAR(255),
+                                        patient_test_item_name NVARCHAR(255),
+                                        patient_test_numerical_value NVARCHAR(50),
+                                        patient_test_unit_name NVARCHAR(50),
+                                        patient_test_text_value NVARCHAR(50),
+                                        patient_test_abnormal_flag NVARCHAR(50),
+                                        patient_test_reference_range NVARCHAR(50)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_lab_project (report_id, report_name, patient_test_item_name, patient_test_numerical_value, patient_test_unit_name, patient_test_text_value, patient_test_abnormal_flag, patient_test_reference_range) 
+        VALUES (1, '血生化检测','空腹血糖（GLU）', '5.8', 'mmol/L', '正常', '', '3.9-6.1'),
+    (2, '血生化检测','糖化血红蛋白（HbA1c）', '6.2', '%', '升高', '异常', '<6.0'),
+    (3, '血生化检测','总胆固醇（TC）', '5.9', 'mmol/L', '升高', '异常', '<5.2'),
+    (4, '血生化检测','甘油三酯（TG）', '2.3', 'mmol/L', '升高', '异常', '<1.7'),
+    (5, '血生化检测','低密度脂蛋白（LDL-C）', '3.8', 'mmol/L', '升高', '异常', '<3.4'),
+    (6, '血生化检测','高密度脂蛋白（HDL-C）', '1.1', 'mmol/L', '正常', '', '>=1.0'),
+    (7, '血生化检测','血肌酐（Cr）', '78', 'mmol/L', '正常', '', '59-104'),
+    (8, '血生化检测','尿素氮（BUN）', '5.6', 'mmol/L', '正常', '', '2.9-8.2'),
+    (9, '血生化检测','估算 eGFR', '88', 'mL/min/1.73m2', '正常', '', '>=90'),
+    (10, '血生化检测','血尿酸（UA）', '420', 'mmol/L', '升高', '异常', '208-428（男性）'),
+    (11, '血生化检测','血钾（K+）', '3.9', 'mmol/L', '正常', '', '3.5-5.3'),
+    (12, '血生化检测','血钠（Na+）', '140', 'mmol/L', '正常', '', '137-147'),
+    (13, '血生化检测','血氯（Cl-）', '102', 'mmol/L', '正常', '', '99-110'),
+    (14, '血生化检测','丙氨酸氨基转移酶（ALT）', '28', 'U/L', '正常', '', '9-50'),
+    (15, '血生化检测','天门冬氨酸氨基转移酶（AST）', '25', 'U/L', '正常', '', '15-40'),
+    (16, '血生化检测','总蛋白（TP）', '72', 'g/L', '正常', '', '65-85'),
+    (17, '血生化检测','白蛋白（ALB）', '45', 'g/L', '正常', '', '40-55'),
+    (18, '血生化检测','同型半胱氨酸（Hcy）', '16.5', 'mmol/L', '升高', '异常', '<15'),
+    (19, '血生化检测','乳酸脱氢酶（LDH）', '220', 'U/L', '正常', '', '120-250'),
+    (20, '血生化检测','C 反应蛋白（CRP）', '8', 'mg/L', '升高', '异常', '<5.0'),
+    (1, '凝血功能检验','凝血酶原时间（PT）', '13.5', '秒', '正常', '', '11.0-14.5'),
+    (2, '凝血功能检验','活化部分凝血活酶时间（APTT）', '38', '秒', '延长', '异常', '25.0-35.0'),
+    (3, '凝血功能检验','国际标准化比值（INR）', '1.15', '-', '正常', '', '0.8-1.2'),
+    (4, '凝血功能检验','纤维蛋白原（FIB）', '3.2', 'g/L', '正常', '', '2.0-4.0'),
+    (5, '凝血功能检验','D - 二聚体（D-Dimer）', '0.8', 'mg/L', '升高', '异常', '<0.5'),
+    (6, '凝血功能检验','抗凝血酶 Ⅲ（AT-Ⅲ）活性', '85', '%', '正常', '', '80-120'),
+    (7, '凝血功能检验','血小板计数（PLT）', '210', 'X109/L', '正常', '', '125-350'),
+    (8, '凝血功能检验','肌钙蛋白 I（cTnI）', '0.02', 'ug/L', '正常', '', '<0.04'),
+    (9, '凝血功能检验','N 末端脑钠肽前体（NT-proBNP）', '450', 'pg/mL', '升高', '异常', '<125'),
+    (10, '凝血功能检验','血钾（K+）', '3.9', 'mmol/L', '正常', '', '3.5-5.3'),
+    (11, '凝血功能检验','血镁（Mg2+）', '0.75', 'mmol/L', '降低', '异常', '0.7-1.1'),
+    (12, '凝血功能检验','甲状腺功能（TSH）', '0.1', 'mIU/L', '降低', '异常', '0.27-4.2'),
+    (13, '凝血功能检验','游离甲状腺素（FT4）', '25', 'pmol/L', '升高', '异常', '12.0-22.0'),
+    (14, '凝血功能检验','肝功能（ALT）', '32', 'U/L', '正常', '', '9-50'),
+    (15, '凝血功能检验','肾功能（eGFR）', '68', 'mL/min', '降低', '异常', '>=90'),
+    (16, '凝血功能检验','血尿酸（UA）', '480', 'umol/L', '升高', '异常', '208-428'),
+    (17, '凝血功能检验','同型半胱氨酸（Hcy）', '18.5', 'umol/L', '升高', '异常', '<15'),
+    (18, '凝血功能检验','糖化血红蛋白（HbA1c）', '6.2', '%', '升高', '异常', '<6.0'),
+    (19, '凝血功能检验','C 反应蛋白（CRP）', '8', 'mg/L', '升高', '异常', '<5.0'),
+    (20, '凝血功能检验','乳酸脱氢酶（LDH）', '220', 'U/L', '正常', '', '120-250');
+""")
+        Sqlserver_PO.setTableComment('ab_lab_project', varCommon + '(测试用)')
+
+    def _ab_dischargeRecordType(self, varCommon):
+
+        # 创建表，插入数据
+        # Cdrd_PO._ab_dischargeRecordType('出院记录类型')
+        Sqlserver_PO.crtTableByCover('ab_dischargeRecordType',
+                                     '''id INT IDENTITY PRIMARY KEY,
+                                        n_key NVARCHAR(100),
+                                        n_value NVARCHAR(100)
+                                     ''')
+        Sqlserver_PO.execute("""INSERT INTO ab_dischargeRecordType (n_key, n_value) VALUES ('1',N'出院记录'),('2',N'24小时内入出院记录')""")
+        Sqlserver_PO.setTableComment('ab_dischargeRecordType', varCommon + '(测试用)')
+
 
 
 
@@ -806,6 +879,26 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_contact_address', '联系人地址'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_data_source_key', '数据来源')
+    def index(self, index,table,field):
+
+        # 创建非聚集索引
+        # 主键索引：如果字段已经是主键，则自动拥有聚集索引，无需重复创建。
+        # 索引维护成本：索引会提升查询性能，但会影响插入 / 更新性能，建议在数据导入完成后创建。
+
+        sql = "CREATE NONCLUSTERED INDEX " + index + " ON " + table + " (" + field + ")"
+        Sqlserver_PO.execute(sql)
+    def updateStatistics(self, table):
+
+        # 统计信息更新：创建索引后建议更新统计信息：
+        # UPDATE STATISTICS a_cdrd_patient_info;
+        # UPDATE STATISTICS a_sys_department;
+        # UPDATE STATISTICS ab_hospital;
+        # UPDATE STATISTICS a_sys_dept_medgp;
+        # UPDATE STATISTICS a_sys_dept_medgp_person;
+        sql = "UPDATE STATISTICS " + table
+        Sqlserver_PO.execute(sql)
+
+
     def _a_cdrd_patient_diag_info(self, varCommon):
 
         # 诊断表

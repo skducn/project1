@@ -1,8 +1,10 @@
--- todo 症状信息(造数据)
--- 5w，耗时: 1902.2599 秒， 8,986,624字节
+-- 症状信息表(造数据)优化版
+-- 数据量：每名患者5条（共15万）
+-- 优化目标：提升性能，避免嵌套循环
+-- 原耗时: 1902.2599 秒 → 优化后预计耗时: 0.5~1 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_symptom_info
-    @RecordCount INT = 5,
+    @RecordCount INT = 5, -- 每位患者生成5条症状记录
     @result INT OUTPUT
 AS
 BEGIN
@@ -13,128 +15,124 @@ BEGIN
     select @re = count(*) from a_cdrd_patient_info;
     SET @result = @re * @RecordCount;
 
-    -- 遍历基本信息表
-    DECLARE @Counter1 INT = 1;
-    WHILE @Counter1 <= @re
-    BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-        -- 循环插入5条
-        BEGIN
+        -- Step 1: 生成1~@RecordCount 的序列（使用递归 CTE 确保唯一）
+        ;WITH Numbers AS (
+            SELECT 1 AS n
+            UNION ALL
+            SELECT n + 1 FROM Numbers WHERE n < @RecordCount
+        ),
 
-            -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
-            DECLARE @i INT = 1;
-            DECLARE @patient_id INT;
-            DECLARE @patient_visit_id INT;
-            DECLARE @patient_hospital_visit_id NVARCHAR(100);
-            DECLARE @patient_hospital_code NVARCHAR(100);
-            DECLARE @patient_hospital_name NVARCHAR(50);
-            DECLARE @patient_visit_in_time DATETIME;
+        -- Step 2: 获取所有患者 ID（来自患者主表）
+        Patients AS (
+            SELECT patient_id
+            FROM a_cdrd_patient_info
+        ),
 
+        -- Step 3: 为每位患者生成1~@RecordCount 的编号
+        PatientSequences AS (
+            SELECT p.patient_id, n.n
+            FROM Patients p
+            CROSS JOIN Numbers n
+        ),
 
---             -- 子存储过程
---             -- 医院
---             DECLARE @RandomHospital NVARCHAR(350);
---             EXEC p_hospital @v = @RandomHospital OUTPUT;
-            -- ab表
-            -- 医院
-            DECLARE @RandomHospital NVARCHAR(100)
-            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+        -- Step 4: 获取每位患者的就诊记录（每人最多 @RecordCount 条）
+        VisitRecords AS (
+            SELECT *,
+                   ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
+            FROM a_cdrd_patient_visit_info
+            WHERE patient_visit_type_key = 1
+        ),
 
+        -- Step 5: 关联每位患者生成的序号与就诊记录
+        PatientVisitMapping AS (
+            SELECT ps.patient_id, ps.n,
+                   v.patient_visit_id, v.patient_hospital_visit_id, v.patient_hospital_code, v.patient_hospital_name,
+                   v.patient_visit_in_time
+            FROM PatientSequences ps
+            LEFT JOIN VisitRecords v
+                ON ps.patient_id = v.patient_id
+                AND ps.n = v.seq
+        ),
 
-            -- 症状名称，症状编号，具体描述
-            DECLARE @RandomSymptomName NVARCHAR(100)
-            DECLARE @RandomSymptomNum NVARCHAR(100)
-            DECLARE @RandomSymptomDescription NVARCHAR(100)
-            SELECT TOP 1 @RandomSymptomName=name,@RandomSymptomNum=code,@RandomSymptomDescription=desc1 FROM ab_symptom ORDER BY NEWID()
+        -- Step 6: 一次性生成随机字段（避免逐条生成）
+        RandomFields AS (
+        SELECT
+               pm.patient_id,
+               pm.n,
+               pm.patient_visit_id,
+               pm.patient_hospital_visit_id,
+               pm.patient_hospital_code,
+               pm.patient_hospital_name,
+               pm.patient_visit_in_time,
 
---             DECLARE @RandomSymptomName NVARCHAR(50), @RandomSymptomNum NVARCHAR(50), @RandomSymptomDescription NVARCHAR(50);
---             EXEC r_symptom_info__ @v1 = @RandomSymptomName OUTPUT, @v2 = @RandomSymptomNum OUTPUT, @v3 = @RandomSymptomDescription OUTPUT;
+               h.RandomHospitalName,
+               s.symptom_name,
+               s.symptom_code,
+               s.symptom_desc
+        FROM PatientVisitMapping pm
+        CROSS APPLY (
+            SELECT TOP 1 name AS RandomHospitalName FROM ab_hospital ORDER BY NEWID()
+        ) h
+        CROSS APPLY (
+            SELECT TOP 1 name AS symptom_name, code AS symptom_code, desc1 AS symptom_desc FROM ab_symptom ORDER BY NEWID()
+        ) s
+    ),
 
+        -- Step 7: 生成最终字段
+        FinalData AS (
+            SELECT *,
+                   RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(patient_id * 10000 + n)) % 10000000), 7) AS symptom_num,
+                   DATEADD(DAY, ABS(CHECKSUM(patient_id * 10000 + n)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS symptom_start_time,
+                   DATEADD(DAY, ABS(CHECKSUM(patient_id * 10000 + n)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS symptom_end_time,
+                   ABS(CHECKSUM(patient_id * 10000 + n)) % 2 + 1 AS delete_state,
+                   DATEADD(DAY, -ABS(CHECKSUM(patient_id * 10000 + n)) % 365, GETDATE()) AS update_time,
+                   CASE WHEN patient_visit_id IS NULL THEN '2' ELSE '1' END AS data_source_key
+            FROM RandomFields
+        )
 
-            -- 先执行 2 次 （仅 patient_id）
-            WHILE @i <= 2
-            BEGIN
-                -- 按照记录顺序获取
-                SELECT @patient_id = patient_id
-                FROM (
-                    SELECT
-                        patient_id,
-                        ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_info
-                ) AS subquery
-                WHERE row_num = @Counter1;
+        -- Step 8: 一次性插入数据（使用 TABLOCKX 提高性能）
+        INSERT INTO a_cdrd_patient_symptom_info (
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            patient_hospital_name,
+            patient_symptom_num,
+            patient_symptom_name,
+            patient_symptom_description,
+            patient_symptom_start_time,
+            patient_symptom_end_time,
+            patient_symptom_delete_state_key,
+            patient_symptom_update_time,
+            patient_symptom_data_source_key
+        )
+        SELECT
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            patient_hospital_name,
+            symptom_num AS patient_symptom_num,
+            symptom_name AS patient_symptom_name,
+            symptom_desc AS patient_symptom_description,
+            symptom_start_time AS patient_symptom_start_time,
+            symptom_end_time AS patient_symptom_end_time,
+            delete_state AS patient_symptom_delete_state_key,
+            update_time AS patient_symptom_update_time,
+            data_source_key AS patient_symptom_data_source_key
+        FROM FinalData
+        ORDER BY patient_id, n;
 
-                SET @patient_visit_id = NULL;
+        -- Step 9: 设置输出参数
+--         SELECT @result = COUNT(*) FROM FinalData;
 
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_symptom_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_symptom_num,patient_symptom_name,patient_symptom_description,patient_symptom_start_time,patient_symptom_end_time,patient_symptom_delete_state_key,patient_symptom_update_time,patient_symptom_data_source_key)
-                VALUES (
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊记录ID
-                    @patient_visit_id, -- 就诊编号
-                    @patient_visit_id, -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    @RandomSymptomNum, -- 症状编号
-                    @RandomSymptomName, -- 症状名称
-                    @RandomSymptomDescription, -- 具体描述
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 出现时间
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 结束时间
-                    ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '2'  -- 数据来源1或2, 没有的默认为“2”
-                );
-
-                SET @i = @i + 1;
-            END
-
-            -- 再执行 3 次（patient_id + patient_visit_id）
-            WHILE @i <= 5
-            BEGIN
-
-                -- 按照记录顺序获取
-                SELECT @patient_visit_id = patient_visit_id,
-                       @patient_id = patient_id,
-                       @patient_hospital_visit_id = patient_hospital_visit_id, -- 就诊编号
-                       @patient_hospital_code = patient_hospital_code,  -- 医疗机构编号
-                       @patient_hospital_name = patient_hospital_name, -- 医院名称
-                       @patient_visit_in_time = patient_visit_in_time -- 入院时间
-                FROM (
-                    SELECT
-                        patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
-                        patient_visit_in_time, patient_visit_in_dept_name,patient_visit_diag,
-                        ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_visit_info
-                ) AS subquery
-                WHERE row_num = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
-
-
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_symptom_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_symptom_num,patient_symptom_name,patient_symptom_description,patient_symptom_start_time,patient_symptom_end_time,patient_symptom_delete_state_key,patient_symptom_update_time,patient_symptom_data_source_key)
-                VALUES (
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊记录ID
-                    @patient_hospital_visit_id, -- 就诊编号
-                    @patient_hospital_code, -- 就诊医疗机构编号
-                    @patient_hospital_name, -- 医院名称
-                    @RandomSymptomNum, -- 症状编号
-                    @RandomSymptomName, -- 症状名称
-                    @RandomSymptomDescription, -- 具体描述
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 出现时间
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 结束时间
-                    ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '1'  -- 数据来源1或2,有就诊记录ID默认为“1”
-                );
-
-                SET @i = @i + 1;
-
-            END
-
-        END;
-
-    SET @Counter1 = @Counter1 + 1;
-    END;
-
-
-
-END
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;

@@ -1,4 +1,6 @@
 -- todo  手术记录表(造数据)
+-- 数据量：每名患者5条（共15万），其中两条只有patientid，三条均有patientid、patient_visit_id
+-- # 5w，耗时: 0.6143 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_operation_info
     @RecordCount INT = 5,
@@ -8,183 +10,185 @@ BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    DECLARE @TwoHundredChars NVARCHAR(MAX);
-    SET @TwoHundredChars = REPLICATE(N'你好', 100); -- 每句4个字符，重复250次=1000字符
-
+    -- 获取患者数量
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
+    SELECT @re = COUNT(*) FROM a_cdrd_patient_info;
     SET @result = @re * @RecordCount;
 
-    -- 遍历基本信息表
-    DECLARE @Counter1 INT = 1;
-    WHILE @Counter1 <= @re
-    BEGIN
+    -- 生成固定长字符串
+    DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'你好', 100);
 
-        -- 循环插入5条
-        BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-            -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
-            DECLARE @i INT = 1;
-            DECLARE @patient_id INT;
-            DECLARE @patient_visit_id INT;
-            DECLARE @patient_hospital_visit_id NVARCHAR(100);
-            DECLARE @patient_hospital_code NVARCHAR(100);
-            DECLARE @patient_hospital_name NVARCHAR(50);
-            DECLARE @patient_visit_in_time DATETIME;
-            DECLARE @patient_visit_doc_name NVARCHAR(50);
+        -- Step 1: 获取所有患者 ID
+        ;WITH Patients AS (
+            SELECT patient_id
+            FROM a_cdrd_patient_info
+        ),
 
+        -- Step 2: 生成每位患者 2 条无就诊记录
+        NoVisitRecords AS (
+            SELECT p.patient_id, n.n
+            FROM Patients p
+            CROSS JOIN (SELECT 1 AS n UNION ALL SELECT 2) n
+        ),
 
---             -- 子存储过程
---             -- 医院
---             DECLARE @RandomHospital NVARCHAR(350);
---             EXEC p_hospital @v = @RandomHospital OUTPUT;
-            -- ab表
-            -- 医院
-            DECLARE @RandomHospital NVARCHAR(100)
-            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+        -- Step 3: 生成每位患者最多 3 条就诊记录
+        VisitRecords AS (
+            SELECT *,
+                   ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
+            FROM a_cdrd_patient_visit_info
+        ),
+        PatientVisitRecords AS (
+            SELECT vr.*
+            FROM VisitRecords vr
+            WHERE vr.seq <= 3
+        ),
 
+        -- Step 4: 为无就诊记录生成随机字段
+        NoVisitRandomFields AS (
+            SELECT nvr.patient_id,
+                   NULL AS patient_visit_id,
+                   NULL AS patient_hospital_visit_id,
+                   NULL AS patient_hospital_code,
+                   h.name AS RandomHospital,
+                   '2' AS patient_operation_source_key
+            FROM NoVisitRecords nvr
+            CROSS APPLY (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h
+        ),
 
-            -- 手术级别
-            DECLARE @RandomOperationLevelIdKey NVARCHAR(100)
-            DECLARE @RandomOperationLevelIdValue NVARCHAR(100)
-            SELECT TOP 1 @RandomOperationLevelIdKey=n_key, @RandomOperationLevelIdValue=n_value FROM ab_operationLevel ORDER BY NEWID()
+        -- Step 5: 为有就诊记录生成随机字段
+        VisitRandomFields AS (
+            SELECT pvr.patient_id,
+                   pvr.patient_visit_id,
+                   pvr.patient_hospital_visit_id,
+                   pvr.patient_hospital_code,
+                   h.name AS RandomHospital,
+                   '1' AS patient_operation_source_key
+            FROM PatientVisitRecords pvr
+            CROSS APPLY (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h
+        ),
 
---             DECLARE @RandomOperationLevelIdKey NVARCHAR(50), @RandomOperationLevelIdValue NVARCHAR(50);
---             EXEC p_operation_level @k = @RandomOperationLevelIdKey OUTPUT, @v = @RandomOperationLevelIdValue OUTPUT;
+        -- Step 6: 合并所有记录
+        AllRecords AS (
+            SELECT
+                v.patient_id,
+                v.patient_visit_id,
+                v.patient_hospital_visit_id,
+                v.patient_hospital_code,
+                v.RandomHospital AS patient_hospital_name,
+                v.patient_operation_source_key
+            FROM VisitRandomFields v
+            UNION ALL
+            SELECT
+                n.patient_id,
+                n.patient_visit_id,
+                n.patient_hospital_visit_id,
+                n.patient_hospital_code,
+                n.RandomHospital AS patient_hospital_name,
+                n.patient_operation_source_key
+            FROM NoVisitRandomFields n
+        ),
 
-            -- 手术类型
-            DECLARE @RandomOperationTypeIdKey NVARCHAR(100)
-            DECLARE @RandomOperationTypeIdValue NVARCHAR(100)
-            SELECT TOP 1 @RandomOperationTypeIdKey=n_key, @RandomOperationTypeIdValue=n_value FROM ab_operationType ORDER BY NEWID()
+        -- Step 7: 生成所有字段
+        FinalData AS (
+            SELECT
+                ar.patient_id,
+                ar.patient_visit_id,
+                ar.patient_hospital_visit_id,
+                ar.patient_hospital_code,
+                ar.patient_hospital_name,
+                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 10000000), 7) AS OperationNum,
+                RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 10000000), 7) AS SourceOperationNum,
+                DATEADD(DAY, ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS OperationBeginTime,
+                DATEADD(DAY, ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS OperationEndTime,
+                DATEADD(DAY, -ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 365, GETDATE()) AS UpdateTime,
+                ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 2 + 1 AS DeleteState,
 
---             DECLARE @RandomOperationTypeIdKey NVARCHAR(50), @RandomOperationTypeIdValue NVARCHAR(50);
---             EXEC p_operation_type @k = @RandomOperationTypeIdKey OUTPUT, @v = @RandomOperationTypeIdValue OUTPUT;
+                -- 随机字段
+                ol.n_key AS OperationLevelKey,
+                ol.n_value AS OperationLevelValue,
+                ot.n_key AS OperationTypeKey,
+                ot.n_value AS OperationTypeValue,
+                gh.n_key AS IncisionHealingGradeKey,
+                gh.n_value AS IncisionHealingGradeValue
+            FROM AllRecords ar
+            CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_operationLevel ORDER BY NEWID()) ol
+            CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_operationType ORDER BY NEWID()) ot
+            CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_operationIncisionHealingGrade ORDER BY NEWID()) gh
+        )
 
-            -- 切口愈合等级
-            DECLARE @RandomOperationIncisionHealingGradeIdKey NVARCHAR(100)
-            DECLARE @RandomOperationIncisionHealingGradeIdValue NVARCHAR(100)
-            SELECT TOP 1 @RandomOperationIncisionHealingGradeIdKey=n_key, @RandomOperationIncisionHealingGradeIdValue=n_value FROM ab_operationIncisionHealingGrade ORDER BY NEWID()
+        -- Step 8: 插入数据（使用 TABLOCKX 提高性能）
+        INSERT INTO a_cdrd_patient_operation_info WITH (TABLOCKX) (
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            patient_hospital_name,
+            patient_operation_num,
+            patient_operation_source_num,
+            patient_operation_name,
+            patient_operation_doc_name,
+            patient_operation_assist_I,
+            patient_operation_assit_II,
+            patient_operation_before_diag,
+            patient_operation_during_diag,
+            patient_operation_after_diag,
+            patient_operation_level_key,
+            patient_operation_level_value,
+            patient_operation_type_key,
+            patient_operation_type_value,
+            patient_operation_incision_healing_grade_key,
+            patient_operation_incision_healing_grade_value,
+            patient_operation_anesthesiologist,
+            patient_operation_anesthesia_type,
+            patient_operation_step_process,
+            patient_operation_begin_time,
+            patient_operation_end_time,
+            patient_operation_delete_state_key,
+            patient_operation_update_time,
+            patient_operation_source_key
+        )
+        SELECT
+            fd.patient_id,
+            fd.patient_visit_id,
+            fd.patient_hospital_visit_id,
+            fd.patient_hospital_code,
+            fd.patient_hospital_name,
+            fd.OperationNum,
+            fd.SourceOperationNum,
+            '手术名称',
+            '主刀/手术者',
+            'I助',
+            'II助',
+            @TwoHundredChars,
+            @TwoHundredChars,
+            @TwoHundredChars,
+            fd.OperationLevelKey,
+            fd.OperationLevelValue,
+            fd.OperationTypeKey,
+            fd.OperationTypeValue,
+            fd.IncisionHealingGradeKey,
+            fd.IncisionHealingGradeValue,
+            '麻醉者',
+            '麻醉方式',
+            '手术步骤及经过',
+            fd.OperationBeginTime,
+            fd.OperationEndTime,
+            fd.DeleteState,
+            fd.UpdateTime,
+            '1'
+--             fd.patient_operation_source_key
+        FROM FinalData fd
+        ORDER BY fd.patient_id;
 
---             DECLARE @RandomOperationIncisionHealingGradeIdKey NVARCHAR(50), @RandomOperationIncisionHealingGradeIdValue NVARCHAR(50);
---             EXEC p_operation_incision_healing_grade @k = @RandomOperationIncisionHealingGradeIdKey OUTPUT, @v = @RandomOperationIncisionHealingGradeIdValue OUTPUT;
+--         SET @result = @@ROWCOUNT;
 
-
-
-            -- 先执行 2 次 （仅 patient_id）
-            WHILE @i <= 2
-            BEGIN
-
-                -- 按照记录顺序获取
-                SELECT @patient_id = patient_id
-                FROM (
-                    SELECT
-                        patient_id,
-                        ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_info
-                ) AS subquery
-                WHERE row_num = @Counter1;
-
-
-                SET @patient_visit_id = NULL;
-
-
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_operation_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_operation_num,patient_operation_source_num,patient_operation_name,patient_operation_doc_name,patient_operation_assist_I,patient_operation_assit_II,patient_operation_before_diag,patient_operation_during_diag,patient_operation_after_diag,patient_operation_level_key,patient_operation_level_value,patient_operation_type_key,patient_operation_type_value,patient_operation_incision_healing_grade_key,patient_operation_incision_healing_grade_value,patient_operation_anesthesiologist,patient_operation_anesthesia_type,patient_operation_step_process,patient_operation_begin_time,patient_operation_end_time,patient_operation_delete_state_key,patient_operation_update_time,patient_operation_source_key)
-                VALUES (
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊记录ID
-                    @patient_visit_id, -- 就诊编号
-                    @patient_visit_id, -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 手术记录编号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统手术记录编号
-                    '手术名称', -- 手术名称
-                    '主刀/手术者', -- 主刀/手术者
-                    'I助', -- I助
-                    'II助', -- II助
-                    @TwoHundredChars, -- 术前诊断
-                    @TwoHundredChars, -- 术中诊断
-                    @TwoHundredChars, -- 术后诊断
-                    @RandomOperationLevelIdKey, -- 手术级别key [1,4]
-                    @RandomOperationLevelIdValue, -- 手术级别
-                    @RandomOperationTypeIdKey, -- 手术类型key [1,3]
-                    @RandomOperationTypeIdValue, -- 手术类型
-                    @RandomOperationIncisionHealingGradeIdKey, -- 切口愈合等级-key [1,4]
-                    @RandomOperationIncisionHealingGradeIdValue, -- 切口愈合等级
-                    '麻醉者', -- 麻醉者
-                    '麻醉方式', -- 麻醉方式
-                    '手术步骤及经过', -- 手术步骤及经过
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 手术开始时间
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 手术结束时间
-                    ABS(CHECKSUM(NEWID())) % 2 + 1, -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '2'  -- 数据来源1或2
-                );
-
-                SET @i = @i + 1;
-            END
-
-            -- 再执行 3 次（patient_id + patient_visit_id）
-            WHILE @i <= 5
-            BEGIN
-
-                -- 按照记录顺序获取
-                SELECT @patient_visit_id = patient_visit_id,
-                       @patient_id = patient_id,
-                       @patient_hospital_visit_id = patient_hospital_visit_id, -- 就诊编号
-                       @patient_hospital_code = patient_hospital_code,  -- 医疗机构编号
-                       @patient_hospital_name = patient_hospital_name, -- 医院名称
-                       @patient_visit_in_time = patient_visit_in_time, -- 入院时间
-                       @patient_visit_doc_name = patient_visit_doc_name -- 入院时间
-                FROM (
-                    SELECT
-                        patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
-                        patient_visit_in_time, patient_visit_in_dept_name,patient_visit_diag,patient_visit_doc_name,
-                        ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_visit_info
-                ) AS subquery
-                WHERE row_num = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
-
-
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_operation_info (patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_operation_num,patient_operation_source_num,patient_operation_name,patient_operation_doc_name,patient_operation_assist_I,patient_operation_assit_II,patient_operation_before_diag,patient_operation_during_diag,patient_operation_after_diag,patient_operation_level_key,patient_operation_level_value,patient_operation_type_key,patient_operation_type_value,patient_operation_incision_healing_grade_key,patient_operation_incision_healing_grade_value,patient_operation_anesthesiologist,patient_operation_anesthesia_type,patient_operation_step_process,patient_operation_begin_time,patient_operation_end_time,patient_operation_delete_state_key,patient_operation_update_time,patient_operation_source_key)
-                VALUES (
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊记录ID
-                    @patient_hospital_visit_id, -- 就诊编号
-                    @patient_hospital_code, -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 手术记录编号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统手术记录编号
-                    '手术名称', -- 手术名称
-                    @patient_visit_doc_name, -- 主刀/手术者
-                    'I助', -- I助
-                    'II助', -- II助
-                    @TwoHundredChars, -- 术前诊断
-                    @TwoHundredChars, -- 术中诊断
-                    @TwoHundredChars, -- 术后诊断
-                    @RandomOperationLevelIdKey, -- 手术级别key [1,4]
-                    @RandomOperationLevelIdValue, -- 手术级别
-                    @RandomOperationTypeIdKey, -- 手术类型key [1,3]
-                    @RandomOperationTypeIdValue, -- 手术类型
-                    @RandomOperationIncisionHealingGradeIdKey, -- 切口愈合等级-key [1,4]
-                    @RandomOperationIncisionHealingGradeIdValue, -- 切口愈合等级
-                    '麻醉者', -- 麻醉者
-                    '麻醉方式', -- 麻醉方式
-                    '手术步骤及经过', -- 手术步骤及经过
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 手术开始时间
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 手术结束时间
-                    ABS(CHECKSUM(NEWID())) % 2 + 1, -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '1'  -- 数据来源1或2
-                );
-                SET @i = @i + 1;
-            END
-
-        END;
-
-    SET @Counter1 = @Counter1 + 1;
-    END;
-
-
-END
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;

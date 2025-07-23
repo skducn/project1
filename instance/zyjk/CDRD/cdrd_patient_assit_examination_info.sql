@@ -1,173 +1,159 @@
--- todo  辅助检查报告表(造数据)
--- 5w, 耗时: 1807.5582 秒, 547,831,808
-
+-- 辅助检查信息表(造数据)优化版
+-- 数据量：每名患者5条（共15万）
+-- 优化目标：提升性能，避免嵌套循环
+-- 5w, 耗时: 8.1996 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_assit_examination_info
-    @RecordCount INT = 5,
+    @RecordCount INT = 5, -- 每位患者生成5条辅助检查记录
     @result INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    DECLARE @ThousandChars NVARCHAR(MAX);
-    SET @ThousandChars = REPLICATE(N'哈喽你好', 250); -- 每句4个字符，重复250次=1000字符
-
     DECLARE @re INT = 1;
     select @re = count(*) from a_cdrd_patient_info;
     SET @result = @re * @RecordCount;
 
-    -- 遍历基本信息表
-    DECLARE @Counter1 INT = 1;
-    WHILE @Counter1 <= @re
-    BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
 
-        -- 循环插入5条
-        BEGIN
+        -- Step 1: 生成1~@RecordCount 的序列（使用递归 CTE 确保唯一）
+        ;WITH Numbers AS (
+            SELECT 1 AS n
+            UNION ALL
+            SELECT n + 1 FROM Numbers WHERE n < @RecordCount
+        ),
 
-            -- 获取 patient_id 和 patient_visit_id（按指定次数插入）
-            DECLARE @i INT = 1;
-            DECLARE @patient_id INT;
-            DECLARE @patient_visit_id INT;
-            DECLARE @AssitExaminationTypeIdValue NVARCHAR(50);
-            DECLARE @patient_hospital_visit_id NVARCHAR(100);
-            DECLARE @patient_hospital_code NVARCHAR(100);
-            DECLARE @patient_hospital_name NVARCHAR(50);
-            DECLARE @patient_visit_in_time DATETIME;
+        -- Step 2: 获取所有患者 ID（来自患者主表）
+        Patients AS (
+            SELECT patient_id
+            FROM a_cdrd_patient_info
+        ),
 
---             -- 子存储过程
---             -- 医院
---             DECLARE @RandomHospital NVARCHAR(350);
---             EXEC p_hospital @v = @RandomHospital OUTPUT;
-            -- ab表
-            -- 医院
-            DECLARE @RandomHospital NVARCHAR(100)
-            SELECT TOP 1 @RandomHospital=name FROM ab_hospital ORDER BY NEWID()
+        -- Step 3: 为每位患者生成1~@RecordCount 的编号
+        PatientSequences AS (
+            SELECT p.patient_id, n.n
+            FROM Patients p
+            CROSS JOIN Numbers n
+        ),
 
+        -- Step 4: 获取每位患者的就诊记录（每人最多 @RecordCount 条）
+        VisitRecords AS (
+            SELECT *,
+                   ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
+            FROM a_cdrd_patient_visit_info
+            WHERE patient_visit_type_key = 1
+        ),
 
-            -- 先执行 2 次 （仅 patient_id）
-            WHILE @i <= 2
-            BEGIN
+        -- Step 5: 关联每位患者生成的序号与就诊记录
+        PatientVisitMapping AS (
+            SELECT ps.patient_id, ps.n,
+                   v.patient_visit_id, v.patient_hospital_visit_id, v.patient_hospital_code, v.patient_hospital_name,
+                   v.patient_visit_in_time
+            FROM PatientSequences ps
+            LEFT JOIN VisitRecords v
+                ON ps.patient_id = v.patient_id
+                AND ps.n = v.seq
+        ),
 
-                -- 按照记录顺序获取
-                SELECT @patient_id = patient_id
-                FROM (
-                    SELECT
-                        patient_id,
-                        ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_info
-                ) AS subquery
-                WHERE row_num = @Counter1;
+        -- Step 6: 一次性生成随机字段（避免逐条生成）
+        -- Step 6: 一次性生成随机字段（避免逐条生成）
+        RandomFields AS (
+            SELECT
+                   pm.patient_id,
+                   pm.n,
+                   pm.patient_visit_id,
+                   pm.patient_hospital_visit_id,
+                   pm.patient_hospital_code,
+                   pm.patient_hospital_name,
+                   pm.patient_visit_in_time,
 
+                   h.RandomHospitalName,
+                   CASE
+                       WHEN pm.n <= 2 THEN '电生理检查'
+                       WHEN pm.n = 3 THEN '超声检查'
+                       WHEN pm.n = 4 THEN '内镜检查'
+                       WHEN pm.n = 5 THEN '病理检查'
+                   END AS AssitExaminationTypeIdValue
+            FROM PatientVisitMapping pm
+            CROSS APPLY (
+                SELECT TOP 1 name AS RandomHospitalName FROM ab_hospital ORDER BY NEWID()
+            ) h
+        ),
 
-                SET @patient_visit_id = NULL;
+        -- Step 7: 生成最终字段
+        FinalData AS (
+            SELECT *,
+                   RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(patient_id * 10000 + n)) % 10000000), 7) AS report_num,
+                   RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(patient_id * 10000 + n)) % 10000000), 7) AS source_report_num,
+                   DATEADD(DAY, ABS(CHECKSUM(patient_id * 10000 + n)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS check_time,
+                   DATEADD(DAY, ABS(CHECKSUM(patient_id * 10000 + n)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS report_time,
+                   DATEADD(DAY, -ABS(CHECKSUM(patient_id * 10000 + n)) % 365, GETDATE()) AS update_time,
+                   ABS(CHECKSUM(patient_id * 10000 + n)) % 2 + 1 AS delete_state,
+                   CASE WHEN patient_visit_id IS NULL THEN '2' ELSE '1' END AS data_source_key,
+                   REPLICATE(N'哈喽你好', 250) AS ThousandChars
+            FROM RandomFields
+        )
 
-                if @i = 1
-                BEGIN
-                    SET @AssitExaminationTypeIdValue = '电生理检查';
-                END
-                if @i = 2
-                BEGIN
-                    SET @AssitExaminationTypeIdValue = '放射学检查';
-                END
+        -- Step 8: 一次性插入数据（使用 TABLOCKX 提高性能）
+        INSERT INTO a_cdrd_patient_assit_examination_info (
+            patient_assit_examination_type_key,
+            patient_assit_examination_type_value,
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            patient_hospital_name,
+            patient_assit_examination_report_num,
+            patient_assit_examination_source_report_num,
+            patient_assit_examination_report_name,
+            patient_assit_examination_check_method,
+            patient_assit_examination_body_site,
+            patient_assit_examination_sample_body,
+            patient_assit_examination_eye_find,
+            patient_assit_examination_microscope_find,
+            patient_assit_examination_check_find,
+            patient_assit_examination_check_conclusion,
+            patient_assit_examination_check_time,
+            patient_assit_examination_report_time,
+            patient_assit_examination_delete_state_key,
+            patient_assit_examination_update_time,
+            patient_assit_examination_data_source_key
+        )
+        SELECT
+            n AS patient_assit_examination_type_key,
+            AssitExaminationTypeIdValue AS patient_assit_examination_type_value,
+            patient_id,
+            patient_visit_id,
+            patient_hospital_visit_id,
+            patient_hospital_code,
+            RandomHospitalName AS patient_hospital_name,
+            report_num AS patient_assit_examination_report_num,
+            source_report_num AS patient_assit_examination_source_report_num,
+            '报告名称' AS patient_assit_examination_report_name,
+            '检查方法' AS patient_assit_examination_check_method,
+            CASE WHEN AssitExaminationTypeIdValue = '病理检查' THEN '' ELSE '随机值123' END AS patient_assit_examination_body_site,
+            CASE WHEN AssitExaminationTypeIdValue = '病理检查' THEN '随机值' ELSE '' END AS patient_assit_examination_sample_body,
+            ThousandChars AS patient_assit_examination_eye_find,
+            ThousandChars AS patient_assit_examination_microscope_find,
+            ThousandChars AS patient_assit_examination_check_find,
+            ThousandChars AS patient_assit_examination_check_conclusion,
+            check_time AS patient_assit_examination_check_time,
+            report_time AS patient_assit_examination_report_time,
+            delete_state AS patient_assit_examination_delete_state_key,
+            update_time AS patient_assit_examination_update_time,
+            data_source_key AS patient_assit_examination_data_source_key
+        FROM FinalData
+        ORDER BY patient_id, n;
 
+        -- Step 9: 设置输出参数
+--         SELECT @result = COUNT(*) FROM FinalData;
 
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_assit_examination_info (patient_assit_examination_type_key,patient_assit_examination_type_value,patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_assit_examination_report_num,patient_assit_examination_source_report_num,patient_assit_examination_report_name,patient_assit_examination_check_method,patient_assit_examination_body_site,patient_assit_examination_sample_body,patient_assit_examination_eye_find,patient_assit_examination_microscope_find,patient_assit_examination_check_find,patient_assit_examination_check_conclusion,patient_assit_examination_check_time,patient_assit_examination_report_time,patient_assit_examination_delete_state_key,patient_assit_examination_update_time,patient_assit_examination_data_source_key)
-                VALUES (
-                    @i, -- 辅助检查类型-key
-                    @AssitExaminationTypeIdValue, -- 辅助检查类型
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊记录ID
-                    @patient_visit_id, -- 就诊编号
-                    @patient_visit_id, -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统报告编号
-                    '报告名称', -- 报告名称
-                    '检查方法', -- 检查方法
-                    '检查部位', -- 检查部位
-                    '取材部位及组织名称', -- 取材部位及组织名称
-                    @ThousandChars, -- 肉眼所见
-                    @ThousandChars, -- 镜下所见
-                    @ThousandChars, -- 检查所见
-                    @ThousandChars, -- 检查结论
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 检查日期
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 报告日期
-                    ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '2' -- 数据来源1或2
-                );
-                SET @i = @i + 1;
-            END
-
-            -- 再执行 3 次（patient_id + patient_visit_id）
-            WHILE @i <= 5
-            BEGIN
-
-                -- 按照记录顺序获取
-                SELECT @patient_visit_id = patient_visit_id,
-                       @patient_id = patient_id,
-                       @patient_hospital_visit_id = patient_hospital_visit_id, -- 就诊编号
-                       @patient_hospital_code = patient_hospital_code,  -- 医疗机构编号
-                       @patient_hospital_name = patient_hospital_name, -- 医院名称
-                       @patient_visit_in_time = patient_visit_in_time -- 入院时间
-                FROM (
-                    SELECT
-                        patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
-                        patient_visit_in_time, patient_visit_in_dept_name,patient_visit_diag,
-                        ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY @patient_visit_id) AS row_num
-                    FROM a_cdrd_patient_visit_info
-                ) AS subquery
-                WHERE row_num = @i AND patient_id = @patient_id; -- 使用 @i 控制每条记录的偏移
-
-
-                if @i = 3
-                BEGIN
-                    SET @AssitExaminationTypeIdValue = '超声检查';
-                END
-                if @i = 4
-                BEGIN
-                    SET @AssitExaminationTypeIdValue = '内镜检查';
-                END
-                if @i = 5
-                BEGIN
-                    SET @AssitExaminationTypeIdValue = '病理检查';
-                END
-
-                -- 插入单条随机数据
-                INSERT INTO a_cdrd_patient_assit_examination_info (patient_assit_examination_type_key,patient_assit_examination_type_value,patient_id,patient_visit_id,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_assit_examination_report_num,patient_assit_examination_source_report_num,patient_assit_examination_report_name,patient_assit_examination_check_method,patient_assit_examination_body_site,patient_assit_examination_sample_body,patient_assit_examination_eye_find,patient_assit_examination_microscope_find,patient_assit_examination_check_find,patient_assit_examination_check_conclusion,patient_assit_examination_check_time,patient_assit_examination_report_time,patient_assit_examination_delete_state_key,patient_assit_examination_update_time,patient_assit_examination_data_source_key)
-                VALUES (
-                    @i, -- 辅助检查类型-key
-                    @AssitExaminationTypeIdValue, -- 辅助检查类型
-                    @patient_id, -- 患者ID
-                    @patient_visit_id, -- 就诊记录ID
-                    @patient_hospital_visit_id, -- 就诊编号
-                    @patient_hospital_code, -- 就诊医疗机构编号
-                    @RandomHospital, -- 医院名称
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 报告编号
-                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7), -- 源系统报告编号
-                    '报告名称', -- 报告名称
-                    '检查方法', -- 检查方法
-                    CASE WHEN @i = 5 THEN '' ELSE '随机值123' END, -- 检查部位，如果类型为“病理检查”则为空，否则随机需有值
-                    CASE WHEN @i = 5 THEN '随机值' ELSE '' END, -- 取材部位及组织名称，如果类型为“病理检查”则随机需有值，否则为空
-                    @ThousandChars, -- 肉眼所见
-                    @ThousandChars, -- 镜下所见
-                    @ThousandChars, -- 检查所见
-                    @ThousandChars, -- 检查结论
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 检查日期
-                    DATEADD(DAY,ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1,'2022-06-01'), -- 报告日期
-                    ABS(CHECKSUM(NEWID())) % 2 + 1,  -- 删除状态1或2
-                    DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()), -- 更新时间
-                    '1' -- 数据来源1或2
-                );
-
-                SET @i = @i + 1;
-            END
-
-        END;
-
-    SET @Counter1 = @Counter1 + 1;
-    END;
-
-END
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0 ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;

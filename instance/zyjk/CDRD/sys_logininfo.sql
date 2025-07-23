@@ -1,7 +1,8 @@
 -- todo 登录登出表
-
+-- sys_logininfo(登录登出表) => 生成 10000 条！
+-- 耗时: 16.7572 秒
 CREATE OR ALTER PROCEDURE sys_logininfo
-    @RecordCount INT = 10, -- 默认10条
+    @RecordCount INT = 10000, -- 默认10条
     @result INT OUTPUT
 AS
 BEGIN
@@ -24,12 +25,8 @@ BEGIN
         DECLARE @RandomTrueFalseIdKey NVARCHAR(100)
         DECLARE @RandomTrueFalseIdValue NVARCHAR(100)
         SELECT TOP 1 @RandomTrueFalseIdKey=n_key,@RandomTrueFalseIdValue=n_value FROM ab_boolean ORDER BY NEWID()
---         DECLARE @RandomTrueFalseIdKey NVARCHAR(50), @RandomTrueFalseIdValue NVARCHAR(50);
---         EXEC p_trueFalse @k = @RandomTrueFalseIdKey OUTPUT, @v = @RandomTrueFalseIdValue OUTPUT;
 
         -- 登录类型，方式
---         DECLARE @RandomLoginType NVARCHAR(50), @RandomWay NVARCHAR(50);
---         EXEC r_logininfo__ @v1 = @RandomLoginType OUTPUT, @v2 = @RandomWay OUTPUT;
         DECLARE @RandomLoginType NVARCHAR(100)
         DECLARE @RandomWay NVARCHAR(100)
         SELECT TOP 1 @RandomLoginType=n_key,@RandomWay=n_value FROM ab_loginout ORDER BY NEWID()
