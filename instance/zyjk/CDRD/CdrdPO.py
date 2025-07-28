@@ -14,10 +14,24 @@
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
 
+import subprocess
 
 
 class CdrdPO(object):
 
+    def openSql(self, file_path):
+        try:
+            # 调用系统命令，通过 PyCharm 打开指定文件
+            subprocess.run(
+                ["/Applications/PyCharm.app/Contents/MacOS/pycharm", file_path],  # 命令参数：PyCharm路径 + 目标文件路径
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+            print(f"已打开文件：{file_path}")
+        except Exception as e:
+            print(f"打开失败：{str(e)}")
 
     def _ab_admissionCondition(self, varCommon):
 
@@ -41,7 +55,7 @@ class CdrdPO(object):
                                 n_value NVARCHAR(100)
                                 ''')
         Sqlserver_PO.execute("INSERT INTO ab_boolean (n_key, n_value) "
-                             "VALUES ('0',N'是'),('1',N'否')")
+                             "VALUES ('1',N'是'),('0',N'否')")
         Sqlserver_PO.setTableComment('ab_boolean', varCommon + '(测试用)')
     def _ab_dischargeStatus(self, varCommon):
 
@@ -879,6 +893,55 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_contact_address', '联系人地址'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_data_source_key', '数据来源')
+
+    def cre_a_cdrd_patient_info(self, varCommon):
+        table = 'a_cdrd_patient_info'
+
+        # 定义字段与注释的映射关系
+        field_comments = [
+            ('patient_id', '患者ID'),
+            ('patient_sex_key', '性别-key'),
+            ('patient_sex_value', '性别'),
+            ('patient_birth_date', '出生日期'),
+            ('patient_age', '年龄'),
+            ('patient_birth_address_province_key', '出生地-省-key'),
+            ('patient_birth_address_province', '出生地-省'),
+            ('patient_birth_address_city_key', '出生地-市-key'),
+            ('patient_birth_address_city', '出生地-市'),
+            ('patient_birth_address_country_key', '出生地-县-key'),
+            ('patient_birth_address_country', '出生地-县'),
+            ('patient_country', '国籍'),
+            ('patient_native_province_key', '籍贯-省-key'),
+            ('patient_native_province', '籍贯-省'),
+            ('patient_native_city_key', '籍贯-市-key'),
+            ('patient_native_city', '籍贯-市'),
+            ('patient_nation_key', '民族-key'),
+            ('patient_nation_value', '民族'),
+            ('patient_marriage_key', '婚姻-key'),
+            ('patient_marriage_value', '婚姻'),
+            ('patient_id_type_key', '证件类型-key'),
+            ('patient_id_type_value', '证件类型'),
+            ('patient_id_num', '证件号码'),
+            ('patient_home_phone', '家庭电话'),
+            ('patient_account_address', '户口地址'),
+            ('patient_contact_name', '联系人姓名'),
+            ('patient_contact_relation', '与患者关系'),
+            ('patient_contact_phone', '联系人电话'),
+            ('patient_contact_address', '联系人地址'),
+            ('patient_phone_num', '联系电话'),
+            ('patient_home_address', '现住址'),
+            ('patient_profession', '职业'),
+            ('patient_update_time', '更新时间'),
+            ('patient_data_source_key', '数据来源'),
+        ]
+
+        # 批量设置字段注释
+        for field, comment in field_comments:
+            Sqlserver_PO.setFieldComment(table, field, comment)
+
+        # 设置表注释
+        Sqlserver_PO.setTableComment(table, varCommon + '(测试用)')
+
     def index(self, index,table,field):
 
         # 创建非聚集索引
@@ -1748,6 +1811,10 @@ class CdrdPO(object):
         time = time_end - time_start
         # print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
         print(f"\n耗时: {time:.4f} 秒")  # 6.0036 秒
+
+        varTable = "a_" + varProcedure
+        result = Sqlserver_PO.selectOne("select count(*) as qty from %s" % (varTable))
+        print(result)
 
 
 

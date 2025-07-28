@@ -1,6 +1,6 @@
 -- 诊断信息表(造数据)优化版
 -- 数据量：每名患者5条（共15万）
--- 优化目标：提升性能，每位患者生成5条记录，每条记录使用一条就诊记录
+-- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMzM4MjMzNDAx#g=X2hpZGRlbjpoaWRkZW4xNzUzMzM4MjMzNDAx
 -- 5w,耗时: 0.5827 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
@@ -8,6 +8,7 @@ CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
     @result INT OUTPUT
 AS
 BEGIN
+    -- 1. 初始化设置
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
@@ -20,6 +21,8 @@ BEGIN
         BEGIN TRANSACTION;
 
         -- Step 1: 生成1~@RecordCount 的序列（使用递归 CTE 确保唯一）
+        -- 使用递归CTE生成1到@RecordCount的数字序列
+        -- 确保为每位患者生成指定数量的记录
         ;WITH Numbers AS (
             SELECT 1 AS n
             UNION ALL
@@ -33,6 +36,7 @@ BEGIN
         ),
 
         -- Step 3: 为每位患者生成1~@RecordCount 的编号
+        -- 通过 CROSS JOIN 将每位患者与数字序列关联
         PatientSequences AS (
             SELECT p.patient_id, n.n
             FROM Patients p
@@ -40,6 +44,9 @@ BEGIN
         ),
 
         -- Step 4: 获取每位患者的就诊记录（每人最多 @RecordCount 条）
+        -- 从就诊信息表 a_cdrd_patient_visit_info 获取门诊记录
+        -- 使用 ROW_NUMBER() 为每位患者的就诊记录编号
+        -- 只选择门诊记录（patient_visit_type_key = 1）
         VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
@@ -48,6 +55,8 @@ BEGIN
         ),
 
         -- Step 5: 关联每位患者生成的序号与就诊记录
+        -- 将患者序列与就诊记录关联
+        -- 使用LEFT JOIN确保即使没有就诊记录也能生成诊断记录
         PatientVisitMapping AS (
             SELECT ps.patient_id, ps.n,
                    v.patient_visit_id, v.patient_hospital_visit_id, v.patient_hospital_code, v.patient_case_num
@@ -102,6 +111,7 @@ BEGIN
                 ON pm.patient_id = rs.patient_id
         )
 
+        -- 4. 数据插入
         -- Step 8: 插入数据
         INSERT INTO a_cdrd_patient_diag_info (
             patient_id,

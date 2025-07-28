@@ -1,6 +1,6 @@
--- 门(急)诊住院就诊信息(造数据)优化版
--- 数据量：每个患者5条（3条门诊，2条住院），共15万条
--- 优化目标：提升性能，避免嵌套循环
+-- todo 门(急)诊住院就诊信息
+-- 数据量：每个患者5条（3条门诊，2条住院）
+-- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMzIxODczNDE0#g=X2hpZGRlbjpoaWRkZW4xNzUzMzIxODczNDE0
 -- 5w, 耗时: 6.5393 秒
 
 CREATE OR ALTER PROCEDURE cdrd_patient_visit_info
@@ -8,9 +8,11 @@ CREATE OR ALTER PROCEDURE cdrd_patient_visit_info
     @result INT OUTPUT
 AS
 BEGIN
+    --1. 初始化设置
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
+    --2. 数据准备
     -- 生成100个字符的重复字段
     DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'职能', 100);
 
@@ -23,9 +25,12 @@ BEGIN
         RETURN;
     END;
 
+    --3. 核心数据生成逻辑
+    -- 通过多个CTE（公用表表达式）逐步构建数据：
     -- 获取每位患者生成的就诊记录编号（1~5）
-    -- 为每位患者生成 @RecordCount 条记录（默认 5 条）。
-    -- 使用 CROSS JOIN 和 ROW_NUMBER() 实现每位患者生成多个记录。
+
+    --为每位患者生成 @RecordCount 条记录（默认5条）
+    -- 使用 CROSS JOIN 和 ROW_NUMBER() 实现每位患者生成多条记录
     ;WITH PatientSequences AS (
         SELECT p.patient_id, n.n
         FROM a_cdrd_patient_info p
@@ -44,7 +49,7 @@ BEGIN
         FROM PatientSequences
     ),
 
-    -- 生成随机字段（医院、就诊类型、医疗付费方式等）
+    -- 为每条记录随机分配各种字段值：
     -- 使用 CROSS APPLY 从多个参考表中随机选取字段值（如医院、就诊类型、医疗付费方式等）。
     RandomFields AS (
         SELECT vt.*,
@@ -69,8 +74,9 @@ BEGIN
         CROSS APPLY (SELECT TOP 1 n_value FROM ab_visitDiagnosis ORDER BY NEWID()) diag -- 就诊诊断
     ),
 
-    -- 获取科室信息（随机科室、医生）
-    -- 为每位患者随机分配一个科室和医生。
+    -- 为每条记录随机分配科室和医生信息：
+    -- 从 a_sys_department 表随机选择科室
+    -- 从 a_sys_dept_medgp_person 表随机选择医生
     DeptInfo AS (
         SELECT rf.*,
                d.department_id, d.department_name, d.department_code,
@@ -94,8 +100,11 @@ BEGIN
         ) p
     ),
 
-    -- 生成就诊日期（随机时间）
-    -- 生成就诊时间、年龄、住院天数、随机编号等字段。
+    -- 生成时间相关字段：
+    -- 就诊时间（jzrq）：2022年6月1日之后的随机日期
+    -- 就诊年龄（visit_age）：随机生成的年龄
+    -- 住院天数（visit_days）：随机生成的住院天数
+    -- 序列号（seq_num）：随机编号
     FinalData AS (
         SELECT *,
                DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS jzrq, --就诊时间
@@ -105,7 +114,7 @@ BEGIN
         FROM DeptInfo
     )
 
-    -- 插入数据
+    --4. 数据插入
     INSERT INTO a_cdrd_patient_visit_info (
         patient_visit_type_key, patient_visit_type_value, patient_id,
         patient_hospital_visit_id, patient_hospital_code, patient_hospital_name,

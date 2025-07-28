@@ -18,6 +18,11 @@
 # UPDATE STATISTICS ab_hospital;
 # UPDATE STATISTICS a_sys_dept_medgp;
 # UPDATE STATISTICS a_sys_dept_medgp_person;
+
+# 【腾讯文档】专病库性能说明书
+# https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC
+
+# gitlab需求：http://192.168.0.241/cdrd_product_doc/product_doc/-/tree/dev
 # *********************************************************************
 
 from CdrdPO import *
@@ -65,7 +70,7 @@ Cdrd_PO = CdrdPO()
 
 
 
-# todo 创建表和数据
+# todo 创建ab表
 
 # Cdrd_PO._ab_IDtype('证件类型')
 # Cdrd_PO._ab_admissionCondition('入院病情')
@@ -103,17 +108,18 @@ Cdrd_PO = CdrdPO()
 
 
 
-# todo 1，专病库字段表
-# 患者基本信息
+# todo 5.1 患者基本信息
 # 数据量：30000
+# 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
+# Cdrd_PO.openSql("cdrd_patient_info.sql")
 # Cdrd_PO._a_cdrd_patient_info('患者基本信息')
+# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
 # Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
 # Cdrd_PO.updateStatistics('a_cdrd_patient_info')
-# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
-
 
 # # 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
+# Cdrd_PO.openSql("cdrd_patient_visit_info.sql")
 # Sqlserver_PO.delTable('a_cdrd_patient_visit_info')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
 # Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
@@ -122,14 +128,16 @@ Cdrd_PO = CdrdPO()
 # # # 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+# Cdrd_PO.openSql("cdrd_patient_diag_info.sql")
 # Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
 # Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
 #
 
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
-# Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
-# Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息')
+# Cdrd_PO.openSql("cdrd_patient_symptom_info.sql")
+Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
+Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息')
 #
 #
 # # # 体征信息
@@ -205,8 +213,8 @@ Cdrd_PO = CdrdPO()
 
 # 登录日志
 # 数据量：50万
-Cdrd_PO._a_sys_logininfo('登录登出表')
-Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
+# Cdrd_PO._a_sys_logininfo('登录登出表')
+# Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
 # Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 
 
@@ -234,20 +242,20 @@ Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50
 # 数据量：1个科室
 # Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
 # Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
-Cdrd_PO.updateStatistics('a_sys_department')
+# Cdrd_PO.updateStatistics('a_sys_department')
 # Cdrd_PO.dept__a_sys_department('科室表')
 # Cdrd_PO.procedure("sys_department", '科室表')
 
 # 数据量：每个科室下3个医疗组
 # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
-Cdrd_PO.updateStatistics('a_sys_dept_medgp')
+# Cdrd_PO.updateStatistics('a_sys_dept_medgp')
 
 # Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
 # Cdrd_PO.procedure("sys_dept_medgp", '医疗组')
 
 # 数据量：每个医疗组下5名成员
 # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
-Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
+# Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
 
 
 
