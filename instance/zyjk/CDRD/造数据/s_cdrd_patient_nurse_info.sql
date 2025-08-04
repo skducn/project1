@@ -1,7 +1,7 @@
 -- todo  护理记录表(造数据)
 -- 数据量：每条住院记录3条护理记录（共9万）
 
-CREATE OR ALTER PROCEDURE cdrd_patient_nurse_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_nurse_info
     @RecordCount INT = 3,
     @result INT OUTPUT
 AS
@@ -20,7 +20,7 @@ BEGIN
         patient_hospital_code,
         patient_hospital_name
     INTO #TempAdvice
-    FROM a_cdrd_patient_hospital_advice_info;
+    FROM CDRD_PATIENT_HOSPITAL_ADVICE_INFO
 
     -- 遍历每条记录并插入 3 条护理记录
     DECLARE @Counter INT = 1;
@@ -51,7 +51,7 @@ BEGIN
             DECLARE @i INT = 1;
             WHILE @i <= @RecordCount
             BEGIN
-                INSERT INTO a_cdrd_patient_nurse_info (
+                INSERT INTO CDRD_PATIENT_NURSE_INFO (
                     patient_id,
                     patient_visit_id,
                     patient_hospital_visit_id,
@@ -90,7 +90,7 @@ BEGIN
     COMMIT TRANSACTION;
 
     -- 返回总记录数
-    SET @result = (SELECT COUNT(*) FROM a_cdrd_patient_nurse_info);
+    SET @result = (SELECT COUNT(*) FROM CDRD_PATIENT_NURSE_INFO);
 
     DROP TABLE #TempAdvice;
 END

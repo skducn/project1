@@ -3,7 +3,7 @@
 -- 优化目标：提升性能，避免嵌套循环
 -- 5w, 耗时: 8.1996 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_assit_examination_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_assit_examination_info
     @RecordCount INT = 5, -- 每位患者生成5条辅助检查记录
     @result INT OUTPUT
 AS
@@ -12,7 +12,7 @@ BEGIN
     SET XACT_ABORT ON;
 
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
+    select @re = count(*) from CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     BEGIN TRY
@@ -28,7 +28,7 @@ BEGIN
         -- Step 2: 获取所有患者 ID（来自患者主表）
         Patients AS (
             SELECT patient_id
-            FROM a_cdrd_patient_info
+            FROM CDRD_PATIENT_INFO
         ),
 
         -- Step 3: 为每位患者生成1~@RecordCount 的编号
@@ -42,7 +42,7 @@ BEGIN
         VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
-            FROM a_cdrd_patient_visit_info
+            FROM CDRD_PATIENT_VISIT_INFO
             WHERE patient_visit_type_key = 1
         ),
 
@@ -97,7 +97,7 @@ BEGIN
         )
 
         -- Step 8: 一次性插入数据（使用 TABLOCKX 提高性能）
-        INSERT INTO a_cdrd_patient_assit_examination_info (
+        INSERT INTO CDRD_PATIENT_ASSIT_EXAMINATION_INFO (
             patient_assit_examination_type_key,
             patient_assit_examination_type_value,
             patient_id,
@@ -146,9 +146,6 @@ BEGIN
             data_source_key AS patient_assit_examination_data_source_key
         FROM FinalData
         ORDER BY patient_id, n;
-
-        -- Step 9: 设置输出参数
---         SELECT @result = COUNT(*) FROM FinalData;
 
         COMMIT TRANSACTION;
     END TRY

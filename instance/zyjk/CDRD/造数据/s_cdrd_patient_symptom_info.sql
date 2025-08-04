@@ -3,7 +3,7 @@
 -- 优化目标：提升性能，避免嵌套循环
 -- 原耗时: 1902.2599 秒 → 优化后预计耗时: 0.5~1 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_symptom_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_symptom_info
     @RecordCount INT = 5, -- 每位患者生成5条症状记录
     @result INT OUTPUT
 AS
@@ -12,7 +12,7 @@ BEGIN
     SET XACT_ABORT ON;
 
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
+    select @re = count(*) from CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     BEGIN TRY
@@ -28,7 +28,7 @@ BEGIN
         -- Step 2: 获取所有患者 ID（来自患者主表）
         Patients AS (
             SELECT patient_id
-            FROM a_cdrd_patient_info
+            FROM CDRD_PATIENT_INFO
         ),
 
         -- Step 3: 为每位患者生成1~@RecordCount 的编号
@@ -42,7 +42,7 @@ BEGIN
         VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
-            FROM a_cdrd_patient_visit_info
+            FROM CDRD_PATIENT_VISIT_INFO
             WHERE patient_visit_type_key = 1
         ),
 
@@ -94,7 +94,7 @@ BEGIN
         )
 
         -- Step 8: 一次性插入数据（使用 TABLOCKX 提高性能）
-        INSERT INTO a_cdrd_patient_symptom_info (
+        INSERT INTO CDRD_PATIENT_SYMPTOM_INFO (
             patient_id,
             patient_visit_id,
             patient_hospital_visit_id,
@@ -125,9 +125,6 @@ BEGIN
             data_source_key AS patient_symptom_data_source_key
         FROM FinalData
         ORDER BY patient_id, n;
-
-        -- Step 9: 设置输出参数
---         SELECT @result = COUNT(*) FROM FinalData;
 
         COMMIT TRANSACTION;
     END TRY

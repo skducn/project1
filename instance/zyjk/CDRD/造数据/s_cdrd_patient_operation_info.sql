@@ -2,7 +2,7 @@
 -- 数据量：每名患者5条（共15万），其中两条只有patientid，三条均有patientid、patient_visit_id
 -- # 5w，耗时: 0.6143 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_operation_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_operation_info
     @RecordCount INT = 5,
     @result INT OUTPUT
 AS
@@ -12,7 +12,7 @@ BEGIN
 
     -- 获取患者数量
     DECLARE @re INT = 1;
-    SELECT @re = COUNT(*) FROM a_cdrd_patient_info;
+    SELECT @re = COUNT(*) FROM CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     -- 生成固定长字符串
@@ -24,7 +24,7 @@ BEGIN
         -- Step 1: 获取所有患者 ID
         ;WITH Patients AS (
             SELECT patient_id
-            FROM a_cdrd_patient_info
+            FROM CDRD_PATIENT_INFO
         ),
 
         -- Step 2: 生成每位患者 2 条无就诊记录
@@ -38,7 +38,7 @@ BEGIN
         VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
-            FROM a_cdrd_patient_visit_info
+            FROM CDRD_PATIENT_VISIT_INFO
         ),
         PatientVisitRecords AS (
             SELECT vr.*
@@ -120,7 +120,7 @@ BEGIN
         )
 
         -- Step 8: 插入数据（使用 TABLOCKX 提高性能）
-        INSERT INTO a_cdrd_patient_operation_info WITH (TABLOCKX) (
+        INSERT INTO CDRD_PATIENT_OPERATION_INFO WITH (TABLOCKX) (
             patient_id,
             patient_visit_id,
             patient_hospital_visit_id,
@@ -179,11 +179,8 @@ BEGIN
             fd.DeleteState,
             fd.UpdateTime,
             '1'
---             fd.patient_operation_source_key
         FROM FinalData fd
         ORDER BY fd.patient_id;
-
---         SET @result = @@ROWCOUNT;
 
         COMMIT TRANSACTION;
     END TRY

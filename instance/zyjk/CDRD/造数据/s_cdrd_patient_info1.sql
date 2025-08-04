@@ -8,7 +8,7 @@
 -- 3000条，耗时: 11.2399 秒
 -- 30000条，耗时: 113.9838 秒 ， 11M
 
-CREATE OR ALTER PROCEDURE cdrd_patient_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_info
     @result INT OUTPUT
 AS
 BEGIN
@@ -134,6 +134,9 @@ BEGIN
                  @genderKey = @genderKey OUTPUT, @birthday = @birthday OUTPUT,
                  @age = @age OUTPUT;
 
+            -- 2. 生成随机AES-128密钥(16字节)和IV(16字节)
+            SET @AESKey = CRYPT_GEN_RANDOM(16); -- 生成16字节随机密钥
+
             --5. 数据插入
             -- 先将生成的数据插入临时表 #BatchData
             INSERT INTO #BatchData VALUES (
@@ -177,7 +180,7 @@ BEGIN
         END;
 
         -- 再将临时表数据批量插入到目标表 a_cdrd_patient_info
-        INSERT INTO a_cdrd_patient_info (
+        INSERT INTO CDRD_PATIENT_INFO (
             patient_name, patient_sex_key, patient_sex_value, patient_birth_date, patient_age,
             patient_birth_address_province_key, patient_birth_address_province, patient_birth_address_city_key,
             patient_birth_address_city, patient_birth_address_country_key, patient_birth_address_country,

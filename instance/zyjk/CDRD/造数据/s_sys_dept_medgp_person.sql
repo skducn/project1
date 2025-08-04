@@ -1,7 +1,7 @@
 -- todo 医疗组人员表(造数据)
 -- 1个科室，每个科室3个医疗组，每个医疗组下5个人
 
-CREATE OR ALTER PROCEDURE sys_dept_medgp_person
+CREATE OR ALTER PROCEDURE s_sys_dept_medgp_person
     @RecordCount INT = 15,  -- 每个科室3个医疗组，每个医疗组下5个人
     @result INT OUTPUT
 AS
@@ -30,7 +30,7 @@ BEGIN
             EXEC p_name @FullName = @RandomName OUTPUT;
 
             -- 插入单条随机数据
-            INSERT INTO a_sys_dept_medgp_person (user_id, department_treat_group_id, user_name, user_job_num)
+            INSERT INTO SYS_DEPT_MEDGP_PERSON (user_id, department_treat_group_id, user_name, user_job_num)
             VALUES (
                     CAST(ABS(CHECKSUM(NEWID())) % 10000 AS int),   -- 用户ID
                     @Counter,   -- 医疗组ID

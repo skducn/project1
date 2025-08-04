@@ -3,7 +3,8 @@
 # Author        : John
 # Date          : 2025-3-27
 # Description   : setData 创建表、存储过程、插入数据
-
+# -- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
+# -- # gitlab http://192.168.0.241/cdrd_product_doc/product_doc
 # 使用豆包，快速格式化一下内容：
 # 如：密码最后更新时间	pwd_update_time
 # 密码下次更新时间	pwd_next_update_time，请将以上数据中字段与字段英文名互换位置，并用逗号分隔输出
@@ -30,20 +31,16 @@ Cdrd_PO = CdrdPO()
 
 # 子存储过程
 # Cdrd_PO.subProcedure("p_abo_type", "Abo血型, {'1': 'A 型', '2': 'B 型', '3': 'O 型', '4': 'AB 型', '5': '不详', '6': '未查'}")
-# Cdrd_PO.subProcedure("p_address", "住址")
 # Cdrd_PO.subProcedure("p_assit_examination_type", "辅助检查类型, {'1': '电生理检查', '2': '放射学检查', '3': '超声检查', '4': '内镜检查', '5': '其他检查', '6': '病理检查'}")
-# Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
 # Cdrd_PO.subProcedure("p_cert_type", "证件类型, {'1': '居民身份证', '2': '居民户口簿', '3': '护照', '4': '军官证', '5': '驾驶证', '6': '港澳居民来往内地通行证', '7': '台湾居民来往内地通行证', '9': '其他法定有效证件'}")
 # Cdrd_PO.subProcedure("p_drug_allergy_type", "药物过敏,  {'1': '否', '2': '有'}")
 # Cdrd_PO.subProcedure("p_hospital", "医院, ['东方医院','复旦大学附属眼耳鼻喉科医院','上海交通大学医学院附属第九人民医院','上海市第一人民医院','上海交通大学医学院附属新华医院']")
 # Cdrd_PO.subProcedure("p_hospital_advice", "住院医嘱类型, {'1': '住院药物医嘱', '2': '住院非药物医嘱'}")
-# Cdrd_PO.subProcedure("p_idcard", "身份证")
 # Cdrd_PO.subProcedure("p_in_state", "入院病情, {'1': '有', '2': '临床未确定', '3': '情况不明', '4': '无'}")
 # Cdrd_PO.subProcedure("p_is_cache", "是否缓存, {'0': '缓存', '1': '不缓存'}")
 # Cdrd_PO.subProcedure("p_job", "职业, ['军人', '医生', '自由职业者', '技术人员', '工程师', '学生', '老师', '服务人员']")
 # Cdrd_PO.subProcedure("p_marriage", "婚姻, {'1': '未婚', '2': '已婚', '3': '丧偶', '4': '离婚', '9': '其他'}")
 # Cdrd_PO.subProcedure("p_medical_payment_type", "付费方式, {'1': '城镇职工基本医疗保险', '2': '城镇居民基本医疗保险', '3': '新型农村合作医疗', '4': '贫困救助', '5': '商业医疗保险', '6': '全公费', '7': '全自费', '8': ' 其他社会保险 (指生育保险、工伤保险、农民工保险等)', '9': '其他'}")
-# Cdrd_PO.subProcedure("p_name", "姓名")
 # Cdrd_PO.subProcedure("p_nationality", "民族, {'01': ' 汉族 ', '02': ' 蒙古族 ', '03': ' 回族 ', '04': ' 藏族 ', '05': ' 维吾尔族 ', '06': ' 苗族 ', '07': ' 彝族 ', '08': ' 壮族 ', '09': ' 布依族 ', '10': ' 朝鲜族 '}")
 # Cdrd_PO.subProcedure("p_operation_incision_healing_grade", "切口愈合登记, {'1': '0 类切口', '2': 'Ⅰ 类切口', '3': 'Ⅱ 类切口', '4': 'Ⅲ 类切口'}")
 # Cdrd_PO.subProcedure("p_operation_level", "手术级别, {'1': '一级手术', '2': '二级手术', '3': '三级手术', '4': '四级手术'}")
@@ -72,18 +69,21 @@ Cdrd_PO = CdrdPO()
 
 # todo 创建ab表
 
+# Cdrd_PO._ab_marriage('婚姻')
 # Cdrd_PO._ab_IDtype('证件类型')
+# Cdrd_PO._ab_ethnicGroup('民族')
+# Cdrd_PO._ab_job('职业')
+# Cdrd_PO._ab_relationship('与患者关系')
+# Cdrd_PO.subProcedure("p_name", "姓名")
+# Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
+# Cdrd_PO.subProcedure("p_address", "住址")
+# Cdrd_PO.subProcedure("p_idcard", "身份证")
 # Cdrd_PO._ab_admissionCondition('入院病情')
 # Cdrd_PO._ab_boolean('布尔值_主要诊断')
 # Cdrd_PO._ab_diagnosticHistory('诊断病史')
 # Cdrd_PO._ab_dischargeStatus('出院情况')
-# Cdrd_PO._ab_ethnicGroup('民族')
-# Cdrd_PO._ab_hospital('医院')
 # Cdrd_PO.index('IX_ab_hospital_name', 'ab_hospital', 'name')
 # Cdrd_PO.updateStatistics('ab_hospital')
-# Cdrd_PO._ab_job('职业')
-# Cdrd_PO._ab_marriage('婚姻')
-# Cdrd_PO._ab_relationship('与患者关系')
 # Cdrd_PO._ab_visitType('就诊类型')
 # Cdrd_PO._ab_paymentMethod('付费方式')
 # Cdrd_PO._ab_dischargeMethod('出院方式')
@@ -104,110 +104,148 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_lab_project('实验室检查+项目明细')
 # Cdrd_PO._ab_drug('用药信息')
 # Cdrd_PO._ab_dischargeRecordType('出院记录类型')
+# Cdrd_PO._ab_hospital('医院')
 
 
-
+# todo 4，科室管理
+# 数据量：1个科室
+# Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
+# # Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
+# # Cdrd_PO.updateStatistics('SYS_DEPARTMENT')
+# Cdrd_PO.crt_sysDepartment('科室表')
+# Cdrd_PO.procedure("s_sys_department", '科室表')
+# #
+# # # 数据量：每个科室下3个医疗组
+# # # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
+# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp')
+# Cdrd_PO.crt_sysDeptMedgp('医疗组')
+# Cdrd_PO.procedure("s_sys_dept_medgp", '医疗组')
+# #
+# # # 数据量：每个医疗组下5名成员
+# # # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
+# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
+# Cdrd_PO.crt_sysDeptMedgpPerson('医疗组人员')
+# Cdrd_PO.procedure("s_sys_dept_medgp_person", '医疗组人员')
 
 # todo 5.1 患者基本信息
 # 数据量：30000
-# 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-# Cdrd_PO.openSql("cdrd_patient_info.sql")
-# Cdrd_PO._a_cdrd_patient_info('患者基本信息')
-# Cdrd_PO.procedure("cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
+# # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
+# Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
+# Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
 # Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
 # Cdrd_PO.updateStatistics('a_cdrd_patient_info')
+# Cdrd_PO.openSql("s_cdrd_patient_info.sql")
 
-# # 门(急)诊住院就诊信息
+
+# todo 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
-# Cdrd_PO.openSql("cdrd_patient_visit_info.sql")
-# Sqlserver_PO.delTable('a_cdrd_patient_visit_info')
+# Sqlserver_PO.delTable('cdrd_patient_visit_info')
+# Cdrd_PO.crt_cdrdPatientVisitInfo('门(急)诊住院就诊信息')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
-# Cdrd_PO._a_cdrd_patient_visit_info('门(急)诊住院就诊信息')
-# Cdrd_PO.procedure("cdrd_patient_visit_info", '门(急)诊住院就诊信息')
+# Cdrd_PO.procedure("s_cdrd_patient_visit_info", '门(急)诊住院就诊信息')
+# Cdrd_PO.openSql("s_cdrd_patient_visit_info.sql")
 
-# # # 诊断表
+# todo 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
+# Cdrd_PO.crt_cdrdPatientDiagInfo('诊断表')
 # Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
-# Cdrd_PO.openSql("cdrd_patient_diag_info.sql")
-# Cdrd_PO._a_cdrd_patient_diag_info('诊断表')
-# Cdrd_PO.procedure("cdrd_patient_diag_info", '诊断表')
+# Cdrd_PO.procedure("s_cdrd_patient_diag_info", '诊断表')
+# Cdrd_PO.openSql("s_cdrd_patient_diag_info.sql")
+
 #
 
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
+# Cdrd_PO.crt_cdrdPatientSymptomInfo('症状信息')
 # Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
-# Cdrd_PO.openSql("cdrd_patient_symptom_info.sql")
-Cdrd_PO._a_cdrd_patient_symptom_info('症状信息')
-Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息')
-#
+# Cdrd_PO.procedure("s_cdrd_patient_symptom_info", '症状信息')
+# Cdrd_PO.openSql("s_cdrd_patient_symptom_info.sql")
+
 #
 # # # 体征信息
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_physical_sign_info('体征信息')
-# Cdrd_PO.procedure("cdrd_patient_physical_sign_info", '体征信息')
+# Cdrd_PO.crt_cdrdPatientPhysicalSignInfo('体征信息')
+# Cdrd_PO.procedure("s_cdrd_patient_physical_sign_info", '体征信息')
+
 #
 # # #
 # # # 实验室检查报告
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_lab_examination_info('实验室检查报告')
-# Cdrd_PO.procedure("cdrd_patient_lab_examination_info", '实验室检查报告')
+# Cdrd_PO.crt_cdrdPatientLabExaminationInfo('实验室检查报告')
 # Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
+# Cdrd_PO.procedure("s_cdrd_patient_lab_examination_info", '实验室检查报告')
+# Cdrd_PO.openSql("s_cdrd_patient_lab_examination_info.sql")
 
 #
 # # #
 # # # 辅助检查报告
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_assit_examination_info('辅助检查报告')
-# Cdrd_PO.procedure("cdrd_patient_assit_examination_info", '辅助检查报告')
+# Cdrd_PO.crt_cdrdPatientAssitExaminationInfo('辅助检查报告')
+# Cdrd_PO.procedure("s_cdrd_patient_assit_examination_info", '辅助检查报告')
+# Cdrd_PO.openSql("s_cdrd_patient_assit_examination_info.sql")
+
 #
 # # #
-# # # 检查项目明细??
+# # # 检查项目明细
 # 数据量：每个实验室检查记录对应一份检查项目明细(每份明细预计20条左右数据，总量预计300万左右)  15W * 20 = 300W
-# Cdrd_PO._a_cdrd_patient_test_project_info('检查项目明细')
-# Cdrd_PO.procedure("cdrd_patient_test_project_info", '检查项目明细')
+# Cdrd_PO.crt_cdrdPatientTestProjectInfo('检查项目明细')
+# Cdrd_PO.procedure("s_cdrd_patient_test_project_info", '检查项目明细')
+# Cdrd_PO.openSql("s_cdrd_patient_test_project_info.sql")
+
 # #
 # # # #
 # # # # 门诊医嘱
 # 数据量：每名患者3条（共9万）
-# Cdrd_PO._a_cdrd_patient_clinic_advice_info('门诊医嘱')
-# Cdrd_PO.procedure("cdrd_patient_clinic_advice_info", '门诊医嘱')
+# Cdrd_PO.crt_cdrdPatientClinicAdviceInfo('门诊医嘱')
+# Cdrd_PO.procedure("s_cdrd_patient_clinic_advice_info", '门诊医嘱')
+# Cdrd_PO.openSql("s_cdrd_patient_clinic_advice_info.sql")
+
 #
 # # #
 # # #  住院医嘱
 # 数据量：每名患者2条（共6万）
-# Cdrd_PO._a_cdrd_patient_hospital_advice_info('住院医嘱')
-# Cdrd_PO.procedure("cdrd_patient_hospital_advice_info", '住院医嘱')
+# Cdrd_PO.crt_cdrdPatientHospitalAdviceInfo('住院医嘱')
+# Cdrd_PO.procedure("s_cdrd_patient_hospital_advice_info", '住院医嘱')
+# Cdrd_PO.openSql("s_cdrd_patient_hospital_advice_info.sql")
+
 # #
 # # # #
 # # # #  用药信息
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
-# Cdrd_PO._a_cdrd_patient_drug_info('用药信息')
-# Cdrd_PO.procedure("cdrd_patient_drug_info", '用药信息')
+# Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
 # Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
+# Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
+# Cdrd_PO.openSql("s_cdrd_patient_drug_info.sql")
 
 #
 # # #
 # # # 出院记录
 # 数据量：每名患者2条（共6万）
-# Cdrd_PO._a_cdrd_patient_out_hospital_info('出院记录')
-# Cdrd_PO.procedure("cdrd_patient_out_hospital_info", '出院记录')
-#
+# Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录')
+# Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
+# Cdrd_PO.openSql("s_cdrd_patient_out_hospital_info.sql")
+
 # # #
 # # # 手术记录
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
-# Cdrd_PO._a_cdrd_patient_operation_info('手术记录')
-# Cdrd_PO.procedure("cdrd_patient_operation_info", '手术记录')
+# Cdrd_PO.crt_cdrdPatientOperationInfo('手术记录')
+# Cdrd_PO.procedure("s_cdrd_patient_operation_info", '手术记录')
+# Cdrd_PO.openSql("s_cdrd_patient_operation_info.sql")
+
 
 # #
 # # 护理记录
 # 数据量：每条住院记录3条护理记录（共9万）
-# Cdrd_PO._a_cdrd_patient_nurse_info('护理记录')
-# Cdrd_PO.procedure("cdrd_patient_nurse_info", '护理记录')
-#
+# Cdrd_PO.crt_cdrdPatientNurseInfo('护理记录')
+# Cdrd_PO.procedure("s_cdrd_patient_nurse_info", '护理记录')
+# Cdrd_PO.openSql("s_cdrd_patient_nurse_info.sql")
+
+
 # # #
 # # # 死亡记录
 # 数据量：从3万名患者中随机500人有死亡记录，其中200均有patientid、patient_visit_id，剩余300只有patientid
-# Cdrd_PO._a_cdrd_patient_death_info('死亡记录')
-# Cdrd_PO.procedure("cdrd_patient_death_info", '死亡记录')
+# Cdrd_PO.crt_cdrdPatientDeathInfo('死亡记录')
+# Cdrd_PO.procedure("s_cdrd_patient_death_info", '死亡记录')
+# Cdrd_PO.openSql("s_cdrd_patient_death_info.sql")
 
 
 
@@ -238,29 +276,7 @@ Cdrd_PO.procedure("cdrd_patient_symptom_info", '症状信息')
 
 
 
-# todo 4，科室管理
-# 数据量：1个科室
-# Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
-# Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
-# Cdrd_PO.updateStatistics('a_sys_department')
-# Cdrd_PO.dept__a_sys_department('科室表')
-# Cdrd_PO.procedure("sys_department", '科室表')
 
-# 数据量：每个科室下3个医疗组
-# Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
-# Cdrd_PO.updateStatistics('a_sys_dept_medgp')
-
-# Cdrd_PO.dept__a_sys_dept_medgp('医疗组')
-# Cdrd_PO.procedure("sys_dept_medgp", '医疗组')
-
-# 数据量：每个医疗组下5名成员
-# Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
-# Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
-
-
-
-# Cdrd_PO.dept__a_sys_dept_medgp_person('医疗组人员')
-# Cdrd_PO.procedure("sys_dept_medgp_person", '医疗组人员')
 
 
 

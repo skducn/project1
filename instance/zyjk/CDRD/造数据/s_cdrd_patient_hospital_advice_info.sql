@@ -3,7 +3,7 @@
 -- 优化目标：提高执行效率，减少锁竞争和事务日志压力
 -- 1w, 耗时: 0.7865 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_hospital_advice_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_hospital_advice_info
     @RecordCount INT = 2,  -- 每名患者2条
     @result INT OUTPUT
 AS
@@ -17,7 +17,7 @@ BEGIN
 
     -- 计算目标记录数：患者数量 × 每位患者生成的医嘱数量
     SELECT @result = COUNT(*) * @RecordCount
-    FROM a_cdrd_patient_info;
+    FROM CDRD_PATIENT_INFO;
 
     IF @result <= 0
     BEGIN
@@ -36,7 +36,7 @@ BEGIN
             p.patient_visit_in_time,
             p.patient_visit_in_dept_name,
             ROW_NUMBER() OVER (ORDER BY p.patient_id) AS seq
-        FROM a_cdrd_patient_visit_info p
+        FROM CDRD_PATIENT_VISIT_INFO p
         WHERE p.patient_visit_type_key = 2
     ),
     PatientRecords AS (
@@ -50,7 +50,7 @@ BEGIN
         ) n
     )
     -- 插入数据
-    INSERT INTO a_cdrd_patient_hospital_advice_info (
+    INSERT INTO CDRD_PATIENT_HOSPITAL_ADVICE_INFO (
         patient_hospital_advice_type_key,
         patient_hospital_advice_type_value,
         patient_id,

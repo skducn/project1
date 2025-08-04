@@ -590,16 +590,29 @@ class WebPO(DomPO):
         return self.driver.page_source
 
     def opnLabel(self, varURL, t=2):
-        # 1.2 打开标签页
+        # 1.2 打开标签页，获取链接和句柄字典
+        # 创建URL与句柄的字典
+        d_url_handle = {}
         self.driver.execute_script('window.open("' + varURL + '");')
         sleep(t)
+        l_handles = self.driver.window_handles
+        d_url_handle[varURL] = l_handles[-1]
+        return d_url_handle
 
-    def swhLabel(self, varSwitch, t=1):
-        # 1.3 切换标签页
+
+    def swhLabelByLoc(self, varLoc, t=1):
+        # 1.3 通过位置切换标签页
         # self.swhLabel(0) # 0 = 激活第一个标签页 ， 1 = 激活第二个标签页 , 以此类推。
-        all_handles = self.driver.window_handles
+        l_handles = self.driver.window_handles
+        print(l_handles)
         sleep(t)
-        self.driver.switch_to.window(all_handles[varSwitch])
+        self.driver.switch_to.window(l_handles[varLoc])
+
+    def swhLabelByHandle(self, varHandle, t=1):
+        # 1.3 通过handle切换标签页
+        # self.swhLabelByHandle('C40A2687783C79C8CF72F617DB52CC11')
+        self.driver.switch_to.window(varHandle)
+        sleep(t)
 
     def cls(self):
         # 1.4 关闭窗口

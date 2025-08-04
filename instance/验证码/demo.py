@@ -43,7 +43,8 @@ def recognize_captcha(image_path):
     return result
 
 # 调用识别函数
-captcha_path = '18cm.jpg'
+# captcha_path = '18cm.jpg'
+captcha_path = '444.jpg'
 result = recognize_captcha(captcha_path)
 print(result)
 

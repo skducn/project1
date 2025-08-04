@@ -1,7 +1,7 @@
 -- todo  出院记录表(造数据)
 -- 数据量：每名患者2条（共6万）
 -- 耗时: 4.0556 秒
-CREATE OR ALTER PROCEDURE cdrd_patient_out_hospital_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_out_hospital_info
     @RecordCount INT = 2,
     @result INT OUTPUT
 AS
@@ -11,7 +11,7 @@ BEGIN
 
     -- 获取就诊表中住院记录数量
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
+    select @re = count(*) from CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     DECLARE @ThousandChars NVARCHAR(MAX) = REPLICATE(N'哈喽你好', 250);
@@ -32,7 +32,7 @@ BEGIN
         ;WITH VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
-            FROM a_cdrd_patient_visit_info
+            FROM CDRD_PATIENT_VISIT_INFO
             WHERE patient_visit_type_key = 2
         ),
 
@@ -58,7 +58,7 @@ BEGIN
             ) t
         )
 
-        INSERT INTO a_cdrd_patient_out_hospital_info WITH (TABLOCKX) (
+        INSERT INTO CDRD_PATIENT_OUT_HOSPITAL_INFO WITH (TABLOCKX) (
             patient_out_hospital_type_key,
             patient_out_hospital_type_value,
             patient_id,
@@ -100,7 +100,6 @@ BEGIN
         FROM RandomFields rf
         ORDER BY rf.patient_id;
 
---         SET @result = @@ROWCOUNT;
 
         COMMIT TRANSACTION;
     END TRY

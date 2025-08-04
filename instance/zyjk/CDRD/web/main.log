@@ -1,0 +1,41 @@
+2025-08-04 09:03:56,032 - INFO - ====== WebDriver manager ======
+2025-08-04 09:03:56,227 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-04 09:03:56,659 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-04 09:03:57,043 - INFO - There is no [mac64] chromedriver "138.0.7204.183" for browser google-chrome "138.0.7204" in cache
+2025-08-04 09:03:57,054 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-04 09:04:02,897 - INFO - WebDriver version 138.0.7204.183 selected
+2025-08-04 09:04:02,902 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/138.0.7204.183/mac-x64/chromedriver-mac-x64.zip
+2025-08-04 09:04:02,902 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/138.0.7204.183/mac-x64/chromedriver-mac-x64.zip
+2025-08-04 09:06:33,742 - INFO - Driver downloading response is 200
+2025-08-04 09:06:46,576 - INFO - Get LATEST chromedriver version for google-chrome
+2025-08-04 09:06:47,073 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/138.0.7204.183]
+2025-08-04 09:56:13,163 - INFO - 已登录
+2025-08-04 09:57:55,558 - INFO - 已登录
+2025-08-04 09:57:56,649 - INFO - 已登出
+2025-08-04 09:58:40,009 - INFO - 已登录
+2025-08-04 09:58:41,083 - INFO - 已登出
+2025-08-04 10:00:03,679 - INFO - 已登录
+2025-08-04 10:00:05,850 - INFO - 已登出
+2025-08-04 10:00:44,383 - INFO - 已登录
+2025-08-04 10:00:47,642 - INFO - 已登出
+2025-08-04 10:06:59,496 - INFO - 已登录
+2025-08-04 10:08:16,827 - INFO - 已登录
+2025-08-04 10:09:14,569 - INFO - 已登录
+2025-08-04 10:10:59,707 - INFO - 已登录
+2025-08-04 10:12:22,149 - INFO - 已登录
+2025-08-04 10:16:54,909 - INFO - 已登录
+2025-08-04 10:20:42,064 - INFO - 已登录
+2025-08-04 10:21:12,990 - INFO - 已登录
+2025-08-04 10:26:49,715 - INFO - 已登录
+2025-08-04 10:28:30,626 - INFO - 已登录
+2025-08-04 10:32:25,301 - INFO - 已登录
+2025-08-04 10:34:29,255 - INFO - 已登录
+2025-08-04 10:34:59,914 - INFO - 已登录
+2025-08-04 10:36:42,164 - INFO - 已登录
+2025-08-04 10:42:42,778 - INFO - 已登录
+2025-08-04 10:46:26,574 - INFO - 已登录
+2025-08-04 10:46:53,392 - INFO - 已登录
+2025-08-04 10:52:12,110 - INFO - 已登录
+2025-08-04 10:57:31,627 - INFO - 已登录
+2025-08-04 11:04:51,724 - INFO - 已登录
+2025-08-04 11:05:20,764 - INFO - 已登录

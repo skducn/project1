@@ -3,7 +3,7 @@
 -- 优化目标：提升性能，避免嵌套循环
 -- 5w, 耗时: 0.4701 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_lab_examination_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_lab_examination_info
     @RecordCount INT = 5, -- 每位患者生成5条实验室检查记录
     @result INT OUTPUT
 AS
@@ -12,7 +12,7 @@ BEGIN
     SET XACT_ABORT ON;
 
     DECLARE @re INT = 1;
-    SELECT @re = COUNT(*) FROM a_cdrd_patient_info;
+    SELECT @re = COUNT(*) FROM CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     BEGIN TRY
@@ -28,7 +28,7 @@ BEGIN
         -- Step 2: 获取所有患者 ID（来自患者主表）
         Patients AS (
             SELECT patient_id
-            FROM a_cdrd_patient_info
+            FROM CDRD_PATIENT_INFO
         ),
 
         -- Step 3: 为每位患者生成1~@RecordCount 的编号
@@ -42,7 +42,7 @@ BEGIN
         VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
-            FROM a_cdrd_patient_visit_info
+            FROM CDRD_PATIENT_VISIT_INFO
             WHERE patient_visit_type_key = 1
         ),
 
@@ -89,7 +89,7 @@ BEGIN
         )
 
         -- Step 8: 一次性插入数据（使用 TABLOCKX 提高性能）
-        INSERT INTO a_cdrd_patient_lab_examination_info (
+        INSERT INTO CDRD_PATIENT_LAB_EXAMINATION_INFO (
             patient_id,
             patient_visit_id,
             patient_hospital_visit_id,

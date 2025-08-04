@@ -1,7 +1,7 @@
 -- todo 科室医疗组表(造数据)
 -- 1个科室，每个科室3个医疗组，每个医疗组下5个人
 
-CREATE OR ALTER PROCEDURE sys_dept_medgp
+CREATE OR ALTER PROCEDURE s_sys_dept_medgp
     @RecordCount INT = 3,
     @result INT OUTPUT
 AS
@@ -26,10 +26,10 @@ BEGIN
 
         -- 获取1个科室id
         DECLARE @department_id int;
-        SELECT @department_id = department_id FROM a_sys_department;
+        SELECT @department_id = department_id FROM SYS_DEPARTMENT;
 
         -- 插入单条随机数据
-        INSERT INTO a_sys_dept_medgp (department_id, department_treat_group_name, department_treat_create_time)
+        INSERT INTO SYS_DEPT_MEDGP (department_id, department_treat_group_name, department_treat_create_time)
         VALUES (
                 @department_id,   -- 科室ID
                 @Treat, -- 医疗组名称

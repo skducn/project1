@@ -13,6 +13,7 @@
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
 
 import subprocess
 
@@ -500,78 +501,82 @@ class CdrdPO(object):
 
 
 
-    def dept__a_sys_hopital(self, varCommon):
+    def crt_sysHopital(self, varCommon):
 
         # 创建表
         # 医院管理 - 医院信息表 a_sys_hopital
-
-        Sqlserver_PO.crtTableByCover('a_sys_hopital',
+        varTable = 'SYS_HOPITAL'
+        Sqlserver_PO.crtTableByCover(varTable,
                                    '''hospital_id INT IDENTITY(1,1) PRIMARY KEY,
                                     hospital_name NVARCHAR(50),
                                     hospital_code NVARCHAR(50),
                                     hospital_picture_address NVARCHAR(20),
                                   ''')
-        Sqlserver_PO.setTableComment('a_sys_hopital', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_id', '医院ID')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_name', '医院名称')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_code', '医院编码')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'hospital_picture_address', '图片地址')
-    def dept__a_sys_department(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'hospital_id', '医院ID')
+        Sqlserver_PO.setFieldComment(varTable, 'hospital_name', '医院名称')
+        Sqlserver_PO.setFieldComment(varTable, 'hospital_code', '医院编码')
+        Sqlserver_PO.setFieldComment(varTable, 'hospital_picture_address', '图片地址')
+    def crt_sysDepartment(self, varCommon):
 
         # 创建表
         # 科室管理 - 科室表 a_sys_department
-        Sqlserver_PO.crtTableByCover('a_sys_department',
-                                           '''department_id INT IDENTITY(1,1) PRIMARY KEY,
-                                            department_name NVARCHAR(20),
-                                            department_code NVARCHAR(20),
-                                            department_charge_id int,
-                                            department_charge_job_num NVARCHAR(20),
-                                            department_charge_name NVARCHAR(20),
-                                            department_creater_name NVARCHAR(20),
-                                            department_create_time DATETIME
-                                          ''')
-        Sqlserver_PO.setTableComment('a_sys_department', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_name', '科室名称')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_code', '科室编码')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_charge_id', '科室负责人ID')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_charge_job_num', '科室负责人工号')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_charge_name', '科室负责人姓名')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_creater_name', '创建人')
-        Sqlserver_PO.setFieldComment('a_sys_department', 'department_create_time', '创建时间')
-    def dept__a_sys_dept_medgp(self, varCommon):
+        
+        varTable = 'SYS_DEPARTMENT'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''department_id INT IDENTITY(1,1) PRIMARY KEY,
+            department_name NVARCHAR(20),
+            department_code NVARCHAR(20),
+            department_charge_id int,
+            department_charge_job_num NVARCHAR(20),
+            department_charge_name NVARCHAR(20),
+            department_creater_name NVARCHAR(20),
+            department_create_time DATETIME
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'department_name', '科室名称')
+        Sqlserver_PO.setFieldComment(varTable, 'department_code', '科室编码')
+        Sqlserver_PO.setFieldComment(varTable, 'department_charge_id', '科室负责人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'department_charge_job_num', '科室负责人工号')
+        Sqlserver_PO.setFieldComment(varTable, 'department_charge_name', '科室负责人姓名')
+        Sqlserver_PO.setFieldComment(varTable, 'department_creater_name', '创建人')
+        Sqlserver_PO.setFieldComment(varTable, 'department_create_time', '创建时间')
+    def crt_sysDeptMedgp(self, varCommon):
 
         # 创建表
         # 科室管理 - 医疗组 a_sys_dept_medgp
-        Sqlserver_PO.crtTableByCover('a_sys_dept_medgp',
-                                           '''
-                                            department_treat_group_id int IDENTITY(1,1) PRIMARY KEY,
-                                            department_id int,
-                                            department_treat_group_name NVARCHAR(20),
-                                            department_treat_create_time DATETIME
-                                          ''')
-        Sqlserver_PO.setTableComment('a_sys_dept_medgp', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp', 'department_treat_group_id', '医疗组ID')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp', 'department_id', '科室ID')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp', 'department_treat_group_name', '医疗组名称')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp', 'department_treat_create_time', '医疗组创建时间')
-    def dept__a_sys_dept_medgp_person(self,varCommon):
+        varTable = 'SYS_DEPT_MEDGP'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            department_treat_group_id int IDENTITY(1,1) PRIMARY KEY,
+            department_id int,
+            department_treat_group_name NVARCHAR(20),
+            department_treat_create_time DATETIME
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'department_treat_group_id', '医疗组ID')
+        Sqlserver_PO.setFieldComment(varTable, 'department_id', '科室ID')
+        Sqlserver_PO.setFieldComment(varTable, 'department_treat_group_name', '医疗组名称')
+        Sqlserver_PO.setFieldComment(varTable, 'department_treat_create_time', '医疗组创建时间')
+    def crt_sysDeptMedgpPerson(self,varCommon):
 
         # 创建表
         # 科室管理 - 人员 a_sys_dept_medgp_person
-        Sqlserver_PO.crtTableByCover('a_sys_dept_medgp_person',
-                                     '''
-                                      ID int IDENTITY(1,1) PRIMARY KEY,
-                                      user_id int,
-                                      department_treat_group_id INT,
-                                      user_name NVARCHAR(20),
-                                      user_job_num NVARCHAR(20)
-                                    ''')
-        Sqlserver_PO.setTableComment('a_sys_dept_medgp_person', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'ID', '用户ID')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'user_id', '用户ID')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'department_treat_group_id', '医疗组ID')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'user_name', '姓名')
-        Sqlserver_PO.setFieldComment('a_sys_dept_medgp_person', 'user_job_num', '工号')
+        varTable = 'SYS_DEPT_MEDGP_PERSON'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            ID int IDENTITY(1,1) PRIMARY KEY,
+            user_id int,
+            department_treat_group_id INT,
+            user_name NVARCHAR(20),
+            user_job_num NVARCHAR(20)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'ID', '用户ID')
+        Sqlserver_PO.setFieldComment(varTable, 'user_id', '用户ID')
+        Sqlserver_PO.setFieldComment(varTable, 'department_treat_group_id', '医疗组ID')
+        Sqlserver_PO.setFieldComment(varTable, 'user_name', '姓名')
+        Sqlserver_PO.setFieldComment(varTable, 'user_job_num', '工号')
 
 
 
@@ -815,11 +820,13 @@ class CdrdPO(object):
 
 
 
-    def _a_cdrd_patient_info(self, varCommon):
+    def _a_cdrd_patient_info2(self, varCommon):
 
         # 患者基本信息
+        
+        varTable = 'CDRD_PATIENT_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_id	int	IDENTITY(1,1) PRIMARY KEY,
                 patient_name nvarchar(50),
@@ -840,59 +847,143 @@ class CdrdPO(object):
                 patient_native_city nvarchar(100),
                 patient_nation_key varchar(100),
                 patient_nation_value nvarchar(100),
-                patient_phone_num nvarchar(50),
-                patient_home_address nvarchar(200),
                 patient_profession nvarchar(50),
                 patient_marriage_key varchar(100),
                 patient_marriage_value nvarchar(100),
                 patient_id_type_key varchar(100),
                 patient_id_type_value nvarchar(100),
-                patient_id_num nvarchar(100),
-                patient_home_phone nvarchar(100),
                 patient_account_address nvarchar(200),
-                patient_contact_name nvarchar(20),
                 patient_contact_relation nvarchar(20),
-                patient_contact_phone nvarchar(50),
-                patient_contact_address nvarchar(100),
                 patient_update_time datetime,
-                patient_data_source_key varchar(100)
+                patient_data_source_key varchar(100),
+                patient_source_id int,
+                patient_phone_num varbinary(128),
+                patient_home_address varbinary(400),
+                patient_id_num nvarchar(100),
+                patient_home_phone varbinary(160),
+                patient_contact_phone varbinary(160),
+                patient_contact_address varbinary(400),
+                patient_contact_name varbinary(160)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_name', '姓名'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_sex_key', '性别-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_sex_value', '性别'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_date', '出生日期'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_age', '年龄'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_address_province_key', '出生地-省-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_address_province', '出生地-省'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_address_city_key', '出生地-市-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_address_city', '出生地-市'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_address_country_key', '出生地-县-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_birth_address_country', '出生地-县'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_country', '国籍'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_native_province_key', '籍贯-省-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_native_province', '籍贯-省'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_native_city_key', '籍贯-市-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_native_city', '籍贯-市'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_nation_key', '民族-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_nation_value', '民族'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_phone_num', '联系电话'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_home_address', '现住址'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_profession', '职业'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_marriage_key', '婚姻-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_marriage_value', '婚姻'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_id_type_key', '证件类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_id_type_value', '证件类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_id_num', '证件号码'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_home_phone', '家庭电话'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_account_address', '户口地址'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_contact_name', '联系人姓名'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_contact_relation', '与患者关系'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_contact_phone', '联系人电话'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_contact_address', '联系人地址'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_info', 'patient_data_source_key', '数据来源')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_name', '姓名'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_sex_key', '性别-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_sex_value', '性别'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_date', '出生日期'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_age', '年龄'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_province_key', '出生地-省-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_province', '出生地-省'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_city_key', '出生地-市-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_city', '出生地-市'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_country_key', '出生地-县-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_country', '出生地-县'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_country', '国籍'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_province_key', '籍贯-省-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_province', '籍贯-省'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_city_key', '籍贯-市-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_city', '籍贯-市'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nation_key', '民族-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nation_value', '民族'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_profession', '职业'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_marriage_key', '婚姻-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_marriage_value', '婚姻'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_type_key', '证件类型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_type_value', '证件类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_account_address', '户口地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_relation', '与患者关系'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_data_source_key', '数据来源')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_source_id', '源库患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_phone_num', '联系电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_address', '现住址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_num', '证件号码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_phone', '家庭电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
+    def crt_cdrdPatientInfo(self, varCommon):
+
+        # 患者基本信息
+
+        varTable = 'CDRD_PATIENT_INFO'
+
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+                patient_id	int	IDENTITY(1,1) PRIMARY KEY,
+                patient_name nvarchar(50),
+                patient_sex_key varchar(100),
+                patient_sex_value nvarchar(100),
+                patient_birth_date Date,
+                patient_age int,
+                patient_birth_address_province_key varchar(100),
+                patient_birth_address_province nvarchar(100),
+                patient_birth_address_city_key varchar(100),
+                patient_birth_address_city nvarchar(100),
+                patient_birth_address_country_key varchar(100),
+                patient_birth_address_country nvarchar(100),
+                patient_country nvarchar(20),
+                patient_native_province_key varchar(100),
+                patient_native_province nvarchar(100),
+                patient_native_city_key varchar(100),
+                patient_native_city nvarchar(100),
+                patient_nation_key varchar(100),
+                patient_nation_value nvarchar(100),
+                patient_profession nvarchar(50),
+                patient_marriage_key varchar(100),
+                patient_marriage_value nvarchar(100),
+                patient_id_type_key varchar(100),
+                patient_id_type_value nvarchar(100),
+                patient_account_address nvarchar(200),
+                patient_contact_relation nvarchar(20),
+                patient_update_time datetime,
+                patient_data_source_key varchar(100),
+                patient_source_id int,
+                patient_phone_num nvarchar(128),
+                patient_home_address nvarchar(400),
+                patient_id_num nvarchar(100),
+                patient_home_phone nvarchar(160),
+                patient_contact_phone nvarchar(160),
+                patient_contact_address nvarchar(400),
+                patient_contact_name nvarchar(160)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_name', '姓名'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_sex_key', '性别-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_sex_value', '性别'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_date', '出生日期'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_age', '年龄'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_province_key', '出生地-省-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_province', '出生地-省'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_city_key', '出生地-市-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_city', '出生地-市'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_country_key', '出生地-县-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_country', '出生地-县'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_country', '国籍'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_province_key', '籍贯-省-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_province', '籍贯-省'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_city_key', '籍贯-市-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_city', '籍贯-市'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nation_key', '民族-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nation_value', '民族'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_profession', '职业'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_marriage_key', '婚姻-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_marriage_value', '婚姻'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_type_key', '证件类型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_type_value', '证件类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_account_address', '户口地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_relation', '与患者关系'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_data_source_key', '数据来源')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_source_id', '源库患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_phone_num', '联系电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_address', '现住址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_num', '证件号码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_phone', '家庭电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
 
     def cre_a_cdrd_patient_info(self, varCommon):
         table = 'a_cdrd_patient_info'
@@ -962,11 +1053,11 @@ class CdrdPO(object):
         Sqlserver_PO.execute(sql)
 
 
-    def _a_cdrd_patient_diag_info(self, varCommon):
+    def crt_cdrdPatientDiagInfo(self, varCommon):
 
         # 诊断表
-
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_diag_info',
+        varTable = 'CDRD_PATIENT_DIAG_INFO'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_diag_id	int	IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -990,33 +1081,33 @@ class CdrdPO(object):
                 patient_diag_update_time datetime,
                 patient_diag_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_diag_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_id', '诊断病史ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_hospital_code', '诊断医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_case_num', '病案号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_num', '病人诊断序号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_class', '诊断类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_name', '诊断名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_is_primary_key', '主要诊断-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_is_primary_value', '主要诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_code', 'ICD10编码'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_in_state_key', '入院病情-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_in_state_value', '入院病情'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_outcome_state_key', '出院情况-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_outcome_state_value', '出院情况'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_date', '诊断日期'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_delete_state_key', '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_diag_info', 'patient_diag_data_source_key', '数据来源')
-    def _a_cdrd_patient_visit_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_id', '诊断病史ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '诊断医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_num', '病案号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_num', '病人诊断序号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_class', '诊断类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_name', '诊断名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_is_primary_key', '主要诊断-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_is_primary_value', '主要诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_code', 'ICD10编码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_in_state_key', '入院病情-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_in_state_value', '入院病情'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_outcome_state_key', '出院情况-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_outcome_state_value', '出院情况'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_date', '诊断日期'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_delete_state_key', '删除状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_data_source_key', '数据来源')
+    def crt_cdrdPatientVisitInfo(self, varCommon):
 
         # 门(急)诊住院就诊信息
-
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_visit_info',
+        varTable = 'CDRD_PATIENT_VISIT_INFO'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_visit_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_visit_type_key varchar(100),
@@ -1085,79 +1176,80 @@ class CdrdPO(object):
                 patient_visit_update_time datetime,
                 patient_visit_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_visit_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_type_key', '就诊类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_type_value', '就诊类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_mz_zy_num', '源系统门诊/住院号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_age', '就诊年龄（岁）'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_in_dept_num', '就诊科室编码'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_in_dept_name', '就诊科室'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_in_ward_name', '入院病房'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_doc_num', '就诊医生编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_doc_name', '就诊医生'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_in_time', '就诊日期'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_record_num', '文书编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_main_describe', '主诉'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_present_illness', '现病史'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_past_illness', '既往史'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_personal_illness', '个人史'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_menstrual_history', '月经史'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_obsterical_history', '婚育史'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_family_history', '家族史'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_physical_examination', '体格检查'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_speciality_examination', '专科检查'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_assit_examination', '辅助检查'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_diag', '就诊诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_deal', '处置'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_record_time', '记录时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_num', '病案号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_health_card_num', '健康卡号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_medical_payment_type_key',
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_type_key', '就诊类型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_type_value', '就诊类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_mz_zy_num', '源系统门诊/住院号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_age', '就诊年龄（岁）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_dept_num', '就诊科室编码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_dept_name', '就诊科室'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_ward_name', '入院病房'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_doc_num', '就诊医生编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_doc_name', '就诊医生'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_time', '就诊日期'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_record_num', '文书编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_main_describe', '主诉'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_present_illness', '现病史'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_past_illness', '既往史'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_personal_illness', '个人史'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_menstrual_history', '月经史'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_obsterical_history', '婚育史'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_family_history', '家族史'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_physical_examination', '体格检查'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_speciality_examination', '专科检查'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_assit_examination', '辅助检查'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_diag', '就诊诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_deal', '处置'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_record_time', '记录时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_num', '病案号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_health_card_num', '健康卡号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_medical_payment_type_key',
                                      '医疗付费方式-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_medical_payment_type_value', '医疗付费方式'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_visit_time', '住院次数'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_visit_in_way_key', '入院途径-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_visit_in_way_value', '入院途径'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_visit_in_days', '实际住院天数'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_out_dept_num', '出院科室编码'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_out_dept_name', '出院科室'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_out_ward_name', '出院病房'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_out_time', '出院日期'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_clinic_diag', '门（急）诊诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_diag_name', '入院诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_drug_allergy_type_key', '药物过敏-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_drug_allergy_type_value', '药物过敏'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_drug_allergy_name', '过敏药物'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_abo_type_key', 'ABO血型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_abo_type_value', 'ABO血型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_rh_type_key', 'Rh血型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_rh_type_value', 'Rh血型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_dept_chief_doc_num', '科主任编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_dept_chief_doc_name', '科主任'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_director_doc_num', '主任（副主任）医师编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_director_doc_name', '主任（副主任）医师'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_attend_doc_num', '主治医师编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_attend_doc_name', '主治医师'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_resident_num', '住院医师编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_resident_name', '住院医师'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_out_hospital_type_key', '离院方式-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_out_hospital_type_value', '离院方式'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_transfer_to_hospital', '医嘱转院，拟接收机构'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_make_over_hospital', '医嘱转让社区卫生机构，拟接收机构'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_in_total_cost', '住院费用-总费用'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_case_in_selfpay_cost', '住院费用-自付金额'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_visit_info', 'patient_visit_data_source_key', '数据来源')
-    def _a_cdrd_patient_symptom_info(self, varCommon):
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_medical_payment_type_value', '医疗付费方式'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_visit_time', '住院次数'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_visit_in_way_key', '入院途径-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_visit_in_way_value', '入院途径'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_visit_in_days', '实际住院天数'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_out_dept_num', '出院科室编码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_out_dept_name', '出院科室'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_out_ward_name', '出院病房'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_out_time', '出院日期'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_clinic_diag', '门（急）诊诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_diag_name', '入院诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_drug_allergy_type_key', '药物过敏-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_drug_allergy_type_value', '药物过敏'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_drug_allergy_name', '过敏药物'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_abo_type_key', 'ABO血型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_abo_type_value', 'ABO血型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_rh_type_key', 'Rh血型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_rh_type_value', 'Rh血型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_dept_chief_doc_num', '科主任编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_dept_chief_doc_name', '科主任'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_director_doc_num', '主任（副主任）医师编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_director_doc_name', '主任（副主任）医师'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_attend_doc_num', '主治医师编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_attend_doc_name', '主治医师'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_resident_num', '住院医师编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_resident_name', '住院医师'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_out_hospital_type_key', '离院方式-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_out_hospital_type_value', '离院方式'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_transfer_to_hospital', '医嘱转院，拟接收机构'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_make_over_hospital', '医嘱转让社区卫生机构，拟接收机构'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_in_total_cost', '住院费用-总费用'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_in_selfpay_cost', '住院费用-自付金额'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_data_source_key', '数据来源')
+    def crt_cdrdPatientSymptomInfo(self, varCommon):
 
         # 症状信息
+        varTable = 'CDRD_PATIENT_SYMPTOM_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_symptom_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_symptom_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1174,26 +1266,27 @@ class CdrdPO(object):
                 patient_symptom_update_time datetime,
                 patient_symptom_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_symptom_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_id', '症状ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_num', '症状编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_name', '症状名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_description', '具体描述'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_start_time', '出现时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_end_time', '结束时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_delete_state_key', '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_symptom_info', 'patient_symptom_data_source_key', '数据来源')
-    def _a_cdrd_patient_physical_sign_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_id', '症状ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_num', '症状编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_name', '症状名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_description', '具体描述'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_start_time', '出现时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_end_time', '结束时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_delete_state_key', '删除状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_symptom_data_source_key', '数据来源')
+    def crt_cdrdPatientPhysicalSignInfo(self, varCommon):
 
         # 体征信息
+        varTable = 'CDRD_PATIENT_PHYSICAL_SIGN_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_physical_sign_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_physical_sign_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1213,31 +1306,32 @@ class CdrdPO(object):
                 patient_physical_sign_update_time datetime,
                 patient_physical_sign_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_physical_sign_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_type_key', '体征-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_type_value', '体征'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_other', '其他体征'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_value', '体征数值'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_unit_key', '体征单位-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_unit_value', '体征单位'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_other_unit', '其他体征单位'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_time', '检测时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_delete_state_key',
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_type_key', '体征-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_type_value', '体征'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_other', '其他体征'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_value', '体征数值'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_unit_key', '体征单位-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_unit_value', '体征单位'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_other_unit', '其他体征单位'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_time', '检测时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_delete_state_key',
                                      '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_physical_sign_info', 'patient_physical_sign_data_source_key',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_physical_sign_data_source_key',
                                      '数据来源')
-    def _a_cdrd_patient_lab_examination_info(self, varCommon):
+    def crt_cdrdPatientLabExaminationInfo(self, varCommon):
 
         # 实验室检查报告
+        varTable = 'CDRD_PATIENT_LAB_EXAMINATION_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_lab_examination_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                patient_lab_examination_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1256,38 +1350,39 @@ class CdrdPO(object):
                 patient_lab_examination_update_time datetime,
                 patient_lab_examination_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_lab_examination_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_id', '实验室检查ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_report_num',
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_id', '实验室检查ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_report_num',
                                      '报告编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_source_report_num',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_source_report_num',
                                      '源系统报告编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_report_name',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_report_name',
                                      '报告名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_sample_type',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_sample_type',
                                      '样本类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_test_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_test_time',
                                      '检查时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_sampling_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_sampling_time',
                                      '采样时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_report_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_report_time',
                                      '报告时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_delete_state_key',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_delete_state_key',
                                      '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_update_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_update_time',
                                      '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_lab_examination_info', 'patient_lab_examination_data_source_key',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_lab_examination_data_source_key',
                                      '数据来源')
-    def _a_cdrd_patient_assit_examination_info(self, varCommon):
+    def crt_cdrdPatientAssitExaminationInfo(self, varCommon):
 
         # 辅助检查报告
+        varTable = 'CDRD_PATIENT_ASSIT_EXAMINATION_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_assit_examination_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_assit_examination_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_assit_examination_type_key varchar(100),
@@ -1313,52 +1408,52 @@ class CdrdPO(object):
                 patient_assit_examination_update_time datetime,
                 patient_assit_examination_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_assit_examination_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_id', '辅助检查ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_type_key',
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_id', '辅助检查ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_type_key',
                                      '辅助检查类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_type_value',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_type_value',
                                      '辅助检查类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_hospital_code', '检查医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_report_num',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '检查医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_report_num',
                                      '报告编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info',
+        Sqlserver_PO.setFieldComment(varTable,
                                      'patient_assit_examination_source_report_num', '源系统报告编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_report_name',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_report_name',
                                      '报告名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_check_method',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_check_method',
                                      '检查方法'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_body_site',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_body_site',
                                      '检查部位'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_sample_body',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_sample_body',
                                      '取材部位及组织名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_eye_find',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_eye_find',
                                      '肉眼所见'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info',
+        Sqlserver_PO.setFieldComment(varTable,
                                      'patient_assit_examination_microscope_find', '镜下所见'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_check_find',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_check_find',
                                      '检查所见'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info',
+        Sqlserver_PO.setFieldComment(varTable,
                                      'patient_assit_examination_check_conclusion', '检查结论'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_check_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_check_time',
                                      '检查日期'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_report_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_report_time',
                                      '报告日期'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info',
+        Sqlserver_PO.setFieldComment(varTable,
                                      'patient_assit_examination_delete_state_key', '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info', 'patient_assit_examination_update_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_assit_examination_update_time',
                                      '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_assit_examination_info',
+        Sqlserver_PO.setFieldComment(varTable,
                                      'patient_assit_examination_data_source_key', '数据来源')
-    def _a_cdrd_patient_test_project_info(self, varCommon):
+    def crt_cdrdPatientTestProjectInfo(self, varCommon):
 
         # 检查项目明细
-
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_test_project_info',
+        varTable = 'CDRD_PATIENT_TEST_PROJECT_INFO'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_test_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_superior_examination_id int,
@@ -1374,25 +1469,25 @@ class CdrdPO(object):
                 patient_test_update_time datetime,
                 patient_test_data_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_test_project_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_id', '项目ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_superior_examination_id', '上级检查ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_superior_examination_type', '上级检查类型，实验室检查为1，辅助检查为2'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_report_num', '报告编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_item_name', '项目名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_numerical_value', '定量结果'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_unit_name', '定量结果单位'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_text_value', '定性结果'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_abnormal_flag', '异常标识'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_reference_range', '参考值（范围）'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_delete_state_key', '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_test_project_info', 'patient_test_data_source_key', '数据来源')
-    def _a_cdrd_patient_clinic_advice_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_id', '项目ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_superior_examination_id', '上级检查ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_superior_examination_type', '上级检查类型，实验室检查为1，辅助检查为2'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_report_num', '报告编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_item_name', '项目名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_numerical_value', '定量结果'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_unit_name', '定量结果单位'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_text_value', '定性结果'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_abnormal_flag', '异常标识'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_reference_range', '参考值（范围）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_delete_state_key', '删除状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_data_source_key', '数据来源')
+    def crt_cdrdPatientClinicAdviceInfo(self, varCommon):
 
         # 门诊医嘱
-
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_clinic_advice_info',
+        varTable = 'CDRD_PATIENT_CLINIC_ADVICE_INFO'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_clinic_advice_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1410,27 +1505,28 @@ class CdrdPO(object):
                 patient_clinic_advice_update_time datetime,
                 patient_clinic_advice_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_clinic_advice_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_clinic_advice_id', '门诊医嘱ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_hospital_code', '检查医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_outpat_recipe_detail_num', '处方明细编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_class', '处方类别'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_name', '处方名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_drug_flag_key', '是否药品-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_drug_flag_value', '是否药品'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_time', '开方时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_recipe_exec_dept_name', '执行科室'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_clinic_advice_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_clinic_advice_info', 'patient_clinic_advice_source_key', '数据来源')
-    def _a_cdrd_patient_hospital_advice_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_clinic_advice_id', '门诊医嘱ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '检查医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_outpat_recipe_detail_num', '处方明细编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_class', '处方类别'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_name', '处方名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_drug_flag_key', '是否药品-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_drug_flag_value', '是否药品'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_time', '开方时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_exec_dept_name', '执行科室'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_clinic_advice_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_clinic_advice_source_key', '数据来源')
+    def crt_cdrdPatientHospitalAdviceInfo(self, varCommon):
 
         # 住院医嘱
+        varTable = 'CDRD_PATIENT_HOSPITAL_ADVICE_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_hospital_advice_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_hospital_advice_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_hospital_advice_type_key varchar(100),
@@ -1451,38 +1547,38 @@ class CdrdPO(object):
                 patient_hospital_advice_update_time datetime,
                 patient_hospital_advice_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_hospital_advice_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_id', '住院医嘱ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_type_key',
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_id', '住院医嘱ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_type_key',
                                      '住院医嘱类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_type_value',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_type_value',
                                      '住院医嘱类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_num', '医嘱编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_source_num',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_num', '医嘱编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_source_num',
                                      '源系统医嘱编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_class', '医嘱类别'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_name', '医嘱名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_remark', '备注'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_begin_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_class', '医嘱类别'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_name', '医嘱名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_remark', '备注'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_begin_time',
                                      '医嘱开始时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_end_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_end_time',
                                      '医嘱结束时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_exec_dept_name',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_exec_dept_name',
                                      '执行科室'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_update_time',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_update_time',
                                      '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_hospital_advice_info', 'patient_hospital_advice_source_key',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_source_key',
                                      '数据来源')
-    def _a_cdrd_patient_drug_info(self, varCommon):
+    def crt_cdrdPatientDrugInfo(self, varCommon):
 
         # 用药信息
-
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_drug_info',
+        varTable = 'CDRD_PATIENT_DRUG_INFO'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_drug_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1505,32 +1601,33 @@ class CdrdPO(object):
                 patient_drug_update_time datetime,
                 patient_drug_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_drug_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_id', '用药信息ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_superior_advice_id', '取值门诊医嘱ID或者住院医嘱ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_superior_advice_type', '上级医嘱类型，门诊医嘱为1，住院医嘱为2'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_recipe_advice_num', '处方明细/医嘱编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_name', '药品名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_specs', '规格'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_frequency', '频次'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_once_dose', '每次用量'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_dose_unit', '用量单位'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_usage', '用法'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_qty', '总量'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_begin_time', '开始时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_end_time', '结束时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_delete_state_key', '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_drug_info', 'patient_drug_source_key', '数据来源')
-    def _a_cdrd_patient_out_hospital_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_id', '用药信息ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_superior_advice_id', '取值门诊医嘱ID或者住院医嘱ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_superior_advice_type', '上级医嘱类型，门诊医嘱为1，住院医嘱为2'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_advice_num', '处方明细/医嘱编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_name', '药品名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_specs', '规格'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_frequency', '频次'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_once_dose', '每次用量'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_dose_unit', '用量单位'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_usage', '用法'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_qty', '总量'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_begin_time', '开始时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_end_time', '结束时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_delete_state_key', '删除状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_source_key', '数据来源')
+    def crt_cdrdPatientOutHospitalInfo(self, varCommon):
 
         # 出院记录
+        varTable = 'CDRD_PATIENT_OUT_HOSPITAL_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_out_hospital_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_out_hospital_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_out_hospital_type_key varchar(100),
@@ -1552,31 +1649,32 @@ class CdrdPO(object):
                 patient_out_hospital_update_time datetime,
                 patient_out_hospital_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_out_hospital_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_id', '出院记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_type_key', '出院记录类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_type_value', '出院记录类型-value'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_record_num', '文书编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_main_describe', '主诉'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_in_situation', '入院情况'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_in_diag', '入院诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_diag_process', '诊疗经过'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_diag', '出院诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_situation', '出院情况'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_advice', '出院医嘱'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_record_time', '记录时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_out_hospital_info', 'patient_out_hospital_source_key', '数据来源')
-    def _a_cdrd_patient_operation_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_id', '出院记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_type_key', '出院记录类型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_type_value', '出院记录类型-value'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_record_num', '文书编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_main_describe', '主诉'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_in_situation', '入院情况'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_in_diag', '入院诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_diag_process', '诊疗经过'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_diag', '出院诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_situation', '出院情况'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_advice', '出院医嘱'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_record_time', '记录时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_out_hospital_source_key', '数据来源')
+    def crt_cdrdPatientOperationInfo(self, varCommon):
 
         # 手术记录
+        varTable = 'CDRD_PATIENT_OPERATION_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_operation_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_operation_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1608,43 +1706,44 @@ class CdrdPO(object):
                 patient_operation_update_time datetime,
                 patient_operation_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_operation_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_id', '手术记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_num', '手术记录编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_source_num', '源系统手术记录编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_name', '手术名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_doc_name', '主刀/手术者'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_assist_I', 'I助'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_assit_II', 'II助'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_before_diag', '术前诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_during_diag', '术中诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_after_diag', '术后诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_level_key', '手术级别-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_level_value', '手术级别'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_type_key', '手术类型-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_type_value', '手术类型'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_incision_healing_grade_key',
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_id', '手术记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_num', '手术记录编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_source_num', '源系统手术记录编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_name', '手术名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_doc_name', '主刀/手术者'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_assist_I', 'I助'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_assit_II', 'II助'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_before_diag', '术前诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_during_diag', '术中诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_after_diag', '术后诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_level_key', '手术级别-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_level_value', '手术级别'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_type_key', '手术类型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_type_value', '手术类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_incision_healing_grade_key',
                                      '切口愈合等级-key'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_incision_healing_grade_value',
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_incision_healing_grade_value',
                                      '切口愈合等级'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_anesthesiologist', '麻醉者'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_anesthesia_type', '麻醉方式'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_step_process', '手术步骤及经过'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_begin_time', '手术开始时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_end_time', '手术结束时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_delete_state_key', '删除状态'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_operation_info', 'patient_operation_source_key', '数据来源')
-    def _a_cdrd_patient_nurse_info(self, varCommon):
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_anesthesiologist', '麻醉者'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_anesthesia_type', '麻醉方式'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_step_process', '手术步骤及经过'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_begin_time', '手术开始时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_end_time', '手术结束时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_delete_state_key', '删除状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_source_key', '数据来源')
+    def crt_cdrdPatientNurseInfo(self, varCommon):
 
         # 护理记录
+        varTable = 'CDRD_PATIENT_NURSE_INFO'
 
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_nurse_info',
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_nurse_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1660,27 +1759,25 @@ class CdrdPO(object):
                 patient_nurse_update_time datetime,
                 patient_nurse_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_nurse_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_id', '护理记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_hospital_code', '就诊医疗机构编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_hospital_name', '医院名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_record_num', '护理记录编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_record_time', '护理记录时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_record_name', '护理记录名称'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_value', '护理值'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_unit', '护理单位'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_nurse_info', 'patient_nurse_source_key', '数据来源')
-    def _a_cdrd_patient_death_info(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_id', '护理记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_record_num', '护理记录编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_record_time', '护理记录时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_record_name', '护理记录名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_value', '护理值'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_unit', '护理单位'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nurse_source_key', '数据来源')
+    def crt_cdrdPatientDeathInfo(self, varCommon):
 
         # 死亡记录
-
-        # Sqlserver_PO.delTable('a_cdrd_patient_death_info')
-
-        Sqlserver_PO.crtTableByCover('a_cdrd_patient_death_info',
+        varTable = 'CDRD_PATIENT_DEATH_INFO'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_death_id int IDENTITY(1,1) PRIMARY KEY,
                 patient_id int,
@@ -1696,20 +1793,20 @@ class CdrdPO(object):
                 patient_death_update_time datetime,
                 patient_death_source_key varchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_cdrd_patient_death_info', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_id', '死亡记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_id', '患者ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_visit_id', '就诊记录ID'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_hospital_visit_id', '就诊编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_record_id', '文书编号'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_time', '死亡时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_in_situation', '入院情况'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_in_diag', '入院诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_diag_process', '诊疗经过（抢救经过）'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_reason', '死亡原因'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_diag', '死亡诊断'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_cdrd_patient_death_info', 'patient_death_source_key', '数据来源')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_id', '死亡记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_id', '就诊记录ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_record_id', '文书编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_time', '死亡时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_in_situation', '入院情况'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_in_diag', '入院诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_diag_process', '诊疗经过（抢救经过）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_reason', '死亡原因'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_diag', '死亡诊断'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_death_source_key', '数据来源')
 
     def _a_sys_dict_type(self, varCommon):
 
@@ -1812,9 +1909,10 @@ class CdrdPO(object):
         # print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
         print(f"\n耗时: {time:.4f} 秒")  # 6.0036 秒
 
-        varTable = "a_" + varProcedure
-        result = Sqlserver_PO.selectOne("select count(*) as qty from %s" % (varTable))
-        print(result)
+        # varTable = "a_" + varProcedure
+        # varTable = varProcedure
+        # result = Sqlserver_PO.selectOne("select count(*) as qty from %s" % (varTable))
+        # print(result)
 
 
 

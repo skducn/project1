@@ -1,7 +1,7 @@
 -- todo 科室表(造数据)
 -- 1个科室，每个科室3个医疗组，每个医疗组下5个人
 
-CREATE OR ALTER PROCEDURE sys_department
+CREATE OR ALTER PROCEDURE s_sys_department
     @RecordCount INT = 1,  -- 1个科室
     @result INT OUTPUT
 AS
@@ -26,7 +26,7 @@ BEGIN
 
 
         -- 插入单条随机数据
-        INSERT INTO a_sys_department (department_name, department_code, department_charge_id, department_charge_job_num,
+        INSERT INTO SYS_DEPARTMENT (department_name, department_code, department_charge_id, department_charge_job_num,
         department_charge_name,department_creater_name,department_create_time)
         VALUES (
             @RandomDepartment, -- 科室名称

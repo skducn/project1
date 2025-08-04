@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE cdrd_patient_death_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_death_info
     @result INT OUTPUT
 AS
 BEGIN
@@ -22,7 +22,7 @@ BEGIN
                 NULL AS patient_visit_id,
                 NULL AS patient_hospital_visit_id,
                 '2' AS patient_death_source_key
-            FROM a_cdrd_patient_info p
+            FROM CDRD_PATIENT_INFO p
             ORDER BY NEWID()
         ),
 
@@ -33,7 +33,7 @@ BEGIN
                 v.patient_visit_id,
                 v.patient_hospital_visit_id,
                 '1' AS patient_death_source_key
-            FROM a_cdrd_patient_visit_info v
+            FROM CDRD_PATIENT_VISIT_INFO v
             ORDER BY NEWID()
         ),
 
@@ -64,7 +64,7 @@ BEGIN
         )
 
         -- Step 5: 一次性插入数据（使用 TABLOCKX 提高性能）
-        INSERT INTO a_cdrd_patient_death_info WITH (TABLOCKX) (
+        INSERT INTO CDRD_PATIENT_DEATH_INFO WITH (TABLOCKX) (
             patient_id,
             patient_visit_id,
             patient_hospital_visit_id,

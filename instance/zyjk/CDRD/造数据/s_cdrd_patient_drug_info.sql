@@ -3,7 +3,7 @@
 -- 2）数据参考：可采用压力测试表的“诊断病史+用药信息”中的数据
 -- 8w, 耗时: 1172.4635 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_drug_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_drug_info
     @RecordCount INT = 8,
     @result INT OUTPUT
 AS
@@ -12,13 +12,13 @@ BEGIN
     SET XACT_ABORT ON;
 
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_info;
+    select @re = count(*) from CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     DECLARE @ThousandChars NVARCHAR(MAX);
     SET @ThousandChars = REPLICATE(N'哈喽你好', 250); -- 每句4个字符，重复250次=1000字符
 
-    -- 遍历基本信息表a_cdrd_patient_info
+    -- 遍历基本信息表CDRD_PATIENT_INFO
     DECLARE @Counter1 INT = 1;
     WHILE @Counter1 <= @re
     BEGIN
@@ -46,7 +46,7 @@ BEGIN
             SELECT
                 patient_id,
                 ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-            FROM a_cdrd_patient_info
+            FROM CDRD_PATIENT_INFO
         ) AS subquery
         WHERE row_num = @Counter1;
 
@@ -66,7 +66,7 @@ BEGIN
         BEGIN
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_drug_info (patient_id,patient_superior_advice_id,patient_superior_advice_type,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
+            INSERT INTO CDRD_PATIENT_DRUG_INFO (patient_id,patient_superior_advice_id,patient_superior_advice_type,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
             VALUES (
                 @patient_id2, -- 患者ID
                 '', -- 无，取值门诊医嘱ID或者住院医嘱ID
@@ -113,7 +113,7 @@ BEGIN
                     patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
                     patient_visit_in_time, patient_visit_in_dept_name,
                     ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                FROM a_cdrd_patient_visit_info
+                FROM CDRD_PATIENT_VISIT_INFO
             ) AS subquery
             WHERE row_num = @Counter1;
 
@@ -125,13 +125,13 @@ BEGIN
                 SELECT
                     patient_clinic_advice_id, patient_id,
                     ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_clinic_advice_id) AS row_num
-                FROM a_cdrd_patient_clinic_advice_info
+                FROM CDRD_PATIENT_CLINIC_ADVICE_INFO
             ) AS subquery
             WHERE row_num = @i-3 AND patient_id = @patient_id2; -- 使用 @i 控制每条记录的偏移
 
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_drug_info (patient_id,patient_superior_advice_id,patient_superior_advice_type,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
+            INSERT INTO CDRD_PATIENT_DRUG_INFO (patient_id,patient_superior_advice_id,patient_superior_advice_type,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
             VALUES (
                 @patient_id2, -- 患者ID
                 @patient_clinic_advice_id, -- 上级医嘱ID, 取值门诊医嘱ID或者住院医嘱ID
@@ -174,7 +174,7 @@ BEGIN
                     patient_visit_id,patient_id, patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,
                     patient_visit_in_time, patient_visit_in_dept_name,
                     ROW_NUMBER() OVER (ORDER BY @patient_visit_id) AS row_num
-                FROM a_cdrd_patient_visit_info
+                FROM CDRD_PATIENT_VISIT_INFO
             ) AS subquery
             WHERE row_num = @Counter1;
 
@@ -185,13 +185,13 @@ BEGIN
                 SELECT
                     patient_hospital_advice_id, patient_id,
                     ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_hospital_advice_id) AS row_num2
-                FROM a_cdrd_patient_hospital_advice_info
+                FROM CDRD_PATIENT_HOSPITAL_ADVICE_INFO
             ) AS subquery2
             WHERE row_num2 = @i-6 AND patient_id = @patient_id2; -- 使用 @i 控制每条记录的偏移
 
 
             -- 插入单条随机数据
-            INSERT INTO a_cdrd_patient_drug_info (patient_id,patient_superior_advice_id,patient_superior_advice_type,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
+            INSERT INTO CDRD_PATIENT_DRUG_INFO (patient_id,patient_superior_advice_id,patient_superior_advice_type,patient_hospital_visit_id,patient_hospital_code,patient_hospital_name,patient_recipe_advice_num,patient_drug_name,patient_drug_specs,patient_drug_frequency,patient_drug_once_dose,patient_drug_dose_unit,patient_drug_usage,patient_drug_qty,patient_drug_begin_time,patient_drug_end_time,patient_drug_delete_state_key,patient_drug_update_time,patient_drug_source_key)
             VALUES (
                 @patient_id2, -- 患者ID
                 @patient_hospital_advice_id, -- 上级医嘱ID, 取值门诊医嘱ID或者住院医嘱ID

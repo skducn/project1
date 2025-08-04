@@ -17,7 +17,8 @@ import cv2
 
 # 数字字母混合的验证码、纯字母验证码
 ocr = ddddocr.DdddOcr()
-f = open("3766.jpg", mode='rb')
+# f = open("3766.jpg", mode='rb')
+f = open("444.jpg", mode='rb')
 # f = open("jfvb.jpg", mode='rb')
 cpatcha = ocr.classification(f.read())
 print(cpatcha)  # 3766

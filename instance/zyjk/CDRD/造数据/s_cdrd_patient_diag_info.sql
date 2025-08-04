@@ -3,7 +3,7 @@
 -- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMzM4MjMzNDAx#g=X2hpZGRlbjpoaWRkZW4xNzUzMzM4MjMzNDAx
 -- 5w,耗时: 0.5827 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_diag_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_diag_info
     @RecordCount INT = 5, -- 每位患者生成5条诊断记录
     @result INT OUTPUT
 AS
@@ -14,7 +14,7 @@ BEGIN
 
     -- 获取患者数量
     DECLARE @re INT = 1;
-    SELECT @re = COUNT(*) FROM a_cdrd_patient_info;
+    SELECT @re = COUNT(*) FROM CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
     BEGIN TRY
@@ -32,7 +32,7 @@ BEGIN
         -- Step 2: 获取所有患者 ID（来自患者主表）
         Patients AS (
             SELECT patient_id
-            FROM a_cdrd_patient_info
+            FROM CDRD_PATIENT_INFO
         ),
 
         -- Step 3: 为每位患者生成1~@RecordCount 的编号
@@ -50,7 +50,7 @@ BEGIN
         VisitRecords AS (
             SELECT *,
                    ROW_NUMBER() OVER (PARTITION BY patient_id ORDER BY patient_visit_in_time DESC) AS seq
-            FROM a_cdrd_patient_visit_info
+            FROM CDRD_PATIENT_VISIT_INFO
             WHERE patient_visit_type_key = 1
         ),
 
@@ -74,7 +74,7 @@ BEGIN
                    tf.n_key AS diag_is_primary_key, tf.n_value AS diag_is_primary_value,
                    ins.n_key AS in_state_key, ins.n_value AS in_state_value,
                    outs.n_key AS outcome_state_key, outs.n_value AS outcome_state_value
-            FROM a_cdrd_patient_info p
+            FROM CDRD_PATIENT_INFO p
             CROSS JOIN (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h
             CROSS JOIN (SELECT TOP 1 diag_class, diag_name, diag_code FROM ab_diagnosticHistory ORDER BY NEWID()) dc
             CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_boolean ORDER BY NEWID()) tf
@@ -113,7 +113,7 @@ BEGIN
 
         -- 4. 数据插入
         -- Step 8: 插入数据
-        INSERT INTO a_cdrd_patient_diag_info (
+        INSERT INTO CDRD_PATIENT_DIAG_INFO (
             patient_id,
             patient_visit_id,
             patient_hospital_visit_id,

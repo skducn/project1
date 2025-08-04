@@ -2,7 +2,7 @@
 -- 数据量：每个实验室检查记录对应一组检查项目明细（每组20条，总量100条）
 -- 原耗时: 不适用（当前逻辑错误） → 优化后预计耗时: 0.5~1 秒
 
-CREATE OR ALTER PROCEDURE cdrd_patient_test_project_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_test_project_info
     @RecordCount INT = 20, -- 每个实验室检查记录生成20条检查项目明细
     @result INT OUTPUT
 AS
@@ -12,7 +12,7 @@ BEGIN
 
     -- 获取实验室检查报告记录数，用于输出计算
     DECLARE @re INT = 1;
-    select @re = count(*) from a_cdrd_patient_lab_examination_info;
+    select @re = count(*) from CDRD_PATIENT_LAB_EXAMINATION_INFO;
     SET @result = @re * @RecordCount;
 
     BEGIN TRY
@@ -24,7 +24,7 @@ BEGIN
                 patient_lab_examination_id AS patient_superior_examination_id,
                 patient_lab_examination_report_num AS patient_report_num,
                 patient_visit_id
-            FROM a_cdrd_patient_lab_examination_info
+            FROM CDRD_PATIENT_LAB_EXAMINATION_INFO
         ),
 
         -- Step 2: 获取 ab_lab_project 中的报告名称列表（2组报告）
@@ -92,7 +92,7 @@ BEGIN
         )
 
         -- Step 7: 一次性插入数据（使用 TABLOCKX 提高性能）
-        INSERT INTO a_cdrd_patient_test_project_info WITH (TABLOCKX) (
+        INSERT INTO CDRD_PATIENT_TEST_PROJECT_INFO WITH (TABLOCKX) (
             patient_superior_examination_id,
             patient_superior_examination_type,
             patient_report_num,
@@ -122,8 +122,6 @@ BEGIN
         FROM Combined
         ORDER BY patient_superior_examination_id;
 
-        -- Step 8: 设置输出参数
---         SELECT @result = COUNT(*) FROM Combined;
 
         COMMIT TRANSACTION;
     END TRY
