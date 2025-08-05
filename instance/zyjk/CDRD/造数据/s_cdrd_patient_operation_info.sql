@@ -131,7 +131,7 @@ BEGIN
             patient_operation_name,
             patient_operation_doc_name,
             patient_operation_assist_I,
-            patient_operation_assit_II,
+            patient_operation_assist_II,
             patient_operation_before_diag,
             patient_operation_during_diag,
             patient_operation_after_diag,

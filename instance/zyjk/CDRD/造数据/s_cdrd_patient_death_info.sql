@@ -17,7 +17,7 @@ BEGIN
 
         -- Step 1: 随机生成 300 条无就诊记录的死亡数据
         ;WITH NoVisitRecords AS (
-            SELECT TOP 300
+            SELECT TOP 60   --修改1
                 p.patient_id,
                 NULL AS patient_visit_id,
                 NULL AS patient_hospital_visit_id,
@@ -28,7 +28,7 @@ BEGIN
 
         -- Step 2: 随机生成 200 条有就诊记录的死亡数据
         VisitRecords AS (
-            SELECT TOP 200
+            SELECT TOP 40  -- 修改2
                 v.patient_id,
                 v.patient_visit_id,
                 v.patient_hospital_visit_id,

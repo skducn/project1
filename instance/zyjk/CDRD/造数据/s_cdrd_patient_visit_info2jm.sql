@@ -17,8 +17,7 @@ BEGIN
     DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'职能', 100);
 
     -- 计算总记录数：患者数 × 每人生成就诊记录数
-    -- 修改此处，不直接依赖于 CDRD_PATIENT_INFO 表中的所有字段
-    SELECT @result = COUNT(patient_id) * @RecordCount FROM CDRD_PATIENT_INFO;
+    SELECT @result = COUNT(*) * @RecordCount FROM CDRD_PATIENT_INFO;
 
     IF @result <= 0
     BEGIN
@@ -34,9 +33,8 @@ BEGIN
     -- 使用 CROSS JOIN 和 ROW_NUMBER() 实现每位患者生成多条记录
     -- 修改所有 CTE，明确指定字段
     ;WITH PatientSequences AS (
-        -- 只选择需要的字段，避免 varbinary 字段
         SELECT p.patient_id, n.n
-        FROM (SELECT patient_id FROM CDRD_PATIENT_INFO) p
+        FROM CDRD_PATIENT_INFO p
         CROSS JOIN (
             SELECT TOP (@RecordCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
             FROM sys.all_columns

@@ -19,7 +19,7 @@ BEGIN
 
     -- 如果 @result 没有被传入或为0，则设置默认值
     IF @result IS NULL OR @result = 0
-        SET @result = 100;
+        SET @result = 10;
 
     --2. 临时表结构
     -- 创建临时表存储批量数据
@@ -52,13 +52,13 @@ BEGIN
         patient_update_time DATETIME,
         patient_data_source_key NVARCHAR(10),
         patient_source_id int,
-        patient_phone_num varbinary(128),
-        patient_home_address varbinary(400),
+        patient_phone_num NVARCHAR(128),
+        patient_home_address NVARCHAR(400),
         patient_id_num VARCHAR(100),
-        patient_home_phone varbinary(160),
-        patient_contact_phone varbinary(160),
-        patient_contact_address varbinary(400),
-        patient_contact_name varbinary(160)
+        patient_home_phone NVARCHAR(160),
+        patient_contact_phone NVARCHAR(160),
+        patient_contact_address NVARCHAR(400),
+        patient_contact_name NVARCHAR(160)
     );
 
     --3. 批量数据生成机制
@@ -86,7 +86,7 @@ BEGIN
             DECLARE @phone1 NVARCHAR(11) = '138' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
             DECLARE @phone2 NVARCHAR(11) = '130' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
             DECLARE @phone3 NVARCHAR(8) = '5' + RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7);
-            DECLARE @AESKey VARBINARY(16); -- AES-128需要16字节密钥
+--             DECLARE @AESKey VARBINARY(16); -- AES-128需要16字节密钥
 
 
             -- 婚姻状况：从 ab_marriage 表随机选取
@@ -139,7 +139,7 @@ BEGIN
                  @age = @age OUTPUT;
 
             -- 2. 生成随机AES-128密钥(16字节)和IV(16字节)
-            SET @AESKey = CRYPT_GEN_RANDOM(16); -- 生成16字节随机密钥
+--             SET @AESKey = CRYPT_GEN_RANDOM(16); -- 生成16字节随机密钥
 --             SET @AESKey = 1212; -- 生成16字节随机密钥
 
             --5. 数据插入
@@ -173,13 +173,13 @@ BEGIN
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()),
                 '1',
                 RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3),
-                CONVERT(VARBINARY(128), @phone1),                    -- 真实电话号码转换为 varbinary
-                CONVERT(VARBINARY(400), @RandomAddress1),            -- 真实地址转换为 varbinary
-                @idcard,                                             -- 身份证号保持不变
-                CONVERT(VARBINARY(160), @phone3),                    -- 真实家庭电话转换为 varbinary
-                CONVERT(VARBINARY(160), @phone2),                    -- 真实联系人电话转换为 varbinary
-                CONVERT(VARBINARY(400), @RandomAddress2),            -- 真实联系人地址转换为 varbinary
-                CONVERT(VARBINARY(160), @RandomName)                 -- 真实联系人姓名转换为 varbinary
+                @phone3,
+                @RandomAddress1,
+                @idcard,
+                @phone1,
+                @phone2,
+                @RandomAddress2,
+                @RandomName
             );
 
             SET @i = @i + 1;

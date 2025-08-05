@@ -17,8 +17,7 @@ BEGIN
     DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'职能', 100);
 
     -- 计算总记录数：患者数 × 每人生成就诊记录数
-    -- 修改此处，不直接依赖于 CDRD_PATIENT_INFO 表中的所有字段
-    SELECT @result = COUNT(patient_id) * @RecordCount FROM CDRD_PATIENT_INFO;
+    SELECT @result = COUNT(*) * @RecordCount FROM CDRD_PATIENT_INFO;
 
     IF @result <= 0
     BEGIN
@@ -32,92 +31,56 @@ BEGIN
 
     --为每位患者生成 @RecordCount 条记录（默认5条）
     -- 使用 CROSS JOIN 和 ROW_NUMBER() 实现每位患者生成多条记录
-    -- 修改所有 CTE，明确指定字段
     ;WITH PatientSequences AS (
-        -- 只选择需要的字段，避免 varbinary 字段
         SELECT p.patient_id, n.n
-        FROM (SELECT patient_id FROM CDRD_PATIENT_INFO) p
+        FROM CDRD_PATIENT_INFO p
         CROSS JOIN (
             SELECT TOP (@RecordCount) ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS n
             FROM sys.all_columns
         ) n
     ),
+
+    -- 构造就诊类型（门诊/住院）分布：3门诊 + 2住院
+    -- 前 3 条记录为门诊（type=1），后 2 条为住院（type=2）
     VisitTypeMapping AS (
-        SELECT
-            patient_id,
-            n,
-            CASE WHEN n <= 3 THEN '1' ELSE '2' END AS patient_visit_type_key,
-            CASE WHEN n <= 3 THEN '门诊' ELSE '住院' END AS patient_visit_type_value
+        SELECT *,
+               CASE WHEN n <= 3 THEN '1' ELSE '2' END AS patient_visit_type_key,
+               CASE WHEN n <= 3 THEN '门诊' ELSE '住院' END AS patient_visit_type_value
         FROM PatientSequences
     ),
+
+    -- 为每条记录随机分配各种字段值：
+    -- 使用 CROSS APPLY 从多个参考表中随机选取字段值（如医院、就诊类型、医疗付费方式等）。
     RandomFields AS (
-        SELECT
-            vt.patient_id,
-            vt.n,
-            vt.patient_visit_type_key,
-            vt.patient_visit_type_value,
-            h.name AS RandomHospital,
-            t.n_key AS VisitTypeKey,
-            t.n_value AS VisitTypeValue,
-            pmt.n_key AS MedicalPaymentTypeKey,
-            pmt.n_value AS MedicalPaymentTypeValue,
-            ohw.n_key AS OutHospitalWayKey,
-            ohw.n_value AS OutHospitalWayValue,
-            vw.n_key AS VisitWayKey,
-            vw.n_value AS VisitWayValue,
-            da.n_key AS DrugAllergyKey,
-            da.n_value AS DrugAllergyValue,
-            abo.n_key AS AboTypeKey,
-            abo.n_value AS AboTypeValue,
-            rh.n_key AS RhTypeKey,
-            rh.n_value AS RhTypeValue,
-            diag.n_value AS VisitDiagnosis,
-            DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS jzrq,
-            RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_age,
-            RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_days,
-            RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7) AS seq_num
+        SELECT vt.*,
+               h.name AS RandomHospital,
+               t.n_key AS VisitTypeKey, t.n_value AS VisitTypeValue,
+               pmt.n_key AS MedicalPaymentTypeKey, pmt.n_value AS MedicalPaymentTypeValue,
+               ohw.n_key AS OutHospitalWayKey, ohw.n_value AS OutHospitalWayValue,
+               vw.n_key AS VisitWayKey, vw.n_value AS VisitWayValue,
+               da.n_key AS DrugAllergyKey, da.n_value AS DrugAllergyValue,
+               abo.n_key AS AboTypeKey, abo.n_value AS AboTypeValue,
+               rh.n_key AS RhTypeKey, rh.n_value AS RhTypeValue,
+               diag.n_value AS VisitDiagnosis
         FROM VisitTypeMapping vt
-        CROSS APPLY (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_visitType ORDER BY NEWID()) t
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_paymentMethod ORDER BY NEWID()) pmt
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_dischargeMethod ORDER BY NEWID()) ohw
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_admissionRoute ORDER BY NEWID()) vw
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_drugAllergy ORDER BY NEWID()) da
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_ABO_bloodType ORDER BY NEWID()) abo
-        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_rh_bloodType ORDER BY NEWID()) rh
-        CROSS APPLY (SELECT TOP 1 n_value FROM ab_visitDiagnosis ORDER BY NEWID()) diag
+        CROSS APPLY (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h -- 医院
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_visitType ORDER BY NEWID()) t -- 就诊类型
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_paymentMethod ORDER BY NEWID()) pmt -- 医疗付费方式
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_dischargeMethod ORDER BY NEWID()) ohw -- 离院方式
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_admissionRoute ORDER BY NEWID()) vw -- 入院途径
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_drugAllergy ORDER BY NEWID()) da -- 药物过敏
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_ABO_bloodType ORDER BY NEWID()) abo -- ABO血型
+        CROSS APPLY (SELECT TOP 1 n_key, n_value FROM ab_rh_bloodType ORDER BY NEWID()) rh -- RH血型
+        CROSS APPLY (SELECT TOP 1 n_value FROM ab_visitDiagnosis ORDER BY NEWID()) diag -- 就诊诊断
     ),
+
+    -- 为每条记录随机分配科室和医生信息：
+    -- 从 a_sys_department 表随机选择科室
+    -- 从 a_sys_dept_medgp_person 表随机选择医生
     DeptInfo AS (
-        SELECT
-            rf.patient_visit_type_key,
-            rf.patient_visit_type_value,
-            rf.patient_id,
-            rf.n,
-            rf.RandomHospital,
-            rf.VisitTypeKey,
-            rf.VisitTypeValue,
-            rf.MedicalPaymentTypeKey,
-            rf.MedicalPaymentTypeValue,
-            rf.OutHospitalWayKey,
-            rf.OutHospitalWayValue,
-            rf.VisitWayKey,
-            rf.VisitWayValue,
-            rf.DrugAllergyKey,
-            rf.DrugAllergyValue,
-            rf.AboTypeKey,
-            rf.AboTypeValue,
-            rf.RhTypeKey,
-            rf.RhTypeValue,
-            rf.VisitDiagnosis,
-            rf.jzrq,
-            rf.visit_age,
-            rf.visit_days,
-            rf.seq_num,
-            d.department_id,
-            d.department_name,
-            d.department_code,
-            p.user_name,
-            p.user_job_num
+        SELECT rf.*,
+               d.department_id, d.department_name, d.department_code,
+               p.user_name, p.user_job_num
         FROM RandomFields rf
         CROSS APPLY (
             SELECT TOP 1 department_id, department_name, department_code
@@ -136,38 +99,19 @@ BEGIN
             ORDER BY NEWID()
         ) p
     ),
+
+    -- 生成时间相关字段：
+    -- 就诊时间（jzrq）：2022年6月1日之后的随机日期
+    -- 就诊年龄（visit_age）：随机生成的年龄
+    -- 住院天数（visit_days）：随机生成的住院天数
+    -- 序列号（seq_num）：随机编号
     FinalData AS (
-        SELECT
-            rf.patient_visit_type_key,
-            rf.patient_visit_type_value,
-            rf.patient_id,
-            rf.n,
-            rf.RandomHospital,
-            rf.VisitTypeKey,
-            rf.VisitTypeValue,
-            rf.MedicalPaymentTypeKey,
-            rf.MedicalPaymentTypeValue,
-            rf.OutHospitalWayKey,
-            rf.OutHospitalWayValue,
-            rf.VisitWayKey,
-            rf.VisitWayValue,
-            rf.DrugAllergyKey,
-            rf.DrugAllergyValue,
-            rf.AboTypeKey,
-            rf.AboTypeValue,
-            rf.RhTypeKey,
-            rf.RhTypeValue,
-            rf.VisitDiagnosis,
-            rf.jzrq,
-            rf.visit_age,
-            rf.visit_days,
-            rf.seq_num,
-            rf.department_id,
-            rf.department_name,
-            rf.department_code,
-            rf.user_name,
-            rf.user_job_num
-        FROM DeptInfo rf
+        SELECT *,
+               DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS jzrq, --就诊时间
+               RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_age, -- 年龄
+               RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_days, -- 住院天数
+               RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 10000000), 7) AS seq_num -- 随机编号
+        FROM DeptInfo
     )
 
     --4. 数据插入

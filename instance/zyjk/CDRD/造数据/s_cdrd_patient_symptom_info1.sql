@@ -65,8 +65,7 @@ BEGIN
                pm.patient_visit_id,
                pm.patient_hospital_visit_id,
                pm.patient_hospital_code,
-              COALESCE(pm.patient_hospital_name, h.RandomHospitalName, N'默认医院') AS patient_hospital_name,
---                pm.patient_hospital_name,
+               pm.patient_hospital_name,
                pm.patient_visit_in_time,
 
                h.RandomHospitalName,

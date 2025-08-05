@@ -12,8 +12,8 @@
 
 
 from PO.SqlserverPO import *
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
-# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
 
 import subprocess
 
@@ -1687,7 +1687,7 @@ class CdrdPO(object):
                 patient_operation_name nvarchar(50),
                 patient_operation_doc_name nvarchar(50),
                 patient_operation_assist_I nvarchar(50),
-                patient_operation_assit_II nvarchar(50),
+                patient_operation_assist_II nvarchar(50),
                 patient_operation_before_diag nvarchar(500),
                 patient_operation_during_diag nvarchar(500),
                 patient_operation_after_diag nvarchar(500),
@@ -1718,7 +1718,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_operation_name', '手术名称'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_operation_doc_name', '主刀/手术者'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_operation_assist_I', 'I助'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_assit_II', 'II助'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_operation_assist_II', 'II助'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_operation_before_diag', '术前诊断'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_operation_during_diag', '术中诊断'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_operation_after_diag', '术后诊断'),
