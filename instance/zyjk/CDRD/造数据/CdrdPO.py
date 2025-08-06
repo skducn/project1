@@ -984,6 +984,88 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
+    def crt_cdrdPatientInfo2(self, varCommon):
+
+        # 患者基本信息
+
+        varTable = 'CDRD_PATIENT_INFO'
+
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+                patient_id	int	IDENTITY(1,1) PRIMARY KEY,
+                patient_name nvarchar(50),
+                patient_sex_key varchar(100),
+                patient_sex_value nvarchar(100),
+                patient_birth_date Date,
+                patient_age int,
+                patient_birth_address_province_key varchar(100),
+                patient_birth_address_province nvarchar(100),
+                patient_birth_address_city_key varchar(100),
+                patient_birth_address_city nvarchar(100),
+                patient_birth_address_country_key varchar(100),
+                patient_birth_address_country nvarchar(100),
+                patient_country nvarchar(20),
+                patient_native_province_key varchar(100),
+                patient_native_province nvarchar(100),
+                patient_native_city_key varchar(100),
+                patient_native_city nvarchar(100),
+                patient_nation_key varchar(100),
+                patient_nation_value nvarchar(100),
+                patient_profession nvarchar(50),
+                patient_marriage_key varchar(100),
+                patient_marriage_value nvarchar(100),
+                patient_id_type_key varchar(100),
+                patient_id_type_value nvarchar(100),
+                patient_account_address nvarchar(200),
+                patient_contact_relation nvarchar(20),
+                patient_update_time datetime,
+                patient_data_source_key varchar(100),
+                patient_source_id int,
+                patient_phone_num varbinary(128),
+                patient_home_address varbinary(400),
+                patient_id_num nvarchar(100),
+                patient_home_phone varbinary(160),
+                patient_contact_phone varbinary(160),
+                patient_contact_address varbinary(400),
+                patient_contact_name varbinary(160)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_name', '姓名'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_sex_key', '性别-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_sex_value', '性别'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_date', '出生日期'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_age', '年龄'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_province_key', '出生地-省-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_province', '出生地-省'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_city_key', '出生地-市-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_city', '出生地-市'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_country_key', '出生地-县-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_birth_address_country', '出生地-县'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_country', '国籍'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_province_key', '籍贯-省-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_province', '籍贯-省'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_city_key', '籍贯-市-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_native_city', '籍贯-市'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nation_key', '民族-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_nation_value', '民族'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_profession', '职业'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_marriage_key', '婚姻-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_marriage_value', '婚姻'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_type_key', '证件类型-key'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_type_value', '证件类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_account_address', '户口地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_relation', '与患者关系'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_data_source_key', '数据来源')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_source_id', '源库患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_phone_num', '联系电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_address', '现住址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_num', '证件号码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_phone', '家庭电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
 
     def cre_a_cdrd_patient_info(self, varCommon):
         table = 'a_cdrd_patient_info'
