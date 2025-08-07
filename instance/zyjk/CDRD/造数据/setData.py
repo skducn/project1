@@ -75,7 +75,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_job('职业')
 # Cdrd_PO._ab_relationship('与患者关系')
 # Cdrd_PO.subProcedure("p_name", "姓名")
-# Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
+Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
 # Cdrd_PO.subProcedure("p_address", "住址")
 # Cdrd_PO.subProcedure("p_idcard", "身份证")
 # Cdrd_PO._ab_admissionCondition('入院病情')
@@ -130,8 +130,9 @@ Cdrd_PO = CdrdPO()
 # todo 5.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-# Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
-# Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
+# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
+Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
+Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
 # Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
 # Cdrd_PO.updateStatistics('a_cdrd_patient_info')
 # Cdrd_PO.openSql("s_cdrd_patient_info.sql")
@@ -213,7 +214,7 @@ Cdrd_PO = CdrdPO()
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
 # Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
 # Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
-Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
+# Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 # Cdrd_PO.openSql("s_cdrd_patient_drug_info.sql")
 
 #
@@ -221,14 +222,14 @@ Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 # # # 出院记录
 # 数据量：每名患者2条（共6万）
 # Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录')
-Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
+# Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
 # Cdrd_PO.openSql("s_cdrd_patient_out_hospital_info.sql")
 
 # # #
 # # # 手术记录
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientOperationInfo('手术记录')
-Cdrd_PO.procedure("s_cdrd_patient_operation_info", '手术记录')
+# Cdrd_PO.procedure("s_cdrd_patient_operation_info", '手术记录')
 # Cdrd_PO.openSql("s_cdrd_patient_operation_info.sql")
 
 
@@ -236,7 +237,7 @@ Cdrd_PO.procedure("s_cdrd_patient_operation_info", '手术记录')
 # # 护理记录
 # 数据量：每条住院记录3条护理记录（共9万）
 # Cdrd_PO.crt_cdrdPatientNurseInfo('护理记录')
-Cdrd_PO.procedure("s_cdrd_patient_nurse_info", '护理记录')
+# Cdrd_PO.procedure("s_cdrd_patient_nurse_info", '护理记录')
 # Cdrd_PO.openSql("s_cdrd_patient_nurse_info.sql")
 
 

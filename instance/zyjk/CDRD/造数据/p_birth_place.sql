@@ -15,9 +15,9 @@ BEGIN
     IF OBJECT_ID('tempdb..#tb_region') IS NOT NULL DROP TABLE #tb_region;
     CREATE TABLE #tb_region (
         ID INT IDENTITY(1,1),
-        provinceKey CHAR(6), -- 省级代码（前两位为省）
-        cityKey CHAR(6),     -- 市级代码（前四位为地级市）
-        countyKey CHAR(6),   -- 县级代码（六位全匹配）
+        provinceKey NVARCHAR(6), -- 省级代码（前两位为省）
+        cityKey NVARCHAR(6),     -- 市级代码（前四位为地级市）
+        countyKey NVARCHAR(6),   -- 县级代码（六位全匹配）
         province NVARCHAR(50),
         city NVARCHAR(50),
         county NVARCHAR(50)
@@ -163,7 +163,7 @@ BEGIN
     DECLARE @RandomRegionID INT = CAST(RAND() * (SELECT COUNT(*) FROM #tb_region) AS INT) + 1;
 
     -- 获取出生地信息
-    DECLARE @BirthProvinceCode CHAR(6), @BirthCityCode CHAR(6), @BirthCountyCode CHAR(6);
+    DECLARE @BirthProvinceCode NVARCHAR(6), @BirthCityCode NVARCHAR(6), @BirthCountyCode NVARCHAR(6);
     DECLARE @BirthProvince NVARCHAR(50), @BirthCity NVARCHAR(50), @BirthCounty NVARCHAR(50);
     SELECT
         @provinceKey = provinceKey,

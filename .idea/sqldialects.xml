@@ -2,8 +2,10 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/PO/CreateTestData104.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_birth_place.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_marriage.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_name.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_sex.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/r_diag_info__.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/r_visit_info__.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_assit_examination_info.sql" dialect="TSQL" />

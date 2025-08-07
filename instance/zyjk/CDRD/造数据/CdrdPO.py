@@ -984,11 +984,11 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
-    def crt_cdrdPatientInfo2(self, varCommon):
+    def crt_cdrdPatientInfoBinary(self, varCommon):
 
         # 患者基本信息
 
-        varTable = 'CDRD_PATIENT_INFO'
+        varTable = 'CDRD_PATIENT_INFO2'
 
         Sqlserver_PO.crtTableByCover(varTable,
             '''

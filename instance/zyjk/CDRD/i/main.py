@@ -16,8 +16,16 @@ Cdrd_PO = CdrdPO()
 # 登录
 print(Cdrd_PO.getTokenByLogin())
 
-# 获取科室列表
-print(Cdrd_PO.getDepartment())
+# # 获取科室列表
+# print(Cdrd_PO.getDepartment())
+
+# 用户,批量生成N个
+print(Cdrd_PO.crtUser(2))
+
+
+
+
+
 
 
 

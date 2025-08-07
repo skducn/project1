@@ -326,9 +326,10 @@ class DataPO:
     def getBirthday(self, varIdcard):
 
         """2.1.1，获取身份证的出生年月"""
+        # ('2000', '10', '29') 返回的是元祖
 
         # 先判断身份证是否有效
-        if Data_PO.isIdCard(varIdcard) == True:
+        if self.isIdCard(varIdcard) == True:
             yearMonthDay = (varIdcard[6:10], varIdcard[10:12], varIdcard[12:14])
             return yearMonthDay
         else:
@@ -339,7 +340,7 @@ class DataPO:
         """2.1.2，获取身份证的年龄"""
 
         # 先判断身份证是否有效
-        if Data_PO.isIdCard(varIdcard) == True:
+        if self.isIdCard(varIdcard) == True:
             Date = varIdcard[6:10] + "." + varIdcard[10:12] + "." + varIdcard[12:14]
             Date = Date.split(".")
             BirthDate = datetime.date(int(Date[0]), int(Date[1]), int(Date[2]))
