@@ -1,0 +1,11 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1754968327354,188,login1/prod-api/auth/login-182,200,OK,Thread Group 1-1,text,true,,715,488,1,1,http://192.168.0.243:8083/prod-api/auth/login,188,0,26
+1754968327580,37,login1/prod-api/system/user/getInfo-183,200,OK,Thread Group 1-1,text,true,,3060,444,1,1,http://192.168.0.243:8083/prod-api/system/user/getInfo,37,0,0
+1754968327617,18,login1/prod-api/system/menu/getRouters-184,200,OK,Thread Group 1-1,text,true,,2610,447,1,1,http://192.168.0.243:8083/prod-api/system/menu/getRouters,18,0,0
+1754968327636,22,login1/prod-api/system/logininfor/list-189,200,OK,Thread Group 1-1,text,true,,4148,479,1,1,http://192.168.0.243:8083/prod-api/system/logininfor/list?pageNum=1&pageSize=10&status2=9,21,0,0
+1754968327661,23,login1/prod-api/system/logininfor/list-194,200,OK,Thread Group 1-1,text,true,,4223,564,1,1,http://192.168.0.243:8083/prod-api/system/logininfor/list?pageNum=1&pageSize=10&userName=jinhao&status2=9&params%5BbeginTime%5D=2025-08-04&nickName=jh&type=%E7%99%BB%E5%87%BA,22,0,0
+1754968327763,141,login1/prod-api/auth/login-182,200,OK,Thread Group 1-2,text,true,,715,488,1,1,http://192.168.0.243:8083/prod-api/auth/login,141,0,2
+1754968327904,28,login1/prod-api/system/user/getInfo-183,200,OK,Thread Group 1-2,text,true,,3060,444,1,1,http://192.168.0.243:8083/prod-api/system/user/getInfo,28,0,0
+1754968327933,22,login1/prod-api/system/menu/getRouters-184,200,OK,Thread Group 1-2,text,true,,2610,447,1,1,http://192.168.0.243:8083/prod-api/system/menu/getRouters,22,0,0
+1754968327956,23,login1/prod-api/system/logininfor/list-189,200,OK,Thread Group 1-2,text,true,,4082,479,1,1,http://192.168.0.243:8083/prod-api/system/logininfor/list?pageNum=1&pageSize=10&status2=9,23,0,0
+1754968327980,26,login1/prod-api/system/logininfor/list-194,200,OK,Thread Group 1-2,text,true,,4223,564,1,1,http://192.168.0.243:8083/prod-api/system/logininfor/list?pageNum=1&pageSize=10&userName=jinhao&status2=9&params%5BbeginTime%5D=2025-08-04&nickName=jh&type=%E7%99%BB%E5%87%BA,26,0,0
