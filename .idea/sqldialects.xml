@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/PO/CreateTestData104.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/GenerateSnowflakeID.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_birth_place.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_marriage.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_name.sql" dialect="TSQL" />
@@ -15,6 +16,7 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_drug_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_hospital_advice_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_info.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_info_aes.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_lab_examination_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_nurse_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_operation_info.sql" dialect="TSQL" />

@@ -7,7 +7,7 @@
 
 from PO.SqlserverPO import *
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "UTF-8")
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
@@ -15,87 +15,43 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "
 import random
 
 
-# import pyodbc
-from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from cryptography.hazmat.backends import default_backend
-import os
-import base64
-
 from PO.DataPO import *
 Data_PO = DataPO()
 
 from PO.TimePO import *
 Time_PO = TimePO()
 
-# AES加密函数 (128位)
-def aes_encrypt(plaintext, key):
-    # ECB模式不需要IV
-    cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=default_backend())
-    encryptor = cipher.encryptor()
+from Crypto.Cipher import AES
+import binascii
 
-    # 填充和加密
-    padding_length = 16 - (len(plaintext) % 16)
-    plaintext += chr(padding_length).encode('GBK') * padding_length
-    ciphertext = encryptor.update(plaintext) + encryptor.finalize()
+def aes128_ecb_encrypt(plaintext, key_hex):
+    """
+    使用AES128-ECB模式加密数据
+    :param plaintext: 要加密的明文
+    :param key_hex: 16进制密钥字符串
+    :return: 加密后的二进制数据
+    """
+    # 将16进制密钥转换为字节
+    key = binascii.unhexlify(key_hex)
 
-    return ciphertext  # ECB模式不返回IV
-# def aes_encrypt(plaintext, key):
-#     # 生成16字节的随机初始化向量
-#     iv = os.urandom(16)
-#
-#     # 创建AES加密器 (使用CBC模式)
-#     # cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
-#     cipher = Cipher(algorithms.AES(key), modes.ECB(), backend=default_backend())
-#     encryptor = cipher.encryptor()
-#
-#     # 填充数据以满足16字节的倍数
-#     padding_length = 16 - (len(plaintext) % 16)
-#     plaintext += chr(padding_length).encode('GBK') * padding_length
-#     # plaintext += chr(padding_length).encode('utf-8') * padding_length
-#
-#     # 加密
-#     ciphertext = encryptor.update(plaintext) + encryptor.finalize()
-#
-#     # 返回初始化向量+加密数据 (用于解密)
-#     return iv + ciphertext
+    # 初始化AES加密器(ECB模式不需要IV)
+    cipher = AES.new(key, AES.MODE_ECB)
 
-#
-# # AES解密函数
-# def aes_decrypt(ciphertext, key):
-#     # 分离初始化向量和加密数据
-#     iv = ciphertext[:16]
-#     encrypted_data = ciphertext[16:]
-#
-#     # 创建AES解密器
-#     cipher = Cipher(algorithms.AES(key), modes.CBC(iv), backend=default_backend())
-#     decryptor = cipher.decryptor()
-#
-#     # 解密
-#     padded_plaintext = decryptor.update(encrypted_data) + decryptor.finalize()
-#
-#     # 移除填充
-#     padding_length = padded_plaintext[-1]
-#     plaintext = padded_plaintext[:-padding_length]
-#
-#     return plaintext.decode('GBK')  # 使用相应的编码解码
-#
-# # 使用示例（在Web应用中）
-# # decrypted_name = aes_decrypt(patient_name_encrypted, aes_key)
+    # 对明文进行PKCS7填充（ECB模式仍需要块对齐）
+    padding_length = AES.block_size - (len(plaintext.encode('utf-8')) % AES.block_size)
+    padded_plaintext = plaintext.encode('utf-8') + bytes([padding_length]) * padding_length
+
+    # 加密并返回结果
+    return cipher.encrypt(padded_plaintext)
+
+# 16进制密钥（16字节，AES128要求）
+key_hex = "42656E65746563684031323334353637"
+
+    #         encrypted_data = aes128_ecb_encrypt(plaintext, key_hex)
 
 
-# 将十六进制字符串密钥转换为字节
-hex_key = '42656E65746563684031323334353637'
-aes_key = bytes.fromhex(hex_key)
-
-print(f"密钥长度: {len(aes_key)} 字节")  # 输出: 密钥长度: 16 字节
-print(f"AES密钥 (Base64): {base64.b64encode(aes_key).decode('utf-8')}")
-
-# 验证密钥长度
-if len(aes_key) != 16:
-    raise ValueError("AES-128密钥必须是16字节长度")
 
 
-# sys.exit(0)
 
 for _ in range(5):
     # 身份证，出生日期，年龄，性别
@@ -138,22 +94,23 @@ for _ in range(5):
     # 姓名
     random_name = Data_PO.getChineseName()
     # data_to_encrypt = random_name.encode('utf-8')
-    data_to_encrypt = random_name.encode('GBK')
-    random_name_encrypted = aes_encrypt(data_to_encrypt, aes_key)
+    # data_to_encrypt = random_name.encode('GBK')
+    random_name_encrypted  = aes128_ecb_encrypt(random_name, key_hex)
     # random_name_d = aes_decrypt(random_name_encrypted, aes_key)
 
     # 随机地址
     random_address = random.choice(["南京路100号", "中山路11号", "复兴路44号", "东方路10号", "七浦路89号", "鲁班路54号"])
     # data_to_encrypt = random_address.encode('utf-8')
-    data_to_encrypt = random_address.encode('GBK')
-    random_address_encrypted = aes_encrypt(data_to_encrypt, aes_key)
+    # data_to_encrypt = random_address.encode('GBK')
+    random_address_encrypted = aes128_ecb_encrypt(random_address, key_hex)
     # random_address_d = aes_decrypt(random_address_encrypted, aes_key)
 
     # 手机
     random_phone = Data_PO.getPhone()
     # data_to_encrypt = random_phone.encode('utf-8')
-    data_to_encrypt = random_phone.encode('GBK')
-    random_phone_encrypted = aes_encrypt(data_to_encrypt, aes_key)
+    # data_to_encrypt = random_phone.encode('GBK')
+    random_phone_encrypted = aes128_ecb_encrypt(random_phone, key_hex)
+
     # random_phone_d = aes_decrypt(random_phone_encrypted, aes_key)
 
     # # 将二进制数据转换为十六进制字符串

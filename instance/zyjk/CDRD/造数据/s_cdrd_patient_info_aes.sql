@@ -1,26 +1,4 @@
--- todo 患者信息表
--- 数据量：3000
--- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
--- # gitlab http://192.168.0.241/cdrd_product_doc/product_doc
--- 批处理优化：避免一次性生成所有数据，减少内存压力
--- 模块化设计：通过调用其他存储过程实现功能复用
--- 随机性：使用 NEWID() 和 CHECKSUM 函数生成随机数据
--- 数据完整性：通过关联表确保生成的数据符合实际业务逻辑
--- 3000条，耗时: 11.2399 秒
--- 30000条，耗时: 113.9838 秒 ， 11M
-
--- todo 患者信息表
--- 数据量：3000
--- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
--- # gitlab http://192.168.0.241/cdrd_product_doc/product_doc
--- 批处理优化：避免一次性生成所有数据，减少内存压力
--- 模块化设计：通过调用其他存储过程实现功能复用
--- 随机性：使用 NEWID() 和 CHECKSUM 函数生成随机数据
--- 数据完整性：通过关联表确保生成的数据符合实际业务逻辑
--- 3000条，耗时: 11.2399 秒
--- 30000条，耗时: 113.9838 秒 ， 11M
-
-CREATE OR ALTER PROCEDURE s_cdrd_patient_info
+CREATE OR ALTER PROCEDURE s_cdrd_patient_info_aes
     @result INT OUTPUT
 AS
 BEGIN
@@ -32,66 +10,33 @@ BEGIN
     IF @result IS NULL OR @result = 0
         SET @result = 10;
 
---     -- 检查并创建数据库主密钥（如果不存在）
---     IF NOT EXISTS (SELECT * FROM sys.symmetric_keys WHERE name = '##MS_DatabaseMasterKey##')
---         CREATE MASTER KEY ENCRYPTION BY PASSWORD = '???';
---
---     -- 检查并创建证书（用于保护对称密钥）
---     IF NOT EXISTS (SELECT * FROM sys.certificates WHERE name = 'AESCert')
---         CREATE CERTIFICATE AESCert
---         WITH SUBJECT = 'AES Encryption Certificate';
---
---     -- 检查并创建AES对称密钥（支持128位）
---     IF NOT EXISTS (SELECT * FROM sys.symmetric_keys WHERE name = 'benetech12345678')
---         CREATE SYMMETRIC KEY AESSymKey
---         WITH ALGORITHM = AES_128
---         ENCRYPTION BY CERTIFICATE AESCert;
+    -- 定义16进制密钥
+    DECLARE @KeyHex VARCHAR(32) = '42656E65746563684031323334353637';
+    DECLARE @EncryptionKey VARBINARY(16);
 
-    -- 1. 创建主密钥（只需一次）
---     CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'Benetech12345678';
+    -- 将16进制字符串转换为二进制密钥(16字节，AES128需要16字节密钥)
+    SET @EncryptionKey = CONVERT(VARBINARY(16), @KeyHex, 2);
 
---     DECRYPTION by password = 'Benetech12345678'
+    -- 检查密钥长度是否正确(16字节)
+    IF LEN(@EncryptionKey) <> 16
+    BEGIN
+        RAISERROR('AES128 requires a 16-byte encryption key.', 16, 1);
+        RETURN;
+    END
 
-    -- 2. 让它自动打开
---     ALTER MASTER KEY ADD ENCRYPTION BY SERVICE MASTER KEY;
---
---     -- 3. 创建你的对称密钥（用 benetech12345678 保护）
---     CREATE SYMMETRIC KEY PatientDataSymKey
---     WITH ALGORITHM = AES_128
---     ENCRYPTION BY PASSWORD = 'benetech12345678';
---
---     -- 打开对称密钥（使用你的密码）
---     OPEN SYMMETRIC KEY PatientDataSymKey
---     DECRYPTION BY PASSWORD = 'benetech12345678';
+    -- 创建对称密钥（如果不存在）使用指定的16进制密钥
+    IF NOT EXISTS (SELECT * FROM sys.symmetric_keys WHERE name = 'AES128_Key')
+    BEGIN
+        CREATE SYMMETRIC KEY AES128_Key
+        WITH ALGORITHM = AES_128
+        ENCRYPTION BY CERTIFICATE YourCertificate; -- 需要先创建证书
+        -- 或者使用密码加密:
+        -- ENCRYPTION BY PASSWORD = 'StrongPassword123!';
+    END
 
-
---     -- 1. 创建数据库主密钥（如果不存在）
---     IF NOT EXISTS (SELECT * FROM sys.symmetric_keys WHERE name = '##MS_DatabaseMasterKey##')
---     BEGIN
---         CREATE MASTER KEY ENCRYPTION BY PASSWORD = 'benetech12345678'; -- 请更换为强密码
---     END
---
---     -- 2. 创建证书（用于保护对称密钥）
---     IF NOT EXISTS (SELECT * FROM sys.certificates WHERE name = 'AESCert')
---     BEGIN
---         CREATE CERTIFICATE AESCert
---         WITH SUBJECT = 'AES Encryption Certificate for Benetech',
---              EXPIRY_DATE = '2030-12-31'; -- 设置证书过期日期
---     END
---
---     -- 3. 创建指定密钥的AES对称密钥
---     IF NOT EXISTS (SELECT * FROM sys.symmetric_keys WHERE name = 'AESSymKey')
---     BEGIN
---         CREATE SYMMETRIC KEY AESSymKey
---         WITH ALGORITHM = AES_128,  -- 使用128位AES加密算法
---              KEY_SOURCE = 'benetech12345678',  -- 指定对称密钥
---              IDENTITY_VALUE = 'benetech_identity_123'  -- 用于生成密钥的标识值
---         ENCRYPTION BY CERTIFICATE AESCert;
---     END
-
---     -- 打开对称密钥
---     OPEN SYMMETRIC KEY AESSymKey
---     DECRYPTION BY CERTIFICATE AESCert;
+    -- 如果无法直接使用16进制密钥创建对称密钥，则使用EncryptByPassPhrase
+    -- 打开对称密钥（如果使用证书或密码方式）
+    -- OPEN SYMMETRIC KEY AES128_Key DECRYPTION BY PASSWORD = 'StrongPassword123!';
 
     --2. 临时表结构
     -- 创建临时表存储批量数据
@@ -124,21 +69,13 @@ BEGIN
         patient_update_time DATETIME,
         patient_data_source_key NVARCHAR(10),
         patient_source_id int,
-        patient_phone_num NVARCHAR(128),
-        patient_home_address NVARCHAR(400),
+        patient_phone_num varbinary(128),
+        patient_home_address varbinary(400),
         patient_id_num VARCHAR(100),
-        patient_home_phone NVARCHAR(160),
-        patient_contact_phone NVARCHAR(160),
-        patient_contact_address NVARCHAR(400),
-        patient_contact_name NVARCHAR(160)
-
--- --         patient_phone_num varbinary(128),
--- --         patient_home_address varbinary(400),
---         patient_id_num VARCHAR(100)
--- --         patient_home_phone varbinary(160),
--- --         patient_contact_phone varbinary(160),
--- --         patient_contact_address varbinary(400),
--- --         patient_contact_name varbinary(160)
+        patient_home_phone varbinary(160),
+        patient_contact_phone varbinary(160),
+        patient_contact_address varbinary(400),
+        patient_contact_name varbinary(160)
     );
 
     --3. 批量数据生成机制
@@ -166,7 +103,6 @@ BEGIN
             DECLARE @phone1 NVARCHAR(11) = '138' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
             DECLARE @phone2 NVARCHAR(11) = '130' + RIGHT('00000000' + CAST(ABS(CHECKSUM(NEWID())) % 99999999 AS VARCHAR(8)), 8);
             DECLARE @phone3 NVARCHAR(8) = '5' + RIGHT('0000000' + CAST(ABS(CHECKSUM(NEWID())) % 9999999 AS VARCHAR(7)), 7);
-            DECLARE @AESKey VARBINARY(16); -- AES-128需要16字节密钥
 
             -- 婚姻状况：从 ab_marriage 表随机选取
             DECLARE @RandomMarriageKey NVARCHAR(100);
@@ -217,9 +153,6 @@ BEGIN
                  @genderKey = @genderKey OUTPUT, @birthday = @birthday OUTPUT,
                  @age = @age OUTPUT;
 
-            -- 生成随机AES-128密钥(16字节)
---             SET @AESKey = CRYPT_GEN_RANDOM(16);
-
             --5. 数据插入
             -- 先将生成的数据插入临时表 #BatchData
             INSERT INTO #BatchData VALUES (
@@ -251,22 +184,13 @@ BEGIN
                 DATEADD(DAY, -ABS(CHECKSUM(NEWID())) % 365, GETDATE()),
                 '1',
                 RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3),
---                 @idcard
-                @phone1,
-                @RandomAddress1,
+                EncryptByPassPhrase(@KeyHex, @phone1),
+                EncryptByPassPhrase(@KeyHex, @RandomAddress1),
                 @idcard,
-                @phone2,
-                @phone3,
-                @RandomAddress2,
-                @RandomName
-
---                 EncryptByKey(Key_GUID('PatientDataSymKey'), @phone1),
---                 EncryptByKey(Key_GUID('PatientDataSymKey'), @RandomAddress1),
---                 @idcard,
---                 EncryptByKey(Key_GUID('PatientDataSymKey'), @phone2),
---                 EncryptByKey(Key_GUID('PatientDataSymKey'), @phone3),
---                 EncryptByKey(Key_GUID('PatientDataSymKey'), @RandomAddress2),
---                 EncryptByKey(Key_GUID('PatientDataSymKey'), @RandomName)
+                EncryptByPassPhrase(@KeyHex, @phone2),
+                EncryptByPassPhrase(@KeyHex, @phone3),
+                EncryptByPassPhrase(@KeyHex, @RandomAddress2),
+                EncryptByPassPhrase(@KeyHex, @RandomName)
             );
 
             SET @i = @i + 1;
@@ -354,8 +278,8 @@ BEGIN
     -- 设置输出参数为实际生成的记录数
     SET @result = @Counter;
 
-    -- 关闭对称密钥
---     CLOSE SYMMETRIC KEY AESSymKey;
+    -- 如果使用了对称密钥则关闭它
+    -- CLOSE SYMMETRIC KEY AES128_Key;
 
     DROP TABLE #BatchData;
 END;

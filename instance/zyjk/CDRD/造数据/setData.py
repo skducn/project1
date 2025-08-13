@@ -60,22 +60,17 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.subProcedure("p_visit_type", "就诊类型, {'1': '门诊', '2': '住院'}")
 # Cdrd_PO.subProcedure("p_visit_way", "入院途径, {'1': '本院急诊诊疗后入院', '2': '本院门诊诊疗后入院', '3': '其他医疗机构诊治后转诊入院', '9': '其他途径入院'}")
 
-
-
 # Cdrd_PO.subFunction("fn_name")
 
 
-
-
-# todo 创建ab表
-
+# todo ab表
 # Cdrd_PO._ab_marriage('婚姻')
 # Cdrd_PO._ab_IDtype('证件类型')
 # Cdrd_PO._ab_ethnicGroup('民族')
 # Cdrd_PO._ab_job('职业')
 # Cdrd_PO._ab_relationship('与患者关系')
 # Cdrd_PO.subProcedure("p_name", "姓名")
-Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
+# Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
 # Cdrd_PO.subProcedure("p_address", "住址")
 # Cdrd_PO.subProcedure("p_idcard", "身份证")
 # Cdrd_PO._ab_admissionCondition('入院病情')
@@ -107,35 +102,129 @@ Cdrd_PO.subProcedure("p_birth_place", "出生地-省市县")
 # Cdrd_PO._ab_hospital('医院')
 
 
-# todo 4，科室管理
+# todo --- 系统配置 ---
+
+# todo 1，医院信息表
+# Cdrd_PO.crt_sys_hospital('医院信息表')
+
+
+# todo 2-1，科室表
 # 数据量：1个科室
 # Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
 # # Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
 # # Cdrd_PO.updateStatistics('SYS_DEPARTMENT')
-# Cdrd_PO.crt_sysDepartment('科室表')
+# Cdrd_PO.crt_sys_department('科室表')
 # Cdrd_PO.procedure("s_sys_department", '科室表')
-# #
+
+# todo 2-2，科室医疗组
 # # # 数据量：每个科室下3个医疗组
 # # # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
 # # # Cdrd_PO.updateStatistics('a_sys_dept_medgp')
-# Cdrd_PO.crt_sysDeptMedgp('医疗组')
+# Cdrd_PO.crt_sys_dept_medgp('科室医疗组')
 # Cdrd_PO.procedure("s_sys_dept_medgp", '医疗组')
-# #
+
+# todo 2-3，医疗组人员
 # # # 数据量：每个医疗组下5名成员
 # # # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
 # # # Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
-# Cdrd_PO.crt_sysDeptMedgpPerson('医疗组人员')
+# Cdrd_PO.crt_sys_dept_medgp_person('医疗组人员')
 # Cdrd_PO.procedure("s_sys_dept_medgp_person", '医疗组人员')
 
+
+# todo 3-1，用户表
+# Cdrd_PO.crt_sys_user('用户表')
+# # Cdrd_PO.procedure("sys_user", '用户表', 4)
+#
+# todo 3-2，用户角色关系表
+# Cdrd_PO.crt_sys_user_role('用户角色关系表')
+# # Cdrd_PO.procedureUserRole("sys_user_role", '用户角色关系表', {3: [1, 3, 4]})  # 一个用户可多个角色，用户3关联角色1，3，4
+#
+# # todo 3-3，用户问题关系表
+# Cdrd_PO.crt_sys_user_pwdptc('用户问题关系表')
+#
+#
+# # todo 4，用户密保问题表
+# Cdrd_PO.crt_sys_security_question('用户密保问题表')
+
+
+# todo 5，角色管理(ok)
+# Cdrd_PO.crt_sys_role('角色表')
+# Cdrd_PO.procedure("sys_role", '角色表', 6)  # exec a_sys_role @RecordCount=6;  //参数RecordCount=6忽略，程序写死角色6
+
+# Cdrd_PO.crt_sys_role_menu('角色菜单关系表')
+# Cdrd_PO.procedureRoleMenu("sys_role_menu", '角色菜单关系表', {'副主任': [18, 20, 21]}) # 一个角色可多个菜单，如：角色3关联菜单18，20，21
+
+
+# todo 6，菜单管理
+# Cdrd_PO.crt_sys_menu('菜单表')
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统管理', None])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统监控', None])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统权限', None])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['C', '医生管理', '系统监控'])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['C', '客户管理', '系统监控'])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '查询', '用户管理'])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '编辑', '用户管理'])
+# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '新增123', '客户管理'])
+
+
+# todo 7，参数配置
+# Cdrd_PO.crt_sys_config('参数配置')
+# Cdrd_PO.procedure("sys_config", '参数配置', 4)
+
+# # todo 8，标签
+# Cdrd_PO.crt_sys_tag_type('标签表')
+#
+# # todo 9，标签数据表
+# Cdrd_PO.crt_sys_tag_data('标签数据表')
+#
+# # todo 10，标签权限表
+# Cdrd_PO.crt_sys_tag_authority('标签权限表')
+#
+# # todo 11，扩展字段管理
+# Cdrd_PO.crt_sys_extend_field_manage('扩展字段管理')
+#
+# # todo 12，扩展字段权限表
+# Cdrd_PO.crt_sys_extend_field_authority('扩展字段权限表')
+#
+# # todo 13，文件下载管理
+# Cdrd_PO.crt_sys_file_download('文件下载管理')
+#
+# # todo 14，文件下载记录
+# Cdrd_PO.crt_sys_file_download_record('文件下载记录')
+
+# todo 15，字典类型表
+# Cdrd_PO.crt_sys_dict_type('字典类型表')
+# Sqlserver_PO.xlsx2db_deduplicated('CDRB20250623.xlsx', "sys_dict_type", "dict_name", "dict1")
+
+# todo 16，字典数据表
+# Cdrd_PO.crt_sys_dict_data('字典数据表')
+# Sqlserver_PO.xlsx2db_append('CDRB20250623.xlsx', "sys_dict_data", "dict2")
+
+
+
+
+# Cdrd_PO.crt_testBinary()
+
+
+# todo --- 表 ---
 # todo 5.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
-Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
-Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
+Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
+result = subprocess.run(
+    ["python", "genAES128.py"],  # 命令和参数列表
+    capture_output=True,  # 捕获 stdout 和 stderr
+    text=True  # 输出转为字符串（默认是字节）
+)
+
+
+# Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
+
+# Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
 # Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
 # Cdrd_PO.updateStatistics('a_cdrd_patient_info')
 # Cdrd_PO.openSql("s_cdrd_patient_info.sql")
+
 
 
 # todo 门(急)诊住院就诊信息
@@ -257,79 +346,41 @@ Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程�
 # Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 
 
+
+
+
 # =======================================================================================================
 # =======================================================================================================
 # =======================================================================================================
 
 
-# todo 2，数据字典配置
-# Cdrd_PO._a_sys_dict_type('字典类型表')
-# Sqlserver_PO.xlsx2db_deduplicated('CDRB20250623.xlsx', "a_sys_dict_type", "dict_name", "dict1")
-
-# Cdrd_PO._a_sys_dict_data('字典数据表')
-# Sqlserver_PO.xlsx2db_append('CDRB20250623.xlsx', "a_sys_dict_data", "dict2")
 
 
-
-# todo 3，医院管理
-# Cdrd_PO.dept__a_sys_hopital('医院信息表')
-
-
-
-
-
+# todo 1.1
+# Cdrd_PO.crt_SnowflakeSequence('雪花序列表')
+# Cdrd_PO.subProcedure("GenerateSnowflakeID", '雪花')  # 生成雪花
+# Cdrd_PO.crt_cdrdPatientTag('标签表')
+# Cdrd_PO.insert_cdrdPatientTag()  # 插入1条数据
+# Cdrd_PO.openSql("GenerateSnowflakeID.sql")
 
 
+# todo 标签表
+# Cdrd_PO.crt_patient_tag('标签表')
 
-# todo 5，用户管理(ok)
-# Cdrd_PO.user__a_sys_user('用户表')
-# Cdrd_PO.procedure("sys_user", '用户表', 4)
+# todo 扩展字段表
+# Cdrd_PO.crt_patient_extend_field('扩展字段表')
 
-# Cdrd_PO.user__a_sys_user_role('用户角色关系表')
-# Cdrd_PO.procedureUserRole("sys_user_role", '用户角色关系表', {3: [1, 3, 4]})  # 一个用户可多个角色，用户3关联角色1，3，4
+# todo 导出模板表
+# Cdrd_PO.crt_patient_export('导出模板表')
 
-# Cdrd_PO.user__a_sys_user_pwdptc('用户问题关系表')
+# todo 导出模块表
+# Cdrd_PO.crt_patient_export_module('导出模块表')
 
-
-# todo 角色管理(ok)
-# Cdrd_PO.role__a_sys_role('角色表')
-# Cdrd_PO.procedure("sys_role", '角色表', 6)  # exec a_sys_role @RecordCount=6;  //参数RecordCount=6忽略，程序写死角色6
-
-# Cdrd_PO.role__a_sys_role_menu('角色菜单关系表')
-# Cdrd_PO.procedureRoleMenu("sys_role_menu", '角色菜单关系表', {'副主任': [18, 20, 21]}) # 一个角色可多个菜单，如：角色3关联菜单18，20，21
-
-
-
-# todo 菜单管理
-# Cdrd_PO.menu__a_sys_menu('菜单表')
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统管理', None])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统监控', None])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统权限', None])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['C', '医生管理', '系统监控'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['C', '客户管理', '系统监控'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '查询', '用户管理'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '编辑', '用户管理'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '新增123', '客户管理'])
-
-
-
-# todo 参数配置
-# Cdrd_PO._a_sys_config('参数配置')
-# Cdrd_PO.procedure("sys_config", '参数配置', 4)
+# todo 导出数据表
+# Cdrd_PO.crt_patient_export_field('导出数据表')
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+# Cdrd_PO.sys_task('待办任务表')
+# Cdrd_PO.sys_file_download('待办任务表')

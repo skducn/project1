@@ -320,7 +320,7 @@ class SqlserverPO:
         try:
             # self.conn.commit()
             self.cur.execute(sql, value)
-            # self.conn.commit()
+            self.conn.commit()
         except Exception as e:
             print(repr(e))
 
@@ -2017,17 +2017,18 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
-    def xlsx2db_deduplicated(self, varPathFile, varDbTable, varField, varSheetName=0):
+    def xlsx2db_deduplicated(self, varExcel, varDbTable, varDropDuplicatesField, varSheetName=0):
 
         '''
-        5.3，xlsx导入数据库（保留原来字段，追加数据，对字段重复值去重）
-        xlsx2db('2.xlsx', "tableName", "字段","sheet1")
-        excel表格第一行数据对应db表中字段，建议用英文
+        5.3，xlsx导入数据库（保留原来字段，追加数据）
+        作用是将 Excel 数据导入 SQL Server 数据库，同时根据指定字段去除重复数据。它确保了数据的唯一性，避免了重复记录被插入到数据库中。
+        xlsx2db('2.xlsx', "tableName", "字段", "sheet1")
+        注意excel表格第一行数据对应db表中字段，建议用英文
         '''
 
         try:
-            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
-            df_deduplicated = df.drop_duplicates(subset=[varField])  # 去重
+            df = pd.read_excel(varExcel, sheet_name=varSheetName)
+            df_deduplicated = df.drop_duplicates(subset=[varDropDuplicatesField])  # 去重
             engine = self.getEngine_pymssql()
             df_deduplicated.to_sql(varDbTable, con=engine, if_exists='append', index=False)
         except Exception as e:

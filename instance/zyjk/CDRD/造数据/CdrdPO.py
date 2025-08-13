@@ -13,10 +13,10 @@
 
 from PO.SqlserverPO import *
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 
 import subprocess
-
 
 class CdrdPO(object):
 
@@ -501,38 +501,38 @@ class CdrdPO(object):
 
 
 
-    def crt_sysHopital(self, varCommon):
+    def crt_sys_hospital(self, varCommon):
 
-        # 创建表
-        # 医院管理 - 医院信息表 a_sys_hopital
-        varTable = 'SYS_HOPITAL'
+        # 医院信息表
+
+        varTable = 'sys_hospital'
         Sqlserver_PO.crtTableByCover(varTable,
-                                   '''hospital_id INT IDENTITY(1,1) PRIMARY KEY,
-                                    hospital_name NVARCHAR(50),
-                                    hospital_code NVARCHAR(50),
-                                    hospital_picture_address NVARCHAR(20),
-                                  ''')
+        '''hospital_id INT IDENTITY(1,1) PRIMARY KEY,
+        hospital_name NVARCHAR(50),
+        hospital_code NVARCHAR(50),
+        hospital_picture_address NVARCHAR(max),
+        ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment(varTable, 'hospital_id', '医院ID')
         Sqlserver_PO.setFieldComment(varTable, 'hospital_name', '医院名称')
         Sqlserver_PO.setFieldComment(varTable, 'hospital_code', '医院编码')
         Sqlserver_PO.setFieldComment(varTable, 'hospital_picture_address', '图片地址')
-    def crt_sysDepartment(self, varCommon):
 
-        # 创建表
-        # 科室管理 - 科室表 a_sys_department
+    def crt_sys_department(self, varCommon):
+
+        # 科室表
         
-        varTable = 'SYS_DEPARTMENT'
+        varTable = 'sys_department'
         Sqlserver_PO.crtTableByCover(varTable,
-            '''department_id INT IDENTITY(1,1) PRIMARY KEY,
-            department_name NVARCHAR(20),
-            department_code NVARCHAR(20),
-            department_charge_id int,
-            department_charge_job_num NVARCHAR(20),
-            department_charge_name NVARCHAR(20),
-            department_creater_name NVARCHAR(20),
-            department_create_time DATETIME
-            ''')
+        '''department_id INT IDENTITY(1,1) PRIMARY KEY,
+        department_name NVARCHAR(20),
+        department_code NVARCHAR(20),
+        department_charge_id int,
+        department_charge_job_num NVARCHAR(20),
+        department_charge_name NVARCHAR(20),
+        department_creater_name NVARCHAR(20),
+        department_create_time DATETIME
+        ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment(varTable, 'department_name', '科室名称')
         Sqlserver_PO.setFieldComment(varTable, 'department_code', '科室编码')
@@ -541,38 +541,38 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'department_charge_name', '科室负责人姓名')
         Sqlserver_PO.setFieldComment(varTable, 'department_creater_name', '创建人')
         Sqlserver_PO.setFieldComment(varTable, 'department_create_time', '创建时间')
-    def crt_sysDeptMedgp(self, varCommon):
+    def crt_sys_dept_medgp(self, varCommon):
 
-        # 创建表
-        # 科室管理 - 医疗组 a_sys_dept_medgp
-        varTable = 'SYS_DEPT_MEDGP'
+        # 科室-医疗组
+
+        varTable = 'sys_dept_medgp'
         Sqlserver_PO.crtTableByCover(varTable,
-            '''
-            department_treat_group_id int IDENTITY(1,1) PRIMARY KEY,
-            department_id int,
-            department_treat_group_name NVARCHAR(20),
-            department_treat_create_time DATETIME
-            ''')
+        '''
+        department_treat_group_id int IDENTITY(1,1) PRIMARY KEY,
+        department_id int,
+        department_treat_group_name NVARCHAR(20),
+        department_treat_create_time DATETIME
+        ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment(varTable, 'department_treat_group_id', '医疗组ID')
         Sqlserver_PO.setFieldComment(varTable, 'department_id', '科室ID')
         Sqlserver_PO.setFieldComment(varTable, 'department_treat_group_name', '医疗组名称')
         Sqlserver_PO.setFieldComment(varTable, 'department_treat_create_time', '医疗组创建时间')
-    def crt_sysDeptMedgpPerson(self,varCommon):
+    def crt_sys_dept_medgp_person(self,varCommon):
 
-        # 创建表
-        # 科室管理 - 人员 a_sys_dept_medgp_person
-        varTable = 'SYS_DEPT_MEDGP_PERSON'
+        # 医疗组-人员
+
+        varTable = 'sys_dept_medgp_person'
         Sqlserver_PO.crtTableByCover(varTable,
-            '''
-            ID int IDENTITY(1,1) PRIMARY KEY,
-            user_id int,
-            department_treat_group_id INT,
-            user_name NVARCHAR(20),
-            user_job_num NVARCHAR(20)
-            ''')
+        '''
+        ID int IDENTITY(1,1) PRIMARY KEY,
+        user_id int,
+        department_treat_group_id INT,
+        user_name NVARCHAR(20),
+        user_job_num NVARCHAR(20)
+        ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment(varTable, 'ID', '用户ID')
+        Sqlserver_PO.setFieldComment(varTable, 'ID', 'ID')
         Sqlserver_PO.setFieldComment(varTable, 'user_id', '用户ID')
         Sqlserver_PO.setFieldComment(varTable, 'department_treat_group_id', '医疗组ID')
         Sqlserver_PO.setFieldComment(varTable, 'user_name', '姓名')
@@ -580,10 +580,12 @@ class CdrdPO(object):
 
 
 
-    def user__a_sys_user(self, varCommon):
+    def crt_sys_user(self, varCommon):
 
-        # 用户管理 - 用户表
-        Sqlserver_PO.crtTableByCover('a_sys_user',
+        # 用户表
+
+        varTable = 'sys_user'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             user_id	int	IDENTITY(1,1) PRIMARY KEY,
             nick_name nvarchar(20),
@@ -593,61 +595,65 @@ class CdrdPO(object):
             job_num	nvarchar(20),
             email	nvarchar(50),
             phonenumber	nvarchar(20),
-            sex 	int 	,
+            sex 	varchar(100),
             avatar 	nvarchar(100),
             department_id	int	,
             department_code	nvarchar(20),
             department_name	nvarchar(20),
-            status	int	,
-            remark	nvarchar(500),
+            status varchar(100),
+            remark nvarchar(500),
             creater_by	nvarchar(20),
             create_time	datetime	,
             update_by	nvarchar(20),
             update_time	datetime	,
-            pwd_update_state	int	,
+            pwd_update_state varchar(100),
             pwd_update_time	datetime,	
             pwd_next_update_time	datetime	
             ''')
-        Sqlserver_PO.setTableComment('a_sys_user', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_user', 'user_id', '用户ID'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'nick_name', '姓名'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'user_name', '账号'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'user_type', '用户类型'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'password', '密码'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'job_num', '工号'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'email', '邮箱'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'phonenumber', '手机号'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'sex', '性别'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'avatar', '头像地址'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'department_id', '所属科室ID'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'department_code', '所属科室code'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'department_name', '所属科室名称'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'status', '账号状态'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'remark', '备注'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'creater_by', '创建人'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'create_time', '创建时间'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'update_by', '更新者'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'pwd_update_state', '密码重置状态'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'pwd_update_time', '密码最后更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_user', 'pwd_next_update_time', '密码下次更新时间')
-    def user__a_sys_user_role(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'user_id', '用户ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'nick_name', '姓名'),
+        Sqlserver_PO.setFieldComment(varTable, 'user_name', '账号'),
+        Sqlserver_PO.setFieldComment(varTable, 'user_type', '用户类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'password', '密码'),
+        Sqlserver_PO.setFieldComment(varTable, 'job_num', '工号'),
+        Sqlserver_PO.setFieldComment(varTable, 'email', '邮箱'),
+        Sqlserver_PO.setFieldComment(varTable, 'phonenumber', '手机号'),
+        Sqlserver_PO.setFieldComment(varTable, 'sex', '性别'),
+        Sqlserver_PO.setFieldComment(varTable, 'avatar', '头像地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'department_id', '所属科室ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'department_code', '所属科室code'),
+        Sqlserver_PO.setFieldComment(varTable, 'department_name', '所属科室名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'status', '账号状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注'),
+        Sqlserver_PO.setFieldComment(varTable, 'creater_by', '创建人'),
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者'),
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'pwd_update_state', '密码重置状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'pwd_update_time', '密码最后更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'pwd_next_update_time', '密码下次更新时间')
+    def crt_sys_user_role(self, varCommon):
 
         # 用户管理 - 用户角色关系表
-        Sqlserver_PO.crtTableByCover('a_sys_user_role',
-            '''
-            id int	IDENTITY(1,1) PRIMARY KEY,
-            user_id	int	,
-            role_id int 	
-            ''')
-        Sqlserver_PO.setTableComment('a_sys_user_role', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_user_role', 'id', 'ID')
-        Sqlserver_PO.setFieldComment('a_sys_user_role', 'user_id', '用户ID')
-        Sqlserver_PO.setFieldComment('a_sys_user_role', 'role_id', '角色ID')
-    def user__a_sys_user_pwdptc(self, varCommon):
+
+        varTable = 'sys_user_role'
+        Sqlserver_PO.crtTableByCover(varTable,
+        '''
+        id int	IDENTITY(1,1) PRIMARY KEY,
+        user_id	int	,
+        role_id int 	
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'id', 'ID')
+        Sqlserver_PO.setFieldComment(varTable, 'user_id', '用户ID')
+        Sqlserver_PO.setFieldComment(varTable, 'role_id', '角色ID')
+    def crt_sys_security_question(self, varCommon):
 
         # 用户管理 - 用户问题关系表
-        Sqlserver_PO.crtTableByCover('a_sys_user_pwdptc',
+        
+        varTable = 'sys_user_pwdptc'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             id	int	IDENTITY(1,1) PRIMARY KEY,
             user_id	int	,
@@ -658,27 +664,68 @@ class CdrdPO(object):
             question_id3 int,
             answer3 nvarchar(100), 	
             ''')
-        Sqlserver_PO.setTableComment('a_sys_user_pwdptc', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'user_id', '用户ID')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'question_id1', '问题1ID')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'answer1', '答案1')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'question_id2', '问题2ID')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'answer2', '答案2')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'question_id3', '问题3ID')
-        Sqlserver_PO.setFieldComment('a_sys_user_pwdptc', 'answer3', '答案3')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'user_id', '用户ID')
+        Sqlserver_PO.setFieldComment(varTable, 'question_id1', '问题1ID')
+        Sqlserver_PO.setFieldComment(varTable, 'answer1', '答案1')
+        Sqlserver_PO.setFieldComment(varTable, 'question_id2', '问题2ID')
+        Sqlserver_PO.setFieldComment(varTable, 'answer2', '答案2')
+        Sqlserver_PO.setFieldComment(varTable, 'question_id3', '问题3ID')
+        Sqlserver_PO.setFieldComment(varTable, 'answer3', '答案3')
+    def crt_sys_user_pwdptc(self, varCommon):
+
+        # 用户管理 - 用户问题关系表
+
+        varTable = 'sys_user_pwdptc'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            id	int	IDENTITY(1,1) PRIMARY KEY,
+            user_id	int	,
+            question_id1 int,
+            answer1 nvarchar(100),
+            question_id2 int, 	
+            answer2 nvarchar(100),
+            question_id3 int,
+            answer3 nvarchar(100), 	
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'user_id', '用户ID')
+        Sqlserver_PO.setFieldComment(varTable, 'question_id1', '问题1ID')
+        Sqlserver_PO.setFieldComment(varTable, 'answer1', '答案1')
+        Sqlserver_PO.setFieldComment(varTable, 'question_id2', '问题2ID')
+        Sqlserver_PO.setFieldComment(varTable, 'answer2', '答案2')
+        Sqlserver_PO.setFieldComment(varTable, 'question_id3', '问题3ID')
+        Sqlserver_PO.setFieldComment(varTable, 'answer3', '答案3')
+
+    def crt_sys_security_question(self, varCommon):
+
+        # 用户密保问题表
+
+        varTable = 'sys_security_question'
+        Sqlserver_PO.crtTableByCover(varTable,
+        '''
+        id	int	IDENTITY(1,1) PRIMARY KEY,
+        question nvarchar(100)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'id', 'ID')
+        Sqlserver_PO.setFieldComment(varTable, 'question', '问题')
 
 
 
-    def role__a_sys_role(self, varCommon):
+
+    def crt_sys_role(self, varCommon):
 
         # 角色管理 - 角色表
-        Sqlserver_PO.crtTableByCover('a_sys_role',
+
+        varTable = 'sys_role'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             role_id	int	IDENTITY(1,1) PRIMARY KEY,
             role_name	nvarchar	(20),
             role_key	nvarchar	(20),
             role_sort	int,	
-            status	int	,
+            status	varchar(100),
             menu_check_strictly	int	,
             create_by	nvarchar	(20),
             create_time	datetime,	
@@ -686,38 +733,42 @@ class CdrdPO(object):
             update_time	datetime	,
             remark	nvarchar	(500)
             ''')
-        Sqlserver_PO.setTableComment('a_sys_role', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_role', 'role_id', '角色ID'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'role_name', '角色名称'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'role_key', '角色权限权限字符串'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'role_sort', '显示顺序'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'status', '角色状态'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'menu_check_strictly', '菜单树选择项是否关联显示'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'create_by', '创建人'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'create_time', '创建时间'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'update_by', '更新者'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_role', 'remark', '备注')
-    def role__a_sys_role_menu(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'role_id', '角色ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'role_name', '角色名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'role_key', '角色权限权限字符串'),
+        Sqlserver_PO.setFieldComment(varTable, 'role_sort', '显示顺序'),
+        Sqlserver_PO.setFieldComment(varTable, 'status', '角色状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'menu_check_strictly', '菜单树选择项是否关联显示'),
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建人'),
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者'),
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+    def crt_sys_role_menu(self, varCommon):
 
         # 角色管理 - 角色菜单关系表
-        Sqlserver_PO.crtTableByCover('a_sys_role_menu',
+
+        varTable = 'sys_role_menu'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             id int	IDENTITY(1,1) PRIMARY KEY,
             role_id	int	,
             menu_id int 	
             ''')
-        Sqlserver_PO.setTableComment('a_sys_role_menu', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_role_menu', 'id', 'ID')
-        Sqlserver_PO.setFieldComment('a_sys_role_menu', 'role_id', '角色ID')
-        Sqlserver_PO.setFieldComment('a_sys_role_menu', 'menu_id', '菜单ID')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'id', 'ID')
+        Sqlserver_PO.setFieldComment(varTable, 'role_id', '角色ID')
+        Sqlserver_PO.setFieldComment(varTable, 'menu_id', '菜单ID')
 
 
 
-    def menu__a_sys_menu(self, varCommon):
+    def crt_sys_menu(self, varCommon):
 
         # 菜单管理 - 菜单表
-        Sqlserver_PO.crtTableByCover('a_sys_menu',
+
+        varTable = 'sys_menu'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             menu_id	int	IDENTITY(1,1) PRIMARY KEY,
             menu_name	nvarchar	(50),
@@ -727,11 +778,11 @@ class CdrdPO(object):
             component	nvarchar	(255),
             query	nvarchar	(255),
             route_name	nvarchar	(50),
-            is_frame	int	,
-            is_cache	int	,
+            is_frame	varchar(100)	,
+            is_cache	varchar(100)	,
             menu_type	char	(1),
-            status	int	,
-            visible 	int,	
+            status	varchar(100)	,
+            visible 	varchar(100),	
             perms	nvarchar	(100),
             icon	nvarchar	(100),
             create_by	nvarchar	(64),
@@ -740,55 +791,56 @@ class CdrdPO(object):
             update_time	datetime	,
             remark	nvarchar	(500)
             ''')
-        Sqlserver_PO.setTableComment('a_sys_menu', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'menu_id', '菜单ID'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'menu_name', '菜单名称'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'parent_id', '父级菜单ID'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'order_num', '显示顺序'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'path', '路由地址'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'component', '组件路径'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'query', '路由参数'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'route_name', '路由名称'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'is_frame', '是否为外链'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'is_cache', '是否缓存'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'menu_type', '菜单类型'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'status', '菜单状态'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'visible', '显示状态'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'perms', '权限字符'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'icon', '菜单图标'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'create_by', '创建者'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'create_time', '创建时间'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'update_by', '更新者'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_menu', 'remark', '备注')
-    def _a_sys_config(self, varCommon):
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'menu_id', '菜单ID')
+        Sqlserver_PO.setFieldComment(varTable, 'menu_name', '菜单名称')
+        Sqlserver_PO.setFieldComment(varTable, 'parent_id', '父级菜单ID')
+        Sqlserver_PO.setFieldComment(varTable, 'order_num', '显示顺序')
+        Sqlserver_PO.setFieldComment(varTable, 'path', '路由地址')
+        Sqlserver_PO.setFieldComment(varTable, 'component', '组件路径')
+        Sqlserver_PO.setFieldComment(varTable, 'query', '路由参数')
+        Sqlserver_PO.setFieldComment(varTable, 'route_name', '路由名称')
+        Sqlserver_PO.setFieldComment(varTable, 'is_frame', '是否为外链')
+        Sqlserver_PO.setFieldComment(varTable, 'is_cache', '是否缓存')
+        Sqlserver_PO.setFieldComment(varTable, 'menu_type', '菜单类型')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '菜单状态')
+        Sqlserver_PO.setFieldComment(varTable, 'visible', '显示状态')
+        Sqlserver_PO.setFieldComment(varTable, 'perms', '权限字符')
+        Sqlserver_PO.setFieldComment(varTable, 'icon', '菜单图标')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建者')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者')
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+    def crt_sys_config(self, varCommon):
 
         # 参数配置
 
-        Sqlserver_PO.crtTableByCover('a_sys_config',
+        varTable = 'sys_config'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             config_id int IDENTITY(1,1) PRIMARY KEY,
             config_name	nvarchar	(100),
             config_key 	nvarchar(100),
             config_value	nvarchar(500),
-            config_type	int,
+            config_type	varchar(100),
             create_by	nvarchar	(64),
             create_time	datetime,
             update_by	nvarchar	(64),
             update_time	datetime	,
             remark	nvarchar	(500)
             ''')
-        Sqlserver_PO.setTableComment('a_sys_config', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_config', 'config_id', '参数主键'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'config_name', '参数名称'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'config_key', '参数键名'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'config_value', '参数键值'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'config_type', '系统内置'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'create_by', '创建者'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'create_time', '创建时间'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'update_by', '更新者'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_config', 'remark', '备注')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'config_id', '参数主键')
+        Sqlserver_PO.setFieldComment(varTable, 'config_name', '参数名称')
+        Sqlserver_PO.setFieldComment(varTable, 'config_key', '参数键名')
+        Sqlserver_PO.setFieldComment(varTable, 'config_value', '参数键值')
+        Sqlserver_PO.setFieldComment(varTable, 'config_type', '系统内置')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建者')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者')
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
     def _a_sys_logininfo(self, varCommon):
 
         # 登录日志
@@ -817,6 +869,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment('a_sys_logininfo', 'status', '结果'),
         Sqlserver_PO.setFieldComment('a_sys_logininfo', 'msg', '备注'),
         Sqlserver_PO.setFieldComment('a_sys_logininfo', 'client_info', '客户端信息')
+
 
 
 
@@ -984,11 +1037,26 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
+
+
+    def crt_testBinary(self):
+
+        # test
+
+        varTable = 'CDRD_test'
+
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+                id	int	IDENTITY(1,1) PRIMARY KEY,
+                name nvarchar(50),
+                content varbinary(160)
+            ''')
+
     def crt_cdrdPatientInfoBinary(self, varCommon):
 
         # 患者基本信息
 
-        varTable = 'CDRD_PATIENT_INFO2'
+        varTable = 'CDRD_PATIENT_INFO'
 
         Sqlserver_PO.crtTableByCover(varTable,
             '''
@@ -1154,6 +1222,8 @@ class CdrdPO(object):
                 patient_diag_is_primary_key varchar(100),
                 patient_diag_is_primary_value nvarchar(100),
                 patient_diag_code varchar(40),
+                patient_diag_ata nvarchar(100),
+                patient_diag_cas nvarchar(100),
                 patient_in_state_key varchar(100),
                 patient_in_state_value nvarchar(100),
                 patient_outcome_state_key varchar(100),
@@ -1177,6 +1247,8 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_diag_is_primary_key', '主要诊断-key'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_diag_is_primary_value', '主要诊断'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_diag_code', 'ICD10编码'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_ata', 'ATA分级'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_diag_cas', 'CAS分级'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_in_state_key', '入院病情-key'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_in_state_value', '入院病情'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_outcome_state_key', '出院情况-key'),
@@ -1204,6 +1276,7 @@ class CdrdPO(object):
                 patient_visit_in_dept_name nvarchar(50),
                 patient_visit_in_ward_name nvarchar(50),
                 patient_visit_doc_num varchar(100),
+                patient_visit_doc_code varchar(100),
                 patient_visit_doc_name nvarchar(50),
                 patient_visit_in_time datetime,
                 patient_visit_record_num varchar(100),
@@ -1242,12 +1315,16 @@ class CdrdPO(object):
                 patient_case_rh_type_key varchar(100),
                 patient_case_rh_type_value nvarchar(100),
                 patient_case_dept_chief_doc_num varchar(100),
+                patient_case_dept_chief_doc_code varchar(100),
                 patient_case_dept_chief_doc_name nvarchar(20),
                 patient_case_director_doc_num varchar(100),
+                patient_case_director_doc_code varchar(100),
                 patient_case_director_doc_name nvarchar(20),
                 patient_case_attend_doc_num varchar(100),
+                patient_case_attend_doc_code varchar(100),
                 patient_case_attend_doc_name nvarchar(20),
                 patient_case_resident_num varchar(100),
+                patient_case_resident_code varchar(100),
                 patient_case_resident_name nvarchar(20),
                 patient_case_out_hospital_type_key varchar(100),
                 patient_case_out_hospital_type_value nvarchar(100),
@@ -1272,6 +1349,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_dept_name', '就诊科室'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_ward_name', '入院病房'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_visit_doc_num', '就诊医生编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_visit_doc_code', '就诊医生code'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_visit_doc_name', '就诊医生'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_visit_in_time', '就诊日期'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_visit_record_num', '文书编号'),
@@ -1311,12 +1389,16 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_rh_type_key', 'Rh血型-key'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_rh_type_value', 'Rh血型'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_dept_chief_doc_num', '科主任编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_dept_chief_doc_code', '科主任code'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_dept_chief_doc_name', '科主任'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_director_doc_num', '主任（副主任）医师编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_director_doc_code', '主任（副主任）医师code'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_director_doc_name', '主任（副主任）医师'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_attend_doc_num', '主治医师编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_attend_doc_code', '主治医师code'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_attend_doc_name', '主治医师'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_resident_num', '住院医师编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_case_resident_code', '住院医师code'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_resident_name', '住院医师'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_out_hospital_type_key', '离院方式-key'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_case_out_hospital_type_value', '离院方式'),
@@ -1541,6 +1623,7 @@ class CdrdPO(object):
                 patient_superior_examination_id int,
                 patient_superior_examination_type int,
                 patient_report_num varchar(100),
+                patient_test_item_num varchar(100),
                 patient_test_item_name nvarchar(50),
                 patient_test_numerical_value nvarchar(50),
                 patient_test_unit_name nvarchar(50),
@@ -1556,6 +1639,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_superior_examination_id', '上级检查ID'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_superior_examination_type', '上级检查类型，实验室检查为1，辅助检查为2'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_report_num', '报告编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_test_item_num', '项目代码'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_test_item_name', '项目名称'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_test_numerical_value', '定量结果'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_test_unit_name', '定量结果单位'),
@@ -1890,73 +1974,75 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_death_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_death_source_key', '数据来源')
 
-    def _a_sys_dict_type(self, varCommon):
+    def crt_sys_dict_type(self, varCommon):
 
         # 数据字典配置 - 字典类型表
 
-        Sqlserver_PO.crtTableByCover('a_sys_dict_type',
-            '''
-                dict_id	int	IDENTITY(1,1) PRIMARY KEY,
-                dict_name nvarchar(100),
-                dict_type nvarchar(100),
-                status int,
-                create_by nvarchar(64),
-                create_time datetime,
-                update_by nvarchar(64),
-                update_time datetime,
-                remark nvarchar(500)
-            ''')
-        Sqlserver_PO.setTableComment('a_sys_dict_type', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'dict_id', '字典主键'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'dict_name', '字典名称'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'dict_type', '字典类型'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'status', '状态'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'create_by', '创建者'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'create_time', '创建时间'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'update_by', '更新者'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_type', 'remark', '备注')
+        varTable = 'sys_dict_type'
+        Sqlserver_PO.crtTableByCover(varTable,
+        '''
+        dict_id	int	IDENTITY(1,1) PRIMARY KEY,
+        dict_name nvarchar(100),
+        dict_type nvarchar(100),
+        status int,
+        create_by nvarchar(64),
+        create_time datetime,
+        update_by nvarchar(64),
+        update_time datetime,
+        remark nvarchar(500)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_id', '字典主键')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_name', '字典名称')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_type', '字典类型')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '状态')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建者')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者')
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
 
     def importExcel(self, varFile, varSheet):
         # 'CDRB20250623.xlsx', '数据字典表'
         Sqlserver_PO.xlsx2db_deduplicated((varFile, "a_sys_dict_type", "dict_name", "dict1"))
 
-    def _a_sys_dict_data(self, varCommon):
+    def crt_sys_dict_data(self, varCommon):
 
         # 数据字典配置 - 字典数据表
 
-        Sqlserver_PO.crtTableByCover('a_sys_dict_data',
-            '''
-                dict_code	int	IDENTITY(1,1) PRIMARY KEY,
-                dict_sort int,
-                dict_label varchar(100),
-                dict_value varchar(100),
-                dict_type varchar(100),
-                css_class varchar(100),
-                list_class varchar(100),
-                is_default int,
-                status int,
-                create_by varchar(64),
-                create_time datetime,
-                update_by varchar(64),
-                update_time datetime,
-                remark varchar(500)
-            ''')
-        Sqlserver_PO.setTableComment('a_sys_dict_data', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_code', '字典编码'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_sort', '字典排序'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_label', '字典标签'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_value', '字典键值'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'dict_type', '字典类型'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'css_class', '样式属性（其他样式扩展）'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'list_class', '表格回显样式'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'is_default', '是否默认'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'status', '状态'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'create_by', '创建者'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'create_time', '创建时间'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'update_by', '更新者'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'update_time', '更新时间'),
-        Sqlserver_PO.setFieldComment('a_sys_dict_data', 'remark', '备注')
+        varTable = 'sys_dict_data'
+        Sqlserver_PO.crtTableByCover(varTable,
+        '''
+        dict_code	int	IDENTITY(1,1) PRIMARY KEY,
+        dict_sort int,
+        dict_label varchar(100),
+        dict_value varchar(100),
+        dict_type varchar(100),
+        css_class varchar(100),
+        list_class varchar(100),
+        is_default int,
+        status int,
+        create_by varchar(64),
+        create_time datetime,
+        update_by varchar(64),
+        update_time datetime,
+        remark varchar(500)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_code', '字典编码')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_sort', '字典排序')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_label', '字典标签')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_value', '字典键值')
+        Sqlserver_PO.setFieldComment(varTable, 'dict_type', '字典类型')
+        Sqlserver_PO.setFieldComment(varTable, 'css_class', '样式属性（其他样式扩展）')
+        Sqlserver_PO.setFieldComment(varTable, 'list_class', '表格回显样式')
+        Sqlserver_PO.setFieldComment(varTable, 'is_default', '是否默认')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '状态')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建者')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者')
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
 
 
     def procedure(self, varProcedure, varDesc):
@@ -2175,14 +2261,14 @@ class CdrdPO(object):
         # 转义所有单引号
         varDesc_escaped = varDesc.replace("'", "''")
         desc = f"""
-                                EXEC sp_addextendedproperty 
-                                    @name = N'MS_Description', 
-                                    @value = N'{varDesc_escaped}',
-                                    @level0type = N'Schema', 
-                                    @level0name = 'dbo', 
-                                    @level1type = N'Procedure', 
-                                    @level1name = '{varProcedure}';
-                            """
+            EXEC sp_addextendedproperty 
+                @name = N'MS_Description', 
+                @value = N'{varDesc_escaped}',
+                @level0type = N'Schema', 
+                @level0name = 'dbo', 
+                @level1type = N'Procedure', 
+                @level1name = '{varProcedure}';
+        """
         Sqlserver_PO.execute(desc)
 
         keys = list(d_.keys())[0]
@@ -2208,14 +2294,14 @@ class CdrdPO(object):
         # 转义所有单引号
         varDesc_escaped = varDesc.replace("'", "''")
         desc = f"""
-                        EXEC sp_addextendedproperty 
-                            @name = N'MS_Description', 
-                            @value = N'{varDesc_escaped}',
-                            @level0type = N'Schema', 
-                            @level0name = 'dbo', 
-                            @level1type = N'Procedure', 
-                            @level1name = '{varProcedure}';
-                    """
+            EXEC sp_addextendedproperty 
+                @name = N'MS_Description', 
+                @value = N'{varDesc_escaped}',
+                @level0type = N'Schema', 
+                @level0name = 'dbo', 
+                @level1type = N'Procedure', 
+                @level1name = '{varProcedure}';
+        """
         Sqlserver_PO.execute(desc)
 
         keys = list(d_.keys())[0]
@@ -2232,3 +2318,395 @@ class CdrdPO(object):
             execParam = "exec " + varProcedure + " @user_id=" + str(keys) + ", @role_id=" + str(values) + ";"
             print(execParam)
             Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+
+
+    # todo 1.1
+
+    def crt_SnowflakeSequence(self, varCommon):
+
+        # 雪花序列表
+        varTable = 'SnowflakeSequence'
+        Sqlserver_PO.crtTableByCover(varTable,
+                                     '''
+                                     CurrentSequence INT NOT NULL DEFAULT 0,
+                                     LastTimestamp BIGINT NOT NULL DEFAULT 0
+                                     ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'CurrentSequence', '雪花序列')
+        Sqlserver_PO.setFieldComment(varTable, 'LastTimestamp', '邮戳')
+
+        # -- 初始化数据
+        sql = ''' INSERT INTO SnowflakeSequence (CurrentSequence, LastTimestamp) VALUES (0, 0)'''
+        Sqlserver_PO.execute(sql)
+
+    def crt_patient_tag(self, varCommon):
+
+        # 标签表
+
+        varTable = 'patient_tag'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            tag_record_id BIGINT PRIMARY KEY,
+            category_source_id int,
+            category_key nvarchar(100),
+            category_id int,
+            tag_id int,
+            tag_key nvarchar(100),
+            tag_data_id int,
+            tag_data_key nvarchar(100),
+            create_id int,
+            create_by nvarchar(20),
+            create_time DATETIME
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_record_id', '标签记录 ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_source_id', '所属业务源数据ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_key', '所属业务标识')
+        Sqlserver_PO.setFieldComment(varTable, 'category_id', '所属业务数据记录ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_id', '标签ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_key', '标签标识')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_data_id', '标签数据ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_data_key', '标签数据标识')
+        Sqlserver_PO.setFieldComment(varTable, 'create_id', '创建人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建人')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+
+
+    def crt_patient_export(self, varCommon):
+
+        # 导出模板
+
+        varTable = 'patient_export'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            model_id int IDENTITY(1,1) PRIMARY KEY,
+            model_name nvarchar(50),
+            model_type varchar(100),
+            create_by_id int,
+            create_by nvarchar(20),
+            create_time DATETIME,
+            remark nvarchar(500)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'model_id', '模板ID')
+        Sqlserver_PO.setFieldComment(varTable, 'model_name', '模板名称')
+        Sqlserver_PO.setFieldComment(varTable, 'model_type', '模板类型')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by_id', '创建人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建人')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+
+    def crt_patient_export_module(self, varCommon):
+
+        # 导出模块
+
+        varTable = 'patient_export_module'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            module_id int IDENTITY(1,1) PRIMARY KEY,
+            model_id int,
+            module_tier varchar(100),
+            module_fa_key nvarchar(100),
+            module_key nvarchar(100),
+            lab_examination_export_way varchar(100),
+            lab_examination_export_type nvarchar(50),
+            assit_examination_export_way varchar(100),
+            assit_examination_export_type nvarchar(50),
+            physical_sign_export_way varchar(100)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'module_id', '导出模块ID')
+        Sqlserver_PO.setFieldComment(varTable, 'model_id', '模板ID')
+        Sqlserver_PO.setFieldComment(varTable, 'module_tier', '模块层级')
+        Sqlserver_PO.setFieldComment(varTable, 'module_fa_key', '父级模块标识')
+        Sqlserver_PO.setFieldComment(varTable, 'module_key', '模块标识')
+        Sqlserver_PO.setFieldComment(varTable, 'lab_examination_export_way', '实验室检查明细导出方式')
+        Sqlserver_PO.setFieldComment(varTable, 'lab_examination_export_type', '实验室检查明细导出类型')
+        Sqlserver_PO.setFieldComment(varTable, 'assit_examination_export_way', '辅助检查明细导出方式')
+        Sqlserver_PO.setFieldComment(varTable, 'assit_examination_export_type', '辅助检查明细导出类型')
+        Sqlserver_PO.setFieldComment(varTable, 'physical_sign_export_way', '体征检查导出方式')
+
+    def crt_patient_export_field(self, varCommon):
+
+        # 导出数据
+
+        varTable = 'patient_export_field'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            field_id int IDENTITY(1,1) PRIMARY KEY,
+            module_id int,
+            module_key varchar(100),
+            field_type nvarchar(100),
+            cn_name nvarchar(100),
+            en_name varchar(100),
+            field_sort nvarchar(50)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'field_id', '导出字段ID')
+        Sqlserver_PO.setFieldComment(varTable, 'module_id', '导出模块ID ')
+        Sqlserver_PO.setFieldComment(varTable, 'module_key', '模块标识')
+        Sqlserver_PO.setFieldComment(varTable, 'field_type', '导出字段类型')
+        Sqlserver_PO.setFieldComment(varTable, 'cn_name', '导出字段中文名')
+        Sqlserver_PO.setFieldComment(varTable, 'en_name', '导出字段英文名')
+        Sqlserver_PO.setFieldComment(varTable, 'field_sort', '导出字段排序')
+
+    def crt_patient_extend_field(self, varCommon):
+
+        # 扩展字段表
+
+        varTable = 'patient_extend_field'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            extend_field_record_id int IDENTITY(1,1) PRIMARY KEY,
+            category_source_id int,
+            category_key nvarchar(100),
+            category_id int,
+            extend_field_id int,
+            extend_field_key nvarchar(100),
+            extend_field_text nvarchar(max),
+            create_id int,
+            create_by nvarchar(20),
+            create_time DATETIME
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_record_id', '扩展字段记录ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_source_id', '所属业务源数据ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_key', '所属业务标识')
+        Sqlserver_PO.setFieldComment(varTable, 'category_id', '所属业务数据记录ID')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_id', '扩展字段管理ID')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_key', '字段标识')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_text', '字段值')
+        Sqlserver_PO.setFieldComment(varTable, 'create_id', '创建人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建人')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+
+
+    def crt_sys_tag_type(self, varCommon):
+
+        # 标签
+
+        varTable = 'sys_tag_type'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            tag_id int IDENTITY(1,1) PRIMARY KEY,
+            category_class nvarchar(100),
+            category_name nvarchar(20),
+            category_key nvarchar(100),
+            tag_name nvarchar(20),
+            tag_key nvarchar(100),
+            tag_sort int,
+            status varchar(100),
+            create_id int,
+            create_time DATETIME,
+            update_id int,
+            update_time DATETIME,
+            remark nvarchar(500)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_id', '标签ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_class', '所属业务类别')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '所属业务名称')
+        Sqlserver_PO.setFieldComment(varTable, 'category_key', '所属业务标识')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_name', '标签名称')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_key', '标签标识')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_sort', '标签排序')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '标签状态')
+        Sqlserver_PO.setFieldComment(varTable, 'create_id', '创建人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'update_id', '更新人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+
+    def crt_sys_tag_data(self, varCommon):
+
+        # 标签数据表
+
+        varTable = 'sys_tag_data'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            tag_data_id int IDENTITY(1,1) PRIMARY KEY,
+            tag_id int,
+            tag_data_name nvarchar(20),
+            tag_data_key nvarchar(100),
+            tag_data_sort int,
+            status varchar(100)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_data_id', '标签数据ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_id', '标签ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_data_name', '标签数据名')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_data_key', '标签数据标识')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_data_sort', '标签数据排序')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '标签数据状态')
+
+    def crt_sys_tag_authority(self, varCommon):
+
+        # 标签权限表
+
+        varTable = 'sys_tag_authority'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            tag_authority_id int IDENTITY(1,1) PRIMARY KEY,
+            tag_id int,
+            authority_relative_module nvarchar(20),
+            authority_relative_id int
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_authority_id', '标签权限ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_id', '标签ID')
+        Sqlserver_PO.setFieldComment(varTable, 'authority_relative_module', '权限关联模块')
+        Sqlserver_PO.setFieldComment(varTable, 'authority_relative_id', '权限关联ID')
+
+    def crt_sys_extend_field_manage(self, varCommon):
+
+        # 扩展字段管理
+
+        varTable = 'sys_extend_field_manage'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            extend_field_id int IDENTITY(1,1) PRIMARY KEY,
+            category_class nvarchar(100),
+            category_name nvarchar(20),
+            category_key nvarchar(100),
+            extend_field_name nvarchar(20),
+            extend_field_key nvarchar(100),
+            sort int,
+            status varchar(100),
+            create_time DATETIME,
+            remark nvarchar(500)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_id', '扩展字段管理ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_class', '所属业务类别 ')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '所属业务名称')
+        Sqlserver_PO.setFieldComment(varTable, 'category_key', '所属业务标识')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_name', '字段名')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_key', '字段标识')
+        Sqlserver_PO.setFieldComment(varTable, 'sort', '字段排序')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '字段状态')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+
+    def crt_sys_extend_field_authority(self, varCommon):
+
+        # 扩展字段权限表
+
+        varTable = 'sys_extend_field_authority'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            extend_field_authority_id int IDENTITY(1,1) PRIMARY KEY,
+            extend_field_id int,
+            authority_relative_module nvarchar(20),
+            authority_relative_id int
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_authority_id', '扩展字段权限ID')
+        Sqlserver_PO.setFieldComment(varTable, 'extend_field_id', '扩展字段管理ID')
+        Sqlserver_PO.setFieldComment(varTable, 'authority_relative_module', '权限关联模块')
+        Sqlserver_PO.setFieldComment(varTable, 'authority_relative_id', '权限关联ID')
+
+    def crt_sys_task(self, varCommon):
+
+        # 待办任务表
+
+        varTable = 'sys_task'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            task_id int IDENTITY(1,1) PRIMARY KEY,
+            category_class nvarchar(100),
+            category_name nvarchar(20),
+            task_type nvarchar(20),
+            task_describe nvarchar(500),
+            remark nvarchar(500),
+            owner_id int,
+            status varchar(100),
+            complete_time DATETIME,
+            create_time DATETIME,
+            link_url varchar(2000)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'task_id', '任务ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_class', '所属业务类别')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '所属业务名称')
+        Sqlserver_PO.setFieldComment(varTable, 'task_type', '任务类型')
+        Sqlserver_PO.setFieldComment(varTable, 'task_describe', '任务描述')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+        Sqlserver_PO.setFieldComment(varTable, 'owner_id', '当前所有人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'status', '任务状态')
+        Sqlserver_PO.setFieldComment(varTable, 'complete_time', '任务完成时间')
+        Sqlserver_PO.setFieldComment(varTable, 'create_time', '任务创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'link_url', '任务跳转链接')
+
+    def crt_sys_file_download(self, varCommon):
+
+        # 文件下载管理
+
+        varTable = 'sys_file_download'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            file_id int IDENTITY(1,1) PRIMARY KEY,
+            model_id int,
+            category_class nvarchar(100),
+            category_name nvarchar(100),
+            file_name nvarchar(100),
+            export_params nvarchar(max),
+            applier_id int,
+            apply_time DATETIME,
+            deal_status varchar(100),
+            file_status varchar(100),
+            remark nvarchar(100)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'file_id', '文件下载ID')
+        Sqlserver_PO.setFieldComment(varTable, 'model_id', '模板ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_class', '所属业务类别')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '所属业务名称')
+        Sqlserver_PO.setFieldComment(varTable, 'file_name', '文件名称')
+        Sqlserver_PO.setFieldComment(varTable, 'export_params', '导出参数')
+        Sqlserver_PO.setFieldComment(varTable, 'applier_id', '申请人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'apply_time', '申请时间')
+        Sqlserver_PO.setFieldComment(varTable, 'deal_status', '文件处理状态')
+        Sqlserver_PO.setFieldComment(varTable, 'file_status', '文件失效状态')
+        Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
+
+    def crt_sys_file_download_record(self, varCommon):
+
+        # 文件下载记录
+
+        varTable = 'sys_file_download_record'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            file_down_id int IDENTITY(1,1) PRIMARY KEY,
+            file_id int,
+            category_name nvarchar(100),
+            file_name nvarchar(100),
+            applier_id int,
+            apply_time DATETIME,
+            downloader_id int,
+            download_time DATETIME
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'file_down_id', '文件下载ID')
+        Sqlserver_PO.setFieldComment(varTable, 'file_id', '文件ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '所属业务名称')
+        Sqlserver_PO.setFieldComment(varTable, 'file_name', '文件名称')
+        Sqlserver_PO.setFieldComment(varTable, 'applier_id', '申请人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'apply_time', '申请时间')
+        Sqlserver_PO.setFieldComment(varTable, 'downloader_id', '下载人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'download_time', '下载时间')
+
+
+    def insert_cdrdPatientTag(self):
+
+        # 插入数据
+
+        # 删除存储过程（用于）
+        # Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+
+        Sqlserver_PO.execute(
+            f"""DECLARE @tag_record_id BIGINT;
+                   EXEC GenerateSnowflakeID @machineId = 1, @dataCenterId = 0, @snowflakeId = @tag_record_id OUTPUT;
+                   INSERT INTO patient_tag (tag_record_id, category_source_id,category_key,category_id,tag_id,tag_key,tag_data_id,tag_data_key,create_id,create_by,create_time)
+                   VALUES (@tag_record_id, '1', '标识1', '2', '3', '标签1', '4', '标签数据2', '5', '张三', GETUTCDATE());""")
+
+
