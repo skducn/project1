@@ -1,8 +1,8 @@
 -- todo 科室表(造数据)
--- 1个科室，每个科室3个医疗组，每个医疗组下5个人
+-- 20个科室，每个科室2个医疗组，每个医疗组下5个人
 
 CREATE OR ALTER PROCEDURE s_sys_department
-    @RecordCount INT = 1,  -- 1个科室
+    @RecordCount INT = 20,  -- N个科室
     @result INT OUTPUT
 AS
 BEGIN

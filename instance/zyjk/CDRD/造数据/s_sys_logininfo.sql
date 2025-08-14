@@ -1,7 +1,7 @@
 -- todo 登录登出表
 -- sys_logininfo(登录登出表) => 生成 10000 条！
 -- 耗时: 16.7572 秒
-CREATE OR ALTER PROCEDURE sys_logininfo
+CREATE OR ALTER PROCEDURE s_sys_logininfo
     @RecordCount INT = 10000, -- 默认10条
     @result INT OUTPUT
 AS
@@ -33,7 +33,7 @@ BEGIN
 
 
         -- 插入单条随机数据
-        INSERT INTO a_sys_logininfo (user_name,nick_name,type,access_time,ipaddr,way,status,msg,client_info)
+        INSERT INTO sys_logininfo (user_name,nick_name,type,access_time,ipaddr,way,status,msg,client_info)
         VALUES (
             @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 账号
             @RandomName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- 姓名

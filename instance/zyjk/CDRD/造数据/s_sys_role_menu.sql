@@ -1,6 +1,6 @@
 -- todo 角色菜单关系表(造数据)
 
-CREATE OR ALTER PROCEDURE sys_role_menu
+CREATE OR ALTER PROCEDURE s_sys_role_menu
     @roleName nvarchar(50),
     @menu_id int
 AS
@@ -12,7 +12,7 @@ BEGIN
         BEGIN
             -- 获取role_id
             DECLARE @role_id int;
-            SELECT @role_id = role_id FROM a_sys_role WHERE role_name = @roleName;
+            SELECT @role_id = role_id FROM sys_role WHERE role_name = @roleName;
 
             -- 校验，如果不存在则退出
             IF @role_id IS NULL
@@ -23,14 +23,14 @@ BEGIN
             END
 
             DECLARE @isCount INT = 0;
-            SELECT @isCount = count(*) FROM a_sys_role_menu WHERE role_id = @role_id and menu_id = @menu_id;
+            SELECT @isCount = count(*) FROM sys_role_menu WHERE role_id = @role_id and menu_id = @menu_id;
 
             -- 判断, 如果不存在且是M
             IF @isCount = 0
             BEGIN
 
                 -- 插入单条随机数据
-                INSERT INTO a_sys_role_menu (role_id, menu_id)
+                INSERT INTO sys_role_menu (role_id, menu_id)
                 VALUES (
                         @role_id ,
                         @menu_id

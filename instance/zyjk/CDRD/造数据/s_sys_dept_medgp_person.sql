@@ -1,47 +1,59 @@
--- todo 医疗组人员表(造数据)
--- 1个科室，每个科室3个医疗组，每个医疗组下5个人
-
+-- 修改存储过程以满足新的需求
 CREATE OR ALTER PROCEDURE s_sys_dept_medgp_person
-    @RecordCount INT = 15,  -- 每个科室3个医疗组，每个医疗组下5个人
+    @RecordCount INT = 5,  -- 每个医疗组的人员数
     @result INT OUTPUT
 AS
 BEGIN
     SET NOCOUNT ON;
     SET XACT_ABORT ON;
 
-    SET @result = @RecordCount
+    -- 清空旧数据
+--     DELETE FROM SYS_DEPT_MEDGP_PERSON;
 
-    -- 循环插入指定数量的记录
-    DECLARE @Counter INT = 1;
-    WHILE @Counter <= 3  -- 每组科室
+    -- 声明变量
+    DECLARE @department_treat_group_id INT;
+    DECLARE @department_id INT;
+    DECLARE @counter INT;
+    DECLARE @user_id INT;
+    DECLARE @user_name NVARCHAR(20);
+    DECLARE @job_num NVARCHAR(20);
+
+    -- 声明游标，遍历sys_dept_medgp表中的医疗组
+    DECLARE medgp_cursor CURSOR FOR
+    SELECT department_treat_group_id, department_id
+    FROM sys_dept_medgp;
+
+    OPEN medgp_cursor;
+    FETCH NEXT FROM medgp_cursor INTO @department_treat_group_id, @department_id;
+
+    WHILE @@FETCH_STATUS = 0
     BEGIN
-
---         DECLARE @RandomDepartment_treat_group_id int;
---         SELECT @RandomDepartment_treat_group_id = department_treat_group_id FROM a_sys_dept_medgp WHERE department_treat_group_id = @Counter;
-
-        -- 循环插入指定数量的记录
-        DECLARE @Counter2 INT = 1;
-        WHILE @Counter2 <= 5  -- 每组科室下5人
+        SET @counter = 1;
+        -- 为每个医疗组分配指定数量的用户
+        WHILE @counter <= @RecordCount
         BEGIN
+            -- 从sys_user中选择一个属于该科室的用户
+            SELECT TOP 1 @user_id = user_id ,@user_name = user_name, @job_num = job_num
+            FROM sys_user
+            WHERE department_id = @department_id
+            ORDER BY user_id;  -- 按用户ID顺序选择
 
-            -- 子存储过程
-            -- 姓名
-            DECLARE @RandomName NVARCHAR(50);
-            EXEC p_name @FullName = @RandomName OUTPUT;
+            -- 如果找到了用户，则生成姓名和工号并插入记录
+            IF @user_id IS NOT NULL
+            BEGIN
+                -- 插入到SYS_DEPT_MEDGP_PERSON表中
+                INSERT INTO SYS_DEPT_MEDGP_PERSON (user_id, department_treat_group_id, user_name, user_job_num)
+                VALUES (@user_id, @department_treat_group_id, @user_name, @job_num);
+            END
 
-            -- 插入单条随机数据
-            INSERT INTO SYS_DEPT_MEDGP_PERSON (user_id, department_treat_group_id, user_name, user_job_num)
-            VALUES (
-                    CAST(ABS(CHECKSUM(NEWID())) % 10000 AS int),   -- 用户ID
-                    @Counter,   -- 医疗组ID
-                    @RandomName, -- 姓名
-                    CAST(ABS(CHECKSUM(NEWID())) % 100000 AS NVARCHAR(10)) -- 工号
-            );
-            SET @Counter2 = @Counter2 + 1;
-        END;
+            SET @counter = @counter + 1;
+        END
 
-        SET @Counter = @Counter + 1;
-    END;
+        FETCH NEXT FROM medgp_cursor INTO @department_treat_group_id, @department_id;
+    END
 
+    CLOSE medgp_cursor;
+    DEALLOCATE medgp_cursor;
 
+    SET @result = @RecordCount;
 END;

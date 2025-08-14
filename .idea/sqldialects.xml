@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/PO/CreateTestData104.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/GenerateSnowflakeID.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_birth_place.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_dept.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_marriage.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_name.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/p_sex.sql" dialect="TSQL" />
@@ -25,9 +26,16 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_symptom_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_test_project_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_visit_info.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_config.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_department.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_dept_medgp.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_dept_medgp_person.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_logininfo.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_menu.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_role.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_role_menu.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_user.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_user_role.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/gw/i/test_i_main.py" dialect="GenericSQL" />
   </component>
 </project>

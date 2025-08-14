@@ -1,6 +1,6 @@
 -- todo 参数配置表
 
-CREATE OR ALTER PROCEDURE sys_config
+CREATE OR ALTER PROCEDURE s_sys_config
     @RecordCount INT = 10 -- 可通过参数控制记录数，默认100条
 AS
 BEGIN
@@ -43,7 +43,7 @@ BEGIN
 --             SELECT TOP 1 @department_name = department_name FROM a_sys_department where department_id=@department_id;
 
             -- 插入单条随机数据
-            INSERT INTO a_sys_config (config_name,config_key,config_value,config_type,create_by,create_time,update_by,update_time,remark)
+            INSERT INTO sys_config (config_name,config_key,config_value,config_type,create_by,create_time,update_by,update_time,remark)
             VALUES (
                     @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- 参数名称
                     @RandomName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- 参数键名

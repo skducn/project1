@@ -2049,7 +2049,7 @@ class CdrdPO(object):
         # 通用存储过程
         # 创建并执行存储过程，插入N条记录
 
-        # 删除存储过程（用于）
+        # 删除存储过程
         Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         varParamSql = varProcedure + ".sql"
@@ -2153,7 +2153,7 @@ class CdrdPO(object):
         Sqlserver_PO.execute(sql_script)
 
         # 添加描述
-        varDesc_escaped = varDesc.replace("'", "''") # 转义所有单引号
+        varDesc_escaped = varDesc.replace("'", "''")  # 转义所有单引号   //存储过程描述
         Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}',@level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
 
         # IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE major_id = OBJECT_ID('dbo.p_outcome_state') AND name = 'MS_Description')

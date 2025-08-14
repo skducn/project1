@@ -109,35 +109,38 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 2-1，科室表
-# 数据量：1个科室
-# Cdrd_PO.subProcedure("p_dept", "科室, ['内科', '外科', '妇产科', '儿科', '肿瘤科', '五官科', '其他临床科室', '医技科室', '内分泌科', '骨科']")
+# 数据量：20个科室
+# Cdrd_PO.crt_sys_department('科室表')
+# Cdrd_PO.subProcedure("p_dept", "科室, ['内科','外科','儿科','妇产科','骨科','眼科','耳鼻喉科','口腔科','皮肤科','心血管科','神经科','精神科','放射科','检验科','影像科','重症医学科','麻醉科','急诊科','临床药学','康复科']")
+# Cdrd_PO.procedure("s_sys_department", '科室表')
 # # Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
 # # Cdrd_PO.updateStatistics('SYS_DEPARTMENT')
-# Cdrd_PO.crt_sys_department('科室表')
-# Cdrd_PO.procedure("s_sys_department", '科室表')
+
 
 # todo 2-2，科室医疗组
-# # # 数据量：每个科室下3个医疗组
-# # # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
-# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp')
+# 数据量：每个科室下2个医疗组
 # Cdrd_PO.crt_sys_dept_medgp('科室医疗组')
 # Cdrd_PO.procedure("s_sys_dept_medgp", '医疗组')
+# # # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
+# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp')
+
 
 # todo 2-3，医疗组人员
-# # # 数据量：每个医疗组下5名成员
-# # # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
-# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
+# 数据量：每个医疗组下5名成员
 # Cdrd_PO.crt_sys_dept_medgp_person('医疗组人员')
 # Cdrd_PO.procedure("s_sys_dept_medgp_person", '医疗组人员')
+# # # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
+# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
+
 
 
 # todo 3-1，用户表
 # Cdrd_PO.crt_sys_user('用户表')
-# # Cdrd_PO.procedure("sys_user", '用户表', 4)
+# Cdrd_PO.procedure("s_sys_user", '用户表')
 #
 # todo 3-2，用户角色关系表
 # Cdrd_PO.crt_sys_user_role('用户角色关系表')
-# # Cdrd_PO.procedureUserRole("sys_user_role", '用户角色关系表', {3: [1, 3, 4]})  # 一个用户可多个角色，用户3关联角色1，3，4
+# # Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表', {3: [1, 3, 4]})  # 一个用户可多个角色，用户3关联角色1，3，4
 #
 # # todo 3-3，用户问题关系表
 # Cdrd_PO.crt_sys_user_pwdptc('用户问题关系表')
@@ -152,24 +155,24 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedure("sys_role", '角色表', 6)  # exec a_sys_role @RecordCount=6;  //参数RecordCount=6忽略，程序写死角色6
 
 # Cdrd_PO.crt_sys_role_menu('角色菜单关系表')
-# Cdrd_PO.procedureRoleMenu("sys_role_menu", '角色菜单关系表', {'副主任': [18, 20, 21]}) # 一个角色可多个菜单，如：角色3关联菜单18，20，21
+# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'副主任': [18, 20, 21]}) # 一个角色可多个菜单，如：角色3关联菜单18，20，21
 
 
 # todo 6，菜单管理
 # Cdrd_PO.crt_sys_menu('菜单表')
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统管理', None])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统监控', None])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['M', '系统权限', None])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['C', '医生管理', '系统监控'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['C', '客户管理', '系统监控'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '查询', '用户管理'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '编辑', '用户管理'])
-# Cdrd_PO.procedureMenu("sys_menu", '菜单表', ['F',  '新增123', '客户管理'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统管理', None])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统监控', None])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统权限', None])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['C', '医生管理', '系统监控'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['C', '客户管理', '系统监控'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '查询', '用户管理'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '编辑', '用户管理'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '新增123', '客户管理'])
 
 
 # todo 7，参数配置
-# Cdrd_PO.crt_sys_config('参数配置')
-# Cdrd_PO.procedure("sys_config", '参数配置', 4)
+Cdrd_PO.crt_sys_config('参数配置')
+# Cdrd_PO.procedure("s_sys_config", '参数配置', 4)
 
 # # todo 8，标签
 # Cdrd_PO.crt_sys_tag_type('标签表')
@@ -342,7 +345,7 @@ result = subprocess.run(
 # 登录日志
 # 数据量：50万
 # Cdrd_PO._a_sys_logininfo('登录登出表')
-# Cdrd_PO.procedure("sys_logininfo", '登录登出表') # 存储过程中改成 50w
+# Cdrd_PO.procedure("s_sys_logininfo", '登录登出表') # 存储过程中改成 50w
 # Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 
 
