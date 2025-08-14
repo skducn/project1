@@ -92,11 +92,11 @@ class CdrdPO():
         }
 
         for i in range(varQty):
-
-            varUserName = "tester" + str(i)
+            sleep(1)
+            varUserName = "testr" + str(i)
             varPhone = Data_PO.getPhone()
             varEmail = varPhone + "@163.com"
-            varJob = 100000 + i
+            varJob = 20000 + i
             data = {
                 "userName": varUserName,
                 "nickName": varUserName,

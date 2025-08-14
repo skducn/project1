@@ -20,11 +20,11 @@ print(Cdrd_PO.getTokenByLogin())
 # print(Cdrd_PO.getDepartment())
 
 # 用户,批量生成N个
-# print(Cdrd_PO.crtUser(2))
+print(Cdrd_PO.crtUser(2))
 
 
 # 获取患者列表 getPatientInfoPage
-print(Cdrd_PO.getPatientInfoPage())
+# print(Cdrd_PO.getPatientInfoPage())
 
 
 

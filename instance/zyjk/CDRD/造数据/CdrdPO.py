@@ -2271,12 +2271,16 @@ class CdrdPO(object):
         """
         Sqlserver_PO.execute(desc)
 
-        keys = list(d_.keys())[0]
-        values = list(d_.values())[0]  # [18, 20, 21]
-        for i in values:
-            execParam = "exec " + varProcedure + " @roleName=" + str(keys) + ", @menu_id=" + str(i) + ";"
-            print(execParam)
-            Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+        l_keys = list(d_.keys())  # ['科主任', '副主任', '医疗组长', '主治医生', '门/急诊医生、住院医生', '运营负责人']
+        l_l_values = list(d_.values())  # [3, 7, 8,9,10,11,12,13,15,24,25,87,109]
+        # print(l_keys)
+        # print(l_l_values)
+        # sys.exit(0)
+        for j in range(len(l_keys)):
+            for i in l_l_values[j]:
+                execParam = "exec " + varProcedure + " @roleName=" + str(l_keys[j]) + ", @menu_id=" + str(i) + ";"
+                # print(execParam)
+                Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
     def procedureUserRole(self, varProcedure, varDesc, d_):
         #  用户角色关系表

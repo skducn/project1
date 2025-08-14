@@ -140,7 +140,7 @@ Cdrd_PO = CdrdPO()
 #
 # todo 3-2，用户角色关系表
 # Cdrd_PO.crt_sys_user_role('用户角色关系表')
-# # Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表', {3: [1, 3, 4]})  # 一个用户可多个角色，用户3关联角色1，3，4
+# Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表', {270: [28, 33]})  # 一个用户可多个角色，用户3关联角色1，3，4
 #
 # # todo 3-3，用户问题关系表
 # Cdrd_PO.crt_sys_user_pwdptc('用户问题关系表')
@@ -152,10 +152,22 @@ Cdrd_PO = CdrdPO()
 
 # todo 5，角色管理(ok)
 # Cdrd_PO.crt_sys_role('角色表')
-# Cdrd_PO.procedure("sys_role", '角色表', 6)  # exec a_sys_role @RecordCount=6;  //参数RecordCount=6忽略，程序写死角色6
+# Cdrd_PO.procedure("s_sys_role", '角色表')  #  //参数RecordCount=6忽略，程序写死角色6
 
 # Cdrd_PO.crt_sys_role_menu('角色菜单关系表')
-# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'副主任': [18, 20, 21]}) # 一个角色可多个菜单，如：角色3关联菜单18，20，21
+Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+                                                         '副主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+                                                         '医疗组长': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+                                                         '主治医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+                                                         '门急诊医生住院医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+                                                         '运营负责人': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109]})
+# 一个角色可多个菜单，如：角色3关联菜单18，20，21
+# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [86],
+#                                                          '副主任': [86],
+#                                                          '医疗组长': [86],
+#                                                          '主治医生': [86],
+#                                                          '门急诊医生住院医生': [86],
+#                                                          '运营负责人': [86]})
 
 
 # todo 6，菜单管理

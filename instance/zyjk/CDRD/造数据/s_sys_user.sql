@@ -88,19 +88,20 @@ BEGIN
         INSERT INTO sys_user (nick_name,user_name,user_type,password,job_num,email,phonenumber,sex,avatar,department_id,department_code,department_name,status,remark,create_by,create_time,update_by,update_time,pwd_update_state,pwd_update_time,pwd_next_update_time
 )
         VALUES (
-                @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- nick_name: 姓名 + 固定3位数
-                @RandomName + RIGHT('00000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100000), 5), -- user_name: 姓名 + 固定5位数
+--                 @RandomName + RIGHT('000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 1000), 3), -- nick_name: 姓名 + 固定3位数
+                'tester' + CAST(@Counter AS NVARCHAR(10)), -- nick_name: 姓名 + 序号
+                'tester' + CAST(@Counter AS NVARCHAR(10)), -- user_name: 姓名 + 序号
                 '00', -- 用户类型
-                '12345678', -- 密码
+                '$2a$10$vgB3iFh5CNK10RBJaQtZ3ugT.5FLznMUYRTyywvLkalWOOxTshZtq', -- 密码
                 CAST(ABS(CHECKSUM(NEWID())) % 100000 AS NVARCHAR(10)), -- 工号
                 LOWER(@RandomName) + CAST(ABS(CHECKSUM(NEWID())) % 1000 AS NVARCHAR(10)) + '@example.com', --邮箱
                 '13816' + CAST(ABS(CHECKSUM(NEWID())) % 1000000 AS NVARCHAR(10)), -- 手机号
                 @RandomSexIdKey,  -- 性别
-                'http:www.baidu.com', -- 头像地址
+                'http://www.baidu.com', -- 头像地址
                 @department_id, -- 科室ID
                 @department_code, -- 所属科室code
                 @department_name, -- 所属科室名称
-                @RandomStatusIdKey, -- 账号状态
+                '0', -- 账号状态
                 'jioqwejoqwejoqwejqwe', -- 备注
                 'admin', -- 创建人
                 GETDATE(), -- 创建时间
