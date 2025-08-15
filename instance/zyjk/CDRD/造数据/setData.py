@@ -140,7 +140,7 @@ Cdrd_PO = CdrdPO()
 #
 # todo 3-2，用户角色关系表
 # Cdrd_PO.crt_sys_user_role('用户角色关系表')
-# Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表', {270: [28, 33]})  # 一个用户可多个角色，用户3关联角色1，3，4
+# Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表')  # 一个用户可多个角色，用户3关联角色1，3，4
 #
 # # todo 3-3，用户问题关系表
 # Cdrd_PO.crt_sys_user_pwdptc('用户问题关系表')
@@ -155,19 +155,13 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedure("s_sys_role", '角色表')  #  //参数RecordCount=6忽略，程序写死角色6
 
 # Cdrd_PO.crt_sys_role_menu('角色菜单关系表')
-Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-                                                         '副主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-                                                         '医疗组长': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-                                                         '主治医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-                                                         '门急诊医生住院医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-                                                         '运营负责人': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109]})
+# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '副主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '医疗组长': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '主治医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '门急诊医生住院医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '运营负责人': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109]})
 # 一个角色可多个菜单，如：角色3关联菜单18，20，21
-# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [86],
-#                                                          '副主任': [86],
-#                                                          '医疗组长': [86],
-#                                                          '主治医生': [86],
-#                                                          '门急诊医生住院医生': [86],
-#                                                          '运营负责人': [86]})
 
 
 # todo 6，菜单管理
@@ -183,7 +177,7 @@ Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主�
 
 
 # todo 7，参数配置
-Cdrd_PO.crt_sys_config('参数配置')
+# Cdrd_PO.crt_sys_config('参数配置')
 # Cdrd_PO.procedure("s_sys_config", '参数配置', 4)
 
 # # todo 8，标签
@@ -225,16 +219,16 @@ Cdrd_PO.crt_sys_config('参数配置')
 # todo 5.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
-result = subprocess.run(
-    ["python", "genAES128.py"],  # 命令和参数列表
-    capture_output=True,  # 捕获 stdout 和 stderr
-    text=True  # 输出转为字符串（默认是字节）
-)
+# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
+# # ok
+# result = subprocess.run(
+#     ["python", "genAES128.py"],  # 命令和参数列表
+#     capture_output=True,  # 捕获 stdout 和 stderr
+#     text=True  # 输出转为字符串（默认是字节）
+# )
 
 
 # Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
-
 # Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
 # Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
 # Cdrd_PO.updateStatistics('a_cdrd_patient_info')
@@ -244,25 +238,29 @@ result = subprocess.run(
 
 # todo 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
-# Sqlserver_PO.delTable('cdrd_patient_visit_info')
 # Cdrd_PO.crt_cdrdPatientVisitInfo('门(急)诊住院就诊信息')
-# Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
 # Cdrd_PO.procedure("s_cdrd_patient_visit_info", '门(急)诊住院就诊信息')
+# Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
 # Cdrd_PO.openSql("s_cdrd_patient_visit_info.sql")
+
 
 # todo 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientDiagInfo('诊断表')
-# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
 # Cdrd_PO.procedure("s_cdrd_patient_diag_info", '诊断表')
+# Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
+# ok
+
 # Cdrd_PO.openSql("s_cdrd_patient_diag_info.sql")
 
 #
 
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientSymptomInfo('症状信息')
-# Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
 # Cdrd_PO.procedure("s_cdrd_patient_symptom_info", '症状信息')
+# Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
+# ok
+
 # Cdrd_PO.openSql("s_cdrd_patient_symptom_info.sql")
 
 #
@@ -276,8 +274,8 @@ result = subprocess.run(
 # # # 实验室检查报告
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientLabExaminationInfo('实验室检查报告')
-# Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
 # Cdrd_PO.procedure("s_cdrd_patient_lab_examination_info", '实验室检查报告')
+# Cdrd_PO.subProcedure("r_lab_examination_info__", "实验室检查报告 - 报告名称，样本类型，项目名称")
 # Cdrd_PO.openSql("s_cdrd_patient_lab_examination_info.sql")
 
 #
@@ -316,9 +314,9 @@ result = subprocess.run(
 # # # #
 # # # #  用药信息
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
-# Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
+Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
+Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 # Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
-# Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 # Cdrd_PO.openSql("s_cdrd_patient_drug_info.sql")
 
 #

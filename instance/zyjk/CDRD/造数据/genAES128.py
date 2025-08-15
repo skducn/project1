@@ -2,7 +2,7 @@
 # *********************************************************************
 # Author        : John
 # Date          : 2025-8-6
-# Description   : 生成CDRD_PATIENT_INFO AES-128 数据
+# Description   : 生成CDRD_PATIENT_INFO AES-128 数据，30000条数据
 # *********************************************************************
 
 import pyodbc
@@ -17,6 +17,9 @@ from PO.TimePO import *
 Data_PO = DataPO()
 Time_PO = TimePO()
 
+# 患者数量
+# 30000条数据
+patient = 30000
 
 def aes_encrypt_with_hex_key(data):
     """使用AES-128 ECB模式和十六进制密钥加密数据"""
@@ -78,8 +81,8 @@ if not l_d_id_type:
 
 
 
-for i in range(5):
-    print(f"正在处理第 {i + 1} 条记录...")
+for i in range(patient):
+    print(f"插入第 {i + 1} 条")
 
     # 身份证，出生日期，年龄，性别
     d_gender = {'男': 0, '女': 1}
@@ -205,3 +208,6 @@ for i in range(5):
         # print(f"  姓名: {random_name}")
     except Exception as e:
         print(f"第 {i + 1} 条记录插入失败: {e}")
+
+
+print('cdrd_patient_info(患者基本信息) => 生成 ' + str(patient) + "条！")

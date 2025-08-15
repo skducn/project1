@@ -15,8 +15,25 @@ BEGIN
     SELECT @re = COUNT(*) FROM CDRD_PATIENT_INFO;
     SET @result = @re * @RecordCount;
 
-    -- 生成固定长字符串
-    DECLARE @TwoHundredChars NVARCHAR(MAX) = REPLICATE(N'你好', 100);
+
+    -- 术前诊断
+    -- 术中诊断
+    -- 术后诊断
+    DECLARE @PreoperativeDiagnosis1 NVARCHAR(MAX) = '乳腺肿瘤：患者女性，62 岁，主因 “发现左侧乳腺肿物 7 月、乳头血性溢液伴乳头溃疡 2 月” 就诊。查体发现左侧乳头凹陷结痂，左侧乳腺皮肤可见多发红斑，左侧乳头内侧触及肿物，直径约 3cm，质硬，左侧腋窝触及多发肿大淋巴结，2cm，质硬，可活动。BI-RADS 5 类，左腋窝肿大淋巴结，转移待排。术前诊断为左侧乳腺癌，cT4bN2M0，IIIB 期，HR 阳性、Her2 阴性。';
+    DECLARE @PreoperativeDiagnosis2 NVARCHAR(MAX) = '肺部结节：患者主诉体检发现肺部结节 1 个月。1 个月前在单位体检中进行胸部 CT 检查，发现右肺上叶有一个直径约 1.5cm 的结节，边缘不规则，有毛刺征，患者无咳嗽、咳痰、咯血、胸痛、呼吸困难等症状。术前诊断为右肺上叶结节，性质待查，恶性可能性大。';
+    DECLARE @PreoperativeDiagnosis3 NVARCHAR(MAX) = '椎管内肿瘤：患者女性，72 岁，因 “腰痛伴双下肢麻木 5 个月，加重伴二便失禁 1 周” 入院。5 个月前突发腰痛伴双下肢麻木，当地医院腰椎 MRI 报告显示 “腰椎管狭窄”，经药物保守治疗症状短暂缓解后，病情因感冒恶化，双腿完全丧失行走能力，大小便功能进行性障碍。查体发现腹股沟平面以下皮肤感觉明显减退，双下肢关键肌群肌力仅为 III 级，肌张力异常增高，双侧病理性巴彬斯基征阳性。完善全脊柱 MRI 检查发现胸椎椎管内肿瘤。术前诊断为胸椎椎管内肿瘤。';
+
+    -- 手术经过步骤
+    DECLARE @OperationWay NVARCHAR(MAX) = '术前准备：患者入室后建立静脉通路，常规监测心电图、血压、血氧饱和度，麻醉诱导后行气管插管，确认麻醉效果满意。患者取仰卧位，术区常规消毒、铺无菌巾单，连接腹腔镜设备并检查其功能正常。
+建立气腹：于脐下缘做一长约 10mm 弧形切口，切开皮肤及皮下组织，用气腹针穿刺进入腹腔，注入二氧化碳气体建立气腹，维持腹内压在 12-14mmHg。
+置入 Trocar：通过脐部切口置入 10mm Trocar，置入腹腔镜探查腹腔：肝脏形态正常，胆囊张力中等，大小约 8cm×3cm，胆囊壁增厚（约 3mm），胆囊颈部可见结石嵌顿，胆总管无明显扩张，腹腔内无积液及粘连。分别于剑突下 2cm、右锁骨中线肋缘下 2cm 处各做一 5mm 切口，置入 Trocar 作为操作孔。
+游离胆囊三角：用分离钳仔细分离胆囊周围粘连，显露胆囊三角（Calot 三角），确认胆囊管、肝总管及胆总管的解剖关系，避免损伤。用钛夹夹闭胆囊管近胆囊侧，暂不切断，继续游离胆囊动脉，确认后用钛夹夹闭并切断。
+切除胆囊：提起胆囊，用电钩沿胆囊床浆膜层剥离胆囊，剥离过程中仔细止血（必要时用电凝止血），完整切除胆囊。检查胆囊床无渗血、胆漏，确认切除的胆囊内有 1 枚直径约 1.5cm 结石。
+取出胆囊及关腹：将胆囊装入取物袋，经脐部 Trocar 取出。再次探查腹腔，确认无出血、胆漏及器械遗留后，放出腹腔内二氧化碳气体，拔除各 Trocar，切口用可吸收线皮下缝合，无菌敷料覆盖。
+术毕：麻醉苏醒后，患者生命体征平稳，安返病房。';
+
+
+
 
     BEGIN TRY
         BEGIN TRANSACTION;
@@ -158,22 +175,22 @@ BEGIN
             fd.patient_hospital_name,
             fd.OperationNum,
             fd.SourceOperationNum,
-            '手术名称',
+            '腹腔镜胆囊切除术',
             '主刀/手术者',
             'I助',
             'II助',
-            @TwoHundredChars,
-            @TwoHundredChars,
-            @TwoHundredChars,
+            @PreoperativeDiagnosis1,  --术前诊断
+            @PreoperativeDiagnosis2,  --术中诊断
+            @PreoperativeDiagnosis3,  --术后诊断
             fd.OperationLevelKey,
             fd.OperationLevelValue,
             fd.OperationTypeKey,
             fd.OperationTypeValue,
             fd.IncisionHealingGradeKey,
             fd.IncisionHealingGradeValue,
-            '麻醉者',
-            '麻醉方式',
-            '手术步骤及经过',
+            '麻醉者张三',
+            '全身麻醉（气管插管）',
+            @OperationWay,
             fd.OperationBeginTime,
             fd.OperationEndTime,
             fd.DeleteState,

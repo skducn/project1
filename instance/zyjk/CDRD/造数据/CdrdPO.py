@@ -2282,9 +2282,10 @@ class CdrdPO(object):
                 # print(execParam)
                 Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
-    def procedureUserRole(self, varProcedure, varDesc, d_):
+    def procedureUserRole(self, varProcedure, varDesc):
         #  用户角色关系表
         # Cdrd_PO.procedureUserRole("a_sys_user_role__data", {3: 5})  # 用户3关联角色5
+        # d_ = {271: [28, 33]}
 
         # 删除存储过程（用于添加描述）
         Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
@@ -2308,20 +2309,32 @@ class CdrdPO(object):
         """
         Sqlserver_PO.execute(desc)
 
-        keys = list(d_.keys())[0]
-        values = list(d_.values())[0]  # [18, 20, 21]
+        # 角色id，来自sys_role表
+        l_role_id = [28, 33]
 
-        if isinstance(values, list):
+        # 用户id，来自sys_user表
+        for i in range(270, 470):
             # 一个用户多个角色
-            for i in values:
-                execParam = "exec " + varProcedure + " @user_id=" + str(keys) + ", @role_id=" + str(i) + ";"
-                print(execParam)
+            for j in l_role_id:
+                execParam = "exec " + varProcedure + " @user_id=" + str(i) + ", @role_id=" + str(j) + ";"
+                # print(execParam)
                 Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
-        else:
-            # 一个用户一个角色
-            execParam = "exec " + varProcedure + " @user_id=" + str(keys) + ", @role_id=" + str(values) + ";"
-            print(execParam)
-            Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+
+        # d_ = {270: [28, 33]}   469
+        # keys = list(d_.keys())[0]
+        # values = list(d_.values())[0]  # [18, 20, 21]
+
+        # if isinstance(values, list):
+        #     # 一个用户多个角色
+        #     for i in values:
+        #         execParam = "exec " + varProcedure + " @user_id=" + str(keys) + ", @role_id=" + str(i) + ";"
+        #         print(execParam)
+        #         Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
+        # else:
+        #     # 一个用户一个角色
+        #     execParam = "exec " + varProcedure + " @user_id=" + str(keys) + ", @role_id=" + str(values) + ";"
+        #     print(execParam)
+        #     Sqlserver_PO.execute(execParam)  # 执行存储过程, 插入N条记录
 
 
     # todo 1.1

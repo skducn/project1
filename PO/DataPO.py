@@ -335,8 +335,49 @@ class DataPO:
         else:
             return None
 
-    def getAge(self, varIdcard):
+    # def getAge(self, varIdcard):
+    #
+    #     """2.1.2，获取身份证的年龄"""
+    #
+    #     # 先判断身份证是否有效
+    #     if self.isIdCard(varIdcard) == True:
+    #         Date = varIdcard[6:10] + "." + varIdcard[10:12] + "." + varIdcard[12:14]
+    #         Date = Date.split(".")
+    #         BirthDate = datetime.date(int(Date[0]), int(Date[1]), int(Date[2]))
+    #         Today = datetime.date.today()
+    #         if Today.month > BirthDate.month:
+    #             NextYear = datetime.date(Today.year + 1, BirthDate.month, BirthDate.day)
+    #         elif Today.month < BirthDate.month:
+    #             NextYear = datetime.date(
+    #                 Today.year,
+    #                 Today.month + (BirthDate.month - Today.month),
+    #                 BirthDate.day,
+    #             )
+    #         elif Today.month == BirthDate.month:
+    #             if Today.day > BirthDate.day:
+    #                 NextYear = datetime.date(
+    #                     Today.year + 1, BirthDate.month, BirthDate.day
+    #                 )
+    #             elif Today.day < BirthDate.day:
+    #                 NextYear = datetime.date(
+    #                     Today.year,
+    #                     BirthDate.month,
+    #                     Today.day + (BirthDate.day - Today.day),
+    #                 )
+    #             elif Today.day == BirthDate.day:
+    #                 NextYear = 0
+    #         Age = Today.year - BirthDate.year
+    #         if NextYear == 0:  # if today is the birthday
+    #             return "%d" % (Age)
+    #             # return '%d, days until %d: %d' % (Age, Age+1, 0)
+    #         else:
+    #             DaysLeft = NextYear - Today
+    #             return "%d" % (Age)
+    #             # return '%d, days until %d: %d' % (Age, Age+1, DaysLeft.days)
+    #     else:
+    #         return None
 
+    def getAge(self, varIdcard):
         """2.1.2，获取身份证的年龄"""
 
         # 先判断身份证是否有效
@@ -345,27 +386,40 @@ class DataPO:
             Date = Date.split(".")
             BirthDate = datetime.date(int(Date[0]), int(Date[1]), int(Date[2]))
             Today = datetime.date.today()
-            if Today.month > BirthDate.month:
-                NextYear = datetime.date(Today.year + 1, BirthDate.month, BirthDate.day)
-            elif Today.month < BirthDate.month:
-                NextYear = datetime.date(
-                    Today.year,
-                    Today.month + (BirthDate.month - Today.month),
-                    BirthDate.day,
-                )
-            elif Today.month == BirthDate.month:
-                if Today.day > BirthDate.day:
-                    NextYear = datetime.date(
-                        Today.year + 1, BirthDate.month, BirthDate.day
-                    )
-                elif Today.day < BirthDate.day:
+
+            # 修复：处理闰年2月29日的特殊情况
+            try:
+                if Today.month > BirthDate.month:
+                    NextYear = datetime.date(Today.year + 1, BirthDate.month, BirthDate.day)
+                elif Today.month < BirthDate.month:
                     NextYear = datetime.date(
                         Today.year,
-                        BirthDate.month,
-                        Today.day + (BirthDate.day - Today.day),
+                        Today.month + (BirthDate.month - Today.month),
+                        BirthDate.day,
                     )
-                elif Today.day == BirthDate.day:
-                    NextYear = 0
+                elif Today.month == BirthDate.month:
+                    if Today.day > BirthDate.day:
+                        NextYear = datetime.date(
+                            Today.year + 1, BirthDate.month, BirthDate.day
+                        )
+                    elif Today.day < BirthDate.day:
+                        NextYear = datetime.date(
+                            Today.year,
+                            BirthDate.month,
+                            Today.day + (BirthDate.day - Today.day),
+                        )
+                    elif Today.day == BirthDate.day:
+                        NextYear = 0
+            except ValueError:
+                # 处理2月29日出生在非闰年的特殊情况
+                if BirthDate.month == 2 and BirthDate.day == 29:
+                    if Today.month > 2:
+                        NextYear = datetime.date(Today.year + 1, 3, 1)
+                    elif Today.month <= 2:
+                        NextYear = datetime.date(Today.year, 3, 1)
+                else:
+                    raise
+
             Age = Today.year - BirthDate.year
             if NextYear == 0:  # if today is the birthday
                 return "%d" % (Age)
@@ -376,6 +430,7 @@ class DataPO:
                 # return '%d, days until %d: %d' % (Age, Age+1, DaysLeft.days)
         else:
             return None
+
 
     def getSex(self, varIdcard):
 
