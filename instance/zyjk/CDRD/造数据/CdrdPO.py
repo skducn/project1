@@ -7,7 +7,7 @@
 # 1，log_client_info	nvarchar	100，请将以上字段类型大小，转换成 字段 类型(大小)的格式
 # 2，字段	字段英文名
 # 客户端信息	log_client_info ，请将以上字段英文名与字段互换位置，用逗号分隔输出
-# 3，请继续优化，将每行数据转换成 Sqlserver_PO.setFieldComment('a_sys_logininfo', '参数1', '参数2'),替换参数1和参数2
+# 3，请继续优化，将每行数据转换成 Sqlserver_PO.setFieldComment(varTable, '参数1', '参数2'),替换参数1和参数2
 # *****************************************************************
 
 
@@ -841,11 +841,12 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者')
         Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
         Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
-    def _a_sys_logininfo(self, varCommon):
+    def crt_sys_logininfo(self, varCommon):
 
         # 登录日志
 
-        Sqlserver_PO.crtTableByCover('a_sys_logininfo',
+        varTable = 'sys_logininfo'
+        Sqlserver_PO.crtTableByCover(varTable,
             '''
             info_id int	IDENTITY(1,1) PRIMARY KEY,
             user_name nvarchar(50),
@@ -858,17 +859,17 @@ class CdrdPO(object):
             msg nvarchar(500),
             client_info nvarchar(100)
             ''')
-        Sqlserver_PO.setTableComment('a_sys_logininfo', varCommon + '(测试用)')
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'info_id', '访问ID'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'user_name', '账号'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'nick_name', '姓名'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'type', '登录类型'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'access_time', '访问时间'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'ipaddr', 'IP地址'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'way', '方式'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'status', '结果'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'msg', '备注'),
-        Sqlserver_PO.setFieldComment('a_sys_logininfo', 'client_info', '客户端信息')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'info_id', '访问ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'user_name', '账号'),
+        Sqlserver_PO.setFieldComment(varTable, 'nick_name', '姓名'),
+        Sqlserver_PO.setFieldComment(varTable, 'type', '登录类型'),
+        Sqlserver_PO.setFieldComment(varTable, 'access_time', '访问时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'ipaddr', 'IP地址'),
+        Sqlserver_PO.setFieldComment(varTable, 'way', '方式'),
+        Sqlserver_PO.setFieldComment(varTable, 'status', '结果'),
+        Sqlserver_PO.setFieldComment(varTable, 'msg', '备注'),
+        Sqlserver_PO.setFieldComment(varTable, 'client_info', '客户端信息')
 
 
 
@@ -1740,6 +1741,54 @@ class CdrdPO(object):
                                      '更新时间'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_advice_source_key',
                                      '数据来源')
+    def crt_cdrdPatientDrugInfo_test(self, varCommon):
+
+        # 用药信息
+        varTable = 'CDRD_PATIENT_DRUG_INFO_test'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+                patient_drug_id int IDENTITY(1,1) PRIMARY KEY,
+                patient_id int,
+                patient_superior_advice_id int,
+                patient_superior_advice_type int,
+                patient_hospital_visit_id varchar(100),
+                patient_hospital_code varchar(100),
+                patient_hospital_name varchar(50),
+                patient_recipe_advice_num varchar(100),
+                patient_drug_name nvarchar(50),
+                patient_drug_specs nvarchar(50),
+                patient_drug_frequency nvarchar(50),
+                patient_drug_once_dose varchar(100),
+                patient_drug_dose_unit nvarchar(50),
+                patient_drug_usage nvarchar(50),
+                patient_drug_qty varchar(100),
+                patient_drug_begin_time datetime,
+                patient_drug_end_time datetime,
+                patient_drug_delete_state_key varchar(100),
+                patient_drug_update_time datetime,
+                patient_drug_source_key varchar(100)
+            ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_id', '用药信息ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_superior_advice_id', '取值门诊医嘱ID或者住院医嘱ID'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_superior_advice_type', '上级医嘱类型，门诊医嘱为1，住院医嘱为2'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_visit_id', '就诊编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_code', '就诊医疗机构编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_hospital_name', '医院名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_recipe_advice_num', '处方明细/医嘱编号'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_name', '药品名称'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_specs', '规格'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_frequency', '频次'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_once_dose', '每次用量'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_dose_unit', '用量单位'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_usage', '用法'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_qty', '总量'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_begin_time', '开始时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_end_time', '结束时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_delete_state_key', '删除状态'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_update_time', '更新时间'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_drug_source_key', '数据来源')
     def crt_cdrdPatientDrugInfo(self, varCommon):
 
         # 用药信息

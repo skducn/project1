@@ -178,7 +178,7 @@ Cdrd_PO = CdrdPO()
 
 # todo 7，参数配置
 # Cdrd_PO.crt_sys_config('参数配置')
-# Cdrd_PO.procedure("s_sys_config", '参数配置', 4)
+# Cdrd_PO.procedure("s_sys_config", '参数配置', 4)  # ????
 
 # # todo 8，标签
 # Cdrd_PO.crt_sys_tag_type('标签表')
@@ -312,10 +312,13 @@ Cdrd_PO = CdrdPO()
 
 # #
 # # # #
-# # # #  用药信息
+# # # #  用药信息 - 慢 耗时: 6432.8538 秒
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
-Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
-Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
+# Cdrd_PO.crt_cdrdPatientDrugInfo_test('用药信息test')
+# Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
+
+# Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
+# Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 # Cdrd_PO.subProcedure("r_drug_info__", "用药信息 - 药物名称	规格	频次	每次用量	用量单位	用法	总量")
 # Cdrd_PO.openSql("s_cdrd_patient_drug_info.sql")
 
@@ -336,7 +339,7 @@ Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 
 
 # #
-# # 护理记录
+# # 护理记录 - 慢212.5745 秒
 # 数据量：每条住院记录3条护理记录（共9万）
 # Cdrd_PO.crt_cdrdPatientNurseInfo('护理记录')
 # Cdrd_PO.procedure("s_cdrd_patient_nurse_info", '护理记录')
@@ -354,7 +357,7 @@ Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
 
 # 登录日志
 # 数据量：50万
-# Cdrd_PO._a_sys_logininfo('登录登出表')
+# Cdrd_PO.crt_sys_logininfo('登录登出表')
 # Cdrd_PO.procedure("s_sys_logininfo", '登录登出表') # 存储过程中改成 50w
 # Cdrd_PO.subProcedure("r_logininfo__", "登录登出 - 登录类型，方式")
 

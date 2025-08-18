@@ -15,64 +15,55 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        -- Step 1: 获取所有患者ID并随机排序
-        ;WITH AllPatients AS (
-            SELECT
-                patient_id,
-                ROW_NUMBER() OVER (ORDER BY NEWID()) AS rn
-            FROM CDRD_PATIENT_INFO
-        ),
-
-        -- Step 2: 选择前300个无就诊记录的死亡数据患者
-        NoVisitRecords AS (
-            SELECT TOP 300
-                ap.patient_id,
+        -- Step 1: 随机生成 300 条无就诊记录的死亡数据
+        ;WITH NoVisitRecords AS (
+            SELECT TOP 300   --修改1
+                p.patient_id,
                 NULL AS patient_visit_id,
                 NULL AS patient_hospital_visit_id,
                 '2' AS patient_death_source_key
-            FROM AllPatients ap
-            WHERE ap.rn <= 300
-        ),
-
-        -- Step 3: 选择接下来200个有就诊记录的死亡数据患者
-        VisitRecords AS (
-            SELECT TOP 200
-                ap.patient_id,
-                v.patient_visit_id,
-                v.patient_hospital_visit_id,
-                '1' AS patient_death_source_key
-            FROM AllPatients ap
-            INNER JOIN CDRD_PATIENT_VISIT_INFO v ON ap.patient_id = v.patient_id
-            WHERE ap.rn > 300 AND ap.rn <= 500
+            FROM CDRD_PATIENT_INFO p
             ORDER BY NEWID()
         ),
 
-        -- Step 4: 合并两组数据
+        -- Step 2: 随机生成 200 条有就诊记录的死亡数据
+        VisitRecords AS (
+            SELECT TOP 200  -- 修改2
+                v.patient_id,
+                v.patient_visit_id,
+                v.patient_hospital_visit_id,
+                '1' AS patient_death_source_key
+            FROM CDRD_PATIENT_VISIT_INFO v
+            ORDER BY NEWID()
+        ),
+
+        -- Step 3: 合并两组数据
         AllRecords AS (
             SELECT * FROM NoVisitRecords
             UNION ALL
             SELECT * FROM VisitRecords
         ),
 
-        -- Step 5: 生成所有字段
+        -- Step 4: 生成所有字段
         FinalData AS (
             SELECT
                 ar.patient_id,
                 ar.patient_visit_id,
                 ar.patient_hospital_visit_id,
                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(ar.patient_id * 1000)) % 10000000), 7) AS patient_death_record_id,
-                DATEADD(DAY, ABS(CHECKSUM(ar.patient_id * 1000 + ISNULL(ar.patient_visit_id, '0'))) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS patient_death_time,
+--                 RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 10000000), 7) AS patient_death_record_id,
+                DATEADD(DAY, ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS patient_death_time,
                 @ThousandChars AS patient_death_in_situation,
                 @TwoHundredChars AS patient_death_in_diag,
                 @ThousandChars AS patient_death_diag_process,
                 @TwoHundredChars AS patient_death_reason,
                 @TwoHundredChars AS patient_death_diag,
-                DATEADD(DAY, -ABS(CHECKSUM(ar.patient_id * 1000 + ISNULL(ar.patient_visit_id, '0'))) % 365, GETDATE()) AS patient_death_update_time,
+                DATEADD(DAY, -ABS(CHECKSUM(ar.patient_id * 1000 + ar.patient_visit_id)) % 365, GETDATE()) AS patient_death_update_time,
                 ar.patient_death_source_key
             FROM AllRecords ar
         )
 
-        -- Step 6: 一次性插入数据（使用 TABLOCKX 提高性能）
+        -- Step 5: 一次性插入数据（使用 TABLOCKX 提高性能）
         INSERT INTO CDRD_PATIENT_DEATH_INFO WITH (TABLOCKX) (
             patient_id,
             patient_visit_id,

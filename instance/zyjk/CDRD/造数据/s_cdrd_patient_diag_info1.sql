@@ -76,10 +76,11 @@ BEGIN
                    outs.n_key AS outcome_state_key, outs.n_value AS outcome_state_value
             FROM CDRD_PATIENT_INFO p
             CROSS JOIN (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h
-            CROSS JOIN (SELECT TOP 1 diag_class, diag_name, diag_code FROM ab_diagnosticHistory ORDER BY NEWID()) dc
-            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_boolean ORDER BY NEWID()) tf
-            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_admissionCondition ORDER BY NEWID()) ins
-            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_dischargeStatus ORDER BY NEWID()) outs
+            CROSS APPLY (SELECT TOP 1 diag_class, diag_name, diag_code FROM ab_diagnosticHistory ORDER BY NEWID()) dc
+--             CROSS JOIN (SELECT TOP 1 diag_class, diag_name, diag_code FROM ab_diagnosticHistory ORDER BY NEWID()) dc
+            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_boolean ORDER BY NEWID()) tf  -- 诊断是否主要诊断
+            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_admissionCondition ORDER BY NEWID()) ins  -- 入院病情
+            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_dischargeStatus ORDER BY NEWID()) outs  -- 出院情况
         ),
 
         -- Step 7: 关联患者序列和就诊信息
@@ -87,15 +88,17 @@ BEGIN
             SELECT
                 pm.patient_id,
                 pm.n,
-                pm.patient_visit_id,
-                pm.patient_hospital_visit_id,
-                pm.patient_hospital_code,
-                pm.patient_case_num,
+                ISNULL(pm.patient_visit_id, RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % 10000000), 7)) AS patient_visit_id,
+                ISNULL(pm.patient_hospital_visit_id, RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % 10000000), 7)) AS patient_hospital_visit_id,
+                ISNULL(pm.patient_hospital_code, RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % 10000000), 7)) AS patient_hospital_code,
+                ISNULL(pm.patient_case_num, RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % 10000000), 7)) AS patient_case_num,
                 pm.n AS data_source_key,
                 rs.RandomHospital,
                 rs.diag_class,
                 rs.diag_name,
                 rs.diag_code,
+--                 '1',
+--                 '是',
                 rs.diag_is_primary_key,
                 rs.diag_is_primary_value,
                 rs.in_state_key,
@@ -145,8 +148,10 @@ BEGIN
             diag_num AS patient_diag_num,
             diag_class AS patient_diag_class,
             diag_name AS patient_diag_name,
-            diag_is_primary_key,
-            diag_is_primary_value,
+            '1',
+            '是',
+--             diag_is_primary_key,
+--             diag_is_primary_value,
             diag_code AS patient_diag_code,
             in_state_key AS patient_in_state_key,
             in_state_value AS patient_in_state_value,

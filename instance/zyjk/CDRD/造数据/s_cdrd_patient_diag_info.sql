@@ -66,23 +66,129 @@ BEGIN
                 AND ps.n = v.seq
         ),
 
-        -- Step 6: 一次性生成随机静态字段（避免逐条生成）
-        RandomStaticFields AS (
-            SELECT p.patient_id,
-                   h.name AS RandomHospital,
-                   dc.diag_class, dc.diag_name, dc.diag_code,
-                   tf.n_key AS diag_is_primary_key, tf.n_value AS diag_is_primary_value,
-                   ins.n_key AS in_state_key, ins.n_value AS in_state_value,
-                   outs.n_key AS outcome_state_key, outs.n_value AS outcome_state_value
-            FROM CDRD_PATIENT_INFO p
-            CROSS JOIN (SELECT TOP 1 name FROM ab_hospital ORDER BY NEWID()) h
-            CROSS JOIN (SELECT TOP 1 diag_class, diag_name, diag_code FROM ab_diagnosticHistory ORDER BY NEWID()) dc
-            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_boolean ORDER BY NEWID()) tf
-            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_admissionCondition ORDER BY NEWID()) ins
-            CROSS JOIN (SELECT TOP 1 n_key, n_value FROM ab_dischargeStatus ORDER BY NEWID()) outs
+        -- Step 6: 创建临时表存储随机诊断信息
+        RandomDiagData AS (
+            SELECT
+                pm.patient_id,
+                pm.n,
+                ROW_NUMBER() OVER (ORDER BY NEWID()) AS rn
+            FROM PatientVisitMapping pm
         ),
 
-        -- Step 7: 关联患者序列和就诊信息
+        -- Step 7: 获取所有需要的随机数据并关联
+        HospitalData AS (
+            SELECT
+                rd.patient_id,
+                rd.n,
+                h.name AS RandomHospital,
+                ROW_NUMBER() OVER (PARTITION BY rd.patient_id, rd.n ORDER BY NEWID()) AS rn
+            FROM RandomDiagData rd
+            CROSS JOIN ab_hospital h
+        ),
+
+        DiagnosticData AS (
+            SELECT
+                rd.patient_id,
+                rd.n,
+                dh.diag_class,
+                dh.diag_name,
+                dh.diag_code,
+                ROW_NUMBER() OVER (PARTITION BY rd.patient_id, rd.n ORDER BY NEWID()) AS rn
+            FROM RandomDiagData rd
+            CROSS JOIN ab_diagnosticHistory dh
+        ),
+
+        BooleanData AS (
+            SELECT
+                rd.patient_id,
+                rd.n,
+                ab.n_key AS diag_is_primary_key,
+                ab.n_value AS diag_is_primary_value,
+                ROW_NUMBER() OVER (PARTITION BY rd.patient_id, rd.n ORDER BY NEWID()) AS rn
+            FROM RandomDiagData rd
+            CROSS JOIN ab_boolean ab
+        ),
+
+        AdmissionData AS (
+            SELECT
+                rd.patient_id,
+                rd.n,
+                aa.n_key AS in_state_key,
+                aa.n_value AS in_state_value,
+                ROW_NUMBER() OVER (PARTITION BY rd.patient_id, rd.n ORDER BY NEWID()) AS rn
+            FROM RandomDiagData rd
+            CROSS JOIN ab_admissionCondition aa
+        ),
+
+        DischargeData AS (
+            SELECT
+                rd.patient_id,
+                rd.n,
+                ad.n_key AS outcome_state_key,
+                ad.n_value AS outcome_state_value,
+                ROW_NUMBER() OVER (PARTITION BY rd.patient_id, rd.n ORDER BY NEWID()) AS rn
+            FROM RandomDiagData rd
+            CROSS JOIN ab_dischargeStatus ad
+        ),
+
+        -- Step 8: 为每个患者-序号组合选择一条随机记录
+        RandomStaticFields AS (
+            SELECT
+                hd.patient_id,
+                hd.n,
+                hd.RandomHospital,
+                dd.diag_class,
+                dd.diag_name,
+                dd.diag_code,
+                bd.diag_is_primary_key,
+                bd.diag_is_primary_value,
+                ad.in_state_key,
+                ad.in_state_value,
+                ddg.outcome_state_key,
+                ddg.outcome_state_value
+            FROM (
+                SELECT patient_id, n, RandomHospital
+                FROM (
+                    SELECT patient_id, n, RandomHospital,
+                           ROW_NUMBER() OVER (PARTITION BY patient_id, n ORDER BY rn) AS final_rn
+                    FROM HospitalData
+                ) h WHERE final_rn = 1
+            ) hd
+            JOIN (
+                SELECT patient_id, n, diag_class, diag_name, diag_code
+                FROM (
+                    SELECT patient_id, n, diag_class, diag_name, diag_code,
+                           ROW_NUMBER() OVER (PARTITION BY patient_id, n ORDER BY rn) AS final_rn
+                    FROM DiagnosticData
+                ) d WHERE final_rn = 1
+            ) dd ON hd.patient_id = dd.patient_id AND hd.n = dd.n
+            JOIN (
+                SELECT patient_id, n, diag_is_primary_key, diag_is_primary_value
+                FROM (
+                    SELECT patient_id, n, diag_is_primary_key, diag_is_primary_value,
+                           ROW_NUMBER() OVER (PARTITION BY patient_id, n ORDER BY rn) AS final_rn
+                    FROM BooleanData
+                ) b WHERE final_rn = 1
+            ) bd ON hd.patient_id = bd.patient_id AND hd.n = bd.n
+            JOIN (
+                SELECT patient_id, n, in_state_key, in_state_value
+                FROM (
+                    SELECT patient_id, n, in_state_key, in_state_value,
+                           ROW_NUMBER() OVER (PARTITION BY patient_id, n ORDER BY rn) AS final_rn
+                    FROM AdmissionData
+                ) a WHERE final_rn = 1
+            ) ad ON hd.patient_id = ad.patient_id AND hd.n = ad.n
+            JOIN (
+                SELECT patient_id, n, outcome_state_key, outcome_state_value
+                FROM (
+                    SELECT patient_id, n, outcome_state_key, outcome_state_value,
+                           ROW_NUMBER() OVER (PARTITION BY patient_id, n ORDER BY rn) AS final_rn
+                    FROM DischargeData
+                ) d WHERE final_rn = 1
+            ) ddg ON hd.patient_id = ddg.patient_id AND hd.n = ddg.n
+        ),
+
+        -- Step 9: 关联患者序列和就诊信息
         FinalData AS (
             SELECT
                 pm.patient_id,
@@ -107,12 +213,11 @@ BEGIN
                 DATEADD(DAY, -ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % 365, GETDATE()) AS diag_update_time,
                 ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % 2 + 1 AS diag_delete_state
             FROM PatientVisitMapping pm
-            INNER JOIN RandomStaticFields rs
-                ON pm.patient_id = rs.patient_id
+            INNER JOIN RandomStaticFields rs ON pm.patient_id = rs.patient_id AND pm.n = rs.n
         )
 
         -- 4. 数据插入
-        -- Step 8: 插入数据
+        -- Step 10: 插入数据
         INSERT INTO CDRD_PATIENT_DIAG_INFO (
             patient_id,
             patient_visit_id,
@@ -145,8 +250,9 @@ BEGIN
             diag_num AS patient_diag_num,
             diag_class AS patient_diag_class,
             diag_name AS patient_diag_name,
-            diag_is_primary_key,
-            diag_is_primary_value,
+            '1','是',
+--             diag_is_primary_key,
+--             diag_is_primary_value,
             diag_code AS patient_diag_code,
             in_state_key AS patient_in_state_key,
             in_state_value AS patient_in_state_value,
