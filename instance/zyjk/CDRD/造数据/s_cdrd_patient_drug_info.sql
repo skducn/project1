@@ -1,5 +1,5 @@
 -- todo  用药信息表(造数据)
--- 1）数据量：每名患者8条（共15万），3条只有patientid，5条均有patientid、patient_visit_id
+-- 1）数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
 -- 2）数据参考：可采用压力测试表的“诊断病史+用药信息”中的数据
 -- 8w, 耗时: 1172.4635 秒
 

@@ -3,8 +3,8 @@
 # Author        : John
 # Date          : 2025-3-27
 # Description   : setData 创建表、存储过程、插入数据
-# -- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-# -- # gitlab http://192.168.0.241/cdrd_product_doc/product_doc
+# 性能需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
+# gitlab http://192.168.0.241/cdrd_product_doc/product_doc
 # 使用豆包，快速格式化一下内容：
 # 如：密码最后更新时间	pwd_update_time
 # 密码下次更新时间	pwd_next_update_time，请将以上数据中字段与字段英文名互换位置，并用逗号分隔输出
@@ -314,8 +314,8 @@ Cdrd_PO = CdrdPO()
 # # # #
 # # # #  用药信息 - 慢 耗时: 6432.8538 秒
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
-# Cdrd_PO.crt_cdrdPatientDrugInfo_test('用药信息test')
-# Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')
+Cdrd_PO.crt_cdrdPatientDrugInfo_test('用药信息test')
+Cdrd_PO.procedure("s_cdrd_patient_drug_info_test", '用药信息')
 
 # Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
 # Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')

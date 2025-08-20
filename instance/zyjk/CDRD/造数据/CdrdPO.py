@@ -602,7 +602,7 @@ class CdrdPO(object):
             department_name	nvarchar(20),
             status varchar(100),
             remark nvarchar(500),
-            creater_by	nvarchar(20),
+            create_by	nvarchar(20),
             create_time	datetime	,
             update_by	nvarchar(20),
             update_time	datetime	,
@@ -626,7 +626,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'department_name', '所属科室名称'),
         Sqlserver_PO.setFieldComment(varTable, 'status', '账号状态'),
         Sqlserver_PO.setFieldComment(varTable, 'remark', '备注'),
-        Sqlserver_PO.setFieldComment(varTable, 'creater_by', '创建人'),
+        Sqlserver_PO.setFieldComment(varTable, 'create_by', '创建人'),
         Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间'),
         Sqlserver_PO.setFieldComment(varTable, 'update_by', '更新者'),
         Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间'),
@@ -2500,6 +2500,7 @@ class CdrdPO(object):
         Sqlserver_PO.crtTableByCover(varTable,
             '''
             field_id int IDENTITY(1,1) PRIMARY KEY,
+            model_id int,
             module_id int,
             module_key varchar(100),
             field_type nvarchar(100),
@@ -2509,6 +2510,7 @@ class CdrdPO(object):
         ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment(varTable, 'field_id', '导出字段ID')
+        Sqlserver_PO.setFieldComment(varTable, 'model_id', '导出模板ID ')
         Sqlserver_PO.setFieldComment(varTable, 'module_id', '导出模块ID ')
         Sqlserver_PO.setFieldComment(varTable, 'module_key', '模块标识')
         Sqlserver_PO.setFieldComment(varTable, 'field_type', '导出字段类型')
