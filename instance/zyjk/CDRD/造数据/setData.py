@@ -314,8 +314,8 @@ Cdrd_PO = CdrdPO()
 # # # #
 # # # #  用药信息 - 慢 耗时: 6432.8538 秒
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
-Cdrd_PO.crt_cdrdPatientDrugInfo_test('用药信息test')
-Cdrd_PO.procedure("s_cdrd_patient_drug_info_test", '用药信息')
+# Cdrd_PO.crt_cdrdPatientDrugInfo_test('用药信息test')
+# Cdrd_PO.procedure("s_cdrd_patient_drug_info_test", '用药信息')
 
 # Cdrd_PO.crt_cdrdPatientDrugInfo('用药信息')
 # Cdrd_PO.procedure("s_cdrd_patient_drug_info", '用药信息')

@@ -2640,7 +2640,9 @@ class CdrdPO(object):
             extend_field_key nvarchar(100),
             sort int,
             status varchar(100),
+            create_id int,
             create_time DATETIME,
+            update_id int,
             remark nvarchar(500)
         ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
@@ -2652,7 +2654,9 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'extend_field_key', '字段标识')
         Sqlserver_PO.setFieldComment(varTable, 'sort', '字段排序')
         Sqlserver_PO.setFieldComment(varTable, 'status', '字段状态')
+        Sqlserver_PO.setFieldComment(varTable, 'create_id', '创建人ID')
         Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
+        Sqlserver_PO.setFieldComment(varTable, 'update_id', '更新人ID')
         Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
 
     def crt_sys_extend_field_authority(self, varCommon):
@@ -2718,6 +2722,7 @@ class CdrdPO(object):
             category_name nvarchar(100),
             file_name nvarchar(100),
             export_params nvarchar(max),
+            export_type varchar(255),
             applier_id int,
             apply_time DATETIME,
             deal_status varchar(100),
@@ -2731,6 +2736,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'category_name', '所属业务名称')
         Sqlserver_PO.setFieldComment(varTable, 'file_name', '文件名称')
         Sqlserver_PO.setFieldComment(varTable, 'export_params', '导出参数')
+        Sqlserver_PO.setFieldComment(varTable, 'export_type', '导出类型')
         Sqlserver_PO.setFieldComment(varTable, 'applier_id', '申请人ID')
         Sqlserver_PO.setFieldComment(varTable, 'apply_time', '申请时间')
         Sqlserver_PO.setFieldComment(varTable, 'deal_status', '文件处理状态')
