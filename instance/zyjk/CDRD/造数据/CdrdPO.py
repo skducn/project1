@@ -2494,7 +2494,7 @@ class CdrdPO(object):
 
     def crt_patient_export_field(self, varCommon):
 
-        # 导出数据
+        # 导出数据表
 
         varTable = 'patient_export_field'
         Sqlserver_PO.crtTableByCover(varTable,
@@ -2510,13 +2510,65 @@ class CdrdPO(object):
         ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment(varTable, 'field_id', '导出字段ID')
-        Sqlserver_PO.setFieldComment(varTable, 'model_id', '导出模板ID ')
-        Sqlserver_PO.setFieldComment(varTable, 'module_id', '导出模块ID ')
+        Sqlserver_PO.setFieldComment(varTable, 'model_id', '导出模板ID')
+        Sqlserver_PO.setFieldComment(varTable, 'module_id', '导出模块ID')
         Sqlserver_PO.setFieldComment(varTable, 'module_key', '模块标识')
         Sqlserver_PO.setFieldComment(varTable, 'field_type', '导出字段类型')
         Sqlserver_PO.setFieldComment(varTable, 'cn_name', '导出字段中文名')
         Sqlserver_PO.setFieldComment(varTable, 'en_name', '导出字段英文名')
         Sqlserver_PO.setFieldComment(varTable, 'field_sort', '导出字段排序')
+
+    def crt_sys_category_mapping(self, varCommon):
+
+        # 字段模块表
+
+        varTable = 'sys_category_mapping'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            id int IDENTITY(1,1) PRIMARY KEY,
+            category_class nvarchar(100),
+            category_name nvarchar(20),
+            category_tier int,
+            category_sort int,
+            category_status varchar(100),
+            category_fa_key varchar(100),
+            category_key nvarchar(100)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'id', '当前层模块ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_class', '所属业务类别')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '模块名称')
+        Sqlserver_PO.setFieldComment(varTable, 'category_tier', '模块层级')
+        Sqlserver_PO.setFieldComment(varTable, 'category_sort', '模块排序')
+        Sqlserver_PO.setFieldComment(varTable, 'category_status', '模块状态')
+        Sqlserver_PO.setFieldComment(varTable, 'category_fa_key', '父级模块标识')
+        Sqlserver_PO.setFieldComment(varTable, 'category_key', '模块标识')
+
+    def crt_sys_category(self, varCommon):
+
+        # 字段表
+
+        varTable = 'sys_category'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            ID int IDENTITY(1,1) PRIMARY KEY,
+            category_class nvarchar(100),
+            category_name nvarchar(20),
+            category_key nvarchar(100),
+            field_sort int,
+            field_status varchar(100),
+            field_cn_name nvarchar(20),
+            field_en_name nvarchar(100)
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'ID', '字段ID')
+        Sqlserver_PO.setFieldComment(varTable, 'category_class', '所属业务类别')
+        Sqlserver_PO.setFieldComment(varTable, 'category_name', '模块名称')
+        Sqlserver_PO.setFieldComment(varTable, 'category_key', '模块标识')
+        Sqlserver_PO.setFieldComment(varTable, 'field_sort', '字段排序')
+        Sqlserver_PO.setFieldComment(varTable, 'field_status', '字段状态')
+        Sqlserver_PO.setFieldComment(varTable, 'field_cn_name', '字段中文名')
+        Sqlserver_PO.setFieldComment(varTable, 'field_en_name', '字段英文名')
 
     def crt_patient_extend_field(self, varCommon):
 
@@ -2643,6 +2695,7 @@ class CdrdPO(object):
             create_id int,
             create_time DATETIME,
             update_id int,
+            update_time DATETIME,
             remark nvarchar(500)
         ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
@@ -2657,6 +2710,7 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'create_id', '创建人ID')
         Sqlserver_PO.setFieldComment(varTable, 'create_time', '创建时间')
         Sqlserver_PO.setFieldComment(varTable, 'update_id', '更新人ID')
+        Sqlserver_PO.setFieldComment(varTable, 'update_time', '更新时间')
         Sqlserver_PO.setFieldComment(varTable, 'remark', '备注')
 
     def crt_sys_extend_field_authority(self, varCommon):
@@ -2772,15 +2826,21 @@ class CdrdPO(object):
 
     def insert_cdrdPatientTag(self):
 
-        # 插入数据
+        # 插入数据（标签表 patient_tag）
 
         # 删除存储过程（用于）
         # Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         Sqlserver_PO.execute(
-            f"""DECLARE @tag_record_id BIGINT;
-                   EXEC GenerateSnowflakeID @machineId = 1, @dataCenterId = 0, @snowflakeId = @tag_record_id OUTPUT;
-                   INSERT INTO patient_tag (tag_record_id, category_source_id,category_key,category_id,tag_id,tag_key,tag_data_id,tag_data_key,create_id,create_by,create_time)
-                   VALUES (@tag_record_id, '1', '标识1', '2', '3', '标签1', '4', '标签数据2', '5', '张三', GETUTCDATE());""")
+            f"""DECLARE @tag_record_id1 BIGINT, @tag_record_id2 BIGINT, @tag_record_id3 BIGINT, @tag_record_id4 BIGINT;
+            EXEC GenerateSnowflakeID @machineId = 1, @dataCenterId = 0, @snowflakeId = @tag_record_id1 OUTPUT;
+            EXEC GenerateSnowflakeID @machineId = 1, @dataCenterId = 0, @snowflakeId = @tag_record_id2 OUTPUT;
+            EXEC GenerateSnowflakeID @machineId = 1, @dataCenterId = 0, @snowflakeId = @tag_record_id3 OUTPUT;
+            EXEC GenerateSnowflakeID @machineId = 1, @dataCenterId = 0, @snowflakeId = @tag_record_id4 OUTPUT;
+            INSERT INTO patient_tag (tag_record_id,category_source_id,category_key,category_id,tag_id,tag_key,tag_data_id,tag_data_key,create_id,create_by,create_time)
+            VALUES (@tag_record_id1, '1', 'cdrd_patient_info', '123', 1, 'patient_deal_way', 1, 'hormone', '3', '张三', GETUTCDATE())
+            ,(@tag_record_id2, '1', 'cdrd_patient_info', '123', 1, 'patient_deal_way', 2, 'infliximab', '4', '李四', GETUTCDATE())
+            ,(@tag_record_id3, '1', 'cdrd_patient_info', '123', 2, 'progression_of_disease', 3, 'paracmasis', '5', '王五', GETUTCDATE())
+            ,(@tag_record_id4, '1', 'cdrd_patient_info', '123', 2, 'progression_of_disease', 4, 'active_stage', '6', '赵六', GETUTCDATE());""")
 
 

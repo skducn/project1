@@ -102,121 +102,10 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_hospital('医院')
 
 
-# todo --- 系统配置 ---
-
-# todo 1，医院信息表
-# Cdrd_PO.crt_sys_hospital('医院信息表')
-
-
-# todo 2-1，科室表
-# 数据量：20个科室
-# Cdrd_PO.crt_sys_department('科室表')
-# Cdrd_PO.subProcedure("p_dept", "科室, ['内科','外科','儿科','妇产科','骨科','眼科','耳鼻喉科','口腔科','皮肤科','心血管科','神经科','精神科','放射科','检验科','影像科','重症医学科','麻醉科','急诊科','临床药学','康复科']")
-# Cdrd_PO.procedure("s_sys_department", '科室表')
-# # Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
-# # Cdrd_PO.updateStatistics('SYS_DEPARTMENT')
-
-
-# todo 2-2，科室医疗组
-# 数据量：每个科室下2个医疗组
-# Cdrd_PO.crt_sys_dept_medgp('科室医疗组')
-# Cdrd_PO.procedure("s_sys_dept_medgp", '医疗组')
-# # # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
-# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp')
-
-
-# todo 2-3，医疗组人员
-# 数据量：每个医疗组下5名成员
-# Cdrd_PO.crt_sys_dept_medgp_person('医疗组人员')
-# Cdrd_PO.procedure("s_sys_dept_medgp_person", '医疗组人员')
-# # # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
-# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
 
 
 
-# todo 3-1，用户表
-# Cdrd_PO.crt_sys_user('用户表')
-# Cdrd_PO.procedure("s_sys_user", '用户表')
-#
-# todo 3-2，用户角色关系表
-# Cdrd_PO.crt_sys_user_role('用户角色关系表')
-# Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表')  # 一个用户可多个角色，用户3关联角色1，3，4
-#
-# # todo 3-3，用户问题关系表
-# Cdrd_PO.crt_sys_user_pwdptc('用户问题关系表')
-#
-#
-# # todo 4，用户密保问题表
-# Cdrd_PO.crt_sys_security_question('用户密保问题表')
-
-
-# todo 5，角色管理(ok)
-# Cdrd_PO.crt_sys_role('角色表')
-# Cdrd_PO.procedure("s_sys_role", '角色表')  #  //参数RecordCount=6忽略，程序写死角色6
-
-# Cdrd_PO.crt_sys_role_menu('角色菜单关系表')
-# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-#                                                          '副主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-#                                                          '医疗组长': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-#                                                          '主治医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-#                                                          '门急诊医生住院医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
-#                                                          '运营负责人': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109]})
-# 一个角色可多个菜单，如：角色3关联菜单18，20，21
-
-
-# todo 6，菜单管理
-# Cdrd_PO.crt_sys_menu('菜单表')
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统管理', None])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统监控', None])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统权限', None])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['C', '医生管理', '系统监控'])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['C', '客户管理', '系统监控'])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '查询', '用户管理'])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '编辑', '用户管理'])
-# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '新增123', '客户管理'])
-
-
-# todo 7，参数配置
-# Cdrd_PO.crt_sys_config('参数配置')
-# Cdrd_PO.procedure("s_sys_config", '参数配置', 4)  # ????
-
-# # todo 8，标签
-# Cdrd_PO.crt_sys_tag_type('标签表')
-#
-# # todo 9，标签数据表
-# Cdrd_PO.crt_sys_tag_data('标签数据表')
-#
-# # todo 10，标签权限表
-# Cdrd_PO.crt_sys_tag_authority('标签权限表')
-#
-# # todo 11，扩展字段管理
-# Cdrd_PO.crt_sys_extend_field_manage('扩展字段管理')
-#
-# # todo 12，扩展字段权限表
-# Cdrd_PO.crt_sys_extend_field_authority('扩展字段权限表')
-#
-# # todo 13，文件下载管理
-# Cdrd_PO.crt_sys_file_download('文件下载管理')
-#
-# # todo 14，文件下载记录
-# Cdrd_PO.crt_sys_file_download_record('文件下载记录')
-
-# todo 15，字典类型表
-# Cdrd_PO.crt_sys_dict_type('字典类型表')
-# Sqlserver_PO.xlsx2db_deduplicated('CDRB20250623.xlsx', "sys_dict_type", "dict_name", "dict1")
-
-# todo 16，字典数据表
-# Cdrd_PO.crt_sys_dict_data('字典数据表')
-# Sqlserver_PO.xlsx2db_append('CDRB20250623.xlsx', "sys_dict_data", "dict2")
-
-
-
-
-# Cdrd_PO.crt_testBinary()
-
-
-# todo --- 表 ---
-# todo 5.1 患者基本信息
+# todo 1.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
 # Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
@@ -236,7 +125,7 @@ Cdrd_PO = CdrdPO()
 
 
 
-# todo 门(急)诊住院就诊信息
+# todo 1.2 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
 # Cdrd_PO.crt_cdrdPatientVisitInfo('门(急)诊住院就诊信息')
 # Cdrd_PO.procedure("s_cdrd_patient_visit_info", '门(急)诊住院就诊信息')
@@ -244,7 +133,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.openSql("s_cdrd_patient_visit_info.sql")
 
 
-# todo 诊断表
+# todo 1.3 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientDiagInfo('诊断表')
 # Cdrd_PO.procedure("s_cdrd_patient_diag_info", '诊断表')
@@ -254,7 +143,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.openSql("s_cdrd_patient_diag_info.sql")
 
 #
-
+# todo 1.4 症状信息
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientSymptomInfo('症状信息')
 # Cdrd_PO.procedure("s_cdrd_patient_symptom_info", '症状信息')
@@ -264,14 +153,14 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.openSql("s_cdrd_patient_symptom_info.sql")
 
 #
-# # # 体征信息
+# todo 1.5 体征信息
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientPhysicalSignInfo('体征信息')
 # Cdrd_PO.procedure("s_cdrd_patient_physical_sign_info", '体征信息')
 
 #
 # # #
-# # # 实验室检查报告
+# todo 1.6 实验室检查报告
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientLabExaminationInfo('实验室检查报告')
 # Cdrd_PO.procedure("s_cdrd_patient_lab_examination_info", '实验室检查报告')
@@ -280,7 +169,7 @@ Cdrd_PO = CdrdPO()
 
 #
 # # #
-# # # 辅助检查报告
+# todo 1.7 辅助检查报告
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientAssitExaminationInfo('辅助检查报告')
 # Cdrd_PO.procedure("s_cdrd_patient_assit_examination_info", '辅助检查报告')
@@ -288,7 +177,7 @@ Cdrd_PO = CdrdPO()
 
 #
 # # #
-# # # 检查项目明细
+# todo 1.8 检查项目明细
 # 数据量：每个实验室检查记录对应一份检查项目明细(每份明细预计20条左右数据，总量预计300万左右)  15W * 20 = 300W
 # Cdrd_PO.crt_cdrdPatientTestProjectInfo('检查项目明细')
 # Cdrd_PO.procedure("s_cdrd_patient_test_project_info", '检查项目明细')
@@ -296,7 +185,7 @@ Cdrd_PO = CdrdPO()
 
 # #
 # # # #
-# # # # 门诊医嘱
+# todo 1.9 门诊医嘱
 # 数据量：每名患者3条（共9万）
 # Cdrd_PO.crt_cdrdPatientClinicAdviceInfo('门诊医嘱')
 # Cdrd_PO.procedure("s_cdrd_patient_clinic_advice_info", '门诊医嘱')
@@ -304,7 +193,7 @@ Cdrd_PO = CdrdPO()
 
 #
 # # #
-# # #  住院医嘱
+# todo 1.10 住院医嘱
 # 数据量：每名患者2条（共6万）
 # Cdrd_PO.crt_cdrdPatientHospitalAdviceInfo('住院医嘱')
 # Cdrd_PO.procedure("s_cdrd_patient_hospital_advice_info", '住院医嘱')
@@ -312,7 +201,7 @@ Cdrd_PO = CdrdPO()
 
 # #
 # # # #
-# # # #  用药信息 - 慢 耗时: 6432.8538 秒
+# todo 1.11 用药信息 - 慢 耗时: 6432.8538 秒
 # 数据量：每名患者8条（共24万），3条只有patientid，5条均有patientid、patient_visit_id
 # Cdrd_PO.crt_cdrdPatientDrugInfo_test('用药信息test')
 # Cdrd_PO.procedure("s_cdrd_patient_drug_info_test", '用药信息')
@@ -324,14 +213,14 @@ Cdrd_PO = CdrdPO()
 
 #
 # # #
-# # # 出院记录
+# todo 1.12 出院记录
 # 数据量：每名患者2条（共6万）
 # Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录')
 # Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
 # Cdrd_PO.openSql("s_cdrd_patient_out_hospital_info.sql")
 
 # # #
-# # # 手术记录
+# todo 1.13 手术记录
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
 # Cdrd_PO.crt_cdrdPatientOperationInfo('手术记录')
 # Cdrd_PO.procedure("s_cdrd_patient_operation_info", '手术记录')
@@ -339,7 +228,8 @@ Cdrd_PO = CdrdPO()
 
 
 # #
-# # 护理记录 - 慢212.5745 秒
+# todo 1.14 护理记录
+# 慢212.5745 秒
 # 数据量：每条住院记录3条护理记录（共9万）
 # Cdrd_PO.crt_cdrdPatientNurseInfo('护理记录')
 # Cdrd_PO.procedure("s_cdrd_patient_nurse_info", '护理记录')
@@ -347,7 +237,7 @@ Cdrd_PO = CdrdPO()
 
 
 # # #
-# # # 死亡记录
+# todo 1.15 死亡记录
 # 数据量：从3万名患者中随机500人有死亡记录，其中200均有patientid、patient_visit_id，剩余300只有patientid
 # Cdrd_PO.crt_cdrdPatientDeathInfo('死亡记录')
 # Cdrd_PO.procedure("s_cdrd_patient_death_info", '死亡记录')
@@ -363,37 +253,206 @@ Cdrd_PO = CdrdPO()
 
 
 
-
-
-# =======================================================================================================
-# =======================================================================================================
-# =======================================================================================================
-
-
-
-
-# todo 1.1
-# Cdrd_PO.crt_SnowflakeSequence('雪花序列表')
+# todo 2 标签表
+# Cdrd_PO.crt_SnowflakeSequence('雪花序列表')   # 临时中间表
 # Cdrd_PO.subProcedure("GenerateSnowflakeID", '雪花')  # 生成雪花
-# Cdrd_PO.crt_cdrdPatientTag('标签表')
-# Cdrd_PO.insert_cdrdPatientTag()  # 插入1条数据
+# Cdrd_PO.crt_patient_tag('标签表')
+# Cdrd_PO.insert_cdrdPatientTag()  # 插入4条数据
 # Cdrd_PO.openSql("GenerateSnowflakeID.sql")
 
 
-# todo 标签表
-# Cdrd_PO.crt_patient_tag('标签表')
+# todo 3-1 标签配置 - 标签表
+# Cdrd_PO.crt_sys_tag_type('标签表')
+# Sqlserver_PO.execute("insert into sys_tag_type(category_class,category_name,category_key,tag_name,tag_key,tag_sort,status,create_id,create_time,update_id,update_time,remark) "
+#                      "values('patient_detail','患者详情患者信息','cdrd_patient_info','治疗方式','patient_deal_way',1,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情患者信息','cdrd_patient_info','疾病进展','progression_of_disease',2,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情患者信息','cdrd_patient_info','随访是否有异常','follow_up_abnormalities',3,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情患者信息','cdrd_patient_info','责任人','person_in_charge',4,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情患者信息','cdrd_patient_visit_info','就诊类型','patient_visit_type',1,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情患者信息','cdrd_patient_visit_info','临床研判','clinical_assessment',2,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')")
 
-# todo 扩展字段表
+#
+# todo 3-2 标签配置 - 标签数据表
+# Cdrd_PO.crt_sys_tag_data('标签数据表')
+# Sqlserver_PO.execute("insert into sys_tag_data(tag_id,tag_data_name,tag_data_key,tag_data_sort,status) "
+#                      "values(1,'激素','hormone',1,'0'),(1, '单抗', 'infliximab', 2, '0')"
+#                      ",(2,'缓解期','paracmasis',1,'0'),(2, '进行期', 'active_stage', 2, '0'),(2, '早发期', 'early_maturing_variety', 3, '0')"
+#                      ",(3,'有','yes',1,'0'),(3, '无', 'no', 2, '0')"
+#                      ",(4,'张三','zhangsan',1,'0'),(4, '李四', '李四', 2, '0'),(4,'王五','wangwu',3,'0'),(4, '赵六', 'zhaoliu', 4, '0')"
+#                      ",(5,'出诊','visit_first',1,'0'),(5, '复诊', 'visit_again', 2, '0'),(5, '转诊', 'visit_transfer', 3, '0')"
+#                      ",(6,'疑似RA','suspected_RA',1,'0'),(6, '强直待排', 'pending_resolution', 2, '0'),(6, '肿瘤疑似', 'tumor_suspected', 3, '0')")
+
+
+# todo 3-3 标签配置 - 标签权限表
+# Cdrd_PO.crt_sys_tag_authority('标签权限表')
+#
+
+
+# todo 4 扩展字段表
 # Cdrd_PO.crt_patient_extend_field('扩展字段表')
 
-# todo 导出模板表
+
+# todo 5-1 扩展字段配置 - 扩展字段管理
+# Cdrd_PO.crt_sys_extend_field_manage('扩展字段管理')
+# Sqlserver_PO.execute("insert into sys_extend_field_manage(category_class,category_name,category_key,extend_field_name,extend_field_key,sort,status,create_id,create_time,update_id,update_time,remark) "
+#                      "values('patient_detail','患者详情就诊信息','cdrd_patient_visit_info','用药基数','dosage_base',1,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情就诊信息','cdrd_patient_visit_info','眼睑水肿','eyelid_edema',2,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情就诊信息','cdrd_patient_visit_info','眼睑红斑','eyelid_erythema',3,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情就诊信息','cdrd_patient_visit_info','结膜水肿','conjunctival_edema',4,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情就诊信息','cdrd_patient_visit_info','结膜充血','conjunctival_congestion',5,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')"
+#                      ",('patient_detail','患者详情就诊信息','cdrd_patient_visit_info','突眼度','exophthalmos_degree',6,'0',1001,GETDATE(),'123',GETDATE(),'自动生成')")
+
+#
+# todo 5-2 扩展字段配置 - 扩展字段权限表
+# Cdrd_PO.crt_sys_extend_field_authority('扩展字段权限表')
+
+
+
+
+# todo 6-1 导出配置 - 导出模板表
 # Cdrd_PO.crt_patient_export('导出模板表')
 
-# todo 导出模块表
+# todo 6-2 导出配置 - 导出模块表
 # Cdrd_PO.crt_patient_export_module('导出模块表')
 
-# todo 导出数据表
+# todo 6-3 导出配置 - 导出数据表
 # Cdrd_PO.crt_patient_export_field('导出数据表')
+
+
+# todo 7 字段模块表
+# Cdrd_PO.crt_sys_category_mapping('字段模块表')
+# Sqlserver_PO.execute("insert into sys_category_mapping(category_class,category_name,category_tier,category_sort,category_status,category_fa_key,category_key) "
+# "values('patient_detail','患者详情',1,1,'0','','cdrd_patient_info')"
+# ",('patient_detail','疾病诊断史',2,1,'0','cdrd_patient_info','cdrd_patient_diag_info')"
+# ",('patient_detail','就诊信息',2,2,'0','cdrd_patient_info','cdrd_patient_visit_info')"
+# ",('patient_detail','疾病诊断史',3,1,'0','cdrd_patient_visit_info','cdrd_patient_diag_info')"
+# ",('patient_detail','症状信息',3,2,'0','cdrd_patient_visit_info','cdrd_patient_symptom_info')"
+# ",('patient_detail','体征信息',3,3,'0','cdrd_patient_visit_info','cdrd_patient_physical_sign_info')"
+# ",('patient_detail','实验室检查',3,4,'0','cdrd_patient_visit_info','cdrd_patient_lab_examination_info')"
+# ",('patient_detail','检查项目明细',4,1,'0','cdrd_patient_lab_examination_info','cdrd_patient_test_project_info')"
+# ",('patient_detail','辅助检查',3,5,'0','cdrd_patient_visit_info','cdrd_patient_assit_examination_info')"
+# ",('patient_detail','检查项目明细',4,1,'0','cdrd_patient_assit_examination_info','cdrd_patient_test_project_info')"
+# ",('patient_detail','门诊医嘱',3,6,'0','cdrd_patient_visit_info','cdrd_patient_clinic_advice_info')"
+# ",('patient_detail','用药信息',4,1,'0','cdrd_patient_clinic_advice_info','cdrd_patient_drug_info')"
+# ",('patient_detail','住院医嘱',3,7,'0','cdrd_patient_visit_info','cdrd_patient_hospital_advice_info')"
+# ",('patient_detail','用药信息',4,1,'0','cdrd_patient_hospital_advice_info','cdrd_patient_drug_info')"
+# ",('patient_detail','出院记录',3,8,'0','cdrd_patient_visit_info','cdrd_patient_out_hospital_info')"
+# ",('patient_detail','手术信息',3,9,'0','cdrd_patient_visit_info','cdrd_patient_operation_info')"
+# ",('patient_detail','护理记录',3,10,'0','cdrd_patient_visit_info','cdrd_patient_nurse_info')"
+# ",('patient_detail','死亡记录',3,11,'0','cdrd_patient_visit_info','cdrd_patient_death_info')"
+# ",('patient_detail','症状信息',2,3,'0','cdrd_patient_info','cdrd_patient_symptom_info')"
+# ",('patient_detail','体征信息',2,4,'0','cdrd_patient_info','cdrd_patient_physical_sign_info')"
+# ",('patient_detail','实验室检查',2,5,'0','cdrd_patient_info','cdrd_patient_lab_examination_info')"
+# ",('patient_detail','检查项目明细',3,1,'0','cdrd_patient_lab_examination_info','cdrd_patient_test_project_info')"
+# ",('patient_detail','辅助检查',2,6,'0','cdrd_patient_info','cdrd_patient_assit_examination_info')"
+# ",('patient_detail','检查项目明细',3,1,'0','cdrd_patient_assit_examination_info','cdrd_patient_test_project_info')"
+# ",('patient_detail','用药信息',2,7,'0','cdrd_patient_info','cdrd_patient_drug_info')"
+# ",('patient_detail','手术信息',2,8,'0','cdrd_patient_info','cdrd_patient_operation_info')"
+# ",('patient_detail','死亡记录',2,9,'0','cdrd_patient_info','cdrd_patient_death_info')")
+
+
+# todo 8 字段表
+Cdrd_PO.crt_sys_category('字段表')
+Sqlserver_PO.execute("insert into sys_category(category_class,category_name,category_key,field_sort,field_status,field_cn_name,field_en_name) "
+"values('patient_detail','患者详情',10, '0','患者ID','patient_id')"
+",('patient_detail','患者详情',10, '0','患者ID','patient_id')")
+
+#
+# todo 11，文件下载管理
+# Cdrd_PO.crt_sys_file_download('文件下载管理')
+#
+# todo 12，文件下载记录
+# Cdrd_PO.crt_sys_file_download_record('文件下载记录')
+
+# todo 13-1，字典类型表
+# Cdrd_PO.crt_sys_dict_type('字典类型表')
+# Sqlserver_PO.xlsx2db_deduplicated('CDRB20250623.xlsx', "sys_dict_type", "dict_name", "dict1")
+
+# todo 13-2，字典数据表
+# Cdrd_PO.crt_sys_dict_data('字典数据表')
+# Sqlserver_PO.xlsx2db_append('CDRB20250623.xlsx', "sys_dict_data", "dict2")
+
+
+
+# todo 19，医院信息表
+# Cdrd_PO.crt_sys_hospital('医院信息表')
+
+
+# todo 20-1，科室表
+# 数据量：20个科室
+# Cdrd_PO.crt_sys_department('科室表')
+# Cdrd_PO.subProcedure("p_dept", "科室, ['内科','外科','儿科','妇产科','骨科','眼科','耳鼻喉科','口腔科','皮肤科','心血管科','神经科','精神科','放射科','检验科','影像科','重症医学科','麻醉科','急诊科','临床药学','康复科']")
+# Cdrd_PO.procedure("s_sys_department", '科室表')
+# # Cdrd_PO.index('IX_a_sys_department_department_id', 'a_sys_department', 'department_id')
+# # Cdrd_PO.updateStatistics('SYS_DEPARTMENT')
+
+
+# todo 20-2，科室医疗组
+# 数据量：每个科室下2个医疗组
+# Cdrd_PO.crt_sys_dept_medgp('科室医疗组')
+# Cdrd_PO.procedure("s_sys_dept_medgp", '医疗组')
+# # # Cdrd_PO.index('IX_a_sys_dept_medgp_department_id', 'a_sys_dept_medgp', 'department_id')
+# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp')
+
+
+# todo 20-3，医疗组人员
+# 数据量：每个医疗组下5名成员
+# Cdrd_PO.crt_sys_dept_medgp_person('医疗组人员')
+# Cdrd_PO.procedure("s_sys_dept_medgp_person", '医疗组人员')
+# # # Cdrd_PO.index('IX_a_sys_dept_medgp_person_department_treat_group_id', 'a_sys_dept_medgp_person', 'department_treat_group_id')
+# # # Cdrd_PO.updateStatistics('a_sys_dept_medgp_person')
+
+
+
+# todo 21-1，用户表
+# Cdrd_PO.crt_sys_user('用户表')
+# Cdrd_PO.procedure("s_sys_user", '用户表')
+#
+# todo 21-2，用户角色关系表
+# Cdrd_PO.crt_sys_user_role('用户角色关系表')
+# Cdrd_PO.procedureUserRole("s_sys_user_role", '用户角色关系表')  # 一个用户可多个角色，用户3关联角色1，3，4
+#
+# todo 21-3，用户问题关系表
+# Cdrd_PO.crt_sys_user_pwdptc('用户问题关系表')
+#
+#
+# todo 22，用户密保问题表
+# Cdrd_PO.crt_sys_security_question('用户密保问题表')
+
+
+# todo 23，角色管理(ok)
+# Cdrd_PO.crt_sys_role('角色表')
+# Cdrd_PO.procedure("s_sys_role", '角色表')  #  //参数RecordCount=6忽略，程序写死角色6
+
+# Cdrd_PO.crt_sys_role_menu('角色菜单关系表')
+# Cdrd_PO.procedureRoleMenu("s_sys_role_menu", '角色菜单关系表', {'科主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '副主任': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '医疗组长': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '主治医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '门急诊医生住院医生': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109],
+#                                                          '运营负责人': [3, 7, 8,9,10,11,12,13,15,24,25,86,87,109]})
+# 一个角色可多个菜单，如：角色3关联菜单18，20，21
+
+
+# todo 24，菜单管理
+# Cdrd_PO.crt_sys_menu('菜单表')
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统管理', None])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统监控', None])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['M', '系统权限', None])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['C', '医生管理', '系统监控'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['C', '客户管理', '系统监控'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '查询', '用户管理'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '编辑', '用户管理'])
+# Cdrd_PO.procedureMenu("s_sys_menu", '菜单表', ['F',  '新增123', '客户管理'])
+
+
+# todo 25，参数配置
+# Cdrd_PO.crt_sys_config('参数配置')
+# Cdrd_PO.procedure("s_sys_config", '参数配置', 4)  # ????
+
+# =======================================================================================================
+# =======================================================================================================
+# =======================================================================================================
 
 
 
