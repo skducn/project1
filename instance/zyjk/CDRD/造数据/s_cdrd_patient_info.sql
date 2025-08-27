@@ -9,16 +9,6 @@
 -- 3000条，耗时: 11.2399 秒
 -- 30000条，耗时: 113.9838 秒 ， 11M
 
--- todo 患者信息表
--- 数据量：3000
--- 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
--- # gitlab http://192.168.0.241/cdrd_product_doc/product_doc
--- 批处理优化：避免一次性生成所有数据，减少内存压力
--- 模块化设计：通过调用其他存储过程实现功能复用
--- 随机性：使用 NEWID() 和 CHECKSUM 函数生成随机数据
--- 数据完整性：通过关联表确保生成的数据符合实际业务逻辑
--- 3000条，耗时: 11.2399 秒
--- 30000条，耗时: 113.9838 秒 ， 11M
 
 CREATE OR ALTER PROCEDURE s_cdrd_patient_info
     @result INT OUTPUT

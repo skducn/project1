@@ -2194,7 +2194,7 @@ class CdrdPO(object):
         # 创建存储过程，不执行
 
         # 删除存储过程（用于添加描述）
-        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+        # Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
@@ -2843,4 +2843,327 @@ class CdrdPO(object):
             ,(@tag_record_id3, '1', 'cdrd_patient_info', '123', 2, 'progression_of_disease', 3, 'paracmasis', '5', '王五', GETUTCDATE())
             ,(@tag_record_id4, '1', 'cdrd_patient_info', '123', 2, 'progression_of_disease', 4, 'active_stage', '6', '赵六', GETUTCDATE());""")
 
+    def generate_patient_tag_procedure_with_snowflake(self):
+        '''创建使用雪花ID的生成标签记录的存储过程'''
+        try:
+            # 删除已存在的存储过程
+            Sqlserver_PO.execute(
+                "IF OBJECT_ID('GeneratePatientTagRecords', 'P') IS NOT NULL DROP PROCEDURE GeneratePatientTagRecords")
+
+            # 创建存储过程
+            procedure_sql = """
+            CREATE PROCEDURE GeneratePatientTagRecords
+            AS
+            BEGIN
+                SET NOCOUNT ON;
+
+                -- 创建临时表存储患者基本信息标签
+                CREATE TABLE #PatientTags (
+                    id INT IDENTITY(1,1),
+                    patient_id INT,
+                    tag_id INT,
+                    tag_key VARCHAR(100),
+                    tag_data_id INT,
+                    tag_data_key VARCHAR(100)
+                );
+
+                -- 创建临时表存储就诊信息标签
+                CREATE TABLE #VisitTags (
+                    id INT IDENTITY(1,1),
+                    patient_visit_id INT,
+                    tag_id INT,
+                    tag_key VARCHAR(100),
+                    tag_data_id INT,
+                    tag_data_key VARCHAR(100)
+                );
+
+                -- 插入患者基本信息标签数据
+                INSERT INTO #PatientTags (patient_id, tag_id, tag_key, tag_data_id, tag_data_key)
+                SELECT 
+                    p.patient_id,
+                    st.tag_id,
+                    st.tag_key,
+                    sd.tag_data_id,
+                    sd.tag_data_key
+                FROM (
+                    SELECT TOP 30000 patient_id 
+                    FROM cdrd_patient_info 
+                    ORDER BY patient_id
+                ) p
+                CROSS JOIN sys_tag_type st
+                INNER JOIN sys_tag_data sd ON st.tag_id = sd.tag_id
+                WHERE st.category_key = 'cdrd_patient_info';
+
+                -- 插入就诊信息标签数据
+                INSERT INTO #VisitTags (patient_visit_id, tag_id, tag_key, tag_data_id, tag_data_key)
+                SELECT 
+                    v.patient_visit_id,
+                    st.tag_id,
+                    st.tag_key,
+                    sd.tag_data_id,
+                    sd.tag_data_key
+                FROM (
+                    SELECT TOP 150000 patient_visit_id 
+                    FROM cdrd_patient_visit_info 
+                    ORDER BY patient_visit_id
+                ) v
+                CROSS JOIN sys_tag_type st
+                INNER JOIN sys_tag_data sd ON st.tag_id = sd.tag_id
+                WHERE st.category_key = 'cdrd_patient_visit_info';
+
+                -- 为患者基本信息标签生成雪花ID并插入
+                DECLARE @counter INT = 1;
+                DECLARE @total INT = (SELECT COUNT(*) FROM #PatientTags);
+                DECLARE @tag_record_id BIGINT;
+                DECLARE @patient_id INT;
+                DECLARE @tag_id INT;
+                DECLARE @tag_key VARCHAR(100);
+                DECLARE @tag_data_id INT;
+                DECLARE @tag_data_key VARCHAR(100);
+
+                WHILE @counter <= @total AND @counter <= 120000
+                BEGIN
+                    SELECT 
+                        @patient_id = patient_id,
+                        @tag_id = tag_id,
+                        @tag_key = tag_key,
+                        @tag_data_id = tag_data_id,
+                        @tag_data_key = tag_data_key
+                    FROM #PatientTags
+                    WHERE id = @counter;
+
+                    -- 生成雪花ID（这里使用简单的方法，实际应调用雪花ID生成器）
+                    SET @tag_record_id = @counter + ISNULL((SELECT MAX(tag_record_id) FROM patient_tag), 0);
+
+                    INSERT INTO patient_tag (
+                        tag_record_id,
+                        category_key,
+                        category_source_id,
+                        tag_id,
+                        tag_key,
+                        tag_data_id,
+                        tag_data_key,
+                        create_time
+                    )
+                    VALUES (
+                        @tag_record_id,
+                        'cdrd_patient_info',
+                        @patient_id,
+                        @tag_id,
+                        @tag_key,
+                        @tag_data_id,
+                        @tag_data_key,
+                        GETDATE()
+                    );
+
+                    SET @counter = @counter + 1;
+                END;
+
+                -- 为就诊信息标签生成雪花ID并插入
+                SET @counter = 1;
+                SET @total = (SELECT COUNT(*) FROM #VisitTags);
+
+                WHILE @counter <= @total AND @counter <= 300000
+                BEGIN
+                    SELECT 
+                        @patient_id = patient_visit_id,
+                        @tag_id = tag_id,
+                        @tag_key = tag_key,
+                        @tag_data_id = tag_data_id,
+                        @tag_data_key = tag_data_key
+                    FROM #VisitTags
+                    WHERE id = @counter;
+
+                    -- 生成雪花ID（这里使用简单的方法，实际应调用雪花ID生成器）
+                    SET @tag_record_id = @counter + ISNULL((SELECT MAX(tag_record_id) FROM patient_tag), 120000);
+
+                    INSERT INTO patient_tag (
+                        tag_record_id,
+                        category_key,
+                        category_source_id,
+                        tag_id,
+                        tag_key,
+                        tag_data_id,
+                        tag_data_key,
+                        create_time
+                    )
+                    VALUES (
+                        @tag_record_id,
+                        'cdrd_patient_visit_info',
+                        @patient_id,
+                        @tag_id,
+                        @tag_key,
+                        @tag_data_id,
+                        @tag_data_key,
+                        GETDATE()
+                    );
+
+                    SET @counter = @counter + 1;
+                END;
+
+                -- 清理临时表
+                DROP TABLE #PatientTags;
+                DROP TABLE #VisitTags;
+
+                PRINT '标签记录生成完成';
+                DECLARE @patient_count INT;
+                DECLARE @visit_count INT;
+                DECLARE @total_count INT;
+
+                SELECT @patient_count = COUNT(*) FROM patient_tag WHERE category_key = 'cdrd_patient_info';
+                SELECT @visit_count = COUNT(*) FROM patient_tag WHERE category_key = 'cdrd_patient_visit_info';
+                SELECT @total_count = COUNT(*) FROM patient_tag;
+
+                PRINT '患者基本信息标签记录数: ' + CAST(@patient_count AS VARCHAR(10));
+                PRINT '就诊信息标签记录数: ' + CAST(@visit_count AS VARCHAR(10));
+                PRINT '总标签记录数: ' + CAST(@total_count AS VARCHAR(10));
+            END
+            """
+
+            Sqlserver_PO.execute(procedure_sql)
+            print("生成标签记录的存储过程创建成功")
+
+        except Exception as e:
+            print(f"创建存储过程时出错: {e}")
+
+    def generate_patient_tag_procedure(self):
+        '''创建生成标签记录的存储过程'''
+        try:
+            # 删除已存在的存储过程
+            Sqlserver_PO.execute(
+                "IF OBJECT_ID('GeneratePatientTagRecords', 'P') IS NOT NULL DROP PROCEDURE GeneratePatientTagRecords")
+
+            # 创建存储过程
+            procedure_sql = """
+            CREATE PROCEDURE GeneratePatientTagRecords
+            AS
+            BEGIN
+                SET NOCOUNT ON;
+
+                BEGIN TRY
+                    BEGIN TRANSACTION;
+
+                    -- 获取当前最大tag_record_id用于生成新的ID
+                    DECLARE @max_tag_record_id BIGINT;
+                    SELECT @max_tag_record_id = ISNULL(MAX(tag_record_id), 0) FROM patient_tag;
+
+                    -- 创建临时表存储患者基本信息
+                    CREATE TABLE #PatientInfo (
+                        patient_id INT
+                    );
+
+                    -- 插入患者基本信息（限制5条）
+                    INSERT INTO #PatientInfo (patient_id)
+                    SELECT TOP 5 patient_id 
+                    FROM cdrd_patient_info 
+                    ORDER BY patient_id;
+
+                    -- 创建临时表存储就诊信息
+                    CREATE TABLE #VisitInfo (
+                        patient_visit_id INT
+                    );
+
+                    -- 插入就诊信息（限制25条）
+                    INSERT INTO #VisitInfo (patient_visit_id)
+                    SELECT TOP 25 patient_visit_id 
+                    FROM cdrd_patient_visit_info 
+                    ORDER BY patient_visit_id;
+
+                    -- 为cdrd_patient_info表中的每个患者生成4条标签记录
+                    INSERT INTO patient_tag (
+                        tag_record_id,
+                        category_key,
+                        category_source_id,
+                        tag_id,
+                        tag_key,
+                        tag_data_id,
+                        tag_data_key,
+                        create_time
+                    )
+                    SELECT 
+                        ROW_NUMBER() OVER (ORDER BY p.patient_id, st.tag_id, sd.tag_data_id) + @max_tag_record_id,
+                        'cdrd_patient_info',
+                        p.patient_id,
+                        st.tag_id,
+                        st.tag_key,
+                        sd.tag_data_id,
+                        sd.tag_data_key,
+                        GETDATE()
+                    FROM #PatientInfo p
+                    CROSS JOIN sys_tag_type st
+                    INNER JOIN sys_tag_data sd ON st.tag_id = sd.tag_id
+                    WHERE st.category_key = 'cdrd_patient_info';
+
+                    -- 更新最大tag_record_id
+                    SELECT @max_tag_record_id = @max_tag_record_id + 20;
+
+                    -- 为cdrd_patient_visit_info表中的每条就诊记录生成2条标签记录
+                    INSERT INTO patient_tag (
+                        tag_record_id,
+                        category_key,
+                        category_source_id,
+                        tag_id,
+                        tag_key,
+                        tag_data_id,
+                        tag_data_key,
+                        create_time
+                    )
+                    SELECT 
+                        ROW_NUMBER() OVER (ORDER BY v.patient_visit_id, st.tag_id, sd.tag_data_id) + @max_tag_record_id,
+                        'cdrd_patient_visit_info',
+                        v.patient_visit_id,
+                        st.tag_id,
+                        st.tag_key,
+                        sd.tag_data_id,
+                        sd.tag_data_key,
+                        GETDATE()
+                    FROM #VisitInfo v
+                    CROSS JOIN sys_tag_type st
+                    INNER JOIN sys_tag_data sd ON st.tag_id = sd.tag_id
+                    WHERE st.category_key = 'cdrd_patient_visit_info';
+
+                    -- 清理临时表
+                    DROP TABLE #PatientInfo;
+                    DROP TABLE #VisitInfo;
+
+                    COMMIT TRANSACTION;
+
+                    PRINT '标签记录生成完成';
+                END TRY
+                BEGIN CATCH
+                    IF @@TRANCOUNT > 0
+                        ROLLBACK TRANSACTION;
+
+                    DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+                    PRINT '生成标签记录时发生错误: ' + @ErrorMessage;
+                    RAISERROR(@ErrorMessage, 16, 1);
+                END CATCH
+            END
+            """
+
+            Sqlserver_PO.execute(procedure_sql)
+            print("生成标签记录的存储过程创建成功")
+
+        except Exception as e:
+            print(f"创建存储过程时出错: {e}")
+
+    def execute_generate_patient_tag(self):
+        '''执行生成标签记录的存储过程'''
+        try:
+            Sqlserver_PO.execCall("GeneratePatientTagRecords")
+            print("标签记录生成成功")
+
+            # 显示生成的记录数
+            patient_count = Sqlserver_PO.select(
+                "SELECT COUNT(*) as cnt FROM patient_tag WHERE category_key = 'cdrd_patient_info'")[0]['cnt']
+            visit_count = Sqlserver_PO.select(
+                "SELECT COUNT(*) as cnt FROM patient_tag WHERE category_key = 'cdrd_patient_visit_info'")[0]['cnt']
+            total_count = Sqlserver_PO.select("SELECT COUNT(*) as cnt FROM patient_tag")[0]['cnt']
+
+            print(f"患者基本信息标签记录数: {patient_count}")
+            print(f"就诊信息标签记录数: {visit_count}")
+            print(f"总标签记录数: {total_count}")
+
+        except Exception as e:
+            print(f"执行生成标签记录时出错: {e}")
 

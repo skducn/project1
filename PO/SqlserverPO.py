@@ -1977,11 +1977,13 @@ class SqlserverPO:
 
     def isRecord(self, varTable, varField, varValue):
 
-        # 4.10 判断记录是否存在 isRecord("QYYH","SFZH","310101198004110014")
+        # 4.10 判断记录是否存在
+        # 如：isRecord("QYYH","SFZH","310101198004110014") ， 返回1表示存在，返回0表示不存在
 
         d_table_field = self.selectOne("IF EXISTS (SELECT 1 FROM %s WHERE %s = '%s') SELECT 1 AS RecordExists ELSE SELECT 0 AS RecordExists" % (varTable, varField, varValue))
         # print(d_table_field)
         return d_table_field['RecordExists']
+
 
     # todo 导入导出
 
@@ -2037,7 +2039,7 @@ class SqlserverPO:
     def xlsx2db_append(self, varPathFile, varDbTable, varSheetName=0):
 
         '''
-        5.3，xlsx导入数据库（保留原来字段，追加数据）
+        5.3，xlsx导入数据库（清空原表数据后追加数据）
         xlsx2db_append('2.xlsx', "tableName", "sheet1")
         excel表格第一行数据对应db表中字段，建议用英文
         '''
@@ -2052,7 +2054,7 @@ class SqlserverPO:
     def xlsx2db_replace(self, varPathFile, varDbTable, varSheetName=0):
 
         '''
-        5.3，xlsx全量导入数据库（不保留原来字段，覆盖数据）
+        5.3，xlsx导入数据库（删除原表后再创建）
         xlsx2db_replace('2.xlsx', "tableName", "sheet1")
         excel表格第一行数据对应db表中字段，建议用英文
         '''
@@ -2370,7 +2372,8 @@ if __name__ == "__main__":
 
     # todo 社区健康平台（全市）
     # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
-    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
+    # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
+    Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 
     # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
     # print(Sqlserver_PO.isTable("a_phs_auth"))
@@ -2381,7 +2384,7 @@ if __name__ == "__main__":
     # Sqlserver_PO.copyTable('a_phs_auth', 'a_phs_auth_app')
     #
     # # 在url前插入字段case1
-    Sqlserver_PO.insertBeforeField('a_weight10_EFRB', 'id', 'id_pk', 'int(5)')
+    # Sqlserver_PO.insertBeforeField('a_weight10_EFRB', 'id', 'id_pk', 'int(5)')
     # # 在tags前插入字段status
     # Sqlserver_PO.insertBeforeField('a_phs_auth_app', 'tags', 'status', 'varchar(66)')
 
@@ -2400,7 +2403,7 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.isIdentity('aaa'))
 
     # # print("4.10 判断记录是否存在".center(100, "-"))
-    # print(Sqlserver_PO.isRecord("QYYH", "SFZH", "310101198004110014"))
+    print(Sqlserver_PO.isRecord("sys_category_mapping", "category_key", "cdrd_patient_diag1_info"))
 
 
     # # print("5.1 csv2db自定义字段类型".center(100, "-"))
@@ -2410,7 +2413,8 @@ if __name__ == "__main__":
     # Sqlserver_PO.csv2dbByAutoType('./data/test12.csv', "test555")
 
     # # print("5.3 excel导入数据库".center(100, "-"))
-    # Sqlserver_PO.xlsx2db('./data/area.xlsx', "hello", "test333")
+    Sqlserver_PO.xlsx2db_replace('/Users/linghuchong/Desktop/test.xlsx', "sys_category", "sheet")
+
 
     # print("5.4 字典导入数据库".center(100, "-"))
     # Sqlserver_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test99")  # 带index

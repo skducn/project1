@@ -19,7 +19,8 @@ Time_PO = TimePO()
 
 # 患者数量
 # 30000条数据
-patient = 30000
+# patient = 30000
+patient = 5
 
 def aes_encrypt_with_hex_key(data):
     """使用AES-128 ECB模式和十六进制密钥加密数据"""

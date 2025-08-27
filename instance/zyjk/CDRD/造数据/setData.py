@@ -108,8 +108,8 @@ Cdrd_PO = CdrdPO()
 # todo 1.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
-# # ok
+# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息5条')
+# # 生成30000条
 # result = subprocess.run(
 #     ["python", "genAES128.py"],  # 命令和参数列表
 #     capture_output=True,  # 捕获 stdout 和 stderr
@@ -118,7 +118,7 @@ Cdrd_PO = CdrdPO()
 
 
 # Cdrd_PO.crt_cdrdPatientInfo('患者基本信息')
-# Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000
+# Cdrd_PO.procedure("s_cdrd_patient_info", '患者基本信息')  # 存储过程中改成 30000  (弃用)
 # Cdrd_PO.index('IX_a_cdrd_patient_info_patient_id', 'a_cdrd_patient_info', 'patient_id')
 # Cdrd_PO.updateStatistics('a_cdrd_patient_info')
 # Cdrd_PO.openSql("s_cdrd_patient_info.sql")
@@ -244,6 +244,17 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.openSql("s_cdrd_patient_death_info.sql")
 
 
+# todo 1。16 标签表
+# Cdrd_PO.crt_patient_tag('标签表')
+
+# Cdrd_PO.subProcedure("s_patient_tag", '标签表')
+# 创建并执行生成标签记录的存储过程
+# Cdrd_PO.generate_patient_tag_procedure_with_snowflake()  # 创建存储过程
+Cdrd_PO.generate_patient_tag_procedure()  # 创建存储过程
+# Cdrd_PO.execute_generate_patient_tag()    # 执行存储过程
+
+
+
 
 # 登录日志
 # 数据量：50万
@@ -352,10 +363,9 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 8 字段表
-Cdrd_PO.crt_sys_category('字段表')
-Sqlserver_PO.execute("insert into sys_category(category_class,category_name,category_key,field_sort,field_status,field_cn_name,field_en_name) "
-"values('patient_detail','患者详情',10, '0','患者ID','patient_id')"
-",('patient_detail','患者详情',10, '0','患者ID','patient_id')")
+# Cdrd_PO.crt_sys_category('字段表')
+# Sqlserver_PO.xlsx2db_append('sys_category.xlsx', "sys_category", "sheet")
+
 
 #
 # todo 11，文件下载管理

@@ -29,6 +29,7 @@
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_test_project_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_visit_info.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_cdrd_patient_visit_info2.sql" dialect="TSQL" />
+    <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_patient_tag.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_config.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_department.sql" dialect="TSQL" />
     <file url="file://$PROJECT_DIR$/instance/zyjk/CDRD/造数据/s_sys_dept_medgp.sql" dialect="TSQL" />
