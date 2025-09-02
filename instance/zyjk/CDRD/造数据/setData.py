@@ -129,6 +129,7 @@ Cdrd_PO = CdrdPO()
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
 # Cdrd_PO.crt_cdrdPatientVisitInfo('门(急)诊住院就诊信息')
 # Cdrd_PO.procedure("s_cdrd_patient_visit_info", '门(急)诊住院就诊信息')
+# Cdrd_PO.procedure("s_cdrd_patient_visit_info_5", '门(急)诊住院就诊信息')
 # Cdrd_PO.subProcedure("r_visit_info__", "门(急)诊住院就诊信息 - 就诊诊断")
 # Cdrd_PO.openSql("s_cdrd_patient_visit_info.sql")
 
@@ -246,14 +247,52 @@ Cdrd_PO = CdrdPO()
 
 # todo 1。16 标签表
 # Cdrd_PO.crt_patient_tag('标签表')
-
-# Cdrd_PO.subProcedure("s_patient_tag", '标签表')
-# 创建并执行生成标签记录的存储过程
-# Cdrd_PO.generate_patient_tag_procedure_with_snowflake()  # 创建存储过程
-Cdrd_PO.generate_patient_tag_procedure()  # 创建存储过程
-# Cdrd_PO.execute_generate_patient_tag()    # 执行存储过程
-
-
+# Cdrd_PO.procedure("s_patient_tag", '标签表')  # 42w
+# 30000*4 = 12w
+# 150000*2 = 30w
+# -----------------------------------------------
+# 请编写一个存储过程，用于生成一批数据。
+#
+# 表patient_tag的表结构字段如下：
+# tag_record_id BIGINT PRIMARY KEY,
+# category_source_id int,
+# category_key nvarchar(100),
+# category_id int,
+# tag_id int,
+# tag_key nvarchar(100),
+# tag_data_id int,
+# tag_data_key nvarchar(100),
+# create_id int,
+# create_by nvarchar(20),
+# create_time DATETIME
+#
+# 表sys_tag_type的表结构字段如下：
+# tag_id int IDENTITY(1,1) PRIMARY KEY,
+# category_class nvarchar(100),
+# category_name nvarchar(20),
+# category_key nvarchar(100),
+# tag_name nvarchar(20),
+# tag_key nvarchar(100),
+# tag_sort int,
+# status varchar(100),
+# create_id int,
+# create_time DATETIME,
+# update_id int,
+# update_time DATETIME,
+# remark nvarchar(500)
+#
+# 要求遍历sys_tag_type表中category_key字段的值，如果值等于cdrd_patient_info, 则遍历cdrd_patient_info_5表每条记录，patient_tag表生成数据如下：
+# category_source_id字段的值为 cdrd_patient_info_5表中patient_id字段的值，category_key字段的值为cdrd_patient_info,catetory_id字段值为cdrd_patient_info_5表中patient_id字段的值,
+# tag_id字段的值为sys_tag_type表中tag_id字段的值，tag_key字段的值为sys_tag_type表中tag_key字段的值，tag_data_id字段的值为sys_tag_data表中匹配一次tag_data_id字段的值，tag_data_key字段的值为sys_tag_data表中匹配一次tag_data_key字段的值，
+# create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+#
+# 如果值等于cdrd_patient_visit_info, 则遍历cdrd_patient_visit_info_5表每条记录，patient_tag表生成数据如下：
+# category_source_id字段的值为 cdrd_patient_visit_info_5表中patient_visit_id字段的值，category_key字段的值为cdrd_patient_visit_info,catetory_id字段值为cdrd_patient_visit_info_5表中patient_visit_id字段的值,
+# tag_id字段的值为sys_tag_type表中tag_id字段的值，tag_key字段的值为sys_tag_type表中tag_key字段的值，tag_data_id字段的值为sys_tag_data表中匹配一次tag_data_id字段的值，tag_data_key字段的值为sys_tag_data表中匹配一次tag_data_key字段的值，
+# create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+#
+# 以上对表patient_tag的数据插入，需要提高效率。
+# -----------------------------------------------
 
 
 # 登录日志
@@ -301,6 +340,46 @@ Cdrd_PO.generate_patient_tag_procedure()  # 创建存储过程
 
 # todo 4 扩展字段表
 # Cdrd_PO.crt_patient_extend_field('扩展字段表')
+# Cdrd_PO.procedure("s_patient_extend_field", '扩展字段表')  # 90w = 15W * 6
+# --------------------------------------------------------
+#请编写一个存储过程，用于生成一批数据。
+# 表patient_extend_field的表结构字段如下：
+# extend_field_record_id int IDENTITY(1,1) PRIMARY KEY,
+# category_source_id int,
+# category_key nvarchar(100),
+# category_id int,
+# extend_field_id int,
+# extend_field_key nvarchar(100),
+# extend_field_text nvarchar(max),
+# create_id int,
+# create_by nvarchar(20),
+# create_time DATETIME
+#
+# 表sys_extend_field_manage的表结构字段如下：
+# extend_field_id int IDENTITY(1,1) PRIMARY KEY,
+# category_class nvarchar(100),
+# category_name nvarchar(20),
+# category_key nvarchar(100),
+# extend_field_name nvarchar(20),
+# extend_field_key nvarchar(100),
+# sort int,
+# status varchar(100),
+# create_id int,
+# create_time DATETIME,
+# update_id int,
+# update_time DATETIME,
+# remark nvarchar(500)
+#
+# 要求遍历cdrd_patient_visit_info_5表每条记录, patient_extend_field表生产数据如下：
+# category_source_id字段的值为 cdrd_patient_visit_info_5表中patient_id字段的值，
+# category_key字段的值为cdrd_patient_visit_info,
+# catetory_id字段值为cdrd_patient_info_5表中patient_visit_id字段的值,
+# extend_field_key字段值为sys_extend_field_manage中extend_field_key的值，
+# extend_field_text字段值为1到100000的随机值，
+# create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+#
+# 以上对表patient_extend_field的数据插入，需要提高效率。
+# --------------------------------------------------------
 
 
 # todo 5-1 扩展字段配置 - 扩展字段管理

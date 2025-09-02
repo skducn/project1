@@ -11,6 +11,17 @@
 # *****************************************************************
 
 
+# 添加项目根目录到Python路径
+import sys
+import os
+# 获取当前文件路径并向上导航到project目录
+dir_path = os.path.dirname(os.path.abspath(__file__))  # 造数据
+dir_path = os.path.dirname(dir_path)  # CDRD
+dir_path = os.path.dirname(dir_path)  # zyjk
+dir_path = os.path.dirname(dir_path)  # instance
+dir_path = os.path.dirname(dir_path)  # project
+sys.path.append(dir_path)
+
 from PO.SqlserverPO import *
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
@@ -1261,7 +1272,7 @@ class CdrdPO(object):
     def crt_cdrdPatientVisitInfo(self, varCommon):
 
         # 门(急)诊住院就诊信息
-        varTable = 'CDRD_PATIENT_VISIT_INFO'
+        varTable = 'CDRD_PATIENT_VISIT_INFO_5'
         Sqlserver_PO.crtTableByCover(varTable,
             '''
                 patient_visit_id int IDENTITY(1,1) PRIMARY KEY,

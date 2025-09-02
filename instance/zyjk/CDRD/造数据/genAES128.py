@@ -9,6 +9,17 @@ import pyodbc
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad
 
+# 添加项目根目录到Python路径
+import sys
+import os
+# 获取当前文件路径并向上导航到project目录
+dir_path = os.path.dirname(os.path.abspath(__file__))  # 造数据
+dir_path = os.path.dirname(dir_path)  # CDRD
+dir_path = os.path.dirname(dir_path)  # zyjk
+dir_path = os.path.dirname(dir_path)  # instance
+dir_path = os.path.dirname(dir_path)  # project
+sys.path.append(dir_path)
+
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "UTF-8")
 
