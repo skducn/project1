@@ -12,16 +12,17 @@ from Crypto.Util.Padding import pad
 # 添加项目根目录到Python路径
 import sys
 import os
-# 获取当前文件路径并向上导航到project目录
-dir_path = os.path.dirname(os.path.abspath(__file__))  # 造数据
-dir_path = os.path.dirname(dir_path)  # CDRD
-dir_path = os.path.dirname(dir_path)  # zyjk
-dir_path = os.path.dirname(dir_path)  # instance
-dir_path = os.path.dirname(dir_path)  # project
-sys.path.append(dir_path)
+# # 获取当前文件路径并向上导航到project目录
+# dir_path = os.path.dirname(os.path.abspath(__file__))  # 造数据
+# dir_path = os.path.dirname(dir_path)  # CDRD
+# dir_path = os.path.dirname(dir_path)  # zyjk
+# dir_path = os.path.dirname(dir_path)  # instance
+# dir_path = os.path.dirname(dir_path)  # project
+# sys.path.append(dir_path)
 
 from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "UTF-8")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "UTF-8")
 
 from PO.DataPO import *
 from PO.TimePO import *
@@ -30,8 +31,8 @@ Time_PO = TimePO()
 
 # 患者数量
 # 30000条数据
-# patient = 30000
-patient = 5
+patient = 30000
+# patient = 100
 
 def aes_encrypt_with_hex_key(data):
     """使用AES-128 ECB模式和十六进制密钥加密数据"""
@@ -132,6 +133,9 @@ for i in range(patient):
     random_phone = Data_PO.getPhone()
     random_phone_encrypted = aes_encrypt_with_hex_key(random_phone)
 
+    # 身份证
+    idcard_encrypted = aes_encrypt_with_hex_key(idcard)
+
 
     # 构建SQL语句
     sql = '''INSERT INTO CDRD_PATIENT_INFO(
@@ -165,11 +169,11 @@ for i in range(patient):
             PATIENT_SOURCE_ID,
             PATIENT_PHONE_NUM,
             PATIENT_HOME_ADDRESS,
-            PATIENT_ID_NUM,
             PATIENT_HOME_PHONE,
             PATIENT_CONTACT_PHONE,
             PATIENT_CONTACT_ADDRESS,
-            PATIENT_CONTACT_NAME
+            PATIENT_CONTACT_NAME,
+            PATIENT_ID_NUM
         ) values(
         %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
     )'''
@@ -206,11 +210,11 @@ for i in range(patient):
         '0',  # PATIENT_SOURCE_ID (字符串)
         pyodbc.Binary(random_phone_encrypted),   # (二进制数据流)
         pyodbc.Binary(random_address_encrypted),
-        idcard,  # PATIENT_ID_NUM (字符串)
         pyodbc.Binary(random_phone_encrypted),
         pyodbc.Binary(random_phone_encrypted),
         pyodbc.Binary(random_address_encrypted),
-        pyodbc.Binary(random_name_encrypted)
+        pyodbc.Binary(random_name_encrypted),
+        pyodbc.Binary(idcard_encrypted) # PATIENT_ID_NUM (字符串)
     )
 
     # 插入数据到表中

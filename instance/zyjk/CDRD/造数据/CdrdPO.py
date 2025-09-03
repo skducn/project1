@@ -1103,11 +1103,11 @@ class CdrdPO(object):
                 patient_source_id int,
                 patient_phone_num varbinary(128),
                 patient_home_address varbinary(400),
-                patient_id_num nvarchar(100),
                 patient_home_phone varbinary(160),
                 patient_contact_phone varbinary(160),
                 patient_contact_address varbinary(400),
-                patient_contact_name varbinary(160)
+                patient_contact_name varbinary(160),
+                patient_id_num varbinary(100)
             ''')
         Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
         Sqlserver_PO.setFieldComment(varTable, 'patient_id', '患者ID'),
@@ -1139,13 +1139,13 @@ class CdrdPO(object):
         Sqlserver_PO.setFieldComment(varTable, 'patient_update_time', '更新时间'),
         Sqlserver_PO.setFieldComment(varTable, 'patient_data_source_key', '数据来源')
         Sqlserver_PO.setFieldComment(varTable, 'patient_source_id', '源库患者ID'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_phone_num', '联系电话'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_home_address', '现住址'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_id_num', '证件号码'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_home_phone', '家庭电话'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址'),
-        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_phone_num', '联系电话（AES28）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_address', '现住址（AES28）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_home_phone', '家庭电话（AES28）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_phone', '联系人电话（AES28）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_address', '联系人地址（AES28）'),
+        Sqlserver_PO.setFieldComment(varTable, 'patient_contact_name', '联系人姓名（AES28）')
+        Sqlserver_PO.setFieldComment(varTable, 'patient_id_num', '身份证号码（AES28）')
 
     def cre_a_cdrd_patient_info(self, varCommon):
         table = 'a_cdrd_patient_info'

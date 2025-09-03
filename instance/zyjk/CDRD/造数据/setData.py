@@ -104,11 +104,10 @@ Cdrd_PO = CdrdPO()
 
 
 
-
 # todo 1.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
-# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息5条')
+# Cdrd_PO.crt_cdrdPatientInfoBinary('患者基本信息')
 # # 生成30000条
 # result = subprocess.run(
 #     ["python", "genAES128.py"],  # 命令和参数列表
