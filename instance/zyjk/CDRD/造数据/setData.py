@@ -87,7 +87,7 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_ABO_bloodType('ABO血型')
 # Cdrd_PO._ab_rh_bloodType('ABO血型')
 # Cdrd_PO._ab_visitDiagnosis('就诊诊断')
-# Cdrd_PO._ab_symptom('诊断信息')
+# Cdrd_PO._ab_symptom('症状信息')
 # Cdrd_PO._ab_lab('实验室检查报告')
 # Cdrd_PO._ab_physicalSign('体征')
 # Cdrd_PO._ab_physicalSignUnit('体征单位')
@@ -214,9 +214,9 @@ Cdrd_PO = CdrdPO()
 #
 # # #
 # todo 1.12 出院记录
-# 数据量：每名患者2条（共6万）
-# Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录')
-# Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
+# 数据量：每名患者2条（共6万）？？？
+Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录') ？？？
+Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
 # Cdrd_PO.openSql("s_cdrd_patient_out_hospital_info.sql")
 
 # # #
