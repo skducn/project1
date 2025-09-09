@@ -57,44 +57,30 @@ BEGIN
                 AND ps.n = v.seq
         ),
 
-        -- Step 6: 预生成随机症状数据
-        SymptomData AS (
-            SELECT
-                ROW_NUMBER() OVER (ORDER BY NEWID()) AS row_id,
-                patient_symptom_name AS symptom_name,
-                patient_symptom_num AS symptom_code,
-                patient_symptom_description AS symptom_desc
-            FROM ab_symptom
-        ),
-
-        -- Step 7: 一次性生成随机字段（避免逐条生成）
+        -- Step 6: 一次性生成随机字段（避免逐条生成）
         RandomFields AS (
-            SELECT
-                pm.patient_id,
-                pm.n,
-                pm.patient_visit_id,
-                pm.patient_hospital_visit_id,
-                pm.patient_hospital_code,
-                COALESCE(pm.patient_hospital_name, h.RandomHospitalName, N'默认医院') AS patient_hospital_name,
-                pm.patient_visit_in_time,
-                h.RandomHospitalName,
-                s.symptom_name,
-                s.symptom_code,
-                s.symptom_desc
-            FROM PatientVisitMapping pm
-            CROSS APPLY (
-                SELECT TOP 1 name AS RandomHospitalName
-                FROM ab_hospital
-                ORDER BY NEWID()
-            ) h
-            CROSS APPLY (
-                SELECT symptom_name, symptom_code, symptom_desc
-                FROM SymptomData
-                WHERE row_id = ABS(CHECKSUM(pm.patient_id * 10000 + pm.n)) % (SELECT COUNT(*) FROM SymptomData) + 1
-            ) s
-        ),
+        SELECT
+               pm.patient_id,
+               pm.n,
+               pm.patient_visit_id,
+               pm.patient_hospital_visit_id,
+               pm.patient_hospital_code,
+              COALESCE(pm.patient_hospital_name, h.RandomHospitalName, N'默认医院') AS patient_hospital_name,
+               pm.patient_visit_in_time,
+               h.RandomHospitalName,
+               s.symptom_name,
+               s.symptom_code,
+               s.symptom_desc
+        FROM PatientVisitMapping pm
+        CROSS APPLY (
+            SELECT TOP 1 name AS RandomHospitalName FROM ab_hospital ORDER BY NEWID()
+        ) h
+        CROSS APPLY (
+            SELECT TOP 1 name AS symptom_name, code AS symptom_code, desc1 AS symptom_desc FROM ab_symptom ORDER BY NEWID()
+        ) s
+    ),
 
-        -- Step 8: 生成最终字段
+        -- Step 7: 生成最终字段
         FinalData AS (
             SELECT *,
                    RIGHT('0000000' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(patient_id * 10000 + n)) % 10000000), 7) AS symptom_num,
@@ -106,7 +92,7 @@ BEGIN
             FROM RandomFields
         )
 
-        -- Step 9: 一次性插入数据（使用 TABLOCKX 提高性能）
+        -- Step 8: 一次性插入数据（使用 TABLOCKX 提高性能）
         INSERT INTO CDRD_PATIENT_SYMPTOM_INFO (
             patient_id,
             patient_visit_id,

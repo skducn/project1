@@ -75,7 +75,6 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.subProcedure("p_idcard", "身份证")
 # Cdrd_PO._ab_admissionCondition('入院病情')
 # Cdrd_PO._ab_boolean('布尔值_主要诊断')
-# Cdrd_PO._ab_diagnosticHistory('诊断病史')
 # Cdrd_PO._ab_dischargeStatus('出院情况')
 # Cdrd_PO.index('IX_ab_hospital_name', 'ab_hospital', 'name')
 # Cdrd_PO.updateStatistics('ab_hospital')
@@ -86,8 +85,6 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO._ab_drugAllergy('药物过敏')
 # Cdrd_PO._ab_ABO_bloodType('ABO血型')
 # Cdrd_PO._ab_rh_bloodType('ABO血型')
-# Cdrd_PO._ab_visitDiagnosis('就诊诊断')
-# Cdrd_PO._ab_symptom('症状信息')
 # Cdrd_PO._ab_lab('实验室检查报告')
 # Cdrd_PO._ab_physicalSign('体征')
 # Cdrd_PO._ab_physicalSignUnit('体征单位')
@@ -126,6 +123,11 @@ Cdrd_PO = CdrdPO()
 
 # todo 1.2 门(急)诊住院就诊信息
 # 数据量：每个患者5条（3条门诊，2条住院），共15万
+
+# 创建子表数据
+# Cdrd_PO._ab_visitDiagnosis('就诊诊断')
+# Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "ab_visitDiagnosis", ['patient_visit_diag'], "Sheet2")  # 删除原数据，更新新数据, 就插入1列。
+
 # Cdrd_PO.crt_cdrdPatientVisitInfo('门(急)诊住院就诊信息')
 # Cdrd_PO.procedure("s_cdrd_patient_visit_info", '门(急)诊住院就诊信息')
 # Cdrd_PO.procedure("s_cdrd_patient_visit_info_5", '门(急)诊住院就诊信息')
@@ -135,6 +137,11 @@ Cdrd_PO = CdrdPO()
 
 # todo 1.3 诊断表
 # 数据量：每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
+
+# 创建子表数据
+# Cdrd_PO._ab_diagnosticHistory('诊断病史')
+# Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "ab_diagnosticHistory", ['diag_class', 'diag_name', 'diag_code'], "Sheet1")  # 删除原数据，更新新数据, 就插入3列。
+
 # Cdrd_PO.crt_cdrdPatientDiagInfo('诊断表')
 # Cdrd_PO.procedure("s_cdrd_patient_diag_info", '诊断表')
 # Cdrd_PO.subProcedure("r_diag_info__", "诊断表 - 诊断类型，诊断名称，ICD10编码")
@@ -145,6 +152,11 @@ Cdrd_PO = CdrdPO()
 #
 # todo 1.4 症状信息
 # # # 症状信息, 每个患者5条 = 患者基本信息 * 5(2条患者基本信息，3条就诊记录表) , 共15万
+
+# 创建子表数据
+# Cdrd_PO._ab_symptom('症状信息')
+# Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "ab_symptom", ['patient_symptom_name', 'patient_symptom_num', 'patient_symptom_description'], "Sheet1")  # 删除原数据，更新新数据, 就插入3列。
+
 # Cdrd_PO.crt_cdrdPatientSymptomInfo('症状信息')
 # Cdrd_PO.procedure("s_cdrd_patient_symptom_info", '症状信息')
 # Cdrd_PO.subProcedure("r_symptom_info__", "症状信息 - 症状名称，症状编号，具体描述")
@@ -214,9 +226,14 @@ Cdrd_PO = CdrdPO()
 #
 # # #
 # todo 1.12 出院记录
-# 数据量：每名患者2条（共6万）？？？
-Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录') ？？？
-Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
+# 数据量：每名患者2条（共6万）
+
+# 创建子表数据
+# Cdrd_PO._ab_outHospitalDiag('出院诊断')
+# Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "ab_outHospitalDiag", ['patient_out_hospital_diag'], "Sheet2")  # 删除原数据，更新新数据, 就插入1列。
+
+# Cdrd_PO.crt_cdrdPatientOutHospitalInfo('出院记录')
+# Cdrd_PO.procedure("s_cdrd_patient_out_hospital_info", '出院记录')
 # Cdrd_PO.openSql("s_cdrd_patient_out_hospital_info.sql")
 
 # # #

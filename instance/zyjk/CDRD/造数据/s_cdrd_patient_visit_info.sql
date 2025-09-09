@@ -40,7 +40,7 @@ BEGIN
        NOT EXISTS (SELECT 1 FROM ab_drugAllergy WHERE n_key IS NOT NULL) OR
        NOT EXISTS (SELECT 1 FROM ab_ABO_bloodType WHERE n_key IS NOT NULL) OR
        NOT EXISTS (SELECT 1 FROM ab_rh_bloodType WHERE n_key IS NOT NULL) OR
-       NOT EXISTS (SELECT 1 FROM ab_visitDiagnosis WHERE n_value IS NOT NULL) OR
+       NOT EXISTS (SELECT 1 FROM ab_visitDiagnosis WHERE patient_visit_diag IS NOT NULL) OR
        NOT EXISTS (SELECT 1 FROM SYS_DEPARTMENT WHERE department_id IS NOT NULL) OR
        NOT EXISTS (SELECT 1 FROM SYS_DEPT_MEDGP WHERE department_id IS NOT NULL) OR
        NOT EXISTS (SELECT 1 FROM SYS_DEPT_MEDGP_PERSON WHERE user_name IS NOT NULL AND user_job_num IS NOT NULL)
@@ -88,7 +88,7 @@ BEGIN
                 abo.n_value AS AboTypeValue,
                 rh.n_key AS RhTypeKey,
                 rh.n_value AS RhTypeValue,
-                diag.n_value AS VisitDiagnosis,
+                diag.patient_visit_diag AS VisitDiagnosis,
                 DATEADD(DAY, ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, '2022-06-01', GETDATE()) + 1, '2022-06-01') AS jzrq,
                 RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_age,
                 RIGHT('00' + CONVERT(NVARCHAR(10), ABS(CHECKSUM(NEWID())) % 100), 2) AS visit_days,
@@ -102,7 +102,7 @@ BEGIN
             OUTER APPLY (SELECT TOP 1 n_key, n_value FROM ab_drugAllergy WHERE n_key IS NOT NULL ORDER BY NEWID()) da
             OUTER APPLY (SELECT TOP 1 n_key, n_value FROM ab_ABO_bloodType WHERE n_key IS NOT NULL ORDER BY NEWID()) abo
             OUTER APPLY (SELECT TOP 1 n_key, n_value FROM ab_rh_bloodType WHERE n_key IS NOT NULL ORDER BY NEWID()) rh
-            OUTER APPLY (SELECT TOP 1 n_value FROM ab_visitDiagnosis WHERE n_value IS NOT NULL ORDER BY NEWID()) diag
+            OUTER APPLY (SELECT TOP 1 patient_visit_diag FROM ab_visitDiagnosis WHERE patient_visit_diag IS NOT NULL ORDER BY NEWID()) diag
         ),
         DeptInfo AS (
             SELECT

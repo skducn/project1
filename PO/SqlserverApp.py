@@ -7,26 +7,42 @@
 
 from PO.SqlserverPO import *
 
-# todo 社区健康平台（静安）
+# 社区健康平台（静安）
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
-# todo 社区健康平台（全市）
+# 社区健康平台（全市）
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PHUSERS", "GBK")
 # Sqlserver_PO2 = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "ZYCONFIG", "GBK")
 
+# CDRD
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
+
+# todo 创建表
+Sqlserver_PO.crtTable(
+'test123',
+'''id INT IDENTITY PRIMARY KEY,
+diag_class NVARCHAR(100),
+diag_name NVARCHAR(100),
+diag_code NVARCHAR(1000)
+''')
 
 
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC_5G", "GBK")
+# todo 原表里生成高频数据记录
+# Sqlserver_PO.gen_high_frequency_record("test123", {'name': "545", 'code': Time_PO.getDateTimeByPeriod(0), 'code1': 77})
 
-# 创建表
-# Sqlserver_PO.crtTableByCover('a_test',
-#                                    '''UserId INT IDENTITY(1,1) PRIMARY KEY,
-#                                     UserName NVARCHAR(50),
-#                                     Email NVARCHAR(500),
-#                                     Age int,
-#                                     CreatedDate DATETIME
-#                                   ''')
 
+# todo 将数据导入db（保留表结构）
+Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "test123", ['diag_class', 'diag_name', 'diag_code'], "Sheet1")  # 删除原数据，更新新数据, 就插入一列。
+# Sqlserver_PO.xlsx2db_reserver_replace('/Users/linghuchong/Desktop/test.xlsx', "test123", "Sheet1")  # 删除原数据，更新新数据
+# Sqlserver_PO.xlsx2db_reserver_append('/Users/linghuchong/Desktop/test.xlsx', "test123", "Sheet1")  # 追加数据
+# Sqlserver_PO.xlsx2db('/Users/linghuchong/Desktop/test.xlsx', "test123", 'append', "Sheet1")  # 追加数据
+# Sqlserver_PO.xlsx2db_reserver_unique_append('/Users/linghuchong/Desktop/test.xlsx', "test123", 'code', "Sheet1")  # 对excel某字段数据去重，再追加数据）
+
+
+# todo 将数据导入db（不保留表结构，表结构改为varchar -1）
+# Sqlserver_PO.xlsx2db('/Users/linghuchong/Desktop/test.xlsx', "test123", 'replace', "Sheet1")  # 删除原数据，更新新数据
+# Sqlserver_PO.xlsx2db_replace_dtype('/Users/linghuchong/Desktop/test.xlsx', "test123", {'code':{'varchar':123}, 'name': {'nvarchar':456}}, "Sheet1")
+# Sqlserver_PO.xlsx2db_replace_converters('/Users/linghuchong/Desktop/test.xlsx', "test123", {"name": str}, "Sheet1")
 
 # 创建存储过程，方法1 执行
 sql = """

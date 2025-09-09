@@ -102,7 +102,7 @@
 2.4 获取表 getTables()
 2.5 获取表名与表注释 getTableComment(varTable='all')
 2.6 获取视图 getViews()
-2.7 创建表（覆盖） crtTableByCover()
+2.7 创建表（覆盖） crtTableByCover()  crtTable()
 2.8 创建表（忽略，如原表存在则忽略不创建） crtTableByExistIgnore()
 2.9 设置表注释（添加，修改，删除） setTableComment(varTable, varComment)
 2.10 复制表， copyTable(source,target)
@@ -148,7 +148,7 @@
 5.1 csv2dbByType()  csv2db自定义字段类型
 5.2 csv2dbByAutoType()  csv2db自动生成字段类型
 5.3 xlsx2db  xlsx全量导入数据库
-5.4 xlsx2dbByConverters xlsx全量导入数据库，并转换字段类型
+5.4 xlsx2db_replace_converters xlsx全量导入数据库，并转换字段类型
 5.5 xlsx2dbAppendById xlsx增量导入数据库，id自动提增
 5.6 xlsx2dbAppend xlsx增量导入数据库
 5.7 dict2db  字典导入数据库
@@ -941,6 +941,20 @@ class SqlserverPO:
             print(e, ",[error], SqlserverPO.getViews()异常!")
             self.conn.close()
 
+    def crtTable(self, varTable, varFieldSets):
+
+        # 2.7 创建表(覆盖，即如表存在先删除再创建)
+        # 自增id主键
+        # Sqlserver_PO.crtTableByCover('a_autoIdcard',
+        #                            '''id INT IDENTITY(1,1) PRIMARY KEY,
+        #                             tblName NVARCHAR(50),
+        #                             idcard VARCHAR(18),
+        #                             category VARCHAR(10),
+        #                             userInfo VARCHAR(300)
+        #                           ''')
+        sql = " IF OBJECT_ID('" + varTable + "', 'U') IS NOT NULL DROP TABLE " + varTable + " CREATE TABLE " + varTable + "(" + varFieldSets + ")"
+        self.execute(sql)
+
     def crtTableByCover(self, varTable, varFieldSets):
 
         # 2.7 创建表(覆盖，即如表存在先删除再创建)
@@ -1399,15 +1413,14 @@ class SqlserverPO:
         qty = self.select("SELECT rows FROM sysindexes WHERE id = OBJECT_ID('" + varTable + "') AND indid < 2")
         return qty[0]['rows']
 
-    def insert(self, varTable, d_param):
+    def gen_high_frequency_record(self, varTable, d_param):
 
-        # 4.2 插入记录
-        # 将d_param字段合并覆盖到表字段中，并插入表
-        # 自动获取表数字主键（如id）最大值，并+1
-        # 自动填写表的默认值，d_param字段可覆盖默认值
-        # 返回值：主键最大值+1，d_param修改字段值，默认字段值。
-        # 获取没有默认值值的字段，字典
-        # 无默认值字段中取值优先顺序（重复最多、重复相同取最早的、不重复取最早的）
+        # 4.2 原表里生成高频数据记录
+
+        # 将每个字段的高频率出现的值（优先顺序：重复值最多、重复值相同时取最前的）作为默认值
+        # 将d_param覆盖表中字段默认值
+        # 插入表最后
+
 
         # 1,获取字段与类型
         d_fieldType = self.getFieldType(varTable)
@@ -1459,6 +1472,10 @@ class SqlserverPO:
         # 4,获取没有默认值的字段列表中字段重复值最多（最多，相等，1个）的那个值，更新此值
         l_d_ = self.select("select %s from %s" % (s_fields, varTable))
         # print(l_d_)  # [{'ruleParam': "'高血压'", 'id': 3, 'createDate': None, 'number': 22.0},...
+        if l_d_ == []:
+            print("无记录! 要求有记录。")
+            sys.exit(0)
+
         l_tmp = []
         d_tmp = {}
         for field in l_noDefault:
@@ -2019,28 +2036,29 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
-    def xlsx2db_deduplicated(self, varExcel, varDbTable, varDropDuplicatesField, varSheetName=0):
+
+
+    def xlsx2db_reserver_replace_col(self, varPathFile, varDbTable, l_col, varSheetName=0):
 
         '''
-        5.3，xlsx导入数据库（保留原来字段，追加数据）
-        作用是将 Excel 数据导入 SQL Server 数据库，同时根据指定字段去除重复数据。它确保了数据的唯一性，避免了重复记录被插入到数据库中。
-        xlsx2db('2.xlsx', "tableName", "字段", "sheet1")
-        注意excel表格第一行数据对应db表中字段，建议用英文
+        5.3，xlsx导入数据库（保留表结构，删除原数据，更新新数据，并对指定的列插入）
+        xlsx2db_reserver_replace('2.xlsx', "tableName", ['code','name'], "sheet1")  # 只插入 code 和 name
+        excel表格第一行数据对应db表中字段，建议用英文
         '''
 
         try:
-            df = pd.read_excel(varExcel, sheet_name=varSheetName)
-            df_deduplicated = df.drop_duplicates(subset=[varDropDuplicatesField])  # 去重
+            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            df_filtered = df[l_col]
             engine = self.getEngine_pymssql()
-            df_deduplicated.to_sql(varDbTable, con=engine, if_exists='append', index=False)
+            df_filtered.to_sql(varDbTable, con=engine, if_exists='append', index=False, chunksize=1000)
         except Exception as e:
             print(e)
 
-    def xlsx2db_append(self, varPathFile, varDbTable, varSheetName=0):
+    def xlsx2db_reserver_replace(self, varPathFile, varDbTable, varSheetName=0):
 
         '''
-        5.3，xlsx导入数据库（清空原表数据后追加数据）
-        xlsx2db_append('2.xlsx', "tableName", "sheet1")
+        5.3，xlsx导入数据库（删除原数据保留表结构）
+        xlsx2db_reserver_replace('2.xlsx', "tableName", "sheet1")
         excel表格第一行数据对应db表中字段，建议用英文
         '''
 
@@ -2051,83 +2069,146 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
-    def xlsx2db_replace(self, varPathFile, varDbTable, varSheetName=0):
-
+    def xlsx2db_reserver_append(self, varPathFile, varDbTable, varSheetName=0):
         '''
-        5.3，xlsx导入数据库（删除原表后再创建）
-        xlsx2db_replace('2.xlsx', "tableName", "sheet1")
+        5.3，xlsx导入数据库（追加数据）
+        xlsx2db_reserver_append('2.xlsx', "tableName", "sheet1")
         excel表格第一行数据对应db表中字段，建议用英文
         '''
 
         try:
+            print(f"开始处理Excel文件: {varPathFile}")
+
+            # 读取Excel数据
             df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            print(f"读取到 {len(df)} 条记录")
+
+            if df.empty:
+                print("Excel文件为空，没有数据需要插入")
+                return
+
+            # 获取数据库引擎
             engine = self.getEngine_pymssql()
-            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
+
+            # 检查表是否存在
+            table_exists = self.isTable(varDbTable)
+            if table_exists:
+                # 获取插入前记录数
+                before_count = self.getRecordCount(varDbTable)
+                print(f"表 {varDbTable} 插入前有 {before_count} 条记录")
+            else:
+                print(f"表 {varDbTable} 不存在，将被自动创建")
+                before_count = 0
+
+            # 追加数据
+            print("正在追加数据...")
+            rows_affected = df.to_sql(varDbTable, con=engine, if_exists='append', index=False)
+            print(f"数据追加完成")
+
+            if table_exists:
+                # 验证插入结果
+                after_count = self.getRecordCount(varDbTable)
+                actual_inserted = after_count - before_count
+                print(f"表 {varDbTable} 插入后有 {after_count} 条记录")
+                print(f"实际插入 {actual_inserted} 条记录")
+            else:
+                print(f"数据已成功插入到新表 {varDbTable}")
+
+        except Exception as e:
+            print(f"追加数据失败: {e}")
+            import traceback
+            traceback.print_exc()
+
+    def xlsx2db_reserver_unique_append(self, varExcel, varDbTable, varDropDuplicatesField, varSheetName=0):
+
+        '''
+        5.3，xlsx导入数据库（保留表结构，对插入的数据去重（excel某字段去重），追加数据）
+        xlsx2db_reserver_unique_append('2.xlsx', "tableName", "字段", "sheet1")   //对Excel中字段值去重
+        注意：excel表格第一行数据对应db表中字段，建议用英文
+             对Excel中字段值去重，不是对db中字段去重。
+        '''
+
+        try:
+            df = pd.read_excel(varExcel, sheet_name=varSheetName)
+            df_deduplicated = df.drop_duplicates(subset=[varDropDuplicatesField])  # 对Excel中字段值去重，不是对db里字段去重。
+            engine = self.getEngine_pymssql()
+            df_deduplicated.to_sql(varDbTable, con=engine, if_exists='append', index=False)
         except Exception as e:
             print(e)
 
 
-    def xlsx2db2(self, varPathFile, varDbTable, varSheetName, varColName):
+    def xlsx2db(self, varPathFile, varDbTable, varMode, varSheetName=0):
 
         '''
-        5.3，xlsx全量导入数据库（覆盖）
-        # 定义列的数据类型
-        xlsx2db2('2.xlsx', "tableName", "sheet1", "colName")
-        excel表格第一行数据对应db表中字段，建议用英文
+        5.3，xlsx导入数据库（不保留表结构，表结构改为varchar -1）
+        xlsx2db('2.xlsx', "tableName", "replace","sheet1")  # 删除原数据，更新新数据
+        xlsx2db('2.xlsx', "tableName", "append","sheet1")  # 追加数据
+        excel表格第一行数据对应db表中字段，建议用英文 , 不导入标题
         '''
 
         try:
             df = pd.read_excel(varPathFile, sheet_name=varSheetName)
             engine = self.getEngine_pymssql()
-            # df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
+            df.to_sql(varDbTable, con=engine, if_exists=varMode, index=False, chunksize=1000)
+        except Exception as e:
+            print(e)
 
+    def xlsx2db_replace_dtype(self, varPathFile, varDbTable, d_col_dtype, varSheetName=0):
+
+        '''
+        5.3，xlsx导入数据库之定义列的数据类型（删除原表后再创建, 表结构varchar -1）
+        SQL Server支持的排序规则：
+        Chinese_PRC_CI_AS - 简体中文，大小写不敏感，重音敏感
+        Chinese_PRC_CS_AS - 简体中文，大小写敏感，重音敏感
+        SQL_Latin1_General_CP1_CI_AS - Latin1，大小写不敏感，重音敏感
+        Latin1_General_CI_AS - Latin1，大小写不敏感，重音敏感
+        Mysql支持的排序规则， collation='utf8mb4_unicode_ci'
+
+        excel表格第一行数据对应db表中字段，建议用英文
+        Sqlserver_PO.xlsx2db_replace_dtype('/Users/linghuchong/Desktop/test.xlsx', "test1234",
+        {'code1':'int', 'code':{'varchar':123}, 'name':{'nvarchar':456},'date1':'date','date2':'datetime'}, "Sheet1")
+        将code1转化int，code转化varchar长度123，name转化navarchar长度456，date1转化日期，date2转化日期时间
+        '''
+
+        try:
+            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+            engine = self.getEngine_pymssql()
             # # 定义列的数据类型
-            dtype = {
-                varColName : sqltypes.VARCHAR(length=255, collation='utf8mb4_unicode_ci')  # 自定义字符集
-                # 'other_column': sqltypes.INTEGER()
-            }
+            if isinstance(d_col_dtype, dict):
+                dtype = {}
+                for k, v in d_col_dtype.items():
+                    if v == "int":
+                        dtype[k] = sqltypes.INTEGER()
+                    if v == 'datatime':
+                        dtype[k] = sqltypes.DATETIME()
+                    if v == 'date':
+                        dtype[k] = sqltypes.DATE()
+                    if isinstance(v, dict):
+                        for k1, v1 in v.items():
+                            if k1 == "nvarchar":
+                                dtype[k] = sqltypes.NVARCHAR(length=v1)
+                            if k1 == "varchar":
+                                dtype[k] = sqltypes.VARCHAR(length=v1)
+                                         # sqltypes.VARCHAR(length=255, collation='Chinese_PRC_CI_AS')  # 使用SQL Server支持的排序规则，修改长度
 
             df.to_sql(varDbTable, con=engine, if_exists="replace", index=False, dtype=dtype)
 
         except Exception as e:
             print(e)
 
-    def df2db3(self, df, varTable):
-
-        '''
-        5.3，xlsx全量导入数据库（覆盖）
-        xlsx2db('2.xlsx', "tableName", "sheet1")
-        excel表格第一行数据对应db表中字段，建议用英文
-        '''
-
-        engine = self.getEngine_pymssql()
-
-        try:
-
-            # 开始数据库事务
-            with engine.begin() as connection:
-                # 使用 pandas 的 to_sql 方法将数据写入数据库
-                # 如果表已存在，可以选择 'fail', 'replace', 或 'append' 模式
-                df.to_sql(
-                    name=varTable,
-                    con=connection,
-                    if_exists='replace',  # 根据需要修改此参数
-                    index=False
-                )
-
-            return True
-
-        except Exception as e:
-            print(e)
-
-
-    def xlsx2dbByConverters(self, varPathFile, varDbTable, var_d, varSheetName=0):
+    def xlsx2db_replace_converters(self, varPathFile, varDbTable, var_d, varSheetName=0):
 
         '''
         5.4，xlsx全量导入数据库，并转换字段类型
         # 如：将idcard字段转换为字符串类型，idcard本身是数字类型
         如果idcard不存在则忽略。
-        xlsx2dbByConverters('2.xlsx', "tableName", {"idcard": str}, "sheet1")
+        xlsx2db_replace_converters('2.xlsx', "tableName", {"idcard": str}, "sheet1")
+        var_d = {
+                "code1": int,  # 转换为整数
+                # "": float,  # 转换为浮点数
+                "type1": str,  # 转换为字符串
+                "date1": pd.to_datetime  # 转换为日期时间
+            }
         '''
 
         try:
@@ -2137,12 +2218,14 @@ class SqlserverPO:
         except Exception as e:
             print(e)
 
+
     def xlsx2dbAppendById(self, varPathFile, varDbTable, maxId, varSheetName=0):
 
         '''
-        5.5，xlsx增量导入数据库，id自动提增
-        xlsx2dbAppend('2.xlsx', "tableName", maxId, "sheet1")
-        maxId = 表中最大id , 追加的记录中id无需填写自动提增。
+        等同于 # Sqlserver_PO.xlsx2db('/Users/linghuchong/Desktop/test.xlsx', "test123", 'append', "Sheet1")  # 追加数据
+        5.5，xlsx增量导入数据库之最大主键id
+        xlsx2dbAppend('2.xlsx', "tableName", 10, "sheet1")   //需要提供原数据中最大的id
+        maxId = 表中最大id
         '''
 
         try:
@@ -2151,20 +2234,6 @@ class SqlserverPO:
             for index, value in df['id'].items():
                 temp = temp + 1
                 df.at[index, 'id'] = maxId + temp
-            engine = self.getEngine_pymssql()
-            df.to_sql(varDbTable, con=engine, if_exists="append", index=False)
-        except Exception as e:
-            print(e)
-
-    def xlsx2dbAppend(self, varPathFile, varDbTable, varSheetName=0):
-
-        '''
-        5.6，xlsx增量导入数据库
-        xlsx2dbAppend('2.xlsx', "tableName", "sheet1")
-        '''
-
-        try:
-            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
             engine = self.getEngine_pymssql()
             df.to_sql(varDbTable, con=engine, if_exists="append", index=False)
         except Exception as e:
@@ -2403,7 +2472,7 @@ if __name__ == "__main__":
     # print(Sqlserver_PO.isIdentity('aaa'))
 
     # # print("4.10 判断记录是否存在".center(100, "-"))
-    print(Sqlserver_PO.isRecord("sys_category_mapping", "category_key", "cdrd_patient_diag1_info"))
+    # print(Sqlserver_PO.isRecord("sys_category_mapping", "category_key", "cdrd_patient_diag1_info"))
 
 
     # # print("5.1 csv2db自定义字段类型".center(100, "-"))
@@ -2413,8 +2482,13 @@ if __name__ == "__main__":
     # Sqlserver_PO.csv2dbByAutoType('./data/test12.csv', "test555")
 
     # # print("5.3 excel导入数据库".center(100, "-"))
-    Sqlserver_PO.xlsx2db_replace('/Users/linghuchong/Desktop/test.xlsx', "sys_category", "sheet")
+    # Sqlserver_PO.xlsx2db('/Users/linghuchong/Desktop/test.xlsx', "test123", "replace","Sheet1")
+    # Sqlserver_PO.xlsx2db('/Users/linghuchong/Desktop/test.xlsx', "test123", "append","Sheet1")
 
+    # Sqlserver_PO.xlsx2db_replace_dtype('/Users/linghuchong/Desktop/test.xlsx', "test1234",
+    #     {'code1':'int', 'code':{'varchar':123}, 'name':{'nvarchar':456},'date1':'date'}, "Sheet1")
+
+    # Sqlserver_PO.xlsx2db_replace_converters('/Users/linghuchong/Desktop/test.xlsx', "test1234", {"code1": str}, "Sheet1")
 
     # print("5.4 字典导入数据库".center(100, "-"))
     # Sqlserver_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test99")  # 带index
@@ -2476,7 +2550,7 @@ if __name__ == "__main__":
     # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。
 
     # print("7.3 插入记录".center(100, "-"))
-    # Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'createDate': Time_PO.getDateTimeByPeriod(0), 'ruleParam': 'param'})
+    # Sqlserver_PO.insert("test1234", {'name': "545", 'code': Time_PO.getDateTimeByPeriod(0), 'code1': 77})
 
 
 
