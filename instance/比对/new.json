@@ -1,0 +1,16 @@
+{
+  "order_id": "ORD202310010001",
+  "status": "completed",
+  "amount": 150.00,
+  "timestamp": "2023-10-01T12:05:00Z",
+  "request_id": "REQ-789012",
+  "user_info": {
+    "id": "U20230001",
+    "name": "李四",
+    "email": "zhangsan@example.com"
+  },
+  "items": [
+    {"sku": "P2045", "qty": 1, "name": "智能手表"},
+    {"sku": "P1001", "qty": 2, "name": "无线蓝牙耳机"}
+  ]
+}

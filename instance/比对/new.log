@@ -1,0 +1,6 @@
+2026-08-15 12:30:22 [INFO] [PaymentService] Initializing payment processor (v2.2)  # 版本升级
+　　2026-08-15 12:30:45 [INFO] [Transaction] Received order: id=20260815123045, amount=299.99  # 字段名变更（order_id→id）
+　　2026-08-15 12:31:10 [WARN] [PaymentGateway] Payment delayed: id=20260815123045 (latency=25s)  # 错误降级为警告
+　　2026-08-15 12:31:22 [INFO] [Transaction] Processing transaction: id=20260815123045  # 日志描述优化
+　　2026-08-15 12:31:50 [INFO] [Transaction] Transaction completed: id=20260815123045, status=SUCCESS
+　　2026-08-15 12:32:15 [WARN] [Database] DB_CONNECTION: high latency (200ms)  # 新增数据库警告

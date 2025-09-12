@@ -1,0 +1,6 @@
+2026-08-15 12:30:22 [INFO] [PaymentService] Initializing payment processor (v2.1)
+　　2026-08-15 12:30:45 [INFO] [Transaction] Received order: order_id=20260815123045, amount=299.99
+　　2026-08-15 12:31:10 [ERROR] [PaymentGateway] PAYMENT_TIMEOUT: order_id=20260815123045 (timeout=30s)
+　　2026-08-15 12:31:22 [INFO] [Transaction] Retrying transaction: order_id=20260815123045
+　　2026-08-15 12:31:50 [INFO] [Transaction] Transaction completed: order_id=20260815123045, status=SUCCESS
+　　2026-08-15 12:32:15 [INFO] [System] Heartbeat: all services running
