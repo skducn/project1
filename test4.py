@@ -1,3 +1,23 @@
+from pathlib import Path
+
+
+
+def bold(func):
+    def wrapper(*args):
+        return (f"<b>{func(*args)}</b>")
+    return wrapper
+def italic(func):
+    def wrapper(*args):
+        return (f"<i>{func(*args)}</i>")
+    return wrapper
+
+# 警告：装饰器执行顺序与声明顺序相反，@bold先应用但后执行
+@bold
+@italic
+def greet(name):
+    return (f"Hello {name}")
+print(greet("Alice"))  # <b><i>Hello Alice</i></b>
+
 # from faker import Faker
 #
 # # 创建Faker实例，指定中文
