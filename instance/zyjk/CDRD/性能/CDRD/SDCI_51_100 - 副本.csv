@@ -1,0 +1,35 @@
+username,patientDiagName,patientDiagCode,patientVisitDiag,patientOutHospitalDiag
+tester1,稳定性心绞痛,I25.1,反酸烧心半年,严重
+tester2,Graves 病,E05.0,心悸,严重
+tester3,骨质,M80.8,腰部,SARS
+tester4,稳定性心绞痛,I25.1,入院,严重
+tester5,反流性食管炎（LA-B 级）,K21.0,右侧肢体,严重
+tester6,2 型糖尿病,E11.4,咳嗽咳痰,SARS
+tester7,COPD,J44.1,双足麻木,严重急性呼吸综合征
+tester8,骨质疏松伴腰椎,M80.8,腰部剧痛 1 天,（SARS）
+tester9,2 型糖尿病,E11.4,咳嗽咳痰,SARS
+tester10,反流性食管炎,K21.0,困难 1 月,急性呼吸
+tester11,慢性肾脏病 3 期,N18.3,入院主诉 "心悸、气短 3 周,综合征
+tester12,骨质疏松伴腰,M80,咳嗽咳痰,重急性
+tester13,综合征,K21,痛半年,综合征
+tester14,Graves 病,E05,消瘦 3 月,右肺下
+tester15,反流性食管炎（LA-B 级）,K21.0,困难 1 月,右肺下叶肺炎
+tester16,2 型糖尿病伴周围,E11,尿蛋白定,综合
+tester17,2 型糖尿,E11.4,随机血糖,严重急性呼吸综合征（SARS）
+tester18,骨质疏松,M80.8,1 天" 入院，,重急性呼吸综合征
+tester19,COPD 急性加重期,J44,夜尿增,征（SARS）
+tester20,稳定性心绞痛,I25,心悸、消瘦 3 月,性呼吸综
+tester21,稳定,I25,加重,s
+tester22,Gra,E0,咳嗽,sa
+tester23,COP,J,肺功能,呼吸
+tester24,持续性,I48,气短,右肺
+tester25,急性脑梗死,I6,刺痛半年,炎
+tester26,COPD 急性加重期,J4,夜尿,性呼吸综
+tester27,2 型糖,E11,食管,肺下叶肺炎
+tester28,COPD,J44,"反复头晕,肺炎
+tester29,骨质,M,麻木,综合征
+tester30,Gr,E0,加重,重急
+
+
+
+

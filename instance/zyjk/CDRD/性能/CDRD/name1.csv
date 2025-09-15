@@ -1,0 +1,6 @@
+username,patientDiagName,patientDiagCode,patientVisitDiag,patientOutHospitalDiag
+tester1,稳定性心绞痛,I25.1,反酸烧心半年,严重
+tester2,Graves 病,E05.0,心悸,严重
+tester3,骨质,M80.8,腰部,SARS
+tester5,稳定性心绞痛,I25.1,入院,严重
+tester6,急性脑梗死（左侧基底节区）,I63.9,腰部剧,严重

@@ -2,6 +2,8 @@ token
 $.data.access_token
 0
 
+gitlab：http://192.168.0.241/cdrd_product_doc/product_doc
+
 生成报告
 步骤1，将3.jmx 生成日志文件3.jtl文件
 jmeter -n -t d:\51\jmeter\project\CDRD\3.jmx -l d:\51\jmeter\project\CDRD\3.jtl
