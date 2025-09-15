@@ -101,6 +101,8 @@ Cdrd_PO = CdrdPO()
 
 
 
+
+
 # todo 1.1 患者基本信息
 # 数据量：30000
 # # 需求：https://docs.qq.com/doc/DYnZXTVZ1THpPVEVC?g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3#g=X2hpZGRlbjpoaWRkZW4xNzUzMjYyNzc0ODQ3
@@ -350,8 +352,26 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 3-3 标签配置 - 标签权限表
-# Cdrd_PO.crt_sys_tag_authority('标签权限表')
+Cdrd_PO.crt_sys_tag_authority1('标签权限表')
+# Cdrd_PO.subProcedure2("GenerateTagAuthorityData", '标签权限表')
+Cdrd_PO.subProcedure2("GenerateTagAuthorityData1", '标签权限表')
+# ------------------------
+# 请编写一个存储过程，用于生成一批数据。
 #
+# 表sys_tag_authority1的表结构字段如下：
+# tag_authority_id PRIMARY KEY,
+# tag_id int,
+# authority_relative_module nvarchar(20),
+# authority_relative_id int
+#
+# 遍历sys_dept_medgp表中DEPARTMENT_TREAT_GROUP_ID字段的值，
+# 遍历sys_tag_type表的category_key字段的值，条件是值等于"cdrd_patient_info"，
+# 要求DEPARTMENT_TREAT_GROUP_ID与category_key关系是一对多，
+# 将DEPARTMENT_TREAT_GROUP_ID值插入表sys_tag_authority中authority_relative_id字段，
+# 将category_key值插入表sys_tag_authority中tag_id字段，
+# authority_relative_module字段默认值为"sys_dept_medgp"，
+# 以上对表sys_tag_authority的数据插入，需要提高效率。
+# ---------------------
 
 
 # todo 4 扩展字段表

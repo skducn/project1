@@ -1,0 +1,41 @@
+# 请编写一个存储过程，用于生成一批数据。
+#
+# 表patient_tag的表结构字段如下：
+# tag_record_id BIGINT PRIMARY KEY,
+# category_source_id int,
+# category_key nvarchar(100),
+# category_id int,
+# tag_id int,
+# tag_key nvarchar(100),
+# tag_data_id int,
+# tag_data_key nvarchar(100),
+# create_id int,
+# create_by nvarchar(20),
+# create_time DATETIME
+#
+# 表sys_tag_type的表结构字段如下：
+# tag_id int IDENTITY(1,1) PRIMARY KEY,
+# category_class nvarchar(100),
+# category_name nvarchar(20),
+# category_key nvarchar(100),
+# tag_name nvarchar(20),
+# tag_key nvarchar(100),
+# tag_sort int,
+# status varchar(100),
+# create_id int,
+# create_time DATETIME,
+# update_id int,
+# update_time DATETIME,
+# remark nvarchar(500)
+#
+# 要求遍历sys_tag_type表中category_key字段的值，如果值等于cdrd_patient_info, 则遍历cdrd_patient_info_5表每条记录，patient_tag表生成数据如下：
+# category_source_id字段的值为 cdrd_patient_info_5表中patient_id字段的值，category_key字段的值为cdrd_patient_info,catetory_id字段值为cdrd_patient_info_5表中patient_id字段的值,
+# tag_id字段的值为sys_tag_type表中tag_id字段的值，tag_key字段的值为sys_tag_type表中tag_key字段的值，tag_data_id字段的值为sys_tag_data表中匹配一次tag_data_id字段的值，tag_data_key字段的值为sys_tag_data表中匹配一次tag_data_key字段的值，
+# create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+#
+# 如果值等于cdrd_patient_visit_info, 则遍历cdrd_patient_visit_info_5表每条记录，patient_tag表生成数据如下：
+# category_source_id字段的值为 cdrd_patient_visit_info_5表中patient_visit_id字段的值，category_key字段的值为cdrd_patient_visit_info,catetory_id字段值为cdrd_patient_visit_info_5表中patient_visit_id字段的值,
+# tag_id字段的值为sys_tag_type表中tag_id字段的值，tag_key字段的值为sys_tag_type表中tag_key字段的值，tag_data_id字段的值为sys_tag_data表中匹配一次tag_data_id字段的值，tag_data_key字段的值为sys_tag_data表中匹配一次tag_data_key字段的值，
+# create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+#
+# 以上对表patient_tag的数据插入，需要提高效率。

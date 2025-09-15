@@ -2198,7 +2198,7 @@ class CdrdPO(object):
         # 创建存储过程，不执行
 
         # 删除存储过程（用于添加描述）
-        # Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
 
         varParamSql = varProcedure + ".sql"
         with open(varParamSql, 'r', encoding='utf-8') as file:
@@ -2209,12 +2209,23 @@ class CdrdPO(object):
         varDesc_escaped = varDesc.replace("'", "''")  # 转义所有单引号   //存储过程描述
         Sqlserver_PO.execute(f"""EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'{varDesc_escaped}',@level0type = N'Schema', @level0name = 'dbo', @level1type = N'Procedure', @level1name = '{varProcedure}';""")
 
-        # IF EXISTS (SELECT 1 FROM sys.extended_properties WHERE major_id = OBJECT_ID('dbo.p_outcome_state') AND name = 'MS_Description')
-        # 修改
-        #     EXEC sp_updateextendedproperty ...
-        # ELSE
-        # 添加
-        #     EXEC sp_addextendedproperty ...
+
+    def subProcedure2(self, varProcedure, varDesc):
+        # 子存储过程
+        # 创建存储过程，不执行
+
+        # 删除存储过程（用于添加描述）
+        Sqlserver_PO.execute(f"DROP PROCEDURE IF EXISTS dbo.{varProcedure};")
+
+        varParamSql = varProcedure + ".sql"
+        with open(varParamSql, 'r', encoding='utf-8') as file:
+            sql_script = file.read()
+        Sqlserver_PO.execute(sql_script)
+
+        # 添加描述
+        varDesc_escaped = varDesc.replace("'", "''")  # 转义所有单引号   //存储过程描述
+        Sqlserver_PO.execute(f"""EXEC GenerateTagAuthorityData;""")
+
 
     def subFunction(self, varProcedure):
         # 子存储过程
@@ -2668,6 +2679,23 @@ class CdrdPO(object):
         # 标签权限表
 
         varTable = 'sys_tag_authority'
+        Sqlserver_PO.crtTableByCover(varTable,
+            '''
+            tag_authority_id int IDENTITY(1,1) PRIMARY KEY,
+            tag_id int,
+            authority_relative_module nvarchar(20),
+            authority_relative_id int
+        ''')
+        Sqlserver_PO.setTableComment(varTable, varCommon + '(测试用)')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_authority_id', '标签权限ID')
+        Sqlserver_PO.setFieldComment(varTable, 'tag_id', '标签ID')
+        Sqlserver_PO.setFieldComment(varTable, 'authority_relative_module', '权限关联模块')
+        Sqlserver_PO.setFieldComment(varTable, 'authority_relative_id', '权限关联ID')
+    def crt_sys_tag_authority1(self, varCommon):
+
+        # 标签权限表
+
+        varTable = 'sys_tag_authority1'
         Sqlserver_PO.crtTableByCover(varTable,
             '''
             tag_authority_id int IDENTITY(1,1) PRIMARY KEY,

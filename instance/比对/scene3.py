@@ -40,7 +40,7 @@ def validate_api_response(actual, expected, ignore_fields=None):
         "full_diff": diff  # 完整差异（供调试）
     }
 
-def validate_api_response1(actual, expected, ignore_fields=None):
+def validate_api_response_critical(actual, expected, critical_fields, ignore_fields=None):
     """
     API响应验证工具
     :param actual: 实际结构
@@ -62,7 +62,7 @@ def validate_api_response1(actual, expected, ignore_fields=None):
         exclude_paths=[f"root['{field}']" for field in ignore_fields]  # 忽略动态字段
     )
     # 提取关键差异（仅关注影响业务的字段）
-    critical_fields = ['status', 'name']  # 关键业务字段（可自定义）
+    # critical_fields = ['status', 'name']  # 关键业务字段（可自定义）
     critical_diff = {}
     for change_type, changes in diff.items():
         if change_type in ['values_changed', 'dic_item_added', 'dic_item_removed']:
@@ -78,6 +78,7 @@ def validate_api_response1(actual, expected, ignore_fields=None):
 
 if __name__ == '__main__':
     with open('old.json') as f1, open('new.json') as f2:
-        result = validate_api_response(json.load(f2), json.load(f1))  # 遍历所有key
-        # result = validate_api_response1(json.load(f2), json.load(f1))  # 指定关键key字段
+        # result = validate_api_response(json.load(f2), json.load(f1))  # 比对所有key
+        result = validate_api_response_critical(json.load(f2), json.load(f1), ['status', 'name'])  # 指定关键key字段, 只比对status和name关键字。
+        # result = validate_api_response_critical(json.load(f2), json.load(f1), ['status', 'name'], ['timestamp', 'request_id'])  # 指定关键key字段, 只比对status和name关键字。
     print(json.dumps(result['critical_diff'], ensure_ascii=False, indent=2))
