@@ -87,7 +87,7 @@ subprocess.run([f"allure generate allure-results -o {ALLURE_REPORT_DIR}"], shell
 print("Allure 报告已生成")
 logger.debug('Allure 报告已生成')
 
-# todo 上传 allureReport 到远程服务器
+# todo 上传下载 allureReport 到远程服务器
 upload_directory(s_localFolder, s_remoteFolder)
 
 

@@ -15,9 +15,9 @@ def get_wallpaper():
     for i in range(3):
         url = "https://bingw.jasonzeng.dev?resolutinotallow=UHD&index=%s" % str(i)
         print(url)
-        res = requests.get(url)
-        with open("D:\WALLPAPER/" + "%s.jpg" % str(i),"wb") as w:
-            w.write(res.content)
+        # res = requests.get(url)
+        # with open("D:\WALLPAPER/" + "%s.jpg" % str(i),"wb") as w:
+        #     w.write(res.content)
 
 if __name__ == "__main__":
     get_wallpaper()

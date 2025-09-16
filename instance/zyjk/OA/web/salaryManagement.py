@@ -32,7 +32,7 @@ Oa_PO.login("zhangyiwen")
 # # 1）导入药品
 # Oa_PO.Web_PO.clickXpath("//button[@data-url='/general/appbuilder/web/zyhr/bonus-import/import-drug']", 2)  # 导入药品
 # Oa_PO.Web_PO.sendKeysId("impload", drugFile)  # 选择文件
-# Oa_PO.Web_PO.clickXpath("//a[@href='/general/appbuilder/web/zyhr/bonus-import/import-drug']", 2)  # 上传
+# Oa_PO.Web_PO.clickXpath("//a[@href='/general/appbuilder/web/zyhr/bonus-import/import-drug']", 2)  # 上传下载
 # Oa_PO.Web_PO.clickXpath("//button[@类与实例='btn btn-default']", 2)  # 确认
 # # 2）查询字段条件（药品、医药代表、医院）
 # Oa_PO.Web_PO.inputXpathClear("//input[@placeholder='输入药品名称']", Excel_PO.getCellValue(1, 0))
@@ -52,7 +52,7 @@ Oa_PO.login("zhangyiwen")
 # # # 1）导入试剂
 # # Oa_PO.Web_PO.clickXpath("//button[@data-url='/general/appbuilder/web/zyhr/bonus-import/import-reagent']", 2)  # 导入试剂
 # # Oa_PO.Web_PO.sendKeysId("impload", reagentFile)  # 选择文件
-# # Oa_PO.Web_PO.clickXpath("//a[@href='/general/appbuilder/web/zyhr/bonus-import/import-reagent']", 2)  # 上传
+# # Oa_PO.Web_PO.clickXpath("//a[@href='/general/appbuilder/web/zyhr/bonus-import/import-reagent']", 2)  # 上传下载
 # # Oa_PO.Web_PO.clickXpath("//button[@类与实例='btn btn-default']", 2)  # 确认
 # # 2）查询字段条件（回款月份、货号、代表、送货医院）
 # varReceiveDate = str(Excel_PO.getCellValue(1, 15))

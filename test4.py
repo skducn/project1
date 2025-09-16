@@ -15,25 +15,23 @@
 #     return (f"Hello {name}")
 # print(greet("Alice"))  # <b><i>Hello Alice</i></b>
 
-from faker import Faker
-
-# 创建Faker实例，指定中文
-fake = Faker('zh_CN')
-
-# 生成10条地址数据
-for _ in range(10):
-    address = fake.address()
-    print(address)
-    # 示例输出: 上海市东丽县上街 510474
-    # 可以进一步拆分地址 components = address.split()
-    components = address.split()
-    print(components)
+# from faker import Faker
 #
+# # 创建Faker实例，指定中文
+# fake = Faker('zh_CN')
 #
-print("省份:", fake.province())    # 如: 广东省
-print("城市:", fake.city())        # 如: 广州市
-print("街道:", fake.street_name()) # 如: 东风路
-print("门牌号:", fake.building_number()) # 如: 123号
+# # 生成10条地址数据
+# for _ in range(10):
+#     address = fake.address()
+#     print(address)
+#     # 示例输出: 上海市东丽县上街 510474
+#     # 可以进一步拆分地址 components = address.split()
+#     components = address.split()
+#     print(components)
+# print("省份:", fake.province())    # 如: 广东省
+# print("城市:", fake.city())        # 如: 广州市
+# print("街道:", fake.street_name()) # 如: 东风路
+# print("门牌号:", fake.building_number()) # 如: 123号
 
 # --------------------------------------------------------------------------------
 
@@ -45,7 +43,7 @@ print("门牌号:", fake.building_number()) # 如: 123号
 #
 # for _ in range(25):
 #     full_address = f"{address.province()} {address.city()} {address.street_name()} {address.street_number()}"
-#     print(full_address)
+#     print(full_address)  # 江西省 汉中市  新村 951
 
 # --------------------------------------------------------------------------------
 

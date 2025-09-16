@@ -29,7 +29,7 @@ class SSHConnection(object):
         self.__transport.close()
 
     def upload(self, local_path, target_path):
-        # 上传
+        # 上传下载
         sftp = paramiko.SFTPClient.from_transport(self.__transport)
         sftp.put(local_path, target_path)
 
@@ -54,8 +54,8 @@ if __name__ == "__main__":
         host="192.168.0.243", port=22, username="root", pwd="Benetech79$#-"
     )
 
-    print("1 上传（本地文件，远端文件）".center(100, "-"))
-    ssh.upload("d:\\111.txt", "/root/111.txt")  # 上传（本地文件，远端文件）
+    print("1 上传下载（本地文件，远端文件）".center(100, "-"))
+    ssh.upload("d:\\111.txt", "/root/111.txt")  # 上传下载（本地文件，远端文件）
 
     print("2 下载（远端文件，本地文件）".center(100, "-"))
     ssh.download("/root/111.txt", "d:\\222.txt")  # 下载（远端文件，本地文件）

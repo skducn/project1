@@ -502,7 +502,7 @@ class SqlServerPO:
                 if l_d_[i]['COMMENT'] == None:
                     l_comment.append(l_d_[i]['COMMENT'])
                 else:
-                    l_comment.append(l_d_[i]['COMMENT'].decode(encoding="utf-8", errors="strict"))  # 上传
+                    l_comment.append(l_d_[i]['COMMENT'].decode(encoding="utf-8", errors="strict"))  # 上传下载
                     # l_comment.append(l_d_[i]['COMMENT'].decode(encoding="GBK", errors="strict"))  # 打开页面
             return dict(zip(l_field, l_comment))
         except Exception as e:
