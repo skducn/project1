@@ -2,7 +2,7 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 - 判定居民体重状态 Determine Residents' Weight Status
+# Description: 体重管理1.0 - 判定居民体重状态 Determine Residents' Weight Status (a_weight10_DRWS)
 # 需求：体重管理 v1.18
 # pip install pymssql==2.2.8
 # pip install petl
@@ -18,7 +18,7 @@ Drws_PO = DrwsPO()
 
 
 # todo 步骤2：将excel导入db
-# Drws_PO.excel2db_DRWS()
+Drws_PO.excel2db_DRWS()
 
 
 # todo 步骤3：测试取值条件
