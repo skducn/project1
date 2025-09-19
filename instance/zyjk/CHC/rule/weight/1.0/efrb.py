@@ -26,11 +26,11 @@ Efrb_PO = EfrbPO()
 
 # todo 步骤2, 测试规则库
 # 2.1 测试所有
-Efrb_PO.EFRB('all')
+# Efrb_PO.EFRB('all')
 
 # 2.2 测试单行
 # 1.23.1
-# Efrb_PO.EFRB(13)  # v1.25，
+Efrb_PO.EFRB(13)  # v1.25，
 # Efrb_PO.EFRB(22)  # v1.25，
 # Efrb_PO.EFRB(23)  # v1.25，
 # Efrb_PO.EFRB(59)  # v1.25，

@@ -67,8 +67,12 @@ class EfrbPO():
 
         # 判断QYYH中是否存在此身份证
         isSFZH__QYYH = Sqlserver_PO_CHC.isRecord("QYYH", "SFZH", self.WEIGHT_REPORT__IDCARD)
+        # print(isSFZH__QYYH)
+
         # 判断WEIGHT_REPORT中是否存在此身份证
         isID_CARD__WEIGHT_REPORT = Sqlserver_PO_CHC.isRecord("WEIGHT_REPORT", "ID_CARD", self.WEIGHT_REPORT__IDCARD)
+        # print(isID_CARD__WEIGHT_REPORT)
+        # sys.exit(0)
 
         if isSFZH__QYYH != 1 or isID_CARD__WEIGHT_REPORT != 1:
             s = f'error, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!'

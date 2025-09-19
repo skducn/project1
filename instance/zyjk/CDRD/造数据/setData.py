@@ -197,6 +197,13 @@ Cdrd_PO = CdrdPO()
 # Cdrd_PO.procedure("s_cdrd_patient_test_project_info", '检查项目明细')
 # Cdrd_PO.openSql("s_cdrd_patient_test_project_info.sql")
 
+
+#
+# Cdrd_PO.crt_cdrdPatientPacemakerFollowUp('起搏器随访')
+# Cdrd_PO.procedure("s_cdrd_patient_pacemaker_follow_up）", '起搏器随访')
+# Cdrd_PO.openSql("s_cdrd_patient_pacemaker_follow_up.sql")
+
+
 # #
 # # # #
 # todo 1.9 门诊医嘱
@@ -352,9 +359,9 @@ Cdrd_PO = CdrdPO()
 
 
 # todo 3-3 标签配置 - 标签权限表
-Cdrd_PO.crt_sys_tag_authority1('标签权限表')
+# Cdrd_PO.crt_sys_tag_authority1('标签权限表')
 # Cdrd_PO.subProcedure2("GenerateTagAuthorityData", '标签权限表')
-Cdrd_PO.subProcedure2("GenerateTagAuthorityData1", '标签权限表')
+# Cdrd_PO.subProcedure2("GenerateTagAuthorityData1", '标签权限表')
 # ------------------------
 # 请编写一个存储过程，用于生成一批数据。
 #
@@ -447,6 +454,7 @@ Cdrd_PO.subProcedure2("GenerateTagAuthorityData1", '标签权限表')
 
 # todo 7 字段模块表
 # Cdrd_PO.crt_sys_category_mapping('字段模块表')
+# # todo 7.2 字段模块数据表
 # Sqlserver_PO.execute("insert into sys_category_mapping(category_class,category_name,category_tier,category_sort,category_status,category_fa_key,category_key) "
 # "values('patient_detail','患者详情',1,1,'0','','cdrd_patient_info')"
 # ",('patient_detail','疾病诊断史',2,1,'0','cdrd_patient_info','cdrd_patient_diag_info')"
@@ -474,7 +482,9 @@ Cdrd_PO.subProcedure2("GenerateTagAuthorityData1", '标签权限表')
 # ",('patient_detail','检查项目明细',3,1,'0','cdrd_patient_assit_examination_info','cdrd_patient_test_project_info')"
 # ",('patient_detail','用药信息',2,7,'0','cdrd_patient_info','cdrd_patient_drug_info')"
 # ",('patient_detail','手术信息',2,8,'0','cdrd_patient_info','cdrd_patient_operation_info')"
-# ",('patient_detail','死亡记录',2,9,'0','cdrd_patient_info','cdrd_patient_death_info')")
+# ",('patient_detail','死亡记录',2,9,'0','cdrd_patient_info','cdrd_patient_death_info')"
+# ",('patient_detail','起搏器随访',2,10,'0','cdrd_patient_info','cdrd_patient_pacemaker_follow_up')")
+
 
 
 # todo 8 字段表
@@ -579,6 +589,39 @@ Cdrd_PO.subProcedure2("GenerateTagAuthorityData1", '标签权限表')
 # =======================================================================================================
 # =======================================================================================================
 
+# todo 26，模块配置
+# Cdrd_PO.crt_sys_module_config('模块配置')
+# todo 26.2 模块配置数据
+# Sqlserver_PO.execute("insert into sys_module_config(category_class,category_name,module_name,module_key,sort,update_by,update_time) "
+# "values('patient_detail','患者详情','起搏器随访','cdrd_patient_pacemaker_follow_up',1,1,'')")
+
+# todo 27，模块权限配置
+# Cdrd_PO.crt_sys_module_authority('模块权限配置')
+
+
+# todo 28，导入类别配置
+# Cdrd_PO.crt_sys_import_class_config('导入类别配置')
+# todo 28.2 导入配置数据
+# Sqlserver_PO.execute("insert into sys_import_class_config(import_class,[file],sort,file_template_address,update_by,update_time) "
+# "values('起搏器随访数据','.xls/.xlsx',1,'',1,'')")
+
+# todo 27，导入权限配置
+# Cdrd_PO.crt_sys_import_class_authority('导入权限配置')
+
+
+
+# todo 28，外部数据导入
+# Cdrd_PO.crt_sys_data_import('外部数据导入')
+
+# todo 29，数据导入日志
+# Cdrd_PO.crt_data_import_log('数据导入日志')
+
+# todo 30，数据生成对象
+# Cdrd_PO.crt_data_generate_object('数据生成对象')
+
+
+# todo 31，患者文件存储
+# Cdrd_PO.crt_patient_file_store('患者文件存储')
 
 
 
