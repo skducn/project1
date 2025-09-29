@@ -1,0 +1,22 @@
+https://mp.weixin.qq.com/s?__biz=MzIwMTg3ODQ4Mw==&mid=2247486396&idx=1&sn=f73f3338c808edf2a35532a417c03b59&scene=21&poc_token=HHtT2mijUfJlJBXIbky2kALuX-jYxEEcYxUPkoig
+
+
+# todo Black
+自动格式化 Python 代码的工具，强制统一代码风格。
+安装方法：
+pip install black
+black your_script.py  # 格式化单个文件
+
+
+# todo isort
+自动整理 Python import 语句的工具。
+使用示例：
+pip install isort
+isort your_script.py  # 整理 import 语句
+
+
+# todo Pylint
+静态代码分析工具，检查代码质量和错误。
+使用示例：
+pip install pylint
+pylint your_script.py

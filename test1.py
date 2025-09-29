@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
 from tencentcloud.common import credential
-from tencentcloud.common.exception.tencent_cloud_sdk_exception import TencentCloudSDKException
+from tencentcloud.common.exception.tencent_cloud_sdk_exception import (
+    TencentCloudSDKException,
+)
 
 from tencentcloud.common.profile.client_profile import ClientProfile
 from tencentcloud.common.profile.http_profile import HttpProfile
@@ -21,7 +23,7 @@ def get_tencent_sheet_data():
         # export TENCENTCLOUD_SECRET_KEY="你的SecretKey"
         cred = credential.Credential(
             os.environ.get("1312645915"),
-            os.environ.get("AKIDqUt3ye4FAqHSO5XjgOq30iBOM4YmlV1I")
+            os.environ.get("AKIDqUt3ye4FAqHSO5XjgOq30iBOM4YmlV1I"),
         )
 
         # 2. 创建 API 客户端实例
@@ -52,7 +54,7 @@ def get_tencent_sheet_data():
         print(f"API 调用失败: {err}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_tencent_sheet_data()
 
 # import requests

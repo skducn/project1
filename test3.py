@@ -1,10 +1,11 @@
-import os
 import argparse
+import os
+import ssl
 import tempfile
+
 import whisper
 from moviepy.editor import VideoFileClip
 
-import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
 
 #  python test3.py /Users/linghuchong/Desktop/400.mp4 -o test33.srt
@@ -51,7 +52,12 @@ def main():
     parser = argparse.ArgumentParser(description="视频语音转文字工具")
     parser.add_argument("video_path", help="视频文件路径")
     parser.add_argument("-o", "--output", help="输出文本文件路径")
-    parser.add_argument("-m", "--model", help="Whisper 模型大小 (tiny, base, small, medium, large)", default="small")
+    parser.add_argument(
+        "-m",
+        "--model",
+        help="Whisper 模型大小 (tiny, base, small, medium, large)",
+        default="small",
+    )
     parser.add_argument("--keep-audio", action="store_true", help="保留临时音频文件")
 
     args = parser.parse_args()
@@ -83,4 +89,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()    
+    main()
