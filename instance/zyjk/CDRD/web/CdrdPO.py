@@ -444,3 +444,25 @@ class CdrdPO():
             d_doc = {v: k for k, v in d_doc.items()}
             return d_doc
 
+
+    def getCount(self):
+        # 获取数量总数
+        # ...
+        # sleep(5)
+        a = self.Web_PO.getTextByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/div")
+        print(a)
+        # self.Web_PO.toEnd()
+        # self.Web_PO.scrollDownByApp("1000",2 )
+        # self.Web_PO.scrollUpByApp("1000", 2)
+        # self.Web_PO.scrollIntoView('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]', 2)
+        # a = self.Web_PO.getTextByX('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]')
+        # print(a)
+
+        # self.Web_PO.scrollBottom(3)
+        ele = self.Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section')
+        #
+        self.Web_PO.eleScrollUpDownByX(ele, '/html/body/div[1]/div/div[3]/section', 3300, 2)
+        #
+        # a = self.Web_PO.eleGetTextByX(ele, '/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]')
+        # print(a)
+

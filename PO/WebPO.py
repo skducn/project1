@@ -658,6 +658,7 @@ class WebPO(DomPO):
 
     def scrollBottom(self, t=2):
         # 2.6 页面滚动条到底部
+        sleep(2)
         self.driver.execute_script("window.scrollTo(0,document.body.scrollHeight)")
         sleep(t)
 

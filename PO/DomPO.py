@@ -2101,6 +2101,10 @@ class DomPO(object):
     # todo ActionChains
     # https://fishpi.cn/article/1713864467902
 
+    def toEnd(self):
+        # 模拟按 End 键
+        sleep(4)
+        ActionChains(self.driver).send_keys(Keys.END).perform()
 
 
 

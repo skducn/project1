@@ -21,10 +21,13 @@ Color_PO = ColorPO()
 Cdrd_PO.login()
 
 # 打开菜单
-Cdrd_PO.opnMenu('角色管理')
-Cdrd_PO.opnMenu('菜单管理')
-Cdrd_PO.opnMenu('医院管理')
-Cdrd_PO.swhMenu('菜单管理')
+# Cdrd_PO.opnMenu('角色管理')
+# Cdrd_PO.opnMenu('菜单管理')
+Cdrd_PO.opnMenu('患者列表')
+Cdrd_PO.swhMenu('患者列表')
+
+# 获取数量总数
+Cdrd_PO.getCount()
 
 
 # 登出

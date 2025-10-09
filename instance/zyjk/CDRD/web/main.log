@@ -39,3 +39,54 @@
 2025-08-04 10:57:31,627 - INFO - 已登录
 2025-08-04 11:04:51,724 - INFO - 已登录
 2025-08-04 11:05:20,764 - INFO - 已登录
+2025-10-09 16:11:12,610 - INFO - ====== WebDriver manager ======
+2025-10-09 16:11:12,818 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:12:56,560 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:15:30,869 - INFO - There is no [mac64] chromedriver "140.0.7339.207" for browser google-chrome "140.0.7339" in cache
+2025-10-09 16:15:30,893 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:16:08,002 - INFO - WebDriver version 140.0.7339.207 selected
+2025-10-09 16:16:08,007 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/140.0.7339.207/mac-x64/chromedriver-mac-x64.zip
+2025-10-09 16:16:08,007 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/140.0.7339.207/mac-x64/chromedriver-mac-x64.zip
+2025-10-09 16:18:38,030 - ERROR - 发生错误: Could not reach host. Are you offline?
+2025-10-09 16:18:44,275 - INFO - ====== WebDriver manager ======
+2025-10-09 16:18:44,492 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:18:46,689 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:20:04,767 - INFO - There is no [mac64] chromedriver "140.0.7339.207" for browser google-chrome "140.0.7339" in cache
+2025-10-09 16:20:04,777 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:20:38,555 - INFO - Received signal: SIGINT
+2025-10-09 16:20:38,555 - INFO - Program is terminating...
+2025-10-09 16:20:43,810 - INFO - ====== WebDriver manager ======
+2025-10-09 16:20:44,021 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:20:47,379 - INFO - Get LATEST chromedriver version for google-chrome
+2025-10-09 16:21:01,799 - INFO - Received signal: SIGINT
+2025-10-09 16:21:01,799 - INFO - Program is terminating...
+2025-10-09 16:21:14,628 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/140.0.7339./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: -9
+
+2025-10-09 16:22:38,983 - INFO - 已登录
+2025-10-09 16:23:55,030 - INFO - 已登录
+2025-10-09 17:07:05,229 - INFO - 已登录
+2025-10-09 17:09:50,984 - INFO - 已登录
+2025-10-09 17:12:04,872 - INFO - 已登录
+2025-10-09 17:12:55,173 - INFO - 已登录
+2025-10-09 17:15:45,660 - INFO - 已登录
+2025-10-09 17:22:55,900 - INFO - 已登录
+2025-10-09 17:23:31,991 - INFO - 已登录
+2025-10-09 17:25:12,801 - INFO - 已登录
+2025-10-09 17:25:58,205 - INFO - 已登录
+2025-10-09 17:26:54,294 - INFO - 已登录
+2025-10-09 17:29:37,606 - INFO - 已登录
+2025-10-09 17:33:35,590 - INFO - 已登录
+2025-10-09 17:34:09,259 - INFO - 已登录
+2025-10-09 17:35:56,119 - INFO - 已登录
+2025-10-09 17:36:58,379 - INFO - 已登录
+2025-10-09 17:39:03,200 - INFO - 已登录
+2025-10-09 17:39:31,727 - INFO - 已登录
+2025-10-09 17:40:03,581 - INFO - 已登录
+2025-10-09 17:40:35,263 - INFO - 已登录
+2025-10-09 17:41:12,702 - INFO - 已登录
+2025-10-09 17:41:50,935 - INFO - 已登录
+2025-10-09 17:43:22,396 - INFO - 已登录
+2025-10-09 17:44:51,044 - INFO - 已登录
+2025-10-09 17:45:32,614 - INFO - 已登录
+2025-10-09 17:47:04,013 - INFO - 已登录
+2025-10-09 17:47:29,650 - INFO - 已登录
