@@ -48,6 +48,7 @@ class CdrdPO():
 
         # 创建URL与句柄的字典
         self.d_url_handle = {}
+        self.d_all = {}
 
 
     def handle_signal(self, signum, frame):
@@ -123,10 +124,11 @@ class CdrdPO():
         self.logger.info("已登出")
 
     def opnMenu(self, varMenu):
-        # 打开菜单,获取菜单的链接和句柄字典
+        # 打开菜单, 获取菜单的链接和句柄字典
         d_menu = self.getMenu2Url()
         d_url_handle = self.Web_PO.opnLabel(d_menu[varMenu], 1)
         self.d_url_handle = self.d_url_handle | d_url_handle
+        self.Web_PO.swhLabelByHandle(self.d_url_handle[d_menu[varMenu]])
 
     def swhMenu(self, varMenu):
         # 通过句柄切换菜单
@@ -445,24 +447,78 @@ class CdrdPO():
             return d_doc
 
 
-    def getCount(self):
-        # 获取数量总数
-        # ...
-        # sleep(5)
-        a = self.Web_PO.getTextByX("/html/body/div[1]/div/div[3]/section/div/div/div[1]/div")
-        print(a)
-        # self.Web_PO.toEnd()
-        # self.Web_PO.scrollDownByApp("1000",2 )
-        # self.Web_PO.scrollUpByApp("1000", 2)
-        # self.Web_PO.scrollIntoView('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]', 2)
-        # a = self.Web_PO.getTextByX('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]')
-        # print(a)
+    def getPatientCount(self):
 
-        # self.Web_PO.scrollBottom(3)
+        # 获取页面患者总数量
+
+        # 定位大框
         ele = self.Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section')
-        #
-        self.Web_PO.eleScrollUpDownByX(ele, '/html/body/div[1]/div/div[3]/section', 3300, 2)
-        #
+
+        # 滚动4次到元素
+        self.Web_PO.eleScrollBottomByXN(ele, '/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]', 3, 0)
+
+        # 获取"共 6723 项数据
         # a = self.Web_PO.eleGetTextByX(ele, '/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]')
-        # print(a)
+        s_total = self.Web_PO.eleGetTextByX(ele, "//span[@class='el-pagination__total is-first']")
+        s_total = s_total.replace("共 ", "").replace(" 项数据", "")
+        print(s_total)
+
+    def getUrlByPatient(self, varPage=1):
+
+        # 获取患者详情页url
+
+        # 点击按钮前, 获取当前所有窗口的句柄
+        self.Web_PO.getAllWindowHandle()
+
+        d_ = {}
+
+        for i in range(10):
+            # 点击 患者详情
+            self.Web_PO.clkByX('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr[' + str(i+1) + ']/td[9]/div/button')
+                              # /html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr[2]/td[9]/div/button
+
+            # 患者姓名
+            s_patient = self.Web_PO.getTextByX('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[1]/div[1]/div[3]/div/div[1]/div/table/tbody/tr[' + str(i+1) + ']/td[1]/div')
+            # print(s_patient)  # 李芳兴
+
+            # 患者详情url
+            s_patient_url = self.Web_PO.getUrlByClk()
+            # print(s_patient_url)  # http://192.168.0.243:8083/patient/patientDetail?patientId=401
+            s_patient_url_id = s_patient_url.split("patientId=")[1]
+            d_[s_patient_url_id]= s_patient
+
+            # 关闭url
+            self.Web_PO.cls()
+            # 关闭新窗口后，浏览器焦点不会自动切换回来，需要手动切换
+            # self.driver.switch_to.window(self.all_window_handles)
+
+            # 切换窗口（上一个句柄是1）
+            self.Web_PO.swhWindowIndex(1)
+
+        # print(d_)  # {'401': '李芳兴', '3647': '朱一栋', '10093': '郑明荣', '15125': '朱龙兴', '27172': '郑世伟', '27480': '何明', '24401': '赵军', '19877': '张玲柏', '2387': '吴一桦', '2440': '韩佳柏'}
+
+        self.d_all[varPage] = d_
+        # print(self.d_all)
+
+        return self.d_all
+
+
+
+    def setPage(self, varPage):
+
+        # 获取页面患者总数量
+
+        # 定位大框
+        ele = self.Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section')
+
+        # 滚动4次到元素
+        self.Web_PO.eleScrollBottomByXN(ele, '/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]', 4, 0)
+
+        # 前往N页
+        self.Web_PO.setTextTabByX2('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[3]/div/div/input', varPage)
+
+
+
+
+
 

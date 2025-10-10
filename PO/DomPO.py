@@ -2,27 +2,22 @@
 # ***************************************************************
 # Author     : John
 # Created on : 2020-3-20
-# Description: 通过DOM来操作页面中各种元素，例如添加元素、删除元素、替换元素等
-# 重新定义 find_element, find_elements, send_keys,
+# Description: 通过DOM来操作页面中各种元素，例如添加、删除及替换元素等
+# 重新定义： find_element, find_elements, send_keys, sendKeysByX，sendKeysById，sendKeysByname
 # clk, get, set, checkbox, select, iframe, js, boolean
 # pip install selenium-wire
 
-# https://blog.csdn.net/m0_57162664/article/details/134266949  Css
-# 使用 nth-of-type(n)，可以指定选择的元素是父元素的第几个某类型的子节点。, 如 span:nth-of-type(2) 定位父元素第二个span类型子节点
-# nth-last-of-type(n)，可以倒过来， 选择父元素的倒数第几个某类型的子节点。
+# selenium 定位方式3-css_selector： https://blog.csdn.net/m0_57162664/article/details/134266949
+# 父元素的第几个某类型的子节点 nth-of-type(n) 如：
+# span:nth-of-type(2) 定位父元素第二个span类型子节点
+# div:nth-last-of-type(2)，定位父元素倒数第二个div类型子节点。
 # ***************************************************************
+
 """
-重新定义
-find_element
-find_elements
-send_keys
-sendKeysByX
-sendKeysById
-sendKeysByname
 
 todo clk菜单
-单点击 clkByX(varXpath)
-多点击 clkByXs(varXpaths)
+单点击 clkByX()
+多点击 clkByXs()
 单点击某个索引号 clkIndexByXs(varXpaths, varIndex)
 单点击超链接文本（文本中包含部分内容）clkTextByTpcByXs(varXpaths, varTpc, t=1):
 单点击超链接文本 clkTextByXs(varXpaths, varText)
@@ -205,6 +200,44 @@ class DomPO(object):
         xpath = element.getroottree().getpath(element)
         print(xpath)  # 输出: /html/body/div/ul/li[1]
 
+    def getAllWindowHandle(self):
+
+        # 获取所有窗口句柄
+        self.all_window_handles = self.driver.window_handles
+
+
+    def swhWindowIndex(self, varIndex):
+
+        # 切换窗口句柄index
+        new_window_handle = self.driver.window_handles[varIndex]
+        self.driver.switch_to.window(new_window_handle)
+
+
+    def getUrlByClk(self):
+
+        # 通过点击链接，获取url
+
+        # 打开url，等待新窗口出现
+        #
+        # 新窗口总数增加 1
+        try:
+            WebDriverWait(self.driver, 10).until(EC.number_of_windows_to_be(len(self.all_window_handles) + 1))
+        except Exception as e:
+            print(f"等待新窗口超时: {e}")
+            self.driver.quit()
+            exit()
+
+        # 第二次获取所有窗口句柄
+        self.all_window_handles2 = self.driver.window_handles
+
+        # 找出新窗口的句柄
+        new_window_handle = [handle for handle in self.all_window_handles2 if handle not in self.all_window_handles][0]
+
+        # 切换到新窗口
+        self.driver.switch_to.window(new_window_handle)
+
+        return (self.driver.current_url)
+
 
 
     def find_elementNoWait(self, *loc):
@@ -325,11 +358,10 @@ class DomPO(object):
     # todo clk
 
 
-
     def getUrlByclkByX(self, varXpath, t=1):
         # 单点击，并返回url
         self.find_element(*(By.XPATH, varXpath)).click()
-        sleep(t)
+        sleep(7)
         return (self.driver.current_url)
 
     def clkByX(self, varXpath, t=1):
@@ -962,27 +994,32 @@ class DomPO(object):
         self.driver.execute_script("arguments[0].scrollIntoView();", element)  # 将元素滚动到可见区域
         sleep(t)
 
-    def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, t=2):
+    def eleScrollBottomByXN(self, ele, varXpath, varCount, t=2):
         # 定位元素之键盘keys.End滚动到底部
-        # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
+        # 逻辑：滚动N次 keys.end 到 varPath元素
+        # 用法：先获取整个页面高度，滚动的大框 ，如下实例
+        # # 定位大框
+        # ele = self.Web_PO.getSuperEleByX('/html/body/div[1]/div/div[3]/section')
+        # # 滚动3次到元素
+        # self.Web_PO.eleScrollBottomByXN(ele, '/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]', 3, 0)
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         for i in range(varCount):
             ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
             sleep(1)
         sleep(t)
 
-    # def eleScrollKeysEndByXByX(self, ele, varXpath, varCount, varXpath2, t=2):
-    #     # 定位元素之键盘keys.End滚动到底部
-    #     # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
-    #     ele2 = ele.find_element(*(By.XPATH, varXpath))
-    #     for i in range(varCount):
-    #         ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
-    #         sleep(1)
-    #         # if self.isEleExistByX(varXpath2):
-    #         #     break
-    #     sleep(t)
+    def eleScrollBottomByXNX(self, ele, varXpath, varCount, varXpath2, t=2):
+        # 定位元素之键盘keys.End滚动到底部
+        # 逻辑：定位varPath元素，遍历keys.end N次, 如遇到varPath2元素则停止滚动
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        for i in range(varCount):
+            ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
+            sleep(1)
+            if self.isEleExistByX(varXpath2):
+                break
+        sleep(t)
 
-    def eleScrollKeysEndByX(self, ele, varXpath, t=2):
+    def eleScrollBottomByX(self, ele, varXpath, t=2):
         # 定位元素之键盘keysEnd滚动到底部(用于移动端)
         ele2 = ele.find_element(*(By.XPATH, varXpath))
         ActionChains(self.driver).send_keys_to_element(ele2, Keys.END).perform()
