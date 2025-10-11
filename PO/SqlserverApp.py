@@ -7,6 +7,10 @@
 
 from PO.SqlserverPO import *
 
+# Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
+
+
+
 # 社区健康平台（静安）
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "CHC_JINGAN", "GBK")
 
@@ -17,14 +21,19 @@ from PO.SqlserverPO import *
 # CDRD
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 
-# todo 创建表
-Sqlserver_PO.crtTable(
-'test123',
-'''id INT IDENTITY PRIMARY KEY,
-diag_class NVARCHAR(100),
-diag_name NVARCHAR(100),
-diag_code NVARCHAR(1000)
-''')
+Sqlserver_PO.record('*', 'varchar', '%好莱坞医院%')
+
+
+
+
+# # todo 创建表
+# Sqlserver_PO.crtTable(
+# 'test123',
+# '''id INT IDENTITY PRIMARY KEY,
+# diag_class NVARCHAR(100),
+# diag_name NVARCHAR(100),
+# diag_code NVARCHAR(1000)
+# ''')
 
 
 # todo 原表里生成高频数据记录
@@ -32,7 +41,7 @@ diag_code NVARCHAR(1000)
 
 
 # todo 将数据导入db（保留表结构）
-Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "test123", ['diag_class', 'diag_name', 'diag_code'], "Sheet1")  # 删除原数据，更新新数据, 就插入一列。
+# Sqlserver_PO.xlsx2db_reserver_replace_col('/Users/linghuchong/Desktop/test.xlsx', "test123", ['diag_class', 'diag_name', 'diag_code'], "Sheet1")  # 删除原数据，更新新数据, 就插入一列。
 # Sqlserver_PO.xlsx2db_reserver_replace('/Users/linghuchong/Desktop/test.xlsx', "test123", "Sheet1")  # 删除原数据，更新新数据
 # Sqlserver_PO.xlsx2db_reserver_append('/Users/linghuchong/Desktop/test.xlsx', "test123", "Sheet1")  # 追加数据
 # Sqlserver_PO.xlsx2db('/Users/linghuchong/Desktop/test.xlsx', "test123", 'append', "Sheet1")  # 追加数据
