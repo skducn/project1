@@ -5,6 +5,7 @@
 # Description: 社区健康管理中心
 # 测试环境 # http://192.168.0.243:8010/#/login
 # 'cs', '12345678'
+# 账号: lbl 密码：Qa@123456
 #***************************************************************
 from ChcPO_quanqu import *
 logName = "./" + os.path.basename(__file__).split('.')[0] + ".log"
