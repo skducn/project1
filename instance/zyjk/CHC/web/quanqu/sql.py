@@ -2,7 +2,7 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-10-15
-# Description: 社区健康管理中心 - 数据流转
+# Description: 社区健康管理中心 - 业务流程
 # 测试环境 # http://192.168.0.243:8010/#/login
 # 账号: lbl 密码：Qa@123456
 # # 在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html
@@ -11,23 +11,34 @@ private_key = '124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62'
 #***************************************************************
 from PO.SqlserverPO import *
 
-# todo 社区健康平台（全市）
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
-
-# Sqlserver_PO.record('sys_user', 'varchar', '%小茄子%')
-# id=82,
-# NAME:小茄子
-# 机构名称, ORG_NAME :宝山社区卫生服务中
-# 所属机构编码, ORG_CODE:0000001
-# 人员类别编码, CATEGORY_CODE: 4
-# 人员类别, CATEGORY_NAME:中心主任
-# 第三方工号, THIRD_NO:1231231
-
-
-
+# 社区健康平台（全市）
+Sqlserver_PO_config = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 
-# todo 健康评估及干预
+# todo 'ID': 82, 'THIRD_NO': '1231231','NAME': '小茄子'
+# Sqlserver_PO_config.record('sys_user', 'varchar', '%小茄子%')
+# 'ID': 82, 'THIRD_NO': '1231231','NAME': '小茄子'
+# 'ORG_CODE': '0000001', 'ORG_NAME': '宝山社区卫生服务中心'
+# 'CATEGORY_CODE': '4', 'CATEGORY_NAME': '中心主任',
+#
+
+# todo 'ID': 132, 'THIRD_NO': '800411', 'NAME': 'jinhao'
+# Sqlserver_PO_config.record('sys_user', 'varchar', '%jh123%')
+# 'ID': 132, 'THIRD_NO': '800411', 'NAME': 'jinhao'
+# 'ORG_CODE': '0000001','ORG_NAME': '宝山社区卫生服务中心',
+# ORG_NAME :宝山社区卫生服务中,ORG_CODE:0000001
+# 'CATEGORY_CODE': '4', 'CATEGORY_NAME': '中心主任',
+#
+
+
+# todo 健康评估及干预 QYYH
+
+Sqlserver_PO.record('T_ASSESS_INFO', 'varchar', u'%520626198701154673%')
+r = Sqlserver_PO.select("SELECT ASSESS_DATE,REPORT_STATUS,UPLOAD_STATUS,UPLOAD_DOC_ID,PDF_REPORT_STATUS,MODEL_CODE FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512618))
+print(r[0])  # {'ASSESS_DATE': datetime.date(2025, 10, 16), 'REPORT_STATUS': 1, 'UPLOAD_STATUS': '0', 'UPLOAD_DOC_ID': None, 'PDF_REPORT_STATUS': '0', 'MODEL_CODE': ''}
+# 页面：已确认，数据库：REPORT_STATUS：1 ， 报告生成状态（0-预评估，1-评估完成，2-评估中，3-评估失败(取数据)，4-评估失败(执行规则)）
+
+
 # Sqlserver_PO.record('*', 'varchar', '%白*均%')
 # Sqlserver_PO.record('*', 'varchar', '%徐东%', False)
 # ----------------------------------------------------------------------------------------------------
@@ -101,19 +112,9 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # 006-宝山版成人模板,008-宝山版孕妇模板,005-宝山版儿童模版,010-宝山版产妇模板,012-宝山版学生模板,014-宝山版老年人模板,T001-标准版体重模版,S014-宝山版老年人上传模板
 # 老年人
 # Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512455))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512457))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512458))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512472))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512490))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512514))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512530))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512549))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512555))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512574))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512576))
-# Sqlserver_PO.select("delete FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512581))
 
-# Sqlserver_PO.record('T_ASSESS_INFO', 'varchar', u'%110101195804049038%')
+
+# Sqlserver_PO.record('T_ASSESS_INFO', 'varchar', u'%520626198701154673%')
 # r = Sqlserver_PO.select("SELECT ASSESS_DATE,REPORT_STATUS,UPLOAD_STATUS,UPLOAD_DOC_ID,PDF_REPORT_STATUS,MODEL_CODE FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512617))
 # print(r[0])  # {'ASSESS_DATE': datetime.date(2025, 10, 16), 'REPORT_STATUS': 1, 'UPLOAD_STATUS': '0', 'UPLOAD_DOC_ID': None, 'PDF_REPORT_STATUS': '0', 'MODEL_CODE': ''}
 # 页面：已确认，数据库：REPORT_STATUS：1 ， 报告生成状态（0-预评估，1-评估完成，2-评估中，3-评估失败(取数据)，4-评估失败(执行规则)）
@@ -175,17 +176,17 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # todo 体重管理
 # Sqlserver_PO.execute("update WEIGHT_REPORT set MODEL_CODE='T001'")
 # Sqlserver_PO.desc('WEIGHT_REPORT')
-Sqlserver_PO.record('WEIGHT_REPORT', 'varchar', u'%310101195507234066%')
-r = Sqlserver_PO.select("SELECT PDFFILE_STATUS,MODEL_CODE FROM %s where ID='%s'" % ('WEIGHT_REPORT', 1927))
-print(r[0])  # {'ASSESS_DATE': datetime.date(2025, 10, 16), 'REPORT_STATUS': 1, 'UPLOAD_STATUS': '0', 'UPLOAD_DOC_ID': None, 'PDF_REPORT_STATUS': '0', 'MODEL_CODE': ''}
+# Sqlserver_PO.record('WEIGHT_REPORT', 'varchar', u'%310101195507234066%')
+# r = Sqlserver_PO.select("SELECT PDFFILE_STATUS,MODEL_CODE FROM %s where ID='%s'" % ('WEIGHT_REPORT', 1927))
+# print(r[0])  # {'ASSESS_DATE': datetime.date(2025, 10, 16), 'REPORT_STATUS': 1, 'UPLOAD_STATUS': '0', 'UPLOAD_DOC_ID': None, 'PDF_REPORT_STATUS': '0', 'MODEL_CODE': ''}
 # 页面：已确认，数据库：REPORT_STATUS：1 ， 报告生成状态（0-预评估，1-评估完成，2-评估中，3-评估失败(取数据)，4-评估失败(执行规则)）
 
 
 # Sqlserver_PO.record('*', 'varchar', '%T002%', False)
 
 
-r = Sqlserver_PO.select("SELECT WEIGHT_INTERVENTION,PDFFILE_STATUS FROM %s where SFZH='%s'" % ('QYYH', 310101195507150428))
-print(r[0])
+# r = Sqlserver_PO.select("SELECT WEIGHT_INTERVENTION,PDFFILE_STATUS FROM %s where SFZH='%s'" % ('QYYH', 310101195507150428))
+# print(r[0])
 
 
 
