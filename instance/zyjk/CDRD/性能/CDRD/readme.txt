@@ -1,10 +1,16 @@
-token
-$.data.access_token
-0
+todo 切环境
+jenkins - cdrd-test - cdrd-server - 配置（构建后操作）
+定位到  url: jdbc:sqlserver://192.168.0.234:1433;DatabaseName=CDRD_TEST 修改为 CDRD_PT
+执行 Build with Parameters - 选择工程 origin/test_v1.2
 
+
+todo token
+$.data.access_token
+
+todo 需求文档
 gitlab：http://192.168.0.241/cdrd_product_doc/product_doc
 
-生成报告
+todo 生成报告
 步骤1，将3.jmx 生成日志文件3.jtl文件
 jmeter -n -t d:\51\jmeter\project\CDRD\3.jmx -l d:\51\jmeter\project\CDRD\3.jtl
 
@@ -12,18 +18,16 @@ jmeter -n -t d:\51\jmeter\project\CDRD\3.jmx -l d:\51\jmeter\project\CDRD\3.jtl
 jmeter -g d:\51\jmeter\project\CDRD\3.jtl -o d:\51\jmeter\project\CDRD\3
 
 
-测试步骤
+todo 录制测试步骤
 1，打开 influxdb1\influxd ，influx , 
 2，打开 grafana-v12.1.0\bin\grafana-server.exe  //127.0.0.1:3000
 3，打开浏览器，输入测试网址：http://192.168.0.243:8083
 4，浏览器中-设置 - 代理 127.0.0.1：8888     
 chrome://settings/?search=%E4%BB%A3%E7%90%86
-
 5，打开jmeter，开始录制
 6，登录，操作具体内容
 7，关闭录制
-
-jmeter操作
+8，jmeter操作
 1，添加线程组, config element - 添加 http cookie manager
 	http request defaults默认请求头， http  192.168.0.243 8083
 	http header manager 
@@ -44,8 +48,7 @@ jmeter操作
 3, 开始录制，打开登陆网页
 
 
-
-startAgent
+todo 打开监控startAgent
 1,CDRD /ServerAgent-2.2.3
 2, ./startAgent.sh
 
