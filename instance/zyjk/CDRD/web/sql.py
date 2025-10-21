@@ -2,45 +2,70 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-10-15
-# Description: 社区健康管理中心 - 业务流程
-# 测试环境 # http://192.168.0.243:8010/#/login
-# 账号: lbl 密码：Qa@123456
-# # 在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html
-public_key = '04025d84101aa6ba2835995c2e72c0d9f49f382a87ace7e2770a511e1bbe95a40a2800a40bc966b3a51e4d36735e2b5941dd6e10f502f68fbc42a0ba7cec7ab249'
-private_key = '124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62'
+# Description: 专病库（1.2）
+# 测试环境 # http://192.168.0.243:8083/patient/list
+# 账号: jinhao 密码：Jinhao123!@#
 #***************************************************************
 from PO.SqlserverPO import *
-
-# 社区健康平台（全市）
-Sqlserver_PO_config = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHCCONFIG", "GBK")
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "utf8")
 
 
-# Sqlserver_PO_config.desc('sys_user')
+# Sqlserver_PO.record('*', 'varchar', '%三枪起搏器%')
+
+
+# 基础配置 - 标签管理 - 新增标签 - 患者详情/就诊信息 - 人民币
+# Sqlserver_PO.record('*', 'varchar', '%人民币%')
+# {'TAG_ID': 82, 'CATEGORY_CLASS': 'patient_detail', 'CATEGORY_NAME': '患者详情/就诊信息', 'CATEGORY_KEY': 'cdrd_patient_visit_info', 'TAG_NAME': '人民币', 'TAG_KEY': 'rmb', 'TAG_SORT': 33, 'STATUS': '0', 'CREATE_ID': 26, 'CREATE_TIME': datetime.datetime(2025, 10, 21, 16, 40, 45, 130000), 'UPDATE_ID': None, 'UPDATE_TIME': None, 'REMARK': '4567890'}
+# Sqlserver_PO.record('*', 'varchar', '%快乐1%')
+# {'TAG_DATA_ID': 152, 'TAG_ID': 82, 'TAG_DATA_NAME': '快乐1', 'TAG_DATA_KEY': 'kl1', 'TAG_DATA_SORT': 4, 'STATUS': '0'}
+
+# 基础配置 - 扩展字段管理 - 新增字段 - 患者详情/就诊信息 - 孔乙己
 
 
 
-# todo 'ID': 82, 'THIRD_NO': '1231231','NAME': '小茄子'
-Sqlserver_PO_config.record('SYS_USER', 'varchar', '%小茄子%')
-# 'ID': 82, 'THIRD_NO': '1231231','NAME': '小茄子'
-# 'ORG_CODE': '0000001', 'ORG_NAME': '宝山社区卫生服务中心'
-# 'CATEGORY_CODE': '4', 'CATEGORY_NAME': '中心主任',
+# 患者列表页 - 王亮玲 patientId=16 (CDRD_PATIENT_INFO)
+# 就诊信息 - 就诊详情 patient_visit_id=76 （CDRD_PATIENT_VISIT_INFO）
+# 就诊信息 - 就诊详情 - 补充信息 - 孔乙己字段 'EXTEND_FIELD_ID': 47 （SYS_EXTEND_FIELD_MANAGE）
+# Sqlserver_PO.record('*', 'varchar', '%孔乙己%')
+# {'EXTEND_FIELD_ID': 47, 'CATEGORY_CLASS': 'patient_detail', 'CATEGORY_NAME': '患者详情/就诊信息', 'CATEGORY_KEY': 'cdrd_patient_visit_info', 'EXTEND_FIELD_NAME': '孔乙己', 'EXTEND_FIELD_KEY': 'kyj', 'SORT': 56, 'STATUS': '0', 'REMARK': '4567', 'CREATE_ID': 26, 'CREATE_TIME': datetime.datetime(2025, 10, 21, 16, 7, 22, 573000), 'UPDATE_ID': None, 'UPDATE_TIME': datetime.datetime(2025, 10, 21, 16, 7, 34, 197000)}
+# 就诊信息 - 就诊详情 - 补充信息 - 孔乙己字段里的值为"我的上甘岭" 'EXTEND_FIELD_RECORD_ID': 352 （PATIENT_EXTEND_FIELD）
+# Sqlserver_PO.record('*', 'varchar', '%我的上甘岭%')
+# {'EXTEND_FIELD_RECORD_ID': 352, 'CATEGORY_SOURCE_ID': 16, 'CATEGORY_KEY': 'cdrd_patient_visit_info', 'CATEGORY_ID': 76, 'EXTEND_FIELD_ID': 47, 'EXTEND_FIELD_KEY': 'kyj', 'EXTEND_FIELD_TEXT': '我的上甘岭', 'CREATE_ID': 26, 'CREATE_BY': 'jinhao', 'CREATE_TIME': datetime.datetime(2025, 10, 21, 16, 8, 8, 337000)}
+# 就诊信息 - 就诊详情 - 标签 - 标签名称是"测试11" 'TAG_ID': 51
+# Sqlserver_PO.record('*', 'varchar', '%测试11%')
+# {'TAG_ID': 51, 'CATEGORY_CLASS': 'patient_detail', 'CATEGORY_NAME': '患者详情/就诊信息', 'CATEGORY_KEY': 'cdrd_patient_visit_info', 'TAG_NAME': '测试11', 'TAG_KEY': 'jiuzhenceshi11', 'TAG_SORT': 1, 'STATUS': '0', 'CREATE_ID': 60, 'CREATE_TIME': datetime.datetime(2025, 9, 11, 9, 54, 38), 'UPDATE_ID': 61, 'UPDATE_TIME': datetime.datetime(2025, 10, 20, 13, 37, 1, 73000), 'REMARK': None}
+# 就诊信息 - 就诊详情 - 标签 - 标签名称是"测试11" - 标签数据为"就诊测试1102" ，'TAG_DATA_ID': 111
+# Sqlserver_PO.record('*', 'varchar', '%就诊测试1102%')
+# {'TAG_DATA_ID': 111, 'TAG_ID': 51, 'TAG_DATA_NAME': '就诊测试1102', 'TAG_DATA_KEY': 'jiuzhenceshi1102', 'TAG_DATA_SORT': 2, 'STATUS': '0'}
+
+
+
+
+
+# Sqlserver_PO.record('PATIENT_EXPORT', 'varchar', '%我的模版1%') # 'MODEL_ID': 7,
+# Sqlserver_PO.desc("PATIENT_EXPORT")
+# Sqlserver_PO.getTableComment(format="true")
+# Sqlserver_PO.desc("PATIENT_EXPORT_FIELD")  # 导出数据表
+# Sqlserver_PO.desc("PATIENT_EXPORT_MODULE")  # 导出模块表
+# Sqlserver_PO.desc("sys_file_download_record")  # 文件下载记录表
+# Sqlserver_PO.desc("sys_file_download")  # 文件下载管理表
+# Sqlserver_PO.desc("sys_Tag_authority")  # 文件下载管理表
+
+
+# todo 'USER_ID': 26, 'JOB_NUM': '1101', 'DEPARTMENT_ID': 32, 'DEPARTMENT_CODE': '0022', 'DEPARTMENT_NAME': '心内科'
+# Sqlserver_PO.record('*', 'varchar', '%jinhao%', False)
+# Sqlserver_PO.record('sys_user', 'varchar', '%jinhao%')
 #
+# Sqlserver_PO.record('SYS_USER', 'varchar', '%shuyang%')
 
-# todo 'ID': 132, 'THIRD_NO': '800411', 'NAME': 'jinhao'
-# Sqlserver_PO_config.record('sys_user', 'varchar', '%jh123%')
-# 'ID': 132, 'THIRD_NO': '800411', 'NAME': 'jinhao'
-# 'ORG_CODE': '0000001','ORG_NAME': '宝山社区卫生服务中心',
-# ORG_NAME :宝山社区卫生服务中,ORG_CODE:0000001
-# 'CATEGORY_CODE': '4', 'CATEGORY_NAME': '中心主任',
+
+
+# # todo 健康评估及干预  - QYYH
+# # select * from TB_EMPI_INDEX_ROOT where name='施*东'
+# # select * from TB_EMPI_INDEX_ROOT where IDCARDNO='130403195207271821'
+# # select * from QYYH where sfzh='130403195207271821'
 #
-
-
-# todo 健康评估及干预  - QYYH
-# select * from TB_EMPI_INDEX_ROOT where name='施*东'
-# select * from TB_EMPI_INDEX_ROOT where IDCARDNO='130403195207271821'
-# select * from QYYH where sfzh='130403195207271821'
-
 # Sqlserver_PO.record('T_ASSESS_INFO', 'varchar', u'%130403195207271821%')  # 施*东
 # r = Sqlserver_PO.select("SELECT ASSESS_DATE,REPORT_STATUS,UPLOAD_STATUS,UPLOAD_DOC_ID,PDF_REPORT_STATUS,MODEL_CODE FROM %s where ID='%s'" % ('T_ASSESS_INFO', 512646))
 # print(r[0])  # {'ASSESS_DATE': datetime.date(2025, 10, 16), 'REPORT_STATUS': 1, 'UPLOAD_STATUS': '0', 'UPLOAD_DOC_ID': None, 'PDF_REPORT_STATUS': '0', 'MODEL_CODE': ''}

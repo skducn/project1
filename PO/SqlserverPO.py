@@ -197,6 +197,7 @@ class SqlserverPO:
         self.user = user
         self.password = password
         self.database = database
+        self.charset = charset
         self.conn = pymssql.connect(
             server=server, user=user, password=password, database=database, charset=charset,
             as_dict=True, tds_version="7.3", autocommit=True,
@@ -487,7 +488,8 @@ class SqlserverPO:
             for index, i in enumerate(list1):
                 for k, v in i.items():
                     if isinstance(v, bytes):
-                        list1[index][k] = v.decode(encoding="GBK", errors="strict")
+                        list1[index][k] = v.decode(encoding=self.charset, errors="strict")
+                        # list1[index][k] = v.decode(encoding="GBK", errors="strict")
 
             return list1
         except Exception as e:
@@ -597,7 +599,8 @@ class SqlserverPO:
                                 if l_d_1[m]['COLUMN_COMMENT'] == None:
                                     l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode(self.charset)))
+
                 # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
                 # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']}) ???
                 elif isinstance(args, dict):
@@ -616,7 +619,7 @@ class SqlserverPO:
                                 if l_d_1[m]['COLUMN_COMMENT'] == None:
                                     l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode(self.charset)))
 
                 else:
                     # 所有字段
@@ -631,7 +634,7 @@ class SqlserverPO:
                         if i['COLUMN_COMMENT'] == None:
                             l_columnComment.append(str(i['COLUMN_COMMENT']))
                         else:
-                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")))
+                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode(self.charset)))
 
                 # 只输出找到字段的表
                 s_value = ''
@@ -781,8 +784,7 @@ class SqlserverPO:
                                     l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (
                                             columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (
-                                            columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode(self.charset)) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                 # 4，模糊搜索所有表结构，可选字段，如：desc({'tb%' : ['id', 'page']})
                 # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']}) ???
                 elif isinstance(args, dict):
@@ -809,8 +811,7 @@ class SqlserverPO:
                                     l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT']) + " " * (
                                             columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
                                 else:
-                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode("GBK")) + " " * (
-                                            columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
+                                    l_columnComment.append(str(l_d_1[m]['COLUMN_COMMENT'].decode(self.charset)) + " " * (columnComment - len(str(l_d_1[m]['COLUMN_COMMENT']))))
 
                 else:
                     # 所有字段
@@ -829,8 +830,7 @@ class SqlserverPO:
                             l_columnComment.append(
                                 str(i['COLUMN_COMMENT']) + " " * (columnComment - len(str(i['COLUMN_COMMENT']))))
                         else:
-                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode("GBK")) + " " * (
-                                    columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
+                            l_columnComment.append(str(i['COLUMN_COMMENT'].decode(self.charset)) + " " * (columnComment - len(str(i['COLUMN_COMMENT'])) + 1))
 
                 # 只输出找到字段的表
                 if len(l_columnName) != 0:
@@ -889,10 +889,9 @@ class SqlserverPO:
             if l_d_[i]['value'] == None:
                 l_comment.append(l_d_[i]['value'])
             else:
-                # l_comment.append(l_d_[i]['value'].decode(encoding="utf-8", errors="strict"))  # encoding="utf-8"
-                l_comment.append(l_d_[i]['value'].decode(encoding="GBK", errors="strict"))  # GBK
+                l_comment.append(l_d_[i]['value'].decode(encoding=self.charset, errors="strict"))
         return dict(zip(l_table, l_comment))
-    def getTableComment(self, varTable="all"):
+    def getTableComment(self, varTable="all", format="true"):
 
         ''' 2.5 获取表名与表注释
         :return: {'ASSESS_DIAGNOSIS': '门诊数据', 'ASSESS_MEDICATION': '评估用药情况表'}
@@ -901,13 +900,20 @@ class SqlserverPO:
         # print(Sqlserver_PO.getTableComment('QYYH'))
         '''
 
+
         # try:
         if varTable == "all":
             # 所有表
             l_d_ = self.select(
                 "SELECT DISTINCT d.name,f.value FROM syscolumns a LEFT JOIN systypes b ON a.xusertype= b.xusertype INNER JOIN sysobjects d ON a.id= d.id AND d.xtype= 'U' AND d.name<> 'dtproperties' LEFT JOIN syscomments e ON a.cdefault= e.id LEFT JOIN sys.extended_properties g ON a.id= G.major_id AND a.colid= g.minor_id LEFT JOIN sys.extended_properties f ON d.id= f.major_id AND f.minor_id= 0")
             # print(l_d_)  # [{'name': 'ASSESS_DIAGNOSIS', 'value': b'\xc3\xc5\xd5\xef\xca\xfd\xbe\xdd'},...
-            return self._getTableComment(l_d_)
+            # print(self._getTableComment(l_d_))
+            if format == "true":
+                # Color_PO.outColor([{"36": "表名" + " " * (len("name") - len("表名") + 1) + "注释"}])
+                for k,v in self._getTableComment(l_d_).items():
+                    Color_PO.outColor([{"30": k}, {"31": v}])
+            else:
+                return self._getTableComment(l_d_)
         elif '%' in varTable:
             # 模糊表
             l_d_ = self.select(
@@ -1085,7 +1091,6 @@ class SqlserverPO:
             print(e, ",[error], getFields()异常!")
             self.conn.close()
 
-    # def getFieldComment(self, varTable, varEncoding="utf-8"):
     def getFieldComment(self, varTable, varEncoding="GBK"):
 
         l_d_ = self.select(
@@ -1101,12 +1106,11 @@ class SqlserverPO:
                 l_comment.append(l_d_[i]['COMMENT'])
             else:
                 l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于上传\导入数据库
-                # l_comment.append(l_d_[i]['COMMENT'].decode(encoding=varEncoding, errors="strict"))  # 用于打开页面
+                # l_comment.append(l_d_[i]['COMMENT'].decode(encoding="utf8", errors="strict"))  # 用于打开页面
         return dict(zip(l_field, l_comment))
 
 
     def getFieldComment2(self, varTable, varEncoding="utf-8"):
-    # def getFieldComment(self, varTable, varEncoding="GBK"):
 
         ''' 3.4 获取字段名与字段注释 '''
         # getFieldComment(varTable, varEncoding="utf-8")
@@ -1647,8 +1651,8 @@ class SqlserverPO:
                                                       "")
 
                                 # 输出字段注释
-                                s = s + "<textErr>" + str(self.getFieldComment(dboTable)) + "</textErr><br>"
-                                Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
+                                s = s + "<textErr>" + str(self.getFieldComment(dboTable,self.charset)) + "</textErr><br>"
+                                Color_PO.consoleColor2({"35": self.getFieldComment(dboTable,self.charset)})
 
                                 if varIsRecord == True:
 
@@ -1684,8 +1688,7 @@ class SqlserverPO:
                                                   i] + " => " + str(len(l_result)) + "条 ", "")
 
                         # 输出字段注释
-                        Color_PO.consoleColor2({"35": self.getFieldComment(varTable)})
-                        # print(self.getFieldComment(dboTable))
+                        Color_PO.consoleColor2({"35": self.getFieldComment(varTable,self.charset)})
 
                         for j in range(len(l_result)):
                             l_value = [value for value in l_result[j].values()]
@@ -1749,14 +1752,14 @@ class SqlserverPO:
                             # Color_PO.consoleColor("31", "36", str(varValue) + " >> " + tbl + "(" + l_field[i] + ") " + str(len(l_result)) + "条 ", "")
                             # print(dboTable, d_tableComment[str(dboTable)])
                             Color_PO.consoleColor("31", "36",
-                                                  str(l_field[i]) + " = " + str(varValue) + " >> " + str(
+                                                  "[查询: " + str(varValue) + "] >> " + str(
                                                       dboTable) + "(" +
-                                                  str(d_tableComment[dboTable]) + ")" + " >> " + str(
+                                                  str(d_tableComment[dboTable]) + ")." + str(l_field[i])  + " >> " + str(
                                                       len(l_result)) + "条 ",
                                                   "")
 
                             # 输出字段注释
-                            Color_PO.consoleColor2({"35": self.getFieldComment(dboTable)})
+                            Color_PO.consoleColor2({"35": self.getFieldComment(dboTable,self.charset)})
 
                             if varIsRecord == True:
                                 for j in range(len(l_result)):
@@ -1766,6 +1769,11 @@ class SqlserverPO:
 
             elif "*" not in varTable:
                 # 搜索指定表（单表）符合条件的记录.  ，获取列名称、列类别、类注释
+
+                # 获取表注释(表名区分大小写)
+                d_tableComment = self.getTableComment(varTable)  # {'ASSESS_DIAGNOSIS': '门诊数据',...
+                # print(d_tableComment)
+
                 # 获取表的Name和Type
                 l_d_field_type = self.select(
                     "select syscolumns.name as FIELD_NAME,systypes.name as TYPE from syscolumns,systypes where syscolumns.xusertype=systypes.xusertype and syscolumns.id=object_id('%s')"
@@ -1779,18 +1787,25 @@ class SqlserverPO:
                         l_field.append(j['FIELD_NAME'])
                 # print(l_field)  # ['CZRYBM', 'CZRYXM', 'JMXM', 'SJHM', 'SFZH', 'JJDZ',...]
 
+
                 # 遍历所有字段
                 for i in range(len(l_field)):
                     l_result = self.select("select * from %s where [%s] like '%s'" % (varTable, l_field[i], varValue))
                     if len(l_result) != 0:
                         print("--" * 50)
-                        Color_PO.consoleColor("31", "36",
-                                              "[result] => " + str(varValue) + " => " + varTable + " => " + l_field[
-                                                  i] + " => " + str(len(l_result)) + "条 ", "")
-
+                        try:
+                            Color_PO.consoleColor("31", "36",
+                                                  "[查询: " + str(varValue) + "] >> " + varTable + "(" +
+                                                      str(d_tableComment[varTable]) + ")." + l_field[
+                                                      i] + " >> " + str(len(l_result)) + "条 ", "")
+                        except:
+                            varTable = varTable.upper()
+                            Color_PO.consoleColor("31", "36",
+                                                  "[查询: " + str(varValue) + "] >> " + varTable + "(" +
+                                                  str(d_tableComment[varTable]) + ")." + l_field[
+                                                      i] + " >> " + str(len(l_result)) + "条 ", "")
                         # 输出字段注释
-                        Color_PO.consoleColor2({"35": self.getFieldComment(varTable)})
-                        # print(self.getFieldComment(dboTable))
+                        Color_PO.consoleColor2({"35": self.getFieldComment(varTable, self.charset)})
 
                         for j in range(len(l_result)):
                             l_value = [value for value in l_result[j].values()]
@@ -2030,7 +2045,8 @@ class SqlserverPO:
         '''
 
         try:
-            df = pd.read_csv(varPathFile, encoding='gbk')
+            df = pd.read_csv(varPathFile, encoding=self.charset)
+            # df = pd.read_csv(varPathFile, encoding='GBK')
             engine = self.getEngine_pymssql()
             df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
         except Exception as e:

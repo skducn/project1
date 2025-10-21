@@ -42,12 +42,25 @@ if __name__ == "__main__":
     # # Color_PO.consoleColor("31", "33", "[WARNING], ", "123123123123")
     # # Color_PO.consoleColor("31", "36", "[OK], ", "123123123123")
     #
-    #
-    Color_PO.consoleColor2({"31":"30red","31":"31red", "32": "32green", "33":"33yellow" ,"34":"34blue" ,"35":"35purple", "36": "36azure", "37":"37grep" ,"38":"38white", "39": "39white",
-                            "40":"40redBlack", "41":"41redred", "42":"42redGreen", "43":"43redYellow", "44":"44redBlue", "45":"45redPurple", "46":"46redAzure", "47":"44redGrey"})
+    # 字体颜色
+    Color_PO.consoleColor2({"30": "黑色",
+                            "31": "红色",
+                            "32": "绿色",
+                            "33": "土黄色",
+                            "34": "蓝色",
+                            "35": "紫色",
+                            "36": "azure天蓝色",
+                            "37": "灰色",
+                            "40": "黑底红字",
+                            "41": "红底红字",
+                            "42": "绿底红字",
+                            "43": "黄底红字",
+                            "44": "蓝底红字",
+                            "45": "紫底红字",
+                            "46": "天蓝底色红字",
+                            "47": "灰底红字"})
 
-    Color_PO.outColor([{"31": "30red"}, {"32": "32green"}, {"33": "33yellow"}])
-    Color_PO.outColor([{"31": "30red"}])
+    Color_PO.outColor([{"31": "红"}, {"32": "绿"}, {"33": "黄"}])
 
 
     print("\033[1;31;41m [1], 红底红字 \033[0m")
