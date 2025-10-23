@@ -1,0 +1,51 @@
+请编写一个存储过程，用于生成一批数据。
+
+表patient_extend_field的表结构字段如下：
+extend_field_record_id int IDENTITY(1,1) PRIMARY KEY,
+category_source_id int,
+category_key nvarchar(100),
+category_id int,
+extend_field_id int,
+extend_field_key nvarchar(100),
+extend_field_text nvarchar(max),
+create_id int,
+create_by nvarchar(20),
+create_time DATETIME
+
+表sys_extend_field_manage的表结构字段如下：
+extend_field_id int IDENTITY(1,1) PRIMARY KEY,
+category_class nvarchar(100),
+category_name nvarchar(20),
+category_key nvarchar(100),
+extend_field_name nvarchar(20),
+extend_field_key nvarchar(100),
+sort int,
+status varchar(100),
+create_id int,
+create_time DATETIME,
+update_id int,
+update_time DATETIME,
+remark nvarchar(500)
+
+要求遍历cdrd_patient_visit_info_5表每条记录, patient_extend_field表生产数据如下：
+category_source_id字段的值为 cdrd_patient_visit_info_5表中patient_id字段的值，
+category_key字段的值为cdrd_patient_visit_info,
+catetory_id字段值为cdrd_patient_info_5表中patient_visit_id字段的值,
+extend_field_key字段值为sys_extend_field_manage中extend_field_key的值，
+extend_field_text字段值为1到100000的随机值，
+create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+
+以上对表patient_extend_field的数据插入，需要提高效率。
+
+将cdrd_patient_info_5表patient_id字段的值
+遍历cdrd_patient_visit_info_5表中category_key字段的值，如果值等于cdrd_patient_info, 则，patient_tag表生成数据如下：
+category_source_id字段的值为 cdrd_patient_info_5表中patient_id字段的值，category_key字段的值为cdrd_patient_info,catetory_id字段值为cdrd_patient_info_5表中patient_id字段的值,
+tag_id字段的值为sys_tag_type表中tag_id字段的值，tag_key字段的值为sys_tag_type表中tag_key字段的值，tag_data_id字段的值为sys_tag_data表中匹配一次tag_data_id字段的值，tag_data_key字段的值为sys_tag_data表中匹配一次tag_data_key字段的值，
+create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+
+如果值等于cdrd_patient_visit_info, 则遍历cdrd_patient_visit_info_5表每条记录，patient_tag表生成数据如下：
+category_source_id字段的值为 cdrd_patient_visit_info_5表中patient_visit_id字段的值，category_key字段的值为cdrd_patient_visit_info,catetory_id字段值为cdrd_patient_visit_info_5表中patient_visit_id字段的值,
+tag_id字段的值为sys_tag_type表中tag_id字段的值，tag_key字段的值为sys_tag_type表中tag_key字段的值，tag_data_id字段的值为sys_tag_data表中匹配一次tag_data_id字段的值，tag_data_key字段的值为sys_tag_data表中匹配一次tag_data_key字段的值，
+create_id字段的值为11，create_by字段的值为tester11，create_time字段的值为当前时间。
+
+以上对表patient_tag的数据插入，需要提高效率，tag_record_id字段值为雪花值，生成方式参考GenerateSnowflakeID存储过程。
