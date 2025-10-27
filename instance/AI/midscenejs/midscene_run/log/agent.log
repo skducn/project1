@@ -1,0 +1,305 @@
+[2025-10-27T15:04:37.565+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:38.329+08:00] Computed screenshot scale 2 from screenshot width 2880 and page width 1440
+[2025-10-27T15:04:38.329+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:38.329+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:45.736+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:45.985+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:45.985+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:46.302+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:46.558+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:46.558+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:47.704+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-04-37-4c0f9f8b.html
+[2025-10-27T15:04:47.704+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:47.969+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:47.969+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:53.163+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:53.420+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:53.420+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:53.725+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:53.965+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:53.965+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:54.589+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-04-37-4c0f9f8b.html
+[2025-10-27T15:04:54.590+08:00] Using page.getContext for action: locate
+[2025-10-27T15:04:54.828+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:04:54.828+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:04:59.888+08:00] Using page.getContext for action: locate
+[2025-10-27T15:05:00.156+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:00.156+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:00.470+08:00] Using page.getContext for action: locate
+[2025-10-27T15:05:00.710+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:00.710+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:01.642+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-04-37-4c0f9f8b.html
+[2025-10-27T15:05:01.643+08:00] Using page.getContext for action: locate
+[2025-10-27T15:05:01.878+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:01.878+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:06.781+08:00] Using page.getContext for action: locate
+[2025-10-27T15:05:06.981+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:06.981+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:07.285+08:00] Using page.getContext for action: locate
+[2025-10-27T15:05:07.469+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:07.469+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:08.112+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-04-37-4c0f9f8b.html
+[2025-10-27T15:05:11.247+08:00] Using page.getContext for action: extract
+[2025-10-27T15:05:11.448+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:11.448+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:11.628+08:00] Using page.getContext for action: extract
+[2025-10-27T15:05:11.827+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:05:11.827+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:05:14.269+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-04-37-4c0f9f8b.html
+[2025-10-27T15:07:21.194+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:22.006+08:00] Computed screenshot scale 2 from screenshot width 2880 and page width 1440
+[2025-10-27T15:07:22.006+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:22.007+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:28.292+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:28.550+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:28.550+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:28.866+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:29.111+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:29.111+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:30.344+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-07-21-3fce1cda.html
+[2025-10-27T15:07:30.345+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:30.598+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:30.598+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:35.357+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:35.616+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:35.616+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:35.934+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:36.183+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:36.183+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:36.924+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-07-21-3fce1cda.html
+[2025-10-27T15:07:36.925+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:37.269+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:37.269+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:42.950+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:43.212+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:43.212+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:44.273+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:44.523+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:44.523+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:50.696+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:50.998+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:50.998+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:52.047+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:52.327+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:52.327+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:58.236+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:58.477+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:58.477+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:07:59.508+08:00] Using page.getContext for action: locate
+[2025-10-27T15:07:59.773+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:07:59.773+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:04.939+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:05.278+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:05.278+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:06.527+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:06.875+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:06.875+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:12.024+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:12.331+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:12.331+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:13.471+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:13.789+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:13.789+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:18.561+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:18.879+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:18.880+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:20.088+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:20.365+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:20.365+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:25.580+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:25.867+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:25.867+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:26.929+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:27.231+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:27.231+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:34.456+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:34.797+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:34.797+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:36.000+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:36.305+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:36.305+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:42.508+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:42.773+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:42.773+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:43.849+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:44.133+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:44.133+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:50.858+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:51.258+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:51.258+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:08:52.592+08:00] Using page.getContext for action: locate
+[2025-10-27T15:08:53.167+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:08:53.167+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:09:01.213+08:00] Using page.getContext for action: locate
+[2025-10-27T15:09:01.458+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:09:01.458+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:09:03.304+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-07-21-3fce1cda.html
+[2025-10-27T15:11:56.629+08:00] Using page.getContext for action: locate
+[2025-10-27T15:11:57.320+08:00] Computed screenshot scale 2 from screenshot width 2880 and page width 1440
+[2025-10-27T15:11:57.320+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:11:57.320+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:12:04.881+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-11-56-b125f732.html
+[2025-10-27T15:12:49.315+08:00] Using page.getContext for action: locate
+[2025-10-27T15:12:50.232+08:00] Computed screenshot scale 2 from screenshot width 2880 and page width 1440
+[2025-10-27T15:12:50.232+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:12:50.232+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:12:55.777+08:00] Using page.getContext for action: locate
+[2025-10-27T15:12:56.024+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:12:56.024+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:12:56.346+08:00] Using page.getContext for action: locate
+[2025-10-27T15:12:56.599+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:12:56.599+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:12:58.084+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-12-49-8b5efc95.html
+[2025-10-27T15:12:58.084+08:00] Using page.getContext for action: locate
+[2025-10-27T15:12:58.362+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:12:58.362+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:04.809+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:05.062+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:05.062+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:05.385+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:05.639+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:05.639+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:06.338+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-12-49-8b5efc95.html
+[2025-10-27T15:13:06.338+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:06.586+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:06.586+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:15.596+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:15.872+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:15.872+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:16.940+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:17.219+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:17.219+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:23.266+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:23.520+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:23.520+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:24.548+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:24.808+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:24.808+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:29.339+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:29.582+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:29.582+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:30.626+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:30.873+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:30.873+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:35.963+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:36.270+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:36.270+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:37.571+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:37.829+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:37.829+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:42.838+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:43.152+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:43.152+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:44.324+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:44.986+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:44.986+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:50.818+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-12-49-8b5efc95.html
+[2025-10-27T15:13:50.819+08:00] Using page.getContext for action: locate
+[2025-10-27T15:13:51.121+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:51.121+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:54.615+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-12-49-8b5efc95.html
+[2025-10-27T15:13:57.744+08:00] Using page.getContext for action: extract
+[2025-10-27T15:13:57.997+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:57.997+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:13:58.187+08:00] Using page.getContext for action: extract
+[2025-10-27T15:13:58.440+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:13:58.440+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:14:02.676+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-12-49-8b5efc95.html
+[2025-10-27T15:19:00.241+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:01.084+08:00] Computed screenshot scale 2 from screenshot width 2880 and page width 1440
+[2025-10-27T15:19:01.084+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:01.084+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:07.269+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:07.549+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:07.549+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:07.910+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:08.164+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:08.164+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:09.424+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-19-00-0c8e1f06.html
+[2025-10-27T15:19:09.424+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:09.702+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:09.702+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:14.934+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:15.197+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:15.197+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:15.516+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:15.766+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:15.766+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:16.502+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-19-00-0c8e1f06.html
+[2025-10-27T15:19:16.503+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:16.759+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:16.759+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:25.519+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:25.775+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:25.775+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:26.091+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:26.342+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:26.342+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:27.341+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-19-00-0c8e1f06.html
+[2025-10-27T15:19:27.341+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:27.554+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:27.554+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:34.517+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:34.731+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:34.731+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:35.025+08:00] Using page.getContext for action: locate
+[2025-10-27T15:19:35.228+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:35.228+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:35.918+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-19-00-0c8e1f06.html
+[2025-10-27T15:19:39.056+08:00] Using page.getContext for action: extract
+[2025-10-27T15:19:39.263+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:39.263+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:39.452+08:00] Using page.getContext for action: extract
+[2025-10-27T15:19:39.660+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:19:39.660+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:19:43.490+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-19-00-0c8e1f06.html
+[2025-10-27T15:31:15.533+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:16.371+08:00] Computed screenshot scale 2 from screenshot width 2880 and page width 1440
+[2025-10-27T15:31:16.371+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:16.371+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:22.798+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:23.064+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:23.064+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:23.399+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:23.658+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:23.658+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:24.906+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-31-15-6356d2e9.html
+[2025-10-27T15:31:24.906+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:25.171+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:25.171+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:31.187+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:31.455+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:31.455+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:31.783+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:32.037+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:32.037+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:32.903+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-31-15-6356d2e9.html
+[2025-10-27T15:31:32.904+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:33.115+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:33.115+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:39.030+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:39.238+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:39.238+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:39.545+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:39.742+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:39.742+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:40.732+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-31-15-6356d2e9.html
+[2025-10-27T15:31:40.732+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:40.959+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:40.959+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:46.600+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:46.840+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:46.840+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:47.223+08:00] Using page.getContext for action: locate
+[2025-10-27T15:31:47.443+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:47.443+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:48.467+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-31-15-6356d2e9.html
+[2025-10-27T15:31:51.607+08:00] Using page.getContext for action: extract
+[2025-10-27T15:31:51.792+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:51.792+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:51.982+08:00] Using page.getContext for action: extract
+[2025-10-27T15:31:52.169+08:00] Applying computed screenshot scale: 2 (resize to logical size)
+[2025-10-27T15:31:52.169+08:00] Resizing screenshot to 1440x768
+[2025-10-27T15:31:55.180+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/test-2025-10-27_15-31-15-6356d2e9.html
+[2025-10-27T15:40:40.879+08:00] Using page.getContext for action: locate
+[2025-10-27T15:43:41.144+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/report/ebay-2025-10-27_15-40-40-d694d14e.html

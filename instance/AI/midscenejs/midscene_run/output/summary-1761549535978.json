@@ -1,0 +1,22 @@
+{
+  "summary": {
+    "total": 1,
+    "successful": 0,
+    "failed": 1,
+    "partialFailed": 0,
+    "notExecuted": 0,
+    "totalDuration": 47502,
+    "generatedAt": "10/27/2025, 3:19:43 PM"
+  },
+  "results": [
+    {
+      "script": "../../test.yaml",
+      "success": false,
+      "resultType": "failed",
+      "output": "./test-1761549535989.json",
+      "report": "../report/test-2025-10-27_15-19-00-0c8e1f06.html",
+      "error": "Execution failed",
+      "duration": 47502
+    }
+  ]
+}

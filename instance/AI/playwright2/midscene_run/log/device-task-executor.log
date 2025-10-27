@@ -1,0 +1,74 @@
+[2025-10-27T13:10:02.480+08:00] will prepend locate param for field action.type=Input param={"prompt":"搜索框","deepThink":false,"cacheable":true} locatePlan={"type":"Locate","locate":{"prompt":"搜索框","deepThink":false,"cacheable":true},"param":{"prompt":"搜索框","deepThink":false,"cacheable":true},"thought":""}
+[2025-10-27T13:10:05.712+08:00] executing action Input {
+  value: '笔记本电脑',
+  locate: {
+    id: 'bclfh',
+    indexId: undefined,
+    center: [ 439, 95.5 ],
+    rect: { left: 435, top: 91.5, width: 8, height: 8 },
+    xpaths: [],
+    attributes: { nodeType: 'POSITION Node' },
+    isOrderSensitive: false
+  }
+} context.element.center: 439,95.5
+[2025-10-27T13:10:05.958+08:00] will call "beforeInvokeAction" for interface
+[2025-10-27T13:10:05.988+08:00] called "beforeInvokeAction" for interface
+[2025-10-27T13:10:06.164+08:00] calling action Input
+[2025-10-27T13:10:06.762+08:00] called action Input
+[2025-10-27T13:10:06.762+08:00] will call "afterInvokeAction" for interface
+[2025-10-27T13:10:06.770+08:00] called "afterInvokeAction" for interface
+[2025-10-27T13:10:06.848+08:00] will prepend locate param for field action.type=Tap param={"prompt":"搜索按钮","deepThink":false,"cacheable":true} locatePlan={"type":"Locate","locate":{"prompt":"搜索按钮","deepThink":false,"cacheable":true},"param":{"prompt":"搜索按钮","deepThink":false,"cacheable":true},"thought":""}
+[2025-10-27T13:10:12.266+08:00] executing action Tap {
+  locate: {
+    id: 'cilgp',
+    indexId: undefined,
+    center: [ 864, 95.5 ],
+    rect: { left: 860, top: 91.5, width: 8, height: 8 },
+    xpaths: [],
+    attributes: { nodeType: 'POSITION Node' },
+    isOrderSensitive: false
+  }
+} context.element.center: 864,95.5
+[2025-10-27T13:10:12.527+08:00] will call "beforeInvokeAction" for interface
+[2025-10-27T13:10:12.535+08:00] called "beforeInvokeAction" for interface
+[2025-10-27T13:10:12.729+08:00] calling action Tap
+[2025-10-27T13:10:12.735+08:00] called action Tap
+[2025-10-27T13:10:12.735+08:00] will call "afterInvokeAction" for interface
+[2025-10-27T13:10:12.742+08:00] called "afterInvokeAction" for interface
+[2025-10-27T13:25:13.295+08:00] will prepend locate param for field action.type=Input param={"prompt":"搜索框","deepThink":false,"cacheable":true} locatePlan={"type":"Locate","locate":{"prompt":"搜索框","deepThink":false,"cacheable":true},"param":{"prompt":"搜索框","deepThink":false,"cacheable":true},"thought":""}
+[2025-10-27T13:25:16.883+08:00] executing action Input {
+  value: '笔记本电脑',
+  locate: {
+    id: 'mnmen',
+    indexId: undefined,
+    center: [ 441, 95.5 ],
+    rect: { left: 437, top: 91.5, width: 8, height: 8 },
+    xpaths: [],
+    attributes: { nodeType: 'POSITION Node' },
+    isOrderSensitive: false
+  }
+} context.element.center: 441,95.5
+[2025-10-27T13:25:17.115+08:00] will call "beforeInvokeAction" for interface
+[2025-10-27T13:25:17.123+08:00] called "beforeInvokeAction" for interface
+[2025-10-27T13:25:17.318+08:00] calling action Input
+[2025-10-27T13:25:17.894+08:00] called action Input
+[2025-10-27T13:25:17.894+08:00] will call "afterInvokeAction" for interface
+[2025-10-27T13:25:17.909+08:00] called "afterInvokeAction" for interface
+[2025-10-27T13:25:17.986+08:00] will prepend locate param for field action.type=Tap param={"prompt":"搜索按钮","deepThink":false,"cacheable":true} locatePlan={"type":"Locate","locate":{"prompt":"搜索按钮","deepThink":false,"cacheable":true},"param":{"prompt":"搜索按钮","deepThink":false,"cacheable":true},"thought":""}
+[2025-10-27T13:25:20.615+08:00] executing action Tap {
+  locate: {
+    id: 'fpmao',
+    indexId: undefined,
+    center: [ 863.5, 95.5 ],
+    rect: { left: 859.5, top: 91.5, width: 8, height: 8 },
+    xpaths: [],
+    attributes: { nodeType: 'POSITION Node' },
+    isOrderSensitive: false
+  }
+} context.element.center: 863.5,95.5
+[2025-10-27T13:25:20.844+08:00] will call "beforeInvokeAction" for interface
+[2025-10-27T13:25:20.852+08:00] called "beforeInvokeAction" for interface
+[2025-10-27T13:25:21.047+08:00] calling action Tap
+[2025-10-27T13:25:21.053+08:00] called action Tap
+[2025-10-27T13:25:21.053+08:00] will call "afterInvokeAction" for interface
+[2025-10-27T13:25:21.068+08:00] called "afterInvokeAction" for interface

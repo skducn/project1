@@ -1,0 +1,98 @@
+[2025-10-27T14:10:50.936+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T14:10:56.138+08:00] goto http://novel.hctestedu.com
+[2025-10-27T14:10:57.568+08:00] waitForNetworkIdle 2000
+[2025-10-27T14:49:41.615+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T14:49:43.460+08:00] goto http://novel.hctestedu.com
+[2025-10-27T14:49:45.015+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:04:33.835+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T15:04:35.557+08:00] goto http://novel.hctestedu.com
+[2025-10-27T15:04:36.972+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:07:17.485+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T15:07:18.634+08:00] goto http://novel.hctestedu.com
+[2025-10-27T15:07:20.607+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:11:53.374+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T15:11:55.366+08:00] goto http://novel.hctestedu.com
+[2025-10-27T15:11:56.058+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:12:45.674+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T15:12:47.291+08:00] goto http://novel.hctestedu.com
+[2025-10-27T15:12:48.724+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:18:55.992+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T15:18:58.158+08:00] goto http://novel.hctestedu.com
+[2025-10-27T15:18:59.650+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:31:11.155+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'test', cache: undefined }
+[2025-10-27T15:31:13.445+08:00] goto http://novel.hctestedu.com
+[2025-10-27T15:31:14.939+08:00] waitForNetworkIdle 2000
+[2025-10-27T15:40:08.815+08:00] launching browser with viewport, headed false viewport { width: 1440, height: 768, deviceScaleFactor: 2 } args [
+  '--no-sandbox',
+  '--disable-setuid-sandbox',
+  '--disable-features=HttpsFirstBalancedModeAutoEnable',
+  '--disable-features=PasswordLeakDetection',
+  '--disable-save-password-bubble',
+  '--user-agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36"',
+  '--window-size=1440,968'
+] preference { headed: false, keepWindow: false, testId: 'ebay', cache: undefined }
+[2025-10-27T15:40:10.864+08:00] goto http://www.ebay.com

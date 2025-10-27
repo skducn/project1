@@ -1,0 +1,4 @@
+[2025-10-27T13:10:02.474+08:00] will call buildDetailedLocateParam 搜索框 { value: '笔记本电脑' }
+[2025-10-27T13:10:06.847+08:00] will call buildDetailedLocateParam 搜索按钮 undefined
+[2025-10-27T13:25:13.289+08:00] will call buildDetailedLocateParam 搜索框 { value: '笔记本电脑' }
+[2025-10-27T13:25:17.986+08:00] will call buildDetailedLocateParam 搜索按钮 undefined

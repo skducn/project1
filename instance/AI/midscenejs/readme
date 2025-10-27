@@ -1,0 +1,173 @@
+midscenejs
+https://midscenejs.com/zh/index.html
+https://github.com/web-infra-dev/midscene
+
+todo 安装全局@midscene/cli
+npm i -g @midscene/cli
+或在项目中安装，npm i @midscene/cli --save-dev
+
+查看版本  midscene -version
+
+
+mcp.so
+
+todo 【AI+自动化测试教程】AI测试工具 midscene 环境搭建和配置！（只讲干货）
+https://www.bilibili.com/video/BV1McJEzPEtt?spm_id_from=333.788.recommend_more_video.15&trackid=web_related_0.router-related-2206146-btjvp.1761545107653.859&vd_source=be21f48b876460dfe25064d745fdc372
+
+
+todo AI驱动UI自动化测试企业级实践
+https://www.bilibili.com/video/BV1Mf5qzzEuE/?spm_id_from=333.337.search-card.all.click&vd_source=be21f48b876460dfe25064d745fdc372
+
+todo midscene.js 介绍
+Midsceme.js 让 AI 成为你的浏览器操作员 🤖。只需用自然语言描述你想做什么，它就能帮你操作网页、验证内容，并提取数据。无论你是想快速体验还是深度开发，都可以轻松上手。
+特性
+https://link.wtturl.cn/?target=https%3A%2F%2Fgithub.com%2Fweb-infra-dev%2Fmidscene%2Fblob%2Fmain%2FREADME.zh.md%23%25E7%25...&scene=im&aid=582478&lang=zh
+自然语言互动 🟡：只需描述你的目标和步骤，Midscene 会为你规划和操作用户界面。
+Chrome 插件体验 🟦：通过 Chrome 插件，你可以立即开始体验，无需编
+Puppeteer/Playwright 集成 🔧：支持 Puppeteer 和 Playwright 集成，让你能够结合 AI 能力和这些自动化工具的强大功能，轻松实现自动化操作。
+支持开源模型 🤖：支持开源模型 🌀UI-TARS 和 🌀千问 Qwen2.5-VL，相比 GPT-4o、Claude 等闭源模型，不仅在 UI 自动化场景下表现更加出色，还能更好地保护数据安全。
+支持通用模型 🌟：支持 GPT-4o、Claude 等通用大模型，适配多种场景需求。
+用可视化报告来调试 📊：通过我们的测试报告和 Playground，你可以轻松理解、回放和调试整个过程。
+支持缓存 ↩️：首次通过 AI 执行后任务会被缓存，后续执行相同任务时可显著提升执行效率。
+完全开源 🔥：体验全新的自动化开发体验，尽情享受吧！
+理解 UI、JSON 格式回答 🔍：你可以提出关于数据格式的要求，然后得到 JSON 格式的预期回应。
+直观断言 🤔：用自然语言表达你的断言，AI 会理解并处理。
+
+# todo 🌀UI-TARS
+界面自动化设计
+我们推荐在 UI-TARS 中使用目标驱动的提示词（target-driven prompt），如使用用户名 foo 和密码 bar 登录”，它会逐步完成动作规划并执行。
+特性
+速度：一个私有化的 UI-TARS 模型可以比通用 LLM 快 5 倍。当部署在性能良好的 GPU 服务器上时，每次 .ai 中的步骤可以在 1-2 秒内完成。
+原生图像识别：UI-TARS 有视觉定位（Visual Grounding）的能力，和 Qwen-2.5-VL 一样，在使用 UI-TARS 时，Midscene.js 不需要发送 DOM 树。
+开源：UI-TARS 是一个开源模型，因此你可以选择部署到你自己的服务器上，你的数据将不再发送到云端。
+更稳定的短提示：UI-TARS 针对 UI 自动化进行了优化，并能够处理更复杂
+更稳定的短提示：UI-TARS 针对 UI 自动化进行了优化，并能够处理更复杂的目标驱动的任务。在使用更短的提示词时，UI-TARS 的表现比通用 LLM 更好。
+在 Midscene.js 中使用时的限制
+断言能力较差：在某些情况下，UI-TARS 的断言能力可能不如 gpt-4o。
+配置
+除了常规配置，你还需要包含 MIDSCENE_USE_VLM_UI_TARS=1 配置来启用 UI-TARS 模式。否则，你会遇到一些 JSON 解析错误。
+
+UI-TARS 私有化，内网部署：
+https://modelscope.cn/models/bytedance-research/ui-tars-72b-sft
+1 OPENAI_BASE_URL="....."
+2 OPENAI_API_KEY="......"
+3 MIDSCENE_MODEL_NAME="ui-tars-7b-sft"
+4 MIDSCENE_USE_VLM_UI_TARS=1 # 别忘了配置这项用于 UI-TARS 模式！
+
+
+
+# todo google 插件地址：
+chromewebstore.google.com/detail/midscenejs/gbldofcpkknbggpkmbdaefngejllnief
+
+# todo midscene配置：
+OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+OPENAI_API_KEY=sk-fa71f3cbbd304313b4ba271981f65661
+MIDSCENE_MODEL_NAME=qwen3-vl-plus
+MIDSCENE_USE_QWEN_VL=1
+
+Action: 与网页进行交互，如 输入qty，然后点击百度一下。。
+Query: 从界面中提取 JSON 数据，如 “提取页面中的用户 ID，返回 {id: string}”，或接入智能体保存一些数据。
+Assert: 执行断言，如 “页面标题是 但问智能”。
+
+
+# todo test网页
+https://www.saucedemo.com/
+standard_user
+secret_sauce
+
+
+# todo 与 Playwright 集成实战
+Playwright.js 是由微软开发的一个开源自动化库，主要用于对网络应用程序进行端到端测试（end-to-end test）和网页抓取。
+
+第一步：初始化 Playwright2 项目
+js
+// 新建工作目录，例如 playwright2
+cd playwright2
+npm init playwright@latest
+选TypeScript，e2e,true,ture
+
+第二步：配置.env 环境变量
+# 千问多模态大模型
+OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+OPENAI_API_KEY=sk-fa71f3cbbd304313b4ba271981f65661
+MIDSCENE_MODEL_NAME=qwen3-vl-plus
+MIDSCENE_USE_QWEN_VL=1
+
+第三步：新增依赖
+npm install @midscene/web --save-dev
+
+第四步：配置playwright.config.ts
+export default defineConfig({
+  testDir: './e2e',
+  /* Run tests in files in parallel */
+  timeout: 9000 * 1000,
+  fullyParallel: true,
+  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  forbidOnly: !!process.env.CI,
+  /* Retry on CI only */
+  retries: process.env.CI ? 2 : 0,
+  /* Opt out of parallel tests on CI. */
+  workers: process.env.CI ? 1 : undefined,
+  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  // reporter: 'html',
+  reporter: [["list"],["@midscene/web/playwright-report"]],
+  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  use: {
+    /* Base URL to use in actions like `await page.goto('')`. */
+    // baseURL: 'http://localhost:3000',
+
+    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    trace: 'on-first-retry',
+  },
+
+  /* Configure projects for major browsers */
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    },
+
+
+
+
+
+
+
+火山引擎
+OPENAI_BASE_URL="https://ark.cn-beijing.volces.com/api/v3"
+OPENAI_API_KEY="AKLTNGNlYWU4ODdmMjgzNDU4MDgxOGVlZjk0ZmU2YWIwMGU"
+MIDSCENE_MODEL_NAME="doubao-seed-1.6-vision"
+MIDSCENE_USE_DOUBAO_VISION=1
+
+# 来自火山引擎的推理接入点 ID 或模型名称
+
+AccessKeyID: AKLTNGNlYWU4ODdmMjgzNDU4MDgxOGVlZjk0ZmU2YWIwMGU
+
+SecretAccessKey: T0RJNU9EbGlNV1V5WkRoak5EZGxPV0ZsT0dRNVpXRXhNVEprWVRSaE5XVQ==
+
+
+--------------------------------------------
+
+
+
+为降低 AccessKey 泄露的风险，自 2023 年 7 月 5 日起，新建的主账号 AccessKey 只在创建时提供 Secret，后续不可再进行查询，请保存好Secret。
+
+AccessKey ID
+LTAI5tH2sd7XVWqqv6AyEetJ
+
+AccessKey Secret
+M5e6C45jzTD9eYiErGvtNhJDFREZ8O
+
+
+
+
+AI驱动UI自动化测试应用实践（效果真的很不错）
+
+
+OPENAI_BASE_URL=https://dashscope.aliyuncs.com/compatible-mode/v1
+OPENAI_API_KEY=
+MIDSCENE_MODEL_NAME=qwen-vl-max-latest
+MIDSCENE_USE_QWEN_VL=1
+
+
+https://midscenejs.com/zh/index.html

@@ -1,0 +1,1578 @@
+[2025-10-27T15:04:37.625+08:00] waitForNavigation begin
+[2025-10-27T15:04:37.625+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:37.647+08:00] waitForNavigation end
+[2025-10-27T15:04:37.647+08:00] screenshotBase64 begin
+[2025-10-27T15:04:37.802+08:00] screenshotBase64 end, cost: 155ms
+[2025-10-27T15:04:37.802+08:00] evaluate function begin
+[2025-10-27T15:04:37.803+08:00] evaluate function end
+[2025-10-27T15:04:37.804+08:00] waitForNavigation begin
+[2025-10-27T15:04:37.804+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:37.811+08:00] waitForNavigation end
+[2025-10-27T15:04:37.812+08:00] evaluate function begin
+[2025-10-27T15:04:37.901+08:00] evaluate function end
+[2025-10-27T15:04:37.901+08:00] getElementsNodeTree end, cost: 89ms
+[2025-10-27T15:04:45.786+08:00] waitForNavigation begin
+[2025-10-27T15:04:45.786+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:45.791+08:00] waitForNavigation end
+[2025-10-27T15:04:45.791+08:00] screenshotBase64 begin
+[2025-10-27T15:04:45.902+08:00] screenshotBase64 end, cost: 111ms
+[2025-10-27T15:04:45.902+08:00] waitForNavigation begin
+[2025-10-27T15:04:45.902+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:45.907+08:00] waitForNavigation end
+[2025-10-27T15:04:45.907+08:00] evaluate function begin
+[2025-10-27T15:04:45.984+08:00] evaluate function end
+[2025-10-27T15:04:45.984+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:04:46.167+08:00] waitForNavigation begin
+[2025-10-27T15:04:46.167+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:46.172+08:00] waitForNavigation end
+[2025-10-27T15:04:46.172+08:00] screenshotBase64 begin
+[2025-10-27T15:04:46.302+08:00] screenshotBase64 end, cost: 130ms
+[2025-10-27T15:04:46.344+08:00] waitForNavigation begin
+[2025-10-27T15:04:46.344+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:46.349+08:00] waitForNavigation end
+[2025-10-27T15:04:46.349+08:00] screenshotBase64 begin
+[2025-10-27T15:04:46.480+08:00] screenshotBase64 end, cost: 131ms
+[2025-10-27T15:04:46.480+08:00] waitForNavigation begin
+[2025-10-27T15:04:46.480+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:46.485+08:00] waitForNavigation end
+[2025-10-27T15:04:46.485+08:00] evaluate function begin
+[2025-10-27T15:04:46.558+08:00] evaluate function end
+[2025-10-27T15:04:46.558+08:00] getElementsNodeTree end, cost: 73ms
+[2025-10-27T15:04:46.743+08:00] waitForNavigation begin
+[2025-10-27T15:04:46.743+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:46.748+08:00] waitForNavigation end
+[2025-10-27T15:04:46.952+08:00] clearInput begin
+[2025-10-27T15:04:46.952+08:00] mouse move to 466, 58
+[2025-10-27T15:04:46.959+08:00] mouse click 466, 58, left, 3
+[2025-10-27T15:04:47.095+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:04:47.100+08:00] mouse move to 466, 58
+[2025-10-27T15:04:47.136+08:00] mouse click 466, 58, left, 1
+[2025-10-27T15:04:47.331+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:04:47.333+08:00] clearInput end
+[2025-10-27T15:04:47.334+08:00] keyboard type 反派
+[2025-10-27T15:04:47.498+08:00] waitForNavigation begin
+[2025-10-27T15:04:47.498+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:47.508+08:00] waitForNavigation end
+[2025-10-27T15:04:47.508+08:00] screenshotBase64 begin
+[2025-10-27T15:04:47.623+08:00] screenshotBase64 end, cost: 115ms
+[2025-10-27T15:04:47.753+08:00] waitForNavigation begin
+[2025-10-27T15:04:47.753+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:47.764+08:00] waitForNavigation end
+[2025-10-27T15:04:47.764+08:00] screenshotBase64 begin
+[2025-10-27T15:04:47.886+08:00] screenshotBase64 end, cost: 122ms
+[2025-10-27T15:04:47.886+08:00] waitForNavigation begin
+[2025-10-27T15:04:47.886+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:47.890+08:00] waitForNavigation end
+[2025-10-27T15:04:47.890+08:00] evaluate function begin
+[2025-10-27T15:04:47.969+08:00] evaluate function end
+[2025-10-27T15:04:47.969+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:04:53.208+08:00] waitForNavigation begin
+[2025-10-27T15:04:53.208+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:53.213+08:00] waitForNavigation end
+[2025-10-27T15:04:53.213+08:00] screenshotBase64 begin
+[2025-10-27T15:04:53.338+08:00] screenshotBase64 end, cost: 125ms
+[2025-10-27T15:04:53.338+08:00] waitForNavigation begin
+[2025-10-27T15:04:53.338+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:53.343+08:00] waitForNavigation end
+[2025-10-27T15:04:53.343+08:00] evaluate function begin
+[2025-10-27T15:04:53.419+08:00] evaluate function end
+[2025-10-27T15:04:53.419+08:00] getElementsNodeTree end, cost: 76ms
+[2025-10-27T15:04:53.599+08:00] waitForNavigation begin
+[2025-10-27T15:04:53.599+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:53.603+08:00] waitForNavigation end
+[2025-10-27T15:04:53.603+08:00] screenshotBase64 begin
+[2025-10-27T15:04:53.724+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:04:53.767+08:00] waitForNavigation begin
+[2025-10-27T15:04:53.767+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:53.771+08:00] waitForNavigation end
+[2025-10-27T15:04:53.771+08:00] screenshotBase64 begin
+[2025-10-27T15:04:53.889+08:00] screenshotBase64 end, cost: 118ms
+[2025-10-27T15:04:53.889+08:00] waitForNavigation begin
+[2025-10-27T15:04:53.889+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:53.893+08:00] waitForNavigation end
+[2025-10-27T15:04:53.894+08:00] evaluate function begin
+[2025-10-27T15:04:53.965+08:00] evaluate function end
+[2025-10-27T15:04:53.965+08:00] getElementsNodeTree end, cost: 71ms
+[2025-10-27T15:04:54.148+08:00] waitForNavigation begin
+[2025-10-27T15:04:54.149+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:54.153+08:00] waitForNavigation end
+[2025-10-27T15:04:54.355+08:00] mouse move to 587, 60
+[2025-10-27T15:04:54.363+08:00] mouse click 587, 60, left, 1
+[2025-10-27T15:04:54.377+08:00] waitForNavigation begin
+[2025-10-27T15:04:54.377+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:54.382+08:00] waitForNavigation end
+[2025-10-27T15:04:54.382+08:00] screenshotBase64 begin
+[2025-10-27T15:04:54.523+08:00] screenshotBase64 end, cost: 141ms
+[2025-10-27T15:04:54.632+08:00] waitForNavigation begin
+[2025-10-27T15:04:54.632+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:54.640+08:00] waitForNavigation end
+[2025-10-27T15:04:54.640+08:00] screenshotBase64 begin
+[2025-10-27T15:04:54.749+08:00] screenshotBase64 end, cost: 109ms
+[2025-10-27T15:04:54.749+08:00] waitForNavigation begin
+[2025-10-27T15:04:54.749+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:54.753+08:00] waitForNavigation end
+[2025-10-27T15:04:54.753+08:00] evaluate function begin
+[2025-10-27T15:04:54.828+08:00] evaluate function end
+[2025-10-27T15:04:54.828+08:00] getElementsNodeTree end, cost: 75ms
+[2025-10-27T15:04:59.935+08:00] waitForNavigation begin
+[2025-10-27T15:04:59.935+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:04:59.940+08:00] waitForNavigation end
+[2025-10-27T15:04:59.940+08:00] screenshotBase64 begin
+[2025-10-27T15:05:00.059+08:00] screenshotBase64 end, cost: 119ms
+[2025-10-27T15:05:00.059+08:00] waitForNavigation begin
+[2025-10-27T15:05:00.059+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:00.080+08:00] waitForNavigation end
+[2025-10-27T15:05:00.080+08:00] evaluate function begin
+[2025-10-27T15:05:00.155+08:00] evaluate function end
+[2025-10-27T15:05:00.156+08:00] getElementsNodeTree end, cost: 75ms
+[2025-10-27T15:05:00.338+08:00] waitForNavigation begin
+[2025-10-27T15:05:00.338+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:00.342+08:00] waitForNavigation end
+[2025-10-27T15:05:00.342+08:00] screenshotBase64 begin
+[2025-10-27T15:05:00.470+08:00] screenshotBase64 end, cost: 128ms
+[2025-10-27T15:05:00.513+08:00] waitForNavigation begin
+[2025-10-27T15:05:00.513+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:00.517+08:00] waitForNavigation end
+[2025-10-27T15:05:00.517+08:00] screenshotBase64 begin
+[2025-10-27T15:05:00.635+08:00] screenshotBase64 end, cost: 118ms
+[2025-10-27T15:05:00.635+08:00] waitForNavigation begin
+[2025-10-27T15:05:00.635+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:00.639+08:00] waitForNavigation end
+[2025-10-27T15:05:00.639+08:00] evaluate function begin
+[2025-10-27T15:05:00.709+08:00] evaluate function end
+[2025-10-27T15:05:00.709+08:00] getElementsNodeTree end, cost: 70ms
+[2025-10-27T15:05:00.889+08:00] waitForNavigation begin
+[2025-10-27T15:05:00.889+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:00.894+08:00] waitForNavigation end
+[2025-10-27T15:05:01.095+08:00] mouse move to 240, 420
+[2025-10-27T15:05:01.097+08:00] mouse click 240, 420, left, 1
+[2025-10-27T15:05:01.110+08:00] waitForNavigation begin
+[2025-10-27T15:05:01.110+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:01.252+08:00] waitForNavigation end
+[2025-10-27T15:05:01.252+08:00] screenshotBase64 begin
+[2025-10-27T15:05:01.547+08:00] screenshotBase64 end, cost: 295ms
+[2025-10-27T15:05:01.687+08:00] waitForNavigation begin
+[2025-10-27T15:05:01.687+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:01.702+08:00] waitForNavigation end
+[2025-10-27T15:05:01.702+08:00] screenshotBase64 begin
+[2025-10-27T15:05:01.839+08:00] screenshotBase64 end, cost: 137ms
+[2025-10-27T15:05:01.840+08:00] waitForNavigation begin
+[2025-10-27T15:05:01.840+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:01.844+08:00] waitForNavigation end
+[2025-10-27T15:05:01.844+08:00] evaluate function begin
+[2025-10-27T15:05:01.878+08:00] evaluate function end
+[2025-10-27T15:05:01.878+08:00] getElementsNodeTree end, cost: 34ms
+[2025-10-27T15:05:06.823+08:00] waitForNavigation begin
+[2025-10-27T15:05:06.823+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:06.828+08:00] waitForNavigation end
+[2025-10-27T15:05:06.828+08:00] screenshotBase64 begin
+[2025-10-27T15:05:06.949+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:05:06.949+08:00] waitForNavigation begin
+[2025-10-27T15:05:06.949+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:06.953+08:00] waitForNavigation end
+[2025-10-27T15:05:06.953+08:00] evaluate function begin
+[2025-10-27T15:05:06.981+08:00] evaluate function end
+[2025-10-27T15:05:06.981+08:00] getElementsNodeTree end, cost: 28ms
+[2025-10-27T15:05:07.164+08:00] waitForNavigation begin
+[2025-10-27T15:05:07.164+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:07.168+08:00] waitForNavigation end
+[2025-10-27T15:05:07.168+08:00] screenshotBase64 begin
+[2025-10-27T15:05:07.285+08:00] screenshotBase64 end, cost: 117ms
+[2025-10-27T15:05:07.328+08:00] waitForNavigation begin
+[2025-10-27T15:05:07.328+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:07.332+08:00] waitForNavigation end
+[2025-10-27T15:05:07.332+08:00] screenshotBase64 begin
+[2025-10-27T15:05:07.436+08:00] screenshotBase64 end, cost: 104ms
+[2025-10-27T15:05:07.437+08:00] waitForNavigation begin
+[2025-10-27T15:05:07.437+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:07.441+08:00] waitForNavigation end
+[2025-10-27T15:05:07.441+08:00] evaluate function begin
+[2025-10-27T15:05:07.468+08:00] evaluate function end
+[2025-10-27T15:05:07.468+08:00] getElementsNodeTree end, cost: 27ms
+[2025-10-27T15:05:07.648+08:00] waitForNavigation begin
+[2025-10-27T15:05:07.648+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:07.652+08:00] waitForNavigation end
+[2025-10-27T15:05:07.854+08:00] mouse move to 357, 566
+[2025-10-27T15:05:07.856+08:00] mouse click 357, 566, left, 1
+[2025-10-27T15:05:07.861+08:00] waitForNavigation begin
+[2025-10-27T15:05:07.861+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:07.865+08:00] waitForNavigation end
+[2025-10-27T15:05:07.865+08:00] screenshotBase64 begin
+[2025-10-27T15:05:08.005+08:00] screenshotBase64 end, cost: 140ms
+[2025-10-27T15:05:11.113+08:00] waitForNavigation begin
+[2025-10-27T15:05:11.113+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:11.120+08:00] waitForNavigation end
+[2025-10-27T15:05:11.120+08:00] screenshotBase64 begin
+[2025-10-27T15:05:11.246+08:00] screenshotBase64 end, cost: 126ms
+[2025-10-27T15:05:11.291+08:00] waitForNavigation begin
+[2025-10-27T15:05:11.291+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:11.296+08:00] waitForNavigation end
+[2025-10-27T15:05:11.296+08:00] screenshotBase64 begin
+[2025-10-27T15:05:11.413+08:00] screenshotBase64 end, cost: 117ms
+[2025-10-27T15:05:11.413+08:00] waitForNavigation begin
+[2025-10-27T15:05:11.413+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:11.417+08:00] waitForNavigation end
+[2025-10-27T15:05:11.417+08:00] evaluate function begin
+[2025-10-27T15:05:11.447+08:00] evaluate function end
+[2025-10-27T15:05:11.448+08:00] getElementsNodeTree end, cost: 31ms
+[2025-10-27T15:05:11.669+08:00] waitForNavigation begin
+[2025-10-27T15:05:11.669+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:11.673+08:00] waitForNavigation end
+[2025-10-27T15:05:11.674+08:00] screenshotBase64 begin
+[2025-10-27T15:05:11.794+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:05:11.794+08:00] waitForNavigation begin
+[2025-10-27T15:05:11.794+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:05:11.799+08:00] waitForNavigation end
+[2025-10-27T15:05:11.799+08:00] evaluate function begin
+[2025-10-27T15:05:11.827+08:00] evaluate function end
+[2025-10-27T15:05:11.827+08:00] getElementsNodeTree end, cost: 28ms
+[2025-10-27T15:07:21.245+08:00] waitForNavigation begin
+[2025-10-27T15:07:21.245+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:21.264+08:00] waitForNavigation end
+[2025-10-27T15:07:21.264+08:00] screenshotBase64 begin
+[2025-10-27T15:07:21.457+08:00] screenshotBase64 end, cost: 193ms
+[2025-10-27T15:07:21.457+08:00] evaluate function begin
+[2025-10-27T15:07:21.459+08:00] evaluate function end
+[2025-10-27T15:07:21.459+08:00] waitForNavigation begin
+[2025-10-27T15:07:21.459+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:21.464+08:00] waitForNavigation end
+[2025-10-27T15:07:21.465+08:00] evaluate function begin
+[2025-10-27T15:07:21.566+08:00] evaluate function end
+[2025-10-27T15:07:21.567+08:00] getElementsNodeTree end, cost: 102ms
+[2025-10-27T15:07:28.340+08:00] waitForNavigation begin
+[2025-10-27T15:07:28.340+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:28.345+08:00] waitForNavigation end
+[2025-10-27T15:07:28.345+08:00] screenshotBase64 begin
+[2025-10-27T15:07:28.465+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:07:28.466+08:00] waitForNavigation begin
+[2025-10-27T15:07:28.466+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:28.470+08:00] waitForNavigation end
+[2025-10-27T15:07:28.470+08:00] evaluate function begin
+[2025-10-27T15:07:28.549+08:00] evaluate function end
+[2025-10-27T15:07:28.549+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:07:28.735+08:00] waitForNavigation begin
+[2025-10-27T15:07:28.735+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:28.740+08:00] waitForNavigation end
+[2025-10-27T15:07:28.740+08:00] screenshotBase64 begin
+[2025-10-27T15:07:28.866+08:00] screenshotBase64 end, cost: 126ms
+[2025-10-27T15:07:28.910+08:00] waitForNavigation begin
+[2025-10-27T15:07:28.910+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:28.914+08:00] waitForNavigation end
+[2025-10-27T15:07:28.914+08:00] screenshotBase64 begin
+[2025-10-27T15:07:29.030+08:00] screenshotBase64 end, cost: 116ms
+[2025-10-27T15:07:29.030+08:00] waitForNavigation begin
+[2025-10-27T15:07:29.030+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:29.035+08:00] waitForNavigation end
+[2025-10-27T15:07:29.035+08:00] evaluate function begin
+[2025-10-27T15:07:29.111+08:00] evaluate function end
+[2025-10-27T15:07:29.111+08:00] getElementsNodeTree end, cost: 76ms
+[2025-10-27T15:07:29.308+08:00] waitForNavigation begin
+[2025-10-27T15:07:29.308+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:29.314+08:00] waitForNavigation end
+[2025-10-27T15:07:29.516+08:00] clearInput begin
+[2025-10-27T15:07:29.517+08:00] mouse move to 466, 58
+[2025-10-27T15:07:29.526+08:00] mouse click 466, 58, left, 3
+[2025-10-27T15:07:29.717+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:07:29.719+08:00] mouse move to 466, 58
+[2025-10-27T15:07:29.774+08:00] mouse click 466, 58, left, 1
+[2025-10-27T15:07:29.894+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:07:29.921+08:00] clearInput end
+[2025-10-27T15:07:29.922+08:00] keyboard type 反派
+[2025-10-27T15:07:30.088+08:00] waitForNavigation begin
+[2025-10-27T15:07:30.088+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:30.097+08:00] waitForNavigation end
+[2025-10-27T15:07:30.097+08:00] screenshotBase64 begin
+[2025-10-27T15:07:30.217+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:07:30.394+08:00] waitForNavigation begin
+[2025-10-27T15:07:30.394+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:30.405+08:00] waitForNavigation end
+[2025-10-27T15:07:30.405+08:00] screenshotBase64 begin
+[2025-10-27T15:07:30.512+08:00] screenshotBase64 end, cost: 107ms
+[2025-10-27T15:07:30.512+08:00] waitForNavigation begin
+[2025-10-27T15:07:30.512+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:30.516+08:00] waitForNavigation end
+[2025-10-27T15:07:30.516+08:00] evaluate function begin
+[2025-10-27T15:07:30.598+08:00] evaluate function end
+[2025-10-27T15:07:30.598+08:00] getElementsNodeTree end, cost: 82ms
+[2025-10-27T15:07:35.405+08:00] waitForNavigation begin
+[2025-10-27T15:07:35.405+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:35.410+08:00] waitForNavigation end
+[2025-10-27T15:07:35.410+08:00] screenshotBase64 begin
+[2025-10-27T15:07:35.533+08:00] screenshotBase64 end, cost: 123ms
+[2025-10-27T15:07:35.533+08:00] waitForNavigation begin
+[2025-10-27T15:07:35.533+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:35.538+08:00] waitForNavigation end
+[2025-10-27T15:07:35.538+08:00] evaluate function begin
+[2025-10-27T15:07:35.615+08:00] evaluate function end
+[2025-10-27T15:07:35.615+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:07:35.811+08:00] waitForNavigation begin
+[2025-10-27T15:07:35.811+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:35.816+08:00] waitForNavigation end
+[2025-10-27T15:07:35.816+08:00] screenshotBase64 begin
+[2025-10-27T15:07:35.934+08:00] screenshotBase64 end, cost: 118ms
+[2025-10-27T15:07:35.980+08:00] waitForNavigation begin
+[2025-10-27T15:07:35.980+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:35.985+08:00] waitForNavigation end
+[2025-10-27T15:07:35.985+08:00] screenshotBase64 begin
+[2025-10-27T15:07:36.102+08:00] screenshotBase64 end, cost: 117ms
+[2025-10-27T15:07:36.102+08:00] waitForNavigation begin
+[2025-10-27T15:07:36.102+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:36.108+08:00] waitForNavigation end
+[2025-10-27T15:07:36.108+08:00] evaluate function begin
+[2025-10-27T15:07:36.182+08:00] evaluate function end
+[2025-10-27T15:07:36.182+08:00] getElementsNodeTree end, cost: 74ms
+[2025-10-27T15:07:36.366+08:00] waitForNavigation begin
+[2025-10-27T15:07:36.367+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:36.371+08:00] waitForNavigation end
+[2025-10-27T15:07:36.573+08:00] mouse move to 584, 60
+[2025-10-27T15:07:36.575+08:00] mouse click 584, 60, left, 1
+[2025-10-27T15:07:36.579+08:00] waitForNavigation begin
+[2025-10-27T15:07:36.579+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:36.584+08:00] waitForNavigation end
+[2025-10-27T15:07:36.584+08:00] screenshotBase64 begin
+[2025-10-27T15:07:36.773+08:00] screenshotBase64 end, cost: 189ms
+[2025-10-27T15:07:36.990+08:00] waitForNavigation begin
+[2025-10-27T15:07:36.990+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:37.001+08:00] waitForNavigation end
+[2025-10-27T15:07:37.001+08:00] screenshotBase64 begin
+[2025-10-27T15:07:37.179+08:00] screenshotBase64 end, cost: 178ms
+[2025-10-27T15:07:37.179+08:00] waitForNavigation begin
+[2025-10-27T15:07:37.179+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:37.185+08:00] waitForNavigation end
+[2025-10-27T15:07:37.185+08:00] evaluate function begin
+[2025-10-27T15:07:37.268+08:00] evaluate function end
+[2025-10-27T15:07:37.268+08:00] getElementsNodeTree end, cost: 83ms
+[2025-10-27T15:07:42.808+08:00] waitForNavigation begin
+[2025-10-27T15:07:42.809+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:42.813+08:00] waitForNavigation end
+[2025-10-27T15:07:42.813+08:00] screenshotBase64 begin
+[2025-10-27T15:07:42.950+08:00] screenshotBase64 end, cost: 137ms
+[2025-10-27T15:07:42.999+08:00] waitForNavigation begin
+[2025-10-27T15:07:42.999+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:43.005+08:00] waitForNavigation end
+[2025-10-27T15:07:43.005+08:00] screenshotBase64 begin
+[2025-10-27T15:07:43.128+08:00] screenshotBase64 end, cost: 123ms
+[2025-10-27T15:07:43.128+08:00] waitForNavigation begin
+[2025-10-27T15:07:43.128+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:43.133+08:00] waitForNavigation end
+[2025-10-27T15:07:43.133+08:00] evaluate function begin
+[2025-10-27T15:07:43.212+08:00] evaluate function end
+[2025-10-27T15:07:43.212+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:07:43.413+08:00] waitForNavigation begin
+[2025-10-27T15:07:43.413+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:43.418+08:00] waitForNavigation end
+[2025-10-27T15:07:43.620+08:00] evaluate function begin
+[2025-10-27T15:07:43.621+08:00] evaluate function end
+[2025-10-27T15:07:43.622+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:07:44.128+08:00] waitForNavigation begin
+[2025-10-27T15:07:44.129+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:44.133+08:00] waitForNavigation end
+[2025-10-27T15:07:44.133+08:00] screenshotBase64 begin
+[2025-10-27T15:07:44.273+08:00] screenshotBase64 end, cost: 140ms
+[2025-10-27T15:07:44.316+08:00] waitForNavigation begin
+[2025-10-27T15:07:44.316+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:44.321+08:00] waitForNavigation end
+[2025-10-27T15:07:44.321+08:00] screenshotBase64 begin
+[2025-10-27T15:07:44.429+08:00] screenshotBase64 end, cost: 108ms
+[2025-10-27T15:07:44.430+08:00] waitForNavigation begin
+[2025-10-27T15:07:44.430+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:44.434+08:00] waitForNavigation end
+[2025-10-27T15:07:44.434+08:00] evaluate function begin
+[2025-10-27T15:07:44.523+08:00] evaluate function end
+[2025-10-27T15:07:44.523+08:00] getElementsNodeTree end, cost: 89ms
+[2025-10-27T15:07:50.542+08:00] waitForNavigation begin
+[2025-10-27T15:07:50.542+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:50.548+08:00] waitForNavigation end
+[2025-10-27T15:07:50.548+08:00] screenshotBase64 begin
+[2025-10-27T15:07:50.695+08:00] screenshotBase64 end, cost: 147ms
+[2025-10-27T15:07:50.747+08:00] waitForNavigation begin
+[2025-10-27T15:07:50.747+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:50.751+08:00] waitForNavigation end
+[2025-10-27T15:07:50.751+08:00] screenshotBase64 begin
+[2025-10-27T15:07:50.892+08:00] screenshotBase64 end, cost: 141ms
+[2025-10-27T15:07:50.894+08:00] waitForNavigation begin
+[2025-10-27T15:07:50.894+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:50.901+08:00] waitForNavigation end
+[2025-10-27T15:07:50.901+08:00] evaluate function begin
+[2025-10-27T15:07:50.998+08:00] evaluate function end
+[2025-10-27T15:07:50.998+08:00] getElementsNodeTree end, cost: 97ms
+[2025-10-27T15:07:51.201+08:00] waitForNavigation begin
+[2025-10-27T15:07:51.201+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:51.205+08:00] waitForNavigation end
+[2025-10-27T15:07:51.407+08:00] evaluate function begin
+[2025-10-27T15:07:51.408+08:00] evaluate function end
+[2025-10-27T15:07:51.408+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:07:51.913+08:00] waitForNavigation begin
+[2025-10-27T15:07:51.913+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:51.918+08:00] waitForNavigation end
+[2025-10-27T15:07:51.918+08:00] screenshotBase64 begin
+[2025-10-27T15:07:52.047+08:00] screenshotBase64 end, cost: 129ms
+[2025-10-27T15:07:52.095+08:00] waitForNavigation begin
+[2025-10-27T15:07:52.095+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:52.103+08:00] waitForNavigation end
+[2025-10-27T15:07:52.103+08:00] screenshotBase64 begin
+[2025-10-27T15:07:52.238+08:00] screenshotBase64 end, cost: 135ms
+[2025-10-27T15:07:52.238+08:00] waitForNavigation begin
+[2025-10-27T15:07:52.238+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:52.243+08:00] waitForNavigation end
+[2025-10-27T15:07:52.243+08:00] evaluate function begin
+[2025-10-27T15:07:52.326+08:00] evaluate function end
+[2025-10-27T15:07:52.326+08:00] getElementsNodeTree end, cost: 83ms
+[2025-10-27T15:07:58.085+08:00] waitForNavigation begin
+[2025-10-27T15:07:58.085+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:58.090+08:00] waitForNavigation end
+[2025-10-27T15:07:58.090+08:00] screenshotBase64 begin
+[2025-10-27T15:07:58.235+08:00] screenshotBase64 end, cost: 145ms
+[2025-10-27T15:07:58.286+08:00] waitForNavigation begin
+[2025-10-27T15:07:58.286+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:58.291+08:00] waitForNavigation end
+[2025-10-27T15:07:58.291+08:00] screenshotBase64 begin
+[2025-10-27T15:07:58.400+08:00] screenshotBase64 end, cost: 109ms
+[2025-10-27T15:07:58.400+08:00] waitForNavigation begin
+[2025-10-27T15:07:58.400+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:58.404+08:00] waitForNavigation end
+[2025-10-27T15:07:58.404+08:00] evaluate function begin
+[2025-10-27T15:07:58.476+08:00] evaluate function end
+[2025-10-27T15:07:58.477+08:00] getElementsNodeTree end, cost: 73ms
+[2025-10-27T15:07:58.670+08:00] waitForNavigation begin
+[2025-10-27T15:07:58.670+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:58.674+08:00] waitForNavigation end
+[2025-10-27T15:07:58.876+08:00] evaluate function begin
+[2025-10-27T15:07:58.877+08:00] evaluate function end
+[2025-10-27T15:07:58.877+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:07:59.381+08:00] waitForNavigation begin
+[2025-10-27T15:07:59.381+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:59.387+08:00] waitForNavigation end
+[2025-10-27T15:07:59.387+08:00] screenshotBase64 begin
+[2025-10-27T15:07:59.507+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:07:59.559+08:00] waitForNavigation begin
+[2025-10-27T15:07:59.559+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:59.563+08:00] waitForNavigation end
+[2025-10-27T15:07:59.563+08:00] screenshotBase64 begin
+[2025-10-27T15:07:59.680+08:00] screenshotBase64 end, cost: 117ms
+[2025-10-27T15:07:59.681+08:00] waitForNavigation begin
+[2025-10-27T15:07:59.681+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:07:59.685+08:00] waitForNavigation end
+[2025-10-27T15:07:59.685+08:00] evaluate function begin
+[2025-10-27T15:07:59.772+08:00] evaluate function end
+[2025-10-27T15:07:59.772+08:00] getElementsNodeTree end, cost: 87ms
+[2025-10-27T15:08:04.786+08:00] waitForNavigation begin
+[2025-10-27T15:08:04.786+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:04.791+08:00] waitForNavigation end
+[2025-10-27T15:08:04.791+08:00] screenshotBase64 begin
+[2025-10-27T15:08:04.939+08:00] screenshotBase64 end, cost: 148ms
+[2025-10-27T15:08:04.998+08:00] waitForNavigation begin
+[2025-10-27T15:08:04.998+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:05.006+08:00] waitForNavigation end
+[2025-10-27T15:08:05.006+08:00] screenshotBase64 begin
+[2025-10-27T15:08:05.166+08:00] screenshotBase64 end, cost: 160ms
+[2025-10-27T15:08:05.167+08:00] waitForNavigation begin
+[2025-10-27T15:08:05.167+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:05.190+08:00] waitForNavigation end
+[2025-10-27T15:08:05.190+08:00] evaluate function begin
+[2025-10-27T15:08:05.277+08:00] evaluate function end
+[2025-10-27T15:08:05.277+08:00] getElementsNodeTree end, cost: 87ms
+[2025-10-27T15:08:05.566+08:00] waitForNavigation begin
+[2025-10-27T15:08:05.566+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:05.643+08:00] waitForNavigation end
+[2025-10-27T15:08:05.851+08:00] evaluate function begin
+[2025-10-27T15:08:05.852+08:00] evaluate function end
+[2025-10-27T15:08:05.852+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:06.356+08:00] waitForNavigation begin
+[2025-10-27T15:08:06.356+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:06.363+08:00] waitForNavigation end
+[2025-10-27T15:08:06.363+08:00] screenshotBase64 begin
+[2025-10-27T15:08:06.527+08:00] screenshotBase64 end, cost: 164ms
+[2025-10-27T15:08:06.590+08:00] waitForNavigation begin
+[2025-10-27T15:08:06.590+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:06.622+08:00] waitForNavigation end
+[2025-10-27T15:08:06.623+08:00] screenshotBase64 begin
+[2025-10-27T15:08:06.785+08:00] screenshotBase64 end, cost: 162ms
+[2025-10-27T15:08:06.785+08:00] waitForNavigation begin
+[2025-10-27T15:08:06.785+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:06.789+08:00] waitForNavigation end
+[2025-10-27T15:08:06.790+08:00] evaluate function begin
+[2025-10-27T15:08:06.875+08:00] evaluate function end
+[2025-10-27T15:08:06.875+08:00] getElementsNodeTree end, cost: 85ms
+[2025-10-27T15:08:11.815+08:00] waitForNavigation begin
+[2025-10-27T15:08:11.815+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:11.821+08:00] waitForNavigation end
+[2025-10-27T15:08:11.821+08:00] screenshotBase64 begin
+[2025-10-27T15:08:12.024+08:00] screenshotBase64 end, cost: 203ms
+[2025-10-27T15:08:12.086+08:00] waitForNavigation begin
+[2025-10-27T15:08:12.086+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:12.091+08:00] waitForNavigation end
+[2025-10-27T15:08:12.091+08:00] screenshotBase64 begin
+[2025-10-27T15:08:12.223+08:00] screenshotBase64 end, cost: 132ms
+[2025-10-27T15:08:12.223+08:00] waitForNavigation begin
+[2025-10-27T15:08:12.223+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:12.231+08:00] waitForNavigation end
+[2025-10-27T15:08:12.231+08:00] evaluate function begin
+[2025-10-27T15:08:12.330+08:00] evaluate function end
+[2025-10-27T15:08:12.330+08:00] getElementsNodeTree end, cost: 99ms
+[2025-10-27T15:08:12.545+08:00] waitForNavigation begin
+[2025-10-27T15:08:12.545+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:12.550+08:00] waitForNavigation end
+[2025-10-27T15:08:12.796+08:00] evaluate function begin
+[2025-10-27T15:08:12.802+08:00] evaluate function end
+[2025-10-27T15:08:12.802+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:13.308+08:00] waitForNavigation begin
+[2025-10-27T15:08:13.308+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:13.316+08:00] waitForNavigation end
+[2025-10-27T15:08:13.316+08:00] screenshotBase64 begin
+[2025-10-27T15:08:13.470+08:00] screenshotBase64 end, cost: 154ms
+[2025-10-27T15:08:13.544+08:00] waitForNavigation begin
+[2025-10-27T15:08:13.544+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:13.550+08:00] waitForNavigation end
+[2025-10-27T15:08:13.550+08:00] screenshotBase64 begin
+[2025-10-27T15:08:13.699+08:00] screenshotBase64 end, cost: 149ms
+[2025-10-27T15:08:13.699+08:00] waitForNavigation begin
+[2025-10-27T15:08:13.700+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:13.705+08:00] waitForNavigation end
+[2025-10-27T15:08:13.705+08:00] evaluate function begin
+[2025-10-27T15:08:13.789+08:00] evaluate function end
+[2025-10-27T15:08:13.789+08:00] getElementsNodeTree end, cost: 84ms
+[2025-10-27T15:08:18.370+08:00] waitForNavigation begin
+[2025-10-27T15:08:18.370+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:18.376+08:00] waitForNavigation end
+[2025-10-27T15:08:18.376+08:00] screenshotBase64 begin
+[2025-10-27T15:08:18.561+08:00] screenshotBase64 end, cost: 185ms
+[2025-10-27T15:08:18.640+08:00] waitForNavigation begin
+[2025-10-27T15:08:18.640+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:18.646+08:00] waitForNavigation end
+[2025-10-27T15:08:18.646+08:00] screenshotBase64 begin
+[2025-10-27T15:08:18.781+08:00] screenshotBase64 end, cost: 135ms
+[2025-10-27T15:08:18.781+08:00] waitForNavigation begin
+[2025-10-27T15:08:18.782+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:18.788+08:00] waitForNavigation end
+[2025-10-27T15:08:18.789+08:00] evaluate function begin
+[2025-10-27T15:08:18.879+08:00] evaluate function end
+[2025-10-27T15:08:18.879+08:00] getElementsNodeTree end, cost: 90ms
+[2025-10-27T15:08:19.134+08:00] waitForNavigation begin
+[2025-10-27T15:08:19.134+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:19.139+08:00] waitForNavigation end
+[2025-10-27T15:08:19.340+08:00] evaluate function begin
+[2025-10-27T15:08:19.341+08:00] evaluate function end
+[2025-10-27T15:08:19.341+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:19.886+08:00] waitForNavigation begin
+[2025-10-27T15:08:19.887+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:19.902+08:00] waitForNavigation end
+[2025-10-27T15:08:19.902+08:00] screenshotBase64 begin
+[2025-10-27T15:08:20.088+08:00] screenshotBase64 end, cost: 186ms
+[2025-10-27T15:08:20.154+08:00] waitForNavigation begin
+[2025-10-27T15:08:20.154+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:20.159+08:00] waitForNavigation end
+[2025-10-27T15:08:20.159+08:00] screenshotBase64 begin
+[2025-10-27T15:08:20.280+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:08:20.280+08:00] waitForNavigation begin
+[2025-10-27T15:08:20.280+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:20.286+08:00] waitForNavigation end
+[2025-10-27T15:08:20.286+08:00] evaluate function begin
+[2025-10-27T15:08:20.365+08:00] evaluate function end
+[2025-10-27T15:08:20.365+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:08:25.440+08:00] waitForNavigation begin
+[2025-10-27T15:08:25.440+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:25.446+08:00] waitForNavigation end
+[2025-10-27T15:08:25.446+08:00] screenshotBase64 begin
+[2025-10-27T15:08:25.580+08:00] screenshotBase64 end, cost: 134ms
+[2025-10-27T15:08:25.632+08:00] waitForNavigation begin
+[2025-10-27T15:08:25.632+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:25.638+08:00] waitForNavigation end
+[2025-10-27T15:08:25.638+08:00] screenshotBase64 begin
+[2025-10-27T15:08:25.779+08:00] screenshotBase64 end, cost: 141ms
+[2025-10-27T15:08:25.779+08:00] waitForNavigation begin
+[2025-10-27T15:08:25.779+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:25.785+08:00] waitForNavigation end
+[2025-10-27T15:08:25.785+08:00] evaluate function begin
+[2025-10-27T15:08:25.866+08:00] evaluate function end
+[2025-10-27T15:08:25.866+08:00] getElementsNodeTree end, cost: 81ms
+[2025-10-27T15:08:26.070+08:00] waitForNavigation begin
+[2025-10-27T15:08:26.070+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:26.075+08:00] waitForNavigation end
+[2025-10-27T15:08:26.276+08:00] evaluate function begin
+[2025-10-27T15:08:26.278+08:00] evaluate function end
+[2025-10-27T15:08:26.278+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:26.780+08:00] waitForNavigation begin
+[2025-10-27T15:08:26.780+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:26.785+08:00] waitForNavigation end
+[2025-10-27T15:08:26.785+08:00] screenshotBase64 begin
+[2025-10-27T15:08:26.929+08:00] screenshotBase64 end, cost: 144ms
+[2025-10-27T15:08:26.989+08:00] waitForNavigation begin
+[2025-10-27T15:08:26.989+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:26.995+08:00] waitForNavigation end
+[2025-10-27T15:08:26.995+08:00] screenshotBase64 begin
+[2025-10-27T15:08:27.127+08:00] screenshotBase64 end, cost: 132ms
+[2025-10-27T15:08:27.127+08:00] waitForNavigation begin
+[2025-10-27T15:08:27.127+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:27.136+08:00] waitForNavigation end
+[2025-10-27T15:08:27.136+08:00] evaluate function begin
+[2025-10-27T15:08:27.231+08:00] evaluate function end
+[2025-10-27T15:08:27.231+08:00] getElementsNodeTree end, cost: 95ms
+[2025-10-27T15:08:34.288+08:00] waitForNavigation begin
+[2025-10-27T15:08:34.288+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:34.294+08:00] waitForNavigation end
+[2025-10-27T15:08:34.295+08:00] screenshotBase64 begin
+[2025-10-27T15:08:34.455+08:00] screenshotBase64 end, cost: 160ms
+[2025-10-27T15:08:34.570+08:00] waitForNavigation begin
+[2025-10-27T15:08:34.570+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:34.577+08:00] waitForNavigation end
+[2025-10-27T15:08:34.577+08:00] screenshotBase64 begin
+[2025-10-27T15:08:34.698+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:08:34.698+08:00] waitForNavigation begin
+[2025-10-27T15:08:34.698+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:34.704+08:00] waitForNavigation end
+[2025-10-27T15:08:34.704+08:00] evaluate function begin
+[2025-10-27T15:08:34.797+08:00] evaluate function end
+[2025-10-27T15:08:34.797+08:00] getElementsNodeTree end, cost: 93ms
+[2025-10-27T15:08:35.139+08:00] waitForNavigation begin
+[2025-10-27T15:08:35.139+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:35.145+08:00] waitForNavigation end
+[2025-10-27T15:08:35.347+08:00] evaluate function begin
+[2025-10-27T15:08:35.348+08:00] evaluate function end
+[2025-10-27T15:08:35.348+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:35.850+08:00] waitForNavigation begin
+[2025-10-27T15:08:35.850+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:35.855+08:00] waitForNavigation end
+[2025-10-27T15:08:35.855+08:00] screenshotBase64 begin
+[2025-10-27T15:08:36.000+08:00] screenshotBase64 end, cost: 145ms
+[2025-10-27T15:08:36.067+08:00] waitForNavigation begin
+[2025-10-27T15:08:36.067+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:36.074+08:00] waitForNavigation end
+[2025-10-27T15:08:36.074+08:00] screenshotBase64 begin
+[2025-10-27T15:08:36.214+08:00] screenshotBase64 end, cost: 140ms
+[2025-10-27T15:08:36.214+08:00] waitForNavigation begin
+[2025-10-27T15:08:36.214+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:36.220+08:00] waitForNavigation end
+[2025-10-27T15:08:36.220+08:00] evaluate function begin
+[2025-10-27T15:08:36.304+08:00] evaluate function end
+[2025-10-27T15:08:36.304+08:00] getElementsNodeTree end, cost: 84ms
+[2025-10-27T15:08:42.338+08:00] waitForNavigation begin
+[2025-10-27T15:08:42.338+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:42.343+08:00] waitForNavigation end
+[2025-10-27T15:08:42.343+08:00] screenshotBase64 begin
+[2025-10-27T15:08:42.508+08:00] screenshotBase64 end, cost: 165ms
+[2025-10-27T15:08:42.562+08:00] waitForNavigation begin
+[2025-10-27T15:08:42.562+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:42.567+08:00] waitForNavigation end
+[2025-10-27T15:08:42.568+08:00] screenshotBase64 begin
+[2025-10-27T15:08:42.683+08:00] screenshotBase64 end, cost: 115ms
+[2025-10-27T15:08:42.684+08:00] waitForNavigation begin
+[2025-10-27T15:08:42.684+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:42.690+08:00] waitForNavigation end
+[2025-10-27T15:08:42.690+08:00] evaluate function begin
+[2025-10-27T15:08:42.773+08:00] evaluate function end
+[2025-10-27T15:08:42.773+08:00] getElementsNodeTree end, cost: 83ms
+[2025-10-27T15:08:43.001+08:00] waitForNavigation begin
+[2025-10-27T15:08:43.001+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:43.009+08:00] waitForNavigation end
+[2025-10-27T15:08:43.211+08:00] evaluate function begin
+[2025-10-27T15:08:43.216+08:00] evaluate function end
+[2025-10-27T15:08:43.216+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:43.722+08:00] waitForNavigation begin
+[2025-10-27T15:08:43.722+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:43.729+08:00] waitForNavigation end
+[2025-10-27T15:08:43.729+08:00] screenshotBase64 begin
+[2025-10-27T15:08:43.848+08:00] screenshotBase64 end, cost: 119ms
+[2025-10-27T15:08:43.898+08:00] waitForNavigation begin
+[2025-10-27T15:08:43.898+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:43.903+08:00] waitForNavigation end
+[2025-10-27T15:08:43.903+08:00] screenshotBase64 begin
+[2025-10-27T15:08:44.039+08:00] screenshotBase64 end, cost: 136ms
+[2025-10-27T15:08:44.040+08:00] waitForNavigation begin
+[2025-10-27T15:08:44.040+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:44.046+08:00] waitForNavigation end
+[2025-10-27T15:08:44.046+08:00] evaluate function begin
+[2025-10-27T15:08:44.133+08:00] evaluate function end
+[2025-10-27T15:08:44.133+08:00] getElementsNodeTree end, cost: 87ms
+[2025-10-27T15:08:50.697+08:00] waitForNavigation begin
+[2025-10-27T15:08:50.697+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:50.703+08:00] waitForNavigation end
+[2025-10-27T15:08:50.703+08:00] screenshotBase64 begin
+[2025-10-27T15:08:50.857+08:00] screenshotBase64 end, cost: 154ms
+[2025-10-27T15:08:50.950+08:00] waitForNavigation begin
+[2025-10-27T15:08:50.950+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:50.964+08:00] waitForNavigation end
+[2025-10-27T15:08:50.964+08:00] screenshotBase64 begin
+[2025-10-27T15:08:51.129+08:00] screenshotBase64 end, cost: 165ms
+[2025-10-27T15:08:51.129+08:00] waitForNavigation begin
+[2025-10-27T15:08:51.130+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:51.150+08:00] waitForNavigation end
+[2025-10-27T15:08:51.150+08:00] evaluate function begin
+[2025-10-27T15:08:51.257+08:00] evaluate function end
+[2025-10-27T15:08:51.257+08:00] getElementsNodeTree end, cost: 107ms
+[2025-10-27T15:08:51.704+08:00] waitForNavigation begin
+[2025-10-27T15:08:51.704+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:51.709+08:00] waitForNavigation end
+[2025-10-27T15:08:51.911+08:00] evaluate function begin
+[2025-10-27T15:08:51.912+08:00] evaluate function end
+[2025-10-27T15:08:51.912+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:08:52.421+08:00] waitForNavigation begin
+[2025-10-27T15:08:52.422+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:52.426+08:00] waitForNavigation end
+[2025-10-27T15:08:52.426+08:00] screenshotBase64 begin
+[2025-10-27T15:08:52.592+08:00] screenshotBase64 end, cost: 166ms
+[2025-10-27T15:08:52.772+08:00] waitForNavigation begin
+[2025-10-27T15:08:52.772+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:52.797+08:00] waitForNavigation end
+[2025-10-27T15:08:52.797+08:00] screenshotBase64 begin
+[2025-10-27T15:08:52.987+08:00] screenshotBase64 end, cost: 190ms
+[2025-10-27T15:08:52.989+08:00] waitForNavigation begin
+[2025-10-27T15:08:52.989+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:08:53.058+08:00] waitForNavigation end
+[2025-10-27T15:08:53.059+08:00] evaluate function begin
+[2025-10-27T15:08:53.167+08:00] evaluate function end
+[2025-10-27T15:08:53.167+08:00] getElementsNodeTree end, cost: 108ms
+[2025-10-27T15:09:01.084+08:00] waitForNavigation begin
+[2025-10-27T15:09:01.084+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:01.089+08:00] waitForNavigation end
+[2025-10-27T15:09:01.089+08:00] screenshotBase64 begin
+[2025-10-27T15:09:01.212+08:00] screenshotBase64 end, cost: 123ms
+[2025-10-27T15:09:01.257+08:00] waitForNavigation begin
+[2025-10-27T15:09:01.257+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:01.261+08:00] waitForNavigation end
+[2025-10-27T15:09:01.261+08:00] screenshotBase64 begin
+[2025-10-27T15:09:01.375+08:00] screenshotBase64 end, cost: 114ms
+[2025-10-27T15:09:01.376+08:00] waitForNavigation begin
+[2025-10-27T15:09:01.376+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:01.380+08:00] waitForNavigation end
+[2025-10-27T15:09:01.380+08:00] evaluate function begin
+[2025-10-27T15:09:01.457+08:00] evaluate function end
+[2025-10-27T15:09:01.457+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:09:01.643+08:00] waitForNavigation begin
+[2025-10-27T15:09:01.643+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:01.647+08:00] waitForNavigation end
+[2025-10-27T15:09:01.848+08:00] evaluate function begin
+[2025-10-27T15:09:01.850+08:00] evaluate function end
+[2025-10-27T15:09:01.850+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:09:02.352+08:00] waitForNavigation begin
+[2025-10-27T15:09:02.352+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:02.357+08:00] waitForNavigation end
+[2025-10-27T15:09:02.357+08:00] screenshotBase64 begin
+[2025-10-27T15:09:02.471+08:00] screenshotBase64 end, cost: 114ms
+[2025-10-27T15:09:02.471+08:00] waitForNavigation begin
+[2025-10-27T15:09:02.471+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:02.476+08:00] waitForNavigation end
+[2025-10-27T15:09:02.476+08:00] screenshotBase64 begin
+[2025-10-27T15:09:02.588+08:00] screenshotBase64 end, cost: 112ms
+[2025-10-27T15:09:02.588+08:00] waitForNavigation begin
+[2025-10-27T15:09:02.588+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:09:02.593+08:00] waitForNavigation end
+[2025-10-27T15:09:02.593+08:00] screenshotBase64 begin
+[2025-10-27T15:09:02.739+08:00] screenshotBase64 end, cost: 146ms
+[2025-10-27T15:11:56.689+08:00] waitForNavigation begin
+[2025-10-27T15:11:56.689+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:11:56.717+08:00] waitForNavigation end
+[2025-10-27T15:11:56.717+08:00] screenshotBase64 begin
+[2025-10-27T15:11:56.882+08:00] screenshotBase64 end, cost: 165ms
+[2025-10-27T15:11:56.882+08:00] evaluate function begin
+[2025-10-27T15:11:56.884+08:00] evaluate function end
+[2025-10-27T15:11:56.885+08:00] waitForNavigation begin
+[2025-10-27T15:11:56.885+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:11:56.890+08:00] waitForNavigation end
+[2025-10-27T15:11:56.890+08:00] evaluate function begin
+[2025-10-27T15:11:56.906+08:00] evaluate function end
+[2025-10-27T15:11:56.906+08:00] getElementsNodeTree end, cost: 16ms
+[2025-10-27T15:12:49.383+08:00] waitForNavigation begin
+[2025-10-27T15:12:49.383+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:49.401+08:00] waitForNavigation end
+[2025-10-27T15:12:49.401+08:00] screenshotBase64 begin
+[2025-10-27T15:12:49.606+08:00] screenshotBase64 end, cost: 205ms
+[2025-10-27T15:12:49.606+08:00] evaluate function begin
+[2025-10-27T15:12:49.608+08:00] evaluate function end
+[2025-10-27T15:12:49.608+08:00] waitForNavigation begin
+[2025-10-27T15:12:49.608+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:49.614+08:00] waitForNavigation end
+[2025-10-27T15:12:49.614+08:00] evaluate function begin
+[2025-10-27T15:12:49.722+08:00] evaluate function end
+[2025-10-27T15:12:49.722+08:00] getElementsNodeTree end, cost: 108ms
+[2025-10-27T15:12:55.822+08:00] waitForNavigation begin
+[2025-10-27T15:12:55.822+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:55.827+08:00] waitForNavigation end
+[2025-10-27T15:12:55.827+08:00] screenshotBase64 begin
+[2025-10-27T15:12:55.945+08:00] screenshotBase64 end, cost: 118ms
+[2025-10-27T15:12:55.945+08:00] waitForNavigation begin
+[2025-10-27T15:12:55.945+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:55.950+08:00] waitForNavigation end
+[2025-10-27T15:12:55.950+08:00] evaluate function begin
+[2025-10-27T15:12:56.023+08:00] evaluate function end
+[2025-10-27T15:12:56.023+08:00] getElementsNodeTree end, cost: 73ms
+[2025-10-27T15:12:56.213+08:00] waitForNavigation begin
+[2025-10-27T15:12:56.213+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:56.218+08:00] waitForNavigation end
+[2025-10-27T15:12:56.218+08:00] screenshotBase64 begin
+[2025-10-27T15:12:56.345+08:00] screenshotBase64 end, cost: 127ms
+[2025-10-27T15:12:56.392+08:00] waitForNavigation begin
+[2025-10-27T15:12:56.392+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:56.397+08:00] waitForNavigation end
+[2025-10-27T15:12:56.397+08:00] screenshotBase64 begin
+[2025-10-27T15:12:56.518+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:12:56.518+08:00] waitForNavigation begin
+[2025-10-27T15:12:56.518+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:56.522+08:00] waitForNavigation end
+[2025-10-27T15:12:56.522+08:00] evaluate function begin
+[2025-10-27T15:12:56.599+08:00] evaluate function end
+[2025-10-27T15:12:56.599+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:12:56.786+08:00] waitForNavigation begin
+[2025-10-27T15:12:56.786+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:56.791+08:00] waitForNavigation end
+[2025-10-27T15:12:56.993+08:00] clearInput begin
+[2025-10-27T15:12:56.993+08:00] mouse move to 466, 60
+[2025-10-27T15:12:57.008+08:00] mouse click 466, 60, left, 3
+[2025-10-27T15:12:57.146+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:12:57.153+08:00] mouse move to 466, 60
+[2025-10-27T15:12:57.211+08:00] mouse click 466, 60, left, 1
+[2025-10-27T15:12:57.428+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:12:57.431+08:00] clearInput end
+[2025-10-27T15:12:57.431+08:00] keyboard type 反派
+[2025-10-27T15:12:57.595+08:00] waitForNavigation begin
+[2025-10-27T15:12:57.595+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:57.782+08:00] waitForNavigation end
+[2025-10-27T15:12:57.782+08:00] screenshotBase64 begin
+[2025-10-27T15:12:57.947+08:00] screenshotBase64 end, cost: 165ms
+[2025-10-27T15:12:58.130+08:00] waitForNavigation begin
+[2025-10-27T15:12:58.130+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:58.141+08:00] waitForNavigation end
+[2025-10-27T15:12:58.141+08:00] screenshotBase64 begin
+[2025-10-27T15:12:58.273+08:00] screenshotBase64 end, cost: 132ms
+[2025-10-27T15:12:58.273+08:00] waitForNavigation begin
+[2025-10-27T15:12:58.273+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:12:58.277+08:00] waitForNavigation end
+[2025-10-27T15:12:58.277+08:00] evaluate function begin
+[2025-10-27T15:12:58.362+08:00] evaluate function end
+[2025-10-27T15:12:58.362+08:00] getElementsNodeTree end, cost: 85ms
+[2025-10-27T15:13:04.853+08:00] waitForNavigation begin
+[2025-10-27T15:13:04.853+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:04.857+08:00] waitForNavigation end
+[2025-10-27T15:13:04.858+08:00] screenshotBase64 begin
+[2025-10-27T15:13:04.980+08:00] screenshotBase64 end, cost: 122ms
+[2025-10-27T15:13:04.980+08:00] waitForNavigation begin
+[2025-10-27T15:13:04.980+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:04.984+08:00] waitForNavigation end
+[2025-10-27T15:13:04.984+08:00] evaluate function begin
+[2025-10-27T15:13:05.062+08:00] evaluate function end
+[2025-10-27T15:13:05.062+08:00] getElementsNodeTree end, cost: 78ms
+[2025-10-27T15:13:05.255+08:00] waitForNavigation begin
+[2025-10-27T15:13:05.255+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:05.260+08:00] waitForNavigation end
+[2025-10-27T15:13:05.260+08:00] screenshotBase64 begin
+[2025-10-27T15:13:05.385+08:00] screenshotBase64 end, cost: 125ms
+[2025-10-27T15:13:05.430+08:00] waitForNavigation begin
+[2025-10-27T15:13:05.430+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:05.434+08:00] waitForNavigation end
+[2025-10-27T15:13:05.434+08:00] screenshotBase64 begin
+[2025-10-27T15:13:05.556+08:00] screenshotBase64 end, cost: 122ms
+[2025-10-27T15:13:05.556+08:00] waitForNavigation begin
+[2025-10-27T15:13:05.556+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:05.561+08:00] waitForNavigation end
+[2025-10-27T15:13:05.562+08:00] evaluate function begin
+[2025-10-27T15:13:05.638+08:00] evaluate function end
+[2025-10-27T15:13:05.638+08:00] getElementsNodeTree end, cost: 76ms
+[2025-10-27T15:13:05.830+08:00] waitForNavigation begin
+[2025-10-27T15:13:05.830+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:05.834+08:00] waitForNavigation end
+[2025-10-27T15:13:06.036+08:00] mouse move to 584, 58
+[2025-10-27T15:13:06.041+08:00] mouse click 584, 58, left, 1
+[2025-10-27T15:13:06.055+08:00] waitForNavigation begin
+[2025-10-27T15:13:06.055+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:06.060+08:00] waitForNavigation end
+[2025-10-27T15:13:06.060+08:00] screenshotBase64 begin
+[2025-10-27T15:13:06.198+08:00] screenshotBase64 end, cost: 138ms
+[2025-10-27T15:13:06.382+08:00] waitForNavigation begin
+[2025-10-27T15:13:06.382+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:06.394+08:00] waitForNavigation end
+[2025-10-27T15:13:06.394+08:00] screenshotBase64 begin
+[2025-10-27T15:13:06.504+08:00] screenshotBase64 end, cost: 110ms
+[2025-10-27T15:13:06.504+08:00] waitForNavigation begin
+[2025-10-27T15:13:06.504+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:06.508+08:00] waitForNavigation end
+[2025-10-27T15:13:06.508+08:00] evaluate function begin
+[2025-10-27T15:13:06.585+08:00] evaluate function end
+[2025-10-27T15:13:06.585+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:13:15.457+08:00] waitForNavigation begin
+[2025-10-27T15:13:15.457+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:15.463+08:00] waitForNavigation end
+[2025-10-27T15:13:15.463+08:00] screenshotBase64 begin
+[2025-10-27T15:13:15.595+08:00] screenshotBase64 end, cost: 132ms
+[2025-10-27T15:13:15.640+08:00] waitForNavigation begin
+[2025-10-27T15:13:15.640+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:15.645+08:00] waitForNavigation end
+[2025-10-27T15:13:15.645+08:00] screenshotBase64 begin
+[2025-10-27T15:13:15.786+08:00] screenshotBase64 end, cost: 141ms
+[2025-10-27T15:13:15.786+08:00] waitForNavigation begin
+[2025-10-27T15:13:15.786+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:15.791+08:00] waitForNavigation end
+[2025-10-27T15:13:15.791+08:00] evaluate function begin
+[2025-10-27T15:13:15.871+08:00] evaluate function end
+[2025-10-27T15:13:15.872+08:00] getElementsNodeTree end, cost: 81ms
+[2025-10-27T15:13:16.100+08:00] waitForNavigation begin
+[2025-10-27T15:13:16.100+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:16.105+08:00] waitForNavigation end
+[2025-10-27T15:13:16.307+08:00] evaluate function begin
+[2025-10-27T15:13:16.308+08:00] evaluate function end
+[2025-10-27T15:13:16.308+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:13:16.815+08:00] waitForNavigation begin
+[2025-10-27T15:13:16.815+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:16.821+08:00] waitForNavigation end
+[2025-10-27T15:13:16.821+08:00] screenshotBase64 begin
+[2025-10-27T15:13:16.940+08:00] screenshotBase64 end, cost: 119ms
+[2025-10-27T15:13:16.985+08:00] waitForNavigation begin
+[2025-10-27T15:13:16.985+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:16.991+08:00] waitForNavigation end
+[2025-10-27T15:13:16.991+08:00] screenshotBase64 begin
+[2025-10-27T15:13:17.117+08:00] screenshotBase64 end, cost: 126ms
+[2025-10-27T15:13:17.117+08:00] waitForNavigation begin
+[2025-10-27T15:13:17.117+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:17.122+08:00] waitForNavigation end
+[2025-10-27T15:13:17.122+08:00] evaluate function begin
+[2025-10-27T15:13:17.219+08:00] evaluate function end
+[2025-10-27T15:13:17.219+08:00] getElementsNodeTree end, cost: 97ms
+[2025-10-27T15:13:23.115+08:00] waitForNavigation begin
+[2025-10-27T15:13:23.115+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:23.121+08:00] waitForNavigation end
+[2025-10-27T15:13:23.121+08:00] screenshotBase64 begin
+[2025-10-27T15:13:23.266+08:00] screenshotBase64 end, cost: 145ms
+[2025-10-27T15:13:23.315+08:00] waitForNavigation begin
+[2025-10-27T15:13:23.315+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:23.319+08:00] waitForNavigation end
+[2025-10-27T15:13:23.319+08:00] screenshotBase64 begin
+[2025-10-27T15:13:23.441+08:00] screenshotBase64 end, cost: 122ms
+[2025-10-27T15:13:23.442+08:00] waitForNavigation begin
+[2025-10-27T15:13:23.442+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:23.446+08:00] waitForNavigation end
+[2025-10-27T15:13:23.446+08:00] evaluate function begin
+[2025-10-27T15:13:23.520+08:00] evaluate function end
+[2025-10-27T15:13:23.520+08:00] getElementsNodeTree end, cost: 74ms
+[2025-10-27T15:13:23.713+08:00] waitForNavigation begin
+[2025-10-27T15:13:23.713+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:23.717+08:00] waitForNavigation end
+[2025-10-27T15:13:23.918+08:00] evaluate function begin
+[2025-10-27T15:13:23.920+08:00] evaluate function end
+[2025-10-27T15:13:23.920+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:13:24.423+08:00] waitForNavigation begin
+[2025-10-27T15:13:24.423+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:24.428+08:00] waitForNavigation end
+[2025-10-27T15:13:24.428+08:00] screenshotBase64 begin
+[2025-10-27T15:13:24.547+08:00] screenshotBase64 end, cost: 119ms
+[2025-10-27T15:13:24.596+08:00] waitForNavigation begin
+[2025-10-27T15:13:24.596+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:24.600+08:00] waitForNavigation end
+[2025-10-27T15:13:24.600+08:00] screenshotBase64 begin
+[2025-10-27T15:13:24.725+08:00] screenshotBase64 end, cost: 125ms
+[2025-10-27T15:13:24.725+08:00] waitForNavigation begin
+[2025-10-27T15:13:24.725+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:24.729+08:00] waitForNavigation end
+[2025-10-27T15:13:24.729+08:00] evaluate function begin
+[2025-10-27T15:13:24.807+08:00] evaluate function end
+[2025-10-27T15:13:24.808+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:13:29.214+08:00] waitForNavigation begin
+[2025-10-27T15:13:29.214+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:29.219+08:00] waitForNavigation end
+[2025-10-27T15:13:29.219+08:00] screenshotBase64 begin
+[2025-10-27T15:13:29.339+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:13:29.383+08:00] waitForNavigation begin
+[2025-10-27T15:13:29.383+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:29.388+08:00] waitForNavigation end
+[2025-10-27T15:13:29.388+08:00] screenshotBase64 begin
+[2025-10-27T15:13:29.503+08:00] screenshotBase64 end, cost: 115ms
+[2025-10-27T15:13:29.503+08:00] waitForNavigation begin
+[2025-10-27T15:13:29.503+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:29.508+08:00] waitForNavigation end
+[2025-10-27T15:13:29.508+08:00] evaluate function begin
+[2025-10-27T15:13:29.581+08:00] evaluate function end
+[2025-10-27T15:13:29.582+08:00] getElementsNodeTree end, cost: 74ms
+[2025-10-27T15:13:29.772+08:00] waitForNavigation begin
+[2025-10-27T15:13:29.772+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:29.777+08:00] waitForNavigation end
+[2025-10-27T15:13:29.978+08:00] evaluate function begin
+[2025-10-27T15:13:29.979+08:00] evaluate function end
+[2025-10-27T15:13:29.979+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:13:30.482+08:00] waitForNavigation begin
+[2025-10-27T15:13:30.482+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:30.488+08:00] waitForNavigation end
+[2025-10-27T15:13:30.488+08:00] screenshotBase64 begin
+[2025-10-27T15:13:30.626+08:00] screenshotBase64 end, cost: 138ms
+[2025-10-27T15:13:30.671+08:00] waitForNavigation begin
+[2025-10-27T15:13:30.671+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:30.675+08:00] waitForNavigation end
+[2025-10-27T15:13:30.676+08:00] screenshotBase64 begin
+[2025-10-27T15:13:30.786+08:00] screenshotBase64 end, cost: 110ms
+[2025-10-27T15:13:30.786+08:00] waitForNavigation begin
+[2025-10-27T15:13:30.786+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:30.790+08:00] waitForNavigation end
+[2025-10-27T15:13:30.790+08:00] evaluate function begin
+[2025-10-27T15:13:30.872+08:00] evaluate function end
+[2025-10-27T15:13:30.872+08:00] getElementsNodeTree end, cost: 82ms
+[2025-10-27T15:13:35.786+08:00] waitForNavigation begin
+[2025-10-27T15:13:35.786+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:35.793+08:00] waitForNavigation end
+[2025-10-27T15:13:35.793+08:00] screenshotBase64 begin
+[2025-10-27T15:13:35.962+08:00] screenshotBase64 end, cost: 169ms
+[2025-10-27T15:13:36.025+08:00] waitForNavigation begin
+[2025-10-27T15:13:36.025+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:36.033+08:00] waitForNavigation end
+[2025-10-27T15:13:36.033+08:00] screenshotBase64 begin
+[2025-10-27T15:13:36.176+08:00] screenshotBase64 end, cost: 143ms
+[2025-10-27T15:13:36.176+08:00] waitForNavigation begin
+[2025-10-27T15:13:36.176+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:36.184+08:00] waitForNavigation end
+[2025-10-27T15:13:36.184+08:00] evaluate function begin
+[2025-10-27T15:13:36.269+08:00] evaluate function end
+[2025-10-27T15:13:36.269+08:00] getElementsNodeTree end, cost: 85ms
+[2025-10-27T15:13:36.712+08:00] waitForNavigation begin
+[2025-10-27T15:13:36.712+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:36.721+08:00] waitForNavigation end
+[2025-10-27T15:13:36.923+08:00] evaluate function begin
+[2025-10-27T15:13:36.924+08:00] evaluate function end
+[2025-10-27T15:13:36.924+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:13:37.427+08:00] waitForNavigation begin
+[2025-10-27T15:13:37.427+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:37.433+08:00] waitForNavigation end
+[2025-10-27T15:13:37.433+08:00] screenshotBase64 begin
+[2025-10-27T15:13:37.571+08:00] screenshotBase64 end, cost: 138ms
+[2025-10-27T15:13:37.618+08:00] waitForNavigation begin
+[2025-10-27T15:13:37.618+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:37.623+08:00] waitForNavigation end
+[2025-10-27T15:13:37.623+08:00] screenshotBase64 begin
+[2025-10-27T15:13:37.743+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:13:37.743+08:00] waitForNavigation begin
+[2025-10-27T15:13:37.743+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:37.748+08:00] waitForNavigation end
+[2025-10-27T15:13:37.748+08:00] evaluate function begin
+[2025-10-27T15:13:37.828+08:00] evaluate function end
+[2025-10-27T15:13:37.829+08:00] getElementsNodeTree end, cost: 81ms
+[2025-10-27T15:13:42.690+08:00] waitForNavigation begin
+[2025-10-27T15:13:42.690+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:42.696+08:00] waitForNavigation end
+[2025-10-27T15:13:42.696+08:00] screenshotBase64 begin
+[2025-10-27T15:13:42.838+08:00] screenshotBase64 end, cost: 142ms
+[2025-10-27T15:13:42.896+08:00] waitForNavigation begin
+[2025-10-27T15:13:42.896+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:42.900+08:00] waitForNavigation end
+[2025-10-27T15:13:42.900+08:00] screenshotBase64 begin
+[2025-10-27T15:13:43.050+08:00] screenshotBase64 end, cost: 150ms
+[2025-10-27T15:13:43.051+08:00] waitForNavigation begin
+[2025-10-27T15:13:43.051+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:43.059+08:00] waitForNavigation end
+[2025-10-27T15:13:43.059+08:00] evaluate function begin
+[2025-10-27T15:13:43.151+08:00] evaluate function end
+[2025-10-27T15:13:43.151+08:00] getElementsNodeTree end, cost: 92ms
+[2025-10-27T15:13:43.359+08:00] waitForNavigation begin
+[2025-10-27T15:13:43.359+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:43.364+08:00] waitForNavigation end
+[2025-10-27T15:13:43.565+08:00] evaluate function begin
+[2025-10-27T15:13:43.567+08:00] evaluate function end
+[2025-10-27T15:13:43.567+08:00] mouse wheel 0, 537.5999999999999
+[2025-10-27T15:13:44.069+08:00] waitForNavigation begin
+[2025-10-27T15:13:44.069+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:44.077+08:00] waitForNavigation end
+[2025-10-27T15:13:44.077+08:00] screenshotBase64 begin
+[2025-10-27T15:13:44.324+08:00] screenshotBase64 end, cost: 247ms
+[2025-10-27T15:13:44.668+08:00] waitForNavigation begin
+[2025-10-27T15:13:44.668+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:44.673+08:00] waitForNavigation end
+[2025-10-27T15:13:44.673+08:00] screenshotBase64 begin
+[2025-10-27T15:13:44.848+08:00] screenshotBase64 end, cost: 175ms
+[2025-10-27T15:13:44.848+08:00] waitForNavigation begin
+[2025-10-27T15:13:44.848+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:44.858+08:00] waitForNavigation end
+[2025-10-27T15:13:44.858+08:00] evaluate function begin
+[2025-10-27T15:13:44.986+08:00] evaluate function end
+[2025-10-27T15:13:44.986+08:00] getElementsNodeTree end, cost: 128ms
+[2025-10-27T15:13:50.877+08:00] waitForNavigation begin
+[2025-10-27T15:13:50.877+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:50.893+08:00] waitForNavigation end
+[2025-10-27T15:13:50.893+08:00] screenshotBase64 begin
+[2025-10-27T15:13:51.034+08:00] screenshotBase64 end, cost: 141ms
+[2025-10-27T15:13:51.034+08:00] waitForNavigation begin
+[2025-10-27T15:13:51.034+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:51.038+08:00] waitForNavigation end
+[2025-10-27T15:13:51.038+08:00] evaluate function begin
+[2025-10-27T15:13:51.120+08:00] evaluate function end
+[2025-10-27T15:13:51.120+08:00] getElementsNodeTree end, cost: 82ms
+[2025-10-27T15:13:57.616+08:00] waitForNavigation begin
+[2025-10-27T15:13:57.616+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:57.622+08:00] waitForNavigation end
+[2025-10-27T15:13:57.622+08:00] screenshotBase64 begin
+[2025-10-27T15:13:57.743+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:13:57.789+08:00] waitForNavigation begin
+[2025-10-27T15:13:57.789+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:57.794+08:00] waitForNavigation end
+[2025-10-27T15:13:57.794+08:00] screenshotBase64 begin
+[2025-10-27T15:13:57.913+08:00] screenshotBase64 end, cost: 118ms
+[2025-10-27T15:13:57.913+08:00] waitForNavigation begin
+[2025-10-27T15:13:57.913+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:57.917+08:00] waitForNavigation end
+[2025-10-27T15:13:57.917+08:00] evaluate function begin
+[2025-10-27T15:13:57.997+08:00] evaluate function end
+[2025-10-27T15:13:57.997+08:00] getElementsNodeTree end, cost: 80ms
+[2025-10-27T15:13:58.231+08:00] waitForNavigation begin
+[2025-10-27T15:13:58.231+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:58.236+08:00] waitForNavigation end
+[2025-10-27T15:13:58.236+08:00] screenshotBase64 begin
+[2025-10-27T15:13:58.359+08:00] screenshotBase64 end, cost: 123ms
+[2025-10-27T15:13:58.359+08:00] waitForNavigation begin
+[2025-10-27T15:13:58.359+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:13:58.363+08:00] waitForNavigation end
+[2025-10-27T15:13:58.363+08:00] evaluate function begin
+[2025-10-27T15:13:58.440+08:00] evaluate function end
+[2025-10-27T15:13:58.440+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:19:00.326+08:00] waitForNavigation begin
+[2025-10-27T15:19:00.326+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:00.346+08:00] waitForNavigation end
+[2025-10-27T15:19:00.346+08:00] screenshotBase64 begin
+[2025-10-27T15:19:00.515+08:00] screenshotBase64 end, cost: 169ms
+[2025-10-27T15:19:00.515+08:00] evaluate function begin
+[2025-10-27T15:19:00.516+08:00] evaluate function end
+[2025-10-27T15:19:00.517+08:00] waitForNavigation begin
+[2025-10-27T15:19:00.517+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:00.523+08:00] waitForNavigation end
+[2025-10-27T15:19:00.524+08:00] evaluate function begin
+[2025-10-27T15:19:00.622+08:00] evaluate function end
+[2025-10-27T15:19:00.622+08:00] getElementsNodeTree end, cost: 98ms
+[2025-10-27T15:19:07.320+08:00] waitForNavigation begin
+[2025-10-27T15:19:07.320+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:07.327+08:00] waitForNavigation end
+[2025-10-27T15:19:07.327+08:00] screenshotBase64 begin
+[2025-10-27T15:19:07.465+08:00] screenshotBase64 end, cost: 138ms
+[2025-10-27T15:19:07.465+08:00] waitForNavigation begin
+[2025-10-27T15:19:07.465+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:07.470+08:00] waitForNavigation end
+[2025-10-27T15:19:07.470+08:00] evaluate function begin
+[2025-10-27T15:19:07.548+08:00] evaluate function end
+[2025-10-27T15:19:07.548+08:00] getElementsNodeTree end, cost: 78ms
+[2025-10-27T15:19:07.756+08:00] waitForNavigation begin
+[2025-10-27T15:19:07.756+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:07.762+08:00] waitForNavigation end
+[2025-10-27T15:19:07.762+08:00] screenshotBase64 begin
+[2025-10-27T15:19:07.910+08:00] screenshotBase64 end, cost: 148ms
+[2025-10-27T15:19:07.955+08:00] waitForNavigation begin
+[2025-10-27T15:19:07.955+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:07.959+08:00] waitForNavigation end
+[2025-10-27T15:19:07.959+08:00] screenshotBase64 begin
+[2025-10-27T15:19:08.084+08:00] screenshotBase64 end, cost: 125ms
+[2025-10-27T15:19:08.084+08:00] waitForNavigation begin
+[2025-10-27T15:19:08.084+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:08.089+08:00] waitForNavigation end
+[2025-10-27T15:19:08.089+08:00] evaluate function begin
+[2025-10-27T15:19:08.164+08:00] evaluate function end
+[2025-10-27T15:19:08.164+08:00] getElementsNodeTree end, cost: 75ms
+[2025-10-27T15:19:08.352+08:00] waitForNavigation begin
+[2025-10-27T15:19:08.352+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:08.357+08:00] waitForNavigation end
+[2025-10-27T15:19:08.560+08:00] clearInput begin
+[2025-10-27T15:19:08.561+08:00] mouse move to 465, 58
+[2025-10-27T15:19:08.583+08:00] mouse click 465, 58, left, 3
+[2025-10-27T15:19:08.790+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:19:08.813+08:00] mouse move to 465, 58
+[2025-10-27T15:19:08.869+08:00] mouse click 465, 58, left, 1
+[2025-10-27T15:19:09.008+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:19:09.019+08:00] clearInput end
+[2025-10-27T15:19:09.019+08:00] keyboard type 反派
+[2025-10-27T15:19:09.183+08:00] waitForNavigation begin
+[2025-10-27T15:19:09.183+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:09.198+08:00] waitForNavigation end
+[2025-10-27T15:19:09.198+08:00] screenshotBase64 begin
+[2025-10-27T15:19:09.331+08:00] screenshotBase64 end, cost: 133ms
+[2025-10-27T15:19:09.469+08:00] waitForNavigation begin
+[2025-10-27T15:19:09.469+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:09.476+08:00] waitForNavigation end
+[2025-10-27T15:19:09.476+08:00] screenshotBase64 begin
+[2025-10-27T15:19:09.614+08:00] screenshotBase64 end, cost: 138ms
+[2025-10-27T15:19:09.614+08:00] waitForNavigation begin
+[2025-10-27T15:19:09.614+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:09.618+08:00] waitForNavigation end
+[2025-10-27T15:19:09.619+08:00] evaluate function begin
+[2025-10-27T15:19:09.702+08:00] evaluate function end
+[2025-10-27T15:19:09.702+08:00] getElementsNodeTree end, cost: 83ms
+[2025-10-27T15:19:14.979+08:00] waitForNavigation begin
+[2025-10-27T15:19:14.980+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:14.985+08:00] waitForNavigation end
+[2025-10-27T15:19:14.985+08:00] screenshotBase64 begin
+[2025-10-27T15:19:15.113+08:00] screenshotBase64 end, cost: 128ms
+[2025-10-27T15:19:15.113+08:00] waitForNavigation begin
+[2025-10-27T15:19:15.113+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:15.117+08:00] waitForNavigation end
+[2025-10-27T15:19:15.117+08:00] evaluate function begin
+[2025-10-27T15:19:15.196+08:00] evaluate function end
+[2025-10-27T15:19:15.196+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:19:15.386+08:00] waitForNavigation begin
+[2025-10-27T15:19:15.386+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:15.391+08:00] waitForNavigation end
+[2025-10-27T15:19:15.391+08:00] screenshotBase64 begin
+[2025-10-27T15:19:15.515+08:00] screenshotBase64 end, cost: 124ms
+[2025-10-27T15:19:15.561+08:00] waitForNavigation begin
+[2025-10-27T15:19:15.561+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:15.565+08:00] waitForNavigation end
+[2025-10-27T15:19:15.566+08:00] screenshotBase64 begin
+[2025-10-27T15:19:15.679+08:00] screenshotBase64 end, cost: 113ms
+[2025-10-27T15:19:15.680+08:00] waitForNavigation begin
+[2025-10-27T15:19:15.680+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:15.684+08:00] waitForNavigation end
+[2025-10-27T15:19:15.684+08:00] evaluate function begin
+[2025-10-27T15:19:15.766+08:00] evaluate function end
+[2025-10-27T15:19:15.766+08:00] getElementsNodeTree end, cost: 82ms
+[2025-10-27T15:19:15.964+08:00] waitForNavigation begin
+[2025-10-27T15:19:15.964+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:15.969+08:00] waitForNavigation end
+[2025-10-27T15:19:16.171+08:00] mouse move to 588, 58
+[2025-10-27T15:19:16.188+08:00] mouse click 588, 58, left, 1
+[2025-10-27T15:19:16.205+08:00] waitForNavigation begin
+[2025-10-27T15:19:16.205+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:16.214+08:00] waitForNavigation end
+[2025-10-27T15:19:16.214+08:00] screenshotBase64 begin
+[2025-10-27T15:19:16.369+08:00] screenshotBase64 end, cost: 155ms
+[2025-10-27T15:19:16.549+08:00] waitForNavigation begin
+[2025-10-27T15:19:16.549+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:16.555+08:00] waitForNavigation end
+[2025-10-27T15:19:16.555+08:00] screenshotBase64 begin
+[2025-10-27T15:19:16.675+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:19:16.675+08:00] waitForNavigation begin
+[2025-10-27T15:19:16.675+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:16.679+08:00] waitForNavigation end
+[2025-10-27T15:19:16.679+08:00] evaluate function begin
+[2025-10-27T15:19:16.758+08:00] evaluate function end
+[2025-10-27T15:19:16.758+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:19:25.567+08:00] waitForNavigation begin
+[2025-10-27T15:19:25.567+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:25.572+08:00] waitForNavigation end
+[2025-10-27T15:19:25.572+08:00] screenshotBase64 begin
+[2025-10-27T15:19:25.695+08:00] screenshotBase64 end, cost: 123ms
+[2025-10-27T15:19:25.695+08:00] waitForNavigation begin
+[2025-10-27T15:19:25.695+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:25.700+08:00] waitForNavigation end
+[2025-10-27T15:19:25.700+08:00] evaluate function begin
+[2025-10-27T15:19:25.775+08:00] evaluate function end
+[2025-10-27T15:19:25.775+08:00] getElementsNodeTree end, cost: 75ms
+[2025-10-27T15:19:25.966+08:00] waitForNavigation begin
+[2025-10-27T15:19:25.966+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:25.970+08:00] waitForNavigation end
+[2025-10-27T15:19:25.970+08:00] screenshotBase64 begin
+[2025-10-27T15:19:26.090+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:19:26.135+08:00] waitForNavigation begin
+[2025-10-27T15:19:26.135+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:26.141+08:00] waitForNavigation end
+[2025-10-27T15:19:26.141+08:00] screenshotBase64 begin
+[2025-10-27T15:19:26.262+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:19:26.262+08:00] waitForNavigation begin
+[2025-10-27T15:19:26.262+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:26.266+08:00] waitForNavigation end
+[2025-10-27T15:19:26.266+08:00] evaluate function begin
+[2025-10-27T15:19:26.341+08:00] evaluate function end
+[2025-10-27T15:19:26.341+08:00] getElementsNodeTree end, cost: 75ms
+[2025-10-27T15:19:26.534+08:00] waitForNavigation begin
+[2025-10-27T15:19:26.534+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:26.539+08:00] waitForNavigation end
+[2025-10-27T15:19:26.740+08:00] mouse move to 240, 420
+[2025-10-27T15:19:26.758+08:00] mouse click 240, 420, left, 1
+[2025-10-27T15:19:26.796+08:00] waitForNavigation begin
+[2025-10-27T15:19:26.796+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:26.945+08:00] waitForNavigation end
+[2025-10-27T15:19:26.945+08:00] screenshotBase64 begin
+[2025-10-27T15:19:27.237+08:00] screenshotBase64 end, cost: 292ms
+[2025-10-27T15:19:27.386+08:00] waitForNavigation begin
+[2025-10-27T15:19:27.386+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:27.400+08:00] waitForNavigation end
+[2025-10-27T15:19:27.400+08:00] screenshotBase64 begin
+[2025-10-27T15:19:27.513+08:00] screenshotBase64 end, cost: 113ms
+[2025-10-27T15:19:27.513+08:00] waitForNavigation begin
+[2025-10-27T15:19:27.513+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:27.520+08:00] waitForNavigation end
+[2025-10-27T15:19:27.520+08:00] evaluate function begin
+[2025-10-27T15:19:27.554+08:00] evaluate function end
+[2025-10-27T15:19:27.554+08:00] getElementsNodeTree end, cost: 34ms
+[2025-10-27T15:19:34.562+08:00] waitForNavigation begin
+[2025-10-27T15:19:34.562+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:34.567+08:00] waitForNavigation end
+[2025-10-27T15:19:34.567+08:00] screenshotBase64 begin
+[2025-10-27T15:19:34.695+08:00] screenshotBase64 end, cost: 128ms
+[2025-10-27T15:19:34.695+08:00] waitForNavigation begin
+[2025-10-27T15:19:34.695+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:34.700+08:00] waitForNavigation end
+[2025-10-27T15:19:34.700+08:00] evaluate function begin
+[2025-10-27T15:19:34.731+08:00] evaluate function end
+[2025-10-27T15:19:34.731+08:00] getElementsNodeTree end, cost: 31ms
+[2025-10-27T15:19:34.915+08:00] waitForNavigation begin
+[2025-10-27T15:19:34.915+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:34.920+08:00] waitForNavigation end
+[2025-10-27T15:19:34.920+08:00] screenshotBase64 begin
+[2025-10-27T15:19:35.025+08:00] screenshotBase64 end, cost: 105ms
+[2025-10-27T15:19:35.070+08:00] waitForNavigation begin
+[2025-10-27T15:19:35.070+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:35.074+08:00] waitForNavigation end
+[2025-10-27T15:19:35.074+08:00] screenshotBase64 begin
+[2025-10-27T15:19:35.195+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:19:35.195+08:00] waitForNavigation begin
+[2025-10-27T15:19:35.195+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:35.200+08:00] waitForNavigation end
+[2025-10-27T15:19:35.200+08:00] evaluate function begin
+[2025-10-27T15:19:35.228+08:00] evaluate function end
+[2025-10-27T15:19:35.228+08:00] getElementsNodeTree end, cost: 28ms
+[2025-10-27T15:19:35.413+08:00] waitForNavigation begin
+[2025-10-27T15:19:35.413+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:35.417+08:00] waitForNavigation end
+[2025-10-27T15:19:35.619+08:00] mouse move to 360, 567
+[2025-10-27T15:19:35.621+08:00] mouse click 360, 567, left, 1
+[2025-10-27T15:19:35.627+08:00] waitForNavigation begin
+[2025-10-27T15:19:35.627+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:35.631+08:00] waitForNavigation end
+[2025-10-27T15:19:35.631+08:00] screenshotBase64 begin
+[2025-10-27T15:19:35.762+08:00] screenshotBase64 end, cost: 131ms
+[2025-10-27T15:19:38.919+08:00] waitForNavigation begin
+[2025-10-27T15:19:38.919+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:38.926+08:00] waitForNavigation end
+[2025-10-27T15:19:38.926+08:00] screenshotBase64 begin
+[2025-10-27T15:19:39.056+08:00] screenshotBase64 end, cost: 130ms
+[2025-10-27T15:19:39.105+08:00] waitForNavigation begin
+[2025-10-27T15:19:39.105+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:39.109+08:00] waitForNavigation end
+[2025-10-27T15:19:39.109+08:00] screenshotBase64 begin
+[2025-10-27T15:19:39.229+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:19:39.229+08:00] waitForNavigation begin
+[2025-10-27T15:19:39.229+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:39.234+08:00] waitForNavigation end
+[2025-10-27T15:19:39.234+08:00] evaluate function begin
+[2025-10-27T15:19:39.263+08:00] evaluate function end
+[2025-10-27T15:19:39.263+08:00] getElementsNodeTree end, cost: 29ms
+[2025-10-27T15:19:39.496+08:00] waitForNavigation begin
+[2025-10-27T15:19:39.497+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:39.501+08:00] waitForNavigation end
+[2025-10-27T15:19:39.501+08:00] screenshotBase64 begin
+[2025-10-27T15:19:39.626+08:00] screenshotBase64 end, cost: 125ms
+[2025-10-27T15:19:39.626+08:00] waitForNavigation begin
+[2025-10-27T15:19:39.626+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:19:39.630+08:00] waitForNavigation end
+[2025-10-27T15:19:39.631+08:00] evaluate function begin
+[2025-10-27T15:19:39.659+08:00] evaluate function end
+[2025-10-27T15:19:39.659+08:00] getElementsNodeTree end, cost: 28ms
+[2025-10-27T15:31:15.588+08:00] waitForNavigation begin
+[2025-10-27T15:31:15.588+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:15.608+08:00] waitForNavigation end
+[2025-10-27T15:31:15.608+08:00] screenshotBase64 begin
+[2025-10-27T15:31:15.767+08:00] screenshotBase64 end, cost: 159ms
+[2025-10-27T15:31:15.767+08:00] evaluate function begin
+[2025-10-27T15:31:15.768+08:00] evaluate function end
+[2025-10-27T15:31:15.769+08:00] waitForNavigation begin
+[2025-10-27T15:31:15.769+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:15.775+08:00] waitForNavigation end
+[2025-10-27T15:31:15.775+08:00] evaluate function begin
+[2025-10-27T15:31:15.875+08:00] evaluate function end
+[2025-10-27T15:31:15.876+08:00] getElementsNodeTree end, cost: 101ms
+[2025-10-27T15:31:22.845+08:00] waitForNavigation begin
+[2025-10-27T15:31:22.845+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:22.850+08:00] waitForNavigation end
+[2025-10-27T15:31:22.851+08:00] screenshotBase64 begin
+[2025-10-27T15:31:22.978+08:00] screenshotBase64 end, cost: 127ms
+[2025-10-27T15:31:22.978+08:00] waitForNavigation begin
+[2025-10-27T15:31:22.978+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:22.983+08:00] waitForNavigation end
+[2025-10-27T15:31:22.983+08:00] evaluate function begin
+[2025-10-27T15:31:23.064+08:00] evaluate function end
+[2025-10-27T15:31:23.064+08:00] getElementsNodeTree end, cost: 81ms
+[2025-10-27T15:31:23.262+08:00] waitForNavigation begin
+[2025-10-27T15:31:23.262+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:23.267+08:00] waitForNavigation end
+[2025-10-27T15:31:23.267+08:00] screenshotBase64 begin
+[2025-10-27T15:31:23.398+08:00] screenshotBase64 end, cost: 131ms
+[2025-10-27T15:31:23.445+08:00] waitForNavigation begin
+[2025-10-27T15:31:23.445+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:23.450+08:00] waitForNavigation end
+[2025-10-27T15:31:23.450+08:00] screenshotBase64 begin
+[2025-10-27T15:31:23.574+08:00] screenshotBase64 end, cost: 124ms
+[2025-10-27T15:31:23.574+08:00] waitForNavigation begin
+[2025-10-27T15:31:23.574+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:23.578+08:00] waitForNavigation end
+[2025-10-27T15:31:23.578+08:00] evaluate function begin
+[2025-10-27T15:31:23.658+08:00] evaluate function end
+[2025-10-27T15:31:23.658+08:00] getElementsNodeTree end, cost: 80ms
+[2025-10-27T15:31:23.875+08:00] waitForNavigation begin
+[2025-10-27T15:31:23.875+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:23.880+08:00] waitForNavigation end
+[2025-10-27T15:31:24.082+08:00] clearInput begin
+[2025-10-27T15:31:24.082+08:00] mouse move to 679, 46
+[2025-10-27T15:31:24.100+08:00] mouse click 679, 46, left, 3
+[2025-10-27T15:31:24.309+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:31:24.315+08:00] mouse move to 679, 46
+[2025-10-27T15:31:24.322+08:00] mouse click 679, 46, left, 1
+[2025-10-27T15:31:24.430+08:00] keyboard press [ { key: 'Backspace' } ]
+[2025-10-27T15:31:24.433+08:00] clearInput end
+[2025-10-27T15:31:24.433+08:00] keyboard type 反派
+[2025-10-27T15:31:24.602+08:00] waitForNavigation begin
+[2025-10-27T15:31:24.602+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:24.610+08:00] waitForNavigation end
+[2025-10-27T15:31:24.610+08:00] screenshotBase64 begin
+[2025-10-27T15:31:24.756+08:00] screenshotBase64 end, cost: 146ms
+[2025-10-27T15:31:24.952+08:00] waitForNavigation begin
+[2025-10-27T15:31:24.952+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:24.963+08:00] waitForNavigation end
+[2025-10-27T15:31:24.963+08:00] screenshotBase64 begin
+[2025-10-27T15:31:25.088+08:00] screenshotBase64 end, cost: 125ms
+[2025-10-27T15:31:25.088+08:00] waitForNavigation begin
+[2025-10-27T15:31:25.088+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:25.093+08:00] waitForNavigation end
+[2025-10-27T15:31:25.093+08:00] evaluate function begin
+[2025-10-27T15:31:25.170+08:00] evaluate function end
+[2025-10-27T15:31:25.170+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:31:31.234+08:00] waitForNavigation begin
+[2025-10-27T15:31:31.234+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:31.239+08:00] waitForNavigation end
+[2025-10-27T15:31:31.239+08:00] screenshotBase64 begin
+[2025-10-27T15:31:31.373+08:00] screenshotBase64 end, cost: 134ms
+[2025-10-27T15:31:31.373+08:00] waitForNavigation begin
+[2025-10-27T15:31:31.373+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:31.377+08:00] waitForNavigation end
+[2025-10-27T15:31:31.377+08:00] evaluate function begin
+[2025-10-27T15:31:31.454+08:00] evaluate function end
+[2025-10-27T15:31:31.454+08:00] getElementsNodeTree end, cost: 77ms
+[2025-10-27T15:31:31.655+08:00] waitForNavigation begin
+[2025-10-27T15:31:31.655+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:31.661+08:00] waitForNavigation end
+[2025-10-27T15:31:31.661+08:00] screenshotBase64 begin
+[2025-10-27T15:31:31.783+08:00] screenshotBase64 end, cost: 121ms
+[2025-10-27T15:31:31.833+08:00] waitForNavigation begin
+[2025-10-27T15:31:31.833+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:31.838+08:00] waitForNavigation end
+[2025-10-27T15:31:31.838+08:00] screenshotBase64 begin
+[2025-10-27T15:31:31.952+08:00] screenshotBase64 end, cost: 114ms
+[2025-10-27T15:31:31.952+08:00] waitForNavigation begin
+[2025-10-27T15:31:31.952+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:31.958+08:00] waitForNavigation end
+[2025-10-27T15:31:31.958+08:00] evaluate function begin
+[2025-10-27T15:31:32.036+08:00] evaluate function end
+[2025-10-27T15:31:32.037+08:00] getElementsNodeTree end, cost: 79ms
+[2025-10-27T15:31:32.232+08:00] waitForNavigation begin
+[2025-10-27T15:31:32.232+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:32.237+08:00] waitForNavigation end
+[2025-10-27T15:31:32.438+08:00] mouse move to 850, 46
+[2025-10-27T15:31:32.440+08:00] mouse click 850, 46, left, 1
+[2025-10-27T15:31:32.451+08:00] waitForNavigation begin
+[2025-10-27T15:31:32.451+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:32.601+08:00] waitForNavigation end
+[2025-10-27T15:31:32.601+08:00] screenshotBase64 begin
+[2025-10-27T15:31:32.756+08:00] screenshotBase64 end, cost: 155ms
+[2025-10-27T15:31:32.954+08:00] waitForNavigation begin
+[2025-10-27T15:31:32.954+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:32.962+08:00] waitForNavigation end
+[2025-10-27T15:31:32.962+08:00] screenshotBase64 begin
+[2025-10-27T15:31:33.082+08:00] screenshotBase64 end, cost: 120ms
+[2025-10-27T15:31:33.083+08:00] waitForNavigation begin
+[2025-10-27T15:31:33.083+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:33.087+08:00] waitForNavigation end
+[2025-10-27T15:31:33.087+08:00] evaluate function begin
+[2025-10-27T15:31:33.114+08:00] evaluate function end
+[2025-10-27T15:31:33.115+08:00] getElementsNodeTree end, cost: 28ms
+[2025-10-27T15:31:39.077+08:00] waitForNavigation begin
+[2025-10-27T15:31:39.077+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:39.082+08:00] waitForNavigation end
+[2025-10-27T15:31:39.082+08:00] screenshotBase64 begin
+[2025-10-27T15:31:39.209+08:00] screenshotBase64 end, cost: 127ms
+[2025-10-27T15:31:39.209+08:00] waitForNavigation begin
+[2025-10-27T15:31:39.210+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:39.214+08:00] waitForNavigation end
+[2025-10-27T15:31:39.214+08:00] evaluate function begin
+[2025-10-27T15:31:39.238+08:00] evaluate function end
+[2025-10-27T15:31:39.238+08:00] getElementsNodeTree end, cost: 24ms
+[2025-10-27T15:31:39.428+08:00] waitForNavigation begin
+[2025-10-27T15:31:39.428+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:39.434+08:00] waitForNavigation end
+[2025-10-27T15:31:39.435+08:00] screenshotBase64 begin
+[2025-10-27T15:31:39.545+08:00] screenshotBase64 end, cost: 110ms
+[2025-10-27T15:31:39.590+08:00] waitForNavigation begin
+[2025-10-27T15:31:39.590+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:39.594+08:00] waitForNavigation end
+[2025-10-27T15:31:39.594+08:00] screenshotBase64 begin
+[2025-10-27T15:31:39.712+08:00] screenshotBase64 end, cost: 117ms
+[2025-10-27T15:31:39.712+08:00] waitForNavigation begin
+[2025-10-27T15:31:39.712+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:39.716+08:00] waitForNavigation end
+[2025-10-27T15:31:39.716+08:00] evaluate function begin
+[2025-10-27T15:31:39.741+08:00] evaluate function end
+[2025-10-27T15:31:39.742+08:00] getElementsNodeTree end, cost: 26ms
+[2025-10-27T15:31:39.929+08:00] waitForNavigation begin
+[2025-10-27T15:31:39.929+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:39.934+08:00] waitForNavigation end
+[2025-10-27T15:31:40.136+08:00] mouse move to 366, 472
+[2025-10-27T15:31:40.138+08:00] mouse click 366, 472, left, 1
+[2025-10-27T15:31:40.151+08:00] waitForNavigation begin
+[2025-10-27T15:31:40.151+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:40.282+08:00] waitForNavigation end
+[2025-10-27T15:31:40.282+08:00] screenshotBase64 begin
+[2025-10-27T15:31:40.546+08:00] screenshotBase64 end, cost: 264ms
+[2025-10-27T15:31:40.785+08:00] waitForNavigation begin
+[2025-10-27T15:31:40.785+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:40.797+08:00] waitForNavigation end
+[2025-10-27T15:31:40.797+08:00] screenshotBase64 begin
+[2025-10-27T15:31:40.920+08:00] screenshotBase64 end, cost: 123ms
+[2025-10-27T15:31:40.921+08:00] waitForNavigation begin
+[2025-10-27T15:31:40.921+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:40.925+08:00] waitForNavigation end
+[2025-10-27T15:31:40.925+08:00] evaluate function begin
+[2025-10-27T15:31:40.958+08:00] evaluate function end
+[2025-10-27T15:31:40.958+08:00] getElementsNodeTree end, cost: 33ms
+[2025-10-27T15:31:46.651+08:00] waitForNavigation begin
+[2025-10-27T15:31:46.651+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:46.656+08:00] waitForNavigation end
+[2025-10-27T15:31:46.656+08:00] screenshotBase64 begin
+[2025-10-27T15:31:46.802+08:00] screenshotBase64 end, cost: 146ms
+[2025-10-27T15:31:46.802+08:00] waitForNavigation begin
+[2025-10-27T15:31:46.802+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:46.807+08:00] waitForNavigation end
+[2025-10-27T15:31:46.807+08:00] evaluate function begin
+[2025-10-27T15:31:46.840+08:00] evaluate function end
+[2025-10-27T15:31:46.840+08:00] getElementsNodeTree end, cost: 33ms
+[2025-10-27T15:31:47.089+08:00] waitForNavigation begin
+[2025-10-27T15:31:47.089+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:47.094+08:00] waitForNavigation end
+[2025-10-27T15:31:47.094+08:00] screenshotBase64 begin
+[2025-10-27T15:31:47.222+08:00] screenshotBase64 end, cost: 128ms
+[2025-10-27T15:31:47.277+08:00] waitForNavigation begin
+[2025-10-27T15:31:47.277+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:47.281+08:00] waitForNavigation end
+[2025-10-27T15:31:47.281+08:00] screenshotBase64 begin
+[2025-10-27T15:31:47.408+08:00] screenshotBase64 end, cost: 127ms
+[2025-10-27T15:31:47.408+08:00] waitForNavigation begin
+[2025-10-27T15:31:47.408+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:47.412+08:00] waitForNavigation end
+[2025-10-27T15:31:47.412+08:00] evaluate function begin
+[2025-10-27T15:31:47.443+08:00] evaluate function end
+[2025-10-27T15:31:47.443+08:00] getElementsNodeTree end, cost: 31ms
+[2025-10-27T15:31:47.664+08:00] waitForNavigation begin
+[2025-10-27T15:31:47.664+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:47.668+08:00] waitForNavigation end
+[2025-10-27T15:31:47.869+08:00] mouse move to 522, 443
+[2025-10-27T15:31:47.871+08:00] mouse click 522, 443, left, 1
+[2025-10-27T15:31:47.879+08:00] waitForNavigation begin
+[2025-10-27T15:31:47.879+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:48.005+08:00] waitForNavigation end
+[2025-10-27T15:31:48.005+08:00] screenshotBase64 begin
+[2025-10-27T15:31:48.259+08:00] screenshotBase64 end, cost: 254ms
+[2025-10-27T15:31:51.470+08:00] waitForNavigation begin
+[2025-10-27T15:31:51.470+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:51.475+08:00] waitForNavigation end
+[2025-10-27T15:31:51.475+08:00] screenshotBase64 begin
+[2025-10-27T15:31:51.607+08:00] screenshotBase64 end, cost: 132ms
+[2025-10-27T15:31:51.652+08:00] waitForNavigation begin
+[2025-10-27T15:31:51.652+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:51.657+08:00] waitForNavigation end
+[2025-10-27T15:31:51.657+08:00] screenshotBase64 begin
+[2025-10-27T15:31:51.764+08:00] screenshotBase64 end, cost: 107ms
+[2025-10-27T15:31:51.764+08:00] waitForNavigation begin
+[2025-10-27T15:31:51.764+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:51.769+08:00] waitForNavigation end
+[2025-10-27T15:31:51.769+08:00] evaluate function begin
+[2025-10-27T15:31:51.791+08:00] evaluate function end
+[2025-10-27T15:31:51.791+08:00] getElementsNodeTree end, cost: 22ms
+[2025-10-27T15:31:52.033+08:00] waitForNavigation begin
+[2025-10-27T15:31:52.033+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:52.038+08:00] waitForNavigation end
+[2025-10-27T15:31:52.038+08:00] screenshotBase64 begin
+[2025-10-27T15:31:52.147+08:00] screenshotBase64 end, cost: 109ms
+[2025-10-27T15:31:52.147+08:00] waitForNavigation begin
+[2025-10-27T15:31:52.147+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:31:52.151+08:00] waitForNavigation end
+[2025-10-27T15:31:52.151+08:00] evaluate function begin
+[2025-10-27T15:31:52.169+08:00] evaluate function end
+[2025-10-27T15:31:52.169+08:00] getElementsNodeTree end, cost: 18ms
+[2025-10-27T15:40:40.958+08:00] waitForNavigation begin
+[2025-10-27T15:40:40.958+08:00] waitForNavigation timeout: 5000
+[2025-10-27T15:40:40.990+08:00] waitForNavigation end
+[2025-10-27T15:40:40.990+08:00] screenshotBase64 begin

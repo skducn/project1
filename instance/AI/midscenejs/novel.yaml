@@ -1,0 +1,13 @@
+web:
+  url: http://novel.hctestedu.com
+tasks:
+  - name: 小说阅读
+    flow:
+      - ai: 搜索框中输入：反派
+      - ai: 点击搜索
+      - ai: 点击结果列表中第一本小说
+      - ai: 点击 "点击阅读"
+      - sleep: 3000
+  - name: 检查结果
+    flow:
+      - aiAssert: 检查是否出现文字内容 "第一章终极反派系统

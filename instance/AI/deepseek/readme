@@ -1,0 +1,34 @@
+
+# 本地部署了deepseek-r1:1.5b
+# localhost-2:~ linghuchong$ ollama run ds-r1:1.5b
+# >>> Send a message (/? for help)
+# 要使用 `curl` 实现 DeepSeek API 的流式响应（Server-Sent Events, SSE），需确保 API 支持流式传输，并按照以下步骤操作：
+#
+# ---
+#
+# ### 1. **基础示例**
+# ```bash
+# curl https://api.deepseek.com/v1/chat/completions \
+#   -H "Content-Type: application/json" \
+#   -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
+#   -d '{
+#     "model": "ds-chat",
+#     "messages": [{"role": "user", "content": "你的问题"}],
+#     "stream": true  # 关键参数：启用流式
+#   }' \
+#   --no-buffer  # 禁用 curl 的缓冲，实时显示数据
+# ```
+#
+# ---
+#
+# ### 2. **解析流式响应**
+# 响应数据通常是多个 `data:` 开头的 JSON 块，需逐行解析：
+#
+# ```bash
+# curl ... | while IFS= read -r line; do
+#   if [[ $line == data:* ]]; then
+#     content=$(echo "$line" | sed 's/^data: //' | jq -r '.choices[0].delta.content // empty')
+#     printf "%s" "$content"
+#   fi
+# done
+# ```

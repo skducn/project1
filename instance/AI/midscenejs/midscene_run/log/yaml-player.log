@@ -1,0 +1,40 @@
+[2025-10-27T14:10:50.933+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761545450932.json
+[2025-10-27T14:10:58.149+08:00] playing step 0, flowItem={"ai":"搜索框中输入 “反派”"}
+[2025-10-27T14:49:41.609+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761547781609.json
+[2025-10-27T14:49:45.597+08:00] playing step 0, flowItem={"ai":"搜索框中输入 \"反派\""}
+[2025-10-27T15:04:33.832+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761548673831.json
+[2025-10-27T15:04:37.561+08:00] playing step 0, flowItem={"ai":"搜索框中输入 \"反派\""}
+[2025-10-27T15:04:47.704+08:00] playing step 1, flowItem={"ai":"点击搜索"}
+[2025-10-27T15:04:54.589+08:00] playing step 2, flowItem={"ai":"点击结果列表中第一本小说"}
+[2025-10-27T15:05:01.643+08:00] playing step 3, flowItem={"ai":"点击 \"立刻阅读\""}
+[2025-10-27T15:05:08.112+08:00] playing step 4, flowItem={"sleep":3000}
+[2025-10-27T15:05:11.112+08:00] playing step 0, flowItem={"aiAssert":"检查是否出现文字内容 \"第一章终极反派\""}
+[2025-10-27T15:07:17.480+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761548837479.json
+[2025-10-27T15:07:21.189+08:00] playing step 0, flowItem={"ai":"搜索框中输入 \"反派\""}
+[2025-10-27T15:07:30.344+08:00] playing step 1, flowItem={"ai":"点击搜索"}
+[2025-10-27T15:07:36.924+08:00] playing step 2, flowItem={"ai":"点击结果列表中名称为\"快穿之反派白月光很撩人\"的小说"}
+[2025-10-27T15:11:53.370+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761549113370.json
+[2025-10-27T15:11:56.624+08:00] playing step 0, flowItem={"ai":"搜索框中输入 \"反派\""}
+[2025-10-27T15:12:45.668+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761549165668.json
+[2025-10-27T15:12:49.310+08:00] playing step 0, flowItem={"ai":"搜索框中输入 \"反派\""}
+[2025-10-27T15:12:58.084+08:00] playing step 1, flowItem={"ai":"点击搜索"}
+[2025-10-27T15:13:06.338+08:00] playing step 2, flowItem={"ai":"点击结果列表中书名是\"快穿之反派白月光很撩人\""}
+[2025-10-27T15:13:50.818+08:00] playing step 3, flowItem={"ai":"点击 \"点击阅读\""}
+[2025-10-27T15:13:54.615+08:00] playing step 4, flowItem={"sleep":3000}
+[2025-10-27T15:13:57.616+08:00] playing step 0, flowItem={"aiAssert":"检查是否出现文字内容 \"第一章 傲慢大小姐身边的奴隶\""}
+[2025-10-27T15:18:55.989+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761549535989.json
+[2025-10-27T15:19:00.236+08:00] playing step 0, flowItem={"ai":"搜索框中输入：反派"}
+[2025-10-27T15:19:09.424+08:00] playing step 1, flowItem={"ai":"点击搜索"}
+[2025-10-27T15:19:16.502+08:00] playing step 2, flowItem={"ai":"点击结果列表中第一本小说"}
+[2025-10-27T15:19:27.341+08:00] playing step 3, flowItem={"ai":"点击 \"点击阅读\""}
+[2025-10-27T15:19:35.918+08:00] playing step 4, flowItem={"sleep":3000}
+[2025-10-27T15:19:38.918+08:00] playing step 0, flowItem={"aiAssert":"检查是否出现文字内容 \"第一章终极反派系统"}
+[2025-10-27T15:31:11.152+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/test-1761550271152.json
+[2025-10-27T15:31:15.528+08:00] playing step 0, flowItem={"ai":"搜索框中输入：反派"}
+[2025-10-27T15:31:24.906+08:00] playing step 1, flowItem={"ai":"点击搜索"}
+[2025-10-27T15:31:32.903+08:00] playing step 2, flowItem={"ai":"点击结果列表中第一本小说"}
+[2025-10-27T15:31:40.732+08:00] playing step 3, flowItem={"ai":"点击 \"点击阅读\""}
+[2025-10-27T15:31:48.467+08:00] playing step 4, flowItem={"sleep":3000}
+[2025-10-27T15:31:51.469+08:00] playing step 0, flowItem={"aiAssert":"检查是否出现文字内容 \"第一章终极反派系统"}
+[2025-10-27T15:40:08.812+08:00] setting output by script path /Users/linghuchong/Downloads/51/Python/project/instance/AI/midscenejs/midscene_run/output/ebay-1761550808812.json
+[2025-10-27T15:40:40.873+08:00] playing step 0, flowItem={"ai":"搜索框中输入：笔记本电脑"}

@@ -1,0 +1,21 @@
+{
+  "summary": {
+    "total": 1,
+    "successful": 0,
+    "failed": 1,
+    "partialFailed": 0,
+    "notExecuted": 0,
+    "totalDuration": 105823,
+    "generatedAt": "10/27/2025, 3:09:03 PM"
+  },
+  "results": [
+    {
+      "script": "../../test.yaml",
+      "success": false,
+      "resultType": "failed",
+      "report": "../report/test-2025-10-27_15-07-21-3fce1cda.html",
+      "error": "Execution failed",
+      "duration": 105823
+    }
+  ]
+}

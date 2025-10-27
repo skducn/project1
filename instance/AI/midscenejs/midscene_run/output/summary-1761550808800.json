@@ -1,0 +1,21 @@
+{
+  "summary": {
+    "total": 1,
+    "successful": 0,
+    "failed": 1,
+    "partialFailed": 0,
+    "notExecuted": 0,
+    "totalDuration": 212331,
+    "generatedAt": "10/27/2025, 3:43:41 PM"
+  },
+  "results": [
+    {
+      "script": "../../ebay.yaml",
+      "success": false,
+      "resultType": "failed",
+      "report": "../report/ebay-2025-10-27_15-40-40-d694d14e.html",
+      "error": "Execution failed",
+      "duration": 212331
+    }
+  ]
+}

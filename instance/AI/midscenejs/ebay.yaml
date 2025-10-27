@@ -1,0 +1,14 @@
+web:
+  url: http://www.ebay.com
+
+tasks:
+  - name: 搜索笔记本
+    flow:
+      - ai: 搜索框中输入：笔记本电脑
+      - ai: 点击搜索
+      - sleep: 3000
+      - ai: 滚动页面到底部
+      - sleep: 3000
+  - name: 检查结果
+    flow:
+      - aiAssert: 获取搜索结果中的商品标题和价格，并用json格式输出。

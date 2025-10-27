@@ -1,0 +1,8 @@
+[2025-10-27T13:10:05.620+08:00] adaptBboxToRect [ 210, 67, 668, 124 ] 1288 728 offset 0 0 limit 1280 720 vlMode qwen-vl
+[2025-10-27T13:10:05.620+08:00] adaptBboxToRect, result= { left: 210, top: 67, width: 458, height: 57 }
+[2025-10-27T13:10:12.201+08:00] adaptBboxToRect [ 803, 67, 925, 124 ] 1288 728 offset 0 0 limit 1280 720 vlMode qwen-vl
+[2025-10-27T13:10:12.201+08:00] adaptBboxToRect, result= { left: 803, top: 67, width: 122, height: 57 }
+[2025-10-27T13:25:16.832+08:00] adaptBboxToRect [ 214, 67, 668, 124 ] 1288 728 offset 0 0 limit 1280 720 vlMode qwen-vl
+[2025-10-27T13:25:16.832+08:00] adaptBboxToRect, result= { left: 214, top: 67, width: 454, height: 57 }
+[2025-10-27T13:25:20.565+08:00] adaptBboxToRect [ 803, 67, 924, 124 ] 1288 728 offset 0 0 limit 1280 720 vlMode qwen-vl
+[2025-10-27T13:25:20.566+08:00] adaptBboxToRect, result= { left: 803, top: 67, width: 121, height: 57 }

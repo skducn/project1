@@ -1,0 +1,212 @@
+[2025-10-27T13:10:02.474+08:00] callActionInActionSpace Input , {
+  value: '笔记本电脑',
+  locate: {
+    prompt: '搜索框',
+    deepThink: false,
+    cacheable: true,
+    xpath: undefined
+  }
+}
+[2025-10-27T13:10:02.475+08:00] actionPlan {
+  type: 'Input',
+  param: {
+    value: '笔记本电脑',
+    locate: {
+      prompt: '搜索框',
+      deepThink: false,
+      cacheable: true,
+      xpath: undefined
+    }
+  },
+  thought: ''
+}
+[2025-10-27T13:10:02.482+08:00] Using page.getContext for action: locate
+[2025-10-27T13:10:03.101+08:00] Computed screenshot scale 1 from screenshot width 1280 and page width 1280
+[2025-10-27T13:10:03.101+08:00] screenshot scale=1
+[2025-10-27T13:10:05.712+08:00] Using page.getContext for action: locate
+[2025-10-27T13:10:05.958+08:00] screenshot scale=1
+[2025-10-27T13:10:06.845+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/playwright2/midscene_run/dump/playwright-a088064de9fe351eef5f-b004d8319469465b2da4-52319522-b473-464c-a77b-864421d0f09e-2025-10-27_13-10-02-5b4491d9.web-dump.json
+[2025-10-27T13:10:06.847+08:00] callActionInActionSpace Tap , {
+  locate: {
+    prompt: '搜索按钮',
+    deepThink: false,
+    cacheable: true,
+    xpath: undefined
+  }
+}
+[2025-10-27T13:10:06.847+08:00] actionPlan {
+  type: 'Tap',
+  param: {
+    locate: {
+      prompt: '搜索按钮',
+      deepThink: false,
+      cacheable: true,
+      xpath: undefined
+    }
+  },
+  thought: ''
+}
+[2025-10-27T13:10:06.848+08:00] Using page.getContext for action: locate
+[2025-10-27T13:10:07.090+08:00] screenshot scale=1
+[2025-10-27T13:10:12.266+08:00] Using page.getContext for action: locate
+[2025-10-27T13:10:12.527+08:00] screenshot scale=1
+[2025-10-27T13:10:12.852+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/playwright2/midscene_run/dump/playwright-a088064de9fe351eef5f-b004d8319469465b2da4-52319522-b473-464c-a77b-864421d0f09e-2025-10-27_13-10-02-5b4491d9.web-dump.json
+[2025-10-27T13:10:12.919+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:13.150+08:00] screenshot scale=1
+[2025-10-27T13:10:13.150+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:13.372+08:00] screenshot scale=1
+[2025-10-27T13:10:19.547+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:19.861+08:00] screenshot scale=1
+[2025-10-27T13:10:19.861+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:20.120+08:00] screenshot scale=1
+[2025-10-27T13:10:23.098+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:23.330+08:00] screenshot scale=1
+[2025-10-27T13:10:23.330+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:23.598+08:00] screenshot scale=1
+[2025-10-27T13:10:29.752+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:29.986+08:00] screenshot scale=1
+[2025-10-27T13:10:29.986+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:30.213+08:00] screenshot scale=1
+[2025-10-27T13:10:32.814+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:33.104+08:00] screenshot scale=1
+[2025-10-27T13:10:33.104+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:33.365+08:00] screenshot scale=1
+[2025-10-27T13:10:36.034+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:36.291+08:00] screenshot scale=1
+[2025-10-27T13:10:36.292+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:36.550+08:00] screenshot scale=1
+[2025-10-27T13:10:39.566+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:39.818+08:00] screenshot scale=1
+[2025-10-27T13:10:39.818+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:40.050+08:00] screenshot scale=1
+[2025-10-27T13:10:43.239+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:43.509+08:00] screenshot scale=1
+[2025-10-27T13:10:43.509+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:43.754+08:00] screenshot scale=1
+[2025-10-27T13:10:46.706+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:46.925+08:00] screenshot scale=1
+[2025-10-27T13:10:46.925+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:47.178+08:00] screenshot scale=1
+[2025-10-27T13:10:50.207+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:50.510+08:00] screenshot scale=1
+[2025-10-27T13:10:50.510+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:50.785+08:00] screenshot scale=1
+[2025-10-27T13:10:54.182+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:54.475+08:00] screenshot scale=1
+[2025-10-27T13:10:54.475+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:54.783+08:00] screenshot scale=1
+[2025-10-27T13:10:57.889+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:58.148+08:00] screenshot scale=1
+[2025-10-27T13:10:58.148+08:00] Using page.getContext for action: extract
+[2025-10-27T13:10:58.398+08:00] screenshot scale=1
+[2025-10-27T13:11:01.837+08:00] Using page.getContext for action: extract
+[2025-10-27T13:11:02.051+08:00] screenshot scale=1
+[2025-10-27T13:11:02.051+08:00] Using page.getContext for action: extract
+[2025-10-27T13:11:02.267+08:00] screenshot scale=1
+[2025-10-27T13:11:05.153+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/playwright2/midscene_run/dump/playwright-a088064de9fe351eef5f-b004d8319469465b2da4-52319522-b473-464c-a77b-864421d0f09e-2025-10-27_13-10-02-5b4491d9.web-dump.json
+[2025-10-27T13:25:13.290+08:00] callActionInActionSpace Input , {
+  value: '笔记本电脑',
+  locate: {
+    prompt: '搜索框',
+    deepThink: false,
+    cacheable: true,
+    xpath: undefined
+  }
+}
+[2025-10-27T13:25:13.290+08:00] actionPlan {
+  type: 'Input',
+  param: {
+    value: '笔记本电脑',
+    locate: {
+      prompt: '搜索框',
+      deepThink: false,
+      cacheable: true,
+      xpath: undefined
+    }
+  },
+  thought: ''
+}
+[2025-10-27T13:25:13.301+08:00] Using page.getContext for action: locate
+[2025-10-27T13:25:13.822+08:00] Computed screenshot scale 1 from screenshot width 1280 and page width 1280
+[2025-10-27T13:25:13.822+08:00] screenshot scale=1
+[2025-10-27T13:25:16.883+08:00] Using page.getContext for action: locate
+[2025-10-27T13:25:17.114+08:00] screenshot scale=1
+[2025-10-27T13:25:17.984+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/playwright2/midscene_run/dump/playwright-a088064de9fe351eef5f-b004d8319469465b2da4-cd59043f-fc2f-4105-bde2-1e58100381bb-2025-10-27_13-25-13-a967c56f.web-dump.json
+[2025-10-27T13:25:17.986+08:00] callActionInActionSpace Tap , {
+  locate: {
+    prompt: '搜索按钮',
+    deepThink: false,
+    cacheable: true,
+    xpath: undefined
+  }
+}
+[2025-10-27T13:25:17.986+08:00] actionPlan {
+  type: 'Tap',
+  param: {
+    locate: {
+      prompt: '搜索按钮',
+      deepThink: false,
+      cacheable: true,
+      xpath: undefined
+    }
+  },
+  thought: ''
+}
+[2025-10-27T13:25:17.986+08:00] Using page.getContext for action: locate
+[2025-10-27T13:25:18.219+08:00] screenshot scale=1
+[2025-10-27T13:25:20.615+08:00] Using page.getContext for action: locate
+[2025-10-27T13:25:20.844+08:00] screenshot scale=1
+[2025-10-27T13:25:21.141+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/playwright2/midscene_run/dump/playwright-a088064de9fe351eef5f-b004d8319469465b2da4-cd59043f-fc2f-4105-bde2-1e58100381bb-2025-10-27_13-25-13-a967c56f.web-dump.json
+[2025-10-27T13:25:21.199+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:21.420+08:00] screenshot scale=1
+[2025-10-27T13:25:21.420+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:21.662+08:00] screenshot scale=1
+[2025-10-27T13:25:25.297+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:25.514+08:00] screenshot scale=1
+[2025-10-27T13:25:25.514+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:25.726+08:00] screenshot scale=1
+[2025-10-27T13:25:29.296+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:29.532+08:00] screenshot scale=1
+[2025-10-27T13:25:29.532+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:29.748+08:00] screenshot scale=1
+[2025-10-27T13:25:32.770+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:33.013+08:00] screenshot scale=1
+[2025-10-27T13:25:33.013+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:33.257+08:00] screenshot scale=1
+[2025-10-27T13:25:36.515+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:36.758+08:00] screenshot scale=1
+[2025-10-27T13:25:36.758+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:36.991+08:00] screenshot scale=1
+[2025-10-27T13:25:39.548+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:39.782+08:00] screenshot scale=1
+[2025-10-27T13:25:39.782+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:39.997+08:00] screenshot scale=1
+[2025-10-27T13:25:44.184+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:44.397+08:00] screenshot scale=1
+[2025-10-27T13:25:44.397+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:44.647+08:00] screenshot scale=1
+[2025-10-27T13:25:47.334+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:47.551+08:00] screenshot scale=1
+[2025-10-27T13:25:47.551+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:47.768+08:00] screenshot scale=1
+[2025-10-27T13:25:50.984+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:51.223+08:00] screenshot scale=1
+[2025-10-27T13:25:51.224+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:51.428+08:00] screenshot scale=1
+[2025-10-27T13:25:55.071+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:55.299+08:00] screenshot scale=1
+[2025-10-27T13:25:55.299+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:55.541+08:00] screenshot scale=1
+[2025-10-27T13:25:58.113+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:58.416+08:00] screenshot scale=1
+[2025-10-27T13:25:58.416+08:00] Using page.getContext for action: extract
+[2025-10-27T13:25:58.707+08:00] screenshot scale=1
+[2025-10-27T13:26:01.419+08:00] Using page.getContext for action: extract
+[2025-10-27T13:26:01.720+08:00] screenshot scale=1
+[2025-10-27T13:26:01.720+08:00] Using page.getContext for action: extract
+[2025-10-27T13:26:01.940+08:00] screenshot scale=1
+[2025-10-27T13:26:07.916+08:00] Using page.getContext for action: extract
+[2025-10-27T13:26:08.126+08:00] screenshot scale=1
+[2025-10-27T13:26:08.126+08:00] Using page.getContext for action: extract
+[2025-10-27T13:26:08.345+08:00] screenshot scale=1
+[2025-10-27T13:26:11.382+08:00] writeOutActionDumps /Users/linghuchong/Downloads/51/Python/project/instance/AI/playwright2/midscene_run/dump/playwright-a088064de9fe351eef5f-b004d8319469465b2da4-cd59043f-fc2f-4105-bde2-1e58100381bb-2025-10-27_13-25-13-a967c56f.web-dump.json

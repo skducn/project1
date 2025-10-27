@@ -1,0 +1,96 @@
+localhost-2:~ linghuchong$ cd playwright_project
+localhost-2:~ linghuchong$ npm init playwright@latest
+Need to install the following packages:
+create-playwright@1.17.139
+Ok to proceed? (y) y
+
+
+> npx
+> create-playwright
+
+Getting started with writing end-to-end tests with Playwright:
+Initializing project in '.'
+✔ Do you want to use TypeScript or JavaScript? · JavaScript
+✔ Where to put your end-to-end tests? · tests
+✔ Add a GitHub Actions workflow? (Y/n) · true
+✔ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true
+Installing Playwright Test (npm install --save-dev @playwright/test)…
+
+added 3 packages in 8s
+
+10 packages are looking for funding
+  run `npm fund` for details
+Installing Types (npm install --save-dev @types/node)…
+
+added 2 packages, and changed 1 package in 1s
+
+10 packages are looking for funding
+  run `npm fund` for details
+Writing playwright.config.js.
+Writing .github/workflows/playwright.yml.
+Writing tests/example.spec.js.
+Writing package.json.
+Downloading browsers (npx playwright install)…
+Downloading Chromium 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-mac.zip
+136.3 MiB [====================] 100% 0.0s
+Chromium 141.0.7390.37 (playwright build v1194) downloaded to /Users/linghuchong/Library/Caches/ms-playwright/chromium-1194
+Downloading Chromium Headless Shell 141.0.7390.37 (playwright build v1194) from https://cdn.playwright.dev/dbazure/download/playwright/builds/chromium/1194/chromium-headless-shell-mac.zip
+85.1 MiB [====================] 100% 0.0s
+Chromium Headless Shell 141.0.7390.37 (playwright build v1194) downloaded to /Users/linghuchong/Library/Caches/ms-playwright/chromium_headless_shell-1194
+Downloading Firefox 142.0.1 (playwright build v1495) from https://cdn.playwright.dev/dbazure/download/playwright/builds/firefox/1495/firefox-mac.zip
+96.9 MiB [====================] 100% 0.0s
+Firefox 142.0.1 (playwright build v1495) downloaded to /Users/linghuchong/Library/Caches/ms-playwright/firefox-1495
+You are using a frozen webkit browser which does not receive updates anymore on mac12. Please update to the latest version of your operating system to test up-to-date browsers.
+Downloading Webkit playwright build v2009 from https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2009/webkit-mac-12.zip
+Error: Download failed: server returned code 400 body 'GatewayExceptionResponse'. URL: https://cdn.playwright.dev/dbazure/download/playwright/builds/webkit/2009/webkit-mac-12.zip
+    at IncomingMessage.handleError (/Users/linghuchong/node_modules/playwright-core/lib/server/registry/oopDownloadBrowserMain.js:56:23)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+Downloading Webkit playwright build v2009 from https://playwright.download.prss.microsoft.com/dbazure/download/playwright/builds/webkit/2009/webkit-mac-12.zip
+Error: Download failed: server returned code 400 body 'GatewayExceptionResponse'. URL: https://playwright.download.prss.microsoft.com/dbazure/download/playwright/builds/webkit/2009/webkit-mac-12.zip
+    at IncomingMessage.handleError (/Users/linghuchong/node_modules/playwright-core/lib/server/registry/oopDownloadBrowserMain.js:56:23)
+    at IncomingMessage.emit (node:events:531:35)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+Downloading Webkit playwright build v2009 from https://cdn.playwright.dev/builds/webkit/2009/webkit-mac-12.zip
+70.1 MiB [====================] 100% 0.0s
+Webkit playwright build v2009 downloaded to /Users/linghuchong/Library/Caches/ms-playwright/webkit_mac12_special-2009
+You are using a frozen ffmpeg browser which does not receive updates anymore on mac12. Please update to the latest version of your operating system to test up-to-date browsers.
+Downloading FFMPEG playwright build v1010 from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1010/ffmpeg-mac.zip
+1.3 MiB [====================] 100% 0.0s
+FFMPEG playwright build v1010 downloaded to /Users/linghuchong/Library/Caches/ms-playwright/ffmpeg_mac12_special-1010
+✔ Success! Created a Playwright Test project at /Users/linghuchong
+
+Inside that directory, you can run several commands:
+
+  npx playwright test
+    Runs the end-to-end tests.
+
+  npx playwright test --ui
+    Starts the interactive UI mode.
+
+  npx playwright test --project=chromium
+    Runs the tests only on Desktop Chrome.
+
+  npx playwright test example
+    Runs the tests in a specific file.
+
+  npx playwright test --debug
+    Runs the tests in debug mode.
+
+  npx playwright codegen
+    Auto generate tests with Codegen.
+
+We suggest that you begin by typing:
+
+    npx playwright test
+
+And check out the following files:
+  - ./tests/example.spec.js - Example end-to-end test
+  - ./playwright.config.js - Playwright Test configuration
+
+Visit https://playwright.dev/docs/intro for more information. ✨
+
+Happy hacking! 🎭
+localhost-2:~ linghuchong$

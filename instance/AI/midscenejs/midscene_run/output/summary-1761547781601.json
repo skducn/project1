@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "total": 1,
+    "successful": 0,
+    "failed": 1,
+    "partialFailed": 0,
+    "notExecuted": 0,
+    "totalDuration": 3986,
+    "generatedAt": "10/27/2025, 2:49:45 PM"
+  },
+  "results": [
+    {
+      "script": "../../test.yaml",
+      "success": false,
+      "resultType": "failed",
+      "error": "Execution failed",
+      "duration": 3986
+    }
+  ]
+}
