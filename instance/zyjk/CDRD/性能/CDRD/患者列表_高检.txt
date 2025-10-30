@@ -1,0 +1,10 @@
+患者列表
+
+诊断史（左匹配）  cdrd_patient_diag_info ,   patient_diag_name（诊断名称） 如： 骨质疏松伴腰椎压缩性骨折 糖尿病
+
+ICD10编码（左匹配） cdrd_patient_diag_info ,  PATIENT_DIAG_CODE  如：M80.8
+
+门诊、入院诊断  cdrd_patient_visit_info , patient_visit_diag （就诊诊断）   如：体重
+
+出院诊断 cdrd_patient_out_hospital_info, patient_out_hospital_diag(出院诊断)
+
