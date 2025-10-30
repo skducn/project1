@@ -7,8 +7,12 @@
 from PO.SqlserverPO import *
 
 # 公卫
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PO", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 # Sqlserver_PO.record('*', 'varchar', '%基础服务包（2019版）%')
+
+
+Sqlserver_PO.record('CDRD_PATIENT_DIAG_INFO', 'varchar', '%古丢丢医院%', False)
+
 
 
 # todo 社区健康平台（静安）
