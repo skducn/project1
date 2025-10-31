@@ -10,9 +10,21 @@ from PO.SqlserverPO import *
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 # Sqlserver_PO.record('*', 'varchar', '%基础服务包（2019版）%')
 
-
+# c3，新增疾病诊断史
 Sqlserver_PO.record('CDRD_PATIENT_DIAG_INFO', 'varchar', '%古丢丢医院%', False)
+# Sqlserver_PO.execute("delete from CDRD_PATIENT_DIAG_INFO where patient_hospital_name='%s'" % ('古丢丢医院'))
 
+# Sqlserver_PO.record('CDRD_PATIENT_SYMPTOM_INFO', 'varchar', '%葫芦娃医院%', False)
+# Sqlserver_PO.execute("delete from CDRD_PATIENT_SYMPTOM_INFO where patient_hospital_name='%s'" % ('葫芦娃医院'))
+
+# Sqlserver_PO.record('CDRD_PATIENT_PHYSICAL_SIGN_INFO', 'varchar', '%黑猫警察医院%', False)
+# Sqlserver_PO.execute("delete from CDRD_PATIENT_PHYSICAL_SIGN_INFO where patient_hospital_name='%s'" % ('黑猫警察医院'))
+
+# Sqlserver_PO.record('CDRD_PATIENT_OPERATION_INFO', 'int', '%14607%', False)
+# Sqlserver_PO.record('CDRD_PATIENT_OPERATION_INFO', 'varchar', '%阿凡达医院1%')
+
+# 实验室检查报告
+# Sqlserver_PO.record('CDRD_PATIENT_LAB_EXAMINATION_INFO', 'varchar', '%霹雳医院%')
 
 
 # todo 社区健康平台（静安）
