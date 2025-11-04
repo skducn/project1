@@ -171,19 +171,48 @@ class EfrbPO():
 
     def EFRB(self, varTestID, d_param={}):
         """主程序"""
+        # {'id': 60, 'rule_code': 'TZ_STZB046'}
+        # {'id': 'all'}
         # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC.select("select id, conditions, ER_code from %s" % (self.tableEF))
 
-        if varTestID == "all":
-            # 测试所有规则
-            self._EFRB_ALL()
-        elif varTestID > len(l_d_row) or varTestID <= 0:
-            # 异常退出
-            print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
-            sys.exit(0)
-        else:
-            # 测试一条规则
-            self._EFRB_ID(varTestID, d_param)
+        if isinstance(varTestID, str):
+            if varTestID == "all":
+                # 测试所有规则
+                self._EFRB_ALL()
+        elif isinstance(varTestID, dict):
+            if 'id' in varTestID:
+                if isinstance(varTestID['id'], list):
+                    self._EFRB_list(varTestID, d_param)
+                else:
+                    if varTestID['id'] > len(l_d_row) or varTestID['id'] <= 0:
+                        # 异常退出
+                        print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
+                        sys.exit(0)
+                    else:
+                        self._EFRB_ID(varTestID, d_param)
+            elif 'ER_code' in varTestID:
+                if isinstance(varTestID['ER_code'], list):
+                    self._EFRB_list(varTestID, d_param)
+                else:
+                    # 测试一条规则
+                    self._EFRB_ID(varTestID, d_param)
+            else:
+                print("[Error] 参数中没有id或ER_code！")
+                sys.exit(0)
+
+
+
+        # if varTestID == "all":
+        #     # 测试所有规则
+        #     self._EFRB_ALL()
+        # elif varTestID > len(l_d_row) or varTestID <= 0:
+        #     # 异常退出
+        #     print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
+        #     sys.exit(0)
+        # else:
+        #     # 测试一条规则
+        #     self._EFRB_ID(varTestID, d_param)
 
     def _EFRB_main(self, d_param, conditions):
         """主处理逻辑"""
@@ -364,41 +393,162 @@ class EfrbPO():
 
         for row in l_d_row:
             d_param = {
-                '表': self.tableEF,
+                # '表': self.tableEF,
+                # '表注释': '评估因素规则库EFRB',
                 'id': row['id'],
+                'ER_code': row['ER_code'],
                 'conditions': row['conditions'],
-                '表注释': '评估因素规则库EFRB',
                 'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
             }
 
-            s = "测试EFRB => " + str(d_param)
+            s = "测试EFRB => " + self.tableEF + " => " + str(d_param)
             Color_PO.outColor([{"35": s}])
             Log_PO.logger.info(s)
 
             self._EFRB_main(d_param, row['conditions'])
 
+
+    def _EFRB_list(self, l_, d_param):
+        """测试多条ER_code规则， {'ER_code': ['TZ_STZB045', 'TZ_STZB047']}"""
+
+        if 'ER_code' in l_:
+            # 匹配字母部分（非数字）和数字部分
+            match = re.match(r'([^\d]+)(\d+)', l_['ER_code'][0])
+            if match:
+                prefix = match.group(1)  # 字母部分
+                ER_code0 = int(match.group(2))  # 数字部分
+
+            match = re.match(r'([^\d]+)(\d+)', l_['ER_code'][1])
+            if match:
+                prefix = match.group(1)  # 字母部分
+                ER_code1 = int(match.group(2))  # 数字部分
+
+            if int(ER_code0) < 1 or int(ER_code0) > int(ER_code1) :
+                print("[Error] 请输入正确的ER_code区间!")
+                sys.exit(0)
+
+            for ER_code in list(range(int(ER_code0), int(ER_code1) + 1)):
+                if ER_code < 10:
+                    ER_code = prefix + "00" + str(ER_code)
+                elif ER_code < 100:
+                    ER_code = prefix + "0" + str(ER_code)
+                else:
+                    ER_code = prefix + str(ER_code)
+
+
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select id,conditions, ER_code from %s where ER_code='%s'" % (self.tableEF, ER_code))
+
+                # 获取每行测试数据
+                # l_d_row = Sqlserver_PO_CHC.select("select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID))
+                id = l_d_row[0]['id']
+                conditions = l_d_row[0]['conditions']
+                ER_code = l_d_row[0]['ER_code']
+
+                d_ = {
+                    # '表': self.tableEF,
+                    # '表注释': '评估因素规则库EFRB',
+                    'id': id,
+                    'ER_code': ER_code,
+                    'conditions': conditions,
+                    'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
+                }
+                d_.update(d_param)
+
+                s = "测试EFRB => " + self.tableEF + " => " + str(d_)
+
+                Color_PO.outColor([{"35": s}])
+                Log_PO.logger.info(s)
+
+                self._EFRB_main(d_, conditions)
+
+        if 'id' in l_:
+            # """测试多条id规则， l_ID = [1,3] , 表示执行1，2，3 三条记录"""
+
+            if l_['id'][0] < 1 or l_['id'][0] > l_['id'][1] :
+                print("[Error] 请输入正确的id区间!")
+                sys.exit(0)
+
+            for id in list(range(l_['id'][0], l_['id'][1] + 1)):
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select conditions, ER_code from %s where id=%s" % (self.tableEF, id))
+
+                # 获取每行测试数据
+                # l_d_row = Sqlserver_PO_CHC.select("select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID))
+                conditions = l_d_row[0]['conditions']
+                ER_code = l_d_row[0]['ER_code']
+
+                d_ = {
+                    # '表': self.tableEF,
+                    # '表注释': '评估因素规则库EFRB',
+                    'id': id,
+                    'ER_code': ER_code,
+                    'conditions': conditions,
+                    'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
+                }
+                d_.update(d_param)
+
+                s = "测试EFRB => " + self.tableEF + " => " + str(d_)
+
+                Color_PO.outColor([{"35": s}])
+                Log_PO.logger.info(s)
+
+                self._EFRB_main(d_, conditions)
+
+
     def _EFRB_ID(self, varTestID, d_param):
         """测试单条规则"""
-        # 获取每行测试数据
-        l_d_row = Sqlserver_PO_CHC.select(
-            "select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID)
-        )
-        conditions = l_d_row[0]['conditions']
 
-        d_ = {
-            '表': self.tableEF,
-            '表注释': '评估因素规则库EFRB',
-            'id': varTestID,
-            'conditions': conditions,
-            'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
-        }
-        d_.update(d_param)
+        if "id" in varTestID:
+            l_d_row = Sqlserver_PO_CHC.select(
+                "select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID['id']))
 
-        s = "测试EFRB => " + str(d_)
-        Color_PO.outColor([{"35": s}])
-        Log_PO.logger.info(s)
+            # 获取每行测试数据
+            # l_d_row = Sqlserver_PO_CHC.select("select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID))
+            conditions = l_d_row[0]['conditions']
+            ER_code = l_d_row[0]['ER_code']
 
-        self._EFRB_main(d_, conditions)
+            d_ = {
+                # '表': self.tableEF,
+                # '表注释': '评估因素规则库EFRB',
+                'id': varTestID['id'],
+                'ER_code': ER_code,
+                'conditions': conditions,
+                'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
+            }
+            d_.update(d_param)
+
+            s = "测试EFRB => " + self.tableEF + " => " + str(d_)
+
+            Color_PO.outColor([{"35": s}])
+            Log_PO.logger.info(s)
+
+            self._EFRB_main(d_, conditions)
+
+        if 'ER_code' in varTestID:
+            l_d_row = Sqlserver_PO_CHC.select(
+                "select id, conditions, ER_code from %s where ER_code='%s'" % (self.tableEF, varTestID['ER_code']))
+
+            id = l_d_row[0]['id']
+            conditions = l_d_row[0]['conditions']
+            ER_code = l_d_row[0]['ER_code']
+
+            d_ = {
+                # '表': self.tableEF,
+                # '表注释': '评估因素规则库EFRB',
+                'id': id,
+                'ER_code': ER_code,
+                'conditions': conditions,
+                'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
+            }
+            d_.update(d_param)
+
+            s = "测试EFRB => " + self.tableEF + " => " + str(d_)
+
+            Color_PO.outColor([{"35": s}])
+            Log_PO.logger.info(s)
+
+            self._EFRB_main(d_, conditions)
 
     def EFRB_case(self, d_cases, d_param):
         """处理测试用例"""
@@ -898,10 +1048,10 @@ class EfrbPO():
 
     def _EFRB_result(self, d_param):
         """处理测试结果"""
-        d_result = {'表': self.tableEF,'id': d_param['id']}
+        d_result = {'id': d_param['id'], 'ER_code': d_param['ER_code']}
         if 0 not in d_param['l_count']:
             d_result['测试结果'] = 'ok'
-            s = "结果EFRB => " + str(d_result)
+            s = "结果EFRB => " + self.tableEF + " => " + str(d_result)
             Color_PO.outColor([{"32": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC.execute(
@@ -910,7 +1060,7 @@ class EfrbPO():
             )
         else:
             d_result['测试结果'] = 'error'
-            s = "结果EFRB => " + str(d_result)
+            s = "结果EFRB => " + self.tableEF + " => " + str(d_result)
             Color_PO.outColor([{"31": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC.execute(

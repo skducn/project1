@@ -28,21 +28,18 @@ Efrb_PO = EfrbPO()
 # 2.1 测试所有
 # Efrb_PO.EFRB('all')
 
-# 2.2 测试单行
-# 1.23.1
-Efrb_PO.EFRB(13)  # v1.25，
-# Efrb_PO.EFRB(22)  # v1.25，
-# Efrb_PO.EFRB(23)  # v1.25，
-# Efrb_PO.EFRB(59)  # v1.25，
-# Efrb_PO.EFRB(60)  # v1.25，
-# Efrb_PO.EFRB(61)  # v1.25，
+# 2.2 测试单/多条规则
+# Efrb_PO.EFRB({'id': 59})  # 测试id=59
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB047'})  # 测试ER_code=TZ_STZB047
+# Efrb_PO.EFRB({'id': 59, 'ER_code': 'TZ_STZB047'})  # 测试id=59 和 ER_code=TZ_STZB047 两条记录
 
-# Efrb_PO.EFRB(7)  # (14<= 年龄＜14.5 and 22.3<= BMI and 性别=男) or (14.5<= 年龄＜15 and 22.6<= BMI and 性别=男) or (15<= 年龄＜15.5 and 22.9<= BMI and 性别=男) or (15.5<= 年龄＜16 and 23.1<= BMI and 性别=男) or (16<= 年龄＜16.5 and 23.3<= BMI and 性别=男) or (16.5<= 年龄＜17 and 23.5<= BMI and 性别=男) or (17<= 年龄＜17.5 and 23.7<= BMI and 性别=男) or (17.5<= 年龄＜18 and 23.8<= BMI and 性别=男) or (14<= 年龄＜14.5 and 22.8<= BMI and 性别=女) or (14.5<= 年龄＜15 and 23.0<= BMI and 性别=女) or (15<= 年龄＜15.5 and 23.2<= BMI and 性别=女) or (15.5<= 年龄＜16 and 23.4<= BMI and 性别=女) or (16<= 年龄＜16.5 and 23.6<= BMI and 性别=女) or (16.5<= 年龄＜17 and 23.7<= BMI and 性别=女) or (17<= 年龄＜17.5 and 23.8<= BMI and 性别=女) or (17.5<= 年龄＜18 and 23.9<= BMI and 性别=女)
-# Efrb_PO.EFRB(55)  # 年龄>=4 and 年龄＜10
-# Efrb_PO.EFRB(56)  # 年龄=10
-# Efrb_PO.EFRB(1)  # 糖尿病
-# Efrb_PO.EFRB(48)  # 3
-# Efrb_PO.EFRB(54)  # 年龄≤3
+# 2.3 测试多条连续规则
+# Efrb_PO.EFRB({'id': [1, 3]})  # 测试 id =1,2,3 三条记录。
+# Efrb_PO.EFRB({'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047， 三条记录。
+# Efrb_PO.EFRB({'id': [1, 3], 'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047，id=1,2,3 六条记录。
+
+
+
 
 
 
