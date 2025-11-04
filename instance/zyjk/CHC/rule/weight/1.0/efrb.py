@@ -35,7 +35,7 @@ Efrb_PO = EfrbPO()
 
 # 2.3 测试多条连续规则
 # Efrb_PO.EFRB({'id': [1, 3]})  # 测试 id =1,2,3 三条记录。
-Efrb_PO.EFRB({'ER_code': ['TZ_STZB046', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047， 三条记录。
+# Efrb_PO.EFRB({'ER_code': ['TZ_STZB046', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047， 三条记录。
 # Efrb_PO.EFRB({'id': [1, 3], 'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047，id=1,2,3 六条记录。
 
 
