@@ -169,55 +169,55 @@ class EfrbPO():
         except Exception as e:
             raise e
 
-    def EFRB(self, varTestID, d_param={}):
+    def EFRB(self, d_, d_param={}):
         """主程序"""
-        # {'id': 60, 'rule_code': 'TZ_STZB046'}
         # {'id': 'all'}
+        # Efrb_PO.EFRB({'id': 59})  # 测试id=59
+        # Efrb_PO.EFRB({'ER_code': 'TZ_STZB047'})  # 测试ER_code=TZ_STZB047
+        # Efrb_PO.EFRB({'id': 59, 'ER_code': 'TZ_STZB047'})  # 测试id=59 和 ER_code=TZ_STZB047 两条记录
+        # Efrb_PO.EFRB({'id': [1, 3]})  # 测试 id =1,2,3 三条记录。
+        # Efrb_PO.EFRB({'ER_code': ['TZ_STZB046', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047， 三条记录。
+        # Efrb_PO.EFRB({'id': [1, 3], 'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047，id=1,2,3 六条记录。
+
         # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC.select("select id, conditions, ER_code from %s" % (self.tableEF))
 
-        if isinstance(varTestID, str):
-            if varTestID == "all":
-                # 测试所有规则
+        if 'id' in d_:
+            # 执行所有，如：{'id': 'all'}
+            if d_['id'] == 'all':
                 self._EFRB_ALL()
-        elif isinstance(varTestID, dict):
-            if 'id' in varTestID:
-                if isinstance(varTestID['id'], list):
-                    self._EFRB_list(varTestID, d_param)
-                else:
-                    if varTestID['id'] > len(l_d_row) or varTestID['id'] <= 0:
-                        # 异常退出
-                        print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
-                        sys.exit(0)
-                    else:
-                        self._EFRB_ID(varTestID, d_param)
-            elif 'ER_code' in varTestID:
-                if isinstance(varTestID['ER_code'], list):
-                    self._EFRB_list(varTestID, d_param)
-                else:
-                    # 测试一条规则
-                    self._EFRB_ID(varTestID, d_param)
+
+            # 执行多条(区间id)，如：{'id': [1, 3]}
+            if isinstance(d_['id'], list):
+                self._EFRB_multiple(d_, d_param)
             else:
-                print("[Error] 参数中没有id或ER_code！")
-                sys.exit(0)
+
+                # 执行一条(id)，如：{'id': 56}
+                if d_['id'] > len(l_d_row) or d_['id'] <= 0:
+                    # 异常退出
+                    print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
+                    sys.exit(0)
+                else:
+                    self._EFRB_one(d_, d_param)
+        elif 'ER_code' in d_:
+            # 执行多条(区间ER_code)，如：{'ER_code': ['TZ_STZB046', 'TZ_STZB047']}
+            if isinstance(d_['ER_code'], list):
+                self._EFRB_multiple(d_, d_param)
+            else:
+                # 执行一条(ER_code)，如：{'rule_code': 'TZ_STZB046'}
+                self._EFRB_one(d_, d_param)
+        else:
+            print("[Error] 参数中没有id或ER_code！")
+            sys.exit(0)
 
 
 
-        # if varTestID == "all":
-        #     # 测试所有规则
-        #     self._EFRB_ALL()
-        # elif varTestID > len(l_d_row) or varTestID <= 0:
-        #     # 异常退出
-        #     print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
-        #     sys.exit(0)
-        # else:
-        #     # 测试一条规则
-        #     self._EFRB_ID(varTestID, d_param)
 
-    def _EFRB_main(self, d_param, conditions):
-        """主处理逻辑"""
-        # 清洗不规则数据
-        conditions = self._clean_conditions(conditions)
+    def _EFRB_main(self, d_param):
+
+        # 清洗清洗条件字符串,如去掉月，将大写>=替换为<=，将大写<=替换为<=，将大写>替换为<，将大写<替换为<，将大写<=替换为<=，将大写>=替换为>=，将大写<>替换为<>，
+        conditions = self._clean_conditions(d_param['conditions'])
+        # print(conditions) # (73<=年龄<79 and 17.1<=BMI and 性别=男) or (79<=年龄<84 and 17.2<=BMI and 性别=男)
 
         # 根据条件类型分发处理
         if '疾病' in conditions:
@@ -270,45 +270,88 @@ class EfrbPO():
             print("测试数据集 =>", d_cases)
         Log_PO.logger.info("测试数据集 => " + str(d_cases))
 
-        # 处理测试用例
+        # 执行
         self.EFRB_case(d_cases, d_param)
 
     def _handle_or_condition(self, d_param, conditions):
-        """处理包含or的复合条件"""
-        # 格式化数据
+        # 包含or的复合条件
+        # 如：(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)
+
+        # 格式化数据 - 转换成列表
         l_l_value = self._parse_or_conditions(conditions)
+        # print(l_l_value)  #[['73<=年龄<79', '17.1<=BMI', '性别=男'], ['79<=年龄<84', '17.2<=BMI', '性别=男'], ['73<=年龄<79', '16.6<=BMI', '性别=女'], ['79<=年龄<84', '16.7<=BMI', '性别=女']]
 
         l_count = []
         sum = 0
-        varTestCount = conditions.count("or")
+        l_l_data = []
 
+        # 正向测试（一条或多条）
         for lln, l_value in enumerate(l_l_value):
-            # 格式化条件
+            # 格式化条件 - 1/2转换列表
             l_conditions = self._format_conditions(l_value)
-
-            # 转换位置
+            # 格式化条件 - 2/2转换位置（左边指标，右边数据）
             l_interconvert_conditions = []
             for i in l_conditions:
                 l_simple_conditions = BmiAgeSex_PO.interconvertMode(i)
                 l_interconvert_conditions.extend(l_simple_conditions)
+            # print(297, l_interconvert_conditions) # ['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']
 
-            # 生成随机数据
-            d_cases = self._generate_test_data(l_interconvert_conditions)
+            # 合并所有条件（用于反向测试）
+            l_l_data.append(l_interconvert_conditions)
+
+            # 对单组条件（['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']）生成正向测试数据
+            d_cases_p = self._generate_test_data(l_interconvert_conditions)
+            d_cases_p['notSatisfied'] = []  # 屏蔽反向数据
 
             if Configparser_PO.SWITCH("testDataSet") == "on":
-                print("测试数据 =>", d_cases)
+                print("正向测试数据 =>", d_cases_p)
+                # 测试数据 => {'satisfied': [{'年龄': 73.0, 'BMI': 17.1, '性别': '男'}, {'年龄': 73.0, 'BMI': 27.2, '性别': '男'}, {'年龄': 73.1, 'BMI': 17.1, '性别': '男'}, {'年龄': 73.1, 'BMI': 27.2, '性别': '男'}],
+                # 'notSatisfied': [{'年龄': 72.9, 'BMI': 17.1, '性别': '男'}, {'年龄': 72.9, 'BMI': 17.1, '性别': '女'}, {'年龄': 72.9, 'BMI': 27.2, '性别': '男'}, {'年龄': 72.9, 'BMI': 27.2, '性别': '女'}, {'年龄': 72.9, 'BMI': 7.0, '性别': '男'}, {'年龄': 72.9, 'BMI': 7.0, '性别': '女'}, {'年龄': 73.0, 'BMI': 17.1, '性别': '女'}, {'年龄': 73.0, 'BMI': 27.2, '性别': '女'}, {'年龄': 73.0, 'BMI': 7.0, '性别': '男'}, {'年龄': 73.0, 'BMI': 7.0, '性别': '女'}, {'年龄': 73.1, 'BMI': 17.1, '性别': '女'}, {'年龄': 73.1, 'BMI': 27.2, '性别': '女'}, {'年龄': 73.1, 'BMI': 7.0, '性别': '男'}, {'年龄': 73.1, 'BMI': 7.0, '性别': '女'}, {'年龄': 79.1, 'BMI': 17.1, '性别': '男'}, {'年龄': 79.1, 'BMI': 17.1, '性别': '女'}, {'年龄': 79.1, 'BMI': 27.2, '性别': '男'}, {'年龄': 79.1, 'BMI': 27.2, '性别': '女'}, {'年龄': 79.1, 'BMI': 7.0, '性别': '男'}, {'年龄': 79.1, 'BMI': 7.0, '性别': '女'}, {'年龄': 79.0, 'BMI': 17.1, '性别': '男'}, {'年龄': 79.0, 'BMI': 17.1, '性别': '女'}, {'年龄': 79.0, 'BMI': 27.2, '性别': '男'}, {'年龄': 79.0, 'BMI': 27.2, '性别': '女'}, {'年龄': 79.0, 'BMI': 7.0, '性别': '男'}, {'年龄': 79.0, 'BMI': 7.0, '性别': '女'}]}
 
-            # 测试数据
+            # 执行正向测试
             Numerator = lln + 1
-            Denominator = varTestCount + 1
-            d_result = self.EFRB_case_or(d_cases, d_param['id'], l_conditions, Numerator, Denominator, d_param)
+            d_result = self.EFRB_case_or(d_cases_p, l_interconvert_conditions, Numerator, d_param)
+            # d_cases = {'satisfied': [{'年龄': 73.0, 'BMI': 17.1, '性别': '男'}, {'年龄': 73.0, 'BMI': 27.2, '性别': '男'}...
+            # l_interconvert_conditions = ['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']
+            # d_param = {'id': 59, 'ER_code': 'TZ_STZB046',
+            # 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)',
+            # 'WEIGHT_REPORT__IDCARD': '310101193012210813'}
+
+            # print(325, d_result)  # 325 {'caseTotal': 4, 'count': 1}
             l_count.append(d_result['count'])
             sum = sum + d_result['caseTotal']
+
+        # 反向测试（将正向一条或多条合并成一条反向，获取l_l_data）
+        d_cases_n = {}
+        # print(326, l_l_data)
+        l_d_cases = self.generate_unmatched_cases2(l_l_data)
+        # l_d_cases = self.generate_unmatched_cases(l_l_data)
+        d_cases_n['satisfied'] = []
+        d_cases_n['notSatisfied'] = l_d_cases
+        # print(330, d_cases_n)
+        # sys.exit(0)
+
+        if Configparser_PO.SWITCH("testDataSet") == "on":
+            print("反向测试数据 =>", d_cases_n)  # {'satisfied': [], 'notSatisfied': [{'年龄': 72, 'BMI': 18.5, '性别': '男'}, 。。。
+
+        # 执行反向测试
+        # print(334, d_cases_n)
+        d_result = self.EFRB_case_or(d_cases_n,  l_interconvert_conditions, 1, d_param)
+        # d_cases = {'notSatisfied': [{'年龄': 73.0, 'BMI': 17.1, '性别': '男'}, {'年龄': 73.0, 'BMI': 27.2, '性别': '男'}...
+        # l_interconvert_conditions = ['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']
+        # d_param = {'id': 59, 'ER_code': 'TZ_STZB046',
+        # 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)',
+        # 'WEIGHT_REPORT__IDCARD': '310101193012210813'}
+
+        # print(325, d_result)  # 325 {'caseTotal': 4, 'count': 1}
+        l_count.append(d_result['count'])
+        sum = sum + d_result['caseTotal']
 
         # 更新记录
         d_param['l_count'] = l_count
         d_param['caseTotal'] = sum
         self._EFRB_result(d_param)
+
 
     def _parse_or_conditions(self, conditions):
         """解析包含or的条件"""
@@ -329,15 +372,299 @@ class EfrbPO():
                 l_conditions.extend(l_split_conditions)
         return l_conditions
 
+    def generate_unmatched_cases(self, conditions):
+        """
+        生成不满足指定条件的年龄、BMI、性别组合示例（年龄取整数，BMI保留1位小数）
+
+        参数:
+            conditions: 条件列表，每个元素为一个条件子列表
+                        格式如: [['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男'], ...]
+
+        返回:
+            list: 不满足条件的组合示例列表
+        """
+        # 解析条件中的关键参数
+        age_ranges = set()
+        bmi_thresholds = {'男': {}, '女': {}}  # 按性别存储不同年龄区间的BMI阈值
+
+        for cond in conditions:
+            age_min = None
+            age_max = None
+            bmi_min = None
+            gender = None
+
+            for c in cond:
+                if c.startswith('年龄>='):
+                    age_min = float(c.split('>=')[1])
+                elif c.startswith('年龄<'):
+                    age_max = float(c.split('<')[1])
+                elif c.startswith('BMI>='):
+                    bmi_min = float(c.split('>=')[1])
+                elif c.startswith('性别='):
+                    gender = c.split('=')[1]
+
+            if all([age_min, age_max, bmi_min, gender]):
+                age_range = (age_min, age_max)
+                age_ranges.add(age_range)
+                bmi_thresholds[gender][age_range] = bmi_min
+
+        # 生成不满足条件的示例组合
+        unmatched = []
+
+        # 1. 年龄低于最小范围（取整数）
+        min_age = min(r[0] for r in age_ranges)
+        test_age = int(min_age - 1)  # 年龄取整数且低于最小范围
+        sample_bmi = 18.5  # 代表性BMI值
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '男'
+        })
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '女'
+        })
+
+        # 2. 年龄高于最大范围（取整数）
+        max_age = max(r[1] for r in age_ranges)
+        test_age = int(max_age)  # 年龄取整数且高于最大范围
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '男'
+        })
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '女'
+        })
+
+        # 3. 年龄在范围内但男性BMI不达标（年龄取整数中间值）
+        for (age_min, age_max), bmi_min in bmi_thresholds['男'].items():
+            # 取年龄区间内的整数中间值
+            test_age = int((age_min + age_max) // 2)
+            # BMI值设为阈值减0.1（确保不满足条件且保留1位小数）
+            test_bmi = round(bmi_min - 0.1, 1)
+            unmatched.append({
+                '年龄': test_age,
+                'BMI': test_bmi,
+                '性别': '男'
+            })
+
+        # 4. 年龄在范围内但女性BMI不达标（年龄取整数中间值）
+        for (age_min, age_max), bmi_min in bmi_thresholds['女'].items():
+            # 取年龄区间内的整数中间值
+            test_age = int((age_min + age_max) // 2)
+            # BMI值设为阈值减0.1（确保不满足条件且保留1位小数）
+            test_bmi = round(bmi_min - 0.1, 1)
+            unmatched.append({
+                '年龄': test_age,
+                'BMI': test_bmi,
+                '性别': '女'
+            })
+
+        return unmatched
+
+    def generate_unmatched_cases2(self, conditions):
+        """
+        生成不满足指定条件的年龄、BMI、性别组合示例（年龄保留1位小数，BMI保留1位小数）
+
+        参数:
+            conditions: 条件列表，每个元素为一个条件子列表
+                        格式如: [['年龄>=14', '年龄<14.5', 'BMI>=22.3', '性别=男'], ...]
+
+        返回:
+            list: 不满足条件的组合示例列表
+        """
+        # 解析条件中的关键参数
+        age_ranges = set()
+        bmi_thresholds = {'男': {}, '女': {}}  # 按性别存储不同年龄区间的BMI阈值
+
+        for cond in conditions:
+            age_min = None
+            age_max = None
+            bmi_min = None
+            gender = None
+
+            for c in cond:
+                if c.startswith('年龄>='):
+                    age_min = float(c.split('>=')[1])
+                elif c.startswith('年龄<'):
+                    age_max = float(c.split('<')[1])
+                elif c.startswith('BMI>='):
+                    bmi_min = float(c.split('>=')[1])
+                elif c.startswith('性别='):
+                    gender = c.split('=')[1]
+
+            # 使用更严格的检查，确保所有必要条件都被正确解析
+            if all(x is not None for x in [age_min, age_max, bmi_min, gender]):
+                age_range = (age_min, age_max)
+                age_ranges.add(age_range)
+                bmi_thresholds[gender][age_range] = bmi_min
+
+        # 如果没有解析到有效的条件，则返回空列表
+        if not age_ranges:
+            return []
+
+        # 生成不满足条件的示例组合
+        unmatched = []
+
+        # 1. 年龄低于最小范围（取最小年龄阈值-0.5）
+        min_age = min(r[0] for r in age_ranges)
+        test_age = round(min_age - 0.5, 1)  # 确保低于最小年龄范围
+        sample_bmi = 22.0  # 代表性BMI值（低于多数阈值）
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '男'
+        })
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '女'
+        })
+
+        # 2. 年龄高于最大范围（取最大年龄阈值+0.5）
+        max_age = max(r[1] for r in age_ranges)
+        test_age = round(max_age + 0.5, 1)  # 确保高于最大年龄范围
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '男'
+        })
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '女'
+        })
+
+        # 3. 年龄在范围内但男性BMI不达标（取区间中间值）
+        for (age_min, age_max), bmi_min in bmi_thresholds['男'].items():
+            test_age = round((age_min + age_max) / 2, 1)  # 区间中间值
+            test_bmi = round(bmi_min - 0.1, 1)  # 低于阈值0.1确保不满足
+            unmatched.append({
+                '年龄': test_age,
+                'BMI': test_bmi,
+                '性别': '男'
+            })
+
+        # 4. 年龄在范围内但女性BMI不达标（取区间中间值）
+        for (age_min, age_max), bmi_min in bmi_thresholds['女'].items():
+            test_age = round((age_min + age_max) / 2, 1)  # 区间中间值
+            test_bmi = round(bmi_min - 0.1, 1)  # 低于阈值0.1确保不满足
+            unmatched.append({
+                '年龄': test_age,
+                'BMI': test_bmi,
+                '性别': '女'
+            })
+
+        return unmatched
+
+    def generate_unmatched_cases3(self, conditions):
+        """
+        生成不满足指定条件的年龄、BMI、性别组合示例（年龄保留1位小数，BMI保留1位小数）
+
+        参数:
+            conditions: 条件列表，每个元素为一个条件子列表
+                        格式如: [['年龄>=14', '年龄<14.5', 'BMI>=22.3', '性别=男'], ...]
+
+        返回:
+            list: 不满足条件的组合示例列表
+        """
+        # 解析条件中的关键参数
+        age_ranges = set()
+        bmi_thresholds = {'男': {}, '女': {}}  # 按性别存储不同年龄区间的BMI阈值
+
+        for cond in conditions:
+            age_min = None
+            age_max = None
+            bmi_min = None
+            gender = None
+
+            for c in cond:
+                if c.startswith('年龄>='):
+                    age_min = float(c.split('>=')[1])
+                elif c.startswith('年龄<'):
+                    age_max = float(c.split('<')[1])
+                elif c.startswith('BMI>='):
+                    bmi_min = float(c.split('>=')[1])
+                elif c.startswith('性别='):
+                    gender = c.split('=')[1]
+
+            if all([age_min, age_max, bmi_min, gender]):
+                age_range = (age_min, age_max)
+                age_ranges.add(age_range)
+                bmi_thresholds[gender][age_range] = bmi_min
+
+        # 生成不满足条件的示例组合
+        unmatched = []
+
+        # 1. 年龄低于最小范围（取最小年龄阈值-0.5）
+        min_age = min(r[0] for r in age_ranges)
+        test_age = round(min_age - 0.5, 1)  # 确保低于最小年龄范围
+        sample_bmi = 22.0  # 代表性BMI值（低于多数阈值）
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '男'
+        })
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '女'
+        })
+
+        # 2. 年龄高于最大范围（取最大年龄阈值+0.5）
+        max_age = max(r[1] for r in age_ranges)
+        test_age = round(max_age + 0.5, 1)  # 确保高于最大年龄范围
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '男'
+        })
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': round(sample_bmi, 1),
+            '性别': '女'
+        })
+
+        # 3. 年龄在范围内但男性BMI不达标（取区间中间值）
+        for (age_min, age_max), bmi_min in bmi_thresholds['男'].items():
+            test_age = round((age_min + age_max) / 2, 1)  # 区间中间值
+            test_bmi = round(bmi_min - 0.1, 1)  # 低于阈值0.1确保不满足
+            unmatched.append({
+                '年龄': test_age,
+                'BMI': test_bmi,
+                '性别': '男'
+            })
+
+        # 4. 年龄在范围内但女性BMI不达标（取区间中间值）
+        for (age_min, age_max), bmi_min in bmi_thresholds['女'].items():
+            test_age = round((age_min + age_max) / 2, 1)  # 区间中间值
+            test_bmi = round(bmi_min - 0.1, 1)  # 低于阈值0.1确保不满足
+            unmatched.append({
+                '年龄': test_age,
+                'BMI': test_bmi,
+                '性别': '女'
+            })
+
+        return unmatched
+
+
     def _generate_test_data(self, l_interconvert_conditions):
         """生成测试数据"""
+        # l_interconvert_conditions = ['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']
         for i in l_interconvert_conditions:
-            if ('>=' in i or '<=' in i) and ('年龄' in i or 'BMI' in i):
+            # if ('>=' in i or '<=' in i) and ('年龄' in i or 'BMI' in i):
+            if ('>=' in i or '<=' in i or '=' in i) and ('年龄' in i or 'BMI' in i or '性别' in i):
                 return BmiAgeSex_PO.main(l_interconvert_conditions)
         return BmiAgeSex_PO.main(l_interconvert_conditions)
 
     def _handle_age_bmi_condition(self, d_param, conditions):
-        """处理年龄和BMI组合条件"""
+        # 年龄,BMI组合条件
+        # 'BMI>=24 and 年龄>=18 and 年龄<65'
+
         # 字符串转换成列表
         l_conditions = conditions.split("and")
         l_conditions = [i.strip() for i in l_conditions]
@@ -408,17 +735,18 @@ class EfrbPO():
             self._EFRB_main(d_param, row['conditions'])
 
 
-    def _EFRB_list(self, l_, d_param):
-        """测试多条ER_code规则， {'ER_code': ['TZ_STZB045', 'TZ_STZB047']}"""
+    def _EFRB_multiple(self, d_, d_param):
+        # 执行多条(区间id)，如：{'id': [1, 3]} ,表示执行1，2，3 三条记录
+        # 执行多条(区间ER_code)，如：{'ER_code': ['TZ_STZB046', 'TZ_STZB047']}
 
-        if 'ER_code' in l_:
+        if 'ER_code' in d_:
             # 匹配字母部分（非数字）和数字部分
-            match = re.match(r'([^\d]+)(\d+)', l_['ER_code'][0])
+            match = re.match(r'([^\d]+)(\d+)', d_['ER_code'][0])
             if match:
                 prefix = match.group(1)  # 字母部分
                 ER_code0 = int(match.group(2))  # 数字部分
 
-            match = re.match(r'([^\d]+)(\d+)', l_['ER_code'][1])
+            match = re.match(r'([^\d]+)(\d+)', d_['ER_code'][1])
             if match:
                 prefix = match.group(1)  # 字母部分
                 ER_code1 = int(match.group(2))  # 数字部分
@@ -435,126 +763,68 @@ class EfrbPO():
                 else:
                     ER_code = prefix + str(ER_code)
 
-
-                l_d_row = Sqlserver_PO_CHC.select(
-                    "select id,conditions, ER_code from %s where ER_code='%s'" % (self.tableEF, ER_code))
-
                 # 获取每行测试数据
-                # l_d_row = Sqlserver_PO_CHC.select("select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID))
-                id = l_d_row[0]['id']
-                conditions = l_d_row[0]['conditions']
-                ER_code = l_d_row[0]['ER_code']
+                l_d_row = Sqlserver_PO_CHC.select("select id, conditions, ER_code from %s where ER_code='%s'" % (self.tableEF, ER_code))
+                self.__EFRB_one(l_d_row[0]['id'], l_d_row[0]['ER_code'], l_d_row[0]['conditions'], d_param)
 
-                d_ = {
-                    # '表': self.tableEF,
-                    # '表注释': '评估因素规则库EFRB',
-                    'id': id,
-                    'ER_code': ER_code,
-                    'conditions': conditions,
-                    'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
-                }
-                d_.update(d_param)
-
-                s = "测试EFRB => " + self.tableEF + " => " + str(d_)
-
-                Color_PO.outColor([{"35": s}])
-                Log_PO.logger.info(s)
-
-                self._EFRB_main(d_, conditions)
-
-        if 'id' in l_:
-            # """测试多条id规则， l_ID = [1,3] , 表示执行1，2，3 三条记录"""
-
-            if l_['id'][0] < 1 or l_['id'][0] > l_['id'][1] :
+        if 'id' in d_:
+            # 执行多条(区间id)，如：{'id': [1, 3]} ,表示执行1，2，3 三条记录
+            if d_['id'][0] < 1 or d_['id'][0] > d_['id'][1] :
                 print("[Error] 请输入正确的id区间!")
                 sys.exit(0)
 
-            for id in list(range(l_['id'][0], l_['id'][1] + 1)):
-                l_d_row = Sqlserver_PO_CHC.select(
-                    "select conditions, ER_code from %s where id=%s" % (self.tableEF, id))
-
-                # 获取每行测试数据
-                # l_d_row = Sqlserver_PO_CHC.select("select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID))
-                conditions = l_d_row[0]['conditions']
-                ER_code = l_d_row[0]['ER_code']
-
-                d_ = {
-                    # '表': self.tableEF,
-                    # '表注释': '评估因素规则库EFRB',
-                    'id': id,
-                    'ER_code': ER_code,
-                    'conditions': conditions,
-                    'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
-                }
-                d_.update(d_param)
-
-                s = "测试EFRB => " + self.tableEF + " => " + str(d_)
-
-                Color_PO.outColor([{"35": s}])
-                Log_PO.logger.info(s)
-
-                self._EFRB_main(d_, conditions)
-
-
-    def _EFRB_ID(self, varTestID, d_param):
-        """测试单条规则"""
-
-        if "id" in varTestID:
-            l_d_row = Sqlserver_PO_CHC.select(
-                "select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID['id']))
-
             # 获取每行测试数据
-            # l_d_row = Sqlserver_PO_CHC.select("select conditions, ER_code from %s where id=%s" % (self.tableEF, varTestID))
-            conditions = l_d_row[0]['conditions']
-            ER_code = l_d_row[0]['ER_code']
+            for id in list(range(d_['id'][0], d_['id'][1] + 1)):
+                l_d_row = Sqlserver_PO_CHC.select("select id, conditions, ER_code from %s where id=%s" % (self.tableEF, id))
+                self.__EFRB_one(l_d_row[0]['id'], l_d_row[0]['ER_code'], l_d_row[0]['conditions'], d_param)
 
-            d_ = {
-                # '表': self.tableEF,
-                # '表注释': '评估因素规则库EFRB',
-                'id': varTestID['id'],
-                'ER_code': ER_code,
-                'conditions': conditions,
-                'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
-            }
-            d_.update(d_param)
 
-            s = "测试EFRB => " + self.tableEF + " => " + str(d_)
 
-            Color_PO.outColor([{"35": s}])
-            Log_PO.logger.info(s)
 
-            self._EFRB_main(d_, conditions)
+    def __EFRB_one(self, id, ER_code, conditions, d_param):
+        # _EFRB_one内部调用
 
-        if 'ER_code' in varTestID:
-            l_d_row = Sqlserver_PO_CHC.select(
-                "select id, conditions, ER_code from %s where ER_code='%s'" % (self.tableEF, varTestID['ER_code']))
+        # 输出测试概要
+        d_tmp = {
+            # '表': self.tableEF,
+            # '表注释': '评估因素规则库EFRB',
+            'id': id,
+            'ER_code': ER_code,
+            'conditions': conditions,
+            'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
+        }
+        d_tmp.update(d_param)
+        # d_tmp = {'id': 59, 'ER_code': 'TZ_STZB046', 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)', 'WEIGHT_REPORT__IDCARD': '310101193012210813'}
+        s = "测试EFRB => " + self.tableEF + " => " + str(d_tmp)
+        Color_PO.outColor([{"35": s}])
 
-            id = l_d_row[0]['id']
-            conditions = l_d_row[0]['conditions']
-            ER_code = l_d_row[0]['ER_code']
+        # 写入日志
+        Log_PO.logger.info(s)
 
-            d_ = {
-                # '表': self.tableEF,
-                # '表注释': '评估因素规则库EFRB',
-                'id': id,
-                'ER_code': ER_code,
-                'conditions': conditions,
-                'WEIGHT_REPORT__IDCARD': self.WEIGHT_REPORT__IDCARD
-            }
-            d_.update(d_param)
+        # 执行main
+        self._EFRB_main(d_tmp)
+    def _EFRB_one(self, d_, d_param):
+        # 执行一条(id)
+        # d_ = {'id': 56}
+        # d_ = {'ER_code': 'TZ_STZB047'}
+        # d_ = {'id': 59, 'ER_code': 'TZ_STZB047'}
 
-            s = "测试EFRB => " + self.tableEF + " => " + str(d_)
+        if "id" in d_:
+            # 获取数据
+            l_d_row = Sqlserver_PO_CHC.select("select id, conditions, ER_code from %s where id=%s" % (self.tableEF, d_['id']))
+            self.__EFRB_one(l_d_row[0]['id'], l_d_row[0]['ER_code'], l_d_row[0]['conditions'], d_param)
+        if 'ER_code' in d_:
+            # 获取数据
+            l_d_row = Sqlserver_PO_CHC.select("select id, conditions, ER_code from %s where ER_code='%s'" % (self.tableEF, d_['ER_code']))
+            self.__EFRB_one(l_d_row[0]['id'], l_d_row[0]['ER_code'], l_d_row[0]['conditions'], d_param)
 
-            Color_PO.outColor([{"35": s}])
-            Log_PO.logger.info(s)
-
-            self._EFRB_main(d_, conditions)
 
     def EFRB_case(self, d_cases, d_param):
         """处理测试用例"""
         caseTotal = 0
         l_count = []
 
+        # 正向
         for case in d_cases['satisfied']:
             d_tmp = self.EFRB_run_p(case, d_param)
 
@@ -582,25 +852,57 @@ class EfrbPO():
                 l_count.append(0)
             caseTotal += 1
 
+        # 反向
+        for case in d_cases['notSatisfied']:
+            d_tmp = self.EFRB_run_n(case, d_param)
+
+            if d_tmp['result'] == 1:
+                result_data = {
+                    '反向': "ok",
+                    '条件': d_param['conditions'],
+                    '测试数据': case
+                }
+                if Configparser_PO.SWITCH("nagitiveResult") == "on":
+                    Color_PO.outColor([{"36": result_data}])
+                Log_PO.logger.info(result_data)
+                l_count.append(1)
+            else:
+                result_data = {
+                    '反向': "error",
+                    '条件': d_param['conditions'],
+                    '测试数据': case
+                }
+                result_data.update(d_tmp)
+                s_tmp = str(result_data).replace("\\\\", "\\")
+                if Configparser_PO.SWITCH("nagitiveResult") == "on":
+                    Color_PO.outColor([{"31": s_tmp}])
+                Log_PO.logger.info(s_tmp)
+                l_count.append(0)
+            caseTotal += 1
+
+        # 结果
         d_param['l_count'] = l_count
         d_param['caseTotal'] = caseTotal
         self._EFRB_result(d_param)
 
-    def EFRB_case_or(self, d_cases, id, l_conditions, Numerator, Denominator, d_param):
-        """处理包含or条件的测试用例"""
+    def EFRB_case_or(self, d_cases, l_interconvert_conditions, Numerator, d_param):
+        # 执行包含or条件的数据
+
         caseTotal = 0
         d_result = {}
+        l_count = []
 
+        # 正向
         if len(d_cases['satisfied']) == 1:
-            # 正向用例, 一条数据
-            l_count = []
-            d_tmp = self.EFRB_run_p(d_cases['satisfied'][0], d_param)
+            # 正向, one条数据
 
+            d_tmp = self.EFRB_run_p(d_cases['satisfied'][0], d_param)
+            # print(323,d_tmp)
             if d_tmp['result'] == 1:
                 d_1 = {
-                    'No.': f"{Numerator}/{Denominator}",
+                    'No.': f"{Numerator}/{len(d_cases['satisfied'])}",
                     '正向': 'ok',
-                    '条件': l_conditions,
+                    '条件': l_interconvert_conditions,
                     '测试数据': d_cases['satisfied'][0]
                 }
                 if Configparser_PO.SWITCH("positiveResult") == "on":
@@ -613,9 +915,9 @@ class EfrbPO():
                 l_count.append(1)
             else:
                 d_1 = {
-                    'No.': f"{Numerator}/{Denominator}",
+                    'No.': f"{Numerator}/{len(d_cases['satisfied'])}",
                     '正向': 'error',
-                    '条件': l_conditions,
+                    '条件': l_interconvert_conditions,
                     '测试数据': d_cases['satisfied'][0]
                 }
                 d_1.update(d_tmp)
@@ -625,9 +927,84 @@ class EfrbPO():
                 l_count.append(0)
 
                 # 将错误写入数据库log
-                conditions = self.convert_conditions(l_conditions)  # 将列表转换字符串
+                conditions = self.convert_conditions(l_interconvert_conditions)  # 将列表转换字符串
                 d_tmp['条件'] = str(conditions)
                 d_tmp['测试数据'] = str(d_cases['satisfied'][0])
+                d_tmp['用例类型'] = "正向不满足"
+                s_tmp = str(d_tmp).replace("'", "''").replace("\\\\", "\\")
+                Sqlserver_PO_CHC.execute(
+                    "UPDATE %s SET log = '%s' where id=%s" % (self.tableEF, s_tmp, d_tmp['id'])
+                )
+            caseTotal += 1
+        elif len(d_cases['satisfied']) > 1:
+            # 正向, Multiple条数据
+
+            for i in range(len(d_cases['satisfied'])):
+                d_tmp = self.EFRB_run_p(d_cases['satisfied'][i], d_param)  # 正向 d_tmp['result']返回1
+                # print(444, d_tmp)
+
+                if d_tmp['result'] == 1:
+                    s_print = f"{Numerator}-({i + 1}/{len(d_cases['satisfied'])}), {{'正向': 'ok', '条件': {str(l_interconvert_conditions)}, '测试数据': {str(d_cases['satisfied'][i])}}}"
+                    if Configparser_PO.SWITCH("positiveResult") == "on":
+                        Color_PO.outColor([{"34": s_print}])
+                    Log_PO.logger.info(s_print)
+                    caseTotal += 1
+                    l_count.append(1)
+                else:
+                    d_1 = {
+                        '表': 'a_weight10_EFRB',
+                        'id': id,
+                        '正向': 'error',
+                        '条件': l_interconvert_conditions,
+                        '测试数据': d_cases['satisfied'][i]
+                    }
+                    d_1.update(d_tmp)
+                    s_tmp = str(d_1).replace("\\\\", "\\")
+                    if Configparser_PO.SWITCH("positiveResult") == "on":
+                        Color_PO.outColor([{"31": s_tmp}])
+                    Log_PO.logger.info(s_tmp)
+                    Color_PO.outColor([{"31": s_tmp}])
+                    caseTotal += 1
+                    l_count.append(0)
+
+        # 反向
+        if len(d_cases['notSatisfied']) == 1:
+            # 反向, 一条数据
+            d_tmp = self.EFRB_run_n(d_cases['notSatisfied'][0], d_param)
+            # print(323,d_tmp)
+
+            if d_tmp['result'] == 1:
+                d_1 = {
+                    'No.': f"{Numerator}/{len(d_cases['notSatisfied'])}",
+                    '反向': 'ok',
+                    '条件': l_interconvert_conditions,
+                    '测试数据': d_cases['notSatisfied'][0]
+                }
+                if Configparser_PO.SWITCH("positiveResult") == "on":
+                    Color_PO.outColor([{"34": d_1}])
+                d_1.update(d_tmp)
+                s_tmp = str(d_1).replace("\\\\", "\\")
+                Log_PO.logger.info(s_tmp)
+                if Configparser_PO.SWITCH("curl_p") == "on":
+                    Color_PO.outColor([{"34": s_tmp}])
+                l_count.append(1)
+            else:
+                d_1 = {
+                    'No.': f"{Numerator}/{len(d_cases['notSatisfied'])}",
+                    '反向': 'error',
+                    '条件': l_interconvert_conditions,
+                    '测试数据': d_cases['notSatisfied'][0]
+                }
+                d_1.update(d_tmp)
+                s_tmp = str(d_1).replace("\\\\", "\\")
+                Log_PO.logger.info(s_tmp)
+                Color_PO.outColor([{"31": d_tmp}])
+                l_count.append(0)
+
+                # 将错误写入数据库log
+                conditions = self.convert_conditions(l_interconvert_conditions)  # 将列表转换字符串
+                d_tmp['条件'] = str(conditions)
+                d_tmp['测试数据'] = str(d_cases['notSatisfied'][0])
                 d_tmp['用例类型'] = "正向不满足"
                 s_tmp = str(d_tmp).replace("'", "''").replace("\\\\", "\\")
                 Sqlserver_PO_CHC.execute(
@@ -638,7 +1015,7 @@ class EfrbPO():
             # 一条数据，反向用例
             if Configparser_PO.SWITCH("testNegative") == "on":
                 d_tmp = self.EFRB_run_n(d_cases['notSatisfied'][0], d_param)
-                conditions = self.convert_conditions(l_conditions)
+                conditions = self.convert_conditions(l_interconvert_conditions)
                 if d_tmp['result'] == 1:
                     s_print = "{'反向': 'error', '条件': " + str(conditions) + ", '测试数据': " + str(
                         d_cases['notSatisfied'][0]) + "}"
@@ -654,36 +1031,39 @@ class EfrbPO():
                     Log_PO.logger.info(s_print)
                     l_count.append(1)
                 caseTotal += 1
-
-        else:
-            # 正向用例, N个数据
-            l_count = []
-            for i in range(len(d_cases['satisfied'])):
-                d_tmp = self.EFRB_run_p(d_cases['satisfied'][i], d_param)
+        elif len(d_cases['notSatisfied']) > 1:
+            # 反向, N个数据
+            # print(d_cases['satisfied'])
+            # sys.exit(0)
+            for i in range(len(d_cases['notSatisfied'])):
+                d_tmp = self.EFRB_run_n(d_cases['notSatisfied'][i], d_param)  # 正向 d_tmp['result']返回1
+                # print(444, d_tmp)  # 444 {'人群分类': '学生', 'categoryCode': '2', '年龄类型': 'float', '评估因素编码': 'TZ_STZB007', 'WEIGHT_REPORT__ID': 1952, '身份证': '310101193012210813', 'i': 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":0,\\"ageFloat\\":13,\\"ageMonth\\":0,\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":18.5,\\"categoryCode\\":\\"\\",\\"disease\\":\\"\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\":\\"310101193012210813\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"男\\",\\"sexCode\\":\\"1\\",\\"weight\\":55,\\"weightReportId\\":1952}"', '实际值': ['TZ_AGE001', 'TZ_STZB011', 'TZ_SRL003', 'TZ_YD011', 'TZ_YS011', 'TZ_MBTZ001'], '预期值': 'TZ_STZB007', 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 1952', 'result': 1}
+                # sys.exit(0)
                 if d_tmp['result'] == 1:
-                    s_print = f"{Numerator}({i + 1})/{Denominator}, {{'正向': 'ok', '条件': {str(l_conditions)}, '测试数据': {str(d_cases['satisfied'][i])}}}"
-                    if Configparser_PO.SWITCH("positiveResult") == "on":
-                        Color_PO.outColor([{"34": s_print}])
+                    s_print = f"{Numerator}-({i + 1}/{len(d_cases['notSatisfied'])}), {{'反向': 'ok', '测试数据': {str(d_cases['notSatisfied'][i])}}}"
+                    if Configparser_PO.SWITCH("nagitiveResult") == "on":
+                        Color_PO.outColor([{"36": s_print}])
                     Log_PO.logger.info(s_print)
                     caseTotal += 1
                     l_count.append(1)
                 else:
+                    print(831, d_tmp)
                     d_1 = {
                         '表': 'a_weight10_EFRB',
-                        'id': id,
-                        '正向': 'error',
-                        '条件': l_conditions,
-                        '测试数据': d_cases['satisfied'][i]
+                        'id': d_param['id'],
+                        '反向': 'error',
+                        '测试数据': d_cases['notSatisfied'][i]
                     }
                     d_1.update(d_tmp)
                     s_tmp = str(d_1).replace("\\\\", "\\")
-                    if Configparser_PO.SWITCH("positiveResult") == "on":
+                    if Configparser_PO.SWITCH("nagitiveResult") == "on":
                         Color_PO.outColor([{"31": s_tmp}])
                     Log_PO.logger.info(s_tmp)
                     Color_PO.outColor([{"31": s_tmp}])
                     caseTotal += 1
                     l_count.append(0)
 
+        # 结果
         d_result['caseTotal'] = caseTotal
         if 0 in l_count:
             d_result['id'] = id
@@ -692,6 +1072,8 @@ class EfrbPO():
             Log_PO.logger.info(d_result)
         else:
             d_result['count'] = 1
+        # print(677,d_result)  # 677 {'caseTotal': 4, 'count': 1}
+
         return d_result
 
     def _EFRB_run(self, d_cases_satisfied, d_param):
@@ -805,6 +1187,7 @@ class EfrbPO():
     def EFRB_run_n(self, d_cases_satisfied, d_param):
         """反向测试"""
         d_tmp = self._EFRB_run(d_cases_satisfied, d_param)
+        # print(67888, d_tmp)
         d_tmp['result'] = 0 if d_tmp['预期值'] in d_tmp['实际值'] else 1
         return d_tmp
 
@@ -1047,11 +1430,11 @@ class EfrbPO():
             sys.exit(0)
 
     def _EFRB_result(self, d_param):
-        """处理测试结果"""
+        # 测试结果
+
         d_result = {'id': d_param['id'], 'ER_code': d_param['ER_code']}
         if 0 not in d_param['l_count']:
-            d_result['测试结果'] = 'ok'
-            s = "结果EFRB => " + self.tableEF + " => " + str(d_result)
+            s = "测试EFRB => " + self.tableEF + " => " + str(d_result) + " => 结果OK"
             Color_PO.outColor([{"32": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC.execute(
@@ -1059,8 +1442,7 @@ class EfrbPO():
                 (self.tableEF, d_param['caseTotal'], d_param['id'])
             )
         else:
-            d_result['测试结果'] = 'error'
-            s = "结果EFRB => " + self.tableEF + " => " + str(d_result)
+            s = "测试EFRB => " + self.tableEF + " => " + str(d_result) + " => 结果errorrrrrrrrrr!"
             Color_PO.outColor([{"31": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC.execute(

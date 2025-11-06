@@ -1,219 +1,120 @@
-# # -*- coding: utf-8 -*-
+def generate_unmatched_cases(conditions):
+    """
+    生成不满足指定条件的年龄、BMI、性别组合示例（年龄保留1位小数，BMI保留1位小数）
 
-# d= {'id': 60, 'rule_code': 'TZ_STZB046'}
-#
-# if "id" in d:
-#     print(121212)
+    参数:
+        conditions: 条件列表，每个元素为一个条件子列表
+                    格式如: [['年龄>=14', '年龄<14.5', 'BMI>=22.3', '性别=男'], ...]
 
-a = [4,6]
-for i in list(range(a[0], a[1] + 1)):
-    print(i)
+    返回:
+        list: 不满足条件的组合示例列表
+    """
+    # 解析条件中的关键参数
+    age_ranges = set()
+    bmi_thresholds = {'男': {}, '女': {}}  # 按性别存储不同年龄区间的BMI阈值
 
-# import os
-# from tencentcloud.common import credential
-# from tencentcloud.common.exception.tencent_cloud_sdk_exception import (
-#     TencentCloudSDKException,
-# )
-#
-# from tencentcloud.common.profile.client_profile import ClientProfile
-# from tencentcloud.common.profile.http_profile import HttpProfile
-#
-# from tencentcloud.docs.v20210726 import docs_client, models
-# from tencentcloud.document.v20210726 import client, models
-#
-# # import tencentcloud
-# # print(tencentcloud.__file__)
-#
-#
-# def get_tencent_sheet_data():
-#     try:
-#         # 1. 配置你的密钥
-#         # 强烈建议不要硬编码密钥，而是通过环境变量或配置文件加载
-#         # export TENCENTCLOUD_SECRET_ID="你的SecretId"
-#         # export TENCENTCLOUD_SECRET_KEY="你的SecretKey"
-#         cred = credential.Credential(
-#             os.environ.get("1312645915"),
-#             os.environ.get("AKIDqUt3ye4FAqHSO5XjgOq30iBOM4YmlV1I"),
-#         )
-#
-#         # 2. 创建 API 客户端实例
-#         client = docs_client.DocsClient(cred, "")
-#
-#         # 3. 构造请求参数
-#         req = models.DescribeSheetDataRequest()
-#
-#         # 替换成你的 fileId 和 sheetId
-#         req.FileId = "DYmVJR0xaQk5JQk9u"  # 你的表格文件ID
-#         req.SheetId = "g84nkg"  # 你要读取的工作表ID
-#
-#         # 4. 调用 API
-#         resp = client.DescribeSheetData(req)
-#
-#         # 5. 处理返回结果
-#         # resp.Data 是一个 JSON 结构，其中 'Records' 字段包含了所有行数据
-#         # 每一行是一个字典，键是 'RowIndex'，值是该行的单元格列表
-#         print("成功获取表格数据：")
-#         for record in resp.Data.Records:
-#             row_index = record.RowIndex
-#             cells = record.Cells
-#             # 提取每个单元格的文本内容
-#             row_data = [cell.Text for cell in cells]
-#             print(f"行 {row_index}: {row_data}")
-#
-#     except TencentCloudSDKException as err:
-#         print(f"API 调用失败: {err}")
-#
-#
-# if __name__ == "__main__":
-#     get_tencent_sheet_data()
-#
-# # import requests
-# # from bs4 import BeautifulSoup
-# # import csv
-# # import time
-# # import random
-# # import logging
-# # from urllib.parse import urljoin
-# #
-# # # 配置日志
-# # logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-# # logger = logging.getLogger(__name__)
-# #
-# #
-# # class HospitalCrawler:
-# #     def __init__(self):
-# #         self.base_url = "http://zgcx.nhc.gov.cn:9090"
-# #         self.search_url = urljoin(self.base_url, "/unit/index")
-# #         self.headers = {
-# #             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
-# #             "Accept": "application/json, text/plain, */*",
-# #             "Accept-Language": "zh-CN,zh;q=0.9,en;q=0.8",
-# #             "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-# #             "Origin": self.base_url,
-# #             "Referer": self.search_url
-# #         }
-# #         self.session = requests.Session()
-# #         self.session.headers.update(self.headers)
-# #         self.total_pages = 1  # 初始化总页数
-# #         self.current_page = 1  # 当前页码
-# #         self.results = []  # 存储结果
-# #         self.output_file = "hospitals.csv"  # 输出文件名
-# #
-# #     def get_total_pages(self):
-# #         """获取总页数"""
-# #         try:
-# #             # 先发送一个请求获取总页数
-# #             data = {
-# #                 "p": "1",
-# #                 "pSize": "10",
-# #                 "legalPerson": "",
-# #                 "areaCode": "",
-# #                 "orgName": "",
-# #                 "orgLevel": "",
-# #                 "orgClassify": "",
-# #                 "orgProperty": "",
-# #                 "isSocial办医": ""
-# #             }
-# #             response = self.session.post(self.search_url, data=data)
-# #             response.raise_for_status()
-# #
-# #             # 解析总页数
-# #             soup = BeautifulSoup(response.text, 'html.parser')
-# #             total_pages_elem = soup.select_one('.pagination li:nth-last-child(2) a')
-# #             if total_pages_elem:
-# #                 self.total_pages = int(total_pages_elem.text.strip())
-# #                 logger.info(f"总页数: {self.total_pages}")
-# #             else:
-# #                 logger.warning("无法获取总页数，将按单页处理")
-# #                 self.total_pages = 1
-# #
-# #         except Exception as e:
-# #             logger.error(f"获取总页数失败: {e}")
-# #             self.total_pages = 1
-# #
-# #     def parse_page(self, page_num):
-# #         """解析单页数据"""
-# #         try:
-# #             data = {
-# #                 "p": str(page_num),
-# #                 "pSize": "10",  # 每页10条数据
-# #                 "legalPerson": "",
-# #                 "areaCode": "",
-# #                 "orgName": "",
-# #                 "orgLevel": "",
-# #                 "orgClassify": "",
-# #                 "orgProperty": "",
-# #                 "isSocial办医": ""
-# #             }
-# #
-# #             response = self.session.post(self.search_url, data=data)
-# #             response.raise_for_status()
-# #
-# #             soup = BeautifulSoup(response.text, 'html.parser')
-# #             table = soup.select_one('.table.table-hover')
-# #
-# #             if not table:
-# #                 logger.warning(f"第 {page_num} 页未找到数据表格")
-# #                 return
-# #
-# #             rows = table.select('tbody tr')
-# #             for row in rows:
-# #                 cols = row.select('td')
-# #                 if len(cols) >= 4:
-# #                     hospital = {
-# #                         'name': cols[0].text.strip(),
-# #                         'code': cols[1].text.strip(),
-# #                         'level': cols[2].text.strip(),
-# #                         'address': cols[3].text.strip()
-# #                     }
-# #                     self.results.append(hospital)
-# #                     logger.info(f"已抓取: {hospital['name']} - {hospital['code']}")
-# #
-# #             logger.info(f"第 {page_num} 页抓取完成，共 {len(rows)} 条记录")
-# #
-# #         except Exception as e:
-# #             logger.error(f"解析第 {page_num} 页失败: {e}")
-# #
-# #     def save_to_csv(self):
-# #         """保存结果到CSV文件"""
-# #         try:
-# #             with open(self.output_file, 'w', newline='', encoding='utf-8-sig') as csvfile:
-# #                 fieldnames = ['name', 'code', 'level', 'address']
-# #                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-# #                 writer.writeheader()
-# #                 writer.writerows(self.results)
-# #             logger.info(f"数据已保存到 {self.output_file}，共 {len(self.results)} 条记录")
-# #         except Exception as e:
-# #             logger.error(f"保存CSV文件失败: {e}")
-# #
-# #     def run(self):
-# #         """运行爬虫"""
-# #         try:
-# #             logger.info("开始爬取全国医疗机构数据...")
-# #             self.get_total_pages()
-# #
-# #             # 爬取每一页数据
-# #             for page in range(1, self.total_pages + 1):
-# #                 self.current_page = page
-# #                 self.parse_page(page)
-# #
-# #                 # 随机延时，避免过快请求
-# #                 delay = random.uniform(1, 3)
-# #                 logger.info(f"等待 {delay:.2f} 秒后继续...")
-# #                 time.sleep(delay)
-# #
-# #             # 保存结果
-# #             self.save_to_csv()
-# #             logger.info("爬取完成！")
-# #
-# #         except KeyboardInterrupt:
-# #             logger.info("用户中断，保存已抓取数据...")
-# #             self.save_to_csv()
-# #         except Exception as e:
-# #             logger.error(f"爬取过程中发生错误: {e}")
-# #             self.save_to_csv()
-# #
-# #
-# # if __name__ == "__main__":
-# #     crawler = HospitalCrawler()
-# #     crawler.run()
+    for cond in conditions:
+        age_min = None
+        age_max = None
+        bmi_min = None
+        gender = None
+
+        for c in cond:
+            if c.startswith('年龄>='):
+                age_min = float(c.split('>=')[1])
+            elif c.startswith('年龄<'):
+                age_max = float(c.split('<')[1])
+            elif c.startswith('BMI>='):
+                bmi_min = float(c.split('>=')[1])
+            elif c.startswith('性别='):
+                gender = c.split('=')[1]
+
+        if all([age_min, age_max, bmi_min, gender]):
+            age_range = (age_min, age_max)
+            age_ranges.add(age_range)
+            bmi_thresholds[gender][age_range] = bmi_min
+
+    # 生成不满足条件的示例组合
+    unmatched = []
+
+    # 1. 年龄低于最小范围（取最小年龄阈值-0.5）
+    min_age = min(r[0] for r in age_ranges)
+    test_age = round(min_age - 0.5, 1)  # 确保低于最小年龄范围
+    sample_bmi = 22.0  # 代表性BMI值（低于多数阈值）
+    unmatched.append({
+        '年龄': test_age,
+        'BMI': round(sample_bmi, 1),
+        '性别': '男'
+    })
+    unmatched.append({
+        '年龄': test_age,
+        'BMI': round(sample_bmi, 1),
+        '性别': '女'
+    })
+
+    # 2. 年龄高于最大范围（取最大年龄阈值+0.5）
+    max_age = max(r[1] for r in age_ranges)
+    test_age = round(max_age + 0.5, 1)  # 确保高于最大年龄范围
+    unmatched.append({
+        '年龄': test_age,
+        'BMI': round(sample_bmi, 1),
+        '性别': '男'
+    })
+    unmatched.append({
+        '年龄': test_age,
+        'BMI': round(sample_bmi, 1),
+        '性别': '女'
+    })
+
+    # 3. 年龄在范围内但男性BMI不达标（取区间中间值）
+    for (age_min, age_max), bmi_min in bmi_thresholds['男'].items():
+        test_age = round((age_min + age_max) / 2, 1)  # 区间中间值
+        test_bmi = round(bmi_min - 0.1, 1)  # 低于阈值0.1确保不满足
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': test_bmi,
+            '性别': '男'
+        })
+
+    # 4. 年龄在范围内但女性BMI不达标（取区间中间值）
+    for (age_min, age_max), bmi_min in bmi_thresholds['女'].items():
+        test_age = round((age_min + age_max) / 2, 1)  # 区间中间值
+        test_bmi = round(bmi_min - 0.1, 1)  # 低于阈值0.1确保不满足
+        unmatched.append({
+            '年龄': test_age,
+            'BMI': test_bmi,
+            '性别': '女'
+        })
+
+    return unmatched
+
+
+# 测试示例（使用新条件）
+if __name__ == "__main__":
+    conditions = [
+        ['年龄>=14', '年龄<14.5', 'BMI>=22.3', '性别=男'],
+        ['年龄>=14.5', '年龄<15', 'BMI>=22.6', '性别=男'],
+        ['年龄>=15', '年龄<15.5', 'BMI>=22.9', '性别=男'],
+        ['年龄>=15.5', '年龄<16', 'BMI>=23.1', '性别=男'],
+        ['年龄>=16', '年龄<16.5', 'BMI>=23.3', '性别=男'],
+        ['年龄>=16.5', '年龄<17', 'BMI>=23.5', '性别=男'],
+        ['年龄>=17', '年龄<17.5', 'BMI>=23.7', '性别=男'],
+        ['年龄>=17.5', '年龄<18', 'BMI>=23.8', '性别=男'],
+        ['年龄>=14', '年龄<14.5', 'BMI>=22.8', '性别=女'],
+        ['年龄>=14.5', '年龄<15', 'BMI>=23.0', '性别=女'],
+        ['年龄>=15', '年龄<15.5', 'BMI>=23.2', '性别=女'],
+        ['年龄>=15.5', '年龄<16', 'BMI>=23.4', '性别=女'],
+        ['年龄>=16', '年龄<16.5', 'BMI>=23.6', '性别=女'],
+        ['年龄>=16.5', '年龄<17', 'BMI>=23.7', '性别=女'],
+        ['年龄>=17', '年龄<17.5', 'BMI>=23.8', '性别=女'],
+        ['年龄>=17.5', '年龄<18', 'BMI>=23.9', '性别=女']
+    ]
+
+    result = generate_unmatched_cases(conditions)
+    # 格式化输出
+    import pprint
+
+    pprint.pprint(result, indent=4)
+
+
+print(generate_unmatched_cases([['年龄>=14', '年龄<14.5', 'BMI>=22.3', '性别=男'], ['年龄>=14.5', '年龄<15', 'BMI>=22.6', '性别=男'], ['年龄>=15', '年龄<15.5', 'BMI>=22.9', '性别=男'], ['年龄>=15.5', '年龄<16', 'BMI>=23.1', '性别=男'], ['年龄>=16', '年龄<16.5', 'BMI>=23.3', '性别=男'], ['年龄>=16.5', '年龄<17', 'BMI>=23.5', '性别=男'], ['年龄>=17', '年龄<17.5', 'BMI>=23.7', '性别=男'], ['年龄>=17.5', '年龄<18', 'BMI>=23.8', '性别=男'], ['年龄>=14', '年龄<14.5', 'BMI>=22.8', '性别=女'], ['年龄>=14.5', '年龄<15', 'BMI>=23.0', '性别=女'], ['年龄>=15', '年龄<15.5', 'BMI>=23.2', '性别=女'], ['年龄>=15.5', '年龄<16', 'BMI>=23.4', '性别=女'], ['年龄>=16', '年龄<16.5', 'BMI>=23.6', '性别=女'], ['年龄>=16.5', '年龄<17', 'BMI>=23.7', '性别=女'], ['年龄>=17', '年龄<17.5', 'BMI>=23.8', '性别=女'], ['年龄>=17.5', '年龄<18', 'BMI>=23.9', '性别=女']]))
