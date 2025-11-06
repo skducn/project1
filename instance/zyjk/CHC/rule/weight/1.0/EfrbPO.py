@@ -1309,9 +1309,7 @@ class EfrbPO():
         d_tmp = {}
 
         # 获取规则信息
-        l_d_row = Sqlserver_PO_CHC.select(
-            "select ER_code from %s where id= %s" % (self.tableEF, d_param['id'])
-        )
+        l_d_row = Sqlserver_PO_CHC.select("select ER_code from %s where id= %s" % (self.tableEF, d_param['id']))
         d_tmp['评估因素编码'] = l_d_row[0]['ER_code']
 
         # 参数化
@@ -1384,7 +1382,7 @@ class EfrbPO():
             if d_tmp['预期值'] in l_d_RULE_CODE_actual:
                 result_data = {
                     '正向': 'ok',
-                    '人群分类': d_param['conditions']
+                    '条件': d_param['conditions']
                 }
                 if Configparser_PO.SWITCH("positiveResult") == "on":
                     Color_PO.outColor([{"34": result_data}])
@@ -1393,7 +1391,7 @@ class EfrbPO():
             else:
                 result_data = {
                     '正向': 'error',
-                    '人群分类': d_param['conditions']
+                    '条件': d_param['conditions']
                 }
                 result_data.update(d_tmp)
                 s_tmp = str(result_data).replace("\\\\", "\\")
@@ -1403,27 +1401,24 @@ class EfrbPO():
 
             # 回写数据库result, updateDate
             d_result = {
-                "表": d_param.get('表', ''),
                 "id": d_param['id']
             }
 
             if 0 not in l_count:
-                d_result["测试结果"] = "ok"
-                s = "结果3 => " + str(d_result)
+                s = "测试EFRB => " + str(d_result) + " => 结果OK"
                 Color_PO.outColor([{"32": s}])
                 Log_PO.logger.info(s)
                 Sqlserver_PO_CHC.execute(
                     "update %s set result = '%s', updateDate = GETDATE() where id = %s" %
-                    (self.tableEF, d_result["测试结果"], d_result["id"])
+                    (self.tableEF, "ok", d_result["id"])
                 )
             else:
-                d_result["测试结果"] = "error"
-                s = "结果3 => " + str(d_result)
+                s = "测试EFRB => " + str(d_result) + " => 结果errorrrrrrrrrr! "
                 Color_PO.outColor([{"31": s}])
                 Log_PO.logger.info(s)
                 Sqlserver_PO_CHC.execute(
                     "update %s set result = '%s', updateDate = GETDATE() where id = %s" %
-                    (self.tableEF, d_result["测试结果"], d_result["id"])
+                    (self.tableEF, "error", d_result["id"])
                 )
         else:
             print("error ", d_r['code'])
