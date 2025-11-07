@@ -29,17 +29,18 @@ Efrb_PO = EfrbPO()
 # Efrb_PO.EFRB({'id': 'all'})
 
 # 2.2 测试单/多条规则
-# Efrb_PO.EFRB({'id': 16})  # 测试id=59
-Efrb_PO.EFRB({'id': 17})  # 测试id=59
-# Efrb_PO.EFRB({'id': 18})  # 测试id=59
-# Efrb_PO.EFRB({'id': 19})  # 测试id=59
-# Efrb_PO.EFRB({'id': 20})  # 测试id=59
-# Efrb_PO.EFRB({'id': 21})  # 测试id=59
-# Efrb_PO.EFRB({'ER_code': 'TZ_STZB047'})  # 测试ER_code=TZ_STZB047
+Efrb_PO.EFRB({'id': 1})
+
+# Efrb_PO.EFRB({'id': 55}) # TZ_STZB044
+# Efrb_PO.EFRB({'id': 56}) # TZ_STZB045
+# Efrb_PO.EFRB({'id': [40, 49]})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB044'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_AGE001'})  # 17
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB016'})
 # Efrb_PO.EFRB({'id': 59, 'ER_code': 'TZ_STZB047'})  # 测试id=59 和 ER_code=TZ_STZB047 两条记录
 
 # 2.3 测试多条连续规则
-# Efrb_PO.EFRB({'id': [15, 21]})  # 测试 id =1,2,3 三条记录。
+# Efrb_PO.EFRB({'id': [2, 3]})  # 测试 id =1,2,3 三条记录。
 # Efrb_PO.EFRB({'ER_code': ['TZ_STZB046', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047， 三条记录。
 # Efrb_PO.EFRB({'id': [1, 3], 'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB046，TZ_STZB047，id=1,2,3 六条记录。
 

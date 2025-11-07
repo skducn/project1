@@ -20,7 +20,6 @@ from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
 
 from PO.SqlserverPO import *
-Sqlserver_PO_CHC5G = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))
 Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))
 
 from AgePO import *
@@ -107,75 +106,42 @@ class DrwsPO():
                 return "浮点数"
         else:
             return "不是数字类型"
-    def excel2db_DRWS22(self):
-
-        # excel导入db
-        varTable = varSheet = "a_weight10_DRWS"
-
-        # 1, db中删除已有的表
-        Sqlserver_PO_CHC5G.execute("drop table if exists " + varTable)
-
-        # 2, excel导入db
-        Sqlserver_PO_CHC5G.xlsx2db(Configparser_PO.FILE("case"), varTable, "replace", varSheet)
-
-        # 3, 设置表注释
-        Sqlserver_PO_CHC5G.setTableComment(varTable, '体重管理1.0_判定居民体重状态_自动化测试')
-
-        # 4, 将换行符替换为空格
-        Sqlserver_PO_CHC5G.execute("UPDATE %s SET conditions = REPLACE(REPLACE(conditions, CHAR(10), ' '), CHAR(13), ' ');" % (varTable))
-
-        # 5, 设置字段类型与描述
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'result', 'nvarchar(10)', '测试结果')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'updateDate', 'nvarchar(50)', '更新日期')
-        Sqlserver_PO_CHC5G.execute("ALTER TABLE %s ALTER COLUMN updateDate DATE;" % (varTable))
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'log', 'nvarchar(max)', '日志信息')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'category', 'nvarchar(20)', '人群分类')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'categoryCode', 'varchar(3)', '人群分类编码')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'weightStatus', 'nvarchar(20)', '体重状态')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'weightStatusCode', 'varchar(3)', '体重状态编码')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'conditions', 'nvarchar(max)', '取值条件')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'testCase', 'nvarchar(300)', '测试检查点')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'totalCase', 'int', '用例数量')
-        Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'errId', 'int', '错误id')
-
-        # 6, 设置自增主键（最后）
-        Sqlserver_PO_CHC5G.setIdentityPrimaryKey(varTable, "id")
 
     def excel2db_DRWS(self):
         # excel导入db
-        varTable = varSheet = "a_weight10_DRWS"
+        varTable = varSheet = "DRWS"
 
         try:
             # 1, db中删除已有的表
-            Sqlserver_PO_CHC5G.execute("DROP TABLE IF EXISTS [%s]" % varTable)
+            Sqlserver_PO_CHC.execute("DROP TABLE IF EXISTS [%s]" % varTable)
 
             # 2, excel导入db
-            Sqlserver_PO_CHC5G.xlsx2db(Configparser_PO.FILE("case"), varTable, "replace", varSheet)
+            Sqlserver_PO_CHC.xlsx2db(Configparser_PO.FILE("case"), varTable, "replace", varSheet)
 
             # 3, 设置表注释
-            Sqlserver_PO_CHC5G.setTableComment(varTable, '体重管理1.0_判定居民体重状态_自动化测试')
+            Sqlserver_PO_CHC.setTableComment(varTable, '体重管理1.0_判定居民体重状态_自动化测试')
 
             # 4, 将换行符替换为空格
-            Sqlserver_PO_CHC5G.execute(
+            Sqlserver_PO_CHC.execute(
                 "UPDATE [%s] SET [conditions] = REPLACE(REPLACE([conditions], CHAR(10), ' '), CHAR(13), ' ');" % (
                     varTable))
 
             # 5, 设置字段类型与描述
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'result', 'nvarchar(10)', '测试结果')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'updateDate', 'nvarchar(50)', '更新日期')
-            Sqlserver_PO_CHC5G.execute("ALTER TABLE [%s] ALTER COLUMN [updateDate] DATE;" % (varTable))
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'log', 'nvarchar(max)', '日志信息')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'category', 'nvarchar(20)', '人群分类')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'categoryCode', 'varchar(3)', '人群分类编码')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'weightStatus', 'nvarchar(20)', '体重状态')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'weightStatusCode', 'varchar(3)', '体重状态编码')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'conditions', 'nvarchar(max)', '取值条件')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'testCase', 'nvarchar(300)', '测试检查点')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'totalCase', 'int', '用例数量')
-            Sqlserver_PO_CHC5G.setFieldTypeComment(varTable, 'errId', 'int', '错误id')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'result', 'nvarchar(10)', '测试结果')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'updateDate', 'nvarchar(50)', '更新日期')
+            Sqlserver_PO_CHC.execute("ALTER TABLE [%s] ALTER COLUMN [updateDate] DATE;" % (varTable))
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'log', 'nvarchar(max)', '日志信息')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'category', 'nvarchar(20)', '人群分类')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'categoryCode', 'varchar(3)', '人群分类编码')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'weightStatus', 'nvarchar(20)', '体重状态')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'weightStatusCode', 'varchar(3)', '体重状态编码')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'conditions', 'nvarchar(max)', '取值条件')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'testCase', 'nvarchar(300)', '测试检查点')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'totalCase', 'int', '用例数量')
+            Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'errId', 'int', '错误id')
 
             # 6, 设置自增主键（最后）
-            Sqlserver_PO_CHC5G.setIdentityPrimaryKey(varTable, "id")
+            Sqlserver_PO_CHC.setIdentityPrimaryKey(varTable, "id")
 
             print(f"表 {varTable} 创建成功")
         except Exception as e:
@@ -249,23 +215,25 @@ class DrwsPO():
 
 
 
-    # todo 1 测试取值条件
-    def DRWS(self, varTestID="all"):
 
+    def DRWS(self, varTestID="all"):
+        #def DRWS(self, d_, d_param={})
+        # 入口
+        # {'id': 'all'}
         # 测试取值条件
 
         d_ = {}
 
         # 获取表每行测试数据
-        l_d_row = Sqlserver_PO_CHC5G.select("select [id], [conditions] from [%s]" % (self.tableWS))
-        # l_d_row = Sqlserver_PO_CHC5G.select("select id, conditions from %s" % (self.tableWS))
+        l_d_row = Sqlserver_PO_CHC.select("select [id], [conditions] from [%s]" % (self.tableWS))
+        # l_d_row = Sqlserver_PO_CHC.select("select id, conditions from %s" % (self.tableWS))
         # print("l_d_row =>", l_d_row)  # [{'ID': 1, 'conditions': 'BMI＜18.5'}, ...
 
         # 添加检查确保查询返回了结果
         if not l_d_row or len(l_d_row) == 0:
             raise Exception(f"表 {self.tableWS} 中没有找到测试数据")
 
-        d_['表'] = self.tableWS
+        # d_['表'] = self.tableWS
         for i, index in enumerate(l_d_row):
             # print(l_d_row[i], i)
             if varTestID == "all":
@@ -281,10 +249,10 @@ class DrwsPO():
             d_['conditions'] = conditions
             d_['WEIGHT_REPORT__IDCARD'] = self.WEIGHT_REPORT__IDCARD
 
-
             # 获取原始数据
-            s = "判定居民体重状态DRWS => " + str(d_)
-            print(s)
+            s = "开始 => 判定居民体重状态DRWS(" + self.tableWS + ") => " + str(d_)
+            Color_PO.outColor([{"35": s}])
+            
             Log_PO.logger.info(s)
 
             # 统计所有组合的数量
@@ -343,7 +311,7 @@ class DrwsPO():
                             d_cases = BmiAgeSex_PO.main(l_interconvert_conditions)
 
                     if Configparser_PO.SWITCH("testDataSet") == "on":
-                        print("测试数据集合 =>", d_cases)
+                        print("生成测试数据集 =>", d_cases)
 
                     # 判断输出结果
                     # todo DRWS_case_or for 集合
@@ -377,8 +345,9 @@ class DrwsPO():
                 d_cases = Bmi_PO.generate_all_cases(l_interconvert_conditions)
 
                 if Configparser_PO.SWITCH("testDataSet") == "on":
-                    print("测试数据集合 =>", d_cases)  # {'satisfied': [{'BMI': 16.8}], 'not1': [{'BMI': 19.6}]}
-                Log_PO.logger.info("测试数据集合 => " + str(d_cases))
+                    print("生成测试数据集 =>", d_cases)  # {'satisfied': [{'BMI': 16.8}], 'not1': [{'BMI': 19.6}]}
+
+                Log_PO.logger.info("生成测试数据集 => " + str(d_cases))
 
                 # todo 5 DRWS_case for 单个条件
                 # 测试数据
@@ -397,7 +366,7 @@ class DrwsPO():
         d_1[pORn] = 'ok'
         d_1['条件'] = l_conditions
         # d_1['测试数据'] = d_cases['satisfied'][0]
-        d_1['测试数据'] = testData
+        d_1['验证'] = testData
         Color_PO.outColor([{"34": d_1}])
         d_1.update(d_tmp)
         s_tmp = str(d_1)
@@ -412,7 +381,7 @@ class DrwsPO():
         d_1 = {}
         d_1[pORn] = 'error'
         d_1['条件'] = l_conditions
-        d_1['测试数据'] = testData
+        d_1['验证'] = testData
         d_1.update(d_tmp)
         s_tmp = str(d_1)
         s_tmp = s_tmp.replace("\\\\", "\\")
@@ -425,24 +394,22 @@ class DrwsPO():
         d_result = {}
         if 0 not in count:
             d_result['id'] = id
-            d_result['测试结果'] = 'ok'
-            s = "结果 => " + str(d_result)
+            s = "结果 => 判定居民体重状态DRWS => " + str(d_result) + " => 结果：OK"
             Color_PO.outColor([{"32": s}])
             Log_PO.logger.info(s)
-            # Sqlserver_PO_CHC5G.execute("update %s set result = 'ok', updateDate = GETDATE(), totalCase=%s where id = %s" % (self.tableWS, totalCase, id))
-            Sqlserver_PO_CHC5G.execute(
+            # Sqlserver_PO_CHC.execute("update %s set result = 'ok', updateDate = GETDATE(), totalCase=%s where id = %s" % (self.tableWS, totalCase, id))
+            Sqlserver_PO_CHC.execute(
                 "update [%s] set [result] = 'ok', [updateDate] = GETDATE(), [totalCase]=%s where [id] = %s" % (
                 self.tableWS, totalCase, id))
         else:
             d_result['id'] = id
-            d_result['测试结果'] = 'error'
-            s = "结果 => " + str(d_result)
+            s = "结果 => 判定居民体重状态DRWS => " + str(d_result) + " => 结果：ERROR"
             Color_PO.outColor([{"31": s}])
             Log_PO.logger.info(s)
-            Sqlserver_PO_CHC5G.execute(
+            Sqlserver_PO_CHC.execute(
                 "update [%s] set [result] = 'error', [updateDate] = GETDATE(), [totalCase]=%s where [id] = %s" % (
                 self.tableWS, totalCase, id))
-            # Sqlserver_PO_CHC5G.execute("update %s set result = 'error', updateDate = GETDATE(), totalCase=%s where id = %s" % (self.tableWS, totalCase, id))
+            # Sqlserver_PO_CHC.execute("update %s set result = 'error', updateDate = GETDATE(), totalCase=%s where id = %s" % (self.tableWS, totalCase, id))
 
     def DRWS_case(self, id, l_conditions, d_cases):
 
@@ -453,8 +420,9 @@ class DrwsPO():
         # 测试数据量
         caseTotal = 0
 
+        # 正向
         if len(d_cases['satisfied']) == 1:
-            # 正向用例, 一条数据
+            # 正向, one条数据
             # todo DRWS_run_p1
             d_tmp = self.DRWS_run_p(d_cases['satisfied'][0], id)
             if d_tmp['result'] == 1:
@@ -463,17 +431,17 @@ class DrwsPO():
                 l_count = self._DRWS_print_error("正向", l_conditions, d_cases['satisfied'][0], d_tmp)
             caseTotal = caseTotal + 1
 
-            # 反向用例, 一条数据
-            # todo DRWS_run_n1
-            if Configparser_PO.SWITCH('testNegative') == "on":
-                d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], id)
-                if d_tmp['result'] == 1:
-                    l_count = self._DRWS_print_ok("反向", l_conditions, d_cases['notSatisfied'][0], d_tmp)
-                else:
-                    l_count = self._DRWS_print_error("反向", l_conditions, d_cases['notSatisfied'][0], d_tmp)
-                caseTotal = caseTotal + 1
-        else:
-            # 正向用例, N个数据
+            # # 反向用例, 一条数据
+            # # todo DRWS_run_n1
+            # if Configparser_PO.SWITCH('testNegative') == "on":
+            #     d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], id)
+            #     if d_tmp['result'] == 1:
+            #         l_count = self._DRWS_print_ok("反向", l_conditions, d_cases['notSatisfied'][0], d_tmp)
+            #     else:
+            #         l_count = self._DRWS_print_error("反向", l_conditions, d_cases['notSatisfied'][0], d_tmp)
+            #     caseTotal = caseTotal + 1
+        elif len(d_cases['satisfied']) > 1:
+            # 正向, Multiple条数据
             for i in range(len(d_cases['satisfied'])):
                 # todo DRWS_run_pn
                 d_tmp = self.DRWS_run_p(d_cases['satisfied'][i], id)
@@ -483,16 +451,42 @@ class DrwsPO():
                     l_count = self._DRWS_print_error("正向", l_conditions, d_cases['satisfied'][i], d_tmp)
                 caseTotal = caseTotal + 1
 
-            # 反向用例, N个数据
+            # # 反向用例, N个数据
+            # if Configparser_PO.SWITCH('testNegative') == "on":
+            #     for i in range(len(d_cases['notSatisfied'])):
+            #         # todo DRWS_run_nn
+            #         d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][i], id)
+            #         if d_tmp['result'] == 1:
+            #             l_count = self._DRWS_print_ok("反向", l_conditions, d_cases['satisfied'][i], d_tmp)
+            #         else:
+            #             l_count = self._DRWS_print_error("反向", l_conditions, d_cases['satisfied'][i], d_tmp)
+            #         caseTotal = caseTotal + 1
+
+        # 反向
+        if len(d_cases['notSatisfied']) == 1:
+            # 反向用例, 一条数据
+            # todo DRWS_run_n1
+            print(469)
+            if Configparser_PO.SWITCH('testNegative') == "on":
+                d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], id)
+                if d_tmp['result'] == 0:
+                    l_count = self._DRWS_print_ok("反向", l_conditions, d_cases['notSatisfied'][0], d_tmp)
+                else:
+                    l_count = self._DRWS_print_error("反向", l_conditions, d_cases['notSatisfied'][0], d_tmp)
+                caseTotal = caseTotal + 1
+        elif len(d_cases['notSatisfied']) > 1:
+            # 反向, Multiple条数据
+            print(479)
             if Configparser_PO.SWITCH('testNegative') == "on":
                 for i in range(len(d_cases['notSatisfied'])):
                     # todo DRWS_run_nn
                     d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][i], id)
-                    if d_tmp['result'] == 1:
-                        l_count = self._DRWS_print_ok("反向", l_conditions, d_cases['satisfied'][i], d_tmp)
+                    if d_tmp['result'] == 0:
+                        l_count = self._DRWS_print_ok("反向", l_conditions, d_cases['notSatisfied'][i], d_tmp)
                     else:
-                        l_count = self._DRWS_print_error("反向", l_conditions, d_cases['satisfied'][i], d_tmp)
+                        l_count = self._DRWS_print_error("反向", l_conditions, d_cases['notSatisfied'][i], d_tmp)
                     caseTotal = caseTotal + 1
+
         # 更新记录
         self._DRWS_result(l_count, caseTotal, id)
     def DRWS_case_or(self, d_cases, id, l_conditions, Numerator, Denominator):
@@ -509,7 +503,7 @@ class DrwsPO():
                 d_1['No.'] = str(Numerator) + "/" + str(Denominator)
                 d_1['正向'] = 'ok'
                 d_1['条件'] = l_conditions
-                d_1['测试数据'] = d_cases['satisfied'][0]
+                d_1['验证'] = d_cases['satisfied'][0]
                 Color_PO.outColor([{"34": d_1}])
                 d_1.update(d_tmp)
                 s_tmp = str(d_1)
@@ -522,7 +516,7 @@ class DrwsPO():
                 d_1['No.'] = str(Numerator) + "/" + str(Denominator)
                 d_1['正向'] = 'error'
                 d_1['条件'] = l_conditions
-                d_1['测试数据'] = d_cases['satisfied'][0]
+                d_1['验证'] = d_cases['satisfied'][0]
                 d_1.update(d_tmp)
                 s_tmp = str(d_1)
                 s_tmp = s_tmp.replace("\\\\", "\\")
@@ -533,12 +527,12 @@ class DrwsPO():
                 # 将错误写入数据库log
                 conditions = (self.convert_conditions(l_conditions))  # # 将列表转换字符串
                 d_tmp['条件'] = str(conditions)
-                d_tmp['测试数据'] = str(d_cases['satisfied'][0])
+                d_tmp['验证'] = str(d_cases['satisfied'][0])
                 d_tmp['用例类型'] = "正向不满足"
                 s_tmp = str(d_tmp)
                 s_tmp = s_tmp.replace("'", "''")
                 s_tmp = s_tmp.replace("\\\\", "\\")
-                Sqlserver_PO_CHC5G.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
 
             caseTotal = caseTotal + 1
 
@@ -550,7 +544,7 @@ class DrwsPO():
                     d_2['No.'] = str(Numerator) + "/" + str(Denominator)
                     d_2['反向'] = 'error'
                     d_2['条件'] = l_conditions
-                    d_2['测试数据'] = d_cases['notSatisfied'][0]
+                    d_2['验证'] = d_cases['notSatisfied'][0]
                     d_2.update(d_tmp)
                     s_tmp = str(d_2)
                     s_tmp = s_tmp.replace("\\\\", "\\")
@@ -562,18 +556,18 @@ class DrwsPO():
                     # 将列表转换字符串
                     conditions = (self.convert_conditions(l_conditions))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
                     d_tmp['条件'] = str(conditions)
-                    d_tmp['测试数据'] = str(d_cases['notSatisfied'][0])
+                    d_tmp['验证'] = str(d_cases['notSatisfied'][0])
                     d_tmp['用例类型'] = "反向满足"
                     s_tmp = str(d_tmp)
                     s_tmp = s_tmp.replace("'", "''")
                     s_tmp = s_tmp.replace("\\\\", "\\")
                     # print(d_tmp)
-                    Sqlserver_PO_CHC5G.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                    Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
                 else:
                     d_2['No.'] = str(Numerator) + "/" + str(Denominator)
                     d_2['反向'] = 'ok'
                     d_2['条件'] = l_conditions
-                    d_2['测试数据'] = d_cases['notSatisfied'][0]
+                    d_2['验证'] = d_cases['notSatisfied'][0]
                     Color_PO.outColor([{"31": d_2}])
                     d_2.update(d_tmp)
                     s_tmp = str(d_2)
@@ -592,7 +586,7 @@ class DrwsPO():
                     d_1['No.'] = str(Numerator) + "(" + str(i + 1) + ")/" + str(Denominator)
                     d_1['正向'] = 'ok'
                     d_1['条件'] = l_conditions
-                    d_1['测试数据'] = d_cases['satisfied'][i]
+                    d_1['验证'] = d_cases['satisfied'][i]
                     Color_PO.outColor([{"34": d_1}])
                     d_1.update(d_tmp)
                     s_tmp = str(d_1)
@@ -604,7 +598,7 @@ class DrwsPO():
                     d_1['No.'] = str(Numerator) + "(" + str(i + 1) + ")/" + str(Denominator)
                     d_1['正向'] = 'error'
                     d_1['条件'] = l_conditions
-                    d_1['测试数据'] = d_cases['satisfied'][i]
+                    d_1['验证'] = d_cases['satisfied'][i]
                     d_1['结果'] = '正向不满足'
                     d_1.update(d_tmp)
                     s_tmp = str(d_1)
@@ -617,12 +611,12 @@ class DrwsPO():
                     # 将列表转换字符串
                     f_2_value = (self.convert_conditions(l_conditions))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
                     d_tmp['条件'] = str(f_2_value)
-                    d_tmp['测试数据'] = str(d_cases['satisfied'][i])
+                    d_tmp['验证'] = str(d_cases['satisfied'][i])
                     d_tmp['用例类型'] = '正向不满足'
                     s_tmp = str(d_tmp)
                     s_tmp = s_tmp.replace("'", "''")
                     s_tmp = s_tmp.replace("\\\\", "\\")
-                    Sqlserver_PO_CHC5G.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                    Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
                 caseTotal = caseTotal + 1
                 # Log_PO.logger.info("---------------------------------------------------------------------")
 
@@ -637,7 +631,7 @@ class DrwsPO():
                         d_2['No.'] = str(Numerator) + "(" + str(i + 1) + ")/" + str(Denominator)
                         d_2['反向'] = 'error'
                         d_2['条件'] = l_conditions
-                        d_2['测试数据'] = d_cases['notSatisfied'][i]
+                        d_2['验证'] = d_cases['notSatisfied'][i]
                         d_2['结果'] = '反向满足'
                         d_2.update(d_tmp)
                         s_tmp = str(d_2)
@@ -650,19 +644,19 @@ class DrwsPO():
                         # 将列表转换字符串
                         conditions = (self.convert_conditions(l_conditions))  # 输出: 年龄=2 and BMI>18.1 and BMI<19.7
                         d_tmp['条件'] = str(conditions)
-                        d_tmp['测试数据'] = str(d_cases['notSatisfied'][i])
+                        d_tmp['验证'] = str(d_cases['notSatisfied'][i])
                         d_tmp['用例类型'] = "反向满足"
                         s_tmp = str(d_tmp)
                         s_tmp = s_tmp.replace("'", "''")
                         s_tmp = s_tmp.replace("\\\\", "\\")
                         # print(d_tmp)
-                        Sqlserver_PO_CHC5G.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                        Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
 
                     else:
                         d_2['No.'] = str(Numerator) + "(" + str(i + 1) + ")/" + str(Denominator)
                         d_2['反向'] = 'ok'
                         d_2['条件'] = l_conditions
-                        d_2['测试数据'] = d_cases['notSatisfied'][i]
+                        d_2['验证'] = d_cases['notSatisfied'][i]
                         Color_PO.outColor([{"36": d_2}])
                         d_2.update(d_tmp)
                         s_tmp = str(d_2)
@@ -693,7 +687,7 @@ class DrwsPO():
         d_tmp = {}
 
         # 参数
-        l_d_row = Sqlserver_PO_CHC5G.select(
+        l_d_row = Sqlserver_PO_CHC.select(
             "select [category], [categoryCode], [weightStatus], [weightStatusCode] from [%s] where [id]= %s" % (
             self.tableWS, id))
 
@@ -702,7 +696,7 @@ class DrwsPO():
             raise Exception(f"未找到ID为 {id} 的测试用例记录")
 
         # # 参数
-        # l_d_row = Sqlserver_PO_CHC5G.select(
+        # l_d_row = Sqlserver_PO_CHC.select(
         #     "select category, categoryCode, weightStatus, weightStatusCode from %s where id= %s" % (self.tableWS, id))
 
         # print(l_d_row)  # [{'category_nvc': '普通人群', 'categoryCode_vc': '3', 'weightStatus_nvc': '体重偏低', 'weightStatusCode_vc': '1'}]
@@ -756,7 +750,8 @@ class DrwsPO():
             varSexCode) + '\\",\\"sportAdvice\\":\\"建议运动\\",\\"targetWeight\\":50,\\"waistHip\\":0.9,\\"waistline\\":33,\\"weight\\":55,\\"weightRecordId\\":0}"'
 
         if Configparser_PO.SWITCH("curl") == "on":
-            print(command)
+            # print(command)
+            Color_PO.outColor([{"37": command}])
 
         p = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = p.communicate()
