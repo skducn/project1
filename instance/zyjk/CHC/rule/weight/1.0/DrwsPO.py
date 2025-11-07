@@ -373,7 +373,7 @@ class DrwsPO():
         s_tmp = s_tmp.replace("\\\\", "\\")
         Log_PO.logger.info(s_tmp)
         if Configparser_PO.SWITCH("curl_p") == "on":
-            Color_PO.outColor([{"34": s_tmp}])
+            Color_PO.outColor([{"36": s_tmp}])
         l_count.append(1)
         return l_count
     def _DRWS_print_error(self,pORn, l_conditions, testData, d_tmp):
@@ -466,7 +466,7 @@ class DrwsPO():
         if len(d_cases['notSatisfied']) == 1:
             # 反向用例, 一条数据
             # todo DRWS_run_n1
-            print(469)
+            # print(469)
             if Configparser_PO.SWITCH('testNegative') == "on":
                 d_tmp = self.DRWS_run_n(d_cases['notSatisfied'][0], id)
                 if d_tmp['result'] == 0:
@@ -476,7 +476,7 @@ class DrwsPO():
                 caseTotal = caseTotal + 1
         elif len(d_cases['notSatisfied']) > 1:
             # 反向, Multiple条数据
-            print(479)
+            # print(479)
             if Configparser_PO.SWITCH('testNegative') == "on":
                 for i in range(len(d_cases['notSatisfied'])):
                     # todo DRWS_run_nn
@@ -616,7 +616,9 @@ class DrwsPO():
                     s_tmp = str(d_tmp)
                     s_tmp = s_tmp.replace("'", "''")
                     s_tmp = s_tmp.replace("\\\\", "\\")
-                    Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                    print(619,d_tmp)
+                    Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, id))
+                    # Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
                 caseTotal = caseTotal + 1
                 # Log_PO.logger.info("---------------------------------------------------------------------")
 
@@ -650,7 +652,8 @@ class DrwsPO():
                         s_tmp = s_tmp.replace("'", "''")
                         s_tmp = s_tmp.replace("\\\\", "\\")
                         # print(d_tmp)
-                        Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                        # Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, d_tmp['id']))
+                        Sqlserver_PO_CHC.execute("UPDATE %s SET log = '%s' where id=%s" % (self.tableWS, s_tmp, id))
 
                     else:
                         d_2['No.'] = str(Numerator) + "(" + str(i + 1) + ")/" + str(Denominator)
