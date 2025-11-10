@@ -40,7 +40,7 @@ if __name__ == "__main__":
     Color_PO = ColorPO()
     # Color_PO.consoleColor("31", "31", "[ERROR], ", "123123123123")
     # # Color_PO.consoleColor("31", "33", "[WARNING], ", "123123123123")
-    # # Color_PO.consoleColor("31", "36", "[OK], ", "123123123123")
+    # # Color_PO.consoleColor("31", "32", "[OK], ", "123123123123")
     #
     # 字体颜色
     Color_PO.consoleColor2({"30": "黑色",

@@ -111,7 +111,8 @@ class EfrbPO():
     def excel2db_EFRB(self):
         """excel文件导入db"""
         try:
-            varTable = varSheet = "EFRB"
+            varSheet = "EFRB"
+            varTable = self.tableEF
 
             # 1, db中删除已有的表
             Sqlserver_PO_CHC.execute("drop table if exists " + varTable)
@@ -325,7 +326,6 @@ class EfrbPO():
         d_cases_n = {}
         print(326, l_l_data)
         l_d_cases = self.generate_unmatched_cases2(l_l_data)
-        # l_d_cases = self.generate_unmatched_cases(l_l_data)
         d_cases_n['satisfied'] = []
         d_cases_n['notSatisfied'] = l_d_cases
         # print(330, d_cases_n)

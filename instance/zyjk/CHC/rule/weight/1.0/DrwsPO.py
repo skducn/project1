@@ -109,7 +109,8 @@ class DrwsPO():
 
     def excel2db_DRWS(self):
         # excel导入db
-        varTable = varSheet = "DRWS"
+        varSheet = "DRWS"
+        varTable = self.tableWS
 
         try:
             # 1, db中删除已有的表

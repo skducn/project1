@@ -7,11 +7,14 @@
 from PO.SqlserverPO import *
 
 # 公卫
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
+
+# 社区健康
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # Sqlserver_PO.record('*', 'varchar', '%基础服务包（2019版）%')
 
 # c3，新增疾病诊断史
-Sqlserver_PO.record('CDRD_PATIENT_DIAG_INFO', 'varchar', '%古丢丢医院%', False)
+# Sqlserver_PO.record('CDRD_PATIENT_DIAG_INFO', 'varchar', '%古丢丢医院%', False)
 # Sqlserver_PO.execute("delete from CDRD_PATIENT_DIAG_INFO where patient_hospital_name='%s'" % ('古丢丢医院'))
 
 # Sqlserver_PO.record('CDRD_PATIENT_SYMPTOM_INFO', 'varchar', '%葫芦娃医院%', False)
@@ -40,7 +43,7 @@ Sqlserver_PO.record('CDRD_PATIENT_DIAG_INFO', 'varchar', '%古丢丢医院%', Fa
 # Sqlserver_PO.desc(['id', 'page'])
 # Sqlserver_PO.desc('a_c%')
 # Sqlserver_PO.desc({'a_%':['id','sql']})
-# Sqlserver_PO.desc('QYYH')
+Sqlserver_PO.desc('WEIGHT_REPORT')  # 体重状态：0-未评估 1-体重偏低 2-正常 3-超重 4-肥胖 5-孕期体重增长过快
 # Sqlserver_PO.desc({'a_test':['number', 'rule1']})
 
 # print("7.2 查找记录".center(100, "-"))

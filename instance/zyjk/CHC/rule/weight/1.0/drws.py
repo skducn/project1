@@ -26,7 +26,7 @@ Drws_PO = DrwsPO()
 # Drws_PO.DRWS({'id': 'all'})
 
 # 3.2 测试单/多条规则
-Drws_PO.DRWS(9)
+Drws_PO.DRWS(1)
 
 # Drws_PO.DRWS([1,5])
 

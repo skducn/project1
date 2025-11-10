@@ -99,7 +99,8 @@ class HirbPO():
 
         # excel文件导入db
 
-        varTable = varSheet = "HIRB"
+        varSheet = "HIRB"
+        varTable = self.tableHI
 
         # 1, db中删除已有的表
         Sqlserver_PO_CHC.execute("drop table if exists " + varTable)
