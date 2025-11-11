@@ -19,9 +19,8 @@
 from EfrbPO import *
 Efrb_PO = EfrbPO()
 
-
 # todo 步骤1, excel导入db
-# Efrb_PO.excel2db_EFRB()
+Efrb_PO.excel2db_EFRB()
 
 
 # todo 步骤2, 测试规则库

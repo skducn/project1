@@ -220,7 +220,7 @@ class BmiAgeSexPO():
         :return: 拆分后的简单条件列表
         """
 
-        cond = condition.strip().replace(" ", "")
+        cond = condition.strip().replace(" ", "").replace("月", "")
 
         # 匹配形如：6<=年龄<6.5 或 14.7<BMI<18.8
         match = re.match(r'^(\d+(?:\.\d+)?)(<=|<|>=|>)(年龄|BMI)(<=|<|>=|>)(\d+(?:\.\d+)?)$', cond)
@@ -290,6 +290,7 @@ if __name__ == "__main__":
 
     print("\n测试条件: ['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']")
     print(BmiAgeSex_PO.main(['66<=年龄<69', '13.1>BMI', '性别=男']))
+    print(BmiAgeSex_PO.main(['69月<=年龄<72月', 'BMI<12.8', '性别=女']))
     # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']))
     # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', 'BMI<13.1', '性别=男']))
 
