@@ -2,7 +2,7 @@
 # *****************************************************************
 # Author        : John
 # Date          : 2024-3-6
-# Description   : CHC 社区健康（静安）包，加密接口测试
+# Description   : CHC 社区健康.ini（静安）包，加密接口测试
 # 接口文档：http://192.168.0.202:22081/doc.html
 # # 在线SM2公钥私钥对生成，加密/解密 https://config.net.cn/tools/sm2.html
 public_key = '04025d84101aa6ba2835995c2e72c0d9f49f382a87ace7e2770a511e1bbe95a40a2800a40bc966b3a51e4d36735e2b5941dd6e10f502f68fbc42a0ba7cec7ab249'
@@ -10,7 +10,7 @@ private_key = '124c93b524b25e8ca288dde1c08b78e76e188d2e6e6c7a5142cdc3eb38a5ab62'
 
 # todo nacos
 # http://192.168.0.223:8848/nacos/	nacos,Zy123456
-# chc-pp-test  //社区健康（静安）
+# chc-pp-test  //社区健康.ini（静安）
 # chc-gateway-sqlserver.yml
 # thirdPublicKey: 0471d15668167f40390ee07e16f9515cf64c1bfab1d09c492c618c7caadf0c4285ce11bdebc420f5ebc13a79fab49e506aa8e24797891e67c2705fd38b4833b33b
 # thirdPrivateKey: 686b3ec76f53610bbfbf171bf8b9ff9d17a15fb928155a2248f601b021e13b6b

@@ -9,7 +9,7 @@ from PO.SqlserverPO import *
 # 公卫
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 
-# 社区健康
+# 社区健康.ini
 Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # Sqlserver_PO.record('*', 'varchar', '%基础服务包（2019版）%')
 

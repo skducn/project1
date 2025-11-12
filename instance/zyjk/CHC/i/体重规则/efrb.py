@@ -19,8 +19,8 @@
 from EfrbPO import *
 Efrb_PO = EfrbPO()
 
-# todo 步骤1, excel导入db
-Efrb_PO.excel2db_EFRB()
+# # todo excel导入db
+# Efrb_PO.excel2db_EFRB()
 
 
 # todo 步骤2, 测试规则库
@@ -28,9 +28,9 @@ Efrb_PO.excel2db_EFRB()
 # Efrb_PO.EFRB({'id': 'all'})
 
 # 2.2 测试单/多条规则
-# Efrb_PO.EFRB({'id': 1})
+Efrb_PO.EFRB({'id': 1})
 
-Efrb_PO.EFRB({'id': 55}) # TZ_STZB044
+# Efrb_PO.EFRB({'id': 55}) # TZ_STZB044
 # Efrb_PO.EFRB({'id': 56}) # TZ_STZB045
 # Efrb_PO.EFRB({'id': [40, 49]})
 # Efrb_PO.EFRB({'ER_code': 'TZ_STZB014'})

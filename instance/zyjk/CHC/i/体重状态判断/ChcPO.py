@@ -37,6 +37,9 @@ class ChcPO():
         self.table = Configparser_PO.DB("tableWeight")
         self.sheet = Configparser_PO.FILE("sheet")
         self.case = Configparser_PO.FILE("case")
+        self.username = Configparser_PO.ACCOUNT("username")
+        self.password = Configparser_PO.ACCOUNT("password")
+        self.curlLogin()
 
     def getIdcard(self):
         # 自动获取身份证号，从QYYH和WEIGHT_REPORT中匹配相同身份证，同时获取WEIGHT_REPORT（ID）
@@ -82,10 +85,12 @@ class ChcPO():
         r = Web_PO.getAttrValueByX("/html/body/div[2]/div/div[1]/div[2]/textarea[1]", "value")
         Web_PO.cls()
         return r
-    def curlLogin(self, account):
+    def curlLogin(self):
 
         # 登录
         # 注意需要关闭验证码
+        # Chc_PO.curlLogin('{"username": "lbl","password": "Qa@123456"}')
+        account = '{"username": "' + self.username + '", "password": "' + self.password + '"}'
         encrypt_data = self.encrypt(account)
 
         command = "curl -X POST 'http://192.168.0.243:8011/auth/login' -d '" + encrypt_data + "' -H 'Request-Origion:SwaggerBootstrapUi' -H 'accept:*/*' -H 'Authorization:' -H 'Content-Type:application/json'"
@@ -630,7 +635,7 @@ class ChcPO():
             # todo 反向n（全组）
             # 字符串转换列表，将'(7<= 年龄 < 7.5 and BMI>=18.7 and 性别 = 男)' 转为 ['7<= 年龄 < 7.5 ', ' BMI>=18.7 ', ' 性别 = 男']
             d_cases_n = {}
-            print("全组 => " + str(l_l_rule2))
+
 
             if categoryCode == 3 or categoryCode == 4:
                 # 普通人群和老年人，只需要处理bmi
@@ -654,6 +659,8 @@ class ChcPO():
                     if weightStatusCode == 4:
                         l_d_case = [d for d in l_d_case if d['年龄'] >= 7]
 
+            if Configparser_PO.SWITCH("only_print_error") == "off":
+                print("全组 => " + str(l_l_rule2))
                 print("生成反向无效数据 =>", l_d_case)  # [{'年龄': 6.5, 'BMI': 15.0, '性别': '男'}, {'年龄': 6.5, 'BMI': 15.0, '性别': '女'},
 
             # 跑接口

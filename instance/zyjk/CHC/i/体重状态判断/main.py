@@ -26,14 +26,12 @@ Chc_PO = ChcPO()
 
 # # todo excel导入db
 # Chc_PO.excel2db()
-# sys.exit(0)
 
 
-# # todo 登录
-Chc_PO.curlLogin('{"username": "lbl","password": "Qa@123456"}')
-# todo 7-17岁学生 - 体重偏低
+
+# todo 执行规则
 # Chc_PO.main()  # 执行所有
-# Chc_PO.main({"id": 1})
+Chc_PO.main({"id": 1})
 # Chc_PO.main({"id": [6, 7, 8]})  # 执行1和4
 # Chc_PO.main({"category": '普通人群'})  # 执行所有学生
 # Chc_PO.main({"category": '老年人'})  # 执行所有学生
