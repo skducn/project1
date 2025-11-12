@@ -1,5 +1,4 @@
 ﻿import re
-import random
 import itertools
 
 class BmiAgeSexPO():
@@ -59,6 +58,126 @@ class BmiAgeSexPO():
     def generate_test_points(self, conditions, num_random=1):
         test_points = {}
 
+        # 按变量名组织条件
+        var_conditions = {}
+        for cond in conditions:
+            var_name, _ = self.parse_condition(cond)
+            var_conditions.setdefault(var_name, []).append(cond)
+
+        for var_name, var_conds in var_conditions.items():
+            if var_name == '性别':
+                # 性别只取两个值：男/女 → 内部用 1 / 2 表示
+                test_points[var_name] = [1, 2]
+                continue
+
+            # 处理年龄变量的特殊逻辑
+            if var_name == '年龄':
+                points = set()
+
+                # 解析所有关于年龄的条件
+                for cond in var_conds:
+                    if '<=' in cond and '<' in cond:
+                        # 处理复合条件如 "66<=年龄<69"
+                        parts = re.split(r'(<=|<)', cond.replace(' ', ''))
+                        lower_bound = int(float(parts[0]))
+                        upper_bound = int(float(parts[-1]))
+
+                        # 生成恰好满足条件的值（在范围内）
+                        points.add(lower_bound)  # 下界
+                        points.add(upper_bound - 1)  # 上界前一个值
+
+                        # 生成不满足条件的值（在范围外）
+                        points.add(lower_bound - 1)  # 下界前一个值
+                        points.add(upper_bound)  # 上界
+                    else:
+                        # 处理简单条件
+                        match = re.match(r'年龄\s*(!=|==|<=|>=|<|>|=)\s*([\d.]+)', cond)
+                        if match:
+                            operator, value_str = match.groups()
+                            value = int(float(value_str))
+
+                            if operator == '>':
+                                points.add(value + 1)  # 满足条件
+                                points.add(value)  # 不满足条件（等于）
+                                points.add(value - 1)  # 不满足条件
+                            elif operator == '<':
+                                points.add(value - 1)  # 满足条件
+                                points.add(value)  # 不满足条件（等于）
+                                points.add(value + 1)  # 不满足条件
+                            elif operator == '>=':
+                                points.add(value)  # 满足条件
+                                points.add(value + 1)  # 满足条件
+                                points.add(value - 1)  # 不满足条件
+                            elif operator == '<=':
+                                points.add(value)  # 满足条件
+                                points.add(value - 1)  # 满足条件
+                                points.add(value + 1)  # 不满足条件
+                            elif operator == '==':
+                                points.add(value)  # 满足条件
+                                points.add(value - 1)  # 不满足条件
+                                points.add(value + 1)  # 不满足条件
+                            elif operator == '!=':
+                                points.add(value - 1)  # 满足条件
+                                points.add(value + 1)  # 满足条件
+                                points.add(value)  # 不满足条件
+
+                # 过滤掉负数年龄
+                points = [p for p in points if p >= 0]
+                test_points[var_name] = sorted(list(set(points)))
+            else:
+                # 其他变量(BMI等)保持原有逻辑
+                points = set()
+                for cond in var_conds:
+                    if '<=' in cond and '<' in cond:
+                        parts = re.split(r'(<=|<)', cond.replace(' ', ''))
+                        lower_bound = float(parts[0])
+                        upper_bound = float(parts[-1])
+
+                        # 生成恰好满足条件的值（在范围内）
+                        points.add(round(lower_bound, 10))  # 下界
+                        points.add(round(upper_bound - 0.1, 10))  # 上界前一个值
+
+                        # 生成不满足条件的值（在范围外）
+                        points.add(round(lower_bound - 0.1, 10))  # 下界前一个值
+                        points.add(round(upper_bound, 10))  # 上界
+                    else:
+                        threshold = float(re.search(r'([<>=!]+)\s*([\d.]+)', cond).group(2))
+                        match = re.search(r'([<>=!]+)', cond)
+                        if match:
+                            operator = match.group(1)
+
+                            if operator == '>':
+                                points.add(threshold + 0.1)  # 满足条件
+                                points.add(threshold)  # 不满足条件（等于）
+                                points.add(threshold - 0.1)  # 不满足条件
+                            elif operator == '<':
+                                points.add(threshold - 0.1)  # 满足条件
+                                points.add(threshold)  # 不满足条件（等于）
+                                points.add(threshold + 0.1)  # 不满足条件
+                            elif operator == '>=':
+                                points.add(threshold)  # 满足条件
+                                points.add(threshold + 0.1)  # 满足条件
+                                points.add(threshold - 0.1)  # 不满足条件
+                            elif operator == '<=':
+                                points.add(threshold)  # 满足条件
+                                points.add(threshold - 0.1)  # 满足条件
+                                points.add(threshold + 0.1)  # 不满足条件
+                            elif operator == '==':
+                                points.add(threshold)  # 满足条件
+                                points.add(threshold - 0.1)  # 不满足条件
+                                points.add(threshold + 0.1)  # 不满足条件
+                            elif operator == '!=':
+                                points.add(threshold - 0.1)  # 满足条件
+                                points.add(threshold + 0.1)  # 满足条件
+                                points.add(threshold)  # 不满足条件
+
+                test_points[var_name] = list(points)
+
+        return test_points
+
+    def generate_test_points_float(self, conditions, num_random=1):
+        test_points = {}
+
         for cond in conditions:
             var_name, cond_func = self.parse_condition(cond)
 
@@ -88,13 +207,36 @@ class BmiAgeSexPO():
 
         return test_points
 
-    def format_output(self, data):
+
+    def format_output_int(self, data):
         result = []
         for item in data:
             formatted = {}
             for var, val in item.items():
                 if var == '性别':
                     formatted[var] = '男' if val == 1 else '女'
+                elif var == '年龄':
+                    # 年龄显示为整数，去掉.0后缀
+                    formatted[var] = int(float(val))
+                else:
+                    formatted[var] = round(float(val), 1)
+            result.append(formatted)
+        return result
+
+    def format_output_float(self, data):
+        result = []
+        for item in data:
+            formatted = {}
+            for var, val in item.items():
+                if var == '性别':
+                    formatted[var] = '男' if val == 1 else '女'
+                elif var == '年龄':
+                    # 年龄如果是整数，去掉后缀.0
+                    age_val = float(val)
+                    if age_val.is_integer():
+                        formatted[var] = int(age_val)
+                    else:
+                        formatted[var] = age_val
                 else:
                     formatted[var] = round(float(val), 1)
             result.append(formatted)
@@ -160,7 +302,7 @@ class BmiAgeSexPO():
 
         return merged_conditions
 
-    def main(self, conditions):
+    def int(self, conditions):
         l_3_value = []
         for i in conditions:
             l_simple_conditions = self.interconvertMode(i)
@@ -171,8 +313,23 @@ class BmiAgeSexPO():
         valid, invalid = self.combinations(merged_conditions, test_points)
 
         return {
-            'satisfied': self.format_output(valid),
-            'notSatisfied': self.format_output(invalid)
+            'satisfied': self.format_output_int(valid),
+            'notSatisfied': self.format_output_int(invalid)
+        }
+
+    def float(self, conditions):
+        l_3_value = []
+        for i in conditions:
+            l_simple_conditions = self.interconvertMode(i)
+            l_3_value.extend(l_simple_conditions)
+
+        merged_conditions = self.merge_conditions(l_3_value)
+        test_points = self.generate_test_points_float(merged_conditions)
+        valid, invalid = self.combinations(merged_conditions, test_points)
+
+        return {
+            'satisfied': self.format_output_float(valid),
+            'notSatisfied': self.format_output_float(invalid)
         }
 
 
@@ -288,9 +445,11 @@ if __name__ == "__main__":
 
     BmiAgeSex_PO = BmiAgeSexPO()
 
-    print("\n测试条件: ['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']")
-    print(BmiAgeSex_PO.main(['66<=年龄<69', '13.1>BMI', '性别=男']))
-    print(BmiAgeSex_PO.main(['69月<=年龄<72月', 'BMI<12.8', '性别=女']))
+    print(BmiAgeSex_PO.int(['66<=年龄<69', '13.1>BMI', '性别=男']))
+    print(BmiAgeSex_PO.float(['66<=年龄<69', '13.1>BMI', '性别=男']))
+
+
+    # print(BmiAgeSex_PO.main(['69月<=年龄<72月', 'BMI<12.8', '性别=女']))
     # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']))
     # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', 'BMI<13.1', '性别=男']))
 

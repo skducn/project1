@@ -34,7 +34,7 @@ class ChcPO():
 
         # 检查身份证是否存在, WEIGHT_REPORT(体重报告记录表)和QYYH中都必须要有此身份证，且在WEIGHT_REPORT表中获取ID
         self.IDCARD, self.ID = self.getIdcard()
-        self.table = Configparser_PO.DB("tableWeight")
+        self.table = Configparser_PO.DB("table")
         self.sheet = Configparser_PO.FILE("sheet")
         self.case = Configparser_PO.FILE("case")
         self.username = Configparser_PO.ACCOUNT("username")
@@ -394,7 +394,6 @@ class ChcPO():
         d_cases_n['satisfied'] = []
         d_cases_n['notSatisfied'] = unmatched
         return d_cases_n
-
     def _generate_unmatched_data_student(self, l_l_rule2):
         """
         生成不满足指定条件的年龄、BMI、性别组合示例（年龄保留1位小数，BMI保留1位小数）
@@ -596,7 +595,7 @@ class ChcPO():
         # print("原始 =>", s_rule)
 
         # 格式化数据1, 将 f_value 转列表
-        l_l_rule = self._s_rule2l_rule(l_d_[0]['f_rule'])
+        l_l_rule = self._s_rule2l_rule(s_rule)
         # print("格式化1 =>",  l_l_rule)  #  [['7<=年龄<8', '13.9>BMI', '性别=男'], ['8<=年龄<9', '14.0>BMI', '性别=男']。。。
         # 格式化数据2, 最终
         l_l_rule2 = []
@@ -612,10 +611,11 @@ class ChcPO():
 
         l_log = []
 
+        # todo 正向p（单组）
+        # 如：(7<= 年龄 < 8 and 13.9>BMI and 性别 = 男)
         if Configparser_PO.SWITCH("run_p") == "on":
-            # todo 正向p（单组）
-            # # 如：(7<= 年龄 < 8 and 13.9>BMI and 性别 = 男)
             qty_l_l_rule2 = len(l_l_rule2)
+
             # 对单组条件（['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']）生成正向测试数据
             for index, l_rule in enumerate(l_l_rule2):
                 if Configparser_PO.SWITCH("only_print_error") == "off":
@@ -631,12 +631,11 @@ class ChcPO():
                 if l_log_p != []:
                     l_log.append(l_log_p)
 
+
+        # todo 反向n（全组）
+        # 字符串转换列表，将'(7<= 年龄 < 7.5 and BMI>=18.7 and 性别 = 男)' 转为 ['7<= 年龄 < 7.5 ', ' BMI>=18.7 ', ' 性别 = 男']
         if Configparser_PO.SWITCH("run_n") == "on":
-            # todo 反向n（全组）
-            # 字符串转换列表，将'(7<= 年龄 < 7.5 and BMI>=18.7 and 性别 = 男)' 转为 ['7<= 年龄 < 7.5 ', ' BMI>=18.7 ', ' 性别 = 男']
             d_cases_n = {}
-
-
             if categoryCode == 3 or categoryCode == 4:
                 # 普通人群和老年人，只需要处理bmi
                 d_cases_n = Bmi_PO.generate_all_cases(l_l_rule2[0])  # {'satisfied': [{'BMI': 14.1}], 'notSatisfied': [{'BMI': 42.1}]}

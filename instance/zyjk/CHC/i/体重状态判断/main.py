@@ -31,13 +31,13 @@ Chc_PO = ChcPO()
 
 # todo 执行规则
 # Chc_PO.main()  # 执行所有
-Chc_PO.main({"id": 1})
+# Chc_PO.main({"id": 1})
 # Chc_PO.main({"id": [6, 7, 8]})  # 执行1和4
 # Chc_PO.main({"category": '普通人群'})  # 执行所有学生
 # Chc_PO.main({"category": '老年人'})  # 执行所有学生
 # Chc_PO.main({"category": '学生'})  # 执行所有学生
 # Chc_PO.main({"weightStatus": '体重偏低'})
-# Chc_PO.main({"category": '儿童', "weightStatus": '体重偏低'})  # 执行学生和体重偏低
+Chc_PO.main({"category": '儿童', "weightStatus": '体重偏低'})  # 执行学生和体重偏低
 # Chc_PO.main({"category": '儿童', "weightStatus": '正常'})
 # Chc_PO.main({"category": '儿童', "weightStatus": '超重'})
 # Chc_PO.main({"category": '儿童', "weightStatus": '肥胖'})
