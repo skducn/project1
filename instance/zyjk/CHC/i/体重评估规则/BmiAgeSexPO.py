@@ -1,7 +1,9 @@
 ﻿import re
 import itertools
 
+
 class BmiAgeSexPO():
+
     def parse_condition(self, condition_str):
         """解析条件字符串为变量名、运算符和值"""
         # 处理复合条件，如 "18.0<=年龄<65.0"
@@ -36,8 +38,10 @@ class BmiAgeSexPO():
         if value_str in gender_map:
             value = gender_map[value_str]
         else:
-            value = float(value_str) if '.' in value_str else int(value_str)
+            # 统一使用浮点数处理所有数值，避免类型不一致
+            value = float(value_str)
 
+        # 使用近似比较处理浮点数相等判断
         if operator == '>':
             return var_name, lambda x: x > value
         elif operator == '<':
@@ -47,11 +51,11 @@ class BmiAgeSexPO():
         elif operator == '<=':
             return var_name, lambda x: x <= value
         elif operator == '==':
-            return var_name, lambda x: x == value
+            return var_name, lambda x: abs(x - value) < 1e-9  # 浮点数近似比较
         elif operator == '!=':
-            return var_name, lambda x: x != value
+            return var_name, lambda x: abs(x - value) >= 1e-9  # 浮点数近似比较
         elif operator == '=':  # 支持单个等号
-            return var_name, lambda x: x == value
+            return var_name, lambda x: abs(x - value) < 1e-9  # 浮点数近似比较
         else:
             raise ValueError(f"不支持的运算符: {operator}")
 
@@ -112,9 +116,9 @@ class BmiAgeSexPO():
                                 points.add(value)  # 满足条件
                                 points.add(value - 1)  # 满足条件
                                 points.add(value + 1)  # 不满足条件
-                            elif operator == '==':
+                            elif operator in ('==', '='):
                                 points.add(value)  # 满足条件
-                                points.add(value - 1)  # 不满足条件
+                                # 只添加一个不满足条件的值，而不是多个
                                 points.add(value + 1)  # 不满足条件
                             elif operator == '!=':
                                 points.add(value - 1)  # 满足条件
@@ -162,7 +166,7 @@ class BmiAgeSexPO():
                                 points.add(threshold)  # 满足条件
                                 points.add(threshold - 0.1)  # 满足条件
                                 points.add(threshold + 0.1)  # 不满足条件
-                            elif operator == '==':
+                            elif operator in ('==', '='):
                                 points.add(threshold)  # 满足条件
                                 points.add(threshold - 0.1)  # 不满足条件
                                 points.add(threshold + 0.1)  # 不满足条件
@@ -207,7 +211,6 @@ class BmiAgeSexPO():
 
         return test_points
 
-
     def format_output_int(self, data):
         result = []
         for item in data:
@@ -242,7 +245,7 @@ class BmiAgeSexPO():
             result.append(formatted)
         return result
 
-    def combinations(self,conditions, test_points):
+    def combinations(self, conditions, test_points):
         """测试所有组合并分类为有效和无效"""
         # 按变量名组织条件
         var_conditions = {}
@@ -256,6 +259,14 @@ class BmiAgeSexPO():
 
         valid = []
         invalid = []
+
+        # 分析是否包含等值条件
+        equal_conditions = {}
+        for cond in conditions:
+            match = re.match(r'(\w+)\s*(==|=)\s*([\d.]+)', cond)
+            if match:
+                var_name, operator, value_str = match.groups()
+                equal_conditions[var_name] = float(value_str)
 
         for values in value_combinations:
             value_dict = dict(zip(variables, values))
@@ -272,9 +283,59 @@ class BmiAgeSexPO():
             else:
                 invalid.append(value_dict)
 
+        # 如果有等值条件，对结果进行特殊处理
+        if equal_conditions and len(variables) > 1:
+            # 为每个有等值条件的变量筛选结果
+            for var_name, target_value in equal_conditions.items():
+                if var_name in test_points:
+                    # 按照等值条件将结果分类
+                    satisfied_equal = []  # 满足等值条件
+                    not_satisfied_equal = []  # 不满足等值条件
+
+                    # 分离满足和不满足等值条件的组合
+                    for item in invalid:
+                        if var_name in item:
+                            if abs(item[var_name] - target_value) < 1e-9:  # 满足等值条件
+                                satisfied_equal.append(item)
+                            else:  # 不满足等值条件
+                                not_satisfied_equal.append(item)
+
+                    # 重新构建invalid列表，每种情况只保留代表性组合
+                    new_invalid = []
+
+                    # 从满足等值条件的组合中选择一个代表
+                    if satisfied_equal:
+                        # 优先选择满足其他条件的组合
+                        selected = None
+                        for item in satisfied_equal:
+                            other_valid = True
+                            for var, conds in var_conditions.items():
+                                if var != var_name and var in item:
+                                    if not all(cond(item[var]) for cond in conds):
+                                        other_valid = False
+                                        break
+                            if other_valid:
+                                selected = item
+                                break
+                        # 如果没有完全满足其他条件的，选择第一个
+                        if not selected and satisfied_equal:
+                            selected = satisfied_equal[0]
+                        new_invalid.append(selected)
+
+                    # 从不满足等值条件的组合中选择一个代表
+                    if not_satisfied_equal:
+                        new_invalid.append(not_satisfied_equal[0])
+
+                    # 添加不包含该变量的组合
+                    other_items = [item for item in invalid
+                                   if var_name not in item]
+                    new_invalid.extend(other_items)
+
+                    invalid = new_invalid
+
         return valid, invalid
 
-    def merge_conditions(self,conditions):
+    def merge_conditions(self, conditions):
         """合并关于同一个变量的条件"""
         var_conditions = {}
         for cond in conditions:
@@ -284,7 +345,15 @@ class BmiAgeSexPO():
         merged_conditions = []
         for var, conds in var_conditions.items():
             if len(conds) == 1:
-                merged_conditions.append(conds[0])
+                # 对于单个条件，也进行标准化处理
+                cond = conds[0]
+                match = re.match(r'(\w+)\s*(!=|==|<=|>=|<|>|=)\s*([\d.]+|男|女)', cond)
+                if match:
+                    var_name, operator, value_str = match.groups()
+                    # 直接保留原样或者根据需要做进一步处理
+                    merged_conditions.append(cond)
+                else:
+                    merged_conditions.append(cond)
             else:
                 lower_bound = None
                 upper_bound = None
@@ -298,11 +367,16 @@ class BmiAgeSexPO():
                         if upper_bound is None or value < upper_bound:
                             upper_bound = value
                 # 确保合并后的条件格式一致（无多余空格）
-                merged_conditions.append(f"{lower_bound:.1f}<={var}<{upper_bound:.1f}")
+                if lower_bound is not None and upper_bound is not None:
+                    merged_conditions.append(f"{lower_bound:.1f}<={var}<{upper_bound:.1f}")
+                elif lower_bound is not None:
+                    merged_conditions.append(f"{var}>={lower_bound:.1f}")
+                elif upper_bound is not None:
+                    merged_conditions.append(f"{var}<{upper_bound:.1f}")
 
         return merged_conditions
 
-    def int(self, conditions):
+    def int123(self, conditions):
         l_3_value = []
         for i in conditions:
             l_simple_conditions = self.interconvertMode(i)
@@ -332,7 +406,6 @@ class BmiAgeSexPO():
             'notSatisfied': self.format_output_float(invalid)
         }
 
-
     def main2(self, conditions):
         # 可配置的条件列表
         # conditions = ['BMI>=24', '年龄>=18', '年龄<65']
@@ -341,7 +414,6 @@ class BmiAgeSexPO():
         # conditions = ['BMI>=27', '年龄>=65']
         # conditions = ['BMI<27', 'BMI>=20', '年龄>=65']
         # conditions = ['BMI<20', '年龄>=65']
-
 
         # 合并条件（特别是关于同一个变量的多个条件）
         merged_conditions = self.merge_conditions(conditions)
@@ -358,7 +430,6 @@ class BmiAgeSexPO():
 
         # print(d_)
         return d_
-
 
         # # 输出结果
         # print(f"有效组合 ({len(valid)}):")
@@ -439,15 +510,26 @@ class BmiAgeSexPO():
         return [condition]
 
 
-
 # 测试入口
 if __name__ == "__main__":
-
     BmiAgeSex_PO = BmiAgeSexPO()
 
-    print(BmiAgeSex_PO.int(['66<=年龄<69', '13.1>BMI', '性别=男']))
-    print(BmiAgeSex_PO.float(['66<=年龄<69', '13.1>BMI', '性别=男']))
+    # ['年龄=6', 'BMI>=19.5', '性别=男'],
+    # ['年龄>6', 'BMI>=19.5', '性别=男'],
+    # ['年龄<6', 'BMI>=19.5', '性别=男'],
+    # ['年龄<=6', 'BMI>=19.5', '性别=男'],
+    # ['年龄>=6', 'BMI>=19.5', '性别=男'],
+    # ['年龄=6', 'BMI>=19.5', '性别=男'],
+    #
+    # ['年龄>66', '年龄<69', '13.1<BMI', '性别=男']
+    # ['年龄<66', '年龄<69', '13.1<BMI', '性别=男']
+    # ['年龄<=66', '年龄<69', '13.1<BMI', '性别=男']
+    # ['年龄>=66', '年龄<69', '13.1<=BMI', '性别=男']
+    # ['66<=年龄<69', '13.1>BMI', '性别=男']
 
+
+    print(BmiAgeSex_PO.int123(['年龄=6', 'BMI>=19.5', '性别=男']))
+    # print(BmiAgeSex_PO.float(['66<=年龄<69', '13.1>BMI', '性别=男']))
 
     # print(BmiAgeSex_PO.main(['69月<=年龄<72月', 'BMI<12.8', '性别=女']))
     # print(BmiAgeSex_PO.main(['年龄>=66', '年龄<69', '13.1>BMI', '性别=男']))
@@ -464,4 +546,3 @@ if __name__ == "__main__":
     #
     # print("\n测试条件: ['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']")
     # print(BmiAgeSex_PO.main(['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']))
-

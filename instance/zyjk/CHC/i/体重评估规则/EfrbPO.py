@@ -198,12 +198,13 @@ class EfrbPO():
                 print("[Error] 参数中没有id或ER_code！")
                 sys.exit(0)
 
+        return self.WEIGHT_REPORT__ID
 
     def _EFRB_main(self, d_param):
 
         # 清洗清洗条件字符串,如去掉月，将大写>=替换为<=，将大写<=替换为<=，将大写>替换为<，将大写<替换为<，将大写<=替换为<=，将大写>=替换为>=，将大写<>替换为<>，
         conditions = self._clean_conditions(d_param['conditions'])
-        # print(conditions) # (73<=年龄<79 and 17.1<=BMI and 性别=男) or (79<=年龄<84 and 17.2<=BMI and 性别=男)
+        # print(207, conditions) # (73<=年龄<79 and 17.1<=BMI and 性别=男) or (79<=年龄<84 and 17.2<=BMI and 性别=男)
 
         # 根据条件类型分发处理
         if '疾病' in conditions:
@@ -213,8 +214,10 @@ class EfrbPO():
         elif "年龄" in conditions and "BMI" not in conditions:
             self._handle_age_only_condition(d_param, conditions)
         elif "or" in conditions:
+            # (14≤年龄<14.5 and 22.3≤BMI and 性别=男) or (14.5≤年龄<15 and 22.6≤BMI and 性别=男)
             self._handle_or_condition(d_param, conditions)
         elif "and" in conditions and "or" not in conditions and "BMI" in conditions and "年龄" in conditions:
+            # 'BMI>=24 and 年龄>=18 and 年龄<65'
             self._handle_age_bmi_condition(d_param, conditions)
         elif "and" not in conditions:
             self._handle_simple_condition(d_param, conditions)
@@ -348,16 +351,17 @@ class EfrbPO():
                 if categoryCode == 1:
                     d_satisfied = self._generate_matched_data(l_rule, "int")  # 生成正向有效数据
                 else:
-                    d_satisfied = self._generate_matched_data(l_rule, "float") # 生成正向有效数据
-                # l_d_case = d_cases_p['satisfied']
-                # print("生成正向有效数据 =>", l_d_case)  # {'年龄': 6.5, 'BMI': 15.0, '性别': '男'},
+                    d_satisfied = self._generate_matched_data(l_rule, "float")  # 生成正向有效数据
+                if Configparser_PO.SWITCH("print_testData") == "on":
+                    # l_d_case = d_satisfied
+                    print("生成正向有效数据 =>", d_satisfied)  # {'年龄': 6.5, 'BMI': 15.0, '性别': '男'},
 
                 # 跑正向
                 Numerator = index + 1
                 d_result = self.EFRB_case_or("p", d_satisfied, l_rule, Numerator, d_param)
                 # print(36888, d_satisfied)  # {'satisfied': [{'年龄': 60, 'BMI': 16.6, '性别': '男'}, {'年龄': 60, 'BMI': 13.2, '性别': '男'},
                 # print(36889, l_rule)  # ['年龄>=60', '年龄<63', 'BMI>=13.2', 'BMI<16.7', '性别=男']
-                # print(4545, d_param) # {'id': 28, 'ER_code': 'TZ_STZB017', 'conditions': '(60月<= 年龄<63月 and 13.2<= BMI<16.7 and 性别=男) or (63月<= 年龄<66月 and 13.1<= BMI<16.7 and 性别=男) or (66月<= 年龄<69月 and 13.1<= BMI<16.8 and 性别=男) or (69月<= 年龄<72月 and 13.1<= BMI<16.9 and 性别=男) or (年龄=72月 and 13.1<= BMI<16.9 and 性别=男) or (60月<= 年龄<63月 and 12.9<= BMI<16.4 and 性别=女) or (63月<= 年龄<66月 and 12.8<= BMI<16.4 and 性别=女) or (66月<= 年龄<69月 and 12.8<= BMI<16.5 and 性别=女) or (69月<= 年龄<72月 and 12.8<= BMI<16.5 and 性别=女) or (年龄= 72月 and 12.8<= BMI<16.5 and 性别=女)', 'WEIGHT_REPORT__IDCARD': '310101193012210813'}
+                # print(4545, d_param) # {'id': 28, 'ER_code': 'TZ_STZB017', 'conditions': '(60月<= 年龄<63月 and 13.2<= BMI<16.7 and 性别=男) or (63月<= 年龄<66月 and 13.1<= BMI<16.7 and 性别=男) or (66月<= 年龄<69月 and 13.1<= BMI<16.8 and 性别=男) or (69月<= 年龄<72月 and 13.1<= BMI<16.9 and 性别=男) or (年龄=72月 and 13.1<= BMI<16.9 and 性别=男) or (60月<= 年龄<63月 and 12.9<= BMI<16.4 and 性别=女) or (63月<= 年龄<66月 and 12.8<= BMI<16.4 and 性别=女) or (66月<= 年龄<69月 and 12.8<= BMI<16.5 and 性别=女) or (69月<= 年龄<72月 and 12.8<= BMI<16.5 and 性别=女) or (年龄= 72月 and 12.8<= BMI<16.5 and 性别=女)', 'IDCARD': '310101193012210813'}
 
 
                 # print(325, d_result)  # 325 {'caseTotal': 4, 'count': 1}
@@ -399,7 +403,7 @@ class EfrbPO():
             # l_interconvert_conditions = ['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']
             # d_param = {'id': 59, 'ER_code': 'TZ_STZB046',
             # 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)',
-            # 'WEIGHT_REPORT__IDCARD': '310101193012210813'}
+            # 'IDCARD': '310101193012210813'}
 
             # print(325, d_result)  # 325 {'caseTotal': 4, 'count': 1}
             l_count.append(d_result['count'])
@@ -1054,7 +1058,7 @@ class EfrbPO():
                 'id': row['id'],
                 'category': row['category'],
                 'conditions': row['conditions'],
-                'WEIGHT_REPORT__IDCARD': self.IDCARD
+                'IDCARD': self.IDCARD
             }
 
             s = "评估因素规则库_EFRB(" + self.tableEFRB + ") => " + str(d_param)
@@ -1146,10 +1150,10 @@ class EfrbPO():
             'id': l_d_row[0]['id'],
             'category': l_d_row[0]['category'],
             'conditions': l_d_row[0]['conditions'],
-            'WEIGHT_REPORT__IDCARD': self.IDCARD
+            'IDCARD': self.IDCARD
         }
         d_tmp.update(d_param)
-        # d_tmp = {'id': 59, 'ER_code': 'TZ_STZB046', 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)', 'WEIGHT_REPORT__IDCARD': '310101193012210813'}
+        # d_tmp = {'id': 59, 'ER_code': 'TZ_STZB046', 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)', 'IDCARD': '310101193012210813'}
         s = "评估因素规则库EFRB(" + self.tableEFRB + ") => " + str(d_tmp)
         Color_PO.outColor([{"35": s}])
 
@@ -1179,59 +1183,62 @@ class EfrbPO():
         caseTotal = 0
         l_count = []
 
-        # print(d_param) # {'id': 1, 'ER_code': 'TZ_STZB001', 'conditions': 'BMI>=24 and 年龄>=18 and 年龄<65', 'WEIGHT_REPORT__IDCARD': '310101193012210813', 'l_conditions': ['BMI>=24', '年龄>=18', '年龄<65']}
+        # print(d_param) # {'id': 1, 'ER_code': 'TZ_STZB001', 'conditions': 'BMI>=24 and 年龄>=18 and 年龄<65', 'IDCARD': '310101193012210813', 'l_conditions': ['BMI>=24', '年龄>=18', '年龄<65']}
 
-        # 正向
-        for case in d_cases['satisfied']:
-            d_tmp = self.EFRB_run_p(case, d_param)
-            # print(d_tmp)  # {'预期值': 'TZ_STZB001', '实际值': ['TZ_STZB001', 'TZ_MBTZ002'], 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 1952', 'i': 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":18.0,\\"ageFloat\\":0.0,\\"ageMonth\\":0,\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":24.0,\\"categoryCode\\":\\"\\",\\"disease\\":\\"\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\":\\"310101193012210813\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"男\\",\\"sexCode\\":\\"1\\",\\"weight\\":55,\\"weightReportId\\":1952}"'}
-            # 命中
-            if d_tmp['result'] == 1:
-                d_data_result = {
-                    '正向': "ok",
-                    '验证': case
-                }
-                if Configparser_PO.SWITCH("only_print_error") == "off":
-                    Color_PO.outColor([{"34": d_data_result}])
-                Log_PO.logger.info(d_data_result)
-                l_count.append(1)
-            else:
-                # 未命中
-                d_data_result = {
-                    '正向': "error",
-                    '验证': case
-                }
-                d_data_result.update(d_tmp)
-                s_tmp = str(d_data_result).replace("\\\\", "\\")
-                Color_PO.outColor([{"31": d_data_result}])
-                Log_PO.logger.info(s_tmp)
-                l_count.append(0)
-            caseTotal += 1
+        if Configparser_PO.SWITCH("run_p") == "on":
+            # 正向
+            for case in d_cases['satisfied']:
+                d_tmp = self.EFRB_run_p(case, d_param)
+                # print(d_tmp)  # {'预期值': 'TZ_STZB001', '实际值': ['TZ_STZB001', 'TZ_MBTZ002'], 'sql__T_ASSESS_RULE_RECORD': 'select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = 1952', 'i': 'curl -X POST "http://192.168.0.243:8016/tAssessRuleRecord/executeWeightRule" -H  "Request-Origion:SwaggerBootstrapUi" -H  "accept:*/*" -H "Authorization:" -H  "Content-Type:application/json" -d "{\\"age\\":18.0,\\"ageFloat\\":0.0,\\"ageMonth\\":0,\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],\\"bmi\\":24.0,\\"categoryCode\\":\\"\\",\\"disease\\":\\"\\",\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],\\"height\\":175,\\"idCard\\":\\"310101193012210813\\",\\"orgCode\\":\\"\\",\\"orgName\\":\\"\\",\\"sex\\":\\"男\\",\\"sexCode\\":\\"1\\",\\"weight\\":55,\\"weightReportId\\":1952}"'}
+                # 命中
+                if d_tmp['result'] == 1:
+                    d_data_result = {
+                        '正向': "ok",
+                        '验证': case
+                    }
+                    if Configparser_PO.SWITCH("only_print_error") == "off":
+                        Color_PO.outColor([{"34": d_data_result}])
+                    Log_PO.logger.info(d_data_result)
+                    l_count.append(1)
+                else:
+                    # 未命中
+                    d_data_result = {
+                        '正向': "error",
+                        '验证': case
+                    }
+                    d_data_result.update(d_tmp)
+                    s_tmp = str(d_data_result).replace("\\\\", "\\")
+                    Color_PO.outColor([{"31": d_data_result}])
+                    Log_PO.logger.info(s_tmp)
+                    l_count.append(0)
+                caseTotal += 1
 
-        # 反向
-        for case in d_cases['notSatisfied']:
-            d_tmp = self.EFRB_run_n(case, d_param)
 
-            if d_tmp['result'] == 1:
-                d_data_result = {
-                    '反向': "ok",
-                    '验证': case
-                }
-                if Configparser_PO.SWITCH("only_print_error") == "off":
-                    Color_PO.outColor([{"36": d_data_result}])
-                Log_PO.logger.info(d_data_result)
-                l_count.append(1)
-            else:
-                d_data_result = {
-                    '反向': "error",
-                    '验证': case
-                }
-                d_data_result.update(d_tmp)
-                s_tmp = str(d_data_result).replace("\\\\", "\\")
-                Color_PO.outColor([{"31": s_tmp}])
-                Log_PO.logger.info(s_tmp)
-                l_count.append(0)
-            caseTotal += 1
+        if Configparser_PO.SWITCH("run_n") == "on":
+            # 反向
+            for case in d_cases['notSatisfied']:
+                d_tmp = self.EFRB_run_n(case, d_param)
+
+                if d_tmp['result'] == 1:
+                    d_data_result = {
+                        '反向': "ok",
+                        '验证': case
+                    }
+                    if Configparser_PO.SWITCH("only_print_error") == "off":
+                        Color_PO.outColor([{"36": d_data_result}])
+                    Log_PO.logger.info(d_data_result)
+                    l_count.append(1)
+                else:
+                    d_data_result = {
+                        '反向': "error",
+                        '验证': case
+                    }
+                    d_data_result.update(d_tmp)
+                    s_tmp = str(d_data_result).replace("\\\\", "\\")
+                    Color_PO.outColor([{"31": s_tmp}])
+                    Log_PO.logger.info(s_tmp)
+                    l_count.append(0)
+                caseTotal += 1
 
         # 结果
         d_param['l_count'] = l_count
@@ -1403,14 +1410,21 @@ class EfrbPO():
         """公共测试用例执行"""
         d_tmp = {}
 
+        # print(1408, d_param)
+
         # 获取规则信息
         l_d_row = Sqlserver_PO_CHC.select("select categoryCode, ER_code from %s where id= %s" %(self.tableEFRB, d_param['id']))
 
         # d_tmp['ER_code'] = l_d_row[0]['ER_code']
         # d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
         # d_tmp['category'] = l_d_row[0]['category']
-        # d_tmp['categoryCode'] = l_d_row[0]['categoryCode']
+        d_tmp['categoryCode'] = l_d_row[0]['categoryCode']
         # d_tmp['categoryType'] = l_d_row[0]['categoryType']
+
+        # categoryCode = d_param.get('categoryCode', '')
+
+        # 疾病
+        disease = d_param.get('disease', '')
 
         # BMI
         varBMI = d_cases_satisfied.get('BMI', 0)
@@ -1444,8 +1458,6 @@ class EfrbPO():
             varSexCode = '1'
             varSex = '男'
 
-        categoryCode = d_param.get('categoryCode', '')
-        disease = d_param.get('disease', '')
 
         # 跑接口
         command = (
@@ -1455,25 +1467,24 @@ class EfrbPO():
                 '-H "Authorization:" '
                 '-H  "Content-Type:application/json" '
                 '-d "{\\"age\\":' + str(varAge) + ','
-                                                  '\\"ageFloat\\":' + str(varAgeFloat) + ','
-                                                                                         '\\"ageMonth\\":' + str(
-            varAgeMonth) + ','
-                           '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
-                           '\\"bmi\\":' + str(varBMI) + ','
-                                                        '\\"categoryCode\\":\\"' + str(categoryCode) + '\\",'
-                                                                                                       '\\"disease\\":\\"' + str(
-            disease) + '\\",'
-                       '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
-                       '\\"height\\":175,'
-                       '\\"idCard\\":\\"' + str(d_param['WEIGHT_REPORT__IDCARD']) + '\\",'
-                                                                '\\"orgCode\\":\\"\\",'
-                                                                '\\"orgName\\":\\"\\",'
-                                                                '\\"sex\\":\\"' + str(varSex) + '\\",'
-                                                                                                '\\"sexCode\\":\\"' + str(
-            varSexCode) + '\\",'
-                          '\\"weight\\":55,'
-                          '\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
-        )
+                '\\"ageFloat\\":' + str(varAgeFloat) + ','
+                '\\"ageMonth\\":' + str(
+                varAgeMonth) + ','
+                '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
+                '\\"bmi\\":' + str(varBMI) + ','
+                '\\"categoryCode\\":\\"' + str(d_tmp['categoryCode']) + '\\",'
+                '\\"disease\\":\\"' + str(disease) + '\\",'
+                '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
+                '\\"height\\":175,'
+                '\\"idCard\\":\\"' + str(self.IDCARD) + '\\",'
+                '\\"orgCode\\":\\"\\",'
+                '\\"orgName\\":\\"\\",'
+                '\\"sex\\":\\"' + str(varSex) + '\\",'
+                '\\"sexCode\\":\\"' + str(
+                varSexCode) + '\\",'
+                '\\"weight\\":55,'
+                '\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
+                )
 
         if Configparser_PO.SWITCH("print_curl") == "on":
             print(command)
@@ -1525,8 +1536,8 @@ class EfrbPO():
         d_tmp['评估因素编码'] = l_d_row[0]['ER_code']
 
         # 参数化
-        d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
-        d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
+        # d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
+        # d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
 
         varAge = 0
         varAgeFloat = 0.0
@@ -1541,24 +1552,22 @@ class EfrbPO():
                 '-H "Authorization:" '
                 '-H  "Content-Type:application/json" '
                 '-d "{\\"age\\":' + str(varAge) + ','
-                                                  '\\"ageFloat\\":' + str(varAgeFloat) + ','
-                                                                                         '\\"ageMonth\\":' + str(
-            varAgeMonth) + ','
-                           '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
-                           '\\"bmi\\":' + str(varBMI) + ','
-                                                        '\\"categoryCode\\":1,'
-                                                        '\\"disease\\":\\"' + str(d_param['disease']) + '\\",'
-                                                                                                        '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
-                                                                                                        '\\"height\\":175,'
-                                                                                                        '\\"idCard\\":\\"' + str(
-            d_tmp['身份证']) + '\\",'
-                            '\\"orgCode\\":\\"\\",'
-                            '\\"orgName\\":\\"\\",'
-                            '\\"sex\\":\\"\\",'
-                            '\\"sexCode\\":\\"1\\",'
-                            '\\"weight\\":55,'
-                            '\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
-        )
+                '\\"ageFloat\\":' + str(varAgeFloat) + ','
+                '\\"ageMonth\\":' + str(varAgeMonth) + ','
+                '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
+                '\\"bmi\\":' + str(varBMI) + ','
+                '\\"categoryCode\\":1,'
+                '\\"disease\\":\\"' + str(d_param['disease']) + '\\",'
+                '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
+                '\\"height\\":175,'
+                '\\"idCard\\":\\"' + str(self.IDCARD) + '\\",'
+                '\\"orgCode\\":\\"\\",'
+                '\\"orgName\\":\\"\\",'
+                '\\"sex\\":\\"\\",'
+                '\\"sexCode\\":\\"1\\",'
+                '\\"weight\\":55,'
+                '\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"'
+                )
 
         if Configparser_PO.SWITCH("print_curl") == "on":
             print(command)
@@ -1624,6 +1633,8 @@ class EfrbPO():
 
     def EFRB_run_crowd(self, d_param):
         """处理人群分类测试"""
+
+        print(1629, d_param)
         d_tmp = {}
 
         # 获取规则信息
@@ -1631,8 +1642,8 @@ class EfrbPO():
         d_tmp['评估因素编码'] = l_d_row[0]['ER_code']
 
         # 参数化
-        d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
-        d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
+        # d_tmp['WEIGHT_REPORT__ID'] = self.WEIGHT_REPORT__ID
+        # d_tmp['身份证'] = self.IDCARD
 
         varAge = 0
         varAgeFloat = 0.0
@@ -1658,25 +1669,20 @@ class EfrbPO():
                 '-H "Authorization:" '
                 '-H  "Content-Type:application/json" '
                 '-d "{\\"age\\":' + str(varAge) + ','
-                                                  '\\"ageFloat\\":' + str(varAgeFloat) + ','
-                                                                                         '\\"ageMonth\\":' + str(
-            varAgeMonth) + ','
-                           '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
-                           '\\"bmi\\":' + str(varBMI) + ','
-                                                        '\\"categoryCode\\":' + str(d_param['categoryCode']) + ','
-                                                                                                               '\\"disease\\":\\"\\",'
-                                                                                                               '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
-                                                                                                               '\\"height\\":175,'
-                                                                                                               '\\"idCard\\":\\"' + str(
-            d_tmp['身份证']) + '\\",'
-                            '\\"orgCode\\":\\"\\",'
-                            '\\"orgName\\":\\"\\",'
-                            '\\"sex\\":\\"' + str(varSex) + '\\",'
-                                                            '\\"sexCode\\":' + str(varSexCode) + ','
-                                                                                                 '\\"weight\\":55,'
-                                                                                                 '\\"weightReportId\\":' + str(
-            self.WEIGHT_REPORT__ID) + '}"'
-        )
+                '\\"ageFloat\\":' + str(varAgeFloat) + ','
+                '\\"ageMonth\\":' + str(varAgeMonth) + ','
+                '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
+                '\\"bmi\\":' + str(varBMI) + ','
+                '\\"categoryCode\\":' + str(d_param['categoryCode']) + ','
+                '\\"disease\\":\\"\\",'
+                '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
+                '\\"height\\":175,'
+                '\\"idCard\\":\\"' + str(self.IDCARD) + '\\",'
+                '\\"orgCode\\":\\"\\", \\"orgName\\":\\"\\",'
+                '\\"sex\\":\\"' + str(varSex) + '\\",'
+                '\\"sexCode\\":' + str(varSexCode) + ','
+                '\\"weight\\":55,'
+                '\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"')
 
         if Configparser_PO.SWITCH("print_curl") == "on":
             print(command)

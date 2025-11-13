@@ -199,11 +199,10 @@ class HirbPO():
 
 
 
-    # todo 执行健康干预规则
+    # todo 健康干预规则
     def HIRB(self, varTestID):
 
-        # 执行健康干预规则
-        # a_weight10_HIRB
+        # 健康干预规则
 
         # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC.select("select id, IR_code, conditions from %s" % (self.tableHIRB))
@@ -240,22 +239,13 @@ class HirbPO():
     def _HIRB_ID(self, varTestID):
 
         # 测试一条规则
-        # varTestID = 1   //id=1
         d_param = {}
-
-        # 评估因素规则库 Evaluation Factor Rule Base
-
-        # 获取每行测试数据
         l_d_row = Sqlserver_PO_CHC.select("select IR_code, conditions from %s where id =%s" % (self.tableHIRB, varTestID))
-        conditions = l_d_row[0]['conditions']
-        # d_param['表'] = self.tableHIRB
-        # d_param['表注释'] = self.tableCommon
         d_param['IR_code'] = l_d_row[0]['IR_code']
         d_param['id'] = varTestID
-        d_param['conditions'] = conditions
+        d_param['conditions'] = l_d_row[0]['conditions']
+        d_param['IDCARD'] = self.IDCARD
 
-
-        # d_param['WEIGHT_REPORT__IDCARD'] = self.WEIGHT_REPORT__IDCARD
         s = "健康干预规则库HIRB(a_weightAssessmentRule_HIRB) => " + str(d_param)
         Color_PO.outColor([{"35": s}])
         Log_PO.logger.info(s)
@@ -263,7 +253,7 @@ class HirbPO():
         self._HIRB_main(d_param)
 
     def _HIRB_main(self, d_param):
-        # todo TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
+        # todo 无组有or TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
         if "or" in d_param['conditions'] and "and" not in d_param['conditions']:
 
             # 字符串转列表
@@ -279,81 +269,62 @@ class HirbPO():
             self.HIRB_case_or(d_param)
             # self.HIRB_case_or(ID, IR_code, l_d_conditions)
 
-        # todo HIRB  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
+        # todo 多组有or  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
         elif "or" in d_param['conditions'] and "and" in d_param['conditions']:
             self.HIRB_case_or(d_param)
 
-        # todo HIRB "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
+        # todo 一组无or "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
         elif "and" in d_param['conditions']:
             # 测试数据
             self.HIRB_case(d_param)
 
-        # todo HIRB 年龄，人群分类，疾病， TZ_RQFL005='是'
+        # todo 无组无or 年龄，人群分类，疾病， TZ_RQFL005='是'
         elif "and" not in d_param['conditions']:
             self.HIRB_case(d_param)
 
-        else:
-            print("[not or & and ]")
 
     def HIRB_case(self, d_param):
 
         # 执行ER中规则
-        # print(ID)  # 7
-        # print(IR_code)  # TZ_YS001
-        # print("d_conditions", d_conditions)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
-        # sys.exit(0)
 
         d_tmp = {}
-        # print(d_param)
-        # 生成EFRB参数 d_param_EFRB
         d_param_EFRB = {}
 
-        # print(d_param['conditions'])
+        # 格式化干预规则（conditions）
+        # 字符串转字典
         if 'or' in d_param['conditions'] and 'and' not in d_param['conditions']:
             d_param['conditions'] = self.str2dict_or(d_param['conditions'])
-            # print(d_param)
         elif 'and' not in d_param['conditions']:
             key, value = d_param['conditions'].split('=')
             result = {key: value.strip("'")}
             # print(result)  # 输出: {'TZ_RQFL005': '是'}
             d_param['conditions'] = result
-            # 过滤评估因素规则（过滤掉TZ_STZB开头的key）
         elif 'and' in d_param['conditions']:
             d_param['conditions'] = self.str2dict(d_param['conditions'])
 
-        d_filtered = {key: value for key, value in d_param['conditions'] .items() if 'TZ_STZB' not in key}
-        # print("过滤掉TZ_STZB开头的key：", d_filtered) # {'TZ_RQFL001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        # print(304,d_param)  # {'IR_code': 'TZ_YS001', 'id': 1, 'conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
 
-        # 先遍历否
-        # 定义遍历顺序
-        order = ['否', '是']
+        # （写死TZ_JB001=高血压、TZ_JB002=糖尿病）
+        gxy = d_param['conditions']['TZ_JB001']
+        tnb = d_param['conditions']['TZ_JB002']
+        if gxy == '否' and tnb == '否':
+            # 不是高血压也不是糖尿病
+            d_param_EFRB['disease'] = "无"
+        elif gxy == '是' and tnb == '是':
+            # 如果既是高血压也是糖尿病，则取糖尿病
+            d_param_EFRB['disease'] = "糖尿病"
+        elif gxy == '是' and tnb == '否':
+            # 如果是高血压，不是糖尿病
+            d_param_EFRB['disease'] = "高血压"
+        elif gxy == '否' and tnb == '是':
+            # 如果是糖尿病，不是高血压
+            d_param_EFRB['disease'] = "糖尿病"
 
-        # 按照定义的顺序遍历字典（写死了TZ_JB001、TZ_JB002）？？
-        for value in order:
-            for key, val in d_filtered.items():
-                if val == value:
-                    # print(f"键: {key}, 值: {val}")
-                    l_ = Sqlserver_PO_CHC.select("select categoryCode, conditions from %s where ER_code='%s'" % (self.tableEFRB, key))
-                    # print(l_)  # [{'conditions': '3'}]
-                    if val == "否" and "TZ_RQFL" in key:
-                        d_param_EFRB['categoryCode'] = 100
-                    if key == 'TZ_JB001' and val == "否":
-                        d_param_EFRB['disease'] = "脑卒中"
-                    if key == 'TZ_JB002' and val == "否":
-                        d_param_EFRB['disease'] = "脑卒中"
-                    if val == "是" and "TZ_RQFL" in key:
-                        d_param_EFRB['categoryCode'] = int(l_[0]['categoryCode'])
-                    if key == 'TZ_JB001' and val == "是":
-                        d_param_EFRB['disease'] = l_[0]['conditions']
-                    if key == 'TZ_JB002' and val == "是":
-                        d_param_EFRB['disease'] = l_[0]['conditions']
+        # print(323, d_param_EFRB)  # 339 {'disease': '高血压' }
 
-        if "categoryCode" not in d_param_EFRB:
-            d_param_EFRB['categoryCode'] = 100
-        if "disease" not in d_param_EFRB:
-            d_param_EFRB['disease'] = "脑卒中"
 
-        # 获取 TZ_STZB开头的key
+        # 获取 TZ_STZB 开头的评估规则编码，如：ER_code = TZ_STZB001
+        # 通过TZ_STZB001 获取评估因素规则库EFRB中id
         l_matching_keys = [key for key in d_param['conditions'] if 'TZ_STZB' in key]
         # print(1800, l_matching_keys) # ['TZ_STZB001']
         if l_matching_keys != []:
@@ -362,16 +333,17 @@ class HirbPO():
             d_1 = {}
             if len(l_matching_keys) == 1:
                 l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
-                d_1['table'] = self.tableEFRB
+                # d_1['table'] = self.tableEFRB
                 d_1['id'] = l_1[0]['id']
                 d_1.update(d_param_EFRB)
+                print(339, 'a_weightAssessmentRule_EFRB => ', d_1)  # {'id': 1, 'disease': '无'}
 
-                # Efrb_PO.EFRB(d_1['id'],d_1)
-                Efrb_PO.EFRB(d_1)
+                # 跑评估因素规则库
+                WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
+
             else:
                 print("warning, 匹配到多个值1：", l_matching_keys)
                 sys.exit(0)
-
         else:
             # 匹配人群分类
             l_matching_keys = [key for key in d_param['conditions'] if 'TZ_RQFL' in key]
@@ -406,7 +378,7 @@ class HirbPO():
                     sys.exit(0)
 
         # 检查是否命中IR_code
-        sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (self.WEIGHT_REPORT__ID)
+        sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (WEIGHT_REPORT__ID)
         l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
 
         l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
@@ -438,6 +410,7 @@ class HirbPO():
             d_1['result'] = "error"
             d_1['IR_code'] = d_param['IR_code']
             d_1['id'] = d_param['id']
+            d_1['IDCARD'] = self.IDCARD
             d_1.update(d_tmp)
             s = "健康干预规则库HIRB => " + str(d_1)
             # s = "结果HIRB => {id: " + str(d_param['id'] ) + "} => error"
@@ -449,149 +422,184 @@ class HirbPO():
     def HIRB_case_or(self, d_param):
 
         # 执行ER中规则
-        # ID, IR_code, l_4
 
         # print("IR_code", IR_code)  # TZ_YS001
         # print("d_conditions", d_conditions)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
 
-        # 转换列表，结构化原始数据为列表，生成l_l_N
+        # 格式化干预规则（conditions）
+        # 字符串转列表
         l_conditions = d_param['conditions'].split("or")
-        # print(l_value)
         l_d_conditions = []
         for i in l_conditions:
             i = i.replace("(", '').replace(")", '')
             l_d_conditions.append(self.str2dict(i))
-        print(464, l_d_conditions)  # [{'TZ_STZB002': '是', 'TZ_JB002': '是', 'TZ_RQFL005': '否', 'TZ_RQFL006': '否'}, {'TZ_STZB005': '是', 'TZ_JB002': '是', 'TZ_RQFL005': '否', 'TZ_RQFL006': '否'}]
 
-        # print(453,d_param)
-        # sys.exit(0)
+        print(435, l_d_conditions)  # [{'TZ_STZB002': '是', 'TZ_JB002': '是', 'TZ_RQFL005': '否', 'TZ_RQFL006': '否'}, {'TZ_STZB005': '是', 'TZ_JB002': '是', 'TZ_RQFL005': '否', 'TZ_RQFL006': '否'}]
+                                    # [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
 
         d_tmp = {}
 
-        # 遍历获取EFRB的字典映射{id：ER_code}
-        l_IR_code = Sqlserver_PO_CHC.select("select id, ER_code from %s" % (self.tableEFRB))
-        print(473, l_IR_code)
-        d_IR_code = {item['id']: item['ER_code'] for item in l_IR_code}
-        # print(d_IR_code)  # {1: 'TZ_STZB001', 2: 'TZ_STZB002', ...
-        d_IR_code = {v: k for k, v in d_IR_code.items()}
-        # print(d_IR_code)  # {'TZ_STZB001': 1, 'TZ_STZB002': 2,
+        # # 遍历获取EFRB的字典映射{id：ER_code}
+        # l_IR_code = Sqlserver_PO_CHC.select("select id, ER_code from %s" % (self.tableEFRB))
+        # print(473, l_IR_code)
+        # d_IR_code = {item['id']: item['ER_code'] for item in l_IR_code}
+        # # print(d_IR_code)  # {1: 'TZ_STZB001', 2: 'TZ_STZB002', ...
+        # d_IR_code = {v: k for k, v in d_IR_code.items()}
+        # # print(d_IR_code)  # {'TZ_STZB001': 1, 'TZ_STZB002': 2,
 
         sum = 0
+        d_param_EFRB = {}
 
-        # for d_ in d_param['l_d_conditions']:
-        for d_ in l_d_conditions:
+        # （写死TZ_JB001=高血压、TZ_JB002=糖尿病）成堆出现
+        if any('TZ_JB001' in item for item in l_d_conditions):
+            gxy = l_d_conditions[0]['TZ_JB001']
+            tnb = l_d_conditions[0]['TZ_JB002']
+            if gxy == '否' and tnb == '否':
+                # 不是高血压也不是糖尿病
+                d_param_EFRB['disease'] = "无"
+            elif gxy == '是' and tnb == '是':
+                # 如果既是高血压也是糖尿病，则取糖尿病
+                d_param_EFRB['disease'] = "糖尿病"
+            elif gxy == '是' and tnb == '否':
+                # 如果是高血压，不是糖尿病
+                d_param_EFRB['disease'] = "高血压"
+            elif gxy == '否' and tnb == '是':
+                # 如果是糖尿病，不是高血压
+                d_param_EFRB['disease'] = "糖尿病"
 
-            #  过滤掉TZ_STZB开头的key
-            d_filtered = {key: value for key, value in d_.items() if 'TZ_STZB' not in key}
-            print("过滤掉TZ_STZB开头的key：", d_filtered) # {'TZ_RQFL001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
-            # 先遍历否
-            # 定义遍历顺序
-            order = ['否', '是']
+        # print(323, d_param_EFRB)  # 339 {'disease': '高血压' }
 
-            # 按照定义的顺序遍历字典
-            d_param_EFRB = {}
-            for value in order:
-                for key, val in d_filtered.items():
-                    if val == value:
-                        # print(f"键: {key}, 值: {val}")
-                        l_ = Sqlserver_PO_CHC.select("select conditions from %s where ER_code='%s'" % (self.tableEFRB, key))
-                        # print(l_) # [{'conditions': '3'}]
-                        if val == "否" and "TZ_RQFL" in key:
-                            d_param_EFRB['categoryCode'] = 100
-                        if key == 'TZ_JB001' and val == "否":
-                            d_param_EFRB['disease'] = "脑卒中"
-                        if key == 'TZ_JB002' and val == "否":
-                            d_param_EFRB['disease'] = "脑卒中"
-                        if val == "是" and "TZ_RQFL" in key:
-                            d_param_EFRB['categoryCode'] = int(l_[0]['conditions'].split("=")[1])
-                        if key == 'TZ_JB001' and val == "是":
-                            d_param_EFRB['disease'] = l_[0]['conditions']
-                        if key == 'TZ_JB002' and val == "是":
-                            d_param_EFRB['disease'] = l_[0]['conditions']
-                    if key == "性别":
-                        d_param_EFRB['sex'] = val
+        # # 遍历评估因素规则库编码，如 [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
+        # for d_ in l_d_conditions:
+        #
+        #     #  过滤掉TZ_STZB开头的key
+        #     d_filtered = {key: value for key, value in d_.items() if 'TZ_STZB' not in key}
+        #     print("过滤掉TZ_STZB开头的key：", d_filtered) # {'TZ_RQFL001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        #     # 先遍历否
+        #     # 定义遍历顺序
+        #     order = ['否', '是']
+        #
+        #     # 按照定义的顺序遍历字典
+        #     d_param_EFRB = {}
+        #     for value in order:
+        #         for key, val in d_filtered.items():
+        #             if val == value:
+        #                 # print(f"键: {key}, 值: {val}")
+        #                 l_ = Sqlserver_PO_CHC.select("select conditions from %s where ER_code='%s'" % (self.tableEFRB, key))
+        #                 # print(l_) # [{'conditions': '3'}]
+        #                 if val == "否" and "TZ_RQFL" in key:
+        #                     d_param_EFRB['categoryCode'] = 100
+        #                 if key == 'TZ_JB001' and val == "否":
+        #                     d_param_EFRB['disease'] = "脑卒中"
+        #                 if key == 'TZ_JB002' and val == "否":
+        #                     d_param_EFRB['disease'] = "脑卒中"
+        #                 if val == "是" and "TZ_RQFL" in key:
+        #                     d_param_EFRB['categoryCode'] = int(l_[0]['conditions'].split("=")[1])
+        #                 if key == 'TZ_JB001' and val == "是":
+        #                     d_param_EFRB['disease'] = l_[0]['conditions']
+        #                 if key == 'TZ_JB002' and val == "是":
+        #                     d_param_EFRB['disease'] = l_[0]['conditions']
+        #             if key == "性别":
+        #                 d_param_EFRB['sex'] = val
+        #
+        #     if "categoryCode" not in d_param_EFRB:
+        #         d_param_EFRB['categoryCode'] = 100
+        #     if "disease" not in d_param_EFRB:
+        #         d_param_EFRB['disease'] = "脑卒中"
+        #     if "sex" not in d_param_EFRB:
+        #         d_param_EFRB['sex'] = "男"
 
-            if "categoryCode" not in d_param_EFRB:
-                d_param_EFRB['categoryCode'] = 100
-            if "disease" not in d_param_EFRB:
-                d_param_EFRB['disease'] = "脑卒中"
-            if "sex" not in d_param_EFRB:
-                d_param_EFRB['sex'] = "男"
+        print(521, d_param_EFRB)  # {'sex': '女', 'categoryCode': 3, 'disease': '脑卒中'}
 
-            print(521, d_param_EFRB)  # {'sex': '女', 'categoryCode': 3, 'disease': '脑卒中'}
-            # sys.exit(0)
+        # 获取 TZ_STZB开头的key
+        # l_d_conditions
+        # l_matching_keys = [key for key in l_d_conditions[0] if 'TZ_STZB' in key]
+        l_matching_keys = [key for item in l_d_conditions for key in item.keys() if key.startswith('TZ_STZB')]
 
-            # 获取 TZ_STZB开头的key
-            l_matching_keys = [key for key in d_ if 'TZ_STZB' in key]
-            # print(l_matching_keys) # ['TZ_STZB001']
-            if l_matching_keys != []:
-                l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
-                # print(222,l_1)
-                d_1 = {}
-                d_1['table'] = self.tableEFRB
-                if len(l_matching_keys) == 1:
-                    # print(l_1[0]['id'], d_param)
+
+        print(515, l_matching_keys) # ['TZ_STZB001']
+        if l_matching_keys != []:
+            l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
+            # print(222,l_1)
+            d_1 = {}
+            d_1['table'] = self.tableEFRB
+            if len(l_matching_keys) == 1:
+                # print(l_1[0]['id'], d_param)
+                d_1['id'] = l_1[0]['id']
+                d_1.update(d_param_EFRB)
+
+                print(529, d_1)  # {'table': self.tableEFRB, 'ID': 43, 'categoryCode': 100, 'disease': '脑卒中', 'sex': '男'}
+
+                # 跑评估因素规则库
+                WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
+
+            else:
+
+                for ER_code in l_matching_keys:
+                    l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, ER_code))
+                    d_1 = {}
+                    d_1['table'] = self.tableEFRB
                     d_1['id'] = l_1[0]['id']
                     d_1.update(d_param_EFRB)
 
-                    print(1958, d_1)  # {'table': self.tableEFRB, 'ID': 43, 'categoryCode': 100, 'disease': '脑卒中', 'sex': '男'}
+                    print(542, d_1)  # {'table': self.tableEFRB, 'ID': 43, 'categoryCode': 100, 'disease': '脑卒中', 'sex': '男'}
 
-                    Efrb_PO.EFRB(d_1['id'], d_1)
+                    # 跑评估因素规则库
+                    WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
 
-                else:
-                    print("warning, 匹配到多个值4：", l_matching_keys)
-                    sys.exit(0)
+                # print("warning, 匹配到多个值4：", l_matching_keys)
+                # sys.exit(0)
 
-            else:
-                # # 匹配人群分类
-                l_matching_keys = [key for key in d_ if 'TZ_RQFL' in key]
-                if l_matching_keys != []:
-                    l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
-                    d_1 = {}
-                    d_1['table'] = self.tableEFRB
-                    if len(l_matching_keys) == 1:
-                        # print(l_1[0]['ID'], d_param)
-                        d_1['id'] = l_1[0]['id']
-                        d_1.update(d_param_EFRB)
+        # else:
+        #     # # 匹配人群分类
+        #     l_matching_keys = [key for key in d_ if 'TZ_RQFL' in key]
+        #     if l_matching_keys != []:
+        #         l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
+        #         d_1 = {}
+        #         d_1['table'] = self.tableEFRB
+        #         if len(l_matching_keys) == 1:
+        #             # print(l_1[0]['ID'], d_param)
+        #             d_1['id'] = l_1[0]['id']
+        #             d_1.update(d_param_EFRB)
+        #
+        #             Efrb_PO.EFRB(d_1['id'],d_1)
+        #         else:
+        #             print("warning, 匹配到多个值5：", l_matching_keys)
+        #             sys.exit(0)
 
-                        Efrb_PO.EFRB(d_1['id'],d_1)
-                    else:
-                        print("warning, 匹配到多个值5：", l_matching_keys)
-                        sys.exit(0)
+        # 检查是否命中IR_code
+        sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (WEIGHT_REPORT__ID)
+        l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
+        l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
+        # print(l_d_RULE_CODE_actual) # ['TZ_STZB001', 'TZ_RQFL001', 'TZ_SRL001', 'TZ_MBTZ002', 'TZ_YD001', 'TZ_YS001']
 
-            # 检查是否命中IR_code
-            sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (self.WEIGHT_REPORT__ID)
-            l_d_RULE_CODE_actual = Sqlserver_PO_CHC.select(sql)
-            l_d_RULE_CODE_actual = [item['RULE_CODE'] for item in l_d_RULE_CODE_actual]
-            # print(l_d_RULE_CODE_actual) # ['TZ_STZB001', 'TZ_RQFL001', 'TZ_SRL001', 'TZ_MBTZ002', 'TZ_YD001', 'TZ_YS001']
-
-            d_tmp['预期值'] = d_param['IR_code']
-            d_tmp['实际值'] = l_d_RULE_CODE_actual
-            d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
-            d_result = {}
-            # d_result['表'] = self.tableHIRB
-            # d_result['id'] = d_param['id']
-            # d_result['IR_code'] = d_param['IR_code']
-            if d_tmp['预期值'] in l_d_RULE_CODE_actual:
-                # s_print = "[正向ok], 既往疾病包含：" + str(varDisease)
-                d_result['result'] = 'ok'
-                d_result['IR_code'] = d_param['IR_code']
-                d_result['id'] = d_param['id']
-                d_result.update(d_tmp)
-                Color_PO.outColor([{"34": d_result}])
-                Log_PO.logger.info(d_result)
-                sum = sum + 1
-            else:
-                d_result['result'] = 'error'
-                d_result['IR_code'] = d_param['IR_code']
-                d_result['id'] = d_param['id']
-                d_result.update(d_tmp)
-                # Color_PO.outColor([{"31": d_result}])
-                Log_PO.logger.info(d_result)
-                s_tmp = str(d_result)
-                s_tmp = s_tmp.replace("\\\\","\\")
-                Color_PO.outColor([{"31": s_tmp}])
-                sum = sum + 0
+        d_tmp['预期值'] = d_param['IR_code']
+        d_tmp['实际值'] = l_d_RULE_CODE_actual
+        d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
+        d_result = {}
+        # d_result['表'] = self.tableHIRB
+        # d_result['id'] = d_param['id']
+        # d_result['IR_code'] = d_param['IR_code']
+        if d_tmp['预期值'] in l_d_RULE_CODE_actual:
+            # s_print = "[正向ok], 既往疾病包含：" + str(varDisease)
+            d_result['result'] = 'ok'
+            d_result['IR_code'] = d_param['IR_code']
+            d_result['id'] = d_param['id']
+            d_result.update(d_tmp)
+            Color_PO.outColor([{"34": d_result}])
+            Log_PO.logger.info(d_result)
+            sum = sum + 1
+        else:
+            d_result['result'] = 'error'
+            d_result['IR_code'] = d_param['IR_code']
+            d_result['id'] = d_param['id']
+            d_result.update(d_tmp)
+            # Color_PO.outColor([{"31": d_result}])
+            Log_PO.logger.info(d_result)
+            s_tmp = str(d_result)
+            s_tmp = s_tmp.replace("\\\\","\\")
+            Color_PO.outColor([{"31": s_tmp}])
+            sum = sum + 0
 
         d_1 = {}
         # d_1['表'] = self.tableHIRB
@@ -610,6 +618,7 @@ class HirbPO():
             d_1['result'] = 'error'
             d_1['IR_code'] = d_param['IR_code']
             d_1['id'] = d_param['id']
+            d_1['IDCARD'] = self.IDCARD
             d_1.update(d_tmp)
             Color_PO.outColor([{"31": "健康干预规则库HIRB => " + str(d_1)}])
         Log_PO.logger.info(d_1)

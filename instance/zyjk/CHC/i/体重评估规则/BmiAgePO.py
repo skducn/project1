@@ -49,7 +49,8 @@ class BmiAgePO():
         else:
             raise ValueError(f"不支持的运算符: {operator}")
 
-    def generate_test_points(self,conditions, num_random=1):
+    # 修改 generate_test_points 方法中的相关部分
+    def generate_test_points(self, conditions, num_random=1):
         """根据条件动态生成测试点"""
         test_points = {}
 
@@ -62,36 +63,34 @@ class BmiAgePO():
                 lower_bound = float(parts[0])
                 upper_bound = float(parts[-1])
 
-                points = [
-                    round(lower_bound - 0.1, 10),
-                    round(lower_bound, 10),     # 18.0
-                    round(lower_bound + 0.1, 10),
-                    # round(upper_bound - 0.1, 10),
-                    round(upper_bound, 10),     # 65.0
-                    round(upper_bound + 0.1, 10)
-                ]
-                #
-                # # 强制加入边界值
-                # if lower_bound not in points:
-                #     points.append(round(lower_bound, 10))
-                # if upper_bound not in points:
-                #     points.append(round(upper_bound, 10))
-
-                # 添加随机值
-                # points.extend([round(random.uniform(lower_bound + 0.2, upper_bound - 0.2), 10) for _ in range(num_random)])
-                # points.extend([round(random.uniform(lower_bound - 10, lower_bound - 0.2), 10) for _ in range(num_random)])
-                # points.extend([round(random.uniform(upper_bound + 0.2, upper_bound + 10), 10) for _ in range(num_random)])
+                # 对于年龄变量，生成整数测试点
+                if var_name == '年龄':
+                    points = [
+                        int(lower_bound - 1),
+                        int(lower_bound),  # 18
+                        int(lower_bound + 1),
+                        int(upper_bound - 1),  # 64
+                        int(upper_bound),  # 65
+                        int(upper_bound + 1)
+                    ]
+                else:
+                    points = [
+                        round(lower_bound - 0.1, 10),
+                        round(lower_bound, 10),
+                        round(lower_bound + 0.1, 10),
+                        round(upper_bound - 0.1, 10),
+                        round(upper_bound, 10),
+                        round(upper_bound + 0.1, 10)
+                    ]
 
             else:
-                # 简单条件逻辑保持不变
+                # 简单条件逻辑
                 threshold = float(re.search(r'([<>=!]+)\s*([\d.]+)', cond).group(2))
-                points = [threshold - 0.1, threshold, threshold + 0.1]
-                # if '>=' in cond or '>' in cond:
-                #     # points.extend([random.uniform(threshold + 0.2, threshold + 10) for _ in range(num_random)])
-                #     points.extend([random.uniform(threshold - 10, threshold - 0.2) for _ in range(num_random)])
-                # elif '<=' in cond or '<' in cond:
-                #     # points.extend([random.uniform(threshold - 10, threshold - 0.2) for _ in range(num_random)])
-                #     points.extend([random.uniform(threshold + 0.2, threshold + 10) for _ in range(num_random)])
+                # 对于年龄变量，生成整数测试点
+                if var_name == '年龄':
+                    points = [int(threshold - 1), int(threshold), int(threshold + 1)]
+                else:
+                    points = [threshold - 0.1, threshold, threshold + 0.1]
 
             test_points[var_name] = list(set(points))  # 去重
 

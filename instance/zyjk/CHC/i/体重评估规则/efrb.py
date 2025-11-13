@@ -42,11 +42,12 @@ Efrb_PO = EfrbPO()
 
 
 # todo 测试单条
+# Efrb_PO.EFRB({'id': 1})
 # Efrb_PO.EFRB({'id': 11})
 # Efrb_PO.EFRB({'id': 19})
 # Efrb_PO.EFRB({'id': 55}) # TZ_STZB044
 # Efrb_PO.EFRB({'id': 56}) # TZ_STZB045
-# Efrb_PO.EFRB({'ER_code': 'TZ_STZB008'})
+Efrb_PO.EFRB({'ER_code': 'TZ_STZB040'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_STZB009'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_STZB017'})
 # Efrb_PO.EFRB({'id': 50, 'ER_code': 'TZ_STZB047'})  # 测试id=59 和 ER_code=TZ_STZB047 两条记录

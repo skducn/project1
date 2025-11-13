@@ -24,7 +24,8 @@ Hirb_PO = HirbPO()
 # Hirb_PO.HIRB("all")  # 测试所有
 
 # 2.2 测试单行
-Hirb_PO.HIRB(100)
+# Hirb_PO.HIRB(1)
+Hirb_PO.HIRB(40)
 # Hirb_PO.HIRB(11)
 # Hirb_PO.HIRB(113)
 # Hirb_PO.HIRB(114)
