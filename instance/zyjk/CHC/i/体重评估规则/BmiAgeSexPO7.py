@@ -314,18 +314,31 @@ class BmiAgeSexPO():
 if __name__ == "__main__":
     BmiAgeSex_PO = BmiAgeSexPO()
 
-    # 测试示例
+    # todo 等于号
     print("测试条件: ['年龄=6', 'BMI>=19.5', '性别=男']")
-    result1 = BmiAgeSex_PO.main(['年龄=6', 'BMI>=19.5', '性别=男'])
-    print(result1)
+    print(BmiAgeSex_PO.main(['年龄=6', 'BMI>=19.5', '性别=男']))
 
+    print("测试条件: ['年龄>=6', 'BMI=19.5', '性别=男']")
+    print(BmiAgeSex_PO.main(['年龄=6', 'BMI>=19.5', '性别=男']))
+
+    print("测试条件: ['年龄=6', 'BMI=19.5', '性别=男']")
+    print(BmiAgeSex_PO.main(['年龄=6', 'BMI>=19.5', '性别=男']))
+
+    # todo 区间
     print("\n测试条件: ['66<=年龄<69', 'BMI<12', '性别=男']")
-    result2 = BmiAgeSex_PO.main(['66<=年龄<69', 'BMI<12', '性别=男'])
-    print(result2)
+    print(BmiAgeSex_PO.main(['66<=年龄<69', 'BMI<12', '性别=男']))
 
+    print("\n测试条件: ['年龄<=66<', '3<BMI<12', '性别=男']")
+    print(BmiAgeSex_PO.main(['66<=年龄<69', 'BMI<12', '性别=男']))
+
+    print("\n测试条件: ['66<=年龄<69', '4<BMI<12', '性别=男']")
+    print(BmiAgeSex_PO.main(['66<=年龄<69', 'BMI<12', '性别=男']))
+
+    # 拆分年龄 和 BMI
     print("\n测试条件: ['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']")
-    result3 = BmiAgeSex_PO.main(['BMI<18.5', '年龄>=18', '年龄<65', '性别=女'])
-    print(result3)
+    print(BmiAgeSex_PO.main(['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']))
 
     print("\n测试条件: ['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']")
     print(BmiAgeSex_PO.main(['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']))
+
+
