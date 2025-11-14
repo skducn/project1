@@ -49,13 +49,56 @@ class HirbPO():
         self.tableEFRB = Configparser_PO.DB("tableEFRB")
         self.tableHIRB = Configparser_PO.DB("tableHIRB")
         self.tableCommon = '健康干预HIRB => '
+        self.testData = '正反测试数据 => '
 
         # 检查身份证是否存在, WEIGHT_REPORT(体重报告记录表)
         # 和QYYH中都必须要有此身份证，且在WEIGHT_REPORT表中获取ID
         self.IDCARD, self.WEIGHT_REPORT__ID = Efrb_PO.getIdcard()
-        # s = "{'QYYH__SFZH': " + str(self.IDCARD) + ", 'WEIGHT_REPORT__ID_CARD': " + str(self.IDCARD) + ", 'WEIGHT_REPORT__ID' : " + str(self.WEIGHT_REPORT__ID) + "}"
-        # Color_PO.outColor([{"35": s}])
         Color_PO.outColor([{"30": "QYYH__SFZH =>"}, {"35": self.IDCARD}, {"30": ", WEIGHT_REPORT__ID =>"}, {"35": self.WEIGHT_REPORT__ID}, ])
+
+    def excel2db_HIRB(self):
+
+        # excel文件导入db
+
+        # 1，db中删除已有的表
+        Sqlserver_PO_CHC.execute("drop table if exists " + self.tableHIRB)
+
+        # 2，读取 Excel 文件
+        df = pd.read_excel(Configparser_PO.FILE("case"), sheet_name=Configparser_PO.FILE("sheetHIRB"))
+        df = df.sort_index()  # 按行索引排序，保持Excel原有顺序
+        df = df.dropna(how="all")  # 移除全空行
+        # 手动设置字段类型
+        # df['conditions'] = df['conditions'].astype(str)  # 改为字符串类型
+
+        # 3，Excel导入db
+        Sqlserver_PO_CHC.df2db(df, self.tableHIRB)
+
+        # 4, 设置表注释
+        Sqlserver_PO_CHC.setTableComment(self.tableHIRB, '体重管理_健康干预规则库(测试)')
+
+        # 5，将conditions字段替换换行符为空格
+        Sqlserver_PO_CHC.execute("UPDATE %s SET conditions = REPLACE(REPLACE(conditions, CHAR(10), ' '), CHAR(13), ' ');" % (self.tableHIRB))
+
+        # 6，设置字段类型与备注
+        field_definitions = [
+            ('f_type', 'nvarchar(50)', '干预项目分类'),
+            ('IR_code', 'nvarchar(20)', '干预规则编码'),
+            ('conditions', 'nvarchar(max)', '干预规则'),
+            ('IR_detail', 'nvarchar(500)', '干预规则描述'),
+            ('totalCase', 'int', '用例合计数'),
+            ('log', 'varchar(max)', '日志信息'),
+            ('updateDate', 'nvarchar(50)', '更新日期'),
+            ('result', 'nvarchar(10)', '测试结果')
+        ]
+        for field_name, field_type, comment in field_definitions:
+            Sqlserver_PO_CHC.setFieldTypeComment(self.tableHIRB, field_name, field_type, comment)
+
+        # 7，修改字段类型为日期类型
+        Sqlserver_PO_CHC.execute("ALTER TABLE %s ALTER COLUMN updateDate DATE;" % (self.tableHIRB))
+
+        # 8，设置id自增主键（放在最后）
+        Sqlserver_PO_CHC.setIdentityPrimaryKey(self.tableHIRB, "id")
+
 
     def convert_conditions(self, conditions):
         # 列表转字符串
@@ -83,83 +126,6 @@ class HirbPO():
                 result.append(f"{left}{current_op}{right}")
 
         return " and ".join(result)
-    def excel2db_HIRB(self):
-
-        # excel文件导入db
-
-        varSheet = "HIRB"
-        varTable = self.tableHIRB
-
-        # 1, db中删除已有的表
-        Sqlserver_PO_CHC.execute("drop table if exists " + varTable)
-
-        # 读取 Excel 文件
-        df = pd.read_excel(Configparser_PO.FILE("case"), sheet_name=varSheet)
-        df = df.sort_index()  # 按行索引排序，保持Excel原有顺序
-        df = df.dropna(how="all")  # 移除全空行
-
-        # 手动设置字段类型
-        # df['conditions'] = df['conditions'].astype(str)  # 改为字符串类型
-
-        # 2, excel导入db
-        Sqlserver_PO_CHC.df2db(df, varTable)
-
-        # 3, 设置表注释
-        Sqlserver_PO_CHC.setTableComment(varTable, '体重管理1.0_健康干预规则库（其他分类)_自动化测试')
-
-        # 4， 替换换行符为空格
-        Sqlserver_PO_CHC.execute(
-            "UPDATE %s SET conditions = REPLACE(REPLACE(conditions, CHAR(10), ' '), CHAR(13), ' ');" % (
-                varTable)
-        )
-
-        # # 1, db中删除已有的表
-        # Sqlserver_PO_CHC.execute("drop table if exists " + varTable)
-        #
-        # # 2, excel导入db
-        # Sqlserver_PO_CHC.xlsx2db(Configparser_PO.FILE("case"), varTable, "replace", varSheet)
-        #
-        # #  -- 修改表字符集
-        # # Sqlserver_PO_CHC.execute("ALTER TABLE %s CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;" % (varTable))
-        #                     # ALTER TABLE youCONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-        # #
-        #
-        # # 3, 设置表注释
-        # Sqlserver_PO_CHC.setTableComment(varTable, '体重管理1.0_健康干预规则库（其他分类)_自动化测试')
-        #
-        # # 4， 替换换行符为空格
-        # Sqlserver_PO_CHC.execute("UPDATE %s SET conditions = REPLACE(REPLACE(conditions, CHAR(10), ' '), CHAR(13), ' ');" % (varTable))
-
-        # # 5, 设置字段类型与描述
-        # 5, 设置字段类型与描述
-
-        # Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'result', 'nvarchar(50)', '测试结果')
-        # Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'updateDate', 'nvarchar(50)', '更新日期')
-        # Sqlserver_PO_CHC.execute("ALTER TABLE %s ALTER COLUMN updateDate DATE;" % (varTable))
-        # Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'f_type', 'nvarchar(50)', '干预项目分类')
-        # Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'IR_code', 'varchar(50)', '干预规则编码')
-        # Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'conditions', 'nvarchar(max)', '干预规则')
-        # Sqlserver_PO_CHC.setFieldTypeComment(varTable, 'IR_detail', 'nvarchar(max)', '干预规则描述')
-        field_definitions = [
-            ('result', 'nvarchar(10)', '测试结果'),
-            ('updateDate', 'nvarchar(50)', '更新日期'),
-            ('log', 'varchar(max)', '日志信息'),
-            ('f_type', 'nvarchar(50)', '干预项目分类'),
-            ('IR_code', 'nvarchar(20)', '干预规则编码'),
-            ('conditions', 'nvarchar(max)', '干预规则'),
-            ('IR_detail', 'nvarchar(500)', '干预规则描述'),
-            ('testCase', 'nvarchar(100)', '测试用例'),
-            ('totalCase', 'int', '用例合计数'),
-            ('errId', 'int', '错误id')
-        ]
-
-        for field_name, field_type, comment in field_definitions:
-            Sqlserver_PO_CHC.setFieldTypeComment(varTable, field_name, field_type, comment)
-
-        Sqlserver_PO_CHC.execute("ALTER TABLE %s ALTER COLUMN updateDate DATE;" % (varTable))
-
-        # 6, 设置自增主键（最后）
-        Sqlserver_PO_CHC.setIdentityPrimaryKey(varTable, "id")
 
 
     def str2dict(self, conditions):
@@ -184,37 +150,167 @@ class HirbPO():
         return d_conditions
 
 
+    def HIRB(self, object=None, d_param={}):
+        # 入口
 
-    # todo 健康干预规则
-    def HIRB(self, varTestID):
+        if object == None:
+            # todo 执行所有
+            self.HIRB_all()
+        elif isinstance(object, list):
+            # todo 执行连续 [起始，步长]
+            self.HIRB_area(object, d_param)
+        elif isinstance(object, dict):
+            if 'id' in object:
+                # 执行多条
+                if isinstance(object['id'], list):
+                    # todo 执行多条
+                    self.HIRB_multiple(object, d_param)
+                else:
+                    # 执行一条
+                    # 判断id是否溢出
+                    l_d_row = Sqlserver_PO_CHC.select("select * from %s" % (self.tableHIRB))
+                    i_records = len(l_d_row)
+                    if object['id'] > i_records or object['id'] <= 0:
+                        # 异常退出
+                        print("[Error] 输入的ID超出" + str(i_records) + "条范围！")
+                        sys.exit(0)
+                    else:
+                        # todo 执行一条
+                        self.HIRB_one(object, d_param)
+            elif 'IR_code' in object:
+                # 执行多条
+                if isinstance(object['IR_code'], list):
+                    self.HIRB_multiple(object, d_param)
+                else:
+                    # 执行一条
+                    self.HIRB_one(object, d_param)
+            else:
+                print("[Error] 参数中没有id或IR_code！")
+                sys.exit(0)
 
-        # 健康干预规则
+        # 由于健康干预模块，需要返回结果
+        return self.WEIGHT_REPORT__ID
 
-        # 获取每行测试数据
-        l_d_row = Sqlserver_PO_CHC.select("select id, IR_code, conditions from %s" % (self.tableHIRB))
-        # print("l_d_row => ", l_d_row)
-        if varTestID == "all":
-            self._HIRB_All()
-        elif varTestID > len(l_d_row) or varTestID <= 0:
-            print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
-            sys.exit(0)
+    def _HIRB_one(self, l_d_row):
+        # _HIRB_one内部调用
+
+        d_tmp = {
+            'IR_code': l_d_row[0]['IR_code'],
+            'id': l_d_row[0]['id'],
+            'conditions': l_d_row[0]['conditions']
+        }
+        # 健康干预HIRB =>
+        # d_tmp = {'IR_code': 'TZ_STZB046', 'id': 59, 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)', 'IDCARD': '310101193012210813'}
+        s = self.tableCommon + str(d_tmp)
+        Color_PO.outColor([{"30": s}])
+
+        # 写入日志
+        Log_PO.logger.info(s)
+
+        # self.HIRB_conditions(d_tmp)
+        # todo 执行一条
+        self._HIRB_main(d_tmp)
+    def HIRB_one(self, d_, d_param):
+        # 执行一条
+        # d_ = {'id': 56}
+        # d_ = {'IR_code': 'TZ_STZB047'}
+        # d_ = {'id': 59, 'ER_code': 'TZ_STZB047'}
+
+        if "id" in d_:
+            # 获取数据
+            l_d_row = Sqlserver_PO_CHC.select(
+                "select id, conditions, IR_code from %s where id=%s" % (self.tableHIRB, d_['id']))
+            self._HIRB_one(l_d_row)
+        if 'IR_code' in d_:
+            # 获取数据
+            l_d_row = Sqlserver_PO_CHC.select(
+                "select id, conditions, IR_code from %s where IR_code='%s'" % (self.tableHIRB, d_['IR_code']))
+            self._HIRB_one(l_d_row)
+    def HIRB_area(self, l_, d_param):
+        # l_= [起始，步长]
+        # 执行多条(区间id)，如：{'id': [1, 3]} ,表示执行1，2，3 三条记录
+        # 执行多条(区间ER_code)，如：{'ER_code': ['TZ_STZB046', 'TZ_STZB047']}
+
+        # 执行多条(区间id)，如：{'id': [1, 3]} ,表示执行1，2，3 三条记录
+        id1 = l_[0]
+        step = l_[1]
+        id2 = id1 + step
+
+        l_d_row = Sqlserver_PO_CHC.select("select count(*) as qty from %s where id=%s" % (self.tableHIRB, id2))
+        if l_d_row[0]['qty'] != 0:
+            for id in list(range(id1, id2)):
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select id, conditions, IR_code from %s where id=%s" % (self.tableHIRB, id))
+                self._HIRB_one(l_d_row)
         else:
-            self._HIRB_ID(varTestID)
+            Color_PO.outColor([{"31": "[Error] 参数：[id起始，步长]，id起始 + 步长溢出!"}])
+            sys.exit(0)
+    def HIRB_multiple(self, d_, d_param):
+        # 执行多条id 或 IR_code
 
-    def _HIRB_All(self):
+        if 'IR_code' in d_:
+            for IR_code in d_['IR_code']:
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select id, conditions, IR_code from %s where IR_code='%s'" % (self.tableHIRB, IR_code))
+                self._HIRB_one(l_d_row)
+        if 'id' in d_:
+            # 判断id是否溢出
+            if d_['id'][0] < 1 or d_['id'][0] > d_['id'][1]:
+                print("[Error] 请输入正确的id区间!")
+                sys.exit(0)
+
+            for id in d_['id']:
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select id, conditions, IR_code from %s where id=%s" % (self.tableHIRB, id))
+                self._HIRB_one(l_d_row)
+
+    def HIRB_all(self):
         # 执行所有
-        d_param = {}
-        l_d_row = Sqlserver_PO_CHC.select("select id, IR_code, conditions from %s" % (self.tableHIRB))
-        for i, index in enumerate(l_d_row):
-            d_param['IR_code'] = l_d_row[i]['IR_code']
-            d_param['id'] = l_d_row[i]['id']
-            d_param['conditions'] = l_d_row[i]['conditions']
+        l_d_row = Sqlserver_PO_CHC.select("select IR_code, id, conditions from %s" % (self.tableHIRB))
+
+        for row in l_d_row:
+            d_param = {
+                'IR_code': row['ER_code'],
+                'id': row['id'],
+                'conditions': row['conditions'],
+            }
+
             s = self.tableCommon + str(d_param)
             Color_PO.outColor([{"35": s}])
             Log_PO.logger.info(s)
 
-            # todo 执行所有
+            # self.HIRB_conditions(d_param)
             self._HIRB_main(d_param)
+
+
+    # def HIRB(self, varTestID):
+    #     # 入口
+    #
+    #     # 获取每行测试数据
+    #     l_d_row = Sqlserver_PO_CHC.select("select id, IR_code, conditions from %s" % (self.tableHIRB))
+    #     # print("l_d_row => ", l_d_row)
+    #     if varTestID == "all":
+    #         self._HIRB_All()
+    #     elif varTestID > len(l_d_row) or varTestID <= 0:
+    #         print("[Error] 输入的ID超出" + str(len(l_d_row)) + "条范围")
+    #         sys.exit(0)
+    #     else:
+    #         self._HIRB_ID(varTestID)
+
+    # def _HIRB_All(self):
+    #     # 执行所有
+    #     d_param = {}
+    #     l_d_row = Sqlserver_PO_CHC.select("select id, IR_code, conditions from %s" % (self.tableHIRB))
+    #     for i, index in enumerate(l_d_row):
+    #         d_param['IR_code'] = l_d_row[i]['IR_code']
+    #         d_param['id'] = l_d_row[i]['id']
+    #         d_param['conditions'] = l_d_row[i]['conditions']
+    #         s = self.tableCommon + str(d_param)
+    #         Color_PO.outColor([{"35": s}])
+    #         Log_PO.logger.info(s)
+    #
+    #         # todo 执行所有
+    #         self._HIRB_main(d_param)
 
     def _HIRB_ID(self, varTestID):
         # 执行一条
@@ -442,6 +538,9 @@ class HirbPO():
                 # 如果是糖尿病，不是高血压
                 d_param_EFRB['disease'] = "糖尿病"
 
+        # if '性别' in l_d_conditions:
+        #     d_param_EFRB['sexCode'] =
+
         # print(323, d_param_EFRB)  # 339 {'disease': '高血压' }
 
         # # 遍历评估因素规则库编码，如 [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
@@ -486,11 +585,15 @@ class HirbPO():
 
         print(521, d_param_EFRB)  # {'sex': '女', 'categoryCode': 3, 'disease': '脑卒中'}
 
+        # 遍历l_conditions   jinhao
+        # ？？？
+        # ???
+        # 如果TZ_STZB开头，如果有TZ_RQFL001，如果有
+
         # 获取 TZ_STZB开头的key
         # l_d_conditions
         # l_matching_keys = [key for key in l_d_conditions[0] if 'TZ_STZB' in key]
         l_matching_keys = [key for item in l_d_conditions for key in item.keys() if key.startswith('TZ_STZB')]
-
 
         print(515, l_matching_keys) # ['TZ_STZB001']
         if l_matching_keys != []:
@@ -507,40 +610,47 @@ class HirbPO():
 
                 # 跑评估因素规则库
                 WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
-
             else:
-
                 for ER_code in l_matching_keys:
                     l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, ER_code))
                     d_1 = {}
                     d_1['table'] = self.tableEFRB
                     d_1['id'] = l_1[0]['id']
                     d_1.update(d_param_EFRB)
-
-                    print(542, d_1)  # {'table': self.tableEFRB, 'ID': 43, 'categoryCode': 100, 'disease': '脑卒中', 'sex': '男'}
-
+                    # print(542, d_1)  # {'table': 'a_weightAssessmentRule_EFRB', 'id': 3}
                     # 跑评估因素规则库
                     WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
 
-                # print("warning, 匹配到多个值4：", l_matching_keys)
-                # sys.exit(0)
 
-        # else:
-        #     # # 匹配人群分类
-        #     l_matching_keys = [key for key in d_ if 'TZ_RQFL' in key]
-        #     if l_matching_keys != []:
-        #         l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
-        #         d_1 = {}
-        #         d_1['table'] = self.tableEFRB
-        #         if len(l_matching_keys) == 1:
-        #             # print(l_1[0]['ID'], d_param)
-        #             d_1['id'] = l_1[0]['id']
-        #             d_1.update(d_param_EFRB)
-        #
-        #             Efrb_PO.EFRB(d_1['id'],d_1)
-        #         else:
-        #             print("warning, 匹配到多个值5：", l_matching_keys)
-        #             sys.exit(0)
+
+        # 获取 TZ_RQFL开头的key,匹配人群分类
+
+        # l_matching_keys = [key for key in l_d_conditions[0] if 'TZ_STZB' in key]
+        l_matching_keys = [key for item in l_d_conditions for key in item.keys() if key.startswith('TZ_RQFL')]
+        # #
+        # l_matching_keys = [key for key in d_ if 'TZ_RQFL' in key]
+        if l_matching_keys != []:
+            l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, l_matching_keys[0]))
+            d_1 = {}
+            d_1['table'] = self.tableEFRB
+            if len(l_matching_keys) == 1:
+                # print(l_1[0]['ID'], d_param)
+                d_1['id'] = l_1[0]['id']
+                d_1.update(d_param_EFRB)
+
+                # Efrb_PO.EFRB(d_1['id'],d_1)
+                WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
+
+            else:
+                for ER_code in l_matching_keys:
+                    l_1 = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, ER_code))
+                    d_1 = {}
+                    d_1['table'] = self.tableEFRB
+                    d_1['id'] = l_1[0]['id']
+                    d_1.update(d_param_EFRB)
+                    # print(542, d_1)  # {'table': 'a_weightAssessmentRule_EFRB', 'id': 3}
+                    # 跑评估因素规则库
+                    WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
 
         # 检查是否命中IR_code
         sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (WEIGHT_REPORT__ID)
@@ -579,9 +689,10 @@ class HirbPO():
         d_1 = {}
         # d_1['表'] = self.tableHIRB
         # d_1['表注释'] = self.tableCommon
-
-        if sum == len(l_d_conditions):
+        # print(678, sum,len(l_d_conditions))
+        # if sum == len(l_d_conditions):
         # if sum == len(d_param['l_d_conditions']):
+        if d_result['result'] =='ok':
             Sqlserver_PO_CHC.execute("update %s set result = 'ok', updateDate = GETDATE()  where id = %s" % (self.tableHIRB, d_param['id'] ))
             d_1['result'] = 'ok'
             d_1['IR_code'] = d_param['IR_code']

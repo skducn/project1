@@ -10,36 +10,41 @@
 # pip install petl
 # pip install sqlalchemy
 #***************************************************************
-
 from HirbPO import *
 Hirb_PO = HirbPO()
-
 
 # todo 步骤1, excel导入db
 # Hirb_PO.excel2db_HIRB()
 
 
-# todo 步骤2, 执行健康干预
-# 2.1 测试所有
-# Hirb_PO.HIRB("all")  # 测试所有
-
-# 2.2 测试单行
-Hirb_PO.HIRB(1)
-# Hirb_PO.HIRB(40)
-# Hirb_PO.HIRB(11)
-# Hirb_PO.HIRB(113)
-# Hirb_PO.HIRB(114)
-# Hirb_PO.HIRB(115)
-# Hirb_PO.HIRB(116)
-# Hirb_PO.HIRB(97)
-# Hirb_PO.HIRB(108)
-# Hirb_PO.HIRB(101)
+# todo 执行所有
+# Hirb_PO.HIRB()
 
 
+# todo 执行单条
+# Hirb_PO.HIRB({'id': 106})
+Hirb_PO.HIRB({'IR_code': 'TZ_YD049'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_AGE003'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_AGE004'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_STZB022'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_RQFL004'})
+# Hirb_PO.HIRB({'id': 115, 'IR_code': 'TZ_YD054'})
 
 
+# todo 执行多条
+# Hirb_PO.HIRB({'id': [2, 4]})  # 测试 51 和 59，2条规则
+# Hirb_PO.HIRB({'IR_code': ['TZ_YS052', 'TZ_YS053']})  # 测试 TZ_STZB046，TZ_STZB048 ， 2条规则
+# Hirb_PO.HIRB({'id': [1, 3], 'IR_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB047，id=1,3 ，4条规则
 
 
+# todo 执行连续多条（id区间，EFRB([起始，步长])） ？？？
+# Hirb_PO.HIRB([105, 3])  # 测试 4 到 9， 连续5条规则
+# Hirb_PO.HIRB([53, 5])  # 测试 4 到 9， 连续5条规则
+
+
+# todo 有错误,待验证
+# Hirb_PO.HIRB({'id': 115, 'IR_code': 'TZ_YD054'})
+# Hirb_PO.HIRB({'id': 105})
 
 
 

@@ -1286,6 +1286,7 @@ class EfrbPO():
     def EFRB_i_disease_category(self, d_param):
         # 跑接口 - 疾病或人群分类
 
+        print(1289, d_param)
         d_tmp = {}
 
         l_d_row = Sqlserver_PO_CHC.select("select ER_code, category, categoryCode from %s where id= %s" % (self.tableEFRB, d_param['id']))
