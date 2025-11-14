@@ -32,8 +32,8 @@ Bmi_PO = BmiPO()
 from BmiAgePO import *
 BmiAge_PO = BmiAgePO()
 
-from BmiAgeSexPO3 import *
-BmiAgeSex_PO = BmiAgeSexPO()
+from AgeBmiSexPO import *
+AgeBmiSex_PO = AgeBmiSexPO()
 
 from PO.ColorPO import *
 Color_PO = ColorPO()
@@ -48,28 +48,14 @@ class HirbPO():
     def __init__(self):
         self.tableEFRB = Configparser_PO.DB("tableEFRB")
         self.tableHIRB = Configparser_PO.DB("tableHIRB")
-        self.tableCommon = '健康干预规则库HIRB'
-        # self.WEIGHT_REPORT__IDCARD = Configparser_PO.FILE("testIdcard")
-        #
-        # # 判断QYYH中是否存在此身份证
-        # isSFZH__QYYH = Sqlserver_PO_CHC.isRecord("QYYH", "SFZH", self.WEIGHT_REPORT__IDCARD)
-        # # 判断WEIGHT_REPORT中是否存在此身份证
-        # isID_CARD__WEIGHT_REPORT = Sqlserver_PO_CHC.isRecord("WEIGHT_REPORT", "ID_CARD", self.WEIGHT_REPORT__IDCARD)
-        # if isSFZH__QYYH != 1 or isID_CARD__WEIGHT_REPORT != 1:
-        #     s = f'error, 身份证：{Configparser_PO.FILE("testIdcard")} 不存在!'
-        #     Color_PO.outColor([{"35": s}])
-        #     sys.exit(0)
-        #
-        # # 获取ID
-        # l_d_ID = Sqlserver_PO_CHC.select(
-        #     "select ID from WEIGHT_REPORT where ID_CARD = '%s'" % (self.WEIGHT_REPORT__IDCARD))
-        # # print("self.WEIGHT_REPORT__ID", l_d_ID[0]['ID'])  # 1644
-        # self.WEIGHT_REPORT__ID = l_d_ID[0]['ID']
+        self.tableCommon = '健康干预HIRB => '
 
         # 检查身份证是否存在, WEIGHT_REPORT(体重报告记录表)
         # 和QYYH中都必须要有此身份证，且在WEIGHT_REPORT表中获取ID
         self.IDCARD, self.WEIGHT_REPORT__ID = Efrb_PO.getIdcard()
-
+        # s = "{'QYYH__SFZH': " + str(self.IDCARD) + ", 'WEIGHT_REPORT__ID_CARD': " + str(self.IDCARD) + ", 'WEIGHT_REPORT__ID' : " + str(self.WEIGHT_REPORT__ID) + "}"
+        # Color_PO.outColor([{"35": s}])
+        Color_PO.outColor([{"30": "QYYH__SFZH =>"}, {"35": self.IDCARD}, {"30": ", WEIGHT_REPORT__ID =>"}, {"35": self.WEIGHT_REPORT__ID}, ])
 
     def convert_conditions(self, conditions):
         # 列表转字符串
@@ -216,40 +202,32 @@ class HirbPO():
             self._HIRB_ID(varTestID)
 
     def _HIRB_All(self):
-
-        # 获取每行测试数据
+        # 执行所有
+        d_param = {}
         l_d_row = Sqlserver_PO_CHC.select("select id, IR_code, conditions from %s" % (self.tableHIRB))
-        # print("l_d_row => ", l_d_row)
-
         for i, index in enumerate(l_d_row):
-            d_param = {}
-
-            d_param['表'] = self.tableHIRB
-            d_param['表注释'] = self.tableCommon
+            d_param['IR_code'] = l_d_row[i]['IR_code']
             d_param['id'] = l_d_row[i]['id']
             d_param['conditions'] = l_d_row[i]['conditions']
-            d_param['IR_code'] = l_d_row[i]['IR_code']
-            
-            s = "测试项 => " + str(d_param)
+            s = self.tableCommon + str(d_param)
             Color_PO.outColor([{"35": s}])
             Log_PO.logger.info(s)
 
+            # todo 执行所有
             self._HIRB_main(d_param)
 
     def _HIRB_ID(self, varTestID):
-
-        # 测试一条规则
+        # 执行一条
         d_param = {}
         l_d_row = Sqlserver_PO_CHC.select("select IR_code, conditions from %s where id =%s" % (self.tableHIRB, varTestID))
         d_param['IR_code'] = l_d_row[0]['IR_code']
         d_param['id'] = varTestID
         d_param['conditions'] = l_d_row[0]['conditions']
-        d_param['IDCARD'] = self.IDCARD
-
-        s = "健康干预规则库HIRB(a_weightAssessmentRule_HIRB) => " + str(d_param)
+        s = self.tableCommon + str(d_param)
         Color_PO.outColor([{"35": s}])
         Log_PO.logger.info(s)
 
+        # todo 执行一条
         self._HIRB_main(d_param)
 
     def _HIRB_main(self, d_param):
@@ -336,7 +314,7 @@ class HirbPO():
                 # d_1['table'] = self.tableEFRB
                 d_1['id'] = l_1[0]['id']
                 d_1.update(d_param_EFRB)
-                print(339, 'a_weightAssessmentRule_EFRB => ', d_1)  # {'id': 1, 'disease': '无'}
+                # print(339, 'a_weightAssessmentRule_EFRB =>', d_1)  # {'id': 1, 'disease': '无'}
 
                 # 跑评估因素规则库
                 WEIGHT_REPORT__ID = Efrb_PO.EFRB({'id': d_1['id']}, d_1)
@@ -399,21 +377,18 @@ class HirbPO():
             d_1['result'] = "ok"
             d_1['IR_code'] = d_param['IR_code']
             d_1['id'] = d_param['id']
-            d_1.update(d_tmp)
-            s = "健康干预规则库HIRB => " + str(d_1)
+            # d_1.update(d_tmp)
+            s = self.tableCommon + str(d_1)
             Color_PO.outColor([{"32": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC.execute("update %s set result = 'ok', updateDate = GETDATE()  where id = %s" % (self.tableHIRB, d_param['id'] ))
         else:
-            # print("预期值:", d_tmp['预期值'])
-            # print("实际值:", d_tmp['实际值'])
             d_1['result'] = "error"
             d_1['IR_code'] = d_param['IR_code']
             d_1['id'] = d_param['id']
             d_1['IDCARD'] = self.IDCARD
             d_1.update(d_tmp)
-            s = "健康干预规则库HIRB => " + str(d_1)
-            # s = "结果HIRB => {id: " + str(d_param['id'] ) + "} => error"
+            s = self.tableCommon + str(d_1)
             Color_PO.outColor([{"31": s}])
             Log_PO.logger.info(s)
             Sqlserver_PO_CHC.execute("update %s set result = 'error', updateDate = GETDATE() where id = %s" % (self.tableHIRB, d_param['id'] ))
@@ -612,7 +587,7 @@ class HirbPO():
             d_1['IR_code'] = d_param['IR_code']
             d_1['id'] = d_param['id']
             d_1.update(d_tmp)
-            Color_PO.outColor([{"32": "健康干预规则库HIRB => " + str(d_1)}])
+            Color_PO.outColor([{"32": self.tableCommon + str(d_1)}])
         else:
             Sqlserver_PO_CHC.execute("update %s set result = 'error', updateDate = GETDATE() where id = %s" % (self.tableHIRB, d_param['id'] ))
             d_1['result'] = 'error'
@@ -620,7 +595,7 @@ class HirbPO():
             d_1['id'] = d_param['id']
             d_1['IDCARD'] = self.IDCARD
             d_1.update(d_tmp)
-            Color_PO.outColor([{"31": "健康干预规则库HIRB => " + str(d_1)}])
+            Color_PO.outColor([{"31": self.tableCommon + str(d_1)}])
         Log_PO.logger.info(d_1)
 
 

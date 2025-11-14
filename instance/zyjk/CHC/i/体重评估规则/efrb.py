@@ -25,10 +25,30 @@ Efrb_PO = EfrbPO()
 
 # todo 步骤2, 测试规则库
 # 2.1 测试所有
-# Efrb_PO.EFRB({'id': 'all'})
+# Efrb_PO.EFRB()
 
 
-# todo 待测
+# todo 测试单条
+# Efrb_PO.EFRB({'id': 60})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB011'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_AGE003'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_AGE004'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB022'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_RQFL004'})
+# Efrb_PO.EFRB({'id': 50, 'ER_code': 'TZ_STZB047'})  # 测试id=59 和 ER_code=TZ_STZB047 两条记录
+
+# todo 测试多条
+# Efrb_PO.EFRB({'id': [3, 59]})  # 测试 51 和 59，2条规则
+# Efrb_PO.EFRB({'ER_code': ['TZ_STZB046', 'TZ_STZB048']})  # 测试 TZ_STZB046，TZ_STZB048 ， 2条规则
+# Efrb_PO.EFRB({'id': [1, 3], 'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB047，id=1,3 ，4条规则
+
+# todo 测试连续id区间，[起始，步长]
+# Efrb_PO.EFRB([49, 3])  # 测试 4 到 9， 连续5条规则
+# Efrb_PO.EFRB([53, 5])  # 测试 4 到 9， 连续5条规则
+
+
+
+# todo 有错误
 # Efrb_PO.EFRB({'ER_code': [
 #     "TZ_STZB007",
 #     "TZ_STZB008",
@@ -39,33 +59,6 @@ Efrb_PO = EfrbPO()
 #     "TZ_AGE003",
 #     "TZ_AGE004"
 # ]})
-
-
-# todo 测试单条
-# Efrb_PO.EFRB({'id': 1})
-# Efrb_PO.EFRB({'id': 11})
-# Efrb_PO.EFRB({'id': 19})
-# Efrb_PO.EFRB({'id': 55}) # TZ_STZB044
-# Efrb_PO.EFRB({'id': 56}) # TZ_STZB045
-Efrb_PO.EFRB({'ER_code': 'TZ_STZB040'})
-# Efrb_PO.EFRB({'ER_code': 'TZ_STZB009'})
-# Efrb_PO.EFRB({'ER_code': 'TZ_STZB017'})
-# Efrb_PO.EFRB({'id': 50, 'ER_code': 'TZ_STZB047'})  # 测试id=59 和 ER_code=TZ_STZB047 两条记录
-
-
-
-# todo 测试多条
-# Efrb_PO.EFRB({'id': [51, 59]})  # 测试 51 和 59，2条规则
-# Efrb_PO.EFRB({'ER_code': ['TZ_STZB046', 'TZ_STZB048']})  # 测试 TZ_STZB046，TZ_STZB048 ， 2条规则
-# Efrb_PO.EFRB({'id': [1, 3], 'ER_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB047，id=1,3 ，4条规则
-
-
-
-# todo 测试连续id区间，[起始，步长]
-# Efrb_PO.EFRB([4, 5])  # 测试 4 到 9， 连续5条规则
-
-
-
 
 
 
