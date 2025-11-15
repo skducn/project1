@@ -24,7 +24,7 @@ Efrb_PO = EfrbPO()
 
 
 # todo 执行所有
-Efrb_PO.EFRB()
+# Efrb_PO.EFRB()
 
 
 # todo 执行单条

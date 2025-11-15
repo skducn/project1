@@ -59,6 +59,8 @@ class EfrbPO():
         # 检查身份证是否存在, WEIGHT_REPORT(体重报告记录表)
         # 和QYYH中都必须要有此身份证，且在WEIGHT_REPORT表中获取ID
         self.IDCARD, self.WEIGHT_REPORT__ID = self.getIdcard()
+        # 返回结果是 ok 或 error，用于健康干预中判断
+        self.result = ''
 
     def getIdcard(self):
         # 自动获取身份证号，从QYYH和WEIGHT_REPORT中匹配相同身份证，同时获取WEIGHT_REPORT（ID）
@@ -186,7 +188,7 @@ class EfrbPO():
                 sys.exit(0)
 
         # 由于健康干预模块，需要返回结果
-        return self.WEIGHT_REPORT__ID
+        return self.result
 
     def _EFRB_one(self, l_d_row, d_param):
         # _EFRB_one内部调用
@@ -1190,18 +1192,14 @@ class EfrbPO():
 
         # 获取规则信息
         l_d_row = Sqlserver_PO_CHC.select("select categoryCode, ER_code from %s where id= %s" %(self.tableEFRB, d_param['id']))
-        # d_tmp['ER_code'] = l_d_row[0]['ER_code']
-        # d_tmp['身份证'] = Configparser_PO.FILE("testIdcard")
-        # d_tmp['category'] = l_d_row[0]['category']
-        # d_tmp['categoryCode'] = l_d_row[0]['categoryCode']
-        # d_tmp['categoryType'] = l_d_row[0]['categoryType']
 
-        # categoryCode = d_param.get('categoryCode', '')
+        # 人群分类编码，如果d_param中没有categoryCode，则从数据库中获取
+        categoryCode = d_param.get('categoryCode', l_d_row[0]['categoryCode'])
 
-        # 疾病
+        # 疾病，如果d_param中没有disease，则默认为空
         disease = d_param.get('disease', '')
 
-        # BMI
+        # BMI，如果d_cases_satisfied没有BMI，则默认0
         varBMI = d_cases_satisfied.get('BMI', 0)
 
         # 年龄
@@ -1247,7 +1245,7 @@ class EfrbPO():
                 varAgeMonth) + ','
                 '\\"assessRuleRecord\\":[{\\"assessId\\":0,\\"createDate\\":\\"\\",\\"id\\":0,\\"riskFactor\\":\\"\\",\\"riskFactorRuleCodes\\":[],\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"suggestedValue\\":\\"\\",\\"weightReportId\\":0}],'
                 '\\"bmi\\":' + str(varBMI) + ','
-                '\\"categoryCode\\":\\"' + str(l_d_row[0]['categoryCode']) + '\\",'
+                '\\"categoryCode\\":\\"' + str(categoryCode) + '\\",'
                 '\\"disease\\":\\"' + str(disease) + '\\",'
                 '\\"enableRule\\":[{\\"description\\":\\"\\",\\"diseaseCode\\":\\"\\",\\"diseaseName\\":\\"\\",\\"enable\\":0,\\"id\\":0,\\"interveneType\\":0,\\"judgment\\":\\"\\",\\"orgCode\\":\\"\\",\\"ruleCode\\":\\"\\",\\"ruleGroup\\":\\"\\",\\"ruleName\\":\\"\\",\\"serialNumber\\":0}],'
                 '\\"height\\":175,'
@@ -1286,12 +1284,22 @@ class EfrbPO():
     def EFRB_i_disease_category(self, d_param):
         # 跑接口 - 疾病或人群分类
 
-        print(1289, d_param)
+        # print(1289, d_param)
         d_tmp = {}
 
         l_d_row = Sqlserver_PO_CHC.select("select ER_code, category, categoryCode from %s where id= %s" % (self.tableEFRB, d_param['id']))
         categoryCode = l_d_row[0]['categoryCode']
         category = l_d_row[0]['category']
+
+        # 用于来自健康干预的参数
+        if '性别' in d_param:
+            if d_param['性别'] == '男':
+                varSex = "男"
+                varSexCode = '1'
+            else:
+                varSex = "女"
+                varSexCode = '2'
+
 
         if category == '普通人群':
             varAge = 30
@@ -1336,8 +1344,8 @@ class EfrbPO():
                 '\\"height\\":175,'
                 '\\"idCard\\":\\"' + str(self.IDCARD) + '\\",'
                 '\\"orgCode\\":\\"\\", \\"orgName\\":\\"\\",'
-                '\\"sex\\":\\"女\\",'
-                '\\"sexCode\\":2,'
+                '\\"sex\\":\\"' + str(varSex) + '\\",'
+                '\\"sexCode\\":' + str(varSexCode) + ','
                 '\\"weight\\":55,'
                 '\\"weightReportId\\":' + str(self.WEIGHT_REPORT__ID) + '}"')
 
@@ -1403,6 +1411,7 @@ class EfrbPO():
                 "update %s set result = 'ok', updateDate = GETDATE(), totalCase=%s where id = %s" %
                 (self.tableEFRB, d_param['caseTotal'], d_param['id'])
             )
+            self.result ="ok"
         else:
             d_result = {'result': 'error', 'ER_code': d_param['ER_code'], 'id': d_param['id']}
             s = self.tableCommon + str(d_result)
@@ -1421,3 +1430,5 @@ class EfrbPO():
                     "update %s set result = 'error', updateDate = GETDATE(), totalCase=%s where id = %s" %
                     (self.tableEFRB, d_param['caseTotal'], d_param['id'])
                 )
+            self.result ="error"
+
