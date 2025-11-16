@@ -1299,6 +1299,9 @@ class EfrbPO():
             else:
                 varSex = "女"
                 varSexCode = '2'
+        elif d_param['category'] == '孕妇' or d_param['category'] == '产妇':
+            varSex = "女"
+            varSexCode = '30'
 
 
         if category == '普通人群':
