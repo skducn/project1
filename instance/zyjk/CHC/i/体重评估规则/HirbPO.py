@@ -270,7 +270,7 @@ class HirbPO():
 
         for row in l_d_row:
             d_param = {
-                'IR_code': row['ER_code'],
+                'IR_code': row['IR_code'],
                 'id': row['id'],
                 'conditions': row['conditions'],
             }
@@ -765,7 +765,7 @@ class HirbPO():
 
 
         if "ok" in l_count:
-            Sqlserver_PO_CHC.execute("update %s set result = 'ok', updateDate = GETDATE()  where id = %s" % (self.tableHIRB, d_param['id'] ))
+            Sqlserver_PO_CHC.execute("update %s set result = 'ok', updateDate = GETDATE(), log=Null where id = %s" % (self.tableHIRB, d_param['id'] ))
             Color_PO.outColor([{"32": self.tableCommon + str(d_result)}])
 
         else:

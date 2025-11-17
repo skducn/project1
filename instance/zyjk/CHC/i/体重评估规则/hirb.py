@@ -22,7 +22,7 @@ Hirb_PO = HirbPO()
 
 
 # todo 执行单条
-# Hirb_PO.HIRB({'id': 114})
+Hirb_PO.HIRB({'id': 106})
 # Hirb_PO.HIRB({'IR_code': 'TZ_SRL001'})
 # Hirb_PO.HIRB({'IR_code': 'TZ_YD050'})
 # Hirb_PO.HIRB({'IR_code': 'TZ_YD049'})
@@ -34,7 +34,7 @@ Hirb_PO = HirbPO()
 
 
 # todo 执行多条
-Hirb_PO.HIRB({'id': [102, 114]})  # 测试 51 和 59，2条规则
+# Hirb_PO.HIRB({'id': [102, 114]})  # 测试 51 和 59，2条规则
 # Hirb_PO.HIRB({'IR_code': ['TZ_YS052', 'TZ_YS053']})  # 测试 TZ_STZB046，TZ_STZB048 ， 2条规则
 # Hirb_PO.HIRB({'id': [1, 3], 'IR_code': ['TZ_STZB045', 'TZ_STZB047']})  # 测试 TZ_STZB045，TZ_STZB047，id=1,3 ，4条规则
 
