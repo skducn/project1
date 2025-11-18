@@ -207,7 +207,6 @@ class BmiAgeSexPO():
 
         return test_points
 
-
     def format_output_int(self, data):
         result = []
         for item in data:
@@ -331,7 +330,6 @@ class BmiAgeSexPO():
             'satisfied': self.format_output_float(valid),
             'notSatisfied': self.format_output_float(invalid)
         }
-
 
     def main2(self, conditions):
         # 可配置的条件列表

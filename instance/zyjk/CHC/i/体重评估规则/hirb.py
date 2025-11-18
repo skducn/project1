@@ -22,9 +22,12 @@ Hirb_PO = HirbPO()
 
 
 # todo 执行单条
-Hirb_PO.HIRB({'id': 106})
-# Hirb_PO.HIRB({'IR_code': 'TZ_SRL001'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_YD050'})
+# Hirb_PO.HIRB({'id': 106})
+# Hirb_PO.HIRB({'IR_code': 'TZ_SRL003'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_SRL004'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_SRL005'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_YD053'})
+# Hirb_PO.HIRB({'IR_code': 'TZ_YD054'})
 # Hirb_PO.HIRB({'IR_code': 'TZ_YD049'})
 # Hirb_PO.HIRB({'IR_code': 'TZ_AGE003'})
 # Hirb_PO.HIRB({'IR_code': 'TZ_AGE004'})

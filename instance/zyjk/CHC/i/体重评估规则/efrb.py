@@ -28,9 +28,13 @@ Efrb_PO = EfrbPO()
 
 
 # todo 执行单条
-Efrb_PO.EFRB({'id': 60})
-# Efrb_PO.EFRB({'ER_code': 'TZ_STZB011'})
+# Efrb_PO.EFRB({'id': 60})
+# Efrb_PO.EFRB({'ER_code': 'TZ_AGE002'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_AGE003'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_AGE004'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB007'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB008'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB009'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_AGE004'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_STZB022'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_RQFL004'})

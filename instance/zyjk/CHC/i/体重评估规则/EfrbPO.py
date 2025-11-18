@@ -763,16 +763,12 @@ class EfrbPO():
                     # 儿童
                     d_cases_n = self.__generate_unmatched_data_children(l_l_rule2)  # 生成反向不匹配数据
                     l_d_case = d_cases_n['notSatisfied']
-                    # # 特殊处理，如果儿童且肥胖，不生成等于0或大于84的值。
-                    # if weightStatusCode == 4:
-                    #     l_d_case = [d for d in l_d_case if d['年龄'] >= 1 and d['年龄'] < 85]
+
                 elif categoryCode == 2:
                     # 学生
                     d_cases_n = self.__generate_unmatched_data_student(l_l_rule2)  # 生成反向不匹配数据
                     l_d_case = d_cases_n['notSatisfied']
-                    # # 特殊处理，如果是学生且肥胖，不生成小于7的值。
-                    # if weightStatusCode == 4:
-                    #     l_d_case = [d for d in l_d_case if d['年龄'] >= 7]
+
 
             if Configparser_PO.SWITCH("only_print_error") == "off":
                 print("条件 => " + str(l_l_rule2))
@@ -962,31 +958,7 @@ class EfrbPO():
         d_param['l_count'] = l_count
         d_param['caseTotal'] = caseTotal
         self.EFRB_result(d_param)
-    # def _convert_conditions(self, conditions):
-    #     """列表转字符串"""
-    #     valid_operators = ['=', '>', '<', '>=', '<=']
-    #     result = []
-    #
-    #     for condition in conditions:
-    #         operator_pos = -1
-    #         current_op = None
-    #         for op in sorted(valid_operators, key=len, reverse=True):
-    #             pos = condition.find(op)
-    #             if pos != -1:
-    #                 operator_pos = pos
-    #                 current_op = op
-    #                 break
-    #
-    #         if operator_pos == -1:
-    #             continue  # 忽略无法解析的条件
-    #
-    #         left = condition[:operator_pos].strip()
-    #         right = condition[operator_pos + len(current_op):].strip()
-    #
-    #         if left and right:
-    #             result.append(f"{left}{current_op}{right}")
-    #
-    #     return " and ".join(result)
+
 
     def _convert_conditions(self, conditions):
         """列表转字符串"""

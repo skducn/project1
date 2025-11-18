@@ -549,8 +549,8 @@ class ChcPO():
         # l_interconvert_conditions = ['年龄>=73', '年龄<79', 'BMI>=17.1', '性别=男']
         for i in l_interconvert_conditions:
             if ('>=' in i or '<=' in i or '=' in i) and ('年龄' in i or 'BMI' in i or '性别' in i):
-                return BmiAgeSex_PO.main(l_interconvert_conditions)
-        return BmiAgeSex_PO.main(l_interconvert_conditions)
+                return BmiAgeSex_PO.float(l_interconvert_conditions)
+        return BmiAgeSex_PO.float(l_interconvert_conditions)
     def _format_bmi_age_gender(self, l_one_rule):
         """格式化BMI，年龄，性别"""
         # l_value = ['7<=年龄<8', '13.9>BMI', '性别=男']
@@ -644,19 +644,18 @@ class ChcPO():
                 # 儿童和学生，需要处理年龄和bmi
                 # 生成反向不匹配数据
                 if categoryCode == 1:
-                    # 儿童
+                    # 儿童（月龄0-84）
                     d_cases_n = self._generate_unmatched_data_children(l_l_rule2)
                     l_d_case = d_cases_n['notSatisfied']
-                    # 特殊处理，如果儿童且肥胖，不生成等于0或大于84的值。
-                    if weightStatusCode == 4:
-                        l_d_case = [d for d in l_d_case if d['年龄'] >= 1 and d['年龄'] < 85]
+                    # 业务逻辑要求，儿童的反向值不能是 小于1个月 或 大于84岁 值
+                    l_d_case = [d for d in l_d_case if d['年龄'] >= 1 and d['年龄'] < 85]
                 elif categoryCode == 2:
-                    # 学生
+                    # 学生 （年龄大于等于7且小于等于18岁）
                     d_cases_n = self._generate_unmatched_data_student(l_l_rule2)
                     l_d_case = d_cases_n['notSatisfied']
-                    # 特殊处理，如果是学生且肥胖，不生成小于7的值。
-                    if weightStatusCode == 4:
-                        l_d_case = [d for d in l_d_case if d['年龄'] >= 7]
+                    # 业务逻辑要求，学生的反向值不能是 小于7岁 或 大于18岁 值
+                    l_d_case = [d for d in l_d_case if d['年龄'] >= 7 and d['年龄'] < 18]
+                    # print(660, l_d_case)
 
             if Configparser_PO.SWITCH("only_print_error") == "off":
                 print("全组 => " + str(l_l_rule2))
@@ -669,7 +668,7 @@ class ChcPO():
 
         # 写DB
         if l_log == []:
-            Sqlserver_PO.execute("update %s set result = '%s', updateDate = GETDATE() where id = %s" %(self.table, 'ok', id))
+            Sqlserver_PO.execute("update %s set result = '%s', updateDate = GETDATE(), log=Null where id = %s" %(self.table, 'ok', id))
         else:
             # 将日志列表转换为JSON字符串存储
             log_json = json.dumps(l_log, ensure_ascii=False)

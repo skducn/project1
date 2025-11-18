@@ -12,12 +12,10 @@
 import sys
 import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-
 import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl.styles.stylesheet")
 
 from PO.OpenpyxlPO import *
-
 
 from PO.TimePO import *
 Time_PO = TimePO()
@@ -27,20 +25,19 @@ Color_PO = ColorPO()
 
 
 Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/stock/sz/股票行情.xlsx")
-
 row, col = (Openpyxl_PO.getTotalRowCol())  # [2917, 12]
-# print(Openpyxl_PO.getOneRow(2))
-# l_ = Openpyxl_PO.getOneRow(2)
 # # 交易日期	证券代码	证券简称	前收	开盘	最高	最低	今收	涨跌幅（%）	成交量(万股)	成交金额(万元)	市盈率
 # # ['2025-11-17', '000001', '平安银行', '11.75', '11.75', '11.75', '11.62', '11.67', '-0.68', '9,952.32', '116,141.62', '5.44']
-# # 条件是涨跌幅（%） >0,
-# # (最高价-（最高价-最低价）* 0。35) > 收盘价  and # 收盘价 > (最高价-（最高价-最低价）*0。5)
-# if l_[8] > 0 :
-#     if ((l_[5] - (l_[5] - l_[6])*0.35) > l_[7]) and (l_[7] > (l_[5]-(l_[5] - l_[6])*0.5)):
-#         print(l_[1],l_[2],l_[9])
 
-for i in range(2,row):
-    # print(Openpyxl_PO.getOneRow(i))
+# todo 条件：
+# 1，条件是涨跌幅（%）>0, int(float(l_[8])) > 0
+# 2，上影线战实体0.35，(最高价-（最高价-最低价）* 0.35) > 收盘价 , ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7]))
+# 3，(收盘价 > (最高价 -（最高价-最低价） * 0.5), (float(l_[7]) > (float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.5))
+# 4，下影线较短，最低价 > (开盘价 - 开盘价 * 0.01), float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01))
+# 5，价格，今收价格在区间[7,30] , float(l_[7]) < 30 and float(l_[7]) > 10:
+
+
+for i in range(2, row):
     l_ = Openpyxl_PO.getOneRow(i)
     if int(float(l_[8])) > 0:
         if ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7])) and\
@@ -65,6 +62,9 @@ for i in range(2,row):
 # 300293 蓝英装备 397.25
 # 300333 兆日科技 3,870.73
 # 300337 银邦股份 3,419.04
+
+
+
 # 300397 天和防务 7,564.15
 # 300465 高伟达 4,960.51
 # 300490 华自科技 6,220.38
