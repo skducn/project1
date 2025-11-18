@@ -40,14 +40,15 @@ Log_PO = LogPO(filename=Configparser_PO.DATA("logfile"), level="info")
 def run():
 
     # 1，打开页面，获取数据
-    Web_PO = WebPO("noChrome")
-    # Web_PO = WebPO("chrome")
+    # Web_PO = WebPO("noChrome")
+    Web_PO = WebPO("chrome")
     varUrl = "https://www.sse.com.cn/market/price/report/"
     Web_PO.openURL(varUrl)
     sleep(4)
 
     # 2，选择股票类型
-    Web_PO.clkByX("/html/body/div[8]/div/div[1]/div/div[3]/div[2]/div/button", 1)
+    Web_PO.clkByX("/html/body/div[9]/div/div[1]/div/div[3]/div[2]/div/button", 1)
+                 # /html/body/div[9]/div/div[1]/div/div[2]/div[2]/div/button
     Web_PO.clkByX("//div[@class='dropdown-menu show']/div/ul/li[2]")
     Web_PO.clkByX("//div[@class='pagination-box']/ul")
 
@@ -66,7 +67,7 @@ def run():
     # 4，获取page数量
     l_page = Web_PO.getTextByXs("//div[@class='pagination-box']/ul")
     page = int(l_page[0].split("\n")[7])
-    # print("【共", page, "页】")
+    print("【共", page, "页】")
     Log_PO.logger.info("【共" + str(page) + "页】")
 
 
@@ -75,8 +76,9 @@ def run():
 
     for i in range(page):
         # 5，获取第N页数据
-        Web_PO.setTextByX("/html/body/div[8]/div/div[2]/div/div[1]/div[2]/span[1]/input", i+1)
-        Web_PO.clkByX("/html/body/div[8]/div/div[2]/div/div[1]/div[2]/span[2]/a", 1)
+        Web_PO.setTextByX("/html/body/div[9]/div/div[2]/div/div[1]/div[2]/span[1]/input", i+1)
+                         # /html/body/div[9]/div/div[2]/div/div[1]/div[2]/span[1]/input
+        Web_PO.clkByX("/html/body/div[9]/div/div[2]/div/div[1]/div[2]/span[2]/a", 1)
         l_all = Web_PO.getTextByXs("//tr")
         # print(l_all)
         l_all.pop(0)
@@ -93,12 +95,13 @@ def run():
 
 if __name__ == "__main__":
 
-    try:
-        run()
-        os.system("open /Users/linghuchong/Downloads/51/Python/stock/sh")
-        os.system("python 2sh_save_json.py")
-
-    except Exception as e:
-        print(f"发生错误: {e}")
-        Log_PO.logger.error(f"发生错误: {e}")
+    run()
+    # try:
+    #
+    #     # os.system("open /Users/linghuchong/Downloads/51/Python/stock/sh")
+    #     # os.system("python 2sh_save_json.py")
+    #
+    # except Exception as e:
+    #     print(f"发生错误: {e}")
+    #     Log_PO.logger.error(f"发生错误: {e}")
 

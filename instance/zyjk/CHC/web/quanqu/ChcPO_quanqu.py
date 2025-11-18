@@ -44,13 +44,15 @@ sys.path.insert(0, project_dir)
 from ConfigparserPO import *
 Configparser_PO = ConfigparserPO('config.ini')
 
+# 添加等待时间确保页面加载完成
+import time
 
 class ChcPO_quanqu():
 
-    def __init__(self, varLogFile, varMenu='无log', varCookies='1genCookies.json'):
+    def __init__(self, varLogFile, varMenu='no_log', varCookies='1genCookies.json'):
 
         # 配置日志
-        if varMenu != '无log':
+        if varMenu != 'no_log':
             self.Web_PO = WebPO("chrome")
             if os.name == 'nt':
                 logging.basicConfig(filename=varLogFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
@@ -113,13 +115,55 @@ class ChcPO_quanqu():
                   '全区评估率': 'http://192.168.0.243:8010/#/dataStatistics/allAssessRate',
                   '社区评估率': 'http://192.168.0.243:8010/#/dataStatistics/communityAssessRate',
                   '档案首页': 'http://192.168.0.243:8010/#/HealthRecord/archiveIndex',
-                  '居民评估报告': 'http://192.168.0.243:8010/#/HealthManage/AssessReport'}
+                  '居民评估报告': 'http://192.168.0.243:8010/#/HealthManage/AssessReport',
+                  '西航港社区': 'http://192.168.0.243:8010/#/largeScreen/xhgsq'}
 
         if varMenu != '无log':
             self.Web_PO.opnLabel(d_menu[varMenu])
-            self.Web_PO.swhLabel(1)
+            # self.Web_PO.swhLabel(1)
+            self.Web_PO.swhLabelByLoc(1)
 
 
+    def getCenter(self):
+
+
+        # 确保页面完全加载
+        self.Web_PO.driver.execute_script("return document.readyState")
+        time.sleep(2)
+
+        # todo 辖区概况
+        # 左边区域，数据实时更新至， 独居老人数，失能老人数，孕产妇保健人数，儿童保健0-3岁，儿童保健0-6岁
+        varDiv = self.Web_PO.getTextByXs("//span")
+        print(varDiv)  # ['数据实时更新至', '2025-11-05', '独居老人数', '7,600', '失能老人数', '7,600', '孕产妇保健人数', '5,521', '儿童保健0-3岁', '3,215', '儿童保健0-6岁', '2,987',
+
+        # 中间区域， 楼栋，居委，家庭，学校，养老机构
+        varDiv = self.Web_PO.getTextByXs("//div[@class='icon_num']")
+        print(varDiv)  # ['3,488栋', '55家', '63,552个', '25所', '6家']
+
+        # 中间区域， 常住人口数
+        varDiv = self.Web_PO.getTextByXs("//div[@class='num_bg']")
+        print(varDiv)  # ['1', '6', '5', '1', '5', '9']
+
+        # 右边区域，医疗卫生机构
+        varDiv = self.Web_PO.getTextByXs("//div[@class='left-box box_r_1']")
+        print(varDiv)  # ['1', '6', '5', '1', '5', '9']
+
+        # todo 健康大脑
+        self.Web_PO.clkByX("//div[@class='btn-base btn2']")
+
+        # 左边区域，随访服务
+        varDiv = self.Web_PO.getTextByXs("//div[@class='olsMand_right']")
+        print(varDiv)  # ['慢病随访（次）\n2,458\n老年人体检（次）\n1,547\n独居老人随访（次）\n2,368\n失能老年人随访（次）\n2,659']
+
+        # 左边区域，住院诊疗，智能康复中心
+        varDiv = self.Web_PO.getTextByXs("//div[@class='box-content zyzl']")
+        print(varDiv)  # ['新入院人次\n当月人次\n1,779\n当周人次\n586\n当天人次\n123\n在院人数\n1,589\n剩余床位数\n3,582', '门诊康复\n当月人次\n1,523\n当周人次\n1,542\n当天人次\n520\n住院康复\n当月人次\n1,423\n当周人次\n2,548\n当天人次\n1,220\n剩余康复床位\n110']
+
+
+
+
+
+        # todo 健康画像
 
     def __handle_signal(self, signum, frame):
         # 定义信号处理函数
@@ -147,9 +191,9 @@ class ChcPO_quanqu():
         # self.Web_PO.setTextByX("//input[@placeholder='输入密码']", varPass)
         # self.Web_PO.clkByX("//button[@type='button']", 2)
 
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/input", varUser)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/input", varPass)
-        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/input", "1")
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[1]/div/div/div/div/input", varUser)
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[2]/div/div/div/div/input", varPass)
+        self.Web_PO.setTextByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[3]/div/div/div[1]/div/input", "1")
         self.Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[1]/div[2]/form/div[5]/button", 3)
 
         # d_ = self.Web_PO.getValueXpathByLabel("input", "placeholder")

@@ -5,8 +5,7 @@
 # Description: 获取当天上影线，放量，日周线（5穿21穿55），
 # 步骤：
 # 1，手工从深圳交易证券所下载每日数据源，深圳交易证券所 https://www.szse.cn/market/trend/index.html
-# 2，遍历数据，（最高价-最低价）* 0。65 < 收盘价
-# 3，输出。
+# /Users/linghuchong/Downloads/51/Python/stock/sz/
 # 备注： 获取历史成交量，需要下载历史数据源
 # *****************************************************************
 import sys
@@ -23,8 +22,12 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
+# 获取当天日期，如1118
+varDate = Time_PO.getMonth() + Time_PO.getDay()
+# print(varDate)
 
-Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/stock/sz/股票行情.xlsx")
+varPathFile = "/Users/linghuchong/Downloads/51/Python/stock/sz/股票行情" + str(varDate) + ".xlsx"
+Openpyxl_PO = OpenpyxlPO(varPathFile)
 row, col = (Openpyxl_PO.getTotalRowCol())  # [2917, 12]
 # # 交易日期	证券代码	证券简称	前收	开盘	最高	最低	今收	涨跌幅（%）	成交量(万股)	成交金额(万元)	市盈率
 # # ['2025-11-17', '000001', '平安银行', '11.75', '11.75', '11.75', '11.62', '11.67', '-0.68', '9,952.32', '116,141.62', '5.44']
@@ -36,15 +39,22 @@ row, col = (Openpyxl_PO.getTotalRowCol())  # [2917, 12]
 # 4，下影线较短，最低价 > (开盘价 - 开盘价 * 0.01), float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01))
 # 5，价格，今收价格在区间[7,30] , float(l_[7]) < 30 and float(l_[7]) > 10:
 
-
+s = ''
 for i in range(2, row):
     l_ = Openpyxl_PO.getOneRow(i)
     if int(float(l_[8])) > 0:
         if ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7])) and\
                 (float(l_[7]) > (float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.5)) and\
                 float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01)) and\
-                float(l_[7]) < 30 and float(l_[7]) > 10:
-            print(l_[1], l_[2], l_[9])
+                float(l_[7]) < 50 and float(l_[7]) > 10:
+            print(l_[1], l_[2])
+            s = l_[1] + "," + s
+print(s)
+
+# 打开文件并写入内容（w模式：覆盖原有内容，文件不存在则创建）
+varFile = "/Users/linghuchong/Desktop/stock/" + varDate + ".txt"
+with open(varFile, "w", encoding="utf-8") as f:
+    f.write(s)
 
 # 000158 常山北明 9,738.86
 # 000657 中钨高新 7,857.92

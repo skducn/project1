@@ -604,7 +604,7 @@ class WebPO(DomPO):
         # 1.3 通过位置切换标签页
         # self.swhLabel(0) # 0 = 激活第一个标签页 ， 1 = 激活第二个标签页 , 以此类推。
         l_handles = self.driver.window_handles
-        print(l_handles)
+        # print(l_handles)
         sleep(t)
         self.driver.switch_to.window(l_handles[varLoc])
 
