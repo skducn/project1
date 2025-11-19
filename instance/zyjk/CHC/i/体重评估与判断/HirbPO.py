@@ -1,0 +1,526 @@
+﻿# coding=utf-8
+#***************************************************************
+# Author     : John
+# Created on : 2025-5-9
+# Description: 体重管理1.0 - 健康干预 Health Intervention  Rule Base
+# 需求：体重管理1.18
+# 【腾讯文档】体重管理1.18规则自动化
+# https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
+
+# 数据源：weight10.xlsx - a_weight10_HIRB 导入数据库
+# 测试数据库表：CHC-5G - a_weight10_HIRB
+# 测试数据：CHC - WEIGHT_REPORT(体重报告记录表) - ID=2的记录
+# 比对规则：CHC-5G - T_ASSESS_RULE_RECORD
+
+# 警告如下：D:\dwp_backup\python study\GUI_wxpython\lib\site-packages\openpyxl\worksheet\_reader.py:312: UserWarning: Unknown extension is not supported and will be removed warn(msg)
+# 解决方法：
+import warnings
+warnings.simplefilter("ignore")
+#***************************************************************
+from ConfigparserPO import *
+Configparser_PO = ConfigparserPO('config.ini')
+
+from PO.SqlserverPO import *
+Sqlserver_PO_CHC = SqlserverPO(Configparser_PO.DB("host"), Configparser_PO.DB("user"), Configparser_PO.DB("password"), Configparser_PO.DB("database2"))
+
+from AgePO import *
+Age_PO = AgePO()
+
+from BmiPO import *
+Bmi_PO = BmiPO()
+
+from BmiAgePO import *
+BmiAge_PO = BmiAgePO()
+
+from AgeBmiSexPO import *
+AgeBmiSex_PO = AgeBmiSexPO()
+
+from PO.ColorPO import *
+Color_PO = ColorPO()
+
+from EfrbPO import *
+Efrb_PO = EfrbPO()
+
+
+
+class HirbPO():
+
+    def __init__(self):
+        self.tableEFRB = Configparser_PO.DB("tableEFRB")
+        self.tableHIRB = Configparser_PO.DB("tableHIRB")
+        self.tableCommon = '健康干预HIRB => '
+        self.testData = '正反测试数据 => '
+
+        # 检查身份证是否存在, WEIGHT_REPORT(体重报告记录表)
+        # 和QYYH中都必须要有此身份证，且在WEIGHT_REPORT表中获取ID
+        self.IDCARD, self.WEIGHT_REPORT__ID = Efrb_PO.getIdcard()
+        Color_PO.outColor([{"30": "QYYH__SFZH =>"}, {"35": self.IDCARD}, {"30": ", WEIGHT_REPORT__ID =>"}, {"35": self.WEIGHT_REPORT__ID}, ])
+
+    def excel2db_HIRB(self):
+
+        # excel文件导入db
+
+        # 1，db中删除已有的表
+        Sqlserver_PO_CHC.execute("drop table if exists " + self.tableHIRB)
+
+        # 2，读取 Excel 文件
+        df = pd.read_excel(Configparser_PO.FILE("case"), sheet_name=Configparser_PO.FILE("sheetHIRB"))
+        df = df.sort_index()  # 按行索引排序，保持Excel原有顺序
+        df = df.dropna(how="all")  # 移除全空行
+        # 手动设置字段类型
+        # df['conditions'] = df['conditions'].astype(str)  # 改为字符串类型
+
+        # 3，Excel导入db
+        Sqlserver_PO_CHC.df2db(df, self.tableHIRB)
+
+        # 4, 设置表注释
+        Sqlserver_PO_CHC.setTableComment(self.tableHIRB, '体重管理_健康干预规则库(测试)')
+
+        # 5，将conditions字段替换换行符为空格
+        Sqlserver_PO_CHC.execute("UPDATE %s SET conditions = REPLACE(REPLACE(conditions, CHAR(10), ' '), CHAR(13), ' ');" % (self.tableHIRB))
+
+        # 6，设置字段类型与备注
+        field_definitions = [
+            ('f_type', 'nvarchar(50)', '干预项目分类'),
+            ('IR_code', 'nvarchar(20)', '干预规则编码'),
+            ('conditions', 'nvarchar(max)', '干预规则'),
+            ('IR_detail', 'nvarchar(500)', '干预规则描述'),
+            ('totalCase', 'int', '用例合计数'),
+            ('log', 'varchar(max)', '日志信息'),
+            ('updateDate', 'nvarchar(50)', '更新日期'),
+            ('result', 'nvarchar(10)', '测试结果')
+        ]
+        for field_name, field_type, comment in field_definitions:
+            Sqlserver_PO_CHC.setFieldTypeComment(self.tableHIRB, field_name, field_type, comment)
+
+        # 7，修改字段类型为日期类型
+        Sqlserver_PO_CHC.execute("ALTER TABLE %s ALTER COLUMN updateDate DATE;" % (self.tableHIRB))
+
+        # 8，设置id自增主键（放在最后）
+        Sqlserver_PO_CHC.setIdentityPrimaryKey(self.tableHIRB, "id")
+
+
+    def convert_conditions(self, conditions):
+        # 列表转字符串
+
+        valid_operators = ['=', '>', '<', '>=', '<=']
+        result = []
+
+        for condition in conditions:
+            operator_pos = -1
+            current_op = None
+            for op in sorted(valid_operators, key=len, reverse=True):
+                pos = condition.find(op)
+                if pos != -1:
+                    operator_pos = pos
+                    current_op = op
+                    break
+
+            if operator_pos == -1:
+                continue  # 忽略无法解析的条件
+
+            left = condition[:operator_pos].strip()
+            right = condition[operator_pos + len(current_op):].strip()
+
+            if left and right:
+                result.append(f"{left}{current_op}{right}")
+
+        return " and ".join(result)
+
+
+    def str2dict(self, conditions):
+        # 字符串转字典，将 （TZ_STZB042 = '是' and TZ_JWJB001 = '否' ） 转为字典{'TZ_STZB042': '是', 'TZ_JWJB001': '否'}
+        pairs = [pair.strip() for pair in conditions.split('and')]
+        d_conditions = {}
+        for pair in pairs:
+            if '=' in pair:
+                key, value = pair.split('=')
+                d_conditions[key.strip()] = value.strip().replace("'", "")
+        # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        return d_conditions
+    def str2dict_or(self, conditions):
+        # 字符串转字典，将 （TZ_STZB042 = '是' and TZ_JWJB001 = '否' ） 转为字典{'TZ_STZB042': '是', 'TZ_JWJB001': '否'}
+        pairs = [pair.strip() for pair in conditions.split('or')]
+        d_conditions = {}
+        for pair in pairs:
+            if '=' in pair:
+                key, value = pair.split('=')
+                d_conditions[key.strip()] = value.strip().replace("'", "")
+        # print(d_conditions) # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+        return d_conditions
+
+
+    def HIRB(self, object=None, d_param={}):
+        # 入口
+
+        if object == None:
+            # todo 1执行所有
+            self.HIRB_all()
+        elif isinstance(object, str):
+            # todo 2执行错误或正确
+            self.HIRB_result(object)
+        elif isinstance(object, list):
+            # todo 3执行连续 [起始，步长]
+            self.HIRB_area(object, d_param)
+        elif isinstance(object, dict):
+            if 'id' in object:
+                # 执行多条
+                if isinstance(object['id'], list):
+                    # todo 5执行多条
+                    self.HIRB_multiple(object, d_param)
+                else:
+                    # 执行一条
+                    # 判断id是否溢出
+                    l_d_row = Sqlserver_PO_CHC.select("select * from %s" % (self.tableHIRB))
+                    i_records = len(l_d_row)
+                    if object['id'] > i_records or object['id'] <= 0:
+                        # 异常退出
+                        print("[Error] 输入的ID超出" + str(i_records) + "条范围！")
+                        sys.exit(0)
+                    else:
+                        # todo 4执行一条
+                        self.HIRB_one(object, d_param)
+            elif 'IR_code' in object:
+                # 执行多条
+                if isinstance(object['IR_code'], list):
+                    self.HIRB_multiple(object, d_param)
+                else:
+                    # 执行一条
+                    self.HIRB_one(object, d_param)
+            else:
+                print("[Error] 参数中没有id或IR_code！")
+                sys.exit(0)
+
+        # 由于健康干预模块，需要返回结果
+        return self.WEIGHT_REPORT__ID
+
+    def _HIRB_one(self, l_d_row):
+        # _HIRB_one内部调用
+
+        d_tmp = {
+            'IR_code': l_d_row[0]['IR_code'],
+            'id': l_d_row[0]['id'],
+            'conditions': l_d_row[0]['conditions']
+        }
+        # 健康干预HIRB =>
+        # d_tmp = {'IR_code': 'TZ_STZB046', 'id': 59, 'conditions': '(73月<=年龄<79月 and 17.1<=BMI and 性别=男) or (79月<=年龄＜84月 and 17.2<=BMI and 性别=男) or (73月<=年龄＜79月 and 16.6<=BMI and 性别=女) or (79月<=年龄＜84月 and 16.7<=BMI and 性别=女)', 'IDCARD': '310101193012210813'}
+        s = self.tableCommon + str(d_tmp)
+        Color_PO.outColor([{"30": s}])
+
+        # 写入日志
+        Log_PO.logger.info(s)
+
+        # self.HIRB_conditions(d_tmp)
+        # todo 执行一条
+        self._HIRB_main(d_tmp)
+    def HIRB_one(self, d_, d_param):
+        # 执行一条
+        # d_ = {'id': 56}
+        # d_ = {'IR_code': 'TZ_STZB047'}
+        # d_ = {'id': 59, 'ER_code': 'TZ_STZB047'}
+
+        if "id" in d_:
+            # 获取数据
+            l_d_row = Sqlserver_PO_CHC.select(
+                "select id, conditions, IR_code from %s where id=%s" % (self.tableHIRB, d_['id']))
+            self._HIRB_one(l_d_row)
+        if 'IR_code' in d_:
+            # 获取数据
+            l_d_row = Sqlserver_PO_CHC.select(
+                "select id, conditions, IR_code from %s where IR_code='%s'" % (self.tableHIRB, d_['IR_code']))
+            self._HIRB_one(l_d_row)
+    def HIRB_area(self, l_, d_param):
+        # l_= [起始，步长]
+        # 执行多条(区间id)，如：{'id': [1, 3]} ,表示执行1，2，3 三条记录
+        # 执行多条(区间ER_code)，如：{'ER_code': ['TZ_STZB046', 'TZ_STZB047']}
+
+        # 执行多条(区间id)，如：{'id': [1, 3]} ,表示执行1，2，3 三条记录
+        id1 = l_[0]
+        step = l_[1]
+        id2 = id1 + step
+
+        l_d_row = Sqlserver_PO_CHC.select("select count(*) as qty from %s where id=%s" % (self.tableHIRB, id2))
+        if l_d_row[0]['qty'] != 0:
+            for id in list(range(id1, id2)):
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select id, conditions, IR_code from %s where id=%s" % (self.tableHIRB, id))
+                self._HIRB_one(l_d_row)
+        else:
+            Color_PO.outColor([{"31": "[Error] 参数：[id起始，步长]，id起始 + 步长溢出!"}])
+            sys.exit(0)
+    def HIRB_multiple(self, d_, d_param):
+        # 执行多条id 或 IR_code
+
+        if 'IR_code' in d_:
+            for IR_code in d_['IR_code']:
+                l_d_row = Sqlserver_PO_CHC.select(
+                    "select id, conditions, IR_code from %s where IR_code='%s'" % (self.tableHIRB, IR_code))
+                self._HIRB_one(l_d_row)
+        if 'id' in d_:
+            # 判断id是否溢出
+            if d_['id'][0] < 1 or d_['id'][0] > d_['id'][1]:
+                print("[Error] 请输入正确的id区间!")
+                sys.exit(0)
+
+            # print(262, d_['id'])
+            for id in d_['id']:
+                l_d_row = Sqlserver_PO_CHC.select("select id, conditions, IR_code from %s where id=%s" % (self.tableHIRB, id))
+                self._HIRB_one(l_d_row)
+    def HIRB_all(self):
+        # 执行所有
+        l_d_row = Sqlserver_PO_CHC.select("select IR_code, id, conditions from %s" % (self.tableHIRB))
+
+        for row in l_d_row:
+            d_param = {
+                'IR_code': row['IR_code'],
+                'id': row['id'],
+                'conditions': row['conditions'],
+            }
+            s = self.tableCommon + str(d_param)
+            Color_PO.outColor([{"35": s}])
+            Log_PO.logger.info(s)
+            self._HIRB_main(d_param)
+    def HIRB_result(self, s_):
+        # 执行错误
+        l_d_row = Sqlserver_PO_CHC.select("select id, conditions, IR_code from %s where result='%s'" % (self.tableHIRB, s_))
+        for row in l_d_row:
+            d_param = {
+                'IR_code': row['IR_code'],
+                'id': row['id'],
+                'conditions': row['conditions']
+            }
+            s = self.tableCommon + str(d_param)
+            Color_PO.outColor([{"35": s}])
+            Log_PO.logger.info(s)
+            self._HIRB_main(d_param)
+
+
+    def _HIRB_ID(self, varTestID):
+        # 执行一条
+        d_param = {}
+        l_d_row = Sqlserver_PO_CHC.select("select IR_code, conditions from %s where id =%s" % (self.tableHIRB, varTestID))
+        d_param['IR_code'] = l_d_row[0]['IR_code']
+        d_param['id'] = varTestID
+        d_param['conditions'] = l_d_row[0]['conditions']
+        s = self.tableCommon + str(d_param)
+        Color_PO.outColor([{"35": s}])
+        Log_PO.logger.info(s)
+
+        # todo 执行一条
+        self._HIRB_main(d_param)
+
+    def _HIRB_main(self, d_param):
+        # todo 无组有or TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
+        if "or" in d_param['conditions'] and "and" not in d_param['conditions']:
+
+            # 字符串转列表
+            l_conditions = d_param['conditions'].split("or")
+            # print(l_conditions) # ["TZ_STZB043='是' ", " TZ_STZB044='是'  ", " TZ_STZB045='是'"]
+            l_d_conditions = []
+            for i in l_conditions:
+                l_d_conditions.append(self.str2dict(i))
+            # print(1614, l_d_conditions)  # [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
+            d_param['l_d_conditions'] = l_d_conditions
+            # print(1624, d_param)
+
+            self.HIRB_case_or(d_param)
+            # self.HIRB_case_or(ID, IR_code, l_d_conditions)
+
+        # todo 多组有or  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
+        elif "or" in d_param['conditions'] and "and" in d_param['conditions']:
+            self.HIRB_case_or(d_param)
+
+        # todo 一组无or "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
+        elif "and" in d_param['conditions']:
+            # 测试数据
+            self.HIRB_case(d_param)
+
+        # todo 无组无or 年龄，人群分类，疾病， TZ_RQFL005='是'
+        elif "and" not in d_param['conditions']:
+            self.HIRB_case(d_param)
+
+
+    def HIRB_conditions(self, d_param):
+
+        # 格式化干预规则（conditions）
+
+        # print("IR_code", IR_code)  # TZ_YS001
+        # print("d_conditions", d_conditions)  # {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JWJB001': '否', 'TZ_JWJB002': '否'}
+
+        if 'or' in d_param['conditions'] and 'and' in d_param['conditions']:
+            # 字符串转列表
+            l_conditions = d_param['conditions'].split("or")
+            l_d_conditions = []
+            for i in l_conditions:
+                i = i.replace("(", '').replace(")", '')
+                l_d_conditions.append(self.str2dict(i))
+            d_param["conditions"] = l_d_conditions
+        else:
+            l_ = []
+            # 字符串转字典
+            if 'or' in d_param['conditions'] and 'and' not in d_param['conditions']:
+                d_param['conditions'] = self.str2dict_or(d_param['conditions'])
+            elif 'and' not in d_param['conditions']:
+                key, value = d_param['conditions'].split('=')
+                result = {key: value.strip("'")}
+                # print(result)  # 输出: {'TZ_RQFL005': '是'}
+                d_param['conditions'] = result
+            elif 'and' in d_param['conditions']:
+                d_param['conditions'] = self.str2dict(d_param['conditions'])
+
+            l_.append(d_param["conditions"])
+            d_param["conditions"] = l_
+            # print(387, d_param)  # {'IR_code': 'TZ_YS001', 'id': 1, 'conditions': {'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB001': '否', 'TZ_JB002': '否'}}
+
+        return d_param
+
+    def HIRB_case(self, d_param):
+
+        d_param = self.HIRB_conditions(d_param)
+        self.HIRB_run(d_param)
+
+
+    def HIRB_case_or(self, d_param):
+
+        d_param = self.HIRB_conditions(d_param)
+        self.HIRB_run(d_param)
+
+    def HIRB_run(self, d_param):
+
+        d_tmp = {}
+        d_param_HIRB = {}
+        l_count = []
+        # d_category = {"TZ_RQFL001": 3, "TZ_RQFL002": 4, "TZ_RQFL003": 2, "TZ_RQFL004": 1, "TZ_RQFL005": 6,
+        #               "TZ_RQFL006": 7}
+        for d_conditions in d_param["conditions"]:
+        # for d_conditions in l_d_conditions:
+            is_TZ_STZB_prefix = any(key.startswith('TZ_STZB') for key in d_conditions.keys())
+            is_TZ_RQFL_prefix = any(key.startswith('TZ_RQFL') for key in d_conditions.keys())
+            is_TZ_AGE_prefix = any(key.startswith('TZ_AGE') for key in d_conditions.keys())
+
+            # 判断TZ_STZB是否存在
+            if is_TZ_STZB_prefix:
+                d_filtered = {key: value for key, value in d_conditions.items() if 'TZ_STZB' not in key}
+                print(518, d_filtered)
+                # 判断是否包含疾病（高血压或糖尿病）
+                if 'TZ_JB001' in d_filtered and 'TZ_JB002' in d_filtered:
+                    gxy = d_filtered['TZ_JB001']
+                    tnb = d_filtered['TZ_JB002']
+                    if gxy == '否' and tnb == '否':
+                        # 不是高血压也不是糖尿病
+                        d_param_HIRB['disease'] = "无"
+                    elif gxy == '是' and tnb == '是':
+                        # 如果既是高血压也是糖尿病，则取糖尿病
+                        d_param_HIRB['disease'] = "糖尿病"
+                    elif gxy == '是' and tnb == '否':
+                        # 如果是高血压，不是糖尿病
+                        d_param_HIRB['disease'] = "高血压"
+                    elif gxy == '否' and tnb == '是':
+                        # 如果是糖尿病，不是高血压
+                        d_param_HIRB['disease'] = "糖尿病"
+                elif 'TZ_JB001' in d_filtered:
+                    gxy = d_filtered['TZ_JB001']
+                    if gxy == '否':
+                        d_param_HIRB['disease'] = "无"
+                    else:
+                        d_param_HIRB['disease'] = "高血压"
+                elif 'TZ_JB002' in d_filtered:
+                    tnb = d_filtered['TZ_JB002']
+                    if tnb == '否':
+                        d_param_HIRB['disease'] = "无"
+                    else:
+                        d_param_HIRB['disease'] = "糖尿病"
+
+                # # 判断人群分类
+                # l_TZ_RQFL_keys = [key for key in d_conditions.keys() if key.startswith('TZ_RQFL')]
+                # print(549, l_TZ_RQFL_keys) # ['TZ_RQFL005', 'TZ_RQFL006']
+                # for TZ_RQFL_keys in l_TZ_RQFL_keys:
+                #     if d_conditions[TZ_RQFL_keys] == "是":
+                #         d_param_EFRB['categoryCode'] = d_category[TZ_RQFL_keys]
+                #     elif d_conditions[TZ_RQFL_keys] == "否":
+                #         del d_category[TZ_RQFL_keys]
+                # # print(d_category)
+                # # 随机抽取1个人群分类的key
+                # all_keys = list(d_category.keys())
+                # random_category = random.choice(all_keys)
+                # d_param_EFRB['categoryCode'] = d_category[random_category]
+                # # print(562, d_param_EFRB['categoryCode'])
+                # print(d_param_EFRB)
+
+                # 获取TZ_STZB
+                d_TZ_STZB = {key: value for key, value in d_conditions.items() if key.startswith('TZ_STZB')}
+                # print(566, d_TZ_STZB)  # {'TZ_STZB003': '是'}
+                # d_TZ_STZB = {key: value for key, value in d_conditions.items() if key.startswith('TZ_STZB')}
+                # print(568, list(d_TZ_STZB.keys())[0])  # TZ_STZB003
+                l_d_EFRB = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, list(d_TZ_STZB.keys())[0]))
+                # print(529, d_param_HIRB)  # {'disease': '脑卒中'}
+
+                # 跑评估因素规则库, 返回result结果，ok或error
+                result = Efrb_PO.EFRB({'id': l_d_EFRB[0]['id']}, d_param_HIRB)
+                # print(576, result)
+                # l_result_EFRB.append(result)
+            elif is_TZ_RQFL_prefix:
+                # 不存在TZ_STZB
+                # 如："(TZ_RQFL001='是' and 性别=男)    or (TZ_RQFL002='是' and 性别=男)
+                # 如：TZ_AGE002 = '是' or TZ_AGE003 = '是'
+                d_TZ_RQFL = {key: value for key, value in d_conditions.items() if key.startswith('TZ_RQFL')}
+                ER_code = list(d_TZ_RQFL.keys())[0]
+                # print(587, ER_code)  # 'TZ_RQFL003'
+
+                l_d_EFRB = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, ER_code))
+                del d_conditions[ER_code]
+                d_param_HIRB = d_conditions
+                # print(529, d_param_HIRB)  # {'性别': '男'
+                # 跑评估因素规则库, 返回result结果，ok或error
+                result = Efrb_PO.EFRB({'id': l_d_EFRB[0]['id']}, d_param_HIRB)
+                # print(576, result)
+                # l_result_EFRB.append(result)
+            elif is_TZ_AGE_prefix:
+                d_TZ_AGE = {key: value for key, value in d_conditions.items() if key.startswith('TZ_AGE')}
+                ER_code = list(d_TZ_AGE.keys())[0]
+                l_d_EFRB = Sqlserver_PO_CHC.select("select id from %s where ER_code='%s'" % (self.tableEFRB, ER_code))
+                del d_conditions[ER_code]
+                d_param_HIRB = d_conditions
+                # print(529, d_param_HIRB)  # {'性别': '男'
+                # 跑评估因素规则库, 返回result结果，ok或error
+                result = Efrb_PO.EFRB({'id': l_d_EFRB[0]['id']}, d_param_HIRB)
+
+            # 检查是否命中IR_code
+            sql = "select RULE_CODE from T_ASSESS_RULE_RECORD where WEIGHT_REPORT_ID = %s" % (
+                self.WEIGHT_REPORT__ID)
+            l_d_actual = Sqlserver_PO_CHC.select(sql)
+            l_actual = [item['RULE_CODE'] for item in l_d_actual]
+            # print(l_actual) # ['TZ_STZB001', 'TZ_RQFL001', 'TZ_SRL001', 'TZ_MBTZ002', 'TZ_YD001', 'TZ_YS001']
+            d_tmp['预期值'] = d_param['IR_code']
+            d_tmp['实际值'] = l_actual
+            d_tmp['sql__T_ASSESS_RULE_RECORD'] = sql
+            d_result = {}
+            if d_tmp['预期值'] in d_tmp['实际值']:
+                d_result['result'] = 'ok'
+                d_result['IR_code'] = d_param['IR_code']
+                d_result['id'] = d_param['id']
+                d_result.update(d_tmp)
+                l_count.append('ok')
+            else:
+                d_result['result'] = 'error'
+                d_result['IR_code'] = d_param['IR_code']
+                d_result['id'] = d_param['id']
+                d_result.update(d_tmp)
+                l_count.append('error')
+
+            Log_PO.logger.info(d_result)
+
+
+        if "ok" in l_count:
+            Sqlserver_PO_CHC.execute("update %s set result = 'ok', updateDate = GETDATE(), log=Null where id = %s" % (self.tableHIRB, d_param['id'] ))
+            Color_PO.outColor([{"32": self.tableCommon + str(d_result)}])
+
+        else:
+            Color_PO.outColor([{"31": self.tableCommon + str(d_result)}])
+            escaped_error_log = str(d_result).replace("'", "''")
+            Sqlserver_PO_CHC.execute("update %s set result = 'error', updateDate = GETDATE(), log='%s' where id = %s" % (self.tableHIRB, escaped_error_log, d_param['id'] ))
+        Log_PO.logger.info(d_result)
+
+
+
+
