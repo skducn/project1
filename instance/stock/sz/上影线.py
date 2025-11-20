@@ -22,73 +22,39 @@ Time_PO = TimePO()
 from PO.ColorPO import *
 Color_PO = ColorPO()
 
-# 获取当天日期，如1118
-varDate = Time_PO.getMonth() + Time_PO.getDay()
-# print(varDate)
+XLSX = '/Users/linghuchong/Downloads/股票行情.xlsx'
+if (os.access(XLSX, os.F_OK)):
 
-varPathFile = "/Users/linghuchong/Downloads/51/Python/stock/sz/股票行情" + str(varDate) + ".xlsx"
-Openpyxl_PO = OpenpyxlPO(varPathFile)
-row, col = (Openpyxl_PO.getTotalRowCol())  # [2917, 12]
-# # 交易日期	证券代码	证券简称	前收	开盘	最高	最低	今收	涨跌幅（%）	成交量(万股)	成交金额(万元)	市盈率
-# # ['2025-11-17', '000001', '平安银行', '11.75', '11.75', '11.75', '11.62', '11.67', '-0.68', '9,952.32', '116,141.62', '5.44']
+    # 获取当天日期，如1118
+    varDate = Time_PO.getMonth() + Time_PO.getDay()
+    Openpyxl_PO = OpenpyxlPO(XLSX)
+    row, col = (Openpyxl_PO.getTotalRowCol())  # [2917, 12]
+    # # 交易日期	证券代码	证券简称	前收	开盘	最高	最低	今收	涨跌幅（%）	成交量(万股)	成交金额(万元)	市盈率
+    # # ['2025-11-17', '000001', '平安银行', '11.75', '11.75', '11.75', '11.62', '11.67', '-0.68', '9,952.32', '116,141.62', '5.44']
 
-# todo 条件：
-# 1，条件是涨跌幅（%）>0, int(float(l_[8])) > 0
-# 2，上影线战实体0.35，(最高价-（最高价-最低价）* 0.35) > 收盘价 , ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7]))
-# 3，(收盘价 > (最高价 -（最高价-最低价） * 0.5), (float(l_[7]) > (float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.5))
-# 4，下影线较短，最低价 > (开盘价 - 开盘价 * 0.01), float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01))
-# 5，价格，今收价格在区间[7,30] , float(l_[7]) < 30 and float(l_[7]) > 10:
+    # todo 条件：
+    # 1，条件是涨跌幅（%）>0, int(float(l_[8])) > 0
+    # 2，上影线战实体0.35，(最高价-（最高价-最低价）* 0.35) > 收盘价 , ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7]))
+    # 3，(收盘价 > (最高价 -（最高价-最低价） * 0.5), (float(l_[7]) > (float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.5))
+    # 4，下影线较短，最低价 > (开盘价 - 开盘价 * 0.01), float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01))
+    # 5，价格，今收价格在区间[7,30] , float(l_[7]) < 30 and float(l_[7]) > 10:
 
-s = ''
-for i in range(2, row):
-    l_ = Openpyxl_PO.getOneRow(i)
-    if int(float(l_[8])) > 0:
-        if ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7])) and\
-                (float(l_[7]) > (float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.5)) and\
-                float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01)) and\
-                float(l_[7]) < 50 and float(l_[7]) > 10:
-            print(l_[1], l_[2])
-            s = l_[1] + "," + s
-print(s)
+    s = ''
+    for i in range(2, row):
+        l_ = Openpyxl_PO.getOneRow(i)
+        if int(float(l_[8])) > 0:
+            if ((float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.35) > float(l_[7])) and\
+                    (float(l_[7]) > (float(l_[5]) - (float(l_[5]) - float(l_[6])) * 0.5)) and\
+                    float(l_[6]) > (float(l_[4]) - (float(l_[4]) * 0.01)) and\
+                    float(l_[7]) < 50 and float(l_[7]) > 10:
+                print(l_[1], l_[2])
+                s = l_[1] + "," + s
+    print(s)
 
-# 打开文件并写入内容（w模式：覆盖原有内容，文件不存在则创建）
-varFile = "/Users/linghuchong/Desktop/stock/" + varDate + ".txt"
-with open(varFile, "w", encoding="utf-8") as f:
-    f.write(s)
+    # 打开文件并写入内容（w模式：覆盖原有内容，文件不存在则创建）
+    varFile = "/Users/linghuchong/Desktop/stock/" + varDate + ".txt"
+    with open(varFile, "w", encoding="utf-8") as f:
+        f.write(s)
 
-# 000158 常山北明 9,738.86
-# 000657 中钨高新 7,857.92
-# 000681 视觉中国 3,317.42
-# 002037 保利联合 1,214.94
-# 002068 黑猫股份 6,086.51
-# 002095 生 意 宝 471.57
-# 002209 达 意 隆 3,162.08
-# 002984 森麒麟 1,644.29
-# 300161 华中数控 431.06
-# 300170 汉得信息 5,445.94
-# 300174 元力股份 2,191.69
-# 300184 力源信息 2,944.51
-# 300252 金信诺 2,698.67
-# 300293 蓝英装备 397.25
-# 300333 兆日科技 3,870.73
-# 300337 银邦股份 3,419.04
-
-
-
-# 300397 天和防务 7,564.15
-# 300465 高伟达 4,960.51
-# 300490 华自科技 6,220.38
-# 300499 高澜股份 1,752.84
-# 300523 辰安科技 411.97
-# 300525 博思软件 3,723.98
-# 300581 晨曦航空 6,619.62
-# 300602 飞荣达 1,613.95
-# 300721 怡达股份 786.68
-# 300762 上海瀚讯 3,661.72
-# 301019 宁波色母 1,831.17
-# 301059 金三江 510.64
-# 301172 君逸数码 736.45
-# 301193 家联科技 356.09
-# 301265 华新环保 452.48
-# 301566 达利凯普 993.95
-
+    # 删除文件
+    os.remove(XLSX)

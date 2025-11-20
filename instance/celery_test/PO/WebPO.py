@@ -524,7 +524,7 @@ class WebPO(DomPO):
         # varAuthFile, cookies.json
         # varPrefixUrl, 导航到目标域名下的某个页面
         # varProtectedUrl, 打开受保护页面
-        # Web_PO.openUrlByAuth('1genCookies.json','http://192.168.0.243:8010/','http://192.168.0.243:8010/#/SignManage/signAssess')
+        # Web_PO.openUrlByAuth('cookies.json','http://192.168.0.243:8010/','http://192.168.0.243:8010/#/SignManage/signAssess')
         self._openUrlByAuth(varAuthFile, varPrefixUrl, varProtectedUrl)
 
     def opn(self, varUrl, t=1):

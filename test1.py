@@ -1,14 +1,15 @@
-# 原始列表
-data_list = [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
-# 目标key
-target_key = 'TZ_STZB045'
+# https://akshare.akfamily.xyz/data/stock/stock.html#id14
 
-# 方法2：使用any()函数（更简洁）
-key_exists_2 = any(target_key in item for item in data_list)
-print(f"\n使用any()函数判断结果：{'存在' if key_exists_2 else '不存在'}")
+import akshare as ak
 
-print(key_exists_2)
+# stock_zh_a_spot_em_df = ak.stock_zh_a_spot_em()
+# print(stock_zh_a_spot_em_df)
 
+stock_sh_a_spot_em_df = ak.stock_sh_a_spot_em()
+print(stock_sh_a_spot_em_df)
 
-if any('TZ_STZB045' in item for item in data_list):
-    print("存在")
+# 保存到Excel文件
+stock_sh_a_spot_em_df.to_excel('/Users/linghuchong/Desktop/stock/stock_data.xlsx', index=False)
+
+print("数据已保存到 stock_data.xlsx 文件中")
+

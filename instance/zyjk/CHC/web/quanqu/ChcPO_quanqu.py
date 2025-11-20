@@ -33,7 +33,7 @@ from bs4 import BeautifulSoup
 import logging, os
 import signal
 import ddddocr
-
+import json
 # 获取当前文件的绝对路径
 current_dir = os.path.dirname(os.path.abspath(__file__))
 # 获取 上层 目录的绝对路径
@@ -49,11 +49,12 @@ import time
 
 class ChcPO_quanqu():
 
-    def __init__(self, varLogFile, varMenu='no_log', varCookies='1genCookies.json'):
+    def __init__(self, varLogFile, varMenu='no_log', CookieFile='cookies.json'):
 
         # 配置日志
         if varMenu != 'no_log':
-            self.Web_PO = WebPO("chrome")
+            self.Web_PO = WebPO("noChrome")
+            # self.Web_PO = WebPO("chrome")
             if os.name == 'nt':
                 logging.basicConfig(filename=varLogFile, level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', encoding='utf-8')
             else:
@@ -70,19 +71,18 @@ class ChcPO_quanqu():
 
 
         # 获取token两种方式：
-        # 1、从Local storage中获取 Admin-Token （从 Application - Storage - Local storage）
+        # 1、从 Application - Storage - Local storage 中获取 Admin-Token
         admin_token = self.Web_PO.driver.execute_script("return window.localStorage.getItem('Admin-Token');")
         if admin_token != None:
             print(f"Admin-Token: {admin_token}")
             token = {'Admin-Token': admin_token}
-            with open(varCookies, 'w') as f:
+            with open(CookieFile, 'w') as f:
                 json.dump(token, f)
         else:
             # 2、从Cookies中获取token（当前使用这种）
-            # 保存当前会话的 Cookies 到文件"""
             cookies = self.Web_PO.driver.get_cookies()
             print('cookies:',cookies)
-            with open(varCookies, 'w') as f:
+            with open(CookieFile, 'w') as f:
                 json.dump(cookies, f)
 
         # 菜单
@@ -124,40 +124,201 @@ class ChcPO_quanqu():
             self.Web_PO.swhLabelByLoc(1)
 
 
-    def getCenter(self):
+    def getScreenData(self):
 
 
         # 确保页面完全加载
         self.Web_PO.driver.execute_script("return document.readyState")
         time.sleep(2)
 
+        d_ = {}
+
         # todo 辖区概况
         # 左边区域，数据实时更新至， 独居老人数，失能老人数，孕产妇保健人数，儿童保健0-3岁，儿童保健0-6岁
-        varDiv = self.Web_PO.getTextByXs("//span")
-        print(varDiv)  # ['数据实时更新至', '2025-11-05', '独居老人数', '7,600', '失能老人数', '7,600', '孕产妇保健人数', '5,521', '儿童保健0-3岁', '3,215', '儿童保健0-6岁', '2,987',
+        l_1 = self.Web_PO.getTextByXs("//span")
+        # print(l_left1)  # ['数据实时更新至', '2025-11-05', '独居老人数', '7,600', '失能老人数', '7,600', '孕产妇保健人数', '5,521', '儿童保健0-3岁', '3,215', '儿童保健0-6岁', '2,987',
+        # 1. 取前12个值（步长切片：从索引0到11，不包含12）
+        top12_data = l_1[:12]
+        # 2. 两两配对转字典（key取偶数索引，value取奇数索引）
+        d_1 = dict(zip(top12_data[::2], top12_data[1::2]))
+        print("d_1 =>", d_1)
 
         # 中间区域， 楼栋，居委，家庭，学校，养老机构
-        varDiv = self.Web_PO.getTextByXs("//div[@class='icon_num']")
-        print(varDiv)  # ['3,488栋', '55家', '63,552个', '25所', '6家']
+        l_2_value = self.Web_PO.getTextByXs("//div[@class='icon_num']") # ['3,488栋', '55家', '63,552个', '25所', '6家']
+        l_2_key = ['楼栋','居委','家庭','学校','养老机构']
+        d_2 = dict(zip(l_2_key, l_2_value))
+        print("d_2 =>", d_2)
 
         # 中间区域， 常住人口数
-        varDiv = self.Web_PO.getTextByXs("//div[@class='num_bg']")
-        print(varDiv)  # ['1', '6', '5', '1', '5', '9']
+        d_3 = {}
+        l_3 = self.Web_PO.getTextByXs("//div[@class='num_bg']")
+        # print(l_people)  # ['1', '6', '5', '1', '5', '9']
+        d_3['常住人口数'] = ''.join(l_3)
+        print("d_3 =>", d_3)
+
 
         # 右边区域，医疗卫生机构
-        varDiv = self.Web_PO.getTextByXs("//div[@class='left-box box_r_1']")
-        print(varDiv)  # ['1', '6', '5', '1', '5', '9']
+        l_4 = self.Web_PO.getTextByXs("//div[@class='left-box box_r_1']")
+        raw_str = l_4[0]
+        split_list = raw_str.split('\n')  # 按\n分割，得到 ['医疗卫生机构', '机构总数', '52', ...]
+        key_value_pairs = []
+        for i in range(len(split_list)):
+            # 判断当前元素是否为数值（纯数字字符串）
+            if split_list[i].strip().isdigit():
+                # 数值的前一个元素就是对应的键
+                key = split_list[i - 1]
+                value = split_list[i]
+                key_value_pairs.append((key, value))
+        d_4 = dict(key_value_pairs)
+        print("d_4 =>", d_4)  # ['医疗卫生机构\n机构总数\n52\n综合医院数\n5\n社区卫生站数\n10\n门诊部数\n18\n诊所数\n19\n医疗卫生资源\n执业医师数\n58\n注册护士数\n186\n开放床位数\n384']
+        # {'机构总数': '52', '综合医院数': '5', '社区卫生站数': '10'}
+
 
         # todo 健康大脑
         self.Web_PO.clkByX("//div[@class='btn-base btn2']")
 
+
         # 左边区域，随访服务
-        varDiv = self.Web_PO.getTextByXs("//div[@class='olsMand_right']")
-        print(varDiv)  # ['慢病随访（次）\n2,458\n老年人体检（次）\n1,547\n独居老人随访（次）\n2,368\n失能老年人随访（次）\n2,659']
+        l_2_1 = self.Web_PO.getTextByXs("//div[@class='olsMand_right']")
+        # print(l_2_1)  # ['慢病随访（次）\n2,458\n老年人体检（次）\n1,547\n独居老人随访（次）\n2,368\n失能老年人随访（次）\n2,659']
+        split_list = l_2_1[0].split('\n')  # 结果：['慢病随访（次）', '2,458', '老年人体检（次）', '1,547', ...]
+        # 2. 两两配对（键取偶数索引，值取奇数索引），同时清洗数值（去除逗号）
+        d_2_1 = {}
+        for i in range(0, len(split_list), 2):  # 步长为2，遍历所有键的索引
+            key = split_list[i]
+            value = split_list[i + 1].replace(',', '')  # 去除数值中的逗号
+            d_2_1[key] = value
+        print("d_2_1 =>", d_2_1)
 
         # 左边区域，住院诊疗，智能康复中心
-        varDiv = self.Web_PO.getTextByXs("//div[@class='box-content zyzl']")
-        print(varDiv)  # ['新入院人次\n当月人次\n1,779\n当周人次\n586\n当天人次\n123\n在院人数\n1,589\n剩余床位数\n3,582', '门诊康复\n当月人次\n1,523\n当周人次\n1,542\n当天人次\n520\n住院康复\n当月人次\n1,423\n当周人次\n2,548\n当天人次\n1,220\n剩余康复床位\n110']
+        l_2_2 = self.Web_PO.getTextByXs("//div[@class='box-content zyzl']")
+        # print(l_2_2)  # ['新入院人次\n当月人次\n1,779\n当周人次\n586\n当天人次\n123\n在院人数\n1,589\n剩余床位数\n3,582', '门诊康复\n当月人次\n1,523\n当周人次\n1,542\n当天人次\n520\n住院康复\n当月人次\n1,423\n当周人次\n2,548\n当天人次\n1,220\n剩余康复床位\n110']
+        # {'新入院人次':{'当月人次':'1779','当周人次':'586','当天人次':'123,'在院人数:'1589','剩余床位数':3582},'门诊康复':{'当月人次':'1523','当周人次':'1542','当天人次':'520'},'住院康复':{'当月人次':'1423','当周人次':'2548','当天人次':'1220','剩余康复床位':'110'}}
+        d_2_2 = {}
+        for item in l_2_2:
+            # 按换行符拆分，得到「模块名-字段-值-字段-值...」的列表
+            split_items = item.split('\n')
+            i = 0
+            while i < len(split_items):
+                # 提取模块名（如"新入院人次"、"门诊康复"、"住院康复"）
+                module_name = split_items[i]
+                i += 1  # 移动到下一个元素，开始处理该模块的字段
+                module_data = {}
+                # 循环提取当前模块下的所有字段-值对（直到遇到下一个模块名或列表结束）
+                while i + 1 < len(split_items):
+                    # 判断下一个元素是否为"模块名"（特征：后面不是数值的为模块名）
+                    next_value = split_items[i + 1].strip()
+                    # 数值判断：纯数字或带逗号的数字（如"1,779"）
+                    is_number = next_value.replace(',', '').isdigit()
+                    if not is_number:
+                        # 下一个元素不是数值，说明当前split_items[i]是新模块名，跳出循环
+                        break
+                    # 提取字段和值，清洗数值（去除逗号）
+                    field_name = split_items[i]
+                    field_value = next_value.replace(',', '')
+                    # 按需转换数值类型（如"剩余床位数"转为整数，其他保留字符串；也可全部转整数）
+                    # 这里按需求保留字符串格式，仅去除逗号（如需转整数，直接用 int(field_value)）
+                    module_data[field_name] = field_value
+                    i += 2  # 跳过当前字段和值，处理下一组
+                # 将模块数据添加到结果字典
+                if module_name and module_data:
+                    d_2_2[module_name] = module_data
+        # 输出结果
+        print('d_2_2 =>', d_2_2)
+
+
+        # 中间区域，社区护理中心
+        l_2_3 = self.Web_PO.getTextByXs("//div[@class='community_box']")
+        # print(l_2_3)  # ['内科（全科）住院病区\n床位数\n256\n剩余床位数\n123\n外科住院病区\n床位数\n189\n剩余床位数\n258\n儿科住院病区\n床位数\n58\n剩余床位数\n68\n康复住院病区\n床位数\n78\n剩余床位数\n88', '月\n周\n天']
+
+        # {'内科（全科）住院病区': {'床位数': '256', '剩余床位数': '123'},
+        #  '外科住院病区': {'床位数': '189', '剩余床位数': '258'},
+        #  '儿科住院病区': {'床位数': '68', '剩余床位数': '78'},
+        #  '康复住院病区': {'床位数': '78', '剩余床位数': '88'}}
+        d_2_3 = {}
+
+        for item in l_2_3:
+            # 按换行符拆分字符串
+            split_items = item.split('\n')
+            # 过滤空元素（避免异常）
+            split_items = [x.strip() for x in split_items if x.strip()]
+            i = 0
+
+            while i < len(split_items):
+                # 模块名特征：后面紧跟"床位数"字段（精准匹配病区模块）
+                if i + 1 < len(split_items) and split_items[i + 1] == '床位数':
+                    module_name = split_items[i]
+                    i += 1  # 移动到"床位数"字段
+
+                    module_data = {}
+                    # 提取当前模块的"床位数"和"剩余床位数"（固定字段顺序）
+                    while i + 1 < len(split_items):
+                        field = split_items[i]
+                        value = split_items[i + 1]
+                        # 只保留目标字段（床位数、剩余床位数）
+                        if field in ['床位数', '剩余床位数']:
+                            module_data[field] = value
+                            i += 2  # 跳过当前字段和值
+                        else:
+                            # 遇到其他字段，说明当前模块结束
+                            break
+
+                    # 添加到结果字典（确保数据完整）
+                    if module_data and len(module_data) == 2:
+                        d_2_3[module_name] = module_data
+                else:
+                    # 非目标模块，直接跳过
+                    i += 1
+
+        # 输出结果
+        # d_2_3 = (json.dumps(d_2_3, ensure_ascii=False, indent=4))
+        d_2_3 = (json.dumps(d_2_3, ensure_ascii=False))
+        print('d_2_3 =>', d_2_3)
+
+
+        # 右边区域，签约居民
+        l_2_4 = self.Web_PO.getTextByXs("//div[@class='sign_top']")
+        print(l_2_4)  # ['签约居民人数\n58,756\n本年度评估人数\n1,589\n年度评估完成率\n35.15%\n本月新增签约人数\n589\n本月评估人数\n4,589']
+        # {'签约居民':{'签约居民人数':'58756','本年度评估人数':'1589','年度评估完成率':'35.15','本月新增签约人数':'589','本月评估人数':'589'}}
+        d_2_4 = {'签约居民': {}}
+
+        # 1. 取出唯一字符串并按换行符拆分，得到键值交替列表
+        split_items = l_2_4[0].split('\n')
+
+        # 2. 两两配对，清洗数值并填充到字典
+        for i in range(0, len(split_items), 2):
+            if i + 1 < len(split_items):
+                key = split_items[i]
+                value = split_items[i + 1]
+
+                # 数值清洗：去除逗号，处理百分号
+                cleaned_value = value.replace(',', '')  # 去除千分位逗号
+                if cleaned_value.endswith('%'):
+                    cleaned_value = cleaned_value[:-1]  # 去掉百分号（如"35.15%"→"35.15"）
+
+                # 存入"签约居民"对应的子字典
+                d_2_4['签约居民'][key] = cleaned_value
+
+        # 输出结果（格式化打印，更清晰）
+        d_2_4 = print(json.dumps(d_2_4, ensure_ascii=False))
+        print('d_2_4 =>',d_2_4)
+
+
+        # 右边区域，签约居民
+        varDiv = self.Web_PO.getTextByXs("//div[@class='health_soft']")
+        print(varDiv)
+
+        # todo 健康画像
+        self.Web_PO.clkByX("//div[@class='btn-base btn3']")
+
+        # 左边区域，诊断top100
+        varDiv = self.Web_PO.getTextByXs("//div[@class='table_bottom']")
+        print(varDiv)
+
+
+        # 左边区域，健康管理 - 肿瘤管理人数，房颤筛查人数
+        varDiv = self.Web_PO.getTextByXs("//div[@class='echars_bottom']")
+        print(varDiv)
 
 
 

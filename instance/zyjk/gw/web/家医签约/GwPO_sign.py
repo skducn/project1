@@ -41,7 +41,7 @@ Configparser_PO = ConfigparserPO('../config.ini')
 
 class GwPO_sign():
 
-    def __init__(self, varLogFile, varMenu='无log', varCookies='1genCookies.json'):
+    def __init__(self, varLogFile, varMenu='无log', varCookies='cookies.json'):
 
         # 配置日志
         if varMenu != '无log':
