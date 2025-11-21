@@ -1,0 +1,2746 @@
+[1763719096.012][INFO]: Starting ChromeDriver 142.0.7444.61 (9884f628acbc5ba8787e2c95a8923a30cf127fd8-refs/branch-heads/7444_52@{#6}) on port 61872
+[1763719096.012][INFO]: Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
+[1763719096.036][INFO]: ChromeDriver was started successfully on port 61872
+[1763719096.075][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND InitSession {
+   "capabilities": {
+      "alwaysMatch": {
+         "browserName": "chrome",
+         "goog:chromeOptions": {
+            "args": [ "--start-maximized", "--incognito", "--hide-scrollbars", "--allow-running-insecure-content", "--disable-extensions", "-disable-dev-shm-usage" ],
+            "detach": true,
+            "excludeSwitches": [ "enable-automation" ],
+            "extensions": [  ],
+            "prefs": {
+               "credentials_enable_service": false,
+               "profile.password_manager_enabled": false
+            }
+         },
+         "pageLoadStrategy": "normal"
+      },
+      "firstMatch": [ {
+      } ]
+   }
+}
+[1763719096.075][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/142.0.7444./chromedriver-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.075][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/142.0.7444./chromedriver-mac-x64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.075][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/142.0.7444./chromedriver-mac-x64/Google Chrome.app/Contents/MacOS/Google Chrome
+[1763719096.075][INFO]: Browser search. Trying... /Users/linghuchong/.wdm/drivers/chromedriver/mac64/142.0.7444./chromedriver-mac-x64/Chromium.app/Contents/MacOS/Chromium
+[1763719096.076][INFO]: Browser search. Trying... /Users/linghuchong/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/envs/py310/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /usr/local/ffmpeg/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /usr/local/opt/openjdk@11/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /Library/Frameworks/Python.framework/Versions/3.9/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /Users/linghuchong/.pyenv/shims/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /usr/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /usr/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.076][INFO]: Browser search. Trying... /bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /opt/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /opt/local/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/jmeter/apache-jmeter-5.6.3/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/Python/allure/allure-2.32.2/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Applications/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/envs/py310/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/ffmpeg/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/opt/openjdk@11/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Library/Frameworks/Python.framework/Versions/3.9/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/.pyenv/shims/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /opt/local/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /opt/local/sbin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/jre/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /usr/local/mysql/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/miniconda3/condabin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/jmeter/apache-jmeter-5.6.3/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/Downloads/51/Python/allure/allure-2.32.2/bin/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing
+[1763719096.077][INFO]: Browser search. Trying... /Users/linghuchong/Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[1763719096.077][INFO]: Browser search. Trying... /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[1763719096.077][INFO]: Browser search. Found at  /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+[1763719096.078][INFO]: Populating Preferences file: {
+   "alternate_error_pages": {
+      "enabled": false
+   },
+   "autofill": {
+      "enabled": false
+   },
+   "browser": {
+      "check_default_browser": false
+   },
+   "credentials_enable_service": false,
+   "distribution": {
+      "import_bookmarks": false,
+      "import_history": false,
+      "import_search_engine": false,
+      "make_chrome_default_for_user": false,
+      "skip_first_run_ui": true
+   },
+   "dns_prefetching": {
+      "enabled": false
+   },
+   "profile": {
+      "content_settings": {
+         "pattern_pairs": {
+            "https://*,*": {
+               "media-stream": {
+                  "audio": "Default",
+                  "video": "Default"
+               }
+            }
+         }
+      },
+      "default_content_setting_values": {
+         "geolocation": 1
+      },
+      "default_content_settings": {
+         "geolocation": 1,
+         "mouselock": 1,
+         "notifications": 1,
+         "popups": 1,
+         "ppapi-broker": 1
+      },
+      "password_manager_enabled": false
+   },
+   "safebrowsing": {
+      "enabled": false
+   },
+   "search": {
+      "suggest_enabled": false
+   },
+   "translate": {
+      "enabled": false
+   }
+}
+[1763719096.079][INFO]: Populating Local State file: {
+   "background_mode": {
+      "enabled": false
+   },
+   "ssl": {
+      "rev_checking": {
+         "enabled": false
+      }
+   }
+}
+[1763719096.079][INFO]: ChromeDriver supports communication with Chrome via pipes. This is more reliable and more secure.
+[1763719096.079][INFO]: Use the --remote-debugging-pipe Chrome switch instead of the default --remote-debugging-port to enable this communication mode.
+[1763719096.079][INFO]: Launching chrome: /Applications/Google Chrome.app/Contents/MacOS/Google Chrome -disable-dev-shm-usage --allow-pre-commit-input --allow-running-insecure-content --disable-background-networking --disable-client-side-phishing-detection --disable-default-apps --disable-extensions --disable-features=IgnoreDuplicateNavs,Prewarm --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-logging --hide-scrollbars --incognito --log-level=0 --no-first-run --no-service-autorun --password-store=basic --remote-debugging-port=0 --start-maximized --test-type=webdriver --use-mock-keychain --user-data-dir=/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.scoped_dir.7jUFVA data:,
+[15926:255039:1121/175816.481671:ERROR:net/cert/internal/trust_store_mac.cc:807] Error parsing certificate:
+ERROR: Failed parsing extensions
+
+
+DevTools listening on ws://127.0.0.1:61877/devtools/browser/536774b9-7e19-40d5-8d56-29120e72ebc8
+[1763719096.547][DEBUG]: DevTools HTTP Request: http://localhost:61877/json/version
+[15932:255058:1121/175816.994011:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[15932:255058:1121/175816.998900:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[15932:255058:1121/175816.999901:ERROR:ui/gl/egl_util.cc:92] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[1763719097.172][DEBUG]: DevTools HTTP Response: {
+   "Browser": "Chrome/142.0.7444.162",
+   "Protocol-Version": "1.3",
+   "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+   "V8-Version": "14.2.231.18",
+   "WebKit-Version": "537.36 (@c076baf266c3ed5efb225de664cfa7b183668ad6)",
+   "webSocketDebuggerUrl": "ws://localhost:61877/devtools/browser/536774b9-7e19-40d5-8d56-29120e72ebc8"
+}
+
+[1763719097.172][DEBUG]: DevTools HTTP Request: http://localhost:61877/json/list
+[1763719097.175][DEBUG]: DevTools HTTP Response: [ {
+   "description": "",
+   "devtoolsFrontendUrl": "https://chrome-devtools-frontend.appspot.com/serve_rev/@c076baf266c3ed5efb225de664cfa7b183668ad6/inspector.html?ws=localhost:61877/devtools/page/5EC250D5BDE0676EE91CE158E111FF4A",
+   "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+   "title": "",
+   "type": "page",
+   "url": "data:,",
+   "webSocketDebuggerUrl": "ws://localhost:61877/devtools/page/5EC250D5BDE0676EE91CE158E111FF4A"
+} ]
+
+[1763719097.182][INFO]: resolved localhost to ["127.0.0.1"]
+[1763719097.239][DEBUG]: DevTools WebSocket Command: Target.getTargets (id=1) (session_id=) browser {
+   "filter": [ {
+      "exclude": true,
+      "type": "browser"
+   }, {
+      "exclude": true,
+      "type": "page"
+   }, {
+      "exclude": false
+   } ]
+}
+[1763719097.257][DEBUG]: DevTools WebSocket Response: Target.getTargets (id=1) (session_id=) browser {
+   "targetInfos": [ {
+      "attached": false,
+      "browserContextId": "42DD57C8BE6E8055B52AFDB1E83578A1",
+      "canAccessOpener": false,
+      "targetId": "8BBC50435C559FD67AF695B14AA772E5",
+      "title": "data:,",
+      "type": "tab",
+      "url": "data:,"
+   } ]
+}
+[1763719097.264][DEBUG]: DevTools WebSocket Command: Target.attachToTarget (id=2) (session_id=) browser {
+   "flatten": true,
+   "targetId": "8BBC50435C559FD67AF695B14AA772E5"
+}
+[1763719097.268][DEBUG]: DevTools WebSocket Event: Target.attachedToTarget (session_id=) browser {
+   "sessionId": "0BF9C8307ACF2D05680ABE9F6C584EB0",
+   "targetInfo": {
+      "attached": true,
+      "browserContextId": "42DD57C8BE6E8055B52AFDB1E83578A1",
+      "canAccessOpener": false,
+      "targetId": "8BBC50435C559FD67AF695B14AA772E5",
+      "title": "data:,",
+      "type": "tab",
+      "url": "data:,"
+   },
+   "waitingForDebugger": false
+}
+[1763719097.279][DEBUG]: DevTools WebSocket Response: Target.attachToTarget (id=2) (session_id=) browser {
+   "sessionId": "0BF9C8307ACF2D05680ABE9F6C584EB0"
+}
+[1763719097.279][DEBUG]: DevTools WebSocket Command: Target.setAutoAttach (id=3) (session_id=0BF9C8307ACF2D05680ABE9F6C584EB0) 8BBC50435C559FD67AF695B14AA772E5 {
+   "autoAttach": true,
+   "flatten": true,
+   "waitForDebuggerOnStart": false
+}
+[1763719097.283][DEBUG]: DevTools WebSocket Event: Target.attachedToTarget (session_id=0BF9C8307ACF2D05680ABE9F6C584EB0) 8BBC50435C559FD67AF695B14AA772E5 {
+   "sessionId": "43F985E4D3A7CAE11ECF9237CDC7C5BE",
+   "targetInfo": {
+      "attached": true,
+      "browserContextId": "42DD57C8BE6E8055B52AFDB1E83578A1",
+      "canAccessOpener": false,
+      "targetId": "5EC250D5BDE0676EE91CE158E111FF4A",
+      "title": "data:,",
+      "type": "page",
+      "url": "data:,"
+   },
+   "waitingForDebugger": false
+}
+[1763719097.283][DEBUG]: DevTools WebSocket Command: Page.enable (id=4) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.283][DEBUG]: DevTools WebSocket Command: Page.addScriptToEvaluateOnNewDocument (id=5) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "source": "(function () {window.cdc_adoQpoasnfa76pfcZLmcfl_Array = window.Array;window.cdc_adoQpoasnfa76pfcZLmcfl_Object = window.Object;window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;window.cdc_a..."
+}
+[1763719097.283][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=6) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "(function () {window.cdc_adoQpoasnfa76pfcZLmcfl_Array = window.Array;window.cdc_adoQpoasnfa76pfcZLmcfl_Object = window.Object;window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;window.cdc_a..."
+}
+[1763719097.283][DEBUG]: DevTools WebSocket Command: Log.enable (id=7) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.283][DEBUG]: DevTools WebSocket Command: Target.setAutoAttach (id=8) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "autoAttach": true,
+   "flatten": true,
+   "waitForDebuggerOnStart": false
+}
+[1763719097.284][DEBUG]: DevTools WebSocket Response: Target.setAutoAttach (id=3) (session_id=0BF9C8307ACF2D05680ABE9F6C584EB0) 8BBC50435C559FD67AF695B14AA772E5 {
+}
+[1763719097.286][DEBUG]: DevTools WebSocket Response: Page.enable (id=4) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Response: Page.addScriptToEvaluateOnNewDocument (id=5) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "identifier": "1"
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=6) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "type": "undefined"
+   }
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Response: Log.enable (id=7) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Response: Target.setAutoAttach (id=8) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=9) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "context": {
+      "auxData": {
+         "frameId": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "isDefault": true,
+         "type": "default"
+      },
+      "id": 1,
+      "name": "",
+      "origin": "://",
+      "uniqueId": "-6619218111227478857.-9076453156349657107"
+   }
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=9) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.287][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=10) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.288][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=10) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.289][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE InitSession {
+   "capabilities": {
+      "acceptInsecureCerts": false,
+      "browserName": "chrome",
+      "browserVersion": "142.0.7444.162",
+      "chrome": {
+         "chromedriverVersion": "142.0.7444.61 (9884f628acbc5ba8787e2c95a8923a30cf127fd8-refs/branch-heads/7444_52@{#6})",
+         "userDataDir": "/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/.org.chromium.Chromium.scoped_dir.7jUFVA"
+      },
+      "fedcm:accounts": true,
+      "goog:chromeOptions": {
+         "debuggerAddress": "localhost:61877"
+      },
+      "goog:processID": 15926,
+      "networkConnectionEnabled": false,
+      "pageLoadStrategy": "normal",
+      "platformName": "mac",
+      "proxy": {
+      },
+      "setWindowRect": true,
+      "strictFileInteractability": false,
+      "timeouts": {
+         "implicit": 0,
+         "pageLoad": 300000,
+         "script": 30000
+      },
+      "unhandledPromptBehavior": "dismiss and notify",
+      "webauthn:extension:credBlob": true,
+      "webauthn:extension:largeBlob": true,
+      "webauthn:extension:minPinLength": true,
+      "webauthn:extension:prf": true,
+      "~~~": "..."
+   },
+   "sessionId": "ef3af3699b3ac47c0205013bb50f8bdd"
+}
+[1763719097.309][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND Navigate {
+   "url": "https://quote.eastmoney.com/center/gridlist.html#gem_board"
+}
+[1763719097.314][INFO]: Waiting for pending navigations...
+[1763719097.314][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=11) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719097.315][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=11) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719097.321][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=12) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "document",
+   "objectGroup": "b8b3dcaa-9df3-4538-a35d-ed0967ac2ceb"
+}
+[1763719097.322][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=12) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "HTMLDocument",
+      "description": "#document",
+      "objectId": "6137468670799502077.1.1",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719097.322][DEBUG]: DevTools WebSocket Command: DOM.describeNode (id=13) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectId": "6137468670799502077.1.1"
+}
+[1763719097.322][DEBUG]: DevTools WebSocket Response: DOM.describeNode (id=13) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "node": {
+      "backendNodeId": 1,
+      "baseURL": "data:,",
+      "childNodeCount": 1,
+      "compatibilityMode": "NoQuirksMode",
+      "documentURL": "data:,",
+      "localName": "",
+      "nodeId": 0,
+      "nodeName": "#document",
+      "nodeType": 9,
+      "nodeValue": "",
+      "xmlVersion": ""
+   }
+}
+[1763719097.322][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=14) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "b8b3dcaa-9df3-4538-a35d-ed0967ac2ceb"
+}
+[1763719097.323][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=15) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "awaitPromise": false,
+   "expression": "document.readyState",
+   "returnByValue": true,
+   "uniqueContextId": "-6619218111227478857.-9076453156349657107"
+}
+[1763719097.323][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=14) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.324][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=15) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "type": "string",
+      "value": "complete"
+   }
+}
+[1763719097.327][INFO]: Done waiting for pending navigations. Status: ok
+[1763719097.327][DEBUG]: DevTools WebSocket Command: Page.navigate (id=16) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "url": "https://quote.eastmoney.com/center/gridlist.html#gem_board"
+}
+[1763719097.332][DEBUG]: DevTools WebSocket Event: Page.frameStartedNavigating (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameId": "5EC250D5BDE0676EE91CE158E111FF4A",
+   "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+   "navigationType": "differentDocument",
+   "url": "https://quote.eastmoney.com/center/gridlist.html#gem_board"
+}
+[1763719097.337][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameId": "5EC250D5BDE0676EE91CE158E111FF4A"
+}
+[1763719097.386][DEBUG]: DevTools WebSocket Response: Page.navigate (id=16) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameId": "5EC250D5BDE0676EE91CE158E111FF4A",
+   "isDownload": false,
+   "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA"
+}
+[1763719097.386][INFO]: Waiting for pending navigations...
+[1763719097.386][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=17) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719097.387][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.389][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719097.389][DEBUG]: DevTools WebSocket Event: Page.frameNavigated (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frame": {
+      "adFrameStatus": {
+         "adFrameType": "none"
+      },
+      "crossOriginIsolatedContextType": "NotIsolated",
+      "domainAndRegistry": "eastmoney.com",
+      "gatedAPIFeatures": [  ],
+      "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+      "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+      "mimeType": "text/html",
+      "secureContextType": "Secure",
+      "securityOrigin": "https://quote.eastmoney.com",
+      "securityOriginDetails": {
+         "isLocalhost": false
+      },
+      "url": "https://quote.eastmoney.com/center/gridlist.html",
+      "urlFragment": "#gem_board"
+   },
+   "type": "Navigation"
+}
+[1763719097.398][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "context": {
+      "auxData": {
+         "frameId": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "isDefault": true,
+         "type": "default"
+      },
+      "id": 1,
+      "name": "",
+      "origin": "https://quote.eastmoney.com",
+      "uniqueId": "-296296646754670019.-5594906167648837185"
+   }
+}
+[1763719097.404][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=17) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719097.908][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=18) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719098.040][DEBUG]: DevTools WebSocket Event: Page.domContentEventFired (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "timestamp": 31642.399223
+}
+[1763719098.041][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=18) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719098.545][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=19) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719098.546][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=19) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719098.614][DEBUG]: DevTools WebSocket Event: Page.loadEventFired (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "timestamp": 31642.975591
+}
+[1763719098.614][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=20) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "awaitPromise": false,
+   "expression": "document.readyState",
+   "returnByValue": true,
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719098.614][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameId": "5EC250D5BDE0676EE91CE158E111FF4A"
+}
+[1763719098.614][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=20) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "type": "string",
+      "value": "complete"
+   }
+}
+[1763719098.614][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=21) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719098.615][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=21) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719098.615][INFO]: Done waiting for pending navigations. Status: ok
+[1763719098.615][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE Navigate
+[1763719099.622][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND FindElement {
+   "using": "xpath",
+   "value": "/html/body/div[5]/img[1]"
+}
+[1763719099.622][INFO]: Waiting for pending navigations...
+[1763719099.622][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=22) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.623][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=22) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.623][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.624][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=23) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.625][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=23) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.625][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=24) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.626][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=24) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.628][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=25) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [  ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.636][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=25) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"element-6066-11e4-a52e-4f735466cecf\":0}}"
+         }, {
+            "type": "node",
+            "value": {
+               "attributes": {
+                  "onclick": "tk_tg_zoomin()",
+                  "src": "https://emcharts.dfcfw.com/fullscreengg/ic_close.png",
+                  "style": "position: absolute; right: -20px; top:-20px; cursor: pointer;"
+               },
+               "backendNodeId": 31,
+               "childNodeCount": 0,
+               "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+               "localName": "img",
+               "namespaceURI": "http://www.w3.org/1999/xhtml",
+               "nodeType": 1,
+               "shadowRoot": null
+            }
+         } ]
+      },
+      "description": "Array(2)",
+      "objectId": "-4798546278712320040.1.1",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.636][INFO]: Waiting for pending navigations...
+[1763719099.636][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=26) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.638][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=26) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.638][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.638][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE FindElement {
+   "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.31"
+}
+[1763719099.641][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND ExecuteScript {
+   "args": [ {
+      "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.31"
+   } ],
+   "script": "/* isDisplayed */return (function(){return (function(){var g=this||self;\nfunction aa(a){var b=typeof a;if(\"object\"==b)if(a){if(a instanceof Array)return\"array\";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if(\"[object Window]\"==c)return\"object\";if(\"[object Array]\"==c||\"number\"==typeof a.length&&\"undefined\"!=typeof a.splice&&\"undefined\"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable(\"splice\"))return\"array\";if(\"[object Function]\"==c||\"undefined\"!=typeof a.call&&\"undefined\"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable(\"call\"))return\"function\"}else return\"null\";else if(\"function\"==\nb&&\"undefined\"==typeof a.call)return\"object\";return b}function ca(a,b){function c(){}c.prototype=b.prototype;a.prototype=new c;a.prototype.constructor=a};var da=Array.prototype.indexOf?function(a,b){return Array.prototype.indexOf.call(a,b,void 0)}:function(a,b){if(\"string\"===typeof a)return\"string\"!==typeof b||1!=b.length?-1:a.indexOf(b,0);for(var c=0;c\u003Ca.length;c++)if(c in a&&a[c]===b)return c;return-1},ea=Array.prototype.some?function(a,b){return Array.prototype.some.call(a,b,void 0)}:function(a,b){for(var c=a.length,e=\"string\"===typeof a?a.split(\"\"):a,d=0;d\u003Cc;d++)if(d in e&&b.call(void 0,e[d],d,a))return!0;return!1},fa=Array.prototype.every?function(a,\nb){return Array.prototype.every.call(a,b,void 0)}:function(a,b){for(var c=a.length,e=\"string\"===typeof a?a.split(\"\"):a,d=0;d\u003Cc;d++)if(d in e&&!b.call(void 0,e[d],d,a))return!1;return!0};var ha={aliceblue:\"#f0f8ff\",antiquewhite:\"#faebd7\",aqua:\"#00ffff\",aquamarine:\"#7fffd4\",azure:\"#f0ffff\",beige:\"#f5f5dc\",bisque:\"#ffe4c4\",black:\"#000000\",blanchedalmond:\"#ffebcd\",blue:\"#0000ff\",blueviolet:\"#8a2be2\",brown:\"#a52a2a\",burlywood:\"#deb887\",cadetblue:\"#5f9ea0\",chartreuse:\"#7fff00\",chocolate:\"#d2691e\",coral:\"#ff7f50\",cornflowerblue:\"#6495ed\",cornsilk:\"#fff8dc\",crimson:\"#dc143c\",cyan:\"#00ffff\",darkblue:\"#00008b\",darkcyan:\"#008b8b\",darkgoldenrod:\"#b8860b\",darkgray:\"#a9a9a9\",darkgreen:\"#006400\",\ndarkgrey:\"#a9a9a9\",darkkhaki:\"#bdb76b\",darkmagenta:\"#8b008b\",darkolivegreen:\"#556b2f\",darkorange:\"#ff8c00\",darkorchid:\"#9932cc\",darkred:\"#8b0000\",darksalmon:\"#e9967a\",darkseagreen:\"#8fbc8f\",darkslateblue:\"#483d8b\",darkslategray:\"#2f4f4f\",darkslategrey:\"#2f4f4f\",darkturquoise:\"#00ced1\",darkviolet:\"#9400d3\",deeppink:\"#ff1493\",deepskyblue:\"#00bfff\",dimgray:\"#696969\",dimgrey:\"#696969\",dodgerblue:\"#1e90ff\",firebrick:\"#b22222\",floralwhite:\"#fffaf0\",forestgreen:\"#228b22\",fuchsia:\"#ff00ff\",gainsboro:\"#dcdcdc\",\nghostwhite:\"#f8f8ff\",gold:\"#ffd700\",goldenrod:\"#daa520\",gray:\"#808080\",green:\"#008000\",greenyellow:\"#adff2f\",grey:\"#808080\",honeydew:\"#f0fff0\",hotpink:\"#ff69b4\",indianred:\"#cd5c5c\",indigo:\"#4b0082\",ivory:\"#fffff0\",khaki:\"#f0e68c\",lavender:\"#e6e6fa\",lavenderblush:\"#fff0f5\",lawngreen:\"#7cfc00\",lemonchiffon:\"#fffacd\",lightblue:\"#add8e6\",lightcoral:\"#f08080\",lightcyan:\"#e0ffff\",lightgoldenrodyellow:\"#fafad2\",lightgray:\"#d3d3d3\",lightgreen:\"#90ee90\",lightgrey:\"#d3d3d3\",lightpink:\"#ffb6c1\",lightsalmon:\"#ffa07a\",\nlightseagreen:\"#20b2aa\",lightskyblue:\"#87cefa\",lightslategray:\"#778899\",lightslategrey:\"#778899\",lightsteelblue:\"#b0c4de\",lightyellow:\"#ffffe0\",lime:\"#00ff00\",limegreen:\"#32cd32\",linen:\"#faf0e6\",magenta:\"#ff00ff\",maroon:\"#800000\",mediumaquamarine:\"#66cdaa\",mediumblue:\"#0000cd\",mediumorchid:\"#ba55d3\",mediumpurple:\"#9370db\",mediumseagreen:\"#3cb371\",mediumslateblue:\"#7b68ee\",mediumspringgreen:\"#00fa9a\",mediumturquoise:\"#48d1cc\",mediumvioletred:\"#c71585\",midnightblue:\"#191970\",mintcream:\"#f5fffa\",mistyrose:\"#ffe4e1\",\nmoccasin:\"#ffe4b5\",navajowhite:\"#ffdead\",navy:\"#000080\",oldlace:\"#fdf5e6\",olive:\"#808000\",olivedrab:\"#6b8e23\",orange:\"#ffa500\",orangered:\"#ff4500\",orchid:\"#da70d6\",palegoldenrod:\"#eee8aa\",palegreen:\"#98fb98\",paleturquoise:\"#afeeee\",palevioletred:\"#db7093\",papayawhip:\"#ffefd5\",peachpuff:\"#ffdab9\",peru:\"#cd853f\",pink:\"#ffc0cb\",plum:\"#dda0dd\",powderblue:\"#b0e0e6\",purple:\"#800080\",red:\"#ff0000\",rosybrown:\"#bc8f8f\",royalblue:\"#4169e1\",saddlebrown:\"#8b4513\",salmon:\"#fa8072\",sandybrown:\"#f4a460\",seagreen:\"#2e8b57\",\nseashell:\"#fff5ee\",sienna:\"#a0522d\",silver:\"#c0c0c0\",skyblue:\"#87ceeb\",slateblue:\"#6a5acd\",slategray:\"#708090\",slategrey:\"#708090\",snow:\"#fffafa\",springgreen:\"#00ff7f\",steelblue:\"#4682b4\",tan:\"#d2b48c\",teal:\"#008080\",thistle:\"#d8bfd8\",tomato:\"#ff6347\",turquoise:\"#40e0d0\",violet:\"#ee82ee\",wheat:\"#f5deb3\",white:\"#ffffff\",whitesmoke:\"#f5f5f5\",yellow:\"#ffff00\",yellowgreen:\"#9acd32\"};var ia=\"backgroundColor borderTopColor borderRightColor borderBottomColor borderLeftColor color outlineColor\".split(\" \"),ja=/#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/,ka=/^#(?:[0-9a-f]{3}){1,2}$/i,la=/^(?:rgba)?\\((\\d{1,3}),\\s?(\\d{1,3}),\\s?(\\d{1,3}),\\s?(0|1|0\\.\\d*)\\)$/i,ma=/^(?:rgb)?\\((0|[1-9]\\d{0,2}),\\s?(0|[1-9]\\d{0,2}),\\s?(0|[1-9]\\d{0,2})\\)$/i;function m(a,b){this.code=a;this.a=p[a]||r;this.message=b||\"\";a=this.a.replace(/((?:^|\\s+)[a-z])/g,function(c){return c.toUpperCase().replace(/^[\\s\\xa0]+/g,\"\")});b=a.length-5;if(0>b||a.indexOf(\"Error\",b)!=b)a+=\"Error\";this.name=a;a=Error(this.message);a.name=this.name;this.stack=a.stack||\"\"}ca(m,Error);var r=\"unknown error\",p={15:\"element not selectable\",11:\"element not visible\"};p[31]=r;p[30]=r;p[24]=\"invalid cookie domain\";p[29]=\"invalid element coordinates\";p[12]=\"invalid element state\";\np[32]=\"invalid selector\";p[51]=\"invalid selector\";p[52]=\"invalid selector\";p[17]=\"javascript error\";p[405]=\"unsupported operation\";p[34]=\"move target out of bounds\";p[27]=\"no such alert\";p[7]=\"no such element\";p[8]=\"no such frame\";p[23]=\"no such window\";p[28]=\"script timeout\";p[33]=\"session not created\";p[10]=\"stale element reference\";p[21]=\"timeout\";p[25]=\"unable to set cookie\";p[26]=\"unexpected alert open\";p[13]=r;p[9]=\"unknown command\";var u=String.prototype.trim?function(a){return a.trim()}:function(a){return/^[\\s\\xa0]*([\\s\\S]*?)[\\s\\xa0]*$/.exec(a)[1]};\nfunction na(a,b){var c=0;a=u(String(a)).split(\".\");b=u(String(b)).split(\".\");for(var e=Math.max(a.length,b.length),d=0;0==c&&d\u003Ce;d++){var f=a[d]||\"\",h=b[d]||\"\";do{f=/(\\d*)(\\D*)(.*)/.exec(f)||[\"\",\"\",\"\",\"\"];h=/(\\d*)(\\D*)(.*)/.exec(h)||[\"\",\"\",\"\",\"\"];if(0==f[0].length&&0==h[0].length)break;c=v(0==f[1].length?0:parseInt(f[1],10),0==h[1].length?0:parseInt(h[1],10))||v(0==f[2].length,0==h[2].length)||v(f[2],h[2]);f=f[3];h=h[3]}while(0==c)}return c}function v(a,b){return a\u003Cb?-1:a>b?1:0};var w;a:{var oa=g.navigator;if(oa){var sa=oa.userAgent;if(sa){w=sa;break a}}w=\"\"}function x(a){return-1!=w.indexOf(a)};function y(){return x(\"Firefox\")||x(\"FxiOS\")}function A(){return(x(\"Chrome\")||x(\"CriOS\"))&&!x(\"Edge\")};function ta(a){return String(a).replace(/\\-([a-z])/g,function(b,c){return c.toUpperCase()})};function B(){return x(\"iPhone\")&&!x(\"iPod\")&&!x(\"iPad\")};function ua(a,b){var c=va;return Object.prototype.hasOwnProperty.call(c,a)?c[a]:c[a]=b(a)};var wa=x(\"Opera\"),C=x(\"Trident\")||x(\"MSIE\"),xa=x(\"Edge\"),ya=x(\"Gecko\")&&!(-1!=w.toLowerCase().indexOf(\"webkit\")&&!x(\"Edge\"))&&!(x(\"Trident\")||x(\"MSIE\"))&&!x(\"Edge\"),za=-1!=w.toLowerCase().indexOf(\"webkit\")&&!x(\"Edge\");function Aa(){var a=g.document;return a?a.documentMode:void 0}var E;\na:{var F=\"\",G=function(){var a=w;if(ya)return/rv:([^\\);]+)(\\)|;)/.exec(a);if(xa)return/Edge\\/([\\d\\.]+)/.exec(a);if(C)return/\\b(?:MSIE|rv)[: ]([^\\);]+)(\\)|;)/.exec(a);if(za)return/WebKit\\/(\\S+)/.exec(a);if(wa)return/(?:Version)[ \\/]?(\\S+)/.exec(a)}();G&&(F=G?G[1]:\"\");if(C){var H=Aa();if(null!=H&&H>parseFloat(F)){E=String(H);break a}}E=F}var va={};function Ba(a){return ua(a,function(){return 0\u003C=na(E,a)})}var I;I=g.document&&C?Aa():void 0;var Ca=y(),Da=B()||x(\"iPod\"),Ea=x(\"iPad\"),Fa=x(\"Android\")&&!(A()||y()||x(\"Opera\")||x(\"Silk\")),Ga=A(),Ha=x(\"Safari\")&&!(A()||x(\"Coast\")||x(\"Opera\")||x(\"Edge\")||x(\"Edg/\")||x(\"OPR\")||y()||x(\"Silk\")||x(\"Android\"))&&!(B()||x(\"iPad\")||x(\"iPod\"));function J(a){return(a=a.exec(w))?a[1]:\"\"}(function(){if(Ca)return J(/Firefox\\/([0-9.]+)/);if(C||xa||wa)return E;if(Ga)return B()||x(\"iPad\")||x(\"iPod\")?J(/CriOS\\/([0-9.]+)/):J(/Chrome\\/([0-9.]+)/);if(Ha&&!(B()||x(\"iPad\")||x(\"iPod\")))return J(/Version\\/([0-9.]+)/);if(Da||Ea){var a=/Version\\/(\\S+).*Mobile\\/(\\S+)/.exec(w);if(a)return a[1]+\".\"+a[2]}else if(Fa)return(a=J(/Android\\s+([0-9.]+)/))?a:J(/Version\\/([0-9.]+)/);return\"\"})();var K;if(K=C)K=!(9\u003C=Number(I));var Ia=K;function L(a,b){this.x=void 0!==a?a:0;this.y=void 0!==b?b:0}L.prototype.ceil=function(){this.x=Math.ceil(this.x);this.y=Math.ceil(this.y);return this};L.prototype.floor=function(){this.x=Math.floor(this.x);this.y=Math.floor(this.y);return this};L.prototype.round=function(){this.x=Math.round(this.x);this.y=Math.round(this.y);return this};function M(a,b){this.width=a;this.height=b}M.prototype.aspectRatio=function(){return this.width/this.height};M.prototype.ceil=function(){this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};M.prototype.floor=function(){this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};M.prototype.round=function(){this.width=Math.round(this.width);this.height=Math.round(this.height);return this};function N(a){return 9==a.nodeType?a:a.ownerDocument||a.document}function Ja(a,b){a&&(a=a.parentNode);for(var c=0;a;){if(b(a))return a;a=a.parentNode;c++}return null}function Ka(a){this.a=a||g.document||document};function P(a,b){b&&\"string\"!==typeof b&&(b=b.toString());return a instanceof HTMLFormElement?!!a&&1==a.nodeType&&(!b||\"FORM\"==b):!!a&&1==a.nodeType&&(!b||a.tagName.toUpperCase()==b)};function Q(a,b,c,e){this.f=a;this.a=b;this.b=c;this.c=e}Q.prototype.ceil=function(){this.f=Math.ceil(this.f);this.a=Math.ceil(this.a);this.b=Math.ceil(this.b);this.c=Math.ceil(this.c);return this};Q.prototype.floor=function(){this.f=Math.floor(this.f);this.a=Math.floor(this.a);this.b=Math.floor(this.b);this.c=Math.floor(this.c);return this};Q.prototype.round=function(){this.f=Math.round(this.f);this.a=Math.round(this.a);this.b=Math.round(this.b);this.c=Math.round(this.c);return this};function R(a,b,c,e){this.a=a;this.b=b;this.width=c;this.height=e}R.prototype.ceil=function(){this.a=Math.ceil(this.a);this.b=Math.ceil(this.b);this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};R.prototype.floor=function(){this.a=Math.floor(this.a);this.b=Math.floor(this.b);this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};\nR.prototype.round=function(){this.a=Math.round(this.a);this.b=Math.round(this.b);this.width=Math.round(this.width);this.height=Math.round(this.height);return this};var La=\"function\"===typeof ShadowRoot;function S(a){for(a=a.parentNode;a&&1!=a.nodeType&&9!=a.nodeType&&11!=a.nodeType;)a=a.parentNode;return P(a)?a:null}\nfunction T(a,b){b=ta(b);if(\"float\"==b||\"cssFloat\"==b||\"styleFloat\"==b)b=Ia?\"styleFloat\":\"cssFloat\";a:{var c=b;var e=N(a);if(e.defaultView&&e.defaultView.getComputedStyle&&(e=e.defaultView.getComputedStyle(a,null))){c=e[c]||e.getPropertyValue(c)||\"\";break a}c=\"\"}a=c||Ma(a,b);if(null===a)a=null;else if(0\u003C=da(ia,b)){b:{var d=a.match(la);if(d&&(b=Number(d[1]),c=Number(d[2]),e=Number(d[3]),d=Number(d[4]),0\u003C=b&&255>=b&&0\u003C=c&&255>=c&&0\u003C=e&&255>=e&&0\u003C=d&&1>=d)){b=[b,c,e,d];break b}b=null}if(!b)b:{if(e=a.match(ma))if(b=\nNumber(e[1]),c=Number(e[2]),e=Number(e[3]),0\u003C=b&&255>=b&&0\u003C=c&&255>=c&&0\u003C=e&&255>=e){b=[b,c,e,1];break b}b=null}if(!b)b:{b=a.toLowerCase();c=ha[b.toLowerCase()];if(!c&&(c=\"#\"==b.charAt(0)?b:\"#\"+b,4==c.length&&(c=c.replace(ja,\"#$1$1$2$2$3$3\")),!ka.test(c))){b=null;break b}b=[parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16),1]}a=b?\"rgba(\"+b.join(\", \")+\")\":a}return a}\nfunction Ma(a,b){var c=a.currentStyle||a.style,e=c[b];void 0===e&&\"function\"==aa(c.getPropertyValue)&&(e=c.getPropertyValue(b));return\"inherit\"!=e?void 0!==e?e:null:(a=S(a))?Ma(a,b):null}\nfunction U(a,b,c){function e(h){var n=V(h);return 0\u003Cn.height&&0\u003Cn.width?!0:P(h,\"PATH\")&&(0\u003Cn.height||0\u003Cn.width)?(h=T(h,\"stroke-width\"),!!h&&0\u003CparseInt(h,10)):\"hidden\"!=T(h,\"overflow\")&&ea(h.childNodes,function(D){return 3==D.nodeType||P(D)&&e(D)})}function d(h){return Na(h)==W&&fa(h.childNodes,function(n){return!P(n)||d(n)||!e(n)})}if(!P(a))throw Error(\"Argument to isShown must be of type Element\");if(P(a,\"BODY\"))return!0;if(P(a,\"OPTION\")||P(a,\"OPTGROUP\"))return a=Ja(a,function(h){return P(h,\"SELECT\")}),\n!!a&&U(a,!0,c);var f=Oa(a);if(f)return!!f.image&&0\u003Cf.rect.width&&0\u003Cf.rect.height&&U(f.image,b,c);if(P(a,\"INPUT\")&&\"hidden\"==a.type.toLowerCase()||P(a,\"NOSCRIPT\"))return!1;f=T(a,\"visibility\");return\"collapse\"!=f&&\"hidden\"!=f&&c(a)&&(b||0!=Pa(a))&&e(a)?!d(a):!1}var W=\"hidden\";\nfunction Na(a){function b(k){function l(ba){if(ba==h)return!0;var pa=T(ba,\"display\");return 0==pa.lastIndexOf(\"inline\",0)||\"contents\"==pa||\"absolute\"==qa&&\"static\"==T(ba,\"position\")?!1:!0}var qa=T(k,\"position\");if(\"fixed\"==qa)return ra=!0,k==h?null:h;for(k=S(k);k&&!l(k);)k=S(k);return k}function c(k){var l=k;if(\"visible\"==D)if(k==h&&n)l=n;else if(k==n)return{x:\"visible\",y:\"visible\"};l={x:T(l,\"overflow-x\"),y:T(l,\"overflow-y\")};k==h&&(l.x=\"visible\"==l.x?\"auto\":l.x,l.y=\"visible\"==l.y?\"auto\":l.y);return l}\nfunction e(k){if(k==h){var l=(new Ka(f)).a;k=l.scrollingElement?l.scrollingElement:za||\"CSS1Compat\"!=l.compatMode?l.body||l.documentElement:l.documentElement;l=l.parentWindow||l.defaultView;k=C&&Ba(\"10\")&&l.pageYOffset!=k.scrollTop?new L(k.scrollLeft,k.scrollTop):new L(l.pageXOffset||k.scrollLeft,l.pageYOffset||k.scrollTop)}else k=new L(k.scrollLeft,k.scrollTop);return k}var d=Qa(a),f=N(a),h=f.documentElement,n=f.body,D=T(h,\"overflow\"),ra;for(a=b(a);a;a=b(a)){var q=c(a);if(\"visible\"!=q.x||\"visible\"!=\nq.y){var t=V(a);if(0==t.width||0==t.height)return W;var z=d.a\u003Ct.a,O=d.b\u003Ct.b;if(z&&\"hidden\"==q.x||O&&\"hidden\"==q.y)return W;if(z&&\"visible\"!=q.x||O&&\"visible\"!=q.y){z=e(a);O=d.b\u003Ct.b-z.y;if(d.a\u003Ct.a-z.x&&\"visible\"!=q.x||O&&\"visible\"!=q.x)return W;d=Na(a);return d==W?W:\"scroll\"}z=d.c>=t.a+t.width;t=d.f>=t.b+t.height;if(z&&\"hidden\"==q.x||t&&\"hidden\"==q.y)return W;if(z&&\"visible\"!=q.x||t&&\"visible\"!=q.y){if(ra&&(q=e(a),d.c>=h.scrollWidth-q.x||d.a>=h.scrollHeight-q.y))return W;d=Na(a);return d==W?W:\"scroll\"}}}return\"none\"}\nfunction V(a){var b=Oa(a);if(b)return b.rect;if(P(a,\"HTML\"))return a=N(a),a=((a?a.parentWindow||a.defaultView:window)||window).document,a=\"CSS1Compat\"==a.compatMode?a.documentElement:a.body,a=new M(a.clientWidth,a.clientHeight),new R(0,0,a.width,a.height);try{var c=a.getBoundingClientRect()}catch(e){return new R(0,0,0,0)}b=new R(c.left,c.top,c.right-c.left,c.bottom-c.top);C&&a.ownerDocument.body&&(a=N(a),b.a-=a.documentElement.clientLeft+a.body.clientLeft,b.b-=a.documentElement.clientTop+a.body.clientTop);\nreturn b}\nfunction Oa(a){var b=P(a,\"MAP\");if(!b&&!P(a,\"AREA\"))return null;var c=b?a:P(a.parentNode,\"MAP\")?a.parentNode:null,e=null,d=null;if(c&&c.name){e='*[usemap=\"#'+c.name+'\"]';c=N(c);var f;if(f=\"function\"!=aa(c.querySelector)&&C&&(C?0\u003C=na(I,8):Ba(8))){f=c.querySelector;var h=typeof f;f=!(\"object\"==h&&null!=f||\"function\"==h)}if(f)throw Error(\"CSS selection is not supported\");if(!e)throw new m(32,\"No selector specified\");e=u(e);try{var n=c.querySelector(e)}catch(D){throw new m(32,\"An invalid or illegal selector was specified\");}if(e=\nn&&1==n.nodeType?n:null)d=V(e),b||\"default\"==a.shape.toLowerCase()||(a=Ra(a),b=Math.min(Math.max(a.a,0),d.width),n=Math.min(Math.max(a.b,0),d.height),d=new R(b+d.a,n+d.b,Math.min(a.width,d.width-b),Math.min(a.height,d.height-n)))}return{image:e,rect:d||new R(0,0,0,0)}}\nfunction Ra(a){var b=a.shape.toLowerCase();a=a.coords.split(\",\");if(\"rect\"==b&&4==a.length){b=a[0];var c=a[1];return new R(b,c,a[2]-b,a[3]-c)}if(\"circle\"==b&&3==a.length)return b=a[2],new R(a[0]-b,a[1]-b,2*b,2*b);if(\"poly\"==b&&2\u003Ca.length){b=a[0];c=a[1];for(var e=b,d=c,f=2;f+1\u003Ca.length;f+=2)b=Math.min(b,a[f]),e=Math.max(e,a[f]),c=Math.min(c,a[f+1]),d=Math.max(d,a[f+1]);return new R(b,c,e-b,d-c)}return new R(0,0,0,0)}function Qa(a){a=V(a);return new Q(a.b,a.a+a.width,a.b+a.height,a.a)}\nfunction Pa(a){if(Ia){if(\"relative\"==T(a,\"position\"))return 1;a=T(a,\"filter\");return(a=a.match(/^alpha\\(opacity=(\\d*)\\)/)||a.match(/^progid:DXImageTransform.Microsoft.Alpha\\(Opacity=(\\d*)\\)/))?Number(a[1])/100:1}return Sa(a)}function Sa(a){var b=1,c=T(a,\"opacity\");c&&(b=Number(c));(a=S(a))&&(b*=Sa(a));return b};function Ta(a,b){function c(e){if(P(e)&&\"none\"==T(e,\"display\"))return!1;var d;if((d=e.parentNode)&&d.shadowRoot&&void 0!==e.assignedSlot)d=e.assignedSlot?e.assignedSlot.parentNode:null;else if(e.getDestinationInsertionPoints){var f=e.getDestinationInsertionPoints();0\u003Cf.length&&(d=f[f.length-1])}if(La&&d instanceof ShadowRoot){if(d.host.shadowRoot&&d.host.shadowRoot!==d)return!1;d=d.host}return!d||9!=d.nodeType&&11!=d.nodeType?d&&P(d,\"DETAILS\")&&!d.open&&!P(e,\"SUMMARY\")?!1:!!d&&c(d):!0}return U(a,\n!!b,c)}var X=[\"se_exportedFunctionSymbol\"],Y=g;X[0]in Y||\"undefined\"==typeof Y.execScript||Y.execScript(\"var \"+X[0]);for(var Z;X.length&&(Z=X.shift());)X.length||void 0===Ta?Y[Z]&&Y[Z]!==Object.prototype[Z]?Y=Y[Z]:Y=Y[Z]={}:Y[Z]=Ta;; return this.se_exportedFunctionSymbol.apply(null,arguments);}).apply(window, arguments);}\n).apply(null, arguments);"
+}
+[1763719099.641][INFO]: Waiting for pending navigations...
+[1763719099.641][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=27) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.642][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=27) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.642][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.642][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=28) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.643][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=28) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.643][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=29) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "28843be4-27bf-4cf8-8a43-b81974b3ce2d"
+}
+[1763719099.643][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=29) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.2",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.643][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=30) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.644][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=30) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.645][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=31) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.2"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "28843be4-27bf-4cf8-8a43-b81974b3ce2d",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.649][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=31) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":true}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.3",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.649][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=32) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "28843be4-27bf-4cf8-8a43-b81974b3ce2d"
+}
+[1763719099.649][INFO]: Waiting for pending navigations...
+[1763719099.649][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=33) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.651][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=32) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.651][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=33) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.651][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.651][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE ExecuteScript true
+[1763719099.652][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND FindElement {
+   "using": "xpath",
+   "value": "/html/body/div[5]/img[1]"
+}
+[1763719099.652][INFO]: Waiting for pending navigations...
+[1763719099.652][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=34) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.652][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=34) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.652][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.652][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=35) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.653][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=35) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.653][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=36) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.653][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=36) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.654][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=37) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [  ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.657][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=37) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"element-6066-11e4-a52e-4f735466cecf\":0}}"
+         }, {
+            "type": "node",
+            "value": {
+               "attributes": {
+                  "onclick": "tk_tg_zoomin()",
+                  "src": "https://emcharts.dfcfw.com/fullscreengg/ic_close.png",
+                  "style": "position: absolute; right: -20px; top:-20px; cursor: pointer;"
+               },
+               "backendNodeId": 31,
+               "childNodeCount": 0,
+               "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+               "localName": "img",
+               "namespaceURI": "http://www.w3.org/1999/xhtml",
+               "nodeType": 1,
+               "shadowRoot": null
+            }
+         } ]
+      },
+      "description": "Array(2)",
+      "objectId": "-4798546278712320040.1.4",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.657][INFO]: Waiting for pending navigations...
+[1763719099.657][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=38) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.658][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=38) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.658][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.658][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE FindElement {
+   "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.31"
+}
+[1763719099.659][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND ClickElement {
+   "id": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.31"
+}
+[1763719099.659][INFO]: Waiting for pending navigations...
+[1763719099.659][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=39) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.659][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=39) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.659][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.659][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=40) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.660][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=40) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.660][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=41) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "1f566053-8164-4288-82cb-89faefac56b0"
+}
+[1763719099.660][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=41) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.5",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.660][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=42) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.661][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=42) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.661][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=43) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.5"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "1f566053-8164-4288-82cb-89faefac56b0",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.662][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=43) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":\"IMG\"}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.6",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.662][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=44) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "1f566053-8164-4288-82cb-89faefac56b0"
+}
+[1763719099.662][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=45) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.662][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=44) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.663][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=45) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.663][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=46) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "d3def558-7cb8-4cd5-90ad-889271cf705f"
+}
+[1763719099.663][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=46) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.7",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.663][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=47) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.663][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=47) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.663][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=48) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.7"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "d3def558-7cb8-4cd5-90ad-889271cf705f",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.664][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=48) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":\"IMG\"}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.8",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.664][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=49) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "d3def558-7cb8-4cd5-90ad-889271cf705f"
+}
+[1763719099.666][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=50) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.666][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=49) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.667][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=50) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.667][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=51) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "7bedd46a-8d48-4430-84c0-c75850206ec8"
+}
+[1763719099.667][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=51) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.9",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.667][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=52) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.668][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=52) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.668][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=53) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.9"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "7bedd46a-8d48-4430-84c0-c75850206ec8",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.674][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=53) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":true}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.10",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.674][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=54) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "7bedd46a-8d48-4430-84c0-c75850206ec8"
+}
+[1763719099.674][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=55) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.675][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=54) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.675][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=55) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.675][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=56) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "e318ca6f-c80f-41d9-bff9-307bf5bc0aac"
+}
+[1763719099.676][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=56) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.11",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.676][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=57) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.676][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=57) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.677][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=58) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.11"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "e318ca6f-c80f-41d9-bff9-307bf5bc0aac",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.679][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=58) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"left\":0,\"top\":0,\"height\":40,\"width\":40}}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.12",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.679][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=59) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "e318ca6f-c80f-41d9-bff9-307bf5bc0aac"
+}
+[1763719099.679][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=60) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.679][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=59) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.680][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=60) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.680][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=61) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "649c0665-cfe6-4c6c-8d88-0f50bfab990b"
+}
+[1763719099.680][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=61) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.13",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.680][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=62) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.681][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=62) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.681][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=63) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.13"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "649c0665-cfe6-4c6c-8d88-0f50bfab990b",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.688][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=63) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"x\":1132.5,\"y\":190.5,\"clone\":{},\"ceil\":{},\"floor\":{},\"round\":{},\"translate\":{},\"scale\":{}}}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.14",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.688][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=64) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "649c0665-cfe6-4c6c-8d88-0f50bfab990b"
+}
+[1763719099.688][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=65) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.688][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=64) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.688][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=65) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.688][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=66) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "014362ca-6e7e-4ce8-b8ca-7ebcad0f80b9"
+}
+[1763719099.689][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=66) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.15",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.689][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=67) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.689][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=67) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.690][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=68) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.15"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "014362ca-6e7e-4ce8-b8ca-7ebcad0f80b9",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.694][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=68) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"clickable\":true}}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.16",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.694][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=69) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "014362ca-6e7e-4ce8-b8ca-7ebcad0f80b9"
+}
+[1763719099.694][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=70) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.695][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=69) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.695][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=70) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.695][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=71) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "4d4de172-6d6a-4721-98b8-487e4488deda"
+}
+[1763719099.695][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=71) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.17",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.695][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=72) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.696][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=72) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.696][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=73) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.17"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "4d4de172-6d6a-4721-98b8-487e4488deda",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.697][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=73) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":\"IMG\"}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.18",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.697][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=74) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "4d4de172-6d6a-4721-98b8-487e4488deda"
+}
+[1763719099.697][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=75) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.697][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=74) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.697][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=75) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.697][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=76) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "d98c83f8-5210-43ca-8642-4f3a5d298a01"
+}
+[1763719099.698][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=76) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.19",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.698][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=77) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.698][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=77) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.699][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=78) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.19"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "d98c83f8-5210-43ca-8642-4f3a5d298a01",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.701][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=78) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":true}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.20",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.701][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=79) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "d98c83f8-5210-43ca-8642-4f3a5d298a01"
+}
+[1763719099.701][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=80) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.701][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=79) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.702][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=80) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.702][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=81) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "fa3a76be-a236-48f0-bee0-9874b5bb54b2"
+}
+[1763719099.702][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=81) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.21",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.702][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=82) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.702][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=82) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.703][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=83) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.21"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "fa3a76be-a236-48f0-bee0-9874b5bb54b2",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.704][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=83) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"left\":0,\"top\":0,\"height\":40,\"width\":40}}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.22",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.704][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=84) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "fa3a76be-a236-48f0-bee0-9874b5bb54b2"
+}
+[1763719099.704][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=85) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.704][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=84) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.704][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=85) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.704][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=86) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "df6b800a-62a3-4d79-be89-bb0f720dae60"
+}
+[1763719099.705][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=86) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.23",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.705][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=87) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.705][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=87) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.706][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=88) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.23"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "df6b800a-62a3-4d79-be89-bb0f720dae60",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.707][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=88) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"x\":1132.5,\"y\":190.5,\"clone\":{},\"ceil\":{},\"floor\":{},\"round\":{},\"translate\":{},\"scale\":{}}}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.24",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.707][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=89) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "df6b800a-62a3-4d79-be89-bb0f720dae60"
+}
+[1763719099.707][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=90) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.708][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=89) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.708][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=90) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.708][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=91) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 31,
+   "objectGroup": "9724f8db-6fd3-4baa-b72b-42a2df5e6d9a"
+}
+[1763719099.708][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=91) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLImageElement",
+      "description": "img",
+      "objectId": "-4798546278712320040.1.25",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719099.708][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=92) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.709][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=92) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719099.709][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=93) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.25"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "9724f8db-6fd3-4baa-b72b-42a2df5e6d9a",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719099.711][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=93) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"clickable\":true}}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.26",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719099.711][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=94) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "9724f8db-6fd3-4baa-b72b-42a2df5e6d9a"
+}
+[1763719099.711][DEBUG]: DevTools WebSocket Command: Input.dispatchMouseEvent (id=95) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "button": "none",
+   "buttons": 0,
+   "clickCount": 0,
+   "force": 0.0,
+   "modifiers": 0,
+   "pointerType": "mouse",
+   "tangentialPressure": 0.0,
+   "tiltX": 0,
+   "tiltY": 0,
+   "twist": 0,
+   "type": "mouseMoved",
+   "x": 1152,
+   "y": 210
+}
+[1763719099.711][DEBUG]: DevTools WebSocket Command: Input.dispatchMouseEvent (id=96) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "button": "left",
+   "buttons": 0,
+   "clickCount": 1,
+   "force": 0.0,
+   "modifiers": 0,
+   "pointerType": "mouse",
+   "tangentialPressure": 0.0,
+   "tiltX": 0,
+   "tiltY": 0,
+   "twist": 0,
+   "type": "mousePressed",
+   "x": 1152,
+   "y": 210
+}
+[1763719099.711][DEBUG]: DevTools WebSocket Command: Input.dispatchMouseEvent (id=97) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "button": "left",
+   "buttons": 1,
+   "clickCount": 1,
+   "force": 0.0,
+   "modifiers": 0,
+   "pointerType": "mouse",
+   "tangentialPressure": 0.0,
+   "tiltX": 0,
+   "tiltY": 0,
+   "twist": 0,
+   "type": "mouseReleased",
+   "x": 1152,
+   "y": 210
+}
+[1763719099.711][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=94) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.712][DEBUG]: DevTools WebSocket Response: Input.dispatchMouseEvent (id=95) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.712][DEBUG]: DevTools WebSocket Response: Input.dispatchMouseEvent (id=96) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.716][DEBUG]: DevTools WebSocket Response: Input.dispatchMouseEvent (id=97) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719099.716][INFO]: Waiting for pending navigations...
+[1763719099.716][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=98) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719099.733][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=98) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719099.733][INFO]: Done waiting for pending navigations. Status: ok
+[1763719099.733][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE ClickElement
+[1763719100.738][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND FindElement {
+   "using": "xpath",
+   "value": "//*[@id=\"mainc\"]/div/div/div[4]/div/a[4]"
+}
+[1763719100.738][INFO]: Waiting for pending navigations...
+[1763719100.738][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=99) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.739][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=99) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.739][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.739][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=100) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.740][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=100) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.740][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=101) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.741][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=101) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.743][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=102) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [  ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719100.751][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=102) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"element-6066-11e4-a52e-4f735466cecf\":0}}"
+         }, {
+            "type": "node",
+            "value": {
+               "attributes": {
+                  "class": "",
+                  "data-pi": "2",
+                  "href": "#",
+                  "title": ""
+               },
+               "backendNodeId": 200,
+               "childNodeCount": 1,
+               "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+               "localName": "a",
+               "namespaceURI": "http://www.w3.org/1999/xhtml",
+               "nodeType": 1,
+               "shadowRoot": null
+            }
+         } ]
+      },
+      "description": "Array(2)",
+      "objectId": "-4798546278712320040.1.27",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719100.752][INFO]: Waiting for pending navigations...
+[1763719100.752][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=103) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.752][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=103) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.752][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.752][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE FindElement {
+   "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.200"
+}
+[1763719100.754][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND GetElementText {
+   "id": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.200"
+}
+[1763719100.754][INFO]: Waiting for pending navigations...
+[1763719100.754][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=104) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.754][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=104) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.754][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.757][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=105) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.757][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=105) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.758][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=106) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 200,
+   "objectGroup": "f3275302-7939-4028-84b6-3d2533783458"
+}
+[1763719100.758][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=106) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLAnchorElement",
+      "description": "a",
+      "objectId": "-4798546278712320040.1.28",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719100.758][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=107) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.759][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=107) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.760][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=108) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.28"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "f3275302-7939-4028-84b6-3d2533783458",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719100.767][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=108) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":\"70\"}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.29",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719100.768][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=109) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "f3275302-7939-4028-84b6-3d2533783458"
+}
+[1763719100.768][INFO]: Waiting for pending navigations...
+[1763719100.768][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=110) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.768][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=109) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.768][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=110) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.768][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.768][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE GetElementText "70"
+[1763719100.770][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND FindElement {
+   "using": "xpath",
+   "value": "//*[@id=\"mainc\"]/div/div/div[4]/table/tbody"
+}
+[1763719100.770][INFO]: Waiting for pending navigations...
+[1763719100.770][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=111) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.770][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=111) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.770][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.770][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=112) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.771][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=112) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.771][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=113) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.771][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=113) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.772][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=114) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [  ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719100.779][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=114) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":{\"element-6066-11e4-a52e-4f735466cecf\":0}}"
+         }, {
+            "type": "node",
+            "value": {
+               "attributes": {
+               },
+               "backendNodeId": 201,
+               "childNodeCount": 20,
+               "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+               "localName": "tbody",
+               "namespaceURI": "http://www.w3.org/1999/xhtml",
+               "nodeType": 1,
+               "shadowRoot": null
+            }
+         } ]
+      },
+      "description": "Array(2)",
+      "objectId": "-4798546278712320040.1.30",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719100.779][INFO]: Waiting for pending navigations...
+[1763719100.779][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=115) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.779][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=115) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.779][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.779][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE FindElement {
+   "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.201"
+}
+[1763719100.781][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND ExecuteScript {
+   "args": [ {
+      "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.201"
+   } ],
+   "script": "/* isDisplayed */return (function(){return (function(){var g=this||self;\nfunction aa(a){var b=typeof a;if(\"object\"==b)if(a){if(a instanceof Array)return\"array\";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if(\"[object Window]\"==c)return\"object\";if(\"[object Array]\"==c||\"number\"==typeof a.length&&\"undefined\"!=typeof a.splice&&\"undefined\"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable(\"splice\"))return\"array\";if(\"[object Function]\"==c||\"undefined\"!=typeof a.call&&\"undefined\"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable(\"call\"))return\"function\"}else return\"null\";else if(\"function\"==\nb&&\"undefined\"==typeof a.call)return\"object\";return b}function ca(a,b){function c(){}c.prototype=b.prototype;a.prototype=new c;a.prototype.constructor=a};var da=Array.prototype.indexOf?function(a,b){return Array.prototype.indexOf.call(a,b,void 0)}:function(a,b){if(\"string\"===typeof a)return\"string\"!==typeof b||1!=b.length?-1:a.indexOf(b,0);for(var c=0;c\u003Ca.length;c++)if(c in a&&a[c]===b)return c;return-1},ea=Array.prototype.some?function(a,b){return Array.prototype.some.call(a,b,void 0)}:function(a,b){for(var c=a.length,e=\"string\"===typeof a?a.split(\"\"):a,d=0;d\u003Cc;d++)if(d in e&&b.call(void 0,e[d],d,a))return!0;return!1},fa=Array.prototype.every?function(a,\nb){return Array.prototype.every.call(a,b,void 0)}:function(a,b){for(var c=a.length,e=\"string\"===typeof a?a.split(\"\"):a,d=0;d\u003Cc;d++)if(d in e&&!b.call(void 0,e[d],d,a))return!1;return!0};var ha={aliceblue:\"#f0f8ff\",antiquewhite:\"#faebd7\",aqua:\"#00ffff\",aquamarine:\"#7fffd4\",azure:\"#f0ffff\",beige:\"#f5f5dc\",bisque:\"#ffe4c4\",black:\"#000000\",blanchedalmond:\"#ffebcd\",blue:\"#0000ff\",blueviolet:\"#8a2be2\",brown:\"#a52a2a\",burlywood:\"#deb887\",cadetblue:\"#5f9ea0\",chartreuse:\"#7fff00\",chocolate:\"#d2691e\",coral:\"#ff7f50\",cornflowerblue:\"#6495ed\",cornsilk:\"#fff8dc\",crimson:\"#dc143c\",cyan:\"#00ffff\",darkblue:\"#00008b\",darkcyan:\"#008b8b\",darkgoldenrod:\"#b8860b\",darkgray:\"#a9a9a9\",darkgreen:\"#006400\",\ndarkgrey:\"#a9a9a9\",darkkhaki:\"#bdb76b\",darkmagenta:\"#8b008b\",darkolivegreen:\"#556b2f\",darkorange:\"#ff8c00\",darkorchid:\"#9932cc\",darkred:\"#8b0000\",darksalmon:\"#e9967a\",darkseagreen:\"#8fbc8f\",darkslateblue:\"#483d8b\",darkslategray:\"#2f4f4f\",darkslategrey:\"#2f4f4f\",darkturquoise:\"#00ced1\",darkviolet:\"#9400d3\",deeppink:\"#ff1493\",deepskyblue:\"#00bfff\",dimgray:\"#696969\",dimgrey:\"#696969\",dodgerblue:\"#1e90ff\",firebrick:\"#b22222\",floralwhite:\"#fffaf0\",forestgreen:\"#228b22\",fuchsia:\"#ff00ff\",gainsboro:\"#dcdcdc\",\nghostwhite:\"#f8f8ff\",gold:\"#ffd700\",goldenrod:\"#daa520\",gray:\"#808080\",green:\"#008000\",greenyellow:\"#adff2f\",grey:\"#808080\",honeydew:\"#f0fff0\",hotpink:\"#ff69b4\",indianred:\"#cd5c5c\",indigo:\"#4b0082\",ivory:\"#fffff0\",khaki:\"#f0e68c\",lavender:\"#e6e6fa\",lavenderblush:\"#fff0f5\",lawngreen:\"#7cfc00\",lemonchiffon:\"#fffacd\",lightblue:\"#add8e6\",lightcoral:\"#f08080\",lightcyan:\"#e0ffff\",lightgoldenrodyellow:\"#fafad2\",lightgray:\"#d3d3d3\",lightgreen:\"#90ee90\",lightgrey:\"#d3d3d3\",lightpink:\"#ffb6c1\",lightsalmon:\"#ffa07a\",\nlightseagreen:\"#20b2aa\",lightskyblue:\"#87cefa\",lightslategray:\"#778899\",lightslategrey:\"#778899\",lightsteelblue:\"#b0c4de\",lightyellow:\"#ffffe0\",lime:\"#00ff00\",limegreen:\"#32cd32\",linen:\"#faf0e6\",magenta:\"#ff00ff\",maroon:\"#800000\",mediumaquamarine:\"#66cdaa\",mediumblue:\"#0000cd\",mediumorchid:\"#ba55d3\",mediumpurple:\"#9370db\",mediumseagreen:\"#3cb371\",mediumslateblue:\"#7b68ee\",mediumspringgreen:\"#00fa9a\",mediumturquoise:\"#48d1cc\",mediumvioletred:\"#c71585\",midnightblue:\"#191970\",mintcream:\"#f5fffa\",mistyrose:\"#ffe4e1\",\nmoccasin:\"#ffe4b5\",navajowhite:\"#ffdead\",navy:\"#000080\",oldlace:\"#fdf5e6\",olive:\"#808000\",olivedrab:\"#6b8e23\",orange:\"#ffa500\",orangered:\"#ff4500\",orchid:\"#da70d6\",palegoldenrod:\"#eee8aa\",palegreen:\"#98fb98\",paleturquoise:\"#afeeee\",palevioletred:\"#db7093\",papayawhip:\"#ffefd5\",peachpuff:\"#ffdab9\",peru:\"#cd853f\",pink:\"#ffc0cb\",plum:\"#dda0dd\",powderblue:\"#b0e0e6\",purple:\"#800080\",red:\"#ff0000\",rosybrown:\"#bc8f8f\",royalblue:\"#4169e1\",saddlebrown:\"#8b4513\",salmon:\"#fa8072\",sandybrown:\"#f4a460\",seagreen:\"#2e8b57\",\nseashell:\"#fff5ee\",sienna:\"#a0522d\",silver:\"#c0c0c0\",skyblue:\"#87ceeb\",slateblue:\"#6a5acd\",slategray:\"#708090\",slategrey:\"#708090\",snow:\"#fffafa\",springgreen:\"#00ff7f\",steelblue:\"#4682b4\",tan:\"#d2b48c\",teal:\"#008080\",thistle:\"#d8bfd8\",tomato:\"#ff6347\",turquoise:\"#40e0d0\",violet:\"#ee82ee\",wheat:\"#f5deb3\",white:\"#ffffff\",whitesmoke:\"#f5f5f5\",yellow:\"#ffff00\",yellowgreen:\"#9acd32\"};var ia=\"backgroundColor borderTopColor borderRightColor borderBottomColor borderLeftColor color outlineColor\".split(\" \"),ja=/#([0-9a-fA-F])([0-9a-fA-F])([0-9a-fA-F])/,ka=/^#(?:[0-9a-f]{3}){1,2}$/i,la=/^(?:rgba)?\\((\\d{1,3}),\\s?(\\d{1,3}),\\s?(\\d{1,3}),\\s?(0|1|0\\.\\d*)\\)$/i,ma=/^(?:rgb)?\\((0|[1-9]\\d{0,2}),\\s?(0|[1-9]\\d{0,2}),\\s?(0|[1-9]\\d{0,2})\\)$/i;function m(a,b){this.code=a;this.a=p[a]||r;this.message=b||\"\";a=this.a.replace(/((?:^|\\s+)[a-z])/g,function(c){return c.toUpperCase().replace(/^[\\s\\xa0]+/g,\"\")});b=a.length-5;if(0>b||a.indexOf(\"Error\",b)!=b)a+=\"Error\";this.name=a;a=Error(this.message);a.name=this.name;this.stack=a.stack||\"\"}ca(m,Error);var r=\"unknown error\",p={15:\"element not selectable\",11:\"element not visible\"};p[31]=r;p[30]=r;p[24]=\"invalid cookie domain\";p[29]=\"invalid element coordinates\";p[12]=\"invalid element state\";\np[32]=\"invalid selector\";p[51]=\"invalid selector\";p[52]=\"invalid selector\";p[17]=\"javascript error\";p[405]=\"unsupported operation\";p[34]=\"move target out of bounds\";p[27]=\"no such alert\";p[7]=\"no such element\";p[8]=\"no such frame\";p[23]=\"no such window\";p[28]=\"script timeout\";p[33]=\"session not created\";p[10]=\"stale element reference\";p[21]=\"timeout\";p[25]=\"unable to set cookie\";p[26]=\"unexpected alert open\";p[13]=r;p[9]=\"unknown command\";var u=String.prototype.trim?function(a){return a.trim()}:function(a){return/^[\\s\\xa0]*([\\s\\S]*?)[\\s\\xa0]*$/.exec(a)[1]};\nfunction na(a,b){var c=0;a=u(String(a)).split(\".\");b=u(String(b)).split(\".\");for(var e=Math.max(a.length,b.length),d=0;0==c&&d\u003Ce;d++){var f=a[d]||\"\",h=b[d]||\"\";do{f=/(\\d*)(\\D*)(.*)/.exec(f)||[\"\",\"\",\"\",\"\"];h=/(\\d*)(\\D*)(.*)/.exec(h)||[\"\",\"\",\"\",\"\"];if(0==f[0].length&&0==h[0].length)break;c=v(0==f[1].length?0:parseInt(f[1],10),0==h[1].length?0:parseInt(h[1],10))||v(0==f[2].length,0==h[2].length)||v(f[2],h[2]);f=f[3];h=h[3]}while(0==c)}return c}function v(a,b){return a\u003Cb?-1:a>b?1:0};var w;a:{var oa=g.navigator;if(oa){var sa=oa.userAgent;if(sa){w=sa;break a}}w=\"\"}function x(a){return-1!=w.indexOf(a)};function y(){return x(\"Firefox\")||x(\"FxiOS\")}function A(){return(x(\"Chrome\")||x(\"CriOS\"))&&!x(\"Edge\")};function ta(a){return String(a).replace(/\\-([a-z])/g,function(b,c){return c.toUpperCase()})};function B(){return x(\"iPhone\")&&!x(\"iPod\")&&!x(\"iPad\")};function ua(a,b){var c=va;return Object.prototype.hasOwnProperty.call(c,a)?c[a]:c[a]=b(a)};var wa=x(\"Opera\"),C=x(\"Trident\")||x(\"MSIE\"),xa=x(\"Edge\"),ya=x(\"Gecko\")&&!(-1!=w.toLowerCase().indexOf(\"webkit\")&&!x(\"Edge\"))&&!(x(\"Trident\")||x(\"MSIE\"))&&!x(\"Edge\"),za=-1!=w.toLowerCase().indexOf(\"webkit\")&&!x(\"Edge\");function Aa(){var a=g.document;return a?a.documentMode:void 0}var E;\na:{var F=\"\",G=function(){var a=w;if(ya)return/rv:([^\\);]+)(\\)|;)/.exec(a);if(xa)return/Edge\\/([\\d\\.]+)/.exec(a);if(C)return/\\b(?:MSIE|rv)[: ]([^\\);]+)(\\)|;)/.exec(a);if(za)return/WebKit\\/(\\S+)/.exec(a);if(wa)return/(?:Version)[ \\/]?(\\S+)/.exec(a)}();G&&(F=G?G[1]:\"\");if(C){var H=Aa();if(null!=H&&H>parseFloat(F)){E=String(H);break a}}E=F}var va={};function Ba(a){return ua(a,function(){return 0\u003C=na(E,a)})}var I;I=g.document&&C?Aa():void 0;var Ca=y(),Da=B()||x(\"iPod\"),Ea=x(\"iPad\"),Fa=x(\"Android\")&&!(A()||y()||x(\"Opera\")||x(\"Silk\")),Ga=A(),Ha=x(\"Safari\")&&!(A()||x(\"Coast\")||x(\"Opera\")||x(\"Edge\")||x(\"Edg/\")||x(\"OPR\")||y()||x(\"Silk\")||x(\"Android\"))&&!(B()||x(\"iPad\")||x(\"iPod\"));function J(a){return(a=a.exec(w))?a[1]:\"\"}(function(){if(Ca)return J(/Firefox\\/([0-9.]+)/);if(C||xa||wa)return E;if(Ga)return B()||x(\"iPad\")||x(\"iPod\")?J(/CriOS\\/([0-9.]+)/):J(/Chrome\\/([0-9.]+)/);if(Ha&&!(B()||x(\"iPad\")||x(\"iPod\")))return J(/Version\\/([0-9.]+)/);if(Da||Ea){var a=/Version\\/(\\S+).*Mobile\\/(\\S+)/.exec(w);if(a)return a[1]+\".\"+a[2]}else if(Fa)return(a=J(/Android\\s+([0-9.]+)/))?a:J(/Version\\/([0-9.]+)/);return\"\"})();var K;if(K=C)K=!(9\u003C=Number(I));var Ia=K;function L(a,b){this.x=void 0!==a?a:0;this.y=void 0!==b?b:0}L.prototype.ceil=function(){this.x=Math.ceil(this.x);this.y=Math.ceil(this.y);return this};L.prototype.floor=function(){this.x=Math.floor(this.x);this.y=Math.floor(this.y);return this};L.prototype.round=function(){this.x=Math.round(this.x);this.y=Math.round(this.y);return this};function M(a,b){this.width=a;this.height=b}M.prototype.aspectRatio=function(){return this.width/this.height};M.prototype.ceil=function(){this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};M.prototype.floor=function(){this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};M.prototype.round=function(){this.width=Math.round(this.width);this.height=Math.round(this.height);return this};function N(a){return 9==a.nodeType?a:a.ownerDocument||a.document}function Ja(a,b){a&&(a=a.parentNode);for(var c=0;a;){if(b(a))return a;a=a.parentNode;c++}return null}function Ka(a){this.a=a||g.document||document};function P(a,b){b&&\"string\"!==typeof b&&(b=b.toString());return a instanceof HTMLFormElement?!!a&&1==a.nodeType&&(!b||\"FORM\"==b):!!a&&1==a.nodeType&&(!b||a.tagName.toUpperCase()==b)};function Q(a,b,c,e){this.f=a;this.a=b;this.b=c;this.c=e}Q.prototype.ceil=function(){this.f=Math.ceil(this.f);this.a=Math.ceil(this.a);this.b=Math.ceil(this.b);this.c=Math.ceil(this.c);return this};Q.prototype.floor=function(){this.f=Math.floor(this.f);this.a=Math.floor(this.a);this.b=Math.floor(this.b);this.c=Math.floor(this.c);return this};Q.prototype.round=function(){this.f=Math.round(this.f);this.a=Math.round(this.a);this.b=Math.round(this.b);this.c=Math.round(this.c);return this};function R(a,b,c,e){this.a=a;this.b=b;this.width=c;this.height=e}R.prototype.ceil=function(){this.a=Math.ceil(this.a);this.b=Math.ceil(this.b);this.width=Math.ceil(this.width);this.height=Math.ceil(this.height);return this};R.prototype.floor=function(){this.a=Math.floor(this.a);this.b=Math.floor(this.b);this.width=Math.floor(this.width);this.height=Math.floor(this.height);return this};\nR.prototype.round=function(){this.a=Math.round(this.a);this.b=Math.round(this.b);this.width=Math.round(this.width);this.height=Math.round(this.height);return this};var La=\"function\"===typeof ShadowRoot;function S(a){for(a=a.parentNode;a&&1!=a.nodeType&&9!=a.nodeType&&11!=a.nodeType;)a=a.parentNode;return P(a)?a:null}\nfunction T(a,b){b=ta(b);if(\"float\"==b||\"cssFloat\"==b||\"styleFloat\"==b)b=Ia?\"styleFloat\":\"cssFloat\";a:{var c=b;var e=N(a);if(e.defaultView&&e.defaultView.getComputedStyle&&(e=e.defaultView.getComputedStyle(a,null))){c=e[c]||e.getPropertyValue(c)||\"\";break a}c=\"\"}a=c||Ma(a,b);if(null===a)a=null;else if(0\u003C=da(ia,b)){b:{var d=a.match(la);if(d&&(b=Number(d[1]),c=Number(d[2]),e=Number(d[3]),d=Number(d[4]),0\u003C=b&&255>=b&&0\u003C=c&&255>=c&&0\u003C=e&&255>=e&&0\u003C=d&&1>=d)){b=[b,c,e,d];break b}b=null}if(!b)b:{if(e=a.match(ma))if(b=\nNumber(e[1]),c=Number(e[2]),e=Number(e[3]),0\u003C=b&&255>=b&&0\u003C=c&&255>=c&&0\u003C=e&&255>=e){b=[b,c,e,1];break b}b=null}if(!b)b:{b=a.toLowerCase();c=ha[b.toLowerCase()];if(!c&&(c=\"#\"==b.charAt(0)?b:\"#\"+b,4==c.length&&(c=c.replace(ja,\"#$1$1$2$2$3$3\")),!ka.test(c))){b=null;break b}b=[parseInt(c.substr(1,2),16),parseInt(c.substr(3,2),16),parseInt(c.substr(5,2),16),1]}a=b?\"rgba(\"+b.join(\", \")+\")\":a}return a}\nfunction Ma(a,b){var c=a.currentStyle||a.style,e=c[b];void 0===e&&\"function\"==aa(c.getPropertyValue)&&(e=c.getPropertyValue(b));return\"inherit\"!=e?void 0!==e?e:null:(a=S(a))?Ma(a,b):null}\nfunction U(a,b,c){function e(h){var n=V(h);return 0\u003Cn.height&&0\u003Cn.width?!0:P(h,\"PATH\")&&(0\u003Cn.height||0\u003Cn.width)?(h=T(h,\"stroke-width\"),!!h&&0\u003CparseInt(h,10)):\"hidden\"!=T(h,\"overflow\")&&ea(h.childNodes,function(D){return 3==D.nodeType||P(D)&&e(D)})}function d(h){return Na(h)==W&&fa(h.childNodes,function(n){return!P(n)||d(n)||!e(n)})}if(!P(a))throw Error(\"Argument to isShown must be of type Element\");if(P(a,\"BODY\"))return!0;if(P(a,\"OPTION\")||P(a,\"OPTGROUP\"))return a=Ja(a,function(h){return P(h,\"SELECT\")}),\n!!a&&U(a,!0,c);var f=Oa(a);if(f)return!!f.image&&0\u003Cf.rect.width&&0\u003Cf.rect.height&&U(f.image,b,c);if(P(a,\"INPUT\")&&\"hidden\"==a.type.toLowerCase()||P(a,\"NOSCRIPT\"))return!1;f=T(a,\"visibility\");return\"collapse\"!=f&&\"hidden\"!=f&&c(a)&&(b||0!=Pa(a))&&e(a)?!d(a):!1}var W=\"hidden\";\nfunction Na(a){function b(k){function l(ba){if(ba==h)return!0;var pa=T(ba,\"display\");return 0==pa.lastIndexOf(\"inline\",0)||\"contents\"==pa||\"absolute\"==qa&&\"static\"==T(ba,\"position\")?!1:!0}var qa=T(k,\"position\");if(\"fixed\"==qa)return ra=!0,k==h?null:h;for(k=S(k);k&&!l(k);)k=S(k);return k}function c(k){var l=k;if(\"visible\"==D)if(k==h&&n)l=n;else if(k==n)return{x:\"visible\",y:\"visible\"};l={x:T(l,\"overflow-x\"),y:T(l,\"overflow-y\")};k==h&&(l.x=\"visible\"==l.x?\"auto\":l.x,l.y=\"visible\"==l.y?\"auto\":l.y);return l}\nfunction e(k){if(k==h){var l=(new Ka(f)).a;k=l.scrollingElement?l.scrollingElement:za||\"CSS1Compat\"!=l.compatMode?l.body||l.documentElement:l.documentElement;l=l.parentWindow||l.defaultView;k=C&&Ba(\"10\")&&l.pageYOffset!=k.scrollTop?new L(k.scrollLeft,k.scrollTop):new L(l.pageXOffset||k.scrollLeft,l.pageYOffset||k.scrollTop)}else k=new L(k.scrollLeft,k.scrollTop);return k}var d=Qa(a),f=N(a),h=f.documentElement,n=f.body,D=T(h,\"overflow\"),ra;for(a=b(a);a;a=b(a)){var q=c(a);if(\"visible\"!=q.x||\"visible\"!=\nq.y){var t=V(a);if(0==t.width||0==t.height)return W;var z=d.a\u003Ct.a,O=d.b\u003Ct.b;if(z&&\"hidden\"==q.x||O&&\"hidden\"==q.y)return W;if(z&&\"visible\"!=q.x||O&&\"visible\"!=q.y){z=e(a);O=d.b\u003Ct.b-z.y;if(d.a\u003Ct.a-z.x&&\"visible\"!=q.x||O&&\"visible\"!=q.x)return W;d=Na(a);return d==W?W:\"scroll\"}z=d.c>=t.a+t.width;t=d.f>=t.b+t.height;if(z&&\"hidden\"==q.x||t&&\"hidden\"==q.y)return W;if(z&&\"visible\"!=q.x||t&&\"visible\"!=q.y){if(ra&&(q=e(a),d.c>=h.scrollWidth-q.x||d.a>=h.scrollHeight-q.y))return W;d=Na(a);return d==W?W:\"scroll\"}}}return\"none\"}\nfunction V(a){var b=Oa(a);if(b)return b.rect;if(P(a,\"HTML\"))return a=N(a),a=((a?a.parentWindow||a.defaultView:window)||window).document,a=\"CSS1Compat\"==a.compatMode?a.documentElement:a.body,a=new M(a.clientWidth,a.clientHeight),new R(0,0,a.width,a.height);try{var c=a.getBoundingClientRect()}catch(e){return new R(0,0,0,0)}b=new R(c.left,c.top,c.right-c.left,c.bottom-c.top);C&&a.ownerDocument.body&&(a=N(a),b.a-=a.documentElement.clientLeft+a.body.clientLeft,b.b-=a.documentElement.clientTop+a.body.clientTop);\nreturn b}\nfunction Oa(a){var b=P(a,\"MAP\");if(!b&&!P(a,\"AREA\"))return null;var c=b?a:P(a.parentNode,\"MAP\")?a.parentNode:null,e=null,d=null;if(c&&c.name){e='*[usemap=\"#'+c.name+'\"]';c=N(c);var f;if(f=\"function\"!=aa(c.querySelector)&&C&&(C?0\u003C=na(I,8):Ba(8))){f=c.querySelector;var h=typeof f;f=!(\"object\"==h&&null!=f||\"function\"==h)}if(f)throw Error(\"CSS selection is not supported\");if(!e)throw new m(32,\"No selector specified\");e=u(e);try{var n=c.querySelector(e)}catch(D){throw new m(32,\"An invalid or illegal selector was specified\");}if(e=\nn&&1==n.nodeType?n:null)d=V(e),b||\"default\"==a.shape.toLowerCase()||(a=Ra(a),b=Math.min(Math.max(a.a,0),d.width),n=Math.min(Math.max(a.b,0),d.height),d=new R(b+d.a,n+d.b,Math.min(a.width,d.width-b),Math.min(a.height,d.height-n)))}return{image:e,rect:d||new R(0,0,0,0)}}\nfunction Ra(a){var b=a.shape.toLowerCase();a=a.coords.split(\",\");if(\"rect\"==b&&4==a.length){b=a[0];var c=a[1];return new R(b,c,a[2]-b,a[3]-c)}if(\"circle\"==b&&3==a.length)return b=a[2],new R(a[0]-b,a[1]-b,2*b,2*b);if(\"poly\"==b&&2\u003Ca.length){b=a[0];c=a[1];for(var e=b,d=c,f=2;f+1\u003Ca.length;f+=2)b=Math.min(b,a[f]),e=Math.max(e,a[f]),c=Math.min(c,a[f+1]),d=Math.max(d,a[f+1]);return new R(b,c,e-b,d-c)}return new R(0,0,0,0)}function Qa(a){a=V(a);return new Q(a.b,a.a+a.width,a.b+a.height,a.a)}\nfunction Pa(a){if(Ia){if(\"relative\"==T(a,\"position\"))return 1;a=T(a,\"filter\");return(a=a.match(/^alpha\\(opacity=(\\d*)\\)/)||a.match(/^progid:DXImageTransform.Microsoft.Alpha\\(Opacity=(\\d*)\\)/))?Number(a[1])/100:1}return Sa(a)}function Sa(a){var b=1,c=T(a,\"opacity\");c&&(b=Number(c));(a=S(a))&&(b*=Sa(a));return b};function Ta(a,b){function c(e){if(P(e)&&\"none\"==T(e,\"display\"))return!1;var d;if((d=e.parentNode)&&d.shadowRoot&&void 0!==e.assignedSlot)d=e.assignedSlot?e.assignedSlot.parentNode:null;else if(e.getDestinationInsertionPoints){var f=e.getDestinationInsertionPoints();0\u003Cf.length&&(d=f[f.length-1])}if(La&&d instanceof ShadowRoot){if(d.host.shadowRoot&&d.host.shadowRoot!==d)return!1;d=d.host}return!d||9!=d.nodeType&&11!=d.nodeType?d&&P(d,\"DETAILS\")&&!d.open&&!P(e,\"SUMMARY\")?!1:!!d&&c(d):!0}return U(a,\n!!b,c)}var X=[\"se_exportedFunctionSymbol\"],Y=g;X[0]in Y||\"undefined\"==typeof Y.execScript||Y.execScript(\"var \"+X[0]);for(var Z;X.length&&(Z=X.shift());)X.length||void 0===Ta?Y[Z]&&Y[Z]!==Object.prototype[Z]?Y=Y[Z]:Y=Y[Z]={}:Y[Z]=Ta;; return this.se_exportedFunctionSymbol.apply(null,arguments);}).apply(window, arguments);}\n).apply(null, arguments);"
+}
+[1763719100.781][INFO]: Waiting for pending navigations...
+[1763719100.781][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=116) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.782][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=116) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.782][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.782][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=117) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.782][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=117) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.782][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=118) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 201,
+   "objectGroup": "a5283fff-ca73-4b73-b669-f28261c7c4a7"
+}
+[1763719100.783][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=118) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLTableSectionElement",
+      "description": "tbody",
+      "objectId": "-4798546278712320040.1.31",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719100.783][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=119) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.783][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=119) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.784][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=120) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.31"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "a5283fff-ca73-4b73-b669-f28261c7c4a7",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719100.786][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=120) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":true}"
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.32",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719100.786][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=121) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "a5283fff-ca73-4b73-b669-f28261c7c4a7"
+}
+[1763719100.786][INFO]: Waiting for pending navigations...
+[1763719100.786][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=122) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.786][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=121) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.786][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=122) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.786][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.786][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE ExecuteScript true
+[1763719100.787][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND FindElements {
+   "using": "xpath",
+   "value": "//*[@id=\"mainc\"]/div/div/div[4]/table/tbody"
+}
+[1763719100.787][INFO]: Waiting for pending navigations...
+[1763719100.788][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=123) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.788][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=123) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.788][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.788][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=124) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.789][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=124) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.789][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=125) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.789][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=125) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.790][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=126) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [  ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719100.798][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=126) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":[{\"element-6066-11e4-a52e-4f735466cecf\":0}]}"
+         }, {
+            "type": "node",
+            "value": {
+               "attributes": {
+               },
+               "backendNodeId": 201,
+               "childNodeCount": 20,
+               "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+               "localName": "tbody",
+               "namespaceURI": "http://www.w3.org/1999/xhtml",
+               "nodeType": 1,
+               "shadowRoot": null
+            }
+         } ]
+      },
+      "description": "Array(2)",
+      "objectId": "-4798546278712320040.1.33",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719100.798][INFO]: Waiting for pending navigations...
+[1763719100.798][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=127) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.798][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=127) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.798][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.798][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE FindElements [ {
+   "element-6066-11e4-a52e-4f735466cecf": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.201"
+} ]
+[1763719100.800][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND GetElementText {
+   "id": "f.5EC250D5BDE0676EE91CE158E111FF4A.d.16D5932EF5A7A9404A0C2054BA848DBA.e.201"
+}
+[1763719100.800][INFO]: Waiting for pending navigations...
+[1763719100.800][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=128) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.800][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=128) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.800][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.800][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=129) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.801][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=129) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.801][DEBUG]: DevTools WebSocket Command: DOM.resolveNode (id=130) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "backendNodeId": 201,
+   "objectGroup": "d3880a60-7ad1-4575-8535-cbb81ce2af12"
+}
+[1763719100.801][DEBUG]: DevTools WebSocket Response: DOM.resolveNode (id=130) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "object": {
+      "className": "HTMLTableSectionElement",
+      "description": "tbody",
+      "objectId": "-4798546278712320040.1.34",
+      "subtype": "node",
+      "type": "object"
+   }
+}
+[1763719100.801][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=131) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.802][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=131) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "frameTree": {
+      "frame": {
+         "adFrameStatus": {
+            "adFrameType": "none"
+         },
+         "crossOriginIsolatedContextType": "NotIsolated",
+         "domainAndRegistry": "eastmoney.com",
+         "gatedAPIFeatures": [  ],
+         "id": "5EC250D5BDE0676EE91CE158E111FF4A",
+         "loaderId": "16D5932EF5A7A9404A0C2054BA848DBA",
+         "mimeType": "text/html",
+         "secureContextType": "Secure",
+         "securityOrigin": "https://quote.eastmoney.com",
+         "securityOriginDetails": {
+            "isLocalhost": false
+         },
+         "url": "https://quote.eastmoney.com/center/gridlist.html",
+         "urlFragment": "#gem_board"
+      }
+   }
+}
+[1763719100.803][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=132) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "arguments": [ {
+      "objectId": "-4798546278712320040.1.34"
+   } ],
+   "awaitPromise": true,
+   "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
+   "objectGroup": "d3880a60-7ad1-4575-8535-cbb81ce2af12",
+   "serializationOptions": {
+      "serialization": "deep"
+   },
+   "uniqueContextId": "-296296646754670019.-5594906167648837185"
+}
+[1763719100.927][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=132) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "className": "Array",
+      "deepSerializedValue": {
+         "type": "array",
+         "value": [ {
+            "type": "string",
+            "value": "{\"status\":0,\"value\":\"1 301171 易点天下 股吧 资金流 数据 39.97 19.99% 6.66 145.78万 55.40亿 14.32% 39.97 35.20 35.20 33.31 3.00 38.27% 69.49 5.04\\n2 300087 荃银高科 股吧 资金流..."
+         } ]
+      },
+      "description": "Array(1)",
+      "objectId": "-4798546278712320040.1.35",
+      "subtype": "array",
+      "type": "object"
+   }
+}
+[1763719100.927][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=133) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "objectGroup": "d3880a60-7ad1-4575-8535-cbb81ce2af12"
+}
+[1763719100.927][INFO]: Waiting for pending navigations...
+[1763719100.928][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=134) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "expression": "1"
+}
+[1763719100.931][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=133) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+}
+[1763719100.931][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=134) (session_id=43F985E4D3A7CAE11ECF9237CDC7C5BE) 5EC250D5BDE0676EE91CE158E111FF4A {
+   "result": {
+      "description": "1",
+      "type": "number",
+      "value": 1
+   }
+}
+[1763719100.931][INFO]: Done waiting for pending navigations. Status: ok
+[1763719100.931][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE GetElementText "1 301171 易点天下 股吧 资金流 数据 39.97 19.99% 6.66 145.78万 55.40亿 14.32% 39.97 35.20 35.20 33.31 3.00 38.27% 69.49 5.04\n2 300087 荃银高科 股吧 资金流 数据 11.81 16.24% 1..."
+[1763719101.018][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] COMMAND QuitAll {
+}
+[1763719101.018][INFO]: [ef3af3699b3ac47c0205013bb50f8bdd] RESPONSE QuitAll
+[1763719101.018][DEBUG]: Log type 'driver' lost 0 entries on destruction
+[1763719101.018][DEBUG]: Log type 'browser' lost 0 entries on destruction
+[1763719101.018][WARNING]: Chrome quit unexpectedly, leaving behind temporary directoriesfor debugging:
+Trying to load the allocator multiple times. This is *not* supported.
+[15951:255551:1121/175835.507818:VERBOSE1:chrome/updater/updater.cc:411] Version: 143.0.7482.0, opt, x86_64, command line: /Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake-all --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2
+[15951:255551:1121/175835.508146:VERBOSE1:chrome/updater/updater.cc:414] OS version: 12.7.6, System uptime (seconds): 31659, parent pid: 15926
+[15953:255555:1121/175835.525143:VERBOSE1:chrome/updater/updater.cc:411] Version: 143.0.7482.0, opt, x86_64, command line: /Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=143.0.7482.0 --handshake-fd=5 --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2
+[15953:255555:1121/175835.525429:VERBOSE1:chrome/updater/updater.cc:414] OS version: 12.7.6, System uptime (seconds): 31659, parent pid: 1
+[15951:255551:1121/175835.529942:VERBOSE1:chrome/updater/crash_reporter.cc:120] Crash handler launched and ready.
+[15951:255551:1121/175835.531425:VERBOSE1:chrome/updater/crash_client.cc:106] Found 0 completed crash reports
+[15951:255551:1121/175835.531621:VERBOSE1:chrome/updater/crash_client.cc:124] Found 0 pending crash reports
+[15951:255551:1121/175835.531823:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/RLZ/Crashpad/settings.dat: No such file or directory (2)
+[15951:255551:1121/175835.531862:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/Measurement/Crashpad/settings.dat: No such file or directory (2)
+[15951:255551:1121/175835.531887:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/consentOptions/Crashpad/settings.dat: No such file or directory (2)
+[15951:255551:1121/175835.531910:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/Android File Transfer/Crashpad/settings.dat: No such file or directory (2)
+[15951:255551:1121/175835.531959:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/AndroidStudio2024.3.2/Crashpad/settings.dat: No such file or directory (2)
+[15951:255551:1121/175835.531985:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/FIRApp/Crashpad/settings.dat: No such file or directory (2)
+[15951:255551:1121/175835.532065:VERBOSE1:chrome/updater/updater.cc:97] Crash reporting initialized.
+[15951:255563:1121/175835.532981:VERBOSE1:chrome/updater/app/app_wakeall.cc:57] Launching `/Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake`
+[15954:255567:1121/175835.544353:VERBOSE1:chrome/updater/updater.cc:411] Version: 143.0.7482.0, opt, x86_64, command line: /Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2
+[15954:255567:1121/175835.544665:VERBOSE1:chrome/updater/updater.cc:414] OS version: 12.7.6, System uptime (seconds): 31659, parent pid: 15951
+[15956:255571:1121/175835.560945:VERBOSE1:chrome/updater/updater.cc:411] Version: 143.0.7482.0, opt, x86_64, command line: /Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --crash-handler --database=/Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/Crashpad --url=https://clients2.google.com/cr/report --annotation=prod=Update4 --annotation=ver=143.0.7482.0 --handshake-fd=5 --enable-logging --vmodule=*/components/update_client/*=2,*/chrome/enterprise_companion/*=2,*/chrome/updater/*=2
+[15956:255571:1121/175835.561282:VERBOSE1:chrome/updater/updater.cc:414] OS version: 12.7.6, System uptime (seconds): 31659, parent pid: 1
+[15954:255567:1121/175835.566204:VERBOSE1:chrome/updater/crash_reporter.cc:120] Crash handler launched and ready.
+[15954:255567:1121/175835.567896:VERBOSE1:chrome/updater/crash_client.cc:106] Found 0 completed crash reports
+[15954:255567:1121/175835.568042:VERBOSE1:chrome/updater/crash_client.cc:124] Found 0 pending crash reports
+[15954:255567:1121/175835.568250:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/RLZ/Crashpad/settings.dat: No such file or directory (2)
+[15954:255567:1121/175835.568302:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/Measurement/Crashpad/settings.dat: No such file or directory (2)
+[15954:255567:1121/175835.568328:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/consentOptions/Crashpad/settings.dat: No such file or directory (2)
+[15954:255567:1121/175835.568362:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/Android File Transfer/Crashpad/settings.dat: No such file or directory (2)
+[15954:255567:1121/175835.568410:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/AndroidStudio2024.3.2/Crashpad/settings.dat: No such file or directory (2)
+[15954:255567:1121/175835.568436:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /Users/linghuchong/Library/Application Support/Google/FIRApp/Crashpad/settings.dat: No such file or directory (2)
+[15954:255567:1121/175835.568618:VERBOSE1:chrome/updater/updater.cc:97] Crash reporting initialized.
+[15954:255567:1121/175835.569077:VERBOSE1:chrome/updater/ipc/update_service_internal_proxy_posix.cc:100] Run
+[15954:255567:1121/175852.355129:VERBOSE1:chrome/updater/updater.cc:423] UpdaterMain (--wake) returned 0.
+[15951:255563:1121/175852.595997:VERBOSE1:chrome/updater/app/app_wakeall.cc:67] `/Users/linghuchong/Library/Application Support/Google/GoogleUpdater/143.0.7482.0/GoogleUpdater.app/Contents/MacOS/GoogleUpdater --wake` exited 0
+[15951:255551:1121/175852.596990:VERBOSE1:chrome/updater/updater.cc:423] UpdaterMain (--wake-all) returned 0.
+[15956:255571:1121/175902.362074:VERBOSE1:chrome/updater/updater.cc:423] UpdaterMain (--crash-handler) returned 0.
+[15953:255555:1121/175902.363633:VERBOSE1:chrome/updater/updater.cc:423] UpdaterMain (--crash-handler) returned 0.
