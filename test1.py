@@ -1,15 +1,14 @@
-# https://akshare.akfamily.xyz/data/stock/stock.html#id14
+l_data = ['1.00', '002186', '1.03亿', '4.56%', '28.79', '27.53','1.00', '332186', '13.03亿', '44.56%', '238.79', '247.53']
+if '002186' in l_data:
+    index = l_data.index('002186')  # 全 聚 德
+    new_index = index + 1
+    l_data.pop(new_index)
+    l_data.pop(new_index)
+if '332186' in l_data:
+    index = l_data.index('332186')  # 全 聚 德
+    new_index = index + 1
+    l_data.pop(new_index)
+    l_data.pop(new_index)
 
-import akshare as ak
-
-# stock_zh_a_spot_em_df = ak.stock_zh_a_spot_em()
-# print(stock_zh_a_spot_em_df)
-
-stock_sh_a_spot_em_df = ak.stock_sh_a_spot_em()
-print(stock_sh_a_spot_em_df)
-
-# 保存到Excel文件
-stock_sh_a_spot_em_df.to_excel('/Users/linghuchong/Desktop/stock/stock_data.xlsx', index=False)
-
-print("数据已保存到 stock_data.xlsx 文件中")
+print(l_data)
 

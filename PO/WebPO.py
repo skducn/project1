@@ -300,10 +300,10 @@ class WebPO(DomPO):
             return self.driver
 
 
-    def openURL(self, varURL):
-        self.opn(varURL)
+    def openURL(self, varURL, t=2):
+        self.opn(varURL, t)
 
-    def opn(self, varUrl, t=1):
+    def opn(self, varUrl, t=2):
         # 1.1 打开网页
         self.driver.get(varUrl)
         sleep(t)
