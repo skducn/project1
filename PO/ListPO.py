@@ -46,7 +46,26 @@ a = Counter(a)
 b = Counter(b)
 print (dict(a)==dict(b))
 # True
+# 3.6 同时获取两列表对应索引的元素，如果a列表元素小于b列表元素，以较短列表长度终止循环。
+list1 = [1,2,3,4,5]
+list2 = [1,2,3]
+for item1, item2 in zip(list1, list2):
+    print(item1, item2)
+1 1
+2 2
+3 3
 
+# 3.6 同时获取两列表对应索引的元素，如果a列表元素小于b列表元素，a列表缺失元素补None。
+list1 = [1,2,3,4,5]
+list2 = [1,2,3]
+from itertools import zip_longest
+for item1, item2 in zip_longest(list1, list2):
+    print(item1, item2)  # 长度不足时补None
+1 1
+2 2
+3 3
+4 None
+5 None
 
 todo：【替换】
 4.1 批量替换1个到列表 print(List_PO.replaceOne(["1", 2, "3", "2", 2], 2, ""))  # ['1', '', '3', '2', '']
