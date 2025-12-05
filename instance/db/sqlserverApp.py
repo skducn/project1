@@ -6,11 +6,15 @@
 # *********************************************************************
 from PO.SqlserverPO import *
 
+# 患者发现
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "GBK")
+
+
 # 公卫
 # Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_PT", "GBK")
 
-# 社区健康.ini
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
+# 社区健康
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # Sqlserver_PO.record('*', 'varchar', '%基础服务包（2019版）%')
 
 # c3，新增疾病诊断史
@@ -39,11 +43,11 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CHC", "GBK")
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHS_JOB", "GBK")
 
 # print("7.1 查看表结构".center(100, "-"))
-# Sqlserver_PO.desc()
+Sqlserver_PO.desc()
 # Sqlserver_PO.desc(['id', 'page'])
 # Sqlserver_PO.desc('a_c%')
 # Sqlserver_PO.desc({'a_%':['id','sql']})
-Sqlserver_PO.desc('WEIGHT_REPORT')  # 体重状态：0-未评估 1-体重偏低 2-正常 3-超重 4-肥胖 5-孕期体重增长过快
+# Sqlserver_PO.desc('WEIGHT_REPORT')  # 体重状态：0-未评估 1-体重偏低 2-正常 3-超重 4-肥胖 5-孕期体重增长过快
 # Sqlserver_PO.desc({'a_test':['number', 'rule1']})
 
 # print("7.2 查找记录".center(100, "-"))
