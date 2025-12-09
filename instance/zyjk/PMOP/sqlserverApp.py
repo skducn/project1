@@ -9,7 +9,7 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "
 
 
 # print("7.1 查看表结构".center(100, "-"))
-# Sqlserver_PO.desc()
+Sqlserver_PO.desc()
 # Sqlserver_PO.desc(['id', 'page'])
 # Sqlserver_PO.desc('a_c%')
 # Sqlserver_PO.desc({'a_%':['id','sql']})
@@ -20,7 +20,7 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "
 # Sqlserver_PO.desc('PATIENT_CONTACT_DETAIL_LIST')
 # PATIENT_DEAL_ID            int      4         None  10    YES    None  患者处理ID
 # PATIENT_CONTACT_PERSON_ID  int      4         None  10    YES    None  联系人ID
-Sqlserver_PO.desc('PATIENT_LIST')
+# Sqlserver_PO.desc('PATIENT_LIST')
 
 
 # Sqlserver_PO.desc({'a_test':['number', 'rule1']})
