@@ -29,6 +29,7 @@ from PO.OpenpyxlPO import *
 
 
 def xx(l_data, l_code):
+    # 名字分成2个
     # lcode = ['000025']
     # 特殊中文名处理，如 "特', '力Ａ"中间有空格
     # 获取，特', '力Ａ 000025的索引，删除后续个元素
@@ -40,6 +41,7 @@ def xx(l_data, l_code):
     return l_data
 
 def xxx(l_data, l_code):
+    # 名字分成3个
     # lcode = ['000997','000992']
     # 特殊中文名处理，如 "新 大 陆"中间有空格
     # 获取，新大陆000997 的索引，删除后续2个元素
@@ -73,17 +75,30 @@ def main(d_url):
             s_data = l_data[0]
             l_data = s_data.replace('\n', ' ').split()
 
+            varFile = "/Users/linghuchong/Downloads/51/Python/project/instance/stock/东方财富网/name2.ini"
+            with open(varFile, "r", encoding="utf-8") as f:
+                # 读取所有内容 + 替换换行符 + 去除首尾空白
+                content = f.read().replace("\n", "").strip()
+            result_list = [s.strip().strip("'") for s in content.split(",") if s.strip()]
+            l_data = xx(l_data, result_list)
+
             # 特殊中文名处理，如 "新 大 陆"中间有空格
-            l_data = xx(l_data, ['000025','000528'])
-            l_data = xxx(l_data, ['000997','002186','002095','002183','002264','002209','002029','000735','002136', '000514',
-                                  '0002161','0002181','000061','002040','002224','002183','000635','002215'])
+            # l_data = xx(l_data, ['000025', '000528'])  # 处理名称拆封为2
+            varFile = "/Users/linghuchong/Downloads/51/Python/project/instance/stock/东方财富网/name3.ini"
+            with open(varFile, "r", encoding="utf-8") as f:
+                # 读取所有内容 + 替换换行符 + 去除首尾空白
+                content = f.read().replace("\n", "").strip()
+            result_list = [s.strip().strip("'") for s in content.split(",") if s.strip()]
+            l_data = xxx(l_data,result_list)
+            # l_data = xxx(l_data, ['000997','002186','002095','002183','002264','002209','002029','000735','002136', '000514',
+            #   '0002161','0002181','000061','002040','002224','002183','000635','002215','000402'])  #  # 处理名称拆封为3
 
             # 每页20个票
             # ([['序号','代码','名称','相关链接1','相关链接2','相关链接3','最新价','涨跌幅','涨跌额','成交量(手)','成交额','振幅','最高','最低','今开','昨收','量比','换手率','市盈率(动态)','市净率']])
             for i in range(0, len(l_data), 20):
                 l_l_data.append(l_data[i:i + 20])
 
-            print(91, l_l_data)
+            # print(91, l_l_data)
             for l_data in l_l_data:
                 try:
                     # 判断条件：
@@ -105,15 +120,25 @@ def main(d_url):
                             s = l_data[1] + "," + s
                             # print(s)
                     else:
+
                         sign = 1
                         break
                 except:
                     print(109, l_data)
-                    sys.exit(0)
+                    if l_data[4] == '股吧':
+                        varFile = "/Users/linghuchong/Downloads/51/Python/project/instance/stock/东方财富网/name2.ini"
+                        with open(varFile, "a", encoding="utf-8") as f:
+                            f.write(",'" + l_data[1] + "'")
+                    elif l_data[5] == '股吧':
+                        varFile = "/Users/linghuchong/Downloads/51/Python/project/instance/stock/东方财富网/name3.ini"
+                        with open(varFile, "a", encoding="utf-8") as f:
+                            f.write(",'" + l_data[1] + "'")
+                    main(d_url)
+                    # sys.exit(0)
             l_l_data = []
 
             if sign == 1:
-                print(k, s)
+                print(141, k, s)
                 sum = s + sum
                 s = ''
                 break
