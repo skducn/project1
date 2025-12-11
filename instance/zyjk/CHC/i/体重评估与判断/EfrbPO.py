@@ -336,7 +336,10 @@ class EfrbPO():
 
     def _handle_disease_condition(self, d_param, conditions):
         """处理疾病条件"""
-        if "高血压" in conditions:
+        # print(339, conditions) # 339 既往疾病包含“高血压”
+        if "高血压" in conditions and "糖尿病" in conditions:
+            d_param['disease'] = "无"
+        elif "高血压" in conditions:
             d_param['disease'] = "高血压"
         elif "糖尿病" in conditions:
             d_param['disease'] = "糖尿病"
@@ -823,7 +826,11 @@ class EfrbPO():
         if l_log:
             # 将所有错误信息连接成一个字符串
             error_log_str = "; \n\n".join(l_log)
-            d_param['error_log'] = error_log_str
+            # 增加转义处理
+            error_log_str = error_log_str.replace("'", "''").replace('"', '""')
+            d_param['error_log'] = error_log_str[:8000] if len(error_log_str) > 8000 else error_log_str
+
+            # d_param['error_log'] = error_log_str
         self.updateDB(d_param)
     def _handle_simple_condition(self, d_param, conditions):
         """处理简单条件"""
@@ -883,7 +890,7 @@ class EfrbPO():
         conditions = conditions.replace('＞', '>').replace('＜', '<').replace('＝', '=')
 
         # 根据条件类型分发处理
-        if '既往疾病包含' in conditions:
+        if '既往疾病' in conditions:
             # todo 高血压、糖尿病
             self._handle_disease_condition(d_param, conditions)
         elif '人群分类' in conditions:
@@ -1420,13 +1427,26 @@ class EfrbPO():
             Color_PO.outColor([{"31": s}])
             Log_PO.logger.info(s)
             # 修复：正确转义error_log中的特殊字符
-            # print(902,d_param['error_log'])
-            if 'error_log' in d_param:
-                escaped_error_log = d_param['error_log'].replace("'", "\'")
-                Sqlserver_PO_CHC.execute(
-                    "update %s set result = 'error', updateDate = GETDATE(), totalCase=%s, log='%s' where id = %s" %
-                    (self.tableEFRB, d_param['caseTotal'], escaped_error_log, d_param['id'])
-                )
+
+            # 加强SQL转义处理
+            if 'error_log' in d_param and d_param['error_log']:
+                # 使用参数化查询或加强转义
+                escaped_error_log = str(d_param['error_log']).replace("'", "''").replace('"', '""')
+                # 限制日志长度避免SQL过长
+                escaped_error_log = escaped_error_log[:8000] if len(escaped_error_log) > 8000 else escaped_error_log
+
+                try:
+                    Sqlserver_PO_CHC.execute(
+                        "update %s set result = 'error', updateDate = GETDATE(), totalCase=%s, log=? where id = %s" %
+                        (self.tableEFRB, d_param['caseTotal'], d_param['id']),
+                        (escaped_error_log,)
+                    )
+                except:
+                    # 如果参数化查询失败，尝试字符串拼接但加强转义
+                    Sqlserver_PO_CHC.execute(
+                        "update %s set result = 'error', updateDate = GETDATE(), totalCase=%s, log='%s' where id = %s" %
+                        (self.tableEFRB, d_param['caseTotal'], escaped_error_log, d_param['id'])
+                    )
             else:
                 Sqlserver_PO_CHC.execute(
                     "update %s set result = 'error', updateDate = GETDATE(), totalCase=%s where id = %s" %

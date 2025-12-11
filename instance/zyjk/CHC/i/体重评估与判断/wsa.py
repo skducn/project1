@@ -25,12 +25,12 @@ from WsaPO import *
 Wsa_PO = WsaPO()
 
 # # todo excel导入db
-# Wsa_PO.excel2db()
+Wsa_PO.excel2db()
 
 
 
 # todo 执行规则
-Wsa_PO.main()  # 执行所有
+# Wsa_PO.main()  # 执行所有
 
 
 # Wsa_PO.main({"id": 1})
@@ -46,15 +46,20 @@ Wsa_PO.main()  # 执行所有
 # Wsa_PO.main({"weightStatus": '体重偏低'})
 
 # todo 儿童
-# Wsa_PO.main({"category": '儿童', "weightStatus": '体重偏低'})  # 执行学生和体重偏低
+# Wsa_PO.main({"category": '儿童', "weightStatus": '体重偏低'})
 # Wsa_PO.main({"category": '儿童', "weightStatus": '正常'})
 # Wsa_PO.main({"category": '儿童', "weightStatus": '超重'})
 # Wsa_PO.main({"category": '儿童', "weightStatus": '肥胖'})
 
 # todo 学生
-# Wsa_PO.main({"category": '学生', "weightStatus": '体重偏低'})  # 执行学生和体重偏低
+# Wsa_PO.main({"category": '学生', "weightStatus": '体重偏低'})
 # Wsa_PO.main({"category": '学生', "weightStatus": '正常'})
 # Wsa_PO.main({"category": '学生', "weightStatus": '超重'})
 # Wsa_PO.main({"category": '学生', "weightStatus": '肥胖'})
 
 
+# todo v1.3.26 待测试
+Wsa_PO.main({"category": '儿童', "weightStatus": '体重偏低'})
+Wsa_PO.main({"category": '儿童', "weightStatus": '正常'})
+Wsa_PO.main({"category": '儿童', "weightStatus": '超重'})
+Wsa_PO.main({"category": '儿童', "weightStatus": '肥胖'})

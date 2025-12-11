@@ -23,7 +23,8 @@ class AgeBmiSexPO():
             lower_bound = float(lower_part)
             upper_bound = float(upper_part)
 
-            return var_name, lambda x: lower_bound <= x < upper_bound
+            # return var_name, lambda x: lower_bound <= x < upper_bound
+            return var_name, lambda x, lb=lower_bound, ub=upper_bound: lb <= x < ub
 
         # 处理简单条件
         match = re.match(r'(\w+)\s*(!=|==|<=|>=|<|>|=)\s*([\d.]+|男|女)', condition_str)
@@ -101,16 +102,19 @@ class AgeBmiSexPO():
                                 upper_bound = threshold
                                 has_upper = True
 
-                    # 生成复合条件的测试点
+                    # 生成复合条件的测试点 - 全面覆盖边界值
                     if has_lower:
-                        points.add(int(lower_bound))      # 下界（有效）
+                        points.add(int(lower_bound))  # 下界（有效）
                         points.add(int(lower_bound + 1))  # 下界后一个值（有效）
                     if has_upper:
-                        points.add(int(upper_bound))      # 上界（无效）
+                        points.add(int(upper_bound - 1))  # 上界前一个值（有效）
+                        points.add(int(upper_bound))  # 上界（无效）
 
                     # 添加边界外的无效值
                     if has_lower:
                         points.add(int(lower_bound - 1))  # 下界前一个值（无效）
+
+
                 else:
                     # 处理单一条件
                     for cond in var_conds:
@@ -122,11 +126,12 @@ class AgeBmiSexPO():
 
                             # 生成边界值（有效值和无效值）
                             points.add(lower_bound - 1)  # 下界前一个值（无效）
-                            points.add(lower_bound)      # 下界（有效）
+                            points.add(lower_bound)  # 下界（有效）
                             # 根据需求，对于66<=年龄<69只需要66和67，不需要68
                             if upper_bound - lower_bound > 1:
                                 points.add(lower_bound + 1)  # 下界后一个值（有效）
-                            points.add(upper_bound)      # 上界（无效）
+                            points.add(upper_bound - 1)  # 上界前一个值（有效）
+                            points.add(upper_bound)  # 上界（无效）
                             # 移除了 upper_bound + 1，避免生成70这样的无效值
                         else:
                             # 处理简单条件
@@ -136,26 +141,26 @@ class AgeBmiSexPO():
                                 value = int(float(value_str))
 
                                 if operator == '>':
-                                    points.add(value)      # 无效（等于不满足大于）
+                                    points.add(value)  # 无效（等于不满足大于）
                                     points.add(value + 1)  # 有效
                                     points.add(value + 2)  # 有效（确保有足够有效值）
                                 elif operator == '<':
                                     points.add(value - 1)  # 有效
-                                    points.add(value)      # 无效（等于不满足小于）
+                                    points.add(value)  # 无效（等于不满足小于）
                                     points.add(value - 2)  # 有效（确保有足够有效值）
                                 elif operator == '>=':
                                     points.add(value - 1)  # 无效
-                                    points.add(value)      # 有效
+                                    points.add(value)  # 有效
                                     points.add(value + 1)  # 有效
                                 elif operator == '<=':
-                                    points.add(value)      # 有效
+                                    points.add(value)  # 有效
                                     points.add(value + 1)  # 无效
                                     points.add(value - 1)  # 有效
                                 elif operator in ('==', '='):
-                                    points.add(value)      # 有效
+                                    points.add(value)  # 有效
                                     points.add(value + 1)  # 无效（只添加一个无效值）
                                 elif operator == '!=':
-                                    points.add(value)      # 无效
+                                    points.add(value)  # 无效
                                     points.add(value + 1)  # 有效
 
                 # 过滤掉负数年龄
@@ -194,14 +199,24 @@ class AgeBmiSexPO():
 
                     # 生成复合条件的测试点 - 简化测试点生成
                     if has_lower:
-                        points.add(round(lower_bound, 10))      # 下界（有效）
+                        points.add(round(lower_bound, 10))  # 下界（有效）
                         points.add(round(lower_bound + 0.1, 10))  # 下界后一个值（有效）
                     if has_upper:
-                        points.add(round(upper_bound, 10))        # 上界（无效）
+                        points.add(round(upper_bound - 0.1, 10))  # 上界前一个值（有效）
+                        points.add(round(upper_bound, 10))  # 上界（无效）
 
                     # 添加边界外的无效值
                     if has_lower:
                         points.add(round(lower_bound - 0.1, 10))  # 下界前一个值（无效）
+
+                    # 动态生成边界附近的测试点
+                    if has_lower and has_upper:
+                        # 在上界附近生成测试点，确保覆盖边界情况
+                        if upper_bound - lower_bound > 1.0:  # 确保区间足够大
+                            # 在上界附近生成测试点，如对于BMI<27，生成BMI=26
+                            near_upper = round(upper_bound - 1.0, 10)
+                            if near_upper > lower_bound:  # 确保生成的值在有效范围内
+                                points.add(near_upper)
                 else:
                     # 处理单一条件
                     for cond in var_conds:
@@ -218,6 +233,14 @@ class AgeBmiSexPO():
                                 points.add(round(upper_bound - 0.1, 10))  # 上界前一个值（有效）
                             points.add(round(upper_bound, 10))  # 上界（无效）
                             points.add(round(upper_bound + 0.1, 10))  # 上界后一个值（无效）
+
+                            # 添加中间代表性数值
+                            middle_value = (lower_bound + upper_bound) / 2
+                            points.add(round(middle_value, 10))
+
+                            # 特别确保26这样的典型值被包含（当在范围内时）
+                            if lower_bound <= 26 < upper_bound:
+                                points.add(26.0)
                         else:
                             threshold = float(re.search(r'([<>=!]+)\s*([\d.]+)', cond).group(2))
                             match = re.search(r'([<>=!]+)', cond)
@@ -433,9 +456,18 @@ class AgeBmiSexPO():
                     round(lower_bound - 0.1, 10),
                     round(lower_bound, 10),
                     round(lower_bound + 0.1, 10),
+                    round(upper_bound - 0.1, 10),
                     round(upper_bound, 10),
                     round(upper_bound + 0.1, 10)
                 ]
+
+                # 添加中间代表性数值
+                middle_value = (lower_bound + upper_bound) / 2
+                points.append(round(middle_value, 10))
+
+                # 特别确保26这样的典型值被包含（当在范围内时）
+                if lower_bound <= 26 < upper_bound:
+                    points.append(26.0)
             else:
                 threshold = float(re.search(r'([<>=!]+)\s*([\d.]+)', cond).group(2))
                 points = [threshold - 10.1, threshold, threshold + 10.1]
@@ -443,7 +475,6 @@ class AgeBmiSexPO():
             test_points[var_name] = list(set(points))
 
         return test_points
-
 
     def merge_conditions(self, conditions):
         """合并关于同一个变量的条件"""
@@ -513,26 +544,28 @@ if __name__ == "__main__":
     AgeBmiSex_PO = AgeBmiSexPO()
 
     # todo 等于号
-    print("1\n测试条件: ['年龄=6', 'BMI>=19.5', '性别=男']")  # ok
-    print(AgeBmiSex_PO.main(['年龄=6', 'BMI>=19.5', '性别=男']))
-
-    print("2\n测试条件: ['年龄>=6', 'BMI=19.5', '性别=男']")  # ok
-    print(AgeBmiSex_PO.main(['年龄>=6', 'BMI=19.5', '性别=男']))
-
-    print("3\n测试条件: ['年龄=6', 'BMI=19.5', '性别=男']")  # ok
-    print(AgeBmiSex_PO.main(['年龄=6', 'BMI=19.5', '性别=男']))
-
-    # todo 区间
-    print("4\n测试条件: ['66<=年龄<69', 'BMI<12', '性别=男']") # ok
-    print(AgeBmiSex_PO.main(['66<=年龄<69', 'BMI<12', '性别=男']))
-
-    # todo 拆分年龄 和 BMI
-    print("5\n测试条件: ['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']")
-    print(AgeBmiSex_PO.main(['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']))
+    # print("1\n测试条件: ['年龄=6', 'BMI>=19.5', '性别=男']")  # ok
+    # print(AgeBmiSex_PO.main(['年龄=6', 'BMI>=19.5', '性别=男']))
+    #
+    # print("2\n测试条件: ['年龄>=6', 'BMI=19.5', '性别=男']")  # ok
+    # print(AgeBmiSex_PO.main(['年龄>=6', 'BMI=19.5', '性别=男']))
+    #
+    # print("3\n测试条件: ['年龄=6', 'BMI=19.5', '性别=男']")  # ok
+    # print(AgeBmiSex_PO.main(['年龄=6', 'BMI=19.5', '性别=男']))
+    #
+    # # todo 区间
+    # print("4\n测试条件: ['66<=年龄<69', 'BMI<12', '性别=男']") # ok
+    # print(AgeBmiSex_PO.main(['66<=年龄<69', 'BMI<12', '性别=男']))
+    #
+    # # todo 拆分年龄 和 BMI
+    # print("5\n测试条件: ['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']")
+    # print(AgeBmiSex_PO.main(['BMI<18.5', '年龄>=18', '年龄<65', '性别=女']))
 
     print("6\n测试条件: ['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']")
-    print(AgeBmiSex_PO.main(['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']))
+    # print(AgeBmiSex_PO.main(['BMI<27', 'BMI>=20', '年龄>=65', '性别=女']))
+    print(AgeBmiSex_PO.main(['年龄>=79', '年龄<86', 'BMI>=16.7', '性别=女']))
 
+    # ['年龄>=79', '年龄<86', 'BMI>=16.7', '性别=女']
 
     # 实际情况不会有BMI区间，如3<BMI<12
     # print("\n测试条件: ['66<=年龄<69', '3<BMI<12', '性别=男']")

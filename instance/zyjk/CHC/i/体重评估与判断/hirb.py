@@ -2,7 +2,7 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 - 健康干预规则库 Health Intervention Rule Base (a_weight_HIRB)
+# Description: 体重管理1.0 - 健康干预规则库 Health Intervention Rule Base (a_WAR_HIRB)
 # 需求：体重管理1.18
 # 【腾讯文档】体重管理1.18规则自动化
 # https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
@@ -33,16 +33,20 @@ Hirb_PO = HirbPO()
 # Hirb_PO.HIRB([53, 5])  # 测试 4 到 9， 连续5条规则
 
 # todo 4执行单条
-Hirb_PO.HIRB({'id': 109})
-# Hirb_PO.HIRB({'IR_code': 'TZ_AGE002'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_YD053'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_YD054'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_YD049'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_AGE003'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_AGE004'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_STZB022'})
-# Hirb_PO.HIRB({'IR_code': 'TZ_RQFL004'})
+# Hirb_PO.HIRB({'id': 109})
+Hirb_PO.HIRB({'IR_code': 'TZ_YS001'})
+Hirb_PO.HIRB({'IR_code': 'TZ_YS004'})
+Hirb_PO.HIRB({'IR_code': 'TZ_SRL001'})
+Hirb_PO.HIRB({'IR_code': 'TZ_YS043'})
+Hirb_PO.HIRB({'IR_code': 'TZ_YS044'})
+Hirb_PO.HIRB({'IR_code': 'TZ_YS045'})
+Hirb_PO.HIRB({'IR_code': 'TZ_YS050'})
+Hirb_PO.HIRB({'IR_code': 'TZ_MBTZ001'})
+Hirb_PO.HIRB({'IR_code': 'TZ_SRL001'})
+Hirb_PO.HIRB({'IR_code': 'TZ_SRL003'})
+Hirb_PO.HIRB({'IR_code': 'TZ_SRL004'})
 # Hirb_PO.HIRB({'id': 115, 'IR_code': 'TZ_YD054'})
+
 
 # todo 5执行多条
 # Hirb_PO.HIRB({'id': [102, 114]})  # 测试 51 和 59，2条规则

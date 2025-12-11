@@ -310,10 +310,11 @@ class HirbPO():
         self._HIRB_main(d_param)
 
     def _HIRB_main(self, d_param):
-        # todo 无组有or TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
+        # todo 全or  TZ_STZB043='是' or TZ_STZB044='是' or TZ_STZB045='是'
         if "or" in d_param['conditions'] and "and" not in d_param['conditions']:
+            # 当全部是or时，只需要执行第一个条件。
 
-            # 字符串转列表
+            # # 字符串转列表
             l_conditions = d_param['conditions'].split("or")
             # print(l_conditions) # ["TZ_STZB043='是' ", " TZ_STZB044='是'  ", " TZ_STZB045='是'"]
             l_d_conditions = []
@@ -321,23 +322,23 @@ class HirbPO():
                 l_d_conditions.append(self.str2dict(i))
             # print(1614, l_d_conditions)  # [{'TZ_STZB043': '是'}, {'TZ_STZB044': '是'}, {'TZ_STZB045': '是'}]
             d_param['l_d_conditions'] = l_d_conditions
-            # print(1624, d_param)
+            # d_param['conditions'] = l_d_conditions
+            print(326, d_param)  # 1624 {'IR_code': 'TZ_MBTZ001', 'id': 109, 'conditions': "TZ_STZB002='是' or TZ_STZB005='是' or TZ_STZB008='是' or TZ_STZB011='是' or TZ_STZB014='是' or TZ_STZB017='是' or TZ_STZB020='是' or TZ_STZB023='是' or TZ_STZB026='是' or TZ_STZB029='是' or TZ_STZB032='是' or TZ_STZB035='是' or TZ_STZB038='是' or TZ_STZB041='是' or TZ_STZB044='是'", 'l_d_conditions': [{'TZ_STZB002': '是'}, {'TZ_STZB005': '是'}, {'TZ_STZB008': '是'}, {'TZ_STZB011': '是'}, {'TZ_STZB014': '是'}, {'TZ_STZB017': '是'}, {'TZ_STZB020': '是'}, {'TZ_STZB023': '是'}, {'TZ_STZB026': '是'}, {'TZ_STZB029': '是'}, {'TZ_STZB032': '是'}, {'TZ_STZB035': '是'}, {'TZ_STZB038': '是'}, {'TZ_STZB041': '是'}, {'TZ_STZB044': '是'}]}
 
-            self.HIRB_case_or(d_param)
-            # self.HIRB_case_or(ID, IR_code, l_d_conditions)
+        self.HIRB_case(d_param)
 
-        # todo 多组有or  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
-        elif "or" in d_param['conditions'] and "and" in d_param['conditions']:
-            self.HIRB_case_or(d_param)
-
-        # todo 一组无or "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
-        elif "and" in d_param['conditions']:
-            # 测试数据
-            self.HIRB_case(d_param)
-
-        # todo 无组无or 年龄，人群分类，疾病， TZ_RQFL005='是'
-        elif "and" not in d_param['conditions']:
-            self.HIRB_case(d_param)
+        # # todo 多组有or  (TZ_STZB002='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否') or (TZ_STZB005='是' and TZ_JWJB002='是' and TZ_RQFL005='否' and TZ_RQFL006='否')
+        # elif "or" in d_param['conditions'] and "and" in d_param['conditions']:
+        #     self.HIRB_case(d_param)
+        #
+        # # todo 全and "TZ_RQFL001='是' and TZ_STZB001='是' and TZ_JB001='否' and TZ_JB002='否'"
+        # elif "and" in d_param['conditions']:
+        #     print(335, d_param)
+        #     self.HIRB_case(d_param)
+        #
+        # # todo 无组无or 年龄，人群分类，疾病， TZ_RQFL005='是'
+        # elif "and" not in d_param['conditions']:
+        #     self.HIRB_case(d_param)
 
 
     def HIRB_conditions(self, d_param):
@@ -375,15 +376,10 @@ class HirbPO():
         return d_param
 
     def HIRB_case(self, d_param):
-
         d_param = self.HIRB_conditions(d_param)
+        # print(378, d_param)  # {'IR_code': 'TZ_YS001', 'id': 1, 'conditions': [{'TZ_RQFL001': '是', 'TZ_STZB001': '是', 'TZ_JB000': '是'}]}
         self.HIRB_run(d_param)
 
-
-    def HIRB_case_or(self, d_param):
-
-        d_param = self.HIRB_conditions(d_param)
-        self.HIRB_run(d_param)
 
     def HIRB_run(self, d_param):
 
@@ -400,31 +396,38 @@ class HirbPO():
 
             # 判断TZ_STZB是否存在
             if is_TZ_STZB_prefix:
+                # 过滤掉TZ_STZB
                 d_filtered = {key: value for key, value in d_conditions.items() if 'TZ_STZB' not in key}
-                print(518, d_filtered)
+                print(401, d_filtered)  # {'TZ_RQFL001': '是', 'TZ_JB000': '是'}
                 # 判断是否包含疾病（高血压或糖尿病）
-                if 'TZ_JB001' in d_filtered and 'TZ_JB002' in d_filtered:
+                if 'TZ_JB000' in d_filtered:
+                    # 无疾病
+                    d_param_HIRB['disease'] = "无"
+                elif 'TZ_JB001' in d_filtered and 'TZ_JB002' in d_filtered:
+                    # 同时存在高血压和糖尿病
                     gxy = d_filtered['TZ_JB001']
                     tnb = d_filtered['TZ_JB002']
                     if gxy == '否' and tnb == '否':
-                        # 不是高血压也不是糖尿病
+                        # 没有高血压也没有糖尿病
                         d_param_HIRB['disease'] = "无"
                     elif gxy == '是' and tnb == '是':
-                        # 如果既是高血压也是糖尿病，则取糖尿病
+                        # 有高血压也有糖尿病，则取糖尿病
                         d_param_HIRB['disease'] = "糖尿病"
                     elif gxy == '是' and tnb == '否':
-                        # 如果是高血压，不是糖尿病
+                        # 有高血压没有糖尿病
                         d_param_HIRB['disease'] = "高血压"
                     elif gxy == '否' and tnb == '是':
-                        # 如果是糖尿病，不是高血压
+                        # 有糖尿病没有高血压
                         d_param_HIRB['disease'] = "糖尿病"
                 elif 'TZ_JB001' in d_filtered:
+                    # 有高血压
                     gxy = d_filtered['TZ_JB001']
                     if gxy == '否':
                         d_param_HIRB['disease'] = "无"
                     else:
                         d_param_HIRB['disease'] = "高血压"
                 elif 'TZ_JB002' in d_filtered:
+                    # 有糖尿病
                     tnb = d_filtered['TZ_JB002']
                     if tnb == '否':
                         d_param_HIRB['disease'] = "无"

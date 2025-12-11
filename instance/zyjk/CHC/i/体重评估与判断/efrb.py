@@ -2,7 +2,7 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-5-9
-# Description: 体重管理1.0 - 评估因素规则库 Evaluation Factor Rule Base (a_weight10_EFRB)
+# Description: 体重管理1.0 - 评估因素规则库 Evaluation Factor Rule Base (a_WAR_EFRB)
 # 需求：体重管理1.18
 # 【腾讯文档】体重管理1.18规则自动化
 # https://docs.qq.com/sheet/DYmxVUGFZRWhTSHND?tab=rprd0r
@@ -28,18 +28,19 @@ Efrb_PO = EfrbPO()
 # Efrb_PO.EFRB()
 
 # todo 2执行错误
-Efrb_PO.EFRB("error")
+# Efrb_PO.EFRB("error")
 
 # todo 3执行连续多条（id区间，EFRB([起始，步长])）
 # Efrb_PO.EFRB([18, 42])  # 测试 4 到 9， 连续5条规则
 # Efrb_PO.EFRB([53, 5])  # 测试 4 到 9， 连续5条规则
 
 # todo 4执行单条
-# Efrb_PO.EFRB({'id': 109})
-# Efrb_PO.EFRB({'ER_code': 'TZ_AGE002'})
-# Efrb_PO.EFRB({'ER_code': 'TZ_AGE003'})
-# Efrb_PO.EFRB({'ER_code': 'TZ_AGE004'})
-# Efrb_PO.EFRB({'ER_code': 'TZ_STZB007'})
+# Efrb_PO.EFRB({'id': 1})
+# Efrb_PO.EFRB({'ER_code': 'TZ_JB001'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_JB000'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB046'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB047'})
+# Efrb_PO.EFRB({'ER_code': 'TZ_STZB048'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_STZB008'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_STZB009'})
 # Efrb_PO.EFRB({'ER_code': 'TZ_AGE004'})
@@ -54,19 +55,13 @@ Efrb_PO.EFRB("error")
 
 
 
-
-
-# todo 有错误,待验证
-# Efrb_PO.EFRB({'ER_code': [
-#     "TZ_STZB007",
-#     "TZ_STZB008",
-#     "TZ_STZB009",
-#     "TZ_STZB011",
-#     "TZ_AGE001",
-#     "TZ_AGE002",
-#     "TZ_AGE003",
-#     "TZ_AGE004"
-# ]})
+# todo v1.3.26 待测试
+Efrb_PO.EFRB({'ER_code': [
+    "TZ_STZB046",
+    "TZ_STZB047",
+    "TZ_STZB048",
+    "TZ_JB000"
+]})
 
 
 
