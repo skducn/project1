@@ -74,6 +74,8 @@ def main(d_url):
             l_data = Web_PO.getTextByXs('//*[@id="mainc"]/div/div/div[4]/table/tbody')
             s_data = l_data[0]
             l_data = s_data.replace('\n', ' ').split()
+            # print(77, l_data)
+
 
             varFile = "/Users/linghuchong/Downloads/51/Python/project/instance/stock/东方财富网/name2.ini"
             with open(varFile, "r", encoding="utf-8") as f:
@@ -89,16 +91,17 @@ def main(d_url):
                 # 读取所有内容 + 替换换行符 + 去除首尾空白
                 content = f.read().replace("\n", "").strip()
             result_list = [s.strip().strip("'") for s in content.split(",") if s.strip()]
-            l_data = xxx(l_data,result_list)
-            # l_data = xxx(l_data, ['000997','002186','002095','002183','002264','002209','002029','000735','002136', '000514',
-            #   '0002161','0002181','000061','002040','002224','002183','000635','002215','000402'])  #  # 处理名称拆封为3
+            l_data = xxx(l_data, result_list)
+
+            # print(98, l_data)
+
 
             # 每页20个票
             # ([['序号','代码','名称','相关链接1','相关链接2','相关链接3','最新价','涨跌幅','涨跌额','成交量(手)','成交额','振幅','最高','最低','今开','昨收','量比','换手率','市盈率(动态)','市净率']])
             for i in range(0, len(l_data), 20):
                 l_l_data.append(l_data[i:i + 20])
 
-            # print(91, l_l_data)
+            # print(101, l_l_data)
             for l_data in l_l_data:
                 try:
                     # 判断条件：
