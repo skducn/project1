@@ -130,27 +130,183 @@ class PmopPO():
         self.d_url_handle = self.d_url_handle | d_url_handle
         self.Web_PO.swhLabelByHandle(self.d_url_handle[d_menu[varMenu]])
 
-    def setTextByTagUpDiv3Input(self, varTag, varLabel, varValue):
+    def setInputByTagUpDiv(self, varLabel, varDivCount, varValue):
+        # Pmop_PO.setTextByTagUpDiv("label", "参数名称:", 3, "用户管理-密码连续失败锁定")
         # ele = self.Web_PO.getSuperEleByX("//label[text()='参数名称:']", '..')
-        ele = self.Web_PO.getUpEleByX("//" + varTag + "[text()='" + varLabel + "']")
-        self.Web_PO.eleSetTextByX(ele, ".//div/div/div/input", varValue)
-    def setTextByTagUpDiv3Textarea(self, varTag, varLabel, varValue):
+        ele = self.Web_PO.getUpEleByX("//label[text()='" + varLabel + "']")
+        if varDivCount == 1:
+            self.Web_PO.eleSetTextByX(ele, ".//div/input", varValue)
+        elif varDivCount == 2:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/input", varValue)
+        elif varDivCount == 3:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/div/input", varValue)
+        elif varDivCount == 4:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/div/div/input", varValue)
+        elif varDivCount == 5:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/div/div/div/input", varValue)
+
+    def setTextareaByTagUpDiv(self, varLabel, varDivCount, varValue):
+        # Pmop_PO.setTextareaByTagUpDiv("label", 2, "参数键值", "54")
         # ele = self.Web_PO.getSuperEleByX("//label[text()='参数名称:']", '..')
-        ele = self.Web_PO.getUpEleByX("//" + varTag + "[text()='" + varLabel + "']")
-        self.Web_PO.eleSetTextByX(ele, ".//div/div/textarea", varValue)
+        ele = self.Web_PO.getUpEleByX("//label[text()='" + varLabel + "']")
+        if varDivCount == 1:
+            self.Web_PO.eleSetTextByX(ele, ".//div/textarea", varValue)
+        elif varDivCount == 2:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/textarea", varValue)
+        elif varDivCount == 3:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/div/textarea", varValue)
+        elif varDivCount == 4:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/div/div/textarea", varValue)
+        elif varDivCount == 5:
+            self.Web_PO.eleSetTextByX(ele, ".//div/div/div/div/div/textarea", varValue)
 
-    def clkByTagUpButton(self, varTag, varText):
-        # 如：span，查询， 表示span的上层是button，
-        ele = self.Web_PO.getUpEleByX("//" + varTag + "[text()='" + varText + "']")
-        self.Web_PO.eleClkByX(ele, ".")
+    def clkTagByTagUp(self, varText, varLevel='.'):
+        # 点击定位标签上一层的标签， 如：span，查询， 表示span的上层是button，
+        ele = self.Web_PO.getUpEleByX("//span[text()='" + varText + "']")
+        self.Web_PO.eleClkByX(ele, varLevel)
 
-    def clkBySearchOne(self, varTag, varText):
+    def clkTagByTagUp3(self, varClass, varText, varLevel='.'):
+        # 点击定位标签上一层的标签， 如：span，查询， 表示span的上层是button，
+        ele = self.Web_PO.getUpEleByX("//span[@class='" + varClass + "' and text()='" + varText + "']")
+        # ele = self.Web_PO.getUpEleByX("//" + varTag + "[text()='" + varText + "']")
+        self.Web_PO.eleClkByX(ele, varLevel)
+
+    def clkTagByTagUp2(self, varClass, varText, varLevel='.'):
+        # 点击定位标签上一层的标签， 如：span，查询， 表示span的上层是button，
+        ele = self.Web_PO.getUpEleByX("//span[@class='" + varClass + "' and text()='" + varText + "']")
+        # varXpath = '//span[@class="menu-title" and text()="外部数据导入"]'
+        self.Web_PO.eleClkByX(ele, "./i")
+
+
+
+
+    def clkCheckBoxOne(self, varText, varBoolean, level='.'):
+        # 判断复选框，True则勾选，False则不勾
+        # Pmop_PO.clkCheckBoxOne("el-checkbox__label", "展开/折叠", True)
+        # ele = self.Web_PO.getUpEleByX("//" + varTag + "[text()='" + varText + "']")
+        ele = self.Web_PO.getSuperEleByX("//span[@class='el-checkbox__label' and text()='" + varText + "']", level)
+        classValue = self.Web_PO.eleGetAttrValueByX(ele, ".", "class")
+        # print(classValue) # el-checkbox el-checkbox--default is-checked
+        if 'is-checked' not in classValue and varBoolean == True:
+            self.clkTagByTagUp3("el-checkbox__label", varText)
+        if 'is-checked' in classValue and varBoolean == False:
+            self.clkTagByTagUp3("el-checkbox__label", varText)
+
+    def clkCheckBoxByLevel3(self, ele2, varText, varBoolean, level='..'):
+        # 判断第三层复选框，True则勾选，False则不勾
+        # Pmop_PO.clkCheckBoxByLevel3("el-checkbox__label", "展开/折叠", True)
+        # /html/body/div[1]/div/div[3]/section/div/div/div[4]/div/div/div/form/div/div[4]/div/div[2]/div/ div[2]/div[2]/div[1]/div[2]/div[3]/div/label
+
+        # /html/body/div[1]/div/div[3]/section/div/div/div[4]/div/div/div/form/div/div[4]/div/div[2]/div/ div[1]/div[2]/div/div[2]/div[2]/div/label
+        # print(varClass, varText)
+        # ele = self.Web_PO.getSuperEleByX("//span[@class='" + varClass + "' and text()='" + varText + "']", level)
+
+        ele_checkbox = self.Web_PO.eleGetSuperEleByX(ele2, ".//span[text()='" + varText + "']", '..') # 获取span标签下文本上上层的元素
+        # classValue = self.Web_PO.eleGetAttrValueByX(ele_checkbox, ".", "class")
+
+        classValue = self.Web_PO.eleGetAttrValueByX(ele_checkbox, ".//label", "class")
+        print(varText, classValue) # el-checkbox el-checkbox--default is-checked
+        if 'is-checked' not in classValue and varBoolean == True:
+            self.Web_PO.eleClkByX(ele_checkbox, "./label")
+            # self.clkTagByTagUp3(varClass, varText)
+        if 'is-checked' in classValue and varBoolean == False:
+            self.Web_PO.eleClkByX(ele_checkbox, "./label")
+
+            # self.clkTagByTagUp3(varClass, varText)
+
+
+    def clkCheckBoxMore(self, l_text, varBoolean):
+        # 勾选层级复选框，True则勾选，False则不勾
+        # Pmop_PO.clkCheckBoxByMore("span", ["数据导入"], True)
+        # Pmop_PO.clkCheckBoxByMore("span", ["数据导入", "外部数据导入"], True)
+        # Pmop_PO.clkCheckBoxByMore("span", ["数据导入", "外部数据导入", "日志"], True)
+        # Pmop_PO.clkCheckBoxByMore("span", ["数据导入", "外部数据导入", ["删除", "刷新"]], True)
+
+        ele2 = self.Web_PO.getSuperEleByX(
+            "//span[@class='el-text el-text--default is-truncated el-tree-node__label' and text()='" + l_text[0] + "']",
+            "../..")
+
+        if len(l_text) == 1:
+            # 全选第一层
+            classValue = self.Web_PO.eleGetAttrValueByX(ele2, ".//div[1]/label", "class")
+            if 'is-checked' not in classValue and varBoolean == True:
+                self.Web_PO.eleClkByX(ele2, ".//div[1]/label")
+            elif 'is-checked' in classValue and varBoolean == False:
+                self.Web_PO.eleClkByX(ele2, ".//div[1]/label")
+            elif varBoolean == False:
+                self.Web_PO.eleClkByX(ele2, ".//div[1]/label")
+                self.Web_PO.eleClkByX(ele2, ".//div[1]/label")
+        elif len(l_text) == 2:
+            # 全选第2层
+            # 1, 展开第一层
+            self.Web_PO.eleClkByX(ele2, "./div[1]/i")
+
+            # 2, 展开第二层
+            # 获取第二层菜单
+            l_menu2 = self.Web_PO.eleGetTextByXs(ele2, ".//span")
+            # print(l_menu2)  # ['', '', '专病中心', '', '', '患者列表', '', '', '患者详情']
+            l_filtered_menu2 = [item for item in l_menu2 if item != '']
+            d_menu2 = {value: index for index, value in enumerate(l_filtered_menu2)}
+            # print(d_menu2)  #{'专病中心': 0, '患者列表': 1, '患者详情': 2}
+            classValue = self.Web_PO.eleGetAttrValueByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/label", "class")
+            print(classValue)
+            # if classValue == 'el-icon el-tree-node__expand-icon':
+            if 'is-checked' not in classValue and varBoolean == True:
+                self.Web_PO.eleClkByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/label")  # 第二层
+            if 'is-checked' in classValue and varBoolean == False:
+                self.Web_PO.eleClkByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/label")  # 第二层
+            elif varBoolean == False:
+                self.Web_PO.eleClkByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/label")  # 第二层
+                self.Web_PO.eleClkByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/label")  # 第二层
+
+
+        elif len(l_text) == 3:
+            # 单选/多选第三层
+
+            # 1, 展开第一层
+            self.Web_PO.eleClkByX(ele2, "./div[1]/i")
+
+            # 2, 展开第二层
+            # 获取第二层菜单
+            l_menu2 = self.Web_PO.eleGetTextByXs(ele2, ".//span")
+            # print(l_menu2)  # ['', '', '专病中心', '', '', '患者列表', '', '', '患者详情']
+            l_filtered_menu2 = [item for item in l_menu2 if item != '']
+            d_menu2 = {value: index for index, value in enumerate(l_filtered_menu2)}
+            # print(d_menu2)  #{'专病中心': 0, '患者列表': 1, '患者详情': 2}
+            classValue = self.Web_PO.eleGetAttrValueByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/i", "class")
+            # print(classValue)
+            if classValue == 'el-icon el-tree-node__expand-icon':
+                self.Web_PO.eleClkByX(ele2, ".//div[2]/div[" + str(d_menu2[l_text[1]]) + "]/div[1]/i")  # 展开第二层
+
+
+
+            # 3，勾选第三层
+            if isinstance(l_text[2], list):
+                for i in l_text[2]:
+                    print(i)
+                    self.clkCheckBoxByLevel3(ele2, i, varBoolean)
+
+            # 4，收起第一层
+            self.Web_PO.eleClkByX(ele2, "./div[1]/i")
+
+            # self.Web_PO.eleClkByX(ele2, "./div[2]/div[1]/div[1]/i")  # 二级 展开
+
+
+
+
+
+
+
+
+
+
+    def clkOneEditByTagUpText(self, varText):
         # 搜索出结果，且为1条记录，点击编辑
-        countByTag = self.Web_PO.getCountByXs(varTag)
-        if countByTag == 1:
-            self.clkByTagUpButton("span", varText)
+        count = self.Web_PO.getCountByXs("//tbody/tr")
+        if count == 1:
+            self.clkTagByTagUp(varText)
         else:
-            print("errror!")
+            print("errror, 搜索结果出现多条记录！")
 
 
 

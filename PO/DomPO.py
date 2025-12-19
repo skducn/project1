@@ -617,6 +617,7 @@ class DomPO(object):
         # getUpEleByX("//div[@class='van-col']")  # 获取div下文本上一层的元素
         # getUpEleByX("//div[text()='文本']")  # 获取div下文本上一层的元素
         # getUpEleByX("//span[text()='文本']")  # 获取span下文本上一层的元素
+        # varXpath = '//span[@class="menu-title" and text()="外部数据导入"]'
         ele = self.find_element(*(By.XPATH, varXpath))
         return self.driver.execute_script("return arguments[0].parentNode;", ele)
 
@@ -2635,7 +2636,7 @@ class DomPO(object):
 
 
     def getXpathByLabel(self, varLabel):
-        # 获取所有标签的XPath路径
+        # 获取完整XPath路径
         # 如 getXpathByLabel('button')
         l_ = []
         varLabel = self.find_elements(*(By.TAG_NAME, varLabel))

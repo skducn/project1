@@ -106,17 +106,17 @@ def main(d_url):
                 try:
                     # 判断条件：
                     l_data_7 = float(l_data[7].replace("%", ''))
-                    # 涨跌幅 3% - 15% 区间
+                    # 条件1：上长阳线
+                    # 涨跌幅 2% - 6% 区间
                     # 代码小于 688000
-                    # 最新价（收盘）在区间 [5, 60]
-                    # 上引线够长，（最高价 -（最高价 - 最低价）*0。3） > 最新价 ，，   收盘, （最高价 + 最低价）/2 > 最新价（收盘） (14.77 + 13.68)/2 > 14.40
-                    # (((float(l_data[12]) + float(l_data[14])) /2) > float(l_data[6])) and \
+                    # 最新价（收盘）在区间 [8, 50]
+                    # 上影线够长，（最高价 -（最高价 - 最低价）*0。3） > 最新价 ，，   收盘, （最高价 + 最低价）/2 > 最新价（收盘） (14.77 + 13.68)/2 > 14.40
                     # 阳线实体适中，(最新价(收盘) > (最高价 -（最高价-最低价） * 0.6),  42 -（42-37.35）*0.6 = 39.21
                     # 下引线够短，最低 >= (今开 - 今开 * 0.02)  37.5 - 0.37 = 37.13
-                    if l_data_7 > 8:
+                    if l_data_7 > 6:
                         ...
-                    elif (l_data_7 > 3 and l_data_7 <= 8) :
-                        if int(l_data[1]) < 688000 and (float(l_data[6]) > 5 and float(l_data[6]) <= 60) and \
+                    elif (l_data_7 > 2 and l_data_7 <= 6) :
+                        if int(l_data[1]) < 688000 and (float(l_data[6]) > 8 and float(l_data[6]) <= 50) and \
                             ((float(l_data[12]) - (float(l_data[12]) - float(l_data[13])) * 0.3) > float(l_data[6])) and \
                             (float(l_data[6]) > (float(l_data[12]) - (float(l_data[12]) - float(l_data[13])) * 0.6)) and \
                             (float(l_data[13]) > (float(l_data[14]) - (float(l_data[14]) * 0.02))):

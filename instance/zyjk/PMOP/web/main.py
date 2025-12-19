@@ -20,26 +20,72 @@ Color_PO = ColorPO()
 # 登录
 Pmop_PO.login()
 
+
+# todo c1，参数设置，检索"用户管理-密码连续失败锁定"，编辑
+# Pmop_PO.clkMenu('参数设置')
+# # 检索"用户管理-密码连续失败锁定"
+# Pmop_PO.setInputByTagUpDiv("label", "参数名称:", 3, "用户管理-密码连续失败锁定")
+# Pmop_PO.clkByTagUpButton("span", "查询")
+# Pmop_PO.clkOneEditByTagUpText("//tbody/tr", "span", "编辑")
+# # 编辑
+# Pmop_PO.setInputByTagUpDiv("label", "参数名称", 3, "用户管理-密码连续失败锁定123")
+# Pmop_PO.setInputByTagUpDiv("label", "参数键名", 3, "sys.account.pwdLockNum456")
+# Pmop_PO.setTextareaByTagUpDiv("label", "参数键值", 2, "54")
+# Pmop_PO.setTextareaByTagUpDiv("label", "备注", 2, "51231234")
+
+
+# todo c2，角色管理，检索"UI测试"，编辑
+Pmop_PO.clkMenu('角色管理')
+# 检索"222"
+Pmop_PO.setInputByTagUpDiv("角色名称:", 3, "UI测试")
+Pmop_PO.clkTagByTagUp("查询")
+Pmop_PO.clkOneEditByTagUpText("编辑")
+# [编辑角色]
+Pmop_PO.setInputByTagUpDiv("角色名称", 3, "555")
+# Pmop_PO.setInputByTagUpDiv(" 权限字符 ", 3, "LockNum456")
+Pmop_PO.setInputByTagUpDiv("角色顺序", 4, "6")
+# 编辑 - 菜单权限
+Pmop_PO.clkCheckBoxOne("展开/折叠", False)
+# Pmop_PO.clkCheckBoxOne("父子联动", False)
+# 编辑 - 菜单权限 - 全选第一层
+Pmop_PO.clkCheckBoxMore(["数据导入"], True)
+# Pmop_PO.clkCheckBoxMore(["专病中心"], True)
+# Pmop_PO.clkCheckBoxMore(["系统管理"], False)
+# Pmop_PO.clkCheckBoxMore(["系统日志"], False)
+# 编辑 - 菜单权限 - 全选第二层
+# Pmop_PO.clkCheckBoxMore(["专病中心", "患者详情"], False)
+# Pmop_PO.clkCheckBoxMore(["基础配置", "扩展字段管理"], False)
+# 编辑 - 菜单权限 - 全选第三层
+# Pmop_PO.clkCheckBoxMore(["数据导入", "外部数据导入", ["删除", "刷新"]], True)
+# Pmop_PO.clkCheckBoxMore(["专病中心", "患者详情", ["诊断删除", "就诊详情"]], False)
+# Pmop_PO.clkCheckBoxMore(["专病中心", "患者详情", ["诊断删除", "就诊详情"]], False)
+# Pmop_PO.clkCheckBoxMore(["专病中心", "患者详情", ["起搏器随访附件"]], True)
+# Pmop_PO.clkCheckBoxMore(["系统日志", "登录日志", ["登录查询"]], False)
+# Pmop_PO.clkCheckBoxMore(["基础配置", "扩展字段管理", ["扩展字段删除", "扩展字段新增"]], False)
+# Pmop_PO.clkCheckBoxMore(["基础配置", "标签管理", ["标签删除", "标签新增"]], False)
+Pmop_PO.setTextareaByTagUpDiv("备注", 2, "51231234")
+
+
+
+
+
+
+# Pmop_PO.clkCheckBox("span", "外部数据导入", True)
+# Pmop_PO.clkCheckBox("span", "专病中心", False)
+
+
+# Pmop_PO.clkCheckBox("span", "全选/全不选", False)
+# Pmop_PO.clkCheckBox("span", "父子联动", False)
+
+
+
+
 # 打开菜单
 # Cdrd_PO.clkMenu('角色管理')
 # Cdrd_PO.clkMenu('菜单管理')
 
 # 患者发现 - 患者检索
 # Pmop_PO.clkMenu('患者检索')
-
-
-Pmop_PO.clkMenu('参数设置')
-# 查询参数名称
-Pmop_PO.setTextByTagUpDiv3Input("label", "参数名称:", "用户管理-密码连续失败锁定")
-Pmop_PO.clkByTagUpButton("span", "查询")
-Pmop_PO.clkBySearchOne("//tbody/tr", "编辑")
-# 修改参数
-Pmop_PO.setTextByTagUpDiv3Input("label", "参数名称", "用户管理-密码连续失败锁定1")
-Pmop_PO.setTextByTagUpDiv3Input("label", "参数键名", "sys.account.pwdLockNum2")
-Pmop_PO.setTextByTagUpDiv3Textarea("label", "参数键值", "54")
-Pmop_PO.setTextByTagUpDiv3Textarea("label", "备注", "51231234")
-
-
 
 
 # # 遍历获取每页所有患者详情页url

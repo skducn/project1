@@ -5,7 +5,6 @@
 # Description: 专病库
 # 需求gitlab：http://192.168.0.241/cdrd_product_doc/product_doc
 # *****************************************************************
-
 from CdrdPO import *
 logName = "./" + os.path.basename(__file__).split('.')[0] + ".log"
 Cdrd_PO = CdrdPO(logName)
