@@ -970,13 +970,16 @@ class OpenpyxlPO:
 
         # 3.3 获取一行数据
 
-        l_row = []
-        sh = self.sh(varSheet)
-        t_row = [r for r in sh.rows][varSeq-1]  # 获取此行的单元格值
-        # print((t_row))  # (<Cell 'Sheet'.A3>, <Cell 'Sheet'.B3>, <Cell 'Sheet'.C3>)
-        for cell in t_row:
-            l_row.append(cell.value)
-        return l_row  #  [10, 5, 10]
+        if self.getTotalRowCol(varSheet)[0] > 1:
+            l_row = []
+            sh = self.sh(varSheet)
+            t_row = [r for r in sh.rows][varSeq-1]  # 获取此行的单元格值
+            # print((t_row))  # (<Cell 'Sheet'.A3>, <Cell 'Sheet'.B3>, <Cell 'Sheet'.C3>)
+            for cell in t_row:
+                l_row.append(cell.value)
+            return l_row  #  [10, 5, 10]
+        else:
+            return []
 
     def getOneCol(self, varCol, varSheet=0):
 

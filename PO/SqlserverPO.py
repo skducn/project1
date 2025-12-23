@@ -689,7 +689,6 @@ class SqlserverPO:
         # 6，单表结构，可选字段  desc({'tb_code_value' : ['id', 'page']})
 
         d_tableComment = {}
-
         l_columnName = []
         l_dataType = []
         l_maxLength = []
@@ -901,7 +900,6 @@ class SqlserverPO:
         # print(Sqlserver_PO.getTableComment('QYYH'))
         '''
 
-
         # try:
         if varTable == "all":
             # 所有表
@@ -911,7 +909,7 @@ class SqlserverPO:
             # print(self._getTableComment(l_d_))
             if format == "true":
                 # Color_PO.outColor([{"36": "表名" + " " * (len("name") - len("表名") + 1) + "注释"}])
-                for k,v in self._getTableComment(l_d_).items():
+                for k, v in self._getTableComment(l_d_).items():
                     Color_PO.outColor([{"30": k}, {"31": v}])
             else:
                 return self._getTableComment(l_d_)
