@@ -86,12 +86,12 @@ person_id = '83'
 PERSON_FLAVORING_RECORD = Sqlserver_PO.select("SELECT * FROM PERSON_FLAVORING_RECORD where PERSON_ID='%s'" % (person_id))
 print("PERSON_FLAVORING_RECORD =>", PERSON_FLAVORING_RECORD)
 
-# # # todo 互联网医院预约信息表（无数据），没有链接外键 ？？？
-# ONLINE_APPOINTMENT = Sqlserver_PO.select("SELECT * FROM ONLINE_APPOINTMENT where ?='%s'" % (HP_PERSON_WEIXIN[0]['PERSON_ID']))
-# # print("ONLINE_APPOINTMENT =>", ONLINE_APPOINTMENT)
+# # # todo 互联网医院预约信息表（无数据）
+# ONLINE_APPOINTMENT = Sqlserver_PO.select("SELECT * FROM ONLINE_APPOINTMENT where APPOINTMENTER_ID='%s'" % (HP_PERSON_WEIXIN[0]['PERSON_ID']))
+# print("ONLINE_APPOINTMENT =>", ONLINE_APPOINTMENT)
 
-# # # todo 主动健康居民交流问题表（无数据），没有链接外键 ？？？
-# PERSON_COMMUNICATE = Sqlserver_PO.select("SELECT * FROM PERSON_COMMUNICATE where ?='%s'" % (HP_PERSON_WEIXIN[0]['PERSON_ID']))
+# # # todo 主动健康居民交流问题表（无数据）
+# PERSON_COMMUNICATE = Sqlserver_PO.select("SELECT * FROM PERSON_COMMUNICATE where QUESTIONER_ID='%s'" % (HP_PERSON_WEIXIN[0]['PERSON_ID']))
 # # print("PERSON_COMMUNICATE =>", PERSON_COMMUNICATE)
 # # print("PERSON_COMMUNICATE[0]['ID'] =>", PERSON_COMMUNICATE[0]['ID'])
 
@@ -147,6 +147,6 @@ print("HP_ITEM[0]['ITEM_ID'] =>", HP_ITEM[0]['ITEM_ID'])
 print("HP_ITEM[0]['ITEM_CATEGORY'] =>", HP_ITEM[0]['ITEM_CATEGORY'])
 print("HP_ITEM[0]['ITEM_TYPE'] =>", HP_ITEM[0]['ITEM_TYPE'])
 
-# # # todo 健康管理项目类别表(确认 HP_ITEM.ITEM_ID 是否等于 HP_ITEM_TYPE.ID) ???
-HP_ITEM_TYPE = Sqlserver_PO.select("SELECT * FROM HP_ITEM_TYPE where ID='%s' and ITEM_CATEGORY='%s' and ITEM_TYPE='%s'" % (HP_ITEM[0]['ITEM_ID'],HP_ITEM[0]['ITEM_CATEGORY'],HP_ITEM[0]['ITEM_TYPE']))
+# # # todo 健康管理项目类别表
+HP_ITEM_TYPE = Sqlserver_PO.select("SELECT * FROM HP_ITEM_TYPE where ITEM_CATEGORY='%s' and ITEM_TYPE='%s'" % (HP_ITEM[0]['ITEM_CATEGORY'],HP_ITEM[0]['ITEM_TYPE']))
 print("HP_ITEM_TYPE =>", HP_ITEM_TYPE)

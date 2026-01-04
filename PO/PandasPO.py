@@ -250,7 +250,7 @@ if __name__ == "__main__":
 
     data = {'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35]}
     df = pd.DataFrame(data)
-    print(df[df['Age']>30])
+    print(df[df['Age']>26])
 
     # df = pd.read_excel("./data/1.xlsx")
     # print(df)

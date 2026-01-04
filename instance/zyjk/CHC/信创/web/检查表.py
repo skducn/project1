@@ -22,6 +22,7 @@ def delField(varTable, l_row_title, l_varField, Sqlserver_PO):
 
     # exclude_fields = varField  # 需要排除的字段列表
     all_fields = [field for field in l_row_title if field not in l_varField]
+    print(25,all_fields)
     fields_str = ', '.join(all_fields)
     l_d_ = Sqlserver_PO.select("SELECT %s FROM %s" % (fields_str, varTable))
     return l_d_
@@ -87,8 +88,8 @@ def main(db, excel, check_type="init"):
 
 
 
-main("CHC", "./CHC.xlsx", check_type="init")
-# main("CHCCONFIG", "./CHCCONFIG.xlsx", check_type="init")
+# main("CHC", "./CHC.xlsx", check_type="init")
+main("CHCCONFIG", "./CHCCONFIG.xlsx", check_type="init")
 # main("CHC_JOB", check_type="init")
 
 
