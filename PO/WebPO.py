@@ -800,6 +800,27 @@ class WebPO(DomPO):
         return len_cur
 
 
+    def dwelement(self, varXpath):
+        # target_element = WebDriverWait(self.driver, 5).until(
+        #     EC.presence_of_element_located(
+        #         (By.XPATH, varXpath)  # 定位“行情”导航栏
+        #     )
+        # )
+        # target_element = WebDriverWait(self.driver, 5).until(
+        #     EC.visibility_of_element_located(  # 用visibility_of_element_located，确保元素可见（而非仅存在）
+        #         (By.CSS_SELECTOR, 'span.account.tile[date-type="account"]')
+        #     )
+        # )
+
+        target_element = WebDriverWait(self.driver, 5).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, '//span[@date-type="account" and text()="账号登陆"]')
+                )
+            )
+
+        action = ActionChains(self.driver)
+        action.move_to_element(target_element).perform()  # 核心：将鼠标移动到元素上
+
 
     # test_count = 10
     def click_random_element(self):

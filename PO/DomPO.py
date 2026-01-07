@@ -701,6 +701,52 @@ class DomPO(object):
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
+    def dwele(self, varXpath, t=1):
+
+        # 1. 检查并切换到iframe（需替换iframe的定位方式）
+        try:
+            iframe = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.ID, "frame_login"))  # 替换为实际iframe ID
+            )
+            self.driver.switch_to.frame(iframe)
+            # print("已切换到登录iframe")
+        except:
+            print("未找到登录iframe，继续在主文档查找")
+
+        # 2. 滚动到页面顶部
+        self.driver.execute_script("window.scrollTo(0, 0)")
+
+        # 3. 等待页面加载完成
+        WebDriverWait(self.driver, 20).until(
+            lambda driver: driver.execute_script('return document.readyState') == 'complete'
+        )
+
+        # 4. 宽松定位元素（兼容文本拼写，延长等待）
+        # login_element = WebDriverWait(self.driver, 20).until(
+        #     EC.visibility_of_element_located((By.XPATH, '//span[@date-type="account" and contains(text(), "账号")]'))
+        # )
+
+        login_element = WebDriverWait(self.driver, 20).until(
+            EC.visibility_of_element_located(
+                # 优先按文本模糊匹配，兼容标签/属性变动
+                (By.XPATH, '//*[contains(text(), "账号登录") and not(contains(text(), "扫码"))]')
+            )
+        )
+
+        # login_element = self.find_element(*(By.XPATH, varXpath))
+        # login_element = WebDriverWait(self.driver, 15).until(
+        #     EC.visibility_of_element_located(
+        #         # 组合属性定位：标签+class+自定义属性，精准无重复
+        #         (By.CSS_SELECTOR, 'span.account.tile[date-type="account"]')
+        #     )
+        # )
+
+        # login_element = WebDriverWait(self.driver, 15).until(
+        #     EC.visibility_of_element_located((By.XPATH, varXpath))
+        # )
+        action = ActionChains(self.driver)
+        action.move_to_element(login_element).perform()  # 核心：将鼠标移动到元素上
+
     def setTextTabByX(self, varXpath, varText, t=1):
         # 输入框双击后输入文本，按Tab
         ele = self.find_element(*(By.XPATH, varXpath))
@@ -2123,7 +2169,7 @@ class DomPO(object):
 
     def quitIframe(self, t=1):
         """退出iframe"""
-        self.driver.switch_to_default_content()
+        self.driver.switch_to.default_content()
         sleep(t)
 
     def inIframeTopDiv(self, varXpath, t=1):
