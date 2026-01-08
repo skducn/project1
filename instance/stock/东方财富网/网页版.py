@@ -75,7 +75,7 @@ for i in range(3, 7):
             s_in = 0
         s_ultra_large = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[10]/span')  # 超大但净占比 > 4%
         s_ultra_large = s_ultra_large[:-1]
-        if float(s_in) > 2 and float(s_ultra_large) > 4:
+        if float(s_in) > 1 and float(s_ultra_large) > 2:
             # print(s_code, s_stock, s_in, s_ultra_large)
             s_tmp = str(s_code) + " " + s_stock + ", 主力净流入:" + str(s_in) + "亿, 超大单净占比:" + str(s_ultra_large) + "%"
             Color_PO.outColor([{"35": s_tmp}])
