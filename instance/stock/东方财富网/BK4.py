@@ -27,6 +27,12 @@ from PO.WebPO import *
 from PO.NewexcelPO import *
 from PO.OpenpyxlPO import *
 
+if os.access("BK.xlsx", os.F_OK):
+    Openpyxl_PO = OpenpyxlPO("BK.xlsx")
+else:
+    Newexcel_PO = NewexcelPO("BK.xlsx")
+
+
 
 # todo 登录
 Web_PO = WebPO("chrome")
@@ -50,24 +56,42 @@ Web_PO.clkByX("/html/body/div[2]/div[3]/div[3]/table/thead/tr/th[8]/a")  # 主�
 # Web_PO.clkByX("/html/body/div[2]/div[3]/div[3]/table/thead/tr/th[10]/a")  # 超大单净占比
 
 # 获取行数股票
+l_all = [['代码', '名称', '涨跌幅', '主力净流入(亿)', '超大单净占比(%)']]
 QTY_tr = Web_PO.getCountByXs("//table[@id='wltable']/tbody/tr")
 for i in range(QTY_tr):
     s_code = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[3]/a')  # 代码
-    s_stock = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[4]/a')  # 名称
-    s_in = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[8]/span')  # 主力净流入
-    if "亿" in s_in:
-        s_in = s_in.replace("亿", "")
+    s_name = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[4]/a')  # 名称
+    s_chg = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[7]/a')  # 涨跌幅 price change percentage
+    s_MCNI = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[8]/span')  # 主力净流入 Main Capital Net Inflow
+    if "亿" in s_MCNI:
+        s_MCNI = s_MCNI.replace("亿", "")
     else:
-        s_in = 0
-    s_ultra_large = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[10]/span')  # 超大但净占比
-    s_ultra_large = s_ultra_large[:-1]
-    # # 主力净流入 > 2亿 ， 超大但净占比 > 4%
-    if float(s_in) > 2 and float(s_ultra_large) > 4:
-        s_tmp = str(s_code) + " " + s_stock + ", 主力净流入:" + str(s_in) + "亿, 超大单净占比:" + str(s_ultra_large) + "%"
+        s_MCNI = 0
+    s_SLONP = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[10]/span')  # 超大单净占比 Super Large Order Net Proportion
+    s_SLONP = s_SLONP[:-1]
+    # # 主力净流入 > 10亿 ， 超大但净占比 > 4%
+    if float(s_MCNI) > 9 and float(s_SLONP) > 4:
+        s_tmp = str(s_code) + " " + s_name + ", 主力净流入:" + str(s_MCNI) + "亿, 超大单净占比:" + str(s_SLONP) + "%"
         Color_PO.outColor([{"35": s_tmp}])
-    if float(s_in) < 0 :
+        l_ = [s_code, s_name, s_chg, s_MCNI, s_SLONP]  # 创建行数据列表
+        l_all.append(l_)
+
+    if float(s_MCNI) < 0 :
         break
 
+# 创建工作表
+sheetName = str(Time_PO.getDateByMinus())
+
+if sheetName not in Openpyxl_PO.getSheets():
+    Openpyxl_PO.addCoverSheet(sheetName, 0)  # 2026-01-13
+    Openpyxl_PO.appendRows(l_all, sheetName)
+
+
+# 关闭页面
+Web_PO.cls()
+
+# 打开文件
+Openpyxl_PO.open()
 
 
 

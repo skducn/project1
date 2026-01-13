@@ -44,9 +44,6 @@ todo get菜单
 获取部分包含属性值所在的位置 getIndexByApcByXs(varXpaths, varAttr, varValue)
 获取超链接文本及href getDictTextAttrValueByXs(varXpaths, varAttr)
 
-通过标签下文本获取上一层元素 getUpEleByX(varLabel, varText)
-通过标签下文本获取上层或上上层元素 getSuperEleByX(varLabel, varText, varXpath)
-
 todo set菜单
 通过id设置文本 setTextById()
 通过id追加文本 appendTextById()
@@ -88,9 +85,15 @@ todo boolean菜单
 通过xpath判断属性值是否存在 isBooleanAttrValue(varXpath, varAttr, varValue)
 通过Id判断ture或false isEleExistById(varId)
 通过name判断ture或false isEleExistByName(varName)
+通过xpath判断varText是否存在  isEleTextExistByX(varXpath, varText)
+
+todo 定位
+通过标签下文本获取上一层元素 getUpEleByX(varLabel, varText)
+通过标签下文本获取上层或上上层元素 getSuperEleByX(varLabel, varText, varXpath)
+通过文本获取所在元素位置 getPositionByXpath(varText)
 通过超链接判断是否包含varText  isElePartExistByP(varPartText)
 通过超链接判断是否存在varText isEleExistByL(varText)
-通过xpath判断varText是否存在  isEleTextExistByX(varXpath, varText)
+
 
 todo alert(system)菜单
 点击弹框中的确认 alertAccept()
@@ -368,6 +371,39 @@ class DomPO(object):
         # 单点击
         self.find_element(*(By.XPATH, varXpath)).click()
         sleep(t)
+
+
+    def getPositionByXByText(self, varXpath, varText):
+
+        # getPositionByXByText("//ul[@class='moregroupul bscroll']/li", '商业航天')
+        # 通过文本定位元素位置
+        # 先定位所有的 <li> 元素，保存到一个列表里。
+        # 遍历这个列表，检查每个元素的文本是否包含目标关键词。
+        # 一旦找到匹配项，记录它在列表中的索引（从 1 开始计数更符合日常习惯）。
+
+        # 定位所有li元素
+        # li_elements = self.driver.find_elements(By.CSS_SELECTOR, "ul.moregroupul.bscroll li")
+        # li_elements = self.driver.find_elements(By.XPATH, "//ul[contains(@class,'moregroupul') and contains(@class,'bscroll')]//li")
+        li_elements = self.driver.find_elements(By.XPATH, varXpath)
+
+        target_text = varText
+        position = -1  # 初始化为-1表示未找到
+
+        # 遍历所有li元素
+        for index, li in enumerate(li_elements, start=1):
+            # 获取当前li的文本
+            li_text = li.text
+            li_text = li_text.strip().replace(" ", "")
+            if target_text in li_text:
+                position = index
+                break
+
+        if position != -1:
+            # print(f"包含'{target_text}'的li元素是第 {position} 个")
+            return position
+        else:
+            print(f"未找到包含'{target_text}'的li元素")
+            exit(0)
 
 
     def clkByXs(self, varXpaths, t=1):

@@ -18,7 +18,6 @@
 2.6 字典转yaml，dict2yamlfile1("output.pickle", {1: "a"})
 2.7 字典转yaml2，dict2yamlfile2("output.pickle", {1: "a"})
 
-
 # todo 3 操作目录、文件、内容
 3.1 pathlib自动创建目录、新建文件及内容(拼接) setFolderFileTextByConcat()
 3.2 pathlib自动创建目录、新建文件及内容(非拼接) setFolderFileText()

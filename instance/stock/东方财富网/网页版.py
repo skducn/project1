@@ -27,13 +27,9 @@ from PO.WebPO import *
 from PO.NewexcelPO import *
 from PO.OpenpyxlPO import *
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-import time
-
+pathSH = "/Users/linghuchong/Downloads/51/Python/stock/sh"
+pathSZ = "/Users/linghuchong/Downloads/51/Python/stock/sz"
+s_currDate = str(Time_PO.getDateByMinus())
 
 Web_PO = WebPO("chrome")
 Web_PO.openURL("https://quote.eastmoney.com/zixuan/lite.html")
@@ -48,76 +44,86 @@ Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[3]/div[1]/div/div[4]/di
 Web_PO.quitIframe(2)
 
 
-# 前5个自选板块
-l_stock = Web_PO.getTextByXs("//ul[@id='zxggrouplist']/li")
-# print(l_stock)  # ['自选股', 'BK4', '全固态电池', '光刻机', '深空通讯和数据链', 'HBM']
-for i in range(3, 7):
-    Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[1]/li[" + str(i) + "]/a", 2)
-    # # 获取行数股票
-    # QTY_tr = Web_PO.getCountByXs("//table[@id='wltable']/tbody/tr")
-    # print(l_stock[i-1], "-------------------------")
-    # for i in range(QTY_tr):
-    #     s_stock = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i+1) + ']/td[4]/a')
-    #     print(s_stock)
+def main(group):
+    # 获取列表页数据，保存文档
 
-    # 资金流向
-    Web_PO.clkByX("/html/body/div[2]/div[3]/div[2]/ul/li[2]")
-    # 获取行数股票
-    QTY_tr = Web_PO.getCountByXs("//table[@id='wltable']/tbody/tr")
-    print(l_stock[i - 1], "-------------------------")
-    for i in range(QTY_tr):
+    l_all = []
+    Web_PO.clkByX("/html/body/div[2]/div[3]/div[2]/ul/li[2]")  # 资金流向
+    i_rowCount = Web_PO.getCountByXs("//table[@id='wltable']/tbody/tr")
+    print(group, "-------------------------")
+    for i in range(i_rowCount):
         s_code = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[3]/a')  # 代码
-        s_stock = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[4]/a')  # 名称
-        s_in = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[8]/span')  # 主力净流入 > 2亿
-        if "亿" in s_in:
-            s_in = s_in.replace("亿", "")
-        else:
-            s_in = 0
-        s_ultra_large = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[10]/span')  # 超大但净占比 > 4%
-        s_ultra_large = s_ultra_large[:-1]
-        if float(s_in) > 1 and float(s_ultra_large) > 2:
-            # print(s_code, s_stock, s_in, s_ultra_large)
-            s_tmp = str(s_code) + " " + s_stock + ", 主力净流入:" + str(s_in) + "亿, 超大单净占比:" + str(s_ultra_large) + "%"
-            Color_PO.outColor([{"35": s_tmp}])
+        # 忽略BK板块
+        if "BK" not in s_code:
+            s_name = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[4]/a')  # 名称
+            s_chg = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[7]/span')  # 涨跌幅
+            s_MCNI = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[8]/span')  # 主力净流入
+            s_chaoda = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[10]/span')  # 超大单净占比
+            s_da = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[11]/span')  # 大单净占比
+            s_zhong = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[12]/span')  # 中单净占比
+            s_xiao = Web_PO.getTextByX(
+                '/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[13]/span')  # 小单净占比
+            l_ = [s_currDate, s_code, s_name, s_chg, s_MCNI, s_chaoda, s_da, s_zhong, s_xiao]  # 创建行数据列表
+            l_all.append(l_)
+
+            # 生成文件名，如 300009_安科生物.xlsx
+            varFile = s_code + "_" + s_name + ".xlsx"
+
+            # 将文件保存在sh或sz目录下
+            if int(s_code) < 600000:
+                varFile = pathSZ + "/" + varFile
+                if os.access(varFile, os.F_OK):
+                    Openpyxl_PO = OpenpyxlPO(varFile)
+                else:
+                    Newexcel_PO = NewexcelPO(varFile)
+                    Openpyxl_PO = OpenpyxlPO(varFile)
+                    Openpyxl_PO.setRows(
+                        {1: ['日期', '代码', '名称', '涨跌幅', '主力净流入(亿)', '超大单净占比(%)', '大单净占比(%)', '中单净占比(%)', '小单净占比(%)']})
+            else:
+                varFile = pathSH + "/" + varFile
+                if os.access(varFile, os.F_OK):
+                    Openpyxl_PO = OpenpyxlPO(varFile)
+                else:
+                    Newexcel_PO = NewexcelPO(varFile)
+                    Openpyxl_PO = OpenpyxlPO(varFile)
+                    Openpyxl_PO.setRows(
+                        {1: ['日期', '代码', '名称', '涨跌幅', '主力净流入(亿)', '超大单净占比(%)', '大单净占比(%)', '中单净占比(%)', '小单净占比(%)']})
+
+            # 判断文件内容，如果日期不存在，则追加； 因为每个组里股票不去重。
+            l_1 = Openpyxl_PO.getOneCol(1)
+            if s_currDate not in l_1:
+                Openpyxl_PO.appendRows(l_all)
+            l_all = []
 
 
-# 更多组合
-Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[2]/li/div/a", 2)
-l_more = Web_PO.getTextByXs("//ul[@class='moregroupul bscroll']/li")
-# print(l_more) # ['商业航天', '医药商业', '玻璃基板', '锂矿概念']
-QTY_more = Web_PO.getCountByXs("//ul[@class='moregroupul bscroll']/li")
-# print(QTY_more)
-for i in range(1, QTY_more + 1):
-    Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[2]/li/div/a", 2)
-    Web_PO.clkByX("//ul[@class='moregroupul bscroll']/li[" + str(i) + "]", 2)
-    # # 获取行数股票
-    # QTY_tr = Web_PO.getCountByXs("//table[@id='wltable']/tbody/tr")
-    # print(l_more[i-1], "-------------------------")
-    # for i in range(QTY_tr):
-    #     s_stock = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i+1) + ']/td[4]/a')
-    #     print(s_stock)
-
-    # 资金流向
-    Web_PO.clkByX("/html/body/div[2]/div[3]/div[2]/ul/li[2]")
-    # 获取行数股票
-    QTY_tr = Web_PO.getCountByXs("//table[@id='wltable']/tbody/tr")
-    print(l_more[i - 1], "-------------------------")
-    for i in range(QTY_tr):
-        s_code = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[3]/a')  # 代码
-        s_stock = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[4]/a')  # 名称
-        s_in = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[8]/span')  # 主力净流入 > 2亿
-        if "亿" in s_in:
-            s_in = s_in.replace("亿", "")
-        else:
-            s_in = 0
-        s_ultra_large = Web_PO.getTextByX('/html/body/div[2]/div[3]/div[3]/table/tbody/tr[' + str(i + 1) + ']/td[10]/span')  # 超大但净占比 > 4%
-        s_ultra_large = s_ultra_large[:-1]
-        if float(s_in) > 2 and float(s_ultra_large) > 4:
-            # print(s_code, s_stock, "主力净流入:", s_in, "亿，超大但净占比", s_ultra_large, "%")
-            s_tmp = str(s_code) + " " + s_stock + ", 主力净流入:" + str(s_in) + "亿, 超大单净占比:" + str(s_ultra_large) + "%"
-            Color_PO.outColor([{"35": s_tmp}])
+# todo 前6个组
+l_group = Web_PO.getTextByXs("//ul[@id='zxggrouplist']/li")
+# print(l_group)  # ['自选股', 'BK4', '全固态电池', '光刻机', '深空通讯和数据链', 'HBM']
+for i in range(6):
+    Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[1]/li[" + str(i+1) + "]/a", 2)  # 点击组
+    main(l_group[i])
 
 
+# todo 更多组合
+Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[2]/li/div/a", 2)  # 更多组合
+l_group = Web_PO.getTextByXs("//ul[@class='moregroupul bscroll']/li")
+# print(l_group)  # ['商业航天', '医药商业', '玻璃基板', '锂矿概念']
+i_moreGroupCount = Web_PO.getCountByXs("//ul[@class='moregroupul bscroll']/li")  # 获取数量
+for i in range(i_moreGroupCount):
+    Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[2]/li/div/a", 2)  # 更多组合
+    i_position = Web_PO.getPositionByXByText("//ul[@class='moregroupul bscroll']/li", l_group[i])  # 通过文本定位元素位置
+    Web_PO.clkByX("//ul[@class='moregroupul bscroll']/li[" + str(i_position) + "]", 3)  # 点击组
+    main(l_group[i])
+
+
+# # 关闭页面
+# Web_PO.cls()
 
 
 
