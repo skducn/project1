@@ -2221,9 +2221,71 @@ class DomPO(object):
     # todo ActionChains
     # https://fishpi.cn/article/1713864467902
 
-    def toEnd(self):
+    def scrollElementToBottom(self, varXpath, step=500, interval=1, max_attempts=100):
+        """
+        在指定元素内部分页滚动到底部
+        :param varXpath: 指定的元素xpath
+        :param step: 每次滚动的像素数，默认500
+        :param interval: 每次滚动间隔时间（秒），默认1
+        :param max_attempts: 最大尝试次数，防止无限循环，默认100
+        :return: 是否滚动到底部
+        """
+        # 定位到指定元素
+        element = self.find_element(*(By.XPATH, varXpath))
+
+        # 获取元素的滚动高度
+        last_scroll_height = self.driver.execute_script("""
+            var element = arguments[0];
+            return element.scrollHeight;
+        """, element)
+
+        # 获取元素当前的scrollTop
+        current_scroll_top = self.driver.execute_script("""
+            var element = arguments[0];
+            return element.scrollTop;
+        """, element)
+
+        attempts = 0
+
+        while attempts < max_attempts:
+            # 记录当前滚动位置
+            previous_scroll_top = current_scroll_top
+
+            # 滚动到下一个位置
+            current_scroll_top += step
+            self.driver.execute_script("""
+                var element = arguments[0];
+                element.scrollTop = arguments[1];
+            """, element, current_scroll_top)
+
+            sleep(interval)
+
+            # 获取元素新的滚动高度
+            new_scroll_height = self.driver.execute_script("""
+                var element = arguments[0];
+                return element.scrollHeight;
+            """, element)
+
+            # 如果滚动高度发生变化，则更新last_scroll_height
+            if new_scroll_height > last_scroll_height:
+                last_scroll_height = new_scroll_height
+
+            # 如果当前滚动位置已经超过或等于滚动总高度，说明已到达底部
+            if current_scroll_top >= new_scroll_height:
+                return True
+
+            # 如果当前滚动位置没有变化，说明可能已经到底部
+            if previous_scroll_top == current_scroll_top:
+                return True
+
+            attempts += 1
+
+        # 如果达到最大尝试次数仍未完成，返回False
+        return False
+
+    def toEnd(self, t=1):
         # 模拟按 End 键
-        sleep(4)
+        sleep(t)
         ActionChains(self.driver).send_keys(Keys.END).perform()
 
 
@@ -2250,28 +2312,43 @@ class DomPO(object):
                 return d_[varValue]
 
 
-    def scrollKeysEndByXs(self, varXpaths, t=2):
-        # 遍历滚动到底部
-        # self.self.scrollKeysEndByXs("//div[@class='van-picker-column']/ul/li")
+    def scrollToTopByXs(self, varXpaths, t=2):
+        # 通过键盘遍历滚动到顶部
+        # self.scrollToTopByXs("//div[@class='van-picker-column']/ul/li")
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            ActionChains(self.driver).send_keys_to_element(a, Keys.HOME).perform()
+        sleep(t)
+
+    def scrollToBottomByXs(self, varXpaths, t=2):
+        # 通过键盘遍历滚动到底部
+        # self.scrollToBottomByX("//div[@class='van-picker-column']/ul/li")
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             ActionChains(self.driver).send_keys_to_element(a, Keys.END).perform()
         sleep(t)
 
-    def scrollKeysEndByX(self, varXpath, t=2):
-        # 一次性滚动到底部
+
+    def scrollToTopByX(self, varXpath, t=2):
+        # 通过键盘滚动到顶部
+        # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
+        ele = self.find_element(*(By.XPATH, varXpath))
+        ActionChains(self.driver).send_keys_to_element(ele, Keys.HOME).perform()
+        sleep(t)
+
+    def scrollToBottomByX(self, varXpath, t=2):
+        # 通过键盘滚动到底部
         # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
         ele = self.find_element(*(By.XPATH, varXpath))
         ActionChains(self.driver).send_keys_to_element(ele, Keys.END).perform()
         sleep(t)
 
-    def scrollKeysEndByXByX(self, varXpath, varCount, varXpath2, t=2):
-        # 键盘keys.End滚动到底部
-        # 逻辑：定位varPath元素，遍历keys.end N次, 判断varPath2元素退出
+    def scrollToBottomByXByX(self, varXpath, varCount, isXpath2, t=2):
+        # 通过键盘滚动到底部，遇到isXpath2终止。
+        # 逻辑：定位varPath元素，点击 keys.end 次数, 判断发现varPath2元素则退出。
         ele = self.find_element(*(By.XPATH, varXpath))
         for i in range(varCount):
             ActionChains(self.driver).send_keys_to_element(ele, Keys.END).perform()
             sleep(1)
-            if self.isEleExistByX(varXpath2):
+            if self.isEleExistByX(isXpath2):
                 break
         sleep(t)
         # ActionChains(self.driver).send_keys_to_element(ele, Keys.PAGE_DOWN).perform()

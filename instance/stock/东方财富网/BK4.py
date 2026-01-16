@@ -18,6 +18,7 @@ from PO.OpenpyxlPO import *
 path = "/Users/linghuchong/Downloads/51/Python/stock/BK4"
 s_currDate = str(Time_PO.getDateByMinus())
 
+# Web_PO = WebPO("noChrome")
 Web_PO = WebPO("chrome")
 Web_PO.openURL("https://quote.eastmoney.com/zixuan/lite.html")
 Web_PO.clkByX("/html/body/div[7]/img[1]",1)  # 广告
