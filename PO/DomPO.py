@@ -498,8 +498,6 @@ class DomPO(object):
             exit(0)
 
 
-
-
     def getCountByTag(self, varLabel):
         # 通过Tag获取标签数量
         # 如：c = self.Web_PO.getCountByTag("ul")
@@ -538,11 +536,6 @@ class DomPO(object):
 
 
 
-
-    # def getTextByXnoWait(self, varXpath):
-    #     # 获取文本
-    #     # 如：getTextByX(u"//input[@class='123']")
-    #     return self.find_elementNoWait(*(By.XPATH, varXpath)).text
 
     def getTextById(self, id):
         # 通过id获取文本
@@ -609,7 +602,6 @@ class DomPO(object):
             return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
 
 
-
     def getAttrValueByXs(self, varXpaths, varAttr):
         # 获取所有相同属性值的列表
         # 如：获取所有tr标签中 href的值 getAttrValueByXs("//tr", "href")
@@ -653,37 +645,39 @@ class DomPO(object):
         return dict(zip(l_text, l_attrValue))
 
     def getUpEleByX(self, varXpath):
-        # 通过标签下文本获取上一层元素
-        # getUpEleByX("//div[@class='van-col']")  # 获取div下文本上一层的元素
+        # 通过xpath获取上一层元素
+        # getUpEleByX("//div[@class='van-col']")  # 获取div获取上一层的元素
         # getUpEleByX("//div[text()='文本']")  # 获取div下文本上一层的元素
-        # getUpEleByX("//span[text()='文本']")  # 获取span下文本上一层的元素
         # varXpath = '//span[@class="menu-title" and text()="外部数据导入"]'
         ele = self.find_element(*(By.XPATH, varXpath))
         return self.driver.execute_script("return arguments[0].parentNode;", ele)
 
-
     def getSuperEleByX(self, varXpath, varXpath2=".."):
-        # 通过标签下文本获取上层或上上层元素
-        # ele = self.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 通过位置定位， 定位到第三个元素
-        # 如：ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 通过文本定位， 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
-        # 如：ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 通过文本定位， 获取span标签下文本上上层的元素
+        # 通过xpath获取上上层元素
+        # ele = self.getSuperEleByX("(//span[text()='详情'])[position()=3]", ".")  # 定位到第三个元素
+        # ele = self.getSuperEleByX("(//span[text()='过会'])[last()]", '../..') # 获取span标签下文本上上层的元素,如果有多个值，匹配最后一个。
+        # ele = self.getSuperEleByX("//span[text()='过会']", '../..') # 获取span标签下文本上上层的元素
         # ele = self.getSuperEleByX('/html/body/div[1]/div/div[3]/section/div/div[2]/div[2]/div[2]/div[1]/div/div','.')  # 通过决绝路径定位， 获取当前路径
         # ele = self.getSuperEleByX("//div[@class='formList']", '.')  # 通过相对路径定位
         ele = self.find_element(*(By.XPATH, varXpath))
         return ele.find_element(*(By.XPATH, varXpath2))
 
-        # # 计算匹配元素的数量，然后定位最后一个
-        # index = len(driver.find_elements_by_xpath("//div[text()='特定文本']")) - 1
-        # last_element = driver.find_elements_by_xpath("//div[text()='特定文本']")[index]
-        # print(last_element.text)
 
-    def getEleByClassName(self, className):
-        ele = self.find_element(*(By.CLASS_NAME, className))
-        return ele
+    def getEleByX(self, varXpath):
+        # 通过xpath获取元素ele
+        return self.find_element(*(By.XPATH, varXpath))
 
     def getEleById(self, varId):
-        ele = self.find_element(*(By.ID, varId))
-        return ele
+        # 通过id获取元素ele
+        return self.find_element(*(By.ID, varId))
+
+    def getEleByClassName(self, className):
+        # 通过className获取元素ele
+        return self.find_element(*(By.CLASS_NAME, className))
+
+
+
+
 
 
     # todo set
