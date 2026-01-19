@@ -18,22 +18,28 @@
 todo clk菜单
 单点击 clkByX()
 多点击 clkByXs()
-单点击某个索引号 clkIndexByXs(varXpaths, varIndex)
-单点击超链接文本（文本中包含部分内容）clkTextByTpcByXs(varXpaths, varTpc, t=1):
-单点击超链接文本 clkTextByXs(varXpaths, varText)
-单点击超链接文本（属性中包含部分内容）clkTextByApcByXs(varXpaths, varAttr, varApc)
-单点击超链接文本（属性中对应的值）clkTextByAcByXs(varXpaths, varAttr, varValue)
+单点击索引号 clkIndexByXs(varXpaths, varIndex)
+通过文本点击超链接文本 clkTextByXs(varXpaths, varText)
+通过文本包含部分值点击超链接文本 clkTextByTpcByXs(varXpaths, varTpc):
+通过属性值点击超链接文本 clkTextByAcByXs(varXpaths, varAttr, varValue)
+通过属性包含部分值击超链接文本 clkTextByApcByXs(varXpaths, varAttr, varApc)
 二次确认 clkByXsByX（varXpaths, varXpath）
-clkById
-clkByName
-clkByTagname
+clkById()
+clkByName()
+clkByTagname()
 clkByLinktext(varText)
 clkByLinkstext(varText)
 
 todo get菜单
-获取标签数量 getCountByXs(varXpaths)
+获取当前URL getURL()
+通过Tag获取标签数量 getCountByTag(varLabel)
+通过Tag获取ele标签数量 eleGetCountByTag(ele, varLabel)
+通过xpath获取标签数量 getCountByXs(varXpath)
+通过xpath获取ele标签数量 eleGetCountByXs(ele, varXpaths)
+通过Xpath获取xpaths数量 getCountByXByXs(varXpath, varXpaths)
+通过Xpath获取ele的xpath数量 eleGetCountByXByXs(ele, varXpath, varXpaths)
 获取文本 getTextByX(varXpath)
-获取文本列表 getListTextByX(varXpaths)
+获取文本列表 getTextByXs(varXpaths)
 获取文本的索引号 getIndexByXs(varXpaths, varText)
 获取文本包含部分内容(TPC)的索引号 getIndexByTpcByXs(varXpaths, varText)
 获取指定文本之前的文本列表 getBeforeTextByXs(varXpaths, varText)
@@ -43,6 +49,7 @@ todo get菜单
 获取属性值的索引号 getIndexByAttrByXs(varXpaths, varAttr, varValue)
 获取部分包含属性值所在的位置 getIndexByApcByXs(varXpaths, varAttr, varValue)
 获取超链接文本及href getDictTextAttrValueByXs(varXpaths, varAttr)
+获取元素位置 getIndexByTextByX(varXpaths, varText)
 
 todo set菜单
 通过id设置文本 setTextById()
@@ -360,51 +367,10 @@ class DomPO(object):
 
     # todo clk
 
-
-    def getUrlByclkByX(self, varXpath, t=1):
-        # 单点击，并返回url
-        self.find_element(*(By.XPATH, varXpath)).click()
-        sleep(7)
-        return (self.driver.current_url)
-
     def clkByX(self, varXpath, t=1):
         # 单点击
         self.find_element(*(By.XPATH, varXpath)).click()
         sleep(t)
-
-
-    def getPositionByXByText(self, varXpath, varText):
-
-        # getPositionByXByText("//ul[@class='moregroupul bscroll']/li", '商业航天')
-        # 通过文本定位元素位置
-        # 先定位所有的 <li> 元素，保存到一个列表里。
-        # 遍历这个列表，检查每个元素的文本是否包含目标关键词。
-        # 一旦找到匹配项，记录它在列表中的索引（从 1 开始计数更符合日常习惯）。
-
-        # 定位所有li元素
-        # li_elements = self.driver.find_elements(By.CSS_SELECTOR, "ul.moregroupul.bscroll li")
-        # li_elements = self.driver.find_elements(By.XPATH, "//ul[contains(@class,'moregroupul') and contains(@class,'bscroll')]//li")
-        li_elements = self.driver.find_elements(By.XPATH, varXpath)
-
-        target_text = varText
-        position = -1  # 初始化为-1表示未找到
-
-        # 遍历所有li元素
-        for index, li in enumerate(li_elements, start=1):
-            # 获取当前li的文本
-            li_text = li.text
-            li_text = li_text.strip().replace(" ", "")
-            if target_text in li_text:
-                position = index
-                break
-
-        if position != -1:
-            # print(f"包含'{target_text}'的li元素是第 {position} 个")
-            return position
-        else:
-            print(f"未找到包含'{target_text}'的li元素")
-            exit(0)
-
 
     def clkByXs(self, varXpaths, t=1):
         # 多点击
@@ -413,7 +379,7 @@ class DomPO(object):
             sleep(t)
 
     def clkIndexByXs(self, varXpaths, varIndex, t=1):
-        # 单点击某个索引号
+        # 单点击索引号
         # 如：遍历按钮点击第5个。clkIndexByXs(u"//button[@ng-click='action.callback()']",5)
         index = 0
         for a in self.find_elements(*(By.XPATH, varXpaths)):
@@ -423,17 +389,8 @@ class DomPO(object):
                 break
         sleep(t)
 
-    def clkTextByTpcByXs(self, varXpaths, varTpc, t=1):
-        # 单点击超链接文本（文本中包含部分内容））（varTPC = TextPartialContent)
-        # 如：遍历按钮点击所有文本中包含20190506059的内容。clkTextByTpcByXs(u"//td[@aria-describedby='gridTable_run_name']/a",u"20190506059")
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            if varTpc in a.text:
-                a.click()
-                break
-        sleep(t)
-
     def clkTextByXs(self, varXpaths, varText, t=1):
-        # 单点击超链接文本
+        # 通过文本点击超链接文本
         # 如：遍历按钮点击所有文本中包含20190506059的内容。clkTextsContain(u"//td[@aria-describedby='gridTable_run_name']/a",u"20190506059")
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varText == a.text:
@@ -441,20 +398,29 @@ class DomPO(object):
                 break
         sleep(t)
 
-    def clkTextByApcByXs(self, varXpaths, varAttr, varApc, t=1):
-        # 单点击超链接文本（属性中包含部分内容）varAPC = (AttrPartialContent)
-        # 如：遍历点击a链接属性href中包含www内容， clkTextByApcByXs("//a","href","www")
+    def clkTextByTpcByXs(self, varXpaths, varTpc, t=1):
+        # 通过文本包含部分值点击超链接文本（varTPC = TextPartialContent)
+        # 如：遍历按钮点击所有文本中包含20190506059的内容。clkTextByTpcByXs(u"//td[@aria-describedby='gridTable_run_name']/a",u"20190506059")
         for a in self.find_elements(*(By.XPATH, varXpaths)):
-            if varApc in a.get_attribute(varAttr):
+            if varTpc in a.text:
                 a.click()
                 break
         sleep(t)
 
     def clkTextByAcByXs(self, varXpaths, varAttr, varValue, t=1):
-        # 单点击超链接文本（属性中对应的值）
+        # 通过属性值点击超链接文本
         # 如：遍历点击a链接属性href = www.baidu.com， clkTextByAcByXs("//a","href","www.baidu.com")
         for a in self.find_elements(*(By.XPATH, varXpaths)):
             if varValue == a.get_attribute(varAttr):
+                a.click()
+                break
+        sleep(t)
+
+    def clkTextByApcByXs(self, varXpaths, varAttr, varApc, t=1):
+        # 通过属性包含部分值击超链接文本 varAPC = (AttrPartialContent)
+        # 如：遍历点击a链接属性href中包含www内容， clkTextByApcByXs("//a","href","www")
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            if varApc in a.get_attribute(varAttr):
                 a.click()
                 break
         sleep(t)
@@ -493,46 +459,82 @@ class DomPO(object):
 
     # todo get
 
+    def getURL(self):
+        # 获取当前URL
+        return self.driver.current_url
+
+
+    def getIndexByTextByX(self, varXpath, varText):
+
+        # 获取元素位置
+
+        # 如：getIndexByTextByX("//ul[@class='moregroupul bscroll']/li", '商业航天')
+        # 先定位所有的 <li> 元素，保存到一个列表里。
+        # 遍历这个列表，检查每个元素的文本是否包含目标关键词。
+        # 一旦找到匹配项，记录它在列表中的索引（从 1 开始计数更符合日常习惯）。
+
+        # 定位所有li元素
+        # li_elements = self.driver.find_elements(By.CSS_SELECTOR, "ul.moregroupul.bscroll li")
+        # li_elements = self.driver.find_elements(By.XPATH, "//ul[contains(@class,'moregroupul') and contains(@class,'bscroll')]//li")
+        li_elements = self.driver.find_elements(By.XPATH, varXpath)
+
+        target_text = varText
+        position = -1  # 初始化为-1表示未找到
+
+        # 遍历所有li元素
+        for index, li in enumerate(li_elements, start=1):
+            # 获取当前li的文本
+            li_text = li.text
+            li_text = li_text.strip().replace(" ", "")
+            if target_text in li_text:
+                position = index
+                break
+
+        if position != -1:
+            # print(f"包含'{target_text}'的li元素是第 {position} 个")
+            return position
+        else:
+            print(f"未找到包含'{target_text}'的li元素")
+            exit(0)
+
+
+
+
     def getCountByTag(self, varLabel):
-        # tag方式获取所有标签的数量
-        c = self.find_elements(*(By.TAG_NAME, varLabel))
-        return len(c)
+        # 通过Tag获取标签数量
+        # 如：c = self.Web_PO.getCountByTag("ul")
+        return len(self.find_elements(*(By.TAG_NAME, varLabel)))
 
     def eleGetCountByTag(self, ele, varLabel):
-        # tag方式获取ele标签的数量
-        # 获取tbody标签下所有的tr变迁数量
+        # 通过Tag获取ele标签数量
+        # 如：获取tbody标签下所有的tr数量
         # ele2 = self.getSuperEleByX("//tbody", ".")
-        # self.eleGetCountByLabel(ele2, "tr")
-        c = ele.find_elements(*(By.TAG_NAME, varLabel))
-        return len(c)
-
-
-
-    def getCountByXByXs(self, varXpath, varXpaths="./*"):
-        # 获取xpath下标签的数量
-        # 获取'.//tr/input'下所有div标签的数量 getCountByXByXs(ele, './/tr/input', "./div")
-        # 获取'.//tr/input'下所有标签的数量 getCountByXByXs(ele, './/tr/input', "./*")
-        parent_element = self.find_element(*(By.XPATH, varXpath))
-        return len(parent_element.find_elements(*(By.XPATH, varXpaths)))
-
-    def eleGetCountByXByXs(self, ele, varXpath, varXpaths="./*"):
-        # 获取ele当前层下标签的数量
-        # 获取'.//tr/input'下所有div标签的数量 eleGetCountByXByXs(ele, './/tr/input', "./div")
-        # 获取'.//tr/input'下所有标签的数量 eleGetCountByXByXs(ele, './/tr/input', "./*")
-        parent_element = ele.find_element(*(By.XPATH, varXpath))
-        return len(parent_element.find_elements(*(By.XPATH, varXpaths)))
+        # self.eleGetCountByTag(ele2, "tr")
+        return len(ele.find_elements(*(By.TAG_NAME, varLabel)))
 
     def getCountByXs(self, varXpaths):
-        # 获取标签数量
+        # 通过xpath获取标签数量
         # 获取tr下有多少个div标签 getCountByXs('//*[@id="app"]/tr/div')
-        c = self.find_elements(*(By.XPATH, varXpaths))
-        return len(c)
+        return len(self.find_elements(*(By.XPATH, varXpaths)))
 
     def eleGetCountByXs(self, ele, varXpaths):
-        # xpath方式获取ele标签数量
+        # 通过xpath获取ele标签数量
         # 获取'.//tr/div'下所有标签数量 eleGetCountByXs(ele, './/tr/div')
         return len(ele.find_elements(*(By.XPATH, varXpaths)))
 
+    def getCountByXByXs(self, varXpath, varXpaths="./*"):
+        # 通过Xpath获取xpaths数量
+        # 获取'.//tr/input'下所有div标签的数量 getCountByXByXs('.//tr/input', "./div")
+        # 获取'.//tr/input'下所有标签的数量 getCountByXByXs('.//tr/input', "./*")
+        ele = self.find_element(*(By.XPATH, varXpath))
+        return len(ele.find_elements(*(By.XPATH, varXpaths)))
+
+    def eleGetCountByXByXs(self, ele, varXpath, varXpaths="./*"):
+        # 通过Xpath获取ele的xpath数量
+        # 获取'.//tr/input'下所有div标签的数量 eleGetCountByXByXs(ele, './/tr/input', "./div")
+        # 获取'.//tr/input'下所有标签的数量 eleGetCountByXByXs(ele, './/tr/input', "./*")
+        ele2 = ele.find_element(*(By.XPATH, varXpath))
+        return len(ele2.find_elements(*(By.XPATH, varXpaths)))
 
 
 
@@ -543,13 +545,15 @@ class DomPO(object):
     #     return self.find_elementNoWait(*(By.XPATH, varXpath)).text
 
     def getTextById(self, id):
-        # 获取文本
-        # 如：getTextByX(u"//input[@class='123']")
-            return self.find_element(*(By.ID, id)).text
+        # 通过id获取文本
+        # 如：getTextById("id")
+        return self.find_element(*(By.ID, id)).text
 
 
     def getTextByX(self, varXpath, wait='no'):
         # 获取文本
+        # wait='no': 使用 find_elementNoWait 方法，不等待直接查找元素
+        # wait 为其他值: 使用 find_element 方法，等待最多 10 秒直到元素可见
         # 如：getTextByX(u"//input[@class='123']")
         if wait == 'no':
             return self.find_elementNoWait(*(By.XPATH, varXpath)).text

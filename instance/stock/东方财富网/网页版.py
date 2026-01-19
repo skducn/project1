@@ -106,7 +106,7 @@ l_group = Web_PO.getTextByXs("//ul[@class='moregroupul bscroll']/li")
 i_moreGroupCount = Web_PO.getCountByXs("//ul[@class='moregroupul bscroll']/li")  # 获取数量
 for i in range(i_moreGroupCount):
     Web_PO.clkByX("/html/body/div[2]/div[3]/div[1]/div/ul[2]/li/div/a", 2)  # 更多组合
-    i_position = Web_PO.getPositionByXByText("//ul[@class='moregroupul bscroll']/li", l_group[i])  # 通过文本定位元素位置
+    i_position = Web_PO.getIndexByTextByX("//ul[@class='moregroupul bscroll']/li", l_group[i])  # 通过文本定位元素位置
     Web_PO.clkByX("//ul[@class='moregroupul bscroll']/li[" + str(i_position) + "]", 3)  # 点击组
 
     i_groupCound = str(i + 1) + "/" + str(i_moreGroupCount)
