@@ -14,56 +14,77 @@
 # ***************************************************************
 
 """
-
 todo clk菜单
-单点击 clkByX()
-多点击 clkByXs()
-单点击索引号 clkIndexByXs(varXpaths, varIndex)
-通过文本点击超链接文本 clkTextByXs(varXpaths, varText)
-通过文本包含部分值点击超链接文本 clkTextByTpcByXs(varXpaths, varTpc):
-通过属性值点击超链接文本 clkTextByAcByXs(varXpaths, varAttr, varValue)
-通过属性包含部分值击超链接文本 clkTextByApcByXs(varXpaths, varAttr, varApc)
-二次确认 clkByXsByX（varXpaths, varXpath）
-clkById()
-clkByName()
-clkByTagname()
-clkByLinktext(varText)
-clkByLinkstext(varText)
+clkByX() 单点击
+clkByXs() 多点击
+clkIndexByXs(varXpaths, varIndex) 单点击索引号
+clkTextByXs(varXpaths, varText) 通过文本点击超链接文本
+clkTextByTpcByXs(varXpaths, varTpc) 通过文本包含部分值点击超链接文本
+clkTextByAcByXs(varXpaths, varAttr, varValue) 通过属性值点击超链接文本
+clkTextByApcByXs(varXpaths, varAttr, varApc) 通过属性包含部分值击超链接文本
+clkByXsByX（varXpaths, varXpath）二次确认
+clkById() 通过id点击
+clkByName() 通过Name点击
+clkByTagname() 通过Tag点击
+clkByLinktext(varText) 通过Linktext点击
+clkByLinkstext(varText) 通过Linkstext点击
+
 
 todo get菜单
-获取当前URL getURL()
-通过Tag获取标签数量 getCountByTag(varLabel)
-通过Tag获取ele标签数量 eleGetCountByTag(ele, varLabel)
-通过xpath获取标签数量 getCountByXs(varXpath)
-通过xpath获取ele标签数量 eleGetCountByXs(ele, varXpaths)
-通过Xpath获取xpaths数量 getCountByXByXs(varXpath, varXpaths)
-通过Xpath获取ele的xpath数量 eleGetCountByXByXs(ele, varXpath, varXpaths)
-获取文本 getTextByX(varXpath)
-获取文本列表 getTextByXs(varXpaths)
-获取文本的索引号 getIndexByXs(varXpaths, varText)
-获取文本包含部分内容(TPC)的索引号 getIndexByTpcByXs(varXpaths, varText)
-获取指定文本之前的文本列表 getBeforeTextByXs(varXpaths, varText)
-获取属性值 getAttrValueByX(varXpath, varAttr)
-获取所有相同属性值的列表 getAttrValueByXs(varXpaths, varAttr)
-获取超链接文本的属性值 getAttrValueByLt(varText, varAttr)
-获取属性值的索引号 getIndexByAttrByXs(varXpaths, varAttr, varValue)
-获取部分包含属性值所在的位置 getIndexByApcByXs(varXpaths, varAttr, varValue)
-获取超链接文本及href getDictTextAttrValueByXs(varXpaths, varAttr)
-获取元素位置 getIndexByTextByX(varXpaths, varText)
+getAttrValueByX(varXpath, varAttr) 获取属性值
+getAttrValueByXs(varXpaths, varAttr) 获取所有相同属性值的列表
+getAttrValueByLt(varText, varAttr) 获取超链接文本的属性值
+
+getCountByTag(varLabel) 通过Tag获取标签数量
+eleGetCountByTag(ele, varLabel) 通过Tag获取ele标签数量
+getCountByXs(varXpath) 通过xpath获取标签数量
+eleGetCountByXs(ele, varXpaths) 通过xpath获取ele标签数量
+getCountByXByXs(varXpath, varXpaths) 通过Xpath获取xpaths数量
+eleGetCountByXByXs(ele, varXpath, varXpaths) 通过Xpath获取ele的xpath数量
+
+getEleByX()  通过xpath获取元素ele
+getEleById()  通过id获取元素ele
+getEleByClassName()  通过className获取元素ele
+getUpEleByX(varXpath) 通过xpath获取上一层元素
+getSuperEleByX(varXpath, varXpath2) 通过xpath获取上上层元素
+
+getIndexByX(varXpaths, varText) 获取元素位置
+getIndexByXs(varXpaths, varText) 获取文本的索引号
+getIndexByApcByXs(varXpaths, varAttr, varValue) 获取部分包含属性值所在的位置
+getIndexByTpcByXs(varXpaths, varText) 获取文本包含部分内容(TPC)的索引号
+getIndexByAttrByXs(varXpaths, varAttr, varValue) 获取属性值的索引号
+
+getTextByX(varXpath) 通过xpath获取文本元素位置
+getTextByXs(varXpaths) 通过xpaths获取文本元素位置
+getBeforeTextByXs(varXpaths, varText) 获取指定文本之前的文本列表
+getDictTextAttrValueByXs(varXpaths, varAttr) 获取超链接文本及href
+
+getURL() 获取当前URL
+
 
 todo set菜单
+通过xpath操作键盘 sendKeysByX(varXpath, varKeys)
+通过xpath的ele操作键盘 eleSendKeysByX(ele, varXpath, varKeys)
+
+输入框清空 setClearByX()
+输入框清空后输入文本 setTextByX()
+输入框清空后输入文本，按回车 setTextEnterByX()
+通过xpath追加文本 appendTextByX()
+通过xpath键盘追加文本  appendTextEnterByX()
 通过id设置文本 setTextById()
 通过id追加文本 appendTextById()
 通过name设置文本 setTextByName()
 通过name追加文本 appendTextByName()
-通过xpath设置文本 setTextByX()
-通过xpath追加文本 appendTextByX()
-通过xpath键盘设置文本 setTextEnterByX()
-通过xpath键盘追加文本  appendTextEnterByX()
+
+输入框双击后输入文本，并按Tab setTextByDouble(varXpath, varText)
+输入框删除3次后双击后输入文本，按Tab setTextByDelDouble(varXpath, varText)
+
 
 todo checkbox菜单
-是否选中复选框 isSelectedByX(varXpath)
-取消所有已勾选的复选框clsSelected(varXpaths)
+isSelectedByX(varXpath) 是否勾选
+eleIsSelectedByX() ele是否勾选
+clsSelected(varXpaths) 取消所有已勾选的复选框
+eleClrSelectedByXs() ele取消所有已勾选的复选框
 
 todo select菜单
 通过id选择文本 sltTextById(varId, varText)
@@ -298,6 +319,30 @@ class DomPO(object):
             print("未找到元素 %s " % (loc))
 
 
+    # todo 定位
+
+    def moveLabel(self, varXpath, t=1):
+
+        # 将鼠标移动到元素上
+
+        # 1. 滚动到页面顶部
+        self.driver.execute_script("window.scrollTo(0, 0)")
+
+        # 2. 等待页面加载完成
+        WebDriverWait(self.driver, 20).until(lambda driver: driver.execute_script('return document.readyState') == 'complete')
+
+        # 3. 宽松定位元素（兼容文本拼写，延长等待）
+        # 优先按文本模糊匹配，兼容标签/属性变动
+        login_element = WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, varXpath)))
+        # 组合属性定位：标签+class+自定义属性，精准无重复
+        # login_element = self.find_element(*(By.XPATH, varXpath))
+        # login_element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'span.account.tile[date-type="account"]')))
+
+        # 4. 将鼠标移动到元素上
+        action = ActionChains(self.driver)
+        action.move_to_element(login_element).perform()
+        sleep(t)
+
 
    # todo assert
 
@@ -459,43 +504,26 @@ class DomPO(object):
 
     # todo get
 
-    def getURL(self):
-        # 获取当前URL
-        return self.driver.current_url
-
-
-    def getIndexByTextByX(self, varXpath, varText):
-
-        # 获取元素位置
-
-        # 如：getIndexByTextByX("//ul[@class='moregroupul bscroll']/li", '商业航天')
-        # 先定位所有的 <li> 元素，保存到一个列表里。
-        # 遍历这个列表，检查每个元素的文本是否包含目标关键词。
-        # 一旦找到匹配项，记录它在列表中的索引（从 1 开始计数更符合日常习惯）。
-
-        # 定位所有li元素
-        # li_elements = self.driver.find_elements(By.CSS_SELECTOR, "ul.moregroupul.bscroll li")
-        # li_elements = self.driver.find_elements(By.XPATH, "//ul[contains(@class,'moregroupul') and contains(@class,'bscroll')]//li")
-        li_elements = self.driver.find_elements(By.XPATH, varXpath)
-
-        target_text = varText
-        position = -1  # 初始化为-1表示未找到
-
-        # 遍历所有li元素
-        for index, li in enumerate(li_elements, start=1):
-            # 获取当前li的文本
-            li_text = li.text
-            li_text = li_text.strip().replace(" ", "")
-            if target_text in li_text:
-                position = index
-                break
-
-        if position != -1:
-            # print(f"包含'{target_text}'的li元素是第 {position} 个")
-            return position
+    def getAttrValueByX(self, varXpath, varAttr, wait='no'):
+        # 获取属性值
+        # 如：getAttrValueByX(u"//input[@class='123']","href")
+        if wait == 'no':
+            return self.find_elementNoWait(*(By.XPATH, varXpath)).get_attribute(varAttr)
         else:
-            print(f"未找到包含'{target_text}'的li元素")
-            exit(0)
+            return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
+
+    def getAttrValueByXs(self, varXpaths, varAttr):
+        # 获取所有相同属性值的列表
+        # 如：获取所有tr标签中 href的值 getAttrValueByXs("//tr", "href")
+        l_attrValue = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_attrValue.append(a.get_attribute(varAttr))
+        return l_attrValue
+
+    def getAttrValueByLt(self, varText, varAttr):
+        # 获取超链接文本的属性值
+        # 如：getAttrValueByLt("超链接文本", "href")
+        return self.find_element(*(By.LINK_TEXT, varText)).get_attribute(varAttr)
 
 
     def getCountByTag(self, varLabel):
@@ -535,114 +563,17 @@ class DomPO(object):
         return len(ele2.find_elements(*(By.XPATH, varXpaths)))
 
 
+    def getEleByX(self, varXpath):
+        # 通过xpath获取元素ele
+        return self.find_element(*(By.XPATH, varXpath))
 
+    def getEleById(self, varId):
+        # 通过id获取元素ele
+        return self.find_element(*(By.ID, varId))
 
-    def getTextById(self, id):
-        # 通过id获取文本
-        # 如：getTextById("id")
-        return self.find_element(*(By.ID, id)).text
-
-
-    def getTextByX(self, varXpath, wait='no'):
-        # 获取文本
-        # wait='no': 使用 find_elementNoWait 方法，不等待直接查找元素
-        # wait 为其他值: 使用 find_element 方法，等待最多 10 秒直到元素可见
-        # 如：getTextByX(u"//input[@class='123']")
-        if wait == 'no':
-            return self.find_elementNoWait(*(By.XPATH, varXpath)).text
-        else:
-            return self.find_element(*(By.XPATH, varXpath)).text
-
-
-    def getTextByXs(self, varXpaths):
-        # 获取文本列表
-        # 如：getTextByXs(u"//input[@class='123']")
-        l_ = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_.append(a.text)
-        return l_
-
-
-    def getIndexByXs(self, varXpaths, varText):
-        # 获取文本的索引号
-        # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByXs("//tr",'test')
-        index = 0
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            index = index + 1
-            if a.text == varText:
-                return index
-        return None
-
-    def getIndexByTpcByXs(self, varXpaths, varTPC):
-        # 获取文本包含部分内容(TPC)的索引号
-        # 如：getIndexByTpcByXs("//tr","test")
-        index = 0
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            index = index + 1
-            if varTPC in a.text:
-                return index
-
-    def getBeforeTextByXs(self, varXpaths, varText):
-        # 获取指定文本之前的文本列表
-        # 如文本集 a,b,c,d, getBeforeTextByXs("//tr",'c'), 返回列表【a,b】
-        l_beforeText = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            if varText == a.text:
-                break
-            else:
-                l_beforeText.append(a.text)
-        return l_beforeText
-
-    def getAttrValueByX(self, varXpath, varAttr, wait='no'):
-        # 获取属性值
-        # 如：getAttrValueByX(u"//input[@class='123']","href")
-        if wait == 'no':
-            return self.find_elementNoWait(*(By.XPATH, varXpath)).get_attribute(varAttr)
-        else:
-            return self.find_element(*(By.XPATH, varXpath)).get_attribute(varAttr)
-
-
-    def getAttrValueByXs(self, varXpaths, varAttr):
-        # 获取所有相同属性值的列表
-        # 如：获取所有tr标签中 href的值 getAttrValueByXs("//tr", "href")
-        l_attrValue = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_attrValue.append(a.get_attribute(varAttr))
-        return l_attrValue
-
-    def getAttrValueByLt(self, varText, varAttr):
-        # 获取超链接文本的属性值
-        # 如：getAttrValueByLt("超链接文本", "href")
-        return self.find_element(*(By.LINK_TEXT, varText)).get_attribute(varAttr)
-
-    def getIndexByAttrByXs(self, varXpaths, varAttr, varValue):
-        # 获取属性值的索引号
-        # 如：getIndexByAttrByXs("//a","href","http://www.baidu.com")
-        index = 0
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            index = index + 1
-            if varValue == a.get_attribute(varAttr):
-                return index
-
-    def getIndexByApcByXs(self, varXpaths, varAttr, varValue):
-        # 获取部分包含属性值的索引号 APC = attribute part content
-        # 如：getIndexByApcByXs("//td[9]/a","href","http://")
-        index = 0
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            index = index + 1
-            if varValue in a.get_attribute(varAttr):
-                return index
-
-    def getDictTextAttrValueByXs(self, varXpaths, varAttr):
-        # 获取超链接文本及href，并组合成字典{文本：属性值}
-        # 如获取所有a标签下的文本，getDictTextAttrValueByXs("//a","href")
-        # {'首页': 'http://192.168.0.202:28098/index', '医院管理': 'http://192.168.0.202:28098/mainData/mainData/hospital'}
-        l_text = []
-        l_attrValue = []
-        for a in self.find_elements(*(By.XPATH, varXpaths)):
-            l_text.append(a.text)
-            l_attrValue.append(a.get_attribute(varAttr))
-        return dict(zip(l_text, l_attrValue))
+    def getEleByClassName(self, className):
+        # 通过className获取元素ele
+        return self.find_element(*(By.CLASS_NAME, className))
 
     def getUpEleByX(self, varXpath):
         # 通过xpath获取上一层元素
@@ -663,19 +594,126 @@ class DomPO(object):
         return ele.find_element(*(By.XPATH, varXpath2))
 
 
-    def getEleByX(self, varXpath):
-        # 通过xpath获取元素ele
-        return self.find_element(*(By.XPATH, varXpath))
+    def getIndexByX(self, varXpath, varText):
 
-    def getEleById(self, varId):
-        # 通过id获取元素ele
-        return self.find_element(*(By.ID, varId))
+        # 通过xpath获取文本元素位置
 
-    def getEleByClassName(self, className):
-        # 通过className获取元素ele
-        return self.find_element(*(By.CLASS_NAME, className))
+        # 如：getIndexByTextByX("//ul[@class='moregroupul bscroll']/li", '商业航天')
+        # 先定位所有的 <li> 元素，保存到一个列表里。
+        # 遍历这个列表，检查每个元素的文本是否包含目标关键词。
+        # 一旦找到匹配项，记录它在列表中的索引（从 1 开始计数更符合日常习惯）。
+
+        # 定位所有li元素
+        # li_elements = self.driver.find_elements(By.CSS_SELECTOR, "ul.moregroupul.bscroll li")
+        # li_elements = self.driver.find_elements(By.XPATH, "//ul[contains(@class,'moregroupul') and contains(@class,'bscroll')]//li")
+        li_elements = self.driver.find_elements(By.XPATH, varXpath)
+
+        target_text = varText
+        position = -1  # 初始化为-1表示未找到
+
+        # 遍历所有li元素
+        for index, li in enumerate(li_elements, start=1):
+            # 获取当前li的文本
+            li_text = li.text
+            li_text = li_text.strip().replace(" ", "")
+            if target_text in li_text:
+                position = index
+                break
+
+        if position != -1:
+            # print(f"包含'{target_text}'的li元素是第 {position} 个")
+            return position
+        else:
+            print(f"未找到包含'{target_text}'的li元素")
+            exit(0)
+
+    def getIndexByXs(self, varXpaths, varText):
+        # 通过xpaths获取文本元素位置
+        # 获取test文本在tr里的位置，返回3，表示在第三个tr里，未找到返回none， 如：getIndexByXs("//tr",'test')
+        index = 0
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            index = index + 1
+            if a.text == varText:
+                return index
+        return None
+
+    def getIndexByTpcByXs(self, varXpaths, varTPC):
+        # 获取文本包含部分内容(TPC)的索引号
+        # 如：getIndexByTpcByXs("//tr","test")
+        index = 0
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            index = index + 1
+            if varTPC in a.text:
+                return index
+
+    def getIndexByApcByXs(self, varXpaths, varAttr, varValue):
+        # 获取部分包含属性值的索引号 APC = attribute part content
+        # 如：getIndexByApcByXs("//td[9]/a","href","http://")
+        index = 0
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            index = index + 1
+            if varValue in a.get_attribute(varAttr):
+                return index
+
+    def getIndexByAttrByXs(self, varXpaths, varAttr, varValue):
+        # 获取属性值的索引号
+        # 如：getIndexByAttrByXs("//a","href","http://www.baidu.com")
+        index = 0
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            index = index + 1
+            if varValue == a.get_attribute(varAttr):
+                return index
 
 
+    def getTextById(self, id):
+        # 通过id获取文本
+        # 如：getTextById("id")
+        return self.find_element(*(By.ID, id)).text
+
+    def getTextByX(self, varXpath, wait='no'):
+        # 获取文本
+        # wait='no': 使用 find_elementNoWait 方法，不等待直接查找元素
+        # wait 为其他值: 使用 find_element 方法，等待最多 10 秒直到元素可见
+        # 如：getTextByX(u"//input[@class='123']")
+        if wait == 'no':
+            return self.find_elementNoWait(*(By.XPATH, varXpath)).text
+        else:
+            return self.find_element(*(By.XPATH, varXpath)).text
+
+    def getTextByXs(self, varXpaths):
+        # 获取文本列表
+        # 如：getTextByXs(u"//input[@class='123']")
+        l_ = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_.append(a.text)
+        return l_
+
+    def getBeforeTextByXs(self, varXpaths, varText):
+        # 获取指定文本之前的文本列表
+        # 如文本集 a,b,c,d, getBeforeTextByXs("//tr",'c'), 返回列表【a,b】
+        l_beforeText = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            if varText == a.text:
+                break
+            else:
+                l_beforeText.append(a.text)
+        return l_beforeText
+
+    def getDictTextAttrValueByXs(self, varXpaths, varAttr):
+        # 获取超链接文本及href，并组合成字典{文本：属性值}
+        # 如获取所有a标签下的文本，getDictTextAttrValueByXs("//a","href")
+        # {'首页': 'http://192.168.0.202:28098/index', '医院管理': 'http://192.168.0.202:28098/mainData/mainData/hospital'}
+        l_text = []
+        l_attrValue = []
+        for a in self.find_elements(*(By.XPATH, varXpaths)):
+            l_text.append(a.text)
+            l_attrValue.append(a.get_attribute(varAttr))
+        return dict(zip(l_text, l_attrValue))
+
+
+    def getURL(self):
+        # 获取当前URL
+        return self.driver.current_url
 
 
 
@@ -683,39 +721,17 @@ class DomPO(object):
     # todo set
 
     def sendKeysByX(self, varXpath, varKeys, t=1):
-        # 操作键盘
-        # sendKeysByX(Keys.DELETE)
+        # 通过xpath操作键盘
+        # sendKeysByX("//tr", Keys.DELETE)
+        # sendKeysByX("//tr", Keys.TAB)
         self.find_element(*(By.XPATH, varXpath)).send_keys(varKeys)
         sleep(t)
 
     def eleSendKeysByX(self, ele, varXpath, varKeys, t=1):
-        # ele操作键盘
+        # 通过xpath的ele操作键盘
         ele.find_element(*(By.XPATH, varXpath)).send_keys(varKeys)
         sleep(t)
 
-    def setTextById(self, varId, varText):
-        """通过id设置文本"""
-        self.find_element(*(By.ID, varId)).clear()
-        self.find_element(*(By.ID, varId)).send_keys(varText)
-
-    def appendTextById(self, varId, varText):
-        """通过id追加文本"""
-        self.find_element(*(By.ID, varId)).send_keys(varText)
-
-    def setTextByName(self, varName, varText):
-        """通过name设置文本"""
-        self.find_element(*(By.ID, varName)).clear()
-        self.find_element(*(By.NAME, varName)).send_keys(varText)
-
-    def appendTextByName(self, varName, varText):
-        """通过name追加文本"""
-        self.find_element(*(By.NAME, varName)).send_keys(varText)
-
-
-    def clkTabByX(self, varXpath, t=1):
-        # 按tab
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
-        sleep(t)
 
     def setClearByX(self, varXpath, t=1):
         # 输入框清空
@@ -735,74 +751,6 @@ class DomPO(object):
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
 
-    def dwele(self, varXpath, t=1):
-
-        # 1. 检查并切换到iframe（需替换iframe的定位方式）
-        try:
-            iframe = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_element_located((By.ID, "frame_login"))  # 替换为实际iframe ID
-            )
-            self.driver.switch_to.frame(iframe)
-            # print("已切换到登录iframe")
-        except:
-            print("未找到登录iframe，继续在主文档查找")
-
-        # 2. 滚动到页面顶部
-        self.driver.execute_script("window.scrollTo(0, 0)")
-
-        # 3. 等待页面加载完成
-        WebDriverWait(self.driver, 20).until(
-            lambda driver: driver.execute_script('return document.readyState') == 'complete'
-        )
-
-        # 4. 宽松定位元素（兼容文本拼写，延长等待）
-        # login_element = WebDriverWait(self.driver, 20).until(
-        #     EC.visibility_of_element_located((By.XPATH, '//span[@date-type="account" and contains(text(), "账号")]'))
-        # )
-
-        login_element = WebDriverWait(self.driver, 20).until(
-            EC.visibility_of_element_located(
-                # 优先按文本模糊匹配，兼容标签/属性变动
-                (By.XPATH, '//*[contains(text(), "账号登录") and not(contains(text(), "扫码"))]')
-            )
-        )
-
-        # login_element = self.find_element(*(By.XPATH, varXpath))
-        # login_element = WebDriverWait(self.driver, 15).until(
-        #     EC.visibility_of_element_located(
-        #         # 组合属性定位：标签+class+自定义属性，精准无重复
-        #         (By.CSS_SELECTOR, 'span.account.tile[date-type="account"]')
-        #     )
-        # )
-
-        # login_element = WebDriverWait(self.driver, 15).until(
-        #     EC.visibility_of_element_located((By.XPATH, varXpath))
-        # )
-        action = ActionChains(self.driver)
-        action.move_to_element(login_element).perform()  # 核心：将鼠标移动到元素上
-
-    def setTextTabByX(self, varXpath, varText, t=1):
-        # 输入框双击后输入文本，按Tab
-        ele = self.find_element(*(By.XPATH, varXpath))
-        actions = ActionChains(self.driver)
-        actions.double_click(ele).perform()
-        sleep(t)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
-        sleep(t)
-
-    def setTextTabByX2(self, varXpath, varText, t=1):
-        # 输入框双击后输入文本，按Tab
-        ele = self.find_element(*(By.XPATH, varXpath))
-        actions = ActionChains(self.driver)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
-        actions.double_click(ele).perform()
-        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
-        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
-        sleep(t)
-
     def appentTextByX(self, varXpath, varText, t=1):
         # 输入框追加文本
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
@@ -813,6 +761,51 @@ class DomPO(object):
         self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
         self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.ENTER)
         sleep(t)
+
+
+    def setTextById(self, varId, varText):
+        # 通过id设置文本
+        self.find_element(*(By.ID, varId)).clear()
+        self.find_element(*(By.ID, varId)).send_keys(varText)
+
+    def appendTextById(self, varId, varText):
+        # 通过id追加文本
+        self.find_element(*(By.ID, varId)).send_keys(varText)
+
+    def setTextByName(self, varName, varText):
+        # 通过name设置文本
+        self.find_element(*(By.ID, varName)).clear()
+        self.find_element(*(By.NAME, varName)).send_keys(varText)
+
+    def appendTextByName(self, varName, varText):
+        # 通过name追加文本
+        self.find_element(*(By.NAME, varName)).send_keys(varText)
+
+
+    def setTextByDouble(self, varXpath, varText, t=1):
+        # 输入框双击后输入文本，并按Tab
+        ele = self.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        actions.double_click(ele).perform()
+        sleep(t)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
+
+    def setTextByDelDouble(self, varXpath, varText, t=1):
+        # 输入框删除3次后双击后输入文本，按Tab
+        ele = self.find_element(*(By.XPATH, varXpath))
+        actions = ActionChains(self.driver)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.BACKSPACE)
+        actions.double_click(ele).perform()
+        sleep(t)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(varText)
+        self.find_element(*(By.XPATH, varXpath)).send_keys(Keys.TAB)
+        sleep(t)
+
+
 
 
 
@@ -1397,8 +1390,6 @@ class DomPO(object):
                         # if varClass != 'el-checkbox el-checkbox--default is-checked':
                         self.eleClkByX(ele, textByX + "[" + str(v3) + "]/label", 1)
 
-
-
     def eleCheckboxRightLabel(self, ele, textByX, v):
         # 勾选复选框
 
@@ -1454,24 +1445,24 @@ class DomPO(object):
                         self.eleClkByX(ele, textByX + "[" + str(v3) + "]", 1)
 
     def eleCheckbox(self, ele, textByX, v):
-        # 勾选复选框（包括字典key）,1个
+        # 勾选复选框（包括字典key）
         # 步骤：先取消全部勾选项，再勾选指定复选框值
         # 实例：eleCheckboxRightLabel2(ele, ".//td[4]/div/div/div/label", ['糖尿病', {'其他': '123'}]) ， 只勾选 糖尿病和其他，但不处理123
 
-        # 获取所有选项
+        # 1，获取所有选项
         l_ = self.eleGetTextByXs(ele, textByX)  # ".//td[4]/div/div/div/label"
         # print(l_)  # ['无', '青霉素类抗生素', '磺胺类抗生素', '头孢类抗生素', '含碘药品', '酒精', '镇静麻醉剂', '其他']
         d_3 = dict(enumerate(l_, start=1))
         d_4 = {v1: k1 for k1, v1 in d_3.items()}
-        print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
+        # print(d_4)  # {'无': 1, '青霉素类抗生素': 2, '磺胺类抗生素': 3, '头孢类抗生素': 4, '含碘药品': 5, '酒精': 6, '镇静麻醉剂': 7, '其他': 8}
 
-        # 取消全部勾选项
+        # 2，取消全部勾选项
         for i in range(len(l_)):
             varDiv1class = self.eleGetAttrValueByX(ele, textByX + "[" + str(i+1) + "]", "class")
             if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
                 self.eleClkByX(ele, textByX + "[" + str(i+1) + "]")
 
-        # 遍历勾选选项
+        # 3，遍历勾选选项
         for k3, v3 in d_4.items():
             self.eleClkByX(ele,  ".//div[2]/div[" + str(v3+1) + "]/div[1]/div/label", 1)
 
@@ -1495,7 +1486,7 @@ class DomPO(object):
             if varDiv1class == 'el-checkbox el-checkbox--default is-checked':
                 self.eleClkByX(ele, textByX + "[" + str(i + 1) + "]")
 
-        # # 遍历勾选选项
+        # 遍历勾选选项
         for i in range(len(v)):
             for k3, v3 in d_4.items():
                 if isinstance(v[i], str):
@@ -1576,6 +1567,7 @@ class DomPO(object):
         for a in ele.find_elements(*(By.XPATH, varXpaths)):
             if a.is_selected() == True:
                 a.click()
+
 
 
     # todo location

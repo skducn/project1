@@ -884,9 +884,9 @@ class ErpAppPO(object):
 
         # 潜力信息
         # 门诊天数（半天）
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[2]/div[2]/div/input", d_expected['门诊天数'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[2]/div[2]/div/input", d_expected['门诊天数'])
         # 单次门诊量
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[3]/div[2]/div/input", d_expected['单次门诊量'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[3]/div[2]/div/input", d_expected['单次门诊量'])
         # 高血压患者比例
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[5]/div[2]/div/input")
         varPercentValue = self.Web_PO.scrollKeysEndByXs2(d_expected['高血压患者比例'], "//div[@class='van-picker-column']/ul/li", "//div[@class='van-picker-column']")
@@ -895,7 +895,7 @@ class ErpAppPO(object):
 
         # 负责床位数
         self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[7]")
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[7]/div[2]/div/input", d_expected['负责床位数'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[7]/div[2]/div/input", d_expected['负责床位数'])
         # 门诊复诊周期
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[9]/div[2]/div/div[1]/form/div[4]/div[8]/div[2]/div/input")
         varPercentValue = self.Web_PO.scrollKeysEndByXs2(d_expected['门诊复诊周期'], "//div[@class='van-picker-column']/ul/li", "//div[@class='van-picker-column']")
@@ -952,7 +952,7 @@ class ErpAppPO(object):
         # 地址信息
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[4]/div[3]/div/div/div[1]/div[1]/div[3]/button[4]")
         # 联系方式
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[5]/div/div[2]/div/input", d_expected['联系方式'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[5]/div/div[2]/div/input", d_expected['联系方式'])
 
         # # 地址信息1
         if "地址信息" in d_expected.keys():
@@ -965,16 +965,16 @@ class ErpAppPO(object):
                     # 更新地址
                     if len(d_expected['地址信息']) == 1:
                         # 更新1个地址
-                        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
                     elif len(d_expected['地址信息']) > 1:
                         # 更新多个地址
-                        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
                         d_expected['地址信息'].pop(0)
                         # print(d_expected['地址信息'])
                         for i in range(len(d_expected['地址信息'])):
                             # 客户地址 +
                             self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
-                            self.Web_PO.setTextTabByX(
+                            self.Web_PO.setTextByDouble(
                                 "/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div[" + str(i+2) + "]/div/div[2]/div/input",
                                 d_expected['地址信息'][0])
             else:
@@ -984,18 +984,18 @@ class ErpAppPO(object):
                     # 新增1个地址
                     # 客户地址 +
                     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
-                    self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                    self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
                 elif len(d_expected['地址信息']) > 1:
                     # 新增多个地址
                     # 客户地址 +
                     self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
-                    self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
+                    self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div/div/div[2]/div/input", d_expected['地址信息'][0])
                     d_expected['地址信息'].pop(0)
                     # print(d_expected['地址信息'])
                     for i in range(len(d_expected['地址信息'])):
                         # 客户地址 +
                         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[6]/button")
-                        self.Web_PO.setTextTabByX(
+                        self.Web_PO.setTextByDouble(
                             "/html/body/div[1]/div/div[1]/div/div[2]/div/div/form/div[7]/div[" + str(i+2) + "]/div/div[2]/div/input",
                             d_expected['地址信息'][0])
 
@@ -1864,7 +1864,7 @@ class ErpAppPO(object):
                     self.Web_PO.eleClkByX(ele, ".//div[4]/button[2]")
 
                     # 实际劳务费
-                    self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(
+                    self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(
                         v) + "]/div/div[2]/div/div[4]/div/div/div/div/div/div/div/input",
                                                       d_expected[varName][i]['实际劳务费'])
 
@@ -1951,10 +1951,10 @@ class ErpAppPO(object):
             self._common_dateTime__verify(ele, "/html/body/div[1]/div/div[1]/div/div[3]/form/div[5]/div[1]/div[2]/div/input", d_expected['实际会议时间'][i], l_getModuleDate[i], ".//div[2]/div[2]", i + 1, "/html/body/div[1]/div/div[1]/div/div[6]/div/div[2]/div[1]/button[2]")
 
         # 实际餐费
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[7]/div[2]/div/div/div/div[1]/input", d_expected['实际餐费'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[3]/form/div[7]/div[2]/div/div/div/div[1]/input", d_expected['实际餐费'])
 
         # 场地费
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[8]/div[2]/div/div/div/div[1]/input", d_expected['场地费'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[3]/form/div[8]/div[2]/div/div/div/div[1]/input", d_expected['场地费'])
 
         # 会中执行清单
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[9]/div[2]/div/div")
@@ -2048,10 +2048,10 @@ class ErpAppPO(object):
                 break
 
         # 实际餐费
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[7]/div[2]/div/div/div/div[1]/input", d_expected['实际餐费'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[3]/form/div[7]/div[2]/div/div/div/div[1]/input", d_expected['实际餐费'])
 
         # 场地费
-        self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[8]/div[2]/div/div/div/div[1]/input", d_expected['场地费'])
+        self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[3]/form/div[8]/div[2]/div/div/div/div[1]/input", d_expected['场地费'])
 
         # 会中执行清单
         self.Web_PO.clkByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[9]/div[2]/div/div")
@@ -2121,7 +2121,7 @@ class ErpAppPO(object):
                     self.Web_PO.eleClkByX(ele, ".//div[4]/button[2]")
 
                     # 实际劳务费
-                    self.Web_PO.setTextTabByX("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[2]/div/div[4]/div/div/div/div/div/div/div/input", d_expected['计划参会者'][i]['实际劳务费'])
+                    self.Web_PO.setTextByDouble("/html/body/div[1]/div/div[1]/div/div[3]/form/div[" + str(v) + "]/div/div[2]/div/div[4]/div/div/div/div/div/div/div/input", d_expected['计划参会者'][i]['实际劳务费'])
 
                     # 调整(产品观念)
                     if d_expected['计划参会者'][i]['产品观念'] != "":

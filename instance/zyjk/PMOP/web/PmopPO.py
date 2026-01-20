@@ -440,7 +440,7 @@ class PmopPO():
             for k in range(qty):
                 # 前往第几页
                 self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input")
-                self.Web_PO.setTextTabByX2("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", k+1, 2)
+                self.Web_PO.setTextByDelDouble("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", k+1, 2)
                 ele = self.Web_PO.getSuperEleByX("//div[text()='姓名']", "../../../../../..")
                 tr_qty = self.Web_PO.eleGetQtyByX(ele, ".//div[3]/div/div[1]/div/table/tbody/tr")
                 # print(tr_qty)
@@ -527,7 +527,7 @@ class PmopPO():
             for k in range(qty):
                 # 前往第几页
                 self.Web_PO.scrollViewByX("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input")
-                self.Web_PO.setTextTabByX2("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", k+1, 2)
+                self.Web_PO.setTextByDelDouble("/html/body/div[1]/div/div[2]/section/div/div/main/div[3]/div/span[3]/div/input", k+1, 2)
                 ele = self.Web_PO.getSuperEleByX("//div[text()='姓名']", "../../../../../..")
                 tr_qty = self.Web_PO.eleGetQtyByX(ele, ".//div[3]/div/div[1]/div/table/tbody/tr")
                 # print(tr_qty)
@@ -661,7 +661,7 @@ class PmopPO():
         self.Web_PO.eleScrollBottomByXN(ele, '/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[1]', 4, 0)
 
         # 前往N页
-        self.Web_PO.setTextTabByX2('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[3]/div/div/input', varPage)
+        self.Web_PO.setTextByDelDouble('/html/body/div[1]/div/div[3]/section/div/div/div[2]/div[2]/div/span[3]/div/div/input', varPage)
 
 
 

@@ -24,7 +24,8 @@ Web_PO = WebPO("chrome")
 Web_PO.openURL("https://quote.eastmoney.com/zixuan/lite.html")
 Web_PO.clkByX("/html/body/div[7]/img[1]",1)  # 广告
 Web_PO.clkByX("/html/body/div[1]/div/div[2]/div[2]/div/a[1]",3)  # 登陆
-Web_PO.dwele('//span[@date-type="account" and text()="账号登录"]')   # 移动到登陆标签
+Web_PO.swhIframeById("frame_login")
+Web_PO.moveLabel('//*[contains(text(), "账号登录") and not(contains(text(), "扫码"))]')   # 移动到登陆标签
 Web_PO.setTextEnterByX("/html/body/div/div[2]/div/form[1]/div/div[1]/input", "13816109050")
 Web_PO.setTextEnterByX("/html/body/div/div[2]/div/form[1]/div/div[2]/input", "Jinhao123")
 Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[4]/div/img[1]",2)  # 勾选

@@ -305,7 +305,7 @@ class GwPO():
             if v == '招远市卫健局':
                 # 卫健局
                 Web_PO.clkByX(self.selectors['dropdown_dropdown_1'] + "/label")
-                Web_PO.clkTabByX(self.selectors['dropdown_dropdown_1'] + "/label")
+                Web_PO.sendKeysByX(self.selectors['dropdown_dropdown_1'] + "/label", Keys.TAB)
             else:
                 # 卫生院
                 Web_PO.clkByX(self.selectors['dropdown_dropdown_1'])
@@ -315,7 +315,7 @@ class GwPO():
                     for i in range(len(l_2)):
                         if l_2[i] == v:
                             Web_PO.clkByX(self.selectors['dropdown_dropdown_2'] + "[" + str(i + 1) + "]/label")
-                            Web_PO.clkTabByX(self.selectors['dropdown_dropdown_2'] + "[" + str(i + 1) + "]/label")
+                            Web_PO.sendKeysByX(self.selectors['dropdown_dropdown_2'] + "[" + str(i + 1) + "]/label", Keys.TAB)
                             break
         elif isinstance(v, dict):
             # 卫生院
@@ -333,7 +333,7 @@ class GwPO():
                             for i in range(len(l_3)):
                                 if l_3[i] == v[varKey]:
                                     Web_PO.clkByX(self.selectors['dropdown_dropdown_3'] + "[" + str(i + 1) + "]/label")
-                                    Web_PO.clkTabByX(self.selectors['dropdown_dropdown_3'] + "[" + str(i + 1) + "]/label")
+                                    Web_PO.sendKeysByX(self.selectors['dropdown_dropdown_3'] + "[" + str(i + 1) + "]/label", Keys.TAB)
                                     break
 
 
