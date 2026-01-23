@@ -2,8 +2,10 @@
 #***************************************************************
 # Author     : John
 # Created on : 2025-12-22
-# Description: 社区健康5G 信创1.0 - 表与表
-# 需求：/Users/linghuchong/Desktop/智赢健康/信创/主动健康管理居民表.png
+# Description: 社区健康5G 信创2。0
+# mac暂不支持
+# dmpython https://www.dameng.com/download/index.html
+# 支持windows和linux
 #***************************************************************
 import dmPython
 
@@ -21,13 +23,7 @@ def connect_dm_db():
             port=5236,         # 端口，默认5236
             user='SYSDBA',     # 用户名，默认SYSDBA
             password='Zy@20251222' # 密码，默认SYSDBA
-            # 数据库名（部分 dmPython 版本用 dbname，而非 database）
-            # dbname='CHCCONFIG',
-            # # 可选：如果需要指定字符集
-            # charset='UTF-8'
         )
-        # conn = dmPython.connect(dsn="192.168.0.232:5236/CHCCONFIG", user="SYSDBA", password="Zy@20251222")
-
         print("数据库连接成功！")
 
         # 2. 创建游标（用于执行SQL）
@@ -44,12 +40,6 @@ def connect_dm_db():
         for row in results:
             print(row)
 
-        # # 4. 执行增删改操作（需提交事务）
-        # # 示例：插入一条测试数据
-        # sql_insert = "INSERT INTO TEST_TABLE (ID, NAME) VALUES (?, ?)"
-        # cursor.execute(sql_insert, (1, "测试数据"))
-        # conn.commit()  # 提交事务（增删改必须提交）
-        # print("\n数据插入成功！")
 
     except dmPython.Error as e:
         # 捕获数据库异常并回滚事务
