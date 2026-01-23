@@ -2,8 +2,9 @@
 # *****************************************************************
 # Author     : John
 # Date       : 2026-01-7
-# Description: 东方财富网 666
+# Description: 获取自选股票的数据
 # https://quote.eastmoney.com/zixuan/lite.html
+# https://quote.eastmoney.com/sh600000.html 明细，获取内盘和外盘数据
 # 获取每个组列表页数据，保存到文件
 # path = "/Users/linghuchong/Downloads/51/Python/stock/BK4"
 # *****************************************************************
@@ -14,6 +15,13 @@ Time_PO = TimePO()
 from PO.WebPO import *
 from PO.NewexcelPO import *
 from PO.OpenpyxlPO import *
+
+# Web_PO = WebPO("chrome")
+# Web_PO.openURL("https://quote.eastmoney.com/sh600000.html")
+# print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[1]/span/span"))
+# print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[2]/span/span"))
+# sys.exit(0)
+
 
 path = "/Users/linghuchong/Downloads/51/Python/stock/666"
 s_currDate = str(Time_PO.getDateByMinus())
@@ -31,8 +39,7 @@ Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[4]/div/img[1]",2)  # �
 Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[3]/div[1]/div/div[4]/div/div", 2)  # 验证点击
 Web_PO.quitIframe(2)
 Web_PO.clkByX("/html/body/div[2]/div[2]/div/div[2]/div",1)  # 关闭右
-Web_PO.clkByX("/html/body/div[2]/div[1]/div[3]/div[1]/div",1)  # 关闭下
-
+Web_PO.clkByX("/html/body/div[2]/div[1]/div[3]/div[1]/div", 1)  # 关闭下
 
 
 
@@ -74,8 +81,28 @@ def main(s_group):
                 # s_20 = Web_PO.getTextByX("//div[@id='table_m']/table/tbody/tr[" + str(i + 1 + k) + "]/td[21]/span")  # 流通市值
                 # s_21 = Web_PO.getTextByX("//div[@id='table_m']/table/tbody/tr[" + str(i + 1 + k) + "]/td[22]/span")  # 主力流入
                 # print(i + 1 + k, s_code, s_name)
-                print(i + 1 + k, s_code, s_name, s_4, s_5, s_12, s_14, s_15, s_17)
                 # print(s_code, s_name, s_4, s_5, s_12, s_14, s_15, s_17, s_18, s_19, s_20, s_21)
+                # url2 = s_code
+                if int(s_code) > 600000:
+                    Web_PO.opnLabel("https://quote.eastmoney.com/sh" + str(s_code) + ".html")
+                else:
+                    Web_PO.opnLabel("https://quote.eastmoney.com/sz" + str(s_code) + ".html")
+                Web_PO.swhLabelByLoc(1)
+                # sellSideVolume = Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[1]/span/span")
+                sellSideVolume = Web_PO.getTextByX("//div[@class='sider_brief']/table/tbody/tr[8]/td[1]/span/span")
+                                                  # /html/body/div[1]/div/div/div[11]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[1]/span/span
+                # print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[1]/span/span"))
+                # buySideVolume = Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[2]/span/span")
+                buySideVolume = Web_PO.getTextByX("//div[@class='sider_brief']/table/tbody/tr[8]/td[2]/span/span")
+
+                # print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[2]/span/span"))
+                Web_PO.cls()
+                print(i + 1 + k, s_code, s_name, s_4, s_5, s_12, s_14, s_15, s_17,sellSideVolume, buySideVolume)
+                # print(i + 1 + k, s_code, s_name, s_4, s_5, s_12, s_14, s_15, s_17)
+                Web_PO.swhLabelByLoc(0)
+                # sleep(4)
+
+
             else:
                 break
         Web_PO.scrollElementToBottom("//div[@id='table_m']", step=660, interval=1, max_attempts=1)
@@ -129,6 +156,6 @@ def main(s_group):
 
 
 # todo 获取XX组所有数据
-main('0119')
+main('0116')
 
 

@@ -602,7 +602,7 @@ class WebPO(DomPO):
 
     def swhLabelByLoc(self, varLoc, t=1):
         # 1.3 通过位置切换标签页
-        # self.swhLabel(0) # 0 = 激活第一个标签页 ， 1 = 激活第二个标签页 , 以此类推。
+        # self.swhLabelByLoc(0) # 0 = 激活第一个标签页 ， 1 = 激活第二个标签页 , 以此类推。
         l_handles = self.driver.window_handles
         # print(l_handles)
         sleep(t)
