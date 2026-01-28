@@ -268,28 +268,36 @@ class OpenpyxlPO:
         self.save()
 
 
-
-    def addSheet(self, varSheetName, varIndex=0):
-    
+    def addSheet(self, varSheetName, varIndex=0, overwrite=False):
         '''
-        1.6 添加不覆盖工作表
+        1.6 添加工作表
         # Openpyxl_PO.addSheet("mysheet1")  # 默认在第一个位置上添加工作表
         # Openpyxl_PO.addSheet("mysheet1", 99)   # 当index足够大时，则在最后一个位置添加工作表
         # Openpyxl_PO.addSheet("mysheet1", -1)   # 倒数第二个位置添加工作表
-        # 注意：如果工作表名已存在，则不添加工作表，即保留原工作表。
-        :param varSheetName: 
-        :param varIndex: 
-        :return: 
+        # Openpyxl_PO.addSheet("mysheet1", 0, overwrite=True)  # 存在则覆盖
+        :param varSheetName: 工作表名称
+        :param varIndex: 索引位置，默认为0
+        :param overwrite: 是否覆盖已存在的工作表，默认False（不覆盖）
+        :return:
         '''
-        
-        sign = 0
-        for i in self.wb.sheetnames:
-            if i == varSheetName:
-                sign = 1
-                break
-        if sign == 0:
+
+        if overwrite:
+            # 如果需要覆盖，先删除已存在的工作表
+            if varSheetName in self.wb.sheetnames:
+                del self.wb[varSheetName]
             self.wb.create_sheet(title=varSheetName, index=varIndex)
-            self.save()
+        else:
+            # 不覆盖模式：如果工作表不存在才创建
+            sign = 0
+            for i in self.wb.sheetnames:
+                if i == varSheetName:
+                    sign = 1
+                    break
+            if sign == 0:
+                self.wb.create_sheet(title=varSheetName, index=varIndex)
+
+        self.save()
+
 
     def addCoverSheet(self, varSheetName, varIndex=0):
         

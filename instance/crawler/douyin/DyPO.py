@@ -13,7 +13,8 @@
 # print(b.encode('gbk', 'ignore').decode('gbk') )   # 型换季收纳法叠衣
 #***************************************************************
 
-import requests, re, os, platform, bs4, json, sys
+import requests, re, os, platform, json, sys
+# import bs4
 import pyperclip as pc
 from urllib import parse
 # sys.path.append("../../../")

@@ -12,51 +12,68 @@
 from PO.TimePO import *
 Time_PO = TimePO()
 
-from PO.WebPO import *
-from PO.NewexcelPO import *
-from PO.OpenpyxlPO import *
+# from PO.WebPO import *
+# from PO.NewexcelPO import *
+# from PO.OpenpyxlPO import *
+#
+# # Web_PO = WebPO("chrome")
+# # Web_PO.openURL("https://quote.eastmoney.com/sh600000.html")
+# # print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[1]/span/span"))
+# # print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[2]/span/span"))
+# # sys.exit(0)
 
-# Web_PO = WebPO("chrome")
-# Web_PO.openURL("https://quote.eastmoney.com/sh600000.html")
-# print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[1]/span/span"))
-# print(Web_PO.getTextByX("/html/body/div[1]/div/div/div[10]/div[2]/div[2]/div[2]/table/tbody/tr[8]/td[2]/span/span"))
-# sys.exit(0)
+import login
+Web_PO = login.create_logged_web_instance("chrome", "https://quote.eastmoney.com/zixuan/")
+Web_PO.clkByX("/html/body/div[2]/div[2]/div/div[2]/div",1)  # 关闭右
+Web_PO.clkByX("/html/body/div[2]/div[1]/div[3]/div[1]/div", 1)  # 关闭下
 
+
+# 定义 XPath 常量
+GROUP_LIST_XPATH = "//ul[@id='zxggrouplist']/li"
+GROUP_ITEM_XPATH_TEMPLATE = "/html/body/div[2]/div[3]/div[1]/div/ul[1]/li[{}]/a"
+FUNDS_FLOW_XPATH = "/html/body/div[2]/div[3]/div[2]/ul/li[2]"
+CHANGE_PERCENT_XPATH = "/html/body/div[2]/div[3]/div[3]/table/thead/tr/th[7]/a"
 
 path = "/Users/linghuchong/Downloads/51/Python/stock/666"
 s_currDate = str(Time_PO.getDateByMinus())
 
-# todo 登录
-Web_PO = WebPO("chrome")
-Web_PO.openURL("https://quote.eastmoney.com/zixuan/")
-Web_PO.clkByX("/html/body/div[5]/img[1]", 1)  # 广告
-Web_PO.clkByX("/html/body/div[1]/div[2]/div[3]/a[1]",3)  # 登陆
-Web_PO.swhIframeById("frame_login")
-Web_PO.moveLabel('//*[contains(text(), "账号登录") and not(contains(text(), "扫码"))]')   # 移动到登陆标签
-Web_PO.setTextEnterByX("/html/body/div/div[2]/div/form[1]/div/div[1]/input", "13816109050")
-Web_PO.setTextEnterByX("/html/body/div/div[2]/div/form[1]/div/div[2]/input", "Jinhao123")
-Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[4]/div/img[1]",2)  # 勾选
-Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[3]/div[1]/div/div[4]/div/div", 2)  # 验证点击
-Web_PO.quitIframe(2)
-Web_PO.clkByX("/html/body/div[2]/div[2]/div/div[2]/div",1)  # 关闭右
-Web_PO.clkByX("/html/body/div[2]/div[1]/div[3]/div[1]/div", 1)  # 关闭下
+
+# # todo 登录
+# Web_PO = WebPO("chrome")
+# Web_PO.openURL("https://quote.eastmoney.com/zixuan/")
+# Web_PO.clkByX("/html/body/div[5]/img[1]", 1)  # 广告
+# Web_PO.clkByX("/html/body/div[1]/div[2]/div[3]/a[1]",3)  # 登陆
+# Web_PO.swhIframeById("frame_login")
+# Web_PO.moveLabel('//*[contains(text(), "账号登录") and not(contains(text(), "扫码"))]')   # 移动到登陆标签
+# Web_PO.setTextEnterByX("/html/body/div/div[2]/div/form[1]/div/div[1]/input", "13816109050")
+# Web_PO.setTextEnterByX("/html/body/div/div[2]/div/form[1]/div/div[2]/input", "Jinhao123")
+# Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[4]/div/img[1]",2)  # 勾选
+# Web_PO.clkByX("/html/body/div/div[2]/div/form[1]/div/div[3]/div[1]/div/div[4]/div/div", 2)  # 验证点击
+# Web_PO.quitIframe(2)
 
 
 
 def main(s_group):
     # 获取列表页数据，保存文档
 
-    # 遍历所有组
-    l_group = Web_PO.getTextByXs("//ul[@id='zxggrouplist']/li")
-    # print(l_group)  # ['自选股', 'BK4', '全固态电池', '光刻机', '深空通讯和数据链', 'HBM']
-
-    # 获取组索引，并点击
-    i_index = l_group.index(s_group)
-    i_index = i_index + 1
-    Web_PO.clkByX("/html/body/div[2]/div[1]/div[2]/div[1]/div/ul[1]/li[" + str(i_index) + "]", 2)  # 点击组
-
-    # 获取总行数
     l_all = []
+
+    # 1，点击组，如 BK4
+    l_group = Web_PO.getTextByXs(GROUP_LIST_XPATH)
+    i_index = l_group.index(s_group) + 1
+    Web_PO.clkByX(GROUP_ITEM_XPATH_TEMPLATE.format(i_index), 2)  # 点击组
+
+    # # 遍历所有组
+    # l_group = Web_PO.getTextByXs("//ul[@id='zxggrouplist']/li")
+    # # print(l_group)  # ['自选股', 'BK4', '全固态电池', '光刻机', '深空通讯和数据链', 'HBM']
+    #
+    # # 获取组索引，并点击
+    # i_index = l_group.index(s_group)
+    # i_index = i_index + 1
+    # Web_PO.clkByX("/html/body/div[2]/div[1]/div[2]/div[1]/div/ul[1]/li[" + str(i_index) + "]", 2)  # 点击组
+    #
+    # # 获取总行数
+    # l_all = []
     i_rowCount = Web_PO.getCountByXs("//div[@id='table_m']/table/tbody/tr")
     # print(43, i_rowCount)
 
