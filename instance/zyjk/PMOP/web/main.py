@@ -85,8 +85,8 @@ Pmop_PO.clkButton("取 消")
 # Cdrd_PO.clkMenu('角色管理')
 # Cdrd_PO.clkMenu('菜单管理')
 
-# 患者发现 - 患者检索
-# Pmop_PO.clkMenu('患者检索')
+# 患者发现 - 患者检索.ini
+# Pmop_PO.clkMenu('患者检索.ini')
 
 
 # # 遍历获取每页所有患者详情页url
