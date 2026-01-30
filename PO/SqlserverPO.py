@@ -1713,7 +1713,7 @@ class SqlserverPO:
         # Sqlserver_PO.record('*', 'datetime', u'%2019-07-17 11:19%')  # 模糊搜索所有表中带2019-01的timestamp类型。
 
         # 支持的类型
-        if (varType in "double,timestamp,float,money,int,nchar,nvarchar,datetime,varchar"):
+        if (varType in "double,timestamp,float,money,int,nchar,nvarchar,datetime,varchar,uniqueidentifier"):
             if "*" in varTable:
                 # 遍历所有表
                 l_d_tbl = self.select("SELECT name as TABLE_NAME FROM SYSOBJECTS WHERE TYPE='U'")

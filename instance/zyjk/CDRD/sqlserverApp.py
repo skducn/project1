@@ -28,7 +28,17 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "
 # print("7.2 查找记录".center(100, "-"))
 # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
 # Sqlserver_PO.record('*', 'varchar', '%令狐123%', varIsRecord=True)
-Sqlserver_PO.record('*', 'varchar', '%2025-12-17 10:40:17%')
+# Sqlserver_PO.record('*', 'uniqueidentifier', '%7E9A3C1D-5B2F-4D8A-9C0E-6F3A8B2D1C4E1%')
+# Sqlserver_PO.record('*', 'int', '47')
+# Sqlserver_PO.record('*', 'varchar', '我就是不知道')
+# Sqlserver_PO.record('*', 'datetime', u'%2025-12-16 17:58:41%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+Sqlserver_PO.record('*', 'datetime', u'%2026-01-06 00:00:00%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+
+# 7E9A3C1D-5B2F-4D8A-9C0E-6F3A8B2D1C4E
+# 35,36,3224,3225,3226
+
+
+
 
 # Sqlserver_PO.record('*', 'int', '31', varIsRecord=True)
 # Sqlserver_PO.record('*', 'varchar', '%老八%', varIsRecord=True)
@@ -38,7 +48,7 @@ Sqlserver_PO.record('*', 'varchar', '%2025-12-17 10:40:17%')
 # Sqlserver_PO.record('*', 'varchar', u'%ef04737c5b4f4b93be85576e58b97ff2%')
 # Sqlserver_PO.record('*', 'varchar', u'%310101195001293595%')
 # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
-Sqlserver_PO.record('*', 'datetime', u'%2025-12-17 10:40:17%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+# Sqlserver_PO.record('*', 'datetime', u'%2025-12-17 10:40:17%')  # 模糊搜索所有表中带2019-01的timestamp类型。
 
 # print("7.3 插入记录".center(100, "-"))
 # Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'createDate': Time_PO.getDateTimeByPeriod(0), 'ruleParam': 'param'})

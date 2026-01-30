@@ -27,14 +27,19 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "
 
 # print("7.2 查找记录".center(100, "-"))
 # Sqlserver_PO.record('t_upms_user', 'varchar', '%e10adc3949ba59abbe56e057f20f883e')  # 搜索 t_upms_user 表中内容包含 admin 的 varchar 类型记录。
-# Sqlserver_PO.record('*', 'int', '68', True)
+# Sqlserver_PO.record('*', 'int', '84', True)
 # Sqlserver_PO.record('*', 'varchar', '%hellokiss%', True)
 # Sqlserver_PO.record('*', 'varchar', '%192.168.0.248%')
-Sqlserver_PO.record('*', 'varchar', '%2025-12-18 10:40:17%')
+# Sqlserver_PO.record('*', 'varchar', '%hellokiss%')
+# Sqlserver_PO.record('*', 'varchar', '33')
 # Sqlserver_PO.record('*', 'varchar', u'%ef04737c5b4f4b93be85576e58b97ff2%')
-# Sqlserver_PO.record('*', 'varchar', u'%310101195001293595%')
+# Sqlserver_PO.record('*', 'varchar', u'%2026-01-06 00:00:00%')
 # Sqlserver_PO.record('*','double', u'%35%')  # 模糊搜索所有表中带35的double类型。
-Sqlserver_PO.record('*', 'datetime', u'%2025-12-17 10:40:17%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+# Sqlserver_PO.record('*', 'datetime', u'%2026-01-06 00:00:00%')  # 模糊搜索所有表中带2019-01的timestamp类型。
+Sqlserver_PO.record('*', 'nvarchar', '%E2C4A7D0-8B3F-4E1A-9C6D-5F3B8A1C2E4D1%')
+Sqlserver_PO.record('*', 'varchar', '%E2C4A7D0-8B3F-4E1A-9C6D-5F3B8A1C2E4D1%')
+Sqlserver_PO.record('*', 'uniqueidentifier', '%E2C4A7D0-8B3F-4E1A-9C6D-5F3B8A1C2E4D1%')
+# Sqlserver_PO.record('*', 'nvarchar', '%3B8D1F4A-7C2E-4D9A-B6E0-9F5C3A2B1D8E1%')
 
 # print("7.3 插入记录".center(100, "-"))
 # Sqlserver_PO.insert("a_test", {'result': str(Fake_PO.genPhone_number('Zh_CN', 1)), 'createDate': Time_PO.getDateTimeByPeriod(0), 'ruleParam': 'param'})
