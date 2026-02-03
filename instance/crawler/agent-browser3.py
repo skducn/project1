@@ -12,6 +12,33 @@
 # curl "http://localhost:8000/extract_page?url=https://www.baidu.com"
 # # 百度首页截图
 # curl "http://localhost:8000/screenshot_page?url=https://www.baidu.com"
+
+# playwright install --dry-run chromium
+# Chrome for Testing 145.0.7632.6 (playwright chromium v1208)
+#   Install location:    /Users/linghuchong/Library/Caches/ms-playwright/chromium-1208
+#   Download url:        https://cdn.playwright.dev/chrome-for-testing-public/145.0.7632.6/mac-x64/chrome-mac-x64.zip
+#
+# FFmpeg (playwright ffmpeg v1010)
+#   Install location:    /Users/linghuchong/Library/Caches/ms-playwright/ffmpeg_mac12_special-1010
+#   Download url:        https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1010/ffmpeg-mac.zip
+#   Download fallback 1: https://playwright.download.prss.microsoft.com/dbazure/download/playwright/builds/ffmpeg/1010/ffmpeg-mac.zip
+#   Download fallback 2: https://cdn.playwright.dev/builds/ffmpeg/1010/ffmpeg-mac.zip
+#
+# Chrome Headless Shell 145.0.7632.6 (playwright chromium-headless-shell v1208)
+#   Install location:    /Users/linghuchong/Library/Caches/ms-playwright/chromium_headless_shell-1208
+#   Download url:        https://cdn.playwright.dev/chrome-for-testing-public/145.0.7632.6/mac-x64/chrome-headless-shell-mac-x64.zip
+#
+# FFmpeg (playwright ffmpeg v1010)
+#   Install location:    /Users/linghuchong/Library/Caches/ms-playwright/ffmpeg_mac12_special-1010
+#   Download url:        https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1010/ffmpeg-mac.zip
+#   Download fallback 1: https://playwright.download.prss.microsoft.com/dbazure/download/playwright/builds/ffmpeg/1010/ffmpeg-mac.zip
+#   Download fallback 2: https://cdn.playwright.dev/builds/ffmpeg/1010/ffmpeg-mac.zip
+
+# 后续验证
+# 安装完成后，可执行以下命令验证 Chromium 是否安装成功，无报错即代表可用：
+# bash
+# 运行
+# playwright test --browser=chromium --dry-run
 # *********************************************************************
 
 from fastapi import FastAPI, HTTPException
