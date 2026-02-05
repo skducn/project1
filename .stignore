@@ -45,7 +45,6 @@
 *.dir
 *.gid
 *.chk
-*.dmp
 *.nch
 .*.swp
 *~
