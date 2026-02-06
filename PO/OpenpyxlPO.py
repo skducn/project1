@@ -46,28 +46,45 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 
 
 """
-1.1 新建 newExcel("./OpenpyxlPO/newfile2.xlsx", "mySheet1", "mySheet2", "mySheet3") 
+【工作表】
+1.1 新建 Openpyxl_PO = OpenpyxlPO("1212.xlsx")
+		Openpyxl_PO = OpenpyxlPO("1212.xlsx",l_sheet=['Sheet1','Sheet2','Sheet3'])
 1.2 打开 open()
-1.3 获取所有工作表 getL_sheet()
-1.4 操作工作表 sh()
-1.5 切换工作表 switchSheet("Sheet2") 
-1.6 添加不覆盖工作表 addSheet("Sheet1")
-1.7 添加覆盖工作表 addCoverSheet("Sheet1", 1) 
+1.3 保存 save()
+1.4 工作表 sh()
+1.5 获取工作表 getL_sheet()
+1.6 切换工作表 switchSheet("Sheet2") 
+1.7 添加工作表 addSheet("Sheet1", overwrite=True)
 1.8 删除工作表 delSheet("Sheet1")
-1.9 保存 save()
+1.9 重命名工作表 renameSheet("sheet1", "sheet2")
 
-2.0.1 在第N行前插入多行空白 insertNullRows(3, 5) 在第3行前插入5行空白
-2.0.2 在第N列前插入多列空白 insertNullCols(3) 在第3列前插入1列空白
-2.1 更新单元格值 setCell(1, 2, "hello") 等同于 setCell(1, 'B', "hello")
+【操作数据】
+2.0 在第N行前插入多行空白（优化版）
+	insertNullRow(3)  在第3行前插入1行空白
+	insertNullRow(3，5)  在第3行前插入5行空白
+2.1 在第N列前插入多列空白（优化版）
+	insertNullCol(3) 在第3列前插入1列空白
+	insertNullCol(3,5)  在第3列前插入5列空白
+2.2 设置单元格
+	setCell(1, 2, "hello") # 将第一行B列写入hello
+	setCell(1, 'B', "john") # 将第一行第三列写入john
+2.3 插入行数据 insertRow({2: ["金浩", "101", "102"]})
+2.4 更新行数据 setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
+2.5 追加行数据 appendRows([['姓名', '电话'], ['毛泽东', 15266606298]])
+2.6 插入列数据 insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
+2.7 更新列数据 setCols({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
+2.8 追加列数据 appendCols([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
 
-2.2 插入行数据 insertRows({1: ["100", 101, "102"], 5: ["444", "123", "666"]})
-2.3 更新行数据 setRows({7: ["200", 222, "555"], 8: ["777", "345", "888"]})
-2.4 追加行数据 appendRows([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
+4.1 清空行 clsRow(2)  # 清空第2行
+4.2 清空列 clsCol(2)  # 清空第2列
+4.2.1 清空列保留标题 clsColRetainTitle(2)  # 清空第2列
+4.3 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
+4.4 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
+6 移动区域 moveValues(rows, cols, 'C1:D2')
+7 将excel中标题（第一行字段）排序（从小打大）sortFields()
 
-2.5 插入列数据 insertCols({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
-2.6 更新列数据 setCols({"A": ["公司", "百度", "天猫"], "F": ["学校", "清华大学", "北京大学"]})
-2.7 追加列数据 appendCols([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
 
+【设置】
 2.5 设置单元格列宽 setColWidth(1, 100) # 设置第1列宽度100
 2.5 设置单元格列宽 setColWidth2('f', 100) # 设置第f列宽度100
 2.5 设置单元格行高与列宽 setCellDimensions(3, 30, 'f', 30) //设置第三行行高30，第f列列宽50
@@ -91,6 +108,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 2.17 设置整列(可间隔)背景色  setColColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
 2.18 设置工作表背景颜色 setSheetColor("FF0000")
 
+【获取】
 3.1 获取总行列数 getL_shape()  # [5,10]
 3.2 获取单元格的值 getCell(3,2)
 3.3 获取一行数据 getL_row(2) # 获取第2行值
@@ -114,20 +132,14 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 3.10 获取单元格的坐标 getCoordinate(2, 5))   # E2
 3.11 获取所有数据的坐标 getDimensions())  # A1:E17
 
-4.1 清空行 clsRow(2)  # 清空第2行
-4.2 清空列 clsCol(2)  # 清空第2列
-4.2.1 清空列保留标题 clsColRetainTitle(2)  # 清空第2列
-4.3 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
-4.4 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
-
+【两表比较】
 5.1 两表比较，获取差异内容（两表标题与行数必须一致）setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2"))
 5.2 两工作表比较，对差异内容标注颜色 setColorByDiff("Sheet1", "Sheet2")
 
-6 移动区域 moveValues(rows, cols, 'C1:D2')
 
-7 将excel中标题（第一行字段）排序（从小打大）sortFields()
 
-8 [转换]
+
+【转换】
 8.1 字典转xlsx  dict2xlsx()
 8.2 字典转csv  dict2csv()
 8.3 pdf中表格转xlsx pdf2xlsx()
@@ -156,7 +168,7 @@ from PO.ColorPO import *
 Color_PO = ColorPO()
 
 # print(openpyxl.__version__)
-
+import subprocess
 import pandas as pd
 
 
@@ -165,32 +177,53 @@ class OpenpyxlPO:
     def __init__(self, pathFile, l_sheet=[]):
 
         self.file = pathFile
+        self._wb = None  # 延迟加载标志
+        self.l_sheet = l_sheet
 
-        if os.path.exists(self.file) == False:
-
-            # 创建文件
+        # 检查文件是否存在，若不存在则根据 l_sheet 创建新文件
+        if not os.path.exists(self.file):
             wb = openpyxl.Workbook()
             ws = wb.active
-            ws.title = "Sheet1"
-            if l_sheet != []:
+
+            # 根据 l_sheet 参数设置工作表名称
+            if not self.l_sheet:
                 ws.title = "Sheet1"
-                for i in range(len(l_sheet)):
-                    wb.create_sheet(l_sheet[i])
+            else:
+                ws.title = self.l_sheet[0]
+                for sheet_name in self.l_sheet[1:]:
+                    wb.create_sheet(sheet_name)
+
+            # 保存文件并输出提示信息
             wb.save(self.file)
-            print('已创建 => ' + self.file)
+            print(f"已创建文件: {self.file}")
 
-        # 打开文件
+        # 延迟加载工作簿属性
+        @property
+        def wb(self):
+            if self._wb is None:
+                try:
+                    # 如果文件仍然不存在（理论上不会发生），再次尝试创建
+                    if not os.path.exists(self.file):
+                        wb = openpyxl.Workbook()
+                        ws = wb.active
+                        if self.l_sheet:
+                            ws.title = self.l_sheet[0]
+                            for sheet_name in self.l_sheet[1:]:
+                                wb.create_sheet(sheet_name)
+                        else:
+                            ws.title = "Sheet1"
+                        wb.save(self.file)
+                    self._wb = openpyxl.load_workbook(self.file)
+                except PermissionError:
+                    raise IOError(f"权限不足，无法访问或创建文件: {self.file}")
+                except FileNotFoundError:
+                    raise IOError(f"文件路径不存在: {self.file}")
+                except Exception as e:
+                    raise IOError(f"初始化文件失败: {e}") from e
+            return self._wb
 
+        # 加载工作簿
         self.wb = openpyxl.load_workbook(self.file)
-
-
-        # ws = self.wb.active
-        # ws.protection.sheet = False
-        # ws.protection.enable()
-        # ws.protection.disable()
-
-
-
 
         # self.wb = openpyxl.load_workbook(self.file, keep_vba=True)
         # self.wb.protect_worksheet(1)
@@ -213,47 +246,88 @@ class OpenpyxlPO:
 
     # todo [工作表]
 
-
     def open(self):
+        # 1.1 打开
+        try:
+            # 检查文件是否存在
+            if not os.path.exists(self.file):
+                raise FileNotFoundError(f"文件不存在: {self.file}")
 
-        '''
-        1.2 打开
-        :param otherFile: 
-        :return:
-            # Openpyxl_PO.open(1) # 打开第二个工作表
-            # Openpyxl_PO.open() # 打开第一个工作表
-            # Openpyxl_PO.open('test')  # 打开test工作表
-        '''
+            # 缓存平台信息
+            system = platform.system()
 
-        if platform.system() == "Darwin":
-            os.system("open " + self.file)
-        if platform.system() == "Windows":
-            os.system("start " + self.file)
+            # 根据不同操作系统执行对应命令
+            if system == "Darwin":  # macOS
+                subprocess.run(["open", self.file], check=True)
+            elif system == "Windows":  # Windows
+                subprocess.run(["start", self.file], shell=True, check=True)
+            elif system == "Linux":  # Linux
+                subprocess.run(["xdg-open", self.file], check=True)
+            else:
+                raise OSError(f"不支持的操作系统: {system}")
+
+            print(f"[INFO] 已成功打开文件: {self.file}")
+
+        except FileNotFoundError as e:
+            print(f"[ERROR] 文件未找到: {e}")
+        except subprocess.CalledProcessError as e:
+            print(f"[ERROR] 打开文件失败: {e}")
+        except Exception as e:
+            print(f"[ERROR] 发生未知错误: {e}")
+
+    def save(self):
+        """
+        1.2 保存（优化版）
+        :raises IOError: 如果保存过程中发生错误
+        """
+        try:
+            # 校验文件路径是否存在
+            if not os.path.exists(os.path.dirname(self.file)):
+                raise FileNotFoundError(f"文件路径不存在: {os.path.dirname(self.file)}")
+
+            # 保存文件
+            self.wb.save(self.file)
+
+        except PermissionError as e:
+            raise IOError(f"权限不足，无法保存文件: {self.file}") from e
+        except FileNotFoundError as e:
+            raise IOError(f"文件路径不存在: {self.file}") from e
+        except Exception as e:
+            raise IOError(f"保存文件失败: {self.file}") from e
+
+    def sh(self, varSheet):
+        """
+        1.3 工作表（优化版）
+        :param varSheet: 工作表索引（int）或名称（str）
+        :return: 工作表对象
+        :raises ValueError: 如果参数不合法或工作表不存在
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            if isinstance(varSheet, int):
+                # 检查索引是否越界
+                if varSheet < 0 or varSheet >= len(self.wb.sheetnames):
+                    raise ValueError(f"工作表索引 {varSheet} 超出范围，可用索引为 0 到 {len(self.wb.sheetnames) - 1}")
+                sh = self.wb[self.wb.sheetnames[varSheet]]
+            elif isinstance(varSheet, str):
+                # 检查工作表名称是否存在
+                if varSheet not in self.wb.sheetnames:
+                    raise ValueError(f"工作表 '{varSheet}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+                sh = self.wb[varSheet]
+            return sh
+        except Exception as e:
+            raise ValueError(f"获取工作表失败: {e}") from e
 
     def getL_sheet(self):
 
-        ''' 1.1 获取所有工作表
+        ''' 1.4 获取工作表
         如 ['mySheet1', 'mySheet2', 'mySheet3']
         '''
 
         return self.wb.sheetnames
-
-    def sh(self, varSheet):
-
-        '''
-        1.4 操作工作表
-        :param varSheet: 
-        :return: 
-        '''
-        
-        if isinstance(varSheet, int):
-            sh = self.wb[self.wb.sheetnames[varSheet]]
-            return sh
-        elif isinstance(varSheet, str):
-            sh = self.wb[varSheet]
-            return sh
-        else:
-            exit(0)
 
     # def switchSheet(self, varSheet=0):
     #
@@ -271,7 +345,6 @@ class OpenpyxlPO:
     #         else:
     #             sheet.sheet_view.tabSelected = False
     #     self.save()
-
     def switchSheet(self, varSheet=0):
         """
         1.5 切换工作表（优化版）
@@ -313,241 +386,463 @@ class OpenpyxlPO:
             raise IOError(f"切换工作表失败: {e}") from e
 
     def addSheet(self, varSheetName, varIndex=0, overwrite=False):
-        '''
-        1.6 添加工作表
-        # Openpyxl_PO.addSheet("mysheet1")  # 默认在第一个位置上添加工作表
-        # Openpyxl_PO.addSheet("mysheet1", 99)   # 当index足够大时，则在最后一个位置添加工作表
-        # Openpyxl_PO.addSheet("mysheet1", -1)   # 倒数第二个位置添加工作表
-        # Openpyxl_PO.addSheet("mysheet1", 0, overwrite=True)  # 存在则覆盖
-        :param varSheetName: 工作表名称
+        """
+        1.6 添加工作表（优化版）
+
+        :param varSheetName: 工作表名称，必须是字符串
         :param varIndex: 索引位置，默认为0
         :param overwrite: 是否覆盖已存在的工作表，默认False（不覆盖）
-        :return:
-        '''
-
-        if overwrite:
-            # 如果需要覆盖，先删除已存在的工作表
-            if varSheetName in self.wb.sheetnames:
-                del self.wb[varSheetName]
-            self.wb.create_sheet(title=varSheetName, index=varIndex)
-        else:
-            # 不覆盖模式：如果工作表不存在才创建
-            sign = 0
-            for i in self.wb.sheetnames:
-                if i == varSheetName:
-                    sign = 1
-                    break
-            if sign == 0:
-                self.wb.create_sheet(title=varSheetName, index=varIndex)
-
-        self.save()
-
-
-    def addCoverSheet(self, varSheetName, varIndex=0):
-        
-        '''
-        # 1.7 添加工作表(覆盖)
-        # Openpyxl_PO.addCoverSheet("mySheet1")
-        # Openpyxl_PO.addCoverSheet("mySheet1", 0 )  # 在第一个工作表前添加工作表
-        # Openpyxl_PO.addCoverSheet("mySheet2",99)   # 在第99个位置添加工作表
-        # Openpyxl_PO.addCoverSheet("mySheet3", -1)   # 在倒数第二个位置添加工作表。
-        :param varSheetName: 
-        :param varIndex: 
-        :return: 
-        '''
-        
-        for i in self.wb.sheetnames:
-            if i == varSheetName:
-                del self.wb[i]
-                break
-        self.wb.create_sheet(title=varSheetName, index=varIndex)
-        self.save()
-
-    def delSheet(self, varSheetName):
-
-        '''
-        # 1.8 删除工作表
-        # Openpyxl_PO.delSheet("mySheet1")
-        # 注意:如果工作表只有1个，则不能删除。
-        :param varSheetName:
-        :return:
-        '''
-
-        if len(self.wb.sheetnames) > 1:
-            for i in self.wb.sheetnames:
-                if i == varSheetName:
-                    del self.wb[i]
-                    self.save()
-        else:
-            print("[warning], excel必须保留1个工作表！")
-
-    def save(self):
-
-        '''
-        1.9 保存
-        '''
-
-        self.wb.save(self.file)
-
-        # try:
-        #     self.wb.save(self.file)
-        # except PermissionError:
-        #     print("没有足够的权限保存文件，请检查权限。")
-        # except FileNotFoundError:
-        #     print("文件路径不存在，请检查路径是否正确。")
-        # except Exception as e:
-        #     print(f"发生未知错误：{e}")
-
-
-    def renameSheet(self, varOldSheet, varNewSheet):
-
-        "1.10 重命名工作表"
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheetName, str):
+            raise ValueError("varSheetName 必须是字符串")
+        if not isinstance(varIndex, int):
+            raise ValueError("varIndex 必须是整数")
+        if not isinstance(overwrite, bool):
+            raise ValueError("overwrite 必须是布尔值")
 
         try:
-            ws = self.wb[varOldSheet]
-            ws.title = varNewSheet
+            # 检查工作表是否已存在
+            sheet_exists = varSheetName in self.wb.sheetnames
+
+            # 根据 overwrite 参数决定是否删除已有工作表
+            if overwrite and sheet_exists:
+                del self.wb[varSheetName]
+                print(f"[INFO] 已删除已存在的工作表: {varSheetName}")
+
+            # 如果工作表不存在或允许覆盖，则创建新工作表
+            if not sheet_exists or overwrite:
+                self.wb.create_sheet(title=varSheetName, index=varIndex)
+                print(f"[INFO] 已成功添加工作表: {varSheetName}，位置索引: {varIndex}")
+            else:
+                print(f"[WARNING] 工作表 '{varSheetName}' 已存在且未启用覆盖模式，跳过创建。")
+
+            # 保存更改
             self.save()
-        except Exception as e :
-            # print("[ERROR] => renameSheet() => " + str(e))
-            Color_PO.consoleColor("31", "31", "[ERROR] => renameSheet() => " + str(e), '')
+
+        except Exception as e:
+            raise IOError(f"添加工作表失败: {e}") from e
+
+    def delSheet(self, varSheetName):
+        """
+        1.7 删除工作表（优化版）
+
+        :param varSheetName: 要删除的工作表名称，必须是字符串
+        :raises ValueError: 如果参数不合法或工作表不存在
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheetName, str):
+            raise ValueError("varSheetName 必须是字符串")
+
+        try:
+            # 检查工作表是否存在
+            if varSheetName not in self.wb.sheetnames:
+                raise ValueError(f"工作表 '{varSheetName}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+
+            # 检查是否只剩一个工作表
+            if len(self.wb.sheetnames) <= 1:
+                raise ValueError("[WARNING] Excel 文件必须保留至少一个工作表，无法删除最后一个工作表。")
+
+            # 删除工作表
+            del self.wb[varSheetName]
+            self.save()
+
+            # 日志输出
+            print(f"[INFO] 已成功删除工作表: {varSheetName}")
+
+        except ValueError as ve:
+            raise ValueError(f"参数错误: {ve}") from ve
+        except Exception as e:
+            raise IOError(f"删除工作表失败: {e}") from e
+
+    def renameSheet(self, varOldSheet, varNewSheet):
+        """
+        1.8 重命名工作表（优化版）
+
+        :param varOldSheet: 原工作表名称或索引，必须是字符串或整数
+        :param varNewSheet: 新工作表名称，必须是字符串
+        :raises ValueError: 如果参数不合法或工作表不存在
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varOldSheet, (int, str)):
+            raise ValueError("varOldSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(varNewSheet, str):
+            raise ValueError("varNewSheet 必须是字符串")
+
+        try:
+            # 获取目标工作表对象
+            ws = self.sh(varOldSheet)
+
+            # 检查新名称是否与现有工作表冲突
+            if varNewSheet in self.wb.sheetnames:
+                raise ValueError(f"工作表 '{varNewSheet}' 已存在，无法重命名为相同名称。")
+
+            # 执行重命名操作
+            ws.title = varNewSheet
+
+            # 保存更改
+            self.save()
+
+            # 日志输出
+            print(f"[INFO] 已成功将工作表 '{varOldSheet}' 重命名为 '{varNewSheet}'")
+
+        except KeyError:
+            raise ValueError(f"工作表 '{varOldSheet}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+        except ValueError as ve:
+            raise ValueError(f"参数错误: {ve}") from ve
+        except Exception as e:
+            raise IOError(f"重命名工作表失败: {e}") from e
 
 
-    # todo [设置]
 
-    def insertNullRows(self, seq, moreRow=1, varSheet=0):
+    # todo [操作数据]
 
-        '''
-        2.0.1 在第N行前插入多行空白
-        :param seq:
-        :param moreRow:
-        :param varSheet:
-        :return:
-        insertNullRows(3)  在第3行前插入1行空白
-        insertNullRows(3，5)  在第3行前插入5行空白
-        '''
+    def insertNullRow(self, varRow, varStep=1, varSheet=0):
+        """
+        2.0 在第N行前插入多行空白（优化版）
 
-        sh = self.sh(varSheet)
-        sh.insert_rows(idx=seq, amount=moreRow)
-        self.save()
+        insertNullRow(3)  在第3行前插入1行空白
+        insertNullRow(3，5)  在第3行前插入5行空白
 
-    def insertNullCols(self, varCol, moreCol=1, varSheet=0):
+        :param varRow: 插入位置的行号，必须是大于0的整数
+        :param varStep: 插入的行数，默认为1，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varRow, int) or varRow <= 0:
+            raise ValueError("seq 必须是大于0的整数")
+        if not isinstance(varStep, int) or varStep <= 0:
+            raise ValueError("moreRow 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        '''
-        2.0.2 在第N列前插入多列空白
-        :param seq:
-        :param moreRow:
-        :param varSheet:
-        :return:
-        insertNullCols(3)  在第3列前插入1列空白
-        insertNullCols(3，5)  在第3列前插入5列空白
-        '''
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        sh = self.sh(varSheet)
-        if isinstance(varCol, int):
-            sh.insert_cols(idx=varCol, amount=moreCol)
-        else:
-            sh.insert_cols(idx=column_index_from_string(varCol), amount=moreCol)
-        self.save()
+            # 执行插入操作
+            sh.insert_rows(idx=varRow, amount=varStep)
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"插入空白行失败: {e}") from e
+
+    def insertNullCol(self, varCol, varStep=1, varSheet=0):
+        """
+        2.1 在第N列前插入多列空白（优化版）
+
+        insertNullCol(3)  在第3列前插入1列空白
+        insertNullCol(3，5)  在第3列前插入5列空白
+
+        :param varCol: 插入位置的列号或列字母，必须是大于0的整数或有效列字母
+        :param varStep: 插入的列数，默认为1，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+
+        # 参数校验
+        if not isinstance(varCol, (int, str)):
+            raise ValueError("varCol 必须是整数或字符串")
+        if isinstance(varCol, int) and varCol <= 0:
+            raise ValueError("varCol 必须是大于0的整数")
+        if isinstance(varCol, str) and not varCol.isalpha():
+            raise ValueError("varCol 必须是有效的列字母")
+        if not isinstance(varStep, int) or varStep <= 0:
+            raise ValueError("moreCol 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(varCol, str):
+                varCol = column_index_from_string(varCol)
+
+            # 执行插入操作
+            sh.insert_cols(idx=varCol, amount=varStep)
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"插入空白列失败: {e}") from e
 
     def setCell(self, varRow, varCol, varContent, varSheet=0):
+        """
+        2.2 设置单元格（优化版）
 
-        # 2.1 设置单元格值
-        # e.g.setCell(2,"b","123")  # 将第二行B列的值改为123
-        sh = self.sh(varSheet)
-        if isinstance(varCol, str):
-            varCol = column_index_from_string(varCol)  # 将'B'转换成2
-        sh.cell(row=varRow, column=varCol, value=varContent)
-        # self.save()
+        :param varRow: 行号，必须是大于0的整数
+        :param varCol: 列号（整数）或列字母（字符串），必须合法
+        :param varContent: 单元格内容，可为任意类型
+        :param varSheet: 工作表索引（int）或名称（str），默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varRow, int) or varRow <= 0:
+            raise ValueError("varRow 必须是大于0的整数")
+        if not isinstance(varCol, (int, str)):
+            raise ValueError("varCol 必须是整数或字符串")
+        if isinstance(varCol, str) and not varCol.isalpha():
+            raise ValueError("varCol 必须是有效的列字母")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(varCol, str):
+                varCol = column_index_from_string(varCol)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if varRow > max_row:
+                raise ValueError(f"行号 {varRow} 超出范围，最大行数为 {max_row}")
+            if varCol > max_col:
+                raise ValueError(f"列号 {varCol} 超出范围，最大列数为 {max_col}")
+
+            # 设置单元格值
+            sh.cell(row=varRow, column=varCol, value=varContent)
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置单元格值失败: {e}") from e
+
+    def insertRow(self, d_rowNumber_l_value, varSheet=0):
+        """
+        2.3 插入行数据（优化版）
+
+        :param d_var: 行数据字典，键为行号（整数），值为行内容（列表）
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+
+        # 参数校验
+        if not isinstance(d_rowNumber_l_value, dict):
+            raise ValueError("d_var 必须是一个字典")
+        if not all(isinstance(k, int) and isinstance(v, list) for k, v in d_rowNumber_l_value.items()):
+            raise ValueError("d_var 的键必须是整数，值必须是列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 插入空白行
+            for k in d_rowNumber_l_value.keys():
+                self.insertNullRow(k, varSheet=varSheet)
+
+            # 设置行数据
+            self.setRows(d_rowNumber_l_value, varSheet=varSheet)
+
+            # 保存文件
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"插入行数据失败: {e}") from e
+
+    def setRows(self, d_rowNumber_l_value, varSheet=0):
+        """
+        2.4 更新行数据（优化版）
+
+        :param d_var: 行数据字典，键为行号（整数），值为行内容（列表）
+        :param varSheet: 工作表索引（int）或名称（str），默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(d_rowNumber_l_value, dict):
+            raise ValueError("d_var 必须是一个字典")
+        if not all(isinstance(k, int) and isinstance(v, list) for k, v in d_rowNumber_l_value.items()):
+            raise ValueError("d_var 的键必须是整数，值必须是列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 更新行数据
+            for k, v in d_rowNumber_l_value.items():
+                for i in range(len(v)):
+                    if v[i] is not None:
+                        sh.cell(row=k, column=i + 1, value=str(v[i]))
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"更新行数据失败: {e}") from e
+
+    def appendRows(self, l_l_value, varSheet=0):
+        """
+        2.5 追加行数据（优化版）
+
+        :param l_l_rows: 行数据列表，每个元素为一个列表，表示一行数据
+        :param varSheet: 工作表索引（int）或名称（str），默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_l_value, list):
+            raise ValueError("l_l_rows 必须是一个列表")
+        if not all(isinstance(row, list) for row in l_l_value):
+            raise ValueError("l_l_rows 中的每个元素必须是一个列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 追加行数据
+            for row_data in l_l_value:
+                sh.append(row_data)
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"追加行数据失败: {e}") from e
+
+    def insertCol(self, d_col_l_value, varSheet=0):
+        """
+        2.6 插入列数据（优化版）
+
+        insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
+        insertCol({1: ["姓名", "张三", "李四"], 3: ["年龄", "55", "34"]})
+
+        :param d_var: 列数据字典，键为列号（整数）或列字母（字符串），值为列内容（列表）
+        :param varSheet: 工作表索引（int）或名称（str），默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(d_col_l_value, dict):
+            raise ValueError("d_var 必须是一个字典")
+        if not all(isinstance(k, (int, str)) and isinstance(v, list) for k, v in d_col_l_value.items()):
+            raise ValueError("d_var 的键必须是整数或字符串，值必须是列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引并排序（去重）
+            col_indices = []
+            for col in d_col_l_value.keys():
+                if isinstance(col, str):
+                    col = column_index_from_string(col)
+                col_indices.append(col)
+            col_indices = sorted(set(col_indices))
+
+            # 插入空白列
+            for col in col_indices:
+                sh.insert_cols(idx=col, amount=1)
+
+            # 设置列数据
+            for k, v in d_col_l_value.items():
+                col_idx = column_index_from_string(k) if isinstance(k, str) else k
+                for i in range(len(v)):
+                    if v[i] is not None:
+                        sh.cell(row=i + 1, column=col_idx, value=v[i])
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"插入列数据失败: {e}") from e
+
+    def setCols(self, d_col_l_value, varSheet=0):
+        """
+        2.8 更新列数据（优化版）
+
+        setCols({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
+        setCols({1: ["公司", "百度"], 4: ["学校", "清华大学"]})
+
+        :param d_var: 列数据字典，键为列号（整数）或列字母（字符串），值为列内容（列表）
+        :param varSheet: 工作表索引（int）或名称（str），默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(d_col_l_value, dict):
+            raise ValueError("d_var 必须是一个字典")
+        if not all(isinstance(k, (int, str)) and isinstance(v, list) for k, v in d_col_l_value.items()):
+            raise ValueError("d_var 的键必须是整数或字符串，值必须是列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 设置列数据
+            for k, v in d_col_l_value.items():
+                col_idx = column_index_from_string(k) if isinstance(k, str) else int(k)
+                for i in range(len(v)):
+                    if v[i] is not None:
+                        sh.cell(row=i + 1, column=col_idx, value=v[i])
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置列数据失败: {e}") from e
+
+    def appendCols(self, l_l_value, varSheet=0):
+        """
+        2.9 追加列数据（优化版）
+
+        :param l_l_cols: 列数据列表，每个元素为一个列表，表示一列数据
+        :param varSheet: 工作表索引（int）或名称（str），默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_l_value, list):
+            raise ValueError("l_l_cols 必须是一个列表")
+        if not all(isinstance(col, list) for col in l_l_value):
+            raise ValueError("l_l_cols 中的每个元素必须是一个列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 获取当前总列数
+            total_cols = sh.max_column
+
+            # 构建列字母与数据的映射
+            col_mapping = {
+                get_column_letter(total_cols + i + 1): col_data
+                for i, col_data in enumerate(l_l_value)
+            }
+
+            # 设置列数据
+            self.setCols(col_mapping, varSheet)
+
+        except Exception as e:
+            raise IOError(f"追加列数据失败: {e}") from e
 
 
-    def insertRows(self, d_var, varSheet=0):
-
-        '''2.2 插入行数据'''
-
-        for k, v in d_var.items():
-            self.insertNullRows(int(k), varSheet=varSheet)
-        self.setRows(d_var, varSheet=varSheet)
-        self.save()
-
-    def setRows(self, d_var, varSheet=0):
-
-        '''
-        # 2.3 更新行数据
-        # Openpyxl_PO.setRows({7:[1,2,3],8:["44",66]})  # 更新第7、8行内容
-        # Openpyxl_PO.setRows({7: ["你好", 12345, "7777"], 8: ["44", None, "777777777"]}, -1)  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
-        :param d_var:
-        :param varSheet:
-        :return:
-        '''
-
-        sh = self.sh(varSheet)
-        for k, v in d_var.items():
-            for i in range(len(v)):
-                if v[i] != None:
-                    sh.cell(row=k, column=i + 1, value=str(v[i]))
-        self.save()
-
-    def appendRows(self, l_l_rows, varSheet=0):
-
-        '''
-        2.4 追加行数据
-        appendRows([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
-        :param l_l_rows:
-        :param varSheet:
-        :return:
-        '''
-
-        sh = self.sh(varSheet)
-        for r in range(len(l_l_rows)):
-            sh.append(l_l_rows[r])
-        self.save()
-
-
-    def insertCols(self, d_var, varSheet=0):
-
-        '''
-        2.5 插入列数据".center(100, "-"))
-        Openpyxl_PO.insertCols({1: ["姓名", "张三", "李四"], 5: ["年龄", "55", "34"]})
-        :param d_var:
-        :param varSheet:
-        :return:
-        '''
-
-        for k, v in d_var.items():
-            self.insertNullCols(k, varSheet=varSheet)
-        self.setCols(d_var, varSheet=varSheet)
-
-    def setCols(self, d_var, varSheet=0):
-
-        # 2.3 设置整列值
-        # Openpyxl_PO.setCols({"A": ["k1", 666, "777"], "F": ["name", None, "888"]}, -1)
-        # Openpyxl_PO.setCols({3: ["k1", 666, "777"], 4: ["name", None, "888"]}, -1)
-        sh = self.sh(varSheet)
-        for k, v in d_var.items():
-            for i in range(len(v)):
-                if v[i] != None and k.isalpha():
-                    sh.cell(row=i + 1, column=column_index_from_string(k), value=v[i])
-                elif v[i] != None and k.isdigit():
-                    sh.cell(row=i + 1, column=int(k), value=v[i])
-        self.save()
-
-    def appendCols(self, l_l_cols, varSheet=0):
-
-        '''
-        2.7 追加列数据
-        :param l_l_cols:
-        :param varSheet:
-        :return:
-        '''
-        l_colLetter = []
-        l_row_col = self.getL_shape(varSheet=varSheet)
-        totalCol = l_row_col[1]
-        for i in range(len(l_l_cols)):
-            l_colLetter.append(get_column_letter(totalCol+i+1))
-        # print(l_colLetter)
-        # d = List_PO.twoList2dict(l_colLetter, l_l_cols)
-        d = (dict(zip(l_colLetter, l_l_cols)))
-        self.setCols(d)
 
     def setColWidth(self, col, colQty, varSheet=0):
 
@@ -2234,7 +2529,7 @@ if __name__ == "__main__":
 
 
     # print("2.0.1 在第N行前插入多行空白".center(100, "-"))
-    # Openpyxl_PO.insertNullRows(5)  # 在第5行前插入一行空白
+    # Openpyxl_PO.insertNullRow(5)  # 在第5行前插入一行空白
 
     # print("2.0.2 在第N列前插入多列空白".center(100, "-"))
     # Openpyxl_PO.insertCols(3)  # 在第3列前插入1列空白， 等同于 insertCols(3, 1)
@@ -2245,7 +2540,7 @@ if __name__ == "__main__":
     # Openpyxl_PO.setCell(1, 3, "hello")
 
     # print("2.2 插入行数据".center(100, "-"))
-    # Openpyxl_PO.insertRows({2: ["金浩", "101", "102"]}, "Sheet1")
+    # Openpyxl_PO.insertRow({2: ["金浩", "101", "102"]}, "Sheet1")
 
     # print("2.3 更新行数据".center(100, "-"))
     # Openpyxl_PO.setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
@@ -2453,7 +2748,7 @@ if __name__ == "__main__":
     # print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
     # Openpyxl_PO2 = OpenpyxlPO("./data/loanStats2.xlsx")
-    print(Openpyxl_PO.setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
+    # print(Openpyxl_PO.setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
 
     # # print("5.2 对一张表的两个sheet进行数据比对，差异数据标注颜色 ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")

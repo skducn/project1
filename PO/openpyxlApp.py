@@ -7,68 +7,108 @@
 # https://foss.heptapod.net/openpyxl/openpyxl/-/issues
 # https://www.cnblogs.com/MrLJC/p/3715783.html
 # http://www.cnblogs.com/jane0912/p/4195253.html
-#  https://www.cnblogs.com/zhoujie/p/python18.html
+# https://www.cnblogs.com/zhoujie/p/python18.html
 # https://blog.csdn.net/samed/article/details/49936409
 
 # *********************************************************************
 
 from PO.OpenpyxlPO import *
 
-# todo 文件，工作表
-# 打开文件（文件不存在则创建文件，默认Sheet1）
-# Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/7.xlsx")
-# Openpyxl_PO = OpenpyxlPO("./data/7.xlsx")
-Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/flask/chc/chcRuleCase1.11.xlsx")
-l_sheet = Openpyxl_PO.getSheets()
-print(l_sheet)
-l_tmp = []
-for i in l_sheet:
-    print(i, Openpyxl_PO.getOneRow(1,varSheet=i))
-    l_title = (Openpyxl_PO.getOneRow(1,varSheet=i))
-    if len(l_title) > 6 :
-        if l_title[0] == 'result' and l_title[1] == 'updateDate' and l_title[2] == 'step' and l_title[3] == 'rule' and l_title[4] == 'case' and l_title[5] == 'ruleParam':
-            l_tmp.append(i)
-
-print(l_tmp)
-
-# Openpyxl_PO = OpenpyxlPO(r"/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx",['Sheet2','Sheet3'])
-
-# Openpyxl_PO.sh("Sheet2")
-# Openpyxl_PO.switchSheet("Sheet2")
-
-# Openpyxl_PO.setCell(12, 'B', "hello")
-Openpyxl_PO.save()
-
-# df = pd.DataFrame(pd.read_excel("./data/7.xlsx"))
-# df.to_excel("./data/7.xlsx", index=False, header=None)
-
-
-# Openpyxl_PO.renameSheet("Sheet1", "444")
-# Openpyxl_PO.addCoverSheet("mysheet1")
-# Openpyxl_PO.open('Sheet3')
-# Openpyxl_PO.open()
-
+# todo [工作表]
+# 1.1 新建 Openpyxl_PO = OpenpyxlPO("1212.xlsx")
+# 		Openpyxl_PO = OpenpyxlPO("1212.xlsx",l_sheet=['Sheet1','Sheet2','Sheet3'])
+# 1.2 打开 open()
+# 1.3 保存 save()
+# 1.4 工作表 sh()
+# 1.5 获取工作表 getL_sheet()
+# 1.6 切换工作表 switchSheet("Sheet2")
+# 1.7 添加工作表 addSheet("Sheet1", overwrite=True)
+# 1.8 删除工作表 delSheet("Sheet1")
+# 1.9 重命名工作表 renameSheet("sheet1", "sheet2")
 
 # print("1.1 新建".center(100, "-"))
-# Openpyxl_PO.newExcel("./OpenpyxlPO/newfile2.xlsx", ["mySheet1", "mySheet2", "mySheet3"])  # 新建excel，生成三个工作表（mySheet1,mySheet2,mySheet3），默认定位在第一个mySheet1表。
-# Openpyxl_PO.newExcel("d://t44.xlsx", ["mySheet661", "mySheet552", "mySheet32"])  # 新建excel，生成三个工作表（mySheet1,mySheet2,mySheet3），默认定位在第一个mySheet1表。
+Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx")
+# Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/1212.xlsx", l_sheet=['Sheet1','Sheet2','Sheet3'])
 
 # print("1.2 打开".center(100, "-"))
-# Openpyxl_PO.open(1)  # 打开第二个工作表
-# Openpyxl_PO.open() # 打开第一个工作表
-# Openpyxl_PO.open('test')  # 打开test工作表
-
-# print("1.6 添加工作表(不覆盖)".center(100, "-"))
-# Openpyxl_PO.addSheet("saasuser1")
-
-# print("1.7 添加工作表(覆盖)".center(100, "-"))
-# Openpyxl_PO.addCoverSheet("Sheet0", 0)    # 第一个位置添加工作表
-# Openpyxl_PO.addCoverSheet("Sheet100", 100)    # 第100个位置添加工作表  //当index足够大时，则在最后一个位置添加工作表
 # Openpyxl_PO.open()
 
+# print("1.3 保存".center(100, "-"))
+# Openpyxl_PO.save()
+
+# print("1.5 获取工作表".center(100, "-"))
+# Openpyxl_PO.getL_sheet()
+
+# print("1.7 添加工作表".center(100, "-"))
+# Openpyxl_PO.addSheet("Sheet1", overwrite=True)
+# Openpyxl_PO.addSheet("Sheet1", overwrite=False)
+
 # print("1.8 删除工作表".center(100, "-"))
-# Openpyxl_PO.delSheet("Sheet1")
-# Openpyxl_PO.delSheet("mySheet1")
+# Openpyxl_PO.delSheet("test")
+
+# print("1.9 重命名工作表".center(100, "-"))
+# Openpyxl_PO.renameSheet("hello", "test")
+
+
+# todo [操作数据]
+# 2.0 在第N行前插入多行空白（优化版）
+# 	insertNullRow(3)  在第3行前插入1行空白
+# 	insertNullRow(3，5)  在第3行前插入5行空白
+# 2.1 在第N列前插入多列空白（优化版）
+# 	insertNullCol(3) 在第3列前插入1列空白
+# 	insertNullCol(3,5)  在第3列前插入5列空白
+# 2.2 设置单元格
+# 	setCell(1, 2, "hello") # 将第一行B列写入hello
+# 	setCell(1, 'B', "john") # 将第一行第三列写入john
+#
+# 2.3 插入行数据 insertRow({2: ["金浩", "101", "102"]})
+# 2.4 更新行数据 setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
+# 2.5 追加行数据 appendRows([['姓名', '电话'], ['毛泽东', 15266606298]])
+#
+# 2.6 插入列数据 insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
+# 2.7 更新列数据 setCols({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
+# 2.8 追加列数据 appendCols([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
+#
+# 4.1 清空行 clsRow(2)  # 清空第2行
+# 4.2 清空列 clsCol(2)  # 清空第2列
+# 4.2.1 清空列保留标题 clsColRetainTitle(2)  # 清空第2列
+# 4.3 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
+# 4.4 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
+# 6 移动区域 moveValues(rows, cols, 'C1:D2')
+# 7 将excel中标题（第一行字段）排序（从小打大）sortFields()
+
+# print("2.0 在第N行前插入多行空白".center(100, "-"))
+# Openpyxl_PO.insertNullRow(3)  # 在第3行前插入1行空白
+# Openpyxl_PO.insertNullRow(3, 5)  # 在第3行前插入5行空白
+
+# print("2.1 在第N列前插入多列空白".center(100, "-"))
+# Openpyxl_PO.insertNullCol(3)  # 在第3列前插入1列空白
+# Openpyxl_PO.insertNullCol(3, 5)  # 在第3列前插入5列空白
+
+# print("2.2 更新单元格".center(100, "-"))
+# Openpyxl_PO.setCell(1, 'B', "hello") # 将第一行B列写入hello
+# Openpyxl_PO.setCell(1, 3, "john") # 将第一行第三列写入john
+
+# print("2.3 插入行数据".center(100, "-"))
+# Openpyxl_PO.insertRow({2: ["金浩", "101", "102"]})
+
+# print("2.4 更新行数据".center(100, "-"))
+# Openpyxl_PO.setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
+
+# print("2.5 追加行数据".center(100, "-"))
+# Openpyxl_PO.appendRows([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
+
+# print("2.6 插入列数据".center(100, "-"))
+# Openpyxl_PO.insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
+# Openpyxl_PO.insertCol({2: ["姓名", "张三", "李四"], 3: ["年龄2", "552", "343"]})
+
+# print("2.7 更新列数据".center(100, "-"))
+# Openpyxl_PO.setCols({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})
+# Openpyxl_PO.setCols({1: [None, "k1", 1212, "777"], 3: [None, "888", None, "56789"]})
+
+# print("2.8 追加列数据".center(100, "-"))
+# Openpyxl_PO.appendCols([["test", "张三", "李四"], ["dev", "55", "34"]])
+
 
 # print("2.0.1 在第N行前插入多行空白".center(100, "-"))
 # Openpyxl_PO.insertNullRows(5)  # 在第5行前插入一行空白
