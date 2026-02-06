@@ -18,24 +18,27 @@
 # numberic 数字型 = python中的float
 # string 字符串型 = python中的unicode
 
-
-# todo: 使用方法
+# 使用方法
 # 参考：openpyxl常用模块用法 https://www.debug8.com/python/t_41519.html
 # 基础使用方法：https://blog.csdn.net/four91/article/details/106141274
 # 高级使用方法：https://blog.csdn.net/m0_47590417/article/details/119082064
-# todo: 安装包
+
+# 安装包
 # pip3 install openpyxl == 3.0.0
 # 注意！：其他版本（如3.0.2使用中会报错）如有报错，请安装3.0.0
-# todo: 报错
+
+# 报错
 # 如：File "src\lxml\serializer.pxi", line 1652, in lxml.etree._IncrementalFileWriter.write TypeError: got invalid input value of type <类与实例 'xml.etree.ElementTree.Element'>, expected string or Element
 # 解决方法: pip uninstall lxml   及更新 openpyxl 版本，3.0.7以上
-# todo: 乱码
+
+# 乱码
 # gb2312 文字编码，在读取后会显示乱码，需转换成 Unicode
-# todo: 颜色
+
+# 颜色
 # 颜色码对照表（RGB与十六进制颜色码互转） https://www.sioe.cn/yingyong/yanse-rgb-16/
 # 绿色 = 00E400，黄色 = FFFF00，橙色 = FF7E00，红色 = FF0000，粉色 = 99004C，褐色 =7E0023,'c6efce = 淡绿', '006100 = 深绿'，'ffffff=白色', '000000=黑色'，'ffeb9c'= 橙色
 
-# todo: 表格列 A，B，C 与 1，2，3 互转
+# 表格列 A，B，C 与 1，2，3 互转
 from openpyxl.utils import get_column_letter, column_index_from_string
 # get_column_letter(2)  # 'B'
 # a = column_index_from_string('B')  # 2
@@ -88,46 +91,49 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 2.17 设置整列(可间隔)背景色  setColColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
 2.18 设置工作表背景颜色 setSheetColor("FF0000")
 
-3.1 获取总行列数 getTotalRowCol()  # [5,10]
+3.1 获取总行列数 getL_shape()  # [5,10]
 3.2 获取单元格的值 getCell(3,2)
-3.3 获取一行数据 getOneRow(2) # 获取第2行值
-3.4 获取一列数据 getOneCol(2) 或 getOneCol('B') # 获取第2列值
-3.5.1 获取行数据 getRow()  # [['状态', '名字'],['ok', 'jinhao']...]
-3.5.2 获取带行号的行数据 getRowBySeq()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
-3.5.3 获取部分列的行数据 getRowByCol([1, 3])  # 获取第1，3列的行数据 [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25]...]
-    支持序号与字母混搭 getRowByCol(["A", "C"])， getRowByCol([2, "C"])
-    支持去重 getRowByCol([1, 3, 2, "a", "C", "B"])
-3.5.4 获取带行号的部分列的行数据 getRowByColSeq([1, 3])  # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25]...}
-     getRowByColSeq([1, 'c']) 同上  
+3.3 获取一行数据 getL_row(2) # 获取第2行值
+3.4 获取一列数据 getL_col(2) 或 getL_col('B') # 获取第2列值
+3.5.1 获取行数据 getLL_row()  # [['状态', '名字'],['ok', 'jinhao']...]
+3.5.2 获取带行号的行数据 getD_rowNumber_row()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
+3.5.3 获取部分列的行数据 getLL_rowOfPartialCol([1, 3])  # 获取第1，3列的行数据 [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25]...]
+    支持序号与字母混搭 getLL_rowOfPartialCol(["A", "C"])， getLL_rowOfPartialCol([2, "C"])
+    支持去重 getLL_rowOfPartialCol([1, 3, 2, "a", "C", "B"])
+3.5.4 获取带行号的部分列的行数据 getD_rowNumber_rowOfpartialCol([1, 3])  # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25]...}
+     getD_rowNumber_rowOfpartialCol([1, 'c']) 同上  
+3.6.1 获取每列数据 getLL_col()
+3.6.2 获取带列序号的每列数据 getD_colNumber_col()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
+3.6.3 获取带列字母的每列数据 getD_colLetter_col()  # { 'a' : ['状态', '名字'], 'b' : ['ok', 'jinhao']...}
+3.8.1 获取标题的序号 getL_columnHeaderNumber(['测试'，‘开发’])  # [2，4]
+3.8.2 获取标题的字母 getL_columnHeaderLetter(['测试'，‘开发’])  # ['A', 'C']
+3.8.3 将标题转列字典序列 getD_colNumber_columnTitle（['测试'，‘开发’]）# {2: '姓名', 5: '性别'}
+3.8.4 将标题转列字典字母 getD_colLetter_columnTitle（['测试'，‘开发’]）# {'B': '姓名', 'E': '性别'}
 
-3.6.1 获取每列数据 getCol()
-3.6.2 获取带列序号的每列数据 getColBySeq()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
-3.6.3 获取带列字母的每列数据 getColByLetter()  # { 'a' : ['状态', '名字'], 'b' : ['ok', 'jinhao']...}
-
-	
-3.8.1 获取标题的序号 getTitleColSeq(['测试'，‘开发’])  # [2，4]
-3.8.2 获取标题的字母 getTitleColLetter(['测试'，‘开发’])  # ['A', 'C']
-3.8.3 将标题转列字典序列 title2dictSeq（['测试'，‘开发’]）# {2: '姓名', 5: '性别'}
-3.8.4 将标题转列字典字母 title2dictLetter（['测试'，‘开发’]）# {'B': '姓名', 'E': '性别'}
-
-3.9 获取部分列的列值(可忽略多行) getColByPartialColByUnwantedRow([1, 3], [1, 2]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
-3.10 获取单元格的坐标 getCellCoordinate(2, 5))   # E2
+3.9 获取部分列的列值(可忽略多行) getLL_partialColOfPartialCol([1, 3], [1, 2]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
+3.10 获取单元格的坐标 getCoordinate(2, 5))   # E2
 3.11 获取所有数据的坐标 getDimensions())  # A1:E17
-
 
 4.1 清空行 clsRow(2)  # 清空第2行
 4.2 清空列 clsCol(2)  # 清空第2列
 4.2.1 清空列保留标题 clsColRetainTitle(2)  # 清空第2列
-4.3 删除连续行 delSeriesRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
-4.4 删除连续列 delSeriesCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
+4.3 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
+4.4 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
 
-
-5.1 两表比较，获取差异内容（两表标题与行数必须一致）getDiffValueByCmp(Openpyxl_PO.getRow("Sheet2"), Openpyxl_PO2.getRow("Sheet2"))
+5.1 两表比较，获取差异内容（两表标题与行数必须一致）setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2"))
 5.2 两工作表比较，对差异内容标注颜色 setColorByDiff("Sheet1", "Sheet2")
- 
-6 移动范围数据 moveValue(rows, cols, 'C1:D2')
+
+6 移动区域 moveValues(rows, cols, 'C1:D2')
 
 7 将excel中标题（第一行字段）排序（从小打大）sortFields()
+
+8 [转换]
+8.1 字典转xlsx  dict2xlsx()
+8.2 字典转csv  dict2csv()
+8.3 pdf中表格转xlsx pdf2xlsx()
+8.4 xlsx转列表 xlsx2list()
+8.5 xlsx转字典 xlsx2dict()
+
 
 """
 
@@ -137,7 +143,8 @@ from time import sleep
 import psutil
 # import xlwings as xw
 
-import openpyxl, platform, os
+import openpyxl, platform, os, pdfplumber
+import numpy as np
 # import openpyxl.styles
 from openpyxl.styles import (Font, PatternFill, GradientFill, Border, Side, Protection, Alignment)
 from openpyxl.utils import get_column_letter, column_index_from_string
@@ -496,7 +503,7 @@ class OpenpyxlPO:
         :return:
         '''
         l_colLetter = []
-        l_row_col = self.getTotalRowCol(varSheet=varSheet)
+        l_row_col = self.getL_shape(varSheet=varSheet)
         totalCol = l_row_col[1]
         for i in range(len(l_l_cols)):
             l_colLetter.append(get_column_letter(totalCol+i+1))
@@ -958,234 +965,632 @@ class OpenpyxlPO:
 
     # todo [获取]
 
-    def getTotalRowCol(self, varSheet=0):
+    def getL_shape(self, varSheet=0):
+        """
+        3.1 获取总行列数（优化版）
 
-        # 3.1 获取总行列数
-        # Openpyxl_PO.getTotalRowCol()  # [4,3] //返回第1个工作表的总行数和总列数
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 总行数和总列数组成的列表，如 [4, 3]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        sh = self.sh(varSheet)
-        return [sh.max_row, sh.max_column]
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 获取总行数和总列数
+            total_rows = sh.max_row
+            total_cols = sh.max_column
+
+            # 容错处理：如果工作表为空，返回默认值
+            if total_rows is None or total_cols is None:
+                return [0, 0]
+
+            return [total_rows, total_cols]
+
+        except Exception as e:
+            raise IOError(f"获取总行列数失败: {e}") from e
 
     def getCell(self, varRow, varCol, varSheet=0):
+        """
+        3.2 获取单元格的值（优化版）
 
-        # 3.2 获取单元格的值
+        :param varRow: 行号，必须是大于0的整数
+        :param varCol: 列号，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 单元格的值，如 "hello"
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varRow, int) or varRow <= 0:
+            raise ValueError("varRow 必须是大于0的整数")
+        if not isinstance(varCol, int) or varCol <= 0:
+            raise ValueError("varCol 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        sh = self.sh(varSheet)
-        return sh.cell(row=varRow, column=varCol).value
-
-
-    def getOneRow(self, varSeq, varSheet=0):
-
-        # 3.3 获取一行数据
-
-        if self.getTotalRowCol(varSheet)[0] > 1:
-            l_row = []
+        try:
+            # 获取工作表对象
             sh = self.sh(varSheet)
-            t_row = [r for r in sh.rows][varSeq-1]  # 获取此行的单元格值
-            # print((t_row))  # (<Cell 'Sheet'.A3>, <Cell 'Sheet'.B3>, <Cell 'Sheet'.C3>)
-            for cell in t_row:
-                l_row.append(cell.value)
-            return l_row  #  [10, 5, 10]
-        else:
-            return []
 
-    def getOneCol(self, varCol, varSheet=0):
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if varRow > max_row:
+                raise ValueError(f"行号 {varRow} 超出范围，最大行数为 {max_row}")
+            if varCol > max_col:
+                raise ValueError(f"列号 {varCol} 超出范围，最大列数为 {max_col}")
 
-        # 3.4 获取一列的值
+            # 获取单元格值
+            return sh.cell(row=varRow, column=varCol).value
 
-        l_col = []
-        sh = self.sh(varSheet)
-        if isinstance(varCol, str):
-            varCol = column_index_from_string(varCol)  # 2
-        t_col = [c for c in sh.columns][int(varCol)-1]  # 获取此列的单元格值
-        # print(t_col)  # (<Cell 'Sheet'.C1>, <Cell 'Sheet'.C2>, ...)
-        for cell in t_col:
-            l_col.append(cell.value)
-        return l_col  # ['山丘', 30, 25, 30, 10, 5, 10]
+        except Exception as e:
+            raise IOError(f"获取单元格值失败: {e}") from e
 
-    def getRow(self, varSheet=0):
+    def getL_row(self, varSeq, varSheet=0):
+        """
+        3.3 获取一行数据（优化版）
 
-        # 3.5.1 获取每行数据
+        :param varSeq: 行号，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 指定行的数据列表，如 [10, 5, 10]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSeq, int) or varSeq <= 0:
+            raise ValueError("varSeq 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        l_row = []  # 每行值
-        l_l_row = []  # 所有行值
-        sh = self.sh(varSheet)
-        # print(sh.rows)  # (<Cell 'Sheet'.A1>, <Cell 'Sheet'.B1>, <Cell 'Sheet'.C1>), (<Cell 'Sheet'.A2>, <Cell 'Sheet'.B2>, <Cell 'Sheet'.C2>), ...)
-        for row in list(sh.rows):
-            for i in range(len(row)):
-                l_row.append(row[i].value)
-            l_l_row.append(l_row)
-            l_row = []
-        return l_l_row
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-    def getRowBySeq(self, varSheet=0):
+            # 检查行号是否超出范围
+            total_rows = sh.max_row
+            if varSeq > total_rows:
+                raise ValueError(f"行号 {varSeq} 超出范围，最大行数为 {total_rows}")
 
-        # 3.5.2 获取带行号的每行数据
+            # 获取指定行数据
+            target_row = list(sh.rows)[varSeq - 1]
+            l_row = [cell.value for cell in target_row]
 
-        d_seq_row = {}
-        l_l_row = self.getRow(varSheet)
-        for i in range(len(l_l_row)):
-            d_seq_row[i + 1] = l_l_row[i]
-        return d_seq_row
+            return l_row
 
-    def getRowByCol(self, l_col, varSheet=0):
+        except Exception as e:
+            raise IOError(f"获取行数据失败: {e}") from e
 
-        # 3.5.3 获取部分列的行数据
-        #   获取部分列的行数据 getRowByCol([1, 2, 4])  # 获取第1，2，4列的行数据
-        # 	获取部分列的行数据 getRowByCol(["A", "C"])
-        # 	获取部分列的行数据 getRowByCol([2, "C"])
-        # 	获取部分列的行数据 getRowByCol([1, 3, 2, "a", "C", "B"])
+    def getL_col(self, varCol, varSheet=0, include_header=True):
+        """
+        3.4 获取一列的值（优化版）
 
-        l_row = []  # 每行的数据
-        l_l_row = []  # 所有的数据
+        :param varCol: 列标识，可以是整数（如2）或字符串（如'B'）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param include_header: 是否包含标题行，默认为True
+        :return: 指定列的数据列表，如 ['山丘', 30, 25, 30, 10, 5, 10]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varCol, (int, str)):
+            raise ValueError("varCol 必须是整数或字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(include_header, bool):
+            raise ValueError("include_header 必须是布尔值")
 
-        for i in range(len(l_col)):
-            if isinstance(l_col[i], int):
-                pass
-            else:
-                l_col[i] = column_index_from_string(l_col[i])
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        # 去重(先入为主，保留排前面的值，后面重复的值忽略，如 [1, 3, 5, 2, 1, 7, 27, 3] => [1, 3, 5, 2, 7, 27])
-        l_col = sorted(set(l_col), key=l_col.index)
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(varCol, str):
+                varCol = column_index_from_string(varCol)
 
-        sh = self.sh(varSheet)
-        for row in range(1, sh.max_row + 1):
+            # 获取列数据
+            col_data = [cell.value for cell in list(sh.columns)[varCol - 1]]
+
+            # 根据 include_header 参数决定是否包含标题行
+            if not include_header:
+                col_data = col_data[1:]  # 跳过第一行（标题行）
+
+            return col_data
+
+        except Exception as e:
+            raise IOError(f"获取列数据失败: {e}") from e
+
+    def getLL_row(self, varSheet=0, include_header=True):
+        """
+        3.5.1 获取每行数据（优化版）
+
+        :param varSheet: 工作表索引或名称，默认为0
+        :param include_header: 是否包含标题行，默认为True
+        :return: 每行数据组成的二维列表，如 [['Number具体数', '高地', 'jinhaoyoyo'], [2, 40, 30], ...]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(include_header, bool):
+            raise ValueError("include_header 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 根据 include_header 参数决定是否包含标题行
+            start_index = 0 if include_header else 1
+
+            # 构建每行数据
+            l_l_row = [
+                [cell.value for cell in row] for row in list(sh.rows)[start_index:]
+            ]
+
+            return l_l_row
+
+        except Exception as e:
+            raise IOError(f"获取行数据失败: {e}") from e
+
+    def getD_rowNumber_row(self, varSheet=0, include_header=True):
+        """
+        3.5.2 获取带行号的每行数据（优化版）
+
+        :param varSheet: 工作表索引或名称，默认为0
+        :param include_header: 是否包含标题行，默认为True
+        :return: 行号为键、行数据为值的字典，如 {1: ['Number具体数', '高地', 'jinhaoyoyo'], 2: [2, 40, 30], ...}
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(include_header, bool):
+            raise ValueError("include_header 必须是布尔值")
+
+        try:
+            # 获取所有行数据
+            l_l_row = self.getLL_row(varSheet)
+            if not l_l_row:
+                raise ValueError("工作表中没有数据")
+
+            # 根据 include_header 参数决定是否包含标题行
+            start_index = 0 if include_header else 1
+
+            # 构建行号到行数据的映射
+            d_seq_row = {
+                i + 1: l_l_row[i] for i in range(start_index, len(l_l_row))
+            }
+
+            return d_seq_row
+
+        except Exception as e:
+            raise IOError(f"获取行数据失败: {e}") from e
+
+    def getLL_rowOfPartialCol(self, l_col, varSheet=0):
+        """
+        3.5.3 获取部分列的行数据（优化版）
+
+        :param l_col: 需要获取的列标识列表，如 [1, 3] 或 ['A', 'C']
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 每行指定列的数据组成的二维列表，如 [['Number具体数', 'jinhaoyoyo'], [2, 30], ...]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_col, list) or not l_col:
+            raise ValueError("l_col 必须是一个非空列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            col_indices = []
             for col in l_col:
-                l_row.append(sh.cell(row, col).value)
-            l_l_row.append(l_row)
-            l_row = []
-        return l_l_row
+                if isinstance(col, str):
+                    col_indices.append(column_index_from_string(col))
+                elif isinstance(col, int):
+                    col_indices.append(col)
+                else:
+                    raise ValueError(f"列标识 '{col}' 类型不合法，应为整数或字符串")
 
-    def getRowByColSeq(self, l_col, varSheet=0):
+            # 去重（保留首次出现的值）
+            col_indices = sorted(set(col_indices), key=col_indices.index)
 
-        # 3.5.4 获取带行号的部分列的行数据
+            # 构建每行指定列的数据
+            l_l_row = [
+                [sh.cell(row, col).value for col in col_indices]
+                for row in range(1, sh.max_row + 1)
+            ]
 
-        d_seq_row = {}
-        l_l_col = self.getRowByCol(l_col, varSheet)
-        for i in range(len(l_l_col)):
-            d_seq_row[i + 1] = l_l_col[i]
-        return d_seq_row
+            return l_l_row
+
+        except Exception as e:
+            raise IOError(f"获取行数据失败: {e}") from e
+
+    def getD_rowNumber_rowOfpartialCol(self, l_col, varSheet=0):
+        """
+        3.5.4 获取带行号的部分列的行数据（优化版）
+
+        :param l_col: 需要获取的列标识列表，如 [1, 3] 或 ['A', 'C']
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 行号为键、行数据为值的字典，如 {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], ...}
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_col, list) or not l_col:
+            raise ValueError("l_col 必须是一个非空列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取部分列的行数据
+            l_l_col = self.getLL_rowOfPartialCol(l_col, varSheet)
+            if not l_l_col:
+                raise ValueError("工作表中没有数据")
+
+            # 构建行号到行数据的映射
+            d_seq_row = {i + 1: l_l_col[i] for i in range(len(l_l_col))}
+
+            return d_seq_row
+
+        except Exception as e:
+            raise IOError(f"获取行数据失败: {e}") from e
+
+    def getLL_col(self, varSheet=0, include_header=True):
+        """
+        3.6.1 获取每列数据（优化版）
+
+        :param varSheet: 工作表索引或名称，默认为0
+        :param include_header: 是否包含标题行，默认为True
+        :return: 每列数据组成的二维列表，如 [['age', 2, 12], ['city', 'shanghai', 'beijin']]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(include_header, bool):
+            raise ValueError("include_header 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 根据 include_header 参数决定是否包含标题行
+            start_index = 0 if include_header else 1
+
+            # 构建每列数据
+            l_l_col = [
+                [cell.value for cell in col][start_index:] for col in sh.columns
+            ]
+
+            return l_l_col
+
+        except Exception as e:
+            raise IOError(f"获取列数据失败: {e}") from e
+
+    def getD_colNumber_col(self, varSheet=0, include_header=True):
+        """
+        3.6.2 获取带列序号的每列数据（优化版）
+
+        :param varSheet: 工作表索引或名称，默认为0
+        :param include_header: 是否包含标题行，默认为True
+        :return: 列序号为键、列数据为值的字典，如 {1: ['age', 2, 12], 2: ['city', 'shanghai', 'beijin']}
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(include_header, bool):
+            raise ValueError("include_header 必须是布尔值")
+
+        try:
+            # 获取所有列数据
+            l_l_col = self.getLL_col(varSheet)
+            if not l_l_col:
+                raise ValueError("工作表中没有数据")
+
+            # 根据 include_header 参数决定是否包含标题行
+            start_index = 0 if include_header else 1
+
+            # 构建列序号到列数据的映射
+            d_seq_col = {
+                i + 1: l_l_col[i][start_index:] for i in range(len(l_l_col))
+            }
+
+            return d_seq_col
+
+        except Exception as e:
+            raise IOError(f"获取列数据失败: {e}") from e
+
+    def getD_colLetter_col(self, varSheet=0, include_header=True):
+        """
+        3.6.3 获取带列字母的每列数据（优化版）
+
+        :param varSheet: 工作表索引或名称，默认为0
+        :param include_header: 是否包含标题行，默认为True
+        :return: 列字母为键、列数据为值的字典，如 {'A': [1, 2, 3], 'B': ['a', 'b', 'c']}
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(include_header, bool):
+            raise ValueError("include_header 必须是布尔值")
+
+        try:
+            # 获取所有列数据
+            l_l_col = self.getLL_col(varSheet)
+            if not l_l_col:
+                raise ValueError("工作表中没有数据")
+
+            # 根据 include_header 参数决定是否包含标题行
+            start_index = 0 if include_header else 1
+
+            # 构建列字母到列数据的映射
+            d_seq_col = {
+                get_column_letter(i + 1): l_l_col[i][start_index:] for i in range(len(l_l_col))
+            }
+
+            return d_seq_col
+
+        except Exception as e:
+            raise IOError(f"获取列数据失败: {e}") from e
 
 
+    def getL_columnHeaderNumber(self, l_partialTitle, varSheet=0):
+        """
+        3.8.1 获取列标签的列标number（优化版）
 
-    def getCol(self, varSheet=0):
+        :param l_partialTitle: 部分标题列表，如 ['姓名', '性别']
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 标题对应的列序号列表，如 [1, 3]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_partialTitle, list):
+            raise ValueError("l_partialTitle 必须是一个列表")
+        if not all(isinstance(item, str) for item in l_partialTitle):
+            raise ValueError("l_partialTitle 中的所有元素必须是字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        # 3.6.1 获取每列数据
-        # print(Openpyxl_PO.getCol())
+        try:
+            # 获取第一行标题
+            l_title = self.getL_row(1, varSheet)
+            if not l_title:
+                raise ValueError("工作表中没有找到标题行")
 
-        l_col = []  # 每列值
-        l_l_col = []  # 所有数据
-        sh = self.sh(varSheet)
-        # print(sh.columns)  # <generator object Worksheet._cells_by_col at 0x7ff4849f6970>
-        for col in list(sh.columns):
-            for i in range(len(col)):
-                l_col.append(col[i].value)
-            l_l_col.append(l_col)
-            l_col = []
-        return l_l_col
+            # 构建标题到列索引的映射（使用字典加速查找）
+            title_to_index = {title: idx for idx, title in enumerate(l_title)}
 
-    def getColBySeq(self, varSheet=0):
+            # 查找匹配的标题并转换为列序号
+            result = []
+            for title in l_partialTitle:
+                if title in title_to_index:
+                    col_index = title_to_index[title] + 1  # 列索引从1开始
+                    result.append(col_index)
+                else:
+                    # 如果标题未找到，可以选择跳过或抛出警告
+                    print(f"[Warning] 标题 '{title}' 未在表格中找到")
 
-        # 3.6.2 获取带列序号的每列数据
+            return result
 
-        d_seq_col = {}
-        l_l_col = self.getCol(varSheet)
-        for i in range(len(l_l_col)):
-            d_seq_col[i + 1] = l_l_col[i]
-        return d_seq_col
+        except Exception as e:
+            raise IOError(f"获取标题列序号失败: {e}") from e
 
-    def getColByLetter(self, varSheet=0):
+    def getL_columnHeaderLetter(self, l_partialTitle, varSheet=0):
+        """
+        3.8.2 获取列标签的列标letter（优化版）
 
-        # 3.6.3 获取带列字母的每列数据
+        :param l_partialTitle: 部分标题列表，如 ['姓名', '性别']
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 标题对应的列字母列表，如 ['A', 'C']
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_partialTitle, list):
+            raise ValueError("l_partialTitle 必须是一个列表")
+        if not all(isinstance(item, str) for item in l_partialTitle):
+            raise ValueError("l_partialTitle 中的所有元素必须是字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        d_seq_col = {}
-        l_l_col = self.getCol(varSheet)
-        for i in range(len(l_l_col)):
-            d_seq_col[get_column_letter(i + 1)] = l_l_col[i]
-        return d_seq_col
+        try:
+            # 获取第一行标题
+            l_title = self.getL_row(1, varSheet)
+            if not l_title:
+                raise ValueError("工作表中没有找到标题行")
+
+            # 构建标题到列索引的映射（使用字典加速查找）
+            title_to_index = {title: idx for idx, title in enumerate(l_title)}
+
+            # 查找匹配的标题并转换为列字母
+            result = []
+            for title in l_partialTitle:
+                if title in title_to_index:
+                    col_index = title_to_index[title] + 1  # 列索引从1开始
+                    result.append(get_column_letter(col_index))
+                else:
+                    # 如果标题未找到，可以选择跳过或抛出警告
+                    print(f"[Warning] 标题 '{title}' 未在表格中找到")
+
+            return result
+
+        except Exception as e:
+            raise IOError(f"获取标题列字母失败: {e}") from e
+
+    def getD_colNumber_columnTitle(self, l_partialTitle, varSheet=0):
+        """
+        3.8.3 将标题转列字典序列（优化版）
+
+        :param l_partialTitle: 部分标题列表，如 ['姓名', '性别']
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 标题与列序号的字典，如 {1: '姓名', 2: '性别'}
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_partialTitle, list):
+            raise ValueError("l_partialTitle 必须是一个列表")
+        if not all(isinstance(item, str) for item in l_partialTitle):
+            raise ValueError("l_partialTitle 中的所有元素必须是字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取第一行标题
+            l_title = self.getL_row(1, varSheet)
+            if not l_title:
+                raise ValueError("工作表中没有找到标题行")
+
+            # 构建标题到列序号的映射
+            d_title_to_seq = {}
+            title_set = set(l_title)  # 使用集合加速查找
+            for title in l_partialTitle:
+                if title in title_set:
+                    index = l_title.index(title) + 1
+                    d_title_to_seq[index] = title
+
+            return d_title_to_seq
+
+        except Exception as e:
+            raise IOError(f"处理标题转列字典序列失败: {e}") from e
+
+    def getD_colLetter_columnTitle(self, l_partialTitle, varSheet=0):
+        """
+        3.8.4 将标题转列字典字母（优化版）
+
+        :param l_partialTitle: 部分标题列表，如 ['姓名', '性别']
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 标题与列字母的字典，如 {'B': '姓名', 'E': '性别'}
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_partialTitle, list):
+            raise ValueError("l_partialTitle 必须是一个列表")
+        if not all(isinstance(item, str) for item in l_partialTitle):
+            raise ValueError("l_partialTitle 中的所有元素必须是字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取第一行标题
+            l_title = self.getL_row(1, varSheet)
+            if not l_title:
+                raise ValueError("工作表中没有找到标题行")
+
+            # 构建标题到列字母的映射
+            d_title_to_letter = {}
+            for title in l_partialTitle:
+                if title in l_title:
+                    index = l_title.index(title) + 1
+                    letter = get_column_letter(index)
+                    d_title_to_letter[letter] = title
+
+            return d_title_to_letter
+
+        except Exception as e:
+            raise IOError(f"处理标题转列字典字母失败: {e}") from e
+
+    def getLL_partialColOfPartialCol(self, l_getCol, l_ignoreRow, varSheet=0):
+        """
+        3.9 获取部分列的列值（可忽略多行）（优化版）
+
+        :param l_getCol: 需要获取的列标识列表，如 [1, 3] 或 ['A', 'C']
+        :param l_ignoreRow: 需要忽略的行号列表，如 [1, 2]
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 每列的值组成的二维列表，如 [[10, 20], [30, 40]]
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(l_getCol, list):
+            raise ValueError("l_getCol 必须是一个列表")
+        if not isinstance(l_ignoreRow, list):
+            raise ValueError("l_ignoreRow 必须是一个列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            col_indices = []
+            for col in l_getCol:
+                if isinstance(col, str):
+                    col_indices.append(column_index_from_string(col))
+                elif isinstance(col, int):
+                    col_indices.append(col)
+                else:
+                    raise ValueError(f"列标识 '{col}' 类型不合法，应为整数或字符串")
+
+            # 转换忽略行号为集合（提升查找效率）
+            ignore_rows = set(l_ignoreRow)
+
+            # 初始化结果容器
+            result = []
+
+            # 遍历每一列
+            for col_idx in col_indices:
+                col_values = []
+                # 遍历每一行
+                for row in range(1, sh.max_row + 1):
+                    if row not in ignore_rows:
+                        col_values.append(sh.cell(row, col_idx).value)
+                result.append(col_values)
+
+            return result
+
+        except Exception as e:
+            raise IOError(f"获取列值失败: {e}") from e
 
 
+    def getCoordinate(self, varRow, varCol, varSheet=0):
+        """
+        3.10 获取单元格的坐标（优化版）
 
+        :param varRow: 行号，必须是大于0的整数
+        :param varCol: 列号，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :return: 单元格的坐标字符串，如 'A1'
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varRow, int) or varRow <= 0:
+            raise ValueError("varRow 必须是大于0的整数")
+        if not isinstance(varCol, int) or varCol <= 0:
+            raise ValueError("varCol 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-    def getTitleColSeq(self, l_partialTitle, varSheet=0):
+            # 获取单元格坐标
+            return sh.cell(row=varRow, column=varCol).coordinate
 
-        # 3.8.1 获取标题的序号
-        # getTitleColSeq(['姓名', '性别'])  => [1, 3]
-        # 标题是表格中第一行数据
-
-        l_title = self.getOneRow(1, varSheet)  # ['姓名', '年龄', '性别', '地址']
-        for i in range(len(l_partialTitle)):
-            for j in range(len(l_title)):
-                if l_partialTitle[i] == l_title[j]:
-                    l_partialTitle[i] = j + 1
-        return l_partialTitle  # [1, 3]
-
-    def getTitleColLetter(self, l_partialTitle, varSheet=0):
-
-        # 3.8.2 获取标题的字母
-        # getTitleColSeq(['姓名', '性别'])  => ['A', 'C']
-        # 标题是表格中第一行数据
-
-        l_title = self.getOneRow(1, varSheet)  # ['姓名', '年龄', '性别', '地址']
-        for i in range(len(l_partialTitle)):
-            for j in range(len(l_title)):
-                if l_partialTitle[i] == l_title[j]:
-                    l_partialTitle[i] = get_column_letter(j + 1)
-        return l_partialTitle  # ['A', 'C']
-
-    def title2dictSeq(self, l_partialTitle, varSheet=0):
-
-        # 3.8.3 将标题转列字典序列
-        # title2dictSeq(['姓名', '性别'])  => {"1":'姓名'，“2”：“性别“}
-
-        # 标题是表格中第一行数据
-        l_title = self.getOneRow(1, varSheet)
-        l_letter = []
-        for i in range(len(l_partialTitle)):
-            for j in range(len(l_title)):
-                if l_partialTitle[i] == l_title[j]:
-                    l_letter.append(j + 1)
-        return dict(zip(l_letter, l_partialTitle))
-
-    def title2dictLetter(self, l_partialTitle, varSheet=0):
-
-        # 3.8.4 将标题转列字典字母
-        # title2dictLetter(['姓名', '性别'])  => {'B': '姓名', 'E': '性别'}
-
-        # 标题是表格中第一行数据
-        l_title = self.getOneRow(1, varSheet)
-        l_seq = []
-        for i in range(len(l_partialTitle)):
-            for j in range(len(l_title)):
-                if l_partialTitle[i] == l_title[j]:
-                    l_seq.append(get_column_letter(j + 1))
-        return dict(zip(l_seq, l_partialTitle))  # {'B': '姓名', 'E': '性别'}
-
-
-
-    def getColByPartialColByUnwantedRow(self, l_varCol, l_varIgnoreRowNum, varSheet=0):
-
-        # 3.9 获取部分列的列值(可忽略多行)
-        # print(Openpyxl_PO.getColByPartialColByUnwantedRow([1, 3], [1, 2]))  # 获取第二列和第四列的列值，并忽略第1，2行的行值。
-        # print(Openpyxl_PO.getColByPartialColByUnwantedRow([2], [], "python"))  # 获取第2列所有值。
-
-        l_col = []  # 每列值
-        l_l_col = []  # 所有列的值
-        sh = self.sh(varSheet)
-        for col in l_varCol:
-            for row in range(1, sh.max_row + 1):
-                if row not in l_varIgnoreRowNum:
-                    l_col.append(sh.cell(row, col).value)
-            l_l_col.append(l_col)
-            l_col = []
-        return l_l_col
-
-    def getCellCoordinate(self, varRow, varCol, varSheet=0):
-
-        # 3.10 获取单元格的坐标
-        sh = self.sh(varSheet)
-        return sh.cell(row=varRow, column=varCol).coordinate
+        except Exception as e:
+            raise IOError(f"获取单元格坐标失败: {e}") from e
 
     def getDimensions(self, varSheet=0):
 
@@ -1193,103 +1598,227 @@ class OpenpyxlPO:
         sh = self.sh(varSheet)
         return sh.dimensions
 
+
     # todo [清除]
 
     def clsRow(self, varNums, varSheet=0):
+        """
+        4.1 清空行（优化版）
 
-        # 4.1 清空行
-        # Openpyxl_PO.clsRow(2)  # 清空第2行
-        sh = self.sh(varSheet)
-        for i in range(1, sh.max_row):
-            sh.cell(row=varNums, column=i, value="")
-        self.save()
+        :param varNums: 行号，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varNums, int) or varNums <= 0:
+            raise ValueError("varNums 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-    def clsCol(self, varCol, varSheet=0):
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        # 4.2 清空列
-        # Openpyxl_PO.clsCol(2)  # 清空第2列
-        sh = self.sh(varSheet)
-        for i in range(1, sh.max_row + 1):
-            sh.cell(row=i, column=varCol).value = None
-        self.save()
+            # 检查行号是否超出范围
+            if varNums > sh.max_row:
+                raise ValueError(f"行号 {varNums} 超出范围，最大行数为 {sh.max_row}")
 
-    def clsColRetainTitle(self, varCol, varSheet=0):
+            # 备份原始文件（可选）
+            backup_path = self.file.replace(".xlsx", "_backup.xlsx")
+            self.wb.save(backup_path)
 
-        # 4.2.1 清空列保留标题
-        sh = self.sh(varSheet)
-        for i in range(sh.max_row - 1):
-            sh.cell(row=i + 2, column=varCol).value = None
-        self.save()
+            # 清空指定行的数据
+            for col in range(1, sh.max_column + 1):
+                cell = sh.cell(row=varNums, column=col)
+                cell.value = None  # 清除值
+                cell.font = None  # 清除字体样式
+                cell.fill = PatternFill()  # 正确清除背景色
+                cell.border = None  # 清除边框
+                cell.alignment = None  # 清除对齐方式
+                cell.number_format = ''  # 设置为空字符串，避免 None 错误
+                cell.protection = None  # 清除保护设置
 
-    def delSeriesRow(self, varFrom, varSeries=1, varSheet=0):
+            # 保存更改
+            self.save()
 
-        # 4.3 删除连续行
-        # Openpyxl_PO.delSeriesRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
-        sh = self.sh(varSheet)
-        sh.delete_rows(idx=varFrom, amount=varSeries)
-        self.save()
+        except ValueError as ve:
+            raise ValueError(f"参数错误: {ve}") from ve
+        except IOError as ioe:
+            raise IOError(f"文件操作失败: {ioe}") from ioe
+        except Exception as e:
+            raise IOError(f"清空行失败: {e}") from e
 
-    def delSeriesCol(self, varFrom, varSeries=1, varSheet=0):
+    def clsCol(self, varCol, varSheet=0, clear_header=True):
+        """
+        4.2 清空列（优化版）
 
-        # 4.4 删除连续列
-        # Openpyxl_PO.delSeriesCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
-        # Openpyxl_PO.delSeriesCol('U', 1)  # 删除从第U列开始连续1列数据 （即删除U列）
-        sh = self.sh(varSheet)
-        if isinstance(varFrom, int):
+        :param varCol: 列号，可以是整数（如2）或字符串（如'B'）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param clear_header: 是否清除列标签（第一行），默认为True
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varCol, (int, str)):
+            raise ValueError("varCol 必须是整数或字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(clear_header, bool):
+            raise ValueError("clear_header 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引
+            if isinstance(varCol, str):
+                varCol = column_index_from_string(varCol)
+
+            # 确定起始行
+            start_row = 1 if clear_header else 2
+
+            # 清空列数据
+            for i in range(start_row, sh.max_row + 1):
+                sh.cell(row=i, column=varCol).value = None
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"清空列失败: {e}") from e
+
+
+    def delRow(self, varFrom, varSeries=1, varSheet=0):
+        """
+        4.3 删除连续行（优化版）
+
+        :param varFrom: 起始行号，必须是大于0的整数
+        :param varSeries: 删除的行数，默认为1
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varFrom, int) or varFrom <= 0:
+            raise ValueError("varFrom 必须是大于0的整数")
+        if not isinstance(varSeries, int) or varSeries <= 0:
+            raise ValueError("varSeries 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 执行删除操作
+            sh.delete_rows(idx=varFrom, amount=varSeries)
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"删除行失败: {e}") from e
+
+    def delCol(self, varFrom, varSeries=1, varSheet=0):
+        """
+        4.4 删除连续列（优化版）
+
+        :param varFrom: 起始列，可以是整数（如2）或字符串（如'U'）
+        :param varSeries: 删除的列数，默认为1
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varFrom, (int, str)):
+            raise ValueError("varFrom 必须是整数或字符串")
+        if not isinstance(varSeries, int) or varSeries <= 0:
+            raise ValueError("varSeries 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引
+            if isinstance(varFrom, str):
+                varFrom = column_index_from_string(varFrom)
+
+            # 执行删除操作
             sh.delete_cols(idx=varFrom, amount=varSeries)
-        else:
-            sh.delete_cols(idx=column_index_from_string(varFrom), amount=varSeries)
-        self.save()
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"删除列失败: {e}") from e
+
 
     # todo [多表]
 
-    def getDiffValueByCmp(self, l_file1row, l_file2row):
 
+    def setColorByDiffByTwoFile(self, l_file1row, l_file2row):
         """
-        5.2 两工作表比较，对差异内容标注颜色
-        :param l_file1row:
-        :param l_file2row:
-        :return:
-            print(Openpyxl_PO.getDiffValueByLeft(Openpyxl_PO.getRow(), Openpyxl_PO2.getRow()))
-            [[5, 'member_id', 1311441], [7, 'loan_amnt', 5600]]   表示 第五行，member_id列的值1311441
-            [[5, 'member_id', 5555], [7, 'loan_amnt', 1200]]
+        5.2 对两个文件的工作表比较，对差异内容标注颜色（优化版）
+        
+        # print(Openpyxl_PO.setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
+
+        :param l_file1row: 第一个文件的行数据列表
+        :param l_file2row: 第二个文件的行数据列表
+        :return: 包含差异内容的字典，格式为 {"left": {...}, "right": {...}}；若无差异则返回 None
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果操作失败
         """
+        # 参数校验
+        if not isinstance(l_file1row, list) or not isinstance(l_file2row, list):
+            raise ValueError("输入参数必须是列表类型")
 
-        d_left = {}
-        d_left_sub = {}
-        d_right = {}
-        d_right_sub = {}
-        d_all = {}
+        try:
+            # 初始化结果容器
+            d_left = {}
+            d_right = {}
+            d_all = {}
 
-        if len(l_file1row) == len(l_file2row):
+            # 检查行数是否一致
+            if len(l_file1row) != len(l_file2row):
+                raise ValueError("两个文件的行数不一致，无法比较")
+
+            # 遍历每一行，查找差异
             for i in range(len(l_file1row)):
                 if l_file1row[i] != l_file2row[i]:
-                    for j in range(len(l_file1row[i])):
-                        if l_file1row[i][j] != l_file2row[i][j]:
-                            d_left_sub[l_file1row[0][j]] = l_file1row[i][j]
-                            d_right_sub[l_file2row[0][j]] = l_file2row[i][j]
-                    d_left[i + 1] = d_left_sub
-                    d_right[i + 1] = d_right_sub
                     d_left_sub = {}
                     d_right_sub = {}
+                    for j in range(len(l_file1row[i])):
+                        if l_file1row[i][j] != l_file2row[i][j]:
+                            # 记录差异字段及其值
+                            d_left_sub[l_file1row[0][j]] = l_file1row[i][j]
+                            d_right_sub[l_file2row[0][j]] = l_file2row[i][j]
+                    if d_left_sub or d_right_sub:
+                        d_left[i + 1] = d_left_sub
+                        d_right[i + 1] = d_right_sub
 
-            if d_left != {} or d_right != {}:
+            # 构造最终结果
+            if d_left or d_right:
                 d_all["left"] = d_left
                 d_all["right"] = d_right
                 return d_all
             else:
-                print("[ok], 两列表比对结果一致")
-        else:
-            print("[warning], 两列表数量不一致！")
+                return None  # 无差异时返回 None
+
+        except Exception as e:
+            raise IOError(f"比较文件时发生错误: {e}") from e
+
 
     def setColorByDiff(self, varSheet1, varSheet2):
 
         # 5.2 两工作表比较，对差异内容标注颜色
-        # 前提条件，两sheet表的行列数一致
+        # 前提条件，两sheet表的行列数一致，字段位置一致
         # Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2")
 
-        l_sheetOneRow = self.getRow(varSheet1)
-        l_sheetTwoRow = self.getRow(varSheet2)
+        l_sheetOneRow = self.getLL_row(varSheet1)
+        l_sheetTwoRow = self.getLL_row(varSheet2)
 
         if l_sheetOneRow == None or l_sheetTwoRow == None:
             print("[Error], " + varSheet1 + " 或 " + varSheet2 + " 不存在！")
@@ -1308,87 +1837,332 @@ class OpenpyxlPO:
             print("[warning], 两sheet的行数不一致！")
             sys.exit(0)
 
-    def setSheetByDiff(self, varSheet1, varSheet2):
+    def genSheetByDiff(self, varSheet1, varSheet2):
+        """
+        5.3 比较两工作表，对差异内容标注颜色，生成新表Sheet1&Sheet2，（优化版）
+        # 支持灵活应对标题位置不一致的问题
 
-        # 5.3 两工作表比较，生成新表Sheet1%Sheet2，对差异内容标注颜色
-        # 前提条件，两sheet表的行列数一致
-        # Openpyxl_PO.setSheetByDiff("Sheet1", "Sheet2")
+        :param varSheet1: 第一个工作表名称
+        :param varSheet2: 第二个工作表名称
+        :return: 生成的新工作表名称
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if varSheet1 not in self.wb.sheetnames:
+            raise ValueError(f"工作表 '{varSheet1}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+        if varSheet2 not in self.wb.sheetnames:
+            raise ValueError(f"工作表 '{varSheet2}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
 
-        l_sheetOneRow = self.getRow(varSheet1)
-        l_sheetTwoRow = self.getRow(varSheet2)
+        try:
+            # 获取两个工作表的所有数据
+            l_sheetOneRow = self.getLL_row(varSheet1)
+            l_sheetTwoRow = self.getLL_row(varSheet2)
 
-        if l_sheetOneRow == None or l_sheetTwoRow == None:
-            print("[Error], " + varSheet1 + " 或 " + varSheet2 + " 不存在！")
-            sys.exit(0)
+            if not l_sheetOneRow or not l_sheetTwoRow:
+                raise ValueError("其中一个工作表为空，无法进行比较")
 
-        if len(l_sheetOneRow) == len(l_sheetTwoRow):
+            # 提取标题行并建立列映射
+            title1 = l_sheetOneRow[0]
+            title2 = l_sheetTwoRow[0]
 
-            # 生成临时sheet
-            varSheet = varSheet1 + "%" + varSheet2
+            # 构建标题到列索引的映射
+            map1 = {title: idx for idx, title in enumerate(title1)}
+            map2 = {title: idx for idx, title in enumerate(title2)}
+
+            # 生成新工作表名称
+            varSheet = f"{varSheet1}&{varSheet2}"
             self.delSheet(varSheet)
             self.addCoverSheet(varSheet, 99)
 
-            for i in range(len(l_sheetOneRow)):
-                for j in range(len(l_sheetOneRow[i])):
-                    if l_sheetOneRow[i][j] == "" and l_sheetTwoRow[i][j] == "":
-                        pass
-                    elif l_sheetOneRow[i][j] != l_sheetTwoRow[i][j]:
-                        print(l_sheetOneRow[i][j], l_sheetTwoRow[i][j])
-                        self.setCell(
-                            i + 1,
-                            j + 1,
-                            str(l_sheetOneRow[i][j]) + "/" + str(l_sheetTwoRow[i][j]),
-                            varSheet,
-                        )
-                        self.setCellColor(i + 1, j + 1, "FF0000", varSheet)
+            # 写入标题行
+            merged_title = list(map1.keys()) + [key for key in map2.keys() if key not in map1]
+            self.setRows({1: merged_title}, varSheet)
+
+            # 比较数据行
+            max_rows = max(len(l_sheetOneRow), len(l_sheetTwoRow))
+            for i in range(1, max_rows):  # 从第二行开始比较
+                row_data = []
+                for title in merged_title:
+                    val1 = l_sheetOneRow[i][map1[title]] if i < len(l_sheetOneRow) and title in map1 else ""
+                    val2 = l_sheetTwoRow[i][map2[title]] if i < len(l_sheetTwoRow) and title in map2 else ""
+
+                    if val1 == "" and val2 == "":
+                        row_data.append("")
+                    elif val1 != val2:
+                        row_data.append(f"{val1}/{val2}")
+                        self.setCellColor(i + 1, len(row_data), "FF0000", varSheet)
                     else:
-                        self.setCell(
-                            i + 1, j + 1, str(l_sheetOneRow[i][j]), varSheet
-                        )
+                        row_data.append(val1)
+                self.setRows({i + 1: row_data}, varSheet)
+
             self.save()
             return varSheet
-        else:
-            print("[warning], 两sheet的行数不一致！")
-            sys.exit(0)
 
-    def moveValue(self, varFrom, varRows, varCols, varSheet=0):
+        except Exception as e:
+            raise IOError(f"处理工作表失败: {e}") from e
 
-        # 6 移动范围数据
-        sh = self.sh(varSheet)
-        sh.move_range(varFrom, rows=varRows, cols=varCols)
-        self.save()
+    def moveValues(self, varFrom, varRows, varCols, varSheet=0):
+        """
+        6 移动区域数据（优化版）
 
-    def sortFields(self, varSheet1):
+        # Openpyxl_PO.moveValues('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
+        # Openpyxl_PO.moveValues('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
 
-        # 7 将excel中标题（第一行字段）排序（从小打大）
+        :param varFrom: 起始区域，如 'C1:D2'
+        :param varRows: 移动的行数，正数向下移动，负数向上移动
+        :param varCols: 移动的列数，正数向右移动，负数向左移动
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varFrom, str) or not varFrom:
+            raise ValueError("varFrom 必须是一个非空字符串，表示起始区域")
+        if not isinstance(varRows, int) or not isinstance(varCols, int):
+            raise ValueError("varRows 和 varCols 必须是整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        l_sortAsc = []
-        l_title = self.getOneRow(1)
-        for k in range(len(l_title)):
-            x = "z"
-            for i in range(len(l_title)):
-                if x > l_title[i]:
-                    x = l_title[i]
-            l_sortAsc.append(x)
-            l_title.remove(x)
-        # print(l_sortAsc)
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        self.addSheet("sortAsc")
-        self.setRows({1: l_sortAsc}, "sortAsc")
-        col = self.getCol(varSheet1)
-        # print(col)
-        for i in range(len(col)):
-            for j in range(len(l_sortAsc)):
-                if col[i][0] == l_sortAsc[j]:
-                    self.setCols({str(j + 1): col[i]}, "sortAsc")
+            # 执行移动操作
+            sh.move_range(varFrom, rows=varRows, cols=varCols)
 
-        self.save()
+            # 保存更改
+            self.save()
+        except Exception as e:
+            raise IOError(f"移动区域数据失败: {e}") from e
+
+    def sortFields(self, varSheetName):
+        """
+        7 将表格第一行（标题）排序（从小打大）（优化版）
+
+        :param varSheet1: 工作表名称
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取或写入失败
+        return：生成 {表名}_标题升序, 如表名字：sheet1， 结果：sheet1_标题升序
+        """
+
+        if varSheetName not in self.wb.sheetnames:
+            raise ValueError(f"工作表 '{varSheetName}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+
+        # 参数校验
+        if not isinstance(varSheetName, str):
+            raise ValueError("varSheet1 必须是一个字符串")
+
+        try:
+            # 获取第一行标题
+            l_title = self.getL_row(1, varSheetName)
+            if not l_title:
+                raise ValueError("工作表中没有找到标题行")
+
+            # 排序标题
+            l_sortAsc = sorted(l_title)
+
+            # 创建新工作表并写入排序后的标题
+            varNewSheet = varSheetName + "_" + "标题升序"
+            self.addSheet(varNewSheet)
+            self.setRows({1: l_sortAsc}, varNewSheet)
+
+            # 获取原始列数据
+            col = self.getLL_col(varSheetName)
+
+            # 根据排序后的标题重新排列列数据
+            for i in range(len(col)):
+                for j in range(len(l_sortAsc)):
+                    if col[i][0] == l_sortAsc[j]:
+                        self.setCols({str(j + 1): col[i]}, varNewSheet)
+
+            self.save()
+
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varSheetName}") from e
+        except Exception as e:
+            raise IOError(f"处理工作表失败: {varSheetName}") from e
+
+
+    # todo [转换]
+
+
+    def dict2xlsx(self, varDict, varExcelFile):
+        """
+        8.1 字典转xlsx
+
+        :param varDict: 输入的字典数据
+        :param varExcelFile: 输出的Excel文件路径
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件写入失败
+        """
+        # 参数校验
+        if not isinstance(varDict, dict):
+            raise ValueError("varDict 必须是一个字典")
+        if not isinstance(varExcelFile, str) or not varExcelFile.endswith('.xlsx'):
+            raise ValueError("varExcelFile 必须是一个以 .xlsx 结尾的有效文件路径")
+
+        try:
+            # 检查文件路径是否存在，如果不存在则创建目录
+            directory = os.path.dirname(varExcelFile)
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory)
+
+            # 将字典转换为DataFrame并写入Excel文件
+            df = pd.DataFrame(varDict)
+            df.to_excel(varExcelFile, encoding="utf_8_sig", index=False)
+
+        except PermissionError as e:
+            raise IOError(f"权限不足，无法写入文件: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"写入Excel文件失败: {varExcelFile}") from e
+    def dict2csv(self, varDict, varExcelFile):
+        """
+        8.2 字典转csv
+
+        :param varDict: 输入的字典数据
+        :param varExcelFile: 输出的CSV文件路径
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件写入失败
+        """
+        # 参数校验
+        if not isinstance(varDict, dict):
+            raise ValueError("varDict 必须是一个字典")
+        if not isinstance(varExcelFile, str) or not varExcelFile.endswith('.csv'):
+            raise ValueError("varExcelFile 必须是一个以 .csv 结尾的有效文件路径")
+
+        try:
+            # 检查文件路径是否存在，如果不存在则创建目录
+            directory = os.path.dirname(varExcelFile)
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory)
+
+            # 将字典转换为DataFrame并写入Excel文件
+            df = pd.DataFrame(varDict)
+            df.to_csv(varExcelFile, encoding="utf_8_sig", index=False)
+
+        except PermissionError as e:
+            raise IOError(f"权限不足，无法写入文件: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"写入csv文件失败: {varExcelFile}") from e
+    def pdf2xlsx(self, varPdfFile, varExcelPath):
+        """
+        8.3 pdf中表格转xlsx（优化版）
+
+        :param varPdfFile: 输入的PDF文件路径
+        :param varExcelPath: 输出的Excel文件路径前缀
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取或写入失败
+        """
+        # 参数校验
+        if not isinstance(varPdfFile, str) or not os.path.isfile(varPdfFile):
+            raise ValueError("varPdfFile 必须是一个有效的文件路径")
+        if not isinstance(varExcelPath, str):
+            raise ValueError("varExcelPath 必须是一个字符串")
+
+        try:
+            # 检查输出目录是否存在，如果不存在则创建
+            output_dir = os.path.dirname(varExcelPath)
+            if output_dir and not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+
+            # 打开PDF文件
+            with pdfplumber.open(varPdfFile) as pdf:
+                for i, page in enumerate(pdf.pages):
+                    tables = page.extract_tables()
+                    if tables:
+                        for j, table in enumerate(tables):
+                            df = pd.DataFrame(table)
+                            # 获取 df 的第一行数据作为表头（列名）
+                            df_header = df.iloc[0]
+                            # 将之前保存的第一行数据设置为新的列名
+                            df.columns = df_header
+                            # 从第二行开始截取数据，去掉原来的第一行（表头行）
+                            df = df.iloc[1:].reset_index(drop=True)
+                            # 写入Excel文件
+                            output_file = f'{varExcelPath}_第{i + 1}页第{j + 1}张表.xlsx'
+                            df.to_excel(output_file, index=False)
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varPdfFile}") from e
+        except Exception as e:
+            raise IOError(f"处理PDF文件失败: {varPdfFile}") from e
+    def xlsx2list(self, varExcelFile, sheetName):
+        """
+        8.4 xlsx转列表（优化版）
+
+        :param varExcelFile: 输入的Excel文件路径
+        :param sheetName: 工作表名称
+        :return: 转换后的列表，如果失败则返回None
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取失败
+        """
+        # 参数校验
+        if not isinstance(varExcelFile, str) or not os.path.isfile(varExcelFile):
+            raise ValueError("varExcelFile 必须是一个有效的文件路径")
+        if not isinstance(sheetName, str):
+            raise ValueError("sheetName 必须是一个字符串")
+
+        try:
+            # 读取Excel文件
+            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
+            # 转换为NumPy数组再转为列表
+            t = np.array(df)
+            return t.tolist()
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"读取Excel文件失败: {varExcelFile}") from e
+    def xlsx2dict(self, varExcelFile, varType, sheetName):
+        """
+        8.5 xlsx转字典（优化版）
+
+        :param varExcelFile: 输入的Excel文件路径
+        :param varType: 返回字典的类型，"col" 表示按列返回，"row" 表示按行返回
+        :param sheetName: 工作表名称
+        :return: 转换后的字典，如果失败则返回None
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取失败
+        """
+        # 参数校验
+        if not isinstance(varExcelFile, str) or not os.path.isfile(varExcelFile):
+            raise ValueError("varExcelFile 必须是一个有效的文件路径")
+        if varType not in ["col", "row"]:
+            raise ValueError("varType 必须是 'col' 或 'row'")
+        if not isinstance(sheetName, str):
+            raise ValueError("sheetName 必须是一个字符串")
+
+        try:
+            # 读取Excel文件
+            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
+
+            # 根据varType选择返回格式
+            if varType == "col":
+                d_ = df.to_dict()  # 以列形式返回
+                # 以列形式返回, 如：
+                # {0: {0: ' 与户主关系 ', 1: '子', 2: '父亲', 3: '女儿'},
+                # 1: {0: ' 性别 ', 1: '女', 2: '男', 3: '无法识别'},
+                # 2: {0: ' 民族 ', 1: '回族', 2: '汉族', 3: '壮族'}
+            elif varType == "row":
+                d_ = df.to_dict(orient='index')  # 以行形式返回
+                # 以行形式返回，如：
+                # {0: {0: ' 与户主关系 ', 1: ' 性别 ', 2: ' 民族 '},
+                # 1: {0: '子', 1: '女', 2: '回族'},
+                # 2: {0: '父亲', 1: '男', 2: '汉族'},
+                # 3: {0: '女儿', 1: '无法识别', 2: '壮族'}}
+
+            return d_
+
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"读取Excel文件失败: {varExcelFile}") from e
 
 
 if __name__ == "__main__":
 
-    # Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/fold.xlsx")
-    Openpyxl_PO = OpenpyxlPO("d:\\51\\python\\project\\PO\\data\\11.xlsx")
+    Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx")
+    # Openpyxl_PO = OpenpyxlPO("d:\\51\\python\\project\\PO\\data\\11.xlsx")
+    # Openpyxl_PO.sortFields("job")
     # Openpyxl_PO.renameSheet("1231", "444")
     # Openpyxl_PO.open()
 
@@ -1542,78 +2316,80 @@ if __name__ == "__main__":
 
 
     # print("3.1 获取总行列数".center(100, "-"))
-    # print(Openpyxl_PO.getTotalRowCol())  # [7,5]
+    # print(Openpyxl_PO.getL_shape())  # [7,5]
 
     # print("3.2 获取单元格值".center(100, "-"))
     # print(Openpyxl_PO.getCell(3, 2))  # 获取第3行第2列的值
 
     # print("3.3 获取一行数据".center(100, "-"))
-    # print(Openpyxl_PO.getOneRow(1))  # ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字']
+    # print(Openpyxl_PO.getL_row(1))  # ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字']
     #
     # print("3.4 获取一列数据".center(100, "-"))
-    print(Openpyxl_PO.getOneCol(1))  # ['高地', 40, 44, 50, 30, 25, 150]
-    print(Openpyxl_PO.getOneCol('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
+    # print(Openpyxl_PO.getL_col(1, include_header=True))  # ['高地', 40, 44, 50, 30, 25, 150]
+    # print(Openpyxl_PO.getL_col('B',include_header=False))  # ['高地', 40, 44, 50, 30, 25, 150]
 
     # print("3.5.1 获取每行数据".center(100, "-"))
-    # print(Openpyxl_PO.getRow())  # [['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], [2, 40, 30, 'ok', 'jinhao'],...]
+    # print(Openpyxl_PO.getLL_row(include_header=True))  # [['age', 'city', 'hello', 'name'], [2, 'shanghai', 'wow', 'jinhao'],
+    # print(Openpyxl_PO.getLL_row(include_header=False))  # [[2, 'shanghai', 'wow', 'jinhao'],
     #
     # print("3.5.2 获取带行号的每行数据".center(100, "-"))
-    # print(Openpyxl_PO.getRowBySeq())  # {1: ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], 2: [2, 40, 30, 'ok', 'jinhao'],...}
+    # print(Openpyxl_PO.getD_rowNumber_row(include_header=True))  # {1: ['age', 'city', 'hello', 'name'], 2: [2, 'shanghai', 'wow', 'jinhao'],
+    # print(Openpyxl_PO.getD_rowNumber_row(include_header=False))  # {2: [2, 'shanghai', 'wow', 'jinhao'],
 
     # print("3.5.3 获取部分列的行数据".center(100, "-"))
-    # print(Openpyxl_PO.getRowByCol([1, 3]))   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25], [4, 30], [5, 10], [6, 5], [7, 10]] //获取1和3列的行数据
-    # print(Openpyxl_PO.getRowByCol(['a', 'C']))  # 同上
-    # print(Openpyxl_PO.getRowByCol(["A", 3]))   # 同上
-    # print(Openpyxl_PO.getRowByCol([1, 3, 2, "a", "C", "B"]))   # [['Number具体数', '山丘', '高地'], [2, 30, 40], [3, 25, 44], [4, 30, 50], [5, 10, 30], [6, 5, 25], [7, 10, 150]] //获第1，3，2列的行数据，"a", "C", "B"忽略
+    # print(Openpyxl_PO.getLL_rowOfPartialCol([1, 3]))   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25], [4, 30], [5, 10], [6, 5], [7, 10]] //获取1和3列的行数据
+    # print(Openpyxl_PO.getLL_rowOfPartialCol(['a', 'C']))  # 同上
+    # print(Openpyxl_PO.getLL_rowOfPartialCol(["A", 3]))   # 同上
+    # print(Openpyxl_PO.getLL_rowOfPartialCol([1, 3, 2, "a", "C", "B"]))   # [['Number具体数', '山丘', '高地'], [2, 30, 40], [3, 25, 44], [4, 30, 50], [5, 10, 30], [6, 5, 25], [7, 10, 150]] //获第1，3，2列的行数据，"a", "C", "B"忽略
     #
     # print("3.5.4 获取带行号的部分列的行数据".center(100, "-"))
-    # print(Openpyxl_PO.getRowByColSeq([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-    # print(Openpyxl_PO.getRowByColSeq([1, 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-    # print(Openpyxl_PO.getRowByColSeq(['a', 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 4, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol(['a', 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
 
 
 
     # print("3.6.1 获取每列数据".center(100, "-"))
-    # print(Openpyxl_PO.getCol())  # [['Number具体数', 2, 3, 4, 5, 6, 7], ['高地', 40, 44, 50, 30, 25, 150],...]
+    # print(Openpyxl_PO.getLL_col(include_header=True))  # [['age', 2, 12, 4, 5], ['city', 'shanghai', 'beijin', 'nanjin', 'henei'],
+    # print(Openpyxl_PO.getLL_col(include_header=False))  # [[2, 12, 4, 5], ['shanghai', 'beijin', 'nanjin', 'henei'],
     #
     # print("3.6.2 获取带列序号的每列数据".center(100, "-"))
-    # d_seq_row = Openpyxl_PO.getColBySeq()
+    # print(Openpyxl_PO.getD_colNumber_col(include_header=True))
+    # print(Openpyxl_PO.getD_colNumber_col(include_header=False))
     # print(d_seq_row)  # {1: ['Number具体数', 2, 3, 4, 5, 6, 7], 2: ['高地', 40, 44, 50, 30, 25, 150],,...}
     # del d_seq_row[1]  # 删除第一行，一般用于去掉标题
     # print(d_seq_row)  # {2: ['高地', 40, 44, 50, 30, 25, 150], 3: ['jinhaoyoyo', 30, 25, 30, 10, 5, 10],...}
     #
     # print("3.6.3 获取带列字母的每列数据".center(100, "-"))
-    # d_letter_row = Openpyxl_PO.getColByLetter()
-    # print(d_letter_row)  # {'A': ['Number具体数', 2, 3, 4, 5, 6, 7], 'B': ['高地', 40, 44, 50, 30, 25, 150],...}
-    # del d_letter_row['A']  # 删除第一行，一般用于去掉标题
-    # print(d_letter_row)  # {'B': ['高地', 40, 44, 50, 30, 25, 150], 'C': ['jinhaoyoyo', 30, 25, 30, 10, 5, 10]...}
-
+    # print(Openpyxl_PO.getD_colLetter_col(include_header=True))  # {'A': ['age', 2, 12, 4, 5], 'B': ['city', 'shanghai', 'beijin', 'nanjin', 'henei'], ...
+    # print(Openpyxl_PO.getD_colLetter_col(include_header=False))  # {'A': [2, 12, 4, 5], 'B': ['shanghai', 'beijin', 'nanjin', 'henei'],...
 
     # print("3.8.1 获取标题的序号".center(100, "-"))
-    # print(Openpyxl_PO.getTitleColSeq(["高地", "名字"]))  # [2, 5]
+    # print(Openpyxl_PO.getL_columnHeaderNumber(["age", "name"]))  # [2, 5]
     #
     # print("3.8.2 获取标题的字母".center(100, "-"))
-    # print(Openpyxl_PO.getTitleColLetter(["高地", "名字"]))  # ['B', 'E']
+    # print(Openpyxl_PO.getL_columnHeaderLetter(["age", "name"]))  # ['B', 'E']
 
     # print("3.8.3 将标题转列字典序列".center(100, "-"))
-    # print(Openpyxl_PO.title2dictSeq(["高地", "名字"]))  # {2: '高地', 5: '名字'}
+    # print(Openpyxl_PO.getD_colNumber_columnTitle(["age", "name"]))  # {2: '高地', 5: '名字'}
     #
     # print("3.8.4 将标题转列字典字母".center(100, "-"))
-    # print(Openpyxl_PO.title2dictLetter(["高地", "名字"]))  # {'A': '高地', 'C': '名字'}
+    # print(Openpyxl_PO.getD_colLetter_columnTitle(["age", "name"]))  # {'A': '高地', 'C': '名字'}
 
     # l_colSeq = (Openpyxl_PO.title2colSeq(["高地", "名字"]))
     # print(l_colSeq)  # [2, 5]
-    # print(Openpyxl_PO.getRowByCol(l_colSeq)) # [['高地', '名字'], [40, 'jinhao'], [44, 'yoyo'], [50, 'titi'], [30, 'mama'], [25, 'baba'], [150, 'yeye']]
+    # print(Openpyxl_PO.getLL_rowOfPartialCol(l_colSeq)) # [['高地', '名字'], [40, 'jinhao'], [44, 'yoyo'], [50, 'titi'], [30, 'mama'], [25, 'baba'], [150, 'yeye']]
     #
     # l_colSeq = (Openpyxl_PO.getTitleCol(["高地", "名字"]))
     # print(l_colSeq)  # [2, 5]
 
     # print("3.9 获取部分列的列值(可忽略多行)".center(100, "-"))
-    # print(Openpyxl_PO.getColByPartialColByUnwantedRow([1, 3], [1, 4]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
-    # print(Openpyxl_PO.getColByPartialColByUnwantedRow([2], [], "上海"))  # 获取第2列所有值。
+    # print(Openpyxl_PO.getLL_partialColOfPartialCol([1, 3], [1, 4]))   # 获取第1,3列列值，并忽略第1，4行的行值。
+    # print(Openpyxl_PO.getLL_partialColOfPartialCol([2], [], "job_标题升序"))  # 获取第2列所有值。
 
     # print("3.10 获取单元格的坐标".center(100, "-"))
-    # print(Openpyxl_PO.getCellCoordinate(2, 5))   # E2
+    # print(Openpyxl_PO.getCoordinate(2, 5))   # E2
 
     # print("3.11 获取工作表数据的坐标".center(100, "-"))
     # print(Openpyxl_PO.getDimensions())  # A1:E17
@@ -1622,35 +2398,36 @@ if __name__ == "__main__":
 
     # print("4.1 清空行".center(100, "-"))
     # Openpyxl_PO.clsRow(2)  # 清空第2行
-    #
+
     # print("4.2 清空列".center(100, "-"))
-    # Openpyxl_PO.clsCol(2)  # 清空第2列
-    # print("4.2.1 清空列保留标题".center(100, "-"))
-    # Openpyxl_PO.clsColRetainTitle(2)  # 清空第2列保留标题
+    # Openpyxl_PO.clsCol(2, clear_header=True)  # 清空第2列
+    # Openpyxl_PO.clsCol(2, clear_header=False)  # 清空第2列
+
 
     # print("4.3 删除行".center(100, "-"))
-    # # Openpyxl_PO.delSeriesRow(2, 3)  # 删除第2行之连续3行（删除2，3，4行）
+    # Openpyxl_PO.delRow(2)  # 删除第2行
+    # Openpyxl_PO.delRow(2, 3)  # 删除第2行之连续3行（删除2，3，4行）
     #
     # print("4.4 删除列".center(100, "-"))
-    # # Openpyxl_PO.delSeriesCol(1, 2)  # 删除第1列之连续2列（删除1，2列）
-    # # Openpyxl_PO.delSeriesCol(2, 1, "python")  # 删除第2列之连续1列（删除2列）
-    # Openpyxl_PO.delSeriesCol('D', 1)  # 删除第D列之连续1列（删除D列）
+    # Openpyxl_PO.delCol(1, 2)  # 删除第1列之连续2列（删除1，2列）
+    # # Openpyxl_PO.delCol(2, 1, "python")  # 删除第2列之连续1列（删除2列）
+    # Openpyxl_PO.delCol('D', 1)  # 删除第D列之连续1列（删除D列）
 
     # print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
     # Openpyxl_PO2 = OpenpyxlPO("./data/loanStats2.xlsx")
-    # print(Openpyxl_PO.getDiffValueByCmp(Openpyxl_PO.getRow("Sheet2"), Openpyxl_PO2.getRow("Sheet2")))
+    print(Openpyxl_PO.setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
 
     # # print("5.2 对一张表的两个sheet进行数据比对，差异数据标注颜色 ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
-    # Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2")
+    # Openpyxl_PO.setColorByDiff("job", "job1")
 
     # # print("5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
-    # Openpyxl_PO.setSheetByDiff("browser", "interface")
+    # Openpyxl_PO.genSheetByDiff("job", "job1")
 
-    # # print("6 移动范围数据".center(100, "-"))
-    # Openpyxl_PO.moveValue('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
-    # Openpyxl_PO.moveValue('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
+    # # print("6 移动区域".center(100, "-"))
+    # Openpyxl_PO.moveValues('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
+    # Openpyxl_PO.moveValues('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
 
     # # print("7 将excel中标题（第一行字段）排序（从小打大）".center(100, "-"))
     # Openpyxl_PO.sortFields("Sheet1")

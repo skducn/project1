@@ -11,19 +11,10 @@
 # ********************************************************************************************************************
 
 """
-1 执行sql  execute()
 
-2.1 xlsx转数据库 xlsx2db()
-2.2 字典转数据库  dict2db()
-2.3 列表转数据库  list2db()  默认标签如 0，1，2，3，4为字段名
-
-3.1 数据库转xlsx(含字段或不含字段)  db2xlsx()
-3.2 字典转xlsx  dict2xlsx()
-3.3 字典转csv  dict2csv()
 3.4 字典转text  dict2text()
 
-4.1 xlsx转列表
-4.2 xlsx转字典
+
 
 将df输出html
 """
@@ -39,144 +30,15 @@ logging.basicConfig(level=logging.INFO)
 from PO.TimePO import *
 Time_PO = TimePO()
 
-class PandasPO:
-    def __init__(self):
+import pdfplumber
 
+class PandasPO:
+
+    def __init__(self):
         pass
 
-    # def __init__(self, host, name, password, db, port):
-    #
-    #     self.host = host
-    #     self.name = name
-    #     self.password = password
-    #     self.db = db
-    #     self.port = port
-    #     self.Mysql_PO = MysqlPO(self.host, self.name, self.password, self.db, self.port)
-    #     self.engine = create_engine('mysql+mysqldb://' + self.name + ':' + self.password + '@' + self.host + ':' + str(self.port) + '/' + self.db)
-    #     # self.engine = create_engine('mysql+mysqldb://root:Zy123456@192.168.0.234:3306/crmtest?charset=utf8')
 
-    def execute(self, varSql):
-        # 1 执行sql
-        try:
-            if "SELECT" in varSql or "select" in varSql:
-                return self.engine.execute(varSql).fetchall()
-            else:
-                self.engine.execute(varSql)
-        except Exception as e:
-            logging.error(f"执行SQL语句 {varSql} 时发生错误: {e}")
-            raise
 
-    def xlsx2dbXXX(
-        self,
-        varExcelFile,
-        varTable,
-        usecols=None,
-        nrows=None,
-        skiprows=None,
-        dtype=None,
-        parse_dates=None,
-        date_parser=None,
-        converters=None,
-        sheet_name=None,
-        index=False,
-    ):
-
-        """
-        4.4 excel导入数据库表(覆盖)
-        :return:
-        参数参考：https://zhuanlan.zhihu.com/p/96203752
-        """
-
-        df = pd.read_excel(
-            varExcelFile,
-            usecols=usecols,
-            nrows=usecols,
-            skiprows=skiprows,
-            dtype=dtype,
-            parse_dates=parse_dates,
-            date_parser=date_parser,
-            converters=converters,
-            sheet_name=sheet_name,
-        )
-        df.to_sql(
-            varTable, con=self.getEngine_mysqldb(), if_exists="replace", index=index
-        )
-
-    def xlsx2db(self, varExcelFile, varDbTable):
-
-        """2.1 xlsx导入数据库"""
-        try:
-            df = pd.read_excel(varExcelFile)
-            engine = self.Mysql_PO.getMysqldbEngine()
-            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
-        except Exception as e:
-            print(f"将Excel文件 {varExcelFile} 导入数据库表 {varDbTable} 时发生错误: {e}")
-            logging.error(f"将Excel文件 {varExcelFile} 导入数据库表 {varDbTable} 时发生错误: {e}")
-            raise
-
-    def dict2db(self, varDict, varDbTable, index):
-
-        """2.2 字典导入数据库"""
-
-        try:
-            df = pd.DataFrame(varDict)
-            engine = self.Mysql_PO.getMysqldbEngine()
-            if index == "False":
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace", index=False)
-            else:
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace")
-        except Exception as e:
-            print(f"将字典 {varDict} 导入数据库表 {varTable} 时发生错误: {e}")
-            logging.error(f"将字典 {varDict} 导入数据库表 {varTable} 时发生错误: {e}")
-            raise
-
-    def list2db(self, varList, varDbTable, index):
-        """2.3 列表导入数据库"""
-        try:
-            df = pd.DataFrame(varList, columns=None)
-            engine = self.Mysql_PO.getMysqldbEngine()
-            if index == "False":
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace", index=False)
-            else:
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace")
-        except Exception as e:
-            print(f"将列表 {varList} 导入数据库表 {varDbTable} 时发生错误: {e}")
-            logging.error(f"将列表 {varList} 导入数据库表 {varDbTable} 时发生错误: {e}")
-            raise
-
-    def db2xlsx(self, sql, varExcelFile, header=1):
-        """3.1 数据库转xlsx(含字段或不含字段)"""
-        try:
-            df = pd.read_sql(sql, self.engine)
-            # header=None表示不含列名
-            if header == None:
-                df.to_excel(varExcelFile, index=None, header=None)
-            else:
-                df.to_excel(varExcelFile, index=None)
-        except Exception as e:
-            print(f"将数据库 {sql} 转xlsx {varExcelFile} 时发生错误: {e}")
-            logging.error(f"将数据库 {sql} 转xlsx {varExcelFile} 时发生错误: {e}")
-            raise
-
-    def dict2xlsx(self, varDict, varExcelFile):
-        """3.2 字典转xlsx"""
-        try:
-            df = pd.DataFrame(varDict)
-            df.to_excel(varExcelFile, encoding="utf_8_sig", index=False)
-        except Exception as e:
-            print(f"将字典 {varDict} 转xlsx {varExcelFile} 时发生错误: {e}")
-            logging.error(f"将字典 {varDict} 转xlsx {varExcelFile} 时发生错误: {e}")
-            raise
-
-    def dict2csv(self, varDict, varExcelFile):
-        """3.3 字典转csv"""
-        try:
-            df = pd.DataFrame(varDict)
-            df.to_csv(varExcelFile, encoding="utf_8_sig", index=False)
-        except Exception as e:
-            print(f"将字典 {varDict} 转csv {varExcelFile} 时发生错误: {e}")
-            logging.error(f"将字典 {varDict} 转csv {varExcelFile} 时发生错误: {e}")
-            raise
 
     def dict2text(self, varDict, varTextFile):
         """3.4 字典转text"""
@@ -187,38 +49,6 @@ class PandasPO:
             print(f"将字典 {varDict} 转text {varTextFile} 时发生错误: {e}")
             logging.error(f"将字典 {varDict} 转text {varTextFile} 时发生错误: {e}")
             raise
-
-    def xlsx2list(self, varExcelFile, sheetName):
-        # 4.1 xlsx转列表"""
-        try:
-            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
-            t = numpy.array(df)
-            return t.tolist()
-        except Exception as e:
-            print(e)
-            logging.error(f"将xlsx {varExcelFile} 转列表时发生错误: {e}")
-            return None
-
-    def xlsx2dict(self, varExcelFile, sheetName):
-
-        # 4.2 xlsx转字典"""
-
-        try:
-            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
-            # d_ = df.to_dict()  # 以列形式返回, 如：
-            # {0: {0: ' 与户主关系 ', 1: '子', 2: '父亲', 3: '女儿'},
-            # 1: {0: ' 性别 ', 1: '女', 2: '男', 3: '无法识别'},
-            # 2: {0: ' 民族 ', 1: '回族', 2: '汉族', 3: '壮族'}
-            d_ = df.to_dict(orient='index')  # 以行形式返回，如：
-            # {0: {0: ' 与户主关系 ', 1: ' 性别 ', 2: ' 民族 '},
-            # 1: {0: '子', 1: '女', 2: '回族'},
-            # 2: {0: '父亲', 1: '男', 2: '汉族'},
-            # 3: {0: '女儿', 1: '无法识别', 2: '壮族'}}
-            return d_
-        except Exception as e:
-            print(f"将xlsx {varExcelFile} 转字典时发生错误: {e}")
-            logging.error(f"将xlsx {varExcelFile} 转字典时发生错误: {e}")
-            return None
 
 
     def toHtml(self, df, title, filePrefix):
@@ -241,6 +71,8 @@ class PandasPO:
             print(f"将df {df} 输出html时发生错误: {e}")
             logging.error(f"将df {df} 输出html时发生错误: {e}")
             raise
+
+
 
 if __name__ == "__main__":
 

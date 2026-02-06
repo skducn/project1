@@ -642,15 +642,59 @@ class MysqlPO:
         df = pd.read_sql(sql=varSql, con=self.getEngine_pymysql())
         df.to_csv(varCSV, encoding="gbk", index=index)
 
-    def db2xlsx(self, varSql, varXlsx, index=True):
+    # def db2xlsx(self, varSql, varXlsx, index=True):
+    #
+    #     """
+    #     4.2，数据库sql导出excel
+    #     # Mysql_PO.db2xlsx("select * from sys_menu", "d:\\111.xlsx")
+    #     """
+    #
+    #     df = pd.read_sql(sql=varSql, con=self.getEngine_pymysql())
+    #     df.to_excel(varXlsx, index=index)
 
-        """
-        4.2，数据库sql导出excel
-        # Mysql_PO.db2xlsx("select * from sys_menu", "d:\\111.xlsx")
-        """
+    def _export_to_excel(self, df, varExcelFile, header):
+        """内部方法：将 DataFrame 导出为 Excel 文件"""
+        try:
+            if header is None:
+                df.to_excel(varExcelFile, index=False, header=False)
+            else:
+                df.to_excel(varExcelFile, index=False)
+        except Exception as e:
+            raise RuntimeError(f"导出 Excel 失败: {e}")
 
-        df = pd.read_sql(sql=varSql, con=self.getEngine_pymysql())
-        df.to_excel(varXlsx, index=index)
+
+    def db2xlsx(self, sql, varExcelFile, header=1):
+        """
+        3.1 数据库转xlsx(含字段或不含字段)
+
+        :param sql: 要执行的 SQL 查询语句
+        :param varExcelFile: 导出的 Excel 文件路径
+        :param header: 是否包含列名（默认为 1，即包含；None 表示不包含）
+        :raises ValueError: 如果参数类型或值无效
+        :raises RuntimeError: 如果数据库查询或文件写入失败
+        """
+        # 参数校验
+        if not isinstance(sql, str) or not sql.strip():
+            raise ValueError("参数 'sql' 必须是非空字符串")
+        if not isinstance(varExcelFile, str) or not varExcelFile.strip():
+            raise ValueError("参数 'varExcelFile' 必须是非空字符串")
+        if header is not None and not isinstance(header, int):
+            raise ValueError("参数 'header' 必须是整数或 None")
+
+        try:
+            # 执行 SQL 查询
+            df = pd.read_sql(sql, self.getEngine_pymysql())
+
+            # 检查查询结果是否为空
+            if df.empty:
+                return "warning: empty query result"
+
+            # 导出到 Excel 文件
+            self._export_to_excel(df, varExcelFile, header)
+            return "ok"
+
+        except Exception as e:
+            raise RuntimeError(f"操作失败: {e}")
 
     def db2dict(self, varSql, orient='list'):
 
@@ -836,51 +880,131 @@ class MysqlPO:
         return x
 
 
-    def xlsx2db(self, varPathFile, varDbTable, varSheetName=0):
-
-        '''
-        5.1，xlsx导入数据库
-        xlsx2db('2.xlsx', "tableName", "sheet1")
-        excel表格第一行数据对应db表中字段，建议用英文
-        '''
-
-        try:
-            df = pd.read_excel(varPathFile, sheet_name=varSheetName)
-            engine = self.getEngine_pymysql()
-            df.to_sql(varDbTable, con=engine, if_exists="replace", index=False)
-        except Exception as e:
-            print(e)
-
-    def dict2db(self, varDict, varDbTable, index="True"):
-
-        """5.2 字典导入数据库"""
-
-        try:
-            df = pd.DataFrame(varDict)
-            engine = self.getEngine_pymysql()
-            if index == "False":
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace", index=False)
-            else:
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace")
-        except Exception as e:
-            print(e)
-
-    def list2db(self, l_col, l_value, varDbTable, index="True"):
-
-        """5.3 列表导入数据库
-        l_col = 列名，如 ['id','name','age']
-        l_value= 值,如 [['1','john','44],['2','ti','4']]
+    def xlsx2db(self, varPathFile, varDbTable, varSheetName=0, chunksize=None, if_exists="replace", index=False):
+        """
+        5.1，xlsx导入数据库（优化版）
+        :param varPathFile: Excel 文件路径
+        :param varDbTable: 目标数据库表名
+        :param varSheetName: 工作表名称或索引，默认为第一个工作表
+        :param chunksize: 每次读取的行数（用于分批处理大文件），默认为 None（一次性读取）
+        :param if_exists: 表已存在时的行为，可选 'fail'、'replace'、'append'
+        :param index: 是否将 DataFrame 的索引作为一列写入数据库，默认为 False
         """
 
+        # 参数校验
+        if not isinstance(varPathFile, str) or not varPathFile.endswith(".xlsx"):
+            raise ValueError("varPathFile 必须是有效的 .xlsx 文件路径")
+        if not isinstance(varDbTable, str) or not varDbTable.strip():
+            raise ValueError("varDbTable 必须是非空字符串")
+        if if_exists not in ["fail", "replace", "append"]:
+            raise ValueError("if_exists 参数只能是 'fail'、'replace' 或 'append'")
+
         try:
-            df = pd.DataFrame(l_value, columns=l_col)
+            # 初始化数据库引擎
             engine = self.getEngine_pymysql()
-            if index == "False":
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace", index=False)
+
+            # 分批读取 Excel 文件
+            if chunksize:
+                reader = pd.read_excel(varPathFile, sheet_name=varSheetName, chunksize=chunksize)
+                for chunk in reader:
+                    chunk.to_sql(varDbTable, con=engine, if_exists=if_exists, index=index)
             else:
-                df.to_sql(name=varDbTable, con=engine, if_exists="replace")
+                # 一次性读取整个文件
+                df = pd.read_excel(varPathFile, sheet_name=varSheetName)
+                df.to_sql(varDbTable, con=engine, if_exists=if_exists, index=index)
+
+            print(f"[INFO] 成功将文件 '{varPathFile}' 导入到表 '{varDbTable}' 中。")
+
+        except FileNotFoundError:
+            print(f"[ERROR] 文件未找到: {varPathFile}")
+        except pd.errors.EmptyDataError:
+            print(f"[ERROR] 文件为空或格式不正确: {varPathFile}")
         except Exception as e:
-            print(e)
+            print(f"[ERROR] 导入过程中发生未知错误: {repr(e)}")
+
+
+    def dict2db(self, varDict, varDbTable, include_index=True):
+        """
+        5.2 字典导入数据库（优化版）
+
+        :param varDict: 待导入的字典数据，格式应为 {'列名': [值列表]}
+        :param varDbTable: 目标数据库表名
+        :param include_index: 是否将 DataFrame 的索引作为一列写入数据库，默认为 True
+        :return: 成功返回 "ok"，失败返回错误信息
+        """
+
+        # 参数校验
+        if not isinstance(varDict, dict):
+            raise ValueError("varDict 必须是一个字典类型")
+        if not isinstance(varDbTable, str) or not varDbTable.strip():
+            raise ValueError("varDbTable 必须是非空字符串")
+        if not isinstance(include_index, bool):
+            raise ValueError("include_index 必须是布尔类型")
+
+        try:
+            # 构造 DataFrame
+            df = pd.DataFrame(varDict)
+
+            # 获取数据库引擎
+            engine = self.getEngine_pymysql()
+
+            # 写入数据库
+            df.to_sql(
+                name=varDbTable,
+                con=engine,
+                if_exists="replace",  # 若表已存在则替换
+                index=include_index  # 控制是否写入索引
+            )
+
+            return "ok"
+
+        except Exception as e:
+            # 捕获并打印详细异常信息
+            error_msg = f"[ERROR] 导入字典到数据库失败: {repr(e)}"
+            print(error_msg)
+            return error_msg
+
+    def list2db(self, l_col, l_value, varDbTable, index=True):
+        """
+        5.3 列表导入数据库（优化版）
+
+        :param l_col: 列名列表，例如 ['id', 'name', 'age']
+        :param l_value: 数据列表，每个子列表对应一行数据，例如 [['1', 'john', '44'], ['2', 'ti', '4']]
+        :param varDbTable: 目标数据库表名
+        :param index: 是否将 DataFrame 的索引作为一列写入数据库，默认为 True
+        :return: 成功返回 "ok"，失败返回错误信息
+        """
+
+        # 参数校验
+        if not isinstance(l_col, list) or not all(isinstance(col, str) for col in l_col):
+            raise ValueError("l_col 必须是一个字符串列表")
+        if not isinstance(l_value, list) or not all(isinstance(row, list) for row in l_value):
+            raise ValueError("l_value 必须是一个二维列表")
+        if len(l_col) != len(l_value[0]) if l_value else True:
+            raise ValueError("列名数量与数据列数不匹配")
+        if not isinstance(varDbTable, str) or not varDbTable.strip():
+            raise ValueError("varDbTable 必须是非空字符串")
+        if not isinstance(index, bool):
+            raise ValueError("index 必须是布尔值")
+
+        try:
+            # 构造 DataFrame
+            df = pd.DataFrame(l_value, columns=l_col)
+
+            # 获取数据库引擎（缓存复用）
+            engine = self.getEngine_pymysql()
+
+            # 写入数据库
+            df.to_sql(name=varDbTable, con=engine, if_exists="replace", index=index)
+
+            return "ok"
+
+        except Exception as e:
+            # 捕获并返回详细异常信息
+            error_msg = f"[ERROR] 导入列表到数据库失败: {repr(e)}"
+            print(error_msg)
+            return error_msg
+
 
     def df2db(self, varDF, varDbTable):
 
