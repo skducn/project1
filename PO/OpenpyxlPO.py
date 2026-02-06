@@ -48,7 +48,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 """
 1.1 新建 newExcel("./OpenpyxlPO/newfile2.xlsx", "mySheet1", "mySheet2", "mySheet3") 
 1.2 打开 open()
-1.3 获取所有工作表 getSheets()
+1.3 获取所有工作表 getL_sheet()
 1.4 操作工作表 sh()
 1.5 切换工作表 switchSheet("Sheet2") 
 1.6 添加不覆盖工作表 addSheet("Sheet1")
@@ -214,7 +214,6 @@ class OpenpyxlPO:
     # todo [工作表]
 
 
-
     def open(self):
 
         '''
@@ -231,8 +230,7 @@ class OpenpyxlPO:
         if platform.system() == "Windows":
             os.system("start " + self.file)
 
-
-    def getSheets(self):
+    def getL_sheet(self):
 
         ''' 1.1 获取所有工作表
         如 ['mySheet1', 'mySheet2', 'mySheet3']
@@ -257,23 +255,62 @@ class OpenpyxlPO:
         else:
             exit(0)
 
+    # def switchSheet(self, varSheet=0):
+    #
+    #     '''
+    #     1.5 切换工作表
+    #     # switchSheet("Sheet2")
+    #     '''
+    #
+    #     sh = self.sh(varSheet)
+    #     self.wb.active = 2
+    #     for sheet in self.wb:
+    #         # print(sheet,sh)
+    #         if sheet.title == sh.title:
+    #             sheet.sheet_view.tabSelected = True
+    #         else:
+    #             sheet.sheet_view.tabSelected = False
+    #     self.save()
+
     def switchSheet(self, varSheet=0):
-        
-        '''
-        1.5 切换工作表
-        # switchSheet("Sheet2")
-        '''
+        """
+        1.5 切换工作表（优化版）
 
-        sh = self.sh(varSheet)
-        self.wb.active = 2
-        for sheet in self.wb:
-            # print(sheet,sh)
-            if sheet.title == sh.title:
-                sheet.sheet_view.tabSelected = True
-            else:
-                sheet.sheet_view.tabSelected = False
-        self.save()
+        :param varSheet: 工作表索引（int）或名称（str），默认为0（第一个工作表）
+        :raises ValueError: 如果参数不合法或工作表不存在
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
+        try:
+            # 获取目标工作表对象
+            sh = self.sh(varSheet)
+
+            # 检查工作表是否存在于工作簿中
+            if sh.title not in self.wb.sheetnames:
+                raise ValueError(f"工作表 '{varSheet}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+
+            # 设置活动工作表
+            self.wb.active = self.wb.sheetnames.index(sh.title)
+
+            # 更新 tabSelected 属性（仅激活目标工作表）
+            for sheet in self.wb:
+                sheet.sheet_view.tabSelected = (sheet.title == sh.title)
+
+            # 保存更改
+            self.save()
+
+            # 日志输出
+            print(f"[INFO] 成功切换到工作表: {sh.title}")
+
+        except ValueError as ve:
+            raise ValueError(f"参数错误: {ve}") from ve
+        except IOError as ioe:
+            raise IOError(f"文件操作失败: {ioe}") from ioe
+        except Exception as e:
+            raise IOError(f"切换工作表失败: {e}") from e
 
     def addSheet(self, varSheetName, varIndex=0, overwrite=False):
         '''
