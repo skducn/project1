@@ -44,7 +44,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 # a = column_index_from_string('B')  # 2
 # *********************************************************************
 
-
+# todo [菜单]
 """
 【工作表】
 1.1 新建 Openpyxl_PO = OpenpyxlPO("1212.xlsx")
@@ -69,44 +69,82 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 	setCell(1, 2, "hello") # 将第一行B列写入hello
 	setCell(1, 'B', "john") # 将第一行第三列写入john
 2.3 插入行数据 insertRow({2: ["金浩", "101", "102"]})
-2.4 更新行数据 setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
-2.5 追加行数据 appendRows([['姓名', '电话'], ['毛泽东', 15266606298]])
+2.4 更新行数据 setRow({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
+2.5 追加行数据 appendRow([['姓名', '电话'], ['毛泽东', 15266606298]])
 2.6 插入列数据 insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
-2.7 更新列数据 setCols({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
-2.8 追加列数据 appendCols([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
+2.7 更新列数据 setCol({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
+2.8 追加列数据 appendCol([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
+2.9 清空行 clsRow(2)  # 清空第2行
+2.10 清空列 
+    clsCol(2, clear_header=True)  # 清空第2列
+    clsCol(2, clear_header=False)  # 清空第2列,保留列标签
+2.11 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
+2.12 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
+2.13 移动区域 moveBlock(rows, cols, 'C1:D2')
+2.14 将excel中标题（第一行字段）排序（从小打大）sortColHeader()
 
-4.1 清空行 clsRow(2)  # 清空第2行
-4.2 清空列 clsCol(2)  # 清空第2列
-4.2.1 清空列保留标题 clsColRetainTitle(2)  # 清空第2列
-4.3 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
-4.4 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
-6 移动区域 moveValues(rows, cols, 'C1:D2')
-7 将excel中标题（第一行字段）排序（从小打大）sortFields()
 
-
-【设置】
-2.5 设置单元格列宽 setColWidth(1, 100) # 设置第1列宽度100
-2.5 设置单元格列宽 setColWidth2('f', 100) # 设置第f列宽度100
-2.5 设置单元格行高与列宽 setCellDimensions(3, 30, 'f', 30) //设置第三行行高30，第f列列宽50
-2.6 设置工作表所有单元格的行高与列宽 setAllCellDimensions(30, 20) //设置所有单元格高30，宽20
-2.7 设置所有单元格自动换行 setAllWordWrap()
-2.8 设置冻结首行 setFreeze('A2'）
-2.9 设置单元格对齐样式  setCellAlignment(5, 4, 'center', 'center')
-2.9.2 设置单行多列对齐样式 setRowColAlignment(5, [1,4], 'center', 'center')
-2.9.3 设置所有单元格对齐样式 setAllCellAlignment('center', 'center')
-2.10 设置筛选列  setFilterCol("all") # 全部筛选, setFilterCol("") # 取消筛选 , setFilterCol("A2") # 对A2筛选 
-2.11 设置单元格字体（字体、字号、粗斜体、下划线、颜色） setCellFont(1, 1, name=u'微软雅黑', size=16, bold=True, italic=True, color="000000")
-2.11.2 设置单行多列字体  setRowColFont(1, [1, 5])
-2.11.3 设置所有单元格字体  setAllCellFont(color="000000")
-2.12 设置单元格边框 setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
-2.13 设置单元格填充背景色 setPatternFill(2, 2, 'solid', '006100')
-2.14 设置单元格填充渐变色 setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
-2.15 设置单元格背景色 setCellColor(1, 1, "ff0000")  # 第1行第一列设置红色
-2.15.2 设置单行多列背景色 setRowColColor(5, ['b', 'd'], "ff0000")
-2.15.3 设置所有单元格背景色 setAllCellColor("ff0000")
-2.16 设置整行(可间隔)背景色  setRowColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
-2.17 设置整列(可间隔)背景色  setColColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
-2.18 设置工作表背景颜色 setSheetColor("FF0000")
+【样式】
+3.0 设置列宽 
+	setColWidth(1, 20) # 设置第1列宽度20
+	setColWidth('C', 30) # 设置第f列宽度30
+3.1 设置行高与列宽
+	setRowColSize([(3, 30), (5, 40)], None)  # 设置第三行行高30，第五行行高40
+	setRowColSize(None, [('a', 22), ('C', 33)])  # 设置第a列宽22, 第c列宽33
+	setRowColSize([(3, 30), (5, 40)], [('a', 22), ('C', 33)])  # 设置第三行行高30，第五行行高40, 设置第a列宽22, 第c列宽33
+3.2 设置所有单元格的行高与列宽 setAllSize(30, 20) //设置所有单元格高30，宽20
+3.3 设置自动换行 setWordWrap()
+3.4 冻结窗口 setFreezePanes(）
+	setFreezePanes('A2') # 冻结首行    A表示不冻结列，2表示冻结首行
+	setFreezePanes('B1')  # 冻结第A列。  B表示冻结A列，1表示不冻结行
+	setFreezePanes('B2')  # 冻结第1行和第A列。
+	setFreezePanes('C3')  # 冻结第1、2行和第B列。  C表示冻结A、B列，3表示冻结第1、2行
+3.5 设置单元格对齐样式  setAlignment(5, 4, 'center', 'center')
+	setAlignment(5, 4, horizontal="center", vertical="center") # 设置第5行第4列居中对齐
+	setAlignment(2, "E", vertical="top", wrap_text=True) # 设置第5行F列顶部对齐并自动换行
+3.6 设置单行多列对齐样式 
+	setRowColAlignment(5, [1,4], 'center', 'center') # 第5行第1,4列居中
+	setRowColAlignment(1, ["c", "e"], 'center', 'top')  # 第一行第c,e列居中
+	setRowColAlignment(1, "all", 'center', 'center')  # 第1行全部居中
+3.7 设置所有单元格对齐样式 setAllAlignment('center', 'center')
+3.8 设置筛选列  
+	setFilterCol("all") # 全部筛选, 
+	setFilterCol("") # 取消筛选 
+	setFilterCol("A2") # 对A2筛选 
+3.9 设置单元格字体（字体、字号、粗斜体、下划线、颜色） 
+setCellFont(1, 1, name=u'微软雅黑', size=16, bold=True, italic=True, color="000000")
+3.10 设置单行多列字体
+	setRowColFont(2, ["b", "D"],name="微软雅黑",size=16, bold=False, italic=False, color="000000")  # 第1行第b-h列
+	setRowColFont(3, "all")  # 第3行
+3.11 设置所有单元格字体  setAllCellFont(color="000000")
+3.12 设置单元格边框 setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
+3.13 设置单元格填充渐变色 setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
+3.14 设置单元格背景色".center(100, "-"))
+	setBackgroundColor(2, 1, "ff0000")  # 设置第五行第1列设置红色
+	setBackgroundColor(2, "c", "0000FF")  # 设置第五行e列设置红色
+	setBackgroundColor(2, 1, clear_color=True)  # 清除第5行第1列的背景色
+	setBackgroundColor(2, "c", clear_color=True)  # 清除第5行d列的背景色
+3.15 设置单行多列背景色
+	setRowColBackgroundColor(2, ['b', 'd'], "ff0000") # 设置第2行第b，c，d列背景色
+	etRowColBackgroundColor(1, "all", "ff0000")  # 设置第7行所有列背景色
+	setRowColBackgroundColor(2, ['B', 'D'], clear_color=True)  # 清除第2行第b，c，d列背景色
+	setRowColBackgroundColor(1, "all", clear_color=True)  #  清除第1行所有列背景色
+3.16 设置所有单元格背景色
+	setAllBackgroundColor("ff0000")  # 设置所有单元格背景色
+	setAllBackgroundColor(clear_color=True)  # 清除所有单元格背景色
+3.17 设置整行(可间隔)背景色  
+	setBandRowsColor(5, 0, "ff0000")  # 从第5行开始每行颜色标红色
+	setBandRowsColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
+	setBandRowsColor(3, 1, clear_color=True) # 清除从第3行开始每隔1行的背景色
+	setBandRowsColor(5, 0, clear_color=True) # 清除从第5行开始每行颜色标红色
+3.18 设置整列(可间隔)背景色 
+	setBandColsColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
+	setBandColsColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
+	setBandColsColor(2, 1, clear_color=True) # 清除从第2列开始每隔1列的背景色
+	setBandColsColor(2, 0, clear_color=True)  # 从第2列开始每列颜色为红色
+3.19 设置工作表背景颜色 
+	setSheetColor("FF0000")
+	setSheetColor(clear_color=True)	
 
 【获取】
 3.1 获取总行列数 getL_shape()  # [5,10]
@@ -135,8 +173,6 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 【两表比较】
 5.1 两表比较，获取差异内容（两表标题与行数必须一致）setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2"))
 5.2 两工作表比较，对差异内容标注颜色 setColorByDiff("Sheet1", "Sheet2")
-
-
 
 
 【转换】
@@ -648,7 +684,7 @@ class OpenpyxlPO:
                 self.insertNullRow(k, varSheet=varSheet)
 
             # 设置行数据
-            self.setRows(d_rowNumber_l_value, varSheet=varSheet)
+            self.setRow(d_rowNumber_l_value, varSheet=varSheet)
 
             # 保存文件
             self.save()
@@ -656,7 +692,7 @@ class OpenpyxlPO:
         except Exception as e:
             raise IOError(f"插入行数据失败: {e}") from e
 
-    def setRows(self, d_rowNumber_l_value, varSheet=0):
+    def setRow(self, d_rowNumber_l_value, varSheet=0):
         """
         2.4 更新行数据（优化版）
 
@@ -689,7 +725,7 @@ class OpenpyxlPO:
         except Exception as e:
             raise IOError(f"更新行数据失败: {e}") from e
 
-    def appendRows(self, l_l_value, varSheet=0):
+    def appendRow(self, l_l_value, varSheet=0):
         """
         2.5 追加行数据（优化版）
 
@@ -769,23 +805,20 @@ class OpenpyxlPO:
         except Exception as e:
             raise IOError(f"插入列数据失败: {e}") from e
 
-    def setCols(self, d_col_l_value, varSheet=0):
+    def setCol(self, d_col_l_value, varSheet=0):
         """
-        2.8 更新列数据（优化版）
+        更新列数据（优化版）
 
-        setCols({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
-        setCols({1: ["公司", "百度"], 4: ["学校", "清华大学"]})
-
-        :param d_var: 列数据字典，键为列号（整数）或列字母（字符串），值为列内容（列表）
+        :param d_col_l_value: 列数据字典，键为列号（整数）或列字母（字符串），值为列内容（列表）
         :param varSheet: 工作表索引（int）或名称（str），默认为0
         :raises ValueError: 如果参数不合法
         :raises IOError: 如果操作失败
         """
         # 参数校验
         if not isinstance(d_col_l_value, dict):
-            raise ValueError("d_var 必须是一个字典")
+            raise ValueError("d_col_l_value 必须是一个字典")
         if not all(isinstance(k, (int, str)) and isinstance(v, list) for k, v in d_col_l_value.items()):
-            raise ValueError("d_var 的键必须是整数或字符串，值必须是列表")
+            raise ValueError("d_col_l_value 的键必须是整数或字符串，值必须是列表")
         if not isinstance(varSheet, (int, str)):
             raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
@@ -793,22 +826,32 @@ class OpenpyxlPO:
             # 获取工作表对象
             sh = self.sh(varSheet)
 
-            # 设置列数据
-            for k, v in d_col_l_value.items():
-                col_idx = column_index_from_string(k) if isinstance(k, str) else int(k)
-                for i in range(len(v)):
-                    if v[i] is not None:
-                        sh.cell(row=i + 1, column=col_idx, value=v[i])
+            # 遍历列数据字典
+            for col_key, col_values in d_col_l_value.items():
+                # 处理列标识：如果是字符串且为数字，则转换为列字母；否则直接使用
+                if isinstance(col_key, str) and col_key.isdigit():
+                    col_index = int(col_key)  # 直接使用数字索引
+                elif isinstance(col_key, str):
+                    col_index = column_index_from_string(col_key)  # 转换列字母为索引
+                elif isinstance(col_key, int):
+                    col_index = col_key  # 直接使用数字索引
+                else:
+                    raise ValueError(f"列标识 '{col_key}' 类型不合法，应为整数或字符串")
 
-            # 保存文件（仅在必要时调用）
+                # 写入列数据
+                for row_idx, value in enumerate(col_values, start=1):
+                    if value is not None:  # 跳过 None 值
+                        sh.cell(row=row_idx, column=col_index, value=value)
+
+            # 保存更改
             self.save()
 
         except Exception as e:
             raise IOError(f"设置列数据失败: {e}") from e
 
-    def appendCols(self, l_l_value, varSheet=0):
+    def appendCol(self, l_l_value, varSheet=0):
         """
-        2.9 追加列数据（优化版）
+        2.8 追加列数据（优化版）
 
         :param l_l_cols: 列数据列表，每个元素为一个列表，表示一列数据
         :param varSheet: 工作表索引（int）或名称（str），默认为0
@@ -837,253 +880,819 @@ class OpenpyxlPO:
             }
 
             # 设置列数据
-            self.setCols(col_mapping, varSheet)
+            self.setCol(col_mapping, varSheet)
 
         except Exception as e:
             raise IOError(f"追加列数据失败: {e}") from e
 
+    def clsRow(self, varNums, varSheet=0):
+        """
+        2.9 清空行（优化版）
 
+        :param varNums: 行号，必须是大于0的整数
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varNums, int) or varNums <= 0:
+            raise ValueError("varNums 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 检查行号是否超出范围
+            if varNums > sh.max_row:
+                raise ValueError(f"行号 {varNums} 超出范围，最大行数为 {sh.max_row}")
+
+            # # 备份原始文件（可选）
+            # backup_path = self.file.replace(".xlsx", "_backup.xlsx")
+            # self.wb.save(backup_path)
+
+            # 清空指定行的数据
+            for col in range(1, sh.max_column + 1):
+                cell = sh.cell(row=varNums, column=col)
+                cell.value = None  # 清除值
+                cell.font = None  # 清除字体样式
+                cell.fill = PatternFill()  # 正确清除背景色
+                cell.border = None  # 清除边框
+                cell.alignment = None  # 清除对齐方式
+                cell.number_format = ''  # 设置为空字符串，避免 None 错误
+                cell.protection = None  # 清除保护设置
+
+            # 保存更改
+            self.save()
+
+        except ValueError as ve:
+            raise ValueError(f"参数错误: {ve}") from ve
+        except IOError as ioe:
+            raise IOError(f"文件操作失败: {ioe}") from ioe
+        except Exception as e:
+            raise IOError(f"清空行失败: {e}") from e
+
+    def clsCol(self, varCol, varSheet=0, clear_header=True):
+        """
+        2.10 清空列（优化版）
+
+        :param varCol: 列号，可以是整数（如2）或字符串（如'B'）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param clear_header: 是否清除列标签（第一行），默认为True
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varCol, (int, str)):
+            raise ValueError("varCol 必须是整数或字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(clear_header, bool):
+            raise ValueError("clear_header 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引
+            if isinstance(varCol, str):
+                varCol = column_index_from_string(varCol)
+
+            # 确定起始行
+            start_row = 1 if clear_header else 2
+
+            # 清空列数据
+            for i in range(start_row, sh.max_row + 1):
+                sh.cell(row=i, column=varCol).value = None
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"清空列失败: {e}") from e
+
+    def delRow(self, varFrom, varSeries=1, varSheet=0):
+        """
+        2.11 删除连续行（优化版）
+
+        :param varFrom: 起始行号，必须是大于0的整数
+        :param varSeries: 删除的行数，默认为1
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varFrom, int) or varFrom <= 0:
+            raise ValueError("varFrom 必须是大于0的整数")
+        if not isinstance(varSeries, int) or varSeries <= 0:
+            raise ValueError("varSeries 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 执行删除操作
+            sh.delete_rows(idx=varFrom, amount=varSeries)
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"删除行失败: {e}") from e
+
+    def delCol(self, varFrom, varSeries=1, varSheet=0):
+        """
+        2.12 删除连续列（优化版）
+
+        :param varFrom: 起始列，可以是整数（如2）或字符串（如'U'）
+        :param varSeries: 删除的列数，默认为1
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varFrom, (int, str)):
+            raise ValueError("varFrom 必须是整数或字符串")
+        if not isinstance(varSeries, int) or varSeries <= 0:
+            raise ValueError("varSeries 必须是大于0的整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引
+            if isinstance(varFrom, str):
+                varFrom = column_index_from_string(varFrom)
+
+            # 执行删除操作
+            sh.delete_cols(idx=varFrom, amount=varSeries)
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"删除列失败: {e}") from e
+
+    def moveBlock(self, varBlock, varRow, varCol, varSheet=0):
+        """
+        2.13 移动区域数据（优化版）
+
+        # Openpyxl_PO.moveBlock('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
+        # Openpyxl_PO.moveBlock('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
+
+        :param varFrom: 起始区域，如 'C1:D2'
+        :param varRows: 移动的行数，正数向下移动，负数向上移动
+        :param varCols: 移动的列数，正数向右移动，负数向左移动
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varBlock, str) or not varBlock:
+            raise ValueError("varFrom 必须是一个非空字符串，表示起始区域")
+        if not isinstance(varRow, int) or not isinstance(varCol, int):
+            raise ValueError("varRows 和 varCols 必须是整数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 执行移动操作
+            sh.move_range(varBlock, rows=varRow, cols=varCol)
+
+            # 保存更改
+            self.save()
+        except Exception as e:
+            raise IOError(f"移动区域数据失败: {e}") from e
+
+    def sortColHeader(self, varSheetName):
+        """
+        2.14 将表格第一行（标题）排序（从小打大）（优化版）
+
+        :param varSheet1: 工作表名称
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取或写入失败
+        return：生成 {表名}_标题升序, 如表名字：sheet1， 结果：sheet1_标题升序
+        """
+
+        if varSheetName not in self.wb.sheetnames:
+            raise ValueError(f"工作表 '{varSheetName}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+
+        # 参数校验
+        if not isinstance(varSheetName, str):
+            raise ValueError("varSheet1 必须是一个字符串")
+
+        try:
+            # 获取第一行标题
+            l_title = self.getL_row(1, varSheetName)
+            if not l_title:
+                raise ValueError("工作表中没有找到标题行")
+
+            # 排序标题
+            l_sortAsc = sorted(l_title)
+
+            # 创建新工作表并写入排序后的标题
+            varNewSheet = varSheetName + "_" + "标题升序"
+            self.addSheet(varNewSheet)
+            self.setRow({1: l_sortAsc}, varNewSheet)
+
+            # 获取原始列数据
+            col = self.getLL_col(varSheetName)
+
+            # 根据排序后的标题重新排列列数据
+            for i in range(len(col)):
+                for j in range(len(l_sortAsc)):
+                    if col[i][0] == l_sortAsc[j]:
+                        self.setCol({str(j + 1): col[i]}, varNewSheet)
+
+            self.save()
+
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varSheetName}") from e
+        except Exception as e:
+            raise IOError(f"处理工作表失败: {varSheetName}") from e
+
+
+    # todo [样式]
 
     def setColWidth(self, col, colQty, varSheet=0):
+        """
+        3.0 设置列宽（合并版）
 
-        # 2.5 设置列列宽
-        # Openpyxl_PO.setColWidth(10, 50) // 设置第十列的宽50
-        sh = self.sh(varSheet)
-        sh.column_dimensions[get_column_letter(col)].width = colQty  # 列宽
-        self.save()
+        :param col: 列标识，可以是整数（如1）或字符串（如'f'）
+        :param colQty: 列宽，必须是数字
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(col, (int, str)):
+            raise ValueError("col 必须是整数或字符串")
+        if not isinstance(colQty, (int, float)):
+            raise ValueError("colQty 必须是数字")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-    def setColWidth2(self, col, colQty, varSheet=0):
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        # 2.5 设置列列宽
-        # Openpyxl_PO.setColWidth2('f', 50) // 设置第f列的宽50
-        sh = self.sh(varSheet)
-        sh.column_dimensions[col].width = colQty  # 列宽
-        self.save()
+            # 处理列标识：如果是整数，则转换为列字母；如果是字符串，则直接使用
+            if isinstance(col, int):
+                col_letter = get_column_letter(col)
+            elif isinstance(col, str):
+                col_letter = col
+            else:
+                raise ValueError("col 类型不合法，应为整数或字符串")
 
-    def setCellDimensions(self, row, rowQty, col, colQty, varSheet=0):
+            # 设置列宽
+            sh.column_dimensions[col_letter].width = colQty
 
-        # 2.5 设置单元格行高与列宽
-        # Openpyxl_PO.setCellDimensions(3, 30, 'f', 50) //第三行行高30，第f列列宽50
-        sh = self.sh(varSheet)
-        sh.row_dimensions[row].height = rowQty  # 行高
-        sh.column_dimensions[col].width = colQty  # 列宽
-        self.save()
+            # 保存更改
+            self.save()
 
-    def setRowColDimensions(self, row, rowQty, l_col, colQty, varSheet=0):
+        except Exception as e:
+            raise IOError(f"设置列宽失败: {e}") from e
 
-        # 2.5.2 设置单行多列行高与列宽
-        # Openpyxl_PO.setRowColDimensions(5, 30, ['f', 'h'], 30)  #
-        sh = self.sh(varSheet)
-        cols = sh.max_column
-        sh.row_dimensions[row].height = rowQty  # 行高
-        if l_col == "all":
-            for i in range(1, cols + 1):
-                sh.column_dimensions[get_column_letter(i)].width = colQty  # 列宽
-        else:
-            # print(column_index_from_string(l_col[0]))  # 6
-            # print(column_index_from_string(l_col[1]))  # 8
-            for i in range(
-                column_index_from_string(l_col[0]),
-                int(column_index_from_string(l_col[1])) + 1,
-            ):
-                sh.column_dimensions[get_column_letter(i)].width = colQty  # 列宽
-        self.save()
+    def setRowColSize(self, row_qty_pairs=None, col_qty_pairs=None, varSheet=0):
+        """
+        3.1 设置行高与列宽（优化版）
 
-    def setAllCellDimensions(self, rowQty, colQty, varSheet=0):
+        :param row_qty_pairs: 行高设置的元组列表，如 [(3, 30), (5, 40)] 表示第3行高30，第5行高40
+        :param col_qty_pairs: 列宽设置的元组列表，如 [('f', 50), ('h', 60)] 表示第f列宽50，第h列宽60
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if row_qty_pairs is not None and not all(isinstance(pair, tuple) and len(pair) == 2 for pair in row_qty_pairs):
+            raise ValueError("row_qty_pairs 必须是包含两个元素的元组列表")
+        if col_qty_pairs is not None and not all(isinstance(pair, tuple) and len(pair) == 2 for pair in col_qty_pairs):
+            raise ValueError("col_qty_pairs 必须是包含两个元素的元组列表")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        # 2.6 设置所有单元格的行高与列宽
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        columns = sh.max_column
-        for i in range(1, rows + 1):
-            sh.row_dimensions[i].height = rowQty  # 行高
-        for i in range(1, columns + 1):
-            sh.column_dimensions[get_column_letter(i)].width = colQty  # 列宽
-        self.save()
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-    def setAllCellDimensionsHeight(self, rowQty, varSheet=0):
+            # 设置行高
+            if row_qty_pairs:
+                for row, qty in row_qty_pairs:
+                    if not isinstance(row, int) or row <= 0:
+                        raise ValueError(f"行号 {row} 必须是大于0的整数")
+                    if not isinstance(qty, (int, float)) or qty < 0:
+                        raise ValueError(f"行高 {qty} 必须是非负数")
+                    sh.row_dimensions[row].height = qty
 
-        # 2.6 设置所有单元格的行高与列宽
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        columns = sh.max_column
-        for i in range(1, rows + 1):
-            sh.row_dimensions[i].height = rowQty  # 行高
-        self.save()
+            # 设置列宽
+            if col_qty_pairs:
+                for col, qty in col_qty_pairs:
+                    if not isinstance(col, (int, str)):
+                        raise ValueError(f"列标识 {col} 必须是整数或字符串")
+                    if not isinstance(qty, (int, float)) or qty < 0:
+                        raise ValueError(f"列宽 {qty} 必须是非负数")
+                    col_letter = get_column_letter(col) if isinstance(col, int) else col
+                    sh.column_dimensions[col_letter].width = qty
 
-    def setAllWordWrap(self, varSheet=0):
+            # 保存更改
+            self.save()
 
-        # 2.7 设置所有单元格自动换行
-        sh = self.sh(varSheet)
-        # print(list(sh._cells.keys())) # [(1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3), (4, 1), (4, 2), (4, 3), (5, 1), (5, 2), (5, 3), (6, 1), (6, 2), (6, 3), (7, 1), (7, 2), (7, 3)]
-        for key in list(sh._cells.keys()):
-            sh._cells[key].alignment = Alignment(wrapText=True)
-        self.save()
+        except Exception as e:
+            raise IOError(f"设置单元格行高与列宽失败: {e}") from e
 
-    def setFreeze(self, coordinate, varSheet=0):
+    def setAllSize(self, rowQty, colQty, varSheet=0):
+        """
+        3.2 设置所有单元格的行高与列宽（优化版）
 
-        # 2.8 冻结窗口
-        # setFreeze('A2'）
-        sh = self.sh(varSheet)
-        sh.freeze_panes = coordinate
-        self.save()
+        :param rowQty: 行高，必须是非负数
+        :param colQty: 列宽，必须是非负数
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(rowQty, (int, float)) or rowQty < 0:
+            raise ValueError("rowQty 必须是非负数")
+        if not isinstance(colQty, (int, float)) or colQty < 0:
+            raise ValueError("colQty 必须是非负数")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-    def setCellAlignment(
-        self,
-        row,
-        col,
-        horizontal="center",
-        vertical="center",
-        text_rotation=0,
-        wrap_text=False,
-        varSheet=0,
-    ):
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        # 2.9 设置单元格对齐样式
-        # Openpyxl_PO.setCellAlignment(5, 4, 'center', 'top')
-        # Openpyxl_PO.setCellAlignment(5, "f", 'center', 'top')
-        # Alignment(horizonta水平对齐模式, vertical=垂直对齐模式, text_rotation=旋转角度, wrap_text=是否自动换行)
-        # horizontal = ("general", "left", "center", "right", "fill", "justify", "centerContinuous", "distributed",)
-        # vertical = ("top", "center", "bottom", "justify", "distributed")
-        sh = self.sh(varSheet)
-        if isinstance(col, int):
+            # 获取最大行数和列数
+            max_row = sh.max_row
+            max_col = sh.max_column
+
+            # 容错处理：如果工作表为空，则直接返回
+            if max_row is None or max_col is None:
+                print("[WARNING] 工作表为空，无需设置行高和列宽。")
+                return
+
+            # 批量设置行高
+            for i in range(1, max_row + 1):
+                sh.row_dimensions[i].height = rowQty
+
+            # 批量设置列宽
+            for i in range(1, max_col + 1):
+                sh.column_dimensions[get_column_letter(i)].width = colQty
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置所有单元格行高与列宽失败: {e}") from e
+
+    def setWrapText(self, varSheet=0):
+        """
+        3.3 设置自动换行（优化版）
+        自动换行后，内容将完全显示出来，并动态调整行高以适配内容。
+
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 获取最大行数和列数
+            max_row = sh.max_row
+            max_col = sh.max_column
+
+            # 容错处理：如果工作表为空，则直接返回
+            if max_row is None or max_col is None:
+                print("[WARNING] 工作表为空，无需设置自动换行。")
+                return
+
+            # 遍历所有单元格并设置自动换行及动态行高
+            for row in range(1, max_row + 1):
+                for col in range(1, max_col + 1):
+                    cell = sh.cell(row=row, column=col)
+                    # 设置自动换行
+                    cell.alignment = Alignment(wrapText=True)
+
+                    # 动态调整行高以适配内容
+                    if cell.value:
+                        # 获取列宽（单位：字符宽度）
+                        col_width = sh.column_dimensions[get_column_letter(col)].width or 10
+                        # 获取字体大小（默认为 11）
+                        font_size = cell.font.size or 11
+                        # 估算文本行数
+                        estimated_lines = self._estimate_text_lines(str(cell.value), col_width, font_size)
+                        # 设置行高（每行约 1.2 倍字体高度）
+                        sh.row_dimensions[row].height = max(sh.row_dimensions[row].height or 15,
+                                                            estimated_lines * font_size * 1.2)
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置自动换行失败: {e}") from e
+    def _estimate_text_lines(self, text, col_width, font_size):
+        """
+        估算文本所需行数（私有辅助函数）
+
+        :param text: 单元格内容
+        :param col_width: 列宽（字符数）
+        :param font_size: 字体大小
+        :return: 估算的行数
+        """
+        # 经验公式：每字符宽度约为字体大小的 0.6 倍
+        char_width = font_size * 0.6
+        # 每行最多容纳的字符数
+        chars_per_line = col_width / char_width
+        # 估算行数
+        lines = len(text) / chars_per_line
+        return int(lines) + 1  # 向上取整
+
+    def setFreezePanes(self, coordinate, varSheet=0):
+        """
+        3.4 冻结窗口（优化版）
+        支持冻结行、列或区域。
+
+        :param coordinate: 冻结的起始单元格坐标，如 'A2' 表示冻结第1行，'B1' 表示冻结第A列，
+                           'B2' 表示冻结第1行和第A列。
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法或坐标无效
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(coordinate, str) or not coordinate:
+            raise ValueError("coordinate 必须是一个非空字符串，表示冻结的起始单元格坐标")
+
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 校验坐标有效性
+            if not self._is_valid_coordinate(coordinate):
+                raise ValueError(f"无效的坐标: {coordinate}")
+
+            # 设置冻结窗格
+            sh.freeze_panes = coordinate
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"冻结窗口失败: {e}") from e
+    def _is_valid_coordinate(self, coordinate):
+        """
+        校验坐标是否有效（私有辅助函数）
+
+        :param coordinate: 单元格坐标，如 'A1', 'B2' 等
+        :return: 坐标是否有效
+        """
+        try:
+            from openpyxl.utils import coordinate_to_tuple
+            row, col = coordinate_to_tuple(coordinate)
+            return row >= 1 and col >= 1
+        except Exception:
+            return False
+
+    def setAlignment(self, row, col, horizontal="center", vertical="center", text_rotation=0, wrap_text=False, varSheet=0):
+        """
+        3.5 设置对齐样式（优化版）
+        支持设置水平对齐、垂直对齐、文本旋转和自动换行。
+
+        :param row: 行号，必须是大于0的整数
+        :param col: 列号（整数）或列字母（字符串），必须合法
+        :param horizontal: 水平对齐方式，默认为 "center"
+        :param vertical: 垂直对齐方式，默认为 "center"
+        :param text_rotation: 文本旋转角度，默认为 0
+        :param wrap_text: 是否自动换行，默认为 False
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(col, (int, str)):
+            raise ValueError("col 必须是整数或字符串")
+        if isinstance(col, str) and not col.isalpha():
+            raise ValueError("col 必须是有效的列字母")
+        if not isinstance(horizontal, str) or horizontal not in (
+                "general", "left", "center", "right", "fill", "justify", "centerContinuous", "distributed"
+        ):
+            raise ValueError("horizontal 必须是合法的对齐方式")
+        if not isinstance(vertical, str) or vertical not in (
+                "top", "center", "bottom", "justify", "distributed"
+        ):
+            raise ValueError("vertical 必须是合法的对齐方式")
+        if not isinstance(text_rotation, int) or not (0 <= text_rotation <= 180):
+            raise ValueError("text_rotation 必须是 0 到 180 之间的整数")
+        if not isinstance(wrap_text, bool):
+            raise ValueError("wrap_text 必须是布尔值")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(col, str):
+                col = column_index_from_string(col)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+            if col > max_col:
+                raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+
+            # 设置单元格对齐样式
             sh.cell(row=row, column=col).alignment = Alignment(
                 horizontal=horizontal,
                 vertical=vertical,
                 text_rotation=text_rotation,
                 wrap_text=wrap_text,
             )
-        else:
-            sh.cell(row, column_index_from_string(col)).alignment = Alignment(
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置单元格对齐样式失败: {e}") from e
+
+    def setRowColAlignment(self, row, l_col, horizontal="center", vertical="center", text_rotation=0, wrap_text=False, varSheet=0):
+        """
+        3.6 设置单行多列对齐样式（优化版）
+        支持设置指定行中多列的对齐方式。
+
+        :param row: 行号，必须是大于0的整数
+        :param l_col: 列标识列表（如 [4, 6]）或字符串 "all"
+        :param horizontal: 水平对齐方式，默认为 "center"
+        :param vertical: 垂直对齐方式，默认为 "center"
+        :param text_rotation: 文本旋转角度，默认为 0
+        :param wrap_text: 是否自动换行，默认为 False
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(l_col, (list, str)) or (
+                isinstance(l_col, list) and not all(isinstance(c, (int, str)) for c in l_col)):
+            raise ValueError("l_col 必须是列表（元素为整数或字符串）或字符串 'all'")
+        if not isinstance(horizontal, str) or horizontal not in (
+                "general", "left", "center", "right", "fill", "justify", "centerContinuous", "distributed"
+        ):
+            raise ValueError("horizontal 必须是合法的对齐方式")
+        if not isinstance(vertical, str) or vertical not in (
+                "top", "center", "bottom", "justify", "distributed"
+        ):
+            raise ValueError("vertical 必须是合法的对齐方式")
+        if not isinstance(text_rotation, int) or not (0 <= text_rotation <= 180):
+            raise ValueError("text_rotation 必须是 0 到 180 之间的整数")
+        if not isinstance(wrap_text, bool):
+            raise ValueError("wrap_text 必须是布尔值")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+
+            # 设置对齐样式
+            alignment = Alignment(
                 horizontal=horizontal,
                 vertical=vertical,
                 text_rotation=text_rotation,
                 wrap_text=wrap_text,
             )
-        self.save()
 
-    def setRowColAlignment(
-        self,
-        row,
-        l_col,
-        horizontal="center",
-        vertical="center",
-        text_rotation=0,
-        wrap_text=False,
-        varSheet=0,
-    ):
+            if l_col == "all":
+                # 全部列应用对齐样式
+                for col in range(1, max_col + 1):
+                    sh.cell(row=row, column=col).alignment = alignment
+            else:
+                # 指定列应用对齐样式
+                col_indices = set()
+                for col in l_col:
+                    if isinstance(col, str):
+                        col_indices.add(column_index_from_string(col))
+                    elif isinstance(col, int):
+                        col_indices.add(col)
+                    else:
+                        raise ValueError(f"列标识 '{col}' 类型不合法，应为整数或字符串")
 
-        # 2.9.2 设置单行多列对齐样式
-        # Openpyxl_PO.setRowColAlignment(1, [4, 6], 'center', 'center')  # 第一行第四五六列居中
-        # Openpyxl_PO.setRowColAlignment(9, "all", 'center', 'center')  # 第九行全部居中
-        # Alignment(horizonta水平对齐模式, vertical=垂直对齐模式, text_rotation=旋转角度, wrap_text=是否自动换行)
-        # horizontal = ("general", "left", "center", "right", "fill", "justify", "centerContinuous", "distributed",)
-        # vertical = ("top", "center", "bottom", "justify", "distributed")
-        sh = self.sh(varSheet)
-        cols = sh.max_column
-        if l_col == "all":
-            for i in range((cols)):
-                sh.cell(row=row, column=i + 1).alignment = Alignment(
-                    horizontal=horizontal,
-                    vertical=vertical,
-                    text_rotation=text_rotation,
-                    wrap_text=wrap_text,
-                )
-        else:
-            for i in range(
-                column_index_from_string(l_col[0]),
-                int(column_index_from_string(l_col[1])) + 1,
-            ):
-                sh.cell(row=row, column=i).alignment = Alignment(
-                    horizontal=horizontal,
-                    vertical=vertical,
-                    text_rotation=text_rotation,
-                    wrap_text=wrap_text,
-                )
-        self.save()
+                for col in sorted(col_indices):
+                    if col > max_col:
+                        raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+                    sh.cell(row=row, column=col).alignment = alignment
 
-    def setAllCellAlignment(
-        self,
-        horizontal="center",
-        vertical="center",
-        text_rotation=0,
-        wrap_text=False,
-        varSheet=0,
-    ):
+            # 保存文件（仅在必要时调用）
+            self.save()
 
-        # 2.9.3 设置所有单元格对齐样式
-        # Openpyxl_PO.setAllCellAlignment('center', 'center')
-        # Alignment(horizonta水平对齐模式, vertical=垂直对齐模式, text_rotation=旋转角度, wrap_text=是否自动换行)
-        # horizontal = ("general", "left", "center", "right", "fill", "justify", "centerContinuous", "distributed",)
-        # vertical = ("top", "center", "bottom", "justify", "distributed")
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        cols = sh.max_column
-        for r in range(rows):
-            for c in range(cols):
-                sh.cell(row=r + 1, column=c + 1).alignment = Alignment(
-                    horizontal=horizontal,
-                    vertical=vertical,
-                    text_rotation=text_rotation,
-                    wrap_text=wrap_text,
-                )
-        self.save()
+        except Exception as e:
+            raise IOError(f"设置单行多列对齐样式失败: {e}") from e
+
+    def setAllAlignment(self, horizontal="center", vertical="center", text_rotation=0, wrap_text=False, varSheet=0):
+        """
+        3.7 设置所有单元格对齐样式（优化版）
+        支持设置所有单元格的水平对齐、垂直对齐、文本旋转和自动换行。
+
+        :param horizontal: 水平对齐方式，默认为 "center"
+        :param vertical: 垂直对齐方式，默认为 "center"
+        :param text_rotation: 文本旋转角度，默认为 0
+        :param wrap_text: 是否自动换行，默认为 False
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(horizontal, str) or horizontal not in (
+                "general", "left", "center", "right", "fill", "justify", "centerContinuous", "distributed"
+        ):
+            raise ValueError("horizontal 必须是合法的对齐方式")
+        if not isinstance(vertical, str) or vertical not in (
+                "top", "center", "bottom", "justify", "distributed"
+        ):
+            raise ValueError("vertical 必须是合法的对齐方式")
+        if not isinstance(text_rotation, int) or not (0 <= text_rotation <= 180):
+            raise ValueError("text_rotation 必须是 0 到 180 之间的整数")
+        if not isinstance(wrap_text, bool):
+            raise ValueError("wrap_text 必须是布尔值")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
+
+            # 获取最大行数和列数（缓存以减少重复调用）
+            max_row = sh.max_row
+            max_col = sh.max_column
+
+            # 容错处理：如果工作表为空，则直接返回
+            if max_row is None or max_col is None:
+                return
+
+            # 创建对齐样式对象（复用以减少重复创建）
+            alignment = Alignment(
+                horizontal=horizontal,
+                vertical=vertical,
+                text_rotation=text_rotation,
+                wrap_text=wrap_text,
+            )
+
+            # 批量设置所有单元格的对齐样式
+            for r in range(1, max_row + 1):
+                for c in range(1, max_col + 1):
+                    sh.cell(row=r, column=c).alignment = alignment
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置所有单元格对齐样式失败: {e}") from e
 
     def setFilterCol(self, varCell="all", varSheet=0):
+        """
+        3.8 设置筛选列（优化版）
+        支持设置全部筛选、取消筛选或指定区域筛选。
 
-        # 2.10 设置筛选列
-        # setFilterCol("all")  # 全部筛选
-        # setFilterCol("")  # 取消筛选
-        # setFilterCol("A2") # 对A2筛选
-        sh = self.sh(varSheet)
-        if varCell == "all":
-            sh.auto_filter.ref = sh.dimensions
-        elif varCell == "":
-            sh.auto_filter.ref = None
-        else:
-            sh.auto_filter.ref = varCell
-        self.save()
+        :param varCell: 筛选范围，可以是 "all"（全部筛选）、""（取消筛选）或具体单元格范围（如 "A2"）
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varCell, str):
+            raise ValueError("varCell 必须是字符串类型")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-    def setCellFont(
-        self,
-        row,
-        col,
-        name="微软雅黑",
-        size=10,
-        bold=False,
-        italic=False,
-        color=None,
-        varSheet=0,
-    ):
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
 
-        # 2.11 设置单元格字体（字体、字号、粗斜体、下划线、颜色）
-        # setCellFont(1, 1)
-        # setCellFont(1, "f")
-        # setCellFont(1, "f", size=16, bold=True, color="ff0000")
-        sh = self.sh(varSheet)
-        if isinstance(col, int):
-            sh.cell(row, col).font = Font(
+            # 处理筛选逻辑
+            if varCell == "all":
+                # 全部筛选：使用整个工作表的范围
+                sh.auto_filter.ref = sh.dimensions
+            elif varCell == "":
+                # 取消筛选：清空筛选范围
+                sh.auto_filter.ref = None
+            else:
+                # 指定区域筛选：校验单元格范围有效性
+                if not self._is_valid_cell_range(varCell):
+                    raise ValueError(f"无效的单元格范围: {varCell}")
+                sh.auto_filter.ref = varCell
+
+            # 保存更改
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置筛选列失败: {e}") from e
+    def _is_valid_cell_range(self, cell_range):
+        """
+        校验单元格范围是否有效（私有辅助函数）
+
+        :param cell_range: 单元格范围字符串，如 "A1:B2"
+        :return: 单元格范围是否有效
+        """
+        try:
+            from openpyxl.utils import range_boundaries
+            range_boundaries(cell_range)  # 尝试解析范围，失败会抛出异常
+            return True
+        except Exception:
+            return False
+
+    def setCellFont(self, row, col, name="微软雅黑", size=10, bold=False, italic=False, color=None, varSheet=0):
+        """
+        3.9 设置单元格字体（优化版）
+        支持设置字体、字号、粗体、斜体、下划线和颜色。
+
+        :param row: 行号，必须是大于0的整数
+        :param col: 列号（整数）或列字母（字符串），必须合法
+        :param name: 字体名称，默认为 "微软雅黑"
+        :param size: 字号，默认为 10
+        :param bold: 是否加粗，默认为 False
+        :param italic: 是否斜体，默认为 False
+        :param color: 字体颜色（十六进制），默认为 None
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(col, (int, str)):
+            raise ValueError("col 必须是整数或字符串")
+        if isinstance(col, str) and not col.isalpha():
+            raise ValueError("col 必须是有效的列字母")
+        if not isinstance(name, str):
+            raise ValueError("name 必须是字符串")
+        if not isinstance(size, (int, float)) or size <= 0:
+            raise ValueError("size 必须是大于0的数字")
+        if not isinstance(bold, bool):
+            raise ValueError("bold 必须是布尔值")
+        if not isinstance(italic, bool):
+            raise ValueError("italic 必须是布尔值")
+        if color is not None and not isinstance(color, str):
+            raise ValueError("color 必须是字符串或 None")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(col, str):
+                col = column_index_from_string(col)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+            if col > max_col:
+                raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+
+            # 设置单元格字体
+            sh.cell(row=row, column=col).font = Font(
                 name=name, size=size, bold=bold, italic=italic, color=color
             )
-        else:
-            sh.cell(row, column_index_from_string(col)).font = Font(
-                name=name, size=size, bold=bold, italic=italic, color=color
-            )
-        self.save()
 
-    def setRowColFont(
-        self,
-        row,
-        l_col,
-        name="微软雅黑",
-        size=16,
-        bold=False,
-        italic=False,
-        color="000000",
-        varSheet=0,
-    ):
+            # 保存文件（仅在必要时调用）
+            self.save()
 
-        # 2.11.2 设置单行多列字体（字体、字号、粗斜体、下划线、颜色）
+        except Exception as e:
+            raise IOError(f"设置单元格字体失败: {e}") from e
+
+    def setRowColFont(self, row, l_col, name="微软雅黑", size=16, bold=False, italic=False, color="000000", varSheet=0):
+
+        # 3.10 设置单行多列字体（字体、字号、粗斜体、下划线、颜色）
         # setRowColFont(1, ["e", "h"])
         # setRowColFont(1, "all", color="000000")
         sh = self.sh(varSheet)
@@ -1103,199 +1712,591 @@ class OpenpyxlPO:
                 )
         self.save()
 
-    def setAllCellFont(
-        self, name="微软雅黑", size=16, bold=False, italic=False, color="000000", varSheet=0
-    ):
-
-        # 2.11.2 设置所有单元格字体（字体、字号、粗斜体、下划线、颜色）
-        # setAllCellFont()
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        cols = sh.max_column
-
-        for r in range(rows):
-            for c in range(cols):
-                sh.cell(row=r + 1, column=c + 1).font = Font(
-                    name=name, size=size, bold=bold, italic=italic, color=color
-                )
-        self.save()
-
-    def setBorder(
-        self,
-        row,
-        col,
-        left=["thin", "ff0000"],
-        right=["thick", "ff0000"],
-        top=["thin", "ff0000"],
-        bottom=["thick", "ff0000"],
-        varSheet=0,
-    ):
-
+    def setAllFont(self, name="微软雅黑", size=16, bold=False, italic=False, color="000000", varSheet=0):
         """
-        2.12 设置单元格边框
-        # 设置边框样式，上下左右边框
-        Side(style=边线样式，color=边线颜色)
-         * style 参数的种类： 'double, 'mediumDashDotDot', 'slantDashDot','dashDotDot','dotted','hair', 'mediumDashed, 'dashed', 'dashDot', 'thin','mediumDashDot','medium', 'thick'
+        3.11 设置所有单元格字体（优化版）
+        支持设置所有单元格的字体、字号、粗体、斜体、下划线和颜色。
 
-        setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
+        :param name: 字体名称，默认为 "微软雅黑"
+        :param size: 字号，默认为 16
+        :param bold: 是否加粗，默认为 False
+        :param italic: 是否斜体，默认为 False
+        :param color: 字体颜色（十六进制），默认为 "000000"
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
         """
+        # 参数校验
+        if not isinstance(name, str):
+            raise ValueError("name 必须是字符串")
+        if not isinstance(size, (int, float)) or size <= 0:
+            raise ValueError("size 必须是大于0的数字")
+        if not isinstance(bold, bool):
+            raise ValueError("bold 必须是布尔值")
+        if not isinstance(italic, bool):
+            raise ValueError("italic 必须是布尔值")
+        if not isinstance(color, str):
+            raise ValueError("color 必须是字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        sh = self.sh(varSheet)
-        border = Border(
-            left=Side(style=left[0], color=left[1]),
-            right=Side(style=right[0], color=right[1]),
-            top=Side(style=top[0], color=top[1]),
-            bottom=Side(style=bottom[0], color=bottom[1]),
-        )
-        sh.cell(row=row, column=col).border = border
-        self.save()
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
 
-    def setPatternFill(self, row, col, fill_type="solid", fgColor="99ccff", varSheet=0):
+            # 获取最大行数和列数（缓存以减少重复调用）
+            max_row = sh.max_row
+            max_col = sh.max_column
 
+            # 容错处理：如果工作表为空，则直接返回
+            if max_row is None or max_col is None:
+                print("[WARNING] 工作表为空，无需设置字体。")
+                return
+
+            # 创建字体对象（复用以减少重复创建）
+            font = Font(name=name, size=size, bold=bold, italic=italic, color=color)
+
+            # 批量设置所有单元格的字体
+            for r in range(1, max_row + 1):
+                for c in range(1, max_col + 1):
+                    sh.cell(row=r, column=c).font = font
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置所有单元格字体失败: {e}") from e
+
+    def setBorder(self, row, col, left=["thin", "ff0000"], right=["thick", "ff0000"], top=["thin", "ff0000"], bottom=["thick", "ff0000"], varSheet=0):
         """
-        2.13 设置单元格填充背景色
-        patternType = {'lightVertical', 'mediumGray', 'lightGrid', 'darkGrid', 'gray125', 'lightHorizontal', 'gray0625','lightTrellis', 'darkUp', 'lightGray', 'darkVertical', 'darkGray', 'solid', 'darkTrellis', 'lightUp','darkHorizontal', 'darkDown', 'lightDown'}
-        PatternFill(fill_type=填充样式，fgColor=填充颜色）
-        setPatternFill(2, 2, 'solid', '006100')
+        3.12 设置单元格边框（优化版）
+        支持设置上下左右边框样式和颜色。
+
+        :param row: 行号，必须是大于0的整数
+        :param col: 列号（整数）或列字母（字符串），必须合法
+        :param left: 左边框样式和颜色，如 ['thin', 'ff0000']
+        :param right: 右边框样式和颜色，如 ['thick', 'ff0000']
+        :param top: 上边框样式和颜色，如 ['thin', 'ff0000']
+        :param bottom: 下边框样式和颜色，如 ['thick', 'ff0000']
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法
+        :raises IOError: 如果操作失败
         """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(col, (int, str)):
+            raise ValueError("col 必须是整数或字符串")
+        if isinstance(col, str) and not col.isalpha():
+            raise ValueError("col 必须是有效的列字母")
+        if not isinstance(left, list) or len(left) != 2:
+            raise ValueError("left 必须是一个包含两个元素的列表，如 ['thin', 'ff0000']")
+        if not isinstance(right, list) or len(right) != 2:
+            raise ValueError("right 必须是一个包含两个元素的列表，如 ['thick', 'ff0000']")
+        if not isinstance(top, list) or len(top) != 2:
+            raise ValueError("top 必须是一个包含两个元素的列表，如 ['thin', 'ff0000']")
+        if not isinstance(bottom, list) or len(bottom) != 2:
+            raise ValueError("bottom 必须是一个包含两个元素的列表，如 ['thick', 'ff0000']")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-        sh = self.sh(varSheet)
-        pattern_fill = PatternFill(fill_type=fill_type, fgColor=fgColor)
-        sh.cell(row=row, column=col).fill = pattern_fill
-        self.save()
-        # return PatternFill(patternType='' + patternType + '', fgColor='' + fgColor + '')  # 背景色
+        try:
+            # 获取工作表对象（缓存以减少重复调用）
+            sh = self.sh(varSheet)
 
-    def setGradientFill(
-        self, row, col, stop=["FFFFFF", "99ccff", "000000"], varSheet=0
-    ):
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(col, str):
+                col = column_index_from_string(col)
 
-        # 2.14 设置单元格填充渐变色
-        # GradientFill(stop=(渐变颜色 1，渐变颜色 2……))
-        # setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
-        sh = self.sh(varSheet)
-        gradient_fill = GradientFill(stop=(stop[0], stop[1], stop[2]))
-        sh.cell(row=row, column=col).fill = gradient_fill
-        self.save()
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+            if col > max_col:
+                raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
 
-    def setCellColor(self, row, col, varColor=None, varSheet=0):
+            # 校验边框样式合法性
+            valid_styles = [
+                "double", "mediumDashDotDot", "slantDashDot", "dashDotDot", "dotted",
+                "hair", "mediumDashed", "dashed", "dashDot", "thin", "mediumDashDot",
+                "medium", "thick"
+            ]
+            for side in [left, right, top, bottom]:
+                if side[0] not in valid_styles:
+                    raise ValueError(f"无效的边框样式: {side[0]}")
 
-        # 2.15 设置单元格背景色
-        # Openpyxl_PO.setCellColor(5, 1)  # 清除第5行第1列的背景色
-        # Openpyxl_PO.setCellColor(5, "d")  # 清除第5行d列的背景色
-        # Openpyxl_PO.setCellColor(5, 1, "ff0000")  # 设置第五行第1列设置红色
-        # Openpyxl_PO.setCellColor(5, "e", "ff0000")  # 设置第五行e列设置红色
-        # Openpyxl_PO.setCellColor(None, None)  # 清除所有背景色
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        cols = sh.max_column
-        # 清除表格里所有单元格的背景色
-        if row == None and col == None:
-            style = PatternFill(fill_type=None)
-            for i in range(1, rows + 1):
-                for j in range(1, cols + 1):
-                    sh.cell(i, j).fill = style
-        else:
-            if varColor == None:
-                style = PatternFill(fill_type=None)  # 消除单元格颜色
+            # 创建边框对象
+            border = Border(
+                left=Side(style=left[0], color=left[1]),
+                right=Side(style=right[0], color=right[1]),
+                top=Side(style=top[0], color=top[1]),
+                bottom=Side(style=bottom[0], color=bottom[1]),
+            )
+
+            # 设置单元格边框
+            sh.cell(row=row, column=col).border = border
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置单元格边框失败: {e}") from e
+
+
+    def setGradientFill(self, row, col, stop=["FFFFFF", "99ccff", "000000"], varSheet=0):
+        """
+        3.13 设置单元格填充渐变色
+
+        :param row: 行号，必须是大于0的整数
+        :param col: 列号（整数）或列字母（字符串），必须合法
+        :param stop: 渐变颜色列表，每个元素为6位十六进制字符串，如 ["FFFFFF", "99ccff", "000000"]
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(col, (int, str)):
+            raise ValueError("col 必须是整数或字符串")
+        if isinstance(col, str) and not col.isalpha():
+            raise ValueError("col 必须是有效的列字母")
+        if not isinstance(stop, list) or len(stop) < 2:
+            raise ValueError("stop 必须是一个包含至少两个元素的列表")
+        if not all(isinstance(color, str) and len(color) == 6 and all(c in '0123456789ABCDEFabcdef' for c in color) for
+                   color in stop):
+            raise ValueError("stop 中的每个元素必须是6位十六进制字符串")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(col, str):
+                col = column_index_from_string(col)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+            if col > max_col:
+                raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+
+            # 设置单元格渐变色
+            gradient_fill = GradientFill(stop=tuple(stop))
+            sh.cell(row=row, column=col).fill = gradient_fill
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置单元格渐变色失败: {e}") from e
+
+    def setBackgroundColor(self, row, col, varColor=None, clear_color=False, varSheet=0):
+        """
+        3.14 设置单元格背景色（优化版）
+
+        :param row: 行号，可以是整数（如5）或 None（清除所有行）
+        :param col: 列号（整数）或列字母（字符串），可以是 None（清除所有列）
+        :param varColor: 背景色（十六进制字符串）或 None（清除背景色）
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if row is not None and (not isinstance(row, int) or row <= 0):
+            raise ValueError("row 必须是大于0的整数或 None")
+        if col is not None and not isinstance(col, (int, str)):
+            raise ValueError("col 必须是整数、字符串或 None")
+        if isinstance(col, str) and not col.isalpha():
+            raise ValueError("col 必须是有效的列字母")
+        if varColor is not None and (
+                not isinstance(varColor, str) or
+                len(varColor) != 6 or
+                not all(c in '0123456789ABCDEFabcdef' for c in varColor)
+        ):
+            raise ValueError("varColor 必须是6位十六进制字符串或 None")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 获取最大行数和列数
+            max_row = sh.max_row
+            max_col = sh.max_column
+
+            # 容错处理：如果工作表为空，则直接返回
+            if max_row is None or max_col is None:
+                print("[WARNING] 工作表为空，无需设置背景色。")
+                return
+
+            # 转换列标识为索引（如果是字符串）
+            if isinstance(col, str):
+                col = column_index_from_string(col)
+
+            # 清除所有单元格背景色
+            if row is None and col is None:
+                style = PatternFill(fill_type=None)
+                for i in range(1, max_row + 1):
+                    for j in range(1, max_col + 1):
+                        sh.cell(i, j).fill = style
+            else:
+                # 边界检查
+                if row is not None and row > max_row:
+                    raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+                if col is not None and col > max_col:
+                    raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+
+                # 设置单元格背景色
+                if varColor is not None:
+                    style = PatternFill("solid", fgColor=varColor)
+
+                if clear_color == True:
+                    style = PatternFill(fill_type=None)  # 清除背景色
+
+                if row is not None and col is not None:
+                    sh.cell(row, col).fill = style
+                elif row is not None:
+                    for j in range(1, max_col + 1):
+                        sh.cell(row, j).fill = style
+                elif col is not None:
+                    for i in range(1, max_row + 1):
+                        sh.cell(i, col).fill = style
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置单元格背景色失败: {e}") from e
+
+    def setRowColBackgroundColor(self, row, l_col, varColor=None, varSheet=0, clear_color=False):
+        """
+        3.15 设置单行多列背景色（优化版）
+
+        :param row: 行号，必须是大于0的整数
+        :param l_col: 列标识列表（如 [4, 6]）或字符串 "all"
+        :param varColor: 背景色（十六进制字符串），不能为 None（除非 clear_color 为 True）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param clear_color: 是否清除背景色，默认为 False
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(l_col, (list, str)) or (
+                isinstance(l_col, list) and not all(isinstance(c, (int, str)) for c in l_col)):
+            raise ValueError("l_col 必须是列表（元素为整数或字符串）或字符串 'all'")
+        if not clear_color and (not isinstance(varColor, str) or len(varColor) != 6 or not all(
+                c in '0123456789ABCDEFabcdef' for c in varColor)):
+            raise ValueError("varColor 必须是6位十六进制字符串（除非 clear_color 为 True）")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(clear_color, bool):
+            raise ValueError("clear_color 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+
+            # 设置背景色样式
+            if clear_color:
+                style = PatternFill(fill_type=None)  # 清除背景色
             else:
                 style = PatternFill("solid", fgColor=varColor)
-            if isinstance(col, int):
-                sh.cell(row, col).fill = style
+
+            if l_col == "all":
+                # 全部列应用背景色或清除背景色
+                for col in range(1, max_col + 1):
+                    sh.cell(row=row, column=col).fill = style
             else:
-                sh.cell(row, column_index_from_string(col)).fill = style
-        self.save()
+                # 指定列应用背景色或清除背景色
+                col_indices = set()
+                for col in l_col:
+                    if isinstance(col, str):
+                        col_indices.add(column_index_from_string(col))
+                    elif isinstance(col, int):
+                        col_indices.add(col)
+                    else:
+                        raise ValueError(f"列标识 '{col}' 类型不合法，应为整数或字符串")
 
-    def setRowColColor(self, row, l_col, varColor, varSheet=0):
+                for col in sorted(col_indices):
+                    if col > max_col:
+                        raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+                    sh.cell(row=row, column=col).fill = style
 
-        # 2.15.2 设置单行多列背景色
-        # Openpyxl_PO.setRowColColor(5, ['b', 'd'], "ff0000")
-        # Openpyxl_PO.setRowColColor(5, "all", "ff0000")
-        sh = self.sh(varSheet)
-        cols = sh.max_column
-        style = PatternFill("solid", fgColor=varColor)
+            # 保存文件（仅在必要时调用）
+            self.save()
 
-        if l_col == "all":
-            for i in range((cols)):
-                sh.cell(row=row, column=i + 1).fill = style
-        else:
-            for i in range(
-                column_index_from_string(l_col[0]),
-                int(column_index_from_string(l_col[1])) + 1,
-            ):
-                sh.cell(row=row, column=i).fill = style
-        self.save()
+        except Exception as e:
+            raise IOError(f"设置单行多列背景色失败: {e}") from e
 
-    def setAllCellColor(self, varColor=None, varSheet=0):
+    # def setRowColBackgroundColor(self, row, l_col, varColor, varSheet=0):
+    #     """
+    #     3.15 设置单行多列背景色（优化版）
+    #
+    #     :param row: 行号，必须是大于0的整数
+    #     :param l_col: 列标识列表（如 [4, 6]）或字符串 "all"
+    #     :param varColor: 背景色（十六进制字符串），不能为 None
+    #     :param varSheet: 工作表索引或名称，默认为0
+    #     :raises ValueError: 如果参数不合法或超出范围
+    #     :raises IOError: 如果操作失败
+    #     """
+    #     # 参数校验
+    #     if not isinstance(row, int) or row <= 0:
+    #         raise ValueError("row 必须是大于0的整数")
+    #     if not isinstance(l_col, (list, str)) or (
+    #             isinstance(l_col, list) and not all(isinstance(c, (int, str)) for c in l_col)):
+    #         raise ValueError("l_col 必须是列表（元素为整数或字符串）或字符串 'all'")
+    #     if not isinstance(varColor, str) or len(varColor) != 6 or not all(
+    #             c in '0123456789ABCDEFabcdef' for c in varColor):
+    #         raise ValueError("varColor 必须是6位十六进制字符串")
+    #     if not isinstance(varSheet, (int, str)):
+    #         raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+    #
+    #     try:
+    #         # 获取工作表对象
+    #         sh = self.sh(varSheet)
+    #
+    #         # 边界检查
+    #         max_row = sh.max_row
+    #         max_col = sh.max_column
+    #         if row > max_row:
+    #             raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+    #
+    #         # 设置背景色样式
+    #         style = PatternFill("solid", fgColor=varColor)
+    #
+    #         if l_col == "all":
+    #             # 全部列应用背景色
+    #             for col in range(1, max_col + 1):
+    #                 sh.cell(row=row, column=col).fill = style
+    #         else:
+    #             # 指定列应用背景色
+    #             col_indices = set()
+    #             for col in l_col:
+    #                 if isinstance(col, str):
+    #                     col_indices.add(column_index_from_string(col))
+    #                 elif isinstance(col, int):
+    #                     col_indices.add(col)
+    #                 else:
+    #                     raise ValueError(f"列标识 '{col}' 类型不合法，应为整数或字符串")
+    #
+    #             for col in sorted(col_indices):
+    #                 if col > max_col:
+    #                     raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+    #                 sh.cell(row=row, column=col).fill = style
+    #
+    #         # 保存文件（仅在必要时调用）
+    #         self.save()
+    #
+    #     except Exception as e:
+    #         raise IOError(f"设置单行多列背景色失败: {e}") from e
 
-        # 2.15.3 设置所有单元格背景色
-        # setAllCellColor("ff0000")
-        # setAllCellColor()
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        cols = sh.max_column
-        if varColor == None:
-            style = PatternFill(fill_type=None)  # 消除单元格颜色
-        else:
-            style = PatternFill("solid", fgColor=varColor)
+    def setAllBackgroundColor(self, varColor=None, clear_color=False, varSheet=0):
+        """
+        3.16 设置所有单元格背景色（优化版）
 
-        for r in range(rows):
-            for c in range(cols):
-                sh.cell(row=r + 1, column=c + 1).fill = style
-        self.save()
+        :param varColor: 背景色（十六进制字符串）或 None（清除背景色）
+        :param varSheet: 工作表索引或名称，默认为0
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if varColor is not None and (
+                not isinstance(varColor, str) or
+                len(varColor) != 6 or
+                not all(c in '0123456789ABCDEFabcdef' for c in varColor)
+        ):
+            raise ValueError("varColor 必须是6位十六进制字符串或 None")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
 
-    def setRowColor(self, row, varSkip, varColor, varSheet=0):
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
 
-        # 2.16 设置整行(可间隔)背景色
-        # Openpyxl_PO.setRowColor(6, 1, "FF0000")
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        cols = sh.max_column
-        # 清除表格里所有单元格的背景色
-        style = PatternFill(fill_type=None)
-        for i in range(1, rows + 1):
-            for j in range(1, cols + 1):
-                sh.cell(i, j).fill = style
-        style = PatternFill("solid", fgColor=varColor)
-        for i in range(row, rows + 1, varSkip + 1):
-            for j in range(1, cols + 1):
-                sh.cell(i, j).fill = style
-        self.save()
+            # 获取最大行数和列数
+            max_row = sh.max_row
+            max_col = sh.max_column
 
-    def setColColor(self, col, varSkip, varColor, varSheet=0):
+            # 容错处理：如果工作表为空，则直接返回
+            if max_row is None or max_col is None:
+                print("[WARNING] 工作表为空，无需设置背景色。")
+                return
 
-        # 2.17 设置整列(可间隔)背景色
-        # Openpyxl_PO.setColColor(6, 1, "FF0000")
-        sh = self.sh(varSheet)
-        rows = sh.max_row
-        cols = sh.max_column
-        style = PatternFill(fill_type=None)  # 消除单元格颜色
-        for i in range(1, rows + 1):
-            for j in range(1, cols + 1):
-                sh.cell(i, j).fill = style
-        style = PatternFill("solid", fgColor=varColor)
-        for i in range(1, rows + 1):
-            for j in range(col, cols + 1, varSkip + 1):
-                sh.cell(i, j).fill = style
-        self.save()
+            # 设置背景色样式
+            if varColor is not None:
+                style = PatternFill("solid", fgColor=varColor)
 
-    def setSheetColor(self, varColor, varSheet=0):
+            if clear_color == True:
+                style = PatternFill(fill_type=None)  # 清除背景色
 
-        # 2.18 设置工作表背景颜色
-        # Openpyxl_PO.setSheetColor("FF0000")
-        sh = self.sh(varSheet)
-        sh.sheet_properties.tabColor = varColor
-        self.save()
+            # 批量设置所有单元格背景色
+            for r in range(1, max_row + 1):
+                for c in range(1, max_col + 1):
+                    sh.cell(row=r, column=c).fill = style
 
-    def clsSheetColor(self, i, j , varSheet=0):
+            # 保存文件（仅在必要时调用）
+            self.save()
 
-        # 2.19 清除工作表背景颜色
-        # clsSheetColor(2,4) # 清除第二行第四列背景色
-        sh = self.sh(varSheet)
-        sh.cell(i,j).fill = None
-        self.save()
+        except Exception as e:
+            raise IOError(f"设置所有单元格背景色失败: {e}") from e
+
+    def setBandRowsColor(self, row, varSkip, varColor=None, varSheet=0, clear_color=False):
+        """
+        3.17 设置整行(可间隔)背景色（优化版）
+
+        :param row: 起始行号，必须是大于0的整数
+        :param varSkip: 间隔行数，必须是非负整数
+        :param varColor: 背景色（十六进制字符串），可以为 None（清除背景色）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param clear_color: 是否清除背景色，默认为 False
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(row, int) or row <= 0:
+            raise ValueError("row 必须是大于0的整数")
+        if not isinstance(varSkip, int) or varSkip < 0:
+            raise ValueError("varSkip 必须是非负整数")
+        if not clear_color and (varColor is None or not isinstance(varColor, str) or len(varColor) != 6 or not all(
+                c in '0123456789ABCDEFabcdef' for c in varColor)):
+            raise ValueError("varColor 必须是6位十六进制字符串（除非 clear_color 为 True）")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(clear_color, bool):
+            raise ValueError("clear_color 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if row > max_row:
+                raise ValueError(f"行号 {row} 超出范围，最大行数为 {max_row}")
+
+            # 设置背景色样式
+            if clear_color:
+                style = PatternFill(fill_type=None)  # 清除背景色
+            else:
+                style = PatternFill("solid", fgColor=varColor)
+
+            # 批量设置指定行的背景色
+            for i in range(row, max_row + 1, varSkip + 1):
+                for j in range(1, max_col + 1):
+                    sh.cell(i, j).fill = style
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置整行背景色失败: {e}") from e
+
+    def setBandColsColor(self, col, varSkip, varColor=None, varSheet=0, clear_color=False):
+        """
+        3.18 设置整列(可间隔)背景色（优化版）
+
+        :param col: 起始列号，必须是大于0的整数
+        :param varSkip: 间隔列数，必须是非负整数
+        :param varColor: 背景色（十六进制字符串），可以为 None（清除背景色）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param clear_color: 是否清除背景色，默认为 False
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(col, int) or col <= 0:
+            raise ValueError("col 必须是大于0的整数")
+        if not isinstance(varSkip, int) or varSkip < 0:
+            raise ValueError("varSkip 必须是非负整数")
+        if not clear_color and (varColor is None or not isinstance(varColor, str) or len(varColor) != 6 or not all(
+                c in '0123456789ABCDEFabcdef' for c in varColor)):
+            raise ValueError("varColor 必须是6位十六进制字符串（除非 clear_color 为 True）")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(clear_color, bool):
+            raise ValueError("clear_color 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 边界检查
+            max_row = sh.max_row
+            max_col = sh.max_column
+            if col > max_col:
+                raise ValueError(f"列号 {col} 超出范围，最大列数为 {max_col}")
+
+            # 设置背景色样式
+            if clear_color:
+                style = PatternFill(fill_type=None)  # 清除背景色
+            else:
+                style = PatternFill("solid", fgColor=varColor)
+
+            # 批量设置指定列的背景色
+            for i in range(1, max_row + 1):
+                for j in range(col, max_col + 1, varSkip + 1):
+                    sh.cell(i, j).fill = style
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置整列背景色失败: {e}") from e
+
+    def setSheetColor(self, varColor=None, varSheet=0, clear_color=False):
+        """
+        3.19 设置工作表背景颜色（优化版）
+
+        :param varColor: 背景色（十六进制字符串），可以为 None（清除背景色）
+        :param varSheet: 工作表索引或名称，默认为0
+        :param clear_color: 是否清除背景色，默认为 False
+        :raises ValueError: 如果参数不合法或超出范围
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not clear_color and (varColor is None or not isinstance(varColor, str) or len(varColor) != 6 or not all(
+                c in '0123456789ABCDEFabcdef' for c in varColor)):
+            raise ValueError("varColor 必须是6位十六进制字符串（除非 clear_color 为 True）")
+        if not isinstance(varSheet, (int, str)):
+            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
+        if not isinstance(clear_color, bool):
+            raise ValueError("clear_color 必须是布尔值")
+
+        try:
+            # 获取工作表对象
+            sh = self.sh(varSheet)
+
+            # 设置工作表标签颜色
+            if clear_color:
+                sh.sheet_properties.tabColor = None  # 清除背景色
+            else:
+                sh.sheet_properties.tabColor = varColor
+
+            # 保存文件（仅在必要时调用）
+            self.save()
+
+        except Exception as e:
+            raise IOError(f"设置工作表背景颜色失败: {e}") from e
 
 
     # todo [获取]
+
 
     def getL_shape(self, varSheet=0):
         """
@@ -1931,161 +2932,6 @@ class OpenpyxlPO:
         return sh.dimensions
 
 
-    # todo [清除]
-
-    def clsRow(self, varNums, varSheet=0):
-        """
-        4.1 清空行（优化版）
-
-        :param varNums: 行号，必须是大于0的整数
-        :param varSheet: 工作表索引或名称，默认为0
-        :raises ValueError: 如果参数不合法
-        :raises IOError: 如果操作失败
-        """
-        # 参数校验
-        if not isinstance(varNums, int) or varNums <= 0:
-            raise ValueError("varNums 必须是大于0的整数")
-        if not isinstance(varSheet, (int, str)):
-            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
-
-        try:
-            # 获取工作表对象
-            sh = self.sh(varSheet)
-
-            # 检查行号是否超出范围
-            if varNums > sh.max_row:
-                raise ValueError(f"行号 {varNums} 超出范围，最大行数为 {sh.max_row}")
-
-            # 备份原始文件（可选）
-            backup_path = self.file.replace(".xlsx", "_backup.xlsx")
-            self.wb.save(backup_path)
-
-            # 清空指定行的数据
-            for col in range(1, sh.max_column + 1):
-                cell = sh.cell(row=varNums, column=col)
-                cell.value = None  # 清除值
-                cell.font = None  # 清除字体样式
-                cell.fill = PatternFill()  # 正确清除背景色
-                cell.border = None  # 清除边框
-                cell.alignment = None  # 清除对齐方式
-                cell.number_format = ''  # 设置为空字符串，避免 None 错误
-                cell.protection = None  # 清除保护设置
-
-            # 保存更改
-            self.save()
-
-        except ValueError as ve:
-            raise ValueError(f"参数错误: {ve}") from ve
-        except IOError as ioe:
-            raise IOError(f"文件操作失败: {ioe}") from ioe
-        except Exception as e:
-            raise IOError(f"清空行失败: {e}") from e
-
-    def clsCol(self, varCol, varSheet=0, clear_header=True):
-        """
-        4.2 清空列（优化版）
-
-        :param varCol: 列号，可以是整数（如2）或字符串（如'B'）
-        :param varSheet: 工作表索引或名称，默认为0
-        :param clear_header: 是否清除列标签（第一行），默认为True
-        :raises ValueError: 如果参数不合法
-        :raises IOError: 如果操作失败
-        """
-        # 参数校验
-        if not isinstance(varCol, (int, str)):
-            raise ValueError("varCol 必须是整数或字符串")
-        if not isinstance(varSheet, (int, str)):
-            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
-        if not isinstance(clear_header, bool):
-            raise ValueError("clear_header 必须是布尔值")
-
-        try:
-            # 获取工作表对象
-            sh = self.sh(varSheet)
-
-            # 转换列标识为索引
-            if isinstance(varCol, str):
-                varCol = column_index_from_string(varCol)
-
-            # 确定起始行
-            start_row = 1 if clear_header else 2
-
-            # 清空列数据
-            for i in range(start_row, sh.max_row + 1):
-                sh.cell(row=i, column=varCol).value = None
-
-            # 保存更改
-            self.save()
-
-        except Exception as e:
-            raise IOError(f"清空列失败: {e}") from e
-
-
-    def delRow(self, varFrom, varSeries=1, varSheet=0):
-        """
-        4.3 删除连续行（优化版）
-
-        :param varFrom: 起始行号，必须是大于0的整数
-        :param varSeries: 删除的行数，默认为1
-        :param varSheet: 工作表索引或名称，默认为0
-        :raises ValueError: 如果参数不合法
-        :raises IOError: 如果操作失败
-        """
-        # 参数校验
-        if not isinstance(varFrom, int) or varFrom <= 0:
-            raise ValueError("varFrom 必须是大于0的整数")
-        if not isinstance(varSeries, int) or varSeries <= 0:
-            raise ValueError("varSeries 必须是大于0的整数")
-        if not isinstance(varSheet, (int, str)):
-            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
-
-        try:
-            # 获取工作表对象
-            sh = self.sh(varSheet)
-
-            # 执行删除操作
-            sh.delete_rows(idx=varFrom, amount=varSeries)
-
-            # 保存更改
-            self.save()
-
-        except Exception as e:
-            raise IOError(f"删除行失败: {e}") from e
-
-    def delCol(self, varFrom, varSeries=1, varSheet=0):
-        """
-        4.4 删除连续列（优化版）
-
-        :param varFrom: 起始列，可以是整数（如2）或字符串（如'U'）
-        :param varSeries: 删除的列数，默认为1
-        :param varSheet: 工作表索引或名称，默认为0
-        :raises ValueError: 如果参数不合法
-        :raises IOError: 如果操作失败
-        """
-        # 参数校验
-        if not isinstance(varFrom, (int, str)):
-            raise ValueError("varFrom 必须是整数或字符串")
-        if not isinstance(varSeries, int) or varSeries <= 0:
-            raise ValueError("varSeries 必须是大于0的整数")
-        if not isinstance(varSheet, (int, str)):
-            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
-
-        try:
-            # 获取工作表对象
-            sh = self.sh(varSheet)
-
-            # 转换列标识为索引
-            if isinstance(varFrom, str):
-                varFrom = column_index_from_string(varFrom)
-
-            # 执行删除操作
-            sh.delete_cols(idx=varFrom, amount=varSeries)
-
-            # 保存更改
-            self.save()
-
-        except Exception as e:
-            raise IOError(f"删除列失败: {e}") from e
 
 
     # todo [多表]
@@ -2160,8 +3006,8 @@ class OpenpyxlPO:
             for i in range(len(l_sheetOneRow)):
                 for j in range(len(l_sheetOneRow[i])):
                     if l_sheetOneRow[i][j] != l_sheetTwoRow[i][j]:
-                        self.setCellColor(i + 1, j + 1, "FF0000", varSheet1)
-                        self.setCellColor(i + 1, j + 1, "ffeb9c", varSheet2)
+                        self.setBackgroundColor(i + 1, j + 1, "FF0000", varSheet1)
+                        self.setBackgroundColor(i + 1, j + 1, "ffeb9c", varSheet2)
                 print("检查第" + str(i + 1) + "行")
 
             self.save()
@@ -2209,7 +3055,7 @@ class OpenpyxlPO:
 
             # 写入标题行
             merged_title = list(map1.keys()) + [key for key in map2.keys() if key not in map1]
-            self.setRows({1: merged_title}, varSheet)
+            self.setRow({1: merged_title}, varSheet)
 
             # 比较数据行
             max_rows = max(len(l_sheetOneRow), len(l_sheetTwoRow))
@@ -2223,98 +3069,16 @@ class OpenpyxlPO:
                         row_data.append("")
                     elif val1 != val2:
                         row_data.append(f"{val1}/{val2}")
-                        self.setCellColor(i + 1, len(row_data), "FF0000", varSheet)
+                        self.setBackgroundColor(i + 1, len(row_data), "FF0000", varSheet)
                     else:
                         row_data.append(val1)
-                self.setRows({i + 1: row_data}, varSheet)
+                self.setRow({i + 1: row_data}, varSheet)
 
             self.save()
             return varSheet
 
         except Exception as e:
             raise IOError(f"处理工作表失败: {e}") from e
-
-    def moveValues(self, varFrom, varRows, varCols, varSheet=0):
-        """
-        6 移动区域数据（优化版）
-
-        # Openpyxl_PO.moveValues('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
-        # Openpyxl_PO.moveValues('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
-
-        :param varFrom: 起始区域，如 'C1:D2'
-        :param varRows: 移动的行数，正数向下移动，负数向上移动
-        :param varCols: 移动的列数，正数向右移动，负数向左移动
-        :param varSheet: 工作表索引或名称，默认为0
-        :raises ValueError: 如果参数不合法
-        :raises IOError: 如果操作失败
-        """
-        # 参数校验
-        if not isinstance(varFrom, str) or not varFrom:
-            raise ValueError("varFrom 必须是一个非空字符串，表示起始区域")
-        if not isinstance(varRows, int) or not isinstance(varCols, int):
-            raise ValueError("varRows 和 varCols 必须是整数")
-        if not isinstance(varSheet, (int, str)):
-            raise ValueError("varSheet 必须是整数（索引）或字符串（名称）")
-
-        try:
-            # 获取工作表对象
-            sh = self.sh(varSheet)
-
-            # 执行移动操作
-            sh.move_range(varFrom, rows=varRows, cols=varCols)
-
-            # 保存更改
-            self.save()
-        except Exception as e:
-            raise IOError(f"移动区域数据失败: {e}") from e
-
-    def sortFields(self, varSheetName):
-        """
-        7 将表格第一行（标题）排序（从小打大）（优化版）
-
-        :param varSheet1: 工作表名称
-        :raises ValueError: 如果输入参数不合法
-        :raises IOError: 如果文件读取或写入失败
-        return：生成 {表名}_标题升序, 如表名字：sheet1， 结果：sheet1_标题升序
-        """
-
-        if varSheetName not in self.wb.sheetnames:
-            raise ValueError(f"工作表 '{varSheetName}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
-
-        # 参数校验
-        if not isinstance(varSheetName, str):
-            raise ValueError("varSheet1 必须是一个字符串")
-
-        try:
-            # 获取第一行标题
-            l_title = self.getL_row(1, varSheetName)
-            if not l_title:
-                raise ValueError("工作表中没有找到标题行")
-
-            # 排序标题
-            l_sortAsc = sorted(l_title)
-
-            # 创建新工作表并写入排序后的标题
-            varNewSheet = varSheetName + "_" + "标题升序"
-            self.addSheet(varNewSheet)
-            self.setRows({1: l_sortAsc}, varNewSheet)
-
-            # 获取原始列数据
-            col = self.getLL_col(varSheetName)
-
-            # 根据排序后的标题重新排列列数据
-            for i in range(len(col)):
-                for j in range(len(l_sortAsc)):
-                    if col[i][0] == l_sortAsc[j]:
-                        self.setCols({str(j + 1): col[i]}, varNewSheet)
-
-            self.save()
-
-        except FileNotFoundError as e:
-            raise IOError(f"文件未找到: {varSheetName}") from e
-        except Exception as e:
-            raise IOError(f"处理工作表失败: {varSheetName}") from e
-
 
     # todo [转换]
 
@@ -2494,7 +3258,7 @@ if __name__ == "__main__":
 
     Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx")
     # Openpyxl_PO = OpenpyxlPO("d:\\51\\python\\project\\PO\\data\\11.xlsx")
-    # Openpyxl_PO.sortFields("job")
+    # Openpyxl_PO.sortColHeader("job")
     # Openpyxl_PO.renameSheet("1231", "444")
     # Openpyxl_PO.open()
 
@@ -2543,54 +3307,54 @@ if __name__ == "__main__":
     # Openpyxl_PO.insertRow({2: ["金浩", "101", "102"]}, "Sheet1")
 
     # print("2.3 更新行数据".center(100, "-"))
-    # Openpyxl_PO.setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
-    # Openpyxl_PO.setRows({7: ["你好", 12345, "7777"], 8: ["44", None, "777777777"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
-    # Openpyxl_PO.setRows({7: ["你好", 12345, "7777"], 8: ["44", "None", "777777777"]}, -1)  # 对最后一个sheet表，对第7，8行分别写入内容
+    # Openpyxl_PO.setRow({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
+    # Openpyxl_PO.setRow({7: ["你好", 12345, "7777"], 8: ["44", None, "777777777"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
+    # Openpyxl_PO.setRow({7: ["你好", 12345, "7777"], 8: ["44", "None", "777777777"]}, -1)  # 对最后一个sheet表，对第7，8行分别写入内容
     # Openpyxl_PO.open()
 
     # print("2.4 追加行数据".center(100, "-"))
-    # Openpyxl_PO.appendRows([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
+    # Openpyxl_PO.appendRow([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
 
 
     # print("2.5 插入列数据".center(100, "-"))
     # Openpyxl_PO.insertCols({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
 
     # print("2.6 更新列数据".center(100, "-"))
-    # Openpyxl_PO.setCols({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
+    # Openpyxl_PO.setCol({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
 
     # print("2.7 追加列数据".center(100, "-"))
-    # Openpyxl_PO.appendCols([["test", "张三", "李四"], ["dev", "55", "34"]])
+    # Openpyxl_PO.appendCol([["test", "张三", "李四"], ["dev", "55", "34"]])
 
 
 
     # print("2.5 设置单元格行高与列宽".center(100, "-"))
-    # Openpyxl_PO.setCellDimensions(3, 30, 'f', 34)  # 设置第三行行高30，第f列宽34
+    # Openpyxl_PO.setRowColSize(3, 30, 'f', 34)  # 设置第三行行高30，第f列宽34
 
     # print("2.5.2 设置单行多列行高与列宽".center(100, "-"))
     # Openpyxl_PO.setRowColDimensions(5, 30, ['f', 'h'], 33)  # 设置第五行行高30，f - h列宽33
 
     # print("2.6 设置所有单元格的行高与列宽".center(100, "-"))
-    # Openpyxl_PO.setAllCellDimensions(30, 20)
+    # Openpyxl_PO.setAllSize(30, 20)
 
     # print("2.7 设置所有单元格自动换行".center(100, "-"))
-    # Openpyxl_PO.setAllWordWrap()
-    # Openpyxl_PO.setAllWordWrap("Sheet1")
+    # Openpyxl_PO.setWrapText()
+    # Openpyxl_PO.setWrapText("Sheet1")
 
     # print("2.8 设置冻结首行".center(100, "-"))
-    # Openpyxl_PO.setFreeze('A2', "saasuser")
+    # Openpyxl_PO.setFreezePanes('A2', "saasuser")
 
     # print("2.9 设置单元格对齐样式".center(100, "-"))
-    # Openpyxl_PO.setCellAlignment(5, 4, 'center', 'top')
-    # Openpyxl_PO.setCellAlignment(1, "e", 'center', 'top', 45)
-    # Openpyxl_PO.setCellAlignment(1, 1, 'center', 'top', 45, True)
-    # Openpyxl_PO.setCellAlignment(5, 4, 'center', 'center', "saasuser1")
+    # Openpyxl_PO.setAlignment(5, 4, 'center', 'top')
+    # Openpyxl_PO.setAlignment(1, "e", 'center', 'top', 45)
+    # Openpyxl_PO.setAlignment(1, 1, 'center', 'top', 45, True)
+    # Openpyxl_PO.setAlignment(5, 4, 'center', 'center', "saasuser1")
 
     # print("2.9.2 设置单行多列对齐样式".center(100, "-"))
     # Openpyxl_PO.setRowColAlignment(1, ["c", "e"], 'center', 'center')  # 第一行第c,d,e列居中
     # Openpyxl_PO.setRowColAlignment(9, "all", 'center', 'center')  # 第九行全部居中
 
     # print("2.9.3 设置所有单元格对齐样式".center(100, "-"))
-    # Openpyxl_PO.setAllCellAlignment('center', 'center')
+    # Openpyxl_PO.setAllAlignment('center', 'center')
 
     # print("2.10 设置筛选列".center(100, "-"))
     # Openpyxl_PO.setFilterCol("all")  # 全部筛选
@@ -2608,7 +3372,7 @@ if __name__ == "__main__":
     # Openpyxl_PO.setRowColFont(9, "all")  # 第九行
 
     # print("2.11.3 设置所有单元格字体".center(100, "-"))
-    # Openpyxl_PO.setAllCellFont()
+    # Openpyxl_PO.setAllFont()
 
     # print("2.12 设置单元格边框".center(100, "-"))
     # Openpyxl_PO.setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
@@ -2620,27 +3384,27 @@ if __name__ == "__main__":
     # Openpyxl_PO.setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
 
     # print("2.15 设置单元格背景色".center(100, "-"))
-    # Openpyxl_PO.setCellColor(5, 1)  # 清除第5行第1列的背景色
-    # Openpyxl_PO.setCellColor(5, "d")  # 清除第5行d列的背景色
-    # Openpyxl_PO.setCellColor(5, 1, "ff0000", "Sheet2")  # 设置第五行第1列设置红色
-    # Openpyxl_PO.setCellColor(5, "e", "ff0000")  # 设置第五行e列设置红色
-    # Openpyxl_PO.setCellColor(None, None)  # 清除所有背景色
+    # Openpyxl_PO.setBackgroundColor(5, 1)  # 清除第5行第1列的背景色
+    # Openpyxl_PO.setBackgroundColor(5, "d")  # 清除第5行d列的背景色
+    # Openpyxl_PO.setBackgroundColor(5, 1, "ff0000", "Sheet2")  # 设置第五行第1列设置红色
+    # Openpyxl_PO.setBackgroundColor(5, "e", "ff0000")  # 设置第五行e列设置红色
+    # Openpyxl_PO.setBackgroundColor(None, None)  # 清除所有背景色
 
     # print("2.15.2 设置单行多列背景色".center(100, "-"))
-    # Openpyxl_PO.setRowColColor(5, ['b', 'd'], "ff0000") # 设置第五行第b，c，d列背景色
-    # Openpyxl_PO.setRowColColor(7, "all", "ff0000")  # 设置第五行所有列背景色
+    # Openpyxl_PO.setRowColBackgroundColor(5, ['b', 'd'], "ff0000") # 设置第五行第b，c，d列背景色
+    # Openpyxl_PO.setRowColBackgroundColor(7, "all", "ff0000")  # 设置第五行所有列背景色
 
     # print("2.15.3 设置所有单元格背景色".center(100, "-"))
-    # Openpyxl_PO.setAllCellColor("ff0000")  # 设置所有单元格背景色
-    # Openpyxl_PO.setAllCellColor(None)  # 清除所有单元格背景色
+    # Openpyxl_PO.setAllBackgroundColor("ff0000")  # 设置所有单元格背景色
+    # Openpyxl_PO.setAllBackgroundColor(None)  # 清除所有单元格背景色
 
     # print("2.16 设置整行(可间隔)背景色".center(100, "-"))
-    # Openpyxl_PO.setRowColor(5, 0, "ff0000")  # 从第3行开始每行颜色标红色
-    # Openpyxl_PO.setRowColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
+    # Openpyxl_PO.setBandRowsColor(5, 0, "ff0000")  # 从第3行开始每行颜色标红色
+    # Openpyxl_PO.setBandRowsColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
 
     # print("2.17 设置整列(可间隔)背景色".center(100, "-"))
-    # Openpyxl_PO.setColColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
-    # Openpyxl_PO.setColColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
+    # Openpyxl_PO.setBandColsColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
+    # Openpyxl_PO.setBandColsColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
 
     # print("2.18 设置工作表背景颜色".center(100, "-"))
     # Openpyxl_PO.setSheetColor("FF0000")
@@ -2728,22 +3492,7 @@ if __name__ == "__main__":
 
 
 
-    # print("4.1 清空行".center(100, "-"))
-    # Openpyxl_PO.clsRow(2)  # 清空第2行
 
-    # print("4.2 清空列".center(100, "-"))
-    # Openpyxl_PO.clsCol(2, clear_header=True)  # 清空第2列
-    # Openpyxl_PO.clsCol(2, clear_header=False)  # 清空第2列
-
-
-    # print("4.3 删除行".center(100, "-"))
-    # Openpyxl_PO.delRow(2)  # 删除第2行
-    # Openpyxl_PO.delRow(2, 3)  # 删除第2行之连续3行（删除2，3，4行）
-    #
-    # print("4.4 删除列".center(100, "-"))
-    # Openpyxl_PO.delCol(1, 2)  # 删除第1列之连续2列（删除1，2列）
-    # # Openpyxl_PO.delCol(2, 1, "python")  # 删除第2列之连续1列（删除2列）
-    # Openpyxl_PO.delCol('D', 1)  # 删除第D列之连续1列（删除D列）
 
     # print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
@@ -2758,11 +3507,11 @@ if __name__ == "__main__":
     # Openpyxl_PO.genSheetByDiff("job", "job1")
 
     # # print("6 移动区域".center(100, "-"))
-    # Openpyxl_PO.moveValues('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
-    # Openpyxl_PO.moveValues('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
+    # Openpyxl_PO.moveBlock('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
+    # Openpyxl_PO.moveBlock('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
 
     # # print("7 将excel中标题（第一行字段）排序（从小打大）".center(100, "-"))
-    # Openpyxl_PO.sortFields("Sheet1")
+    # Openpyxl_PO.sortColHeader("Sheet1")
 
 
     # Openpyxl_PO.open()

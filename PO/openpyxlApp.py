@@ -14,7 +14,7 @@
 
 from PO.OpenpyxlPO import *
 
-# todo [工作表]
+# todo【工作表】
 # 1.1 新建 Openpyxl_PO = OpenpyxlPO("1212.xlsx")
 # 		Openpyxl_PO = OpenpyxlPO("1212.xlsx",l_sheet=['Sheet1','Sheet2','Sheet3'])
 # 1.2 打开 open()
@@ -50,7 +50,7 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 # Openpyxl_PO.renameSheet("hello", "test")
 
 
-# todo [操作数据]
+# todo【操作数据】
 # 2.0 在第N行前插入多行空白（优化版）
 # 	insertNullRow(3)  在第3行前插入1行空白
 # 	insertNullRow(3，5)  在第3行前插入5行空白
@@ -60,22 +60,21 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 # 2.2 设置单元格
 # 	setCell(1, 2, "hello") # 将第一行B列写入hello
 # 	setCell(1, 'B', "john") # 将第一行第三列写入john
-#
 # 2.3 插入行数据 insertRow({2: ["金浩", "101", "102"]})
 # 2.4 更新行数据 setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
 # 2.5 追加行数据 appendRows([['姓名', '电话'], ['毛泽东', 15266606298]])
-#
 # 2.6 插入列数据 insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
-# 2.7 更新列数据 setCols({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
+# 2.7 更新列数据 setCol({"A": ["公司", "百度"], "F": ["学校", "清华大学"]})
 # 2.8 追加列数据 appendCols([["姓名", "张三", "李四"], ["年龄", "55", "34"]])
-#
-# 4.1 清空行 clsRow(2)  # 清空第2行
-# 4.2 清空列 clsCol(2)  # 清空第2列
-# 4.2.1 清空列保留标题 clsColRetainTitle(2)  # 清空第2列
-# 4.3 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
-# 4.4 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
-# 6 移动区域 moveValues(rows, cols, 'C1:D2')
-# 7 将excel中标题（第一行字段）排序（从小打大）sortFields()
+# 2.9 清空行 clsRow(2)  # 清空第2行
+# 2.10 清空列
+#     clsCol(2, clear_header=True)  # 清空第2列
+#     clsCol(2, clear_header=False)  # 清空第2列,保留列标签
+# 2.11 删除连续行 delRow(2, 3)  # 删除从第二行开始连续三行数据 （即删除2，3，4行）
+# 2.12 删除连续列 delCol(2, 3)  # 删除从第二列开始连续三列数据 （即删除2，3，4列）
+# 2.13 移动区域 moveBlock(rows, cols, 'C1:D2')
+# 2.14 将excel中标题（第一行字段）排序（从小打大）sortFields()
+
 
 # print("2.0 在第N行前插入多行空白".center(100, "-"))
 # Openpyxl_PO.insertNullRow(3)  # 在第3行前插入1行空白
@@ -93,138 +92,199 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 # Openpyxl_PO.insertRow({2: ["金浩", "101", "102"]})
 
 # print("2.4 更新行数据".center(100, "-"))
-# Openpyxl_PO.setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
+# Openpyxl_PO.setRow({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
 
 # print("2.5 追加行数据".center(100, "-"))
-# Openpyxl_PO.appendRows([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
+# Openpyxl_PO.appendRow([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
 
 # print("2.6 插入列数据".center(100, "-"))
 # Openpyxl_PO.insertCol({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
 # Openpyxl_PO.insertCol({2: ["姓名", "张三", "李四"], 3: ["年龄2", "552", "343"]})
 
 # print("2.7 更新列数据".center(100, "-"))
-# Openpyxl_PO.setCols({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})
-# Openpyxl_PO.setCols({1: [None, "k1", 1212, "777"], 3: [None, "888", None, "56789"]})
+# Openpyxl_PO.setCol({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})
+# Openpyxl_PO.setCol({1: [None, "k1", 1212, "777"], 3: [None, "888", None, "56789"]})
 
 # print("2.8 追加列数据".center(100, "-"))
-# Openpyxl_PO.appendCols([["test", "张三", "李四"], ["dev", "55", "34"]])
+# Openpyxl_PO.appendCol([["test", "张三", "李四"], ["dev", "55", "34"]])
+
+# print("2.9 清空行".center(100, "-"))
+# Openpyxl_PO.clsRow(2)  # 清空第2行
+
+# print("2.10 清空列".center(100, "-"))
+# Openpyxl_PO.clsCol(2, clear_header=True)  # 清空第2列
+# Openpyxl_PO.clsCol(2, clear_header=False)  # 清空第2列,保留列标签
+
+# print("2.11 删除行".center(100, "-"))
+# Openpyxl_PO.delRow(2)  # 删除第2行
+# Openpyxl_PO.delRow(2, 3)  # 删除第2行之连续3行（删除2，3，4行）
+#
+# print("2.12 删除列".center(100, "-"))
+# Openpyxl_PO.delCol(1, 2)  # 删除第1列之连续2列（删除1，2列）
+# Openpyxl_PO.delCol('D', 1)  # 删除第D列之连续1列（删除D列）
+
+# print("2.13 移动区域".center(100, "-"))
+# Openpyxl_PO.moveBlock('C1:D2', 3, 2)
+
+# print("2。14 将excel中标题（第一行字段）排序（从小打大）".center(100, "-"))
+# Openpyxl_PO.sortColHeader("hello")
 
 
-# print("2.0.1 在第N行前插入多行空白".center(100, "-"))
-# Openpyxl_PO.insertNullRows(5)  # 在第5行前插入一行空白
+# todo【样式】
+# 3.0 设置列宽
+# 	setColWidth(1, 20) # 设置第1列宽度20
+# 	setColWidth('C', 30) # 设置第f列宽度30
+# 3.1 设置行高与列宽
+# 	setRowColSize([(3, 30), (5, 40)], None)  # 设置第三行行高30，第五行行高40
+# 	setRowColSize(None, [('a', 22), ('C', 33)])  # 设置第a列宽22, 第c列宽33
+# 	setRowColSize([(3, 30), (5, 40)], [('a', 22), ('C', 33)])  # 设置第三行行高30，第五行行高40, 设置第a列宽22, 第c列宽33
+# 3.2 设置所有单元格的行高与列宽 setAllSize(30, 20) //设置所有单元格高30，宽20
+# 3.3 设置自动换行 setWordWrap()
+# 3.4 冻结窗口 setFreezePanes(）
+# 	setFreezePanes('A2') # 冻结首行    A表示不冻结列，2表示冻结首行
+# 	setFreezePanes('B1')  # 冻结第A列。  B表示冻结A列，1表示不冻结行
+# 	setFreezePanes('B2')  # 冻结第1行和第A列。
+# 	setFreezePanes('C3')  # 冻结第1、2行和第B列。  C表示冻结A、B列，3表示冻结第1、2行
+# 3.5 设置单元格对齐样式  setAlignment(5, 4, 'center', 'center')
+# 	setAlignment(5, 4, horizontal="center", vertical="center") # 设置第5行第4列居中对齐
+# 	setAlignment(2, "E", vertical="top", wrap_text=True) # 设置第5行F列顶部对齐并自动换行
+# 3.6 设置单行多列对齐样式
+# 	setRowColAlignment(5, [1,4], 'center', 'center') # 第5行第1,4列居中
+# 	setRowColAlignment(1, ["c", "e"], 'center', 'top')  # 第一行第c,e列居中
+# 	setRowColAlignment(1, "all", 'center', 'center')  # 第1行全部居中
+# 3.7 设置所有单元格对齐样式 setAllAlignment('center', 'center')
+# 3.8 设置筛选列
+# 	setFilterCol("all") # 全部筛选,
+# 	setFilterCol("") # 取消筛选
+# 	setFilterCol("A2") # 对A2筛选
+# 3.9 设置单元格字体（字体、字号、粗斜体、下划线、颜色）
+# setCellFont(1, 1, name=u'微软雅黑', size=16, bold=True, italic=True, color="000000")
+# 3.10 设置单行多列字体
+# 	setRowColFont(2, ["b", "D"],name="微软雅黑",size=16, bold=False, italic=False, color="000000")  # 第1行第b-h列
+# 	setRowColFont(3, "all")  # 第3行
+# 3.11 设置所有单元格字体  setAllCellFont(color="000000")
+# 3.12 设置单元格边框 setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
+#
+# 3.13 设置单元格填充渐变色 setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
+#
+# 3.14 设置单元格背景色".center(100, "-"))
+# 	setBackgroundColor(2, 1, "ff0000")  # 设置第五行第1列设置红色
+# 	setBackgroundColor(2, "c", "0000FF")  # 设置第五行e列设置红色
+# 	setBackgroundColor(2, 1, clear_color=True)  # 清除第5行第1列的背景色
+# 	setBackgroundColor(2, "c", clear_color=True)  # 清除第5行d列的背景色
+# 3.15 设置单行多列背景色
+# 	setRowColBackgroundColor(2, ['b', 'd'], "ff0000") # 设置第2行第b，c，d列背景色
+# 	etRowColBackgroundColor(1, "all", "ff0000")  # 设置第7行所有列背景色
+# 	setRowColBackgroundColor(2, ['B', 'D'], clear_color=True)  # 清除第2行第b，c，d列背景色
+# 	setRowColBackgroundColor(1, "all", clear_color=True)  #  清除第1行所有列背景色
+# 3.16 设置所有单元格背景色
+# 	setAllBackgroundColor("ff0000")  # 设置所有单元格背景色
+# 	setAllBackgroundColor(clear_color=True)  # 清除所有单元格背景色
+# 3.17 设置整行(可间隔)背景色
+# 	setBandRowsColor(5, 0, "ff0000")  # 从第5行开始每行颜色标红色
+# 	setBandRowsColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
+# 	setBandRowsColor(3, 1, clear_color=True) # 清除从第3行开始每隔1行的背景色
+# 	setBandRowsColor(5, 0, clear_color=True) # 清除从第5行开始每行颜色标红色
+# 3.18 设置整列(可间隔)背景色
+# 	setBandColsColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
+# 	setBandColsColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
+# 	setBandColsColor(2, 1, clear_color=True) # 清除从第2列开始每隔1列的背景色
+# 	setBandColsColor(2, 0, clear_color=True)  # 从第2列开始每列颜色为红色
+# 3.19 设置工作表背景颜色
+# 	setSheetColor("FF0000")
+# 	setSheetColor(clear_color=True)
 
-# print("2.0.2 在第N列前插入多列空白".center(100, "-"))
-# Openpyxl_PO.insertCols(3)  # 在第3列前插入1列空白， 等同于 insertCols(3, 1)
-# Openpyxl_PO.insertCols(3, 2)  # 在第3列前插入2列空白， 等同于 insertCols(3, 1)
+# print("3.0 设置列宽".center(100, "-"))
+# Openpyxl_PO.setColWidth(1, 20)  # 设置第1列宽度20
+# Openpyxl_PO.setColWidth('C', 30)  # 设置第f列宽度30
 
-# print("2.1 更新单元格值".center(100, "-"))
-# Openpyxl_PO.setCell(1, 'B', "hello")
-# Openpyxl_PO.setCell(1, 3, "hello")
+# print("3.1 设置行高与列宽".center(100, "-"))
+# Openpyxl_PO.setRowColSize([(3, 30), (5, 40)], None)  # 设置第三行行高30，第五行行高40
+# Openpyxl_PO.setRowColSize(None, [('a', 22), ('C', 33)])  # 设置第a列宽22, 第c列宽33
+# Openpyxl_PO.setRowColSize([(3, 30), (5, 40)], [('a', 22), ('C', 33)])  # 设置第三行行高30，第五行行高40, 设置第a列宽22, 第c列宽33
 
-# print("2.2 插入行数据".center(100, "-"))
-# Openpyxl_PO.insertRows({2: ["金浩", "101", "102"]}, "Sheet1")
+# print("3.2 设置所有单元格的行高与列宽".center(100, "-"))
+# Openpyxl_PO.setAllSize(20, 10)  # 设置所有单元格高30，宽20
 
-# print("2.3 更新行数据".center(100, "-"))
-# Openpyxl_PO.setRows({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
-# Openpyxl_PO.setRows({7: ["你好", 12345, "7777"], 8: ["44", None, "777777777"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
-# Openpyxl_PO.setRows({7: ["你好", 12345, "7777"], 8: ["44", "None", "777777777"]}, -1)  # 对最后一个sheet表，对第7，8行分别写入内容
-# Openpyxl_PO.open()
+# print("3.3 设置自动换行".center(100, "-"))
+# Openpyxl_PO.setWrapText()
 
-# print("2.4 追加行数据".center(100, "-"))
-# Openpyxl_PO.appendRows([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
+# print(3.4 冻结窗口".center(100, "-"))
+# Openpyxl_PO.setFreezePanes('A2') # 冻结首行    A表示不冻结列，2表示冻结首行
+# Openpyxl_PO.setFreezePanes('B1')  # 冻结第A列。  B表示冻结A列，1表示不冻结行
+# Openpyxl_PO.setFreezePanes('B2')  # 冻结第1行和第A列。
+# Openpyxl_PO.setFreezePanes('C3')  # 冻结第1、2行和第B列。  C表示冻结A、B列，3表示冻结第1、2行
 
-# print("2.5 插入列数据".center(100, "-"))
-# Openpyxl_PO.insertCols({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
+# print("3.5 设置单元格对齐样式".center(100, "-"))
+# Openpyxl_PO.setAlignment(5, 4, horizontal="center", vertical="center") # 设置第5行第4列居中对齐
+# Openpyxl_PO.setAlignment(2, "E", vertical="top", wrap_text=True) # 设置第5行F列顶部对齐并自动换行
 
-# print("2.6 更新列数据".center(100, "-"))
-# Openpyxl_PO.setCols({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
+# print("3.6 设置单行多列对齐样式".center(100, "-"))
+# Openpyxl_PO.setRowColAlignment(1, ["c", "e"], 'center', 'top')  # 第一行第c,e列居中
+# Openpyxl_PO.setRowColAlignment(1, "all", 'center', 'center')  # 第1行全部居中
 
-# print("2.7 追加列数据".center(100, "-"))
-# Openpyxl_PO.appendCols([["test", "张三", "李四"], ["dev", "55", "34"]], 2)
+# print("3.7 设置所有单元格对齐样式".center(100, "-"))
+# Openpyxl_PO.setAllAlignment('center', 'center')
 
-# todo 样式
-
-# print("2.5 设置单元格行高与列宽".center(100, "-"))
-# Openpyxl_PO.setCellDimensions(3, 30, 'f', 34)  # 设置第三行行高30，第f列宽34
-
-# print("2.5.2 设置单行多列行高与列宽".center(100, "-"))
-# Openpyxl_PO.setRowColDimensions(5, 30, ['f', 'h'], 33)  # 设置第五行行高30，f - h列宽33
-
-# print("2.6 设置所有单元格的行高与列宽".center(100, "-"))
-# Openpyxl_PO.setAllCellDimensions(30, 20)
-
-# print("2.7 设置所有单元格自动换行".center(100, "-"))
-# Openpyxl_PO.setAllWordWrap()
-# Openpyxl_PO.setAllWordWrap("Sheet1")
-
-# print("2.8 设置冻结首行".center(100, "-"))
-# Openpyxl_PO.setFreeze('A2', "Sheet1")
-
-# print("2.9 设置单元格对齐样式".center(100, "-"))
-# Openpyxl_PO.setCellAlignment(5, 4, 'center', 'top')
-# Openpyxl_PO.setCellAlignment(1, "e", 'center', 'top', 45)
-# Openpyxl_PO.setCellAlignment(1, 1, 'center', 'top', 45, True)
-# Openpyxl_PO.setCellAlignment(5, 4, 'center', 'center', "saasuser1")
-
-# print("2.9.2 设置单行多列对齐样式".center(100, "-"))
-# Openpyxl_PO.setRowColAlignment(1, ["c", "e"], 'center', 'center')  # 第一行第c,d,e列居中
-# Openpyxl_PO.setRowColAlignment(9, "all", 'center', 'center')  # 第九行全部居中
-
-# print("2.9.3 设置所有单元格对齐样式".center(100, "-"))
-# Openpyxl_PO.setAllCellAlignment('center', 'center')
-
-# print("2.10 设置筛选列".center(100, "-"))
+# print("3.8 设置筛选列".center(100, "-"))
 # Openpyxl_PO.setFilterCol("all")  # 全部筛选
 # Openpyxl_PO.setFilterCol("") # 取消筛选
-# Openpyxl_PO.setFilterCol("A2") # 对A2筛选
+# Openpyxl_PO.setFilterCol("B1") # 对A2筛选
 
-# print("2.11 设置单元格字体（字体、字号、粗斜体、下划线、颜色）".center(100, "-"))
-# Openpyxl_PO.setCellFont(1, 6)  # 设置第一行第六列字体（默认微软雅黑字号16粗体）
+# print("3.9 设置单元格字体（字体、字号、粗斜体、下划线、颜色）".center(100, "-"))
+# Openpyxl_PO.setCellFont(1, 2)  # 设置第一行第六列字体（默认微软雅黑字号16粗体）
 # Openpyxl_PO.setCellFont(2, "f")  # 设置第一行第f列字体（默认微软雅黑字号16粗体）
-# Openpyxl_PO.setCellFont(5, "f", size=14, bold=True, color="red")
+# Openpyxl_PO.setCellFont(2, "c", name="微软雅黑",size=16, bold=True, color="ff0000")
 # Openpyxl_PO.setCellFont(5, "f", size=14, bold=True)
 
-# print("2.11.2 设置单行多列字体".center(100, "-"))
-# Openpyxl_PO.setRowColFont(1, ["b", "h"])  # 第一行第b-h列
-# Openpyxl_PO.setRowColFont(9, "all")  # 第九行
+# print("3.10 设置单行多列字体".center(100, "-"))
+# Openpyxl_PO.setRowColFont(2, ["b", "D"],name="微软雅黑",size=16, bold=False, italic=False, color="000000")  # 第1行第b-h列
+# Openpyxl_PO.setRowColFont(3, "all")  # 第3行
 
-# print("2.11.3 设置所有单元格字体".center(100, "-"))
-# Openpyxl_PO.setAllCellFont()
+# print("3.11 设置所有单元格字体".center(100, "-"))
+# Openpyxl_PO.setAllFont()
 
-# print("2.12 设置单元格边框".center(100, "-"))
+# print("3.12 设置单元格边框".center(100, "-"))
 # Openpyxl_PO.setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
 
-# print("2.13 设置单元格填充背景色".center(100, "-"))
-# Openpyxl_PO.setPatternFill(2, 2, 'solid', '006100')  # 单元格背景色
+# print("3.13 设置单元格填充渐变色".center(100, "-"))
+# Openpyxl_PO.setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"]) # 设置第3行第3列的渐变色
+# Openpyxl_PO.setGradientFill(2, "C", stop=["FF0000", "00FF00", "0000FF"]) # 设置第2行C列的渐变色
 
-# print("2.14 设置单元格填充渐变色".center(100, "-"))
-# Openpyxl_PO.setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
+# print("3.14 设置单元格背景色".center(100, "-"))
+# Openpyxl_PO.setBackgroundColor(2, 1, "ff0000")  # 设置第五行第1列设置红色
+# Openpyxl_PO.setBackgroundColor(2, "c", "0000FF")  # 设置第五行e列设置红色
+# Openpyxl_PO.setBackgroundColor(2, 1, clear_color=True)  # 清除第5行第1列的背景色
+# Openpyxl_PO.setBackgroundColor(2, "c", clear_color=True)  # 清除第5行d列的背景色
 
-# print("2.15 设置单元格背景色".center(100, "-"))
-# Openpyxl_PO.setCellColor(5, 1)  # 清除第5行第1列的背景色
-# Openpyxl_PO.setCellColor(5, "d")  # 清除第5行d列的背景色
-# Openpyxl_PO.setCellColor(5, 1, "ff0000", "Sheet2")  # 设置第五行第1列设置红色
-# Openpyxl_PO.setCellColor(5, "e", "ff0000")  # 设置第五行e列设置红色
-# Openpyxl_PO.setCellColor(None, None)  # 清除所有背景色
+# print("3.15 设置单行多列背景色".center(100, "-"))
+# Openpyxl_PO.setRowColBackgroundColor(2, ['b', 'd'], "ff0000") # 设置第2行第b，c，d列背景色
+# Openpyxl_PO.setRowColBackgroundColor(1, "all", "ff0000")  # 设置第7行所有列背景色
+# Openpyxl_PO.setRowColBackgroundColor(2, ['B', 'D'], clear_color=True)  # 清除第2行第b，c，d列背景色
+# Openpyxl_PO.setRowColBackgroundColor(1, "all", clear_color=True)  #  清除第1行所有列背景色
 
-# print("2.15.2 设置单行多列背景色".center(100, "-"))
-# Openpyxl_PO.setRowColColor(5, ['b', 'd'], "ff0000") # 设置第五行第b，c，d列背景色
-# Openpyxl_PO.setRowColColor(7, "all", "ff0000")  # 设置第7行所有列背景色
+# print("3.16 设置所有单元格背景色".center(100, "-"))
+# Openpyxl_PO.setAllBackgroundColor("ff0000")  # 设置所有单元格背景色
+# Openpyxl_PO.setAllBackgroundColor(clear_color=True)  # 清除所有单元格背景色
 
-# print("2.15.3 设置所有单元格背景色".center(100, "-"))
-# Openpyxl_PO.setAllCellColor("ff0000")  # 设置所有单元格背景色
-# Openpyxl_PO.setAllCellColor(None)  # 清除所有单元格背景色
+# print("3.17 设置整行(可间隔)背景色".center(100, "-"))
+# Openpyxl_PO.setBandRowsColor(5, 0, "ff0000")  # 从第5行开始每行颜色标红色
+# Openpyxl_PO.setBandRowsColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
+# Openpyxl_PO.setBandRowsColor(3, 1, clear_color=True) # 清除从第3行开始每隔1行的背景色
+# Openpyxl_PO.setBandRowsColor(5, 0, clear_color=True) # 清除从第5行开始每行颜色标红色
 
-# print("2.16 设置整行(可间隔)背景色".center(100, "-"))
-# Openpyxl_PO.setRowColor(5, 0, "ff0000")  # 从第5行开始每行颜色标红色
-# Openpyxl_PO.setRowColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
+# print("3.18 设置整列(可间隔)背景色".center(100, "-"))
+# Openpyxl_PO.setBandColsColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
+# Openpyxl_PO.setBandColsColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
+# Openpyxl_PO.setBandColsColor(2, 1, clear_color=True) # 清除从第2列开始每隔1列的背景色
+# Openpyxl_PO.setBandColsColor(2, 0, clear_color=True)  # 从第2列开始每列颜色为红色
 
-# print("2.17 设置整列(可间隔)背景色".center(100, "-"))
-# Openpyxl_PO.setColColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
-# Openpyxl_PO.setColColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
-
-# print("2.18 设置工作表背景颜色".center(100, "-"))
+# print("3.19 设置工作表背景颜色".center(100, "-"))
 # Openpyxl_PO.setSheetColor("FF0000")
+# Openpyxl_PO.setSheetColor(clear_color=True)  # 清除工作表标签颜色
+
+
+# todo 【获取】
 
 # print("3.1 获取总行列数".center(100, "-"))
 # print(Openpyxl_PO.getTotalRowCol())  # [7,5]
@@ -300,21 +360,7 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 # print("3.11 获取工作表数据的坐标".center(100, "-"))
 # print(Openpyxl_PO.getDimensions())  # A1:E17
 
-# print("4.1 清空行".center(100, "-"))
-# Openpyxl_PO.clsRow(2)  # 清空第2行
-#
-# print("4.2 清空列".center(100, "-"))
-# Openpyxl_PO.clsCol(2)  # 清空第2列
-# print("4.2.1 清空列保留标题".center(100, "-"))
-# Openpyxl_PO.clsColRetainTitle(2)  # 清空第2列保留标题
 
-# print("4.3 删除行".center(100, "-"))
-# # Openpyxl_PO.delSeriesRow(2, 3)  # 删除第2行之连续3行（删除2，3，4行）
-#
-# print("4.4 删除列".center(100, "-"))
-# # Openpyxl_PO.delSeriesCol(1, 2)  # 删除第1列之连续2列（删除1，2列）
-# # Openpyxl_PO.delSeriesCol(2, 1, "python")  # 删除第2列之连续1列（删除2列）
-# Openpyxl_PO.delSeriesCol('D', 1)  # 删除第D列之连续1列（删除D列）
 
 # print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
 # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
@@ -333,6 +379,6 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 # Openpyxl_PO.moveValue('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
 
 # # print("7 将excel中标题（第一行字段）排序（从小打大）".center(100, "-"))
-# Openpyxl_PO.sortFields("Sheet1")
+# Openpyxl_PO.sortFields("hello")
 
 # Openpyxl_PO.open()
