@@ -83,7 +83,6 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 2.13 移动区域 moveBlock(rows, cols, 'C1:D2')
 2.14 将excel中标题（第一行字段）排序（从小打大）sortColHeader()
 
-
 【样式】
 3.0 设置列宽 
 	setColWidth(1, 20) # 设置第1列宽度20
@@ -147,31 +146,36 @@ setCellFont(1, 1, name=u'微软雅黑', size=16, bold=True, italic=True, color="
 	setSheetColor(clear_color=True)	
 
 【获取】
-3.1 获取总行列数 getL_shape()  # [5,10]
-3.2 获取单元格的值 getCell(3,2)
-3.3 获取一行数据 getL_row(2) # 获取第2行值
-3.4 获取一列数据 getL_col(2) 或 getL_col('B') # 获取第2列值
-3.5.1 获取行数据 getLL_row()  # [['状态', '名字'],['ok', 'jinhao']...]
-3.5.2 获取带行号的行数据 getD_rowNumber_row()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
-3.5.3 获取部分列的行数据 getLL_rowOfPartialCol([1, 3])  # 获取第1，3列的行数据 [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25]...]
-    支持序号与字母混搭 getLL_rowOfPartialCol(["A", "C"])， getLL_rowOfPartialCol([2, "C"])
-    支持去重 getLL_rowOfPartialCol([1, 3, 2, "a", "C", "B"])
-3.5.4 获取带行号的部分列的行数据 getD_rowNumber_rowOfpartialCol([1, 3])  # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25]...}
-     getD_rowNumber_rowOfpartialCol([1, 'c']) 同上  
-3.6.1 获取每列数据 getLL_col()
-3.6.2 获取带列序号的每列数据 getD_colNumber_col()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
-3.6.3 获取带列字母的每列数据 getD_colLetter_col()  # { 'a' : ['状态', '名字'], 'b' : ['ok', 'jinhao']...}
-3.8.1 获取标题的序号 getL_columnHeaderNumber(['测试'，‘开发’])  # [2，4]
-3.8.2 获取标题的字母 getL_columnHeaderLetter(['测试'，‘开发’])  # ['A', 'C']
-3.8.3 将标题转列字典序列 getD_colNumber_columnTitle（['测试'，‘开发’]）# {2: '姓名', 5: '性别'}
-3.8.4 将标题转列字典字母 getD_colLetter_columnTitle（['测试'，‘开发’]）# {'B': '姓名', 'E': '性别'}
+4.1 获取总行列数 getL_shape()  # [5,10]
+4.2 获取单元格的值 getCell(3,2)  //获取第3行第2列的值
+4.3 获取一行数据 getL_row(2) # 获取第2行值
+4.4 获取一列数据 
+	getL_col(2))  # ['高地', 40, 44, 50, 30, 25, 150]
+	getL_col('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
+4.5 获取行数据 getLL_row()  # [['状态', '名字'],['ok', 'jinhao']...]
 
-3.9 获取部分列的列值(可忽略多行) getLL_partialColOfPartialCol([1, 3], [1, 2]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
-3.10 获取单元格的坐标 getCoordinate(2, 5))   # E2
-3.11 获取所有数据的坐标 getDimensions())  # A1:E17
+4.6 获取带行号的行数据 getD_rowNumber_row()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
+4.7 获取部分列的行数据 
+	getLL_rowOfPartialCol([1, 3])   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 10]] //获取1和3列的行数据
+	getLL_rowOfPartialCol(['a', 'C']))  # 同上
+	getLL_rowOfPartialCol(["A", 3]))   # 同上
+4.8 获取带行号的部分列的行数据 
+	getD_rowNumber_rowOfpartialCol([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+	getD_rowNumber_rowOfpartialCol([1, 'C']) 
+	getD_rowNumber_rowOfpartialCol(['a', 'C'])) 
+4.9 获取每列数据 getLL_col() 
+4.10 获取带列序号的每列数据 getD_colNumber_col()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
+4.11 获取带列字母的每列数据 getD_colLetter_col()  # { 'a' : ['状态', '名字'], 'b' : ['ok', 'jinhao']...}
+4.12 获取列标签的序号 getL_columnHeaderNumber(['测试'，‘开发’])  # [2，4]
+4.13 获取列标签的字母 getL_columnHeaderLetter(['测试'，‘开发’])  # ['A', 'C']
+4.14 将标题转列字典序列 getD_colNumber_columnTitle(['测试'，‘开发’]）# {2: '姓名', 5: '性别'}
+4.15 将标题转列字典字母 getD_colLetter_columnTitle(['测试'，‘开发’]）# {'B': '姓名', 'E': '性别'}
+4.16 获取部分列的列值(可忽略多行) getLL_partialColOfPartialCol([1, 3], [1, 2]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
+4.17 获取单元格的坐标 getCoordinate(2, 5))   # E2
+4.18 获取所有数据的坐标 getDimensions())  # A1:E17
 
 【两表比较】
-5.1 两表比较，获取差异内容（两表标题与行数必须一致）setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2"))
+5.1 两表比较，获取差异内容（两表标题与行数必须一致）getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2"))
 5.2 两工作表比较，对差异内容标注颜色 setColorByDiff("Sheet1", "Sheet2")
 
 
@@ -2937,11 +2941,12 @@ class OpenpyxlPO:
     # todo [多表]
 
 
-    def setColorByDiffByTwoFile(self, l_file1row, l_file2row):
+    def getD_excel_cell_By_Diff(self, l_file1row, l_file2row):
         """
-        5.2 对两个文件的工作表比较，对差异内容标注颜色（优化版）
+        getD_excel_cell_By_Diff
+        5.2 两个excel的sheet进行比较，输出有差异值。（两表标题与行数必须一致） （优化版）
         
-        # print(Openpyxl_PO.setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
+        # print(Openpyxl_PO.getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
 
         :param l_file1row: 第一个文件的行数据列表
         :param l_file2row: 第二个文件的行数据列表
@@ -2979,8 +2984,8 @@ class OpenpyxlPO:
 
             # 构造最终结果
             if d_left or d_right:
-                d_all["left"] = d_left
-                d_all["right"] = d_right
+                d_all["第一个excel"] = d_left
+                d_all["第二个excel"] = d_right
                 return d_all
             else:
                 return None  # 无差异时返回 None
@@ -2989,31 +2994,168 @@ class OpenpyxlPO:
             raise IOError(f"比较文件时发生错误: {e}") from e
 
 
-    def setColorByDiff(self, varSheet1, varSheet2):
+    # def setColorByDiff(self, varSheet1, varSheet2):
+    #
+    #     # 5.2 两工作表比较，对差异内容标注颜色
+    #     # 前提条件，两sheet表的行列数一致，字段位置一致
+    #     # Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2")
+    #
+    #     l_sheetOneRow = self.getLL_row(varSheet1)
+    #     l_sheetTwoRow = self.getLL_row(varSheet2)
+    #
+    #     if l_sheetOneRow == None or l_sheetTwoRow == None:
+    #         print("[Error], " + varSheet1 + " 或 " + varSheet2 + " 不存在！")
+    #         sys.exit(0)
+    #
+    #     if len(l_sheetOneRow) == len(l_sheetTwoRow):
+    #         for i in range(len(l_sheetOneRow)):
+    #             for j in range(len(l_sheetOneRow[i])):
+    #                 if l_sheetOneRow[i][j] != l_sheetTwoRow[i][j]:
+    #                     self.setBackgroundColor(i + 1, j + 1, "FF0000", varSheet1)
+    #                     self.setBackgroundColor(i + 1, j + 1, "ffeb9c", varSheet2)
+    #             print("检查第" + str(i + 1) + "行")
+    #
+    #         self.save()
+    #     else:
+    #         print("[warning], 两sheet的行数不一致！")
+    #         sys.exit(0)
 
-        # 5.2 两工作表比较，对差异内容标注颜色
-        # 前提条件，两sheet表的行列数一致，字段位置一致
-        # Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2")
+    # def setColorByDiff(self, varSheet1, varSheet2, color1="FF0000", color2="ffeb9c", skip_empty=True):
+    #     """
+    #     5.2 两工作表比较，对差异内容标注颜色（优化版）
+    #
+    #     :param varSheet1: 第一张工作表名称或索引
+    #     :param varSheet2: 第二张工作表名称或索引
+    #     :param color1: Sheet1 中差异单元格的颜色（默认红色 FF0000）
+    #     :param color2: Sheet2 中差异单元格的颜色（默认橙色 ffeb9c）
+    #     :param skip_empty: 是否跳过空值比较（默认 True）
+    #     :raises ValueError: 如果参数不合法或工作表不存在
+    #     :raises IOError: 如果操作失败
+    #     """
+    #     # 参数校验
+    #     if not isinstance(varSheet1, (int, str)):
+    #         raise ValueError("varSheet1 必须是整数（索引）或字符串（名称）")
+    #     if not isinstance(varSheet2, (int, str)):
+    #         raise ValueError("varSheet2 必须是整数（索引）或字符串（名称）")
+    #     if not isinstance(color1, str) or len(color1) != 6 or not all(c in '0123456789ABCDEFabcdef' for c in color1):
+    #         raise ValueError("color1 必须是6位十六进制字符串")
+    #     if not isinstance(color2, str) or len(color2) != 6 or not all(c in '0123456789ABCDEFabcdef' for c in color2):
+    #         raise ValueError("color2 必须是6位十六进制字符串")
+    #     if not isinstance(skip_empty, bool):
+    #         raise ValueError("skip_empty 必须是布尔值")
+    #
+    #     try:
+    #         # 获取两张表的所有行数据
+    #         l_sheetOneRow = self.getLL_row(varSheet1)
+    #         l_sheetTwoRow = self.getLL_row(varSheet2)
+    #
+    #         # 校验工作表是否存在
+    #         if l_sheetOneRow is None or l_sheetTwoRow is None:
+    #             raise ValueError(f"工作表 '{varSheet1}' 或 '{varSheet2}' 不存在！")
+    #
+    #         # 校验行列数是否一致
+    #         if len(l_sheetOneRow) != len(l_sheetTwoRow):
+    #             raise ValueError("两张表的行数不一致，无法比较！")
+    #         if any(len(row1) != len(row2) for row1, row2 in zip(l_sheetOneRow, l_sheetTwoRow)):
+    #             raise ValueError("两张表的列数不一致，无法比较！")
+    #
+    #         # 遍历每一行和每一列，标记差异
+    #         for i in range(len(l_sheetOneRow)):
+    #             row1 = l_sheetOneRow[i]
+    #             row2 = l_sheetTwoRow[i]
+    #             for j in range(len(row1)):
+    #                 val1 = row1[j]
+    #                 val2 = row2[j]
+    #
+    #                 # 跳过空值（如果启用 skip_empty）
+    #                 if skip_empty and (val1 is None or val1 == "" or val2 is None or val2 == ""):
+    #                     continue
+    #
+    #                 # 统一类型后比较值
+    #                 if str(val1) != str(val2):  # 强制转换为字符串比较
+    #                     self.setBackgroundColor(i + 1, j + 1, color1, varSheet1)
+    #                     self.setBackgroundColor(i + 1, j + 1, color2, varSheet2)
+    #                     print(f"[DEBUG] 差异单元格 ({i + 1}, {j + 1}): '{val1}' vs '{val2}'")
+    #
+    #             print(f"[INFO] 已完成第 {i + 1} 行的比较")
+    #
+    #         # 保存文件
+    #         self.save()
+    #
+    #     except Exception as e:
+    #         raise IOError(f"比较工作表失败: {e}") from e
 
-        l_sheetOneRow = self.getLL_row(varSheet1)
-        l_sheetTwoRow = self.getLL_row(varSheet2)
+    def setColorByDiff(self, varSheet1, varSheet2, color1="FF0000", color2="ffeb9c", skip_empty=True):
+        """
+        5.2 两工作表比较，对差异内容标注颜色（优化版）
 
-        if l_sheetOneRow == None or l_sheetTwoRow == None:
-            print("[Error], " + varSheet1 + " 或 " + varSheet2 + " 不存在！")
-            sys.exit(0)
+        :param varSheet1: 第一张工作表名称或索引
+        :param varSheet2: 第二张工作表名称或索引
+        :param color1: Sheet1 中差异单元格的颜色（默认红色 FF0000）
+        :param color2: Sheet2 中差异单元格的颜色（默认橙色 ffeb9c）
+        :param skip_empty: 是否跳过空值比较（默认 True）
+        :raises ValueError: 如果参数不合法或工作表不存在
+        :raises IOError: 如果操作失败
+        """
+        # 参数校验
+        if not isinstance(varSheet1, (int, str)):
+            raise ValueError("varSheet1 必须是整数（索引）或字符串（名称）")
+        if not isinstance(varSheet2, (int, str)):
+            raise ValueError("varSheet2 必须是整数（索引）或字符串（名称）")
+        if not isinstance(color1, str) or len(color1) != 6 or not all(c in '0123456789ABCDEFabcdef' for c in color1):
+            raise ValueError("color1 必须是6位十六进制字符串")
+        if not isinstance(color2, str) or len(color2) != 6 or not all(c in '0123456789ABCDEFabcdef' for c in color2):
+            raise ValueError("color2 必须是6位十六进制字符串")
+        if not isinstance(skip_empty, bool):
+            raise ValueError("skip_empty 必须是布尔值")
 
-        if len(l_sheetOneRow) == len(l_sheetTwoRow):
+        try:
+            # 获取两张表的所有行数据
+            l_sheetOneRow = self.getLL_row(varSheet1)
+            l_sheetTwoRow = self.getLL_row(varSheet2)
+
+            # 校验工作表是否存在
+            if l_sheetOneRow is None or l_sheetTwoRow is None:
+                raise ValueError(f"工作表 '{varSheet1}' 或 '{varSheet2}' 不存在！")
+
+            # 校验行列数是否一致
+            if len(l_sheetOneRow) != len(l_sheetTwoRow):
+                raise ValueError("两张表的行数不一致，无法比较！")
+            if any(len(row1) != len(row2) for row1, row2 in zip(l_sheetOneRow, l_sheetTwoRow)):
+                raise ValueError("两张表的列数不一致，无法比较！")
+
+            # 遍历每一行和每一列，标记差异
             for i in range(len(l_sheetOneRow)):
-                for j in range(len(l_sheetOneRow[i])):
-                    if l_sheetOneRow[i][j] != l_sheetTwoRow[i][j]:
-                        self.setBackgroundColor(i + 1, j + 1, "FF0000", varSheet1)
-                        self.setBackgroundColor(i + 1, j + 1, "ffeb9c", varSheet2)
-                print("检查第" + str(i + 1) + "行")
+                row1 = l_sheetOneRow[i]
+                row2 = l_sheetTwoRow[i]
+                for j in range(len(row1)):
+                    val1 = row1[j]
+                    val2 = row2[j]
 
+                    # 跳过空值（如果启用 skip_empty）
+                    if skip_empty and (val1 is None or val1 == "" or val2 is None or val2 == ""):
+                        continue
+
+                    # 统一类型后比较值
+                    if str(val1) != str(val2):  # 强制转换为字符串比较
+                        # 设置 Sheet1 的背景色
+                        self.switchSheet(varSheet1)  # 显式切换到 Sheet1
+                        self.setBackgroundColor(i + 1, j + 1, color1, varSheet1)
+                        print(f"[DEBUG] Sheet1 差异单元格 ({i + 1}, {j + 1}): '{val1}'")
+
+                        # 设置 Sheet2 的背景色
+                        self.switchSheet(varSheet2)  # 显式切换到 Sheet2
+                        self.setBackgroundColor(i + 1, j + 1, color2, varSheet2)
+                        print(f"[DEBUG] Sheet2 差异单元格 ({i + 1}, {j + 1}): '{val2}'")
+
+                print(f"[INFO] 已完成第 {i + 1} 行的比较")
+
+            # 保存文件
             self.save()
-        else:
-            print("[warning], 两sheet的行数不一致！")
-            sys.exit(0)
+
+        except Exception as e:
+            raise IOError(f"比较工作表失败: {e}") from e
+
 
     def genSheetByDiff(self, varSheet1, varSheet2):
         """
@@ -3079,6 +3221,7 @@ class OpenpyxlPO:
 
         except Exception as e:
             raise IOError(f"处理工作表失败: {e}") from e
+
 
     # todo [转换]
 
@@ -3497,7 +3640,7 @@ if __name__ == "__main__":
     # print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
     # Openpyxl_PO2 = OpenpyxlPO("./data/loanStats2.xlsx")
-    # print(Openpyxl_PO.setColorByDiffByTwoFile(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
+    # print(Openpyxl_PO.getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
 
     # # print("5.2 对一张表的两个sheet进行数据比对，差异数据标注颜色 ".center(100, "-"))
     # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")

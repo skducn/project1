@@ -15,6 +15,7 @@
 from PO.OpenpyxlPO import *
 
 # todo【工作表】
+
 # 1.1 新建 Openpyxl_PO = OpenpyxlPO("1212.xlsx")
 # 		Openpyxl_PO = OpenpyxlPO("1212.xlsx",l_sheet=['Sheet1','Sheet2','Sheet3'])
 # 1.2 打开 open()
@@ -51,6 +52,7 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 
 
 # todo【操作数据】
+
 # 2.0 在第N行前插入多行空白（优化版）
 # 	insertNullRow(3)  在第3行前插入1行空白
 # 	insertNullRow(3，5)  在第3行前插入5行空白
@@ -131,6 +133,7 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 
 
 # todo【样式】
+
 # 3.0 设置列宽
 # 	setColWidth(1, 20) # 设置第1列宽度20
 # 	setColWidth('C', 30) # 设置第f列宽度30
@@ -286,99 +289,119 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 
 # todo 【获取】
 
-# print("3.1 获取总行列数".center(100, "-"))
-# print(Openpyxl_PO.getTotalRowCol())  # [7,5]
+# 4.1 获取总行列数 getL_shape()  # [5,10]
+# 4.2 获取单元格的值 getCell(3,2)  //获取第3行第2列的值
+# 4.3 获取一行数据 getL_row(2) # 获取第2行值
+# 4.4 获取一列数据
+# 	getL_col(2))  # ['高地', 40, 44, 50, 30, 25, 150]
+# 	getL_col('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
+# 4.5 获取行数据 getLL_row()  # [['状态', '名字'],['ok', 'jinhao']...]
+#
+# 4.6 获取带行号的行数据 getD_rowNumber_row()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
+# 4.7 获取部分列的行数据
+# 	getLL_rowOfPartialCol([1, 3])   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 10]] //获取1和3列的行数据
+# 	getLL_rowOfPartialCol(['a', 'C']))  # 同上
+# 	getLL_rowOfPartialCol(["A", 3]))   # 同上
+# 4.8 获取带行号的部分列的行数据
+# 	getD_rowNumber_rowOfpartialCol([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+# 	getD_rowNumber_rowOfpartialCol([1, 'C'])
+# 	getD_rowNumber_rowOfpartialCol(['a', 'C']))
+# 4.9 获取每列数据 getLL_col()
+# 4.10 获取带列序号的每列数据 getD_colNumber_col()  # { 2 : ['状态', '名字'], 3 : ['ok', 'jinhao']...}
+# 4.11 获取带列字母的每列数据 getD_colLetter_col()  # { 'a' : ['状态', '名字'], 'b' : ['ok', 'jinhao']...}
+# 4.12 获取列标签的序号 getL_columnHeaderNumber(['测试'，‘开发’])  # [2，4]
+# 4.13 获取列标签的字母 getL_columnHeaderLetter(['测试'，‘开发’])  # ['A', 'C']
+# 4.14 将标题转列字典序列 getD_colNumber_columnTitle(['测试'，‘开发’]）# {2: '姓名', 5: '性别'}
+# 4.15 将标题转列字典字母 getD_colLetter_columnTitle(['测试'，‘开发’]）# {'B': '姓名', 'E': '性别'}
+# 4.16 获取部分列的列值(可忽略多行) getLL_partialColOfPartialCol([1, 3], [1, 2]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
+# 4.17 获取单元格的坐标 getCoordinate(2, 5))   # E2
+# 4.18 获取所有数据的坐标 getDimensions())  # A1:E17
 
-# print("3.2 获取单元格值".center(100, "-"))
+
+# print("4.1 获取总行列数".center(100, "-"))
+# print(Openpyxl_PO.getL_shape())  # [7,5]
+
+# print("4.2 获取单元格值".center(100, "-"))
 # print(Openpyxl_PO.getCell(3, 2))  # 获取第3行第2列的值
 
-# print("3.3 获取一行数据".center(100, "-"))
-# print(Openpyxl_PO.getOneRow(1))  # ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字']
+# print("4.3 获取一行数据".center(100, "-"))
+# print(Openpyxl_PO.getL_row(2))  # ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字']
 #
-# print("3.4 获取一列数据".center(100, "-"))
-# print(Openpyxl_PO.getOneCol(2))  # ['高地', 40, 44, 50, 30, 25, 150]
-# print(Openpyxl_PO.getOneCol('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
+# print("4.4 获取一列数据".center(100, "-"))
+# print(Openpyxl_PO.getL_col(2))  # ['高地', 40, 44, 50, 30, 25, 150]
+# print(Openpyxl_PO.getL_col('B'))  # ['高地', 40, 44, 50, 30, 25, 150]
 
-# print("3.5.1 获取每行数据".center(100, "-"))
-# print(Openpyxl_PO.getRow())  # [['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], [2, 40, 30, 'ok', 'jinhao'],...]
+# print("4.5 获取每行数据".center(100, "-"))
+# print(Openpyxl_PO.getLL_row())  # [['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], [2, 40, 30, 'ok', 'jinhao'],...]
 #
-# print("3.5.2 获取带行号的每行数据".center(100, "-"))
-# print(Openpyxl_PO.getRowBySeq())  # {1: ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], 2: [2, 40, 30, 'ok', 'jinhao'],...}
+# print("4.6 获取带行号的每行数据".center(100, "-"))
+# print(Openpyxl_PO.getD_rowNumber_row())  # {1: ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字'], 2: [2, 40, 30, 'ok', 'jinhao'],...}
 
-# print("3.5.3 获取部分列的行数据".center(100, "-"))
-# print(Openpyxl_PO.getRowByCol([1, 3]))   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25], [4, 30], [5, 10], [6, 5], [7, 10]] //获取1和3列的行数据
-# print(Openpyxl_PO.getRowByCol(['a', 'C']))  # 同上
-# print(Openpyxl_PO.getRowByCol(["A", 3]))   # 同上
-# print(Openpyxl_PO.getRowByCol([1, 3, 2, "a", "C", "B"]))   # [['Number具体数', '山丘', '高地'], [2, 30, 40], [3, 25, 44], [4, 30, 50], [5, 10, 30], [6, 5, 25], [7, 10, 150]] //获第1，3，2列的行数据，"a", "C", "B"忽略
-#
-# print("3.5.4 获取带行号的部分列的行数据".center(100, "-"))
-# print(Openpyxl_PO.getRowByColSeq([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-# print(Openpyxl_PO.getRowByColSeq([1, 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-# print(Openpyxl_PO.getRowByColSeq(['a', 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+# print("4.7 获取部分列的行数据".center(100, "-"))
+# print(Openpyxl_PO.getLL_rowOfPartialCol([1, 3]))   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25], [4, 30], [5, 10], [6, 5], [7, 10]] //获取1和3列的行数据
+# print(Openpyxl_PO.getLL_rowOfPartialCol(['a', 'C']))  # 同上
+# print(Openpyxl_PO.getLL_rowOfPartialCol(["A", 3]))   # 同上
 
-# print("3.6.1 获取每列数据".center(100, "-"))
-# print(Openpyxl_PO.getCol())  # [['Number具体数', 2, 3, 4, 5, 6, 7], ['高地', 40, 44, 50, 30, 25, 150],...]
-#
-# print("3.6.2 获取带列序号的每列数据".center(100, "-"))
-# d_seq_row = Openpyxl_PO.getColBySeq()
-# print(d_seq_row)  # {1: ['Number具体数', 2, 3, 4, 5, 6, 7], 2: ['高地', 40, 44, 50, 30, 25, 150],,...}
-# del d_seq_row[1]  # 删除第一行，一般用于去掉标题
-# print(d_seq_row)  # {2: ['高地', 40, 44, 50, 30, 25, 150], 3: ['jinhaoyoyo', 30, 25, 30, 10, 5, 10],...}
-#
-# print("3.6.3 获取带列字母的每列数据".center(100, "-"))
-# d_letter_row = Openpyxl_PO.getColByLetter()
-# print(d_letter_row)  # {'A': ['Number具体数', 2, 3, 4, 5, 6, 7], 'B': ['高地', 40, 44, 50, 30, 25, 150],...}
-# del d_letter_row['A']  # 删除第一行，一般用于去掉标题
-# print(d_letter_row)  # {'B': ['高地', 40, 44, 50, 30, 25, 150], 'C': ['jinhaoyoyo', 30, 25, 30, 10, 5, 10]...}
+# print("4.8 获取带行号的部分列的行数据".center(100, "-"))
+# print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+# print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
+# print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol(['a', 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
 
-# print("3.8.1 获取标题的序号".center(100, "-"))
-# print(Openpyxl_PO.getTitleColSeq(["高地", "名字"]))  # [2, 5]
+# print("4.9 获取每列数据".center(100, "-"))
+# print(Openpyxl_PO.getLL_col())  # [['Number具体数', 2, 3, 4, 5, 6, 7], ['高地', 40, 44, 50, 30, 25, 150],...]
 #
-# print("3.8.2 获取标题的字母".center(100, "-"))
-# print(Openpyxl_PO.getTitleColLetter(["高地", "名字"]))  # ['B', 'E']
+# print("4.10 获取带列序号的每列数据".center(100, "-"))
+# print(Openpyxl_PO.getD_colNumber_col())
 
-# print("3.8.3 将标题转列字典序列".center(100, "-"))
-# print(Openpyxl_PO.title2dictSeq(["高地", "名字"]))  # {2: '高地', 5: '名字'}
+# print("4.11 获取带列字母的每列数据".center(100, "-"))
+# print(Openpyxl_PO.getD_colLetter_col())
+
+# print("4.12 获取列标签的序号".center(100, "-"))
+# print(Openpyxl_PO.getL_columnHeaderNumber(["no", "name"]))  # [2, 5]
 #
-# print("3.8.4 将标题转列字典字母".center(100, "-"))
-# print(Openpyxl_PO.title2dictLetter(["高地", "名字"]))  # {'A': '高地', 'C': '名字'}
+# print("4.13 获取列标签的字母".center(100, "-"))
+# print(Openpyxl_PO.getL_columnHeaderLetter(["no", "name"]))  # ['A', 'E']
 
-# l_colSeq = (Openpyxl_PO.title2colSeq(["高地", "名字"]))
-# print(l_colSeq)  # [2, 5]
-# print(Openpyxl_PO.getRowByCol(l_colSeq)) # [['高地', '名字'], [40, 'jinhao'], [44, 'yoyo'], [50, 'titi'], [30, 'mama'], [25, 'baba'], [150, 'yeye']]
+# print("4.14 将标题转列字典序列".center(100, "-"))
+# print(Openpyxl_PO.getD_colNumber_columnTitle(["no", "name"]))  # {2: '高地', 5: '名字'}
 #
-# l_colSeq = (Openpyxl_PO.getTitleCol(["高地", "名字"]))
-# print(l_colSeq)  # [2, 5]
+# print("4.15 将标题转列字典字母".center(100, "-"))
+# print(Openpyxl_PO.getD_colLetter_columnTitle(["no", "name"]))  # {'A': '高地', 'C': '名字'}
 
-# print("3.9 获取部分列的列值(可忽略多行)".center(100, "-"))
-# print(Openpyxl_PO.getColByPartialColByUnwantedRow([1, 3], [1, 4]))   # 获取第二列和第四列的列值，并忽略第1，2行的行值。
+# print("4.16 获取部分列的列值(可忽略多行)".center(100, "-"))
+# print(Openpyxl_PO.getLL_partialColOfPartialCol([1, 3], [1, 4]))   # 获取第二列和第四列的列值，并忽略第1，4行的行值。
 # print(Openpyxl_PO.getColByPartialColByUnwantedRow([2], [], "上海"))  # 获取第2列所有值。
 
-# print("3.10 获取单元格的坐标".center(100, "-"))
-# print(Openpyxl_PO.getCellCoordinate(2, 5))   # E2
+# print("4.17 获取单元格的坐标".center(100, "-"))
+# print(Openpyxl_PO.getCoordinate(2, 5))   # E2
 
-# print("3.11 获取工作表数据的坐标".center(100, "-"))
+# print("4.18 获取工作表数据的坐标".center(100, "-"))
 # print(Openpyxl_PO.getDimensions())  # A1:E17
 
 
+# todo 【两表比较】
 
-# print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
-# Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
-# Openpyxl_PO2 = OpenpyxlPO("./data/loanStats2.xlsx")
-# print(Openpyxl_PO.getDiffValueByCmp(Openpyxl_PO.getRow("Sheet2"), Openpyxl_PO2.getRow("Sheet2")))
+# print("5.1 两个excel的sheet进行比较，输出有差异值。（两表标题与行数必须一致） ".center(100, "-"))
+# Openpyxl_PO = OpenpyxlPO("./data/11.xlsx")
+# Openpyxl_PO2 = OpenpyxlPO("./data/22.xlsx")
+# print(Openpyxl_PO.getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("hello_标题升序"), Openpyxl_PO2.getLL_row("hello_标题升序")))
+#{'left': {4: {'no': 1}, 5: {'name': '张三'}, 6: {'age': 90}, 7: {'goal': '你好'}}, 'right': {4: {'no': 34}, 5: {'name': '李四'}, 6: {'age': 345}, 7: {'goal': 100}}}
 
 # # print("5.2 对一张表的两个sheet进行数据比对，差异数据标注颜色 ".center(100, "-"))
-# Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
-# Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2")
+# Openpyxl_PO = OpenpyxlPO("./data/11.xlsx")
+# Openpyxl_PO.setColorByDiff("hello1", "hello2")
+# 示例1：默认配置（跳过空值，红色和橙色标注差异）
+# Openpyxl_PO.setColorByDiff("hello1", "hello2")
+
+# 示例2：自定义颜色（绿色和蓝色标注差异）
+Openpyxl_PO.setColorByDiff("hello1", "hello2", color1="00FF00", color2="0000FF")
+
+# 示例3：不禁用空值比较
+# Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2", skip_empty=False)
+# print(f"[DEBUG] 差异单元格 ({i + 1}, {j + 1}): '{val1}' vs '{val2}'")
+
+
 
 # # print("5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
 # Openpyxl_PO.setSheetByDiff("browser", "interface")
 
-# # print("6 移动范围数据".center(100, "-"))
-# Openpyxl_PO.moveValue('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
-# Openpyxl_PO.moveValue('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
-
-# # print("7 将excel中标题（第一行字段）排序（从小打大）".center(100, "-"))
-# Openpyxl_PO.sortFields("hello")
-
-# Openpyxl_PO.open()
