@@ -175,16 +175,15 @@ setCellFont(1, 1, name=u'微软雅黑', size=16, bold=True, italic=True, color="
 4.18 获取所有数据的坐标 getDimensions())  # A1:E17
 
 【两表比较】
-5.1 两表比较，获取差异内容（两表标题与行数必须一致）getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2"))
-5.2 两工作表比较，对差异内容标注颜色 setColorByDiff("Sheet1", "Sheet2")
+5.1 两个excel的sheet进行比较，输出有差异值。（两表标题与行数必须一致）
+Openpyxl_PO = OpenpyxlPO("./data/11.xlsx")
+Openpyxl_PO2 = OpenpyxlPO("./data/22.xlsx")
+getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("hello_标题升序"), Openpyxl_PO2.getLL_row("hello_标题升序")))
+5.2 对一张表的两个sheet进行数据比对，对第一张表差异数据标注颜色 
+    setColorByDiff("Sheet1", "Sheet2")
+5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
+    genSheetByDiff("hello1", "hello2")  //结果写入 hello1_hello2_diff
 
-
-【转换】
-8.1 字典转xlsx  dict2xlsx()
-8.2 字典转csv  dict2csv()
-8.3 pdf中表格转xlsx pdf2xlsx()
-8.4 xlsx转列表 xlsx2list()
-8.5 xlsx转字典 xlsx2dict()
 
 
 """
@@ -2936,10 +2935,7 @@ class OpenpyxlPO:
         return sh.dimensions
 
 
-
-
-    # todo [多表]
-
+    # todo [两表比较]
 
     def getD_excel_cell_By_Diff(self, l_file1row, l_file2row):
         """
@@ -2992,98 +2988,6 @@ class OpenpyxlPO:
 
         except Exception as e:
             raise IOError(f"比较文件时发生错误: {e}") from e
-
-
-    # def setColorByDiff(self, varSheet1, varSheet2):
-    #
-    #     # 5.2 两工作表比较，对差异内容标注颜色
-    #     # 前提条件，两sheet表的行列数一致，字段位置一致
-    #     # Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2")
-    #
-    #     l_sheetOneRow = self.getLL_row(varSheet1)
-    #     l_sheetTwoRow = self.getLL_row(varSheet2)
-    #
-    #     if l_sheetOneRow == None or l_sheetTwoRow == None:
-    #         print("[Error], " + varSheet1 + " 或 " + varSheet2 + " 不存在！")
-    #         sys.exit(0)
-    #
-    #     if len(l_sheetOneRow) == len(l_sheetTwoRow):
-    #         for i in range(len(l_sheetOneRow)):
-    #             for j in range(len(l_sheetOneRow[i])):
-    #                 if l_sheetOneRow[i][j] != l_sheetTwoRow[i][j]:
-    #                     self.setBackgroundColor(i + 1, j + 1, "FF0000", varSheet1)
-    #                     self.setBackgroundColor(i + 1, j + 1, "ffeb9c", varSheet2)
-    #             print("检查第" + str(i + 1) + "行")
-    #
-    #         self.save()
-    #     else:
-    #         print("[warning], 两sheet的行数不一致！")
-    #         sys.exit(0)
-
-    # def setColorByDiff(self, varSheet1, varSheet2, color1="FF0000", color2="ffeb9c", skip_empty=True):
-    #     """
-    #     5.2 两工作表比较，对差异内容标注颜色（优化版）
-    #
-    #     :param varSheet1: 第一张工作表名称或索引
-    #     :param varSheet2: 第二张工作表名称或索引
-    #     :param color1: Sheet1 中差异单元格的颜色（默认红色 FF0000）
-    #     :param color2: Sheet2 中差异单元格的颜色（默认橙色 ffeb9c）
-    #     :param skip_empty: 是否跳过空值比较（默认 True）
-    #     :raises ValueError: 如果参数不合法或工作表不存在
-    #     :raises IOError: 如果操作失败
-    #     """
-    #     # 参数校验
-    #     if not isinstance(varSheet1, (int, str)):
-    #         raise ValueError("varSheet1 必须是整数（索引）或字符串（名称）")
-    #     if not isinstance(varSheet2, (int, str)):
-    #         raise ValueError("varSheet2 必须是整数（索引）或字符串（名称）")
-    #     if not isinstance(color1, str) or len(color1) != 6 or not all(c in '0123456789ABCDEFabcdef' for c in color1):
-    #         raise ValueError("color1 必须是6位十六进制字符串")
-    #     if not isinstance(color2, str) or len(color2) != 6 or not all(c in '0123456789ABCDEFabcdef' for c in color2):
-    #         raise ValueError("color2 必须是6位十六进制字符串")
-    #     if not isinstance(skip_empty, bool):
-    #         raise ValueError("skip_empty 必须是布尔值")
-    #
-    #     try:
-    #         # 获取两张表的所有行数据
-    #         l_sheetOneRow = self.getLL_row(varSheet1)
-    #         l_sheetTwoRow = self.getLL_row(varSheet2)
-    #
-    #         # 校验工作表是否存在
-    #         if l_sheetOneRow is None or l_sheetTwoRow is None:
-    #             raise ValueError(f"工作表 '{varSheet1}' 或 '{varSheet2}' 不存在！")
-    #
-    #         # 校验行列数是否一致
-    #         if len(l_sheetOneRow) != len(l_sheetTwoRow):
-    #             raise ValueError("两张表的行数不一致，无法比较！")
-    #         if any(len(row1) != len(row2) for row1, row2 in zip(l_sheetOneRow, l_sheetTwoRow)):
-    #             raise ValueError("两张表的列数不一致，无法比较！")
-    #
-    #         # 遍历每一行和每一列，标记差异
-    #         for i in range(len(l_sheetOneRow)):
-    #             row1 = l_sheetOneRow[i]
-    #             row2 = l_sheetTwoRow[i]
-    #             for j in range(len(row1)):
-    #                 val1 = row1[j]
-    #                 val2 = row2[j]
-    #
-    #                 # 跳过空值（如果启用 skip_empty）
-    #                 if skip_empty and (val1 is None or val1 == "" or val2 is None or val2 == ""):
-    #                     continue
-    #
-    #                 # 统一类型后比较值
-    #                 if str(val1) != str(val2):  # 强制转换为字符串比较
-    #                     self.setBackgroundColor(i + 1, j + 1, color1, varSheet1)
-    #                     self.setBackgroundColor(i + 1, j + 1, color2, varSheet2)
-    #                     print(f"[DEBUG] 差异单元格 ({i + 1}, {j + 1}): '{val1}' vs '{val2}'")
-    #
-    #             print(f"[INFO] 已完成第 {i + 1} 行的比较")
-    #
-    #         # 保存文件
-    #         self.save()
-    #
-    #     except Exception as e:
-    #         raise IOError(f"比较工作表失败: {e}") from e
 
     def setColorByDiff(self, varSheet1, varSheet2, color1="FF0000", color2="ffeb9c", skip_empty=True):
         """
@@ -3156,11 +3060,10 @@ class OpenpyxlPO:
         except Exception as e:
             raise IOError(f"比较工作表失败: {e}") from e
 
-
     def genSheetByDiff(self, varSheet1, varSheet2):
         """
-        5.3 比较两工作表，对差异内容标注颜色，生成新表Sheet1&Sheet2，（优化版）
-        # 支持灵活应对标题位置不一致的问题
+        5.3 比较两工作表，对差异内容标注颜色，生成新表Sheet1_Sheet2（优化版）
+        支持灵活应对标题位置不一致的问题，并保留所有数据（包括无差异的值）
 
         :param varSheet1: 第一个工作表名称
         :param varSheet2: 第二个工作表名称
@@ -3175,486 +3078,51 @@ class OpenpyxlPO:
             raise ValueError(f"工作表 '{varSheet2}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
 
         try:
-            # 获取两个工作表的所有数据
-            l_sheetOneRow = self.getLL_row(varSheet1)
-            l_sheetTwoRow = self.getLL_row(varSheet2)
+            # 生成安全的工作表名称（替换非法字符）
+            diff_sheet_name = f"{varSheet1}_{varSheet2}_diff"
 
-            if not l_sheetOneRow or not l_sheetTwoRow:
-                raise ValueError("其中一个工作表为空，无法进行比较")
+            # 如果该工作表已存在，则先删除
+            if diff_sheet_name in self.wb.sheetnames:
+                self.delSheet(diff_sheet_name)
 
-            # 提取标题行并建立列映射
-            title1 = l_sheetOneRow[0]
-            title2 = l_sheetTwoRow[0]
+            # 创建新工作表用于存储比对结果
+            new_sheet = self.wb.create_sheet(title=diff_sheet_name)
 
-            # 构建标题到列索引的映射
-            map1 = {title: idx for idx, title in enumerate(title1)}
-            map2 = {title: idx for idx, title in enumerate(title2)}
+            # 获取两个工作表的数据
+            data1 = self.getLL_row(varSheet1)
+            data2 = self.getLL_row(varSheet2)
 
-            # 生成新工作表名称
-            varSheet = f"{varSheet1}&{varSheet2}"
-            self.delSheet(varSheet)
-            self.addCoverSheet(varSheet, 99)
+            # 获取最大行数和列数（以较大的为准）
+            max_rows = max(len(data1), len(data2))
+            max_cols = max(
+                max(len(row) for row in data1) if data1 else 0,
+                max(len(row) for row in data2) if data2 else 0
+            )
 
-            # 写入标题行
-            merged_title = list(map1.keys()) + [key for key in map2.keys() if key not in map1]
-            self.setRow({1: merged_title}, varSheet)
+            # 执行比对逻辑并填充新表
+            for i in range(max_rows):
+                for j in range(max_cols):
+                    # 获取当前单元格的值（如果超出范围则设为 None）
+                    val1 = data1[i][j] if i < len(data1) and j < len(data1[i]) else None
+                    val2 = data2[i][j] if i < len(data2) and j < len(data2[i]) else None
 
-            # 比较数据行
-            max_rows = max(len(l_sheetOneRow), len(l_sheetTwoRow))
-            for i in range(1, max_rows):  # 从第二行开始比较
-                row_data = []
-                for title in merged_title:
-                    val1 = l_sheetOneRow[i][map1[title]] if i < len(l_sheetOneRow) and title in map1 else ""
-                    val2 = l_sheetTwoRow[i][map2[title]] if i < len(l_sheetTwoRow) and title in map2 else ""
-
-                    if val1 == "" and val2 == "":
-                        row_data.append("")
-                    elif val1 != val2:
-                        row_data.append(f"{val1}/{val2}")
-                        self.setBackgroundColor(i + 1, len(row_data), "FF0000", varSheet)
+                    # 填充新表
+                    if val1 == val2:
+                        # 无差异：直接复制值
+                        new_sheet.cell(row=i + 1, column=j + 1).value = val1
                     else:
-                        row_data.append(val1)
-                self.setRow({i + 1: row_data}, varSheet)
+                        # 有差异：标注差异并设置背景色
+                        new_sheet.cell(row=i + 1, column=j + 1).value = f"{val1} vs {val2}"
+                        new_sheet.cell(row=i + 1, column=j + 1).fill = PatternFill(
+                            start_color="FFFF00", end_color="FFFF00", fill_type="solid"
+                        )
 
+            # 保存文件
             self.save()
-            return varSheet
+
+            # 返回新工作表名称
+            return diff_sheet_name
 
         except Exception as e:
             raise IOError(f"处理工作表失败: {e}") from e
 
-
-    # todo [转换]
-
-
-    def dict2xlsx(self, varDict, varExcelFile):
-        """
-        8.1 字典转xlsx
-
-        :param varDict: 输入的字典数据
-        :param varExcelFile: 输出的Excel文件路径
-        :raises ValueError: 如果输入参数不合法
-        :raises IOError: 如果文件写入失败
-        """
-        # 参数校验
-        if not isinstance(varDict, dict):
-            raise ValueError("varDict 必须是一个字典")
-        if not isinstance(varExcelFile, str) or not varExcelFile.endswith('.xlsx'):
-            raise ValueError("varExcelFile 必须是一个以 .xlsx 结尾的有效文件路径")
-
-        try:
-            # 检查文件路径是否存在，如果不存在则创建目录
-            directory = os.path.dirname(varExcelFile)
-            if directory and not os.path.exists(directory):
-                os.makedirs(directory)
-
-            # 将字典转换为DataFrame并写入Excel文件
-            df = pd.DataFrame(varDict)
-            df.to_excel(varExcelFile, encoding="utf_8_sig", index=False)
-
-        except PermissionError as e:
-            raise IOError(f"权限不足，无法写入文件: {varExcelFile}") from e
-        except Exception as e:
-            raise IOError(f"写入Excel文件失败: {varExcelFile}") from e
-    def dict2csv(self, varDict, varExcelFile):
-        """
-        8.2 字典转csv
-
-        :param varDict: 输入的字典数据
-        :param varExcelFile: 输出的CSV文件路径
-        :raises ValueError: 如果输入参数不合法
-        :raises IOError: 如果文件写入失败
-        """
-        # 参数校验
-        if not isinstance(varDict, dict):
-            raise ValueError("varDict 必须是一个字典")
-        if not isinstance(varExcelFile, str) or not varExcelFile.endswith('.csv'):
-            raise ValueError("varExcelFile 必须是一个以 .csv 结尾的有效文件路径")
-
-        try:
-            # 检查文件路径是否存在，如果不存在则创建目录
-            directory = os.path.dirname(varExcelFile)
-            if directory and not os.path.exists(directory):
-                os.makedirs(directory)
-
-            # 将字典转换为DataFrame并写入Excel文件
-            df = pd.DataFrame(varDict)
-            df.to_csv(varExcelFile, encoding="utf_8_sig", index=False)
-
-        except PermissionError as e:
-            raise IOError(f"权限不足，无法写入文件: {varExcelFile}") from e
-        except Exception as e:
-            raise IOError(f"写入csv文件失败: {varExcelFile}") from e
-    def pdf2xlsx(self, varPdfFile, varExcelPath):
-        """
-        8.3 pdf中表格转xlsx（优化版）
-
-        :param varPdfFile: 输入的PDF文件路径
-        :param varExcelPath: 输出的Excel文件路径前缀
-        :raises ValueError: 如果输入参数不合法
-        :raises IOError: 如果文件读取或写入失败
-        """
-        # 参数校验
-        if not isinstance(varPdfFile, str) or not os.path.isfile(varPdfFile):
-            raise ValueError("varPdfFile 必须是一个有效的文件路径")
-        if not isinstance(varExcelPath, str):
-            raise ValueError("varExcelPath 必须是一个字符串")
-
-        try:
-            # 检查输出目录是否存在，如果不存在则创建
-            output_dir = os.path.dirname(varExcelPath)
-            if output_dir and not os.path.exists(output_dir):
-                os.makedirs(output_dir)
-
-            # 打开PDF文件
-            with pdfplumber.open(varPdfFile) as pdf:
-                for i, page in enumerate(pdf.pages):
-                    tables = page.extract_tables()
-                    if tables:
-                        for j, table in enumerate(tables):
-                            df = pd.DataFrame(table)
-                            # 获取 df 的第一行数据作为表头（列名）
-                            df_header = df.iloc[0]
-                            # 将之前保存的第一行数据设置为新的列名
-                            df.columns = df_header
-                            # 从第二行开始截取数据，去掉原来的第一行（表头行）
-                            df = df.iloc[1:].reset_index(drop=True)
-                            # 写入Excel文件
-                            output_file = f'{varExcelPath}_第{i + 1}页第{j + 1}张表.xlsx'
-                            df.to_excel(output_file, index=False)
-        except FileNotFoundError as e:
-            raise IOError(f"文件未找到: {varPdfFile}") from e
-        except Exception as e:
-            raise IOError(f"处理PDF文件失败: {varPdfFile}") from e
-    def xlsx2list(self, varExcelFile, sheetName):
-        """
-        8.4 xlsx转列表（优化版）
-
-        :param varExcelFile: 输入的Excel文件路径
-        :param sheetName: 工作表名称
-        :return: 转换后的列表，如果失败则返回None
-        :raises ValueError: 如果输入参数不合法
-        :raises IOError: 如果文件读取失败
-        """
-        # 参数校验
-        if not isinstance(varExcelFile, str) or not os.path.isfile(varExcelFile):
-            raise ValueError("varExcelFile 必须是一个有效的文件路径")
-        if not isinstance(sheetName, str):
-            raise ValueError("sheetName 必须是一个字符串")
-
-        try:
-            # 读取Excel文件
-            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
-            # 转换为NumPy数组再转为列表
-            t = np.array(df)
-            return t.tolist()
-        except FileNotFoundError as e:
-            raise IOError(f"文件未找到: {varExcelFile}") from e
-        except Exception as e:
-            raise IOError(f"读取Excel文件失败: {varExcelFile}") from e
-    def xlsx2dict(self, varExcelFile, varType, sheetName):
-        """
-        8.5 xlsx转字典（优化版）
-
-        :param varExcelFile: 输入的Excel文件路径
-        :param varType: 返回字典的类型，"col" 表示按列返回，"row" 表示按行返回
-        :param sheetName: 工作表名称
-        :return: 转换后的字典，如果失败则返回None
-        :raises ValueError: 如果输入参数不合法
-        :raises IOError: 如果文件读取失败
-        """
-        # 参数校验
-        if not isinstance(varExcelFile, str) or not os.path.isfile(varExcelFile):
-            raise ValueError("varExcelFile 必须是一个有效的文件路径")
-        if varType not in ["col", "row"]:
-            raise ValueError("varType 必须是 'col' 或 'row'")
-        if not isinstance(sheetName, str):
-            raise ValueError("sheetName 必须是一个字符串")
-
-        try:
-            # 读取Excel文件
-            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
-
-            # 根据varType选择返回格式
-            if varType == "col":
-                d_ = df.to_dict()  # 以列形式返回
-                # 以列形式返回, 如：
-                # {0: {0: ' 与户主关系 ', 1: '子', 2: '父亲', 3: '女儿'},
-                # 1: {0: ' 性别 ', 1: '女', 2: '男', 3: '无法识别'},
-                # 2: {0: ' 民族 ', 1: '回族', 2: '汉族', 3: '壮族'}
-            elif varType == "row":
-                d_ = df.to_dict(orient='index')  # 以行形式返回
-                # 以行形式返回，如：
-                # {0: {0: ' 与户主关系 ', 1: ' 性别 ', 2: ' 民族 '},
-                # 1: {0: '子', 1: '女', 2: '回族'},
-                # 2: {0: '父亲', 1: '男', 2: '汉族'},
-                # 3: {0: '女儿', 1: '无法识别', 2: '壮族'}}
-
-            return d_
-
-        except FileNotFoundError as e:
-            raise IOError(f"文件未找到: {varExcelFile}") from e
-        except Exception as e:
-            raise IOError(f"读取Excel文件失败: {varExcelFile}") from e
-
-
-if __name__ == "__main__":
-
-    Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx")
-    # Openpyxl_PO = OpenpyxlPO("d:\\51\\python\\project\\PO\\data\\11.xlsx")
-    # Openpyxl_PO.sortColHeader("job")
-    # Openpyxl_PO.renameSheet("1231", "444")
-    # Openpyxl_PO.open()
-
-
-    # print("1.1 新建".center(100, "-"))
-    # OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/qq1.xlsx", 'new')
-    # Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/qq1.xlsx")
-    # Openpyxl_PO.open()
-
-
-    # print("1.1 新建".center(100, "-"))
-    # Openpyxl_PO.newExcel("./OpenpyxlPO/newfile2.xlsx", ["mySheet1", "mySheet2", "mySheet3"])  # 新建excel，生成三个工作表（mySheet1,mySheet2,mySheet3），默认定位在第一个mySheet1表。
-    # Openpyxl_PO.newExcel("d://t44.xlsx", ["mySheet661", "mySheet552", "mySheet32"])  # 新建excel，生成三个工作表（mySheet1,mySheet2,mySheet3），默认定位在第一个mySheet1表。
-
-    # print("1.2 打开".center(100, "-"))
-    # Openpyxl_PO.open(1)  # 打开第二个工作表
-    # Openpyxl_PO.open() # 打开第一个工作表
-    # Openpyxl_PO.open('test')  # 打开test工作表
-
-    # print("1.6 添加工作表(不覆盖)".center(100, "-"))
-    # Openpyxl_PO.addSheet("saasuser1")
-
-    # print("1.7 添加工作表(覆盖)".center(100, "-"))
-    # Openpyxl_PO.addCoverSheet("Sheet0", 0)    # 第一个位置添加工作表
-    # Openpyxl_PO.addCoverSheet("Sheet100", 100)    # 第100个位置添加工作表  //当index足够大时，则在最后一个位置添加工作表
-    # Openpyxl_PO.open()
-
-    # print("1.8 删除工作表".center(100, "-"))
-    # Openpyxl_PO.delSheet("Sheet1")
-    # Openpyxl_PO.delSheet("mySheet1")
-
-
-
-    # print("2.0.1 在第N行前插入多行空白".center(100, "-"))
-    # Openpyxl_PO.insertNullRow(5)  # 在第5行前插入一行空白
-
-    # print("2.0.2 在第N列前插入多列空白".center(100, "-"))
-    # Openpyxl_PO.insertCols(3)  # 在第3列前插入1列空白， 等同于 insertCols(3, 1)
-    # Openpyxl_PO.insertCols(3, 2)  # 在第3列前插入2列空白， 等同于 insertCols(3, 1)
-
-    # print("2.1 更新单元格值".center(100, "-"))
-    # Openpyxl_PO.setCell(1, 'B', "hello")
-    # Openpyxl_PO.setCell(1, 3, "hello")
-
-    # print("2.2 插入行数据".center(100, "-"))
-    # Openpyxl_PO.insertRow({2: ["金浩", "101", "102"]}, "Sheet1")
-
-    # print("2.3 更新行数据".center(100, "-"))
-    # Openpyxl_PO.setRow({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})
-    # Openpyxl_PO.setRow({7: ["你好", 12345, "7777"], 8: ["44", None, "777777777"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
-    # Openpyxl_PO.setRow({7: ["你好", 12345, "7777"], 8: ["44", "None", "777777777"]}, -1)  # 对最后一个sheet表，对第7，8行分别写入内容
-    # Openpyxl_PO.open()
-
-    # print("2.4 追加行数据".center(100, "-"))
-    # Openpyxl_PO.appendRow([['姓名', '电话', '成绩', '学科'], ['毛泽东', 15266606298, 14, '化学'], ['周恩来', 15201077791, 78, '美术']])
-
-
-    # print("2.5 插入列数据".center(100, "-"))
-    # Openpyxl_PO.insertCols({"a": ["姓名", "张三", "李四"], "c": ["年龄", "55", "34"]})
-
-    # print("2.6 更新列数据".center(100, "-"))
-    # Openpyxl_PO.setCol({"A": [None, "k1", 666, "777"], "C": [None, "888", None, "999"]})  # 对最后一个sheet表，对第7，8行分别写入内容，如遇None则跳过该单元格
-
-    # print("2.7 追加列数据".center(100, "-"))
-    # Openpyxl_PO.appendCol([["test", "张三", "李四"], ["dev", "55", "34"]])
-
-
-
-    # print("2.5 设置单元格行高与列宽".center(100, "-"))
-    # Openpyxl_PO.setRowColSize(3, 30, 'f', 34)  # 设置第三行行高30，第f列宽34
-
-    # print("2.5.2 设置单行多列行高与列宽".center(100, "-"))
-    # Openpyxl_PO.setRowColDimensions(5, 30, ['f', 'h'], 33)  # 设置第五行行高30，f - h列宽33
-
-    # print("2.6 设置所有单元格的行高与列宽".center(100, "-"))
-    # Openpyxl_PO.setAllSize(30, 20)
-
-    # print("2.7 设置所有单元格自动换行".center(100, "-"))
-    # Openpyxl_PO.setWrapText()
-    # Openpyxl_PO.setWrapText("Sheet1")
-
-    # print("2.8 设置冻结首行".center(100, "-"))
-    # Openpyxl_PO.setFreezePanes('A2', "saasuser")
-
-    # print("2.9 设置单元格对齐样式".center(100, "-"))
-    # Openpyxl_PO.setAlignment(5, 4, 'center', 'top')
-    # Openpyxl_PO.setAlignment(1, "e", 'center', 'top', 45)
-    # Openpyxl_PO.setAlignment(1, 1, 'center', 'top', 45, True)
-    # Openpyxl_PO.setAlignment(5, 4, 'center', 'center', "saasuser1")
-
-    # print("2.9.2 设置单行多列对齐样式".center(100, "-"))
-    # Openpyxl_PO.setRowColAlignment(1, ["c", "e"], 'center', 'center')  # 第一行第c,d,e列居中
-    # Openpyxl_PO.setRowColAlignment(9, "all", 'center', 'center')  # 第九行全部居中
-
-    # print("2.9.3 设置所有单元格对齐样式".center(100, "-"))
-    # Openpyxl_PO.setAllAlignment('center', 'center')
-
-    # print("2.10 设置筛选列".center(100, "-"))
-    # Openpyxl_PO.setFilterCol("all")  # 全部筛选
-    # Openpyxl_PO.setFilterCol("") # 取消筛选
-    # Openpyxl_PO.setFilterCol("A2") # 对A2筛选
-
-    # print("2.11 设置单元格字体（字体、字号、粗斜体、下划线、颜色）".center(100, "-"))
-    # Openpyxl_PO.setCellFont(1, 6)  # 设置第一行第六列字体（默认微软雅黑字号16粗体）
-    # Openpyxl_PO.setCellFont(2, "f")  # 设置第一行第f列字体（默认微软雅黑字号16粗体）
-    # Openpyxl_PO.setCellFont(5, "f", size=14, bold=True, color="red")
-    # Openpyxl_PO.setCellFont(5, "f", size=14, bold=True)
-
-    # print("2.11.2 设置单行多列字体".center(100, "-"))
-    # Openpyxl_PO.setRowColFont(1, ["b", "h"])  # 第一行第b-h列
-    # Openpyxl_PO.setRowColFont(9, "all")  # 第九行
-
-    # print("2.11.3 设置所有单元格字体".center(100, "-"))
-    # Openpyxl_PO.setAllFont()
-
-    # print("2.12 设置单元格边框".center(100, "-"))
-    # Openpyxl_PO.setBorder(1, 2, left = ['thin','ff0000'], right = ['thick','ff0000'], top = ['thin','ff0000'],bottom = ['thick','ff0000'])
-
-    # print("2.13 设置单元格填充背景色".center(100, "-"))
-    # Openpyxl_PO.setPatternFill(2, 2, 'solid', '006100')  # 单元格背景色
-
-    # print("2.14 设置单元格填充渐变色".center(100, "-"))
-    # Openpyxl_PO.setGradientFill(3, 3, stop=["FFFFFF", "99ccff", "000000"])
-
-    # print("2.15 设置单元格背景色".center(100, "-"))
-    # Openpyxl_PO.setBackgroundColor(5, 1)  # 清除第5行第1列的背景色
-    # Openpyxl_PO.setBackgroundColor(5, "d")  # 清除第5行d列的背景色
-    # Openpyxl_PO.setBackgroundColor(5, 1, "ff0000", "Sheet2")  # 设置第五行第1列设置红色
-    # Openpyxl_PO.setBackgroundColor(5, "e", "ff0000")  # 设置第五行e列设置红色
-    # Openpyxl_PO.setBackgroundColor(None, None)  # 清除所有背景色
-
-    # print("2.15.2 设置单行多列背景色".center(100, "-"))
-    # Openpyxl_PO.setRowColBackgroundColor(5, ['b', 'd'], "ff0000") # 设置第五行第b，c，d列背景色
-    # Openpyxl_PO.setRowColBackgroundColor(7, "all", "ff0000")  # 设置第五行所有列背景色
-
-    # print("2.15.3 设置所有单元格背景色".center(100, "-"))
-    # Openpyxl_PO.setAllBackgroundColor("ff0000")  # 设置所有单元格背景色
-    # Openpyxl_PO.setAllBackgroundColor(None)  # 清除所有单元格背景色
-
-    # print("2.16 设置整行(可间隔)背景色".center(100, "-"))
-    # Openpyxl_PO.setBandRowsColor(5, 0, "ff0000")  # 从第3行开始每行颜色标红色
-    # Openpyxl_PO.setBandRowsColor(3, 1, "ff0000")  # 从第3行开始每隔1行颜色标红色
-
-    # print("2.17 设置整列(可间隔)背景色".center(100, "-"))
-    # Openpyxl_PO.setBandColsColor(2, 0, "ff0000")  # 从第2列开始每列颜色为红色
-    # Openpyxl_PO.setBandColsColor(2, 1, "ff0000")  # 从第2列开始每隔1列设置颜色为红色
-
-    # print("2.18 设置工作表背景颜色".center(100, "-"))
-    # Openpyxl_PO.setSheetColor("FF0000")
-
-
-
-    # print("3.1 获取总行列数".center(100, "-"))
-    # print(Openpyxl_PO.getL_shape())  # [7,5]
-
-    # print("3.2 获取单元格值".center(100, "-"))
-    # print(Openpyxl_PO.getCell(3, 2))  # 获取第3行第2列的值
-
-    # print("3.3 获取一行数据".center(100, "-"))
-    # print(Openpyxl_PO.getL_row(1))  # ['Number具体数', '高地', 'jinhaoyoyo', '状态', '名字']
-    #
-    # print("3.4 获取一列数据".center(100, "-"))
-    # print(Openpyxl_PO.getL_col(1, include_header=True))  # ['高地', 40, 44, 50, 30, 25, 150]
-    # print(Openpyxl_PO.getL_col('B',include_header=False))  # ['高地', 40, 44, 50, 30, 25, 150]
-
-    # print("3.5.1 获取每行数据".center(100, "-"))
-    # print(Openpyxl_PO.getLL_row(include_header=True))  # [['age', 'city', 'hello', 'name'], [2, 'shanghai', 'wow', 'jinhao'],
-    # print(Openpyxl_PO.getLL_row(include_header=False))  # [[2, 'shanghai', 'wow', 'jinhao'],
-    #
-    # print("3.5.2 获取带行号的每行数据".center(100, "-"))
-    # print(Openpyxl_PO.getD_rowNumber_row(include_header=True))  # {1: ['age', 'city', 'hello', 'name'], 2: [2, 'shanghai', 'wow', 'jinhao'],
-    # print(Openpyxl_PO.getD_rowNumber_row(include_header=False))  # {2: [2, 'shanghai', 'wow', 'jinhao'],
-
-    # print("3.5.3 获取部分列的行数据".center(100, "-"))
-    # print(Openpyxl_PO.getLL_rowOfPartialCol([1, 3]))   # [['Number具体数', 'jinhaoyoyo'], [2, 30], [3, 25], [4, 30], [5, 10], [6, 5], [7, 10]] //获取1和3列的行数据
-    # print(Openpyxl_PO.getLL_rowOfPartialCol(['a', 'C']))  # 同上
-    # print(Openpyxl_PO.getLL_rowOfPartialCol(["A", 3]))   # 同上
-    # print(Openpyxl_PO.getLL_rowOfPartialCol([1, 3, 2, "a", "C", "B"]))   # [['Number具体数', '山丘', '高地'], [2, 30, 40], [3, 25, 44], [4, 30, 50], [5, 10, 30], [6, 5, 25], [7, 10, 150]] //获第1，3，2列的行数据，"a", "C", "B"忽略
-    #
-    # print("3.5.4 获取带行号的部分列的行数据".center(100, "-"))
-    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 4, 3]))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol([1, 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-    # print(Openpyxl_PO.getD_rowNumber_rowOfpartialCol(['a', 'C']))   # {1: ['Number具体数', 'jinhaoyoyo'], 2: [2, 30], 3: [3, 25], 4: [4, 30], 5: [5, 10], 6: [6, 5], 7: [7, 10]}
-
-
-
-    # print("3.6.1 获取每列数据".center(100, "-"))
-    # print(Openpyxl_PO.getLL_col(include_header=True))  # [['age', 2, 12, 4, 5], ['city', 'shanghai', 'beijin', 'nanjin', 'henei'],
-    # print(Openpyxl_PO.getLL_col(include_header=False))  # [[2, 12, 4, 5], ['shanghai', 'beijin', 'nanjin', 'henei'],
-    #
-    # print("3.6.2 获取带列序号的每列数据".center(100, "-"))
-    # print(Openpyxl_PO.getD_colNumber_col(include_header=True))
-    # print(Openpyxl_PO.getD_colNumber_col(include_header=False))
-    # print(d_seq_row)  # {1: ['Number具体数', 2, 3, 4, 5, 6, 7], 2: ['高地', 40, 44, 50, 30, 25, 150],,...}
-    # del d_seq_row[1]  # 删除第一行，一般用于去掉标题
-    # print(d_seq_row)  # {2: ['高地', 40, 44, 50, 30, 25, 150], 3: ['jinhaoyoyo', 30, 25, 30, 10, 5, 10],...}
-    #
-    # print("3.6.3 获取带列字母的每列数据".center(100, "-"))
-    # print(Openpyxl_PO.getD_colLetter_col(include_header=True))  # {'A': ['age', 2, 12, 4, 5], 'B': ['city', 'shanghai', 'beijin', 'nanjin', 'henei'], ...
-    # print(Openpyxl_PO.getD_colLetter_col(include_header=False))  # {'A': [2, 12, 4, 5], 'B': ['shanghai', 'beijin', 'nanjin', 'henei'],...
-
-    # print("3.8.1 获取标题的序号".center(100, "-"))
-    # print(Openpyxl_PO.getL_columnHeaderNumber(["age", "name"]))  # [2, 5]
-    #
-    # print("3.8.2 获取标题的字母".center(100, "-"))
-    # print(Openpyxl_PO.getL_columnHeaderLetter(["age", "name"]))  # ['B', 'E']
-
-    # print("3.8.3 将标题转列字典序列".center(100, "-"))
-    # print(Openpyxl_PO.getD_colNumber_columnTitle(["age", "name"]))  # {2: '高地', 5: '名字'}
-    #
-    # print("3.8.4 将标题转列字典字母".center(100, "-"))
-    # print(Openpyxl_PO.getD_colLetter_columnTitle(["age", "name"]))  # {'A': '高地', 'C': '名字'}
-
-    # l_colSeq = (Openpyxl_PO.title2colSeq(["高地", "名字"]))
-    # print(l_colSeq)  # [2, 5]
-    # print(Openpyxl_PO.getLL_rowOfPartialCol(l_colSeq)) # [['高地', '名字'], [40, 'jinhao'], [44, 'yoyo'], [50, 'titi'], [30, 'mama'], [25, 'baba'], [150, 'yeye']]
-    #
-    # l_colSeq = (Openpyxl_PO.getTitleCol(["高地", "名字"]))
-    # print(l_colSeq)  # [2, 5]
-
-    # print("3.9 获取部分列的列值(可忽略多行)".center(100, "-"))
-    # print(Openpyxl_PO.getLL_partialColOfPartialCol([1, 3], [1, 4]))   # 获取第1,3列列值，并忽略第1，4行的行值。
-    # print(Openpyxl_PO.getLL_partialColOfPartialCol([2], [], "job_标题升序"))  # 获取第2列所有值。
-
-    # print("3.10 获取单元格的坐标".center(100, "-"))
-    # print(Openpyxl_PO.getCoordinate(2, 5))   # E2
-
-    # print("3.11 获取工作表数据的坐标".center(100, "-"))
-    # print(Openpyxl_PO.getDimensions())  # A1:E17
-
-
-
-
-
-    # print("5.1 两表比较获取差异内容（两表标题与行数必须一致） ".center(100, "-"))
-    # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
-    # Openpyxl_PO2 = OpenpyxlPO("./data/loanStats2.xlsx")
-    # print(Openpyxl_PO.getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("Sheet2"), Openpyxl_PO2.getLL_row("Sheet2")))
-
-    # # print("5.2 对一张表的两个sheet进行数据比对，差异数据标注颜色 ".center(100, "-"))
-    # Openpyxl_PO = OpenpyxlPO("./data/loanStats.xlsx")
-    # Openpyxl_PO.setColorByDiff("job", "job1")
-
-    # # print("5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
-    # Openpyxl_PO.genSheetByDiff("job", "job1")
-
-    # # print("6 移动区域".center(100, "-"))
-    # Openpyxl_PO.moveBlock('C1:D2', 3, -2)  # 把'C1:D2'区域移动到 下三行左二列
-    # Openpyxl_PO.moveBlock('A1:C14', 0, 3)  # 把'A1:C14'区域向右移动3列
-
-    # # print("7 将excel中标题（第一行字段）排序（从小打大）".center(100, "-"))
-    # Openpyxl_PO.sortColHeader("Sheet1")
-
-
-    # Openpyxl_PO.open()

@@ -11,18 +11,20 @@
 # ********************************************************************************************************************
 
 """
+【转换】
+1.0 字典转xlsx  dict2xlsx()
+1.1 字典转csv  dict2csv()
+1.2 pdf中表格转xlsx pdf2xlsx()
+1.3 xlsx转列表 xlsx2list()
+1.4 xlsx转字典 xlsx2dict()
+1.5 字典转text  dict2text()
 
-3.4 字典转text  dict2text()
-
-
-
-将df输出html
+2.0 将df输出html
 """
 
+import os,pdfplumber
 import pandas as pd
-from PO.MysqlPO import *
-from sqlalchemy import create_engine
-import numpy
+import numpy as np
 
 import logging
 logging.basicConfig(level=logging.INFO)
@@ -30,26 +32,233 @@ logging.basicConfig(level=logging.INFO)
 from PO.TimePO import *
 Time_PO = TimePO()
 
-import pdfplumber
 
 class PandasPO:
 
     def __init__(self):
         pass
 
+    # todo [转换]
 
+    def dict2xlsx(self, varDict, varExcelFile):
+        """
+        1.0 字典转xlsx
 
+        :param varDict: 输入的字典数据
+        :param varExcelFile: 输出的Excel文件路径
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件写入失败
+        """
+        # 参数校验
+        if not isinstance(varDict, dict):
+            raise ValueError("varDict 必须是一个字典")
+        if not isinstance(varExcelFile, str) or not varExcelFile.endswith('.xlsx'):
+            raise ValueError("varExcelFile 必须是一个以 .xlsx 结尾的有效文件路径")
 
-    def dict2text(self, varDict, varTextFile):
-        """3.4 字典转text"""
         try:
-            df = pd.DataFrame(varDict)
-            df.to_json(varTextFile)
-        except Exception as e:
-            print(f"将字典 {varDict} 转text {varTextFile} 时发生错误: {e}")
-            logging.error(f"将字典 {varDict} 转text {varTextFile} 时发生错误: {e}")
-            raise
+            # 检查文件路径是否存在，如果不存在则创建目录
+            directory = os.path.dirname(varExcelFile)
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory)
 
+            # 将字典转换为DataFrame并写入Excel文件
+            df = pd.DataFrame(varDict)
+            df.to_excel(varExcelFile, encoding="utf_8_sig", index=False)
+
+        except PermissionError as e:
+            raise IOError(f"权限不足，无法写入文件: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"写入Excel文件失败: {varExcelFile}") from e
+
+    def dict2csv(self, varDict, varExcelFile):
+        """
+        1.1 字典转csv
+
+        :param varDict: 输入的字典数据
+        :param varExcelFile: 输出的CSV文件路径
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件写入失败
+        """
+        # 参数校验
+        if not isinstance(varDict, dict):
+            raise ValueError("varDict 必须是一个字典")
+        if not isinstance(varExcelFile, str) or not varExcelFile.endswith('.csv'):
+            raise ValueError("varExcelFile 必须是一个以 .csv 结尾的有效文件路径")
+
+        try:
+            # 检查文件路径是否存在，如果不存在则创建目录
+            directory = os.path.dirname(varExcelFile)
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory)
+
+            # 将字典转换为DataFrame并写入Excel文件
+            df = pd.DataFrame(varDict)
+            df.to_csv(varExcelFile, encoding="utf_8_sig", index=False)
+
+        except PermissionError as e:
+            raise IOError(f"权限不足，无法写入文件: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"写入csv文件失败: {varExcelFile}") from e
+
+    def pdf2xlsx(self, varPdfFile, varExcelPath):
+        """
+        1.2 pdf中表格转xlsx（优化版）
+
+        :param varPdfFile: 输入的PDF文件路径
+        :param varExcelPath: 输出的Excel文件路径前缀
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取或写入失败
+        """
+        # 参数校验
+        if not isinstance(varPdfFile, str) or not os.path.isfile(varPdfFile):
+            raise ValueError("varPdfFile 必须是一个有效的文件路径")
+        if not isinstance(varExcelPath, str):
+            raise ValueError("varExcelPath 必须是一个字符串")
+
+        try:
+            # 检查输出目录是否存在，如果不存在则创建
+            output_dir = os.path.dirname(varExcelPath)
+            if output_dir and not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+
+            # 打开PDF文件
+            with pdfplumber.open(varPdfFile) as pdf:
+                for i, page in enumerate(pdf.pages):
+                    tables = page.extract_tables()
+                    if tables:
+                        for j, table in enumerate(tables):
+                            df = pd.DataFrame(table)
+                            # 获取 df 的第一行数据作为表头（列名）
+                            df_header = df.iloc[0]
+                            # 将之前保存的第一行数据设置为新的列名
+                            df.columns = df_header
+                            # 从第二行开始截取数据，去掉原来的第一行（表头行）
+                            df = df.iloc[1:].reset_index(drop=True)
+                            # 写入Excel文件
+                            output_file = f'{varExcelPath}_第{i + 1}页第{j + 1}张表.xlsx'
+                            df.to_excel(output_file, index=False)
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varPdfFile}") from e
+        except Exception as e:
+            raise IOError(f"处理PDF文件失败: {varPdfFile}") from e
+
+    def xlsx2list(self, varExcelFile, sheetName):
+        """
+        1.3 xlsx转列表（优化版）
+
+        :param varExcelFile: 输入的Excel文件路径
+        :param sheetName: 工作表名称
+        :return: 转换后的列表，如果失败则返回None
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取失败
+        """
+        # 参数校验
+        if not isinstance(varExcelFile, str) or not os.path.isfile(varExcelFile):
+            raise ValueError("varExcelFile 必须是一个有效的文件路径")
+        if not isinstance(sheetName, str):
+            raise ValueError("sheetName 必须是一个字符串")
+
+        try:
+            # 读取Excel文件
+            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
+            # 转换为NumPy数组再转为列表
+            t = np.array(df)
+            return t.tolist()
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"读取Excel文件失败: {varExcelFile}") from e
+
+    def xlsx2dict(self, varExcelFile, varType, sheetName):
+        """
+        1.4 xlsx转字典（优化版）
+
+        :param varExcelFile: 输入的Excel文件路径
+        :param varType: 返回字典的类型，"col" 表示按列返回，"row" 表示按行返回
+        :param sheetName: 工作表名称
+        :return: 转换后的字典，如果失败则返回None
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件读取失败
+        """
+        # 参数校验
+        if not isinstance(varExcelFile, str) or not os.path.isfile(varExcelFile):
+            raise ValueError("varExcelFile 必须是一个有效的文件路径")
+        if varType not in ["col", "row"]:
+            raise ValueError("varType 必须是 'col' 或 'row'")
+        if not isinstance(sheetName, str):
+            raise ValueError("sheetName 必须是一个字符串")
+
+        try:
+            # 读取Excel文件
+            df = pd.read_excel(varExcelFile, sheet_name=sheetName, header=None)
+
+            # 根据varType选择返回格式
+            if varType == "col":
+                d_ = df.to_dict()  # 以列形式返回
+                # 以列形式返回, 如：
+                # {0: {0: ' 与户主关系 ', 1: '子', 2: '父亲', 3: '女儿'},
+                # 1: {0: ' 性别 ', 1: '女', 2: '男', 3: '无法识别'},
+                # 2: {0: ' 民族 ', 1: '回族', 2: '汉族', 3: '壮族'}
+            elif varType == "row":
+                d_ = df.to_dict(orient='index')  # 以行形式返回
+                # 以行形式返回，如：
+                # {0: {0: ' 与户主关系 ', 1: ' 性别 ', 2: ' 民族 '},
+                # 1: {0: '子', 1: '女', 2: '回族'},
+                # 2: {0: '父亲', 1: '男', 2: '汉族'},
+                # 3: {0: '女儿', 1: '无法识别', 2: '壮族'}}
+
+            return d_
+
+        except FileNotFoundError as e:
+            raise IOError(f"文件未找到: {varExcelFile}") from e
+        except Exception as e:
+            raise IOError(f"读取Excel文件失败: {varExcelFile}") from e
+
+    def dict2text(self, varDict, varTextFile, format="json", compress=False):
+        """
+        1.5 字典转text（优化版）
+
+        :param varDict: 输入的字典数据
+        :param varTextFile: 输出的文本文件路径
+        :param format: 输出格式，支持 "json" 或 "csv"，默认为 "json"
+        :param compress: 是否启用压缩（仅对 json 格式生效），默认为 False
+        :raises ValueError: 如果输入参数不合法
+        :raises IOError: 如果文件写入失败
+        """
+        # 参数校验
+        if not isinstance(varDict, dict):
+            raise ValueError("varDict 必须是一个字典")
+        if not isinstance(varTextFile, str):
+            raise ValueError("varTextFile 必须是一个字符串")
+        if format not in ["json", "csv"]:
+            raise ValueError("format 必须是 'json' 或 'csv'")
+
+        try:
+            # 检查并创建目标文件所在目录
+            directory = os.path.dirname(varTextFile)
+            if directory and not os.path.exists(directory):
+                os.makedirs(directory)
+
+            # 构造 DataFrame
+            df = pd.DataFrame.from_dict(varDict, orient='index').T  # 转置以适配常见字典结构
+
+            # 根据格式写入文件
+            if format == "json":
+                if compress:
+                    varTextFile += ".gz"  # 启用压缩时添加 .gz 后缀
+                    df.to_json(varTextFile, compression='gzip')
+                else:
+                    df.to_json(varTextFile)
+            elif format == "csv":
+                df.to_csv(varTextFile, index=False, encoding="utf_8_sig")
+
+        except PermissionError as e:
+            raise IOError(f"权限不足，无法写入文件: {varTextFile}") from e
+        except FileNotFoundError as e:
+            raise IOError(f"文件路径不存在: {varTextFile}") from e
+        except Exception as e:
+            logging.error(f"将字典 {varDict} 转换为 {format} 格式时发生错误: {e}")
+            raise IOError(f"写入文件失败: {varTextFile}") from e
 
     def toHtml(self, df, title, filePrefix):
         # title = "页面标题工作日志"
@@ -76,62 +285,28 @@ class PandasPO:
 
 if __name__ == "__main__":
 
-    # Pandas_PO = PandasPO("192.168.0.234", "root", "Zy123456", "mcis", 3306)
-
     Pandas_PO = PandasPO()
 
     data = {'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35]}
-    df = pd.DataFrame(data)
-    print(df[df['Age']>26])
+    # df = pd.DataFrame(data)
+    # print(df[df['Age']>26])
 
-    # df = pd.read_excel("./data/1.xlsx")
-    # print(df)
-    # print(df[1])
 
-    #
-    # # print("1 执行sql".center(100, "-"))
-    # # 查询
-    # print(
-    #     Pandas_PO.execute("select * FROM t_third_user where id=%s" % "89")
-    # )  # [(89, '37068500001', 'wenyonghong', '370627197007140240', '温永红')]
-    # # print(Pandas_PO.execute("SELECT * FROM t_third_user where id=%s" % "89")[0][1])  # 37068500001
-    # # 更新
-    # Pandas_PO.execute("UPDATE test2 SET B = '5.6' WHERE A = %s" % "4")
-    # # 批量修改字段名和字段类型
-    # Pandas_PO.execute(
-    #     "alter table test55 change `index` id int(100), change `0` `name` varchar(30) ,change `1` ssn char(30), change `2` phone_number char(30), change `3` genEmail varchar(30),"
-    #     " change `4` genAddress varchar(50), change `5` genPostcode char(30), change `6` genCompany varchar(30), change `7` genUrl char(50), "
-    #     "change `8` genIpv4 char(30),change `9` genText text(330)"
-    # )
-    # # 设置id主键
-    # Pandas_PO.execute("alter table test55 add primary key(id)")
-
-    # print("2.1 xlsx转数据库".center(100, "-"))
-    # Pandas_PO.xlsx2db("./data/xlsx2db.xlsx", 'test2')
-
-    # print("2.2 字典转数据库".center(100, "-"))
-    # Pandas_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test33", "")
-    # Pandas_PO.dict2db({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "test33", "False")
-
-    # print("2.3 列表转数据库".center(100, "-"))
-    # Pandas_PO.list2db([[1,2,3],['a','b','c']], "test44", "")  # 生成index
-    # Pandas_PO.list2db([[1,2,3],['a','b','c']], "test44", "False")  # 不生成index
-
-    # print("3.1 数据库转xlsx(含字段或不含字段)".center(100, "-"))
-    # Pandas_PO.db2xlsx("SELECT * FROM t_pregnancy_evaluate_advice", './data/db2xlsx.xlsx')
-    # Pandas_PO.db2xlsx("SELECT * FROM t_pregnancy_evaluate_advic1e", './data/db2xlsx_notitle.xlsx', None)  # 不导出字段名
-
-    # print("3.2 字典转xlsx".center(100, "-"))
+    # print("1.0 字典转xlsx".center(100, "-"))
     # Pandas_PO.dict2xlsx({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "./data/dict2xlsx.xlsx")
 
-    # print("3.3 字典转csv ".center(100, "-"))
+    # print("1.1 字典转csv ".center(100, "-"))
     # Pandas_PO.dict2csv({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "./data/dict2csv.csv")
 
-    # print("3.4 字典转text".center(100, "-"))
-    # Pandas_PO.dict2text({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "./data/dict2text.txt")
-
-    # print("4 xlsx转列表".center(100, "-"))
+    # print("1.3 xlsx转列表".center(100, "-"))
     # print(Pandas_PO.xlsx2list('./data/dict2xlsx.xlsx', 'Sheet1'))
+
+
+    # print("1.5 字典转text".center(100, "-"))
+    # Pandas_PO.dict2text({'A': [3, 4, 8, 9], 'B': [1.2, 2.4, 4.5, 7.3], 'C': ["aa", "bb", "cc", "dd"]}, "./data/dict2text.txt")
+    # Pandas_PO.dict2text(data, "./output/data.json", format="json", compress=True)
+    # Pandas_PO.dict2text(data, "./output/data.csv", format="csv")
+
 
     # # todo Series类型
     # arr1 = np.arange(10)

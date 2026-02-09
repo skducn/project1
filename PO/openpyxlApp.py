@@ -380,6 +380,15 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 
 
 # todo 【两表比较】
+# 5.1 两个excel的sheet进行比较，输出有差异值。（两表标题与行数必须一致）
+# Openpyxl_PO = OpenpyxlPO("./data/11.xlsx")
+# Openpyxl_PO2 = OpenpyxlPO("./data/22.xlsx")
+# getD_excel_cell_By_Diff(Openpyxl_PO.getLL_row("hello_标题升序"), Openpyxl_PO2.getLL_row("hello_标题升序")))
+# 5.2 对一张表的两个sheet进行数据比对，对第一张表差异数据标注颜色
+#     setColorByDiff("Sheet1", "Sheet2")
+# 5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
+#     genSheetByDiff("hello1", "hello2")  //结果写入 hello1_hello2_diff
+
 
 # print("5.1 两个excel的sheet进行比较，输出有差异值。（两表标题与行数必须一致） ".center(100, "-"))
 # Openpyxl_PO = OpenpyxlPO("./data/11.xlsx")
@@ -388,20 +397,14 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 #{'left': {4: {'no': 1}, 5: {'name': '张三'}, 6: {'age': 90}, 7: {'goal': '你好'}}, 'right': {4: {'no': 34}, 5: {'name': '李四'}, 6: {'age': 345}, 7: {'goal': 100}}}
 
 # # print("5.2 对一张表的两个sheet进行数据比对，差异数据标注颜色 ".center(100, "-"))
-# Openpyxl_PO = OpenpyxlPO("./data/11.xlsx")
-# Openpyxl_PO.setColorByDiff("hello1", "hello2")
 # 示例1：默认配置（跳过空值，红色和橙色标注差异）
 # Openpyxl_PO.setColorByDiff("hello1", "hello2")
-
 # 示例2：自定义颜色（绿色和蓝色标注差异）
-Openpyxl_PO.setColorByDiff("hello1", "hello2", color1="00FF00", color2="0000FF")
-
+# Openpyxl_PO.setColorByDiff("hello1", "hello2", color1="00FF00", color2="0000FF")
 # 示例3：不禁用空值比较
 # Openpyxl_PO.setColorByDiff("Sheet1", "Sheet2", skip_empty=False)
 # print(f"[DEBUG] 差异单元格 ({i + 1}, {j + 1}): '{val1}' vs '{val2}'")
 
-
-
-# # print("5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
-# Openpyxl_PO.setSheetByDiff("browser", "interface")
+# print("5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
+# Openpyxl_PO.genSheetByDiff("hello1", "hello2")
 
