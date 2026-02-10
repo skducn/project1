@@ -35,7 +35,7 @@ def aes_encrypt_with_hex_key(data, hex_key):
 
 if __name__ == "__main__":
     # 待加密的数据
-    data_to_encrypt = "这是需要加密并存储的数据"
+    data_to_encrypt = "13816109050"
 
     # 十六进制密钥
     hex_key = "42656E65746563684031323334353637"
@@ -46,20 +46,20 @@ if __name__ == "__main__":
         print(encrypted_bytes)
         print(f"加密后的二进制数据长度: {len(encrypted_bytes)} 字节")
 
-        # 存入数据库
-        # save_to_database(encrypted_bytes)
-
-        sql = '''INSERT INTO CDRD_test(
-                            name,
-                            content
-                        ) values(
-                        %s, %s)'''
-
-        params = (
-            '你好',
-            pyodbc.Binary(encrypted_bytes))
-
-        Sqlserver_PO.execute2(sql, params)
+        # # 存入数据库
+        # # save_to_database(encrypted_bytes)
+        #
+        # sql = '''INSERT INTO CDRD_test(
+        #                     name,
+        #                     content
+        #                 ) values(
+        #                 %s, %s)'''
+        #
+        # params = (
+        #     '你好',
+        #     pyodbc.Binary(encrypted_bytes))
+        #
+        # Sqlserver_PO.execute2(sql, params)
 
 
 

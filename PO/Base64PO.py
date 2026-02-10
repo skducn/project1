@@ -10,10 +10,74 @@
 2，将base64转图片 base64ToImg()
 
 """
-
+import random
 import base64, re, os
 
 class Base64PO:
+
+    @staticmethod
+    def encrypt_to_bytes(content: str) -> bytes:
+        """
+        这里是加密逻辑的占位符，需要根据实际的加密算法实现。
+        例如：AES、DES 等。
+        """
+        # 示例：这里仅返回 UTF-8 编码的字节，实际项目中请替换为真实的加密逻辑
+        return content.encode('utf-8')
+
+    @staticmethod
+    def encrypt_to_base64(content: str) -> str:
+        try:
+            encrypted_bytes = Base64PO.encrypt_to_bytes(content)
+            return base64.b64encode(encrypted_bytes).decode('utf-8')
+        except Exception as e:
+            raise e
+
+    def decrypt_from_base64(self, base64_content: str) -> str:
+        try:
+            # 手动补全 Base64 字符串的填充
+            missing_padding = len(base64_content) % 4
+            if missing_padding:
+                base64_content += '=' * (4 - missing_padding)
+
+            # Base64 解码为字节数组
+            decrypted_bytes = base64.b64decode(base64_content)
+            # 调用解密字节的方法（需要实现 decrypt_from_bytes）
+            return self.decrypt_from_bytes(decrypted_bytes)
+        except Exception as e:
+            raise e
+
+
+    # def decrypt_from_base64(self, base64_content: str) -> str:
+    #     try:
+    #         # Base64解码为字节数组
+    #         decrypted_bytes = base64.b64decode(base64_content)
+    #         # 调用解密字节的方法（需要实现 decrypt_from_bytes）
+    #         return self.decrypt_from_bytes(decrypted_bytes)
+    #     except Exception as e:
+    #         raise e
+    #
+    # 占位实现，需要根据实际解密逻辑补充
+    def decrypt_from_bytes(self,encrypted_bytes: bytes) -> str:
+        """
+        这里是解密字节数组的逻辑，需要和 encrypt_to_bytes 对应实现
+        """
+        # 示例：仅返回UTF-8解码字符串，实际需替换为真实解密逻辑
+        return encrypted_bytes.decode('utf-8')
+
+    # def encrypt_to_bytes(content: str) -> bytes:
+    #     """
+    #     这里是加密逻辑的占位符，需要根据实际的加密算法实现。
+    #     例如：AES、DES 等。
+    #     """
+    #     # 示例：这里仅返回 UTF-8 编码的字节，实际项目中请替换为真实的加密逻辑
+    #     return content.encode('utf-8')
+    #
+    # def encrypt_to_base64(content: str) -> str:
+    #     try:
+    #         encrypted_bytes = encrypt_to_bytes(content)
+    #         return base64.b64encode(encrypted_bytes).decode('utf-8')
+    #     except Exception as e:
+    #         raise e
 
     def imgToBase64(self, file):
 
@@ -64,6 +128,36 @@ class Base64PO:
 
         return pathFile
 
+    def generate_random_phone_numbers(self,count=100):
+        phone_numbers = []
+        for _ in range(count):
+            # 中国大陆手机号通常以 1 开头，第二位通常是 3、4、5、7、8 中的一个数字
+            prefix = random.choice(['13', '14', '15', '17', '18'])
+            # 剩余的 9 位数字随机生成
+            suffix = ''.join(random.choices('0123456789', k=9))
+            phone_number = prefix + suffix
+            phone_numbers.append(phone_number)
+        return phone_numbers
+
+    def generate_random_chinese_names(self, count=100):
+        # 常见的中文姓氏
+        surnames = ['王', '李', '张', '刘', '陈', '杨', '赵', '黄', '周', '吴',
+                    '徐', '孙', '胡', '朱', '高', '林', '何', '郭', '马', '罗']
+
+        # 常见的中文名字用字（单字）
+        first_names = ['伟', '芳', '娜', '秀英', '敏', '静', '丽', '强', '磊', '军',
+                       '洋', '勇', '艳', '杰', '娟', '涛', '明', '超', '秀兰', '霞',
+                       '平', '刚', '桂英', '辉', '丽华', '丹', '萍', '华', '红', '玉梅']
+
+        names = []
+        for _ in range(count):
+            surname = random.choice(surnames)
+            first_name = random.choice(first_names)
+            full_name = surname + first_name
+            names.append(full_name)
+
+        return names
+
 
 
 if __name__ == "__main__":
@@ -74,14 +168,31 @@ if __name__ == "__main__":
     # print(Base64_PO.imgToBase64("Base64.gif"))
 
 
-    print("2, base64转图片".center(100, "-"))
-    # dataURI = '''data:image/gif;base64,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'''
-    dataURI = '''data:image/gif;base64,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'''
-    pathFile = Base64_PO.base64ToImg(dataURI, "./data/base64")
-    print(pathFile)  # /Users/linghuchong/Downloads/51/Python/project/PO/./data/base64.gif
+    # print("2, base64转图片".center(100, "-"))
+    # # dataURI = '''data:image/gif;base64,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'''
+    # dataURI = '''data:image/gif;base64,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'''
+    # pathFile = Base64_PO.base64ToImg(dataURI, "./data/base64")
+    # print(pathFile)  # /Users/linghuchong/Downloads/51/Python/project/PO/./data/base64.gif
 
     # pathFile = Base64_PO.base64ToImg(dataURI)
     # print(pathFile)  # /Users/linghuchong/Downloads/51/Python/project/PO/captcha.gif
 
+    result = Base64_PO.encrypt_to_base64("13816109050")
+    print(f"Base64 编码后的加密结果: {result}")  # MTM4MTYxMDkwNTA=
 
+    print(Base64_PO.decrypt_from_base64("MTM4MTYxMDkwNTA"))
+
+    # # 生成 100 个随机手机号
+    # random_phones = Base64_PO.generate_random_phone_numbers()
+    # for phone in random_phones:
+    #     # print(phone)
+    #     result = Base64_PO.encrypt_to_base64(phone)
+    #     print(result)
+    #
+    # # 生成 100 个随机中文姓名
+    # random_names = Base64_PO.generate_random_chinese_names()
+    # for name in random_names:
+    #     print(name)
+    #     result = Base64_PO.encrypt_to_base64(name)
+    #     print(result)
 

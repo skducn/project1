@@ -31,32 +31,36 @@ if __name__ == "__main__":
     # 十六进制密钥
     hex_key = "42656E65746563684031323334353637"
 
-    try:
-        # 加密数据
-        encrypted_bytes = aes_encrypt_with_hex_key(data_to_encrypt, hex_key)
-        print(f"加密后的二进制数据长度: {len(encrypted_bytes)} 字节")
+    # 加密数据
+    encrypted_bytes = aes_encrypt_with_hex_key(data_to_encrypt, hex_key)
+    print(f"加密后的二进制数据长度: {len(encrypted_bytes)} 字节")
 
-        # 直接使用pyodbc连接数据库存储二进制数据
-        conn_str = (
-            "DRIVER={ODBC Driver 17 for SQL Server};"
-            "SERVER=192.168.0.234;"
-            "DATABASE=CDRD_PT;"
-            "UID=sa;"
-            "PWD=Zy_123456789"
-        )
+    # try:
+    #     # 加密数据
+    #     encrypted_bytes = aes_encrypt_with_hex_key(data_to_encrypt, hex_key)
+    #     print(f"加密后的二进制数据长度: {len(encrypted_bytes)} 字节")
 
-        conn = pyodbc.connect(conn_str)
-        cursor = conn.cursor()
-
-        # 使用问号占位符插入二进制数据
-        cursor.execute(
-            "INSERT INTO CDRD_test (name, content) VALUES (?, ?)",
-            ('你好', pyodbc.Binary(encrypted_bytes))
-        )
-
-        conn.commit()
-        conn.close()
-        print("数据已成功加密并以二进制形式存入数据库")
-
-    except Exception as e:
-        print(f"处理失败: {str(e)}")
+    #     # 直接使用pyodbc连接数据库存储二进制数据
+    #     conn_str = (
+    #         "DRIVER={ODBC Driver 17 for SQL Server};"
+    #         "SERVER=192.168.0.234;"
+    #         "DATABASE=CDRD_PT;"
+    #         "UID=sa;"
+    #         "PWD=Zy_123456789"
+    #     )
+    #
+    #     conn = pyodbc.connect(conn_str)
+    #     cursor = conn.cursor()
+    #
+    #     # 使用问号占位符插入二进制数据
+    #     cursor.execute(
+    #         "INSERT INTO CDRD_test (name, content) VALUES (?, ?)",
+    #         ('你好', pyodbc.Binary(encrypted_bytes))
+    #     )
+    #
+    #     conn.commit()
+    #     conn.close()
+    #     print("数据已成功加密并以二进制形式存入数据库")
+    #
+    # except Exception as e:
+    #     print(f"处理失败: {str(e)}")

@@ -192,7 +192,7 @@ class NetPO:
 
         smtp = smtplib.SMTP()
         smtp.connect("smtp.163.com", "25")
-        smtp.login("skducn@163.com", "MKOMAGNTQDECWXFI")
+        smtp.login("skducn@163.com", "MWiVfWqgVTrssv4s")
         smtp.sendmail("skducn@163.com", reciver, msg.as_string())
         smtp.quit()
         print("\n邮件已发送给：" + str(reciver) + "")
@@ -364,11 +364,11 @@ if __name__ == "__main__":
     Net_PO = NetPO()
 
     # print("1.1 发邮件之文本正文".center(100, "-"))
-    # Net_PO.sendEmail("令狐冲", ['h.jin@zy-healthtech.com'], ['skducn@163.com'],
-    #                  "自动化测试邮件", "plain", "你好", "\n\n附件是本次自动化接口测试结果，请查阅。",
-    #                  "\n\n这是一封自动生成的email，请勿回复，如有打扰请谅解。 \n\n测试组\nBest Regards",
-    #                  r'/Users/linghuchong/Downloads/51/Python/project/instance/摄像头/camera20231117163527.jpg'
-    #                 )
+    Net_PO.sendEmail("令狐冲", ['h.jin@zy-healthtech.com'], ['skducn@163.com'],
+                     "自动化测试邮件", "plain", "你好", "\n\n附件是本次自动化接口测试结果，请查阅。",
+                     "\n\n这是一封自动生成的email，请勿回复，如有打扰请谅解。 \n\n测试组\nBest Regards",
+                     r'/Users/linghuchong/Downloads/51/Python/project/instance/摄像头/camera20231117163527.jpg'
+                    )
     # Net_PO.sendEmail("令狐冲", ['h.jin@zy-healthtech.com'], None,
     #                  "自动化测试邮件", "plain", "您好！", "\n\n附件是本次自动化测试结果，请查阅。",
     #                  "\n\n这是一封自动生成的email，请勿回复，如有打扰请谅解。 \n\n测试组\nBest Regards",

@@ -3,38 +3,42 @@
 # Author        : John
 # Date          : 2020-12-8
 # Description   : openpyxl 对象层
+# 仅需读写 Excel 数据，无复杂格式 / 公式 / 宏需求
+# 运行环境无 Excel 安装（如服务器、Linux 系统）
+# 处理大批量数据（速度快、资源占用低）
+# 轻量级数据导出 / 导入场景（如爬虫结果导出、报表生成）
+# 官网：http://openpyxl.readthedocs.org/en/latest/ openpyxl - 一个用于读写Excel 2010 xlsx/xlsm文件的Python库
 # *********************************************************************
-# 官网：http://openpyxl.readthedocs.org/en/latest/
-# openpyxl 工作原理：将整个xlsx读入内存，方便处理。
-# openpyxl 操作大文件时可使用 Optimized reader 和 Optimized writer 两种模式，它们提供了流式的接口，速度更快，使我们可以用常量级的内存消耗来读取和写入无限量的数据。
-# Optimized reader 可用 use_iterators=True参数打开，如：wb = load_workbook(filename = 'haggle.xlsx',use_iterators=True)
-# openpyxl 读取大数据的效率没有 xlrd 高。
-# xlsxwriter xlrd xlwt xlutils 这些库都不支持 excel 写操作，一般只能将原excel中的内容读出、做完处理后，再写入一个新的excel文件。
-# 扩展学习 xlwings https://blog.csdn.net/qfxietian/article/details/123822358
 
-# 支持excel2010 .xlsx / .xlsm / .xltx / .xltm格式的文件
-# 首行、首列 是（1,1）而不是（0,0）
-# NULL表示空值，即cell里面没有数据 ，等同于 python中的None
-# numberic 数字型 = python中的float
-# string 字符串型 = python中的unicode
-
-# 使用方法
-# 参考：openpyxl常用模块用法 https://www.debug8.com/python/t_41519.html
-# 基础使用方法：https://blog.csdn.net/four91/article/details/106141274
-# 高级使用方法：https://blog.csdn.net/m0_47590417/article/details/119082064
-
-# 安装包
+# 【安装包】
 # pip3 install openpyxl == 3.0.0
 # 注意！：其他版本（如3.0.2使用中会报错）如有报错，请安装3.0.0
 
-# 报错
-# 如：File "src\lxml\serializer.pxi", line 1652, in lxml.etree._IncrementalFileWriter.write TypeError: got invalid input value of type <类与实例 'xml.etree.ElementTree.Element'>, expected string or Element
-# 解决方法: pip uninstall lxml   及更新 openpyxl 版本，3.0.7以上
+# 【一般错误】
+# 报错：File "src\lxml\serializer.pxi", line 1652, in lxml.etree._IncrementalFileWriter.write TypeError: got invalid input value of type <类与实例 'xml.etree.ElementTree.Element'>, expected string or Element
+# 解决方法: pip uninstall lxml   或更新最新openpyxl 3.0.7以上版本
 
-# 乱码
-# gb2312 文字编码，在读取后会显示乱码，需转换成 Unicode
 
-# 颜色
+# 【特性】
+# 1，支持excel2010 .xlsx / .xlsm / .xltx / .xltm格式的文件
+# 2，openpyxl 中文字编码是“gb2312” 读取后就会显示乱码，请先转成Unicode
+# 3，openpyxl 的首行、首列 是 （1,1）而不是（0,0）
+# 4，openpyxl 的NULL空值对应于python中的None，表示这个cell里面没有数据。
+# 5，openpyxl 的numberic数字型，统一按照浮点数来进行处理，对应于python中的float
+# 6，openpyxl 的string字符串型，对应于python中的unicode
+# 7，openpyxl 会将整个xlsx读入到内存中，方便处理。
+# 8，openpyxl 操作大文件时可使用 Optimized reader 和 Optimized writer 两种模式，它们提供了流式的接口，速度更快，使我们可以用常量级的内存消耗来读取和写入无限量的数据。
+# Optimized reader，打开文件使用use_iterators=True参数，如：wb = load_workbook(filename = 'haggle.xlsx',use_iterators=True)
+# 9，openpyxl 读取大数据的效率没有 xlrd 高。
+# 10，openpyxl 与 xlsxwriter xlrd xlwt xlutils 的比较，这些库都不支持 excel 写操作，一般只能将原excel中的内容读出、做完处理后，再写入一个新的excel文件。
+
+# 扩展学习 xlwings https://blog.csdn.net/qfxietian/article/details/123822358
+# 需要与 Excel 深度交互（如执行宏、操作图表 / 数据透视表、实时预览结果）
+# 依赖 Excel 原生公式计算（确保结果 100% 与 Excel 一致）
+# 需在已有 Excel 模板（含宏 / 复杂格式）基础上操作
+# 开发 Excel 插件（xlwings 支持将 Python 代码打包为 Excel 加载项）
+
+# 【颜色】
 # 颜色码对照表（RGB与十六进制颜色码互转） https://www.sioe.cn/yingyong/yanse-rgb-16/
 # 绿色 = 00E400，黄色 = FFFF00，橙色 = FF7E00，红色 = FF0000，粉色 = 99004C，褐色 =7E0023,'c6efce = 淡绿', '006100 = 深绿'，'ffffff=白色', '000000=黑色'，'ffeb9c'= 橙色
 
