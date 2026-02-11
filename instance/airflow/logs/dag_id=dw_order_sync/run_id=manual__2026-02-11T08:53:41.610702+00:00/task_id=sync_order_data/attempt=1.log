@@ -1,0 +1,17 @@
+[2026-02-11T16:53:47.653+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T08:53:41.610702+00:00 [queued]>
+[2026-02-11T16:53:47.660+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T08:53:41.610702+00:00 [queued]>
+[2026-02-11T16:53:47.661+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-11T16:53:47.675+0800] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): sync_order_data> on 2026-02-11 08:53:41.610702+00:00
+[2026-02-11T16:53:47.678+0800] {standard_task_runner.py:60} INFO - Started process 16480 to run task
+[2026-02-11T16:53:47.686+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T08:53:41.610702+00:00', '--job-id', '85', '--raw', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpnespi4m2']
+[2026-02-11T16:53:47.691+0800] {standard_task_runner.py:88} INFO - Job 85: Subtask sync_order_data
+[2026-02-11T16:53:47.748+0800] {task_command.py:423} INFO - Running <TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T08:53:41.610702+00:00 [running]> on host localhost-2.local
+[2026-02-11T16:53:47.816+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dw_order_sync' AIRFLOW_CTX_TASK_ID='sync_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-11T08:53:41.610702+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-11T08:53:41.610702+00:00'
+[2026-02-11T16:53:47.819+0800] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T
+[2026-02-11T16:53:47.820+0800] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'echo "同步订单数据到数据仓库"']
+[2026-02-11T16:53:47.829+0800] {subprocess.py:86} INFO - Output:
+[2026-02-11T16:53:47.831+0800] {subprocess.py:93} INFO - 同步订单数据到数据仓库
+[2026-02-11T16:53:47.832+0800] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-11T16:53:47.852+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dw_order_sync, task_id=sync_order_data, execution_date=20260211T085341, start_date=20260211T085347, end_date=20260211T085347
+[2026-02-11T16:53:47.878+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-11T16:53:47.906+0800] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

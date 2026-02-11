@@ -6,9 +6,17 @@
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 from config.ConfigparserPO import *
-Configparser_PO = ConfigparserPO('config/config.ini')
+# Configparser_PO = ConfigparserPO('config/config.ini')
+Configparser_PO = ConfigparserPO('/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini')
 varUrl = Configparser_PO.HTTP("url")
 
+import sys
+import os
+
+# 获取项目根目录并添加到 sys.path
+# project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append("/Users/linghuchong/Downloads/51/Python/project")
+# print(project_root)
 
 from PO.WebPO import *
 

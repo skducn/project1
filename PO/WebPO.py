@@ -134,171 +134,193 @@ class WebPO(DomPO):
 
         # 1 配置项
         options = Options()
+        try:
+            if self.browser_type == "chrome":
 
-        if self.browser_type == "chrome":
+                # todo 屏幕
+                options.add_argument("--start-maximized")  # 最大化浏览器
+                # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
+                # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
+                # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
+                # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
+                # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
 
-            # todo 屏幕
-            options.add_argument("--start-maximized")  # 最大化浏览器
-            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
-            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
-            # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
-            # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
-            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
+                # todo 浏览器
+                options.add_experimental_option("detach", True)  # 浏览器永不关闭
+                options.add_argument('--incognito')  # 无痕模式
+                # options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+                options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
+                options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+                # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+                options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+                # options.headless = True  # 无界面模式
+                # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
 
-            # todo 浏览器
-            options.add_experimental_option("detach", True)  # 浏览器永不关闭
-            options.add_argument('--incognito')  # 无痕模式
-            # options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
-            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
-            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
-            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
-            # options.headless = True  # 无界面模式
-            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+                # todo 安全性
+                options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
+                # options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
+                # options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
+                # 禁用“保存密码”弹出窗口
+                options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
 
-            # todo 安全性
-            options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
-            # options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
-            # options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
-            # 禁用“保存密码”弹出窗口
-            options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
+                # todo 系统
+                # options.add_argument("disable-cache")  # 禁用缓存
+                options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+                # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）,会引起tab stash无法打开标签页。
+                options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+                # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+                # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+                # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+                # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+                # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
 
-            # todo 系统
-            # options.add_argument("disable-cache")  # 禁用缓存
-            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
-            # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）,会引起tab stash无法打开标签页。
-            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
-            # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
-            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
-            # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
-            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
-            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+                # # 绕过检测（滑动验证码）
+                # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
 
-            # # 绕过检测（滑动验证码）
-            # self.driver.execute_cdp_cmd("Page.addScriptToEvaluteOnNewDocument", {"source": """Object.defineProperty(navigator,'webdriver', {get: () => undefined})"""})
+                try:
+                    # 更新下载chromedriver
+                    self.updateChromedriver(options)
+                except Exception as e:
+                    logging.error(f"发生错误: {e}")
 
-            try:
-                # 更新下载chromedriver
-                self.updateChromedriver(options)
-            except Exception as e:
-                logging.error(f"发生错误: {e}")
+                # # 初始化 WebDriver
+                # try:
+                #     self.driver = webdriver.Chrome(options=options)
+                # except Exception as e:
+                #     logging.error(f"Chrome WebDriver 初始化失败: {e}")
+                #     raise
 
+
+                # return self.driver
+            elif self.browser_type == "noChrome":
+
+                # 无界面模式
+                # options.headless = True  # 弃用
+                options.add_argument('--headless=new')  # 如果你使用的是 Chrome 109 及以上版本，推荐使用 '--headless=new'
+                # options.add_argument('--headless')  # 如果你使用的是旧版本 Chrome，使用 '--headless'
+
+                # todo 系统
+                # options.add_argument("disable-cache")  # 禁用缓存
+                # options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+                # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+                options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+                # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+                # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+                # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+                # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+                # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+                try:
+                    # 更新下载chromedriver
+                    self.updateChromedriver(options)
+                except Exception as e:
+                    logging.error(f"发生错误: {e}")
+
+                # return self.driver
+                # 初始化 WebDriver
+                # try:
+                #     self.driver = webdriver.Chrome(options=options)
+                # except Exception as e:
+                #     logging.error(f"Chrome WebDriver 初始化失败: {e}")
+                #     raise
+            elif self.browser_type == "chromeCookies":
+
+                # todo 屏幕
+                options.add_argument("--start-maximized")  # 最大化浏览器
+                # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
+                # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
+                # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
+                # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
+                # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
+
+                # todo 浏览器
+                options.add_experimental_option("detach", True)  # 浏览器永不关闭
+                options.add_argument('--incognito')  # 无痕模式
+                options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+                options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
+                options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
+                # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+                options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+                # options.headless = True  # 无界面模式
+                # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+                # todo 安全性
+                options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
+                options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
+                options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
+                # 禁用“保存密码”弹出窗口
+                options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
+
+                # todo 系统
+                # options.add_argument("disable-cache")  # 禁用缓存
+                options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+                # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+                options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+                # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+                # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
+                # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+                # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+                # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+                try:
+                    # 更新下载chromedriver
+                    self.updateChromedriver(options)
+                except Exception as e:
+                    logging.error(f"发生错误: {e}")
+
+                # return self.driver
+            elif self.browser_type == "appChrome":
+
+                # todo 屏幕
+                options.add_argument('--window-size=%s,%s' % (320, 1000))  # 指定窗口大小
+
+                # todo 浏览器
+                options.add_experimental_option("detach", True)  # 浏览器永不关闭
+                options.add_argument("--allow-running-insecure-content")  # Allow insecure content
+                # options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.243:8010/")  # Replace example.com with your site's domain (this is what worked for me)
+
+                options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块
+                options.add_argument('--incognito')  # 无痕模式
+
+                options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
+                options.add_argument('-ignore-ssl-errors')  # 忽略相关错误
+                options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 忽略证书错误
+                options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 防止自动化检测, 解决"Chrome正受到自动测试软件的控制"提示，建议放在最后。
+                # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
+                options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
+                # options.headless = True  # 无界面模式
+                # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
+
+                # todo 系统
+                # options.add_argument("disable-cache")  # 禁用缓存
+                options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
+                # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
+                # options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
+                # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
+                # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志，防止自动化日志输出检测
+                options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
+                # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
+                # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
+
+                try:
+                    # 更新下载chromedriver
+                    self.updateChromedriver(options)
+                except Exception as e:
+                    logging.error(f"发生错误: {e}")
+
+                # 初始化 WebDriver
+                # try:
+                #     self.driver = webdriver.Chrome(options=options)
+                # except Exception as e:
+                #     logging.error(f"Chrome WebDriver 初始化失败: {e}")
+                #     raise
+                # return self.driver
+            else:
+                raise ValueError(f"不支持的浏览器类型: {self.browser_type}")
             return self.driver
-
-        elif self.browser_type == "noChrome":
-
-            # 无界面模式
-            # options.headless = True  # 弃用
-            options.add_argument('--headless=new')  # 如果你使用的是 Chrome 109 及以上版本，推荐使用 '--headless=new'
-            # options.add_argument('--headless')  # 如果你使用的是旧版本 Chrome，使用 '--headless'
-
-            # todo 系统
-            # options.add_argument("disable-cache")  # 禁用缓存
-            # options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
-            # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
-            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
-            # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
-            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
-            # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
-            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
-            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
-
-            try:
-                # 更新下载chromedriver
-                self.updateChromedriver(options)
-            except Exception as e:
-                logging.error(f"发生错误: {e}")
-
-            return self.driver
-
-        elif self.browser_type == "chromeCookies":
-
-            # todo 屏幕
-            options.add_argument("--start-maximized")  # 最大化浏览器
-            # width, height = pyautogui.size()  # 1440 900  # 自动获取屏幕尺寸，即最大化
-            # options.add_argument('--window-size=%s,%s' % (pyautogui.size()[0], pyautogui.size()[1])) # 自动获取屏幕尺寸，即最大化浏览器 1440 900
-            # options.add_argument("--start-fullscreen")  # 全屏模式，F11可退出
-            # options.add_argument("--kiosk")  # 全屏模式，alt+tab切换。ctrl+f4退出
-            # options.add_argument('--window-size=%s,%s' % (320, 800)) # 指定窗口大小320 800
-
-            # todo 浏览器
-            options.add_experimental_option("detach", True)  # 浏览器永不关闭
-            options.add_argument('--incognito')  # 无痕模式
-            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
-            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 屏蔽--ignore-certificate-errors提示信息的设置参数项
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 屏蔽 "Chrome正受到自动测试软件的控制"提示，建议放在最后。
-            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
-            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
-            # options.headless = True  # 无界面模式
-            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
-
-            # todo 安全性
-            options.add_argument("--allow-running-insecure-content")  # 允许HTTPS页面从HTTP链接引用JavaScript、CSS和插件内容，该参数会降低浏览器的安全性，因为它允许HTTPS页面加载未加密的HTTP资源。这可能导致中间人攻击（MITM），从而危及用户的数据安全和隐私。
-            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块，防止自动化检测，关闭浏览器控制显示
-            options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.203:30080/")  # 解决下载文件是提示：已阻止不安全的文件下载，允许不安全的文件下载
-            # 禁用“保存密码”弹出窗口
-            options.add_experimental_option("prefs", {"credentials_enable_service": False, "profile.password_manager_enabled": False})
-
-            # todo 系统
-            # options.add_argument("disable-cache")  # 禁用缓存
-            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
-            # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
-            options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
-            # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
-            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志
-            # options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
-            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
-            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
-
-            try:
-                # 更新下载chromedriver
-                self.updateChromedriver(options)
-            except Exception as e:
-                logging.error(f"发生错误: {e}")
-
-            return self.driver
-
-        elif self.browser_type == "appChrome":
-
-            # todo 屏幕
-            options.add_argument('--window-size=%s,%s' % (320, 1000))  # 指定窗口大小
-
-            # todo 浏览器
-            options.add_experimental_option("detach", True)  # 浏览器永不关闭
-            options.add_argument("--allow-running-insecure-content")  # Allow insecure content
-            # options.add_argument("--unsafely-treat-insecure-origin-as-secure=http://192.168.0.243:8010/")  # Replace example.com with your site's domain (this is what worked for me)
-
-            options.add_argument("--disable-blink-features=AutomationControlled")  # 禁止浏览器出现验证滑块
-            options.add_argument('--incognito')  # 无痕模式
-
-            options.add_argument('--disable-popup-blocking')  # 禁用弹窗阻止（可能有助于避免某些弹窗相关的崩溃）
-            options.add_argument('-ignore-ssl-errors')  # 忽略相关错误
-            options.add_experimental_option("excludeSwitches", ["ignore-certificate-errors"])  # 忽略证书错误
-            options.add_experimental_option("excludeSwitches", ["enable-automation"])  # 防止自动化检测, 解决"Chrome正受到自动测试软件的控制"提示，建议放在最后。
-            # options.add_argument('blink-settings=imagesEnabled=false')  # 不加载图片（提升速度）
-            options.add_argument('--hide-scrollbars')  # 隐藏滚动条（因对一些特殊页面）
-            # options.headless = True  # 无界面模式
-            # options.add_argument("--lang=en")  # 指定浏览器的语言，避免出现“询问是否翻译非您所用语言的网页”
-
-            # todo 系统
-            # options.add_argument("disable-cache")  # 禁用缓存
-            options.add_argument("--disable-extensions")  # 禁用所有插件和扩展（提高稳定性，有时插件可能引起稳定性问题）
-            # options.add_argument('--no-sandbox')  # 关闭沙盒模式（沙盒模式提一种提高安全性的技术，但可能与某系统不兼容，关闭可能会降低浏览器的安全性）
-            # options.add_argument('-disable-dev-shm-usage')  # 禁用/dev/shm使用（可减少内存使用，但影响性能）
-            # options.add_argument('--disable-gpu')  # 禁用GPU加速（虽然GPU加速可以提高性能，但有些情况下会导致崩溃）
-            # options.add_experimental_option('excludeSwitches', ['enable-logging'])  # 禁止打印日志，防止自动化日志输出检测
-            options.add_argument('--disable-logging')  # 禁用日志记录（减少日志记录的资源消耗）
-            # options.add_argument('--disable-javascript')  # 禁用JavaScript（有时可以用来测试JavaScript相关的问题）
-            # options.add_argument(r"--user-data-dir=c:\selenium_user_data")  # 设置用户文件夹，可存储登录信息，解决每次要求登录问题
-
-            try:
-                # 更新下载chromedriver
-                self.updateChromedriver(options)
-            except Exception as e:
-                logging.error(f"发生错误: {e}")
-
-            return self.driver
-
+        except Exception as e:
+            print(f"WebDriver 初始化失败: {e}")
+            raise
 
     def openURL(self, varURL, t=2):
         self.opn(varURL, t)
@@ -512,49 +534,48 @@ class WebPO(DomPO):
             # (py310) localhost-2:project linghuchong$ which chromedriver
             # /usr/local/bin/chromedriver
 
+
+            # 1 chrome浏览器路径
+            googleChromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            googleChromeVer = bytes.decode(googleChromeVer).replace("\n", '')
+            googleChromeVer = googleChromeVer.split('Google Chrome ')[1].strip()
+            googleChromeVerPre3 = googleChromeVer.replace(googleChromeVer.split(".")[3], '')
+            # print("浏览器版本前3：", googleChromeVerPre3)  # 135.0.7049.
+
+            # 2 chrome驱动路径
             varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
-
-            # 1 本机chrome浏览器程序路径
-            chromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
-            chromeVer = bytes.decode(chromeVer).replace("\n", '')
-            chromeVer = chromeVer.split('Google Chrome ')[1].strip()
-            chromeVer3 = chromeVer.replace(chromeVer.split(".")[3], '')
-            # print("浏览器版本：", chromeVer3)
-
-            # 2 驱动路径
-            currPath = varDriverPath + chromeVer3
-            # print(currPath)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.
+            chromeDriverPathVerPre3 = varDriverPath + googleChromeVerPre3
+            # print("chrome驱动版本前3：", chromeDriverPathVerPre3)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.
 
             # 3 检查chromedriver主版本是否存在
-            if os.path.isdir(currPath) == False:
+            if os.path.isdir(chromeDriverPathVerPre3) == False:
                 print("chromedriver downloading...")
                 Service(ChromeDriverManager().install())
-                print("done")
                 l_folder = os.listdir(varDriverPath)
                 for i in range(len(l_folder)):
-                    if chromeVer3 in l_folder[i]:
-                        os.rename(varDriverPath + l_folder[i], varDriverPath + chromeVer3)
+                    if googleChromeVerPre3 in l_folder[i]:
+                        os.rename(varDriverPath + l_folder[i], varDriverPath + googleChromeVerPre3)
                         break
-                os.chdir(varDriverPath + chromeVer3 + "/chromedriver-mac-x64")
+                os.chdir(varDriverPath + googleChromeVerPre3 + "/chromedriver-mac-x64")
                 os.system("chmod 775 chromedriver")
                 # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
-                print(currPath + "/chromedriver-mac-x64/chromedriver")  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/chromedriver
-                currPath = currPath + "/chromedriver-mac-x64/chromedriver"
-                s = Service(executable_path=currPath, service_args=["--verbose"], log_output='Web_chromedriver_mac.log')
+                print(chromeDriverPathVerPre3 + "/chromedriver-mac-x64/chromedriver")  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/chromedriver
+                chromeDriverPathVerPre3 = chromeDriverPathVerPre3 + "/chromedriver-mac-x64/chromedriver"
+                s = Service(executable_path=chromeDriverPathVerPre3, service_args=["--verbose"], log_output='Web_chromedriver_mac.log')
                 self.driver = webdriver.Chrome(service=s, options=options)
-                print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-                print("chromedriver版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
+                print("googleChrome浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
+                print("chromedriver驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
             else:
-                currPath = currPath + "/chromedriver-mac-x64/chromedriver"
+                chromeDriverPathVerPre3 = chromeDriverPathVerPre3 + "/chromedriver-mac-x64/chromedriver"
                 # self.driver = webdriver.Chrome(service=s, options=options)
                 # from webdriver_manager.chrome import ChromeDriverManager
                 # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-                s = Service(executable_path=currPath, service_args=["--verbose"],log_output='Web_chromedriver_mac.log')
+                s = Service(executable_path=chromeDriverPathVerPre3, service_args=["--verbose"],log_output='Web_chromedriver_mac.log')
                 # s = Service(executable_path='/usr/local/bin/chromedriver', service_args=["--verbose"],log_output='chromedriver_verbose.log')
                 self.driver = webdriver.Chrome(service=s, options=options)
                 # print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
                 # print("chromedriver版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
-
+            # return self.driver
 
 
             # try:

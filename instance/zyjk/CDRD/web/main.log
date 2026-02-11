@@ -149,3 +149,259 @@
 2025-10-10 12:24:06,362 - INFO - 已登录
 2025-10-10 12:25:20,062 - INFO - 已登录
 2025-12-19 09:55:36,582 - INFO - 已登录
+2026-02-11 15:59:52,813 - INFO - ====== WebDriver manager ======
+2026-02-11 15:59:53,072 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 16:01:09,417 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 16:01:09,919 - INFO - There is no [mac64] chromedriver "145.0.7632.46" for browser google-chrome "145.0.7632" in cache
+2026-02-11 16:01:09,936 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 16:01:13,111 - INFO - WebDriver version 145.0.7632.46 selected
+2026-02-11 16:01:13,118 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.46/mac-x64/chromedriver-mac-x64.zip
+2026-02-11 16:01:13,118 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.46/mac-x64/chromedriver-mac-x64.zip
+2026-02-11 16:01:13,926 - INFO - Driver downloading response is 200
+2026-02-11 16:04:06,222 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 16:04:06,707 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632.46]
+2026-02-11 16:04:17,108 - INFO - 已登录
+2026-02-11 16:24:13,161 - INFO - 已登录
+2026-02-11 16:31:51,851 - INFO - 已登录
+2026-02-11 16:48:16,531 - INFO - 已登录
+2026-02-11 16:53:59,214 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 17:00:40,627 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 17:02:12,907 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 17:06:51,814 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 17:10:24,393 - INFO - Received signal: SIGINT
+2026-02-11 17:10:24,398 - INFO - Program is terminating...
+2026-02-11 17:10:33,014 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:10:34,620 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x000000010d5e72c8 chromedriver + 6197960
+1   chromedriver                        0x000000010d5de8ea chromedriver + 6162666
+2   chromedriver                        0x000000010d063de0 chromedriver + 417248
+3   chromedriver                        0x000000010d0a4b36 chromedriver + 682806
+4   chromedriver                        0x000000010d0a3aa4 chromedriver + 678564
+5   chromedriver                        0x000000010d09ecf6 chromedriver + 658678
+6   chromedriver                        0x000000010d099a79 chromedriver + 637561
+7   chromedriver                        0x000000010d0ea1b2 chromedriver + 967090
+8   chromedriver                        0x000000010d0e96a6 chromedriver + 964262
+9   chromedriver                        0x000000010d0db793 chromedriver + 907155
+10  chromedriver                        0x000000010d0a7b25 chromedriver + 695077
+11  chromedriver                        0x000000010d0a8791 chromedriver + 698257
+12  chromedriver                        0x000000010d5a3cc0 chromedriver + 5921984
+13  chromedriver                        0x000000010d5a7bb1 chromedriver + 5938097
+14  chromedriver                        0x000000010d57e004 chromedriver + 5767172
+15  chromedriver                        0x000000010d5a85db chromedriver + 5940699
+16  chromedriver                        0x000000010d56c704 chromedriver + 5695236
+17  chromedriver                        0x000000010d5cc0c8 chromedriver + 6086856
+18  chromedriver                        0x000000010d5cc290 chromedriver + 6087312
+19  chromedriver                        0x000000010d5de4b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:11:06,058 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:11:08,119 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x0000000108ec72c8 chromedriver + 6197960
+1   chromedriver                        0x0000000108ebe8ea chromedriver + 6162666
+2   chromedriver                        0x0000000108943de0 chromedriver + 417248
+3   chromedriver                        0x0000000108984b36 chromedriver + 682806
+4   chromedriver                        0x0000000108983aa4 chromedriver + 678564
+5   chromedriver                        0x000000010897ecf6 chromedriver + 658678
+6   chromedriver                        0x0000000108979a79 chromedriver + 637561
+7   chromedriver                        0x00000001089ca1b2 chromedriver + 967090
+8   chromedriver                        0x00000001089c96a6 chromedriver + 964262
+9   chromedriver                        0x00000001089bb793 chromedriver + 907155
+10  chromedriver                        0x0000000108987b25 chromedriver + 695077
+11  chromedriver                        0x0000000108988791 chromedriver + 698257
+12  chromedriver                        0x0000000108e83cc0 chromedriver + 5921984
+13  chromedriver                        0x0000000108e87bb1 chromedriver + 5938097
+14  chromedriver                        0x0000000108e5e004 chromedriver + 5767172
+15  chromedriver                        0x0000000108e885db chromedriver + 5940699
+16  chromedriver                        0x0000000108e4c704 chromedriver + 5695236
+17  chromedriver                        0x0000000108eac0c8 chromedriver + 6086856
+18  chromedriver                        0x0000000108eac290 chromedriver + 6087312
+19  chromedriver                        0x0000000108ebe4b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:13:37,441 - INFO - ====== WebDriver manager ======
+2026-02-11 17:13:37,657 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 17:13:39,135 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 17:14:12,872 - ERROR - Chrome WebDriver 初始化失败: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+
+2026-02-11 17:14:54,564 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 17:16:13,096 - INFO - WebDriver version 145.0.7632.46 selected
+2026-02-11 17:16:13,102 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.46/mac-x64/chromedriver-mac-x64.zip
+2026-02-11 17:16:13,102 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.46/mac-x64/chromedriver-mac-x64.zip
+2026-02-11 17:16:14,567 - INFO - Driver downloading response is 200
+2026-02-11 17:36:06,192 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 17:36:06,757 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632.46]
+2026-02-11 17:36:09,343 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:36:11,396 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x00000001100962c8 chromedriver + 6197960
+1   chromedriver                        0x000000011008d8ea chromedriver + 6162666
+2   chromedriver                        0x000000010fb12de0 chromedriver + 417248
+3   chromedriver                        0x000000010fb53b36 chromedriver + 682806
+4   chromedriver                        0x000000010fb52aa4 chromedriver + 678564
+5   chromedriver                        0x000000010fb4dcf6 chromedriver + 658678
+6   chromedriver                        0x000000010fb48a79 chromedriver + 637561
+7   chromedriver                        0x000000010fb991b2 chromedriver + 967090
+8   chromedriver                        0x000000010fb986a6 chromedriver + 964262
+9   chromedriver                        0x000000010fb8a793 chromedriver + 907155
+10  chromedriver                        0x000000010fb56b25 chromedriver + 695077
+11  chromedriver                        0x000000010fb57791 chromedriver + 698257
+12  chromedriver                        0x0000000110052cc0 chromedriver + 5921984
+13  chromedriver                        0x0000000110056bb1 chromedriver + 5938097
+14  chromedriver                        0x000000011002d004 chromedriver + 5767172
+15  chromedriver                        0x00000001100575db chromedriver + 5940699
+16  chromedriver                        0x000000011001b704 chromedriver + 5695236
+17  chromedriver                        0x000000011007b0c8 chromedriver + 6086856
+18  chromedriver                        0x000000011007b290 chromedriver + 6087312
+19  chromedriver                        0x000000011008d4b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:39:34,382 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:39:36,254 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x000000010f1422c8 chromedriver + 6197960
+1   chromedriver                        0x000000010f1398ea chromedriver + 6162666
+2   chromedriver                        0x000000010ebbede0 chromedriver + 417248
+3   chromedriver                        0x000000010ebffb36 chromedriver + 682806
+4   chromedriver                        0x000000010ebfeaa4 chromedriver + 678564
+5   chromedriver                        0x000000010ebf9cf6 chromedriver + 658678
+6   chromedriver                        0x000000010ebf4a79 chromedriver + 637561
+7   chromedriver                        0x000000010ec451b2 chromedriver + 967090
+8   chromedriver                        0x000000010ec446a6 chromedriver + 964262
+9   chromedriver                        0x000000010ec36793 chromedriver + 907155
+10  chromedriver                        0x000000010ec02b25 chromedriver + 695077
+11  chromedriver                        0x000000010ec03791 chromedriver + 698257
+12  chromedriver                        0x000000010f0fecc0 chromedriver + 5921984
+13  chromedriver                        0x000000010f102bb1 chromedriver + 5938097
+14  chromedriver                        0x000000010f0d9004 chromedriver + 5767172
+15  chromedriver                        0x000000010f1035db chromedriver + 5940699
+16  chromedriver                        0x000000010f0c7704 chromedriver + 5695236
+17  chromedriver                        0x000000010f1270c8 chromedriver + 6086856
+18  chromedriver                        0x000000010f127290 chromedriver + 6087312
+19  chromedriver                        0x000000010f1394b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:42:49,978 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: -9
+
+2026-02-11 17:42:50,131 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:42:52,227 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x00000001087292c8 chromedriver + 6197960
+1   chromedriver                        0x00000001087208ea chromedriver + 6162666
+2   chromedriver                        0x00000001081a5de0 chromedriver + 417248
+3   chromedriver                        0x00000001081e6b36 chromedriver + 682806
+4   chromedriver                        0x00000001081e5aa4 chromedriver + 678564
+5   chromedriver                        0x00000001081e0cf6 chromedriver + 658678
+6   chromedriver                        0x00000001081dba79 chromedriver + 637561
+7   chromedriver                        0x000000010822c1b2 chromedriver + 967090
+8   chromedriver                        0x000000010822b6a6 chromedriver + 964262
+9   chromedriver                        0x000000010821d793 chromedriver + 907155
+10  chromedriver                        0x00000001081e9b25 chromedriver + 695077
+11  chromedriver                        0x00000001081ea791 chromedriver + 698257
+12  chromedriver                        0x00000001086e5cc0 chromedriver + 5921984
+13  chromedriver                        0x00000001086e9bb1 chromedriver + 5938097
+14  chromedriver                        0x00000001086c0004 chromedriver + 5767172
+15  chromedriver                        0x00000001086ea5db chromedriver + 5940699
+16  chromedriver                        0x00000001086ae704 chromedriver + 5695236
+17  chromedriver                        0x000000010870e0c8 chromedriver + 6086856
+18  chromedriver                        0x000000010870e290 chromedriver + 6087312
+19  chromedriver                        0x00000001087204b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:43:12,360 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:43:14,471 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x0000000100e5f2c8 chromedriver + 6197960
+1   chromedriver                        0x0000000100e568ea chromedriver + 6162666
+2   chromedriver                        0x00000001008dbde0 chromedriver + 417248
+3   chromedriver                        0x000000010091cb36 chromedriver + 682806
+4   chromedriver                        0x000000010091baa4 chromedriver + 678564
+5   chromedriver                        0x0000000100916cf6 chromedriver + 658678
+6   chromedriver                        0x0000000100911a79 chromedriver + 637561
+7   chromedriver                        0x00000001009621b2 chromedriver + 967090
+8   chromedriver                        0x00000001009616a6 chromedriver + 964262
+9   chromedriver                        0x0000000100953793 chromedriver + 907155
+10  chromedriver                        0x000000010091fb25 chromedriver + 695077
+11  chromedriver                        0x0000000100920791 chromedriver + 698257
+12  chromedriver                        0x0000000100e1bcc0 chromedriver + 5921984
+13  chromedriver                        0x0000000100e1fbb1 chromedriver + 5938097
+14  chromedriver                        0x0000000100df6004 chromedriver + 5767172
+15  chromedriver                        0x0000000100e205db chromedriver + 5940699
+16  chromedriver                        0x0000000100de4704 chromedriver + 5695236
+17  chromedriver                        0x0000000100e440c8 chromedriver + 6086856
+18  chromedriver                        0x0000000100e44290 chromedriver + 6087312
+19  chromedriver                        0x0000000100e564b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:43:44,290 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:43:46,309 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x000000010f49a2c8 chromedriver + 6197960
+1   chromedriver                        0x000000010f4918ea chromedriver + 6162666
+2   chromedriver                        0x000000010ef16de0 chromedriver + 417248
+3   chromedriver                        0x000000010ef57b36 chromedriver + 682806
+4   chromedriver                        0x000000010ef56aa4 chromedriver + 678564
+5   chromedriver                        0x000000010ef51cf6 chromedriver + 658678
+6   chromedriver                        0x000000010ef4ca79 chromedriver + 637561
+7   chromedriver                        0x000000010ef9d1b2 chromedriver + 967090
+8   chromedriver                        0x000000010ef9c6a6 chromedriver + 964262
+9   chromedriver                        0x000000010ef8e793 chromedriver + 907155
+10  chromedriver                        0x000000010ef5ab25 chromedriver + 695077
+11  chromedriver                        0x000000010ef5b791 chromedriver + 698257
+12  chromedriver                        0x000000010f456cc0 chromedriver + 5921984
+13  chromedriver                        0x000000010f45abb1 chromedriver + 5938097
+14  chromedriver                        0x000000010f431004 chromedriver + 5767172
+15  chromedriver                        0x000000010f45b5db chromedriver + 5940699
+16  chromedriver                        0x000000010f41f704 chromedriver + 5695236
+17  chromedriver                        0x000000010f47f0c8 chromedriver + 6086856
+18  chromedriver                        0x000000010f47f290 chromedriver + 6087312
+19  chromedriver                        0x000000010f4914b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:44:40,355 - WARNING - The chromedriver version (135.0.7049.114) detected in PATH at /usr/local/bin/chromedriver might not be compatible with the detected chrome version (145.0.7632.46); currently, chromedriver 145.0.7632.46 is recommended for chrome 145.*, so it is advised to delete the driver in PATH and retry
+2026-02-11 17:44:42,337 - ERROR - Chrome WebDriver 初始化失败: Message: session not created: This version of ChromeDriver only supports Chrome version 135
+Current browser version is 145.0.7632.46 with binary path /Applications/Google Chrome.app/Contents/MacOS/Google Chrome
+Stacktrace:
+0   chromedriver                        0x00000001078642c8 chromedriver + 6197960
+1   chromedriver                        0x000000010785b8ea chromedriver + 6162666
+2   chromedriver                        0x00000001072e0de0 chromedriver + 417248
+3   chromedriver                        0x0000000107321b36 chromedriver + 682806
+4   chromedriver                        0x0000000107320aa4 chromedriver + 678564
+5   chromedriver                        0x000000010731bcf6 chromedriver + 658678
+6   chromedriver                        0x0000000107316a79 chromedriver + 637561
+7   chromedriver                        0x00000001073671b2 chromedriver + 967090
+8   chromedriver                        0x00000001073666a6 chromedriver + 964262
+9   chromedriver                        0x0000000107358793 chromedriver + 907155
+10  chromedriver                        0x0000000107324b25 chromedriver + 695077
+11  chromedriver                        0x0000000107325791 chromedriver + 698257
+12  chromedriver                        0x0000000107820cc0 chromedriver + 5921984
+13  chromedriver                        0x0000000107824bb1 chromedriver + 5938097
+14  chromedriver                        0x00000001077fb004 chromedriver + 5767172
+15  chromedriver                        0x00000001078255db chromedriver + 5940699
+16  chromedriver                        0x00000001077e9704 chromedriver + 5695236
+17  chromedriver                        0x00000001078490c8 chromedriver + 6086856
+18  chromedriver                        0x0000000107849290 chromedriver + 6087312
+19  chromedriver                        0x000000010785b4b1 chromedriver + 6161585
+20  libsystem_pthread.dylib             0x00007ff80eec14e1 _pthread_start + 125
+21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
+
+2026-02-11 17:59:33,534 - INFO - 已登录

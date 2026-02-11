@@ -1,0 +1,67 @@
+from airflow import DAG
+from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
+
+from datetime import datetime
+import subprocess
+
+# 每个 DAG 文件中，通过 tags 参数明确指定标签（可指定多个 tag），确保标签与目录名对应，示例如下：
+# tags=["data_warehouse", "order", "sync"]  对应目录
+# dag_id="dw_order_sync" 对应文件
+
+# 2. 执行自动化测试脚本（调用pytest）
+def run_automation_test(**kwargs):
+
+    # 执行自动化测试并生成报告
+    # capture_output=True：
+    # 捕获命令的标准输出（stdout）和标准错误（stderr），避免直接打印到终端。
+    # text=True：
+    # 将输出以文本形式返回，而不是字节形式
+    result = subprocess.run(
+        ["python", "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py"],
+        capture_output=True,
+        text=True
+    )
+    print("子进程输出内容:")
+    print(result.stdout)
+    # 如果有错误信息也打印出来
+    if result.stderr:
+        print("子进程错误信息:")
+        print(result.stderr)
+
+    # 返回测试结果，供后续步骤使用
+    return result.returncode  # 0=成功，非0=失败
+
+# ====================== 第三步：定义DAG ======================
+# 核心：tags 参数指定标签（与目录标签一致，可加额外标签）
+with DAG(
+    dag_id="dw_order_sync",  # 唯一 DAG ID
+    start_date=datetime(2026, 2, 11),
+    schedule="@daily",
+    catchup=False,
+    tags=["data_warehouse", "order", "sync"]  # 主标签+子标签
+) as dag:
+    sync_order = BashOperator(
+        task_id="sync_order_data",
+        bash_command='echo "同步订单数据到数据仓库"'
+    )
+    # Task3：执行自动化测试
+    run_test = PythonOperator(
+        task_id='run_automation_test',
+        python_callable=run_automation_test,
+    )
+
+    sync_order >> run_test
+
+
+
+
+from airflow.models import DagModel
+from airflow.utils.session import create_session
+
+# 自动启用 DAG
+with create_session() as session:
+    dag_model = session.query(DagModel).filter(DagModel.dag_id == "dw_order_sync").first()
+    if dag_model:
+        dag_model.is_paused = False  # 设置为启用状态
+        session.commit()

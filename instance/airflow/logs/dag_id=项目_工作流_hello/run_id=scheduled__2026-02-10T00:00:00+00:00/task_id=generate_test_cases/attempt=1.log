@@ -1,0 +1,14 @@
+[2026-02-11T16:15:05.721+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 项目_工作流_hello.generate_test_cases scheduled__2026-02-10T00:00:00+00:00 [queued]>
+[2026-02-11T16:15:05.727+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 项目_工作流_hello.generate_test_cases scheduled__2026-02-10T00:00:00+00:00 [queued]>
+[2026-02-11T16:15:05.728+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2026-02-11T16:15:05.741+0800] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): generate_test_cases> on 2026-02-10 00:00:00+00:00
+[2026-02-11T16:15:05.744+0800] {standard_task_runner.py:60} INFO - Started process 14184 to run task
+[2026-02-11T16:15:05.751+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'generate_test_cases', 'scheduled__2026-02-10T00:00:00+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpcpbgh2p9']
+[2026-02-11T16:15:05.755+0800] {standard_task_runner.py:88} INFO - Job 23: Subtask generate_test_cases
+[2026-02-11T16:15:05.808+0800] {task_command.py:423} INFO - Running <TaskInstance: 项目_工作流_hello.generate_test_cases scheduled__2026-02-10T00:00:00+00:00 [running]> on host localhost-2.local
+[2026-02-11T16:15:06.118+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='skducn@163.com' AIRFLOW_CTX_DAG_OWNER='金浩1' AIRFLOW_CTX_DAG_ID='项目_工作流_hello' AIRFLOW_CTX_TASK_ID='generate_test_cases' AIRFLOW_CTX_EXECUTION_DATE='2026-02-10T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-10T00:00:00+00:00'
+[2026-02-11T16:15:15.045+0800] {logging_mixin.py:188} INFO - 测试用例生成完成，路径：/Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_cases.md
+[2026-02-11T16:15:15.049+0800] {python.py:202} INFO - Done. Returned value was: None
+[2026-02-11T16:15:15.055+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=项目_工作流_hello, task_id=generate_test_cases, execution_date=20260210T000000, start_date=20260211T081505, end_date=20260211T081515
+[2026-02-11T16:15:15.117+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-11T16:15:15.141+0800] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

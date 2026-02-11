@@ -1,0 +1,34 @@
+[2026-02-11T16:20:55.567+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_workflow_2.data_check scheduled__2026-02-01T00:00:00+00:00 [queued]>
+[2026-02-11T16:20:55.573+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_workflow_2.data_check scheduled__2026-02-01T00:00:00+00:00 [queued]>
+[2026-02-11T16:20:55.573+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2026-02-11T16:20:55.587+0800] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): data_check> on 2026-02-01 00:00:00+00:00
+[2026-02-11T16:20:55.590+0800] {standard_task_runner.py:60} INFO - Started process 14518 to run task
+[2026-02-11T16:20:55.597+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'test_workflow_2', 'data_check', 'scheduled__2026-02-01T00:00:00+00:00', '--job-id', '66', '--raw', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp59o6y63s']
+[2026-02-11T16:20:55.601+0800] {standard_task_runner.py:88} INFO - Job 66: Subtask data_check
+[2026-02-11T16:20:55.683+0800] {task_command.py:423} INFO - Running <TaskInstance: test_workflow_2.data_check scheduled__2026-02-01T00:00:00+00:00 [running]> on host localhost-2.local
+[2026-02-11T16:20:55.765+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='skducn@163.com' AIRFLOW_CTX_DAG_OWNER='金浩1' AIRFLOW_CTX_DAG_ID='test_workflow_2' AIRFLOW_CTX_TASK_ID='data_check' AIRFLOW_CTX_EXECUTION_DATE='2026-02-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-01T00:00:00+00:00'
+[2026-02-11T16:20:55.768+0800] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T
+[2026-02-11T16:20:55.769+0800] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'echo "数据校验测试工作流 2 执行"']
+[2026-02-11T16:20:55.781+0800] {subprocess.py:86} INFO - Output:
+[2026-02-11T16:20:55.789+0800] {subprocess.py:93} INFO - 数据校验测试工作流 2 执行
+[2026-02-11T16:20:55.789+0800] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-11T16:20:55.810+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=test_workflow_2, task_id=data_check, execution_date=20260201T000000, start_date=20260211T082055, end_date=20260211T082055
+[2026-02-11T16:20:55.831+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-11T16:20:55.852+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-11T16:22:53.039+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_workflow_2.data_check scheduled__2026-02-01T00:00:00+00:00 [queued]>
+[2026-02-11T16:22:53.046+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_workflow_2.data_check scheduled__2026-02-01T00:00:00+00:00 [queued]>
+[2026-02-11T16:22:53.046+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2026-02-11T16:22:53.057+0800] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): data_check> on 2026-02-01 00:00:00+00:00
+[2026-02-11T16:22:53.061+0800] {standard_task_runner.py:60} INFO - Started process 14609 to run task
+[2026-02-11T16:22:53.067+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'test_workflow_2', 'data_check', 'scheduled__2026-02-01T00:00:00+00:00', '--job-id', '72', '--raw', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp417pqjd2']
+[2026-02-11T16:22:53.071+0800] {standard_task_runner.py:88} INFO - Job 72: Subtask data_check
+[2026-02-11T16:22:53.122+0800] {task_command.py:423} INFO - Running <TaskInstance: test_workflow_2.data_check scheduled__2026-02-01T00:00:00+00:00 [running]> on host localhost-2.local
+[2026-02-11T16:22:53.190+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_EMAIL='skducn@163.com' AIRFLOW_CTX_DAG_OWNER='金浩1' AIRFLOW_CTX_DAG_ID='test_workflow_2' AIRFLOW_CTX_TASK_ID='data_check' AIRFLOW_CTX_EXECUTION_DATE='2026-02-01T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-01T00:00:00+00:00'
+[2026-02-11T16:22:53.193+0800] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T
+[2026-02-11T16:22:53.195+0800] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'echo "数据校验测试工作流 2 执行"']
+[2026-02-11T16:22:53.204+0800] {subprocess.py:86} INFO - Output:
+[2026-02-11T16:22:53.206+0800] {subprocess.py:93} INFO - 数据校验测试工作流 2 执行
+[2026-02-11T16:22:53.207+0800] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-11T16:22:53.226+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=test_workflow_2, task_id=data_check, execution_date=20260201T000000, start_date=20260211T082253, end_date=20260211T082253
+[2026-02-11T16:22:53.253+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-11T16:22:53.275+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
