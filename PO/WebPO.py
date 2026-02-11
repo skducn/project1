@@ -116,8 +116,12 @@ from selenium.webdriver.remote.remote_connection import LOGGER
 class WebPO(DomPO):
 
     def __init__(self, browser_type="chrome"):
-        self.browser_type = browser_type
-        self.driver = self._initialize_driver()
+        self.driver = self._initialize_driver(browser_type)
+        if self.driver is None:
+            raise RuntimeError("WebDriver 初始化返回 None")
+            # logger.info("WebDriver 初始化成功")
+        # print("WebDriver 初始化成功")
+
         # 配置日志
         logging.basicConfig(
             level=logging.INFO,
@@ -128,14 +132,24 @@ class WebPO(DomPO):
         LOGGER.setLevel(logging.INFO)
 
 
-    def _initialize_driver(self):
+    def _initialize_driver(self, browser_type):
 
         # 1.1 初始化chrome
 
         # 1 配置项
         options = Options()
+
         try:
-            if self.browser_type == "chrome":
+            if browser_type == "chrome":
+
+                # 关键：Airflow 通常在无桌面环境运行，必须启用无头模式
+                # options.add_argument("--headless=new")
+                # options.add_argument("--no-sandbox")  # 解决权限问题
+                # options.add_argument("--disable-dev-shm-usage")  # 解决内存不足
+                # options.add_argument("--disable-gpu")  # 禁用 GPU（无头模式必需）
+                # options.add_argument("--remote-debugging-port=9222")  # 避免端口冲突
+                # # 忽略证书错误（可选，根据你的测试网站调整）
+                # options.add_argument("--ignore-certificate-errors")
 
                 # todo 屏幕
                 options.add_argument("--start-maximized")  # 最大化浏览器
@@ -179,20 +193,14 @@ class WebPO(DomPO):
 
                 try:
                     # 更新下载chromedriver
-                    self.updateChromedriver(options)
+                    driver = self.updateChromedriver(options)
+                    if driver is None:
+                        raise RuntimeError("updateChromedriver 返回了 None")
+                    return driver
+
                 except Exception as e:
                     logging.error(f"发生错误: {e}")
-
-                # # 初始化 WebDriver
-                # try:
-                #     self.driver = webdriver.Chrome(options=options)
-                # except Exception as e:
-                #     logging.error(f"Chrome WebDriver 初始化失败: {e}")
-                #     raise
-
-
-                # return self.driver
-            elif self.browser_type == "noChrome":
+            elif browser_type == "noChrome":
 
                 # 无界面模式
                 # options.headless = True  # 弃用
@@ -223,7 +231,7 @@ class WebPO(DomPO):
                 # except Exception as e:
                 #     logging.error(f"Chrome WebDriver 初始化失败: {e}")
                 #     raise
-            elif self.browser_type == "chromeCookies":
+            elif browser_type == "chromeCookies":
 
                 # todo 屏幕
                 options.add_argument("--start-maximized")  # 最大化浏览器
@@ -269,7 +277,7 @@ class WebPO(DomPO):
                     logging.error(f"发生错误: {e}")
 
                 # return self.driver
-            elif self.browser_type == "appChrome":
+            elif browser_type == "appChrome":
 
                 # todo 屏幕
                 options.add_argument('--window-size=%s,%s' % (320, 1000))  # 指定窗口大小
@@ -316,8 +324,8 @@ class WebPO(DomPO):
                 #     raise
                 # return self.driver
             else:
-                raise ValueError(f"不支持的浏览器类型: {self.browser_type}")
-            return self.driver
+                raise ValueError(f"不支持的浏览器类型: {browser_type}")
+
         except Exception as e:
             print(f"WebDriver 初始化失败: {e}")
             raise
@@ -527,55 +535,87 @@ class WebPO(DomPO):
 
             # print("浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
             # print("chrome驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
-
         elif os.name == "posix":
             # for mac
             # chromedriver --version
             # (py310) localhost-2:project linghuchong$ which chromedriver
             # /usr/local/bin/chromedriver
+            try:
+                # macOS 系统逻辑
+                googleChromeVer = subprocess.check_output(
+                    r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version",
+                    shell=True
+                ).decode().strip().split(" ")[-1]
+                googleChromeVerPre3 = ".".join(googleChromeVer.split(".")[:3])
+                print("浏览器版本前3：", googleChromeVerPre3)  # 135.0.7049.
+
+                varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+                chromeDriverPathVerPre3 = varDriverPath + googleChromeVerPre3
+                print("chrome驱动版本前3：", chromeDriverPathVerPre3)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.
+
+                if not os.path.isdir(chromeDriverPathVerPre3):
+                    print("chromedriver downloading...")
+                    Service(ChromeDriverManager().install())
+                    l_folder = os.listdir(varDriverPath)
+                    for folder in l_folder:
+                        if googleChromeVerPre3 in folder:
+                            os.rename(os.path.join(varDriverPath, folder), chromeDriverPathVerPre3)
+                            break
+                    os.chdir(os.path.join(chromeDriverPathVerPre3, "chromedriver-mac-x64"))
+                    os.system("chmod 775 chromedriver")
+
+                chromeDriverPathVerPre3 = os.path.join(chromeDriverPathVerPre3, "chromedriver-mac-x64", "chromedriver")
+                # print(chromeDriverPathVerPre3)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632/chromedriver-mac-x64/
+                # s = Service(executable_path=chromeDriverPathVerPre3, service_args=["--verbose"], log_output='Web_chromedriver_mac.log')
+                s = Service(executable_path=chromeDriverPathVerPre3)
+                driver = webdriver.Chrome(service=s, options=options)  # 显式赋值给 self.driver
+
+                # 设置隐式等待（提升稳定性）
+                # driver.implicitly_wait(10)
+                # print("googleChrome浏览器版本：", self.driver.capabilities['browserVersion'])
+                # print("chromedriver驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])
+                return driver  # 返回 driver 实例
+            except WebDriverException as e:
+                # logger.error(f"ChromeDriver 启动失败: {str(e)}")
+                return None
+            except Exception as e:
+                # logger.error(f"初始化驱动时发生未知错误: {str(e)}")
+                return None
 
 
-            # 1 chrome浏览器路径
-            googleChromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
-            googleChromeVer = bytes.decode(googleChromeVer).replace("\n", '')
-            googleChromeVer = googleChromeVer.split('Google Chrome ')[1].strip()
-            googleChromeVerPre3 = googleChromeVer.replace(googleChromeVer.split(".")[3], '')
-            # print("浏览器版本前3：", googleChromeVerPre3)  # 135.0.7049.
-
-            # 2 chrome驱动路径
-            varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
-            chromeDriverPathVerPre3 = varDriverPath + googleChromeVerPre3
-            # print("chrome驱动版本前3：", chromeDriverPathVerPre3)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.
-
-            # 3 检查chromedriver主版本是否存在
-            if os.path.isdir(chromeDriverPathVerPre3) == False:
-                print("chromedriver downloading...")
-                Service(ChromeDriverManager().install())
-                l_folder = os.listdir(varDriverPath)
-                for i in range(len(l_folder)):
-                    if googleChromeVerPre3 in l_folder[i]:
-                        os.rename(varDriverPath + l_folder[i], varDriverPath + googleChromeVerPre3)
-                        break
-                os.chdir(varDriverPath + googleChromeVerPre3 + "/chromedriver-mac-x64")
-                os.system("chmod 775 chromedriver")
-                # os.system("chmod 775 THIRD_PARTY_NOTICES.chromedriver")
-                print(chromeDriverPathVerPre3 + "/chromedriver-mac-x64/chromedriver")  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049./chromedriver-mac-x64/chromedriver
-                chromeDriverPathVerPre3 = chromeDriverPathVerPre3 + "/chromedriver-mac-x64/chromedriver"
-                s = Service(executable_path=chromeDriverPathVerPre3, service_args=["--verbose"], log_output='Web_chromedriver_mac.log')
-                self.driver = webdriver.Chrome(service=s, options=options)
-                print("googleChrome浏览器版本：", self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-                print("chromedriver驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
-            else:
-                chromeDriverPathVerPre3 = chromeDriverPathVerPre3 + "/chromedriver-mac-x64/chromedriver"
-                # self.driver = webdriver.Chrome(service=s, options=options)
-                # from webdriver_manager.chrome import ChromeDriverManager
-                # self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-                s = Service(executable_path=chromeDriverPathVerPre3, service_args=["--verbose"],log_output='Web_chromedriver_mac.log')
-                # s = Service(executable_path='/usr/local/bin/chromedriver', service_args=["--verbose"],log_output='chromedriver_verbose.log')
-                self.driver = webdriver.Chrome(service=s, options=options)
-                # print("浏览器版本：",self.driver.capabilities['browserVersion'])  # 114.0.5735.198  //浏览器版本
-                # print("chromedriver版本：",self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])  # 114.0.5735.90  //chrome驱动版本
-            # return self.driver
+            # # 1 chrome浏览器路径
+            # googleChromeVer = subprocess.check_output(r"/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --version", shell=True)
+            # googleChromeVer = bytes.decode(googleChromeVer).replace("\n", '')
+            # googleChromeVer = googleChromeVer.split('Google Chrome ')[1].strip()
+            # googleChromeVerPre3 = googleChromeVer.replace(googleChromeVer.split(".")[3], '')
+            # # print("浏览器版本前3：", googleChromeVerPre3)  # 135.0.7049.
+            #
+            # # 2 chrome驱动路径
+            # varDriverPath = r"/Users/linghuchong/.wdm/drivers/chromedriver/mac64/"
+            # chromeDriverPathVerPre3 = varDriverPath + googleChromeVerPre3
+            # # print("chrome驱动版本前3：", chromeDriverPathVerPre3)  # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/135.0.7049.
+            #
+            # # 3 检查chromedriver主版本是否存在
+            # if os.path.isdir(chromeDriverPathVerPre3) == False:
+            #     print("chromedriver downloading...")
+            #     Service(ChromeDriverManager().install())
+            #     l_folder = os.listdir(varDriverPath)
+            #     for i in range(len(l_folder)):
+            #         if googleChromeVerPre3 in l_folder[i]:
+            #             os.rename(varDriverPath + l_folder[i], varDriverPath + googleChromeVerPre3)
+            #             break
+            #     os.chdir(varDriverPath + googleChromeVerPre3 + "/chromedriver-mac-x64")
+            #     os.system("chmod 775 chromedriver")
+            #
+            # chromeDriverPathVerPre3 = os.path.join(chromeDriverPathVerPre3, "chromedriver-mac-x64", "chromedriver")
+            # print(chromeDriverPathVerPre3) # /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/
+            # s = Service(executable_path=chromeDriverPathVerPre3, service_args=["--verbose"],
+            #             log_output='Web_chromedriver_mac.log')
+            # self.driver = webdriver.Chrome(service=s, options=options)  # 显式赋值给 self.driver
+            # print("googleChrome浏览器版本：", self.driver.capabilities['browserVersion'])
+            # print("chromedriver驱动版本：", self.driver.capabilities['chrome']['chromedriverVersion'].split(' ')[0])
+            # return self.driver  # 返回 driver 实例
+            #
 
 
             # try:

@@ -1,45 +1,95 @@
-[2026-02-11 16:14:26 +0800] [14148] [INFO] Starting gunicorn 21.2.0
-[2026-02-11 16:14:26 +0800] [14148] [INFO] Listening at: http://[::]:8793 (14148)
-[2026-02-11 16:14:26 +0800] [14148] [INFO] Using worker: sync
-[2026-02-11 16:14:26 +0800] [14156] [INFO] Booting worker with pid: 14156
-[2026-02-11 16:14:26 +0800] [14157] [INFO] Booting worker with pid: 14157
+[2026-02-11 19:49:50 +0800] [1102] [INFO] Starting gunicorn 21.2.0
+[2026-02-11 19:49:50 +0800] [1102] [INFO] Listening at: http://[::]:8793 (1102)
+[2026-02-11 19:49:50 +0800] [1102] [INFO] Using worker: sync
+[2026-02-11 19:49:50 +0800] [1104] [INFO] Booting worker with pid: 1104
+[2026-02-11 19:49:50 +0800] [1105] [INFO] Booting worker with pid: 1105
+[2026-02-11 20:16:59 +0800] [1102] [CRITICAL] WORKER TIMEOUT (pid:1104)
+[2026-02-11 20:16:59 +0800] [1102] [CRITICAL] WORKER TIMEOUT (pid:1105)
+[2026-02-11 20:16:59 +0800] [1104] [INFO] Worker exiting (pid: 1104)
+[2026-02-11 20:16:59 +0800] [1105] [INFO] Worker exiting (pid: 1105)
+[2026-02-11 20:16:59 +0800] [1102] [ERROR] Worker (pid:1105) exited with code 1
+[2026-02-11 20:16:59 +0800] [1102] [ERROR] Worker (pid:1104) exited with code 1
+[2026-02-11 20:16:59 +0800] [1102] [ERROR] Worker (pid:1104) exited with code 1.
+[2026-02-11 20:16:59 +0800] [1102] [ERROR] Worker (pid:1105) exited with code 1.
+[2026-02-11 20:16:59 +0800] [1407] [INFO] Booting worker with pid: 1407
+[2026-02-11 20:16:59 +0800] [1408] [INFO] Booting worker with pid: 1408
+[2026-02-11 20:37:38 +0800] [1102] [CRITICAL] WORKER TIMEOUT (pid:1407)
+[2026-02-11 20:37:38 +0800] [1102] [CRITICAL] WORKER TIMEOUT (pid:1408)
+[2026-02-11 20:37:38 +0800] [1407] [INFO] Worker exiting (pid: 1407)
+[2026-02-11 20:37:38 +0800] [1408] [INFO] Worker exiting (pid: 1408)
+[2026-02-11 20:37:38 +0800] [1102] [ERROR] Worker (pid:1408) exited with code 1
+[2026-02-11 20:37:38 +0800] [1102] [ERROR] Worker (pid:1408) exited with code 1.
+[2026-02-11 20:37:38 +0800] [1102] [ERROR] Worker (pid:1407) exited with code 1
+[2026-02-11 20:37:38 +0800] [1102] [ERROR] Worker (pid:1407) exited with code 1.
+[2026-02-11 20:37:38 +0800] [1424] [INFO] Booting worker with pid: 1424
+[2026-02-11 20:37:38 +0800] [1425] [INFO] Booting worker with pid: 1425
+[2026-02-11 20:58:29 +0800] [1102] [CRITICAL] WORKER TIMEOUT (pid:1424)
+[2026-02-11 20:58:29 +0800] [1102] [CRITICAL] WORKER TIMEOUT (pid:1425)
+[2026-02-11 20:58:29 +0800] [1424] [INFO] Worker exiting (pid: 1424)
+[2026-02-11 20:58:29 +0800] [1425] [INFO] Worker exiting (pid: 1425)
+[2026-02-11 20:58:29 +0800] [1102] [ERROR] Worker (pid:1424) exited with code 1
+--- Logging error ---
 Traceback (most recent call last):
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 8, in <module>
-    from CdrdPO import *
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 10, in <module>
-    varUrl = Configparser_PO.HTTP("url")
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/ConfigparserPO.py", line 21, in HTTP
-    value = self.cf.get("HTTP", name)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/configparser.py", line 782, in get
-    d = self._unify_values(section, vars)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/configparser.py", line 1153, in _unify_values
-    raise NoSectionError(section) from None
-configparser.NoSectionError: No section: 'HTTP'
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1103, in emit
+    stream.write(msg + self.terminator)
+RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+
+During handling of the above exception, another exception occurred:
+
 Traceback (most recent call last):
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 8, in <module>
-    from CdrdPO import *
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 10, in <module>
-    varUrl = Configparser_PO.HTTP("url")
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/ConfigparserPO.py", line 21, in HTTP
-    value = self.cf.get("HTTP", name)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/configparser.py", line 782, in get
-    d = self._unify_values(section, vars)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/configparser.py", line 1153, in _unify_values
-    raise NoSectionError(section) from None
-configparser.NoSectionError: No section: 'HTTP'
-Traceback (most recent call last):
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 8, in <module>
-    from CdrdPO import *
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 10, in <module>
-    varUrl = Configparser_PO.HTTP("url")
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/ConfigparserPO.py", line 21, in HTTP
-    value = self.cf.get("HTTP", name)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/configparser.py", line 782, in get
-    d = self._unify_values(section, vars)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/configparser.py", line 1153, in _unify_values
-    raise NoSectionError(section) from None
-configparser.NoSectionError: No section: 'HTTP'
-Process DagFileProcessor437-Process:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1103, in emit
+    stream.write(msg + self.terminator)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/arbiter.py", line 527, in reap_workers
+    self.log.error('Worker (pid:%s) exited with code %s', wpid, exitcode)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1506, in error
+    self._log(ERROR, msg, args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1624, in _log
+    self.handle(record)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1634, in handle
+    self.callHandlers(record)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1696, in callHandlers
+    hdlr.handle(record)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 968, in handle
+    self.emit(record)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1108, in emit
+    self.handleError(record)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/logging/__init__.py", line 1021, in handleError
+    sys.stderr.write('--- Logging error ---\n')
+RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+Call stack:
+  File "<string>", line 1, in <module>
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/multiprocessing/spawn.py", line 116, in spawn_main
+    exitcode = _main(fd, parent_sentinel)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/multiprocessing/spawn.py", line 129, in _main
+    return self._bootstrap(parent_sentinel)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
+    self.run()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/multiprocessing/process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/serve_logs.py", line 179, in serve_logs
+    StandaloneGunicornApplication(wsgi_app, options).run()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/app/base.py", line 72, in run
+    Arbiter(self).run()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/arbiter.py", line 209, in run
+    self.sleep()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/arbiter.py", line 360, in sleep
+    ready = select.select([self.PIPE[0]], [], [], 1.0)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/arbiter.py", line 242, in handle_chld
+    self.reap_workers()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/arbiter.py", line 527, in reap_workers
+    self.log.error('Worker (pid:%s) exited with code %s', wpid, exitcode)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/gunicorn/glogging.py", line 272, in error
+    self.error_log.error(msg, *args, **kwargs)
+Message: 'Worker (pid:%s) exited with code %s'
+Arguments: (1424, 1)
+[2026-02-11 20:58:30 +0800] [1102] [ERROR] Worker (pid:1424) exited with code 1.
+[2026-02-11 20:58:30 +0800] [1440] [INFO] Booting worker with pid: 1440
+[2026-02-11 20:58:30 +0800] [1442] [INFO] Booting worker with pid: 1442
+Process DagFileProcessor908-Process:
 Traceback (most recent call last):
   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
     self.run()
@@ -75,26 +125,19 @@ Traceback (most recent call last):
     DAG.bulk_write_to_db(dags.values(), processor_subdir=processor_subdir, session=session)
   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 76, in wrapper
     return func(*args, **kwargs)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dag.py", line 3218, in bulk_write_to_db
-    dataset_manager.create_datasets(dataset_models=new_datasets, session=session)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/datasets/manager.py", line 53, in create_datasets
-    session.flush()
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3449, in flush
-    self._flush(objects)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3588, in _flush
-    with util.safe_reraise():
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
-    compat.raise_(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
-    raise exception
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3549, in _flush
-    flush_context.execute()
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
-    rec.execute(self)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 237, in save_obj
-    _emit_update_statements(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1035, in _emit_update_statements
-    raise orm_exc.StaleDataError(
-sqlalchemy.orm.exc.StaleDataError: UPDATE statement on table 'serialized_dag' expected to update 1 row(s); 0 were matched.
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dag.py", line 3059, in bulk_write_to_db
+    orm_dags: list[DagModel] = session.scalars(query).unique().all()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1778, in scalars
+    return self.execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 724, in _connection_for_bind
+    self._assert_active()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 604, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.IntegrityError) UNIQUE constraint failed: serialized_dag.dag_id
+[SQL: INSERT INTO serialized_dag (dag_id, fileloc, fileloc_hash, data, data_compressed, last_updated, dag_hash, processor_subdir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('example_branch_labels', '/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py', 14039654191820275, '{"__version": 1, "dag": {"_dag_id": "example_branch_labels", "_task_group": {"_group_id": null, "prefix_group_id": true, "tooltip": "", "ui_color": " ... (3826 characters truncated) ... ardown": false, "_task_type": "EmptyOperator", "_task_module": "airflow.operators.empty", "_is_empty": true}], "dag_dependencies": [], "params": {}}}', None, '2026-02-11 13:51:44.323928', '3eb6dc7221d41c7690a80cebcdeb6639', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)

@@ -405,3 +405,96 @@ Stacktrace:
 21  libsystem_pthread.dylib             0x00007ff80eebcf6b thread_start + 15
 
 2026-02-11 17:59:33,534 - INFO - 已登录
+2026-02-11 19:51:16,946 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:05:25,002 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:14:18,983 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:19:19,652 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:23:40,406 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632./chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:26:22,806 - INFO - ====== WebDriver manager ======
+2026-02-11 21:26:23,036 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 21:26:23,760 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 21:28:56,248 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 21:30:16,957 - INFO - WebDriver version 145.0.7632.46 selected
+2026-02-11 21:30:16,965 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.46/mac-x64/chromedriver-mac-x64.zip
+2026-02-11 21:30:16,965 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.46/mac-x64/chromedriver-mac-x64.zip
+2026-02-11 21:30:17,530 - INFO - Driver downloading response is 200
+2026-02-11 21:33:27,165 - INFO - Get LATEST chromedriver version for google-chrome
+2026-02-11 21:33:27,998 - INFO - Driver has been saved in cache [/Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632.46]
+2026-02-11 21:33:37,193 - INFO - 已登录
+2026-02-11 21:34:53,470 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632/chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:37:51,058 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632/chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:39:31,417 - ERROR - 发生错误: 'WebPO' object has no attribute 'driver'
+2026-02-11 21:40:12,780 - ERROR - 发生错误: 'WebPO' object has no attribute 'driver'
+2026-02-11 21:41:09,426 - ERROR - 发生错误: 'WebPO' object has no attribute 'driver'
+2026-02-11 21:42:25,153 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632/chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:45:26,723 - ERROR - 发生错误: Message: Service /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632/chromedriver-mac-x64/chromedriver unexpectedly exited. Status code was: 1
+
+2026-02-11 21:56:57,547 - INFO - 已登录
+2026-02-11 22:07:56,300 - ERROR - 发生错误: Message: session not created
+from disconnected: unable to connect to renderer
+Stacktrace:
+0   chromedriver                        0x00000001042b73b8 chromedriver + 6730680
+1   chromedriver                        0x00000001042aebea chromedriver + 6695914
+2   chromedriver                        0x0000000103cbacf5 chromedriver + 453877
+3   chromedriver                        0x0000000103cfdb7f chromedriver + 727935
+4   chromedriver                        0x0000000103cf90e9 chromedriver + 708841
+5   chromedriver                        0x0000000103cf3b0f chromedriver + 686863
+6   chromedriver                        0x0000000103d44dca chromedriver + 1019338
+7   chromedriver                        0x0000000103d4448c chromedriver + 1016972
+8   chromedriver                        0x0000000103d01774 chromedriver + 743284
+9   chromedriver                        0x0000000103d02521 chromedriver + 746785
+10  chromedriver                        0x0000000104270481 chromedriver + 6440065
+11  chromedriver                        0x000000010427485a chromedriver + 6457434
+12  chromedriver                        0x0000000104250139 chromedriver + 6308153
+13  chromedriver                        0x00000001042752b8 chromedriver + 6460088
+14  chromedriver                        0x000000010423eaa0 chromedriver + 6236832
+15  chromedriver                        0x000000010429b498 chromedriver + 6616216
+16  chromedriver                        0x000000010429b652 chromedriver + 6616658
+17  chromedriver                        0x00000001042ae7f6 chromedriver + 6694902
+18  libsystem_pthread.dylib             0x00007ff8060664e1 _pthread_start + 125
+19  libsystem_pthread.dylib             0x00007ff806061f6b thread_start + 15
+
+2026-02-11 22:08:04,514 - ERROR - 发生错误: Message: session not created
+from disconnected: unable to connect to renderer
+Stacktrace:
+0   chromedriver                        0x0000000101be63b8 chromedriver + 6730680
+1   chromedriver                        0x0000000101bddbea chromedriver + 6695914
+2   chromedriver                        0x00000001015e9cf5 chromedriver + 453877
+3   chromedriver                        0x000000010162cb7f chromedriver + 727935
+4   chromedriver                        0x00000001016280e9 chromedriver + 708841
+5   chromedriver                        0x0000000101622b0f chromedriver + 686863
+6   chromedriver                        0x0000000101673dca chromedriver + 1019338
+7   chromedriver                        0x000000010167348c chromedriver + 1016972
+8   chromedriver                        0x0000000101630774 chromedriver + 743284
+9   chromedriver                        0x0000000101631521 chromedriver + 746785
+10  chromedriver                        0x0000000101b9f481 chromedriver + 6440065
+11  chromedriver                        0x0000000101ba385a chromedriver + 6457434
+12  chromedriver                        0x0000000101b7f139 chromedriver + 6308153
+13  chromedriver                        0x0000000101ba42b8 chromedriver + 6460088
+14  chromedriver                        0x0000000101b6daa0 chromedriver + 6236832
+15  chromedriver                        0x0000000101bca498 chromedriver + 6616216
+16  chromedriver                        0x0000000101bca652 chromedriver + 6616658
+17  chromedriver                        0x0000000101bdd7f6 chromedriver + 6694902
+18  libsystem_pthread.dylib             0x00007ff8060664e1 _pthread_start + 125
+19  libsystem_pthread.dylib             0x00007ff806061f6b thread_start + 15
+
+2026-02-11 22:19:02,927 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:20:41,393 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:22:22,091 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:23:39,443 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:24:42,439 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:31:41,538 - INFO - 已登录
+2026-02-11 22:34:17,424 - ERROR - 发生错误: 'NoneType' object has no attribute 'implicitly_wait'
+2026-02-11 22:35:44,529 - ERROR - 发生错误: 'NoneType' object has no attribute 'implicitly_wait'
+2026-02-11 22:38:52,650 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:40:59,261 - ERROR - 发生错误: updateChromedriver 返回了 None
+2026-02-11 22:42:14,766 - INFO - 已登录
+2026-02-11 22:42:49,984 - INFO - 已登录

@@ -14,13 +14,11 @@ airflow webserver --port 8080 -D
 -D 参数表示以后台守护进程（Daemon）模式运行。
 Web Server 提供 Airflow 的用户界面（UI），用于查看和管理 DAG、任务状态、日志等。
 
-
 # todo 启动 Airflow Scheduler
 airflow scheduler -D
 说明：启动 Airflow 的 Scheduler（调度器）。
 -D 参数同样表示以后台守护进程模式运行。
 Scheduler 负责解析 DAG 文件、调度任务执行，并触发符合条件的任务实例。
-
 
 # todo 手动触发解析（可选）
 airflow dags reserialize

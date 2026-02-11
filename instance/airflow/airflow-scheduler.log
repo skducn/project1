@@ -1226,3 +1226,496 @@
 2026-02-11 17:49:27,565 INFO - Adopting or resetting orphaned tasks for active dag runs
 2026-02-11 17:54:30,379 INFO - Adopting or resetting orphaned tasks for active dag runs
 2026-02-11 17:59:33,575 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 18:04:34,279 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 18:06:04,033 INFO - Exiting gracefully upon receiving signal 15
+2026-02-11 18:06:05,077 INFO - Sending Signals.SIGTERM to group 17672. PIDs of all processes in the group: [17672]
+2026-02-11 18:06:05,078 INFO - Sending the signal Signals.SIGTERM to group 17672
+2026-02-11 18:06:05,106 INFO - Process psutil.Process(pid=17672, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='17:14:14') (17672) terminated with exit code Negsignal.SIGTERM
+2026-02-11 18:06:05,119 INFO - Sending Signals.SIGTERM to group 17672. PIDs of all processes in the group: []
+2026-02-11 18:06:05,120 INFO - Sending the signal Signals.SIGTERM to group 17672
+2026-02-11 18:06:05,121 INFO - Sending the signal Signals.SIGTERM to process 17672 as process group is missing.
+2026-02-11 18:06:05,122 INFO - Exited execute loop
+2026-02-11 19:49:47,099 INFO - Task context logging is enabled
+2026-02-11 19:49:47,103 INFO - Loaded executor: SequentialExecutor
+2026-02-11 19:49:47,187 INFO - Starting the scheduler
+2026-02-11 19:49:47,188 INFO - Processing each file at most -1 times
+2026-02-11 19:49:47,195 INFO - Launched DagFileProcessorManager with pid: 1103
+2026-02-11 19:49:47,202 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 19:50:47,209 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T11:50:44.236059+00:00 [scheduled]>
+2026-02-11 19:50:47,210 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 19:50:47,211 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T11:50:44.236059+00:00 [scheduled]>
+2026-02-11 19:50:47,213 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 19:50:47,214 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T11:50:44.236059+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 19:50:47,215 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T11:50:44.236059+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 19:50:47,217 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T11:50:44.236059+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 19:50:53,631 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T11:50:44.236059+00:00', try_number=1, map_index=-1)
+2026-02-11 19:50:53,649 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T11:50:44.236059+00:00, map_index=-1, run_start_date=2026-02-11 11:50:51.638132+00:00, run_end_date=2026-02-11 11:50:52.437203+00:00, run_duration=0.799071, state=success, executor_state=success, try_number=1, max_tries=0, job_id=94, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 11:50:47.211969+00:00, queued_by_job_id=93, pid=1149
+2026-02-11 19:50:57,049 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T11:50:44.236059+00:00 [scheduled]>
+2026-02-11 19:50:57,050 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 19:50:57,051 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T11:50:44.236059+00:00 [scheduled]>
+2026-02-11 19:50:57,053 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 19:50:57,054 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T11:50:44.236059+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 19:50:57,056 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T11:50:44.236059+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 19:50:57,058 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T11:50:44.236059+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 19:51:18,050 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T11:50:44.236059+00:00', try_number=1, map_index=-1)
+2026-02-11 19:51:18,069 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T11:50:44.236059+00:00, map_index=-1, run_start_date=2026-02-11 11:51:01.651825+00:00, run_end_date=2026-02-11 11:51:17.206445+00:00, run_duration=15.55462, state=success, executor_state=success, try_number=1, max_tries=0, job_id=95, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 11:50:57.052619+00:00, queued_by_job_id=93, pid=1156
+2026-02-11 19:51:21,889 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 11:50:44.236059+00:00: manual__2026-02-11T11:50:44.236059+00:00, state:running, queued_at: 2026-02-11 11:50:44.272227+00:00. externally triggered: True> successful
+2026-02-11 19:51:21,891 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 11:50:44.236059+00:00, run_id=manual__2026-02-11T11:50:44.236059+00:00, run_start_date=2026-02-11 11:50:47.163710+00:00, run_end_date=2026-02-11 11:51:21.891202+00:00, run_duration=34.727492, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 19:54:48,303 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 20:59:51,203 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:04:53,801 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:05:06,008 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:05:02.341510+00:00 [scheduled]>
+2026-02-11 21:05:06,009 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:05:06,009 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:05:02.341510+00:00 [scheduled]>
+2026-02-11 21:05:06,011 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:05:06,012 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:05:02.341510+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:05:06,013 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:05:02.341510+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:05:06,015 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:05:02.341510+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:05:10,757 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:05:02.341510+00:00', try_number=1, map_index=-1)
+2026-02-11 21:05:10,770 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:05:02.341510+00:00, map_index=-1, run_start_date=2026-02-11 13:05:09.926357+00:00, run_end_date=2026-02-11 13:05:10.132033+00:00, run_duration=0.205676, state=success, executor_state=success, try_number=1, max_tries=0, job_id=96, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:05:06.010785+00:00, queued_by_job_id=93, pid=2031
+2026-02-11 21:05:14,139 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:05:02.341510+00:00 [scheduled]>
+2026-02-11 21:05:14,140 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:05:14,140 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:05:02.341510+00:00 [scheduled]>
+2026-02-11 21:05:14,142 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:05:14,144 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:05:02.341510+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:05:14,144 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:05:02.341510+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:05:14,147 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:05:02.341510+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:05:25,851 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:05:02.341510+00:00', try_number=1, map_index=-1)
+2026-02-11 21:05:25,862 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:05:02.341510+00:00, map_index=-1, run_start_date=2026-02-11 13:05:18.016573+00:00, run_end_date=2026-02-11 13:05:25.202756+00:00, run_duration=7.186183, state=success, executor_state=success, try_number=1, max_tries=0, job_id=97, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:05:14.141781+00:00, queued_by_job_id=93, pid=2035
+2026-02-11 21:05:29,454 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:05:02.341510+00:00: manual__2026-02-11T13:05:02.341510+00:00, state:running, queued_at: 2026-02-11 13:05:02.372774+00:00. externally triggered: True> successful
+2026-02-11 21:05:29,455 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:05:02.341510+00:00, run_id=manual__2026-02-11T13:05:02.341510+00:00, run_start_date=2026-02-11 13:05:05.989542+00:00, run_end_date=2026-02-11 13:05:29.455430+00:00, run_duration=23.465888, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:09:55,171 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:14:04,705 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:14:02.480310+00:00 [scheduled]>
+2026-02-11 21:14:04,706 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:14:04,706 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:14:02.480310+00:00 [scheduled]>
+2026-02-11 21:14:04,709 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:14:04,711 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:14:02.480310+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:14:04,712 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:14:02.480310+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:14:04,714 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:14:02.480310+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:14:10,193 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:14:02.480310+00:00', try_number=1, map_index=-1)
+2026-02-11 21:14:10,207 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:14:02.480310+00:00, map_index=-1, run_start_date=2026-02-11 13:14:09.371338+00:00, run_end_date=2026-02-11 13:14:09.551631+00:00, run_duration=0.180293, state=success, executor_state=success, try_number=1, max_tries=0, job_id=98, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:14:04.707798+00:00, queued_by_job_id=93, pid=2627
+2026-02-11 21:14:13,294 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:14:02.480310+00:00 [scheduled]>
+2026-02-11 21:14:13,294 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:14:13,295 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:14:02.480310+00:00 [scheduled]>
+2026-02-11 21:14:13,298 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:14:13,299 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:14:02.480310+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:14:13,299 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:14:02.480310+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:14:13,302 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:14:02.480310+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:14:19,874 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:14:02.480310+00:00', try_number=1, map_index=-1)
+2026-02-11 21:14:19,888 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:14:02.480310+00:00, map_index=-1, run_start_date=2026-02-11 13:14:16.970903+00:00, run_end_date=2026-02-11 13:14:19.194837+00:00, run_duration=2.223934, state=success, executor_state=success, try_number=1, max_tries=0, job_id=99, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:14:13.297008+00:00, queued_by_job_id=93, pid=2631
+2026-02-11 21:14:22,887 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:14:02.480310+00:00: manual__2026-02-11T13:14:02.480310+00:00, state:running, queued_at: 2026-02-11 13:14:02.506343+00:00. externally triggered: True> successful
+2026-02-11 21:14:22,887 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:14:02.480310+00:00, run_id=manual__2026-02-11T13:14:02.480310+00:00, run_start_date=2026-02-11 13:14:04.682347+00:00, run_end_date=2026-02-11 13:14:22.887842+00:00, run_duration=18.205495, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:14:55,634 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:19:06,197 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:19:03.976200+00:00 [scheduled]>
+2026-02-11 21:19:06,198 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:19:06,199 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:19:03.976200+00:00 [scheduled]>
+2026-02-11 21:19:06,201 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:19:06,202 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:19:03.976200+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:19:06,202 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:19:03.976200+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:19:06,204 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:19:03.976200+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:19:11,264 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:19:03.976200+00:00', try_number=1, map_index=-1)
+2026-02-11 21:19:11,273 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:19:03.976200+00:00, map_index=-1, run_start_date=2026-02-11 13:19:10.406433+00:00, run_end_date=2026-02-11 13:19:10.583585+00:00, run_duration=0.177152, state=success, executor_state=success, try_number=1, max_tries=0, job_id=100, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:19:06.199988+00:00, queued_by_job_id=93, pid=2899
+2026-02-11 21:19:14,153 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:19:03.976200+00:00 [scheduled]>
+2026-02-11 21:19:14,154 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:19:14,155 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:19:03.976200+00:00 [scheduled]>
+2026-02-11 21:19:14,157 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:19:14,158 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:19:03.976200+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:19:14,158 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:19:03.976200+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:19:14,161 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:19:03.976200+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:19:20,505 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:19:03.976200+00:00', try_number=1, map_index=-1)
+2026-02-11 21:19:20,514 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:19:03.976200+00:00, map_index=-1, run_start_date=2026-02-11 13:19:17.872533+00:00, run_end_date=2026-02-11 13:19:19.856529+00:00, run_duration=1.983996, state=success, executor_state=success, try_number=1, max_tries=0, job_id=101, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:19:14.156003+00:00, queued_by_job_id=93, pid=2905
+2026-02-11 21:19:23,508 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:19:03.976200+00:00: manual__2026-02-11T13:19:03.976200+00:00, state:running, queued_at: 2026-02-11 13:19:03.996122+00:00. externally triggered: True> successful
+2026-02-11 21:19:23,509 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:19:03.976200+00:00, run_id=manual__2026-02-11T13:19:03.976200+00:00, run_start_date=2026-02-11 13:19:06.175764+00:00, run_end_date=2026-02-11 13:19:23.509103+00:00, run_duration=17.333339, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:19:58,070 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:23:25,767 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:23:22.474344+00:00 [scheduled]>
+2026-02-11 21:23:25,768 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:23:25,769 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:23:22.474344+00:00 [scheduled]>
+2026-02-11 21:23:25,771 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:23:25,772 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:23:22.474344+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:23:25,772 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:23:22.474344+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:23:25,774 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:23:22.474344+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:23:30,828 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:23:22.474344+00:00', try_number=1, map_index=-1)
+2026-02-11 21:23:30,840 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:23:22.474344+00:00, map_index=-1, run_start_date=2026-02-11 13:23:29.878014+00:00, run_end_date=2026-02-11 13:23:30.055923+00:00, run_duration=0.177909, state=success, executor_state=success, try_number=1, max_tries=0, job_id=102, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:23:25.770124+00:00, queued_by_job_id=93, pid=3165
+2026-02-11 21:23:34,057 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:23:22.474344+00:00 [scheduled]>
+2026-02-11 21:23:34,059 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:23:34,060 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:23:22.474344+00:00 [scheduled]>
+2026-02-11 21:23:34,062 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:23:34,063 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:23:22.474344+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:23:34,064 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:23:22.474344+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:23:34,066 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:23:22.474344+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:23:41,294 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:23:22.474344+00:00', try_number=1, map_index=-1)
+2026-02-11 21:23:41,303 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:23:22.474344+00:00, map_index=-1, run_start_date=2026-02-11 13:23:38.253564+00:00, run_end_date=2026-02-11 13:23:40.613808+00:00, run_duration=2.360244, state=success, executor_state=success, try_number=1, max_tries=0, job_id=103, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:23:34.061620+00:00, queued_by_job_id=93, pid=3175
+2026-02-11 21:23:44,486 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:23:22.474344+00:00: manual__2026-02-11T13:23:22.474344+00:00, state:running, queued_at: 2026-02-11 13:23:22.486240+00:00. externally triggered: True> successful
+2026-02-11 21:23:44,487 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:23:22.474344+00:00, run_id=manual__2026-02-11T13:23:22.474344+00:00, run_start_date=2026-02-11 13:23:25.749502+00:00, run_end_date=2026-02-11 13:23:44.487725+00:00, run_duration=18.738223, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:25:00,407 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:30:01,937 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:34:40,014 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:34:36.593158+00:00 [scheduled]>
+2026-02-11 21:34:40,015 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:34:40,016 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:34:36.593158+00:00 [scheduled]>
+2026-02-11 21:34:40,019 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:34:40,020 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:34:36.593158+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:34:40,020 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:34:36.593158+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:34:40,023 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:34:36.593158+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:34:45,188 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:34:36.593158+00:00', try_number=1, map_index=-1)
+2026-02-11 21:34:45,196 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:34:36.593158+00:00, map_index=-1, run_start_date=2026-02-11 13:34:44.379490+00:00, run_end_date=2026-02-11 13:34:44.568175+00:00, run_duration=0.188685, state=success, executor_state=success, try_number=1, max_tries=0, job_id=104, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:34:40.017800+00:00, queued_by_job_id=93, pid=3765
+2026-02-11 21:34:48,071 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:34:36.593158+00:00 [scheduled]>
+2026-02-11 21:34:48,072 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:34:48,073 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:34:36.593158+00:00 [scheduled]>
+2026-02-11 21:34:48,075 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:34:48,076 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:34:36.593158+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:34:48,077 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:34:36.593158+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:34:48,079 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:34:36.593158+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:34:54,368 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:34:36.593158+00:00', try_number=1, map_index=-1)
+2026-02-11 21:34:54,377 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:34:36.593158+00:00, map_index=-1, run_start_date=2026-02-11 13:34:51.657620+00:00, run_end_date=2026-02-11 13:34:53.677940+00:00, run_duration=2.02032, state=success, executor_state=success, try_number=1, max_tries=0, job_id=105, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:34:48.074138+00:00, queued_by_job_id=93, pid=3769
+2026-02-11 21:34:57,421 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:34:36.593158+00:00: manual__2026-02-11T13:34:36.593158+00:00, state:running, queued_at: 2026-02-11 13:34:36.605715+00:00. externally triggered: True> successful
+2026-02-11 21:34:57,422 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:34:36.593158+00:00, run_id=manual__2026-02-11T13:34:36.593158+00:00, run_start_date=2026-02-11 13:34:39.990771+00:00, run_end_date=2026-02-11 13:34:57.422034+00:00, run_duration=17.431263, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:35:04,605 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:37:37,320 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:37:36.537391+00:00 [scheduled]>
+2026-02-11 21:37:37,323 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:37:37,325 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:37:36.537391+00:00 [scheduled]>
+2026-02-11 21:37:37,328 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:37:37,329 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:37:36.537391+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:37:37,329 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:37:36.537391+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:37:37,332 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:37:36.537391+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:37:42,734 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:37:36.537391+00:00', try_number=1, map_index=-1)
+2026-02-11 21:37:42,746 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:37:36.537391+00:00, map_index=-1, run_start_date=2026-02-11 13:37:41.882286+00:00, run_end_date=2026-02-11 13:37:42.065775+00:00, run_duration=0.183489, state=success, executor_state=success, try_number=1, max_tries=0, job_id=106, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:37:37.326976+00:00, queued_by_job_id=93, pid=3943
+2026-02-11 21:37:45,656 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:37:36.537391+00:00 [scheduled]>
+2026-02-11 21:37:45,656 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:37:45,658 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:37:36.537391+00:00 [scheduled]>
+2026-02-11 21:37:45,660 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:37:45,661 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:37:36.537391+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:37:45,661 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:37:36.537391+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:37:45,663 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:37:36.537391+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:37:51,986 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:37:36.537391+00:00', try_number=1, map_index=-1)
+2026-02-11 21:37:51,995 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:37:36.537391+00:00, map_index=-1, run_start_date=2026-02-11 13:37:49.300973+00:00, run_end_date=2026-02-11 13:37:51.291899+00:00, run_duration=1.990926, state=success, executor_state=success, try_number=1, max_tries=0, job_id=107, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:37:45.659179+00:00, queued_by_job_id=93, pid=3947
+2026-02-11 21:37:54,897 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:37:36.537391+00:00: manual__2026-02-11T13:37:36.537391+00:00, state:running, queued_at: 2026-02-11 13:37:36.548199+00:00. externally triggered: True> successful
+2026-02-11 21:37:54,898 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:37:36.537391+00:00, run_id=manual__2026-02-11T13:37:36.537391+00:00, run_start_date=2026-02-11 13:37:37.280574+00:00, run_end_date=2026-02-11 13:37:54.898275+00:00, run_duration=17.617701, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:40:05,432 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:42:10,068 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:42:06.098390+00:00 [scheduled]>
+2026-02-11 21:42:10,069 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:42:10,070 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:42:06.098390+00:00 [scheduled]>
+2026-02-11 21:42:10,072 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:42:10,073 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:42:06.098390+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:42:10,074 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:42:06.098390+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:42:10,076 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:42:06.098390+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:42:16,009 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:42:06.098390+00:00', try_number=1, map_index=-1)
+2026-02-11 21:42:16,021 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:42:06.098390+00:00, map_index=-1, run_start_date=2026-02-11 13:42:14.977714+00:00, run_end_date=2026-02-11 13:42:15.202350+00:00, run_duration=0.224636, state=success, executor_state=success, try_number=1, max_tries=0, job_id=108, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:42:10.071255+00:00, queued_by_job_id=93, pid=4261
+2026-02-11 21:42:19,036 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:42:06.098390+00:00 [scheduled]>
+2026-02-11 21:42:19,037 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:42:19,038 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:42:06.098390+00:00 [scheduled]>
+2026-02-11 21:42:19,040 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:42:19,041 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:42:06.098390+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:42:19,042 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:42:06.098390+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:42:19,044 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:42:06.098390+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:42:26,033 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:42:06.098390+00:00', try_number=1, map_index=-1)
+2026-02-11 21:42:26,044 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:42:06.098390+00:00, map_index=-1, run_start_date=2026-02-11 13:42:23.050722+00:00, run_end_date=2026-02-11 13:42:25.358396+00:00, run_duration=2.307674, state=success, executor_state=success, try_number=1, max_tries=0, job_id=109, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:42:19.039312+00:00, queued_by_job_id=93, pid=4265
+2026-02-11 21:42:28,890 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:42:06.098390+00:00: manual__2026-02-11T13:42:06.098390+00:00, state:running, queued_at: 2026-02-11 13:42:06.109305+00:00. externally triggered: True> successful
+2026-02-11 21:42:28,891 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:42:06.098390+00:00, run_id=manual__2026-02-11T13:42:06.098390+00:00, run_start_date=2026-02-11 13:42:10.043511+00:00, run_end_date=2026-02-11 13:42:28.891156+00:00, run_duration=18.847645, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:45:08,342 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:45:12,598 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:45:11.332773+00:00 [scheduled]>
+2026-02-11 21:45:12,599 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:45:12,600 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:45:11.332773+00:00 [scheduled]>
+2026-02-11 21:45:12,602 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:45:12,602 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:45:11.332773+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:45:12,603 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:45:11.332773+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:45:12,605 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:45:11.332773+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:45:17,971 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:45:11.332773+00:00', try_number=1, map_index=-1)
+2026-02-11 21:45:17,979 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:45:11.332773+00:00, map_index=-1, run_start_date=2026-02-11 13:45:17.144642+00:00, run_end_date=2026-02-11 13:45:17.320385+00:00, run_duration=0.175743, state=success, executor_state=success, try_number=1, max_tries=0, job_id=110, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:45:12.601087+00:00, queued_by_job_id=93, pid=4445
+2026-02-11 21:45:21,124 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:45:11.332773+00:00 [scheduled]>
+2026-02-11 21:45:21,125 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:45:21,125 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:45:11.332773+00:00 [scheduled]>
+2026-02-11 21:45:21,127 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:45:21,128 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:45:11.332773+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:45:21,129 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:45:11.332773+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:45:21,131 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:45:11.332773+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:45:27,542 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:45:11.332773+00:00', try_number=1, map_index=-1)
+2026-02-11 21:45:27,552 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:45:11.332773+00:00, map_index=-1, run_start_date=2026-02-11 13:45:24.808986+00:00, run_end_date=2026-02-11 13:45:26.932855+00:00, run_duration=2.123869, state=success, executor_state=success, try_number=1, max_tries=0, job_id=111, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:45:21.126531+00:00, queued_by_job_id=93, pid=4457
+2026-02-11 21:45:30,711 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:45:11.332773+00:00: manual__2026-02-11T13:45:11.332773+00:00, state:running, queued_at: 2026-02-11 13:45:11.343680+00:00. externally triggered: True> successful
+2026-02-11 21:45:30,712 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:45:11.332773+00:00, run_id=manual__2026-02-11T13:45:11.332773+00:00, run_start_date=2026-02-11 13:45:12.576379+00:00, run_end_date=2026-02-11 13:45:30.712285+00:00, run_duration=18.135906, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:50:09,151 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:51:54,565 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:51:53.606280+00:00 [scheduled]>
+2026-02-11 21:51:54,565 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:51:54,566 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:51:53.606280+00:00 [scheduled]>
+2026-02-11 21:51:54,568 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:51:54,569 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:51:53.606280+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:51:54,570 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:51:53.606280+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:51:54,572 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:51:53.606280+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:51:59,756 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:51:53.606280+00:00', try_number=1, map_index=-1)
+2026-02-11 21:51:59,765 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:51:53.606280+00:00, map_index=-1, run_start_date=2026-02-11 13:51:58.929545+00:00, run_end_date=2026-02-11 13:51:59.116235+00:00, run_duration=0.18669, state=success, executor_state=success, try_number=1, max_tries=0, job_id=112, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:51:54.567627+00:00, queued_by_job_id=93, pid=4778
+2026-02-11 21:52:02,577 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:51:53.606280+00:00 [scheduled]>
+2026-02-11 21:52:02,578 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:52:02,579 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:51:53.606280+00:00 [scheduled]>
+2026-02-11 21:52:02,581 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:52:02,582 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:51:53.606280+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:52:02,583 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:51:53.606280+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:52:02,585 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:51:53.606280+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:52:08,971 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:51:53.606280+00:00', try_number=1, map_index=-1)
+2026-02-11 21:52:08,983 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:51:53.606280+00:00, map_index=-1, run_start_date=2026-02-11 13:52:06.165166+00:00, run_end_date=2026-02-11 13:52:08.284392+00:00, run_duration=2.119226, state=success, executor_state=success, try_number=1, max_tries=0, job_id=113, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:52:02.580306+00:00, queued_by_job_id=93, pid=4785
+2026-02-11 21:52:11,769 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:51:53.606280+00:00: manual__2026-02-11T13:51:53.606280+00:00, state:running, queued_at: 2026-02-11 13:51:53.626641+00:00. externally triggered: True> successful
+2026-02-11 21:52:11,770 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:51:53.606280+00:00, run_id=manual__2026-02-11T13:51:53.606280+00:00, run_start_date=2026-02-11 13:51:54.542967+00:00, run_end_date=2026-02-11 13:52:11.770204+00:00, run_duration=17.227237, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 21:55:10,944 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 21:57:48,651 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:57:45.161908+00:00 [scheduled]>
+2026-02-11 21:57:48,652 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:57:48,652 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T13:57:45.161908+00:00 [scheduled]>
+2026-02-11 21:57:48,654 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 21:57:48,655 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:57:45.161908+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 21:57:48,655 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:57:45.161908+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:57:48,657 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T13:57:45.161908+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:57:53,551 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T13:57:45.161908+00:00', try_number=1, map_index=-1)
+2026-02-11 21:57:53,561 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T13:57:45.161908+00:00, map_index=-1, run_start_date=2026-02-11 13:57:52.568219+00:00, run_end_date=2026-02-11 13:57:52.798058+00:00, run_duration=0.229839, state=success, executor_state=success, try_number=1, max_tries=0, job_id=114, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 13:57:48.653419+00:00, queued_by_job_id=93, pid=5020
+2026-02-11 21:57:56,795 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:57:45.161908+00:00 [scheduled]>
+2026-02-11 21:57:56,796 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 21:57:56,797 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:57:45.161908+00:00 [scheduled]>
+2026-02-11 21:57:56,799 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 21:57:56,800 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:57:45.161908+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 21:57:56,801 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:57:45.161908+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:57:56,803 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:57:45.161908+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 21:58:03,725 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T13:57:45.161908+00:00', try_number=1, map_index=-1)
+2026-02-11 21:58:03,734 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T13:57:45.161908+00:00, map_index=-1, run_start_date=2026-02-11 13:58:00.613029+00:00, run_end_date=2026-02-11 13:58:03.051725+00:00, run_duration=2.438696, state=success, executor_state=success, try_number=1, max_tries=0, job_id=115, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 13:57:56.798111+00:00, queued_by_job_id=93, pid=5024
+2026-02-11 21:58:07,370 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 13:57:45.161908+00:00: manual__2026-02-11T13:57:45.161908+00:00, state:running, queued_at: 2026-02-11 13:57:45.173955+00:00. externally triggered: True> successful
+2026-02-11 21:58:07,371 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 13:57:45.161908+00:00, run_id=manual__2026-02-11T13:57:45.161908+00:00, run_start_date=2026-02-11 13:57:48.626749+00:00, run_end_date=2026-02-11 13:58:07.371771+00:00, run_duration=18.745022, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:00:14,735 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:05:16,671 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:10:18,039 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:15:20,563 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:20:21,200 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:22:08,516 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:22:04.982000+00:00 [scheduled]>
+2026-02-11 22:22:08,517 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:22:08,517 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:22:04.982000+00:00 [scheduled]>
+2026-02-11 22:22:08,519 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:22:08,520 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:22:04.982000+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:22:08,521 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:22:04.982000+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:22:08,523 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:22:04.982000+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:22:13,028 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:22:04.982000+00:00', try_number=1, map_index=-1)
+2026-02-11 22:22:13,043 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:22:04.982000+00:00, map_index=-1, run_start_date=2026-02-11 14:22:12.100972+00:00, run_end_date=2026-02-11 14:22:12.285802+00:00, run_duration=0.18483, state=success, executor_state=success, try_number=1, max_tries=0, job_id=116, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:22:08.518390+00:00, queued_by_job_id=93, pid=5877
+2026-02-11 22:22:16,335 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:22:04.982000+00:00 [scheduled]>
+2026-02-11 22:22:16,336 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:22:16,337 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:22:04.982000+00:00 [scheduled]>
+2026-02-11 22:22:16,339 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:22:16,340 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:22:04.982000+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:22:16,341 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:22:04.982000+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:22:16,343 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:22:04.982000+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:22:22,992 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:22:04.982000+00:00', try_number=1, map_index=-1)
+2026-02-11 22:22:23,007 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:22:04.982000+00:00, map_index=-1, run_start_date=2026-02-11 14:22:20.001092+00:00, run_end_date=2026-02-11 14:22:22.310501+00:00, run_duration=2.309409, state=success, executor_state=success, try_number=1, max_tries=0, job_id=117, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:22:16.338146+00:00, queued_by_job_id=93, pid=5885
+2026-02-11 22:22:25,813 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:22:04.982000+00:00: manual__2026-02-11T14:22:04.982000+00:00, state:running, queued_at: 2026-02-11 14:22:04.994901+00:00. externally triggered: True> successful
+2026-02-11 22:22:25,815 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:22:04.982000+00:00, run_id=manual__2026-02-11T14:22:04.982000+00:00, run_start_date=2026-02-11 14:22:08.496444+00:00, run_end_date=2026-02-11 14:22:25.815010+00:00, run_duration=17.318566, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:23:26,305 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:23:22.716575+00:00 [scheduled]>
+2026-02-11 22:23:26,306 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:23:26,307 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:23:22.716575+00:00 [scheduled]>
+2026-02-11 22:23:26,309 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:23:26,310 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:23:22.716575+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:23:26,311 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:23:22.716575+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:23:26,313 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:23:22.716575+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:23:30,784 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:23:22.716575+00:00', try_number=1, map_index=-1)
+2026-02-11 22:23:30,801 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:23:22.716575+00:00, map_index=-1, run_start_date=2026-02-11 14:23:29.865013+00:00, run_end_date=2026-02-11 14:23:30.047501+00:00, run_duration=0.182488, state=success, executor_state=success, try_number=1, max_tries=0, job_id=118, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:23:26.308389+00:00, queued_by_job_id=93, pid=5957
+2026-02-11 22:23:33,958 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:23:22.716575+00:00 [scheduled]>
+2026-02-11 22:23:33,959 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:23:33,960 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:23:22.716575+00:00 [scheduled]>
+2026-02-11 22:23:33,962 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:23:33,963 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:23:22.716575+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:23:33,964 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:23:22.716575+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:23:33,966 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:23:22.716575+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:23:40,305 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:23:22.716575+00:00', try_number=1, map_index=-1)
+2026-02-11 22:23:40,317 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:23:22.716575+00:00, map_index=-1, run_start_date=2026-02-11 14:23:37.607422+00:00, run_end_date=2026-02-11 14:23:39.643012+00:00, run_duration=2.03559, state=success, executor_state=success, try_number=1, max_tries=0, job_id=119, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:23:33.961121+00:00, queued_by_job_id=93, pid=5963
+2026-02-11 22:23:43,251 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:23:22.716575+00:00: manual__2026-02-11T14:23:22.716575+00:00, state:running, queued_at: 2026-02-11 14:23:22.728972+00:00. externally triggered: True> successful
+2026-02-11 22:23:43,252 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:23:22.716575+00:00, run_id=manual__2026-02-11T14:23:22.716575+00:00, run_start_date=2026-02-11 14:23:26.284947+00:00, run_end_date=2026-02-11 14:23:43.252408+00:00, run_duration=16.967461, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:24:29,057 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:24:25.278535+00:00 [scheduled]>
+2026-02-11 22:24:29,057 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:24:29,058 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:24:25.278535+00:00 [scheduled]>
+2026-02-11 22:24:29,060 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:24:29,061 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:24:25.278535+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:24:29,062 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:24:25.278535+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:24:29,064 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:24:25.278535+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:24:33,769 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:24:25.278535+00:00', try_number=1, map_index=-1)
+2026-02-11 22:24:33,783 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:24:25.278535+00:00, map_index=-1, run_start_date=2026-02-11 14:24:32.782183+00:00, run_end_date=2026-02-11 14:24:33.018163+00:00, run_duration=0.23598, state=success, executor_state=success, try_number=1, max_tries=0, job_id=120, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:24:29.059208+00:00, queued_by_job_id=93, pid=6025
+2026-02-11 22:24:36,878 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:24:25.278535+00:00 [scheduled]>
+2026-02-11 22:24:36,879 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:24:36,880 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:24:25.278535+00:00 [scheduled]>
+2026-02-11 22:24:36,882 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:24:36,883 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:24:25.278535+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:24:36,885 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:24:25.278535+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:24:36,887 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:24:25.278535+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:24:43,353 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:24:25.278535+00:00', try_number=1, map_index=-1)
+2026-02-11 22:24:43,366 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:24:25.278535+00:00, map_index=-1, run_start_date=2026-02-11 14:24:40.756154+00:00, run_end_date=2026-02-11 14:24:42.651397+00:00, run_duration=1.895243, state=success, executor_state=success, try_number=1, max_tries=0, job_id=121, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:24:36.880987+00:00, queued_by_job_id=93, pid=6031
+2026-02-11 22:24:46,377 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:24:25.278535+00:00: manual__2026-02-11T14:24:25.278535+00:00, state:running, queued_at: 2026-02-11 14:24:25.290518+00:00. externally triggered: True> successful
+2026-02-11 22:24:46,378 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:24:25.278535+00:00, run_id=manual__2026-02-11T14:24:25.278535+00:00, run_start_date=2026-02-11 14:24:29.036943+00:00, run_end_date=2026-02-11 14:24:46.378445+00:00, run_duration=17.341502, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:25:23,044 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:30:25,624 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:34:02,793 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:34:01.458331+00:00 [scheduled]>
+2026-02-11 22:34:02,794 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:34:02,795 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:34:01.458331+00:00 [scheduled]>
+2026-02-11 22:34:02,796 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:34:02,797 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:34:01.458331+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:34:02,798 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:34:01.458331+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:34:02,800 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:34:01.458331+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:34:07,660 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:34:01.458331+00:00', try_number=1, map_index=-1)
+2026-02-11 22:34:07,671 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:34:01.458331+00:00, map_index=-1, run_start_date=2026-02-11 14:34:06.817026+00:00, run_end_date=2026-02-11 14:34:06.984005+00:00, run_duration=0.166979, state=success, executor_state=success, try_number=1, max_tries=0, job_id=122, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:34:02.795914+00:00, queued_by_job_id=93, pid=6356
+2026-02-11 22:34:10,882 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:34:01.458331+00:00 [scheduled]>
+2026-02-11 22:34:10,884 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:34:10,886 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:34:01.458331+00:00 [scheduled]>
+2026-02-11 22:34:10,891 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:34:10,894 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:34:01.458331+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:34:10,896 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:34:01.458331+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:34:10,899 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:34:01.458331+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:34:18,330 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:34:01.458331+00:00', try_number=1, map_index=-1)
+2026-02-11 22:34:18,345 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:34:01.458331+00:00, map_index=-1, run_start_date=2026-02-11 14:34:15.274814+00:00, run_end_date=2026-02-11 14:34:17.650822+00:00, run_duration=2.376008, state=success, executor_state=success, try_number=1, max_tries=0, job_id=123, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:34:10.889656+00:00, queued_by_job_id=93, pid=6360
+2026-02-11 22:34:21,201 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:34:01.458331+00:00: manual__2026-02-11T14:34:01.458331+00:00, state:running, queued_at: 2026-02-11 14:34:01.472530+00:00. externally triggered: True> successful
+2026-02-11 22:34:21,202 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:34:01.458331+00:00, run_id=manual__2026-02-11T14:34:01.458331+00:00, run_start_date=2026-02-11 14:34:02.771449+00:00, run_end_date=2026-02-11 14:34:21.202514+00:00, run_duration=18.431065, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:35:26,556 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:35:30,842 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:35:28.256387+00:00 [scheduled]>
+2026-02-11 22:35:30,843 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:35:30,844 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:35:28.256387+00:00 [scheduled]>
+2026-02-11 22:35:30,846 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:35:30,847 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:35:28.256387+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:35:30,847 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:35:28.256387+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:35:30,849 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:35:28.256387+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:35:35,306 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:35:28.256387+00:00', try_number=1, map_index=-1)
+2026-02-11 22:35:35,318 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:35:28.256387+00:00, map_index=-1, run_start_date=2026-02-11 14:35:34.456559+00:00, run_end_date=2026-02-11 14:35:34.622624+00:00, run_duration=0.166065, state=success, executor_state=success, try_number=1, max_tries=0, job_id=124, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:35:30.845075+00:00, queued_by_job_id=93, pid=6417
+2026-02-11 22:35:38,456 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:35:28.256387+00:00 [scheduled]>
+2026-02-11 22:35:38,457 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:35:38,457 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:35:28.256387+00:00 [scheduled]>
+2026-02-11 22:35:38,460 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:35:38,461 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:35:28.256387+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:35:38,462 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:35:28.256387+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:35:38,464 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:35:28.256387+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:35:45,438 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:35:28.256387+00:00', try_number=1, map_index=-1)
+2026-02-11 22:35:45,451 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:35:28.256387+00:00, map_index=-1, run_start_date=2026-02-11 14:35:42.466015+00:00, run_end_date=2026-02-11 14:35:44.750256+00:00, run_duration=2.284241, state=success, executor_state=success, try_number=1, max_tries=0, job_id=125, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:35:38.458848+00:00, queued_by_job_id=93, pid=6421
+2026-02-11 22:35:48,467 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:35:28.256387+00:00: manual__2026-02-11T14:35:28.256387+00:00, state:running, queued_at: 2026-02-11 14:35:28.271560+00:00. externally triggered: True> successful
+2026-02-11 22:35:48,468 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:35:28.256387+00:00, run_id=manual__2026-02-11T14:35:28.256387+00:00, run_start_date=2026-02-11 14:35:30.823267+00:00, run_end_date=2026-02-11 14:35:48.468835+00:00, run_duration=17.645568, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:38:38,682 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:38:36.954264+00:00 [scheduled]>
+2026-02-11 22:38:38,683 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:38:38,684 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:38:36.954264+00:00 [scheduled]>
+2026-02-11 22:38:38,686 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:38:38,687 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:38:36.954264+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:38:38,687 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:38:36.954264+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:38:38,689 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:38:36.954264+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:38:43,329 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:38:36.954264+00:00', try_number=1, map_index=-1)
+2026-02-11 22:38:43,340 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:38:36.954264+00:00, map_index=-1, run_start_date=2026-02-11 14:38:42.458616+00:00, run_end_date=2026-02-11 14:38:42.631193+00:00, run_duration=0.172577, state=success, executor_state=success, try_number=1, max_tries=0, job_id=126, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:38:38.685059+00:00, queued_by_job_id=93, pid=6547
+2026-02-11 22:38:46,501 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:38:36.954264+00:00 [scheduled]>
+2026-02-11 22:38:46,502 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:38:46,503 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:38:36.954264+00:00 [scheduled]>
+2026-02-11 22:38:46,505 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:38:46,506 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:38:36.954264+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:38:46,506 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:38:36.954264+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:38:46,508 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:38:36.954264+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:38:53,514 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:38:36.954264+00:00', try_number=1, map_index=-1)
+2026-02-11 22:38:53,527 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:38:36.954264+00:00, map_index=-1, run_start_date=2026-02-11 14:38:50.527365+00:00, run_end_date=2026-02-11 14:38:52.875238+00:00, run_duration=2.347873, state=success, executor_state=success, try_number=1, max_tries=0, job_id=127, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:38:46.503916+00:00, queued_by_job_id=93, pid=6551
+2026-02-11 22:38:56,730 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:38:36.954264+00:00: manual__2026-02-11T14:38:36.954264+00:00, state:running, queued_at: 2026-02-11 14:38:36.966597+00:00. externally triggered: True> successful
+2026-02-11 22:38:56,731 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:38:36.954264+00:00, run_id=manual__2026-02-11T14:38:36.954264+00:00, run_start_date=2026-02-11 14:38:38.662196+00:00, run_end_date=2026-02-11 14:38:56.731846+00:00, run_duration=18.06965, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:40:29,125 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:40:45,697 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:40:42.202549+00:00 [scheduled]>
+2026-02-11 22:40:45,698 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:40:45,699 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:40:42.202549+00:00 [scheduled]>
+2026-02-11 22:40:45,700 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:40:45,701 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:40:42.202549+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:40:45,702 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:40:42.202549+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:40:45,704 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:40:42.202549+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:40:50,410 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:40:42.202549+00:00', try_number=1, map_index=-1)
+2026-02-11 22:40:50,421 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:40:42.202549+00:00, map_index=-1, run_start_date=2026-02-11 14:40:49.471193+00:00, run_end_date=2026-02-11 14:40:49.735819+00:00, run_duration=0.264626, state=success, executor_state=success, try_number=1, max_tries=0, job_id=128, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:40:45.699818+00:00, queued_by_job_id=93, pid=6647
+2026-02-11 22:40:53,334 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:40:42.202549+00:00 [scheduled]>
+2026-02-11 22:40:53,334 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:40:53,335 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:40:42.202549+00:00 [scheduled]>
+2026-02-11 22:40:53,337 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:40:53,338 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:40:42.202549+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:40:53,339 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:40:42.202549+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:40:53,341 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:40:42.202549+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:41:00,181 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:40:42.202549+00:00', try_number=1, map_index=-1)
+2026-02-11 22:41:00,192 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:40:42.202549+00:00, map_index=-1, run_start_date=2026-02-11 14:40:57.367827+00:00, run_end_date=2026-02-11 14:40:59.471165+00:00, run_duration=2.103338, state=success, executor_state=success, try_number=1, max_tries=0, job_id=129, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:40:53.336536+00:00, queued_by_job_id=93, pid=6656
+2026-02-11 22:41:03,073 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:40:42.202549+00:00: manual__2026-02-11T14:40:42.202549+00:00, state:running, queued_at: 2026-02-11 14:40:42.219959+00:00. externally triggered: True> successful
+2026-02-11 22:41:03,075 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:40:42.202549+00:00, run_id=manual__2026-02-11T14:40:42.202549+00:00, run_start_date=2026-02-11 14:40:45.676527+00:00, run_end_date=2026-02-11 14:41:03.075445+00:00, run_duration=17.398918, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:41:53,592 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:41:50.369709+00:00 [scheduled]>
+2026-02-11 22:41:53,593 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:41:53,594 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-11T14:41:50.369709+00:00 [scheduled]>
+2026-02-11 22:41:53,596 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-11 22:41:53,597 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:41:50.369709+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-11 22:41:53,597 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:41:50.369709+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:41:53,599 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-11T14:41:50.369709+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:41:57,839 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-11T14:41:50.369709+00:00', try_number=1, map_index=-1)
+2026-02-11 22:41:57,879 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-11T14:41:50.369709+00:00, map_index=-1, run_start_date=2026-02-11 14:41:56.916014+00:00, run_end_date=2026-02-11 14:41:57.108020+00:00, run_duration=0.192006, state=success, executor_state=success, try_number=1, max_tries=0, job_id=130, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-11 14:41:53.595162+00:00, queued_by_job_id=93, pid=6695
+2026-02-11 22:42:01,095 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:41:50.369709+00:00 [scheduled]>
+2026-02-11 22:42:01,096 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-11 22:42:01,097 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T14:41:50.369709+00:00 [scheduled]>
+2026-02-11 22:42:01,099 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-11 22:42:01,100 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:41:50.369709+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-11 22:42:01,101 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:41:50.369709+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:42:01,103 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T14:41:50.369709+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-11 22:42:19,015 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-11T14:41:50.369709+00:00', try_number=1, map_index=-1)
+2026-02-11 22:42:19,029 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:41:50.369709+00:00, map_index=-1, run_start_date=2026-02-11 14:42:04.706372+00:00, run_end_date=2026-02-11 14:42:18.347317+00:00, run_duration=13.640945, state=success, executor_state=success, try_number=1, max_tries=0, job_id=131, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:42:01.098519+00:00, queued_by_job_id=93, pid=6702
+2026-02-11 22:42:22,898 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:41:50.369709+00:00: manual__2026-02-11T14:41:50.369709+00:00, state:running, queued_at: 2026-02-11 14:41:50.381954+00:00. externally triggered: True> successful
+2026-02-11 22:42:22,899 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:41:50.369709+00:00, run_id=manual__2026-02-11T14:41:50.369709+00:00, run_start_date=2026-02-11 14:41:53.571963+00:00, run_end_date=2026-02-11 14:42:22.899708+00:00, run_duration=29.327745, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20

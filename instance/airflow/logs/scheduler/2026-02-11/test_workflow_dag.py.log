@@ -430,3 +430,363 @@ FileNotFoundError: [Errno 2] No such file or directory: './secret.key'
 [2026-02-11T17:59:58.147+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:59:58.146+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
 [2026-02-11T17:59:58.149+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:59:58.148+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
 [2026-02-11T17:59:58.169+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.249 seconds
+[2026-02-11T18:03:14.439+0800] {processor.py:161} INFO - Started process (PID=20634) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T18:03:14.440+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T18:03:14.440+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:03:14.440+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T18:03:14.511+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T18:03:14.742+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:03:14.742+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T18:03:14.761+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:03:14.761+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T18:03:14.765+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:03:14.764+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T18:03:14.766+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:03:14.766+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T18:03:14.787+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.349 seconds
+[2026-02-11T18:05:56.469+0800] {processor.py:161} INFO - Started process (PID=20757) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T18:05:56.470+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T18:05:56.470+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:56.470+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T18:05:56.504+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T18:05:56.614+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:56.614+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T18:05:56.633+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:56.632+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T18:05:56.637+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:56.637+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T18:05:56.639+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:56.638+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T18:05:56.656+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.188 seconds
+[2026-02-11T19:49:57.879+0800] {processor.py:161} INFO - Started process (PID=1109) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T19:49:57.880+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T19:49:57.881+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:49:57.881+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T19:49:57.933+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T19:49:58.055+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:49:58.055+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T19:49:58.074+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:49:58.074+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T19:49:58.078+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:49:58.078+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T19:49:58.080+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:49:58.080+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T19:49:58.097+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.219 seconds
+[2026-02-11T19:53:58.136+0800] {processor.py:161} INFO - Started process (PID=1239) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T19:53:58.137+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T19:53:58.138+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:58.138+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T19:53:58.176+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T19:53:58.293+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:58.293+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T19:53:58.312+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:58.312+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T19:53:58.316+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:58.316+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T19:53:58.317+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:58.317+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T19:53:58.332+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.197 seconds
+[2026-02-11T20:17:06.177+0800] {processor.py:161} INFO - Started process (PID=1406) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T20:17:06.180+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T20:17:06.181+0800] {logging_mixin.py:188} INFO - [2026-02-11T20:17:06.181+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T20:17:06.217+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', 'test_workflow_2', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T20:17:06.328+0800] {logging_mixin.py:188} INFO - [2026-02-11T20:17:06.328+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T20:17:06.355+0800] {logging_mixin.py:188} INFO - [2026-02-11T20:17:06.355+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T20:17:06.361+0800] {logging_mixin.py:188} INFO - [2026-02-11T20:17:06.361+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T20:17:06.363+0800] {logging_mixin.py:188} INFO - [2026-02-11T20:17:06.363+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T20:17:06.388+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.212 seconds
+[2026-02-11T21:00:44.633+0800] {processor.py:161} INFO - Started process (PID=1545) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:00:44.634+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:00:44.634+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:44.634+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:00:44.672+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:00:44.841+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:44.841+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:00:44.901+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:44.901+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:00:44.907+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:44.907+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:00:44.909+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:44.909+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:00:44.942+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.310 seconds
+[2026-02-11T21:03:35.220+0800] {processor.py:161} INFO - Started process (PID=1628) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:03:35.221+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:03:35.222+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:03:35.222+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:03:35.257+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:03:35.363+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:03:35.363+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:03:35.381+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:03:35.381+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:03:35.385+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:03:35.385+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:03:35.386+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:03:35.386+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:03:35.407+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.187 seconds
+[2026-02-11T21:06:50.808+0800] {processor.py:161} INFO - Started process (PID=2101) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:06:50.808+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:06:50.809+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:50.809+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:06:50.844+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:06:51.056+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:51.056+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:06:51.077+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:51.077+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:06:51.082+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:51.081+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:06:51.083+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:51.083+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:06:51.109+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.302 seconds
+[2026-02-11T21:09:50.856+0800] {processor.py:161} INFO - Started process (PID=2178) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:09:50.857+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:09:50.858+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:09:50.858+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:09:50.895+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_2', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:09:51.006+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:09:51.006+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:09:51.026+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:09:51.026+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:09:51.030+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:09:51.030+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:09:51.031+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:09:51.031+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:09:51.049+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.194 seconds
+[2026-02-11T21:12:47.444+0800] {processor.py:161} INFO - Started process (PID=2407) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:12:47.445+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:12:47.446+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:47.446+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:12:47.482+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_2', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:12:47.597+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:47.597+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:12:47.615+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:47.615+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:12:47.620+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:47.620+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:12:47.622+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:47.621+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:12:47.639+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.195 seconds
+[2026-02-11T21:15:56.714+0800] {processor.py:161} INFO - Started process (PID=2704) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:15:56.717+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:15:56.718+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:15:56.718+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:15:56.774+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:15:56.916+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:15:56.915+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:15:56.935+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:15:56.935+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:15:56.939+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:15:56.939+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:15:56.941+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:15:56.941+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:15:56.956+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.243 seconds
+[2026-02-11T21:18:53.652+0800] {processor.py:161} INFO - Started process (PID=2879) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:18:53.653+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:18:53.654+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:53.654+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:18:53.697+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', 'test_workflow_2', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:18:53.826+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:53.825+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:18:53.850+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:53.850+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:18:53.854+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:53.854+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:18:53.855+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:53.855+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:18:53.871+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.219 seconds
+[2026-02-11T21:22:06.448+0800] {processor.py:161} INFO - Started process (PID=3077) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:22:06.450+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:22:06.451+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:22:06.451+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:22:06.511+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:22:06.770+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:22:06.769+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:22:06.790+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:22:06.790+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:22:06.794+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:22:06.794+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:22:06.798+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:22:06.798+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:22:06.832+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.385 seconds
+[2026-02-11T21:25:18.156+0800] {processor.py:161} INFO - Started process (PID=3276) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:25:18.158+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:25:18.159+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:25:18.158+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:25:18.236+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:25:18.461+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:25:18.461+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:25:18.481+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:25:18.481+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:25:18.484+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:25:18.484+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:25:18.486+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:25:18.485+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:25:18.505+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.350 seconds
+[2026-02-11T21:28:17.102+0800] {processor.py:161} INFO - Started process (PID=3400) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:28:17.103+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:28:17.104+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:28:17.104+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:28:17.170+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:28:17.308+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:28:17.308+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:28:17.327+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:28:17.327+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:28:17.332+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:28:17.331+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:28:17.333+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:28:17.333+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:28:17.349+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.248 seconds
+[2026-02-11T21:30:57.086+0800] {processor.py:161} INFO - Started process (PID=3501) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:30:57.087+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:30:57.088+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:57.088+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:30:57.123+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:30:57.240+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:57.239+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:30:57.258+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:57.258+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:30:57.262+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:57.262+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:30:57.264+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:57.264+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:30:57.278+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.192 seconds
+[2026-02-11T21:33:29.771+0800] {processor.py:161} INFO - Started process (PID=3650) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:33:29.772+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:33:29.773+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:33:29.772+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:33:29.830+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:33:30.242+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:33:30.241+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:33:30.289+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:33:30.288+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:33:30.298+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:33:30.297+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:33:30.302+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:33:30.301+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:33:30.385+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.616 seconds
+[2026-02-11T21:36:31.049+0800] {processor.py:161} INFO - Started process (PID=3812) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:36:31.050+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:36:31.051+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:31.051+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:36:31.087+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_2', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:36:31.198+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:31.198+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:36:31.217+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:31.217+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:36:31.221+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:31.221+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:36:31.223+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:31.222+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:36:31.242+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.194 seconds
+[2026-02-11T21:39:36.586+0800] {processor.py:161} INFO - Started process (PID=4039) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:39:36.587+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:39:36.588+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:39:36.587+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:39:36.629+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', 'test_workflow_2', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:39:36.766+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:39:36.766+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:39:36.788+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:39:36.788+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:39:36.793+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:39:36.793+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:39:36.795+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:39:36.795+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:39:36.812+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.227 seconds
+[2026-02-11T21:42:43.306+0800] {processor.py:161} INFO - Started process (PID=4276) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:42:43.309+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:42:43.310+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:43.310+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:42:43.350+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:42:43.463+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:43.463+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:42:43.482+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:43.481+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:42:43.486+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:43.486+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:42:43.487+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:43.487+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:42:43.502+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.196 seconds
+[2026-02-11T21:45:57.491+0800] {processor.py:161} INFO - Started process (PID=4500) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:45:57.492+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:45:57.493+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:57.493+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:45:57.551+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:45:57.756+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:57.755+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:45:57.781+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:57.781+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:45:57.785+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:57.785+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:45:57.787+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:57.787+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:45:57.808+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.318 seconds
+[2026-02-11T21:49:00.549+0800] {processor.py:161} INFO - Started process (PID=4642) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:49:00.550+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:49:00.551+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:49:00.551+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:49:00.594+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:49:00.730+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:49:00.730+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:49:00.752+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:49:00.751+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:49:00.756+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:49:00.756+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:49:00.758+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:49:00.757+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:49:00.774+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.225 seconds
+[2026-02-11T21:52:01.982+0800] {processor.py:161} INFO - Started process (PID=4780) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:52:01.985+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:52:01.986+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:52:01.986+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:52:02.031+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:52:02.054+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:52:02.053+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:52:02.158+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:52:02.157+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:52:02.162+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:52:02.162+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:52:02.163+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:52:02.163+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:52:02.182+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.200 seconds
+[2026-02-11T21:54:56.201+0800] {processor.py:161} INFO - Started process (PID=4894) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:54:56.204+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:54:56.205+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:54:56.205+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:54:56.246+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', '项目_工作流_hello', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:54:56.451+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:54:56.450+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:54:56.467+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:54:56.467+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:54:56.470+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:54:56.470+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:54:56.472+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:54:56.472+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:54:56.489+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.289 seconds
+[2026-02-11T21:57:47.754+0800] {processor.py:161} INFO - Started process (PID=5018) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:57:47.757+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T21:57:47.758+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:47.758+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:57:47.832+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', '项目_工作流_hello', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T21:57:48.129+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:48.129+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T21:57:48.155+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:48.155+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:57:48.159+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:48.159+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T21:57:48.161+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:48.161+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T21:57:48.180+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.426 seconds
+[2026-02-11T22:00:50.462+0800] {processor.py:161} INFO - Started process (PID=5113) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:00:50.465+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:00:50.466+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:00:50.465+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:00:50.504+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:00:50.618+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:00:50.618+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:00:50.636+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:00:50.635+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:00:50.640+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:00:50.639+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:00:50.641+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:00:50.641+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:00:50.655+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.194 seconds
+[2026-02-11T22:03:43.991+0800] {processor.py:161} INFO - Started process (PID=5247) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:03:43.992+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:03:43.993+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:43.993+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:03:44.048+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', 'test_workflow_3', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:03:44.175+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:44.175+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:03:44.195+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:44.195+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:03:44.200+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:44.200+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:03:44.201+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:44.201+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:03:44.217+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.227 seconds
+[2026-02-11T22:06:37.446+0800] {processor.py:161} INFO - Started process (PID=5363) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:06:37.447+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:06:37.448+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:06:37.448+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:06:37.486+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:06:37.597+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:06:37.597+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:06:37.616+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:06:37.615+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:06:37.620+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:06:37.620+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:06:37.622+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:06:37.621+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:06:37.647+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.203 seconds
+[2026-02-11T22:09:26.370+0800] {processor.py:161} INFO - Started process (PID=5477) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:09:26.371+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:09:26.372+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:26.372+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:09:26.408+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:09:26.518+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:26.518+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:09:26.536+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:26.536+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:09:26.540+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:26.540+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:09:26.541+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:26.541+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:09:26.560+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.191 seconds
+[2026-02-11T22:11:58.382+0800] {processor.py:161} INFO - Started process (PID=5533) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:11:58.383+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:11:58.384+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:11:58.384+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:11:58.419+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:11:58.527+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:11:58.527+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:11:58.547+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:11:58.546+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:11:58.551+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:11:58.551+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:11:58.553+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:11:58.552+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:11:58.568+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.187 seconds
+[2026-02-11T22:14:36.640+0800] {processor.py:161} INFO - Started process (PID=5603) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:14:36.642+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:14:36.642+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:36.642+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:14:36.683+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:14:36.790+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:36.790+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:14:36.809+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:36.809+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:14:36.813+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:36.812+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:14:36.814+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:36.814+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:14:36.829+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.189 seconds
+[2026-02-11T22:17:15.476+0800] {processor.py:161} INFO - Started process (PID=5672) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:17:15.477+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:17:15.477+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:17:15.477+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:17:15.521+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', '项目_工作流_hello', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:17:15.635+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:17:15.635+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:17:15.654+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:17:15.654+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:17:15.658+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:17:15.658+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:17:15.659+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:17:15.659+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:17:15.674+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.199 seconds
+[2026-02-11T22:20:05.283+0800] {processor.py:161} INFO - Started process (PID=5748) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:20:05.284+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:20:05.285+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:20:05.284+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:20:05.328+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', 'test_workflow_2', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:20:05.436+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:20:05.436+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:20:05.454+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:20:05.454+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:20:05.458+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:20:05.457+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:20:05.459+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:20:05.459+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:20:05.473+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.191 seconds
+[2026-02-11T22:23:13.170+0800] {processor.py:161} INFO - Started process (PID=5935) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:23:13.173+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:23:13.174+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:23:13.174+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:23:13.215+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', 'test_workflow_2', '项目_工作流_hello' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:23:13.456+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:23:13.455+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:23:13.472+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:23:13.472+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:23:13.475+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:23:13.475+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:23:13.478+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:23:13.477+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:23:13.499+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.329 seconds
+[2026-02-11T22:26:26.062+0800] {processor.py:161} INFO - Started process (PID=6081) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:26:26.065+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:26:26.066+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:26.066+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:26:26.107+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_2', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:26:26.214+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:26.214+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:26:26.232+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:26.232+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:26:26.236+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:26.236+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:26:26.237+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:26.237+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:26:26.251+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.190 seconds
+[2026-02-11T22:28:59.575+0800] {processor.py:161} INFO - Started process (PID=6139) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:28:59.576+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:28:59.577+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:28:59.577+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:28:59.614+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:28:59.732+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:28:59.732+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:28:59.752+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:28:59.752+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:28:59.756+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:28:59.756+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:28:59.758+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:28:59.757+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:28:59.772+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.198 seconds
+[2026-02-11T22:31:37.903+0800] {processor.py:161} INFO - Started process (PID=6227) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:31:37.906+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:31:37.908+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:37.907+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:31:37.955+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_2', '项目_工作流_hello', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:31:38.097+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:38.096+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:31:38.122+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:38.122+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:31:38.127+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:38.127+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:31:38.129+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:38.128+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:31:38.147+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.244 seconds
+[2026-02-11T22:34:39.119+0800] {processor.py:161} INFO - Started process (PID=6374) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:34:39.121+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:34:39.123+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:34:39.122+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:34:39.158+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:34:39.363+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:34:39.363+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:34:39.383+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:34:39.383+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:34:39.386+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:34:39.386+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:34:39.388+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:34:39.388+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:34:39.406+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.288 seconds
+[2026-02-11T22:37:53.827+0800] {processor.py:161} INFO - Started process (PID=6505) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:37:53.828+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:37:53.829+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:53.829+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:37:53.870+0800] {processor.py:840} INFO - DAG(s) 'test_workflow_3', '项目_工作流_hello', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:37:53.986+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:53.985+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:37:54.009+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:54.008+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:37:54.013+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:54.013+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:37:54.015+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:54.015+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:37:54.033+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.207 seconds
+[2026-02-11T22:41:14.081+0800] {processor.py:161} INFO - Started process (PID=6668) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:41:14.083+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:41:14.084+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.084+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:41:14.125+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_3', 'test_workflow_2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:41:14.360+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.360+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:41:14.380+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.380+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:41:14.384+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.384+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:41:14.385+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.385+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:41:14.406+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.327 seconds
