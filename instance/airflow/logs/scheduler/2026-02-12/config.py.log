@@ -1,0 +1,20 @@
+[2026-02-12T10:48:05.752+0800] {processor.py:161} INFO - Started process (PID=2324) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T10:48:05.753+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py for tasks to queue
+[2026-02-12T10:48:05.754+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:48:05.754+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T10:48:05.760+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T10:48:05.856+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py took 0.105 seconds
+[2026-02-12T10:53:35.880+0800] {processor.py:161} INFO - Started process (PID=2471) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T10:53:35.881+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py for tasks to queue
+[2026-02-12T10:53:35.882+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:53:35.882+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T10:53:35.888+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T10:53:35.980+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py took 0.101 seconds
+[2026-02-12T11:06:57.556+0800] {processor.py:161} INFO - Started process (PID=2699) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T11:06:57.557+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py for tasks to queue
+[2026-02-12T11:06:57.558+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:06:57.558+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T11:06:57.574+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T11:06:57.662+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py took 0.106 seconds
+[2026-02-12T11:12:26.477+0800] {processor.py:161} INFO - Started process (PID=2954) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T11:12:26.478+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py for tasks to queue
+[2026-02-12T11:12:26.479+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:12:26.479+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T11:12:26.483+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py
+[2026-02-12T11:12:26.573+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/config.py took 0.097 seconds

@@ -413,3 +413,8 @@
 [2026-02-11T22:41:28.898+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:28.898+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py
 [2026-02-11T22:41:28.899+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py
 [2026-02-11T22:41:28.984+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py took 0.091 seconds
+[2026-02-11T22:45:04.254+0800] {processor.py:161} INFO - Started process (PID=7107) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py
+[2026-02-11T22:45:04.257+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py for tasks to queue
+[2026-02-11T22:45:04.258+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:04.258+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py
+[2026-02-11T22:45:04.260+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py
+[2026-02-11T22:45:04.344+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/plugins/event_listener.py took 0.091 seconds

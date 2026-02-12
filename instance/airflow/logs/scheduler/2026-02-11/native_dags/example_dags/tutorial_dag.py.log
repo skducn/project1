@@ -583,3 +583,10 @@
 [2026-02-11T22:41:44.964+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:44.964+0800] {dag.py:3047} INFO - Sync 1 DAGs
 [2026-02-11T22:41:44.974+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:44.974+0800] {dag.py:3834} INFO - Setting next_dagrun for tutorial_dag to None, run_after=None
 [2026-02-11T22:41:45.000+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/tutorial_dag.py took 0.300 seconds
+[2026-02-11T22:45:19.133+0800] {processor.py:161} INFO - Started process (PID=7120) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/tutorial_dag.py
+[2026-02-11T22:45:19.136+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/tutorial_dag.py for tasks to queue
+[2026-02-11T22:45:19.137+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:19.137+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/tutorial_dag.py
+[2026-02-11T22:45:19.161+0800] {processor.py:840} INFO - DAG(s) 'tutorial_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/tutorial_dag.py
+[2026-02-11T22:45:19.265+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:19.265+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:45:19.274+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:19.274+0800] {dag.py:3834} INFO - Setting next_dagrun for tutorial_dag to None, run_after=None
+[2026-02-11T22:45:19.290+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/tutorial_dag.py took 0.158 seconds

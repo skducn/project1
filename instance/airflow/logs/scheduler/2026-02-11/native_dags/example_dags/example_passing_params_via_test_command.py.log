@@ -569,3 +569,10 @@
 [2026-02-11T22:43:25.968+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:43:25.967+0800] {dag.py:3047} INFO - Sync 1 DAGs
 [2026-02-11T22:43:25.996+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:43:25.996+0800] {dag.py:3834} INFO - Setting next_dagrun for example_passing_params_via_test_command to 2026-02-11 14:42:00+00:00, run_after=2026-02-11 14:43:00+00:00
 [2026-02-11T22:43:26.026+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_passing_params_via_test_command.py took 0.329 seconds
+[2026-02-11T22:46:28.791+0800] {processor.py:161} INFO - Started process (PID=7180) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_passing_params_via_test_command.py
+[2026-02-11T22:46:28.792+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_passing_params_via_test_command.py for tasks to queue
+[2026-02-11T22:46:28.793+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:46:28.793+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_passing_params_via_test_command.py
+[2026-02-11T22:46:28.829+0800] {processor.py:840} INFO - DAG(s) 'example_passing_params_via_test_command' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_passing_params_via_test_command.py
+[2026-02-11T22:46:28.946+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:46:28.946+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:46:28.967+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:46:28.967+0800] {dag.py:3834} INFO - Setting next_dagrun for example_passing_params_via_test_command to 2026-02-11 14:45:00+00:00, run_after=2026-02-11 14:46:00+00:00
+[2026-02-11T22:46:28.988+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_passing_params_via_test_command.py took 0.197 seconds

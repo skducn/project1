@@ -418,3 +418,8 @@
 [2026-02-11T22:41:17.242+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:17.242+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
 [2026-02-11T22:41:17.244+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
 [2026-02-11T22:41:17.335+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py took 0.098 seconds
+[2026-02-11T22:44:51.651+0800] {processor.py:161} INFO - Started process (PID=7007) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
+[2026-02-11T22:44:51.652+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py for tasks to queue
+[2026-02-11T22:44:51.653+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:51.653+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
+[2026-02-11T22:44:51.656+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py
+[2026-02-11T22:44:51.754+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/subdags/subdag.py took 0.105 seconds

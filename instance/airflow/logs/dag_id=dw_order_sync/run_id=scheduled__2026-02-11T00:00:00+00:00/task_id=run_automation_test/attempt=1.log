@@ -1,0 +1,67 @@
+[2026-02-12T10:40:23.833+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [queued]>
+[2026-02-12T10:40:23.840+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [queued]>
+[2026-02-12T10:40:23.840+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-12T10:40:23.852+0800] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): run_automation_test> on 2026-02-11 00:00:00+00:00
+[2026-02-12T10:40:23.855+0800] {standard_task_runner.py:60} INFO - Started process 1873 to run task
+[2026-02-12T10:40:23.861+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'scheduled__2026-02-11T00:00:00+00:00', '--job-id', '137', '--raw', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpzzkeekbf']
+[2026-02-12T10:40:23.865+0800] {standard_task_runner.py:88} INFO - Job 137: Subtask run_automation_test
+[2026-02-12T10:40:23.916+0800] {task_command.py:423} INFO - Running <TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [running]> on host localhost-2.local
+[2026-02-12T10:40:23.974+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dw_order_sync' AIRFLOW_CTX_TASK_ID='run_automation_test' AIRFLOW_CTX_EXECUTION_DATE='2026-02-11T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-11T00:00:00+00:00'
+[2026-02-12T10:40:56.922+0800] {logging_mixin.py:188} INFO - 子进程输出内容:
+[2026-02-12T10:40:56.924+0800] {logging_mixin.py:188} INFO - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.log 2026-02-12 10:40:25.999811
+浏览器版本前3： 145.0.7632
+chrome驱动版本前3： /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632
+[2026-02-12T10:40:56.924+0800] {logging_mixin.py:188} INFO - 子进程错误信息:
+[2026-02-12T10:40:56.924+0800] {logging_mixin.py:188} INFO - Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/DomPO.py", line 291, in find_element
+    WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 137, in until
+    value = method(self._driver)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/support/expected_conditions.py", line 224, in _predicate
+    return _element_if_visible(driver.find_element(*locator))
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 898, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
+    self.error_handler.check_response(response)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=145.0.7632.46)
+Stacktrace:
+0   chromedriver                        0x000000010f1763b8 chromedriver + 6730680
+1   chromedriver                        0x000000010f16dbea chromedriver + 6695914
+2   chromedriver                        0x000000010eb79cf5 chromedriver + 453877
+3   chromedriver                        0x000000010eb4cf58 chromedriver + 270168
+4   chromedriver                        0x000000010ebfd538 chromedriver + 992568
+5   chromedriver                        0x000000010ec17388 chromedriver + 1098632
+6   chromedriver                        0x000000010ebc0774 chromedriver + 743284
+7   chromedriver                        0x000000010ebc1521 chromedriver + 746785
+8   chromedriver                        0x000000010f12f481 chromedriver + 6440065
+9   chromedriver                        0x000000010f13385a chromedriver + 6457434
+10  chromedriver                        0x000000010f10f139 chromedriver + 6308153
+11  chromedriver                        0x000000010f1342b8 chromedriver + 6460088
+12  chromedriver                        0x000000010f0fdaa0 chromedriver + 6236832
+13  chromedriver                        0x000000010f15a498 chromedriver + 6616216
+14  chromedriver                        0x000000010f15a652 chromedriver + 6616658
+15  chromedriver                        0x000000010f16d7f6 chromedriver + 6694902
+16  libsystem_pthread.dylib             0x00007ff8043504e1 _pthread_start + 125
+17  libsystem_pthread.dylib             0x00007ff80434bf6b thread_start + 15
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 29, in <module>
+    Cdrd_PO.login()
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 108, in login
+    self.Web_PO.setTextByX('/html/body/div/div/div/form/div[3]/div/div/div/input', Configparser_PO.USER("user"))
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/DomPO.py", line 743, in setTextByX
+    self.find_element(*(By.XPATH, varXpath)).clear()
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/DomPO.py", line 294, in find_element
+    print("未找到元素 %s " % (loc))
+TypeError: not all arguments converted during string formatting
+[2026-02-12T10:40:56.925+0800] {python.py:202} INFO - Done. Returned value was: 1
+[2026-02-12T10:40:56.943+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dw_order_sync, task_id=run_automation_test, execution_date=20260211T000000, start_date=20260212T024023, end_date=20260212T024056
+[2026-02-12T10:40:56.972+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-12T10:40:56.988+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

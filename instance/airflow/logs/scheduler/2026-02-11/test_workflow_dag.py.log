@@ -790,3 +790,12 @@ FileNotFoundError: [Errno 2] No such file or directory: './secret.key'
 [2026-02-11T22:41:14.384+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.384+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
 [2026-02-11T22:41:14.385+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:41:14.385+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
 [2026-02-11T22:41:14.406+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.327 seconds
+[2026-02-11T22:44:47.215+0800] {processor.py:161} INFO - Started process (PID=7006) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:44:47.216+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py for tasks to queue
+[2026-02-11T22:44:47.217+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:47.216+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:44:47.261+0800] {processor.py:840} INFO - DAG(s) '项目_工作流_hello', 'test_workflow_2', 'test_workflow_3' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py
+[2026-02-11T22:44:47.370+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:47.370+0800] {dag.py:3047} INFO - Sync 3 DAGs
+[2026-02-11T22:44:47.389+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:47.388+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_2 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:44:47.393+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:47.392+0800] {dag.py:3834} INFO - Setting next_dagrun for test_workflow_3 to 2026-02-08 00:00:00+00:00, run_after=2026-02-15 00:00:00+00:00
+[2026-02-11T22:44:47.396+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:47.396+0800] {dag.py:3834} INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-11 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-11T22:44:47.412+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/test_workflow_dag.py took 0.198 seconds

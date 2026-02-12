@@ -569,3 +569,10 @@
 [2026-02-11T22:43:17.970+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:43:17.970+0800] {dag.py:3047} INFO - Sync 1 DAGs
 [2026-02-11T22:43:17.979+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:43:17.978+0800] {dag.py:3834} INFO - Setting next_dagrun for example_python_operator to None, run_after=None
 [2026-02-11T22:43:17.998+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_python_operator.py took 0.284 seconds
+[2026-02-11T22:46:21.515+0800] {processor.py:161} INFO - Started process (PID=7178) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_python_operator.py
+[2026-02-11T22:46:21.516+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_python_operator.py for tasks to queue
+[2026-02-11T22:46:21.517+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:46:21.516+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_python_operator.py
+[2026-02-11T22:46:21.539+0800] {processor.py:840} INFO - DAG(s) 'example_python_operator' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_python_operator.py
+[2026-02-11T22:46:21.727+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:46:21.726+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:46:21.734+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:46:21.734+0800] {dag.py:3834} INFO - Setting next_dagrun for example_python_operator to None, run_after=None
+[2026-02-11T22:46:21.756+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_python_operator.py took 0.242 seconds

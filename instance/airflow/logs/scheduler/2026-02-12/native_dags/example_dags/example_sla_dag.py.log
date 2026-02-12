@@ -1,0 +1,63 @@
+[2026-02-12T10:42:26.393+0800] {processor.py:161} INFO - Started process (PID=2114) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:42:26.394+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T10:42:26.395+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:42:26.395+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:42:26.432+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:42:26.557+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:42:26.556+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T10:42:26.578+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:42:26.578+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 02:40:00+00:00, run_after=2026-02-12 02:42:00+00:00
+[2026-02-12T10:42:26.598+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.205 seconds
+[2026-02-12T10:46:05.764+0800] {processor.py:161} INFO - Started process (PID=2258) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:46:05.767+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T10:46:05.768+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:46:05.768+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:46:05.806+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:46:05.924+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:46:05.924+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T10:46:05.946+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:46:05.945+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 02:44:00+00:00, run_after=2026-02-12 02:46:00+00:00
+[2026-02-12T10:46:05.964+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.200 seconds
+[2026-02-12T10:49:26.995+0800] {processor.py:161} INFO - Started process (PID=2366) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:49:26.996+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T10:49:26.997+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:49:26.997+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:49:27.034+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:49:27.159+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:49:27.158+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T10:49:27.186+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:49:27.186+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 02:46:00+00:00, run_after=2026-02-12 02:48:00+00:00
+[2026-02-12T10:49:27.208+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.214 seconds
+[2026-02-12T10:52:14.087+0800] {processor.py:161} INFO - Started process (PID=2438) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:52:14.087+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T10:52:14.088+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:52:14.088+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:52:14.120+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:52:14.225+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:52:14.225+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T10:52:14.243+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:52:14.243+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 02:50:00+00:00, run_after=2026-02-12 02:52:00+00:00
+[2026-02-12T10:52:14.264+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.178 seconds
+[2026-02-12T10:54:52.710+0800] {processor.py:161} INFO - Started process (PID=2504) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:54:52.711+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T10:54:52.712+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:54:52.711+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:54:52.746+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T10:54:52.854+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:54:52.854+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T10:54:52.873+0800] {logging_mixin.py:188} INFO - [2026-02-12T10:54:52.873+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 02:52:00+00:00, run_after=2026-02-12 02:54:00+00:00
+[2026-02-12T10:54:52.893+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.184 seconds
+[2026-02-12T11:05:19.182+0800] {processor.py:161} INFO - Started process (PID=2652) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:05:19.183+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T11:05:19.184+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:05:19.184+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:05:19.231+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:05:19.399+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:05:19.398+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T11:05:19.423+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:05:19.423+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 03:02:00+00:00, run_after=2026-02-12 03:04:00+00:00
+[2026-02-12T11:05:19.445+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.264 seconds
+[2026-02-12T11:08:18.950+0800] {processor.py:161} INFO - Started process (PID=2805) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:08:18.951+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T11:08:18.952+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:08:18.952+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:08:18.994+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:08:19.114+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:08:19.113+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T11:08:19.136+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:08:19.136+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 03:06:00+00:00, run_after=2026-02-12 03:08:00+00:00
+[2026-02-12T11:08:19.156+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.206 seconds
+[2026-02-12T11:11:01.179+0800] {processor.py:161} INFO - Started process (PID=2914) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:11:01.180+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T11:11:01.181+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:11:01.181+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:11:01.213+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:11:01.325+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:11:01.325+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T11:11:01.347+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:11:01.347+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 03:08:00+00:00, run_after=2026-02-12 03:10:00+00:00
+[2026-02-12T11:11:01.367+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.188 seconds
+[2026-02-12T11:13:39.103+0800] {processor.py:161} INFO - Started process (PID=2982) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:13:39.106+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py for tasks to queue
+[2026-02-12T11:13:39.107+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:13:39.107+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:13:39.141+0800] {processor.py:840} INFO - DAG(s) 'example_sla_dag' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py
+[2026-02-12T11:13:39.251+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:13:39.250+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T11:13:39.271+0800] {logging_mixin.py:188} INFO - [2026-02-12T11:13:39.270+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sla_dag to 2026-02-12 03:10:00+00:00, run_after=2026-02-12 03:12:00+00:00
+[2026-02-12T11:13:39.290+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_sla_dag.py took 0.188 seconds

@@ -569,3 +569,10 @@
 [2026-02-11T22:42:38.980+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:42:38.979+0800] {dag.py:3047} INFO - Sync 1 DAGs
 [2026-02-11T22:42:38.998+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:42:38.998+0800] {dag.py:3834} INFO - Setting next_dagrun for example_task_group to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
 [2026-02-11T22:42:39.020+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_task_group.py took 0.197 seconds
+[2026-02-11T22:45:48.359+0800] {processor.py:161} INFO - Started process (PID=7158) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_task_group.py
+[2026-02-11T22:45:48.362+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_task_group.py for tasks to queue
+[2026-02-11T22:45:48.363+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:48.363+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_task_group.py
+[2026-02-11T22:45:48.374+0800] {processor.py:840} INFO - DAG(s) 'example_task_group' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_task_group.py
+[2026-02-11T22:45:48.491+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:48.491+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:45:48.508+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:45:48.508+0800] {dag.py:3834} INFO - Setting next_dagrun for example_task_group to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:45:48.531+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_task_group.py took 0.173 seconds

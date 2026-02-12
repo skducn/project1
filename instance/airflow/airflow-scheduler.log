@@ -1719,3 +1719,123 @@
 2026-02-11 22:42:19,029 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-11T14:41:50.369709+00:00, map_index=-1, run_start_date=2026-02-11 14:42:04.706372+00:00, run_end_date=2026-02-11 14:42:18.347317+00:00, run_duration=13.640945, state=success, executor_state=success, try_number=1, max_tries=0, job_id=131, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-11 14:42:01.098519+00:00, queued_by_job_id=93, pid=6702
 2026-02-11 22:42:22,898 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 14:41:50.369709+00:00: manual__2026-02-11T14:41:50.369709+00:00, state:running, queued_at: 2026-02-11 14:41:50.381954+00:00. externally triggered: True> successful
 2026-02-11 22:42:22,899 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 14:41:50.369709+00:00, run_id=manual__2026-02-11T14:41:50.369709+00:00, run_start_date=2026-02-11 14:41:53.571963+00:00, run_end_date=2026-02-11 14:42:22.899708+00:00, run_duration=29.327745, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-10 00:00:00+00:00, data_interval_end=2026-02-11 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-11 22:45:30,615 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-11 22:46:37,990 INFO - Exiting gracefully upon receiving signal 15
+2026-02-11 22:46:39,000 INFO - Sending Signals.SIGTERM to group 1103. PIDs of all processes in the group: [1103]
+2026-02-11 22:46:39,001 INFO - Sending the signal Signals.SIGTERM to group 1103
+2026-02-11 22:46:39,055 INFO - Process psutil.Process(pid=1103, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='19:49:47') (1103) terminated with exit code Negsignal.SIGTERM
+2026-02-11 22:46:39,067 INFO - Sending Signals.SIGTERM to group 1103. PIDs of all processes in the group: []
+2026-02-11 22:46:39,068 INFO - Sending the signal Signals.SIGTERM to group 1103
+2026-02-11 22:46:39,069 INFO - Sending the signal Signals.SIGTERM to process 1103 as process group is missing.
+2026-02-11 22:46:39,070 INFO - Exited execute loop
+2026-02-12 10:39:40,421 INFO - Task context logging is enabled
+2026-02-12 10:39:40,423 INFO - Loaded executor: SequentialExecutor
+2026-02-12 10:39:40,493 INFO - Starting the scheduler
+2026-02-12 10:39:40,494 INFO - Processing each file at most -1 times
+2026-02-12 10:39:40,502 INFO - Launched DagFileProcessorManager with pid: 1836
+2026-02-12 10:39:40,506 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-12 10:39:46,357 INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-12 00:00:00+00:00, run_after=2026-02-13 00:00:00+00:00
+2026-02-12 10:39:46,373 INFO - Setting next_dagrun for dw_order_sync to 2026-02-12 00:00:00+00:00, run_after=2026-02-13 00:00:00+00:00
+2026-02-12 10:39:46,514 INFO - 3 tasks up for execution:
+	<TaskInstance: 项目_工作流_hello.set_api_key scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+	<TaskInstance: dw_order_sync.sync_order_data scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+	<TaskInstance: 项目_工作流_hello.some_task scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+2026-02-12 10:39:46,515 INFO - DAG 项目_工作流_hello has 0/16 running and queued tasks
+2026-02-12 10:39:46,516 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-12 10:39:46,516 INFO - DAG 项目_工作流_hello has 1/16 running and queued tasks
+2026-02-12 10:39:46,517 INFO - Setting the following tasks to queued state:
+	<TaskInstance: 项目_工作流_hello.set_api_key scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+	<TaskInstance: dw_order_sync.sync_order_data scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+	<TaskInstance: 项目_工作流_hello.some_task scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+2026-02-12 10:39:46,520 WARNING - cannot record scheduled_duration for task set_api_key because previous state change time has not been saved
+2026-02-12 10:39:46,521 WARNING - cannot record scheduled_duration for task sync_order_data because previous state change time has not been saved
+2026-02-12 10:39:46,523 WARNING - cannot record scheduled_duration for task some_task because previous state change time has not been saved
+2026-02-12 10:39:46,524 INFO - Sending TaskInstanceKey(dag_id='项目_工作流_hello', task_id='set_api_key', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1) to executor with priority 3 and queue default
+2026-02-12 10:39:46,525 INFO - Adding to queue: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'set_api_key', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:39:46,526 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-12 10:39:46,527 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-12 10:39:46,528 INFO - Sending TaskInstanceKey(dag_id='项目_工作流_hello', task_id='some_task', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-12 10:39:46,528 INFO - Adding to queue: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'some_task', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:39:46,530 INFO - Executing command: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'set_api_key', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:39:52,129 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-12 10:39:57,546 INFO - Executing command: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'some_task', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:40:01,941 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='项目_工作流_hello', task_id='set_api_key', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-12 10:40:01,944 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-12 10:40:01,945 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='项目_工作流_hello', task_id='some_task', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-12 10:40:01,960 INFO - TaskInstance Finished: dag_id=项目_工作流_hello, task_id=set_api_key, run_id=scheduled__2026-02-11T00:00:00+00:00, map_index=-1, run_start_date=2026-02-12 02:39:51.209283+00:00, run_end_date=2026-02-12 02:39:51.472361+00:00, run_duration=0.263078, state=success, executor_state=success, try_number=1, max_tries=1, job_id=133, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-12 02:39:46.518119+00:00, queued_by_job_id=132, pid=1851
+2026-02-12 10:40:01,961 INFO - TaskInstance Finished: dag_id=项目_工作流_hello, task_id=some_task, run_id=scheduled__2026-02-11T00:00:00+00:00, map_index=-1, run_start_date=2026-02-12 02:40:01.150490+00:00, run_end_date=2026-02-12 02:40:01.334507+00:00, run_duration=0.184017, state=success, executor_state=success, try_number=1, max_tries=1, job_id=135, pool=default_pool, queue=default, priority_weight=1, operator=BashOperator, queued_dttm=2026-02-12 02:39:46.518119+00:00, queued_by_job_id=132, pid=1867
+2026-02-12 10:40:01,961 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=scheduled__2026-02-11T00:00:00+00:00, map_index=-1, run_start_date=2026-02-12 02:39:56.742289+00:00, run_end_date=2026-02-12 02:39:56.928472+00:00, run_duration=0.186183, state=success, executor_state=success, try_number=1, max_tries=0, job_id=134, pool=default_pool, queue=default, priority_weight=2, operator=BashOperator, queued_dttm=2026-02-12 02:39:46.518119+00:00, queued_by_job_id=132, pid=1858
+2026-02-12 10:40:04,766 INFO - 2 tasks up for execution:
+	<TaskInstance: 项目_工作流_hello.generate_test_cases scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+	<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+2026-02-12 10:40:04,767 INFO - DAG 项目_工作流_hello has 0/16 running and queued tasks
+2026-02-12 10:40:04,768 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-12 10:40:04,768 INFO - Setting the following tasks to queued state:
+	<TaskInstance: 项目_工作流_hello.generate_test_cases scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+	<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+2026-02-12 10:40:04,772 WARNING - cannot record scheduled_duration for task generate_test_cases because previous state change time has not been saved
+2026-02-12 10:40:04,773 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-12 10:40:04,774 INFO - Sending TaskInstanceKey(dag_id='项目_工作流_hello', task_id='generate_test_cases', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1) to executor with priority 2 and queue default
+2026-02-12 10:40:04,775 INFO - Adding to queue: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'generate_test_cases', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:40:04,776 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-12 10:40:04,777 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-12 10:40:04,779 INFO - Executing command: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'generate_test_cases', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:40:20,220 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-12 10:40:57,555 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='项目_工作流_hello', task_id='generate_test_cases', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-12 10:40:57,560 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-12 10:40:57,573 INFO - TaskInstance Finished: dag_id=项目_工作流_hello, task_id=generate_test_cases, run_id=scheduled__2026-02-11T00:00:00+00:00, map_index=-1, run_start_date=2026-02-12 02:40:08.442782+00:00, run_end_date=2026-02-12 02:40:19.562590+00:00, run_duration=11.119808, state=success, executor_state=success, try_number=1, max_tries=1, job_id=136, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-12 02:40:04.770551+00:00, queued_by_job_id=132, pid=1871
+2026-02-12 10:40:57,574 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=scheduled__2026-02-11T00:00:00+00:00, map_index=-1, run_start_date=2026-02-12 02:40:23.834162+00:00, run_end_date=2026-02-12 02:40:56.943135+00:00, run_duration=33.108973, state=success, executor_state=success, try_number=1, max_tries=0, job_id=137, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-12 02:40:04.770551+00:00, queued_by_job_id=132, pid=1873
+2026-02-12 10:40:57,586 ERROR - DagFileProcessorManager (PID=1836) last sent a heartbeat 52.86 seconds ago! Restarting it
+2026-02-12 10:40:57,595 INFO - Sending Signals.SIGTERM to group 1836. PIDs of all processes in the group: [1836]
+2026-02-12 10:40:57,596 INFO - Sending the signal Signals.SIGTERM to group 1836
+2026-02-12 10:40:58,220 INFO - Process psutil.Process(pid=1836, status='terminated', exitcode=0, started='10:39:40') (1836) terminated with exit code 0
+2026-02-12 10:40:58,225 INFO - Launched DagFileProcessorManager with pid: 2015
+2026-02-12 10:41:04,092 INFO - Marking run <DagRun dw_order_sync @ 2026-02-11 00:00:00+00:00: scheduled__2026-02-11T00:00:00+00:00, state:running, queued_at: 2026-02-12 02:39:46.363196+00:00. externally triggered: False> successful
+2026-02-12 10:41:04,094 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-11 00:00:00+00:00, run_id=scheduled__2026-02-11T00:00:00+00:00, run_start_date=2026-02-12 02:39:46.392499+00:00, run_end_date=2026-02-12 02:41:04.094008+00:00, run_duration=77.701509, state=success, external_trigger=False, run_type=scheduled, data_interval_start=2026-02-11 00:00:00+00:00, data_interval_end=2026-02-12 00:00:00+00:00, dag_hash=18b6485188fd364812e8cde73c6c3d20
+2026-02-12 10:41:04,099 INFO - Setting next_dagrun for dw_order_sync to 2026-02-12 00:00:00+00:00, run_after=2026-02-13 00:00:00+00:00
+2026-02-12 10:41:04,117 INFO - 1 tasks up for execution:
+	<TaskInstance: 项目_工作流_hello.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+2026-02-12 10:41:04,118 INFO - DAG 项目_工作流_hello has 0/16 running and queued tasks
+2026-02-12 10:41:04,119 INFO - Setting the following tasks to queued state:
+	<TaskInstance: 项目_工作流_hello.run_automation_test scheduled__2026-02-11T00:00:00+00:00 [scheduled]>
+2026-02-12 10:41:04,121 WARNING - cannot record scheduled_duration for task run_automation_test because previous state change time has not been saved
+2026-02-12 10:41:04,122 INFO - Sending TaskInstanceKey(dag_id='项目_工作流_hello', task_id='run_automation_test', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1) to executor with priority 1 and queue default
+2026-02-12 10:41:04,122 INFO - Adding to queue: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'run_automation_test', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:41:04,124 INFO - Executing command: ['airflow', 'tasks', 'run', '项目_工作流_hello', 'run_automation_test', 'scheduled__2026-02-11T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/test_workflow_dag.py']
+2026-02-12 10:41:10,948 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='项目_工作流_hello', task_id='run_automation_test', run_id='scheduled__2026-02-11T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-12 10:41:10,967 INFO - TaskInstance Finished: dag_id=项目_工作流_hello, task_id=run_automation_test, run_id=scheduled__2026-02-11T00:00:00+00:00, map_index=-1, run_start_date=2026-02-12 02:41:08.205619+00:00, run_end_date=2026-02-12 02:41:10.171088+00:00, run_duration=1.965469, state=success, executor_state=success, try_number=1, max_tries=1, job_id=138, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-12 02:41:04.120117+00:00, queued_by_job_id=132, pid=2035
+2026-02-12 10:41:13,815 INFO - Marking run <DagRun 项目_工作流_hello @ 2026-02-11 00:00:00+00:00: scheduled__2026-02-11T00:00:00+00:00, state:running, queued_at: 2026-02-12 02:39:46.340559+00:00. externally triggered: False> successful
+2026-02-12 10:41:13,816 INFO - DagRun Finished: dag_id=项目_工作流_hello, execution_date=2026-02-11 00:00:00+00:00, run_id=scheduled__2026-02-11T00:00:00+00:00, run_start_date=2026-02-12 02:39:46.393256+00:00, run_end_date=2026-02-12 02:41:13.816273+00:00, run_duration=87.423017, state=success, external_trigger=False, run_type=scheduled, data_interval_start=2026-02-11 00:00:00+00:00, data_interval_end=2026-02-12 00:00:00+00:00, dag_hash=fb56d5a9a39933898950c268a7db9144
+2026-02-12 10:41:13,821 INFO - Setting next_dagrun for 项目_工作流_hello to 2026-02-12 00:00:00+00:00, run_after=2026-02-13 00:00:00+00:00
+2026-02-12 10:42:46,431 INFO - Exiting gracefully upon receiving signal 15
+2026-02-12 10:42:47,219 INFO - Sending Signals.SIGTERM to group 2015. PIDs of all processes in the group: []
+2026-02-12 10:42:47,220 INFO - Sending the signal Signals.SIGTERM to group 2015
+2026-02-12 10:42:47,221 INFO - Sending the signal Signals.SIGTERM to process 2015 as process group is missing.
+2026-02-12 10:42:47,230 INFO - Sending Signals.SIGTERM to group 2015. PIDs of all processes in the group: []
+2026-02-12 10:42:47,231 INFO - Sending the signal Signals.SIGTERM to group 2015
+2026-02-12 10:42:47,232 INFO - Sending the signal Signals.SIGTERM to process 2015 as process group is missing.
+2026-02-12 10:42:47,233 INFO - Exited execute loop
+2026-02-12 10:43:02,922 INFO - Task context logging is enabled
+2026-02-12 10:43:02,924 INFO - Loaded executor: SequentialExecutor
+2026-02-12 10:43:02,986 INFO - Starting the scheduler
+2026-02-12 10:43:02,987 INFO - Processing each file at most -1 times
+2026-02-12 10:43:02,994 INFO - Launched DagFileProcessorManager with pid: 2141
+2026-02-12 10:43:02,999 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-12 10:44:13,376 INFO - Exiting gracefully upon receiving signal 15
+2026-02-12 10:44:14,057 INFO - Sending Signals.SIGTERM to group 2141. PIDs of all processes in the group: []
+2026-02-12 10:44:14,058 INFO - Sending the signal Signals.SIGTERM to group 2141
+2026-02-12 10:44:14,059 INFO - Sending the signal Signals.SIGTERM to process 2141 as process group is missing.
+2026-02-12 10:44:14,067 INFO - Sending Signals.SIGTERM to group 2141. PIDs of all processes in the group: []
+2026-02-12 10:44:14,068 INFO - Sending the signal Signals.SIGTERM to group 2141
+2026-02-12 10:44:14,069 INFO - Sending the signal Signals.SIGTERM to process 2141 as process group is missing.
+2026-02-12 10:44:14,069 INFO - Exited execute loop
+2026-02-12 10:44:46,536 INFO - Task context logging is enabled
+2026-02-12 10:44:46,538 INFO - Loaded executor: SequentialExecutor
+2026-02-12 10:44:46,598 INFO - Starting the scheduler
+2026-02-12 10:44:46,599 INFO - Processing each file at most -1 times
+2026-02-12 10:44:46,606 INFO - Launched DagFileProcessorManager with pid: 2220
+2026-02-12 10:44:46,611 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-12 10:49:47,173 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-12 10:54:49,675 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-12 11:07:17,250 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-12 11:12:19,709 INFO - Adopting or resetting orphaned tasks for active dag runs
