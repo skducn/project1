@@ -1,0 +1,8 @@
+[2026-02-13T00:35:48.895+0800] {executor_loader.py:258} INFO - Loaded executor: SequentialExecutor
+[2026-02-13T00:35:49.435+0800] {scheduler_job_runner.py:950} INFO - Starting the scheduler
+[2026-02-13T00:35:49.436+0800] {scheduler_job_runner.py:957} INFO - Processing each file at most -1 times
+[2026-02-13T00:35:49.442+0800] {manager.py:174} INFO - Launched DagFileProcessorManager with pid: 3597
+[2026-02-13T00:35:49.447+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-13T00:35:51.265+0800] {settings.py:63} INFO - Configured default timezone UTC
+[2026-02-13T00:35:51.310+0800] {manager.py:406} WARNING - Because we cannot use more than 1 thread (parsing_processes = 2) when using sqlite. So we set parallelism to 1.
+[2026-02-13T00:35:51.631+0800] {core.py:50} INFO - Starting log server on http://[::]:8793

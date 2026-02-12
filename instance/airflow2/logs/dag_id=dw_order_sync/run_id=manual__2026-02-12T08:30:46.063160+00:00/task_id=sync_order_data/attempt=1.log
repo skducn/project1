@@ -1,0 +1,4 @@
+[2026-02-12T16:32:09.173+0800] {executor_loader.py:115} INFO - Loaded executor: LocalExecutor
+[2026-02-12T16:32:12.768+0800] {logging_mixin.py:188} INFO - Sending to executor.
+[2026-02-12T16:32:12.795+0800] {base_executor.py:146} INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-12T08:30:46.063160+00:00', '--local', '--pool', 'default_pool', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+[2026-02-12T16:32:12.814+0800] {local_executor.py:402} INFO - Shutting down LocalExecutor; waiting for running tasks to finish.  Signal again if you don't want to wait.

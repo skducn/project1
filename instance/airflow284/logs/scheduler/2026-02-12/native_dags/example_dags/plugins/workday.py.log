@@ -1,0 +1,12 @@
+[2026-02-12T21:26:52.600+0800] {processor.py:161} INFO - Started process (PID=27468) to work on /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2026-02-12T21:26:52.603+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2026-02-12T21:26:52.604+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:26:52.603+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2026-02-12T21:26:52.605+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:26:52.605+0800] {workday.py:40} WARNING - Could not import pandas. Holidays will not be considered.
+[2026-02-12T21:26:52.606+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2026-02-12T21:26:52.706+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.107 seconds
+[2026-02-12T21:27:44.535+0800] {processor.py:161} INFO - Started process (PID=27548) to work on /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2026-02-12T21:27:44.543+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py for tasks to queue
+[2026-02-12T21:27:44.548+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:27:44.548+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2026-02-12T21:27:44.550+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:27:44.550+0800] {workday.py:40} WARNING - Could not import pandas. Holidays will not be considered.
+[2026-02-12T21:27:44.551+0800] {processor.py:842} WARNING - No viable dags retrieved from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py
+[2026-02-12T21:27:44.637+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/plugins/workday.py took 0.103 seconds

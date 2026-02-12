@@ -1,0 +1,49 @@
+[2026-02-11T17:06:49.644+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T09:06:35.236247+00:00 [queued]>
+[2026-02-11T17:06:49.651+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T09:06:35.236247+00:00 [queued]>
+[2026-02-11T17:06:49.651+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-11T17:06:49.665+0800] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): run_automation_test> on 2026-02-11 09:06:35.236247+00:00
+[2026-02-11T17:06:49.669+0800] {standard_task_runner.py:60} INFO - Started process 17009 to run task
+[2026-02-11T17:06:49.675+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T09:06:35.236247+00:00', '--job-id', '92', '--raw', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmprzrucsx1']
+[2026-02-11T17:06:49.679+0800] {standard_task_runner.py:88} INFO - Job 92: Subtask run_automation_test
+[2026-02-11T17:06:49.729+0800] {task_command.py:423} INFO - Running <TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T09:06:35.236247+00:00 [running]> on host localhost-2.local
+[2026-02-11T17:06:49.805+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dw_order_sync' AIRFLOW_CTX_TASK_ID='run_automation_test' AIRFLOW_CTX_EXECUTION_DATE='2026-02-11T09:06:35.236247+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-11T09:06:35.236247+00:00'
+[2026-02-11T17:14:13.087+0800] {logging_mixin.py:188} INFO - 子进程输出内容:
+[2026-02-11T17:14:13.091+0800] {logging_mixin.py:188} INFO - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.log 2026-02-11 17:06:51.638009
+WebDriver 初始化失败: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+[2026-02-11T17:14:13.091+0800] {logging_mixin.py:188} INFO - 子进程错误信息:
+[2026-02-11T17:14:13.092+0800] {logging_mixin.py:188} INFO - Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/common/driver_finder.py", line 67, in _binary_paths
+    output = SeleniumManager().binary_paths(self._to_args())
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/common/selenium_manager.py", line 55, in binary_paths
+    return self._run(args)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/common/selenium_manager.py", line 129, in _run
+    raise WebDriverException(
+selenium.common.exceptions.WebDriverException: Message: Unsuccessful command executed: /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/common/macos/selenium-manager --browser chrome --language-binding python --output json; code: 65
+{'code': 65, 'message': 'error decoding response body', 'driver_path': '', 'browser_path': ''}
+
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 29, in <module>
+    Cdrd_PO.login()
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 106, in login
+    self.Web_PO = WebPO("chrome")
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/WebPO.py", line 120, in __init__
+    self.driver = self._initialize_driver()
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/WebPO.py", line 188, in _initialize_driver
+    self.driver = webdriver.Chrome(options=options)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/chrome/webdriver.py", line 45, in __init__
+    super().__init__(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/chromium/webdriver.py", line 50, in __init__
+    if finder.get_browser_path():
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/common/driver_finder.py", line 47, in get_browser_path
+    return self._binary_paths()["browser_path"]
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/common/driver_finder.py", line 78, in _binary_paths
+    raise NoSuchDriverException(msg) from err
+selenium.common.exceptions.NoSuchDriverException: Message: Unable to obtain driver for chrome; For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors/driver_location
+[2026-02-11T17:14:13.093+0800] {python.py:202} INFO - Done. Returned value was: 1
+[2026-02-11T17:14:13.134+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dw_order_sync, task_id=run_automation_test, execution_date=20260211T090635, start_date=20260211T090649, end_date=20260211T091413
+[2026-02-11T17:14:13.192+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-11T17:14:13.215+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

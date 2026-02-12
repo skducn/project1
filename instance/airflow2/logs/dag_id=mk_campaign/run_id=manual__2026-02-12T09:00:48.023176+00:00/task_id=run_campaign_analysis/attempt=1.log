@@ -1,0 +1,17 @@
+[2026-02-12T17:01:17.100+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: mk_campaign.run_campaign_analysis manual__2026-02-12T09:00:48.023176+00:00 [queued]>
+[2026-02-12T17:01:17.113+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: mk_campaign.run_campaign_analysis manual__2026-02-12T09:00:48.023176+00:00 [queued]>
+[2026-02-12T17:01:17.113+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-12T17:01:17.131+0800] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): run_campaign_analysis> on 2026-02-12 09:00:48.023176+00:00
+[2026-02-12T17:01:17.135+0800] {standard_task_runner.py:60} INFO - Started process 14471 to run task
+[2026-02-12T17:01:17.141+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'mk_campaign', 'run_campaign_analysis', 'manual__2026-02-12T09:00:48.023176+00:00', '--job-id', '15', '--raw', '--subdir', 'DAGS_FOLDER/tag_marketing/mk_campaign.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpydgn9n4w']
+[2026-02-12T17:01:17.145+0800] {standard_task_runner.py:88} INFO - Job 15: Subtask run_campaign_analysis
+[2026-02-12T17:01:17.321+0800] {task_command.py:423} INFO - Running <TaskInstance: mk_campaign.run_campaign_analysis manual__2026-02-12T09:00:48.023176+00:00 [running]> on host localhost-2.local
+[2026-02-12T17:01:17.540+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='mk_campaign' AIRFLOW_CTX_TASK_ID='run_campaign_analysis' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T09:00:48.023176+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-12T09:00:48.023176+00:00'
+[2026-02-12T17:01:17.543+0800] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T
+[2026-02-12T17:01:17.544+0800] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'echo "分析营销活动效果"']
+[2026-02-12T17:01:17.551+0800] {subprocess.py:86} INFO - Output:
+[2026-02-12T17:01:17.555+0800] {subprocess.py:93} INFO - 分析营销活动效果
+[2026-02-12T17:01:17.556+0800] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-12T17:01:17.653+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=mk_campaign, task_id=run_campaign_analysis, execution_date=20260212T090048, start_date=20260212T090117, end_date=20260212T090117
+[2026-02-12T17:01:17.686+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-12T17:01:17.746+0800] {taskinstance.py:3312} INFO - 1 downstream tasks scheduled from follow-on schedule check

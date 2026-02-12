@@ -1,0 +1,6 @@
+2026-02-12 21:36:32,679 INFO - Received signal: 15. Closing gunicorn.
+2026-02-12 23:55:36,663 INFO - Received signal: 15. Closing gunicorn.
+2026-02-12 23:58:04,860 INFO - Received signal: 15. Closing gunicorn.
+2026-02-13 00:06:28,693 INFO - Received signal: 15. Closing gunicorn.
+2026-02-13 00:13:41,164 INFO - Received signal: 15. Closing gunicorn.
+2026-02-13 00:22:04,764 INFO - Received signal: 15. Closing gunicorn.

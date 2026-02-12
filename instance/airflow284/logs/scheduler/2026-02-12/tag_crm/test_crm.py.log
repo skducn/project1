@@ -1,0 +1,7 @@
+[2026-02-12T21:28:29.352+0800] {processor.py:161} INFO - Started process (PID=27629) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/tag_crm/test_crm.py
+[2026-02-12T21:28:29.353+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-12T21:28:29.353+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:28:29.353+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/tag_crm/test_crm.py
+[2026-02-12T21:28:29.391+0800] {processor.py:840} INFO - DAG(s) 'test_connection_mysql' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/tag_crm/test_crm.py
+[2026-02-12T21:28:29.639+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:28:29.639+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T21:28:29.657+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:28:29.657+0800] {dag.py:3834} INFO - Setting next_dagrun for test_connection_mysql to 2026-02-12 00:00:00+00:00, run_after=2026-02-12 00:00:00+00:00
+[2026-02-12T21:28:29.679+0800] {processor.py:183} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/tag_crm/test_crm.py took 0.329 seconds

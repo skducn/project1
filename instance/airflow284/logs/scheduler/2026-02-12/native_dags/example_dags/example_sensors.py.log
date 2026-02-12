@@ -1,0 +1,14 @@
+[2026-02-12T21:27:14.897+0800] {processor.py:161} INFO - Started process (PID=27503) to work on /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py
+[2026-02-12T21:27:14.897+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py for tasks to queue
+[2026-02-12T21:27:14.898+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:27:14.898+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py
+[2026-02-12T21:27:14.911+0800] {processor.py:840} INFO - DAG(s) 'example_sensors' retrieved from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py
+[2026-02-12T21:27:15.170+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:27:15.170+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T21:27:15.180+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:27:15.180+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sensors to None, run_after=None
+[2026-02-12T21:27:15.203+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py took 0.308 seconds
+[2026-02-12T21:28:04.588+0800] {processor.py:161} INFO - Started process (PID=27585) to work on /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py
+[2026-02-12T21:28:04.591+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py for tasks to queue
+[2026-02-12T21:28:04.592+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:28:04.591+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py
+[2026-02-12T21:28:04.606+0800] {processor.py:840} INFO - DAG(s) 'example_sensors' retrieved from /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py
+[2026-02-12T21:28:04.793+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:28:04.792+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-12T21:28:04.804+0800] {logging_mixin.py:188} INFO - [2026-02-12T21:28:04.804+0800] {dag.py:3834} INFO - Setting next_dagrun for example_sensors to None, run_after=None
+[2026-02-12T21:28:04.825+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/airflow284/lib/python3.11/site-packages/airflow/example_dags/example_sensors.py took 0.238 seconds

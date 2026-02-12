@@ -1,0 +1,156 @@
+参考资料：
+https://airflow.apache.org/docs/apache-airflow/2.8.4/core-concepts/executor/index.html
+
+
+# todo 启动 Web Server
+airflow webserver --port 8080 -D
+说明：启动 Airflow 的 Web Server（网页服务器）。
+-D 参数表示以后台守护进程（Daemon）模式运行。
+Web Server 提供 Airflow 的用户界面（UI），用于查看和管理 DAG、任务状态、日志等。
+
+# todo 启动 Airflow Scheduler
+airflow scheduler -D
+说明：启动 Airflow 的 Scheduler（调度器）。
+-D 参数同样表示以后台守护进程模式运行。
+Scheduler 负责解析 DAG 文件、调度任务执行，并触发符合条件的任务实例。
+
+# todo 手动触发解析（可选）
+airflow dags reserialize
+说明：该命令会触发 Airflow 重新解析 $AIRFLOW_HOME/dags/ 目录下的所有 DAG 文件，并将它们的元数据（如 DAG 结构、任务定义等）重新写入数据库
+通常在以下场景中使用：
+    DAG 文件被修改后，但 Airflow 未自动检测到变化。
+    需要强制刷新 DAG 的缓存状态。
+    排查 DAG 加载或解析问题。
+
+# todo airflow 命令停止（根据你的启动方式）
+pkill -f "airflow scheduler"
+pkill -f "airflow webserver"
+
+
+# todo 停止已运行的 Web Server
+#      ps aux | grep airflow
+#      kill -9 1809  # 替换为实际的 PID
+# 或者直接删除 PID 文件（通常位于 $AIRFLOW_HOME/airflow-webserver.pid）
+# rm $AIRFLOW_HOME / airflow - webserver.pid
+
+
+# todo 查看命令
+查看 DAG 列表：airflow dags list
+查看 DAG 状态：airflow dags list | grep <dag_id>
+手动触发 DAG：airflow dags trigger <dag_id>
+
+
+
+
+
+pip install graphviz  //graphviz Python 库依赖于系统级的 Graphviz 工具
+
+
+
+# todo 设置此TAG启动时处于 active状态
+
+from airflow.models import DagModel
+from airflow.utils.session import create_session
+
+# 自动启用 DAG
+with create_session() as session:
+    dag_model = session.query(DagModel).filter(DagModel.dag_id == "dw_order_sync").first()
+    if dag_model:
+        dag_model.is_paused = False  # 设置为启用状态
+        session.commit()
+
+
+# todo 规划 DAG 目录结构（核心）
+
+airflow/dags/  # 核心 DAG 目录（对应 airflow.cfg 中的 dags_folder）
+├── tag_data_warehouse/  # 标签：data_warehouse（数据仓库相关 DAG）
+│   ├── dw_order_sync.py  # 订单同步 DAG（tag=data_warehouse）
+│   └── dw_user_profile.py  # 用户画像 DAG（tag=data_warehouse）
+├── tag_marketing/  # 标签：marketing（营销相关 DAG）
+│   ├── mk_campaign.py  # 营销活动 DAG（tag=marketing）
+│   └── mk_roi_analysis.py  # ROI 分析 DAG（tag=marketing）
+├── tag_dev/  # 标签：dev（开发测试 DAG）
+│   └── dev_test_workflow.py  # 测试工作流 DAG（tag=dev）
+└── shared/  # 公共模块（非 DAG 文件，可放工具函数）
+    └── utils.py  # 通用工具（如数据库连接、日志处理）
+
+/Users/linghuchong/miniconda3/envs/py310/bin/airflow version
+
+
+# todo 列出指定 Tag 的所有 DAG
+
+# 列出 data_warehouse 标签的 DAG
+airflow dags list --tags data_warehouse
+
+# 列出 marketing 标签的 DAG
+airflow dags list --tags marketing
+
+# 列出多个标签的 DAG（同时包含 dev 和 test）
+airflow dags list --tags dev,test
+
+
+# todo 触发指定 Tag 的 DAG
+
+# 触发单个带 tag 的 DAG（先查 ID，再触发）
+airflow dags trigger dw_order_sync
+
+# 批量触发同一标签的所有 DAG（结合脚本）
+#!/bin/bash
+# trigger_tag_dags.sh
+TAG="data_warehouse"
+# 获取该标签下的所有 DAG ID
+DAG_IDS=$(airflow dags list --tags $TAG | awk 'NR>1 {print $1}')
+# 循环触发
+for dag in $DAG_IDS; do
+    echo "Triggering DAG: $dag"
+    airflow dags trigger $dag
+done
+
+# todo paused
+airflow dags pause dw_order_sync
+
+# todo active
+airflow dags unpause dw_order_sync
+
+# todo 查看状态，false表示 处于paused
+(py310) localhost-2:~ linghuchong$ airflow dags list | grep dw_order_sync
+dw_order_sync  | tag_data_warehouse/dw_order_sync.py  | airflow | False
+
+# todo 调度
+# todo schedule 内置的一些常用调度间隔
+# @once: 只执行一次。
+# @hourly: 每小时执行一次（等价于 0 * * * *）。
+# @daily: 每天执行一次（等价于 0 0 * * *）。
+# @weekly: 每周执行一次（等价于 0 0 * * 0）。
+# @monthly: 每月执行一次（等价于 0 0 1 * *）。
+# @yearly 或 @annually: 每年执行一次（等价于 0 0 1 1 *）
+
+# todo Cron 表达式
+# * * * * *
+# │ │ │ │ │
+# │ │ │ │ └── 星期几 (0 - 7) (0 和 7 都表示星期日)
+# │ │ │ └──── 月份 (1 - 12)
+# │ │ └────── 日期 (1 - 31)
+# │ └──────── 小时 (0 - 23)
+# └────────── 分钟 (0 - 59)
+# 例如：
+# "0 9 * * 1": 每周一上午 9 点执行。
+# "30 14 * * *": 每天下午 2:30 执行。
+# "0 0 1 */3 *": 每季度第一天午夜执行。
+
+# todo timedelta 对象来定义调度间隔
+from datetime import timedelta
+schedule=timedelta(days=1)  # 每天执行一次
+schedule=timedelta(hours=6)  # 每 6 小时执行一次
+
+
+# todo 查看Airflow元数据库配置（重点看sql_alchemy_conn）
+airflow config get-value core sql_alchemy_conn
+# /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/config_command.py:60 FutureWarning: section/key [core/sql_alchemy_conn] has been deprecated, you should use[database/sql_alchemy_conn] instead. Please update your `conf.get*` call to use the new name
+/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/config_command.py:63 FutureWarning: section/key [core/sql_alchemy_conn] has been deprecated, you should use[database/sql_alchemy_conn] instead. Please update your `conf.get*` call to use the new name
+sqlite:////Users/linghuchong/Downloads/51/Python/project/instance/airflow/airflow.db
+
+# todo 连接到 SQLite 数据库
+(py310) localhost-2:~ linghuchong$ sqlite3 /Users/linghuchong/Downloads/51/Python/project/instance/airflow/airflow.db
+SQLite version 3.39.2 2022-07-21 15:24:47
+Enter ".help" for usage hints.

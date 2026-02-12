@@ -1,0 +1,5 @@
+{
+  "etl_file_path": "/data/etl/order",
+  "max_retry_times": "32",
+  "email_notify": "skducn@example.com"
+}

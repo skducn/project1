@@ -1,0 +1,44 @@
+[2026-02-12T18:17:29.014+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-12T00:00:00+00:00 [queued]>
+[2026-02-12T18:17:29.025+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-12T00:00:00+00:00 [queued]>
+[2026-02-12T18:17:29.026+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-12T18:17:29.043+0800] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): query_mysql> on 2026-02-12 00:00:00+00:00
+[2026-02-12T18:17:29.047+0800] {standard_task_runner.py:60} INFO - Started process 18604 to run task
+[2026-02-12T18:17:29.060+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'scheduled__2026-02-12T00:00:00+00:00', '--job-id', '27', '--raw', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpw62hehdf']
+[2026-02-12T18:17:29.065+0800] {standard_task_runner.py:88} INFO - Job 27: Subtask query_mysql
+[2026-02-12T18:17:29.268+0800] {task_command.py:423} INFO - Running <TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-12T00:00:00+00:00 [running]> on host localhost-2.local
+[2026-02-12T18:17:29.516+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='test_connection_mysql' AIRFLOW_CTX_TASK_ID='query_mysql' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-12T00:00:00+00:00'
+[2026-02-12T18:17:29.566+0800] {base.py:83} INFO - Using connection ID 'mysql_234_crm' for task execution.
+[2026-02-12T18:17:29.568+0800] {taskinstance.py:2731} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/mysql/hooks/mysql.py", line 214, in get_conn
+    import MySQLdb
+ModuleNotFoundError: No module named 'MySQLdb'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 200, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 217, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags/tag_crm/test_crm.py", line 14, in query_mysql_data
+    result = mysql_hook.get_first(sql)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 367, in get_first
+    return self.run(sql=sql, parameters=parameters, handler=fetch_one_handler)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 494, in run
+    with self._create_autocommit_connection(autocommit) as conn:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/contextlib.py", line 135, in __enter__
+    return next(self.gen)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 618, in _create_autocommit_connection
+    with closing(self.get_conn()) as conn:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/mysql/hooks/mysql.py", line 216, in get_conn
+    raise RuntimeError(
+RuntimeError: You do not have `mysqlclient` package installed. Please install it with `pip install mysqlclient` and make sure you have system mysql libraries installed, as well as well as `pkg-config` system package installed in case you see compilation error during installation.
+[2026-02-12T18:17:29.617+0800] {taskinstance.py:1149} INFO - Marking task as FAILED. dag_id=test_connection_mysql, task_id=query_mysql, execution_date=20260212T000000, start_date=20260212T101729, end_date=20260212T101729
+[2026-02-12T18:17:29.634+0800] {standard_task_runner.py:107} ERROR - Failed to execute job 27 for task query_mysql (You do not have `mysqlclient` package installed. Please install it with `pip install mysqlclient` and make sure you have system mysql libraries installed, as well as well as `pkg-config` system package installed in case you see compilation error during installation.; 18604)
+[2026-02-12T18:17:29.674+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2026-02-12T18:17:29.739+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

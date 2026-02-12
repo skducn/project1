@@ -1,0 +1,17 @@
+[2026-02-12T17:23:41.694+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: mk_campaign.run_campaign_analysis manual__2026-02-12T09:23:34.596742+00:00 [queued]>
+[2026-02-12T17:23:41.705+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: mk_campaign.run_campaign_analysis manual__2026-02-12T09:23:34.596742+00:00 [queued]>
+[2026-02-12T17:23:41.705+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-12T17:23:41.721+0800] {taskinstance.py:2217} INFO - Executing <Task(BashOperator): run_campaign_analysis> on 2026-02-12 09:23:34.596742+00:00
+[2026-02-12T17:23:41.724+0800] {standard_task_runner.py:60} INFO - Started process 15722 to run task
+[2026-02-12T17:23:41.732+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'mk_campaign', 'run_campaign_analysis', 'manual__2026-02-12T09:23:34.596742+00:00', '--job-id', '24', '--raw', '--subdir', 'DAGS_FOLDER/tag_marketing/mk_campaign.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp0hhqoq71']
+[2026-02-12T17:23:41.736+0800] {standard_task_runner.py:88} INFO - Job 24: Subtask run_campaign_analysis
+[2026-02-12T17:23:41.924+0800] {task_command.py:423} INFO - Running <TaskInstance: mk_campaign.run_campaign_analysis manual__2026-02-12T09:23:34.596742+00:00 [running]> on host localhost-2.local
+[2026-02-12T17:23:42.182+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='mk_campaign' AIRFLOW_CTX_TASK_ID='run_campaign_analysis' AIRFLOW_CTX_EXECUTION_DATE='2026-02-12T09:23:34.596742+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-12T09:23:34.596742+00:00'
+[2026-02-12T17:23:42.187+0800] {subprocess.py:63} INFO - Tmp dir root location: /var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T
+[2026-02-12T17:23:42.188+0800] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'echo {"host":"127.0.0.1","port":3306,"user":"airflow"}']
+[2026-02-12T17:23:42.194+0800] {subprocess.py:86} INFO - Output:
+[2026-02-12T17:23:42.199+0800] {subprocess.py:93} INFO - host:127.0.0.1 port:3306 user:airflow
+[2026-02-12T17:23:42.200+0800] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-02-12T17:23:42.298+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=mk_campaign, task_id=run_campaign_analysis, execution_date=20260212T092334, start_date=20260212T092341, end_date=20260212T092342
+[2026-02-12T17:23:42.337+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-12T17:23:42.393+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check

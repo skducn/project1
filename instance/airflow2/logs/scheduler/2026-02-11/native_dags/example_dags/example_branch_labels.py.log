@@ -1,0 +1,375 @@
+[2026-02-11T12:20:06.221+0800] {processor.py:161} INFO - Started process (PID=8259) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T12:20:06.223+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T12:20:06.224+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.223+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T12:20:06.236+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T12:20:06.546+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.546+0800] {override.py:1769} INFO - Created Permission View: can edit on DAG:example_branch_labels
+[2026-02-11T12:20:06.556+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.556+0800] {override.py:1769} INFO - Created Permission View: can read on DAG:example_branch_labels
+[2026-02-11T12:20:06.563+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.563+0800] {override.py:1769} INFO - Created Permission View: can delete on DAG:example_branch_labels
+[2026-02-11T12:20:06.563+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.563+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T12:20:06.575+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.575+0800] {dag.py:3069} INFO - Creating ORM DAG for example_branch_labels
+[2026-02-11T12:20:06.589+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:20:06.589+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T12:20:06.611+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.390 seconds
+[2026-02-11T12:25:31.481+0800] {processor.py:161} INFO - Started process (PID=8444) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T12:25:31.483+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T12:25:31.484+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:25:31.484+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T12:25:31.496+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T12:25:31.632+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:25:31.632+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T12:25:31.654+0800] {logging_mixin.py:188} INFO - [2026-02-11T12:25:31.654+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T12:25:31.674+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.194 seconds
+[2026-02-11T13:09:01.545+0800] {processor.py:161} INFO - Started process (PID=8620) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:09:01.546+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T13:09:01.547+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:09:01.547+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:09:01.557+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:09:01.683+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:09:01.683+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T13:09:01.708+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:09:01.708+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T13:09:01.730+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.185 seconds
+[2026-02-11T13:22:25.581+0800] {processor.py:161} INFO - Started process (PID=9182) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:22:25.582+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T13:22:25.583+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:22:25.583+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:22:25.594+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:22:25.750+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:22:25.749+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T13:22:25.773+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:22:25.772+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T13:22:25.795+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.215 seconds
+[2026-02-11T13:27:59.802+0800] {processor.py:161} INFO - Started process (PID=9345) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:27:59.803+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T13:27:59.804+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:27:59.804+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:27:59.814+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:27:59.948+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:27:59.947+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T13:27:59.968+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:27:59.968+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T13:27:59.989+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.188 seconds
+[2026-02-11T13:33:51.740+0800] {processor.py:161} INFO - Started process (PID=9544) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:33:51.743+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T13:33:51.744+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:33:51.744+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:33:51.753+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T13:33:51.884+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:33:51.883+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T13:33:51.905+0800] {logging_mixin.py:188} INFO - [2026-02-11T13:33:51.904+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T13:33:51.926+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.187 seconds
+[2026-02-11T16:22:10.109+0800] {processor.py:161} INFO - Started process (PID=14577) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:22:10.112+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:22:10.114+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:22:10.113+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:22:10.123+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:22:10.368+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:22:10.367+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:22:10.394+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:22:10.393+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:22:10.418+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.309 seconds
+[2026-02-11T16:26:12.466+0800] {processor.py:161} INFO - Started process (PID=14811) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:26:12.469+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:26:12.470+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:26:12.470+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:26:12.479+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:26:12.738+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:26:12.737+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:26:12.760+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:26:12.759+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:26:12.785+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.319 seconds
+[2026-02-11T16:32:46.487+0800] {processor.py:161} INFO - Started process (PID=15253) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:32:46.488+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:32:46.489+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:32:46.489+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:32:46.504+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:32:46.533+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:32:46.532+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:32:46.687+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:32:46.687+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:32:46.708+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.222 seconds
+[2026-02-11T16:38:57.101+0800] {processor.py:161} INFO - Started process (PID=15598) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:38:57.104+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:38:57.105+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:38:57.105+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:38:57.115+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:38:57.332+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:38:57.331+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:38:57.354+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:38:57.354+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:38:57.373+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.273 seconds
+[2026-02-11T16:45:01.181+0800] {processor.py:161} INFO - Started process (PID=16051) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:45:01.184+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:45:01.185+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:45:01.185+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:45:01.195+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:45:01.321+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:45:01.320+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:45:01.341+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:45:01.341+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:45:01.360+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.179 seconds
+[2026-02-11T16:51:51.596+0800] {processor.py:161} INFO - Started process (PID=16402) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:51:51.600+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:51:51.602+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:51:51.601+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:51:51.611+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:51:51.847+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:51:51.847+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:51:51.868+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:51:51.868+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:51:51.890+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.295 seconds
+[2026-02-11T16:58:20.854+0800] {processor.py:161} INFO - Started process (PID=16655) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:58:20.857+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T16:58:20.858+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:58:20.858+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:58:20.868+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T16:58:20.993+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:58:20.993+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T16:58:21.015+0800] {logging_mixin.py:188} INFO - [2026-02-11T16:58:21.015+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T16:58:21.035+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.182 seconds
+[2026-02-11T17:05:28.893+0800] {processor.py:161} INFO - Started process (PID=16939) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:05:28.894+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:05:28.895+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:05:28.895+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:05:28.906+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:05:29.216+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:05:29.215+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:05:29.246+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:05:29.246+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:05:29.279+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.387 seconds
+[2026-02-11T17:17:36.291+0800] {processor.py:161} INFO - Started process (PID=17808) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:17:36.293+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:17:36.294+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:17:36.294+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:17:36.303+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:17:36.517+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:17:36.516+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:17:36.536+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:17:36.536+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:17:36.559+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.269 seconds
+[2026-02-11T17:23:09.250+0800] {processor.py:161} INFO - Started process (PID=17984) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:23:09.253+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:23:09.255+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:23:09.254+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:23:09.265+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:23:09.386+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:23:09.385+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:23:09.405+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:23:09.405+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:23:09.425+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.175 seconds
+[2026-02-11T17:28:34.761+0800] {processor.py:161} INFO - Started process (PID=18159) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:28:34.764+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:28:34.765+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:28:34.765+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:28:34.775+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:28:34.908+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:28:34.908+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:28:34.928+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:28:34.927+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:28:34.946+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.186 seconds
+[2026-02-11T17:34:33.834+0800] {processor.py:161} INFO - Started process (PID=18363) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:34:33.837+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:34:33.838+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:34:33.838+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:34:33.848+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:34:33.979+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:34:33.979+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:34:34.002+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:34:34.001+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:34:34.024+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.190 seconds
+[2026-02-11T17:40:44.995+0800] {processor.py:161} INFO - Started process (PID=18888) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:40:44.997+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:40:44.997+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:40:44.997+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:40:45.009+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:40:45.140+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:40:45.140+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:40:45.164+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:40:45.164+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:40:45.183+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.189 seconds
+[2026-02-11T17:46:57.325+0800] {processor.py:161} INFO - Started process (PID=19696) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:46:57.329+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:46:57.330+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:46:57.329+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:46:57.341+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:46:57.501+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:46:57.500+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:46:57.533+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:46:57.533+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:46:57.550+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.226 seconds
+[2026-02-11T17:53:08.570+0800] {processor.py:161} INFO - Started process (PID=19935) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:53:08.573+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:53:08.574+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:53:08.573+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:53:08.584+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:53:08.750+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:53:08.749+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:53:08.780+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:53:08.780+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:53:08.809+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.240 seconds
+[2026-02-11T17:59:24.648+0800] {processor.py:161} INFO - Started process (PID=20154) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:59:24.649+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T17:59:24.650+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:59:24.650+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:59:24.660+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T17:59:24.827+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:59:24.826+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T17:59:24.887+0800] {logging_mixin.py:188} INFO - [2026-02-11T17:59:24.887+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T17:59:25.083+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.436 seconds
+[2026-02-11T18:05:28.806+0800] {processor.py:161} INFO - Started process (PID=20736) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T18:05:28.807+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T18:05:28.807+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:28.807+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T18:05:28.816+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T18:05:28.995+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:28.994+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T18:05:29.013+0800] {logging_mixin.py:188} INFO - [2026-02-11T18:05:29.013+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T18:05:29.032+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.227 seconds
+[2026-02-11T19:53:28.695+0800] {processor.py:161} INFO - Started process (PID=1221) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T19:53:28.696+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T19:53:28.697+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:28.697+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T19:53:28.708+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T19:53:28.912+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:28.911+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T19:53:28.931+0800] {logging_mixin.py:188} INFO - [2026-02-11T19:53:28.930+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T19:53:28.949+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.256 seconds
+[2026-02-11T21:00:13.465+0800] {processor.py:161} INFO - Started process (PID=1529) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:00:13.466+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:00:13.467+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:13.467+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:00:13.476+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:00:13.582+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:13.581+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:00:13.599+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:00:13.599+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:00:13.617+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.153 seconds
+[2026-02-11T21:06:17.812+0800] {processor.py:161} INFO - Started process (PID=2084) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:06:17.813+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:06:17.814+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:17.814+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:06:17.822+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:06:18.007+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:18.007+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:06:18.025+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:06:18.025+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:06:18.045+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.234 seconds
+[2026-02-11T21:12:15.651+0800] {processor.py:161} INFO - Started process (PID=2378) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:12:15.652+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:12:15.653+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:15.653+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:12:15.662+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:12:15.779+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:15.779+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:12:15.801+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:12:15.800+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:12:15.823+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.172 seconds
+[2026-02-11T21:18:21.263+0800] {processor.py:161} INFO - Started process (PID=2837) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:18:21.264+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:18:21.265+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:21.264+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:18:21.274+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:18:21.393+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:21.393+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:18:21.413+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:18:21.413+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:18:21.430+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.168 seconds
+[2026-02-11T21:24:48.347+0800] {processor.py:161} INFO - Started process (PID=3216) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:24:48.350+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:24:48.351+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:24:48.350+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:24:48.359+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:24:48.547+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:24:48.546+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:24:48.564+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:24:48.563+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:24:48.585+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.239 seconds
+[2026-02-11T21:30:28.966+0800] {processor.py:161} INFO - Started process (PID=3484) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:30:28.967+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:30:28.968+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:28.968+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:30:28.977+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:30:29.094+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:29.094+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:30:29.113+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:30:29.113+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:30:29.130+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.164 seconds
+[2026-02-11T21:36:01.568+0800] {processor.py:161} INFO - Started process (PID=3797) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:36:01.569+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:36:01.570+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:01.570+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:36:01.586+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:36:01.788+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:01.787+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:36:01.813+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:36:01.813+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:36:01.839+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.273 seconds
+[2026-02-11T21:42:01.428+0800] {processor.py:161} INFO - Started process (PID=4245) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:42:01.431+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:42:01.432+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:01.432+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:42:01.442+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:42:01.563+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:01.562+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:42:01.580+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:42:01.580+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:42:01.599+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.171 seconds
+[2026-02-11T21:45:45.881+0800] {processor.py:161} INFO - Started process (PID=4491) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:45:45.882+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:45:45.883+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:45.882+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:45:45.892+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:45:46.015+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:46.015+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:45:46.035+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:45:46.035+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:45:46.053+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.173 seconds
+[2026-02-11T21:51:44.162+0800] {processor.py:161} INFO - Started process (PID=4766) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:51:44.163+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:51:44.164+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:51:44.163+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:51:44.174+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:51:44.546+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:51:44.546+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:51:44.587+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:51:44.586+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:51:45.147+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:51:45.140+0800] {dagbag.py:649} ERROR - Failed to write serialized DAG: /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 637, in _serialize_dag_capturing_errors
+    dag_was_updated = SerializedDagModel.write_dag(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/serialized_dag.py", line 157, in write_dag
+    if session.scalar(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 724, in _connection_for_bind
+    self._assert_active()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 604, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.IntegrityError) UNIQUE constraint failed: serialized_dag.dag_id
+[SQL: INSERT INTO serialized_dag (dag_id, fileloc, fileloc_hash, data, data_compressed, last_updated, dag_hash, processor_subdir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('example_branch_labels', '/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py', 14039654191820275, '{"__version": 1, "dag": {"_dag_id": "example_branch_labels", "_task_group": {"_group_id": null, "prefix_group_id": true, "tooltip": "", "ui_color": " ... (3826 characters truncated) ... ardown": false, "_task_type": "EmptyOperator", "_task_module": "airflow.operators.empty", "_is_empty": true}], "dag_dependencies": [], "params": {}}}', None, '2026-02-11 13:51:44.323928', '3eb6dc7221d41c7690a80cebcdeb6639', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+[2026-02-11T21:51:45.147+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:51:45.147+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:51:45.149+0800] {processor.py:186} ERROR - Got an exception! Propagating...
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 182, in _run_file_processor
+    _handle_dag_file_processing()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 163, in _handle_dag_file_processing
+    result: tuple[int, int] = dag_file_processor.process_file(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 859, in process_file
+    serialize_errors = DagFileProcessor.save_dag_to_db(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 114, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 79, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 895, in save_dag_to_db
+    import_errors = DagBag._sync_to_db(dags=dags, processor_subdir=dag_directory, session=session)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 659, in _sync_to_db
+    for attempt in run_with_db_retries(logger=log):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/tenacity/__init__.py", line 347, in __iter__
+    do = self.iter(retry_state=retry_state)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/tenacity/__init__.py", line 314, in iter
+    return fut.result()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 675, in _sync_to_db
+    DAG.bulk_write_to_db(dags.values(), processor_subdir=processor_subdir, session=session)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 76, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dag.py", line 3059, in bulk_write_to_db
+    orm_dags: list[DagModel] = session.scalars(query).unique().all()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1778, in scalars
+    return self.execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 724, in _connection_for_bind
+    self._assert_active()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 604, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.IntegrityError) UNIQUE constraint failed: serialized_dag.dag_id
+[SQL: INSERT INTO serialized_dag (dag_id, fileloc, fileloc_hash, data, data_compressed, last_updated, dag_hash, processor_subdir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('example_branch_labels', '/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py', 14039654191820275, '{"__version": 1, "dag": {"_dag_id": "example_branch_labels", "_task_group": {"_group_id": null, "prefix_group_id": true, "tooltip": "", "ui_color": " ... (3826 characters truncated) ... ardown": false, "_task_type": "EmptyOperator", "_task_module": "airflow.operators.empty", "_is_empty": true}], "dag_dependencies": [], "params": {}}}', None, '2026-02-11 13:51:44.323928', '3eb6dc7221d41c7690a80cebcdeb6639', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow/dags')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+[2026-02-11T21:57:35.018+0800] {processor.py:161} INFO - Started process (PID=5013) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:57:35.021+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T21:57:35.021+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:35.021+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:57:35.033+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T21:57:35.240+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:35.240+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T21:57:35.258+0800] {logging_mixin.py:188} INFO - [2026-02-11T21:57:35.257+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T21:57:35.278+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.261 seconds
+[2026-02-11T22:03:32.794+0800] {processor.py:161} INFO - Started process (PID=5242) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:03:32.797+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:03:32.798+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:32.798+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:03:32.808+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:03:32.934+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:32.934+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:03:32.959+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:03:32.958+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:03:32.982+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.188 seconds
+[2026-02-11T22:09:16.107+0800] {processor.py:161} INFO - Started process (PID=5474) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:09:16.107+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:09:16.108+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:16.108+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:09:16.117+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:09:16.225+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:16.225+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:09:16.242+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:09:16.242+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:09:16.262+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.156 seconds
+[2026-02-11T22:14:26.394+0800] {processor.py:161} INFO - Started process (PID=5600) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:14:26.397+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:14:26.398+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:26.398+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:14:26.408+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:14:26.518+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:26.517+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:14:26.536+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:14:26.535+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:14:26.556+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.163 seconds
+[2026-02-11T22:19:54.695+0800] {processor.py:161} INFO - Started process (PID=5742) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:19:54.696+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:19:54.696+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:19:54.696+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:19:54.705+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:19:54.816+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:19:54.815+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:19:54.834+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:19:54.834+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:19:54.852+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.158 seconds
+[2026-02-11T22:26:15.470+0800] {processor.py:161} INFO - Started process (PID=6078) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:26:15.473+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:26:15.474+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:15.474+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:26:15.483+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:26:15.670+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:15.670+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:26:15.687+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:26:15.687+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:26:15.708+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.238 seconds
+[2026-02-11T22:31:26.178+0800] {processor.py:161} INFO - Started process (PID=6202) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:31:26.181+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:31:26.182+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:26.182+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:31:26.191+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:31:26.297+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:26.296+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:31:26.315+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:31:26.314+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:31:26.336+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.159 seconds
+[2026-02-11T22:37:42.175+0800] {processor.py:161} INFO - Started process (PID=6500) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:37:42.178+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:37:42.179+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:42.179+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:37:42.188+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:37:42.387+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:42.387+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:37:42.405+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:37:42.405+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:37:42.424+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.249 seconds
+[2026-02-11T22:44:35.663+0800] {processor.py:161} INFO - Started process (PID=6882) to work on /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:44:35.666+0800] {processor.py:830} INFO - Processing file /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py for tasks to queue
+[2026-02-11T22:44:35.667+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:35.667+0800] {dagbag.py:540} INFO - Filling up the DagBag from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:44:35.675+0800] {processor.py:840} INFO - DAG(s) 'example_branch_labels' retrieved from /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py
+[2026-02-11T22:44:35.889+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:35.888+0800] {dag.py:3047} INFO - Sync 1 DAGs
+[2026-02-11T22:44:35.910+0800] {logging_mixin.py:188} INFO - [2026-02-11T22:44:35.910+0800] {dag.py:3834} INFO - Setting next_dagrun for example_branch_labels to 2026-02-10 00:00:00+00:00, run_after=2026-02-11 00:00:00+00:00
+[2026-02-11T22:44:35.935+0800] {processor.py:183} INFO - Processing /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/example_dags/example_branch_labels.py took 0.273 seconds

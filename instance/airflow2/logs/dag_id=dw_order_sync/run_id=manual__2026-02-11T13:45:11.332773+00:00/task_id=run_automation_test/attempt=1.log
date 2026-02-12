@@ -1,0 +1,28 @@
+[2026-02-11T21:45:24.808+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:45:11.332773+00:00 [queued]>
+[2026-02-11T21:45:24.814+0800] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:45:11.332773+00:00 [queued]>
+[2026-02-11T21:45:24.814+0800] {taskinstance.py:2193} INFO - Starting attempt 1 of 1
+[2026-02-11T21:45:24.829+0800] {taskinstance.py:2217} INFO - Executing <Task(PythonOperator): run_automation_test> on 2026-02-11 13:45:11.332773+00:00
+[2026-02-11T21:45:24.833+0800] {standard_task_runner.py:60} INFO - Started process 4457 to run task
+[2026-02-11T21:45:24.840+0800] {standard_task_runner.py:87} INFO - Running: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-11T13:45:11.332773+00:00', '--job-id', '111', '--raw', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp468wyheh']
+[2026-02-11T21:45:24.844+0800] {standard_task_runner.py:88} INFO - Job 111: Subtask run_automation_test
+[2026-02-11T21:45:24.893+0800] {task_command.py:423} INFO - Running <TaskInstance: dw_order_sync.run_automation_test manual__2026-02-11T13:45:11.332773+00:00 [running]> on host localhost-2.local
+[2026-02-11T21:45:24.954+0800] {taskinstance.py:2513} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dw_order_sync' AIRFLOW_CTX_TASK_ID='run_automation_test' AIRFLOW_CTX_EXECUTION_DATE='2026-02-11T13:45:11.332773+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-11T13:45:11.332773+00:00'
+[2026-02-11T21:45:26.909+0800] {logging_mixin.py:188} INFO - 子进程输出内容:
+[2026-02-11T21:45:26.911+0800] {logging_mixin.py:188} INFO - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.log 2026-02-11 21:45:26.478328
+浏览器版本前3： 145.0.7632
+chrome驱动版本前3： /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632
+[2026-02-11T21:45:26.911+0800] {logging_mixin.py:188} INFO - 子进程错误信息:
+[2026-02-11T21:45:26.911+0800] {logging_mixin.py:188} INFO - Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 29, in <module>
+    Cdrd_PO.login()
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 107, in login
+    self.Web_PO.openURL(Configparser_PO.HTTP("url"))
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/WebPO.py", line 328, in openURL
+    self.opn(varURL, t)
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/WebPO.py", line 332, in opn
+    self.driver.get(varUrl)
+AttributeError: 'NoneType' object has no attribute 'get'
+[2026-02-11T21:45:26.912+0800] {python.py:202} INFO - Done. Returned value was: 1
+[2026-02-11T21:45:26.933+0800] {taskinstance.py:1149} INFO - Marking task as SUCCESS. dag_id=dw_order_sync, task_id=run_automation_test, execution_date=20260211T134511, start_date=20260211T134524, end_date=20260211T134526
+[2026-02-11T21:45:26.960+0800] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-02-11T21:45:26.981+0800] {taskinstance.py:3312} INFO - 0 downstream tasks scheduled from follow-on schedule check
