@@ -36,6 +36,8 @@ Cdrd_PO.login()
 Cdrd_PO.opnMenu('患者列表')
 print("你好hello")
 
+Cdrd_PO.quit()
+
 
 # # 遍历获取每页所有患者详情页url
 # # 获取页数

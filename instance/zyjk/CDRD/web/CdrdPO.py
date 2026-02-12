@@ -131,6 +131,13 @@ class CdrdPO():
 
         self.logger.info("已登出")
 
+    def quit(self):
+
+        # 已登出
+        # self.Web_PO.cls()
+        self.Web_PO.quit()
+
+
     def opnMenu(self, varMenu):
         # 打开菜单, 获取菜单的链接和句柄字典
         d_menu = self.getMenu2Url()

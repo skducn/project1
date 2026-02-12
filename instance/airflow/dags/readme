@@ -142,3 +142,15 @@ dw_order_sync  | tag_data_warehouse/dw_order_sync.py  | airflow | False
 from datetime import timedelta
 schedule=timedelta(days=1)  # 每天执行一次
 schedule=timedelta(hours=6)  # 每 6 小时执行一次
+
+
+# todo 查看Airflow元数据库配置（重点看sql_alchemy_conn）
+airflow config get-value core sql_alchemy_conn
+# /Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/config_command.py:60 FutureWarning: section/key [core/sql_alchemy_conn] has been deprecated, you should use[database/sql_alchemy_conn] instead. Please update your `conf.get*` call to use the new name
+/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/config_command.py:63 FutureWarning: section/key [core/sql_alchemy_conn] has been deprecated, you should use[database/sql_alchemy_conn] instead. Please update your `conf.get*` call to use the new name
+sqlite:////Users/linghuchong/Downloads/51/Python/project/instance/airflow/airflow.db
+
+# todo 连接到 SQLite 数据库
+(py310) localhost-2:~ linghuchong$ sqlite3 /Users/linghuchong/Downloads/51/Python/project/instance/airflow/airflow.db
+SQLite version 3.39.2 2022-07-21 15:24:47
+Enter ".help" for usage hints.

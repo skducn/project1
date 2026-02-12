@@ -32,6 +32,28 @@ def run_automation_test(**kwargs):
     # 返回测试结果，供后续步骤使用
     return result.returncode  # 0=成功，非0=失败
 
+def run_automation_test2(**kwargs):
+
+    # 执行自动化测试并生成报告
+    # capture_output=True：
+    # 捕获命令的标准输出（stdout）和标准错误（stderr），避免直接打印到终端。
+    # text=True：
+    # 将输出以文本形式返回，而不是字节形式
+    result = subprocess.run(
+        ["python", "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main2.py"],
+        capture_output=True,
+        text=True
+    )
+    print("子进程输出内容:")
+    print(result.stdout)
+    # 如果有错误信息也打印出来
+    if result.stderr:
+        print("子进程错误信息:")
+        print(result.stderr)
+
+    # 返回测试结果，供后续步骤使用
+    return result.returncode  # 0=成功，非0=失败
+
 # ====================== 第三步：定义DAG ======================
 # 核心：tags 参数指定标签（与目录标签一致，可加额外标签）
 # schedule 内置的一些常用调度间隔
@@ -53,24 +75,31 @@ def run_automation_test(**kwargs):
 # "0 9 * * 1": 每周一上午 9 点执行。
 # "30 14 * * *": 每天下午 2:30 执行。
 # "0 0 1 */3 *": 每季度第一天午夜执行。
+# 使用 DAG 类创建一个新的工作流对象，并通过上下文管理器（with 语句）将其作用域限定在当前块内
 with DAG(
-    dag_id="dw_order_sync",  # 唯一 DAG ID
+    dag_id="dw_order_sync",  # 唯一 DAG ID，用于区分不同的工作流
     start_date=datetime(2026, 2, 11),
     schedule="@daily",
-    catchup=False,
-    tags=["data_warehouse", "order", "sync"]  # 主标签+子标签
+    catchup=False,  # 控制是否对过去未运行的调度周期进行“补跑”。设置为 False 表示不补跑历史任务；若为 True，则会在 DAG 启用后立即运行所有错过的调度周期。
+    tags=["data_warehouse", "订单", "sync"]  # 主标签+子标签
 ) as dag:
     sync_order = BashOperator(
         task_id="sync_order_data",
         bash_command='echo "同步订单数据到数据仓库"'
     )
-    # Task3：执行自动化测试
+    # Task1：执行自动化测试
     run_test = PythonOperator(
         task_id='run_automation_test',
         python_callable=run_automation_test,
     )
 
-    sync_order >> run_test
+    # Task1：执行自动化测试
+    run_test2 = PythonOperator(
+        task_id='run_automation_test2',
+        python_callable=run_automation_test2,
+    )
+
+    sync_order >> run_test >> run_test2
 
 
 
