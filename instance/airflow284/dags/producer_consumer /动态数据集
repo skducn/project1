@@ -1,0 +1,22 @@
+场景 4：动态数据集（基于变量 / 参数）
+通过 Airflow Variable 动态定义数据集 URI，适配多环境：
+python
+运行
+from airflow.models import Variable
+# 从Variable读取数据集URI（如测试/生产环境不同）
+dataset_uri = Variable.get("order_dataset_uri", default_var="dataset://mysql/dw_order_prod")
+dynamic_dataset = Dataset(uri=dataset_uri)
+
+with DAG(
+    dag_id="producer_dynamic_dataset",
+    start_date=datetime(2026, 2, 13),
+    schedule_interval=None,
+    catchup=False
+) as dag:
+    def dynamic_task():
+        print(f"更新动态数据集: {dataset_uri}")
+    task = PythonOperator(
+        task_id="dynamic_task",
+        python_callable=dynamic_task,
+        outlets=[dynamic_dataset]
+    )

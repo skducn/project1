@@ -1,0 +1,14 @@
+场景 3：数据集 + 时间调度（混合触发）
+消费者既监听数据集，又按时间调度（如每天凌晨 2 点，或数据集更新时触发）：
+python
+运行
+with DAG(
+    dag_id="consumer_hybrid_trigger",
+    start_date=datetime(2026, 2, 13),
+    # 格式：[数据集1, 数据集2, "时间表达式"]
+    schedule=[dw_order_cleaned, "@daily"],
+    catchup=False
+) as dag:
+    def hybrid_task():
+        print("触发条件：数据集更新 OR 每天凌晨2点")
+    task = PythonOperator(task_id="hybrid_task", python_callable=hybrid_task)
