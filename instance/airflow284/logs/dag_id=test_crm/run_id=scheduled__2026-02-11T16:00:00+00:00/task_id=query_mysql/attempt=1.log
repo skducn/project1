@@ -1,0 +1,21 @@
+[2026-02-13T09:12:43.099+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T09:12:43.115+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_crm.query_mysql scheduled__2026-02-11T16:00:00+00:00 [queued]>
+[2026-02-13T09:12:43.121+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_crm.query_mysql scheduled__2026-02-11T16:00:00+00:00 [queued]>
+[2026-02-13T09:12:43.121+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2026-02-13T09:12:43.135+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): query_mysql> on 2026-02-11 16:00:00+00:00
+[2026-02-13T09:12:43.138+0800] {standard_task_runner.py:72} INFO - Started process 3846 to run task
+[2026-02-13T09:12:43.145+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'test_crm', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--job-id', '37', '--raw', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmprxrasm_a']
+[2026-02-13T09:12:43.150+0800] {standard_task_runner.py:105} INFO - Job 37: Subtask query_mysql
+[2026-02-13T09:12:43.403+0800] {task_command.py:467} INFO - Running <TaskInstance: test_crm.query_mysql scheduled__2026-02-11T16:00:00+00:00 [running]> on host localhost-2.local
+[2026-02-13T09:12:43.466+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='test_crm' AIRFLOW_CTX_TASK_ID='query_mysql' AIRFLOW_CTX_EXECUTION_DATE='2026-02-11T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-02-11T16:00:00+00:00'
+[2026-02-13T09:12:43.467+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T09:12:43.497+0800] {base.py:84} INFO - Retrieving connection 'mysql_234_crm'
+[2026-02-13T09:12:43.540+0800] {sql.py:457} INFO - Running statement:  SELECT * FROM user where UID=82, parameters: None
+[2026-02-13T09:12:43.553+0800] {sql.py:466} INFO - Rows affected: 1
+[2026-02-13T09:12:43.561+0800] {logging_mixin.py:190} INFO - ✅ MySQL 连接成功！测试查询结果: (82, '82', '孙友磊', 'sx*y*l*', 'sunyoulei', '0', '0', '$1$5b0.bX..$qkd.cr15UrXKn60VGr1Vr.', '', '', 28, 5, '地区经理', '0', '', 0, '', 61, '0', '0000-00-00', '0', '', '', '', '', '', '', '', '', '', '', '', '0', '1', datetime.datetime(2019, 5, 27, 10, 51, 25), '', '1', '0000-00-00 00:00:00', 15, '', '', '1', 12300, '1', '0', '0', 'ALL', 'ALL', '93,', 1, 1, '1', '0', '0', '', '', '192.168.0.177', '0', None, '1', '', '', '', '', '0', '', 1, '0000-00-00 00:00:00', 0, 'a:1:{s:11:"login_first";i:4;}', 1, '', 0, '', '', '', '', 0, '', '', '', '', '')
+[2026-02-13T09:12:43.562+0800] {python.py:240} INFO - Done. Returned value was: (82, '82', '孙友磊', 'sx*y*l*', 'sunyoulei', '0', '0', '$1$5b0.bX..$qkd.cr15UrXKn60VGr1Vr.', '', '', 28, 5, '地区经理', '0', '', 0, '', 61, '0', '0000-00-00', '0', '', '', '', '', '', '', '', '', '', '', '', '0', '1', datetime.datetime(2019, 5, 27, 10, 51, 25), '', '1', '0000-00-00 00:00:00', 15, '', '', '1', 12300, '1', '0', '0', 'ALL', 'ALL', '93,', 1, 1, '1', '0', '0', '', '', '192.168.0.177', '0', None, '1', '', '', '', '', '0', '', 1, '0000-00-00 00:00:00', 0, 'a:1:{s:11:"login_first";i:4;}', 1, '', 0, '', '', '', '', 0, '', '', '', '', '')
+[2026-02-13T09:12:43.579+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T09:12:43.580+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=test_crm, task_id=query_mysql, run_id=scheduled__2026-02-11T16:00:00+00:00, execution_date=20260211T160000, start_date=20260213T011243, end_date=20260213T011243
+[2026-02-13T09:12:43.646+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-13T09:12:43.792+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T09:12:43.795+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,6 +1,10 @@
 参考资料：
 https://airflow.apache.org/docs/apache-airflow/2.8.4/core-concepts/executor/index.html
 
+pkill -f "airflow scheduler"
+pkill -f "airflow webserver"
+airflow scheduler -D
+airflow webserver --port 8080 -D
 
 # todo 启动 Web Server
 airflow webserver --port 8080 -D

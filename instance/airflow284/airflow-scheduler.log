@@ -138,3 +138,668 @@
 2026-02-13 00:35:49,436 INFO - Processing each file at most -1 times
 2026-02-13 00:35:49,442 INFO - Launched DagFileProcessorManager with pid: 3597
 2026-02-13 00:35:49,447 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 00:42:12,985 INFO - Heartbeat recovered after 169.74 seconds
+2026-02-13 00:43:05,883 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 00:43:06,886 INFO - Sending Signals.SIGTERM to group 3597. PIDs of all processes in the group: [3597]
+2026-02-13 00:43:06,887 INFO - Sending the signal Signals.SIGTERM to group 3597
+2026-02-13 00:43:06,903 INFO - Process psutil.Process(pid=3597, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='00:35:49') (3597) terminated with exit code Negsignal.SIGTERM
+2026-02-13 00:43:06,905 INFO - Sending Signals.SIGTERM to group 3597. PIDs of all processes in the group: []
+2026-02-13 00:43:06,906 INFO - Sending the signal Signals.SIGTERM to group 3597
+2026-02-13 00:43:06,907 INFO - Sending the signal Signals.SIGTERM to process 3597 as process group is missing.
+2026-02-13 00:43:06,908 INFO - Exited execute loop
+2026-02-13 08:12:37,398 INFO - Loaded executor: SequentialExecutor
+2026-02-13 08:12:38,859 INFO - Starting the scheduler
+2026-02-13 08:12:38,861 INFO - Processing each file at most -1 times
+2026-02-13 08:12:38,877 INFO - Launched DagFileProcessorManager with pid: 1168
+2026-02-13 08:12:38,885 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:12:49,995 INFO - Setting next_dagrun for dw_order_sync to 2026-02-13 00:00:00+00:00, run_after=2026-02-14 00:00:00+00:00
+2026-02-13 08:12:50,338 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data scheduled__2026-02-12T00:00:00+00:00 [scheduled]>
+2026-02-13 08:12:50,339 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:12:50,340 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data scheduled__2026-02-12T00:00:00+00:00 [scheduled]>
+2026-02-13 08:12:50,344 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data scheduled__2026-02-12T00:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:12:50,346 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='scheduled__2026-02-12T00:00:00+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:12:50,348 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'scheduled__2026-02-12T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:12:50,350 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'scheduled__2026-02-12T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:12:55,572 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='scheduled__2026-02-12T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-13 08:12:55,592 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=scheduled__2026-02-12T00:00:00+00:00, map_index=-1, run_start_date=2026-02-13 00:12:54.275855+00:00, run_end_date=2026-02-13 00:12:54.689110+00:00, run_duration=0.413255, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=8, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:12:50.342111+00:00, queued_by_job_id=7, pid=1198
+2026-02-13 08:12:55,683 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-12T00:00:00+00:00 [scheduled]>
+2026-02-13 08:12:55,684 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:12:55,685 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-12T00:00:00+00:00 [scheduled]>
+2026-02-13 08:12:55,688 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test scheduled__2026-02-12T00:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:12:55,689 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='scheduled__2026-02-12T00:00:00+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:12:55,690 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'scheduled__2026-02-12T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:12:55,693 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'scheduled__2026-02-12T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:13:27,391 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='scheduled__2026-02-12T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-13 08:13:27,401 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=scheduled__2026-02-12T00:00:00+00:00, map_index=-1, run_start_date=2026-02-13 00:12:59.657432+00:00, run_end_date=2026-02-13 00:13:26.757785+00:00, run_duration=27.100353, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=9, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 00:12:55.686573+00:00, queued_by_job_id=7, pid=1212
+2026-02-13 08:13:27,423 INFO - Heartbeat recovered after 31.81 seconds
+2026-02-13 08:13:30,110 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test2 scheduled__2026-02-12T00:00:00+00:00 [scheduled]>
+2026-02-13 08:13:30,111 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:13:30,112 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test2 scheduled__2026-02-12T00:00:00+00:00 [scheduled]>
+2026-02-13 08:13:30,114 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test2 scheduled__2026-02-12T00:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:13:30,115 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='scheduled__2026-02-12T00:00:00+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:13:30,116 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'scheduled__2026-02-12T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:13:30,118 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'scheduled__2026-02-12T00:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:13:39,662 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='scheduled__2026-02-12T00:00:00+00:00', try_number=1, map_index=-1)
+2026-02-13 08:13:39,673 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test2, run_id=scheduled__2026-02-12T00:00:00+00:00, map_index=-1, run_start_date=2026-02-13 00:13:32.857265+00:00, run_end_date=2026-02-13 00:13:39.140010+00:00, run_duration=6.282745, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=10, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:13:30.113324+00:00, queued_by_job_id=7, pid=1281
+2026-02-13 08:13:39,735 INFO - Marking run <DagRun dw_order_sync @ 2026-02-12 00:00:00+00:00: scheduled__2026-02-12T00:00:00+00:00, state:running, queued_at: 2026-02-13 00:12:49.964054+00:00. externally triggered: False> successful
+2026-02-13 08:13:39,737 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-12 00:00:00+00:00, run_id=scheduled__2026-02-12T00:00:00+00:00, run_start_date=2026-02-13 00:12:50.025095+00:00, run_end_date=2026-02-13 00:13:39.737284+00:00, run_duration=49.712189, state=success, external_trigger=False, run_type=scheduled, data_interval_start=2026-02-12 00:00:00+00:00, data_interval_end=2026-02-13 00:00:00+00:00, dag_hash=340b2787125831c612b39fbc22c30471
+2026-02-13 08:13:39,742 INFO - Setting next_dagrun for dw_order_sync to 2026-02-13 00:00:00+00:00, run_after=2026-02-14 00:00:00+00:00
+2026-02-13 08:17:38,958 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:18:26,045 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>
+2026-02-13 08:18:26,046 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:18:26,047 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>
+2026-02-13 08:18:26,049 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:18:26,050 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:18:24.219436+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:18:26,050 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:18:24.219436+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:18:26,053 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:18:24.219436+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:18:29,844 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:18:24.219436+00:00', try_number=1, map_index=-1)
+2026-02-13 08:18:29,854 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T00:18:24.219436+00:00, map_index=-1, run_start_date=2026-02-13 00:18:28.969094+00:00, run_end_date=2026-02-13 00:18:29.318396+00:00, run_duration=0.349302, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=11, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:18:26.048266+00:00, queued_by_job_id=7, pid=1606
+2026-02-13 08:18:29,904 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>
+2026-02-13 08:18:29,905 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:18:29,906 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>
+2026-02-13 08:18:29,908 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:18:29,909 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:18:24.219436+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:18:29,910 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:18:24.219436+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:18:29,912 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:18:24.219436+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:18:44,568 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:18:24.219436+00:00', try_number=1, map_index=-1)
+2026-02-13 08:18:44,578 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-13T00:18:24.219436+00:00, map_index=-1, run_start_date=2026-02-13 00:18:32.487156+00:00, run_end_date=2026-02-13 00:18:44.040088+00:00, run_duration=11.552932, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=12, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 00:18:29.907098+00:00, queued_by_job_id=7, pid=1609
+2026-02-13 08:18:44,647 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>
+2026-02-13 08:18:44,648 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:18:44,648 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>
+2026-02-13 08:18:44,650 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:18:24.219436+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:18:44,651 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:18:24.219436+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:18:44,652 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:18:24.219436+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:18:44,654 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:18:24.219436+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:18:55,247 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:18:24.219436+00:00', try_number=1, map_index=-1)
+2026-02-13 08:18:55,256 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test2, run_id=manual__2026-02-13T00:18:24.219436+00:00, map_index=-1, run_start_date=2026-02-13 00:18:47.083853+00:00, run_end_date=2026-02-13 00:18:54.735331+00:00, run_duration=7.651478, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=13, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:18:44.649721+00:00, queued_by_job_id=7, pid=1634
+2026-02-13 08:18:57,472 INFO - Marking run <DagRun dw_order_sync @ 2026-02-13 00:18:24.219436+00:00: manual__2026-02-13T00:18:24.219436+00:00, state:running, queued_at: 2026-02-13 00:18:24.242798+00:00. externally triggered: True> successful
+2026-02-13 08:18:57,473 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-13 00:18:24.219436+00:00, run_id=manual__2026-02-13T00:18:24.219436+00:00, run_start_date=2026-02-13 00:18:26.017239+00:00, run_end_date=2026-02-13 00:18:57.473471+00:00, run_duration=31.456232, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-12 00:00:00+00:00, data_interval_end=2026-02-13 00:00:00+00:00, dag_hash=340b2787125831c612b39fbc22c30471
+2026-02-13 08:19:43,818 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>
+2026-02-13 08:19:43,819 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:19:43,820 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>
+2026-02-13 08:19:43,822 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:19:43,824 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:19:42.112301+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:19:43,824 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:19:42.112301+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:19:43,827 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:19:42.112301+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:19:47,263 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:19:42.112301+00:00', try_number=1, map_index=-1)
+2026-02-13 08:19:47,272 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T00:19:42.112301+00:00, map_index=-1, run_start_date=2026-02-13 00:19:46.421204+00:00, run_end_date=2026-02-13 00:19:46.743513+00:00, run_duration=0.322309, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=14, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:19:43.821755+00:00, queued_by_job_id=7, pid=1697
+2026-02-13 08:19:47,347 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>
+2026-02-13 08:19:47,348 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:19:47,349 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>
+2026-02-13 08:19:47,351 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:19:47,352 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:19:42.112301+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:19:47,352 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:19:42.112301+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:19:47,354 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:19:42.112301+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:19:56,969 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:19:42.112301+00:00', try_number=1, map_index=-1)
+2026-02-13 08:19:56,978 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-13T00:19:42.112301+00:00, map_index=-1, run_start_date=2026-02-13 00:19:49.742640+00:00, run_end_date=2026-02-13 00:19:56.428057+00:00, run_duration=6.685417, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=15, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 00:19:47.350025+00:00, queued_by_job_id=7, pid=1700
+2026-02-13 08:19:57,044 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>
+2026-02-13 08:19:57,045 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:19:57,045 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>
+2026-02-13 08:19:57,047 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:19:42.112301+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:19:57,048 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:19:42.112301+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:19:57,049 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:19:42.112301+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:19:57,052 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:19:42.112301+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:20:07,717 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:19:42.112301+00:00', try_number=1, map_index=-1)
+2026-02-13 08:20:07,727 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test2, run_id=manual__2026-02-13T00:19:42.112301+00:00, map_index=-1, run_start_date=2026-02-13 00:19:59.681703+00:00, run_end_date=2026-02-13 00:20:07.265611+00:00, run_duration=7.583908, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=16, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:19:57.046632+00:00, queued_by_job_id=7, pid=1719
+2026-02-13 08:20:10,034 INFO - Marking run <DagRun dw_order_sync @ 2026-02-13 00:19:42.112301+00:00: manual__2026-02-13T00:19:42.112301+00:00, state:running, queued_at: 2026-02-13 00:19:42.125379+00:00. externally triggered: True> successful
+2026-02-13 08:20:10,036 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-13 00:19:42.112301+00:00, run_id=manual__2026-02-13T00:19:42.112301+00:00, run_start_date=2026-02-13 00:19:43.798104+00:00, run_end_date=2026-02-13 00:20:10.035933+00:00, run_duration=26.237829, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-12 00:00:00+00:00, data_interval_end=2026-02-13 00:00:00+00:00, dag_hash=340b2787125831c612b39fbc22c30471
+2026-02-13 08:20:58,292 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>
+2026-02-13 08:20:58,293 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:20:58,294 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>
+2026-02-13 08:20:58,297 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:20:58,298 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:20:57.274669+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:20:58,299 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:20:57.274669+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:20:58,302 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:20:57.274669+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:21:02,514 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:20:57.274669+00:00', try_number=1, map_index=-1)
+2026-02-13 08:21:02,524 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T00:20:57.274669+00:00, map_index=-1, run_start_date=2026-02-13 00:21:01.677546+00:00, run_end_date=2026-02-13 00:21:02.028194+00:00, run_duration=0.350648, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=17, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:20:58.296391+00:00, queued_by_job_id=7, pid=1772
+2026-02-13 08:21:02,580 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>
+2026-02-13 08:21:02,581 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:21:02,582 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>
+2026-02-13 08:21:02,585 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:21:02,586 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:20:57.274669+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:21:02,586 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:20:57.274669+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:21:02,589 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:20:57.274669+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:21:13,444 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:20:57.274669+00:00', try_number=1, map_index=-1)
+2026-02-13 08:21:13,457 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-13T00:20:57.274669+00:00, map_index=-1, run_start_date=2026-02-13 00:21:05.502972+00:00, run_end_date=2026-02-13 00:21:12.895029+00:00, run_duration=7.392057, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=18, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 00:21:02.583646+00:00, queued_by_job_id=7, pid=1775
+2026-02-13 08:21:15,924 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>
+2026-02-13 08:21:15,925 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:21:15,926 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>
+2026-02-13 08:21:15,928 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:20:57.274669+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:21:15,929 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:20:57.274669+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:21:15,930 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:20:57.274669+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:21:15,932 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:20:57.274669+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:21:25,166 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:20:57.274669+00:00', try_number=1, map_index=-1)
+2026-02-13 08:21:25,176 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test2, run_id=manual__2026-02-13T00:20:57.274669+00:00, map_index=-1, run_start_date=2026-02-13 00:21:18.637785+00:00, run_end_date=2026-02-13 00:21:24.632121+00:00, run_duration=5.994336, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=19, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:21:15.927188+00:00, queued_by_job_id=7, pid=1796
+2026-02-13 08:21:25,224 INFO - Marking run <DagRun dw_order_sync @ 2026-02-13 00:20:57.274669+00:00: manual__2026-02-13T00:20:57.274669+00:00, state:running, queued_at: 2026-02-13 00:20:57.314532+00:00. externally triggered: True> successful
+2026-02-13 08:21:25,225 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-13 00:20:57.274669+00:00, run_id=manual__2026-02-13T00:20:57.274669+00:00, run_start_date=2026-02-13 00:20:58.266283+00:00, run_end_date=2026-02-13 00:21:25.225572+00:00, run_duration=26.959289, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-12 00:00:00+00:00, data_interval_end=2026-02-13 00:00:00+00:00, dag_hash=340b2787125831c612b39fbc22c30471
+2026-02-13 08:22:39,004 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:23:29,386 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 08:23:29,939 INFO - Sending Signals.SIGTERM to group 1168. PIDs of all processes in the group: []
+2026-02-13 08:23:29,940 INFO - Sending the signal Signals.SIGTERM to group 1168
+2026-02-13 08:23:29,940 INFO - Sending the signal Signals.SIGTERM to process 1168 as process group is missing.
+2026-02-13 08:23:29,950 INFO - Sending Signals.SIGTERM to group 1168. PIDs of all processes in the group: []
+2026-02-13 08:23:29,950 INFO - Sending the signal Signals.SIGTERM to group 1168
+2026-02-13 08:23:29,951 INFO - Sending the signal Signals.SIGTERM to process 1168 as process group is missing.
+2026-02-13 08:23:29,952 INFO - Exited execute loop
+2026-02-13 08:23:42,233 INFO - Loaded executor: SequentialExecutor
+2026-02-13 08:23:42,734 INFO - Starting the scheduler
+2026-02-13 08:23:42,735 INFO - Processing each file at most -1 times
+2026-02-13 08:23:42,741 INFO - Launched DagFileProcessorManager with pid: 2011
+2026-02-13 08:23:42,746 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:23:55,543 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>
+2026-02-13 08:23:55,544 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:23:55,545 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>
+2026-02-13 08:23:55,547 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:23:55,549 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:23:54.584326+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:23:55,550 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:23:54.584326+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:23:55,552 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:23:54.584326+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:23:59,521 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:23:54.584326+00:00', try_number=1, map_index=-1)
+2026-02-13 08:23:59,535 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T00:23:54.584326+00:00, map_index=-1, run_start_date=2026-02-13 00:23:58.552150+00:00, run_end_date=2026-02-13 00:23:58.918671+00:00, run_duration=0.366521, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=21, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:23:55.546246+00:00, queued_by_job_id=20, pid=2017
+2026-02-13 08:23:59,601 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>
+2026-02-13 08:23:59,602 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:23:59,603 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>
+2026-02-13 08:23:59,605 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:23:59,606 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:23:54.584326+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:23:59,606 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:23:54.584326+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:23:59,609 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:23:54.584326+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:24:11,649 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:23:54.584326+00:00', try_number=1, map_index=-1)
+2026-02-13 08:24:11,662 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-13T00:23:54.584326+00:00, map_index=-1, run_start_date=2026-02-13 00:24:03.078048+00:00, run_end_date=2026-02-13 00:24:11.084049+00:00, run_duration=8.006001, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=22, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 00:23:59.604060+00:00, queued_by_job_id=20, pid=2023
+2026-02-13 08:24:11,723 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>
+2026-02-13 08:24:11,724 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:24:11,725 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>
+2026-02-13 08:24:11,727 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:23:54.584326+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:24:11,729 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:23:54.584326+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:24:11,729 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:23:54.584326+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:24:11,732 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:23:54.584326+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:24:21,197 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:23:54.584326+00:00', try_number=1, map_index=-1)
+2026-02-13 08:24:21,208 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test2, run_id=manual__2026-02-13T00:23:54.584326+00:00, map_index=-1, run_start_date=2026-02-13 00:24:14.431573+00:00, run_end_date=2026-02-13 00:24:20.682794+00:00, run_duration=6.251221, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=23, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:24:11.726498+00:00, queued_by_job_id=20, pid=2068
+2026-02-13 08:24:23,703 INFO - Marking run <DagRun dw_order_sync @ 2026-02-13 00:23:54.584326+00:00: manual__2026-02-13T00:23:54.584326+00:00, state:running, queued_at: 2026-02-13 00:23:54.610819+00:00. externally triggered: True> successful
+2026-02-13 08:24:23,705 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-13 00:23:54.584326+00:00, run_id=manual__2026-02-13T00:23:54.584326+00:00, run_start_date=2026-02-13 00:23:55.367677+00:00, run_end_date=2026-02-13 00:24:23.705760+00:00, run_duration=28.338083, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-11 16:00:00+00:00, data_interval_end=2026-02-12 16:00:00+00:00, dag_hash=e441836cdc8ba3fd622c724e955ce635
+2026-02-13 08:28:42,805 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:28:48,974 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 08:28:49,456 INFO - Sending Signals.SIGTERM to group 2011. PIDs of all processes in the group: []
+2026-02-13 08:28:49,457 INFO - Sending the signal Signals.SIGTERM to group 2011
+2026-02-13 08:28:49,458 INFO - Sending the signal Signals.SIGTERM to process 2011 as process group is missing.
+2026-02-13 08:28:49,467 INFO - Sending Signals.SIGTERM to group 2011. PIDs of all processes in the group: []
+2026-02-13 08:28:49,468 INFO - Sending the signal Signals.SIGTERM to group 2011
+2026-02-13 08:28:49,469 INFO - Sending the signal Signals.SIGTERM to process 2011 as process group is missing.
+2026-02-13 08:28:49,469 INFO - Exited execute loop
+2026-02-13 08:29:02,714 INFO - Loaded executor: SequentialExecutor
+2026-02-13 08:29:03,229 INFO - Starting the scheduler
+2026-02-13 08:29:03,230 INFO - Processing each file at most -1 times
+2026-02-13 08:29:03,236 INFO - Launched DagFileProcessorManager with pid: 2365
+2026-02-13 08:29:03,243 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:29:14,715 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>
+2026-02-13 08:29:14,717 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:29:14,717 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>
+2026-02-13 08:29:14,721 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:29:14,721 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:29:13.278904+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:29:14,722 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:29:13.278904+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:29:14,724 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:29:13.278904+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:29:18,672 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:29:13.278904+00:00', try_number=1, map_index=-1)
+2026-02-13 08:29:18,687 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T00:29:13.278904+00:00, map_index=-1, run_start_date=2026-02-13 00:29:17.569141+00:00, run_end_date=2026-02-13 00:29:17.961250+00:00, run_duration=0.392109, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=25, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:29:14.719303+00:00, queued_by_job_id=24, pid=2374
+2026-02-13 08:29:18,761 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>
+2026-02-13 08:29:18,762 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:29:18,763 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>
+2026-02-13 08:29:18,765 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:29:18,767 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:29:13.278904+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:29:18,767 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:29:13.278904+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:29:18,770 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:29:13.278904+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:29:30,124 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:29:13.278904+00:00', try_number=1, map_index=-1)
+2026-02-13 08:29:30,136 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-13T00:29:13.278904+00:00, map_index=-1, run_start_date=2026-02-13 00:29:21.731928+00:00, run_end_date=2026-02-13 00:29:29.534630+00:00, run_duration=7.802702, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=26, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 00:29:18.764704+00:00, queued_by_job_id=24, pid=2377
+2026-02-13 08:29:30,195 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>
+2026-02-13 08:29:30,196 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:29:30,197 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>
+2026-02-13 08:29:30,199 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test2 manual__2026-02-13T00:29:13.278904+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:29:30,200 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:29:13.278904+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:29:30,201 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:29:13.278904+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:29:30,203 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test2', 'manual__2026-02-13T00:29:13.278904+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:29:40,780 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test2', run_id='manual__2026-02-13T00:29:13.278904+00:00', try_number=1, map_index=-1)
+2026-02-13 08:29:40,790 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=run_automation_test2, run_id=manual__2026-02-13T00:29:13.278904+00:00, map_index=-1, run_start_date=2026-02-13 00:29:32.988371+00:00, run_end_date=2026-02-13 00:29:40.200077+00:00, run_duration=7.211706, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=27, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:29:30.198138+00:00, queued_by_job_id=24, pid=2397
+2026-02-13 08:29:43,372 INFO - Marking run <DagRun dw_order_sync @ 2026-02-13 00:29:13.278904+00:00: manual__2026-02-13T00:29:13.278904+00:00, state:running, queued_at: 2026-02-13 00:29:13.310493+00:00. externally triggered: True> successful
+2026-02-13 08:29:43,374 INFO - DagRun Finished: dag_id=dw_order_sync, execution_date=2026-02-13 00:29:13.278904+00:00, run_id=manual__2026-02-13T00:29:13.278904+00:00, run_start_date=2026-02-13 00:29:14.523500+00:00, run_end_date=2026-02-13 00:29:43.374511+00:00, run_duration=28.851011, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-11 16:00:00+00:00, data_interval_end=2026-02-12 16:00:00+00:00, dag_hash=e441836cdc8ba3fd622c724e955ce635
+2026-02-13 08:30:35,235 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 08:30:35,782 INFO - Sending Signals.SIGTERM to group 2365. PIDs of all processes in the group: []
+2026-02-13 08:30:35,782 INFO - Sending the signal Signals.SIGTERM to group 2365
+2026-02-13 08:30:35,783 INFO - Sending the signal Signals.SIGTERM to process 2365 as process group is missing.
+2026-02-13 08:30:35,793 INFO - Sending Signals.SIGTERM to group 2365. PIDs of all processes in the group: []
+2026-02-13 08:30:35,794 INFO - Sending the signal Signals.SIGTERM to group 2365
+2026-02-13 08:30:35,795 INFO - Sending the signal Signals.SIGTERM to process 2365 as process group is missing.
+2026-02-13 08:30:35,796 INFO - Exited execute loop
+2026-02-13 08:30:42,025 INFO - Loaded executor: SequentialExecutor
+2026-02-13 08:30:42,545 INFO - Starting the scheduler
+2026-02-13 08:30:42,546 INFO - Processing each file at most -1 times
+2026-02-13 08:30:42,554 INFO - Launched DagFileProcessorManager with pid: 2436
+2026-02-13 08:30:42,558 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:31:09,872 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:31:08.416794+00:00 [scheduled]>
+2026-02-13 08:31:09,872 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:31:09,873 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:31:08.416794+00:00 [scheduled]>
+2026-02-13 08:31:09,876 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.sync_order_data manual__2026-02-13T00:31:08.416794+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:31:09,878 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:31:08.416794+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-13 08:31:09,878 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:31:08.416794+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:31:09,881 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'sync_order_data', 'manual__2026-02-13T00:31:08.416794+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:31:13,564 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T00:31:08.416794+00:00', try_number=1, map_index=-1)
+2026-02-13 08:31:13,577 INFO - TaskInstance Finished: dag_id=dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T00:31:08.416794+00:00, map_index=-1, run_start_date=2026-02-13 00:31:12.615491+00:00, run_end_date=2026-02-13 00:31:12.976229+00:00, run_duration=0.360738, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=29, pool=default_pool, queue=default, priority_weight=3, operator=BashOperator, queued_dttm=2026-02-13 00:31:09.874916+00:00, queued_by_job_id=28, pid=2457
+2026-02-13 08:31:13,648 INFO - 1 tasks up for execution:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:31:08.416794+00:00 [scheduled]>
+2026-02-13 08:31:13,650 INFO - DAG dw_order_sync has 0/16 running and queued tasks
+2026-02-13 08:31:13,651 INFO - Setting the following tasks to queued state:
+	<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:31:08.416794+00:00 [scheduled]>
+2026-02-13 08:31:13,653 INFO - Trying to enqueue tasks: [<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:31:08.416794+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:31:13,654 INFO - Sending TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:31:08.416794+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 08:31:13,655 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:31:08.416794+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:31:13,657 INFO - Executing command: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:31:08.416794+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py']
+2026-02-13 08:31:25,594 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='dw_order_sync', task_id='run_automation_test', run_id='manual__2026-02-13T00:31:08.416794+00:00', try_number=1, map_index=-1)
+2026-02-13 08:35:42,613 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:40:42,882 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:40:55,627 INFO - Setting next_dagrun for test_connection_mysql to None, run_after=None
+2026-02-13 08:40:55,661 INFO - 1 tasks up for execution:
+	<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 08:40:55,662 INFO - DAG test_connection_mysql has 0/16 running and queued tasks
+2026-02-13 08:40:55,663 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 08:40:55,665 INFO - Trying to enqueue tasks: [<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:40:55,666 INFO - Sending TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:40:55,666 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:40:55,670 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:41:00,273 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=1, map_index=-1)
+2026-02-13 08:41:00,288 INFO - TaskInstance Finished: dag_id=test_connection_mysql, task_id=query_mysql, run_id=scheduled__2026-02-11T16:00:00+00:00, map_index=-1, run_start_date=2026-02-13 00:40:59.167541+00:00, run_end_date=2026-02-13 00:40:59.564241+00:00, run_duration=0.3967, state=up_for_retry, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=31, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:40:55.664053+00:00, queued_by_job_id=28, pid=2814
+2026-02-13 08:42:00,559 INFO - 1 tasks up for execution:
+	<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 08:42:00,560 INFO - DAG test_connection_mysql has 0/16 running and queued tasks
+2026-02-13 08:42:00,560 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 08:42:00,563 INFO - Trying to enqueue tasks: [<TaskInstance: test_connection_mysql.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:42:00,564 INFO - Sending TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=2, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:42:00,565 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:42:00,568 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:42:05,091 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=2, map_index=-1)
+2026-02-13 08:42:05,108 INFO - TaskInstance Finished: dag_id=test_connection_mysql, task_id=query_mysql, run_id=scheduled__2026-02-11T16:00:00+00:00, map_index=-1, run_start_date=2026-02-13 00:42:03.948778+00:00, run_end_date=2026-02-13 00:42:04.349330+00:00, run_duration=0.400552, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=2, max_tries=1, job_id=32, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:42:00.561931+00:00, queued_by_job_id=28, pid=2859
+2026-02-13 08:42:05,175 ERROR - Marking run <DagRun test_connection_mysql @ 2026-02-11 16:00:00+00:00: scheduled__2026-02-11T16:00:00+00:00, state:running, queued_at: 2026-02-13 00:40:55.618665+00:00. externally triggered: False> failed
+2026-02-13 08:42:05,178 INFO - DagRun Finished: dag_id=test_connection_mysql, execution_date=2026-02-11 16:00:00+00:00, run_id=scheduled__2026-02-11T16:00:00+00:00, run_start_date=2026-02-13 00:40:55.639877+00:00, run_end_date=2026-02-13 00:42:05.178026+00:00, run_duration=69.538149, state=failed, external_trigger=False, run_type=scheduled, data_interval_start=2026-02-11 16:00:00+00:00, data_interval_end=2026-02-11 16:00:00+00:00, dag_hash=8182ea0d671bb8e51dd0fa1c60bbda16
+2026-02-13 08:42:05,183 INFO - Setting next_dagrun for test_connection_mysql to None, run_after=None
+2026-02-13 08:44:46,863 INFO - 1 tasks up for execution:
+	<TaskInstance: test_connection_mysql.query_mysql manual__2026-02-13T00:44:42.784171+00:00 [scheduled]>
+2026-02-13 08:44:46,865 INFO - DAG test_connection_mysql has 0/16 running and queued tasks
+2026-02-13 08:44:46,866 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_connection_mysql.query_mysql manual__2026-02-13T00:44:42.784171+00:00 [scheduled]>
+2026-02-13 08:44:46,868 INFO - Trying to enqueue tasks: [<TaskInstance: test_connection_mysql.query_mysql manual__2026-02-13T00:44:42.784171+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:44:46,869 INFO - Sending TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='manual__2026-02-13T00:44:42.784171+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:44:46,870 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'manual__2026-02-13T00:44:42.784171+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:44:46,872 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'manual__2026-02-13T00:44:42.784171+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:44:51,430 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='manual__2026-02-13T00:44:42.784171+00:00', try_number=1, map_index=-1)
+2026-02-13 08:44:51,439 INFO - TaskInstance Finished: dag_id=test_connection_mysql, task_id=query_mysql, run_id=manual__2026-02-13T00:44:42.784171+00:00, map_index=-1, run_start_date=2026-02-13 00:44:50.072758+00:00, run_end_date=2026-02-13 00:44:50.861206+00:00, run_duration=0.788448, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=33, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:44:46.867278+00:00, queued_by_job_id=28, pid=3074
+2026-02-13 08:44:51,517 INFO - Marking run <DagRun test_connection_mysql @ 2026-02-13 00:44:42.784171+00:00: manual__2026-02-13T00:44:42.784171+00:00, state:running, queued_at: 2026-02-13 00:44:42.803526+00:00. externally triggered: True> successful
+2026-02-13 08:44:51,517 INFO - DagRun Finished: dag_id=test_connection_mysql, execution_date=2026-02-13 00:44:42.784171+00:00, run_id=manual__2026-02-13T00:44:42.784171+00:00, run_start_date=2026-02-13 00:44:46.843289+00:00, run_end_date=2026-02-13 00:44:51.517879+00:00, run_duration=4.67459, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 00:44:42.784171+00:00, data_interval_end=2026-02-13 00:44:42.784171+00:00, dag_hash=8182ea0d671bb8e51dd0fa1c60bbda16
+2026-02-13 08:45:42,918 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:50:42,965 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 08:53:58,786 INFO - 1 tasks up for execution:
+	<TaskInstance: test_connection_mysql.query_mysql manual__2026-02-13T00:53:57.396587+00:00 [scheduled]>
+2026-02-13 08:53:58,788 INFO - DAG test_connection_mysql has 0/16 running and queued tasks
+2026-02-13 08:53:58,788 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_connection_mysql.query_mysql manual__2026-02-13T00:53:57.396587+00:00 [scheduled]>
+2026-02-13 08:53:58,791 INFO - Trying to enqueue tasks: [<TaskInstance: test_connection_mysql.query_mysql manual__2026-02-13T00:53:57.396587+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 08:53:58,792 INFO - Sending TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='manual__2026-02-13T00:53:57.396587+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 08:53:58,792 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'manual__2026-02-13T00:53:57.396587+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:53:58,795 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_connection_mysql', 'query_mysql', 'manual__2026-02-13T00:53:57.396587+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 08:54:03,075 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_connection_mysql', task_id='query_mysql', run_id='manual__2026-02-13T00:53:57.396587+00:00', try_number=1, map_index=-1)
+2026-02-13 08:54:03,084 INFO - TaskInstance Finished: dag_id=test_connection_mysql, task_id=query_mysql, run_id=manual__2026-02-13T00:53:57.396587+00:00, map_index=-1, run_start_date=2026-02-13 00:54:02.066217+00:00, run_end_date=2026-02-13 00:54:02.476936+00:00, run_duration=0.410719, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=34, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 00:53:58.790025+00:00, queued_by_job_id=28, pid=3438
+2026-02-13 08:54:03,133 INFO - Marking run <DagRun test_connection_mysql @ 2026-02-13 00:53:57.396587+00:00: manual__2026-02-13T00:53:57.396587+00:00, state:running, queued_at: 2026-02-13 00:53:57.404714+00:00. externally triggered: True> successful
+2026-02-13 08:54:03,134 INFO - DagRun Finished: dag_id=test_connection_mysql, execution_date=2026-02-13 00:53:57.396587+00:00, run_id=manual__2026-02-13T00:53:57.396587+00:00, run_start_date=2026-02-13 00:53:58.761358+00:00, run_end_date=2026-02-13 00:54:03.134804+00:00, run_duration=4.373446, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 00:53:57.396587+00:00, data_interval_end=2026-02-13 00:53:57.396587+00:00, dag_hash=8182ea0d671bb8e51dd0fa1c60bbda16
+2026-02-13 08:55:43,011 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:00:43,041 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:05:43,084 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:10:43,123 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:11:02,748 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 09:11:03,362 INFO - Sending Signals.SIGTERM to group 2436. PIDs of all processes in the group: []
+2026-02-13 09:11:03,364 INFO - Sending the signal Signals.SIGTERM to group 2436
+2026-02-13 09:11:03,365 INFO - Sending the signal Signals.SIGTERM to process 2436 as process group is missing.
+2026-02-13 09:11:03,378 INFO - Sending Signals.SIGTERM to group 2436. PIDs of all processes in the group: []
+2026-02-13 09:11:03,379 INFO - Sending the signal Signals.SIGTERM to group 2436
+2026-02-13 09:11:03,379 INFO - Sending the signal Signals.SIGTERM to process 2436 as process group is missing.
+2026-02-13 09:11:03,380 INFO - Exited execute loop
+2026-02-13 09:11:12,391 INFO - Loaded executor: SequentialExecutor
+2026-02-13 09:11:12,965 INFO - Starting the scheduler
+2026-02-13 09:11:12,966 INFO - Processing each file at most -1 times
+2026-02-13 09:11:12,972 INFO - Launched DagFileProcessorManager with pid: 3753
+2026-02-13 09:11:12,977 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:12:05,446 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 09:12:06,128 INFO - Sending Signals.SIGTERM to group 3753. PIDs of all processes in the group: []
+2026-02-13 09:12:06,129 INFO - Sending the signal Signals.SIGTERM to group 3753
+2026-02-13 09:12:06,129 INFO - Sending the signal Signals.SIGTERM to process 3753 as process group is missing.
+2026-02-13 09:12:06,140 INFO - Sending Signals.SIGTERM to group 3753. PIDs of all processes in the group: []
+2026-02-13 09:12:06,140 INFO - Sending the signal Signals.SIGTERM to group 3753
+2026-02-13 09:12:06,141 INFO - Sending the signal Signals.SIGTERM to process 3753 as process group is missing.
+2026-02-13 09:12:06,142 INFO - Exited execute loop
+2026-02-13 09:12:14,160 INFO - Loaded executor: SequentialExecutor
+2026-02-13 09:12:14,587 INFO - Starting the scheduler
+2026-02-13 09:12:14,589 INFO - Processing each file at most -1 times
+2026-02-13 09:12:14,594 INFO - Launched DagFileProcessorManager with pid: 3821
+2026-02-13 09:12:14,601 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:12:39,295 INFO - Setting next_dagrun for test_crm to None, run_after=None
+2026-02-13 09:12:39,349 INFO - 1 tasks up for execution:
+	<TaskInstance: test_crm.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 09:12:39,350 INFO - DAG test_crm has 0/16 running and queued tasks
+2026-02-13 09:12:39,350 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_crm.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 09:12:39,353 INFO - Trying to enqueue tasks: [<TaskInstance: test_crm.query_mysql scheduled__2026-02-11T16:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 09:12:39,354 INFO - Sending TaskInstanceKey(dag_id='test_crm', task_id='query_mysql', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 09:12:39,355 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_crm', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:39,359 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_crm', 'query_mysql', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:44,256 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_crm', task_id='query_mysql', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=1, map_index=-1)
+2026-02-13 09:12:44,273 INFO - TaskInstance Finished: dag_id=test_crm, task_id=query_mysql, run_id=scheduled__2026-02-11T16:00:00+00:00, map_index=-1, run_start_date=2026-02-13 01:12:43.115596+00:00, run_end_date=2026-02-13 01:12:43.579810+00:00, run_duration=0.464214, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=37, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 01:12:39.351859+00:00, queued_by_job_id=36, pid=3846
+2026-02-13 09:12:44,334 INFO - 1 tasks up for execution:
+	<TaskInstance: test_crm.process_result scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 09:12:44,335 INFO - DAG test_crm has 0/16 running and queued tasks
+2026-02-13 09:12:44,336 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_crm.process_result scheduled__2026-02-11T16:00:00+00:00 [scheduled]>
+2026-02-13 09:12:44,339 INFO - Trying to enqueue tasks: [<TaskInstance: test_crm.process_result scheduled__2026-02-11T16:00:00+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 09:12:44,340 INFO - Sending TaskInstanceKey(dag_id='test_crm', task_id='process_result', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 09:12:44,341 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_crm', 'process_result', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:44,344 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_crm', 'process_result', 'scheduled__2026-02-11T16:00:00+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:48,635 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_crm', task_id='process_result', run_id='scheduled__2026-02-11T16:00:00+00:00', try_number=1, map_index=-1)
+2026-02-13 09:12:48,648 INFO - TaskInstance Finished: dag_id=test_crm, task_id=process_result, run_id=scheduled__2026-02-11T16:00:00+00:00, map_index=-1, run_start_date=2026-02-13 01:12:47.510069+00:00, run_end_date=2026-02-13 01:12:47.907668+00:00, run_duration=0.397599, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=38, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 01:12:44.337745+00:00, queued_by_job_id=36, pid=3848
+2026-02-13 09:12:48,713 INFO - Marking run <DagRun test_crm @ 2026-02-11 16:00:00+00:00: scheduled__2026-02-11T16:00:00+00:00, state:running, queued_at: 2026-02-13 01:12:39.284770+00:00. externally triggered: False> successful
+2026-02-13 09:12:48,717 INFO - DagRun Finished: dag_id=test_crm, execution_date=2026-02-11 16:00:00+00:00, run_id=scheduled__2026-02-11T16:00:00+00:00, run_start_date=2026-02-13 01:12:39.306973+00:00, run_end_date=2026-02-13 01:12:48.717091+00:00, run_duration=9.410118, state=success, external_trigger=False, run_type=scheduled, data_interval_start=2026-02-11 16:00:00+00:00, data_interval_end=2026-02-11 16:00:00+00:00, dag_hash=ea7b094825b9087a0f7bf9077bdf754f
+2026-02-13 09:12:48,722 INFO - Setting next_dagrun for test_crm to None, run_after=None
+2026-02-13 09:12:48,732 INFO - 1 tasks up for execution:
+	<TaskInstance: test_crm.query_mysql manual__2026-02-13T01:12:44.736895+00:00 [scheduled]>
+2026-02-13 09:12:48,732 INFO - DAG test_crm has 0/16 running and queued tasks
+2026-02-13 09:12:48,733 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_crm.query_mysql manual__2026-02-13T01:12:44.736895+00:00 [scheduled]>
+2026-02-13 09:12:48,736 INFO - Trying to enqueue tasks: [<TaskInstance: test_crm.query_mysql manual__2026-02-13T01:12:44.736895+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 09:12:48,738 INFO - Sending TaskInstanceKey(dag_id='test_crm', task_id='query_mysql', run_id='manual__2026-02-13T01:12:44.736895+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-13 09:12:48,738 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_crm', 'query_mysql', 'manual__2026-02-13T01:12:44.736895+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:48,741 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_crm', 'query_mysql', 'manual__2026-02-13T01:12:44.736895+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:52,576 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_crm', task_id='query_mysql', run_id='manual__2026-02-13T01:12:44.736895+00:00', try_number=1, map_index=-1)
+2026-02-13 09:12:52,588 INFO - TaskInstance Finished: dag_id=test_crm, task_id=query_mysql, run_id=manual__2026-02-13T01:12:44.736895+00:00, map_index=-1, run_start_date=2026-02-13 01:12:51.507038+00:00, run_end_date=2026-02-13 01:12:51.930818+00:00, run_duration=0.42378, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=39, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-13 01:12:48.735440+00:00, queued_by_job_id=36, pid=3850
+2026-02-13 09:12:55,277 INFO - 1 tasks up for execution:
+	<TaskInstance: test_crm.process_result manual__2026-02-13T01:12:44.736895+00:00 [scheduled]>
+2026-02-13 09:12:55,278 INFO - DAG test_crm has 0/16 running and queued tasks
+2026-02-13 09:12:55,279 INFO - Setting the following tasks to queued state:
+	<TaskInstance: test_crm.process_result manual__2026-02-13T01:12:44.736895+00:00 [scheduled]>
+2026-02-13 09:12:55,281 INFO - Trying to enqueue tasks: [<TaskInstance: test_crm.process_result manual__2026-02-13T01:12:44.736895+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 09:12:55,283 INFO - Sending TaskInstanceKey(dag_id='test_crm', task_id='process_result', run_id='manual__2026-02-13T01:12:44.736895+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 09:12:55,284 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'test_crm', 'process_result', 'manual__2026-02-13T01:12:44.736895+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:55,286 INFO - Executing command: ['airflow', 'tasks', 'run', 'test_crm', 'process_result', 'manual__2026-02-13T01:12:44.736895+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py']
+2026-02-13 09:12:59,178 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='test_crm', task_id='process_result', run_id='manual__2026-02-13T01:12:44.736895+00:00', try_number=1, map_index=-1)
+2026-02-13 09:12:59,189 INFO - TaskInstance Finished: dag_id=test_crm, task_id=process_result, run_id=manual__2026-02-13T01:12:44.736895+00:00, map_index=-1, run_start_date=2026-02-13 01:12:58.054459+00:00, run_end_date=2026-02-13 01:12:58.474659+00:00, run_duration=0.4202, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=1, job_id=40, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 01:12:55.280355+00:00, queued_by_job_id=36, pid=3853
+2026-02-13 09:13:02,163 INFO - Marking run <DagRun test_crm @ 2026-02-13 01:12:44.736895+00:00: manual__2026-02-13T01:12:44.736895+00:00, state:running, queued_at: 2026-02-13 01:12:44.758653+00:00. externally triggered: True> successful
+2026-02-13 09:13:02,164 INFO - DagRun Finished: dag_id=test_crm, execution_date=2026-02-13 01:12:44.736895+00:00, run_id=manual__2026-02-13T01:12:44.736895+00:00, run_start_date=2026-02-13 01:12:48.694657+00:00, run_end_date=2026-02-13 01:13:02.164612+00:00, run_duration=13.469955, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 01:12:44.736895+00:00, data_interval_end=2026-02-13 01:12:44.736895+00:00, dag_hash=ea7b094825b9087a0f7bf9077bdf754f
+2026-02-13 09:17:14,651 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:22:15,420 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:27:15,461 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:32:15,501 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:37:15,709 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:42:16,203 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:47:17,492 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:52:17,526 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 09:57:17,571 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:02:17,615 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:07:17,663 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:12:17,673 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:17:20,012 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:22:20,050 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:27:20,091 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:32:20,132 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:37:20,172 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:42:21,754 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 10:56:19,329 INFO - Heartbeat recovered after 721.45 seconds
+2026-02-13 10:58:12,630 INFO - Exiting gracefully upon receiving signal 15
+2026-02-13 10:58:13,433 INFO - Sending Signals.SIGTERM to group 3821. PIDs of all processes in the group: []
+2026-02-13 10:58:13,435 INFO - Sending the signal Signals.SIGTERM to group 3821
+2026-02-13 10:58:13,436 INFO - Sending the signal Signals.SIGTERM to process 3821 as process group is missing.
+2026-02-13 10:58:13,453 INFO - Sending Signals.SIGTERM to group 3821. PIDs of all processes in the group: []
+2026-02-13 10:58:13,454 INFO - Sending the signal Signals.SIGTERM to group 3821
+2026-02-13 10:58:13,454 INFO - Sending the signal Signals.SIGTERM to process 3821 as process group is missing.
+2026-02-13 10:58:13,455 INFO - Exited execute loop
+2026-02-13 10:58:20,272 INFO - Loaded executor: SequentialExecutor
+2026-02-13 10:58:20,874 INFO - Starting the scheduler
+2026-02-13 10:58:20,877 INFO - Processing each file at most -1 times
+2026-02-13 10:58:20,887 INFO - Launched DagFileProcessorManager with pid: 6580
+2026-02-13 10:58:20,897 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:00:57,496 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:00:56.955760+00:00 [scheduled]>
+2026-02-13 11:00:57,497 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:00:57,497 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:00:56.955760+00:00 [scheduled]>
+2026-02-13 11:00:57,501 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:00:56.955760+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:00:57,502 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:00:56.955760+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:00:57,503 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:00:56.955760+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:00:57,506 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:00:56.955760+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:01:01,698 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:00:56.955760+00:00', try_number=1, map_index=-1)
+2026-02-13 11:01:01,712 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:00:56.955760+00:00, map_index=-1, run_start_date=2026-02-13 03:01:00.771346+00:00, run_end_date=2026-02-13 03:01:01.167277+00:00, run_duration=0.395931, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=42, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:00:57.499727+00:00, queued_by_job_id=41, pid=6637
+2026-02-13 11:01:01,759 ERROR - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:00:56.955760+00:00: manual__2026-02-13T03:00:56.955760+00:00, state:running, queued_at: 2026-02-13 03:00:56.975748+00:00. externally triggered: True> failed
+2026-02-13 11:01:01,761 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:00:56.955760+00:00, run_id=manual__2026-02-13T03:00:56.955760+00:00, run_start_date=2026-02-13 03:00:57.463039+00:00, run_end_date=2026-02-13 03:01:01.761192+00:00, run_duration=4.298153, state=failed, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:00:56.955760+00:00, data_interval_end=2026-02-13 03:00:56.955760+00:00, dag_hash=292d5ad65135765608fc09000942b435
+2026-02-13 11:03:01,854 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:03:00.730591+00:00 [scheduled]>
+2026-02-13 11:03:01,855 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:03:01,856 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:03:00.730591+00:00 [scheduled]>
+2026-02-13 11:03:01,859 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:03:00.730591+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:03:01,860 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:03:00.730591+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:03:01,861 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:03:00.730591+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:03:01,863 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:03:00.730591+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:03:06,370 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:03:00.730591+00:00', try_number=1, map_index=-1)
+2026-02-13 11:03:06,381 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:03:00.730591+00:00, map_index=-1, run_start_date=2026-02-13 03:03:05.280088+00:00, run_end_date=2026-02-13 03:03:05.732314+00:00, run_duration=0.452226, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=43, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:03:01.857929+00:00, queued_by_job_id=41, pid=6697
+2026-02-13 11:03:09,188 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:03:00.730591+00:00: manual__2026-02-13T03:03:00.730591+00:00, state:running, queued_at: 2026-02-13 03:03:00.744300+00:00. externally triggered: True> successful
+2026-02-13 11:03:09,189 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:03:00.730591+00:00, run_id=manual__2026-02-13T03:03:00.730591+00:00, run_start_date=2026-02-13 03:03:01.834575+00:00, run_end_date=2026-02-13 03:03:09.189026+00:00, run_duration=7.354451, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:03:00.730591+00:00, data_interval_end=2026-02-13 03:03:00.730591+00:00, dag_hash=292d5ad65135765608fc09000942b435
+2026-02-13 11:03:09,252 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:03:05.749067+00:00 [scheduled]>
+2026-02-13 11:03:09,263 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 11:03:09,264 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:03:05.749067+00:00 [scheduled]>
+2026-02-13 11:03:09,267 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:03:05.749067+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:03:09,269 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:03:05.749067+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:03:09,269 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:03:05.749067+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:03:09,288 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:03:05.749067+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:03:13,851 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:03:05.749067+00:00', try_number=1, map_index=-1)
+2026-02-13 11:03:13,865 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:03:05.749067+00:00, map_index=-1, run_start_date=2026-02-13 03:03:12.595873+00:00, run_end_date=2026-02-13 03:03:12.993313+00:00, run_duration=0.39744, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=44, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:03:09.266267+00:00, queued_by_job_id=41, pid=6700
+2026-02-13 11:03:16,803 INFO - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 03:03:05.749067+00:00: dataset_triggered__2026-02-13T03:03:05.749067+00:00, state:running, queued_at: 2026-02-13 03:03:09.151978+00:00. externally triggered: False> successful
+2026-02-13 11:03:16,805 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 03:03:05.749067+00:00, run_id=dataset_triggered__2026-02-13T03:03:05.749067+00:00, run_start_date=2026-02-13 03:03:09.172019+00:00, run_end_date=2026-02-13 03:03:16.805082+00:00, run_duration=7.633063, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 03:03:00.730591+00:00, data_interval_end=2026-02-13 03:03:00.730591+00:00, dag_hash=336021f9586175064690381be57e6c20
+2026-02-13 11:03:20,949 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:08:22,300 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:13:23,601 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:15:30,076 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:15:28.766581+00:00 [scheduled]>
+2026-02-13 11:15:30,077 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:15:30,078 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:15:28.766581+00:00 [scheduled]>
+2026-02-13 11:15:30,082 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:15:28.766581+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:15:30,086 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:15:28.766581+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:15:30,087 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:15:28.766581+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:15:30,090 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:15:28.766581+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:15:34,771 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:15:28.766581+00:00', try_number=1, map_index=-1)
+2026-02-13 11:15:34,780 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:15:28.766581+00:00, map_index=-1, run_start_date=2026-02-13 03:15:33.736246+00:00, run_end_date=2026-02-13 03:15:34.213945+00:00, run_duration=0.477699, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=45, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:15:30.079798+00:00, queued_by_job_id=41, pid=6940
+2026-02-13 11:15:37,777 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:15:28.766581+00:00: manual__2026-02-13T03:15:28.766581+00:00, state:running, queued_at: 2026-02-13 03:15:28.788425+00:00. externally triggered: True> successful
+2026-02-13 11:15:37,778 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:15:28.766581+00:00, run_id=manual__2026-02-13T03:15:28.766581+00:00, run_start_date=2026-02-13 03:15:30.048480+00:00, run_end_date=2026-02-13 03:15:37.778437+00:00, run_duration=7.729957, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:15:28.766581+00:00, data_interval_end=2026-02-13 03:15:28.766581+00:00, dag_hash=292d5ad65135765608fc09000942b435
+2026-02-13 11:15:37,788 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:15:34.232141+00:00 [scheduled]>
+2026-02-13 11:15:37,789 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 11:15:37,789 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:15:34.232141+00:00 [scheduled]>
+2026-02-13 11:15:37,792 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:15:34.232141+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:15:37,793 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:15:34.232141+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:15:37,793 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:15:34.232141+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:15:37,796 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:15:34.232141+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:15:41,571 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:15:34.232141+00:00', try_number=1, map_index=-1)
+2026-02-13 11:15:41,579 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:15:34.232141+00:00, map_index=-1, run_start_date=2026-02-13 03:15:40.639840+00:00, run_end_date=2026-02-13 03:15:40.968642+00:00, run_duration=0.328802, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=46, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:15:37.790849+00:00, queued_by_job_id=41, pid=6950
+2026-02-13 11:15:44,402 INFO - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 03:15:34.232141+00:00: dataset_triggered__2026-02-13T03:15:34.232141+00:00, state:running, queued_at: 2026-02-13 03:15:37.748990+00:00. externally triggered: False> successful
+2026-02-13 11:15:44,403 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 03:15:34.232141+00:00, run_id=dataset_triggered__2026-02-13T03:15:34.232141+00:00, run_start_date=2026-02-13 03:15:37.762831+00:00, run_end_date=2026-02-13 03:15:44.403607+00:00, run_duration=6.640776, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 03:15:28.766581+00:00, data_interval_end=2026-02-13 03:15:28.766581+00:00, dag_hash=336021f9586175064690381be57e6c20
+2026-02-13 11:18:23,607 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:20:51,068 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:20:50.500982+00:00 [scheduled]>
+2026-02-13 11:20:51,070 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:20:51,070 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:20:50.500982+00:00 [scheduled]>
+2026-02-13 11:20:51,073 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:20:50.500982+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:20:51,076 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:20:50.500982+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:20:51,077 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:20:50.500982+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:20:51,079 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:20:50.500982+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:20:55,321 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:20:50.500982+00:00', try_number=1, map_index=-1)
+2026-02-13 11:20:55,333 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:20:50.500982+00:00, map_index=-1, run_start_date=2026-02-13 03:20:54.354533+00:00, run_end_date=2026-02-13 03:20:54.789942+00:00, run_duration=0.435409, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=47, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:20:51.072024+00:00, queued_by_job_id=41, pid=7038
+2026-02-13 11:20:55,403 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:20:50.500982+00:00: manual__2026-02-13T03:20:50.500982+00:00, state:running, queued_at: 2026-02-13 03:20:50.514067+00:00. externally triggered: True> successful
+2026-02-13 11:20:55,404 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:20:50.500982+00:00, run_id=manual__2026-02-13T03:20:50.500982+00:00, run_start_date=2026-02-13 03:20:51.039154+00:00, run_end_date=2026-02-13 03:20:55.404373+00:00, run_duration=4.365219, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:20:50.500982+00:00, data_interval_end=2026-02-13 03:20:50.500982+00:00, dag_hash=292d5ad65135765608fc09000942b435
+2026-02-13 11:20:55,414 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:20:54.810387+00:00 [scheduled]>
+2026-02-13 11:20:55,415 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 11:20:55,416 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:20:54.810387+00:00 [scheduled]>
+2026-02-13 11:20:55,418 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:20:54.810387+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:20:55,419 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:20:54.810387+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:20:55,420 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:20:54.810387+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:20:55,422 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:20:54.810387+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:20:58,946 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:20:54.810387+00:00', try_number=1, map_index=-1)
+2026-02-13 11:20:58,954 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:20:54.810387+00:00, map_index=-1, run_start_date=2026-02-13 03:20:58.179565+00:00, run_end_date=2026-02-13 03:20:58.478434+00:00, run_duration=0.298869, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=48, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:20:55.417432+00:00, queued_by_job_id=41, pid=7041
+2026-02-13 11:20:58,998 INFO - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 03:20:54.810387+00:00: dataset_triggered__2026-02-13T03:20:54.810387+00:00, state:running, queued_at: 2026-02-13 03:20:55.377690+00:00. externally triggered: False> successful
+2026-02-13 11:20:58,999 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 03:20:54.810387+00:00, run_id=dataset_triggered__2026-02-13T03:20:54.810387+00:00, run_start_date=2026-02-13 03:20:55.389670+00:00, run_end_date=2026-02-13 03:20:58.999297+00:00, run_duration=3.609627, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 03:20:50.500982+00:00, data_interval_end=2026-02-13 03:20:50.500982+00:00, dag_hash=336021f9586175064690381be57e6c20
+2026-02-13 11:23:26,021 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:28:26,768 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:33:29,567 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:36:01,032 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:35:59.119446+00:00 [scheduled]>
+2026-02-13 11:36:01,033 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:36:01,033 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:35:59.119446+00:00 [scheduled]>
+2026-02-13 11:36:01,036 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:35:59.119446+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:36:01,038 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:35:59.119446+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:36:01,038 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:35:59.119446+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:36:01,041 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:35:59.119446+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:36:05,394 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:35:59.119446+00:00', try_number=1, map_index=-1)
+2026-02-13 11:36:05,403 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:35:59.119446+00:00, map_index=-1, run_start_date=2026-02-13 03:36:04.315076+00:00, run_end_date=2026-02-13 03:36:04.807601+00:00, run_duration=0.492525, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=49, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:36:01.035143+00:00, queued_by_job_id=41, pid=7372
+2026-02-13 11:36:05,485 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:35:59.119446+00:00: manual__2026-02-13T03:35:59.119446+00:00, state:running, queued_at: 2026-02-13 03:35:59.143100+00:00. externally triggered: True> successful
+2026-02-13 11:36:05,486 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:35:59.119446+00:00, run_id=manual__2026-02-13T03:35:59.119446+00:00, run_start_date=2026-02-13 03:36:01.007029+00:00, run_end_date=2026-02-13 03:36:05.486652+00:00, run_duration=4.479623, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:35:59.119446+00:00, data_interval_end=2026-02-13 03:35:59.119446+00:00, dag_hash=292d5ad65135765608fc09000942b435
+2026-02-13 11:36:05,495 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:36:04.836355+00:00 [scheduled]>
+2026-02-13 11:36:05,496 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 11:36:05,497 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:36:04.836355+00:00 [scheduled]>
+2026-02-13 11:36:05,500 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:36:04.836355+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:36:05,501 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:36:04.836355+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:36:05,503 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:36:04.836355+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:36:05,505 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:36:04.836355+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:36:09,727 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:36:04.836355+00:00', try_number=1, map_index=-1)
+2026-02-13 11:36:09,739 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:36:04.836355+00:00, map_index=-1, run_start_date=2026-02-13 03:36:08.780611+00:00, run_end_date=2026-02-13 03:36:09.134619+00:00, run_duration=0.354008, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=50, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:36:05.498785+00:00, queued_by_job_id=41, pid=7374
+2026-02-13 11:36:12,405 INFO - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 03:36:04.836355+00:00: dataset_triggered__2026-02-13T03:36:04.836355+00:00, state:running, queued_at: 2026-02-13 03:36:05.455807+00:00. externally triggered: False> successful
+2026-02-13 11:36:12,406 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 03:36:04.836355+00:00, run_id=dataset_triggered__2026-02-13T03:36:04.836355+00:00, run_start_date=2026-02-13 03:36:05.471261+00:00, run_end_date=2026-02-13 03:36:12.406530+00:00, run_duration=6.935269, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 03:35:59.119446+00:00, data_interval_end=2026-02-13 03:35:59.119446+00:00, dag_hash=336021f9586175064690381be57e6c20
+2026-02-13 11:38:31,668 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:43:34,324 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:46:30,369 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:46:26.998824+00:00 [scheduled]>
+2026-02-13 11:46:30,370 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:46:30,371 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:46:26.998824+00:00 [scheduled]>
+2026-02-13 11:46:30,373 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:46:26.998824+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:46:30,375 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:46:26.998824+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:46:30,375 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:46:26.998824+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:46:30,378 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:46:26.998824+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:46:34,819 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:46:26.998824+00:00', try_number=1, map_index=-1)
+2026-02-13 11:46:34,830 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:46:26.998824+00:00, map_index=-1, run_start_date=2026-02-13 03:46:33.729665+00:00, run_end_date=2026-02-13 03:46:34.216917+00:00, run_duration=0.487252, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=51, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:46:30.372500+00:00, queued_by_job_id=41, pid=7653
+2026-02-13 11:46:34,916 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:46:26.998824+00:00: manual__2026-02-13T03:46:26.998824+00:00, state:running, queued_at: 2026-02-13 03:46:27.011741+00:00. externally triggered: True> successful
+2026-02-13 11:46:34,917 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:46:26.998824+00:00, run_id=manual__2026-02-13T03:46:26.998824+00:00, run_start_date=2026-02-13 03:46:30.350067+00:00, run_end_date=2026-02-13 03:46:34.917490+00:00, run_duration=4.567423, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:46:26.998824+00:00, data_interval_end=2026-02-13 03:46:26.998824+00:00, dag_hash=3f1d48a4dcef25843133576f388d134e
+2026-02-13 11:46:35,986 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:46:34.235716+00:00 [scheduled]>
+2026-02-13 11:46:35,987 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 11:46:35,988 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:46:34.235716+00:00 [scheduled]>
+2026-02-13 11:46:35,990 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:46:34.235716+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:46:35,991 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:46:34.235716+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:46:35,992 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:46:34.235716+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:46:35,995 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:46:34.235716+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:46:39,588 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:46:34.235716+00:00', try_number=1, map_index=-1)
+2026-02-13 11:46:39,598 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:46:34.235716+00:00, map_index=-1, run_start_date=2026-02-13 03:46:38.748184+00:00, run_end_date=2026-02-13 03:46:39.042286+00:00, run_duration=0.294102, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=52, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:46:35.989011+00:00, queued_by_job_id=41, pid=7658
+2026-02-13 11:46:39,637 INFO - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 03:46:34.235716+00:00: dataset_triggered__2026-02-13T03:46:34.235716+00:00, state:running, queued_at: 2026-02-13 03:46:34.891969+00:00. externally triggered: False> successful
+2026-02-13 11:46:39,638 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 03:46:34.235716+00:00, run_id=dataset_triggered__2026-02-13T03:46:34.235716+00:00, run_start_date=2026-02-13 03:46:35.955545+00:00, run_end_date=2026-02-13 03:46:39.638248+00:00, run_duration=3.682703, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 03:46:26.998824+00:00, data_interval_end=2026-02-13 03:46:26.998824+00:00, dag_hash=4f5cee350ba129ab524aa1ccabba746a
+2026-02-13 11:48:34,351 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:53:34,384 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 11:58:14,988 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:58:13.633239+00:00 [scheduled]>
+2026-02-13 11:58:14,990 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 11:58:14,990 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:58:13.633239+00:00 [scheduled]>
+2026-02-13 11:58:14,993 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T03:58:13.633239+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:58:14,995 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:58:13.633239+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:58:14,996 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:58:13.633239+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:58:14,998 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T03:58:13.633239+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:58:19,405 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T03:58:13.633239+00:00', try_number=1, map_index=-1)
+2026-02-13 11:58:19,413 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T03:58:13.633239+00:00, map_index=-1, run_start_date=2026-02-13 03:58:18.240372+00:00, run_end_date=2026-02-13 03:58:18.829312+00:00, run_duration=0.58894, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=53, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:58:14.992155+00:00, queued_by_job_id=41, pid=7917
+2026-02-13 11:58:19,491 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 03:58:13.633239+00:00: manual__2026-02-13T03:58:13.633239+00:00, state:running, queued_at: 2026-02-13 03:58:13.650127+00:00. externally triggered: True> successful
+2026-02-13 11:58:19,492 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 03:58:13.633239+00:00, run_id=manual__2026-02-13T03:58:13.633239+00:00, run_start_date=2026-02-13 03:58:14.959849+00:00, run_end_date=2026-02-13 03:58:19.492612+00:00, run_duration=4.532763, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 03:58:13.633239+00:00, data_interval_end=2026-02-13 03:58:13.633239+00:00, dag_hash=3f1d48a4dcef25843133576f388d134e
+2026-02-13 11:58:19,502 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:58:18.846380+00:00 [scheduled]>
+2026-02-13 11:58:19,503 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 11:58:19,504 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:58:18.846380+00:00 [scheduled]>
+2026-02-13 11:58:19,506 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:58:18.846380+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 11:58:19,507 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:58:18.846380+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 11:58:19,508 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:58:18.846380+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:58:19,510 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:58:18.846380+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 11:58:23,280 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T03:58:18.846380+00:00', try_number=1, map_index=-1)
+2026-02-13 11:58:23,290 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:58:18.846380+00:00, map_index=-1, run_start_date=2026-02-13 03:58:22.470670+00:00, run_end_date=2026-02-13 03:58:22.760214+00:00, run_duration=0.289544, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=54, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 03:58:19.505294+00:00, queued_by_job_id=41, pid=7928
+2026-02-13 11:58:25,935 ERROR - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 03:58:18.846380+00:00: dataset_triggered__2026-02-13T03:58:18.846380+00:00, state:running, queued_at: 2026-02-13 03:58:19.464908+00:00. externally triggered: False> failed
+2026-02-13 11:58:25,937 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 03:58:18.846380+00:00, run_id=dataset_triggered__2026-02-13T03:58:18.846380+00:00, run_start_date=2026-02-13 03:58:19.478973+00:00, run_end_date=2026-02-13 03:58:25.937314+00:00, run_duration=6.458341, state=failed, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 03:58:13.633239+00:00, data_interval_end=2026-02-13 03:58:13.633239+00:00, dag_hash=14c7fa46f6353af733f2f3432dad8780
+2026-02-13 11:58:36,153 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-13 12:00:37,867 INFO - 1 tasks up for execution:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T04:00:36.991126+00:00 [scheduled]>
+2026-02-13 12:00:37,869 INFO - DAG producer_dw_order_sync has 0/16 running and queued tasks
+2026-02-13 12:00:37,870 INFO - Setting the following tasks to queued state:
+	<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T04:00:36.991126+00:00 [scheduled]>
+2026-02-13 12:00:37,873 INFO - Trying to enqueue tasks: [<TaskInstance: producer_dw_order_sync.sync_order_data manual__2026-02-13T04:00:36.991126+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 12:00:37,874 INFO - Sending TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T04:00:36.991126+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 12:00:37,875 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T04:00:36.991126+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 12:00:37,877 INFO - Executing command: ['airflow', 'tasks', 'run', 'producer_dw_order_sync', 'sync_order_data', 'manual__2026-02-13T04:00:36.991126+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 12:00:42,458 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='producer_dw_order_sync', task_id='sync_order_data', run_id='manual__2026-02-13T04:00:36.991126+00:00', try_number=1, map_index=-1)
+2026-02-13 12:00:42,467 INFO - TaskInstance Finished: dag_id=producer_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-13T04:00:36.991126+00:00, map_index=-1, run_start_date=2026-02-13 04:00:41.386106+00:00, run_end_date=2026-02-13 04:00:41.894495+00:00, run_duration=0.508389, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=55, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 04:00:37.871705+00:00, queued_by_job_id=41, pid=7993
+2026-02-13 12:00:44,981 INFO - Marking run <DagRun producer_dw_order_sync @ 2026-02-13 04:00:36.991126+00:00: manual__2026-02-13T04:00:36.991126+00:00, state:running, queued_at: 2026-02-13 04:00:37.010364+00:00. externally triggered: True> successful
+2026-02-13 12:00:44,982 INFO - DagRun Finished: dag_id=producer_dw_order_sync, execution_date=2026-02-13 04:00:36.991126+00:00, run_id=manual__2026-02-13T04:00:36.991126+00:00, run_start_date=2026-02-13 04:00:37.845866+00:00, run_end_date=2026-02-13 04:00:44.982304+00:00, run_duration=7.136438, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-13 04:00:36.991126+00:00, data_interval_end=2026-02-13 04:00:36.991126+00:00, dag_hash=3f1d48a4dcef25843133576f388d134e
+2026-02-13 12:00:44,992 INFO - 1 tasks up for execution:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T04:00:41.913811+00:00 [scheduled]>
+2026-02-13 12:00:44,993 INFO - DAG consumer_dw_order_clean has 0/16 running and queued tasks
+2026-02-13 12:00:44,994 INFO - Setting the following tasks to queued state:
+	<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T04:00:41.913811+00:00 [scheduled]>
+2026-02-13 12:00:44,997 INFO - Trying to enqueue tasks: [<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T04:00:41.913811+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-13 12:00:44,998 INFO - Sending TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T04:00:41.913811+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-13 12:00:44,999 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T04:00:41.913811+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 12:00:45,002 INFO - Executing command: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T04:00:41.913811+00:00', '--local', '--subdir', 'DAGS_FOLDER/dataset_demo.py']
+2026-02-13 12:00:48,637 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='consumer_dw_order_clean', task_id='clean_order_data', run_id='dataset_triggered__2026-02-13T04:00:41.913811+00:00', try_number=1, map_index=-1)
+2026-02-13 12:00:48,646 INFO - TaskInstance Finished: dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T04:00:41.913811+00:00, map_index=-1, run_start_date=2026-02-13 04:00:47.820152+00:00, run_end_date=2026-02-13 04:00:48.130048+00:00, run_duration=0.309896, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=56, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-13 04:00:44.995486+00:00, queued_by_job_id=41, pid=7996
+2026-02-13 12:00:51,386 INFO - Marking run <DagRun consumer_dw_order_clean @ 2026-02-13 04:00:41.913811+00:00: dataset_triggered__2026-02-13T04:00:41.913811+00:00, state:running, queued_at: 2026-02-13 04:00:44.951380+00:00. externally triggered: False> successful
+2026-02-13 12:00:51,388 INFO - DagRun Finished: dag_id=consumer_dw_order_clean, execution_date=2026-02-13 04:00:41.913811+00:00, run_id=dataset_triggered__2026-02-13T04:00:41.913811+00:00, run_start_date=2026-02-13 04:00:44.966340+00:00, run_end_date=2026-02-13 04:00:51.387965+00:00, run_duration=6.421625, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-13 04:00:36.991126+00:00, data_interval_end=2026-02-13 04:00:36.991126+00:00, dag_hash=14c7fa46f6353af733f2f3432dad8780

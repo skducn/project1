@@ -1,0 +1,19 @@
+[2026-02-13T09:12:58.037+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T09:12:58.054+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: test_crm.process_result manual__2026-02-13T01:12:44.736895+00:00 [queued]>
+[2026-02-13T09:12:58.061+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: test_crm.process_result manual__2026-02-13T01:12:44.736895+00:00 [queued]>
+[2026-02-13T09:12:58.062+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2026-02-13T09:12:58.075+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): process_result> on 2026-02-13 01:12:44.736895+00:00
+[2026-02-13T09:12:58.079+0800] {standard_task_runner.py:72} INFO - Started process 3853 to run task
+[2026-02-13T09:12:58.085+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'test_crm', 'process_result', 'manual__2026-02-13T01:12:44.736895+00:00', '--job-id', '40', '--raw', '--subdir', 'DAGS_FOLDER/tag_crm/test_crm.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp5a_c27i0']
+[2026-02-13T09:12:58.089+0800] {standard_task_runner.py:105} INFO - Job 40: Subtask process_result
+[2026-02-13T09:12:58.346+0800] {task_command.py:467} INFO - Running <TaskInstance: test_crm.process_result manual__2026-02-13T01:12:44.736895+00:00 [running]> on host localhost-2.local
+[2026-02-13T09:12:58.423+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='test_crm' AIRFLOW_CTX_TASK_ID='process_result' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T01:12:44.736895+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-13T01:12:44.736895+00:00'
+[2026-02-13T09:12:58.425+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T09:12:58.462+0800] {logging_mixin.py:190} INFO - 从 XCom 获取的结果: 孙友磊
+[2026-02-13T09:12:58.463+0800] {logging_mixin.py:190} INFO - 处理结果...
+[2026-02-13T09:12:58.464+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-13T09:12:58.473+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T09:12:58.474+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=test_crm, task_id=process_result, run_id=manual__2026-02-13T01:12:44.736895+00:00, execution_date=20260213T011244, start_date=20260213T011258, end_date=20260213T011258
+[2026-02-13T09:12:58.547+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-13T09:12:58.714+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T09:12:58.714+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

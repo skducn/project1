@@ -1,0 +1,78 @@
+[2026-02-13T11:58:22.457+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T11:58:22.470+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:58:18.846380+00:00 [queued]>
+[2026-02-13T11:58:22.477+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:58:18.846380+00:00 [queued]>
+[2026-02-13T11:58:22.477+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T11:58:22.589+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): clean_order_data> on 2026-02-13 03:58:18.846380+00:00
+[2026-02-13T11:58:22.592+0800] {standard_task_runner.py:72} INFO - Started process 7928 to run task
+[2026-02-13T11:58:22.600+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_dw_order_clean', 'clean_order_data', 'dataset_triggered__2026-02-13T03:58:18.846380+00:00', '--job-id', '54', '--raw', '--subdir', 'DAGS_FOLDER/dataset_demo.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp8dcodlhk']
+[2026-02-13T11:58:22.604+0800] {standard_task_runner.py:105} INFO - Job 54: Subtask clean_order_data
+[2026-02-13T11:58:22.651+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_dw_order_clean.clean_order_data dataset_triggered__2026-02-13T03:58:18.846380+00:00 [running]> on host localhost-2.local
+[2026-02-13T11:58:22.728+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_dw_order_clean' AIRFLOW_CTX_TASK_ID='clean_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T03:58:18.846380+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-13T03:58:18.846380+00:00'
+[2026-02-13T11:58:22.734+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T11:58:22.751+0800] {logging_mixin.py:190} INFO - 检测到订单数据更新，开始清洗...
+[2026-02-13T11:58:22.751+0800] {logging_mixin.py:190} INFO - 订单数据清洗完成！
+[2026-02-13T11:58:22.752+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py", line 84, in clean_order_data
+    with create_session() as session:
+NameError: name 'create_session' is not defined
+[2026-02-13T11:58:22.761+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=consumer_dw_order_clean, task_id=clean_order_data, run_id=dataset_triggered__2026-02-13T03:58:18.846380+00:00, execution_date=20260213T035818, start_date=20260213T035822, end_date=20260213T035822
+[2026-02-13T11:58:22.777+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T11:58:22.778+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 54 for task clean_order_data (name 'create_session' is not defined; 7928)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py", line 84, in clean_order_data
+    with create_session() as session:
+NameError: name 'create_session' is not defined
+[2026-02-13T11:58:22.824+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-13T11:58:22.842+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T11:58:22.842+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

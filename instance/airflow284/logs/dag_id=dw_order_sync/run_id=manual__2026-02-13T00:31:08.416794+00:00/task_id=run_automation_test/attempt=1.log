@@ -1,0 +1,206 @@
+[2026-02-13T08:31:16.530+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T08:31:16.546+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:31:08.416794+00:00 [queued]>
+[2026-02-13T08:31:16.554+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:31:08.416794+00:00 [queued]>
+[2026-02-13T08:31:16.554+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T08:31:16.566+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): run_automation_test> on 2026-02-13 00:31:08.416794+00:00
+[2026-02-13T08:31:16.569+0800] {standard_task_runner.py:72} INFO - Started process 2460 to run task
+[2026-02-13T08:31:16.575+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'dw_order_sync', 'run_automation_test', 'manual__2026-02-13T00:31:08.416794+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/tag_data_warehouse/dw_order_sync.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpap87_62w']
+[2026-02-13T08:31:16.579+0800] {standard_task_runner.py:105} INFO - Job 30: Subtask run_automation_test
+[2026-02-13T08:31:16.624+0800] {task_command.py:467} INFO - Running <TaskInstance: dw_order_sync.run_automation_test manual__2026-02-13T00:31:08.416794+00:00 [running]> on host localhost-2.local
+[2026-02-13T08:31:16.900+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dw_order_sync' AIRFLOW_CTX_TASK_ID='run_automation_test' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T00:31:08.416794+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-13T00:31:08.416794+00:00'
+[2026-02-13T08:31:16.901+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T08:31:25.053+0800] {logging_mixin.py:190} INFO - 子进程输出内容:
+[2026-02-13T08:31:25.055+0800] {logging_mixin.py:190} INFO - /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.log 2026-02-13 08:31:19.124915
+浏览器版本前3： 145.0.7632
+chrome驱动版本前3： /Users/linghuchong/.wdm/drivers/chromedriver/mac64/145.0.7632
+[2026-02-13T08:31:25.055+0800] {logging_mixin.py:190} INFO - 子进程错误信息:
+[2026-02-13T08:31:25.056+0800] {logging_mixin.py:190} INFO - Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/DomPO.py", line 291, in find_element
+    WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(loc))
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/support/wait.py", line 137, in until
+    value = method(self._driver)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/support/expected_conditions.py", line 224, in _predicate
+    return _element_if_visible(driver.find_element(*locator))
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 898, in find_element
+    return self.execute(Command.FIND_ELEMENT, {"using": by, "value": value})["value"]
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/remote/webdriver.py", line 429, in execute
+    self.error_handler.check_response(response)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/selenium/webdriver/remote/errorhandler.py", line 232, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=145.0.7632.46)
+Stacktrace:
+0   chromedriver                        0x00000001066923b8 chromedriver + 6730680
+1   chromedriver                        0x0000000106689bea chromedriver + 6695914
+2   chromedriver                        0x0000000106095cf5 chromedriver + 453877
+3   chromedriver                        0x0000000106068f58 chromedriver + 270168
+4   chromedriver                        0x0000000106119538 chromedriver + 992568
+5   chromedriver                        0x0000000106133388 chromedriver + 1098632
+6   chromedriver                        0x00000001060dc774 chromedriver + 743284
+7   chromedriver                        0x00000001060dd521 chromedriver + 746785
+8   chromedriver                        0x000000010664b481 chromedriver + 6440065
+9   chromedriver                        0x000000010664f85a chromedriver + 6457434
+10  chromedriver                        0x000000010662b139 chromedriver + 6308153
+11  chromedriver                        0x00000001066502b8 chromedriver + 6460088
+12  chromedriver                        0x0000000106619aa0 chromedriver + 6236832
+13  chromedriver                        0x0000000106676498 chromedriver + 6616216
+14  chromedriver                        0x0000000106676652 chromedriver + 6616658
+15  chromedriver                        0x00000001066897f6 chromedriver + 6694902
+16  libsystem_pthread.dylib             0x00007ff800be14e1 _pthread_start + 125
+17  libsystem_pthread.dylib             0x00007ff800bdcf6b thread_start + 15
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/main.py", line 29, in <module>
+    Cdrd_PO.login()
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/CdrdPO.py", line 108, in login
+    self.Web_PO.setTextByX('/html/body/div/div/div/form/div[3]/div/div/div/input', Configparser_PO.USER("user"))
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/DomPO.py", line 743, in setTextByX
+    self.find_element(*(By.XPATH, varXpath)).clear()
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/DomPO.py", line 294, in find_element
+    print("未找到元素 %s " % (loc))
+TypeError: not all arguments converted during string formatting
+[2026-02-13T08:31:25.056+0800] {python.py:240} INFO - Done. Returned value was: 1
+[2026-02-13T08:31:25.063+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 798, in _execute_task
+    task_instance.xcom_push(key=XCOM_RETURN_KEY, value=xcom_value, session=session_or_null)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3668, in xcom_push
+    XCom.set(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/xcom.py", line 227, in set
+    raise ValueError(f"DAG run not found on DAG {dag_id!r} with ID {run_id!r}")
+ValueError: DAG run not found on DAG 'dw_order_sync' with ID 'manual__2026-02-13T00:31:08.416794+00:00'
+[2026-02-13T08:31:25.071+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=dw_order_sync, task_id=run_automation_test, run_id=manual__2026-02-13T00:31:08.416794+00:00, execution_date=20260213T003108, start_date=20260213T003116, end_date=20260213T003125
+[2026-02-13T08:31:25.075+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T08:31:25.076+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 30 for task run_automation_test ((sqlite3.IntegrityError) FOREIGN KEY constraint failed
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('run_automation_test', 'dw_order_sync', 'manual__2026-02-13T00:31:08.416794+00:00', -1, '2026-02-13 00:31:16.546768', '2026-02-13 00:31:25.069936', 8)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj); 2460)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 798, in _execute_task
+    task_instance.xcom_push(key=XCOM_RETURN_KEY, value=xcom_value, session=session_or_null)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3668, in xcom_push
+    XCom.set(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/xcom.py", line 227, in set
+    raise ValueError(f"DAG run not found on DAG {dag_id!r} with ID {run_id!r}")
+ValueError: DAG run not found on DAG 'dw_order_sync' with ID 'manual__2026-02-13T00:31:08.416794+00:00'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 345, in _run_raw_task
+    ti.handle_failure(e, test_mode, context, session=session)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3457, in handle_failure
+    _handle_failure(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 1260, in _handle_failure
+    TaskInstance.save_to_db(task_instance, session)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3425, in save_to_db
+    ti.get_dagrun().refresh_from_db()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 96, in wrapper
+    with create_session() as session:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/contextlib.py", line 142, in __exit__
+    next(self.gen)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 57, in create_session
+    session.commit()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1454, in commit
+    self._transaction.commit(_to_root=self.future)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 832, in commit
+    self._prepare_impl()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 811, in _prepare_impl
+    self.session.flush()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3449, in flush
+    self._flush(objects)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3588, in _flush
+    with util.safe_reraise():
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
+    compat.raise_(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3549, in _flush
+    flush_context.execute()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
+    rec.execute(self)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
+    util.preloaded.orm_persistence.save_obj(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 245, in save_obj
+    _emit_insert_statements(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1238, in _emit_insert_statements
+    result = connection._execute_20(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1710, in _execute_20
+    return meth(self, args_10style, kwargs_10style, execution_options)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/sql/elements.py", line 334, in _execute_on_connection
+    return connection._execute_clauseelement(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1577, in _execute_clauseelement
+    ret = self._execute_context(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1953, in _execute_context
+    self._handle_dbapi_exception(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 2134, in _handle_dbapi_exception
+    util.raise_(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
+    raise exception
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/base.py", line 1910, in _execute_context
+    self.dialect.do_execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/engine/default.py", line 736, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) FOREIGN KEY constraint failed
+[SQL: INSERT INTO task_fail (task_id, dag_id, run_id, map_index, start_date, end_date, duration) VALUES (?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('run_automation_test', 'dw_order_sync', 'manual__2026-02-13T00:31:08.416794+00:00', -1, '2026-02-13 00:31:16.546768', '2026-02-13 00:31:25.069936', 8)]
+(Background on this error at: https://sqlalche.me/e/14/gkpj)
+[2026-02-13T08:31:25.142+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-13T08:31:25.160+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
