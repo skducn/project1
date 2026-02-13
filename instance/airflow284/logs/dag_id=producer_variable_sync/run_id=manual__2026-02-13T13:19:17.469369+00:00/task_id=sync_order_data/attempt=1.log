@@ -1,0 +1,19 @@
+[2026-02-13T21:19:22.479+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T21:19:22.494+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: producer_variable_sync.sync_order_data manual__2026-02-13T13:19:17.469369+00:00 [queued]>
+[2026-02-13T21:19:22.501+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: producer_variable_sync.sync_order_data manual__2026-02-13T13:19:17.469369+00:00 [queued]>
+[2026-02-13T21:19:22.501+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T21:19:22.516+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): sync_order_data> on 2026-02-13 13:19:17.469369+00:00
+[2026-02-13T21:19:22.519+0800] {standard_task_runner.py:72} INFO - Started process 5226 to run task
+[2026-02-13T21:19:22.527+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'producer_variable_sync', 'sync_order_data', 'manual__2026-02-13T13:19:17.469369+00:00', '--job-id', '69', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_variable.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpl6fp9lk9']
+[2026-02-13T21:19:22.531+0800] {standard_task_runner.py:105} INFO - Job 69: Subtask sync_order_data
+[2026-02-13T21:19:22.765+0800] {task_command.py:467} INFO - Running <TaskInstance: producer_variable_sync.sync_order_data manual__2026-02-13T13:19:17.469369+00:00 [running]> on host localhost-2.local
+[2026-02-13T21:19:22.823+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='producer_variable_sync' AIRFLOW_CTX_TASK_ID='sync_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T13:19:17.469369+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-13T13:19:17.469369+00:00'
+[2026-02-13T21:19:22.825+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T21:19:22.852+0800] {crypto.py:82} WARNING - empty cryptography key - values will not be stored encrypted.
+[2026-02-13T21:19:22.856+0800] {logging_mixin.py:190} INFO - 生产者：已将结果存入 Variable: ('6',)
+[2026-02-13T21:19:22.856+0800] {python.py:240} INFO - Done. Returned value was: ('6',)
+[2026-02-13T21:19:22.876+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T21:19:22.877+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=producer_variable_sync, task_id=sync_order_data, run_id=manual__2026-02-13T13:19:17.469369+00:00, execution_date=20260213T131917, start_date=20260213T131922, end_date=20260213T131922
+[2026-02-13T21:19:22.926+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-13T21:19:23.060+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T21:19:23.061+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,21 @@
+[2026-02-13T20:14:04.700+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T20:14:04.714+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_dw_order_stat.stat_order_data dataset_triggered__2026-02-13T12:13:55.395586+00:00 [queued]>
+[2026-02-13T20:14:04.720+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_dw_order_stat.stat_order_data dataset_triggered__2026-02-13T12:13:55.395586+00:00 [queued]>
+[2026-02-13T20:14:04.720+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T20:14:04.733+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): stat_order_data> on 2026-02-13 12:13:55.395586+00:00
+[2026-02-13T20:14:04.736+0800] {standard_task_runner.py:72} INFO - Started process 4137 to run task
+[2026-02-13T20:14:04.743+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_dw_order_stat', 'stat_order_data', 'dataset_triggered__2026-02-13T12:13:55.395586+00:00', '--job-id', '65', '--raw', '--subdir', 'DAGS_FOLDER/dataset_demo.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpzzap9yya']
+[2026-02-13T20:14:04.747+0800] {standard_task_runner.py:105} INFO - Job 65: Subtask stat_order_data
+[2026-02-13T20:14:04.978+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_dw_order_stat.stat_order_data dataset_triggered__2026-02-13T12:13:55.395586+00:00 [running]> on host localhost-2.local
+[2026-02-13T20:14:05.039+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_dw_order_stat' AIRFLOW_CTX_TASK_ID='stat_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T12:13:55.395586+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-13T12:13:55.395586+00:00'
+[2026-02-13T20:14:05.044+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T20:14:05.058+0800] {logging_mixin.py:190} INFO - 【消费者2】检测到订单数据更新，开始统计...
+[2026-02-13T20:14:05.069+0800] {logging_mixin.py:190} INFO - 【消费者2】订单数据统计完成！
+[2026-02-13T20:14:05.069+0800] {logging_mixin.py:190} INFO - 【消费者2】从生产者获取的返回值: ('64',)
+[2026-02-13T20:14:05.070+0800] {logging_mixin.py:190} INFO - 【消费者2】统计结果: 订单性别字段值为 64，共统计到 100 条订单
+[2026-02-13T20:14:05.070+0800] {python.py:240} INFO - Done. Returned value was: 订单性别字段值为 64，共统计到 100 条订单
+[2026-02-13T20:14:05.086+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T20:14:05.087+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=consumer_dw_order_stat, task_id=stat_order_data, run_id=dataset_triggered__2026-02-13T12:13:55.395586+00:00, execution_date=20260213T121355, start_date=20260213T121404, end_date=20260213T121405
+[2026-02-13T20:14:05.139+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-13T20:14:05.280+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T20:14:05.281+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

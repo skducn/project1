@@ -1,0 +1,18 @@
+[2026-02-13T21:57:58.285+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T21:57:58.299+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_dagRun.consumer_dagRun_read_data dataset_triggered__2026-02-13T13:57:52.497306+00:00 [queued]>
+[2026-02-13T21:57:58.304+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_dagRun.consumer_dagRun_read_data dataset_triggered__2026-02-13T13:57:52.497306+00:00 [queued]>
+[2026-02-13T21:57:58.304+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T21:57:58.317+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer_dagRun_read_data> on 2026-02-13 13:57:52.497306+00:00
+[2026-02-13T21:57:58.319+0800] {standard_task_runner.py:72} INFO - Started process 6605 to run task
+[2026-02-13T21:57:58.325+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_dagRun', 'consumer_dagRun_read_data', 'dataset_triggered__2026-02-13T13:57:52.497306+00:00', '--job-id', '84', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_dagRun.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpjr481f7r']
+[2026-02-13T21:57:58.329+0800] {standard_task_runner.py:105} INFO - Job 84: Subtask consumer_dagRun_read_data
+[2026-02-13T21:57:58.374+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_dagRun.consumer_dagRun_read_data dataset_triggered__2026-02-13T13:57:52.497306+00:00 [running]> on host localhost-2.local
+[2026-02-13T21:57:58.608+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_dagRun' AIRFLOW_CTX_TASK_ID='consumer_dagRun_read_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T13:57:52.497306+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-13T13:57:52.497306+00:00'
+[2026-02-13T21:57:58.614+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T21:57:58.632+0800] {logging_mixin.py:190} INFO - 消费者：生产者运行元数据: {'run_id': 'manual__2026-02-13T13:57:46.936479+00:00', 'execution_date': datetime.datetime(2026, 2, 13, 13, 57, 46, 936479, tzinfo=Timezone('UTC')), 'start_date': datetime.datetime(2026, 2, 13, 13, 57, 49, 390250, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 2, 13, 13, 57, 55, 765280, tzinfo=Timezone('UTC'))}
+[2026-02-13T21:57:58.632+0800] {python.py:240} INFO - Done. Returned value was: {'run_id': 'manual__2026-02-13T13:57:46.936479+00:00', 'execution_date': datetime.datetime(2026, 2, 13, 13, 57, 46, 936479, tzinfo=Timezone('UTC')), 'start_date': datetime.datetime(2026, 2, 13, 13, 57, 49, 390250, tzinfo=Timezone('UTC')), 'end_date': datetime.datetime(2026, 2, 13, 13, 57, 55, 765280, tzinfo=Timezone('UTC'))}
+[2026-02-13T21:57:58.648+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T21:57:58.649+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=consumer_dagRun, task_id=consumer_dagRun_read_data, run_id=dataset_triggered__2026-02-13T13:57:52.497306+00:00, execution_date=20260213T135752, start_date=20260213T135758, end_date=20260213T135758
+[2026-02-13T21:57:58.680+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-13T21:57:58.697+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T21:57:58.698+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

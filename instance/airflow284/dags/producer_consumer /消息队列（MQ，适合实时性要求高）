@@ -1,0 +1,50 @@
+方案 4：消息队列（MQ，适合实时性要求高）
+原理
+生产者将数据发送到消息队列（如 RabbitMQ/Kafka），消费者订阅队列并读取数据。
+示例（以 RabbitMQ 为例）
+python
+运行
+# 先安装依赖：pip install pika
+# 生产者任务：发送消息到RabbitMQ
+def sync_order_data():
+    import pika
+    result = ('6',)
+    # 连接RabbitMQ
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+    # 声明队列
+    channel.queue_declare(queue='dw_order_sync_queue', durable=True)
+    # 发送消息（序列化）
+    channel.basic_publish(
+        exchange='',
+        routing_key='dw_order_sync_queue',
+        body=str(result),
+        properties=pika.BasicProperties(delivery_mode=2)  # 持久化消息
+    )
+    connection.close()
+    print(f"生产者：已将结果发送到MQ: {result}")
+    return result
+
+# 消费者任务：从RabbitMQ读取消息
+def clean_order_data():
+    import pika
+    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+    channel = connection.channel()
+    channel.queue_declare(queue='dw_order_sync_queue', durable=True)
+
+    # 读取消息（单次读取）
+    method_frame, header_frame, body = channel.basic_get(queue='dw_order_sync_queue')
+    if method_frame:
+        result = eval(body.decode())  # 反序列化
+        channel.basic_ack(delivery_tag=method_frame.delivery_tag)  # 确认消费
+        print(f"消费者：从MQ获取生产者数据: {result}")
+        connection.close()
+        return result
+    else:
+        print("消费者：MQ中无新消息")
+        connection.close()
+        return None
+适用场景
+实时性要求高（生产者完成后立即推送给消费者）；
+多消费者并发消费（如 Kafka 支持分区消费）；
+分布式系统场景（生产者和消费者部署在不同节点）。

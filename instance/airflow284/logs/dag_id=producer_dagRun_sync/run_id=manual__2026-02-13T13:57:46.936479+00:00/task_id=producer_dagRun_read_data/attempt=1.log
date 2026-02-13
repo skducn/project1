@@ -1,0 +1,20 @@
+[2026-02-13T21:57:52.109+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T21:57:52.121+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: producer_dagRun_sync.producer_dagRun_read_data manual__2026-02-13T13:57:46.936479+00:00 [queued]>
+[2026-02-13T21:57:52.127+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: producer_dagRun_sync.producer_dagRun_read_data manual__2026-02-13T13:57:46.936479+00:00 [queued]>
+[2026-02-13T21:57:52.127+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T21:57:52.140+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): producer_dagRun_read_data> on 2026-02-13 13:57:46.936479+00:00
+[2026-02-13T21:57:52.143+0800] {standard_task_runner.py:72} INFO - Started process 6600 to run task
+[2026-02-13T21:57:52.150+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'producer_dagRun_sync', 'producer_dagRun_read_data', 'manual__2026-02-13T13:57:46.936479+00:00', '--job-id', '83', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_dagRun.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp7ipn7hqq']
+[2026-02-13T21:57:52.153+0800] {standard_task_runner.py:105} INFO - Job 83: Subtask producer_dagRun_read_data
+[2026-02-13T21:57:52.197+0800] {task_command.py:467} INFO - Running <TaskInstance: producer_dagRun_sync.producer_dagRun_read_data manual__2026-02-13T13:57:46.936479+00:00 [running]> on host localhost-2.local
+[2026-02-13T21:57:52.442+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='producer_dagRun_sync' AIRFLOW_CTX_TASK_ID='producer_dagRun_read_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T13:57:46.936479+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-13T13:57:46.936479+00:00'
+[2026-02-13T21:57:52.444+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T21:57:52.458+0800] {logging_mixin.py:190} INFO - 开始同步订单数据...
+[2026-02-13T21:57:52.458+0800] {logging_mixin.py:190} INFO - 订单数据同步完成！已更新 dw_order 表
+[2026-02-13T21:57:52.459+0800] {logging_mixin.py:190} INFO - ✅ MySQL 连接成功！测试查询结果: ('64',)
+[2026-02-13T21:57:52.459+0800] {python.py:240} INFO - Done. Returned value was: ('64',)
+[2026-02-13T21:57:52.477+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T21:57:52.478+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=producer_dagRun_sync, task_id=producer_dagRun_read_data, run_id=manual__2026-02-13T13:57:46.936479+00:00, execution_date=20260213T135746, start_date=20260213T135752, end_date=20260213T135752
+[2026-02-13T21:57:52.555+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-13T21:57:52.572+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T21:57:52.573+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

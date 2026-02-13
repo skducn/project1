@@ -1,0 +1,76 @@
+[2026-02-13T21:42:57.140+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T21:42:57.153+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: producer_object_sync.producer_object_save_data manual__2026-02-13T13:42:53.973560+00:00 [queued]>
+[2026-02-13T21:42:57.158+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: producer_object_sync.producer_object_save_data manual__2026-02-13T13:42:53.973560+00:00 [queued]>
+[2026-02-13T21:42:57.158+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T21:42:57.169+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): producer_object_save_data> on 2026-02-13 13:42:53.973560+00:00
+[2026-02-13T21:42:57.172+0800] {standard_task_runner.py:72} INFO - Started process 5890 to run task
+[2026-02-13T21:42:57.178+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'producer_object_sync', 'producer_object_save_data', 'manual__2026-02-13T13:42:53.973560+00:00', '--job-id', '76', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_object.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmph3u3embh']
+[2026-02-13T21:42:57.182+0800] {standard_task_runner.py:105} INFO - Job 76: Subtask producer_object_save_data
+[2026-02-13T21:42:57.224+0800] {task_command.py:467} INFO - Running <TaskInstance: producer_object_sync.producer_object_save_data manual__2026-02-13T13:42:53.973560+00:00 [running]> on host localhost-2.local
+[2026-02-13T21:42:57.461+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='producer_object_sync' AIRFLOW_CTX_TASK_ID='producer_object_save_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T13:42:53.973560+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-13T13:42:53.973560+00:00'
+[2026-02-13T21:42:57.462+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T21:42:57.476+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py", line 30, in producer_object_save_data
+    with open(file_path, 'w') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/data/object.json'
+[2026-02-13T21:42:57.482+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=producer_object_sync, task_id=producer_object_save_data, run_id=manual__2026-02-13T13:42:53.973560+00:00, execution_date=20260213T134253, start_date=20260213T134257, end_date=20260213T134257
+[2026-02-13T21:42:57.496+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T21:42:57.497+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 76 for task producer_object_save_data ([Errno 2] No such file or directory: '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/data/object.json'; 5890)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py", line 30, in producer_object_save_data
+    with open(file_path, 'w') as f:
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/data/object.json'
+[2026-02-13T21:42:57.535+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-13T21:42:57.552+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T21:42:57.553+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

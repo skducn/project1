@@ -1,0 +1,76 @@
+[2026-02-13T22:16:22.504+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-13T22:16:22.516+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_dagRun.consumer_dagRun_read_data dataset_triggered__2026-02-13T14:16:16.802861+00:00 [queued]>
+[2026-02-13T22:16:22.522+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_dagRun.consumer_dagRun_read_data dataset_triggered__2026-02-13T14:16:16.802861+00:00 [queued]>
+[2026-02-13T22:16:22.522+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-13T22:16:22.534+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer_dagRun_read_data> on 2026-02-13 14:16:16.802861+00:00
+[2026-02-13T22:16:22.537+0800] {standard_task_runner.py:72} INFO - Started process 7112 to run task
+[2026-02-13T22:16:22.543+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_dagRun', 'consumer_dagRun_read_data', 'dataset_triggered__2026-02-13T14:16:16.802861+00:00', '--job-id', '92', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_dagRun.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmppnihj_ya']
+[2026-02-13T22:16:22.547+0800] {standard_task_runner.py:105} INFO - Job 92: Subtask consumer_dagRun_read_data
+[2026-02-13T22:16:22.589+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_dagRun.consumer_dagRun_read_data dataset_triggered__2026-02-13T14:16:16.802861+00:00 [running]> on host localhost-2.local
+[2026-02-13T22:16:22.830+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_dagRun' AIRFLOW_CTX_TASK_ID='consumer_dagRun_read_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-13T14:16:16.802861+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-13T14:16:16.802861+00:00'
+[2026-02-13T22:16:22.835+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-13T22:16:22.855+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py", line 82, in consumer_dagRun_read_data
+    utc_time = datetime.strptime(timestamp_str.replace("Z", "+00:00"), "%Y-%m-%dT%H:%M:%S.%f%z")
+AttributeError: module 'datetime' has no attribute 'strptime'
+[2026-02-13T22:16:22.860+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=consumer_dagRun, task_id=consumer_dagRun_read_data, run_id=dataset_triggered__2026-02-13T14:16:16.802861+00:00, execution_date=20260213T141616, start_date=20260213T141622, end_date=20260213T141622
+[2026-02-13T22:16:22.874+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-13T22:16:22.875+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 92 for task consumer_dagRun_read_data (module 'datetime' has no attribute 'strptime'; 7112)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py", line 82, in consumer_dagRun_read_data
+    utc_time = datetime.strptime(timestamp_str.replace("Z", "+00:00"), "%Y-%m-%dT%H:%M:%S.%f%z")
+AttributeError: module 'datetime' has no attribute 'strptime'
+[2026-02-13T22:16:22.901+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-13T22:16:22.918+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-13T22:16:22.919+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
