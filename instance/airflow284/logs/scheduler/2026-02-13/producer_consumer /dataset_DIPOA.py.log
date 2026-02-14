@@ -399,3 +399,21 @@ TypeError: Dataset.__init__() got an unexpected keyword argument 'description'
 [2026-02-14T00:32:48.990+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:32:48.990+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer2_order_stat to None, run_after=None
 [2026-02-14T00:32:48.991+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:32:48.991+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_DIPOA_dw_order_raw_sync to None, run_after=None
 [2026-02-14T00:32:49.017+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py took 288.426 seconds
+[2026-02-14T00:33:21.298+0800] {processor.py:186} INFO - Started process (PID=9461) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py
+[2026-02-14T00:33:21.299+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py for tasks to queue
+[2026-02-14T00:33:21.300+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:21.300+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py
+[2026-02-14T00:33:21.401+0800] {processor.py:925} INFO - DAG(s) 'consumer2_order_stat', 'producer_DIPOA_dw_order_raw_sync', 'consumer1_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py
+[2026-02-14T00:33:21.514+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:21.514+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-14T00:33:21.534+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:21.534+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer1_order_clean to None, run_after=None
+[2026-02-14T00:33:21.537+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:21.537+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer2_order_stat to None, run_after=None
+[2026-02-14T00:33:21.538+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:21.538+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_DIPOA_dw_order_raw_sync to None, run_after=None
+[2026-02-14T00:33:21.562+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py took 266.108 seconds
+[2026-02-14T00:33:53.883+0800] {processor.py:186} INFO - Started process (PID=9476) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py
+[2026-02-14T00:33:53.884+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py for tasks to queue
+[2026-02-14T00:33:53.885+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:53.884+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py
+[2026-02-14T00:33:53.981+0800] {processor.py:925} INFO - DAG(s) 'producer_DIPOA_dw_order_raw_sync', 'consumer1_order_clean', 'consumer2_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py
+[2026-02-14T00:33:54.093+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:54.093+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-14T00:33:54.110+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:54.110+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer1_order_clean to None, run_after=None
+[2026-02-14T00:33:54.112+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:54.112+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer2_order_stat to None, run_after=None
+[2026-02-14T00:33:54.113+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:54.113+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_DIPOA_dw_order_raw_sync to None, run_after=None
+[2026-02-14T00:33:54.134+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_DIPOA.py took 254.715 seconds

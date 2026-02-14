@@ -1566,3 +1566,19 @@ NameError: name 'producer_variable_save_data' is not defined
 [2026-02-14T00:32:41.414+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:32:41.413+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_object to None, run_after=None
 [2026-02-14T00:32:41.416+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:32:41.416+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_object_sync to None, run_after=None
 [2026-02-14T00:32:41.441+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py took 261.403 seconds
+[2026-02-14T00:33:13.753+0800] {processor.py:186} INFO - Started process (PID=9443) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-14T00:33:13.754+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py for tasks to queue
+[2026-02-14T00:33:13.755+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:13.754+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-14T00:33:13.859+0800] {processor.py:925} INFO - DAG(s) 'consumer_object', 'producer_object_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-14T00:33:13.973+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:13.972+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T00:33:13.992+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:13.992+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_object to None, run_after=None
+[2026-02-14T00:33:13.995+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:13.995+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_object_sync to None, run_after=None
+[2026-02-14T00:33:14.018+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py took 268.132 seconds
+[2026-02-14T00:33:46.529+0800] {processor.py:186} INFO - Started process (PID=9474) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-14T00:33:46.530+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py for tasks to queue
+[2026-02-14T00:33:46.531+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:46.530+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-14T00:33:46.615+0800] {processor.py:925} INFO - DAG(s) 'consumer_object', 'producer_object_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-14T00:33:46.718+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:46.717+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T00:33:46.735+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:46.735+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_object to None, run_after=None
+[2026-02-14T00:33:46.737+0800] {logging_mixin.py:190} INFO - [2026-02-14T00:33:46.737+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_object_sync to None, run_after=None
+[2026-02-14T00:33:46.758+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py took 231.286 seconds

@@ -1,0 +1,790 @@
+[2026-02-14T11:54:37.630+0800] {processor.py:186} INFO - Started process (PID=3246) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:54:37.631+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:54:37.632+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:54:37.631+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:54:37.754+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:54:37.901+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:54:37.901+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:54:37.921+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:54:37.920+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:54:38.018+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 390.617 seconds
+[2026-02-14T11:55:17.742+0800] {processor.py:186} INFO - Started process (PID=3276) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:55:17.744+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:55:17.745+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:55:17.745+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:55:17.868+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:55:17.883+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:55:17.882+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:55:17.902+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:55:17.902+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:55:17.921+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 181.855 seconds
+[2026-02-14T11:55:56.442+0800] {processor.py:186} INFO - Started process (PID=3290) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:55:56.443+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:55:56.443+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:55:56.443+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:55:56.565+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:55:56.669+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:55:56.668+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:55:56.685+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:55:56.685+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:55:56.784+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 344.894 seconds
+[2026-02-14T11:56:39.319+0800] {processor.py:186} INFO - Started process (PID=3308) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:56:39.322+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:56:39.323+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:56:39.323+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:56:39.444+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:56:39.447+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:56:39.447+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:56:39.465+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:56:39.465+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:56:39.482+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 166.333 seconds
+[2026-02-14T11:57:18.283+0800] {processor.py:186} INFO - Started process (PID=3323) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:57:18.286+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:57:18.287+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:57:18.287+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:57:18.407+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:57:18.508+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:57:18.508+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:57:18.525+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:57:18.524+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:57:18.621+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 340.757 seconds
+[2026-02-14T11:57:55.146+0800] {processor.py:186} INFO - Started process (PID=3347) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:57:55.147+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:57:55.148+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:57:55.148+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:57:55.275+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:57:55.278+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:57:55.278+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:57:55.296+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:57:55.295+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:57:55.314+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 171.173 seconds
+[2026-02-14T11:58:35.951+0800] {processor.py:186} INFO - Started process (PID=3364) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:58:35.952+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:58:35.953+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:58:35.953+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:58:36.079+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:58:36.231+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:58:36.231+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:58:36.247+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:58:36.247+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:58:36.339+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 390.644 seconds
+[2026-02-14T11:59:17.561+0800] {processor.py:186} INFO - Started process (PID=3388) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:59:17.563+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:59:17.564+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:59:17.564+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:59:17.683+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:59:17.686+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:59:17.685+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:59:17.703+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:59:17.702+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:59:17.720+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 162.108 seconds
+[2026-02-14T11:59:58.830+0800] {processor.py:186} INFO - Started process (PID=3401) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:59:58.831+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T11:59:58.831+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:59:58.831+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:59:58.955+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T11:59:59.093+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:59:59.093+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T11:59:59.110+0800] {logging_mixin.py:190} INFO - [2026-02-14T11:59:59.110+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T11:59:59.201+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 374.067 seconds
+[2026-02-14T12:00:39.982+0800] {processor.py:186} INFO - Started process (PID=3429) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:00:39.983+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:00:39.984+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:00:39.984+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:00:40.110+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:00:40.113+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:00:40.113+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:00:40.130+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:00:40.130+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:00:40.148+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 169.395 seconds
+[2026-02-14T12:01:21.457+0800] {processor.py:186} INFO - Started process (PID=3462) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:01:21.458+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:01:21.459+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:01:21.459+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:01:21.582+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:01:21.721+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:01:21.721+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:01:21.738+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:01:21.738+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:01:21.827+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 372.262 seconds
+[2026-02-14T12:02:02.518+0800] {processor.py:186} INFO - Started process (PID=3484) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:02:02.519+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:02:02.520+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:02:02.520+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:02:02.640+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:02:02.643+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:02:02.643+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:02:02.660+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:02:02.660+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:02:02.678+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 162.376 seconds
+[2026-02-14T12:02:42.353+0800] {processor.py:186} INFO - Started process (PID=3499) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:02:42.354+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:02:42.355+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:02:42.355+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:02:42.476+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:02:42.614+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:02:42.613+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:02:42.630+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:02:42.630+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:02:42.718+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 367.641 seconds
+[2026-02-14T12:03:22.683+0800] {processor.py:186} INFO - Started process (PID=3515) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:03:22.685+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:03:22.687+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:03:22.686+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:03:22.804+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:03:22.807+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:03:22.807+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:03:22.824+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:03:22.824+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:03:22.841+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 160.487 seconds
+[2026-02-14T12:04:03.269+0800] {processor.py:186} INFO - Started process (PID=3545) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:04:03.270+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:04:03.271+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:04:03.270+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:04:03.392+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:04:03.529+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:04:03.528+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:04:03.547+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:04:03.547+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:04:03.639+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 372.672 seconds
+[2026-02-14T12:04:44.315+0800] {processor.py:186} INFO - Started process (PID=3561) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:04:44.316+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:04:44.317+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:04:44.316+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:04:44.442+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:04:44.445+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:04:44.445+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:04:44.463+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:04:44.462+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:04:44.481+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 168.785 seconds
+[2026-02-14T12:05:25.189+0800] {processor.py:186} INFO - Started process (PID=3576) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:05:25.191+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:05:25.193+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:05:25.192+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:05:25.313+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:05:25.452+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:05:25.451+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:05:25.470+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:05:25.469+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:05:25.559+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 373.376 seconds
+[2026-02-14T12:06:06.053+0800] {processor.py:186} INFO - Started process (PID=3594) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:06:06.055+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:06:06.057+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:06:06.056+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:06:06.178+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:06:06.181+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:06:06.181+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:06:06.198+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:06:06.198+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:06:06.216+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 165.986 seconds
+[2026-02-14T12:06:46.167+0800] {processor.py:186} INFO - Started process (PID=3610) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:06:46.168+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:06:46.168+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:06:46.168+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:06:46.292+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:06:46.431+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:06:46.431+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:06:46.449+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:06:46.449+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:06:46.542+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 378.160 seconds
+[2026-02-14T12:07:28.091+0800] {processor.py:186} INFO - Started process (PID=3651) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:07:28.098+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:07:28.103+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:07:28.103+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:07:28.232+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:07:28.234+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:07:28.234+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:07:28.254+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:07:28.253+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:07:28.274+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 185.616 seconds
+[2026-02-14T12:08:09.033+0800] {processor.py:186} INFO - Started process (PID=3670) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:08:09.036+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:08:09.037+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:08:09.037+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:08:09.156+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:08:09.310+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:08:09.309+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:08:09.327+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:08:09.327+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:08:09.422+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 390.640 seconds
+[2026-02-14T12:08:50.059+0800] {processor.py:186} INFO - Started process (PID=3682) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:08:50.060+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:08:50.061+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:08:50.060+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:08:50.187+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:08:50.190+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:08:50.190+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:08:50.208+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:08:50.207+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:08:50.227+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 170.737 seconds
+[2026-02-14T12:09:30.510+0800] {processor.py:186} INFO - Started process (PID=3699) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:09:30.512+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:09:30.513+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:09:30.513+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:09:30.635+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:09:30.768+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:09:30.768+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:09:30.785+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:09:30.785+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:09:30.877+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 369.876 seconds
+[2026-02-14T12:10:11.754+0800] {processor.py:186} INFO - Started process (PID=3722) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:10:11.755+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:10:11.756+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:10:11.756+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:10:11.879+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:10:11.882+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:10:11.882+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:10:11.901+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:10:11.901+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:10:11.918+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 166.553 seconds
+[2026-02-14T12:10:52.396+0800] {processor.py:186} INFO - Started process (PID=3775) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:10:52.397+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:10:52.398+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:10:52.397+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:10:52.524+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:10:52.664+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:10:52.664+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:10:52.681+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:10:52.681+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:10:52.777+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 384.096 seconds
+[2026-02-14T12:11:33.166+0800] {processor.py:186} INFO - Started process (PID=3792) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:11:33.166+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:11:33.167+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:11:33.167+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:11:33.290+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:11:33.294+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:11:33.293+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:11:33.311+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:11:33.311+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:11:33.329+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 166.516 seconds
+[2026-02-14T12:12:14.144+0800] {processor.py:186} INFO - Started process (PID=3807) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:12:14.145+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:12:14.146+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:12:14.146+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:12:14.273+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:12:14.377+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:12:14.376+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:12:14.393+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:12:14.393+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:12:14.490+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 348.525 seconds
+[2026-02-14T12:12:54.858+0800] {processor.py:186} INFO - Started process (PID=3828) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:12:54.861+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:12:54.862+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:12:54.862+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:12:54.987+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:12:54.991+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:12:54.991+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:12:55.010+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:12:55.010+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:12:55.029+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 174.399 seconds
+[2026-02-14T12:13:35.805+0800] {processor.py:186} INFO - Started process (PID=3844) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:13:35.806+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:13:35.807+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:13:35.807+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:13:35.930+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:13:36.043+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:13:36.043+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:13:36.060+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:13:36.060+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:13:36.153+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 349.809 seconds
+[2026-02-14T12:14:17.802+0800] {processor.py:186} INFO - Started process (PID=3878) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:14:17.803+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:14:17.804+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:14:17.804+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:14:17.946+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:14:17.950+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:14:17.949+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:14:17.969+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:14:17.969+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:14:17.987+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 188.125 seconds
+[2026-02-14T12:14:58.911+0800] {processor.py:186} INFO - Started process (PID=3892) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:14:58.914+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:14:58.915+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:14:58.915+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:14:59.038+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:14:59.184+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:14:59.184+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:14:59.202+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:14:59.202+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:14:59.296+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 387.414 seconds
+[2026-02-14T12:15:40.395+0800] {processor.py:186} INFO - Started process (PID=3907) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:15:40.396+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:15:40.396+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:15:40.396+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:15:40.515+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:15:40.518+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:15:40.518+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:15:40.535+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:15:40.535+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:15:40.553+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 161.074 seconds
+[2026-02-14T12:16:19.613+0800] {processor.py:186} INFO - Started process (PID=3933) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:16:19.614+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:16:19.615+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:16:19.614+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:16:19.742+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:16:19.844+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:16:19.844+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:16:19.861+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:16:19.861+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:16:19.961+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 350.302 seconds
+[2026-02-14T12:16:59.146+0800] {processor.py:186} INFO - Started process (PID=3945) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:16:59.146+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:16:59.147+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:16:59.147+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:16:59.265+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:16:59.268+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:16:59.267+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:16:59.285+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:16:59.284+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:16:59.304+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 160.663 seconds
+[2026-02-14T12:17:37.213+0800] {processor.py:186} INFO - Started process (PID=3962) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:17:37.214+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:17:37.215+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:17:37.214+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:17:37.331+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:17:37.445+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:17:37.444+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:17:37.463+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:17:37.462+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:17:37.553+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 342.997 seconds
+[2026-02-14T12:18:15.435+0800] {processor.py:186} INFO - Started process (PID=3977) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:18:15.436+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:18:15.437+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:18:15.437+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:18:15.553+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:18:15.556+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:18:15.556+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:18:15.573+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:18:15.573+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:18:15.593+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 160.605 seconds
+[2026-02-14T12:18:54.714+0800] {processor.py:186} INFO - Started process (PID=3990) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:18:54.715+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:18:54.716+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:18:54.716+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:18:54.833+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:18:54.935+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:18:54.935+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:18:54.952+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:18:54.951+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:18:55.042+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 330.544 seconds
+[2026-02-14T12:19:29.890+0800] {processor.py:186} INFO - Started process (PID=4004) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:19:29.890+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:19:29.891+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:19:29.891+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:19:30.014+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:19:30.031+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:19:30.031+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:19:30.052+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:19:30.051+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:19:30.069+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 181.742 seconds
+[2026-02-14T12:20:06.645+0800] {processor.py:186} INFO - Started process (PID=4034) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:20:06.646+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:20:06.647+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:20:06.647+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:20:06.776+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:20:06.779+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:20:06.779+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:20:06.796+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:20:06.795+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:20:06.814+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 171.921 seconds
+[2026-02-14T12:20:46.054+0800] {processor.py:186} INFO - Started process (PID=4046) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:20:46.054+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:20:46.055+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:20:46.055+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:20:46.177+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:20:46.276+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:20:46.275+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:20:46.294+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:20:46.294+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:20:46.390+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 339.068 seconds
+[2026-02-14T12:21:25.620+0800] {processor.py:186} INFO - Started process (PID=4063) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:21:25.623+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:21:25.624+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:21:25.624+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:21:25.744+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:21:25.747+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:21:25.747+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:21:25.764+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:21:25.763+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:21:25.782+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 165.043 seconds
+[2026-02-14T12:22:06.076+0800] {processor.py:186} INFO - Started process (PID=4078) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:22:06.078+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:22:06.080+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:22:06.079+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:22:06.199+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:22:06.301+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:22:06.301+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:22:06.320+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:22:06.320+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:22:06.415+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 341.603 seconds
+[2026-02-14T12:22:48.285+0800] {processor.py:186} INFO - Started process (PID=4091) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:22:48.288+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:22:48.289+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:22:48.289+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:22:48.408+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:22:48.411+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:22:48.411+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:22:48.430+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:22:48.430+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:22:48.449+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 167.228 seconds
+[2026-02-14T12:23:26.519+0800] {processor.py:186} INFO - Started process (PID=4106) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:23:26.522+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:23:26.523+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:23:26.523+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:23:26.646+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:23:26.748+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:23:26.748+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:23:26.764+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:23:26.764+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:23:26.853+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 336.182 seconds
+[2026-02-14T12:24:10.535+0800] {processor.py:186} INFO - Started process (PID=4122) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:24:10.536+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:24:10.537+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:24:10.537+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:24:10.663+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:24:10.677+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:24:10.677+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:24:10.696+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:24:10.696+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:24:10.713+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 179.938 seconds
+[2026-02-14T12:24:50.117+0800] {processor.py:186} INFO - Started process (PID=4134) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:24:50.117+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:24:50.118+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:24:50.118+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:24:50.239+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:24:50.242+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:24:50.242+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:24:50.259+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:24:50.259+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:24:50.278+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 164.183 seconds
+[2026-02-14T12:25:29.843+0800] {processor.py:186} INFO - Started process (PID=4164) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:25:29.847+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:25:29.848+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:25:29.848+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:25:29.983+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:25:30.096+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:25:30.096+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:25:30.114+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:25:30.114+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:25:30.210+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 370.306 seconds
+[2026-02-14T12:26:09.312+0800] {processor.py:186} INFO - Started process (PID=4182) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:26:09.313+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:26:09.314+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:26:09.314+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:26:09.430+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:26:09.444+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:26:09.444+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:26:09.462+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:26:09.461+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:26:09.482+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 172.325 seconds
+[2026-02-14T12:26:47.457+0800] {processor.py:186} INFO - Started process (PID=4194) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:26:47.458+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:26:47.459+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:26:47.459+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:26:47.577+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:26:47.580+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:26:47.579+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:26:47.596+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:26:47.596+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:26:47.616+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 161.132 seconds
+[2026-02-14T12:27:23.704+0800] {processor.py:186} INFO - Started process (PID=4209) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:27:23.705+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:27:23.705+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:27:23.705+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:27:23.823+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:27:23.922+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:27:23.921+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:27:23.938+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:27:23.938+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:27:24.018+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 316.568 seconds
+[2026-02-14T12:28:02.950+0800] {processor.py:186} INFO - Started process (PID=4224) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:28:02.951+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:28:02.952+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:28:02.952+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:28:03.075+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:28:03.090+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:28:03.089+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:28:03.107+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:28:03.107+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:28:03.127+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 179.088 seconds
+[2026-02-14T12:28:41.036+0800] {processor.py:186} INFO - Started process (PID=4236) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:28:41.037+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:28:41.038+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:28:41.038+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:28:41.157+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:28:41.160+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:28:41.160+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:28:41.177+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:28:41.176+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:28:41.196+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 162.932 seconds
+[2026-02-14T12:29:23.064+0800] {processor.py:186} INFO - Started process (PID=4327) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:29:23.065+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:29:23.066+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:29:23.065+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:29:23.185+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:29:23.310+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:29:23.309+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:29:23.327+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:29:23.327+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:29:23.423+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 361.259 seconds
+[2026-02-14T12:30:05.661+0800] {processor.py:186} INFO - Started process (PID=4344) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:30:05.662+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:30:05.663+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:30:05.663+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:30:05.786+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:30:05.800+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:30:05.800+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:30:05.820+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:30:05.820+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:30:05.836+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 178.127 seconds
+[2026-02-14T12:30:51.153+0800] {processor.py:186} INFO - Started process (PID=4361) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:30:51.153+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:30:51.155+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:30:51.154+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:30:51.283+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:30:51.401+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:30:51.400+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:30:51.418+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:30:51.418+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:30:51.523+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 373.466 seconds
+[2026-02-14T12:31:32.904+0800] {processor.py:186} INFO - Started process (PID=4389) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:31:32.904+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:31:32.905+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:31:32.905+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:31:33.029+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:31:33.042+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:31:33.042+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:31:33.060+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:31:33.060+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:31:33.077+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 176.018 seconds
+[2026-02-14T12:32:13.088+0800] {processor.py:186} INFO - Started process (PID=4404) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:32:13.089+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:32:13.090+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:32:13.089+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:32:13.207+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:32:13.210+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:32:13.210+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:32:13.227+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:32:13.227+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:32:13.245+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 159.585 seconds
+[2026-02-14T12:32:52.381+0800] {processor.py:186} INFO - Started process (PID=4429) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:32:52.382+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:32:52.383+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:32:52.383+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:32:52.518+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:32:52.620+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:32:52.620+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-14T12:32:52.637+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:32:52.636+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-14T12:32:52.730+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 352.065 seconds
+[2026-02-14T12:33:24.661+0800] {processor.py:186} INFO - Started process (PID=4444) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:33:24.662+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:33:24.663+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.662+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:33:24.691+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:33:24.877+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.876+0800] {override.py:1930} INFO - Created Permission View: can edit on DAG:dynamic_dag_store_001
+[2026-02-14T12:33:24.885+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.884+0800] {override.py:1930} INFO - Created Permission View: can read on DAG:dynamic_dag_store_001
+[2026-02-14T12:33:24.891+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.890+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG:dynamic_dag_store_001
+[2026-02-14T12:33:24.898+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.897+0800] {override.py:1930} INFO - Created Permission View: can create on DAG Run:dynamic_dag_store_001
+[2026-02-14T12:33:24.903+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.903+0800] {override.py:1930} INFO - Created Permission View: menu access on DAG Run:dynamic_dag_store_001
+[2026-02-14T12:33:24.909+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.909+0800] {override.py:1930} INFO - Created Permission View: can read on DAG Run:dynamic_dag_store_001
+[2026-02-14T12:33:24.914+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.914+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG Run:dynamic_dag_store_001
+[2026-02-14T12:33:24.927+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.927+0800] {override.py:1930} INFO - Created Permission View: can edit on DAG:dynamic_dag_store_002
+[2026-02-14T12:33:24.933+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.933+0800] {override.py:1930} INFO - Created Permission View: can read on DAG:dynamic_dag_store_002
+[2026-02-14T12:33:24.938+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.938+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG:dynamic_dag_store_002
+[2026-02-14T12:33:24.947+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.947+0800] {override.py:1930} INFO - Created Permission View: can create on DAG Run:dynamic_dag_store_002
+[2026-02-14T12:33:24.953+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.953+0800] {override.py:1930} INFO - Created Permission View: menu access on DAG Run:dynamic_dag_store_002
+[2026-02-14T12:33:24.960+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.960+0800] {override.py:1930} INFO - Created Permission View: can read on DAG Run:dynamic_dag_store_002
+[2026-02-14T12:33:24.966+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.966+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG Run:dynamic_dag_store_002
+[2026-02-14T12:33:24.967+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.966+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:33:24.979+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.978+0800] {dag.py:3262} INFO - Creating ORM DAG for dynamic_dag_store_001
+[2026-02-14T12:33:24.979+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.979+0800] {dag.py:3262} INFO - Creating ORM DAG for dynamic_dag_store_002
+[2026-02-14T12:33:24.988+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.987+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:33:24.989+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:33:24.989+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:33:25.110+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 451.895 seconds
+[2026-02-14T12:34:23.978+0800] {processor.py:186} INFO - Started process (PID=4467) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:34:23.981+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:34:23.982+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:34:23.982+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:34:24.012+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:34:24.117+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:34:24.116+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:34:24.137+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:34:24.136+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:34:24.140+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:34:24.140+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:34:24.154+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 179.108 seconds
+[2026-02-14T12:44:01.651+0800] {processor.py:186} INFO - Started process (PID=4472) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:44:01.652+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:44:01.653+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:44:01.653+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:44:01.685+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:44:01.799+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:44:01.798+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:44:01.818+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:44:01.817+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:44:01.821+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:44:01.821+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:44:01.840+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 191.887 seconds
+[2026-02-14T12:48:41.371+0800] {processor.py:186} INFO - Started process (PID=4515) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:48:41.376+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:48:41.377+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:48:41.377+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:48:41.407+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:48:41.519+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:48:41.519+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:48:41.540+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:48:41.540+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:48:41.544+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:48:41.544+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:48:41.580+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 211.568 seconds
+[2026-02-14T12:49:20.218+0800] {processor.py:186} INFO - Started process (PID=4543) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:49:20.219+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:49:20.220+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:20.219+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:49:20.246+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:49:20.347+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:20.347+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:49:20.366+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:20.365+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:49:20.369+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:20.369+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:49:20.387+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 171.647 seconds
+[2026-02-14T12:49:54.778+0800] {processor.py:186} INFO - Started process (PID=4555) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:49:54.779+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:49:54.780+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:54.780+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:49:54.806+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:49:54.908+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:54.908+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:49:54.926+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:54.926+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:49:54.930+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:49:54.930+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:49:54.946+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 170.032 seconds
+[2026-02-14T12:50:32.999+0800] {processor.py:186} INFO - Started process (PID=4571) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:50:33.000+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:50:33.001+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:50:33.000+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:50:33.027+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:50:33.127+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:50:33.127+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:50:33.146+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:50:33.146+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:50:33.149+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:50:33.149+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:50:33.165+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 168.953 seconds
+[2026-02-14T12:51:09.863+0800] {processor.py:186} INFO - Started process (PID=4586) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:51:09.863+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:51:09.864+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:09.864+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:51:09.891+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:51:09.995+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:09.994+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:51:10.015+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:10.015+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:51:10.019+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:10.019+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:51:10.035+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 175.372 seconds
+[2026-02-14T12:51:47.125+0800] {processor.py:186} INFO - Started process (PID=4598) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:51:47.125+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:51:47.126+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:47.126+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:51:47.153+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:51:47.255+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:47.254+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:51:47.273+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:47.273+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:51:47.276+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:51:47.276+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:51:47.294+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 172.071 seconds
+[2026-02-14T12:52:24.230+0800] {processor.py:186} INFO - Started process (PID=4613) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:52:24.230+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:52:24.231+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:52:24.231+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:52:24.257+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:52:24.358+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:52:24.358+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:52:24.377+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:52:24.376+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:52:24.380+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:52:24.380+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:52:24.398+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 171.084 seconds
+[2026-02-14T12:53:01.276+0800] {processor.py:186} INFO - Started process (PID=4625) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:53:01.277+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:53:01.277+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:01.277+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:53:01.304+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:53:01.407+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:01.407+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:53:01.426+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:01.425+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:53:01.429+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:01.429+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:53:01.447+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 174.137 seconds
+[2026-02-14T12:53:38.474+0800] {processor.py:186} INFO - Started process (PID=4640) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:53:38.475+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:53:38.476+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:38.476+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:53:38.502+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:53:38.607+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:38.607+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:53:38.626+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:38.626+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:53:38.629+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:53:38.629+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:53:38.649+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 177.592 seconds
+[2026-02-14T12:54:16.720+0800] {processor.py:186} INFO - Started process (PID=4670) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:54:16.721+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:54:16.722+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:16.721+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:54:16.751+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:54:16.863+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:16.862+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:54:16.884+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:16.884+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:54:16.888+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:16.888+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:54:16.906+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 188.968 seconds
+[2026-02-14T12:54:56.117+0800] {processor.py:186} INFO - Started process (PID=4686) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:54:56.118+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:54:56.119+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:56.119+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:54:56.145+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:54:56.246+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:56.246+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:54:56.265+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:56.265+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:54:56.269+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:54:56.269+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:54:56.287+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 171.955 seconds
+[2026-02-14T12:55:30.962+0800] {processor.py:186} INFO - Started process (PID=4700) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:55:30.963+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:55:30.964+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:55:30.963+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:55:30.990+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:55:31.093+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:55:31.093+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:55:31.112+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:55:31.112+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:55:31.116+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:55:31.116+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:55:31.134+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 174.909 seconds
+[2026-02-14T12:56:09.027+0800] {processor.py:186} INFO - Started process (PID=4715) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:56:09.028+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:56:09.029+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:56:09.029+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:56:09.055+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:56:09.157+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:56:09.157+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:56:09.176+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:56:09.176+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:56:09.180+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:56:09.180+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:56:09.198+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 173.382 seconds
+[2026-02-14T12:57:01.053+0800] {processor.py:186} INFO - Started process (PID=4736) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:57:01.054+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:57:01.055+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:01.055+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:57:01.102+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:57:01.285+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:01.284+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:57:01.318+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:01.317+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:57:01.324+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:01.324+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:57:01.350+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 302.362 seconds
+[2026-02-14T12:57:44.380+0800] {processor.py:186} INFO - Started process (PID=4757) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:57:44.381+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:57:44.382+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:44.382+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:57:44.408+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:57:44.515+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:44.514+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:57:44.534+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:44.534+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:57:44.538+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:57:44.538+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:57:44.554+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 176.294 seconds
+[2026-02-14T12:58:19.379+0800] {processor.py:186} INFO - Started process (PID=4788) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:58:19.380+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:58:19.381+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:19.381+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:58:19.412+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:58:19.418+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:19.417+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:58:19.542+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:19.542+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:58:19.547+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:19.547+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:58:19.566+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 189.999 seconds
+[2026-02-14T12:58:56.481+0800] {processor.py:186} INFO - Started process (PID=4810) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:58:56.482+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:58:56.483+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:56.483+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:58:56.511+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:58:56.724+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:56.724+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:58:56.743+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:56.742+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:58:56.746+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:58:56.746+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:58:56.768+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 289.334 seconds
+[2026-02-14T12:59:35.071+0800] {processor.py:186} INFO - Started process (PID=4827) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:59:35.072+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T12:59:35.073+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:59:35.072+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:59:35.100+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T12:59:35.203+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:59:35.203+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T12:59:35.224+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:59:35.223+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:59:35.228+0800] {logging_mixin.py:190} INFO - [2026-02-14T12:59:35.228+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T12:59:35.247+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 178.137 seconds
+[2026-02-14T13:00:15.649+0800] {processor.py:186} INFO - Started process (PID=4860) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:00:15.650+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:00:15.651+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:15.651+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:00:15.678+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:00:15.783+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:15.782+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:00:15.802+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:15.802+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:00:15.806+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:15.806+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:00:15.823+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 176.440 seconds
+[2026-02-14T13:00:56.730+0800] {processor.py:186} INFO - Started process (PID=4872) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:00:56.731+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:00:56.732+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:56.732+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:00:56.765+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:00:56.904+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:56.904+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:00:56.926+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:56.926+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:00:56.931+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:00:56.930+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:00:56.950+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 222.690 seconds
+[2026-02-14T13:01:38.147+0800] {processor.py:186} INFO - Started process (PID=4887) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:01:38.148+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:01:38.149+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:01:38.149+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:01:38.178+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:01:38.342+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:01:38.342+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:01:38.364+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:01:38.363+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:01:38.368+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:01:38.368+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:01:38.390+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 245.919 seconds
+[2026-02-14T13:02:19.946+0800] {processor.py:186} INFO - Started process (PID=4902) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:02:19.947+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:02:19.947+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:02:19.947+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:02:19.974+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:02:20.080+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:02:20.080+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:02:20.099+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:02:20.099+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:02:20.103+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:02:20.103+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:02:20.120+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 176.488 seconds
+[2026-02-14T13:03:01.150+0800] {processor.py:186} INFO - Started process (PID=4914) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:03:01.150+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:03:01.151+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:01.151+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:03:01.179+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:03:01.287+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:01.286+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:03:01.306+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:01.306+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:03:01.310+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:01.310+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:03:01.327+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 180.321 seconds
+[2026-02-14T13:03:42.379+0800] {processor.py:186} INFO - Started process (PID=4929) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:03:42.379+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:03:42.380+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:42.380+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:03:42.409+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:03:42.514+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:42.514+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:03:42.533+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:42.533+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:03:42.537+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:03:42.537+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:03:42.553+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 177.569 seconds
+[2026-02-14T13:04:27.512+0800] {processor.py:186} INFO - Started process (PID=4963) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:04:27.513+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:04:27.514+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:04:27.514+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:04:27.541+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:04:27.648+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:04:27.647+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:04:27.667+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:04:27.667+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:04:27.670+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:04:27.670+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:04:27.688+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 177.966 seconds
+[2026-02-14T13:05:10.342+0800] {processor.py:186} INFO - Started process (PID=4987) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:05:10.343+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:05:10.344+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:10.344+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:05:10.371+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:05:10.478+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:10.477+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:05:10.498+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:10.498+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:05:10.502+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:10.502+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:05:10.521+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 181.272 seconds
+[2026-02-14T13:05:52.508+0800] {processor.py:186} INFO - Started process (PID=5018) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:05:52.509+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:05:52.510+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:52.510+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:05:52.543+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:05:52.669+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:52.669+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:05:52.693+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:52.693+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:05:52.698+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:05:52.697+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:05:52.717+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 212.355 seconds
+[2026-02-14T13:06:29.344+0800] {processor.py:186} INFO - Started process (PID=5065) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:06:29.344+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:06:29.345+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:06:29.345+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:06:29.374+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:06:29.481+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:06:29.481+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:06:29.501+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:06:29.501+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:06:29.504+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:06:29.504+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:06:29.521+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 180.220 seconds
+[2026-02-14T13:07:04.250+0800] {processor.py:186} INFO - Started process (PID=5086) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:07:04.251+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:07:04.252+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:04.251+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:07:04.279+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:07:04.393+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:04.393+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:07:04.413+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:04.413+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:07:04.416+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:04.416+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:07:04.434+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 186.175 seconds
+[2026-02-14T13:07:45.278+0800] {processor.py:186} INFO - Started process (PID=5100) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:07:45.279+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:07:45.280+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:45.280+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:07:45.310+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:07:45.428+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:45.428+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:07:45.452+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:45.451+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:07:45.456+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:07:45.456+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:07:45.474+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 199.045 seconds
+[2026-02-14T13:08:26.336+0800] {processor.py:186} INFO - Started process (PID=5117) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:08:26.337+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:08:26.338+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:08:26.338+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:08:26.366+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:08:26.480+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:08:26.480+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:08:26.501+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:08:26.501+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:08:26.505+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:08:26.505+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:08:26.523+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 189.266 seconds
+[2026-02-14T13:09:12.196+0800] {processor.py:186} INFO - Started process (PID=5142) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:09:12.197+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:09:12.198+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:12.197+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:09:12.231+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:09:12.238+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:12.237+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:09:12.406+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:12.406+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:09:12.412+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:12.412+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:09:12.433+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 240.520 seconds
+[2026-02-14T13:09:59.556+0800] {processor.py:186} INFO - Started process (PID=5163) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:09:59.559+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:09:59.561+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:59.560+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:09:59.592+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:09:59.824+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:59.824+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:09:59.844+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:59.844+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:09:59.848+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:09:59.848+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:09:59.869+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 315.526 seconds
+[2026-02-14T13:10:42.179+0800] {processor.py:186} INFO - Started process (PID=5178) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:10:42.180+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:10:42.182+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:10:42.182+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:10:42.225+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:10:42.363+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:10:42.363+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:10:42.387+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:10:42.387+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:10:42.393+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:10:42.392+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:10:42.433+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 257.172 seconds
+[2026-02-14T13:11:24.050+0800] {processor.py:186} INFO - Started process (PID=5202) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:11:24.051+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:11:24.052+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:11:24.052+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:11:24.082+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:11:24.199+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:11:24.199+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:11:24.220+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:11:24.220+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:11:24.224+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:11:24.224+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:11:24.242+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 194.229 seconds
+[2026-02-14T13:12:05.413+0800] {processor.py:186} INFO - Started process (PID=5235) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:12:05.414+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:12:05.415+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:05.414+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:12:05.446+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:12:05.556+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:05.556+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:12:05.577+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:05.577+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:12:05.581+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:05.581+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:12:05.598+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 188.223 seconds
+[2026-02-14T13:12:47.515+0800] {processor.py:186} INFO - Started process (PID=5249) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:12:47.515+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:12:47.516+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:47.516+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:12:47.544+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:12:47.649+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:47.648+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:12:47.667+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:47.667+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:12:47.671+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:12:47.671+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:12:47.688+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 175.303 seconds
+[2026-02-14T13:13:28.948+0800] {processor.py:186} INFO - Started process (PID=5264) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:13:28.949+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:13:28.950+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:13:28.950+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:13:28.977+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:13:29.088+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:13:29.087+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:13:29.107+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:13:29.106+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:13:29.110+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:13:29.110+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:13:29.129+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 183.155 seconds
+[2026-02-14T13:14:09.709+0800] {processor.py:186} INFO - Started process (PID=5279) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:14:09.710+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:14:09.710+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:09.710+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:14:09.738+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:14:09.843+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:09.842+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:14:09.862+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:09.862+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:14:09.866+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:09.865+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:14:09.882+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 176.189 seconds
+[2026-02-14T13:14:51.748+0800] {processor.py:186} INFO - Started process (PID=5293) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:14:51.748+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:14:51.750+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:51.749+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:14:51.779+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:14:51.892+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:51.891+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:14:51.916+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:51.915+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:14:51.920+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:14:51.919+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:14:51.938+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 192.835 seconds
+[2026-02-14T13:15:33.876+0800] {processor.py:186} INFO - Started process (PID=5308) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:15:33.879+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:15:33.881+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:15:33.880+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:15:33.911+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:15:34.023+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:15:34.023+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:15:34.043+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:15:34.043+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:15:34.047+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:15:34.047+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:15:34.065+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 191.682 seconds
+[2026-02-14T13:16:15.776+0800] {processor.py:186} INFO - Started process (PID=5326) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:16:15.779+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:16:15.780+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:15.780+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:16:15.809+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:16:15.914+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:15.914+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:16:15.934+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:15.933+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:16:15.937+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:15.937+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:16:15.954+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 180.311 seconds
+[2026-02-14T13:16:57.628+0800] {processor.py:186} INFO - Started process (PID=5338) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:16:57.630+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-14T13:16:57.632+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:57.632+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:16:57.660+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_001', 'dynamic_dag_store_002' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-14T13:16:57.771+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:57.771+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-14T13:16:57.793+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:57.792+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:16:57.797+0800] {logging_mixin.py:190} INFO - [2026-02-14T13:16:57.796+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-14T13:16:57.812+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 186.847 seconds

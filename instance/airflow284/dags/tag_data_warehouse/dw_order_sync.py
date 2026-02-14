@@ -80,7 +80,7 @@ def run_automation_test2(**kwargs):
 with DAG(
     dag_id="dw_order_sync",  # 唯一 DAG ID，用于区分不同的工作流
     start_date=datetime(2026, 2, 11),
-    schedule="@daily",
+    schedule="@monthly",
     catchup=False,  # 控制是否对过去未运行的调度周期进行“补跑”。设置为 False 表示不补跑历史任务；若为 True，则会在 DAG 启用后立即运行所有错过的调度周期。
     tags=["data_warehouse", "订单", "sync"]  # 主标签+子标签
 ) as dag:
