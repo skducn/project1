@@ -53,7 +53,8 @@ default_args = {
 with DAG(
         dag_id='branch_task_data_quality',
         default_args=default_args,
-        schedule_interval='@hourly',
+        # schedule_interval='@hourly',
+        schedule_interval='@weekly',
         catchup=False,
         tags=['分支任务', '数据质量']
 ) as dag:

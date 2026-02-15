@@ -1,0 +1,36 @@
+[2026-02-15T16:43:42.735+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-15T16:43:42.748+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: producer_order_mysql.sync_order_data manual__2026-02-15T08:43:37.783738+00:00 [queued]>
+[2026-02-15T16:43:42.754+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: producer_order_mysql.sync_order_data manual__2026-02-15T08:43:37.783738+00:00 [queued]>
+[2026-02-15T16:43:42.754+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-15T16:43:42.869+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): sync_order_data> on 2026-02-15 08:43:37.783738+00:00
+[2026-02-15T16:43:42.872+0800] {standard_task_runner.py:72} INFO - Started process 3390 to run task
+[2026-02-15T16:43:42.881+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'producer_order_mysql', 'sync_order_data', 'manual__2026-02-15T08:43:37.783738+00:00', '--job-id', '130', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_db2.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpfz2y11nt']
+[2026-02-15T16:43:42.885+0800] {standard_task_runner.py:105} INFO - Job 130: Subtask sync_order_data
+[2026-02-15T16:43:42.933+0800] {task_command.py:467} INFO - Running <TaskInstance: producer_order_mysql.sync_order_data manual__2026-02-15T08:43:37.783738+00:00 [running]> on host localhost-2.local
+[2026-02-15T16:43:43.003+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='data_team' AIRFLOW_CTX_DAG_ID='producer_order_mysql' AIRFLOW_CTX_TASK_ID='sync_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-15T08:43:37.783738+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-15T08:43:37.783738+00:00'
+[2026-02-15T16:43:43.005+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-15T16:43:43.028+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-15T16:43:43.028+0800] {logging_mixin.py:190} INFO - 【生产者】开始执行同步订单数据任务
+[2026-02-15T16:43:43.029+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-15T16:43:43.030+0800] {logging_mixin.py:190} INFO - 【生产者】生成业务数据：{'order_id': 'OD20260215001', 'user_id': 'U10086', 'order_amount': 299.99, 'order_status': 'paid', 'pay_time': '2026-02-15 16:43:43'}
+[2026-02-15T16:43:43.030+0800] {logging_mixin.py:190} INFO - 【生产者】上下文参数：run_id=manual__2026-02-15T08:43:37.783738+00:00, dag_id=producer_order_mysql, task_id=sync_order_data
+[2026-02-15T16:43:43.030+0800] {logging_mixin.py:190} INFO - 【生产者】调用封装函数插入数据...
+[2026-02-15T16:43:43.036+0800] {base.py:84} INFO - Retrieving connection 'mysql_234_crm'
+[2026-02-15T16:43:43.084+0800] {sql.py:457} INFO - Running statement: 
+        INSERT INTO airflow_producer_data (run_id, dag_id, task_id, result)
+        VALUES (%s, %s, %s, %s)
+        ON DUPLICATE KEY UPDATE 
+            result = %s, 
+            update_time = CURRENT_TIMESTAMP
+        , parameters: ('manual__2026-02-15T08:43:37.783738+00:00', 'producer_order_mysql', 'sync_order_data', '{"order_id": "OD20260215001", "user_id": "U10086", "order_amount": 299.99, "order_status": "paid", "pay_time": "2026-02-15 16:43:43"}', '{"order_id": "OD20260215001", "user_id": "U10086", "order_amount": 299.99, "order_status": "paid", "pay_time": "2026-02-15 16:43:43"}')
+[2026-02-15T16:43:43.099+0800] {logging_mixin.py:190} INFO - 写入MySQL失败：(1364, "Field 'status' doesn't have a default value")
+[2026-02-15T16:43:43.100+0800] {logging_mixin.py:190} INFO - ✅ 数据成功写入airflow_producer_data表！
+[2026-02-15T16:43:43.101+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-15T16:43:43.101+0800] {logging_mixin.py:190} INFO - 【生产者】任务执行完成
+[2026-02-15T16:43:43.102+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-15T16:43:43.103+0800] {python.py:240} INFO - Done. Returned value was: {'order_id': 'OD20260215001', 'user_id': 'U10086', 'order_amount': 299.99, 'order_status': 'paid', 'pay_time': '2026-02-15 16:43:43'}
+[2026-02-15T16:43:43.122+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-15T16:43:43.123+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=producer_order_mysql, task_id=sync_order_data, run_id=manual__2026-02-15T08:43:37.783738+00:00, execution_date=20260215T084337, start_date=20260215T084342, end_date=20260215T084343
+[2026-02-15T16:43:43.197+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-15T16:43:43.215+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-15T16:43:43.216+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

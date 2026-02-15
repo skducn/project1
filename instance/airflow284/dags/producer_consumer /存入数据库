@@ -1,0 +1,50 @@
+方案 2：外部数据库 / 数据表（最通用，适合生产环境）
+原理
+生产者将数据写入业务数据库（如 MySQL/PostgreSQL）的专用表，消费者从该表读取（可按 “触发时间 / 运行 ID” 关联）。
+参考：dataset_db_mysql.py  dataset_db_sqlserver.py
+运行
+# 1. 先创建专用表（仅需执行一次）
+CREATE TABLE airflow_producer_data (
+    run_id VARCHAR(255) PRIMARY KEY,  # 生产者DAG的run_id（唯一标识一次运行）
+    dag_id VARCHAR(100),
+    task_id VARCHAR(100),
+    result TEXT,
+    create_time DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+# 2. 生产者任务：写入数据库
+def sync_order_data(**context):
+    from airflow.providers.mysql.hooks.mysql import MySqlHook
+    # 获取当前运行的run_id（唯一标识本次生产）
+    run_id = context["run_id"]
+    result = ('6',)
+
+    # 写入专用表
+    mysql_hook = MySqlHook(mysql_conn_id="mysql_234_crm")
+    sql = """
+    INSERT INTO airflow_producer_data (run_id, dag_id, task_id, result)
+    VALUES (%s, %s, %s, %s)
+    ON DUPLICATE KEY UPDATE result = %s
+    """
+    mysql_hook.run(sql, parameters=(run_id, "producer_dw_order_sync", "sync_order_data", str(result), str(result)))
+    print(f"生产者：已将结果写入数据库，run_id: {run_id}")
+    return result
+
+# 3. 消费者任务：读取数据库（按最新run_id）
+def clean_order_data():
+    from airflow.providers.mysql.hooks.mysql import MySqlHook
+    mysql_hook = MySqlHook(mysql_conn_id="mysql_234_crm")
+
+    # 查询最新的生产者数据
+    sql = """
+    SELECT result FROM airflow_producer_data
+    WHERE dag_id = 'producer_dw_order_sync'
+    ORDER BY create_time DESC LIMIT 1
+    """
+    result = mysql_hook.get_first(sql)[0]  # 读取最新结果
+    print(f"消费者：从数据库获取生产者数据: {result}")
+    return result
+适用场景
+传递结构化数据 / 中等大小数据；
+生产环境首选（数据持久化、可追溯、支持多消费者）；
+需要按 “运行 ID / 时间” 关联生产者和消费者数据。

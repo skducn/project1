@@ -1,1 +1,0 @@
-[2026-02-12T16:27:32.563+0800] {scheduler_job_runner.py:780} ERROR - Executor reports task instance <TaskInstance: dw_order_sync.sync_order_data scheduled__2026-02-11T00:00:00+00:00 [queued]> finished (failed) although the task says it's queued. (Info: None) Was the task killed externally?

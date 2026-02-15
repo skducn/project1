@@ -1,0 +1,93 @@
+[2026-02-15T17:08:18.833+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-15T17:08:18.847+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_order_sqlserver.clean_order_data dataset_triggered__2026-02-15T09:08:12.868772+00:00 [queued]>
+[2026-02-15T17:08:18.853+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_order_sqlserver.clean_order_data dataset_triggered__2026-02-15T09:08:12.868772+00:00 [queued]>
+[2026-02-15T17:08:18.853+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-15T17:08:18.865+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): clean_order_data> on 2026-02-15 09:08:12.868772+00:00
+[2026-02-15T17:08:18.867+0800] {standard_task_runner.py:72} INFO - Started process 4426 to run task
+[2026-02-15T17:08:18.874+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_order_sqlserver', 'clean_order_data', 'dataset_triggered__2026-02-15T09:08:12.868772+00:00', '--job-id', '139', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /dataset_db_sqlserver.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp26p4u0sl']
+[2026-02-15T17:08:18.877+0800] {standard_task_runner.py:105} INFO - Job 139: Subtask clean_order_data
+[2026-02-15T17:08:19.097+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_order_sqlserver.clean_order_data dataset_triggered__2026-02-15T09:08:12.868772+00:00 [running]> on host localhost-2.local
+[2026-02-15T17:08:19.156+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_order_sqlserver' AIRFLOW_CTX_TASK_ID='clean_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-15T09:08:12.868772+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-15T09:08:12.868772+00:00'
+[2026-02-15T17:08:19.161+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-15T17:08:19.179+0800] {logging_mixin.py:190} INFO - 【消费者】开始读取生产者数据...
+[2026-02-15T17:08:19.187+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py", line 156, in clean_order_data
+    producer_info = get_latest_producer_data(
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py", line 73, in get_latest_producer_data
+    result = mssql_hook.get_first(sql, parameters=(dag_id, task_id))
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 276, in get_first
+    return self.run(sql=sql, parameters=parameters, handler=fetch_one_handler)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/microsoft/mssql/hooks/mssql.py", line 139, in get_conn
+    conn = self.connection
+AttributeError: 'MsSqlHook' object has no attribute 'connection'
+[2026-02-15T17:08:19.212+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=consumer_order_sqlserver, task_id=clean_order_data, run_id=dataset_triggered__2026-02-15T09:08:12.868772+00:00, execution_date=20260215T090812, start_date=20260215T090818, end_date=20260215T090819
+[2026-02-15T17:08:19.227+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-15T17:08:19.228+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 139 for task clean_order_data ('MsSqlHook' object has no attribute 'connection'; 4426)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py", line 156, in clean_order_data
+    producer_info = get_latest_producer_data(
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py", line 73, in get_latest_producer_data
+    result = mssql_hook.get_first(sql, parameters=(dag_id, task_id))
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 276, in get_first
+    return self.run(sql=sql, parameters=parameters, handler=fetch_one_handler)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/sql/hooks/sql.py", line 397, in run
+    with closing(self.get_conn()) as conn:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/microsoft/mssql/hooks/mssql.py", line 139, in get_conn
+    conn = self.connection
+AttributeError: 'MsSqlHook' object has no attribute 'connection'
+[2026-02-15T17:08:19.275+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-15T17:08:19.294+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-15T17:08:19.295+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
