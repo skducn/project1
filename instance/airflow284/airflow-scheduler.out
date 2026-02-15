@@ -292,3 +292,13 @@
 [2026-02-15T17:18:17.733+0800] {dagrun.py:854} INFO - Marking run <DagRun consumer_order_sqlserver @ 2026-02-15 09:18:07.845834+00:00: dataset_triggered__2026-02-15T09:18:07.845834+00:00, state:running, queued_at: 2026-02-15 09:18:10.951674+00:00. externally triggered: False> successful
 [2026-02-15T17:18:17.734+0800] {dagrun.py:905} INFO - DagRun Finished: dag_id=consumer_order_sqlserver, execution_date=2026-02-15 09:18:07.845834+00:00, run_id=dataset_triggered__2026-02-15T09:18:07.845834+00:00, run_start_date=2026-02-15 09:18:10.966958+00:00, run_end_date=2026-02-15 09:18:17.734565+00:00, run_duration=6.767607, state=success, external_trigger=False, run_type=dataset_triggered, data_interval_start=2026-02-15 09:18:02.962311+00:00, data_interval_end=2026-02-15 09:18:02.962311+00:00, dag_hash=4bfcc7af7a5b312e79e6f8e335db1b32
 [2026-02-15T17:19:46.387+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T17:24:48.987+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T17:29:50.029+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T17:34:51.907+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T17:40:42.141+0800] {job.py:229} INFO - Heartbeat recovered after 51.66 seconds
+[2026-02-15T17:40:42.145+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T17:47:25.644+0800] {job.py:229} INFO - Heartbeat recovered after 214.23 seconds
+[2026-02-15T17:49:08.019+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T17:54:08.175+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T18:02:28.100+0800] {job.py:229} INFO - Heartbeat recovered after 217.74 seconds
+[2026-02-15T18:02:41.040+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs

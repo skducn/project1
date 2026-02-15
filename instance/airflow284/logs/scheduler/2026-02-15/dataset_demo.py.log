@@ -718,3 +718,309 @@
 [2026-02-15T17:23:08.263+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:23:08.262+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
 [2026-02-15T17:23:08.263+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:23:08.263+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
 [2026-02-15T17:23:08.285+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 262.761 seconds
+[2026-02-15T17:24:10.394+0800] {processor.py:186} INFO - Started process (PID=5084) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:24:10.394+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:24:10.395+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:24:10.395+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:24:10.523+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'consumer_dw_order_stat', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:24:10.652+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:24:10.651+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:24:10.672+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:24:10.671+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:24:10.676+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:24:10.675+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:24:10.677+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:24:10.677+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:24:10.700+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 310.350 seconds
+[2026-02-15T17:25:13.369+0800] {processor.py:186} INFO - Started process (PID=5217) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:25:13.369+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:25:13.370+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:25:13.370+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:25:13.483+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'consumer_dw_order_clean', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:25:13.591+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:25:13.591+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:25:13.608+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:25:13.608+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:25:13.611+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:25:13.610+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:25:13.612+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:25:13.611+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:25:13.633+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 267.098 seconds
+[2026-02-15T17:26:16.582+0800] {processor.py:186} INFO - Started process (PID=5247) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:26:16.582+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:26:16.583+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:26:16.583+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:26:16.703+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'consumer_dw_order_clean', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:26:16.822+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:26:16.822+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:26:16.840+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:26:16.839+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:26:16.843+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:26:16.843+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:26:16.844+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:26:16.844+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:26:16.867+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 287.980 seconds
+[2026-02-15T17:27:18.613+0800] {processor.py:186} INFO - Started process (PID=5274) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:27:18.614+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:27:18.614+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:27:18.614+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:27:18.726+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:27:18.834+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:27:18.834+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:27:18.852+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:27:18.852+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:27:18.855+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:27:18.855+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:27:18.856+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:27:18.855+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:27:18.879+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 269.113 seconds
+[2026-02-15T17:28:22.528+0800] {processor.py:186} INFO - Started process (PID=5311) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:28:22.529+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:28:22.530+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:28:22.529+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:28:22.640+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'producer_dw_order_sync', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:28:22.747+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:28:22.747+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:28:22.765+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:28:22.764+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:28:22.767+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:28:22.767+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:28:22.768+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:28:22.768+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:28:22.790+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 264.723 seconds
+[2026-02-15T17:29:23.989+0800] {processor.py:186} INFO - Started process (PID=5340) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:29:23.989+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:29:23.990+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:29:23.990+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:29:24.108+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:29:24.224+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:29:24.224+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:29:24.243+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:29:24.242+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:29:24.246+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:29:24.246+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:29:24.247+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:29:24.247+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:29:24.271+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 285.147 seconds
+[2026-02-15T17:30:30.338+0800] {processor.py:186} INFO - Started process (PID=5371) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:30:30.339+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:30:30.339+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:30:30.339+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:30:30.449+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_stat', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:30:30.559+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:30:30.558+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:30:30.576+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:30:30.576+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:30:30.578+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:30:30.578+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:30:30.579+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:30:30.579+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:30:30.601+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 266.024 seconds
+[2026-02-15T17:31:33.140+0800] {processor.py:186} INFO - Started process (PID=5397) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:31:33.141+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:31:33.142+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:31:33.142+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:31:33.264+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:31:33.401+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:31:33.400+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:31:33.421+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:31:33.421+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:31:33.424+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:31:33.424+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:31:33.425+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:31:33.425+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:31:33.450+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 312.125 seconds
+[2026-02-15T17:32:37.111+0800] {processor.py:186} INFO - Started process (PID=5419) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:32:37.112+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:32:37.113+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:32:37.113+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:32:37.243+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:32:37.369+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:32:37.369+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:32:37.388+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:32:37.388+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:32:37.391+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:32:37.391+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:32:37.392+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:32:37.392+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:32:37.415+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 305.767 seconds
+[2026-02-15T17:33:38.765+0800] {processor.py:186} INFO - Started process (PID=5443) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:33:38.766+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:33:38.767+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:33:38.767+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:33:38.885+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:33:39.006+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:33:39.006+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:33:39.025+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:33:39.025+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:33:39.028+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:33:39.028+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:33:39.029+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:33:39.029+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:33:39.054+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 290.875 seconds
+[2026-02-15T17:34:43.466+0800] {processor.py:186} INFO - Started process (PID=5480) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:34:43.467+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:34:43.468+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:34:43.467+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:34:43.604+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'producer_dw_order_sync', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:34:43.740+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:34:43.740+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:34:43.763+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:34:43.763+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:34:43.767+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:34:43.766+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:34:43.769+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:34:43.768+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:34:43.810+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 347.664 seconds
+[2026-02-15T17:35:50.003+0800] {processor.py:186} INFO - Started process (PID=5512) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:35:50.004+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:35:50.005+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:35:50.004+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:35:50.195+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_clean', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:35:50.421+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:35:50.420+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:35:50.485+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:35:50.484+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:35:50.490+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:35:50.490+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:35:50.491+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:35:50.491+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:35:50.526+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 530.359 seconds
+[2026-02-15T17:36:52.797+0800] {processor.py:186} INFO - Started process (PID=5536) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:36:52.798+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:36:52.799+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:36:52.799+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:36:52.906+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'consumer_dw_order_stat', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:36:53.012+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:36:53.012+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:36:53.029+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:36:53.029+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:36:53.032+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:36:53.032+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:36:53.033+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:36:53.033+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:36:53.055+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 260.652 seconds
+[2026-02-15T17:37:52.868+0800] {processor.py:186} INFO - Started process (PID=5557) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:37:52.869+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:37:52.870+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:37:52.870+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:37:52.975+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_stat', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:37:53.086+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:37:53.086+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:37:53.103+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:37:53.103+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:37:53.106+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:37:53.106+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:37:53.107+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:37:53.107+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:37:53.128+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 261.983 seconds
+[2026-02-15T17:38:47.910+0800] {processor.py:186} INFO - Started process (PID=5579) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:38:47.910+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:38:47.911+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:38:47.911+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:38:48.017+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:38:48.122+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:38:48.122+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:38:48.139+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:38:48.139+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:38:48.142+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:38:48.142+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:38:48.143+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:38:48.143+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:38:48.165+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 258.057 seconds
+[2026-02-15T17:39:43.143+0800] {processor.py:186} INFO - Started process (PID=5603) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:39:43.144+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:39:43.145+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:39:43.144+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:39:43.249+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_clean', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:39:43.352+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:39:43.352+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:39:43.369+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:39:43.369+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:39:43.372+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:39:43.372+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:39:43.373+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:39:43.373+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:39:43.394+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 253.713 seconds
+[2026-02-15T17:41:28.109+0800] {processor.py:186} INFO - Started process (PID=5650) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:41:28.112+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:41:28.113+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:41:28.113+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:41:28.219+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:41:28.325+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:41:28.324+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:41:28.341+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:41:28.341+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:41:28.344+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:41:28.344+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:41:28.345+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:41:28.345+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:41:28.365+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 257.871 seconds
+[2026-02-15T17:42:21.983+0800] {processor.py:186} INFO - Started process (PID=5672) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:42:21.984+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:42:21.984+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:42:21.984+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:42:22.092+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_stat', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:42:22.196+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:42:22.195+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:42:22.214+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:42:22.214+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:42:22.217+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:42:22.217+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:42:22.218+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:42:22.218+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:42:22.240+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 259.671 seconds
+[2026-02-15T17:43:17.969+0800] {processor.py:186} INFO - Started process (PID=5693) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:43:17.970+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:43:17.971+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:43:17.971+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:43:18.112+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:43:18.243+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:43:18.242+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:43:18.262+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:43:18.262+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:43:18.265+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:43:18.265+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:43:18.266+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:43:18.266+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:43:18.287+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 320.316 seconds
+[2026-02-15T17:48:05.680+0800] {processor.py:186} INFO - Started process (PID=5758) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:48:05.680+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:48:05.681+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:48:05.681+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:48:05.802+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'consumer_dw_order_clean', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:48:05.926+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:48:05.925+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:48:05.947+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:48:05.946+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:48:05.950+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:48:05.950+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:48:05.951+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:48:05.951+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:48:05.976+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 299.493 seconds
+[2026-02-15T17:49:07.357+0800] {processor.py:186} INFO - Started process (PID=5789) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:49:07.358+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:49:07.359+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:49:07.358+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:49:07.463+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_clean', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:49:07.569+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:49:07.569+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:49:07.586+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:49:07.586+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:49:07.590+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:49:07.589+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:49:07.591+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:49:07.591+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:49:07.614+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 259.180 seconds
+[2026-02-15T17:50:07.616+0800] {processor.py:186} INFO - Started process (PID=5812) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:50:07.617+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:50:07.618+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:50:07.618+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:50:07.764+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'producer_dw_order_sync', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:50:07.878+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:50:07.878+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:50:07.900+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:50:07.899+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:50:07.903+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:50:07.903+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:50:07.904+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:50:07.904+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:50:07.928+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 315.492 seconds
+[2026-02-15T17:51:09.147+0800] {processor.py:186} INFO - Started process (PID=5836) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:51:09.148+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:51:09.149+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:51:09.149+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:51:09.261+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_stat', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:51:09.371+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:51:09.371+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:51:09.390+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:51:09.390+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:51:09.393+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:51:09.393+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:51:09.394+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:51:09.394+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:51:09.417+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 272.838 seconds
+[2026-02-15T17:52:11.933+0800] {processor.py:186} INFO - Started process (PID=5860) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:52:11.934+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:52:11.935+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:52:11.935+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:52:12.049+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_stat', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:52:12.170+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:52:12.169+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:52:12.188+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:52:12.187+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:52:12.190+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:52:12.190+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:52:12.191+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:52:12.191+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:52:12.210+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 279.568 seconds
+[2026-02-15T17:53:14.034+0800] {processor.py:186} INFO - Started process (PID=5882) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:53:14.035+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:53:14.036+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:53:14.035+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:53:14.148+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'consumer_dw_order_stat', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:53:14.257+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:53:14.257+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:53:14.274+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:53:14.274+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:53:14.278+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:53:14.277+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:53:14.278+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:53:14.278+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:53:14.302+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 271.450 seconds
+[2026-02-15T17:54:07.502+0800] {processor.py:186} INFO - Started process (PID=5902) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:54:07.503+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:54:07.504+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:54:07.504+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:54:07.631+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_stat', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:54:07.743+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:54:07.743+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:54:07.761+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:54:07.760+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:54:07.763+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:54:07.763+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:54:07.764+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:54:07.764+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:54:07.787+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 291.168 seconds
+[2026-02-15T17:55:10.210+0800] {processor.py:186} INFO - Started process (PID=5943) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:55:10.211+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:55:10.212+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:55:10.212+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:55:10.318+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:55:10.422+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:55:10.421+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:55:10.440+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:55:10.440+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:55:10.443+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:55:10.443+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:55:10.444+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:55:10.444+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:55:10.466+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 258.550 seconds
+[2026-02-15T17:56:05.282+0800] {processor.py:186} INFO - Started process (PID=5965) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:56:05.283+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:56:05.283+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:05.283+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:56:05.389+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:56:05.496+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:05.495+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:56:05.513+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:05.513+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:56:05.516+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:05.516+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:56:05.517+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:05.517+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:56:05.538+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 258.544 seconds
+[2026-02-15T17:56:57.540+0800] {processor.py:186} INFO - Started process (PID=5983) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:56:57.540+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:56:57.541+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:57.541+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:56:57.647+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'producer_dw_order_sync', 'consumer_dw_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:56:57.751+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:57.751+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:56:57.768+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:57.768+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:56:57.771+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:57.771+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:56:57.772+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:56:57.772+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:56:57.793+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 256.686 seconds
+[2026-02-15T17:57:50.218+0800] {processor.py:186} INFO - Started process (PID=6005) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:57:50.218+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:57:50.219+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:57:50.219+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:57:50.324+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_clean', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:57:50.428+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:57:50.428+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:57:50.446+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:57:50.446+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:57:50.449+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:57:50.448+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:57:50.449+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:57:50.449+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:57:50.472+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 256.542 seconds
+[2026-02-15T17:58:49.732+0800] {processor.py:186} INFO - Started process (PID=6028) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:58:49.732+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T17:58:49.733+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:58:49.733+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:58:49.839+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'consumer_dw_order_stat', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T17:58:49.942+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:58:49.942+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T17:58:49.959+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:58:49.958+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T17:58:49.961+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:58:49.961+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T17:58:49.962+0800] {logging_mixin.py:190} INFO - [2026-02-15T17:58:49.962+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T17:58:49.983+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 253.724 seconds
+[2026-02-15T18:03:38.237+0800] {processor.py:186} INFO - Started process (PID=6393) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:03:38.237+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T18:03:38.239+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:03:38.238+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:03:38.381+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_clean', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:03:38.533+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:03:38.532+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T18:03:38.556+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:03:38.555+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T18:03:38.560+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:03:38.559+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T18:03:38.560+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:03:38.560+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T18:03:38.583+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 350.717 seconds
+[2026-02-15T18:04:35.053+0800] {processor.py:186} INFO - Started process (PID=6435) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:04:35.055+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T18:04:35.056+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:04:35.056+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:04:35.179+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'consumer_dw_order_stat', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:04:35.303+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:04:35.302+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T18:04:35.322+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:04:35.322+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T18:04:35.326+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:04:35.326+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T18:04:35.327+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:04:35.327+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T18:04:35.352+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 303.259 seconds
+[2026-02-15T18:05:43.900+0800] {processor.py:186} INFO - Started process (PID=6468) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:05:43.902+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-15T18:05:43.904+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:43.904+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:05:44.023+0800] {processor.py:925} INFO - DAG(s) 'producer_dw_order_sync', 'consumer_dw_order_clean', 'consumer_dw_order_stat' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-15T18:05:44.147+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:44.147+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T18:05:44.166+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:44.166+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-15T18:05:44.169+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:44.169+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-15T18:05:44.170+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:44.170+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-15T18:05:44.193+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 296.170 seconds

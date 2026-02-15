@@ -45,8 +45,6 @@ pkill -f "airflow webserver"
 
 pip install graphviz  //graphviz Python 库依赖于系统级的 Graphviz 工具
 
-
-
 # todo 设置此TAG启动时处于 active状态
 
 from airflow.models import DagModel

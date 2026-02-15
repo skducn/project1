@@ -1,0 +1,186 @@
+一、核心思路：分层处理任务失败
+Airflow 处理任务失败遵循 “预防（默认配置）→ 重试（自动补救）→ 告警（及时感知）→ 恢复（手动 / 自动修复） ” 的逻辑，下面分步骤讲解具体操作方法。
+二、具体处理方法
+1. 基础配置：失败重试（最常用的自动补救）
+通过设置任务 / DAG 的默认参数，让 Airflow 在任务失败时自动重试，这是应对网络抖动、临时资源不足等偶发问题的首选方案。
+配置方式：
+全局默认参数：作用于 DAG 下所有任务
+任务级参数：覆盖全局配置，针对单个任务定制
+示例代码：
+python
+运行
+from airflow import DAG
+from airflow.operators.python import PythonOperator
+from datetime import datetime, timedelta
+
+# 1. 定义DAG级默认参数（全局生效）
+default_args = {
+    'owner': 'data_team',
+    'start_date': datetime(2026, 2, 15),
+    # 核心重试配置
+    'retries': 3,                # 失败后重试次数（默认0，即不重试）
+    'retry_delay': timedelta(minutes=5),  # 重试间隔（默认5分钟）
+    'retry_exponential_backoff': True,    # 开启指数退避（可选，重试间隔递增）
+    # 失败超时配置（可选）
+    'execution_timeout': timedelta(minutes=30),  # 任务执行超时时间，超时判定为失败
+    # 失败后跳过下游？（可选，默认False）
+    'fail_stop': False,  # 设为True则当前任务失败后，下游所有任务直接终止
+}
+
+with DAG(
+    dag_id='task_failure_handling_demo',
+    default_args=default_args,
+    schedule_interval='0 1 * * *',
+    catchup=False
+) as dag:
+
+    # 模拟一个可能失败的任务（比如调用不稳定的API）
+    def risky_task(**kwargs):
+        import random
+        # 随机模拟失败（30%概率失败）
+        if random.random() < 0.3:
+            raise Exception("API调用超时，任务失败！")
+        print("任务执行成功！")
+
+    # 2. 任务级自定义重试配置（覆盖全局）
+    task1 = PythonOperator(
+        task_id='risky_task',
+        python_callable=risky_task,
+        # 单独为这个任务设置重试（覆盖全局的3次）
+        retries=2,
+        retry_delay=timedelta(minutes=2),  # 重试间隔缩短为2分钟
+    )
+关键参数说明：
+retries：重试次数，建议设为 2-3 次（过多重试可能加重系统负担）；
+retry_delay：固定重试间隔，适合偶发短时间故障；
+retry_exponential_backoff：开启后重试间隔按 2^n * retry_delay 递增（n 是重试次数），比如第一次 5 分钟，第二次 10 分钟，第三次 20 分钟，适合需要更长恢复时间的故障；
+execution_timeout：防止任务无限阻塞（比如死循环、长时间卡壳）。
+2. 失败告警：及时感知故障
+仅重试不够，需在任务最终失败后及时通知运维 / 开发人员，Airflow 支持邮件、Slack、钉钉、企业微信等多种告警方式。
+方式 1：邮件告警（内置，最简单）
+步骤 1：修改 Airflow 配置文件（airflow.cfg）
+ini
+[smtp]
+smtp_host = smtp.163.com  # 邮件服务器（以网易邮箱为例）
+smtp_starttls = True
+smtp_ssl = False
+smtp_user = your_email@163.com  # 发件人邮箱
+smtp_password = your_email_auth_code  # 邮箱授权码（非登录密码）
+smtp_port = 587
+smtp_mail_from = your_email@163.com  # 发件人
+步骤 2：在 DAG 中配置告警邮箱
+python
+运行
+default_args = {
+    # 其他参数...
+    'email': ['alert@example.com', 'dev@example.com'],  # 告警接收邮箱
+    'email_on_failure': True,  # 任务失败时发送邮件（核心）
+    'email_on_retry': False,   # 重试时不发邮件（避免刷屏）
+}
+方式 2：自定义告警（比如钉钉 / 企业微信，更灵活）
+通过 on_failure_callback 回调函数，在任务失败时调用自定义脚本发送告警。
+示例：钉钉告警
+python
+运行
+def dingtalk_alert(context):
+    """自定义钉钉告警函数"""
+    import requests
+    # 钉钉群机器人webhook地址（需提前创建）
+    webhook_url = "https://oapi.dingtalk.com/robot/send?access_token=your_token"
+    # 提取失败信息
+    task_instance = context['task_instance']
+    dag_id = task_instance.dag_id
+    task_id = task_instance.task_id
+    execution_date = task_instance.execution_date
+    error_msg = str(context.get('exception'))[:500]  # 截取前500字错误信息
+
+    # 构造告警消息
+    data = {
+        "msgtype": "text",
+        "text": {
+            "content": f"""
+            🚨 Airflow任务执行失败 🚨
+            DAG名称：{dag_id}
+            任务名称：{task_id}
+            执行时间：{execution_date}
+            错误信息：{error_msg}
+            """
+        }
+    }
+    # 发送告警
+    requests.post(webhook_url, json=data)
+
+# 配置到任务/ DAG中
+default_args = {
+    # 其他参数...
+    'on_failure_callback': dingtalk_alert,  # 失败时触发告警
+}
+
+# 也可单独配置到某个任务
+task1 = PythonOperator(
+    task_id='risky_task',
+    python_callable=risky_task,
+    on_failure_callback=dingtalk_alert,
+)
+3. 失败恢复：手动 / 自动修复
+当任务重试后仍失败，需要手动干预或配置自动恢复策略：
+方式 1：手动恢复（最常用）
+登录 Airflow Web UI → 找到失败的任务实例 → 点击 Clear（清除失败状态）→ 任务会重新执行；
+或点击 Trigger 手动触发单个任务（适合只重跑失败任务，不影响上下游）。
+方式 2：自动恢复（针对特定场景）
+分支任务：通过 BranchPythonOperator 判断任务失败原因，执行备用逻辑（比如主数据源失败，切换到备用数据源）；
+python
+运行
+from airflow.operators.branch import BranchPythonOperator
+
+def check_task_status(**kwargs):
+    ti = kwargs['task_instance']
+    # 检查task1是否失败
+    if ti.state == 'failed':
+        return 'use_backup_data'  # 执行备用任务
+    else:
+        return 'normal_process'    # 执行正常任务
+
+branch_task = BranchPythonOperator(
+    task_id='check_branch',
+    python_callable=check_task_status,
+    provide_context=True,
+)
+
+# 定义备用任务和正常任务
+backup_task = PythonOperator(task_id='use_backup_data', ...)
+normal_task = PythonOperator(task_id='normal_process', ...)
+
+task1 >> branch_task >> [backup_task, normal_task]
+任务依赖降级：通过 trigger_rule 配置下游任务的触发规则（比如允许部分上游失败）：
+all_success（默认）：所有上游成功才执行；
+one_success：任意一个上游成功就执行；
+all_done：所有上游完成（无论成功 / 失败）就执行；
+python
+运行
+# 下游任务即使上游失败也执行
+downstream_task = PythonOperator(
+    task_id='downstream_task',
+    python_callable=...,
+    trigger_rule='all_done',  # 核心配置
+)
+4. 进阶：失败监控与复盘
+Airflow Web UI 监控：在 DAGs 页面查看失败任务的 Log（日志），定位失败原因；
+自定义失败日志：在任务中添加详细日志，方便复盘：
+python
+运行
+def risky_task(**kwargs):
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info("开始执行风险任务...")
+    try:
+        # 任务逻辑
+        raise Exception("API调用超时")
+    except Exception as e:
+        logger.error(f"任务执行失败：{str(e)}", exc_info=True)  # 记录完整异常栈
+        raise e  # 抛出异常，让Airflow感知失败
+总结
+基础重试：通过 retries、retry_delay 配置自动重试，应对偶发故障，建议重试次数 2-3 次；
+及时告警：优先用 email_on_failure 做基础告警，复杂场景用 on_failure_callback 对接钉钉 / 企业微信；
+失败恢复：常规场景用 Web UI 手动清除失败状态重跑，特殊场景用分支任务、trigger_rule 实现自动降级。
+核心原则：让偶发故障自动重试解决，让必现故障及时告警并可快速手动恢复，同时通过日志做好复盘，减少后续失败概率。
