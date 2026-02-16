@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "message": "测试失败",
+  "details": "按要求执行了失败场景: 1，打开网页 http://192.168.0.243:8083/login?redirect=/index\n2，请输入登录账号的输入框中输入“admin”\n3，请输入密码的输入框中输入\"Qa@123456\"\n4，点击登录按钮\n结果：zuoshangjiao左上角显示“起搏器植入患者专病库系统”则返回“测试通过”，否则返回“测试失败”",
+  "expected_result": "测试应该失败",
+  "test_type": "negative",
+  "duration": 1.001668
+}

@@ -1,0 +1,6 @@
+Agent vs Chain vs Tool
+Chain：固定流程 ➜ 先干 A，再干 B
+Agent：灵活推理 ➜ 动态决定干 A、B 还是 C
+Tool：被调用的功能模块 ➜ 查天气、查股票、查数据库等
+Agent = LLM + Tool + Memory + 推理调度逻辑
+Chain = 按顺序执行的 LLM 流程

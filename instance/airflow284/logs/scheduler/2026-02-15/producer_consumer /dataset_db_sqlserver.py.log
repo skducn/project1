@@ -682,3 +682,11 @@ SyntaxError: '(' was never closed
 [2026-02-15T18:06:10.041+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:10.041+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
 [2026-02-15T18:06:10.045+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:10.044+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
 [2026-02-15T18:06:10.068+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 385.855 seconds
+[2026-02-15T18:06:54.055+0800] {processor.py:186} INFO - Started process (PID=6644) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-15T18:06:54.056+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py for tasks to queue
+[2026-02-15T18:06:54.057+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:54.056+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-15T18:06:54.158+0800] {processor.py:925} INFO - DAG(s) 'producer_order_sqlserver', 'consumer_order_sqlserver' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-15T18:06:54.270+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:54.269+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-15T18:06:54.291+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:54.291+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
+[2026-02-15T18:06:54.294+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:54.294+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
+[2026-02-15T18:06:54.316+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 263.727 seconds

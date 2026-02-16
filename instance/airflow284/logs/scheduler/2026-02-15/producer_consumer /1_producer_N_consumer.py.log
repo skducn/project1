@@ -1276,3 +1276,12 @@
 [2026-02-15T18:05:51.579+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:51.579+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_stat_order_data to None, run_after=None
 [2026-02-15T18:05:51.580+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:05:51.580+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_1_N_sync to None, run_after=None
 [2026-02-15T18:05:51.603+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer.py took 308.107 seconds
+[2026-02-15T18:06:34.417+0800] {processor.py:186} INFO - Started process (PID=6633) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer.py
+[2026-02-15T18:06:34.417+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer.py for tasks to queue
+[2026-02-15T18:06:34.418+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:34.418+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer.py
+[2026-02-15T18:06:34.526+0800] {processor.py:925} INFO - DAG(s) 'producer_1_N_sync', 'consumer_1_N_clean_order_data', 'consumer_1_N_stat_order_data' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer.py
+[2026-02-15T18:06:34.627+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:34.626+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-15T18:06:34.642+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:34.642+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_clean_order_data to None, run_after=None
+[2026-02-15T18:06:34.645+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:34.645+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_stat_order_data to None, run_after=None
+[2026-02-15T18:06:34.646+0800] {logging_mixin.py:190} INFO - [2026-02-15T18:06:34.646+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_1_N_sync to None, run_after=None
+[2026-02-15T18:06:34.666+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer.py took 252.307 seconds

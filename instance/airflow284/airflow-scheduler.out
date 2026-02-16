@@ -302,3 +302,12 @@
 [2026-02-15T17:54:08.175+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
 [2026-02-15T18:02:28.100+0800] {job.py:229} INFO - Heartbeat recovered after 217.74 seconds
 [2026-02-15T18:02:41.040+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-15T18:07:03.147+0800] {scheduler_job_runner.py:272} INFO - Exiting gracefully upon receiving signal 15
+[2026-02-15T18:07:03.611+0800] {process_utils.py:266} INFO - Waiting up to 5 seconds for processes to exit...
+[2026-02-15T18:07:04.216+0800] {process_utils.py:132} INFO - Sending Signals.SIGTERM to group 1011. PIDs of all processes in the group: [1011]
+[2026-02-15T18:07:04.227+0800] {process_utils.py:87} INFO - Sending the signal Signals.SIGTERM to group 1011
+[2026-02-15T18:07:04.325+0800] {process_utils.py:80} INFO - Process psutil.Process(pid=1011, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='15:57:54') (1011) terminated with exit code Negsignal.SIGTERM
+[2026-02-15T18:07:04.329+0800] {process_utils.py:132} INFO - Sending Signals.SIGTERM to group 1011. PIDs of all processes in the group: []
+[2026-02-15T18:07:04.329+0800] {process_utils.py:87} INFO - Sending the signal Signals.SIGTERM to group 1011
+[2026-02-15T18:07:04.331+0800] {process_utils.py:101} INFO - Sending the signal Signals.SIGTERM to process 1011 as process group is missing.
+[2026-02-15T18:07:04.332+0800] {scheduler_job_runner.py:1029} INFO - Exited execute loop
