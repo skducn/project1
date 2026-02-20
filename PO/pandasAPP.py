@@ -8,6 +8,22 @@
 # pandas有两个主要数据结构：Series和DataFrame。
 # Python利用pandas处理Excel数据的应用 https://www.cnblogs.com/liulinghua90/p/9935642.html
 # to_sql https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.to_sql.html
+
+# # 核心操作：批量读取 + 清洗 Excel 数据
+# # 1. 读取Excel文件
+# df = pd.read_excel("数据文件.xlsx", sheet_name="Sheet1")
+
+# # 2. 数据清洗：删除空值行+去重
+# df_clean = df.dropna().drop_duplicates()
+
+# # 3. 筛选数据：提取「销售额>1000」的行
+# df_filter = df_clean[df_clean["销售额"] > 1000]
+
+# # 4. 保存到新Excel
+# df_filter.to_excel("清洗后数据.xlsx", index=False)
+
+
+# https://gairuo.com/file/data/dataset/team.xlsx
 # ********************************************************************************************************************
 
 import pandas as pd
