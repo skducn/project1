@@ -25,11 +25,16 @@ class SimpleChatHistory(BaseChatMessageHistory):
         """清空历史"""
         self.messages = []
 
+# 从环境变量获取API密钥
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
+if not DASHSCOPE_API_KEY:
+    raise ValueError("请在.env文件中设置DASHSCOPE_API_KEY环境变量")
+
 
 # 初始化Qwen模型
 llm = ChatTongyi(
     model_name="qwen-turbo",
-    dashscope_api_key="sk-f3e3d8f64cab416fb028d582533c1e01"
+    dashscope_api_key=DASHSCOPE_API_KEY
 )
 
 # 创建聊天历史实例
@@ -71,10 +76,9 @@ def run_chat_test():
     print("=" * 30)
 
     test_inputs = [
-        "你好，我是张三！",
+        "你好，我是令狐冲！",
         "我刚才说了什么名字？",
-        "我喜欢编程，你呢？",
-        "回顾一下我们聊了什么？"
+        "请简洁评价这个人，他是哪部武侠小说任务？"
     ]
 
     for i, user_input in enumerate(test_inputs, 1):

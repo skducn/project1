@@ -41,11 +41,18 @@ class SimpleConversationMemory:
             return {self.memory_key: history_str}
 
 
+# 从环境变量获取API密钥
+DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
+if not DASHSCOPE_API_KEY:
+    raise ValueError("请在.env文件中设置DASHSCOPE_API_KEY环境变量")
+
+
 # 初始化Qwen模型
 llm = ChatTongyi(
     model_name="qwen-turbo",
-    dashscope_api_key="sk-f3e3d8f64cab416fb028d582533c1e01"
+    dashscope_api_key=DASHSCOPE_API_KEY
 )
+
 
 # 定义Prompt模板
 prompt = ChatPromptTemplate.from_template("""

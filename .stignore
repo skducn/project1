@@ -50,3 +50,6 @@
 *~
 *.*.sw[a-p]
 (?d)Icon
+.env
+.env.*
+!.env.example
