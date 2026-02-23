@@ -1,0 +1,21 @@
+[2026-02-23T21:06:10.499+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-23T21:06:10.511+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_1p1n1n_2_DAG2.consumer_1p1n1n_2_TASK dataset_triggered__2026-02-23T13:06:00.451215+00:00 [queued]>
+[2026-02-23T21:06:10.517+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_1p1n1n_2_DAG2.consumer_1p1n1n_2_TASK dataset_triggered__2026-02-23T13:06:00.451215+00:00 [queued]>
+[2026-02-23T21:06:10.517+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-23T21:06:10.529+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer_1p1n1n_2_TASK> on 2026-02-23 13:06:00.451215+00:00
+[2026-02-23T21:06:10.532+0800] {standard_task_runner.py:72} INFO - Started process 8397 to run task
+[2026-02-23T21:06:10.538+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_1p1n1n_2_DAG2', 'consumer_1p1n1n_2_TASK', 'dataset_triggered__2026-02-23T13:06:00.451215+00:00', '--job-id', '186', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /1p1n1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpzo5d2yx4']
+[2026-02-23T21:06:10.542+0800] {standard_task_runner.py:105} INFO - Job 186: Subtask consumer_1p1n1n_2_TASK
+[2026-02-23T21:06:10.758+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_1p1n1n_2_DAG2.consumer_1p1n1n_2_TASK dataset_triggered__2026-02-23T13:06:00.451215+00:00 [running]> on host localhost-2.local
+[2026-02-23T21:06:10.826+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_1p1n1n_2_DAG2' AIRFLOW_CTX_TASK_ID='consumer_1p1n1n_2_TASK' AIRFLOW_CTX_EXECUTION_DATE='2026-02-23T13:06:00.451215+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-23T13:06:00.451215+00:00'
+[2026-02-23T21:06:10.832+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-23T21:06:10.848+0800] {logging_mixin.py:190} INFO - 【消费者2】检测到订单数据更新，开始统计...
+[2026-02-23T21:06:10.860+0800] {logging_mixin.py:190} INFO - ✅ 成功从消费者 consumer_1p1n1n_DAG2.consumer_1p1n1n_TASK 获取 XCom 值: 334
+[2026-02-23T21:06:10.861+0800] {logging_mixin.py:190} INFO - 【消费者2】从消费者1获取的返回值: 334
+[2026-02-23T21:06:10.861+0800] {logging_mixin.py:190} INFO - 【消费者2】处理后的值: 434
+[2026-02-23T21:06:10.862+0800] {python.py:240} INFO - Done. Returned value was: 434
+[2026-02-23T21:06:10.881+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-23T21:06:10.882+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=consumer_1p1n1n_2_DAG2, task_id=consumer_1p1n1n_2_TASK, run_id=dataset_triggered__2026-02-23T13:06:00.451215+00:00, execution_date=20260223T130600, start_date=20260223T130610, end_date=20260223T130610
+[2026-02-23T21:06:10.948+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-23T21:06:11.096+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-23T21:06:11.097+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

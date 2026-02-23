@@ -1,0 +1,18 @@
+[2026-02-23T20:12:30.107+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-23T20:12:30.120+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: producer_1p_1n_1n_DAG.producer_1p_1n_1n_TASK manual__2026-02-23T12:12:23.281493+00:00 [queued]>
+[2026-02-23T20:12:30.127+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: producer_1p_1n_1n_DAG.producer_1p_1n_1n_TASK manual__2026-02-23T12:12:23.281493+00:00 [queued]>
+[2026-02-23T20:12:30.127+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-23T20:12:30.141+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): producer_1p_1n_1n_TASK> on 2026-02-23 12:12:23.281493+00:00
+[2026-02-23T20:12:30.144+0800] {standard_task_runner.py:72} INFO - Started process 5879 to run task
+[2026-02-23T20:12:30.151+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'producer_1p_1n_1n_DAG', 'producer_1p_1n_1n_TASK', 'manual__2026-02-23T12:12:23.281493+00:00', '--job-id', '160', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /1p_1n_1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp5oybhyjs']
+[2026-02-23T20:12:30.155+0800] {standard_task_runner.py:105} INFO - Job 160: Subtask producer_1p_1n_1n_TASK
+[2026-02-23T20:12:30.406+0800] {task_command.py:467} INFO - Running <TaskInstance: producer_1p_1n_1n_DAG.producer_1p_1n_1n_TASK manual__2026-02-23T12:12:23.281493+00:00 [running]> on host localhost-2.local
+[2026-02-23T20:12:30.474+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='producer_1p_1n_1n_DAG' AIRFLOW_CTX_TASK_ID='producer_1p_1n_1n_TASK' AIRFLOW_CTX_EXECUTION_DATE='2026-02-23T12:12:23.281493+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-23T12:12:23.281493+00:00'
+[2026-02-23T20:12:30.475+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-23T20:12:30.497+0800] {logging_mixin.py:190} INFO - 开始生成数据...
+[2026-02-23T20:12:30.498+0800] {python.py:240} INFO - Done. Returned value was: ('120',)
+[2026-02-23T20:12:30.519+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-23T20:12:30.520+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=producer_1p_1n_1n_DAG, task_id=producer_1p_1n_1n_TASK, run_id=manual__2026-02-23T12:12:23.281493+00:00, execution_date=20260223T121223, start_date=20260223T121230, end_date=20260223T121230
+[2026-02-23T20:12:30.600+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-23T20:12:30.746+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-23T20:12:30.747+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

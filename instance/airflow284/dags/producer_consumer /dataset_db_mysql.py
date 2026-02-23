@@ -1,6 +1,5 @@
-# 功能：生产者库里插入一条记录，消费者读取生产者的数据，
-# 并将status修改为2。
-
+# 功能：生产者在mysql库里插入一条记录，消费者读取生产者的数据，并将status修改为2。
+# 设置 admin - connections设置 "mysql_234_crm"
 
 # MySQL 数据库中创建 airflow_producer_data 表，用于存储生产者的运行数据：
 # sql

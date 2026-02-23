@@ -22,7 +22,7 @@ dateset_variable = Dataset(
 # 生产者任务：存入 Variable
 def producer_variable_save_data():
     from airflow.models import Variable
-    result = ('6',)
+    result = ('645',)
     # 序列化存储（支持复杂类型，如列表/元组）
     Variable.set("variable_sync_result", result, serialize_json=True)
     print(f"生产者：已将结果存入 Variable: {result}")

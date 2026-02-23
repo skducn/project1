@@ -1,0 +1,81 @@
+[2026-02-23T20:47:52.323+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-23T20:47:52.336+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: consumer_1p1n1n_DAG2.consumer_1p1n1n_TASK dataset_triggered__2026-02-23T12:47:42.230542+00:00 [queued]>
+[2026-02-23T20:47:52.341+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: consumer_1p1n1n_DAG2.consumer_1p1n1n_TASK dataset_triggered__2026-02-23T12:47:42.230542+00:00 [queued]>
+[2026-02-23T20:47:52.342+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-23T20:47:52.354+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer_1p1n1n_TASK> on 2026-02-23 12:47:42.230542+00:00
+[2026-02-23T20:47:52.358+0800] {standard_task_runner.py:72} INFO - Started process 7794 to run task
+[2026-02-23T20:47:52.364+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'consumer_1p1n1n_DAG2', 'consumer_1p1n1n_TASK', 'dataset_triggered__2026-02-23T12:47:42.230542+00:00', '--job-id', '177', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /1_producer_N_consumer2.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp392ew2n4']
+[2026-02-23T20:47:52.369+0800] {standard_task_runner.py:105} INFO - Job 177: Subtask consumer_1p1n1n_TASK
+[2026-02-23T20:47:52.652+0800] {task_command.py:467} INFO - Running <TaskInstance: consumer_1p1n1n_DAG2.consumer_1p1n1n_TASK dataset_triggered__2026-02-23T12:47:42.230542+00:00 [running]> on host localhost-2.local
+[2026-02-23T20:47:52.715+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='consumer_1p1n1n_DAG2' AIRFLOW_CTX_TASK_ID='consumer_1p1n1n_TASK' AIRFLOW_CTX_EXECUTION_DATE='2026-02-23T12:47:42.230542+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-23T12:47:42.230542+00:00'
+[2026-02-23T20:47:52.720+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-23T20:47:52.736+0800] {logging_mixin.py:190} INFO - 检测到订单数据更新，开始清洗...
+[2026-02-23T20:47:52.737+0800] {logging_mixin.py:190} INFO - 订单数据清洗完成！
+[2026-02-23T20:47:52.737+0800] {logging_mixin.py:190} INFO - 【消费者1】检测到订单数据更新，开始清洗...
+[2026-02-23T20:47:52.748+0800] {logging_mixin.py:190} INFO - ✅ 成功从生产者获取 XCom 值: ('333',)
+[2026-02-23T20:47:52.749+0800] {logging_mixin.py:190} INFO - 【消费者1】从生产者获取的返回值: ('333',)
+[2026-02-23T20:47:52.750+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer2.py", line 108, in consumer_1p1n1n_TASK
+    xcom_value = int(xcom_value) + 1
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'tuple'
+[2026-02-23T20:47:52.759+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=consumer_1p1n1n_DAG2, task_id=consumer_1p1n1n_TASK, run_id=dataset_triggered__2026-02-23T12:47:42.230542+00:00, execution_date=20260223T124742, start_date=20260223T124752, end_date=20260223T124752
+[2026-02-23T20:47:52.775+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-23T20:47:52.775+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 177 for task consumer_1p1n1n_TASK (int() argument must be a string, a bytes-like object or a real number, not 'tuple'; 7794)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1_producer_N_consumer2.py", line 108, in consumer_1p1n1n_TASK
+    xcom_value = int(xcom_value) + 1
+TypeError: int() argument must be a string, a bytes-like object or a real number, not 'tuple'
+[2026-02-23T20:47:52.804+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-23T20:47:52.947+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-23T20:47:52.948+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

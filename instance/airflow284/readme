@@ -1,6 +1,8 @@
 参考资料：
 https://airflow.apache.org/docs/apache-airflow/2.8.4/core-concepts/executor/index.html
 
+admin, Jinhao
+skducn, Jinhao
 
 # todo 启动 Web Server
 airflow webserver --port 8080 -D

@@ -1,0 +1,531 @@
+[2026-02-23T21:26:21.491+0800] {processor.py:186} INFO - Started process (PID=9074) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:26:21.492+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:26:21.492+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:26:21.492+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:26:21.601+0800] {processor.py:925} INFO - DAG(s) 'consumer_1_N_stat_order_data', 'producer_1_N_sync', 'consumer_1_N_clean_order_data' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:26:21.870+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:26:21.870+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:26:21.959+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:26:21.959+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_clean_order_data to None, run_after=None
+[2026-02-23T21:26:21.962+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:26:21.961+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_stat_order_data to None, run_after=None
+[2026-02-23T21:26:21.962+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:26:21.962+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_1_N_sync to None, run_after=None
+[2026-02-23T21:26:21.989+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 500.953 seconds
+[2026-02-23T21:27:15.774+0800] {processor.py:186} INFO - Started process (PID=9101) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:27:15.775+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:27:15.776+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:27:15.776+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:27:15.887+0800] {processor.py:925} INFO - DAG(s) 'producer_1_N_sync', 'consumer_1_N_clean_order_data', 'consumer_1_N_stat_order_data' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:27:16.011+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:27:16.011+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:27:16.032+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:27:16.031+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_clean_order_data to None, run_after=None
+[2026-02-23T21:27:16.035+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:27:16.035+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_stat_order_data to None, run_after=None
+[2026-02-23T21:27:16.036+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:27:16.035+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_1_N_sync to None, run_after=None
+[2026-02-23T21:27:16.059+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 288.064 seconds
+[2026-02-23T21:28:12.436+0800] {processor.py:186} INFO - Started process (PID=9123) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:28:12.437+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:28:12.438+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:28:12.438+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:28:12.546+0800] {processor.py:925} INFO - DAG(s) 'producer_1_N_sync', 'consumer_1_N_stat_order_data', 'consumer_1_N_clean_order_data' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:28:12.553+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:28:12.552+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:28:12.660+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:28:12.659+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_clean_order_data to None, run_after=None
+[2026-02-23T21:28:12.663+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:28:12.662+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_1_N_stat_order_data to None, run_after=None
+[2026-02-23T21:28:12.664+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:28:12.663+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_1_N_sync to None, run_after=None
+[2026-02-23T21:28:12.686+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 253.210 seconds
+[2026-02-23T21:29:11.297+0800] {processor.py:186} INFO - Started process (PID=9157) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:29:11.300+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:29:11.301+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:11.300+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:29:11.427+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_2_DAGs', 'p_1p2n_DAGs', 'c_1p2n_1_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:29:11.436+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:11.436+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:29:11.551+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:11.551+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_1_DAGs to None, run_after=None
+[2026-02-23T21:29:11.555+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:11.555+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_2_DAGs to None, run_after=None
+[2026-02-23T21:29:11.556+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:11.556+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:29:11.580+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 287.531 seconds
+[2026-02-23T21:29:48.995+0800] {processor.py:186} INFO - Started process (PID=9170) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:29:48.995+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:29:48.996+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:48.996+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:29:49.123+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_2_DAGs', 'c_1p2n_1_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:29:49.370+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:49.369+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:29:49.483+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:49.483+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_1_DAGs to None, run_after=None
+[2026-02-23T21:29:49.486+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:49.486+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_2_DAGs to None, run_after=None
+[2026-02-23T21:29:49.488+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:29:49.488+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:29:49.515+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 523.158 seconds
+[2026-02-23T21:30:25.781+0800] {processor.py:186} INFO - Started process (PID=9196) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:30:25.781+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:30:25.782+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:30:25.782+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:30:25.893+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_2_DAGs', 'c_1p2n_1_DAGs', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:30:26.008+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:30:26.008+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:30:26.028+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:30:26.028+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_1_DAGs to None, run_after=None
+[2026-02-23T21:30:26.031+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:30:26.030+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_2_DAGs to None, run_after=None
+[2026-02-23T21:30:26.032+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:30:26.032+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:30:26.056+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 277.435 seconds
+[2026-02-23T21:31:24.674+0800] {processor.py:186} INFO - Started process (PID=9233) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:31:24.674+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:31:24.675+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:24.675+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:31:24.786+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_1_DAGs', 'c_1p2n_2_DAGs', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:31:24.914+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:24.914+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:31:24.936+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:24.936+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_1_DAGs to None, run_after=None
+[2026-02-23T21:31:24.939+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:24.939+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_2_DAGs to None, run_after=None
+[2026-02-23T21:31:24.940+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:24.940+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:31:24.964+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 293.172 seconds
+[2026-02-23T21:31:54.389+0800] {processor.py:186} INFO - Started process (PID=9255) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:31:54.390+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:31:54.390+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:54.390+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:31:54.554+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:31:54.560+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:54.560+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:31:54.700+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:54.699+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:31:54.704+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:54.704+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:31:54.706+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:31:54.705+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:31:54.737+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 351.471 seconds
+[2026-02-23T21:32:29.282+0800] {processor.py:186} INFO - Started process (PID=9268) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:32:29.282+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:32:29.284+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:32:29.283+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:32:29.396+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:32:29.402+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:32:29.402+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:32:29.519+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:32:29.518+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:32:29.522+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:32:29.522+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:32:29.523+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:32:29.523+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:32:29.545+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 266.063 seconds
+[2026-02-23T21:33:12.790+0800] {processor.py:186} INFO - Started process (PID=9296) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:33:12.791+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:33:12.792+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:12.792+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:33:12.912+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:33:13.142+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:13.142+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:33:13.236+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:13.236+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:33:13.238+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:13.238+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:33:13.240+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:13.239+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:33:13.263+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 476.063 seconds
+[2026-02-23T21:33:50.716+0800] {processor.py:186} INFO - Started process (PID=9315) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:33:50.716+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:33:50.717+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:50.717+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:33:50.829+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:33:50.947+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:50.947+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:33:50.967+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:50.967+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:33:50.970+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:50.970+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:33:50.971+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:33:50.971+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:33:50.992+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 280.200 seconds
+[2026-02-23T21:35:06.696+0800] {processor.py:186} INFO - Started process (PID=9362) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:35:06.696+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:35:06.697+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:06.697+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:35:06.815+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:35:07.084+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:07.083+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:35:07.184+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:07.183+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:35:07.186+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:07.186+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:35:07.187+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:07.187+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:35:07.210+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 517.542 seconds
+[2026-02-23T21:35:49.718+0800] {processor.py:186} INFO - Started process (PID=9383) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:35:49.719+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:35:49.720+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:49.720+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:35:49.840+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:35:49.964+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:49.964+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:35:49.985+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:49.984+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:35:49.988+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:49.988+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:35:49.989+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:35:49.989+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:35:50.014+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 299.534 seconds
+[2026-02-23T21:36:33.663+0800] {processor.py:186} INFO - Started process (PID=9426) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:36:33.664+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:36:33.665+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:36:33.665+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:36:33.783+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG1', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:36:34.039+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:36:34.038+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:36:34.134+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:36:34.134+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:36:34.137+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:36:34.137+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:36:34.139+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:36:34.139+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:36:34.163+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 502.987 seconds
+[2026-02-23T21:37:15.677+0800] {processor.py:186} INFO - Started process (PID=9454) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:37:15.678+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:37:15.679+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:37:15.678+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:37:15.785+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:37:15.896+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:37:15.896+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:37:15.914+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:37:15.914+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:37:15.917+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:37:15.917+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:37:15.918+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:37:15.917+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:37:15.939+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 265.430 seconds
+[2026-02-23T21:38:14.946+0800] {processor.py:186} INFO - Started process (PID=9477) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:38:14.947+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:38:14.948+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:38:14.948+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:38:15.053+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:38:15.161+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:38:15.161+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:38:15.179+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:38:15.179+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:38:15.183+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:38:15.182+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:38:15.183+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:38:15.183+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:38:15.209+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 265.078 seconds
+[2026-02-23T21:39:09.007+0800] {processor.py:186} INFO - Started process (PID=9496) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:39:09.007+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:39:09.009+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:39:09.008+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:39:09.118+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:39:09.230+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:39:09.229+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:39:09.247+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:39:09.247+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:39:09.250+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:39:09.250+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:39:09.251+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:39:09.251+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:39:09.274+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 270.941 seconds
+[2026-02-23T21:40:03.390+0800] {processor.py:186} INFO - Started process (PID=9517) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:40:03.391+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:40:03.392+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:03.392+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:40:03.496+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:40:03.611+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:03.610+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:40:03.629+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:03.629+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:40:03.632+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:03.631+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:40:03.633+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:03.632+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:40:03.656+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 268.493 seconds
+[2026-02-23T21:40:58.636+0800] {processor.py:186} INFO - Started process (PID=9535) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:40:58.637+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:40:58.638+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:58.638+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:40:58.744+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:40:58.854+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:58.854+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:40:58.872+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:58.872+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:40:58.876+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:58.876+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:40:58.877+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:40:58.877+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:40:58.900+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 267.248 seconds
+[2026-02-23T21:41:57.523+0800] {processor.py:186} INFO - Started process (PID=9587) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:41:57.524+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:41:57.525+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:41:57.525+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:41:57.634+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:41:57.748+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:41:57.748+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:41:57.768+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:41:57.768+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:41:57.771+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:41:57.770+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:41:57.772+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:41:57.772+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:41:57.794+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 274.055 seconds
+[2026-02-23T21:42:57.276+0800] {processor.py:186} INFO - Started process (PID=9610) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:42:57.277+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:42:57.278+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:42:57.278+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:42:57.381+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:42:57.489+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:42:57.489+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:42:57.507+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:42:57.507+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:42:57.510+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:42:57.510+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:42:57.511+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:42:57.511+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:42:57.533+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 260.864 seconds
+[2026-02-23T21:43:51.780+0800] {processor.py:186} INFO - Started process (PID=9629) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:43:51.781+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:43:51.782+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:43:51.782+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:43:51.885+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:43:52.019+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:43:52.019+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:43:52.040+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:43:52.040+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:43:52.044+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:43:52.043+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:43:52.045+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:43:52.045+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:43:52.068+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 291.188 seconds
+[2026-02-23T21:44:48.461+0800] {processor.py:186} INFO - Started process (PID=9651) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:44:48.461+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:44:48.462+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:44:48.462+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:44:48.565+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:44:48.680+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:44:48.679+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:44:48.698+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:44:48.698+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:44:48.701+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:44:48.701+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:44:48.702+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:44:48.702+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:44:48.725+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 267.618 seconds
+[2026-02-23T21:45:43.746+0800] {processor.py:186} INFO - Started process (PID=9670) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:45:43.746+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:45:43.748+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:45:43.747+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:45:43.869+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:45:43.984+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:45:43.984+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:45:44.004+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:45:44.004+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:45:44.007+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:45:44.007+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:45:44.008+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:45:44.008+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:45:44.033+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 290.544 seconds
+[2026-02-23T21:46:39.238+0800] {processor.py:186} INFO - Started process (PID=9691) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:46:39.239+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:46:39.240+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:46:39.240+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:46:39.350+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:46:39.462+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:46:39.462+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:46:39.481+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:46:39.480+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:46:39.484+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:46:39.483+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:46:39.485+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:46:39.484+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:46:39.507+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 271.732 seconds
+[2026-02-23T21:47:34.606+0800] {processor.py:186} INFO - Started process (PID=9710) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:47:34.606+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:47:34.607+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:47:34.607+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:47:34.711+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:47:34.824+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:47:34.823+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:47:34.842+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:47:34.841+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:47:34.845+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:47:34.845+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:47:34.846+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:47:34.846+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:47:34.868+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 265.237 seconds
+[2026-02-23T21:48:34.828+0800] {processor.py:186} INFO - Started process (PID=9751) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:48:34.829+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:48:34.830+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:48:34.830+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:48:34.947+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG1', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:48:35.074+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:48:35.073+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:48:35.095+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:48:35.095+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:48:35.099+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:48:35.098+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:48:35.100+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:48:35.100+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:48:35.123+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 298.209 seconds
+[2026-02-23T21:49:33.271+0800] {processor.py:186} INFO - Started process (PID=9789) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:49:33.271+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:49:33.272+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:49:33.272+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:49:33.397+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:49:33.404+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:49:33.404+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:49:33.538+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:49:33.538+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:49:33.541+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:49:33.541+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:49:33.542+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:49:33.542+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:49:33.565+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 298.062 seconds
+[2026-02-23T21:50:06.997+0800] {processor.py:186} INFO - Started process (PID=9801) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:50:06.998+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:50:06.999+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:50:06.999+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:50:07.108+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:50:07.342+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:50:07.341+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:50:07.436+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:50:07.436+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:50:07.439+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:50:07.439+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:50:07.440+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:50:07.440+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:50:07.464+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 469.978 seconds
+[2026-02-23T21:51:10.485+0800] {processor.py:186} INFO - Started process (PID=9836) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:51:10.486+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:51:10.487+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:10.487+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:51:10.623+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', '测试一下', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:51:10.630+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:10.630+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:51:10.752+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:10.752+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:51:10.755+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:10.755+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:51:10.756+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:10.756+0800] {dag.py:4180} INFO - Setting next_dagrun for 测试一下 to None, run_after=None
+[2026-02-23T21:51:10.779+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 296.319 seconds
+[2026-02-23T21:51:49.600+0800] {processor.py:186} INFO - Started process (PID=9853) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:51:49.601+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:51:49.602+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:49.602+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:51:49.714+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', '测试一下', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:51:49.954+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:49.953+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:51:50.055+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:50.054+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:51:50.057+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:50.057+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:51:50.058+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:51:50.058+0800] {dag.py:4180} INFO - Setting next_dagrun for 测试一下 to None, run_after=None
+[2026-02-23T21:51:50.083+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 486.565 seconds
+[2026-02-23T21:52:41.209+0800] {processor.py:186} INFO - Started process (PID=9907) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:52:41.210+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:52:41.211+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:52:41.210+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:52:41.335+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:52:41.342+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:52:41.341+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:52:41.459+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:52:41.459+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:52:41.463+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:52:41.462+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:52:41.464+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:52:41.464+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:52:41.487+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 281.071 seconds
+[2026-02-23T21:53:28.414+0800] {processor.py:186} INFO - Started process (PID=9932) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:53:28.415+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:53:28.416+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:53:28.415+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:53:28.519+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:53:28.742+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:53:28.742+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:53:28.835+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:53:28.835+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:53:28.838+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:53:28.837+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:53:28.839+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:53:28.838+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:53:28.861+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 449.688 seconds
+[2026-02-23T21:54:27.589+0800] {processor.py:186} INFO - Started process (PID=9986) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:54:27.590+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:54:27.590+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:54:27.590+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:54:27.692+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:54:27.802+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:54:27.802+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:54:27.822+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:54:27.822+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:54:27.826+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:54:27.825+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:54:27.827+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:54:27.826+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:54:27.848+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 261.502 seconds
+[2026-02-23T21:55:24.436+0800] {processor.py:186} INFO - Started process (PID=10023) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:55:24.437+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:55:24.438+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:55:24.438+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:55:24.564+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:55:24.686+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:55:24.686+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:55:24.707+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:55:24.706+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:55:24.710+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:55:24.709+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:55:24.711+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:55:24.711+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:55:24.735+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 302.027 seconds
+[2026-02-23T21:56:20.827+0800] {processor.py:186} INFO - Started process (PID=10047) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:56:20.828+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:56:20.829+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:56:20.829+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:56:20.932+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:56:21.046+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:56:21.046+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:56:21.065+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:56:21.065+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:56:21.068+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:56:21.068+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:56:21.069+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:56:21.069+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:56:21.093+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 268.605 seconds
+[2026-02-23T21:57:21.656+0800] {processor.py:186} INFO - Started process (PID=10067) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:57:21.656+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:57:21.657+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:57:21.657+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:57:21.765+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:57:21.899+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:57:21.898+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:57:21.921+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:57:21.921+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:57:21.924+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:57:21.924+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:57:21.926+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:57:21.925+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:57:21.951+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 298.140 seconds
+[2026-02-23T21:58:14.704+0800] {processor.py:186} INFO - Started process (PID=10087) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:58:14.704+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:58:14.706+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:58:14.705+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:58:14.812+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:58:14.929+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:58:14.928+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:58:14.947+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:58:14.947+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:58:14.950+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:58:14.950+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:58:14.951+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:58:14.951+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:58:14.972+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 271.635 seconds
+[2026-02-23T21:59:06.743+0800] {processor.py:186} INFO - Started process (PID=10106) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:59:06.744+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T21:59:06.745+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:59:06.745+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:59:06.851+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T21:59:06.963+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:59:06.963+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T21:59:06.982+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:59:06.981+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T21:59:06.985+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:59:06.984+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T21:59:06.986+0800] {logging_mixin.py:190} INFO - [2026-02-23T21:59:06.985+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T21:59:07.010+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 269.862 seconds
+[2026-02-23T22:00:02.258+0800] {processor.py:186} INFO - Started process (PID=10125) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:00:02.259+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:00:02.260+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:02.259+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:00:02.368+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:00:02.478+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:02.478+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:00:02.496+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:02.496+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:00:02.499+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:02.499+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:00:02.500+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:02.500+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:00:02.523+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 267.907 seconds
+[2026-02-23T22:00:57.414+0800] {processor.py:186} INFO - Started process (PID=10147) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:00:57.415+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:00:57.415+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:57.415+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:00:57.520+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG1', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:00:57.631+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:57.631+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:00:57.652+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:57.651+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:00:57.655+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:57.655+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:00:57.657+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:00:57.656+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:00:57.676+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 265.285 seconds
+[2026-02-23T22:01:51.970+0800] {processor.py:186} INFO - Started process (PID=10167) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:01:51.970+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:01:51.971+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:01:51.971+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:01:52.080+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:01:52.190+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:01:52.189+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:01:52.207+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:01:52.207+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:01:52.210+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:01:52.210+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:01:52.212+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:01:52.211+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:01:52.236+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 269.484 seconds
+[2026-02-23T22:02:45.569+0800] {processor.py:186} INFO - Started process (PID=10187) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:02:45.569+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:02:45.570+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:02:45.570+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:02:45.678+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:02:45.787+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:02:45.786+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:02:45.805+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:02:45.805+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:02:45.808+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:02:45.808+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:02:45.809+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:02:45.809+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:02:45.830+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 263.735 seconds
+[2026-02-23T22:03:40.440+0800] {processor.py:186} INFO - Started process (PID=10208) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:03:40.441+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:03:40.441+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:03:40.441+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:03:40.543+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:03:40.651+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:03:40.650+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:03:40.670+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:03:40.670+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:03:40.673+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:03:40.673+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:03:40.674+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:03:40.674+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:03:40.694+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 256.943 seconds
+[2026-02-23T22:04:33.983+0800] {processor.py:186} INFO - Started process (PID=10228) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:04:33.983+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:04:33.984+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:04:33.984+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:04:34.088+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:04:34.197+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:04:34.197+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:04:34.216+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:04:34.216+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:04:34.220+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:04:34.219+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:04:34.221+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:04:34.221+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:04:34.243+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 263.635 seconds
+[2026-02-23T22:05:29.579+0800] {processor.py:186} INFO - Started process (PID=10258) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:05:29.580+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:05:29.581+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:05:29.581+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:05:29.685+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:05:29.794+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:05:29.793+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:05:29.813+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:05:29.812+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:05:29.816+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:05:29.816+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:05:29.817+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:05:29.817+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:05:29.837+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 260.049 seconds
+[2026-02-23T22:06:25.006+0800] {processor.py:186} INFO - Started process (PID=10281) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:06:25.009+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:06:25.010+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:06:25.010+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:06:25.127+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG1', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:06:25.245+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:06:25.244+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:06:25.263+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:06:25.263+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:06:25.266+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:06:25.266+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:06:25.268+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:06:25.267+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:06:25.289+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 287.311 seconds
+[2026-02-23T22:07:20.571+0800] {processor.py:186} INFO - Started process (PID=10308) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:07:20.571+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:07:20.572+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:07:20.572+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:07:20.675+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:07:20.783+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:07:20.783+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:07:20.800+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:07:20.800+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:07:20.803+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:07:20.803+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:07:20.804+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:07:20.804+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:07:20.827+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 259.222 seconds
+[2026-02-23T22:08:15.667+0800] {processor.py:186} INFO - Started process (PID=10350) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:08:15.668+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:08:15.669+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:08:15.669+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:08:15.773+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'c_1p2n_DAG1', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:08:15.884+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:08:15.884+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:08:15.903+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:08:15.903+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:08:15.907+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:08:15.906+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:08:15.908+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:08:15.908+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:08:15.930+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 265.550 seconds
+[2026-02-23T22:09:11.020+0800] {processor.py:186} INFO - Started process (PID=10370) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:09:11.020+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:09:11.021+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:09:11.021+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:09:11.128+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:09:11.238+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:09:11.237+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:09:11.256+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:09:11.255+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:09:11.259+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:09:11.258+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:09:11.260+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:09:11.260+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:09:11.283+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 266.511 seconds
+[2026-02-23T22:10:06.999+0800] {processor.py:186} INFO - Started process (PID=10405) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:10:07.000+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:10:07.001+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:10:07.001+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:10:07.117+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:10:07.240+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:10:07.240+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:10:07.261+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:10:07.260+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:10:07.264+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:10:07.263+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:10:07.265+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:10:07.264+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:10:07.296+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 299.619 seconds
+[2026-02-23T22:11:03.523+0800] {processor.py:186} INFO - Started process (PID=10431) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:11:03.524+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:11:03.525+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:03.525+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:11:03.653+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:11:03.788+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:03.787+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:11:03.809+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:03.809+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:11:03.812+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:03.812+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:11:03.814+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:03.814+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:11:03.838+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 318.754 seconds
+[2026-02-23T22:11:37.883+0800] {processor.py:186} INFO - Started process (PID=10484) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:11:37.884+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:11:37.885+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:37.885+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:11:38.002+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:11:38.178+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:38.178+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:11:38.200+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:38.199+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:11:38.203+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:38.203+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:11:38.204+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:11:38.204+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:11:38.228+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 348.343 seconds
+[2026-02-23T22:12:16.223+0800] {processor.py:186} INFO - Started process (PID=10501) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:12:16.225+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:12:16.226+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:12:16.226+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:12:16.339+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:12:16.498+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:12:16.497+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:12:16.526+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:12:16.525+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:12:16.531+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:12:16.530+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:12:16.532+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:12:16.532+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:12:16.559+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 339.221 seconds
+[2026-02-23T22:17:25.938+0800] {processor.py:186} INFO - Started process (PID=10574) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:17:25.939+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:17:25.940+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:17:25.939+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:17:26.045+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:17:26.158+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:17:26.158+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:17:26.177+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:17:26.176+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:17:26.179+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:17:26.179+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:17:26.180+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:17:26.180+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:17:26.204+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 269.811 seconds
+[2026-02-23T22:18:06.621+0800] {processor.py:186} INFO - Started process (PID=10599) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:18:06.622+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:18:06.622+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:18:06.622+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:18:06.738+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'c_1p2n_DAG2', 'p_1p2n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:18:06.866+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:18:06.866+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:18:06.886+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:18:06.886+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:18:06.889+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:18:06.889+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:18:06.891+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:18:06.891+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:18:06.915+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 296.723 seconds
+[2026-02-23T22:19:03.189+0800] {processor.py:186} INFO - Started process (PID=10638) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:19:03.190+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:19:03.191+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:03.191+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:19:03.299+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG2', 'p_1p2n_DAGs', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:19:03.423+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:03.422+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:19:03.441+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:03.441+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:19:03.444+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:03.444+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:19:03.445+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:03.445+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:19:03.468+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 282.137 seconds
+[2026-02-23T22:19:57.112+0800] {processor.py:186} INFO - Started process (PID=10664) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:19:57.112+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:19:57.113+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:57.113+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:19:57.225+0800] {processor.py:925} INFO - DAG(s) 'c_1p2n_DAG1', 'p_1p2n_DAGs', 'c_1p2n_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:19:57.342+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:57.341+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:19:57.363+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:57.363+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:19:57.366+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:57.366+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:19:57.368+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:57.368+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:19:57.393+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 284.317 seconds
+[2026-02-23T22:20:47.925+0800] {processor.py:186} INFO - Started process (PID=10699) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:20:47.940+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py for tasks to queue
+[2026-02-23T22:20:47.941+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:47.941+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:20:48.055+0800] {processor.py:925} INFO - DAG(s) 'p_1p2n_DAGs', 'c_1p2n_DAG2', 'c_1p2n_DAG1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py
+[2026-02-23T22:20:48.192+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:48.192+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:20:48.213+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:48.213+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG1 to None, run_after=None
+[2026-02-23T22:20:48.216+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:48.216+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p2n_DAG2 to None, run_after=None
+[2026-02-23T22:20:48.218+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:48.218+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p2n_DAGs to None, run_after=None
+[2026-02-23T22:20:48.262+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p2n.py took 339.796 seconds
