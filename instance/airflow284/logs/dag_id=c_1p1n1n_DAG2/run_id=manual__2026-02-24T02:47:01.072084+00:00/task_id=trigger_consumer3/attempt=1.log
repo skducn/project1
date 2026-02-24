@@ -1,0 +1,16 @@
+[2026-02-24T10:47:15.398+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T10:47:15.418+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_1p1n1n_DAG2.trigger_consumer3 manual__2026-02-24T02:47:01.072084+00:00 [queued]>
+[2026-02-24T10:47:15.426+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_1p1n1n_DAG2.trigger_consumer3 manual__2026-02-24T02:47:01.072084+00:00 [queued]>
+[2026-02-24T10:47:15.426+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T10:47:15.439+0800] {taskinstance.py:2907} INFO - Executing <Task(TriggerDagRunOperator): trigger_consumer3> on 2026-02-24 02:47:01.072084+00:00
+[2026-02-24T10:47:15.442+0800] {standard_task_runner.py:72} INFO - Started process 5583 to run task
+[2026-02-24T10:47:15.449+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_1p1n1n_DAG2', 'trigger_consumer3', 'manual__2026-02-24T02:47:01.072084+00:00', '--job-id', '225', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /1p1n1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpml3d6w1b']
+[2026-02-24T10:47:15.453+0800] {standard_task_runner.py:105} INFO - Job 225: Subtask trigger_consumer3
+[2026-02-24T10:47:15.497+0800] {task_command.py:467} INFO - Running <TaskInstance: c_1p1n1n_DAG2.trigger_consumer3 manual__2026-02-24T02:47:01.072084+00:00 [running]> on host localhost-2.local
+[2026-02-24T10:47:15.574+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_1p1n1n_DAG2' AIRFLOW_CTX_TASK_ID='trigger_consumer3' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T02:47:01.072084+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-24T02:47:01.072084+00:00'
+[2026-02-24T10:47:15.576+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T10:47:15.644+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T10:47:15.645+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=c_1p1n1n_DAG2, task_id=trigger_consumer3, run_id=manual__2026-02-24T02:47:01.072084+00:00, execution_date=20260224T024701, start_date=20260224T024715, end_date=20260224T024715
+[2026-02-24T10:47:15.685+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T10:47:15.705+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T10:47:15.706+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

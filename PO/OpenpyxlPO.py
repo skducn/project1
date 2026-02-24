@@ -70,7 +70,7 @@ from openpyxl.utils import get_column_letter, column_index_from_string
 	insertNullCol(3) 在第3列前插入1列空白
 	insertNullCol(3,5)  在第3列前插入5列空白
 2.2 设置单元格
-	setCell(1, 2, "hello") # 将第一行B列写入hello
+	setCell(1, 2, "hello") # 将第一行2列写入hello
 	setCell(1, 'B', "john") # 将第一行第三列写入john
 2.3 插入行数据 insertRow({2: ["金浩", "101", "102"]})
 2.4 更新行数据 setRow({2: ["金浩", "101", "102"], 5: ["yoyo", "123", "666"]})

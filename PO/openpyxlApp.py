@@ -28,7 +28,7 @@ from PO.OpenpyxlPO import *
 # 1.9 重命名工作表 renameSheet("sheet1", "sheet2")
 
 # print("1.1 新建".center(100, "-"))
-Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx")
+# Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/11.xlsx")
 # Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data/1212.xlsx", l_sheet=['Sheet1','Sheet2','Sheet3'])
 
 # print("1.2 打开".center(100, "-"))
@@ -408,3 +408,19 @@ Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/PO/data
 # print("5.3 对一张表的两个sheet进行数据比对，将结果写入第一个sheet ".center(100, "-"))
 # Openpyxl_PO.genSheetByDiff("hello1", "hello2")
 
+Openpyxl_PO = OpenpyxlPO("/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/testcase.xlsx")
+shape = Openpyxl_PO.getL_shape("v1.0")
+
+l_all = []
+for i in range(shape[0]):
+    if Openpyxl_PO.getCell(i+1, 11, "v1.0") == "是":
+        l_ = []
+        l_.append(i+1)
+        l_.append(Openpyxl_PO.getCell(i+1, 2, "v1.0"))
+        l_.append(Openpyxl_PO.getCell(i+1, 4, "v1.0"))
+        l_.append(Openpyxl_PO.getCell(i+1, 12, "v1.0"))
+        l_.append(Openpyxl_PO.getCell(i+1, 13, "v1.0"))
+        print(i, "单行", l_)
+        l_all.append(l_)
+
+print("所有", l_all)

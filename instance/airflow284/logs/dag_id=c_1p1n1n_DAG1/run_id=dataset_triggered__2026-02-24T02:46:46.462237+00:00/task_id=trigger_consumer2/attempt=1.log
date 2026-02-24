@@ -1,0 +1,50 @@
+[2026-02-24T10:47:00.862+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T10:47:00.882+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_1p1n1n_DAG1.trigger_consumer2 dataset_triggered__2026-02-24T02:46:46.462237+00:00 [queued]>
+[2026-02-24T10:47:00.890+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_1p1n1n_DAG1.trigger_consumer2 dataset_triggered__2026-02-24T02:46:46.462237+00:00 [queued]>
+[2026-02-24T10:47:00.890+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T10:47:00.907+0800] {taskinstance.py:2907} INFO - Executing <Task(TriggerDagRunOperator): trigger_consumer2> on 2026-02-24 02:46:46.462237+00:00
+[2026-02-24T10:47:00.912+0800] {standard_task_runner.py:72} INFO - Started process 5577 to run task
+[2026-02-24T10:47:00.919+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_1p1n1n_DAG1', 'trigger_consumer2', 'dataset_triggered__2026-02-24T02:46:46.462237+00:00', '--job-id', '223', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /1p1n1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpsh5t5ikz']
+[2026-02-24T10:47:00.923+0800] {standard_task_runner.py:105} INFO - Job 223: Subtask trigger_consumer2
+[2026-02-24T10:47:00.972+0800] {task_command.py:467} INFO - Running <TaskInstance: c_1p1n1n_DAG1.trigger_consumer2 dataset_triggered__2026-02-24T02:46:46.462237+00:00 [running]> on host localhost-2.local
+[2026-02-24T10:47:01.053+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_1p1n1n_DAG1' AIRFLOW_CTX_TASK_ID='trigger_consumer2' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T02:46:46.462237+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-24T02:46:46.462237+00:00'
+[2026-02-24T10:47:01.055+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T10:47:01.086+0800] {providers_manager.py:296} WARNING - Exception when importing 'airflow.providers.standard.operators.trigger_dagrun.TriggerDagRunLink' from 'apache-airflow-providers-standard' package
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers_manager.py", line 327, in _correctness_check
+    imported_class = import_string(class_name)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/module_loading.py", line 39, in import_string
+    module = import_module(module_path)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/standard/operators/trigger_dagrun.py", line 35, in <module>
+    from airflow.providers.common.compat.sdk import (
+ImportError: cannot import name 'AirflowException' from 'airflow.providers.common.compat.sdk' (/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/compat/sdk.py)
+[2026-02-24T10:47:01.088+0800] {providers_manager.py:296} WARNING - Exception when importing 'airflow.providers.standard.sensors.external_task.ExternalDagLink' from 'apache-airflow-providers-standard' package
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers_manager.py", line 327, in _correctness_check
+    imported_class = import_string(class_name)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/module_loading.py", line 39, in import_string
+    module = import_module(module_path)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/standard/sensors/external_task.py", line 27, in <module>
+    from airflow.providers.common.compat.sdk import (
+ImportError: cannot import name 'AirflowSkipException' from 'airflow.providers.common.compat.sdk' (/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/providers/common/compat/sdk.py)
+[2026-02-24T10:47:01.129+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T10:47:01.130+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=c_1p1n1n_DAG1, task_id=trigger_consumer2, run_id=dataset_triggered__2026-02-24T02:46:46.462237+00:00, execution_date=20260224T024646, start_date=20260224T024700, end_date=20260224T024701
+[2026-02-24T10:47:01.193+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T10:47:01.213+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T10:47:01.213+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

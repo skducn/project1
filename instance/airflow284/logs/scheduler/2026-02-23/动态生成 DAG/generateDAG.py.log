@@ -1582,3 +1582,11 @@
 [2026-02-23T22:20:37.112+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:37.112+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
 [2026-02-23T22:20:37.117+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:37.117+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
 [2026-02-23T22:20:37.135+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 183.939 seconds
+[2026-02-23T22:21:26.147+0800] {processor.py:186} INFO - Started process (PID=10869) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-23T22:21:26.148+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-02-23T22:21:26.148+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:26.148+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-23T22:21:26.174+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-02-23T22:21:26.270+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:26.270+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-23T22:21:26.288+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:26.287+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-23T22:21:26.291+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:26.291+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-02-23T22:21:26.310+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 165.394 seconds

@@ -1,12 +1,16 @@
-import subprocess
+import datetime
+print(datetime.now())
 
-# 执行自动化测试并生成报告
-result = subprocess.run(
-    ["pytest", "/Users/linghuchong/Downloads/51/Python/project/instance/pytest1/test_2.py", "-v",
-     "--html=/tmp/test_report.html"],
-    capture_output=True, text=True
-)
-print(result)
+time_po.getDateTimeByMinus
+# import subprocess
+#
+# # 执行自动化测试并生成报告
+# result = subprocess.run(
+#     ["pytest", "/Users/linghuchong/Downloads/51/Python/project/instance/pytest1/test_2.py", "-v",
+#      "--html=/tmp/test_report.html"],
+#     capture_output=True, text=True
+# )
+# print(result)
 
 
 #

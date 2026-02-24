@@ -1,0 +1,19 @@
+[2026-02-24T11:26:36.606+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T11:26:36.620+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: p_2p1n_dw_order_sync.sync_order_data manual__2026-02-24T03:26:32.522691+00:00 [queued]>
+[2026-02-24T11:26:36.626+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: p_2p1n_dw_order_sync.sync_order_data manual__2026-02-24T03:26:32.522691+00:00 [queued]>
+[2026-02-24T11:26:36.626+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T11:26:36.638+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): sync_order_data> on 2026-02-24 03:26:32.522691+00:00
+[2026-02-24T11:26:36.641+0800] {standard_task_runner.py:72} INFO - Started process 6941 to run task
+[2026-02-24T11:26:36.648+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'p_2p1n_dw_order_sync', 'sync_order_data', 'manual__2026-02-24T03:26:32.522691+00:00', '--job-id', '242', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /2p1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpz8cd2es9']
+[2026-02-24T11:26:36.653+0800] {standard_task_runner.py:105} INFO - Job 242: Subtask sync_order_data
+[2026-02-24T11:26:36.703+0800] {task_command.py:467} INFO - Running <TaskInstance: p_2p1n_dw_order_sync.sync_order_data manual__2026-02-24T03:26:32.522691+00:00 [running]> on host localhost-2.local
+[2026-02-24T11:26:36.962+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='p_2p1n_dw_order_sync' AIRFLOW_CTX_TASK_ID='sync_order_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T03:26:32.522691+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-24T03:26:32.522691+00:00'
+[2026-02-24T11:26:36.963+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T11:26:36.978+0800] {logging_mixin.py:190} INFO - 【生产者1-订单】开始同步订单数据...
+[2026-02-24T11:26:36.979+0800] {logging_mixin.py:190} INFO - 【生产者1-订单】订单数据同步完成：{'order_id': 'OD20260214001', 'user_id': 'U10086', 'order_amount': 199.99, 'order_time': '2026-02-24 11:26:36'}
+[2026-02-24T11:26:36.980+0800] {python.py:240} INFO - Done. Returned value was: {'order_id': 'OD20260214001', 'user_id': 'U10086', 'order_amount': 199.99, 'order_time': '2026-02-24 11:26:36'}
+[2026-02-24T11:26:36.999+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T11:26:37.001+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=p_2p1n_dw_order_sync, task_id=sync_order_data, run_id=manual__2026-02-24T03:26:32.522691+00:00, execution_date=20260224T032632, start_date=20260224T032636, end_date=20260224T032637
+[2026-02-24T11:26:37.062+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T11:26:37.082+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T11:26:37.082+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

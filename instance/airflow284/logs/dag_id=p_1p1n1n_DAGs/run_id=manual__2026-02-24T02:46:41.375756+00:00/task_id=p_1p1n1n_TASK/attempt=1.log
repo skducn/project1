@@ -1,0 +1,18 @@
+[2026-02-24T10:46:46.173+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T10:46:46.194+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: p_1p1n1n_DAGs.p_1p1n1n_TASK manual__2026-02-24T02:46:41.375756+00:00 [queued]>
+[2026-02-24T10:46:46.200+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: p_1p1n1n_DAGs.p_1p1n1n_TASK manual__2026-02-24T02:46:41.375756+00:00 [queued]>
+[2026-02-24T10:46:46.204+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T10:46:46.254+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): p_1p1n1n_TASK> on 2026-02-24 02:46:41.375756+00:00
+[2026-02-24T10:46:46.260+0800] {standard_task_runner.py:72} INFO - Started process 5566 to run task
+[2026-02-24T10:46:46.268+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'p_1p1n1n_DAGs', 'p_1p1n1n_TASK', 'manual__2026-02-24T02:46:41.375756+00:00', '--job-id', '221', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /1p1n1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpvd_bb7xj']
+[2026-02-24T10:46:46.272+0800] {standard_task_runner.py:105} INFO - Job 221: Subtask p_1p1n1n_TASK
+[2026-02-24T10:46:46.319+0800] {task_command.py:467} INFO - Running <TaskInstance: p_1p1n1n_DAGs.p_1p1n1n_TASK manual__2026-02-24T02:46:41.375756+00:00 [running]> on host localhost-2.local
+[2026-02-24T10:46:46.398+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='p_1p1n1n_DAGs' AIRFLOW_CTX_TASK_ID='p_1p1n1n_TASK' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T02:46:41.375756+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-24T02:46:41.375756+00:00'
+[2026-02-24T10:46:46.400+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T10:46:46.418+0800] {logging_mixin.py:190} INFO - 开始同步订单数据...
+[2026-02-24T10:46:46.419+0800] {python.py:240} INFO - Done. Returned value was: ('333',)
+[2026-02-24T10:46:46.440+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T10:46:46.441+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=p_1p1n1n_DAGs, task_id=p_1p1n1n_TASK, run_id=manual__2026-02-24T02:46:41.375756+00:00, execution_date=20260224T024641, start_date=20260224T024646, end_date=20260224T024646
+[2026-02-24T10:46:46.502+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T10:46:46.523+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T10:46:46.524+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

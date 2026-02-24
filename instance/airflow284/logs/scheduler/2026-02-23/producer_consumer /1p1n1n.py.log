@@ -779,3 +779,12 @@
 [2026-02-23T22:20:55.457+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:55.456+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n1n_DAG2 to None, run_after=None
 [2026-02-23T22:20:55.458+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:55.457+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n1n_DAGs to None, run_after=None
 [2026-02-23T22:20:55.480+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n1n.py took 299.089 seconds
+[2026-02-23T22:21:40.627+0800] {processor.py:186} INFO - Started process (PID=10874) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n1n.py
+[2026-02-23T22:21:40.628+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n1n.py for tasks to queue
+[2026-02-23T22:21:40.629+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:40.628+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n1n.py
+[2026-02-23T22:21:40.728+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n1n_DAG1', 'c_1p1n1n_DAG2', 'p_1p1n1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n1n.py
+[2026-02-23T22:21:40.831+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:40.831+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:21:40.848+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:40.847+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n1n_DAG1 to None, run_after=None
+[2026-02-23T22:21:40.850+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:40.850+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n1n_DAG2 to None, run_after=None
+[2026-02-23T22:21:40.851+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:40.851+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n1n_DAGs to None, run_after=None
+[2026-02-23T22:21:40.871+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n1n.py took 246.076 seconds

@@ -1,6 +1,6 @@
-# 多个生产者 → 1 个消费者的完整实例（多数据源依赖），
-# 核心逻辑是：消费者 DAG 同时监听多个数据集，仅当所有生产者都更新了对应数据集后，消费者才会被触发。
-# 这个场景贴合实际业务（比如：订单数据 + 用户数据 都同步完成后，才执行 “订单 - 用户关联分析”），以下是可直接运行的完整代码和验证步骤。
+# 2个生产者 → 1个消费者
+# 功能：消费者 DAG 同时监听多个数据集，仅当所有生产者都更新了对应数据集后，消费者才会被触发。
+# 场景：订单数据 + 用户数据 都同步完成后，才执行 “订单 - 用户关联分析”
 
 from airflow import DAG, Dataset
 from airflow.operators.python import PythonOperator
@@ -43,14 +43,12 @@ def sync_order_data():
     }
     print(f"【生产者1-订单】订单数据同步完成：{order_data}")
     return order_data  # 存入XCom，供消费者读取
-
-
 with DAG(
-        dag_id="producer_N_1_dw_order_sync",  # 生产者1 DAG ID
+        dag_id="p_2p1n_dw_order_sync",  # 生产者1 DAG ID
         start_date=datetime(2026, 2, 14),
         schedule_interval=None,  # 手动触发
         catchup=False,
-        tags=["生产者1", "订单同步"]
+        tags=["2p1n", "生产者1", "订单同步"]
 ) as producer1_dag:
     sync_order_task = PythonOperator(
         task_id="sync_order_data",
@@ -75,11 +73,11 @@ def sync_user_data():
 
 
 with DAG(
-        dag_id="producer_N_1_dw_user_sync",  # 生产者2 DAG ID
+        dag_id="p_2p1n_dw_user_sync",
         start_date=datetime(2026, 2, 14),
         schedule_interval=None,  # 手动触发
         catchup=False,
-        tags=["生产者2", "用户同步"]
+        tags=["2p1n","生产者2", "用户同步"]
 ) as producer2_dag:
     sync_user_task = PythonOperator(
         task_id="sync_user_data",
@@ -106,7 +104,7 @@ def analyze_order_user(**context):
                 DagRun.dag_id == producer_dag_id,
                 DagRun.state == "success",
                 # DagRun.execution_date >= datetime.now() - timedelta(hours=1)  # 限定1小时内
-                DagRun.execution_date >= datetime.now(pytz.timezone("Asia/Shanghai")) - timedelta(hours=1)
+                # DagRun.execution_date >= datetime.now(pytz.timezone("Asia/Shanghai")) - timedelta(hours=1)
             ).order_by(DagRun.execution_date.desc()).first()
 
             if latest_run:
@@ -121,8 +119,8 @@ def analyze_order_user(**context):
         return xcom_value
 
     # 步骤1：读取两个生产者的数据
-    order_data = get_producer_xcom("producer_N_1_dw_order_sync", "sync_order_data")
-    user_data = get_producer_xcom("producer_N_1_dw_user_sync", "sync_user_data")
+    order_data = get_producer_xcom("p_2p1n_dw_order_sync", "sync_order_data")
+    user_data = get_producer_xcom("p_2p1n_dw_user_sync", "sync_user_data")
 
     # 步骤2：校验数据是否完整
     if not order_data or not user_data:
@@ -145,12 +143,12 @@ def analyze_order_user(**context):
 
 
 with DAG(
-        dag_id="consumer_N_1_order_user_analysis",  # 消费者DAG ID
+        dag_id="c_2p1n_order_user_analysis",  # 消费者DAG ID
         start_date=datetime(2026, 2, 14),
         # 关键配置：同时监听两个数据集（必须都更新才触发）
         schedule=[dw_order_dataset, dw_user_dataset],
         catchup=False,
-        tags=["消费者", "多数据源依赖", "关联分析"]
+        tags=["2p1n","消费者", "多数据源依赖", "关联分析"]
 ) as consumer_dag:
     analyze_task = PythonOperator(
         task_id="analyze_order_user",

@@ -1,0 +1,19 @@
+[2026-02-24T15:59:13.416+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T15:59:13.429+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_cdrd.c_cdrd_TASK1 dataset_triggered__2026-02-24T07:59:06.225233+00:00 [queued]>
+[2026-02-24T15:59:13.436+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_cdrd.c_cdrd_TASK1 dataset_triggered__2026-02-24T07:59:06.225233+00:00 [queued]>
+[2026-02-24T15:59:13.436+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T15:59:13.448+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): c_cdrd_TASK1> on 2026-02-24 07:59:06.225233+00:00
+[2026-02-24T15:59:13.452+0800] {standard_task_runner.py:72} INFO - Started process 17077 to run task
+[2026-02-24T15:59:13.459+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_cdrd', 'c_cdrd_TASK1', 'dataset_triggered__2026-02-24T07:59:06.225233+00:00', '--job-id', '268', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp0h1n4oip']
+[2026-02-24T15:59:13.463+0800] {standard_task_runner.py:105} INFO - Job 268: Subtask c_cdrd_TASK1
+[2026-02-24T15:59:13.512+0800] {task_command.py:467} INFO - Running <TaskInstance: c_cdrd.c_cdrd_TASK1 dataset_triggered__2026-02-24T07:59:06.225233+00:00 [running]> on host localhost-2.local
+[2026-02-24T15:59:13.888+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_cdrd' AIRFLOW_CTX_TASK_ID='c_cdrd_TASK1' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T07:59:06.225233+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-24T07:59:06.225233+00:00'
+[2026-02-24T15:59:13.890+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T15:59:13.920+0800] {logging_mixin.py:190} INFO - ✅ 成功从消费者 p_cdrd_all.p_cdrd_TASK 获取 XCom 值: [6, '用户模块', '[{"1，用户登录接口": "curl login(‘admin’，’123456‘)"}, {"2，设置机构接口"："curl org（code：\'123\'，name：‘宝山社区\'）"}]', '{"sql":"select * from user where name=\'张三\'"，"validation"：{"name":"张三",\'age\':\'20\',\'sex\':"1"}}', None]
+[2026-02-24T15:59:13.921+0800] {logging_mixin.py:190} INFO - 【消费者任务1】从生产者获取的返回值: [6, '用户模块', '[{"1，用户登录接口": "curl login(‘admin’，’123456‘)"}, {"2，设置机构接口"："curl org（code：\'123\'，name：‘宝山社区\'）"}]', '{"sql":"select * from user where name=\'张三\'"，"validation"：{"name":"张三",\'age\':\'20\',\'sex\':"1"}}', None]
+[2026-02-24T15:59:13.921+0800] {python.py:240} INFO - Done. Returned value was: [6, '用户模块', '[{"1，用户登录接口": "curl login(‘admin’，’123456‘)"}, {"2，设置机构接口"："curl org（code：\'123\'，name：‘宝山社区\'）"}]', '{"sql":"select * from user where name=\'张三\'"，"validation"：{"name":"张三",\'age\':\'20\',\'sex\':"1"}}', None]
+[2026-02-24T15:59:13.937+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T15:59:13.939+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=c_cdrd, task_id=c_cdrd_TASK1, run_id=dataset_triggered__2026-02-24T07:59:06.225233+00:00, execution_date=20260224T075906, start_date=20260224T075913, end_date=20260224T075913
+[2026-02-24T15:59:13.971+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T15:59:13.999+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T15:59:14.001+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

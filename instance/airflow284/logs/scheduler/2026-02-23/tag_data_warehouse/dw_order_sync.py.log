@@ -1377,3 +1377,17 @@
 [2026-02-23T22:20:09.200+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:09.199+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-23T22:20:09.221+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:09.221+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
 [2026-02-23T22:20:09.243+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py took 200.088 seconds
+[2026-02-23T22:20:58.679+0800] {processor.py:186} INFO - Started process (PID=10834) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py
+[2026-02-23T22:20:58.679+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py for tasks to queue
+[2026-02-23T22:20:58.680+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:58.680+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py
+[2026-02-23T22:20:58.805+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py
+[2026-02-23T22:20:58.818+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:58.818+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-23T22:20:58.838+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:58.838+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-23T22:20:58.856+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py took 180.022 seconds
+[2026-02-23T22:21:43.919+0800] {processor.py:186} INFO - Started process (PID=10875) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py
+[2026-02-23T22:21:43.920+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py for tasks to queue
+[2026-02-23T22:21:43.921+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:43.921+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py
+[2026-02-23T22:21:44.042+0800] {processor.py:925} INFO - DAG(s) 'dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py
+[2026-02-23T22:21:44.055+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:44.055+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-23T22:21:44.074+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:44.074+0800] {dag.py:4180} INFO - Setting next_dagrun for dw_order_sync to 2026-02-28 16:00:00+00:00, run_after=2026-03-31 16:00:00+00:00
+[2026-02-23T22:21:44.088+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_data_warehouse/dw_order_sync.py took 172.187 seconds

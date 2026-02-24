@@ -1579,3 +1579,12 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-02-23T22:19:50.963+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:50.963+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
 [2026-02-23T22:19:50.965+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:19:50.964+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
 [2026-02-23T22:19:50.990+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 289.001 seconds
+[2026-02-23T22:21:05.326+0800] {processor.py:186} INFO - Started process (PID=10840) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-23T22:21:05.327+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-23T22:21:05.328+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:05.328+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-23T22:21:05.452+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_stat', 'consumer_dw_order_clean', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-23T22:21:05.584+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:05.584+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-23T22:21:05.604+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:05.604+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-23T22:21:05.607+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:05.607+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-23T22:21:05.608+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:05.608+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-23T22:21:05.631+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 308.101 seconds

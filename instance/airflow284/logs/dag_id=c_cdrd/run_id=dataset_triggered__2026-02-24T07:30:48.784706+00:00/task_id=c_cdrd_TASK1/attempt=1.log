@@ -1,0 +1,19 @@
+[2026-02-24T15:30:56.005+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T15:30:56.020+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_cdrd.c_cdrd_TASK1 dataset_triggered__2026-02-24T07:30:48.784706+00:00 [queued]>
+[2026-02-24T15:30:56.028+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_cdrd.c_cdrd_TASK1 dataset_triggered__2026-02-24T07:30:48.784706+00:00 [queued]>
+[2026-02-24T15:30:56.028+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T15:30:56.041+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): c_cdrd_TASK1> on 2026-02-24 07:30:48.784706+00:00
+[2026-02-24T15:30:56.045+0800] {standard_task_runner.py:72} INFO - Started process 16198 to run task
+[2026-02-24T15:30:56.052+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_cdrd', 'c_cdrd_TASK1', 'dataset_triggered__2026-02-24T07:30:48.784706+00:00', '--job-id', '258', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp7v0nlz1v']
+[2026-02-24T15:30:56.057+0800] {standard_task_runner.py:105} INFO - Job 258: Subtask c_cdrd_TASK1
+[2026-02-24T15:30:56.122+0800] {task_command.py:467} INFO - Running <TaskInstance: c_cdrd.c_cdrd_TASK1 dataset_triggered__2026-02-24T07:30:48.784706+00:00 [running]> on host localhost-2.local
+[2026-02-24T15:30:56.436+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_cdrd' AIRFLOW_CTX_TASK_ID='c_cdrd_TASK1' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T07:30:48.784706+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-24T07:30:48.784706+00:00'
+[2026-02-24T15:30:56.437+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T15:30:56.471+0800] {logging_mixin.py:190} INFO - ✅ 成功从消费者 p_cdrd_all.p_cdrd_TASK 获取 XCom 值: [38, 16]
+[2026-02-24T15:30:56.472+0800] {logging_mixin.py:190} INFO - 【消费者任务1】从生产者获取的返回值: [38, 16]
+[2026-02-24T15:30:56.472+0800] {python.py:240} INFO - Done. Returned value was: [38, 16]
+[2026-02-24T15:30:56.487+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T15:30:56.488+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=c_cdrd, task_id=c_cdrd_TASK1, run_id=dataset_triggered__2026-02-24T07:30:48.784706+00:00, execution_date=20260224T073048, start_date=20260224T073056, end_date=20260224T073056
+[2026-02-24T15:30:56.552+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T15:30:56.582+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T15:30:56.583+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

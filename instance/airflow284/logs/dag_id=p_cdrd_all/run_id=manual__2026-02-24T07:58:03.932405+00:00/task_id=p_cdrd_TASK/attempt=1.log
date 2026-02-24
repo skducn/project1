@@ -1,0 +1,76 @@
+[2026-02-24T15:58:08.924+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T15:58:08.937+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: p_cdrd_all.p_cdrd_TASK manual__2026-02-24T07:58:03.932405+00:00 [queued]>
+[2026-02-24T15:58:08.943+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: p_cdrd_all.p_cdrd_TASK manual__2026-02-24T07:58:03.932405+00:00 [queued]>
+[2026-02-24T15:58:08.943+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T15:58:08.956+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): p_cdrd_TASK> on 2026-02-24 07:58:03.932405+00:00
+[2026-02-24T15:58:08.960+0800] {standard_task_runner.py:72} INFO - Started process 17039 to run task
+[2026-02-24T15:58:08.967+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'p_cdrd_all', 'p_cdrd_TASK', 'manual__2026-02-24T07:58:03.932405+00:00', '--job-id', '266', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpla6y60r5']
+[2026-02-24T15:58:08.971+0800] {standard_task_runner.py:105} INFO - Job 266: Subtask p_cdrd_TASK
+[2026-02-24T15:58:09.022+0800] {task_command.py:467} INFO - Running <TaskInstance: p_cdrd_all.p_cdrd_TASK manual__2026-02-24T07:58:03.932405+00:00 [running]> on host localhost-2.local
+[2026-02-24T15:58:09.350+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='p_cdrd_all' AIRFLOW_CTX_TASK_ID='p_cdrd_TASK' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T07:58:03.932405+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-24T07:58:03.932405+00:00'
+[2026-02-24T15:58:09.351+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T15:58:09.445+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py", line 95, in p_cdrd_TASK
+    for i in range(1, len(shape[0])):
+TypeError: object of type 'int' has no len()
+[2026-02-24T15:58:09.456+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=p_cdrd_all, task_id=p_cdrd_TASK, run_id=manual__2026-02-24T07:58:03.932405+00:00, execution_date=20260224T075803, start_date=20260224T075808, end_date=20260224T075809
+[2026-02-24T15:58:09.473+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T15:58:09.474+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 266 for task p_cdrd_TASK (object of type 'int' has no len(); 17039)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py", line 95, in p_cdrd_TASK
+    for i in range(1, len(shape[0])):
+TypeError: object of type 'int' has no len()
+[2026-02-24T15:58:09.505+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-24T15:58:09.525+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T15:58:09.526+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

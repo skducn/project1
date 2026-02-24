@@ -1,0 +1,19 @@
+[2026-02-24T11:31:34.686+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T11:31:34.699+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: p_2p1n_dw_user_sync.sync_user_data manual__2026-02-24T03:31:27.744326+00:00 [queued]>
+[2026-02-24T11:31:34.705+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: p_2p1n_dw_user_sync.sync_user_data manual__2026-02-24T03:31:27.744326+00:00 [queued]>
+[2026-02-24T11:31:34.705+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T11:31:34.718+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): sync_user_data> on 2026-02-24 03:31:27.744326+00:00
+[2026-02-24T11:31:34.720+0800] {standard_task_runner.py:72} INFO - Started process 7104 to run task
+[2026-02-24T11:31:34.727+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'p_2p1n_dw_user_sync', 'sync_user_data', 'manual__2026-02-24T03:31:27.744326+00:00', '--job-id', '243', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /2p1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpij_jre1s']
+[2026-02-24T11:31:34.731+0800] {standard_task_runner.py:105} INFO - Job 243: Subtask sync_user_data
+[2026-02-24T11:31:34.775+0800] {task_command.py:467} INFO - Running <TaskInstance: p_2p1n_dw_user_sync.sync_user_data manual__2026-02-24T03:31:27.744326+00:00 [running]> on host localhost-2.local
+[2026-02-24T11:31:35.038+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='p_2p1n_dw_user_sync' AIRFLOW_CTX_TASK_ID='sync_user_data' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T03:31:27.744326+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-24T03:31:27.744326+00:00'
+[2026-02-24T11:31:35.040+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T11:31:35.060+0800] {logging_mixin.py:190} INFO - 【生产者2-用户】开始同步用户数据...
+[2026-02-24T11:31:35.060+0800] {logging_mixin.py:190} INFO - 【生产者2-用户】用户数据同步完成：{'user_id': 'U10086', 'user_name': '张三', 'user_phone': '13800138000', 'user_reg_time': '2026-01-01 10:00:00'}
+[2026-02-24T11:31:35.061+0800] {python.py:240} INFO - Done. Returned value was: {'user_id': 'U10086', 'user_name': '张三', 'user_phone': '13800138000', 'user_reg_time': '2026-01-01 10:00:00'}
+[2026-02-24T11:31:35.079+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T11:31:35.080+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=p_2p1n_dw_user_sync, task_id=sync_user_data, run_id=manual__2026-02-24T03:31:27.744326+00:00, execution_date=20260224T033127, start_date=20260224T033134, end_date=20260224T033135
+[2026-02-24T11:31:35.169+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T11:31:35.187+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T11:31:35.188+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

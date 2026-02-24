@@ -1762,3 +1762,11 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-02-23T22:20:26.679+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:26.679+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_variable to None, run_after=None
 [2026-02-23T22:20:26.682+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:26.682+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_variable_sync to None, run_after=None
 [2026-02-23T22:20:26.705+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_variable.py took 270.408 seconds
+[2026-02-23T22:21:15.981+0800] {processor.py:186} INFO - Started process (PID=10863) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_variable.py
+[2026-02-23T22:21:15.982+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_variable.py for tasks to queue
+[2026-02-23T22:21:15.983+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:15.983+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_variable.py
+[2026-02-23T22:21:16.078+0800] {processor.py:925} INFO - DAG(s) 'consumer_variable', 'producer_variable_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_variable.py
+[2026-02-23T22:21:16.188+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:16.188+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-23T22:21:16.211+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:16.210+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_variable to None, run_after=None
+[2026-02-23T22:21:16.215+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:16.215+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_variable_sync to None, run_after=None
+[2026-02-23T22:21:16.236+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_variable.py took 257.573 seconds

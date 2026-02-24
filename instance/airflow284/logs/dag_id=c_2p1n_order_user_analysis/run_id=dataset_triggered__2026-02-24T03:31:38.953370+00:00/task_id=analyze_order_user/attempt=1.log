@@ -1,0 +1,19 @@
+[2026-02-24T11:31:46.220+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-24T11:31:46.235+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_2p1n_order_user_analysis.analyze_order_user dataset_triggered__2026-02-24T03:31:38.953370+00:00 [queued]>
+[2026-02-24T11:31:46.241+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_2p1n_order_user_analysis.analyze_order_user dataset_triggered__2026-02-24T03:31:38.953370+00:00 [queued]>
+[2026-02-24T11:31:46.242+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-24T11:31:46.253+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): analyze_order_user> on 2026-02-24 03:31:38.953370+00:00
+[2026-02-24T11:31:46.256+0800] {standard_task_runner.py:72} INFO - Started process 7109 to run task
+[2026-02-24T11:31:46.264+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_2p1n_order_user_analysis', 'analyze_order_user', 'dataset_triggered__2026-02-24T03:31:38.953370+00:00', '--job-id', '245', '--raw', '--subdir', 'DAGS_FOLDER/producer_consumer /2p1n.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpmwpgkvne']
+[2026-02-24T11:31:46.269+0800] {standard_task_runner.py:105} INFO - Job 245: Subtask analyze_order_user
+[2026-02-24T11:31:46.319+0800] {task_command.py:467} INFO - Running <TaskInstance: c_2p1n_order_user_analysis.analyze_order_user dataset_triggered__2026-02-24T03:31:38.953370+00:00 [running]> on host localhost-2.local
+[2026-02-24T11:31:46.592+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_2p1n_order_user_analysis' AIRFLOW_CTX_TASK_ID='analyze_order_user' AIRFLOW_CTX_EXECUTION_DATE='2026-02-24T03:31:38.953370+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-24T03:31:38.953370+00:00'
+[2026-02-24T11:31:46.598+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-24T11:31:46.629+0800] {logging_mixin.py:190} INFO - 【消费者】开始订单-用户关联分析...
+[2026-02-24T11:31:46.630+0800] {logging_mixin.py:190} INFO - 【消费者】关联分析完成！结果：{'分析时间': '2026-02-24 11:31:46', '关联订单ID': 'OD20260214001', '关联用户ID': 'U10086', '用户姓名': '张三', '订单金额': 199.99, '用户手机号': '13800138000', '分析结论': '用户张三（13800138000）于2026-02-24 11:31:38下单，金额199.99元'}
+[2026-02-24T11:31:46.631+0800] {python.py:240} INFO - Done. Returned value was: {'分析时间': '2026-02-24 11:31:46', '关联订单ID': 'OD20260214001', '关联用户ID': 'U10086', '用户姓名': '张三', '订单金额': 199.99, '用户手机号': '13800138000', '分析结论': '用户张三（13800138000）于2026-02-24 11:31:38下单，金额199.99元'}
+[2026-02-24T11:31:46.652+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-24T11:31:46.652+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=c_2p1n_order_user_analysis, task_id=analyze_order_user, run_id=dataset_triggered__2026-02-24T03:31:38.953370+00:00, execution_date=20260224T033138, start_date=20260224T033146, end_date=20260224T033146
+[2026-02-24T11:31:46.709+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-24T11:31:46.725+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-24T11:31:46.726+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

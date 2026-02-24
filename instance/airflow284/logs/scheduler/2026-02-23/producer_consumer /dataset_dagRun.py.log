@@ -1486,3 +1486,11 @@
 [2026-02-23T22:20:40.634+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:40.634+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dagRun to None, run_after=None
 [2026-02-23T22:20:40.637+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:20:40.637+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dagRun_sync to None, run_after=None
 [2026-02-23T22:20:40.658+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py took 283.683 seconds
+[2026-02-23T22:21:50.713+0800] {processor.py:186} INFO - Started process (PID=10877) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py
+[2026-02-23T22:21:50.714+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py for tasks to queue
+[2026-02-23T22:21:50.715+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:50.715+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py
+[2026-02-23T22:21:50.803+0800] {processor.py:925} INFO - DAG(s) 'consumer_dagRun', 'producer_dagRun_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py
+[2026-02-23T22:21:50.903+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:50.902+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-23T22:21:50.920+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:50.919+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dagRun to None, run_after=None
+[2026-02-23T22:21:50.922+0800] {logging_mixin.py:190} INFO - [2026-02-23T22:21:50.922+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dagRun_sync to None, run_after=None
+[2026-02-23T22:21:50.944+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_dagRun.py took 233.441 seconds
