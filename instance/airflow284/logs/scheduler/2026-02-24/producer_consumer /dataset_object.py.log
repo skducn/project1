@@ -2636,3 +2636,11 @@ sqlalchemy.orm.exc.StaleDataError: UPDATE statement on table 'serialized_dag' ex
 [2026-02-24T18:40:44.139+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:40:44.138+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_object to None, run_after=None
 [2026-02-24T18:40:44.142+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:40:44.141+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_object_sync to None, run_after=None
 [2026-02-24T18:40:44.165+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py took 297.785 seconds
+[2026-02-24T18:42:28.848+0800] {processor.py:186} INFO - Started process (PID=23949) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-24T18:42:28.849+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py for tasks to queue
+[2026-02-24T18:42:28.850+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:28.850+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-24T18:42:28.948+0800] {processor.py:925} INFO - DAG(s) 'producer_object_sync', 'consumer_object' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-24T18:42:29.049+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:29.049+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-24T18:42:29.066+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:29.066+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_object to None, run_after=None
+[2026-02-24T18:42:29.069+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:29.069+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_object_sync to None, run_after=None
+[2026-02-24T18:42:29.092+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py took 246.220 seconds

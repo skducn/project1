@@ -1,0 +1,24 @@
+[2026-02-25T11:27:49.183+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-25T11:27:49.198+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_cdrd_DAG1.c_cdrd_TASK1 dataset_triggered__2026-02-25T03:27:30.688841+00:00 [queued]>
+[2026-02-25T11:27:49.205+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_cdrd_DAG1.c_cdrd_TASK1 dataset_triggered__2026-02-25T03:27:30.688841+00:00 [queued]>
+[2026-02-25T11:27:49.207+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-25T11:27:49.221+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): c_cdrd_TASK1> on 2026-02-25 03:27:30.688841+00:00
+[2026-02-25T11:27:49.225+0800] {standard_task_runner.py:72} INFO - Started process 7035 to run task
+[2026-02-25T11:27:49.232+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_cdrd_DAG1', 'c_cdrd_TASK1', 'dataset_triggered__2026-02-25T03:27:30.688841+00:00', '--job-id', '367', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp7o1k66t8']
+[2026-02-25T11:27:49.237+0800] {standard_task_runner.py:105} INFO - Job 367: Subtask c_cdrd_TASK1
+[2026-02-25T11:27:49.286+0800] {task_command.py:467} INFO - Running <TaskInstance: c_cdrd_DAG1.c_cdrd_TASK1 dataset_triggered__2026-02-25T03:27:30.688841+00:00 [running]> on host localhost-2.local
+[2026-02-25T11:27:49.815+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_cdrd_DAG1' AIRFLOW_CTX_TASK_ID='c_cdrd_TASK1' AIRFLOW_CTX_EXECUTION_DATE='2026-02-25T03:27:30.688841+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-25T03:27:30.688841+00:00'
+[2026-02-25T11:27:49.821+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-25T11:27:49.850+0800] {logging_mixin.py:190} INFO - ✅ 成功从消费者 p_cdrd_all.p_cdrd_TASK 获取 XCom 值: [[6, '用户模块', None, '{"sql": "select count(*) from user where job_num=\'{result[\'job_num\']}\'", "value": 1}', '新增用户.py'], [7, '系统模块', None, '{1:"select count(*) from user where nick_name=\'张三\' and user_name=\'zhangsan\'"，"validation"：{"name":"张三",\'age\':\'20\',\'sex\':"1"}}', '编辑角色.py']]
+[2026-02-25T11:27:50.166+0800] {logging_mixin.py:190} INFO - 生成默认测试数据: [['简丹丹', '15124772093', 'vliu@example.net', '294833', '737145']]
+[2026-02-25T11:27:56.888+0800] {logging_mixin.py:190} INFO - Playwright 执行结果: {'nick_name': '简丹丹', 'phonenumber': '15124772093', 'email': 'vliu@example.net', 'user_name': '294833', 'job_num': '737145'}
+[2026-02-25T11:27:56.889+0800] {logging_mixin.py:190} INFO - 最终返回结果: {'nick_name': '简丹丹', 'phonenumber': '15124772093', 'email': 'vliu@example.net', 'user_name': '294833', 'job_num': '737145'}
+[2026-02-25T11:27:56.890+0800] {logging_mixin.py:190} INFO - {"sql": "select count(*) from user where job_num='{result['job_num']}'", "value": 1}
+[2026-02-25T11:27:56.890+0800] {logging_mixin.py:190} INFO - select count(*) from user where job_num='737145'
+[2026-02-25T11:27:56.891+0800] {logging_mixin.py:190} INFO - 1
+[2026-02-25T11:27:56.891+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-25T11:27:56.921+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-25T11:27:56.922+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=c_cdrd_DAG1, task_id=c_cdrd_TASK1, run_id=dataset_triggered__2026-02-25T03:27:30.688841+00:00, execution_date=20260225T032730, start_date=20260225T032749, end_date=20260225T032756
+[2026-02-25T11:27:56.994+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-25T11:27:57.012+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-25T11:27:57.012+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,17 @@
+[2026-02-25T12:17:42.792+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-25T12:17:42.805+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: p_cdrd_all.p_cdrd_TASK manual__2026-02-25T04:17:34.239273+00:00 [queued]>
+[2026-02-25T12:17:42.811+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: p_cdrd_all.p_cdrd_TASK manual__2026-02-25T04:17:34.239273+00:00 [queued]>
+[2026-02-25T12:17:42.811+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-25T12:17:42.823+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): p_cdrd_TASK> on 2026-02-25 04:17:34.239273+00:00
+[2026-02-25T12:17:42.827+0800] {standard_task_runner.py:72} INFO - Started process 8828 to run task
+[2026-02-25T12:17:42.834+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'p_cdrd_all', 'p_cdrd_TASK', 'manual__2026-02-25T04:17:34.239273+00:00', '--job-id', '374', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpu6jxioj8']
+[2026-02-25T12:17:42.839+0800] {standard_task_runner.py:105} INFO - Job 374: Subtask p_cdrd_TASK
+[2026-02-25T12:17:42.903+0800] {task_command.py:467} INFO - Running <TaskInstance: p_cdrd_all.p_cdrd_TASK manual__2026-02-25T04:17:34.239273+00:00 [running]> on host localhost-2.local
+[2026-02-25T12:17:42.980+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='p_cdrd_all' AIRFLOW_CTX_TASK_ID='p_cdrd_TASK' AIRFLOW_CTX_EXECUTION_DATE='2026-02-25T04:17:34.239273+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-25T04:17:34.239273+00:00'
+[2026-02-25T12:17:42.982+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-25T12:17:43.010+0800] {python.py:240} INFO - Done. Returned value was: [[6, '系统管理', '用户管理', None, '{"sql": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "value": 1}', '新增用户.py'], [7, '系统管理', '角色管理', None, '{"sql": "select count(*) as qty from sys_role where role_name=\'{result[\'role_name\']}\'", "value": 1}', '编辑角色.py']]
+[2026-02-25T12:17:43.032+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-25T12:17:43.033+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=p_cdrd_all, task_id=p_cdrd_TASK, run_id=manual__2026-02-25T04:17:34.239273+00:00, execution_date=20260225T041734, start_date=20260225T041742, end_date=20260225T041743
+[2026-02-25T12:17:43.112+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-25T12:17:43.136+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-25T12:17:43.137+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

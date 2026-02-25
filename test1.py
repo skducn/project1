@@ -1,8 +1,38 @@
-import datetime
-print(datetime.now())
+result = {
+"nick_name": "john",
+"phonenumber": "13817161514",
+"email": "sk@1212.com",
+"user_name": "jinhao",
+"job_num": "35"}
 
-time_po.getDateTimeByMinus
-# import subprocess
+# a = '{1: "select count(*) from user where nick_name=\'{result[\'nick_name\']}\'"}'
+# print(a)
+# print(eval(a))
+# dd = eval(a)
+# print(dd[1])
+# aa = 'f"' + dd[1] + '"'
+# print(aa)
+
+# correct_string = f"{{1: 'select count(*) from user where nick_name=\\'{result[\"nick_name\"]}\\''}}"
+# import ast
+# converted_dict = ast.literal_eval(a)
+# print(converted_dict)
+
+
+# result = 123
+a = {"sql": "select count(*) from user where job_num='{result['job_num']}'", "value": 1}
+print(eval(a))
+b = eval(a)
+
+
+print(b[1])
+
+
+# import datetime
+# print(datetime.now())
+#
+# time_po.getDateTimeByMinus
+# # import subprocess
 #
 # # 执行自动化测试并生成报告
 # result = subprocess.run(

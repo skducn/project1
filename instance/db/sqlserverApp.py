@@ -7,7 +7,11 @@
 from PO.SqlserverPO import *
 
 # 患者发现
-Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "GBK")
+Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "CDRD_TEST", "GBK")
+# Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "GBK")
+
+l_d_ = Sqlserver_PO.select("SELECT count(*) as qty FROM sys_user where user_id=33326")
+print(l_d_[0]['qty'])
 
 
 # 公卫
@@ -43,7 +47,7 @@ Sqlserver_PO = SqlserverPO("192.168.0.234", "sa", "Zy_123456789", "PMOP_TEST", "
 # Sqlserver_PO = SqlServerPO("192.168.0.234", "sa", "Zy_123456789", "PHS_JOB", "GBK")
 
 # print("7.1 查看表结构".center(100, "-"))
-Sqlserver_PO.desc()
+# Sqlserver_PO.desc()
 # Sqlserver_PO.desc(['id', 'page'])
 # Sqlserver_PO.desc('a_c%')
 # Sqlserver_PO.desc({'a_%':['id','sql']})

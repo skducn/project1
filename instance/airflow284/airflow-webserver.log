@@ -24,3 +24,4 @@
 2026-02-23 20:16:59,878 INFO - Received signal: 15. Closing gunicorn.
 2026-02-23 20:20:49,754 INFO - Received signal: 15. Closing gunicorn.
 2026-02-23 22:16:58,085 ERROR - [0 / 0] Some workers seem to have died and gunicorn did not restart them as expected
+2026-02-25 09:25:22,059 ERROR - [1 / 1] Some workers seem to have died and gunicorn did not restart them as expected

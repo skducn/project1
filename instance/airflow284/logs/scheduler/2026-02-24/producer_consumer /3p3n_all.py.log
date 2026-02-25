@@ -3580,3 +3580,13 @@
 [2026-02-24T18:40:28.603+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:40:28.603+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_product_dag to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
 [2026-02-24T18:40:28.606+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:40:28.606+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_user_dag to 2026-02-22 16:00:00+00:00, run_after=2026-02-23 16:00:00+00:00
 [2026-02-24T18:40:28.630+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /3p3n_all.py took 311.536 seconds
+[2026-02-24T18:42:15.585+0800] {processor.py:186} INFO - Started process (PID=23945) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /3p3n_all.py
+[2026-02-24T18:42:15.587+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /3p3n_all.py for tasks to queue
+[2026-02-24T18:42:15.588+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:15.588+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /3p3n_all.py
+[2026-02-24T18:42:15.762+0800] {processor.py:925} INFO - DAG(s) 'consumer_multi_source_analysis', 'producer_order_dag', 'producer_user_dag', 'producer_product_dag' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /3p3n_all.py
+[2026-02-24T18:42:15.885+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:15.885+0800] {dag.py:3239} INFO - Sync 4 DAGs
+[2026-02-24T18:42:15.906+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:15.906+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_multi_source_analysis to None, run_after=None
+[2026-02-24T18:42:15.912+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:15.912+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_dag to 2026-02-24 09:00:00+00:00, run_after=2026-02-24 10:00:00+00:00
+[2026-02-24T18:42:15.915+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:15.915+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_product_dag to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-24T18:42:15.918+0800] {logging_mixin.py:190} INFO - [2026-02-24T18:42:15.918+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_user_dag to 2026-02-22 16:00:00+00:00, run_after=2026-02-23 16:00:00+00:00
+[2026-02-24T18:42:15.941+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /3p3n_all.py took 359.997 seconds

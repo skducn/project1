@@ -1,5 +1,5 @@
 WARNING:  ASGI app factory detected. Using it, but please consider setting the --factory flag explicitly.
-INFO:     Started server process [3446]
+INFO:     Started server process [1486]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://:8793 (Press CTRL+C to quit)
@@ -12,36 +12,12 @@ Traceback (most recent call last):
     return func(*args, **kwargs)
   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
     return f(*args, **kwargs)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 462, in task_run
-    ti, _ = _get_ti(task, args.map_index, exec_date_or_run_id=args.execution_date_or_run_id, pool=args.pool)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 224, in _get_ti
-    ti, dr_created = _get_ti_db_access(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
-    return func(*args, **kwargs)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
-    return func(*args, session=session, **kwargs)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 186, in _get_ti_db_access
-    dag_run, dr_created = _get_dag_run(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 130, in _get_dag_run
-    raise DagRunNotFound(
-airflow.exceptions.DagRunNotFound: DagRun for c_1p1n1n_DAG1 with run_id or execution_date of 'dataset_triggered__2026-02-24T02:31:30.520347+00:00' not found
-python: can't open file '/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统.py': [Errno 2] No such file or directory
-Traceback (most recent call last):
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/新增用户.py", line 4, in <module>
-    from PO.FakerPO import *
-ModuleNotFoundError: No module named 'PO'
-Traceback (most recent call last):
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/新增用户.py", line 4, in <module>
-    from PO.FakerPO import *
-ModuleNotFoundError: No module named 'PO'
-python: can't open file '/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统.py': [Errno 2] No such file or directory
-python: can't open file '/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统.py': [Errno 2] No such file or directory
-Traceback (most recent call last):
-  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/新增用户.py", line 4, in <module>
-    from PO.FakerPO import *
-ModuleNotFoundError: No module named 'PO'
-python: can't open file '/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统.py': [Errno 2] No such file or directory
-Process DagFileProcessor5623-Process:
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 458, in task_run
+    _dag = get_dag(args.subdir, args.dag_id, args.read_from_db)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 255, in get_dag
+    raise AirflowException(
+airflow.exceptions.AirflowException: Dag 'c_cdrd_DAG1' could not be found; either it does not exist or it failed to parse.
+Process DagFileProcessor3114-Process:
 Traceback (most recent call last):
   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/multiprocessing/process.py", line 315, in _bootstrap
     self.run()
@@ -77,26 +53,19 @@ Traceback (most recent call last):
     DAG.bulk_write_to_db(dags.values(), processor_subdir=processor_subdir, session=session)
   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
     return func(*args, **kwargs)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dag.py", line 3425, in bulk_write_to_db
-    dataset_manager.create_datasets(dataset_models=new_dataset_models, session=session)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/datasets/manager.py", line 65, in create_datasets
-    session.flush()
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3449, in flush
-    self._flush(objects)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3588, in _flush
-    with util.safe_reraise():
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/langhelpers.py", line 70, in __exit__
-    compat.raise_(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/util/compat.py", line 211, in raise_
-    raise exception
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 3549, in _flush
-    flush_context.execute()
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 456, in execute
-    rec.execute(self)
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    util.preloaded.orm_persistence.save_obj(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 237, in save_obj
-    _emit_update_statements(
-  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1035, in _emit_update_statements
-    raise orm_exc.StaleDataError(
-sqlalchemy.orm.exc.StaleDataError: UPDATE statement on table 'serialized_dag' expected to update 2 row(s); 0 were matched.
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dag.py", line 3252, in bulk_write_to_db
+    orm_dags: list[DagModel] = session.scalars(query).unique().all()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1778, in scalars
+    return self.execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 724, in _connection_for_bind
+    self._assert_active()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 604, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.IntegrityError) UNIQUE constraint failed: serialized_dag.dag_id
+[SQL: INSERT INTO serialized_dag (dag_id, fileloc, fileloc_hash, data, data_compressed, last_updated, dag_hash, processor_subdir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (('p_2p1n_dw_user_sync', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py', 53592501747383744, '{"__version": 1, "dag": {"_task_group": {"_group_id": null, "prefix_group_id": true, "tooltip": "", "ui_color": "CornflowerBlue", "ui_fgcolor": "#000 ... (1617 characters truncated) ... es": [{"source": "p_2p1n_dw_user_sync", "target": "dataset", "dependency_type": "dataset", "dependency_id": "dataset://N_1/dw_user"}], "params": []}}', None, '2026-02-25 09:12:00.237714', 'be49d27b980a51dd9a3ddd841863cbd6', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags'), ('c_2p1n_order_user_analysis', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py', 53592501747383744, '{"__version": 1, "dag": {"_task_group": {"_group_id": null, "prefix_group_id": true, "tooltip": "", "ui_color": "CornflowerBlue", "ui_fgcolor": "#000 ... (2699 characters truncated) ... "source": "dataset", "target": "c_2p1n_order_user_analysis", "dependency_type": "dataset", "dependency_id": "dataset://N_1/dw_user"}], "params": []}}', None, '2026-02-25 09:12:00.351358', 'c0431e4500d4b89e73ba3af5030b2402', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags'), ('p_2p1n_dw_order_sync', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py', 53592501747383744, '{"__version": 1, "dag": {"_task_group": {"_group_id": null, "prefix_group_id": true, "tooltip": "", "ui_color": "CornflowerBlue", "ui_fgcolor": "#000 ... (1624 characters truncated) ... ": [{"source": "p_2p1n_dw_order_sync", "target": "dataset", "dependency_type": "dataset", "dependency_id": "dataset://N_1/dw_order"}], "params": []}}', None, '2026-02-25 09:12:00.374244', 'a1f7ed216d49cad639f28b36f1b0251d', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags'))]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)

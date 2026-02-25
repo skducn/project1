@@ -1,0 +1,82 @@
+[2026-02-25T12:23:58.028+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-25T12:23:58.042+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: c_cdrd_DAG1.c_cdrd_TASK1 dataset_triggered__2026-02-25T04:23:49.597392+00:00 [queued]>
+[2026-02-25T12:23:58.048+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: c_cdrd_DAG1.c_cdrd_TASK1 dataset_triggered__2026-02-25T04:23:49.597392+00:00 [queued]>
+[2026-02-25T12:23:58.049+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-25T12:23:58.062+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): c_cdrd_TASK1> on 2026-02-25 04:23:49.597392+00:00
+[2026-02-25T12:23:58.066+0800] {standard_task_runner.py:72} INFO - Started process 9068 to run task
+[2026-02-25T12:23:58.073+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'c_cdrd_DAG1', 'c_cdrd_TASK1', 'dataset_triggered__2026-02-25T04:23:49.597392+00:00', '--job-id', '381', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpokonrm4b']
+[2026-02-25T12:23:58.078+0800] {standard_task_runner.py:105} INFO - Job 381: Subtask c_cdrd_TASK1
+[2026-02-25T12:23:58.130+0800] {task_command.py:467} INFO - Running <TaskInstance: c_cdrd_DAG1.c_cdrd_TASK1 dataset_triggered__2026-02-25T04:23:49.597392+00:00 [running]> on host localhost-2.local
+[2026-02-25T12:23:58.209+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='c_cdrd_DAG1' AIRFLOW_CTX_TASK_ID='c_cdrd_TASK1' AIRFLOW_CTX_EXECUTION_DATE='2026-02-25T04:23:49.597392+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='dataset_triggered__2026-02-25T04:23:49.597392+00:00'
+[2026-02-25T12:23:58.215+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-25T12:23:58.246+0800] {logging_mixin.py:190} INFO - ✅ 成功从消费者 p_cdrd_all.p_cdrd_TASK 获取 XCom 值: [[6, '系统管理', '用户管理', None, '{"sql": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "value": 1}', '新增用户.py'], [7, '系统管理', '角色管理', None, '{"sql": "select count(*) as qty from sys_role where role_name=\'{result[\'role_name\']}\'", "value": 1}', '编辑角色.py']]
+[2026-02-25T12:23:58.533+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['廖娟', '13214240408', 'xmo@example.com', '958125', '455547']]
+[2026-02-25T12:24:04.923+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py", line 165, in c_cdrd_TASK1
+    formatted_string = re.sub(r"\{result\['([^']+)'\]\}", replace_variable, result)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/re.py", line 209, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+TypeError: expected string or bytes-like object
+[2026-02-25T12:24:04.933+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=c_cdrd_DAG1, task_id=c_cdrd_TASK1, run_id=dataset_triggered__2026-02-25T04:23:49.597392+00:00, execution_date=20260225T042349, start_date=20260225T042358, end_date=20260225T042404
+[2026-02-25T12:24:04.951+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-25T12:24:04.952+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 381 for task c_cdrd_TASK1 (expected string or bytes-like object; 9068)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py", line 165, in c_cdrd_TASK1
+    formatted_string = re.sub(r"\{result\['([^']+)'\]\}", replace_variable, result)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/re.py", line 209, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+TypeError: expected string or bytes-like object
+[2026-02-25T12:24:05.009+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-25T12:24:05.027+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-25T12:24:05.027+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
