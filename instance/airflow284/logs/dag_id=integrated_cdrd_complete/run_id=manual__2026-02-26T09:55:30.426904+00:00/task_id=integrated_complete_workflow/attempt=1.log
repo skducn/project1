@@ -1,0 +1,59 @@
+[2026-02-26T17:55:39.170+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-26T17:55:39.188+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: integrated_cdrd_complete.integrated_complete_workflow manual__2026-02-26T09:55:30.426904+00:00 [queued]>
+[2026-02-26T17:55:39.194+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: integrated_cdrd_complete.integrated_complete_workflow manual__2026-02-26T09:55:30.426904+00:00 [queued]>
+[2026-02-26T17:55:39.194+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-26T17:55:39.207+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): integrated_complete_workflow> on 2026-02-26 09:55:30.426904+00:00
+[2026-02-26T17:55:39.211+0800] {standard_task_runner.py:72} INFO - Started process 21878 to run task
+[2026-02-26T17:55:39.219+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'integrated_cdrd_complete', 'integrated_complete_workflow', 'manual__2026-02-26T09:55:30.426904+00:00', '--job-id', '434', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpkmbyrxb5']
+[2026-02-26T17:55:39.223+0800] {standard_task_runner.py:105} INFO - Job 434: Subtask integrated_complete_workflow
+[2026-02-26T17:55:39.276+0800] {task_command.py:467} INFO - Running <TaskInstance: integrated_cdrd_complete.integrated_complete_workflow manual__2026-02-26T09:55:30.426904+00:00 [running]> on host localhost-2.local
+[2026-02-26T17:55:39.351+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='integrated_cdrd_complete' AIRFLOW_CTX_TASK_ID='integrated_complete_workflow' AIRFLOW_CTX_EXECUTION_DATE='2026-02-26T09:55:30.426904+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-26T09:55:30.426904+00:00'
+[2026-02-26T17:55:39.353+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-26T17:55:39.378+0800] {logging_mixin.py:190} INFO - 
+📋 第一步：执行生产者任务...
+[2026-02-26T17:55:39.380+0800] {logging_mixin.py:190} INFO - ✅ 生产者任务完成，共获取 2 条自动化测试数据
+[2026-02-26T17:55:39.380+0800] {logging_mixin.py:190} INFO - ✅ 生产者任务完成，获取到 2 条测试数据
+[2026-02-26T17:55:39.381+0800] {logging_mixin.py:190} INFO - 
+👤 第二步：并行执行消费者任务...
+[2026-02-26T17:55:39.381+0800] {logging_mixin.py:190} INFO - 👤 消费者1任务开始执行...
+[2026-02-26T17:55:39.382+0800] {logging_mixin.py:190} INFO - ✅ 生产者任务完成，共获取 2 条自动化测试数据
+[2026-02-26T17:55:39.383+0800] {logging_mixin.py:190} INFO - 🔍 处理第 11 行测试用例...
+[2026-02-26T17:55:39.833+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['黄娟', '14534659613', 'xiuying87@example.com', '819555', '161287']]
+[2026-02-26T17:55:48.803+0800] {logging_mixin.py:190} INFO - 最终返回结果: {'nick_name': '黄娟', 'phonenumber': '14534659613', 'email': 'xiuying87@example.com', 'user_name': '819555', 'job_num': '161287'}
+[2026-02-26T17:55:48.804+0800] {logging_mixin.py:190} INFO - 正则替换结果: [{"k": "select count(*) as qty from sys_user where job_num='161287'", "v": 1},{"k": "select count(*) as qty from sys_user where user_name='819555'", "v": 2}]
+[2026-02-26T17:55:48.805+0800] {logging_mixin.py:190} INFO - 214 [{'k': "select count(*) as qty from sys_user where job_num='161287'", 'v': 1}, {'k': "select count(*) as qty from sys_user where user_name='819555'", 'v': 2}] <class 'list'>
+[2026-02-26T17:55:48.812+0800] {logging_mixin.py:190} INFO - 查询结果: 0
+[2026-02-26T17:55:48.812+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-26T17:55:48.867+0800] {logging_mixin.py:190} INFO - 查询结果: 0
+[2026-02-26T17:55:48.868+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-26T17:55:48.945+0800] {logging_mixin.py:190} INFO - ✅ 消费者1任务完成，共处理 1 条数据，成功 0 条
+[2026-02-26T17:55:48.946+0800] {logging_mixin.py:190} INFO - 👤 消费者2任务开始执行...
+[2026-02-26T17:55:48.948+0800] {logging_mixin.py:190} INFO - ✅ 生产者任务完成，共获取 2 条自动化测试数据
+[2026-02-26T17:55:48.948+0800] {logging_mixin.py:190} INFO - 🔍 处理第 12 行测试用例...
+[2026-02-26T17:55:54.692+0800] {logging_mixin.py:190} INFO - 最终返回结果: {'role_name': '555', 'remark': '1234'}
+[2026-02-26T17:55:54.693+0800] {logging_mixin.py:190} INFO - 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='555'", "v": 1}]
+[2026-02-26T17:55:54.694+0800] {logging_mixin.py:190} INFO - 214 [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}] <class 'list'>
+[2026-02-26T17:55:54.696+0800] {logging_mixin.py:190} INFO - 查询结果: 1
+[2026-02-26T17:55:54.697+0800] {logging_mixin.py:190} INFO - ✅ 断言通过
+[2026-02-26T17:55:54.741+0800] {logging_mixin.py:190} INFO - ✅ 消费者2任务完成，共处理 1 条数据，成功 0 条
+[2026-02-26T17:55:54.742+0800] {logging_mixin.py:190} INFO - ✅ 消费者任务执行完成
+[2026-02-26T17:55:54.742+0800] {logging_mixin.py:190} INFO - 
+🎉 第三步：执行收尾任务...
+[2026-02-26T17:55:54.743+0800] {logging_mixin.py:190} INFO - 🚀 开始执行收尾任务...
+[2026-02-26T17:55:54.871+0800] {logging_mixin.py:190} INFO - 📊 测试统计结果:
+[2026-02-26T17:55:54.872+0800] {logging_mixin.py:190} INFO -    总测试数: 2
+[2026-02-26T17:55:54.873+0800] {logging_mixin.py:190} INFO -    通过数: 1
+[2026-02-26T17:55:54.873+0800] {logging_mixin.py:190} INFO -    失败数: 1
+[2026-02-26T17:55:54.874+0800] {logging_mixin.py:190} INFO -    暂停数: 0
+[2026-02-26T17:55:54.875+0800] {logging_mixin.py:190} INFO -    搁置数: 0
+[2026-02-26T17:55:54.876+0800] {logging_mixin.py:190} INFO -    通过率: 50.00%
+[2026-02-26T17:55:54.878+0800] {logging_mixin.py:190} INFO - 📧 准备发送测试结果通知...
+[2026-02-26T17:55:54.883+0800] {logging_mixin.py:190} INFO - 🧹 清理临时资源...
+[2026-02-26T17:55:54.884+0800] {logging_mixin.py:190} INFO - 📝 记录执行日志...
+[2026-02-26T17:55:54.885+0800] {logging_mixin.py:190} INFO - ✅ 收尾任务执行完成!
+[2026-02-26T17:55:54.886+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-26T17:55:54.904+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-26T17:55:54.905+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=integrated_cdrd_complete, task_id=integrated_complete_workflow, run_id=manual__2026-02-26T09:55:30.426904+00:00, execution_date=20260226T095530, start_date=20260226T095539, end_date=20260226T095554
+[2026-02-26T17:55:54.945+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-26T17:55:54.962+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T17:55:54.963+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,23 @@
+[2026-02-26T16:31:30.739+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-26T16:31:30.755+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: integrated_cdrd_workflow.consumer1_task manual__2026-02-26T08:31:14.540847+00:00 [queued]>
+[2026-02-26T16:31:30.762+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: integrated_cdrd_workflow.consumer1_task manual__2026-02-26T08:31:14.540847+00:00 [queued]>
+[2026-02-26T16:31:30.762+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-26T16:31:30.776+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer1_task> on 2026-02-26 08:31:14.540847+00:00
+[2026-02-26T16:31:30.780+0800] {standard_task_runner.py:72} INFO - Started process 17853 to run task
+[2026-02-26T16:31:30.787+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'integrated_cdrd_workflow', 'consumer1_task', 'manual__2026-02-26T08:31:14.540847+00:00', '--job-id', '422', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpnejm16b0']
+[2026-02-26T16:31:30.791+0800] {standard_task_runner.py:105} INFO - Job 422: Subtask consumer1_task
+[2026-02-26T16:31:30.842+0800] {task_command.py:467} INFO - Running <TaskInstance: integrated_cdrd_workflow.consumer1_task manual__2026-02-26T08:31:14.540847+00:00 [running]> on host localhost-2.local
+[2026-02-26T16:31:30.917+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='integrated_cdrd_workflow' AIRFLOW_CTX_TASK_ID='consumer1_task' AIRFLOW_CTX_EXECUTION_DATE='2026-02-26T08:31:14.540847+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-26T08:31:14.540847+00:00'
+[2026-02-26T16:31:30.919+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-26T16:31:30.953+0800] {logging_mixin.py:190} INFO - ✅ 成功从消费者 p_cdrd_all.p_cdrd_TASK 获取 XCom 值: [[11, '系统管理', '用户管理', None, '{"k1": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v1": 1}', '新增用户.py'], [12, '系统管理', '角色管理', None, '{"k1": "select count(*) as qty from sys_role where role_name=\'{result[\'role_name\']}\'", "v1": 1}', '编辑角色.py']]
+[2026-02-26T16:31:31.361+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['李燕', '13888941530', 'min89@example.org', '391828', '226385']]
+[2026-02-26T16:31:40.663+0800] {logging_mixin.py:190} INFO - 正则替换结果: {"k1": "select count(*) as qty from sys_user where job_num='226385'", "v1": 1}
+[2026-02-26T16:31:40.665+0800] {logging_mixin.py:190} INFO - 解析后的验证数据: {'k1': "select count(*) as qty from sys_user where job_num='226385'", 'v1': 1}
+[2026-02-26T16:31:40.688+0800] {logging_mixin.py:190} INFO - 查询结果: 0
+[2026-02-26T16:31:40.689+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-26T16:31:40.773+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-26T16:31:40.782+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-26T16:31:40.783+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=integrated_cdrd_workflow, task_id=consumer1_task, run_id=manual__2026-02-26T08:31:14.540847+00:00, execution_date=20260226T083114, start_date=20260226T083130, end_date=20260226T083140
+[2026-02-26T16:31:40.837+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-26T16:31:40.863+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T16:31:40.864+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

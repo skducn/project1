@@ -1,0 +1,22 @@
+[2026-02-26T18:02:55.198+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-26T18:02:55.327+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_test_workflow_with_independent_tasks.consumer_user_management manual__2026-02-26T10:02:37.803650+00:00 [queued]>
+[2026-02-26T18:02:55.335+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_test_workflow_with_independent_tasks.consumer_user_management manual__2026-02-26T10:02:37.803650+00:00 [queued]>
+[2026-02-26T18:02:55.336+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-26T18:02:55.349+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer_user_management> on 2026-02-26 10:02:37.803650+00:00
+[2026-02-26T18:02:55.352+0800] {standard_task_runner.py:72} INFO - Started process 22278 to run task
+[2026-02-26T18:02:55.360+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_test_workflow_with_independent_tasks', 'consumer_user_management', 'manual__2026-02-26T10:02:37.803650+00:00', '--job-id', '440', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpz6a00lpk']
+[2026-02-26T18:02:55.363+0800] {standard_task_runner.py:105} INFO - Job 440: Subtask consumer_user_management
+[2026-02-26T18:02:55.412+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_test_workflow_with_independent_tasks.consumer_user_management manual__2026-02-26T10:02:37.803650+00:00 [running]> on host localhost-2.local
+[2026-02-26T18:02:55.481+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_test_workflow_with_independent_tasks' AIRFLOW_CTX_TASK_ID='consumer_user_management' AIRFLOW_CTX_EXECUTION_DATE='2026-02-26T10:02:37.803650+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-26T10:02:37.803650+00:00'
+[2026-02-26T18:02:55.482+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-26T18:02:55.501+0800] {logging_mixin.py:190} INFO - 👤 消费者1（用户管理）开始执行...
+[2026-02-26T18:02:55.508+0800] {logging_mixin.py:190} INFO - 🔍 处理第 11 行测试用例...
+[2026-02-26T18:02:55.886+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['张旭', '14572718871', 'jietao@example.net', '907841', '103446']]
+[2026-02-26T18:03:02.846+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-26T18:03:02.889+0800] {logging_mixin.py:190} INFO - ✅ 消费者1执行完成：处理 1 条，成功 0 条
+[2026-02-26T18:03:02.890+0800] {python.py:240} INFO - Done. Returned value was: 处理 1 条，成功 0 条
+[2026-02-26T18:03:02.908+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-26T18:03:02.909+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_test_workflow_with_independent_tasks, task_id=consumer_user_management, run_id=manual__2026-02-26T10:02:37.803650+00:00, execution_date=20260226T100237, start_date=20260226T100255, end_date=20260226T100302
+[2026-02-26T18:03:02.972+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-26T18:03:03.000+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T18:03:03.000+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

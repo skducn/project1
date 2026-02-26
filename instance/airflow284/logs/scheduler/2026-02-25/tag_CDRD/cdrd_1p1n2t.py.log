@@ -8550,3 +8550,31 @@ pymssql.exceptions.OperationalError: (20009, b'DB-Lib error message 20009, sever
 [2026-02-25T18:03:24.286+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:03:24.286+0800] {dag.py:4180} INFO - Setting next_dagrun for c_cdrd_DAG2 to None, run_after=None
 [2026-02-25T18:03:24.288+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:03:24.287+0800] {dag.py:4180} INFO - Setting next_dagrun for p_cdrd_all to None, run_after=None
 [2026-02-25T18:03:24.312+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py took 1335.533 seconds
+[2026-02-25T18:04:08.792+0800] {processor.py:186} INFO - Started process (PID=20917) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py
+[2026-02-25T18:04:08.793+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py for tasks to queue
+[2026-02-25T18:04:08.794+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:08.794+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py
+[2026-02-25T18:04:08.795+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-25T18:04:08.795+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-25T18:04:08.795+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-25T18:04:08.796+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-02-25T18:04:08.796+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-02-25T18:04:10.334+0800] {processor.py:925} INFO - DAG(s) 'c_cdrd_DAG2', 'c_cdrd_DAG1', 'p_cdrd_all' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py
+[2026-02-25T18:04:10.539+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:10.539+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-25T18:04:10.560+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:10.559+0800] {dag.py:4180} INFO - Setting next_dagrun for c_cdrd_DAG1 to None, run_after=None
+[2026-02-25T18:04:10.563+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:10.563+0800] {dag.py:4180} INFO - Setting next_dagrun for c_cdrd_DAG2 to None, run_after=None
+[2026-02-25T18:04:10.564+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:10.564+0800] {dag.py:4180} INFO - Setting next_dagrun for p_cdrd_all to None, run_after=None
+[2026-02-25T18:04:10.585+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py took 1795.856 seconds
+[2026-02-25T18:04:58.511+0800] {processor.py:186} INFO - Started process (PID=20957) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py
+[2026-02-25T18:04:58.512+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py for tasks to queue
+[2026-02-25T18:04:58.512+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:58.512+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py
+[2026-02-25T18:04:58.514+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-25T18:04:58.514+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-25T18:04:58.514+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-25T18:04:58.514+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-02-25T18:04:58.514+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-02-25T18:04:59.546+0800] {processor.py:925} INFO - DAG(s) 'p_cdrd_all', 'c_cdrd_DAG1', 'c_cdrd_DAG2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py
+[2026-02-25T18:04:59.726+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:59.726+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-25T18:04:59.742+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:59.742+0800] {dag.py:4180} INFO - Setting next_dagrun for c_cdrd_DAG1 to None, run_after=None
+[2026-02-25T18:04:59.745+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:59.745+0800] {dag.py:4180} INFO - Setting next_dagrun for c_cdrd_DAG2 to None, run_after=None
+[2026-02-25T18:04:59.746+0800] {logging_mixin.py:190} INFO - [2026-02-25T18:04:59.746+0800] {dag.py:4180} INFO - Setting next_dagrun for p_cdrd_all to None, run_after=None
+[2026-02-25T18:04:59.767+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_1p1n2t.py took 1258.302 seconds

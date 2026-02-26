@@ -1,0 +1,25 @@
+[2026-02-26T17:58:57.291+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-26T17:58:57.319+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: integrated_cdrd_with_independent_runs.consumer2_task manual__2026-02-26T09:58:26.764299+00:00 [queued]>
+[2026-02-26T17:58:57.330+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: integrated_cdrd_with_independent_runs.consumer2_task manual__2026-02-26T09:58:26.764299+00:00 [queued]>
+[2026-02-26T17:58:57.331+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-26T17:58:57.350+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): consumer2_task> on 2026-02-26 09:58:26.764299+00:00
+[2026-02-26T17:58:57.353+0800] {standard_task_runner.py:72} INFO - Started process 22117 to run task
+[2026-02-26T17:58:57.361+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'integrated_cdrd_with_independent_runs', 'consumer2_task', 'manual__2026-02-26T09:58:26.764299+00:00', '--job-id', '437', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_1p1n2t.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpdmkayaso']
+[2026-02-26T17:58:57.378+0800] {standard_task_runner.py:105} INFO - Job 437: Subtask consumer2_task
+[2026-02-26T17:58:57.435+0800] {task_command.py:467} INFO - Running <TaskInstance: integrated_cdrd_with_independent_runs.consumer2_task manual__2026-02-26T09:58:26.764299+00:00 [running]> on host localhost-2.local
+[2026-02-26T17:58:57.506+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='integrated_cdrd_with_independent_runs' AIRFLOW_CTX_TASK_ID='consumer2_task' AIRFLOW_CTX_EXECUTION_DATE='2026-02-26T09:58:26.764299+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-26T09:58:26.764299+00:00'
+[2026-02-26T17:58:57.508+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-26T17:58:57.532+0800] {logging_mixin.py:190} INFO - 👤 消费者2任务开始执行...
+[2026-02-26T17:58:57.539+0800] {logging_mixin.py:190} INFO - 🔍 处理第 12 行测试用例...
+[2026-02-26T17:59:02.855+0800] {logging_mixin.py:190} INFO - 最终返回结果: {'role_name': '555', 'remark': '1234'}
+[2026-02-26T17:59:02.857+0800] {logging_mixin.py:190} INFO - 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='555'", "v": 1}]
+[2026-02-26T17:59:02.857+0800] {logging_mixin.py:190} INFO - 214 [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}] <class 'list'>
+[2026-02-26T17:59:02.869+0800] {logging_mixin.py:190} INFO - 查询结果: 1
+[2026-02-26T17:59:02.869+0800] {logging_mixin.py:190} INFO - ✅ 断言通过
+[2026-02-26T17:59:02.909+0800] {logging_mixin.py:190} INFO - ✅ 消费者2任务完成，共处理 1 条数据，成功 0 条
+[2026-02-26T17:59:02.910+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-26T17:59:02.918+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-26T17:59:02.919+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=integrated_cdrd_with_independent_runs, task_id=consumer2_task, run_id=manual__2026-02-26T09:58:26.764299+00:00, execution_date=20260226T095826, start_date=20260226T095857, end_date=20260226T095902
+[2026-02-26T17:59:02.955+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-26T17:59:02.980+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-26T17:59:02.984+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

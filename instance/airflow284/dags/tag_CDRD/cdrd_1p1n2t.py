@@ -178,19 +178,40 @@ def c_cdrd_TASK1(**context):
                 print(f"解析后的验证数据: {d_validation}")
 
                 # 执行数据库查询验证
-                l_d_ = Sqlserver_PO.select(d_validation['k1'])
-                print(f"查询结果: {l_d_[0]['qty']}")
+                if len(d_validation) == 1:
+                    l_d_ = Sqlserver_PO.select(d_validation[0]['k'])
+                    print(f"查询结果: {l_d_[0]['qty']}")
 
-                if l_d_[0]['qty'] == int(d_validation['v1']):
-                    print("✅ 断言通过")
-                    Openpyxl_PO.setCell(l_col_values[i][0], 10, "通过", "v1.0")
+                    if l_d_[0]['qty'] == int(d_validation[0]['v']):
+                        print("✅ 断言通过")
+                        Openpyxl_PO.setCell(l_col_values[i][0], 10, "通过", "v1.0")
+                    else:
+                        print("❌ 断言失败")
+                        Openpyxl_PO.setCell(l_col_values[i][0], 10, "失败", "v1.0")
+                        Openpyxl_PO.setCell(l_col_values[i][0], 9, "v=" + str(l_d_[0]['qty']), "v1.0")
+                elif len(d_validation) > 1:
+                    error = 0
+                    errorLog = ""
+                    for j in range(len(d_validation)):
+                        l_d_ = Sqlserver_PO.select(d_validation[j]['k'])
+                        print(f"查询结果: {l_d_[0]['qty']}")
+
+                        if l_d_[0]['qty'] == int(d_validation[j]['v']):
+                            print("✅ 断言通过")
+                            Openpyxl_PO.setCell(l_col_values[i][0], 10, "通过", "v1.0")
+                        else:
+                            print("❌ 断言失败")
+                            Openpyxl_PO.setCell(l_col_values[i][0], 10, "失败", "v1.0")
+                            errorLog = str(d_validation[j]) + errorLog
+                            error = 1
+                    if error == 1:
+                        Openpyxl_PO.setCell(l_col_values[i][0], 9, errorLog, "v1.0")
                 else:
-                    print("❌ 断言失败")
-                    Openpyxl_PO.setCell(l_col_values[i][0], 10, "失败", "v1.0")
-                    Openpyxl_PO.setCell(l_col_values[i][0], 9, "v1=" + str(l_d_[0]['qty']), "v1.0")
+                    print("error, 自动化校验不能为空！")
+
 
             except Exception as e:
-                print(f"验证过程出错: {e}")
+                    print(f"验证过程出错: {e}")
 # 消费者1 DAG
 with DAG(
         dag_id="c_cdrd_DAG1", start_date=dt(2026, 2, 13), schedule=[dataset_cdrd], catchup=False,
@@ -229,19 +250,39 @@ def c_cdrd_TASK2(**context):
                 print(f"解析后的验证数据: {d_validation}")
 
                 # 执行数据库查询验证
-                l_d_ = Sqlserver_PO.select(d_validation['k1'])
-                print(f"查询结果: {l_d_[0]['qty']}")
+                if len(d_validation) == 1:
+                    l_d_ = Sqlserver_PO.select(d_validation[0]['k'])
+                    print(f"查询结果: {l_d_[0]['qty']}")
 
-                if l_d_[0]['qty'] == int(d_validation['v1']):
-                    print("✅ 断言通过")
-                    Openpyxl_PO.setCell(l_col_values[i][0], 10, "通过", "v1.0")
+                    if l_d_[0]['qty'] == int(d_validation[0]['v']):
+                        print("✅ 断言通过")
+                        Openpyxl_PO.setCell(l_col_values[i][0], 10, "通过", "v1.0")
+                    else:
+                        print("❌ 断言失败")
+                        Openpyxl_PO.setCell(l_col_values[i][0], 10, "失败", "v1.0")
+                        Openpyxl_PO.setCell(l_col_values[i][0], 9, "v=" + str(l_d_[0]['qty']), "v1.0")
+                elif len(d_validation) > 1:
+                    error = 0
+                    errorLog = ""
+                    for j in range(len(d_validation)):
+                        l_d_ = Sqlserver_PO.select(d_validation[j]['k'])
+                        print(f"查询结果: {l_d_[0]['qty']}")
+
+                        if l_d_[0]['qty'] == int(d_validation[j]['v']):
+                            print("✅ 断言通过")
+                            Openpyxl_PO.setCell(l_col_values[i][0], 10, "通过", "v1.0")
+                        else:
+                            print("❌ 断言失败")
+                            Openpyxl_PO.setCell(l_col_values[i][0], 10, "失败", "v1.0")
+                            errorLog = str(d_validation[j]) + errorLog
+                            error = 1
+                    if error == 1:
+                        Openpyxl_PO.setCell(l_col_values[i][0], 9, errorLog, "v1.0")
                 else:
-                    print("❌ 断言失败")
-                    Openpyxl_PO.setCell(l_col_values[i][0], 10, "失败", "v1.0")
-                    Openpyxl_PO.setCell(l_col_values[i][0], 9, "v1=" + str(d_validation['value']), "v1.0")
+                    print("error, 自动化校验不能为空！")
 
             except Exception as e:
-                print(f"验证过程出错: {e}")
+                    print(f"验证过程出错: {e}")
 
 # 消费者2 DAG
 with DAG(
