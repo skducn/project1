@@ -1,14 +1,24 @@
+# coding=utf-8
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> >>
+# Author     : John
+# Created on : 2026-2-26
+# Description: 专病库 - 新增用户
+# 路径：系统管理 - 用户管理
+# 自动录制脚本：playwright codegen http://192.168.0.243:8083/login?redirect=/index
+# *****************************************************************
+
+
 from playwright.sync_api import Playwright, sync_playwright, expect
 import re
+
 from PO.FakerPO import *
 Fake_PO = FakePO()
 
+# 生成默认数据
+test_data = Fake_PO.genTest(['genName', 'genPhone', 'genEmail', 'genPostcode', 'genPostcode'], 1)
+print(f"随机生成测试数据: {test_data}")
 
 def run_playwright():
-    # 生成默认数据
-    test_data = Fake_PO.genTest(['genName', 'genPhone', 'genEmail', 'genPostcode', 'genPostcode'], 1)
-    print(f"随机生成测试数据: {test_data}")
-
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=False)
         context = browser.new_context()

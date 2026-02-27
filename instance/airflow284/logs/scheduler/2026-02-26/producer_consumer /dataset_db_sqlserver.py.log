@@ -2570,3 +2570,15 @@
 [2026-02-26T18:16:17.297+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py for tasks to queue
 [2026-02-26T18:16:17.298+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:17.298+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
 [2026-02-26T18:16:17.408+0800] {processor.py:925} INFO - DAG(s) 'consumer_order_sqlserver', 'producer_order_sqlserver' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-26T18:16:17.685+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:17.685+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-26T18:16:17.778+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:17.777+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
+[2026-02-26T18:16:17.781+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:17.781+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
+[2026-02-26T18:16:17.803+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 510.420 seconds
+[2026-02-26T18:17:32.749+0800] {processor.py:186} INFO - Started process (PID=23200) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-26T18:17:32.749+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py for tasks to queue
+[2026-02-26T18:17:32.750+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:32.750+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-26T18:17:32.843+0800] {processor.py:925} INFO - DAG(s) 'producer_order_sqlserver', 'consumer_order_sqlserver' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-26T18:17:32.941+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:32.940+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-26T18:17:32.957+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:32.957+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
+[2026-02-26T18:17:32.960+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:32.960+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
+[2026-02-26T18:17:32.979+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 232.666 seconds

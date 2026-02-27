@@ -1,0 +1,39 @@
+[2026-02-27T14:08:06.338+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T14:08:06.470+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-27T06:06:33+00:00 [queued]>
+[2026-02-27T14:08:06.479+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-27T06:06:33+00:00 [queued]>
+[2026-02-27T14:08:06.479+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T14:08:06.493+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-27 06:06:33+00:00
+[2026-02-27T14:08:06.496+0800] {standard_task_runner.py:72} INFO - Started process 13759 to run task
+[2026-02-27T14:08:06.504+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-27T06:06:33+00:00', '--job-id', '516', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpeqz3_vsg']
+[2026-02-27T14:08:06.508+0800] {standard_task_runner.py:105} INFO - Job 516: Subtask 新增用户
+[2026-02-27T14:08:06.562+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-27T06:06:33+00:00 [running]> on host localhost-2.local
+[2026-02-27T14:08:06.655+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T06:06:33+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T06:06:33+00:00'
+[2026-02-27T14:08:06.657+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T14:08:06.684+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:08:06.684+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-27T14:08:06.685+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:08:06.693+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T14:08:06.694+0800] {logging_mixin.py:190} INFO - 找到匹配的测试用例: 新增用户.py
+[2026-02-27T14:08:06.695+0800] {logging_mixin.py:190} INFO - 执行路径: 系统管理/用户管理/新增用户.py
+[2026-02-27T14:08:06.696+0800] {logging_mixin.py:190} INFO - 开始执行测试用例: 系统管理/用户管理/新增用户.py
+[2026-02-27T14:08:06.696+0800] {logging_mixin.py:190} INFO - 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py
+[2026-02-27T14:08:07.107+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['何林', '15962834888', 'jun86@example.net', '233079', '246120']]
+[2026-02-27T14:08:07.108+0800] {logging_mixin.py:190} INFO - ✅ 找到run_playwright函数，开始执行...
+[2026-02-27T14:08:14.862+0800] {logging_mixin.py:190} INFO - ✅ Playwright执行完成，返回结果: {'nick_name': '何林', 'phonenumber': '15962834888', 'email': 'jun86@example.net', 'user_name': '233079', 'job_num': '246120'}
+[2026-02-27T14:08:14.863+0800] {logging_mixin.py:190} INFO - Playwright执行结果: {'nick_name': '何林', 'phonenumber': '15962834888', 'email': 'jun86@example.net', 'user_name': '233079', 'job_num': '246120'}
+[2026-02-27T14:08:14.864+0800] {logging_mixin.py:190} INFO - 正则替换结果: [{"k": "select count(*) as qty from sys_user where job_num='246120'", "v": 1},{"k": "select count(*) as qty from sys_user where user_name='233079'", "v": 2}]
+[2026-02-27T14:08:14.864+0800] {logging_mixin.py:190} INFO - 解析后的验证数据: [{'k': "select count(*) as qty from sys_user where job_num='246120'", 'v': 1}, {'k': "select count(*) as qty from sys_user where user_name='233079'", 'v': 2}]
+[2026-02-27T14:08:14.871+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-27T14:08:14.920+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-27T14:08:14.994+0800] {logging_mixin.py:190} INFO - ❌ 测试用例执行失败
+[2026-02-27T14:08:14.995+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-27T14:08:14.995+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理, 脚本=编辑角色.py
+[2026-02-27T14:08:14.996+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:08:14.996+0800] {logging_mixin.py:190} INFO - 【消费者1】执行完成 - 成功: 0, 失败: 1
+[2026-02-27T14:08:14.997+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:08:14.997+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-用户管理', 'success_count': 0, 'fail_count': 1, 'total_count': 1}
+[2026-02-27T14:08:15.016+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T14:08:15.018+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-27T06:06:33+00:00, execution_date=20260227T060633, start_date=20260227T060806, end_date=20260227T060815
+[2026-02-27T14:08:15.062+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T14:08:15.093+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T14:08:15.095+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

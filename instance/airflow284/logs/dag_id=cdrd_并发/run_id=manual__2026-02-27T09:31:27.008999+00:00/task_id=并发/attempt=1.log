@@ -1,0 +1,27 @@
+[2026-02-27T17:31:50.705+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T17:31:50.724+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:31:27.008999+00:00 [queued]>
+[2026-02-27T17:31:50.733+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:31:27.008999+00:00 [queued]>
+[2026-02-27T17:31:50.733+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T17:31:50.745+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并发> on 2026-02-27 09:31:27.008999+00:00
+[2026-02-27T17:31:50.749+0800] {standard_task_runner.py:72} INFO - Started process 21685 to run task
+[2026-02-27T17:31:50.757+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-27T09:31:27.008999+00:00', '--job-id', '557', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpxaoyev_k']
+[2026-02-27T17:31:50.761+0800] {standard_task_runner.py:105} INFO - Job 557: Subtask 并发
+[2026-02-27T17:31:50.811+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:31:27.008999+00:00 [running]> on host localhost-2.local
+[2026-02-27T17:31:50.888+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并发' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T09:31:27.008999+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T09:31:27.008999+00:00'
+[2026-02-27T17:31:50.889+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T17:31:50.907+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:31:50.908+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-27T17:31:50.908+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:31:50.914+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T17:31:50.915+0800] {logging_mixin.py:190} INFO - 找到编辑角色测试用例: 新增角色.py
+[2026-02-27T17:31:50.915+0800] {logging_mixin.py:190} INFO - 执行路径: 系统管理/角色管理/新增角色.py
+[2026-02-27T17:31:50.915+0800] {logging_mixin.py:190} INFO - 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-27T17:31:51.348+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['汪飞', '206989', '新疆维吾尔自治区梧州市秀英王街F座 397382']]
+[2026-02-27T17:31:51.348+0800] {logging_mixin.py:190} INFO - ✅ 找到run_playwright函数，开始执行...
+[2026-02-27T17:31:59.536+0800] {logging_mixin.py:190} INFO - ✅ Playwright执行完成，返回结果: {'role_name': '汪飞', 'role_sort': '206989', 'remark': '新疆维吾尔自治区梧州市秀英王街F座 397382'}
+[2026-02-27T17:31:59.537+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-用户管理', 'success_count': 0, 'fail_count': 0, 'total_count': 0}
+[2026-02-27T17:31:59.556+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T17:31:59.557+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-27T09:31:27.008999+00:00, execution_date=20260227T093127, start_date=20260227T093150, end_date=20260227T093159
+[2026-02-27T17:31:59.592+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T17:31:59.614+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T17:31:59.614+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

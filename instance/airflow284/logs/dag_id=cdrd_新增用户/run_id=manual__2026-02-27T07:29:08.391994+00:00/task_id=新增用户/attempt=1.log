@@ -1,0 +1,56 @@
+[2026-02-27T15:29:30.054+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T15:29:30.073+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-27T07:29:08.391994+00:00 [queued]>
+[2026-02-27T15:29:30.082+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-27T07:29:08.391994+00:00 [queued]>
+[2026-02-27T15:29:30.082+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T15:29:30.099+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-27 07:29:08.391994+00:00
+[2026-02-27T15:29:30.103+0800] {standard_task_runner.py:72} INFO - Started process 17088 to run task
+[2026-02-27T15:29:30.110+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-27T07:29:08.391994+00:00', '--job-id', '531', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmptttf9fjt']
+[2026-02-27T15:29:30.115+0800] {standard_task_runner.py:105} INFO - Job 531: Subtask 新增用户
+[2026-02-27T15:29:30.168+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-27T07:29:08.391994+00:00 [running]> on host localhost-2.local
+[2026-02-27T15:29:30.251+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T07:29:08.391994+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T07:29:08.391994+00:00'
+[2026-02-27T15:29:30.252+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T15:29:30.270+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:29:30.271+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-27T15:29:30.271+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:29:30.276+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T15:29:30.277+0800] {logging_mixin.py:190} INFO - 找到匹配的测试用例: 新增用户.py
+[2026-02-27T15:29:30.278+0800] {logging_mixin.py:190} INFO - 执行路径: 系统管理/用户管理/新增用户.py
+[2026-02-27T15:29:30.278+0800] {logging_mixin.py:190} INFO - 开始执行测试用例: 系统管理/用户管理/新增用户.py
+[2026-02-27T15:29:30.279+0800] {logging_mixin.py:190} INFO - 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py
+[2026-02-27T15:29:30.662+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['葛超', '15606989688', 'chao33@example.net', '541981', '770905']]
+[2026-02-27T15:29:30.664+0800] {logging_mixin.py:190} INFO - ✅ 找到run_playwright函数，开始执行...
+[2026-02-27T15:29:37.646+0800] {logging_mixin.py:190} INFO - ❌ 执行失败: Target page, context or browser has been closed
+[2026-02-27T15:29:37.647+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-02-27T15:29:37.648+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py", line 72, in execute_playwright_script
+    result = module.run_playwright()
+[2026-02-27T15:29:37.648+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py", line 46, in run_playwright
+    page.get_by_role("option", name="主治医生", exact=True).locator("span").click()
+[2026-02-27T15:29:37.649+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 15784, in click
+    self._sync(
+[2026-02-27T15:29:37.649+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+[2026-02-27T15:29:37.650+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_locator.py", line 159, in click
+    return await self._frame.click(self._selector, strict=True, **params)
+[2026-02-27T15:29:37.650+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_frame.py", line 484, in click
+    await self._channel.send("click", locals_to_params(locals()))
+[2026-02-27T15:29:37.651+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 62, in send
+    return await self._connection.wrap_api_call(
+[2026-02-27T15:29:37.651+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 492, in wrap_api_call
+    return await cb()
+[2026-02-27T15:29:37.652+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 100, in inner_send
+    result = next(iter(done)).result()
+[2026-02-27T15:29:37.652+0800] {logging_mixin.py:190} WARNING - playwright._impl._errors.TargetClosedError: Target page, context or browser has been closed
+[2026-02-27T15:29:37.653+0800] {logging_mixin.py:190} INFO - Playwright执行结果: None
+[2026-02-27T15:29:37.653+0800] {logging_mixin.py:190} INFO - ❌ Playwright执行失败，测试用例失败
+[2026-02-27T15:29:37.654+0800] {logging_mixin.py:190} INFO - ❌ 测试用例执行失败
+[2026-02-27T15:29:37.655+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-27T15:29:37.655+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理, 脚本=编辑角色.py
+[2026-02-27T15:29:37.655+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:29:37.656+0800] {logging_mixin.py:190} INFO - 【消费者1】执行完成 - 成功: 0, 失败: 1
+[2026-02-27T15:29:37.656+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:29:37.657+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-用户管理', 'success_count': 0, 'fail_count': 1, 'total_count': 1}
+[2026-02-27T15:29:37.678+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T15:29:37.679+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-27T07:29:08.391994+00:00, execution_date=20260227T072908, start_date=20260227T072930, end_date=20260227T072937
+[2026-02-27T15:29:37.741+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T15:29:37.780+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T15:29:37.797+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

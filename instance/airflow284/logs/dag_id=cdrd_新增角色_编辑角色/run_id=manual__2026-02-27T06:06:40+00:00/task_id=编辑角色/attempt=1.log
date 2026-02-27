@@ -1,0 +1,38 @@
+[2026-02-27T14:07:13.553+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T14:07:13.571+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.编辑角色 manual__2026-02-27T06:06:40+00:00 [queued]>
+[2026-02-27T14:07:13.579+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.编辑角色 manual__2026-02-27T06:06:40+00:00 [queued]>
+[2026-02-27T14:07:13.579+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T14:07:13.592+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 编辑角色> on 2026-02-27 06:06:40+00:00
+[2026-02-27T14:07:13.596+0800] {standard_task_runner.py:72} INFO - Started process 13715 to run task
+[2026-02-27T14:07:13.604+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '编辑角色', 'manual__2026-02-27T06:06:40+00:00', '--job-id', '513', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp17i35rd2']
+[2026-02-27T14:07:13.608+0800] {standard_task_runner.py:105} INFO - Job 513: Subtask 编辑角色
+[2026-02-27T14:07:13.656+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色.编辑角色 manual__2026-02-27T06:06:40+00:00 [running]> on host localhost-2.local
+[2026-02-27T14:07:13.732+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色' AIRFLOW_CTX_TASK_ID='编辑角色' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T06:06:40+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T06:06:40+00:00'
+[2026-02-27T14:07:13.733+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T14:07:13.753+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:07:13.754+0800] {logging_mixin.py:190} INFO - 【消费者2】开始执行编辑角色测试用例...
+[2026-02-27T14:07:13.754+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:07:13.760+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T14:07:13.760+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=用户管理, 脚本=新增用户.py
+[2026-02-27T14:07:13.761+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-27T14:07:13.761+0800] {logging_mixin.py:190} INFO - 找到编辑角色测试用例: 编辑角色.py
+[2026-02-27T14:07:13.761+0800] {logging_mixin.py:190} INFO - 执行路径: 系统管理/角色管理/编辑角色.py
+[2026-02-27T14:07:13.767+0800] {logging_mixin.py:190} INFO - 开始执行测试用例: 系统管理/角色管理/编辑角色.py
+[2026-02-27T14:07:13.768+0800] {logging_mixin.py:190} INFO - 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-27T14:07:13.986+0800] {logging_mixin.py:190} INFO - ✅ 找到run_playwright函数，开始执行...
+[2026-02-27T14:07:19.648+0800] {logging_mixin.py:190} INFO - ✅ Playwright执行完成，返回结果: {'role_name': '555', 'remark': '1234'}
+[2026-02-27T14:07:19.649+0800] {logging_mixin.py:190} INFO - Playwright执行结果: {'role_name': '555', 'remark': '1234'}
+[2026-02-27T14:07:19.649+0800] {logging_mixin.py:190} INFO - 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='555'", "v": 1}]
+[2026-02-27T14:07:19.650+0800] {logging_mixin.py:190} INFO - 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}]
+[2026-02-27T14:07:19.659+0800] {logging_mixin.py:190} INFO - 查询结果: 1
+[2026-02-27T14:07:19.660+0800] {logging_mixin.py:190} INFO - ✅ 断言通过
+[2026-02-27T14:07:19.702+0800] {logging_mixin.py:190} INFO - ✅ 编辑角色测试用例执行成功
+[2026-02-27T14:07:19.702+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:07:19.703+0800] {logging_mixin.py:190} INFO - 【消费者2】编辑角色执行完成 - 成功: 1, 失败: 0
+[2026-02-27T14:07:19.704+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:07:19.704+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-角色管理-编辑角色', 'success_count': 1, 'fail_count': 0, 'total_count': 1}
+[2026-02-27T14:07:19.723+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T14:07:19.724+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增角色_编辑角色, task_id=编辑角色, run_id=manual__2026-02-27T06:06:40+00:00, execution_date=20260227T060640, start_date=20260227T060713, end_date=20260227T060719
+[2026-02-27T14:07:19.771+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T14:07:19.802+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T14:07:19.804+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

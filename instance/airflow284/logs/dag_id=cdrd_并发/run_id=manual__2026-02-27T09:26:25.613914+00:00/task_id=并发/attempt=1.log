@@ -1,0 +1,96 @@
+[2026-02-27T17:26:47.415+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T17:26:47.574+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:26:25.613914+00:00 [queued]>
+[2026-02-27T17:26:47.586+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:26:25.613914+00:00 [queued]>
+[2026-02-27T17:26:47.586+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T17:26:47.600+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并发> on 2026-02-27 09:26:25.613914+00:00
+[2026-02-27T17:26:47.604+0800] {standard_task_runner.py:72} INFO - Started process 21485 to run task
+[2026-02-27T17:26:47.612+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-27T09:26:25.613914+00:00', '--job-id', '551', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpndbuxry0']
+[2026-02-27T17:26:47.618+0800] {standard_task_runner.py:105} INFO - Job 551: Subtask 并发
+[2026-02-27T17:26:47.674+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:26:25.613914+00:00 [running]> on host localhost-2.local
+[2026-02-27T17:26:47.756+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并发' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T09:26:25.613914+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T09:26:25.613914+00:00'
+[2026-02-27T17:26:47.758+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T17:26:47.780+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:26:47.780+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-27T17:26:47.781+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:26:47.787+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T17:26:47.788+0800] {logging_mixin.py:190} INFO - 196 [[11, '系统管理', '用户管理', None, '[{"k": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v": 1},{"k": "select count(*) as qty from sys_user where user_name=\'{result[\'user_name\']}\'", "v": 2}]', '新增用户.py'], [12, '系统管理', '角色管理', None, '[{"k": "select count(*) as qty from sys_role where role_name=\'{result[\'role_name\']}\'", "v": 1}]', '新增角色.py'], [14, '系统管理', '并发管理', None, '[{"k": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v": 1},{"k": "select count(*) as qty from sys_user where user_name=\'{result[\'user_name\']}\'", "v": 2}]', '并发2.py']]
+[2026-02-27T17:26:47.789+0800] {logging_mixin.py:190} INFO - ❌ 消费者1任务执行失败: expected str, bytes or os.PathLike object, not list
+[2026-02-27T17:26:47.790+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-02-27T17:26:47.791+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 197, in consumer1_task
+    pathFile = os.path.join(l_col_values[1], l_col_values[2], "并发.py")
+[2026-02-27T17:26:47.791+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/posixpath.py", line 76, in join
+    a = os.fspath(a)
+[2026-02-27T17:26:47.792+0800] {logging_mixin.py:190} WARNING - TypeError: expected str, bytes or os.PathLike object, not list
+[2026-02-27T17:26:47.792+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 232, in consumer1_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 197, in consumer1_task
+    pathFile = os.path.join(l_col_values[1], l_col_values[2], "并发.py")
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/posixpath.py", line 76, in join
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not list
+[2026-02-27T17:26:47.802+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-27T09:26:25.613914+00:00, execution_date=20260227T092625, start_date=20260227T092647, end_date=20260227T092647
+[2026-02-27T17:26:47.819+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T17:26:47.820+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 551 for task 并发 (expected str, bytes or os.PathLike object, not list; 21485)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 232, in consumer1_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 197, in consumer1_task
+    pathFile = os.path.join(l_col_values[1], l_col_values[2], "并发.py")
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/posixpath.py", line 76, in join
+    a = os.fspath(a)
+TypeError: expected str, bytes or os.PathLike object, not list
+[2026-02-27T17:26:47.847+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-27T17:26:47.876+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T17:26:47.881+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,23 @@
+[2026-02-27T12:03:47.744+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T12:03:47.896+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户_编辑角色.新增用户 manual__2026-02-27T04:03:27.179808+00:00 [queued]>
+[2026-02-27T12:03:47.904+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户_编辑角色.新增用户 manual__2026-02-27T04:03:27.179808+00:00 [queued]>
+[2026-02-27T12:03:47.904+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T12:03:47.920+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-27 04:03:27.179808+00:00
+[2026-02-27T12:03:47.924+0800] {standard_task_runner.py:72} INFO - Started process 8882 to run task
+[2026-02-27T12:03:47.931+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户_编辑角色', '新增用户', 'manual__2026-02-27T04:03:27.179808+00:00', '--job-id', '483', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpu8znaydn']
+[2026-02-27T12:03:47.935+0800] {standard_task_runner.py:105} INFO - Job 483: Subtask 新增用户
+[2026-02-27T12:03:47.985+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户_编辑角色.新增用户 manual__2026-02-27T04:03:27.179808+00:00 [running]> on host localhost-2.local
+[2026-02-27T12:03:48.065+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户_编辑角色' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T04:03:27.179808+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T04:03:27.179808+00:00'
+[2026-02-27T12:03:48.066+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T12:03:48.084+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T12:03:48.084+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-27T12:03:48.085+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T12:03:48.090+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T12:03:48.090+0800] {logging_mixin.py:190} INFO - 【消费者1】执行完成 - 成功: 0, 失败: 0
+[2026-02-27T12:03:48.091+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T12:03:48.091+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-用户管理', 'success_count': 0, 'fail_count': 0, 'total_count': 0}
+[2026-02-27T12:03:48.105+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T12:03:48.106+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户_编辑角色, task_id=新增用户, run_id=manual__2026-02-27T04:03:27.179808+00:00, execution_date=20260227T040327, start_date=20260227T040347, end_date=20260227T040348
+[2026-02-27T12:03:48.155+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T12:03:48.182+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T12:03:48.183+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

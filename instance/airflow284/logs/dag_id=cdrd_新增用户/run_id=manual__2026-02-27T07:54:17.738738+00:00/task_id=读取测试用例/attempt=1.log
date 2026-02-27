@@ -1,0 +1,24 @@
+[2026-02-27T15:54:30.509+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T15:54:30.534+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-27T07:54:17.738738+00:00 [queued]>
+[2026-02-27T15:54:30.543+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-27T07:54:17.738738+00:00 [queued]>
+[2026-02-27T15:54:30.543+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T15:54:30.561+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 读取测试用例> on 2026-02-27 07:54:17.738738+00:00
+[2026-02-27T15:54:30.565+0800] {standard_task_runner.py:72} INFO - Started process 18336 to run task
+[2026-02-27T15:54:30.575+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '读取测试用例', 'manual__2026-02-27T07:54:17.738738+00:00', '--job-id', '540', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpybvabqpa']
+[2026-02-27T15:54:30.583+0800] {standard_task_runner.py:105} INFO - Job 540: Subtask 读取测试用例
+[2026-02-27T15:54:30.646+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-27T07:54:17.738738+00:00 [running]> on host localhost-2.local
+[2026-02-27T15:54:30.739+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='读取测试用例' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T07:54:17.738738+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T07:54:17.738738+00:00'
+[2026-02-27T15:54:30.740+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T15:54:30.766+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:54:30.766+0800] {logging_mixin.py:190} INFO - 【生产者】开始读取测试用例...
+[2026-02-27T15:54:30.767+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:54:30.769+0800] {logging_mixin.py:190} INFO - 【生产者】共找到 2 个需要执行的测试用例
+[2026-02-27T15:54:30.770+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:54:30.771+0800] {logging_mixin.py:190} INFO - 【生产者】任务执行完成
+[2026-02-27T15:54:30.771+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:54:30.771+0800] {python.py:240} INFO - Done. Returned value was: [[11, '系统管理', '角色管理', None, '[{"k": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v": 1},{"k": "select count(*) as qty from sys_user where user_name=\'{result[\'user_name\']}\'", "v": 2}]', '并发2.py'], [12, '系统管理', '角色管理', None, '[{"k": "select count(*) as qty from sys_role where role_name=\'{result[\'role_name\']}\'", "v": 1}]', '新增角色.py']]
+[2026-02-27T15:54:30.789+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T15:54:30.790+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=读取测试用例, run_id=manual__2026-02-27T07:54:17.738738+00:00, execution_date=20260227T075417, start_date=20260227T075430, end_date=20260227T075430
+[2026-02-27T15:54:30.857+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T15:54:30.893+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T15:54:30.895+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

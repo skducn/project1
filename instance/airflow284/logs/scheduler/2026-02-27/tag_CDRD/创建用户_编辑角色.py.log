@@ -1,0 +1,150 @@
+[2026-02-27T11:31:29.187+0800] {processor.py:186} INFO - Started process (PID=7235) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:31:29.188+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:31:29.189+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:31:29.188+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:31:29.193+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:31:29.193+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:31:29.194+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:31:30.359+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:31:30.752+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:31:30.752+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:31:30.765+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:31:30.765+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:31:30.790+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1606.799 seconds
+[2026-02-27T11:32:15.586+0800] {processor.py:186} INFO - Started process (PID=7285) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:32:15.586+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:32:15.587+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:32:15.587+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:32:15.589+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:32:15.589+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:32:15.589+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:32:16.976+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:32:17.187+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:32:17.187+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:32:17.200+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:32:17.200+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:32:17.221+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1638.543 seconds
+[2026-02-27T11:33:06.452+0800] {processor.py:186} INFO - Started process (PID=7341) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:33:06.453+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:33:06.454+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:33:06.454+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:33:06.458+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:33:06.458+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:33:06.458+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:33:07.532+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:33:07.749+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:33:07.749+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:33:07.762+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:33:07.762+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:33:07.782+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1332.764 seconds
+[2026-02-27T11:34:03.243+0800] {processor.py:186} INFO - Started process (PID=7394) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:34:03.244+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:34:03.245+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:34:03.245+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:34:03.246+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:34:03.246+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:34:03.247+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:34:04.695+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:34:04.929+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:34:04.928+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:34:04.942+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:34:04.942+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:34:04.963+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1722.495 seconds
+[2026-02-27T11:34:59.260+0800] {processor.py:186} INFO - Started process (PID=7473) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:34:59.263+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:34:59.263+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:34:59.263+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:34:59.265+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:34:59.265+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:34:59.265+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:35:01.052+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:35:01.324+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:35:01.323+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:35:01.340+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:35:01.340+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:35:01.358+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 2101.362 seconds
+[2026-02-27T11:35:51.070+0800] {processor.py:186} INFO - Started process (PID=7500) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:35:51.071+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:35:51.072+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:35:51.072+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:35:51.076+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:35:51.077+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:35:51.077+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:35:52.156+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:35:52.366+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:35:52.365+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:35:52.379+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:35:52.379+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:35:52.403+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1339.725 seconds
+[2026-02-27T11:36:46.157+0800] {processor.py:186} INFO - Started process (PID=7552) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:36:46.158+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:36:46.159+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:36:46.158+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:36:46.160+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:36:46.161+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:36:46.161+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:36:47.652+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:36:47.885+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:36:47.885+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:36:47.902+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:36:47.902+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:36:47.927+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1773.519 seconds
+[2026-02-27T11:37:46.717+0800] {processor.py:186} INFO - Started process (PID=7594) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:37:46.720+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:37:46.721+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:37:46.721+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:37:46.723+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:37:46.723+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:37:46.723+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:37:48.885+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:37:49.108+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:37:49.108+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:37:49.124+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:37:49.124+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:37:49.153+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 2438.151 seconds
+[2026-02-27T11:38:46.183+0800] {processor.py:186} INFO - Started process (PID=7626) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:38:46.184+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:38:46.185+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:38:46.185+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:38:46.187+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:38:46.187+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:38:46.187+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:38:47.559+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:38:47.782+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:38:47.781+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:38:47.796+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:38:47.796+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:38:47.819+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1638.593 seconds
+[2026-02-27T11:39:44.678+0800] {processor.py:186} INFO - Started process (PID=7664) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:39:44.681+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:39:44.682+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:39:44.681+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:39:44.683+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:39:44.683+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:39:44.684+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:39:46.018+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:39:46.265+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:39:46.264+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:39:46.280+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:39:46.280+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:39:46.300+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1626.574 seconds
+[2026-02-27T11:40:40.995+0800] {processor.py:186} INFO - Started process (PID=7721) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:40:40.998+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:40:40.999+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:40:40.999+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:40:41.001+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:40:41.001+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:40:41.002+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:40:42.544+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:40:42.759+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:40:42.758+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:40:42.771+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:40:42.771+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:40:42.792+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1799.812 seconds
+[2026-02-27T11:41:38.367+0800] {processor.py:186} INFO - Started process (PID=7787) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:41:38.368+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:41:38.369+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:41:38.369+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:41:38.371+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:41:38.371+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:41:38.371+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:41:40.012+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:41:40.236+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:41:40.235+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:41:40.249+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:41:40.249+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:41:40.273+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1909.409 seconds
+[2026-02-27T11:42:33.082+0800] {processor.py:186} INFO - Started process (PID=7818) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:42:33.083+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:42:33.084+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:42:33.083+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:42:33.086+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:42:33.087+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:42:33.087+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:42:35.023+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:42:35.244+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:42:35.243+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:42:35.260+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:42:35.259+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:42:35.283+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 2204.105 seconds
+[2026-02-27T11:43:27.603+0800] {processor.py:186} INFO - Started process (PID=7843) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:43:27.604+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:43:27.605+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:43:27.605+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:43:27.607+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:43:27.607+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:43:27.607+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:43:29.099+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:43:29.326+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:43:29.326+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:43:29.339+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:43:29.339+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:43:29.359+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1759.004 seconds
+[2026-02-27T11:44:20.945+0800] {processor.py:186} INFO - Started process (PID=7871) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:44:20.948+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py for tasks to queue
+[2026-02-27T11:44:20.950+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:44:20.949+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:44:20.951+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD
+[2026-02-27T11:44:20.951+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T11:44:20.952+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T11:44:22.406+0800] {processor.py:925} INFO - DAG(s) 'cdrd_创建用户_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py
+[2026-02-27T11:44:22.643+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:44:22.643+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T11:44:22.660+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:44:22.660+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_创建用户_编辑角色 to None, run_after=None
+[2026-02-27T11:44:22.686+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/创建用户_编辑角色.py took 1743.662 seconds

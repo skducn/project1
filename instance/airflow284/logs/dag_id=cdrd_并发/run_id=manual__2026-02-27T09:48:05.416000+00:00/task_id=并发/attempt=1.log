@@ -1,0 +1,61 @@
+[2026-02-27T17:48:37.780+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T17:48:37.818+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:48:05.416000+00:00 [queued]>
+[2026-02-27T17:48:37.835+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:48:05.416000+00:00 [queued]>
+[2026-02-27T17:48:37.836+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T17:48:37.855+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并发> on 2026-02-27 09:48:05.416000+00:00
+[2026-02-27T17:48:37.860+0800] {standard_task_runner.py:72} INFO - Started process 22524 to run task
+[2026-02-27T17:48:37.870+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-27T09:48:05.416000+00:00', '--job-id', '575', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpmhu81zww']
+[2026-02-27T17:48:37.876+0800] {standard_task_runner.py:105} INFO - Job 575: Subtask 并发
+[2026-02-27T17:48:37.953+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:48:05.416000+00:00 [running]> on host localhost-2.local
+[2026-02-27T17:48:38.079+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并发' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T09:48:05.416000+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T09:48:05.416000+00:00'
+[2026-02-27T17:48:38.082+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T17:48:38.167+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:48:38.168+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行并发管理测试用例...
+[2026-02-27T17:48:38.169+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:48:38.178+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T17:48:38.179+0800] {logging_mixin.py:190} INFO - 当前测试用例: 模块=系统管理, 子模块=用户管理, 脚本=新增用户.py
+[2026-02-27T17:48:38.180+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=用户管理
+[2026-02-27T17:48:38.181+0800] {logging_mixin.py:190} INFO - 当前测试用例: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-27T17:48:38.183+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理
+[2026-02-27T17:48:38.184+0800] {logging_mixin.py:190} INFO - 当前测试用例: 模块=系统管理, 子模块=并发管理, 脚本=并发.py
+[2026-02-27T17:48:38.184+0800] {logging_mixin.py:190} INFO - 找到匹配的测试用例: 并发.py
+[2026-02-27T17:48:38.185+0800] {logging_mixin.py:190} INFO - 模块: 系统管理
+[2026-02-27T17:48:38.186+0800] {logging_mixin.py:190} INFO - 子模块: 并发管理
+[2026-02-27T17:48:38.187+0800] {logging_mixin.py:190} INFO - 脚本: 并发.py
+[2026-02-27T17:48:38.187+0800] {logging_mixin.py:190} INFO - 完整路径: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理/并发.py
+[2026-02-27T17:48:38.188+0800] {logging_mixin.py:190} INFO - 准备直接执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理/并发.py
+[2026-02-27T17:49:02.645+0800] {logging_mixin.py:190} INFO - STDOUT: ============================================================
+【原始脚本并行执行】开始同时执行新增角色和编辑角色脚本
+============================================================
+[17:48:38] ⏱️ 开始并行执行...
+[17:48:38] 🚀 开始执行 新增角色
+[17:48:39] 🚀 开始执行 编辑角色
+[17:49:01] ✅ 编辑角色 执行完成
+[17:49:01] 📊 编辑角色 输出: 执行结果: {'role_name': '555', 'remark': '1234'}
+[17:49:02] ✅ 新增角色 执行完成
+[17:49:02] 📊 新增角色 输出: Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理
+Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+PO module exists: True
+随机生成测试数据: [['涂淑兰', '249969', '江苏省秀珍县友好莫街W座 924020']]
+执行结果: {'role_name': '涂淑兰', 'role_sort': '249969', 'remark': '江苏省秀珍县友好莫街W座 924020'}
+[17:49:02] 🎉 所有脚本执行完成
+⏱️ 总执行时间: 23 秒
+[17:49:02] 📊 新增角色结果: {'status': 'success', 'output': "Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理\nCalculated project root: /Users/linghuchong/Downloads/51/Python/project\nAdded /Users/linghuchong/Downloads/51/Python/project to sys.path\nPO module path: /Users/linghuchong/Downloads/51/Python/project/PO\nPO module exists: True\n随机生成测试数据: [['涂淑兰', '249969', '江苏省秀珍县友好莫街W座 924020']]\n执行结果: {'role_name': '涂淑兰', 'role_sort': '249969', 'remark': '江苏省秀珍县友好莫街W座 924020'}\n"}
+[17:49:02] 📊 编辑角色结果: {'status': 'success', 'output': "执行结果: {'role_name': '555', 'remark': '1234'}\n"}
+============================================================
+【原始脚本并行执行】全部完成
+============================================================
+[2026-02-27T17:49:02.660+0800] {logging_mixin.py:190} INFO - ✅ 脚本执行成功
+[2026-02-27T17:49:02.661+0800] {logging_mixin.py:190} INFO - ✅ 测试用例执行成功
+[2026-02-27T17:49:02.662+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:49:02.664+0800] {logging_mixin.py:190} INFO - 【消费者1】执行完成 - 成功: 1, 失败: 0
+[2026-02-27T17:49:02.666+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:49:02.670+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-并发管理', 'success_count': 1, 'fail_count': 0, 'total_count': 1}
+[2026-02-27T17:49:02.744+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T17:49:02.748+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-27T09:48:05.416000+00:00, execution_date=20260227T094805, start_date=20260227T094837, end_date=20260227T094902
+[2026-02-27T17:49:02.888+0800] {standard_task_runner.py:217} INFO - Process not found (most likely exited), stop collecting metrics
+[2026-02-27T17:49:02.899+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T17:49:02.934+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T17:49:02.935+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

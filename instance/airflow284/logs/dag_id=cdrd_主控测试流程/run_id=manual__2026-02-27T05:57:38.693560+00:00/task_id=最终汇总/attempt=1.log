@@ -1,0 +1,21 @@
+[2026-02-27T14:02:36.186+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T14:02:36.206+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_主控测试流程.最终汇总 manual__2026-02-27T05:57:38.693560+00:00 [queued]>
+[2026-02-27T14:02:36.218+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_主控测试流程.最终汇总 manual__2026-02-27T05:57:38.693560+00:00 [queued]>
+[2026-02-27T14:02:36.218+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2026-02-27T14:02:36.232+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 最终汇总> on 2026-02-27 05:57:38.693560+00:00
+[2026-02-27T14:02:36.235+0800] {standard_task_runner.py:72} INFO - Started process 13437 to run task
+[2026-02-27T14:02:36.243+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_主控测试流程', '最终汇总', 'manual__2026-02-27T05:57:38.693560+00:00', '--job-id', '505', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_主控测试流程.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmplzld7z8d']
+[2026-02-27T14:02:36.247+0800] {standard_task_runner.py:105} INFO - Job 505: Subtask 最终汇总
+[2026-02-27T14:02:36.298+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_主控测试流程.最终汇总 manual__2026-02-27T05:57:38.693560+00:00 [running]> on host localhost-2.local
+[2026-02-27T14:02:36.611+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_主控测试流程' AIRFLOW_CTX_TASK_ID='最终汇总' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T05:57:38.693560+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T05:57:38.693560+00:00'
+[2026-02-27T14:02:36.613+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T14:02:36.630+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:02:36.631+0800] {logging_mixin.py:190} INFO - 【主控完成】所有测试DAG已触发并执行
+[2026-02-27T14:02:36.631+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T14:02:36.631+0800] {logging_mixin.py:190} INFO - ✅ 主控测试流程执行完成
+[2026-02-27T14:02:36.632+0800] {python.py:240} INFO - Done. Returned value was: {'status': 'completed', 'message': '所有DAG已成功触发', 'timestamp': '2026-02-27 14:02:36.632319'}
+[2026-02-27T14:02:36.647+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T14:02:36.648+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_主控测试流程, task_id=最终汇总, run_id=manual__2026-02-27T05:57:38.693560+00:00, execution_date=20260227T055738, start_date=20260227T060236, end_date=20260227T060236
+[2026-02-27T14:02:36.696+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T14:02:36.725+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T14:02:36.726+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

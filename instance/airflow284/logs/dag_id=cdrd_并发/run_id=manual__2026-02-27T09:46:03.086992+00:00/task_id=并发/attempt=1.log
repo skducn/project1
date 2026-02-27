@@ -1,0 +1,57 @@
+[2026-02-27T17:46:25.716+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T17:46:25.733+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:46:03.086992+00:00 [queued]>
+[2026-02-27T17:46:25.742+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:46:03.086992+00:00 [queued]>
+[2026-02-27T17:46:25.742+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T17:46:25.755+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并发> on 2026-02-27 09:46:03.086992+00:00
+[2026-02-27T17:46:25.759+0800] {standard_task_runner.py:72} INFO - Started process 22356 to run task
+[2026-02-27T17:46:25.766+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-27T09:46:03.086992+00:00', '--job-id', '572', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpf87xjp1e']
+[2026-02-27T17:46:25.771+0800] {standard_task_runner.py:105} INFO - Job 572: Subtask 并发
+[2026-02-27T17:46:25.821+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并发 manual__2026-02-27T09:46:03.086992+00:00 [running]> on host localhost-2.local
+[2026-02-27T17:46:25.900+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并发' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T09:46:03.086992+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T09:46:03.086992+00:00'
+[2026-02-27T17:46:25.902+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T17:46:25.920+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:46:25.921+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行并发管理测试用例...
+[2026-02-27T17:46:25.921+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:46:25.927+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-27T17:46:25.928+0800] {logging_mixin.py:190} INFO - 当前测试用例: 模块=系统管理, 子模块=用户管理, 脚本=新增用户.py
+[2026-02-27T17:46:25.928+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=用户管理
+[2026-02-27T17:46:25.928+0800] {logging_mixin.py:190} INFO - 当前测试用例: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-27T17:46:25.929+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试用例: 模块=系统管理, 子模块=角色管理
+[2026-02-27T17:46:25.929+0800] {logging_mixin.py:190} INFO - 当前测试用例: 模块=系统管理, 子模块=并发管理, 脚本=并发.py
+[2026-02-27T17:46:25.930+0800] {logging_mixin.py:190} INFO - 找到匹配的测试用例: 并发.py
+[2026-02-27T17:46:25.930+0800] {logging_mixin.py:190} INFO - 模块: 系统管理
+[2026-02-27T17:46:25.931+0800] {logging_mixin.py:190} INFO - 子模块: 并发管理
+[2026-02-27T17:46:25.931+0800] {logging_mixin.py:190} INFO - 脚本: 并发.py
+[2026-02-27T17:46:25.931+0800] {logging_mixin.py:190} INFO - 完整路径: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理/并发.py
+[2026-02-27T17:46:25.932+0800] {logging_mixin.py:190} INFO - 准备直接执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理/并发.py
+[2026-02-27T17:46:31.893+0800] {logging_mixin.py:190} INFO - STDOUT: ============================================================
+【原始脚本并行执行】开始同时执行新增角色和编辑角色脚本
+============================================================
+[17:46:26] ⏱️ 开始并行执行...
+[17:46:26] 🚀 开始执行 新增角色
+[17:46:26] 🚀 开始执行 编辑角色
+[17:46:26] ❌ 新增角色 执行失败
+[17:46:26] ❌ 新增角色 错误: Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理/新增角色.py", line 20, in <module>
+    from PO.FakerPO import *
+ModuleNotFoundError: No module named 'PO'
+[17:46:31] ✅ 编辑角色 执行完成
+[17:46:31] 📊 编辑角色 输出: 执行结果: {'role_name': '555', 'remark': '1234'}
+[17:46:31] 🎉 所有脚本执行完成
+⏱️ 总执行时间: 5 秒
+[17:46:31] 📊 新增角色结果: {'status': 'failed', 'error': 'Traceback (most recent call last):\n  File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/并发管理/新增角色.py", line 20, in <module>\n    from PO.FakerPO import *\nModuleNotFoundError: No module named \'PO\'\n'}
+[17:46:31] 📊 编辑角色结果: {'status': 'success', 'output': "执行结果: {'role_name': '555', 'remark': '1234'}\n"}
+============================================================
+【原始脚本并行执行】全部完成
+============================================================
+[2026-02-27T17:46:31.896+0800] {logging_mixin.py:190} INFO - ✅ 脚本执行成功
+[2026-02-27T17:46:31.897+0800] {logging_mixin.py:190} INFO - ✅ 测试用例执行成功
+[2026-02-27T17:46:31.898+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:46:31.899+0800] {logging_mixin.py:190} INFO - 【消费者1】执行完成 - 成功: 1, 失败: 0
+[2026-02-27T17:46:31.899+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T17:46:31.900+0800] {python.py:240} INFO - Done. Returned value was: {'module': '系统管理-并发管理', 'success_count': 1, 'fail_count': 0, 'total_count': 1}
+[2026-02-27T17:46:31.922+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T17:46:31.923+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-27T09:46:03.086992+00:00, execution_date=20260227T094603, start_date=20260227T094625, end_date=20260227T094631
+[2026-02-27T17:46:31.981+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T17:46:32.004+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T17:46:32.005+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

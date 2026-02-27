@@ -2604,3 +2604,11 @@ Traceback (most recent call last):
   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/persistence.py", line 1035, in _emit_update_statements
     raise orm_exc.StaleDataError(
 sqlalchemy.orm.exc.StaleDataError: UPDATE statement on table 'serialized_dag' expected to update 2 row(s); 0 were matched.
+[2026-02-26T18:16:44.534+0800] {processor.py:186} INFO - Started process (PID=23147) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-26T18:16:44.535+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py for tasks to queue
+[2026-02-26T18:16:44.536+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:44.535+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-26T18:16:44.679+0800] {processor.py:925} INFO - DAG(s) 'producer_object_sync', 'consumer_object' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py
+[2026-02-26T18:16:44.951+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:44.950+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-26T18:16:45.057+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:45.057+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_object to None, run_after=None
+[2026-02-26T18:16:45.061+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:45.060+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_object_sync to None, run_after=None
+[2026-02-26T18:16:45.086+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_object.py took 555.108 seconds

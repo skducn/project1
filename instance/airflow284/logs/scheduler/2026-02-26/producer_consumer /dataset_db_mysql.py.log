@@ -2694,3 +2694,11 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-02-26T18:16:10.249+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:10.249+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
 [2026-02-26T18:16:10.252+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:10.251+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
 [2026-02-26T18:16:10.273+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py took 866.445 seconds
+[2026-02-26T18:17:26.105+0800] {processor.py:186} INFO - Started process (PID=23198) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py
+[2026-02-26T18:17:26.106+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py for tasks to queue
+[2026-02-26T18:17:26.107+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:26.107+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py
+[2026-02-26T18:17:26.213+0800] {processor.py:925} INFO - DAG(s) 'producer_order_mysql', 'consumer_order_mysql' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py
+[2026-02-26T18:17:26.311+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:26.310+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-26T18:17:26.327+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:26.327+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
+[2026-02-26T18:17:26.330+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:17:26.330+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
+[2026-02-26T18:17:26.351+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py took 247.533 seconds

@@ -2869,3 +2869,12 @@
 [2026-02-26T18:14:57.622+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:14:57.622+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
 [2026-02-26T18:14:57.623+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:14:57.623+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
 [2026-02-26T18:14:57.645+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 345.797 seconds
+[2026-02-26T18:16:48.720+0800] {processor.py:186} INFO - Started process (PID=23148) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-26T18:16:48.721+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py for tasks to queue
+[2026-02-26T18:16:48.722+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:48.721+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-26T18:16:48.849+0800] {processor.py:925} INFO - DAG(s) 'consumer_dw_order_clean', 'consumer_dw_order_stat', 'producer_dw_order_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py
+[2026-02-26T18:16:49.156+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:49.155+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-26T18:16:49.178+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:49.177+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_clean to None, run_after=None
+[2026-02-26T18:16:49.182+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:49.181+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_dw_order_stat to None, run_after=None
+[2026-02-26T18:16:49.183+0800] {logging_mixin.py:190} INFO - [2026-02-26T18:16:49.183+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_dw_order_sync to None, run_after=None
+[2026-02-26T18:16:49.216+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/dataset_demo.py took 499.209 seconds

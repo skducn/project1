@@ -1,0 +1,26 @@
+[2026-02-27T15:26:28.715+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-27T15:26:28.733+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.收尾工作 manual__2026-02-27T07:25:42.666628+00:00 [queued]>
+[2026-02-27T15:26:28.742+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.收尾工作 manual__2026-02-27T07:25:42.666628+00:00 [queued]>
+[2026-02-27T15:26:28.743+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-27T15:26:28.757+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 收尾工作> on 2026-02-27 07:25:42.666628+00:00
+[2026-02-27T15:26:28.760+0800] {standard_task_runner.py:72} INFO - Started process 16932 to run task
+[2026-02-27T15:26:28.767+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '收尾工作', 'manual__2026-02-27T07:25:42.666628+00:00', '--job-id', '526', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp5xm_zg6h']
+[2026-02-27T15:26:28.772+0800] {standard_task_runner.py:105} INFO - Job 526: Subtask 收尾工作
+[2026-02-27T15:26:28.821+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色.收尾工作 manual__2026-02-27T07:25:42.666628+00:00 [running]> on host localhost-2.local
+[2026-02-27T15:26:28.905+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色' AIRFLOW_CTX_TASK_ID='收尾工作' AIRFLOW_CTX_EXECUTION_DATE='2026-02-27T07:25:42.666628+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-27T07:25:42.666628+00:00'
+[2026-02-27T15:26:28.906+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-27T15:26:28.925+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:26:28.925+0800] {logging_mixin.py:190} INFO - 【收尾工作】开始汇总测试结果...
+[2026-02-27T15:26:28.926+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:26:28.932+0800] {logging_mixin.py:190} INFO - 消费者结果: {'新增角色': {'module': '系统管理-角色管理-新增角色', 'success_count': 0, 'fail_count': 1, 'total_count': 1}, '编辑角色': {'module': '系统管理-角色管理-编辑角色', 'success_count': 1, 'fail_count': 0, 'total_count': 1}}
+[2026-02-27T15:26:28.933+0800] {logging_mixin.py:190} INFO - 新增角色 - 成功: 0, 失败: 1
+[2026-02-27T15:26:28.933+0800] {logging_mixin.py:190} INFO - 编辑角色 - 成功: 1, 失败: 0
+[2026-02-27T15:26:29.020+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:26:29.020+0800] {logging_mixin.py:190} INFO - 【收尾工作】测试执行汇总 - 总计:2,通过:1,失败:1
+[2026-02-27T15:26:29.021+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-27T15:26:29.022+0800] {python.py:240} INFO - Done. Returned value was: {'summary': '总计:2,通过:1,失败:1', 'total_tests': 2, 'total_success': 1, 'total_fail': 1, 'execution_time': '2026-02-27 15:26:29', 'detailed_results': {'新增角色': {'module': '系统管理-角色管理-新增角色', 'success_count': 0, 'fail_count': 1, 'total_count': 1}, '编辑角色': {'module': '系统管理-角色管理-编辑角色', 'success_count': 1, 'fail_count': 0, 'total_count': 1}}}
+[2026-02-27T15:26:29.041+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-27T15:26:29.043+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增角色_编辑角色, task_id=收尾工作, run_id=manual__2026-02-27T07:25:42.666628+00:00, execution_date=20260227T072542, start_date=20260227T072628, end_date=20260227T072629
+[2026-02-27T15:26:29.090+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-27T15:26:29.114+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-27T15:26:29.115+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

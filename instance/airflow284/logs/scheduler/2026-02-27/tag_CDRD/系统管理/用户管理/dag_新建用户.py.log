@@ -1,0 +1,34 @@
+[2026-02-27T11:46:41.563+0800] {processor.py:186} INFO - Started process (PID=7973) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+[2026-02-27T11:46:41.564+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py for tasks to queue
+[2026-02-27T11:46:41.565+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:46:41.565+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+[2026-02-27T11:46:41.570+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理
+[2026-02-27T11:46:41.570+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284
+[2026-02-27T11:46:41.571+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project/instance/airflow284 to sys.path
+[2026-02-27T11:46:41.572+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:46:41.571+0800] {dagbag.py:387} ERROR - Failed to import: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py", line 16, in <module>
+    from PO.TimePO import *
+ModuleNotFoundError: No module named 'PO'
+[2026-02-27T11:46:41.572+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+[2026-02-27T11:46:41.768+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py took 207.756 seconds
+[2026-02-27T11:47:05.485+0800] {processor.py:186} INFO - Started process (PID=7993) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+[2026-02-27T11:47:05.486+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py for tasks to queue
+[2026-02-27T11:47:05.487+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:47:05.487+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+[2026-02-27T11:47:05.505+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理
+[2026-02-27T11:47:05.505+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284
+[2026-02-27T11:47:05.505+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project/instance/airflow284 to sys.path
+[2026-02-27T11:47:05.507+0800] {logging_mixin.py:190} INFO - [2026-02-27T11:47:05.506+0800] {dagbag.py:387} ERROR - Failed to import: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 383, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py", line 16, in <module>
+    from PO.TimePO import *
+ModuleNotFoundError: No module named 'PO'
+[2026-02-27T11:47:05.508+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py
+[2026-02-27T11:47:05.684+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新建用户.py took 201.355 seconds
