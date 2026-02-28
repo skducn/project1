@@ -3503,3 +3503,26 @@ ModuleNotFoundError: No module named 'PO'
 [2026-02-27T18:02:20.349+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:20.349+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-27T18:02:20.361+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:20.361+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_新增角色_编辑角色 to None, run_after=None
 [2026-02-27T18:02:20.381+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py took 1310.756 seconds
+[2026-02-27T18:03:25.456+0800] {processor.py:186} INFO - Started process (PID=23339) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py
+[2026-02-27T18:03:25.457+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py for tasks to queue
+[2026-02-27T18:03:25.458+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:25.458+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py
+[2026-02-27T18:03:25.459+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理
+[2026-02-27T18:03:25.460+0800] {logging_mixin.py:190} INFO - Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T18:03:25.460+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T18:03:25.460+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-02-27T18:03:25.460+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-02-27T18:03:26.377+0800] {processor.py:925} INFO - DAG(s) 'cdrd_新增角色_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py
+[2026-02-27T18:03:26.583+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:26.582+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T18:03:26.595+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:26.594+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_新增角色_编辑角色 to None, run_after=None
+[2026-02-27T18:03:26.613+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py took 1159.647 seconds
+[2026-02-27T18:04:26.109+0800] {processor.py:186} INFO - Started process (PID=23372) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py
+[2026-02-27T18:04:26.110+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py for tasks to queue
+[2026-02-27T18:04:26.111+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:04:26.111+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py
+[2026-02-27T18:04:26.113+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理
+[2026-02-27T18:04:26.113+0800] {logging_mixin.py:190} INFO - Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T18:04:26.113+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T18:04:26.113+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-02-27T18:04:26.113+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-02-27T18:04:27.139+0800] {processor.py:925} INFO - DAG(s) 'cdrd_新增角色_编辑角色' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py
+[2026-02-27T18:04:27.358+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:04:27.358+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T18:04:27.375+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:04:27.374+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_新增角色_编辑角色 to None, run_after=None

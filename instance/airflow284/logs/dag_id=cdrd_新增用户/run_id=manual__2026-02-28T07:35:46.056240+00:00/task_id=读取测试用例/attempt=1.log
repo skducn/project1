@@ -1,0 +1,19 @@
+[2026-02-28T15:35:56.666+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T15:35:56.683+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-28T07:35:46.056240+00:00 [queued]>
+[2026-02-28T15:35:56.691+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-28T07:35:46.056240+00:00 [queued]>
+[2026-02-28T15:35:56.691+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T15:35:56.704+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 读取测试用例> on 2026-02-28 07:35:46.056240+00:00
+[2026-02-28T15:35:56.708+0800] {standard_task_runner.py:72} INFO - Started process 18464 to run task
+[2026-02-28T15:35:56.715+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '读取测试用例', 'manual__2026-02-28T07:35:46.056240+00:00', '--job-id', '673', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpzp2gnneb']
+[2026-02-28T15:35:56.719+0800] {standard_task_runner.py:105} INFO - Job 673: Subtask 读取测试用例
+[2026-02-28T15:35:56.768+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-28T07:35:46.056240+00:00 [running]> on host localhost-2.local
+[2026-02-28T15:35:56.848+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='读取测试用例' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T07:35:46.056240+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T07:35:46.056240+00:00'
+[2026-02-28T15:35:56.849+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T15:35:56.874+0800] {logging_mixin.py:190} INFO - 【生产者】共找到 1 条自动化测试用例
+[2026-02-28T15:35:56.875+0800] {logging_mixin.py:190} INFO - 274 [[6, '系统管理', '用户管理', None, '[{"k": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v": 1}]', '新增用户', '[["delete from sys_user where user_name=\'{result[\'user_name\']}\' and job_num=\'{result[\'job_num\']}\'"]]']]
+[2026-02-28T15:35:56.875+0800] {python.py:240} INFO - Done. Returned value was: [[6, '系统管理', '用户管理', None, '[{"k": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v": 1}]', '新增用户', '[["delete from sys_user where user_name=\'{result[\'user_name\']}\' and job_num=\'{result[\'job_num\']}\'"]]']]
+[2026-02-28T15:35:56.890+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T15:35:56.891+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=读取测试用例, run_id=manual__2026-02-28T07:35:46.056240+00:00, execution_date=20260228T073546, start_date=20260228T073556, end_date=20260228T073556
+[2026-02-28T15:35:56.951+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T15:35:56.984+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T15:35:56.987+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

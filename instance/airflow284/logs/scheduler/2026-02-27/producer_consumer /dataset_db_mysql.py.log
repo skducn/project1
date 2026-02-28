@@ -2102,3 +2102,11 @@
 [2026-02-27T18:00:46.893+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:00:46.892+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
 [2026-02-27T18:00:46.898+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:00:46.898+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
 [2026-02-27T18:00:46.926+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py took 315.882 seconds
+[2026-02-27T18:03:00.541+0800] {processor.py:186} INFO - Started process (PID=23329) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py
+[2026-02-27T18:03:00.542+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py for tasks to queue
+[2026-02-27T18:03:00.542+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:00.542+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py
+[2026-02-27T18:03:00.663+0800] {processor.py:925} INFO - DAG(s) 'producer_order_mysql', 'consumer_order_mysql' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py
+[2026-02-27T18:03:00.775+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:00.775+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-27T18:03:00.794+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:00.794+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
+[2026-02-27T18:03:00.797+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:00.797+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
+[2026-02-27T18:03:00.817+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_mysql.py took 279.077 seconds

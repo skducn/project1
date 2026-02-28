@@ -3450,3 +3450,15 @@ ModuleNotFoundError: No module named 'PO'
 [2026-02-27T18:02:24.514+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:24.514+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-27T18:02:24.531+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:24.530+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_新增用户 to None, run_after=None
 [2026-02-27T18:02:24.550+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py took 1420.105 seconds
+[2026-02-27T18:03:30.034+0800] {processor.py:186} INFO - Started process (PID=23340) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py
+[2026-02-27T18:03:30.034+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py for tasks to queue
+[2026-02-27T18:03:30.035+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:30.035+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py
+[2026-02-27T18:03:30.037+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理
+[2026-02-27T18:03:30.037+0800] {logging_mixin.py:190} INFO - Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-27T18:03:30.037+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-02-27T18:03:30.037+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-02-27T18:03:30.037+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-02-27T18:03:30.946+0800] {processor.py:925} INFO - DAG(s) 'cdrd_新增用户' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py
+[2026-02-27T18:03:31.158+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:31.157+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T18:03:31.171+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:31.170+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_新增用户 to None, run_after=None
+[2026-02-27T18:03:31.190+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py took 1159.570 seconds

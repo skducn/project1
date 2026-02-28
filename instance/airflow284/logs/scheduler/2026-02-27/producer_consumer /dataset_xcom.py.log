@@ -2371,3 +2371,12 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-02-27T18:00:58.328+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:00:58.328+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
 [2026-02-27T18:00:58.331+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:00:58.330+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
 [2026-02-27T18:00:58.354+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 291.110 seconds
+[2026-02-27T18:03:11.023+0800] {processor.py:186} INFO - Started process (PID=23335) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-02-27T18:03:11.024+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-02-27T18:03:11.025+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:11.024+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-02-27T18:03:11.142+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-02-27T18:03:11.256+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:11.256+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-27T18:03:11.276+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:11.276+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-02-27T18:03:11.280+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:11.279+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-02-27T18:03:11.281+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:11.281+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-02-27T18:03:11.303+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 284.230 seconds

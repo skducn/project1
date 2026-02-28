@@ -2054,3 +2054,11 @@
 [2026-02-27T18:01:49.724+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:01:49.723+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
 [2026-02-27T18:01:49.728+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:01:49.728+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
 [2026-02-27T18:01:49.749+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 391.199 seconds
+[2026-02-27T18:03:56.668+0800] {processor.py:186} INFO - Started process (PID=23356) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-27T18:03:56.668+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py for tasks to queue
+[2026-02-27T18:03:56.669+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:56.669+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-27T18:03:56.770+0800] {processor.py:925} INFO - DAG(s) 'producer_order_sqlserver', 'consumer_order_sqlserver' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-02-27T18:03:56.881+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:56.881+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-02-27T18:03:56.902+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:56.902+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
+[2026-02-27T18:03:56.906+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:03:56.906+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
+[2026-02-27T18:03:56.929+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 264.735 seconds

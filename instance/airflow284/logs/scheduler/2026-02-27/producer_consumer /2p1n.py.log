@@ -2536,3 +2536,12 @@
 [2026-02-27T18:00:39.272+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:00:39.271+0800] {dag.py:4180} INFO - Setting next_dagrun for p_2p1n_dw_order_sync to None, run_after=None
 [2026-02-27T18:00:39.273+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:00:39.272+0800] {dag.py:4180} INFO - Setting next_dagrun for p_2p1n_dw_user_sync to None, run_after=None
 [2026-02-27T18:00:39.295+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py took 276.339 seconds
+[2026-02-27T18:02:53.448+0800] {processor.py:186} INFO - Started process (PID=23311) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py
+[2026-02-27T18:02:53.449+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py for tasks to queue
+[2026-02-27T18:02:53.450+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:53.450+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py
+[2026-02-27T18:02:53.556+0800] {processor.py:925} INFO - DAG(s) 'c_2p1n_order_user_analysis', 'p_2p1n_dw_order_sync', 'p_2p1n_dw_user_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py
+[2026-02-27T18:02:53.673+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:53.673+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-02-27T18:02:53.694+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:53.694+0800] {dag.py:4180} INFO - Setting next_dagrun for c_2p1n_order_user_analysis to None, run_after=None
+[2026-02-27T18:02:53.697+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:53.697+0800] {dag.py:4180} INFO - Setting next_dagrun for p_2p1n_dw_order_sync to None, run_after=None
+[2026-02-27T18:02:53.698+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:53.698+0800] {dag.py:4180} INFO - Setting next_dagrun for p_2p1n_dw_user_sync to None, run_after=None
+[2026-02-27T18:02:53.739+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /2p1n.py took 293.542 seconds

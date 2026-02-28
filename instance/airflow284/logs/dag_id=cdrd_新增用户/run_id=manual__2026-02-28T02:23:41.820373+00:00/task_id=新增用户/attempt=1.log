@@ -1,0 +1,53 @@
+[2026-02-28T10:24:03.580+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T10:24:03.598+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T02:23:41.820373+00:00 [queued]>
+[2026-02-28T10:24:03.607+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T02:23:41.820373+00:00 [queued]>
+[2026-02-28T10:24:03.608+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T10:24:03.621+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-28 02:23:41.820373+00:00
+[2026-02-28T10:24:03.624+0800] {standard_task_runner.py:72} INFO - Started process 5611 to run task
+[2026-02-28T10:24:03.631+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-28T02:23:41.820373+00:00', '--job-id', '605', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpqbfsw1n4']
+[2026-02-28T10:24:03.636+0800] {standard_task_runner.py:105} INFO - Job 605: Subtask 新增用户
+[2026-02-28T10:24:03.686+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T02:23:41.820373+00:00 [running]> on host localhost-2.local
+[2026-02-28T10:24:03.766+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T02:23:41.820373+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T02:23:41.820373+00:00'
+[2026-02-28T10:24:03.768+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T10:24:03.787+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T10:24:03.787+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-28T10:24:03.787+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T10:24:03.793+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-28T10:24:03.793+0800] {logging_mixin.py:190} INFO - 执行路径: 系统管理/用户管理/新增用户_截屏_录屏.py
+[2026-02-28T10:24:03.793+0800] {logging_mixin.py:190} INFO - 开始执行测试用例: 系统管理/用户管理/新增用户_截屏_录屏.py
+[2026-02-28T10:24:03.794+0800] {logging_mixin.py:190} INFO - 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户_截屏_录屏.py
+[2026-02-28T10:24:04.010+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理
+[2026-02-28T10:24:04.011+0800] {logging_mixin.py:190} INFO - Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-02-28T10:24:04.012+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-02-28T10:24:04.012+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-02-28T10:24:04.191+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['赵秀芳', '18090096257', 'fyuan@example.org', '159244', '304360']]
+[2026-02-28T10:24:04.191+0800] {logging_mixin.py:190} INFO - ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T10:24:12.061+0800] {logging_mixin.py:190} INFO - ❌ 执行失败: [Errno 30] Read-only file system: '/screenshots'
+[2026-02-28T10:24:12.066+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-02-28T10:24:12.067+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py", line 66, in execute_playwright_script
+    result = module.run_playwright()
+[2026-02-28T10:24:12.068+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户_截屏_录屏.py", line 104, in run_playwright
+    step_screenshot(page, "新增用户信息")
+[2026-02-28T10:24:12.068+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户_截屏_录屏.py", line 57, in step_screenshot
+    page.screenshot(path=screenshot_path)
+[2026-02-28T10:24:12.069+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 10051, in screenshot
+    self._sync(
+[2026-02-28T10:24:12.069+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+[2026-02-28T10:24:12.069+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_page.py", line 660, in screenshot
+    make_dirs_for_file(path)
+[2026-02-28T10:24:12.070+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_helper.py", line 337, in make_dirs_for_file
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+[2026-02-28T10:24:12.070+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/os.py", line 225, in makedirs
+    mkdir(name, mode)
+[2026-02-28T10:24:12.071+0800] {logging_mixin.py:190} WARNING - OSError: [Errno 30] Read-only file system: '/screenshots'
+[2026-02-28T10:24:12.071+0800] {logging_mixin.py:190} INFO - Playwright执行结果: None
+[2026-02-28T10:24:12.072+0800] {logging_mixin.py:190} INFO - ❌ Playwright执行失败，测试用例失败
+[2026-02-28T10:24:12.072+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试脚本: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-28T10:24:12.072+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试脚本: 模块=系统管理, 子模块=并发管理, 脚本={['系统管理','角色管理']:并发.py}
+[2026-02-28T10:24:12.073+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-28T10:24:12.095+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T10:24:12.096+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-28T02:23:41.820373+00:00, execution_date=20260228T022341, start_date=20260228T022403, end_date=20260228T022412
+[2026-02-28T10:24:12.139+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T10:24:12.174+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T10:24:12.178+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

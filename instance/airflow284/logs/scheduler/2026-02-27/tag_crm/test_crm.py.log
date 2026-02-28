@@ -1811,3 +1811,10 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-02-27T18:02:07.283+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:07.283+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-27T18:02:07.300+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:02:07.300+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
 [2026-02-27T18:02:07.321+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 203.591 seconds
+[2026-02-27T18:04:14.011+0800] {processor.py:186} INFO - Started process (PID=23366) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-27T18:04:14.012+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-27T18:04:14.014+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:04:14.014+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-27T18:04:14.064+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-27T18:04:14.182+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:04:14.181+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-27T18:04:14.201+0800] {logging_mixin.py:190} INFO - [2026-02-27T18:04:14.200+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-27T18:04:14.220+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 211.452 seconds

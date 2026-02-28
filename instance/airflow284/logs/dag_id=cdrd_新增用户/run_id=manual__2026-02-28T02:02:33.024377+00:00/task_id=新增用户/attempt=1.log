@@ -1,0 +1,36 @@
+[2026-02-28T10:02:52.843+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T10:02:52.862+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T02:02:33.024377+00:00 [queued]>
+[2026-02-28T10:02:52.870+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T02:02:33.024377+00:00 [queued]>
+[2026-02-28T10:02:52.871+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T10:02:52.884+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-28 02:02:33.024377+00:00
+[2026-02-28T10:02:52.888+0800] {standard_task_runner.py:72} INFO - Started process 4819 to run task
+[2026-02-28T10:02:52.896+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-28T02:02:33.024377+00:00', '--job-id', '593', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpvpfgucsb']
+[2026-02-28T10:02:52.900+0800] {standard_task_runner.py:105} INFO - Job 593: Subtask 新增用户
+[2026-02-28T10:02:52.952+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T02:02:33.024377+00:00 [running]> on host localhost-2.local
+[2026-02-28T10:02:53.038+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T02:02:33.024377+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T02:02:33.024377+00:00'
+[2026-02-28T10:02:53.040+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T10:02:53.059+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T10:02:53.059+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-28T10:02:53.060+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T10:02:53.066+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-28T10:02:53.067+0800] {logging_mixin.py:190} INFO - 执行路径: 系统管理/用户管理/新增用户_截屏_录屏.py
+[2026-02-28T10:02:53.067+0800] {logging_mixin.py:190} INFO - 开始执行测试用例: 系统管理/用户管理/新增用户_截屏_录屏.py
+[2026-02-28T10:02:53.067+0800] {logging_mixin.py:190} INFO - 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户_截屏_录屏.py
+[2026-02-28T10:02:53.504+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['古龙', '18572197171', 'jungong@example.org', '615989', '321145']]
+[2026-02-28T10:02:53.504+0800] {logging_mixin.py:190} INFO - ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T10:03:00.486+0800] {logging_mixin.py:190} INFO - 步骤[新增用户信息]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/screenshots/20260228_100300_新增用户信息.png
+[2026-02-28T10:03:00.881+0800] {logging_mixin.py:190} INFO - 步骤[点击保存]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/screenshots/20260228_100300_点击保存.png
+[2026-02-28T10:03:01.263+0800] {logging_mixin.py:190} INFO - ✅ Playwright执行完成，返回结果: {'nick_name': '古龙', 'phonenumber': '18572197171', 'email': 'jungong@example.org', 'user_name': '615989', 'job_num': '321145'}
+[2026-02-28T10:03:01.264+0800] {logging_mixin.py:190} INFO - Playwright执行结果: {'nick_name': '古龙', 'phonenumber': '18572197171', 'email': 'jungong@example.org', 'user_name': '615989', 'job_num': '321145'}
+[2026-02-28T10:03:01.264+0800] {logging_mixin.py:190} INFO - 正则替换结果: [{"k": "select count(*) as qty from sys_user where job_num='321145'", "v": 1},{"k": "select count(*) as qty from sys_user where user_name='615989'", "v": 2}]
+[2026-02-28T10:03:01.265+0800] {logging_mixin.py:190} INFO - 解析后的验证数据: [{'k': "select count(*) as qty from sys_user where job_num='321145'", 'v': 1}, {'k': "select count(*) as qty from sys_user where user_name='615989'", 'v': 2}]
+[2026-02-28T10:03:01.277+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-28T10:03:01.375+0800] {logging_mixin.py:190} INFO - ❌ 断言失败
+[2026-02-28T10:03:01.482+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试脚本: 模块=系统管理, 子模块=角色管理, 脚本=新增角色.py
+[2026-02-28T10:03:01.482+0800] {logging_mixin.py:190} INFO - 跳过不匹配的测试脚本: 模块=系统管理, 子模块=并发管理, 脚本={['系统管理','角色管理']:并发.py}
+[2026-02-28T10:03:01.483+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-28T10:03:01.499+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T10:03:01.501+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-28T02:02:33.024377+00:00, execution_date=20260228T020233, start_date=20260228T020252, end_date=20260228T020301
+[2026-02-28T10:03:01.574+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T10:03:01.608+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T10:03:01.609+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

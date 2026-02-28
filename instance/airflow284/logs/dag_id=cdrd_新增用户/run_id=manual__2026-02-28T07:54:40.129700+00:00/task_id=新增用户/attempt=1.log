@@ -1,0 +1,29 @@
+[2026-02-28T15:54:57.706+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T15:54:57.724+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T07:54:40.129700+00:00 [queued]>
+[2026-02-28T15:54:57.732+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T07:54:40.129700+00:00 [queued]>
+[2026-02-28T15:54:57.733+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T15:54:57.745+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-28 07:54:40.129700+00:00
+[2026-02-28T15:54:57.749+0800] {standard_task_runner.py:72} INFO - Started process 19206 to run task
+[2026-02-28T15:54:57.756+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-28T07:54:40.129700+00:00', '--job-id', '677', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpuhwmtjtz']
+[2026-02-28T15:54:57.761+0800] {standard_task_runner.py:105} INFO - Job 677: Subtask 新增用户
+[2026-02-28T15:54:57.809+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T07:54:40.129700+00:00 [running]> on host localhost-2.local
+[2026-02-28T15:54:57.888+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T07:54:40.129700+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T07:54:40.129700+00:00'
+[2026-02-28T15:54:57.889+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T15:54:57.911+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T15:54:57.911+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-28T15:54:57.912+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T15:54:57.919+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 1 条
+[2026-02-28T15:54:57.920+0800] {logging_mixin.py:190} INFO - 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py
+[2026-02-28T15:54:58.350+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['张荣', '13747162877', 'li63@example.org', '389196', '119246']]
+[2026-02-28T15:55:07.909+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'nick_name': '张荣', 'phonenumber': '13747162877', 'email': 'li63@example.org', 'user_name': '389196', 'job_num': '119246'}
+[2026-02-28T15:55:07.911+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_user where job_num='119246'", 'v': 1}]
+[2026-02-28T15:55:07.916+0800] {logging_mixin.py:190} INFO - ✅ 通过校验 {'k': "select count(*) as qty from sys_user where job_num='119246'", 'v': 1}
+[2026-02-28T15:55:07.974+0800] {logging_mixin.py:190} INFO - 解析后置数据: [["delete from sys_user where user_name='389196' and job_num='119246'"]]
+[2026-02-28T15:55:07.974+0800] {logging_mixin.py:190} INFO - 166 delete from sys_user where user_name='389196' and job_num='119246'
+[2026-02-28T15:55:07.986+0800] {logging_mixin.py:190} INFO - ✅ 后置操作 delete from sys_user where user_name='389196' and job_num='119246'
+[2026-02-28T15:55:08.031+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-28T15:55:08.043+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T15:55:08.044+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-28T07:54:40.129700+00:00, execution_date=20260228T075440, start_date=20260228T075457, end_date=20260228T075508
+[2026-02-28T15:55:08.093+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T15:55:08.117+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T15:55:08.118+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

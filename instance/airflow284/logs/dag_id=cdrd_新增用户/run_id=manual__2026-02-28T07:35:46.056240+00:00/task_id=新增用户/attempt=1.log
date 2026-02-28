@@ -1,0 +1,29 @@
+[2026-02-28T15:36:04.156+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T15:36:04.173+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T07:35:46.056240+00:00 [queued]>
+[2026-02-28T15:36:04.180+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T07:35:46.056240+00:00 [queued]>
+[2026-02-28T15:36:04.181+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T15:36:04.193+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-02-28 07:35:46.056240+00:00
+[2026-02-28T15:36:04.197+0800] {standard_task_runner.py:72} INFO - Started process 18471 to run task
+[2026-02-28T15:36:04.204+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-28T07:35:46.056240+00:00', '--job-id', '674', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp2w3rc4rk']
+[2026-02-28T15:36:04.208+0800] {standard_task_runner.py:105} INFO - Job 674: Subtask 新增用户
+[2026-02-28T15:36:04.258+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T07:35:46.056240+00:00 [running]> on host localhost-2.local
+[2026-02-28T15:36:04.337+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T07:35:46.056240+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T07:35:46.056240+00:00'
+[2026-02-28T15:36:04.339+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T15:36:04.357+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T15:36:04.357+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-02-28T15:36:04.358+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T15:36:04.363+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 1 条
+[2026-02-28T15:36:04.364+0800] {logging_mixin.py:190} INFO - 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py
+[2026-02-28T15:36:04.757+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['魏鑫', '13674023292', 'dzhu@example.org', '748897', '760645']]
+[2026-02-28T15:36:09.587+0800] {logging_mixin.py:190} INFO - 步骤[点击保存]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/screenshots/新增用户/20260228_153609_点击保存.png
+[2026-02-28T15:36:15.680+0800] {logging_mixin.py:190} INFO - 步骤[新增用户]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/screenshots/新增用户/20260228_153615_新增用户.png
+[2026-02-28T15:36:16.248+0800] {logging_mixin.py:190} INFO - 录屏文件已重命名为: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/videos/新增用户/新增用户_20260228_153604.webm
+[2026-02-28T15:36:16.264+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'nick_name': '魏鑫', 'phonenumber': '13674023292', 'email': 'dzhu@example.org', 'user_name': '748897', 'job_num': '760645'}
+[2026-02-28T15:36:16.265+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_user where job_num='760645'", 'v': 1}]
+[2026-02-28T15:36:16.272+0800] {logging_mixin.py:190} INFO - ❌ 失败校验 {'k': "select count(*) as qty from sys_user where job_num='760645'", 'v': 1}
+[2026-02-28T15:36:16.421+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-28T15:36:16.441+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T15:36:16.442+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-28T07:35:46.056240+00:00, execution_date=20260228T073546, start_date=20260228T073604, end_date=20260228T073616
+[2026-02-28T15:36:16.506+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T15:36:16.546+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T15:36:16.548+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
