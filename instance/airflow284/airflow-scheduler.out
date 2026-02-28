@@ -2362,3 +2362,55 @@ Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/C
 [2026-02-28T22:56:49.618+0800] {scheduler_job_runner.py:813} INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=并行执行消费者, run_id=manual__2026-02-28T14:56:20.403419+00:00, map_index=-1, run_start_date=2026-02-28 14:56:38.119095+00:00, run_end_date=2026-02-28 14:56:48.762214+00:00, run_duration=10.643119, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=761, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 14:56:34.595029+00:00, queued_by_job_id=711, pid=9376
 [2026-02-28T22:56:56.576+0800] {dagrun.py:854} INFO - Marking run <DagRun cdrd_并发 @ 2026-02-28 14:56:20.403419+00:00: manual__2026-02-28T14:56:20.403419+00:00, state:running, queued_at: 2026-02-28 14:56:20.410944+00:00. externally triggered: True> successful
 [2026-02-28T22:56:56.577+0800] {dagrun.py:905} INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 14:56:20.403419+00:00, run_id=manual__2026-02-28T14:56:20.403419+00:00, run_start_date=2026-02-28 14:56:23.500644+00:00, run_end_date=2026-02-28 14:56:56.577638+00:00, run_duration=33.076994, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 14:56:20.403419+00:00, data_interval_end=2026-02-28 14:56:20.403419+00:00, dag_hash=482d927267cbcf71aecd81bffadda037
+[2026-02-28T22:58:17.440+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-28T23:11:59.174+0800] {job.py:229} INFO - Heartbeat recovered after 589.34 seconds
+[2026-02-28T23:13:02.911+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-28T23:46:09.418+0800] {job.py:229} INFO - Heartbeat recovered after 1959.60 seconds
+[2026-02-28T23:50:41.610+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-28T23:55:43.409+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-02-28T23:58:07.086+0800] {scheduler_job_runner.py:435} INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T15:58:01.229062+00:00 [scheduled]>
+[2026-02-28T23:58:07.087+0800] {scheduler_job_runner.py:507} INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+[2026-02-28T23:58:07.088+0800] {scheduler_job_runner.py:646} INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T15:58:01.229062+00:00 [scheduled]>
+[2026-02-28T23:58:07.090+0800] {scheduler_job_runner.py:748} INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T15:58:01.229062+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+[2026-02-28T23:58:07.091+0800] {scheduler_job_runner.py:692} INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T15:58:01.229062+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+[2026-02-28T23:58:07.092+0800] {base_executor.py:169} INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T15:58:01.229062+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发2.py']
+[2026-02-28T23:58:07.095+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T15:58:01.229062+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发2.py']
+[2026-02-28T23:58:09.292+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发2.py
+Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理
+Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+项目配置路径 /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+Added web project root to sys.path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini
+✓ 成功导入配置解析器
+[2026-02-28T23:58:10.991+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T15:58:01.229062+00:00 [queued]> on host localhost-2.local
+[2026-02-28T23:58:12.105+0800] {scheduler_job_runner.py:776} INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T15:58:01.229062+00:00', try_number=1, map_index=-1)
+[2026-02-28T23:58:12.117+0800] {scheduler_job_runner.py:813} INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T15:58:01.229062+00:00, map_index=-1, run_start_date=2026-02-28 15:58:11.184042+00:00, run_end_date=2026-02-28 15:58:11.380775+00:00, run_duration=0.196733, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=762, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 15:58:07.089601+00:00, queued_by_job_id=711, pid=10209
+[2026-02-28T23:58:14.837+0800] {scheduler_job_runner.py:435} INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T15:58:01.229062+00:00 [scheduled]>
+[2026-02-28T23:58:14.838+0800] {scheduler_job_runner.py:507} INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+[2026-02-28T23:58:14.839+0800] {scheduler_job_runner.py:646} INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T15:58:01.229062+00:00 [scheduled]>
+[2026-02-28T23:58:14.842+0800] {scheduler_job_runner.py:748} INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T15:58:01.229062+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+[2026-02-28T23:58:14.843+0800] {scheduler_job_runner.py:692} INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='并行执行消费者', run_id='manual__2026-02-28T15:58:01.229062+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+[2026-02-28T23:58:14.844+0800] {base_executor.py:169} INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '并行执行消费者', 'manual__2026-02-28T15:58:01.229062+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发2.py']
+[2026-02-28T23:58:14.846+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '并行执行消费者', 'manual__2026-02-28T15:58:01.229062+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发2.py']
+[2026-02-28T23:58:17.048+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发2.py
+Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理
+Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+项目配置路径 /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+Added web project root to sys.path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini
+✓ 成功导入配置解析器
+[2026-02-28T23:58:18.499+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T15:58:01.229062+00:00 [queued]> on host localhost-2.local
+[2026-02-28T23:58:35.706+0800] {scheduler_job_runner.py:776} INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='并行执行消费者', run_id='manual__2026-02-28T15:58:01.229062+00:00', try_number=1, map_index=-1)
+[2026-02-28T23:58:35.719+0800] {scheduler_job_runner.py:813} INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=并行执行消费者, run_id=manual__2026-02-28T15:58:01.229062+00:00, map_index=-1, run_start_date=2026-02-28 15:58:18.726530+00:00, run_end_date=2026-02-28 15:58:34.978972+00:00, run_duration=16.252442, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=763, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 15:58:14.840424+00:00, queued_by_job_id=711, pid=10212
+[2026-02-28T23:58:43.745+0800] {dagrun.py:854} INFO - Marking run <DagRun cdrd_并发 @ 2026-02-28 15:58:01.229062+00:00: manual__2026-02-28T15:58:01.229062+00:00, state:running, queued_at: 2026-02-28 15:58:01.250399+00:00. externally triggered: True> successful
+[2026-02-28T23:58:43.747+0800] {dagrun.py:905} INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 15:58:01.229062+00:00, run_id=manual__2026-02-28T15:58:01.229062+00:00, run_start_date=2026-02-28 15:58:03.542264+00:00, run_end_date=2026-02-28 15:58:43.747074+00:00, run_duration=40.20481, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 15:58:01.229062+00:00, data_interval_end=2026-02-28 15:58:01.229062+00:00, dag_hash=3dfcd20aed7f2a4c39abfade622ccac7
+[2026-03-01T00:00:44.913+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-01T00:05:45.271+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
