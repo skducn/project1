@@ -1,0 +1,32 @@
+[2026-02-28T16:57:39.938+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T16:57:39.956+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:57:21.725702+00:00 [queued]>
+[2026-02-28T16:57:39.964+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:57:21.725702+00:00 [queued]>
+[2026-02-28T16:57:39.965+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T16:57:39.977+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增角色> on 2026-02-28 08:57:21.725702+00:00
+[2026-02-28T16:57:39.981+0800] {standard_task_runner.py:72} INFO - Started process 22147 to run task
+[2026-02-28T16:57:39.990+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:57:21.725702+00:00', '--job-id', '687', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpy6f05hjd']
+[2026-02-28T16:57:39.995+0800] {standard_task_runner.py:105} INFO - Job 687: Subtask 新增角色
+[2026-02-28T16:57:40.054+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:57:21.725702+00:00 [running]> on host localhost-2.local
+[2026-02-28T16:57:40.133+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色' AIRFLOW_CTX_TASK_ID='新增角色' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T08:57:21.725702+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T08:57:21.725702+00:00'
+[2026-02-28T16:57:40.134+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T16:57:40.171+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T16:57:40.172+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-角色管理测试用例...
+[2026-02-28T16:57:40.172+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T16:57:40.192+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 2 条
+[2026-02-28T16:57:40.193+0800] {logging_mixin.py:190} INFO - 1, 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-28T16:57:40.573+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['萧阳', '622734', '349452', '香港特别行政区宜都县长寿王街A座 384915']]
+[2026-02-28T16:57:47.932+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'role_name': '萧阳', 'role_sort': '622734', 'remark': '349452'}
+[2026-02-28T16:57:47.934+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_role where role_name='萧阳'", 'v': 1}]
+[2026-02-28T16:57:47.937+0800] {logging_mixin.py:190} INFO - ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='萧阳'", 'v': 1}
+[2026-02-28T16:57:47.992+0800] {logging_mixin.py:190} INFO - 验证过程出错: expected string or bytes-like object
+[2026-02-28T16:57:47.993+0800] {logging_mixin.py:190} INFO - 2, 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-28T16:57:53.097+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'role_name': '555', 'remark': '1234'}
+[2026-02-28T16:57:53.098+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}]
+[2026-02-28T16:57:53.101+0800] {logging_mixin.py:190} INFO - ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}
+[2026-02-28T16:57:53.151+0800] {logging_mixin.py:190} INFO - 验证过程出错: expected string or bytes-like object
+[2026-02-28T16:57:53.152+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-28T16:57:53.162+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T16:57:53.163+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T08:57:21.725702+00:00, execution_date=20260228T085721, start_date=20260228T085739, end_date=20260228T085753
+[2026-02-28T16:57:53.215+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T16:57:53.238+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T16:57:53.239+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

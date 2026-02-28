@@ -1,0 +1,121 @@
+[2026-02-28T17:29:00.099+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T17:29:00.113+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:28:54.338536+00:00 [queued]>
+[2026-02-28T17:29:00.120+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:28:54.338536+00:00 [queued]>
+[2026-02-28T17:29:00.120+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T17:29:00.135+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 收尾工作> on 2026-02-28 09:28:54.338536+00:00
+[2026-02-28T17:29:00.138+0800] {standard_task_runner.py:72} INFO - Started process 23325 to run task
+[2026-02-28T17:29:00.146+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:28:54.338536+00:00', '--job-id', '696', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmppfs4xgb5']
+[2026-02-28T17:29:00.150+0800] {standard_task_runner.py:105} INFO - Job 696: Subtask 收尾工作
+[2026-02-28T17:29:00.450+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:28:54.338536+00:00 [running]> on host localhost-2.local
+[2026-02-28T17:29:00.522+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='收尾工作' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T09:28:54.338536+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T09:28:54.338536+00:00'
+[2026-02-28T17:29:00.523+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T17:29:00.545+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T17:29:00.546+0800] {logging_mixin.py:190} INFO - 【收尾工作】开始汇总测试结果...
+[2026-02-28T17:29:00.546+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T17:29:00.551+0800] {logging_mixin.py:190} INFO - 消费者1结果: None
+[2026-02-28T17:29:00.552+0800] {logging_mixin.py:190} INFO - ❌ 收尾工作执行失败: 设置单元格值失败: 获取工作表失败: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+[2026-02-28T17:29:00.553+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 361, in sh
+    raise ValueError(f"工作表 '{varSheet}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+ValueError: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 647, in setCell
+    sh = self.sh(varSheet)
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 365, in sh
+    raise ValueError(f"获取工作表失败: {e}") from e
+ValueError: 获取工作表失败: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 285, in final_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 269, in final_task
+    Openpyxl_PO.setCell(1, 15, summary_info, "v1.0")
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 668, in setCell
+    raise IOError(f"设置单元格值失败: {e}") from e
+OSError: 设置单元格值失败: 获取工作表失败: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+[2026-02-28T17:29:00.565+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=cdrd_并发, task_id=收尾工作, run_id=manual__2026-02-28T09:28:54.338536+00:00, execution_date=20260228T092854, start_date=20260228T092900, end_date=20260228T092900
+[2026-02-28T17:29:00.582+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T17:29:00.583+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 696 for task 收尾工作 (设置单元格值失败: 获取工作表失败: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']; 23325)
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 361, in sh
+    raise ValueError(f"工作表 '{varSheet}' 不存在于当前文件中。可用的工作表包括：{self.wb.sheetnames}")
+ValueError: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 647, in setCell
+    sh = self.sh(varSheet)
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 365, in sh
+    raise ValueError(f"获取工作表失败: {e}") from e
+ValueError: 获取工作表失败: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 285, in final_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 269, in final_task
+    Openpyxl_PO.setCell(1, 15, summary_info, "v1.0")
+  File "/Users/linghuchong/Downloads/51/Python/project/PO/OpenpyxlPO.py", line 668, in setCell
+    raise IOError(f"设置单元格值失败: {e}") from e
+OSError: 设置单元格值失败: 获取工作表失败: 工作表 'v1.0' 不存在于当前文件中。可用的工作表包括：['Sheet1']
+[2026-02-28T17:29:00.648+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-28T17:29:00.847+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T17:29:00.848+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

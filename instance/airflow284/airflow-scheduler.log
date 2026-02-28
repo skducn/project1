@@ -10129,3 +10129,444 @@ ImportError: cannot import name 'AirflowSkipException' from 'airflow.providers.c
 2026-02-28 16:02:06,097 INFO - TaskInstance Finished: dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-28T08:01:31.463620+00:00, map_index=-1, run_start_date=2026-02-28 08:01:54.079053+00:00, run_end_date=2026-02-28 08:02:05.235698+00:00, run_duration=11.156645, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=679, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 08:01:50.031105+00:00, queued_by_job_id=576, pid=19464
 2026-02-28 16:02:13,080 INFO - Marking run <DagRun cdrd_新增用户 @ 2026-02-28 08:01:31.463620+00:00: manual__2026-02-28T08:01:31.463620+00:00, state:running, queued_at: 2026-02-28 08:01:31.472489+00:00. externally triggered: True> successful
 2026-02-28 16:02:13,081 INFO - DagRun Finished: dag_id=cdrd_新增用户, execution_date=2026-02-28 08:01:31.463620+00:00, run_id=manual__2026-02-28T08:01:31.463620+00:00, run_start_date=2026-02-28 08:01:35.707496+00:00, run_end_date=2026-02-28 08:02:13.081725+00:00, run_duration=37.374229, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 08:01:31.463620+00:00, data_interval_end=2026-02-28 08:01:31.463620+00:00, dag_hash=14851c9c84d59bd7c289c15ef21a1d4d
+2026-02-28 16:04:19,909 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:09:23,734 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:14:25,080 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:14:55,534 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-28T08:14:47.880663+00:00 [scheduled]>
+2026-02-28 16:14:55,536 INFO - DAG cdrd_新增用户 has 0/16 running and queued tasks
+2026-02-28 16:14:55,537 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-28T08:14:47.880663+00:00 [scheduled]>
+2026-02-28 16:14:55,541 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增用户.读取测试用例 manual__2026-02-28T08:14:47.880663+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:14:55,542 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增用户', task_id='读取测试用例', run_id='manual__2026-02-28T08:14:47.880663+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 16:14:55,543 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '读取测试用例', 'manual__2026-02-28T08:14:47.880663+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py']
+2026-02-28 16:14:55,546 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '读取测试用例', 'manual__2026-02-28T08:14:47.880663+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py']
+2026-02-28 16:15:00,967 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增用户', task_id='读取测试用例', run_id='manual__2026-02-28T08:14:47.880663+00:00', try_number=1, map_index=-1)
+2026-02-28 16:15:00,976 INFO - TaskInstance Finished: dag_id=cdrd_新增用户, task_id=读取测试用例, run_id=manual__2026-02-28T08:14:47.880663+00:00, map_index=-1, run_start_date=2026-02-28 08:15:00.000031+00:00, run_end_date=2026-02-28 08:15:00.210946+00:00, run_duration=0.210915, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=680, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 08:14:55.539259+00:00, queued_by_job_id=576, pid=20230
+2026-02-28 16:15:03,631 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T08:14:47.880663+00:00 [scheduled]>
+2026-02-28 16:15:03,632 INFO - DAG cdrd_新增用户 has 0/16 running and queued tasks
+2026-02-28 16:15:03,633 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T08:14:47.880663+00:00 [scheduled]>
+2026-02-28 16:15:03,635 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增用户.新增用户 manual__2026-02-28T08:14:47.880663+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:15:03,636 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增用户', task_id='新增用户', run_id='manual__2026-02-28T08:14:47.880663+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 16:15:03,637 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-28T08:14:47.880663+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py']
+2026-02-28 16:15:03,639 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-02-28T08:14:47.880663+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py']
+2026-02-28 16:15:19,827 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增用户', task_id='新增用户', run_id='manual__2026-02-28T08:14:47.880663+00:00', try_number=1, map_index=-1)
+2026-02-28 16:15:19,860 INFO - TaskInstance Finished: dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-02-28T08:14:47.880663+00:00, map_index=-1, run_start_date=2026-02-28 08:15:07.701609+00:00, run_end_date=2026-02-28 08:15:18.939305+00:00, run_duration=11.237696, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=681, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 08:15:03.634497+00:00, queued_by_job_id=576, pid=20236
+2026-02-28 16:15:26,603 INFO - Marking run <DagRun cdrd_新增用户 @ 2026-02-28 08:14:47.880663+00:00: manual__2026-02-28T08:14:47.880663+00:00, state:running, queued_at: 2026-02-28 08:14:47.890995+00:00. externally triggered: True> successful
+2026-02-28 16:15:26,604 INFO - DagRun Finished: dag_id=cdrd_新增用户, execution_date=2026-02-28 08:14:47.880663+00:00, run_id=manual__2026-02-28T08:14:47.880663+00:00, run_start_date=2026-02-28 08:14:50.648069+00:00, run_end_date=2026-02-28 08:15:26.604125+00:00, run_duration=35.956056, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 08:14:47.880663+00:00, data_interval_end=2026-02-28 08:14:47.880663+00:00, dag_hash=14851c9c84d59bd7c289c15ef21a1d4d
+2026-02-28 16:19:27,465 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:24:29,416 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:29:29,668 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:34:31,651 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:36:16,771 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:36:10.709825+00:00 [scheduled]>
+2026-02-28 16:36:16,772 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 16:36:16,774 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:36:10.709825+00:00 [scheduled]>
+2026-02-28 16:36:16,777 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:36:10.709825+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:36:16,778 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:36:10.709825+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 16:36:16,779 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:36:10.709825+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:36:16,782 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:36:10.709825+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:36:22,231 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:36:10.709825+00:00', try_number=1, map_index=-1)
+2026-02-28 16:36:22,240 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T08:36:10.709825+00:00, map_index=-1, run_start_date=2026-02-28 08:36:21.273457+00:00, run_end_date=2026-02-28 08:36:21.480169+00:00, run_duration=0.206712, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=682, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 08:36:16.775552+00:00, queued_by_job_id=576, pid=21063
+2026-02-28 16:36:26,010 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:36:10.709825+00:00 [scheduled]>
+2026-02-28 16:36:26,011 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 16:36:26,011 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:36:10.709825+00:00 [scheduled]>
+2026-02-28 16:36:26,014 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:36:10.709825+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:36:26,015 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:36:10.709825+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 16:36:26,016 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:36:10.709825+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:36:26,019 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:36:10.709825+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:36:30,990 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:36:10.709825+00:00', try_number=1, map_index=-1)
+2026-02-28 16:36:31,001 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T08:36:10.709825+00:00, map_index=-1, run_start_date=2026-02-28 08:36:29.987038+00:00, run_end_date=2026-02-28 08:36:30.204865+00:00, run_duration=0.217827, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=683, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 08:36:26.013049+00:00, queued_by_job_id=576, pid=21066
+2026-02-28 16:36:39,441 INFO - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 08:36:10.709825+00:00: manual__2026-02-28T08:36:10.709825+00:00, state:running, queued_at: 2026-02-28 08:36:10.722471+00:00. externally triggered: True> successful
+2026-02-28 16:36:39,442 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 08:36:10.709825+00:00, run_id=manual__2026-02-28T08:36:10.709825+00:00, run_start_date=2026-02-28 08:36:13.260608+00:00, run_end_date=2026-02-28 08:36:39.442632+00:00, run_duration=26.182024, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 08:36:10.709825+00:00, data_interval_end=2026-02-28 08:36:10.709825+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 16:37:35,612 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:37:30.880685+00:00 [scheduled]>
+2026-02-28 16:37:35,614 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 16:37:35,615 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:37:30.880685+00:00 [scheduled]>
+2026-02-28 16:37:35,619 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:37:30.880685+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:37:35,621 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:37:30.880685+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 16:37:35,621 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:37:30.880685+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:37:35,624 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:37:30.880685+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:37:41,264 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:37:30.880685+00:00', try_number=1, map_index=-1)
+2026-02-28 16:37:41,275 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T08:37:30.880685+00:00, map_index=-1, run_start_date=2026-02-28 08:37:40.266399+00:00, run_end_date=2026-02-28 08:37:40.496243+00:00, run_duration=0.229844, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=684, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 08:37:35.617186+00:00, queued_by_job_id=576, pid=21111
+2026-02-28 16:37:44,376 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:37:30.880685+00:00 [scheduled]>
+2026-02-28 16:37:44,377 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 16:37:44,378 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:37:30.880685+00:00 [scheduled]>
+2026-02-28 16:37:44,380 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:37:30.880685+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:37:44,381 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:37:30.880685+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 16:37:44,382 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:37:30.880685+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:37:44,385 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:37:30.880685+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:38:05,983 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:37:30.880685+00:00', try_number=1, map_index=-1)
+2026-02-28 16:38:05,993 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T08:37:30.880685+00:00, map_index=-1, run_start_date=2026-02-28 08:37:48.337645+00:00, run_end_date=2026-02-28 08:38:05.111029+00:00, run_duration=16.773384, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=685, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 08:37:44.379326+00:00, queued_by_job_id=576, pid=21114
+2026-02-28 16:38:14,138 INFO - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 08:37:30.880685+00:00: manual__2026-02-28T08:37:30.880685+00:00, state:running, queued_at: 2026-02-28 08:37:30.895584+00:00. externally triggered: True> successful
+2026-02-28 16:38:14,140 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 08:37:30.880685+00:00, run_id=manual__2026-02-28T08:37:30.880685+00:00, run_start_date=2026-02-28 08:37:32.506527+00:00, run_end_date=2026-02-28 08:38:14.140273+00:00, run_duration=41.633746, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 08:37:30.880685+00:00, data_interval_end=2026-02-28 08:37:30.880685+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 16:39:33,057 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:44:33,593 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:49:34,981 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:54:37,075 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 16:57:27,132 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:57:21.725702+00:00 [scheduled]>
+2026-02-28 16:57:27,132 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 16:57:27,133 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:57:21.725702+00:00 [scheduled]>
+2026-02-28 16:57:27,135 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:57:21.725702+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:57:27,137 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:57:21.725702+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 16:57:27,138 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:57:21.725702+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:57:27,141 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:57:21.725702+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:57:32,633 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:57:21.725702+00:00', try_number=1, map_index=-1)
+2026-02-28 16:57:32,645 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T08:57:21.725702+00:00, map_index=-1, run_start_date=2026-02-28 08:57:31.655177+00:00, run_end_date=2026-02-28 08:57:31.874324+00:00, run_duration=0.219147, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=686, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 08:57:27.134921+00:00, queued_by_job_id=576, pid=22133
+2026-02-28 16:57:35,663 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:57:21.725702+00:00 [scheduled]>
+2026-02-28 16:57:35,664 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 16:57:35,666 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:57:21.725702+00:00 [scheduled]>
+2026-02-28 16:57:35,671 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:57:21.725702+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 16:57:35,672 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:57:21.725702+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 16:57:35,674 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:57:21.725702+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:57:35,677 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:57:21.725702+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 16:57:53,970 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:57:21.725702+00:00', try_number=1, map_index=-1)
+2026-02-28 16:57:53,983 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T08:57:21.725702+00:00, map_index=-1, run_start_date=2026-02-28 08:57:39.956642+00:00, run_end_date=2026-02-28 08:57:53.162858+00:00, run_duration=13.206216, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=687, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 08:57:35.668880+00:00, queued_by_job_id=576, pid=22147
+2026-02-28 16:58:01,895 INFO - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 08:57:21.725702+00:00: manual__2026-02-28T08:57:21.725702+00:00, state:running, queued_at: 2026-02-28 08:57:21.736279+00:00. externally triggered: True> successful
+2026-02-28 16:58:01,896 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 08:57:21.725702+00:00, run_id=manual__2026-02-28T08:57:21.725702+00:00, run_start_date=2026-02-28 08:57:24.151810+00:00, run_end_date=2026-02-28 08:58:01.896424+00:00, run_duration=37.744614, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 08:57:21.725702+00:00, data_interval_end=2026-02-28 08:57:21.725702+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 16:59:37,763 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:00:03,038 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:59:56.694792+00:00 [scheduled]>
+2026-02-28 17:00:03,039 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:00:03,039 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:59:56.694792+00:00 [scheduled]>
+2026-02-28 17:00:03,042 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:59:56.694792+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:00:03,043 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:59:56.694792+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:00:03,044 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:59:56.694792+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:00:03,046 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:59:56.694792+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:00:08,284 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T08:59:56.694792+00:00', try_number=1, map_index=-1)
+2026-02-28 17:00:08,294 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T08:59:56.694792+00:00, map_index=-1, run_start_date=2026-02-28 09:00:07.248632+00:00, run_end_date=2026-02-28 09:00:07.455030+00:00, run_duration=0.206398, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=688, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:00:03.041007+00:00, queued_by_job_id=576, pid=22274
+2026-02-28 17:00:10,948 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:59:56.694792+00:00 [scheduled]>
+2026-02-28 17:00:10,949 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:00:10,950 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:59:56.694792+00:00 [scheduled]>
+2026-02-28 17:00:10,952 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:59:56.694792+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:00:10,953 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:59:56.694792+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:00:10,954 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:59:56.694792+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:00:10,956 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:59:56.694792+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:00:22,388 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T08:59:56.694792+00:00', try_number=1, map_index=-1)
+2026-02-28 17:00:22,399 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T08:59:56.694792+00:00, map_index=-1, run_start_date=2026-02-28 09:00:14.899659+00:00, run_end_date=2026-02-28 09:00:21.536937+00:00, run_duration=6.637278, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=689, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:00:10.951074+00:00, queued_by_job_id=576, pid=22277
+2026-02-28 17:00:26,478 ERROR - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 08:59:56.694792+00:00: manual__2026-02-28T08:59:56.694792+00:00, state:running, queued_at: 2026-02-28 08:59:56.705038+00:00. externally triggered: True> failed
+2026-02-28 17:00:26,480 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 08:59:56.694792+00:00, run_id=manual__2026-02-28T08:59:56.694792+00:00, run_start_date=2026-02-28 08:59:58.114407+00:00, run_end_date=2026-02-28 09:00:26.479979+00:00, run_duration=28.365572, state=failed, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 08:59:56.694792+00:00, data_interval_end=2026-02-28 08:59:56.694792+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 17:04:40,103 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:05:02,309 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:04:57.531181+00:00 [scheduled]>
+2026-02-28 17:05:02,310 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:05:02,311 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:04:57.531181+00:00 [scheduled]>
+2026-02-28 17:05:02,313 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:04:57.531181+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:05:02,314 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:04:57.531181+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:05:02,315 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:04:57.531181+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:05:02,317 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:04:57.531181+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:05:07,791 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:04:57.531181+00:00', try_number=1, map_index=-1)
+2026-02-28 17:05:07,802 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T09:04:57.531181+00:00, map_index=-1, run_start_date=2026-02-28 09:05:06.818540+00:00, run_end_date=2026-02-28 09:05:07.034415+00:00, run_duration=0.215875, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=690, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:05:02.312312+00:00, queued_by_job_id=576, pid=22453
+2026-02-28 17:05:10,586 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:04:57.531181+00:00 [scheduled]>
+2026-02-28 17:05:10,587 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:05:10,588 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:04:57.531181+00:00 [scheduled]>
+2026-02-28 17:05:10,590 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:04:57.531181+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:05:10,591 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T09:04:57.531181+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:05:10,592 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:04:57.531181+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:05:10,595 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:04:57.531181+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:05:28,441 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T09:04:57.531181+00:00', try_number=1, map_index=-1)
+2026-02-28 17:05:28,452 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T09:04:57.531181+00:00, map_index=-1, run_start_date=2026-02-28 09:05:14.702195+00:00, run_end_date=2026-02-28 09:05:27.679028+00:00, run_duration=12.976833, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=691, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:05:10.589270+00:00, queued_by_job_id=576, pid=22456
+2026-02-28 17:05:31,930 ERROR - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 09:04:57.531181+00:00: manual__2026-02-28T09:04:57.531181+00:00, state:running, queued_at: 2026-02-28 09:04:57.545029+00:00. externally triggered: True> failed
+2026-02-28 17:05:31,931 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 09:04:57.531181+00:00, run_id=manual__2026-02-28T09:04:57.531181+00:00, run_start_date=2026-02-28 09:04:58.498728+00:00, run_end_date=2026-02-28 09:05:31.931187+00:00, run_duration=33.432459, state=failed, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:04:57.531181+00:00, data_interval_end=2026-02-28 09:04:57.531181+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 17:07:43,062 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:07:37.367407+00:00 [scheduled]>
+2026-02-28 17:07:43,063 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:07:43,064 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:07:37.367407+00:00 [scheduled]>
+2026-02-28 17:07:43,066 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:07:37.367407+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:07:43,067 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:07:37.367407+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:07:43,068 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:07:37.367407+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:07:43,071 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:07:37.367407+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:07:48,326 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:07:37.367407+00:00', try_number=1, map_index=-1)
+2026-02-28 17:07:48,335 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T09:07:37.367407+00:00, map_index=-1, run_start_date=2026-02-28 09:07:47.339560+00:00, run_end_date=2026-02-28 09:07:47.544041+00:00, run_duration=0.204481, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=692, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:07:43.065755+00:00, queued_by_job_id=576, pid=22578
+2026-02-28 17:07:50,958 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:07:37.367407+00:00 [scheduled]>
+2026-02-28 17:07:50,959 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:07:50,960 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:07:37.367407+00:00 [scheduled]>
+2026-02-28 17:07:50,962 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:07:37.367407+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:07:50,964 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T09:07:37.367407+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:07:50,965 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:07:37.367407+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:07:50,967 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:07:37.367407+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:08:07,655 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T09:07:37.367407+00:00', try_number=1, map_index=-1)
+2026-02-28 17:08:07,665 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T09:07:37.367407+00:00, map_index=-1, run_start_date=2026-02-28 09:07:54.949320+00:00, run_end_date=2026-02-28 09:08:06.820777+00:00, run_duration=11.871457, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=693, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:07:50.961417+00:00, queued_by_job_id=576, pid=22581
+2026-02-28 17:08:16,518 INFO - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 09:07:37.367407+00:00: manual__2026-02-28T09:07:37.367407+00:00, state:running, queued_at: 2026-02-28 09:07:37.375715+00:00. externally triggered: True> successful
+2026-02-28 17:08:16,519 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 09:07:37.367407+00:00, run_id=manual__2026-02-28T09:07:37.367407+00:00, run_start_date=2026-02-28 09:07:40.082220+00:00, run_end_date=2026-02-28 09:08:16.519831+00:00, run_duration=36.437611, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:07:37.367407+00:00, data_interval_end=2026-02-28 09:07:37.367407+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 17:09:42,664 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:11:36,515 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:11:29.750370+00:00 [scheduled]>
+2026-02-28 17:11:36,516 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:11:36,517 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:11:29.750370+00:00 [scheduled]>
+2026-02-28 17:11:36,519 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:11:29.750370+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:11:36,521 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:11:29.750370+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:11:36,522 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:11:29.750370+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:11:36,525 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:11:29.750370+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:11:41,860 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:11:29.750370+00:00', try_number=1, map_index=-1)
+2026-02-28 17:11:41,870 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T09:11:29.750370+00:00, map_index=-1, run_start_date=2026-02-28 09:11:40.824470+00:00, run_end_date=2026-02-28 09:11:41.032354+00:00, run_duration=0.207884, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=694, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:11:36.518535+00:00, queued_by_job_id=576, pid=22768
+2026-02-28 17:11:45,921 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:11:29.750370+00:00 [scheduled]>
+2026-02-28 17:11:45,922 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:11:45,922 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:11:29.750370+00:00 [scheduled]>
+2026-02-28 17:11:45,925 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:11:29.750370+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:11:45,926 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T09:11:29.750370+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:11:45,926 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:11:29.750370+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:11:45,929 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:11:29.750370+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py']
+2026-02-28 17:12:03,404 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='新增角色', run_id='manual__2026-02-28T09:11:29.750370+00:00', try_number=1, map_index=-1)
+2026-02-28 17:12:03,415 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T09:11:29.750370+00:00, map_index=-1, run_start_date=2026-02-28 09:11:49.883088+00:00, run_end_date=2026-02-28 09:12:02.623104+00:00, run_duration=12.740016, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=695, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:11:45.923969+00:00, queued_by_job_id=576, pid=22771
+2026-02-28 17:12:10,289 INFO - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 09:11:29.750370+00:00: manual__2026-02-28T09:11:29.750370+00:00, state:running, queued_at: 2026-02-28 09:11:29.769972+00:00. externally triggered: True> successful
+2026-02-28 17:12:10,290 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 09:11:29.750370+00:00, run_id=manual__2026-02-28T09:11:29.750370+00:00, run_start_date=2026-02-28 09:11:32.852270+00:00, run_end_date=2026-02-28 09:12:10.290625+00:00, run_duration=37.438355, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:11:29.750370+00:00, data_interval_end=2026-02-28 09:11:29.750370+00:00, dag_hash=9370a686bfe468188246a4a4cef8bef4
+2026-02-28 17:14:45,315 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:19:47,627 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:24:50,063 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:28:55,721 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:28:54.338536+00:00 [scheduled]>
+2026-02-28 17:28:55,722 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:28:55,723 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:28:54.338536+00:00 [scheduled]>
+2026-02-28 17:28:55,725 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:28:54.338536+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:28:55,726 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:28:54.338536+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-28 17:28:55,727 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:28:54.338536+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:28:55,729 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:28:54.338536+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:29:01,523 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:28:54.338536+00:00', try_number=1, map_index=-1)
+2026-02-28 17:29:01,533 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=收尾工作, run_id=manual__2026-02-28T09:28:54.338536+00:00, map_index=-1, run_start_date=2026-02-28 09:29:00.113807+00:00, run_end_date=2026-02-28 09:29:00.565039+00:00, run_duration=0.451232, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=696, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-28 09:28:55.724311+00:00, queued_by_job_id=576, pid=23325
+2026-02-28 17:29:04,419 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:28:54.338536+00:00 [scheduled]>
+2026-02-28 17:29:04,420 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:29:04,422 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:28:54.338536+00:00 [scheduled]>
+2026-02-28 17:29:04,424 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:28:54.338536+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:29:04,425 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:28:54.338536+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:29:04,426 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:28:54.338536+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:29:04,428 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:28:54.338536+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:29:10,306 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:28:54.338536+00:00', try_number=1, map_index=-1)
+2026-02-28 17:29:10,318 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T09:28:54.338536+00:00, map_index=-1, run_start_date=2026-02-28 09:29:08.995177+00:00, run_end_date=2026-02-28 09:29:09.455973+00:00, run_duration=0.460796, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=697, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:29:04.423349+00:00, queued_by_job_id=576, pid=23331
+2026-02-28 17:29:18,431 ERROR - Marking run <DagRun cdrd_并发 @ 2026-02-28 09:28:54.338536+00:00: manual__2026-02-28T09:28:54.338536+00:00, state:running, queued_at: 2026-02-28 09:28:54.362751+00:00. externally triggered: True> failed
+2026-02-28 17:29:18,432 INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 09:28:54.338536+00:00, run_id=manual__2026-02-28T09:28:54.338536+00:00, run_start_date=2026-02-28 09:28:55.691756+00:00, run_end_date=2026-02-28 09:29:18.432641+00:00, run_duration=22.740885, state=failed, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:28:54.338536+00:00, data_interval_end=2026-02-28 09:28:54.338536+00:00, dag_hash=c38e4d01d8794edab9c26738273f0d92
+2026-02-28 17:29:53,407 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:30:14,661 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:30:12.383522+00:00 [scheduled]>
+2026-02-28 17:30:14,662 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:30:14,663 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:30:12.383522+00:00 [scheduled]>
+2026-02-28 17:30:14,665 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:30:12.383522+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:30:14,666 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:30:12.383522+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-28 17:30:14,667 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:30:12.383522+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:30:14,669 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:30:12.383522+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:30:19,978 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:30:12.383522+00:00', try_number=1, map_index=-1)
+2026-02-28 17:30:19,988 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=收尾工作, run_id=manual__2026-02-28T09:30:12.383522+00:00, map_index=-1, run_start_date=2026-02-28 09:30:18.583503+00:00, run_end_date=2026-02-28 09:30:19.048820+00:00, run_duration=0.465317, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=698, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-28 09:30:14.664748+00:00, queued_by_job_id=576, pid=23378
+2026-02-28 17:30:22,763 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:30:12.383522+00:00 [scheduled]>
+2026-02-28 17:30:22,765 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:30:22,766 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:30:12.383522+00:00 [scheduled]>
+2026-02-28 17:30:22,768 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:30:12.383522+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:30:22,769 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:30:12.383522+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:30:22,770 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:30:12.383522+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:30:22,773 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:30:12.383522+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:30:28,041 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:30:12.383522+00:00', try_number=1, map_index=-1)
+2026-02-28 17:30:28,054 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T09:30:12.383522+00:00, map_index=-1, run_start_date=2026-02-28 09:30:26.744437+00:00, run_end_date=2026-02-28 09:30:27.186557+00:00, run_duration=0.44212, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=699, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:30:22.767610+00:00, queued_by_job_id=576, pid=23381
+2026-02-28 17:30:35,720 ERROR - Marking run <DagRun cdrd_并发 @ 2026-02-28 09:30:12.383522+00:00: manual__2026-02-28T09:30:12.383522+00:00, state:running, queued_at: 2026-02-28 09:30:12.394807+00:00. externally triggered: True> failed
+2026-02-28 17:30:35,721 INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 09:30:12.383522+00:00, run_id=manual__2026-02-28T09:30:12.383522+00:00, run_start_date=2026-02-28 09:30:14.632745+00:00, run_end_date=2026-02-28 09:30:35.721793+00:00, run_duration=21.089048, state=failed, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:30:12.383522+00:00, data_interval_end=2026-02-28 09:30:12.383522+00:00, dag_hash=c38e4d01d8794edab9c26738273f0d92
+2026-02-28 17:32:15,600 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:32:12.680318+00:00 [scheduled]>
+2026-02-28 17:32:15,601 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:32:15,602 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:32:12.680318+00:00 [scheduled]>
+2026-02-28 17:32:15,604 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:32:12.680318+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:32:15,606 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:32:12.680318+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-28 17:32:15,606 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:32:12.680318+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:32:15,609 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:32:12.680318+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:32:21,231 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:32:12.680318+00:00', try_number=1, map_index=-1)
+2026-02-28 17:32:21,240 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=收尾工作, run_id=manual__2026-02-28T09:32:12.680318+00:00, map_index=-1, run_start_date=2026-02-28 09:32:19.832775+00:00, run_end_date=2026-02-28 09:32:20.294215+00:00, run_duration=0.46144, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=696, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-28 09:32:15.603823+00:00, queued_by_job_id=576, pid=23448
+2026-02-28 17:32:25,019 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:32:12.680318+00:00 [scheduled]>
+2026-02-28 17:32:25,020 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:32:25,022 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:32:12.680318+00:00 [scheduled]>
+2026-02-28 17:32:25,025 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:32:12.680318+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:32:25,026 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:32:12.680318+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:32:25,027 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:32:12.680318+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:32:25,030 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:32:12.680318+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:32:30,542 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:32:12.680318+00:00', try_number=1, map_index=-1)
+2026-02-28 17:32:30,555 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T09:32:12.680318+00:00, map_index=-1, run_start_date=2026-02-28 09:32:29.287967+00:00, run_end_date=2026-02-28 09:32:29.619830+00:00, run_duration=0.331863, state=failed, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=697, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:32:25.024153+00:00, queued_by_job_id=576, pid=23451
+2026-02-28 17:32:38,555 ERROR - Marking run <DagRun cdrd_并发 @ 2026-02-28 09:32:12.680318+00:00: manual__2026-02-28T09:32:12.680318+00:00, state:running, queued_at: 2026-02-28 09:32:12.701383+00:00. externally triggered: True> failed
+2026-02-28 17:32:38,557 INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 09:32:12.680318+00:00, run_id=manual__2026-02-28T09:32:12.680318+00:00, run_start_date=2026-02-28 09:32:15.573364+00:00, run_end_date=2026-02-28 09:32:38.556812+00:00, run_duration=22.983448, state=failed, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:32:12.680318+00:00, data_interval_end=2026-02-28 09:32:12.680318+00:00, dag_hash=c38e4d01d8794edab9c26738273f0d92
+2026-02-28 17:33:47,360 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>
+2026-02-28 17:33:47,361 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:33:47,362 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>
+2026-02-28 17:33:47,364 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.收尾工作 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:33:47,366 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:33:42.309925+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-28 17:33:47,367 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:33:42.309925+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:33:47,369 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '收尾工作', 'manual__2026-02-28T09:33:42.309925+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:33:52,849 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='收尾工作', run_id='manual__2026-02-28T09:33:42.309925+00:00', try_number=1, map_index=-1)
+2026-02-28 17:33:52,859 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=收尾工作, run_id=manual__2026-02-28T09:33:42.309925+00:00, map_index=-1, run_start_date=2026-02-28 09:33:51.691699+00:00, run_end_date=2026-02-28 09:33:52.058240+00:00, run_duration=0.366541, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=698, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-28 09:33:47.363334+00:00, queued_by_job_id=576, pid=23515
+2026-02-28 17:33:56,884 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>
+2026-02-28 17:33:56,885 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:33:56,886 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>
+2026-02-28 17:33:56,888 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:33:56,890 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:33:42.309925+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:33:56,891 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:33:42.309925+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:33:56,893 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:33:42.309925+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:34:01,799 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:33:42.309925+00:00', try_number=1, map_index=-1)
+2026-02-28 17:34:01,810 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T09:33:42.309925+00:00, map_index=-1, run_start_date=2026-02-28 09:34:00.779157+00:00, run_end_date=2026-02-28 09:34:00.993468+00:00, run_duration=0.214311, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=699, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:33:56.887251+00:00, queued_by_job_id=576, pid=23523
+2026-02-28 17:34:04,452 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>
+2026-02-28 17:34:04,453 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:34:04,454 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>
+2026-02-28 17:34:04,456 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:33:42.309925+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:34:04,457 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='并发', run_id='manual__2026-02-28T09:33:42.309925+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:34:04,458 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-28T09:33:42.309925+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:34:04,461 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-28T09:33:42.309925+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:34:09,626 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='并发', run_id='manual__2026-02-28T09:33:42.309925+00:00', try_number=1, map_index=-1)
+2026-02-28 17:34:09,636 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-28T09:33:42.309925+00:00, map_index=-1, run_start_date=2026-02-28 09:34:08.584450+00:00, run_end_date=2026-02-28 09:34:08.838856+00:00, run_duration=0.254406, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=700, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:34:04.455343+00:00, queued_by_job_id=576, pid=23526
+2026-02-28 17:34:15,934 INFO - Marking run <DagRun cdrd_并发 @ 2026-02-28 09:33:42.309925+00:00: manual__2026-02-28T09:33:42.309925+00:00, state:running, queued_at: 2026-02-28 09:33:42.318917+00:00. externally triggered: True> successful
+2026-02-28 17:34:15,935 INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 09:33:42.309925+00:00, run_id=manual__2026-02-28T09:33:42.309925+00:00, run_start_date=2026-02-28 09:33:47.332806+00:00, run_end_date=2026-02-28 09:34:15.935097+00:00, run_duration=28.602291, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:33:42.309925+00:00, data_interval_end=2026-02-28 09:33:42.309925+00:00, dag_hash=c38e4d01d8794edab9c26738273f0d92
+2026-02-28 17:34:55,130 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:39:57,921 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:45:00,427 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:48:25,031 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:48:16.098450+00:00 [scheduled]>
+2026-02-28 17:48:25,032 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:48:25,034 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:48:16.098450+00:00 [scheduled]>
+2026-02-28 17:48:25,037 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:48:16.098450+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:48:25,038 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:48:16.098450+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:48:25,039 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:48:16.098450+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:48:25,042 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:48:16.098450+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:48:30,638 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:48:16.098450+00:00', try_number=1, map_index=-1)
+2026-02-28 17:48:30,649 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T09:48:16.098450+00:00, map_index=-1, run_start_date=2026-02-28 09:48:29.604905+00:00, run_end_date=2026-02-28 09:48:29.834235+00:00, run_duration=0.22933, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=701, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:48:25.035590+00:00, queued_by_job_id=576, pid=24055
+2026-02-28 17:48:34,618 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:48:16.098450+00:00 [scheduled]>
+2026-02-28 17:48:34,619 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:48:34,620 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:48:16.098450+00:00 [scheduled]>
+2026-02-28 17:48:34,622 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:48:16.098450+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:48:34,623 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='并发', run_id='manual__2026-02-28T09:48:16.098450+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:48:34,624 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-28T09:48:16.098450+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:48:34,626 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-28T09:48:16.098450+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:48:56,870 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='并发', run_id='manual__2026-02-28T09:48:16.098450+00:00', try_number=1, map_index=-1)
+2026-02-28 17:48:56,883 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-28T09:48:16.098450+00:00, map_index=-1, run_start_date=2026-02-28 09:48:38.875179+00:00, run_end_date=2026-02-28 09:48:56.153821+00:00, run_duration=17.278642, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=702, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:48:34.621263+00:00, queued_by_job_id=576, pid=24063
+2026-02-28 17:49:04,397 INFO - Marking run <DagRun cdrd_并发 @ 2026-02-28 09:48:16.098450+00:00: manual__2026-02-28T09:48:16.098450+00:00, state:running, queued_at: 2026-02-28 09:48:16.114653+00:00. externally triggered: True> successful
+2026-02-28 17:49:04,398 INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 09:48:16.098450+00:00, run_id=manual__2026-02-28T09:48:16.098450+00:00, run_start_date=2026-02-28 09:48:21.753609+00:00, run_end_date=2026-02-28 09:49:04.398531+00:00, run_duration=42.644922, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:48:16.098450+00:00, data_interval_end=2026-02-28 09:48:16.098450+00:00, dag_hash=f6d86e3ad2a752a337ab85c41f8dd4d3
+2026-02-28 17:50:03,442 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:51:01,100 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:50:53.900992+00:00 [scheduled]>
+2026-02-28 17:51:01,101 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:51:01,102 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:50:53.900992+00:00 [scheduled]>
+2026-02-28 17:51:01,104 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.读取测试用例 manual__2026-02-28T09:50:53.900992+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:51:01,105 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:50:53.900992+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:51:01,106 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:50:53.900992+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:51:01,108 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '读取测试用例', 'manual__2026-02-28T09:50:53.900992+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:51:06,445 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='读取测试用例', run_id='manual__2026-02-28T09:50:53.900992+00:00', try_number=1, map_index=-1)
+2026-02-28 17:51:06,458 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=读取测试用例, run_id=manual__2026-02-28T09:50:53.900992+00:00, map_index=-1, run_start_date=2026-02-28 09:51:05.478601+00:00, run_end_date=2026-02-28 09:51:05.685540+00:00, run_duration=0.206939, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=703, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:51:01.103087+00:00, queued_by_job_id=576, pid=24170
+2026-02-28 17:51:09,162 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:50:53.900992+00:00 [scheduled]>
+2026-02-28 17:51:09,163 INFO - DAG cdrd_并发 has 0/16 running and queued tasks
+2026-02-28 17:51:09,164 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:50:53.900992+00:00 [scheduled]>
+2026-02-28 17:51:09,167 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_并发.并发 manual__2026-02-28T09:50:53.900992+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:51:09,168 INFO - Sending TaskInstanceKey(dag_id='cdrd_并发', task_id='并发', run_id='manual__2026-02-28T09:50:53.900992+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:51:09,169 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-28T09:50:53.900992+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:51:09,171 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_并发', '并发', 'manual__2026-02-28T09:50:53.900992+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py']
+2026-02-28 17:51:27,234 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_并发', task_id='并发', run_id='manual__2026-02-28T09:50:53.900992+00:00', try_number=1, map_index=-1)
+2026-02-28 17:51:27,251 INFO - TaskInstance Finished: dag_id=cdrd_并发, task_id=并发, run_id=manual__2026-02-28T09:50:53.900992+00:00, map_index=-1, run_start_date=2026-02-28 09:51:13.083057+00:00, run_end_date=2026-02-28 09:51:26.396228+00:00, run_duration=13.313171, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=704, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:51:09.165816+00:00, queued_by_job_id=576, pid=24173
+2026-02-28 17:51:38,008 INFO - Marking run <DagRun cdrd_并发 @ 2026-02-28 09:50:53.900992+00:00: manual__2026-02-28T09:50:53.900992+00:00, state:running, queued_at: 2026-02-28 09:50:53.916687+00:00. externally triggered: True> successful
+2026-02-28 17:51:38,009 INFO - DagRun Finished: dag_id=cdrd_并发, execution_date=2026-02-28 09:50:53.900992+00:00, run_id=manual__2026-02-28T09:50:53.900992+00:00, run_start_date=2026-02-28 09:50:57.273084+00:00, run_end_date=2026-02-28 09:51:38.009390+00:00, run_duration=40.736306, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:50:53.900992+00:00, data_interval_end=2026-02-28 09:50:53.900992+00:00, dag_hash=f6d86e3ad2a752a337ab85c41f8dd4d3
+2026-02-28 17:55:05,244 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 17:59:32,884 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.收尾工作 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>
+2026-02-28 17:59:32,885 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:59:32,886 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.收尾工作 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>
+2026-02-28 17:59:32,889 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.收尾工作 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:59:32,892 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='收尾工作', run_id='manual__2026-02-28T09:59:30.071893+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-28 17:59:32,893 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '收尾工作', 'manual__2026-02-28T09:59:30.071893+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 17:59:32,895 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '收尾工作', 'manual__2026-02-28T09:59:30.071893+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 17:59:39,189 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='收尾工作', run_id='manual__2026-02-28T09:59:30.071893+00:00', try_number=1, map_index=-1)
+2026-02-28 17:59:39,202 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=收尾工作, run_id=manual__2026-02-28T09:59:30.071893+00:00, map_index=-1, run_start_date=2026-02-28 09:59:38.067153+00:00, run_end_date=2026-02-28 09:59:38.484926+00:00, run_duration=0.417773, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=705, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-28 09:59:32.887734+00:00, queued_by_job_id=576, pid=24584
+2026-02-28 17:59:42,962 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>
+2026-02-28 17:59:42,963 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:59:42,964 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>
+2026-02-28 17:59:42,967 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:59:42,970 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:59:30.071893+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 17:59:42,971 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:59:30.071893+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 17:59:42,974 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T09:59:30.071893+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 17:59:48,554 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='读取测试用例', run_id='manual__2026-02-28T09:59:30.071893+00:00', try_number=1, map_index=-1)
+2026-02-28 17:59:48,567 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T09:59:30.071893+00:00, map_index=-1, run_start_date=2026-02-28 09:59:47.517321+00:00, run_end_date=2026-02-28 09:59:47.735359+00:00, run_duration=0.218038, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=706, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 09:59:42.966378+00:00, queued_by_job_id=576, pid=24590
+2026-02-28 17:59:52,715 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色.并行执行消费者 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>
+2026-02-28 17:59:52,715 INFO - DAG cdrd_新增角色_编辑角色 has 0/16 running and queued tasks
+2026-02-28 17:59:52,717 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色.并行执行消费者 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>
+2026-02-28 17:59:52,720 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色.并行执行消费者 manual__2026-02-28T09:59:30.071893+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 17:59:52,721 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='并行执行消费者', run_id='manual__2026-02-28T09:59:30.071893+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 17:59:52,722 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '并行执行消费者', 'manual__2026-02-28T09:59:30.071893+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 17:59:52,724 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '并行执行消费者', 'manual__2026-02-28T09:59:30.071893+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 17:59:57,857 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色', task_id='并行执行消费者', run_id='manual__2026-02-28T09:59:30.071893+00:00', try_number=1, map_index=-1)
+2026-02-28 17:59:57,865 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色, task_id=并行执行消费者, run_id=manual__2026-02-28T09:59:30.071893+00:00, map_index=-1, run_start_date=2026-02-28 09:59:56.868887+00:00, run_end_date=2026-02-28 09:59:57.115665+00:00, run_duration=0.246778, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=707, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 09:59:52.718635+00:00, queued_by_job_id=576, pid=24593
+2026-02-28 18:00:04,449 INFO - Marking run <DagRun cdrd_新增角色_编辑角色 @ 2026-02-28 09:59:30.071893+00:00: manual__2026-02-28T09:59:30.071893+00:00, state:running, queued_at: 2026-02-28 09:59:30.098244+00:00. externally triggered: True> successful
+2026-02-28 18:00:04,450 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色, execution_date=2026-02-28 09:59:30.071893+00:00, run_id=manual__2026-02-28T09:59:30.071893+00:00, run_start_date=2026-02-28 09:59:32.853401+00:00, run_end_date=2026-02-28 10:00:04.450751+00:00, run_duration=31.59735, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 09:59:30.071893+00:00, data_interval_end=2026-02-28 09:59:30.071893+00:00, dag_hash=06f8fc68913b0048439e7c0b91f01ab6
+2026-02-28 18:00:07,822 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-02-28 18:01:54,195 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色_并.收尾工作 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>
+2026-02-28 18:01:54,196 INFO - DAG cdrd_新增角色_编辑角色_并 has 0/16 running and queued tasks
+2026-02-28 18:01:54,197 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色_并.收尾工作 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>
+2026-02-28 18:01:54,200 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色_并.收尾工作 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 18:01:54,201 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色_并', task_id='收尾工作', run_id='manual__2026-02-28T10:01:49.122791+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 1 and queue default
+2026-02-28 18:01:54,202 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '收尾工作', 'manual__2026-02-28T10:01:49.122791+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 18:01:54,205 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '收尾工作', 'manual__2026-02-28T10:01:49.122791+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 18:01:59,844 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色_并', task_id='收尾工作', run_id='manual__2026-02-28T10:01:49.122791+00:00', try_number=1, map_index=-1)
+2026-02-28 18:01:59,853 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色_并, task_id=收尾工作, run_id=manual__2026-02-28T10:01:49.122791+00:00, map_index=-1, run_start_date=2026-02-28 10:01:58.766043+00:00, run_end_date=2026-02-28 10:01:59.061425+00:00, run_duration=0.295382, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=708, pool=default_pool, queue=default, priority_weight=1, operator=PythonOperator, queued_dttm=2026-02-28 10:01:54.199440+00:00, queued_by_job_id=576, pid=24678
+2026-02-28 18:02:02,728 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色_并.读取测试用例 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>
+2026-02-28 18:02:02,729 INFO - DAG cdrd_新增角色_编辑角色_并 has 0/16 running and queued tasks
+2026-02-28 18:02:02,730 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色_并.读取测试用例 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>
+2026-02-28 18:02:02,733 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色_并.读取测试用例 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 18:02:02,734 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色_并', task_id='读取测试用例', run_id='manual__2026-02-28T10:01:49.122791+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-02-28 18:02:02,735 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '读取测试用例', 'manual__2026-02-28T10:01:49.122791+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 18:02:02,738 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '读取测试用例', 'manual__2026-02-28T10:01:49.122791+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 18:02:07,834 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色_并', task_id='读取测试用例', run_id='manual__2026-02-28T10:01:49.122791+00:00', try_number=1, map_index=-1)
+2026-02-28 18:02:07,844 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色_并, task_id=读取测试用例, run_id=manual__2026-02-28T10:01:49.122791+00:00, map_index=-1, run_start_date=2026-02-28 10:02:06.831555+00:00, run_end_date=2026-02-28 10:02:07.038279+00:00, run_duration=0.206724, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=709, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-02-28 10:02:02.731392+00:00, queued_by_job_id=576, pid=24688
+2026-02-28 18:02:11,123 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_新增角色_编辑角色_并.并行执行消费者 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>
+2026-02-28 18:02:11,124 INFO - DAG cdrd_新增角色_编辑角色_并 has 0/16 running and queued tasks
+2026-02-28 18:02:11,125 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_新增角色_编辑角色_并.并行执行消费者 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>
+2026-02-28 18:02:11,127 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_新增角色_编辑角色_并.并行执行消费者 manual__2026-02-28T10:01:49.122791+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-02-28 18:02:11,129 INFO - Sending TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色_并', task_id='并行执行消费者', run_id='manual__2026-02-28T10:01:49.122791+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-02-28 18:02:11,129 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '并行执行消费者', 'manual__2026-02-28T10:01:49.122791+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 18:02:11,132 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '并行执行消费者', 'manual__2026-02-28T10:01:49.122791+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py']
+2026-02-28 18:02:25,986 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_新增角色_编辑角色_并', task_id='并行执行消费者', run_id='manual__2026-02-28T10:01:49.122791+00:00', try_number=1, map_index=-1)
+2026-02-28 18:02:25,998 INFO - TaskInstance Finished: dag_id=cdrd_新增角色_编辑角色_并, task_id=并行执行消费者, run_id=manual__2026-02-28T10:01:49.122791+00:00, map_index=-1, run_start_date=2026-02-28 10:02:15.178774+00:00, run_end_date=2026-02-28 10:02:25.097921+00:00, run_duration=9.919147, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=710, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-02-28 10:02:11.126512+00:00, queued_by_job_id=576, pid=24693
+2026-02-28 18:02:33,555 INFO - Marking run <DagRun cdrd_新增角色_编辑角色_并 @ 2026-02-28 10:01:49.122791+00:00: manual__2026-02-28T10:01:49.122791+00:00, state:running, queued_at: 2026-02-28 10:01:49.151790+00:00. externally triggered: True> successful
+2026-02-28 18:02:33,556 INFO - DagRun Finished: dag_id=cdrd_新增角色_编辑角色_并, execution_date=2026-02-28 10:01:49.122791+00:00, run_id=manual__2026-02-28T10:01:49.122791+00:00, run_start_date=2026-02-28 10:01:54.163882+00:00, run_end_date=2026-02-28 10:02:33.556132+00:00, run_duration=39.39225, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-02-28 10:01:49.122791+00:00, data_interval_end=2026-02-28 10:01:49.122791+00:00, dag_hash=45552dbb8c249f80331172f4fa2904d7

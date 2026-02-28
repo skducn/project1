@@ -1,0 +1,18 @@
+[2026-02-28T16:36:21.255+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T16:36:21.273+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:36:10.709825+00:00 [queued]>
+[2026-02-28T16:36:21.281+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:36:10.709825+00:00 [queued]>
+[2026-02-28T16:36:21.281+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T16:36:21.295+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 读取测试用例> on 2026-02-28 08:36:10.709825+00:00
+[2026-02-28T16:36:21.298+0800] {standard_task_runner.py:72} INFO - Started process 21063 to run task
+[2026-02-28T16:36:21.305+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '读取测试用例', 'manual__2026-02-28T08:36:10.709825+00:00', '--job-id', '682', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpm15jlqho']
+[2026-02-28T16:36:21.310+0800] {standard_task_runner.py:105} INFO - Job 682: Subtask 读取测试用例
+[2026-02-28T16:36:21.360+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色.读取测试用例 manual__2026-02-28T08:36:10.709825+00:00 [running]> on host localhost-2.local
+[2026-02-28T16:36:21.438+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色' AIRFLOW_CTX_TASK_ID='读取测试用例' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T08:36:10.709825+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T08:36:10.709825+00:00'
+[2026-02-28T16:36:21.440+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T16:36:21.464+0800] {logging_mixin.py:190} INFO - 【生产者】共找到 1 条自动化测试用例
+[2026-02-28T16:36:21.464+0800] {python.py:240} INFO - Done. Returned value was: [[7, '系统管理', '角色管理', None, '[{"k": "select count(*) as qty from sys_role where role_name=\'{result[\'role_name\']}\'", "v": 1}]', '新增角色.py', None]]
+[2026-02-28T16:36:21.479+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T16:36:21.480+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增角色_编辑角色, task_id=读取测试用例, run_id=manual__2026-02-28T08:36:10.709825+00:00, execution_date=20260228T083610, start_date=20260228T083621, end_date=20260228T083621
+[2026-02-28T16:36:21.539+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T16:36:21.571+0800] {taskinstance.py:3924} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T16:36:21.574+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

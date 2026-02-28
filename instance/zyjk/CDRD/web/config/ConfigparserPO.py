@@ -30,6 +30,10 @@ class ConfigparserPO:
         value = self.cf.get("用户管理", name)
         return value
 
+    def 角色管理(self, name):
+        value = self.cf.get("角色管理", name)
+        return value
+
     def write(self, folder, key, value):
         self.cf[folder][key] = value  #  # Configparser_PO.cf['EXCEL']['sheetName'] = '55'  # 重新赋值
         self.cf.write(open(self.file, 'w'))

@@ -160,7 +160,7 @@ def _updateStatus(status_count, errorLog, replace_variable, l_col_values):
         # 通过，更新状态、处理后置
         Openpyxl_PO.setCell(l_col_values[0], 10, "通过", Configparser_PO.EXCEL("sheet"))  # 状态
         # 判断处理后置是否存在
-        if l_col_values[6] != "":
+        if l_col_values[6] != None:
             # 正则 - 处理后置
             s_postposition_re = re.sub(r"\{result\['([^']+)'\]\}", replace_variable, l_col_values[6])
             # print(192, s_postposition_re)

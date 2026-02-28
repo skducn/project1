@@ -1,0 +1,38 @@
+[2026-02-28T16:37:48.320+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T16:37:48.337+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:37:30.880685+00:00 [queued]>
+[2026-02-28T16:37:48.345+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:37:30.880685+00:00 [queued]>
+[2026-02-28T16:37:48.345+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T16:37:48.358+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增角色> on 2026-02-28 08:37:30.880685+00:00
+[2026-02-28T16:37:48.361+0800] {standard_task_runner.py:72} INFO - Started process 21114 to run task
+[2026-02-28T16:37:48.369+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T08:37:30.880685+00:00', '--job-id', '685', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpaa62ebm3']
+[2026-02-28T16:37:48.373+0800] {standard_task_runner.py:105} INFO - Job 685: Subtask 新增角色
+[2026-02-28T16:37:48.422+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T08:37:30.880685+00:00 [running]> on host localhost-2.local
+[2026-02-28T16:37:48.500+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色' AIRFLOW_CTX_TASK_ID='新增角色' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T08:37:30.880685+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T08:37:30.880685+00:00'
+[2026-02-28T16:37:48.501+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T16:37:48.520+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T16:37:48.521+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-角色管理测试用例...
+[2026-02-28T16:37:48.521+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T16:37:48.527+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 2 条
+[2026-02-28T16:37:48.527+0800] {logging_mixin.py:190} INFO - 系统管理/角色管理/新增角色.py
+[2026-02-28T16:37:48.527+0800] {logging_mixin.py:190} INFO - 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-28T16:37:48.947+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['黄凯', '129788', '浙江省雪县上街金路D座 978748']]
+[2026-02-28T16:37:57.553+0800] {logging_mixin.py:190} INFO - 步骤[新增角色]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/screenshots/新增角色/20260228_163757_新增角色.png
+[2026-02-28T16:37:58.407+0800] {logging_mixin.py:190} INFO - 录屏文件已重命名为: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/videos/新增角色/新增角色_20260228_163748.webm
+[2026-02-28T16:37:58.438+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'role_name': '黄凯', 'role_sort': '129788', 'remark': '浙江省雪县上街金路D座 978748'}
+[2026-02-28T16:37:58.439+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_role where role_name='黄凯'", 'v': 1}]
+[2026-02-28T16:37:58.447+0800] {logging_mixin.py:190} INFO - ❌ 失败校验 {'k': "select count(*) as qty from sys_role where role_name='黄凯'", 'v': 1}
+[2026-02-28T16:37:58.448+0800] {logging_mixin.py:190} INFO - config中isSave: on
+[2026-02-28T16:37:58.582+0800] {logging_mixin.py:190} INFO - 系统管理/角色管理/编辑角色.py
+[2026-02-28T16:37:58.583+0800] {logging_mixin.py:190} INFO - 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-28T16:38:04.618+0800] {logging_mixin.py:190} INFO - 步骤[编辑角色]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/screenshots/编辑角色/20260228_163804_编辑角色.png
+[2026-02-28T16:38:05.016+0800] {logging_mixin.py:190} INFO - 录屏文件已重命名为: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/videos/编辑角色/编辑角色_20260228_163758.webm
+[2026-02-28T16:38:05.045+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'role_name': '555', 'remark': '1234'}
+[2026-02-28T16:38:05.045+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}]
+[2026-02-28T16:38:05.048+0800] {logging_mixin.py:190} INFO - ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}
+[2026-02-28T16:38:05.092+0800] {logging_mixin.py:190} INFO - 验证过程出错: expected string or bytes-like object
+[2026-02-28T16:38:05.093+0800] {python.py:240} INFO - Done. Returned value was: None
+[2026-02-28T16:38:05.110+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T16:38:05.111+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T08:37:30.880685+00:00, execution_date=20260228T083730, start_date=20260228T083748, end_date=20260228T083805
+[2026-02-28T16:38:05.180+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T16:38:05.205+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T16:38:05.207+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

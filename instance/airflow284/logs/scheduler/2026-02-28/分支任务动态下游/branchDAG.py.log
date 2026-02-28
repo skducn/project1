@@ -1370,3 +1370,346 @@
 [2026-02-28T16:01:06.072+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:01:06.072+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-28T16:01:06.097+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:01:06.096+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
 [2026-02-28T16:01:06.117+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 205.856 seconds
+[2026-02-28T16:03:46.885+0800] {processor.py:186} INFO - Started process (PID=19639) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:03:46.886+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:03:46.887+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:03:46.886+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:03:46.916+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:03:47.131+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:03:47.131+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:03:47.152+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:03:47.152+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:03:47.175+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 292.408 seconds
+[2026-02-28T16:05:54.345+0800] {processor.py:186} INFO - Started process (PID=19762) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:05:54.345+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:05:54.346+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:05:54.346+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:05:54.374+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:05:54.491+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:05:54.491+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:05:54.517+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:05:54.517+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:05:54.535+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 193.579 seconds
+[2026-02-28T16:07:57.463+0800] {processor.py:186} INFO - Started process (PID=19881) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:07:57.464+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:07:57.465+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:07:57.465+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:07:57.495+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:07:57.617+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:07:57.617+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:07:57.640+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:07:57.640+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:07:57.659+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 199.171 seconds
+[2026-02-28T16:10:01.948+0800] {processor.py:186} INFO - Started process (PID=20018) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:10:01.948+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:10:01.949+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:10:01.949+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:10:01.978+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:10:02.099+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:10:02.099+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:10:02.121+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:10:02.121+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:10:02.142+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 197.261 seconds
+[2026-02-28T16:12:01.915+0800] {processor.py:186} INFO - Started process (PID=20137) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:12:01.916+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:12:01.917+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:12:01.916+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:12:01.944+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:12:02.066+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:12:02.065+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:12:02.088+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:12:02.087+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:12:02.109+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 196.423 seconds
+[2026-02-28T16:14:16.903+0800] {processor.py:186} INFO - Started process (PID=20210) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:14:16.904+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:14:16.906+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:14:16.905+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:14:16.934+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:14:17.058+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:14:17.057+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:14:17.080+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:14:17.079+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:14:17.100+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 199.341 seconds
+[2026-02-28T16:16:59.043+0800] {processor.py:186} INFO - Started process (PID=20292) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:16:59.044+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:16:59.045+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:16:59.045+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:16:59.077+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:16:59.301+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:16:59.301+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:16:59.323+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:16:59.323+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:16:59.345+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 305.938 seconds
+[2026-02-28T16:19:15.768+0800] {processor.py:186} INFO - Started process (PID=20377) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:19:15.768+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:19:15.769+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:19:15.769+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:19:15.800+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:19:15.926+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:19:15.926+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:19:15.948+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:19:15.948+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:19:15.970+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 205.532 seconds
+[2026-02-28T16:21:31.498+0800] {processor.py:186} INFO - Started process (PID=20491) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:21:31.498+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:21:31.499+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:21:31.499+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:21:31.528+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:21:31.646+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:21:31.645+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:21:31.668+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:21:31.668+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:21:31.690+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 194.911 seconds
+[2026-02-28T16:23:52.263+0800] {processor.py:186} INFO - Started process (PID=20617) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:23:52.264+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:23:52.265+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:23:52.265+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:23:52.299+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:23:52.430+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:23:52.430+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:23:52.456+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:23:52.456+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:23:52.478+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 217.693 seconds
+[2026-02-28T16:26:10.146+0800] {processor.py:186} INFO - Started process (PID=20732) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:26:10.147+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:26:10.148+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:26:10.148+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:26:10.176+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:26:10.308+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:26:10.308+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:26:10.335+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:26:10.335+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:26:10.359+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 216.095 seconds
+[2026-02-28T16:28:27.268+0800] {processor.py:186} INFO - Started process (PID=20815) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:28:27.269+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:28:27.269+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:28:27.269+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:28:27.297+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:28:27.420+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:28:27.420+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:28:27.443+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:28:27.443+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:28:27.465+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 200.369 seconds
+[2026-02-28T16:30:47.513+0800] {processor.py:186} INFO - Started process (PID=20883) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:30:47.514+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:30:47.515+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:30:47.515+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:30:47.544+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:30:47.666+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:30:47.666+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:30:47.689+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:30:47.688+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:30:47.709+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 198.452 seconds
+[2026-02-28T16:33:00.405+0800] {processor.py:186} INFO - Started process (PID=20937) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:33:00.405+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:33:00.406+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:33:00.406+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:33:00.434+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:33:00.551+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:33:00.551+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:33:00.576+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:33:00.576+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:33:00.598+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 196.231 seconds
+[2026-02-28T16:35:22.442+0800] {processor.py:186} INFO - Started process (PID=21018) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:35:22.442+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:35:22.444+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:35:22.444+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:35:22.474+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:35:22.594+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:35:22.594+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:35:22.619+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:35:22.618+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:35:22.641+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 202.051 seconds
+[2026-02-28T16:38:30.717+0800] {processor.py:186} INFO - Started process (PID=21179) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:38:30.720+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:38:30.721+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:38:30.721+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:38:30.752+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:38:30.976+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:38:30.976+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:38:31.000+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:38:31.000+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:38:31.034+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 319.468 seconds
+[2026-02-28T16:40:59.487+0800] {processor.py:186} INFO - Started process (PID=21251) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:40:59.488+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:40:59.489+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:40:59.489+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:40:59.520+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:40:59.675+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:40:59.674+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:40:59.700+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:40:59.700+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:40:59.719+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 235.374 seconds
+[2026-02-28T16:43:25.292+0800] {processor.py:186} INFO - Started process (PID=21390) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:43:25.293+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:43:25.294+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:43:25.294+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:43:25.324+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:43:25.448+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:43:25.448+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:43:25.471+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:43:25.471+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:43:25.494+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 205.063 seconds
+[2026-02-28T16:45:51.752+0800] {processor.py:186} INFO - Started process (PID=21598) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:45:51.753+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:45:51.754+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:45:51.753+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:45:51.785+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:45:51.904+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:45:51.903+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:45:51.927+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:45:51.926+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:45:51.945+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 196.990 seconds
+[2026-02-28T16:48:13.816+0800] {processor.py:186} INFO - Started process (PID=21721) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:48:13.819+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:48:13.820+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:48:13.820+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:48:13.848+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:48:13.969+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:48:13.968+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:48:13.992+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:48:13.992+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:48:14.012+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 199.022 seconds
+[2026-02-28T16:50:38.379+0800] {processor.py:186} INFO - Started process (PID=21854) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:50:38.382+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:50:38.383+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:50:38.383+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:50:38.416+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:50:38.556+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:50:38.556+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:50:38.603+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:50:38.603+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:50:38.636+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 259.217 seconds
+[2026-02-28T16:53:04.719+0800] {processor.py:186} INFO - Started process (PID=21974) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:53:04.720+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:53:04.721+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:53:04.721+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:53:04.750+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:53:04.971+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:53:04.970+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:53:04.992+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:53:04.992+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:53:05.017+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 300.369 seconds
+[2026-02-28T16:55:27.561+0800] {processor.py:186} INFO - Started process (PID=22042) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:55:27.564+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:55:27.565+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:55:27.565+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:55:27.595+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:55:27.710+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:55:27.709+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:55:27.732+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:55:27.731+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:55:27.752+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 193.915 seconds
+[2026-02-28T16:58:19.058+0800] {processor.py:186} INFO - Started process (PID=22200) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:58:19.059+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T16:58:19.060+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:58:19.060+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:58:19.091+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T16:58:19.315+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:58:19.315+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T16:58:19.338+0800] {logging_mixin.py:190} INFO - [2026-02-28T16:58:19.338+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T16:58:19.360+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 304.576 seconds
+[2026-02-28T17:01:04.026+0800] {processor.py:186} INFO - Started process (PID=22324) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:01:04.029+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:01:04.030+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:01:04.030+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:01:04.067+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:01:04.360+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:01:04.360+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:01:04.383+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:01:04.382+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:01:04.406+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 383.988 seconds
+[2026-02-28T17:03:35.881+0800] {processor.py:186} INFO - Started process (PID=22408) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:03:35.882+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:03:35.884+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:03:35.883+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:03:35.915+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:03:36.041+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:03:36.040+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:03:36.065+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:03:36.064+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:03:36.085+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 206.305 seconds
+[2026-02-28T17:06:51.985+0800] {processor.py:186} INFO - Started process (PID=22547) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:06:51.986+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:06:51.987+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:06:51.987+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:06:52.019+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:06:52.308+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:06:52.307+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:06:52.329+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:06:52.329+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:06:52.352+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 369.683 seconds
+[2026-02-28T17:09:45.743+0800] {processor.py:186} INFO - Started process (PID=22694) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:09:45.745+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:09:45.747+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:09:45.746+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:09:45.777+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:09:46.000+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:09:46.000+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:09:46.026+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:09:46.026+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:09:46.049+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 309.784 seconds
+[2026-02-28T17:12:36.363+0800] {processor.py:186} INFO - Started process (PID=22829) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:12:36.364+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:12:36.366+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:12:36.366+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:12:36.410+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:12:36.762+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:12:36.762+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:12:36.795+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:12:36.795+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:12:36.822+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 463.601 seconds
+[2026-02-28T17:15:04.911+0800] {processor.py:186} INFO - Started process (PID=22901) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:15:04.912+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:15:04.913+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:15:04.913+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:15:04.942+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:15:05.062+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:15:05.062+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:15:05.087+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:15:05.087+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:15:05.106+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 197.633 seconds
+[2026-02-28T17:17:17.726+0800] {processor.py:186} INFO - Started process (PID=22958) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:17:17.728+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:17:17.730+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:17:17.730+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:17:17.758+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:17:17.881+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:17:17.880+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:17:17.908+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:17:17.908+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:17:17.928+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 204.743 seconds
+[2026-02-28T17:19:25.194+0800] {processor.py:186} INFO - Started process (PID=23009) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:19:25.194+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:19:25.195+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:19:25.195+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:19:25.223+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:19:25.342+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:19:25.341+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:19:25.363+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:19:25.363+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:19:25.383+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 192.416 seconds
+[2026-02-28T17:21:46.231+0800] {processor.py:186} INFO - Started process (PID=23093) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:21:46.232+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:21:46.233+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:21:46.232+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:21:46.264+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:21:46.383+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:21:46.382+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:21:46.406+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:21:46.406+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:21:46.427+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 199.087 seconds
+[2026-02-28T17:24:07.680+0800] {processor.py:186} INFO - Started process (PID=23153) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:24:07.683+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:24:07.685+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:24:07.684+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:24:07.713+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:24:07.830+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:24:07.829+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:24:07.852+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:24:07.851+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:24:07.874+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 197.642 seconds
+[2026-02-28T17:26:28.587+0800] {processor.py:186} INFO - Started process (PID=23224) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:26:28.590+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:26:28.591+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:26:28.591+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:26:28.619+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:26:28.736+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:26:28.736+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:26:28.758+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:26:28.757+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:26:28.778+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 193.568 seconds
+[2026-02-28T17:28:38.905+0800] {processor.py:186} INFO - Started process (PID=23300) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:28:38.906+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:28:38.907+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:28:38.906+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:28:38.937+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:28:39.066+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:28:39.065+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:28:39.089+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:28:39.089+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:28:39.108+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 206.177 seconds
+[2026-02-28T17:30:34.945+0800] {processor.py:186} INFO - Started process (PID=23383) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:30:34.948+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:30:34.949+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:30:34.949+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:30:34.982+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:30:35.212+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:30:35.212+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:30:35.234+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:30:35.234+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:30:35.258+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 316.240 seconds
+[2026-02-28T17:33:20.174+0800] {processor.py:186} INFO - Started process (PID=23484) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:33:20.177+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:33:20.178+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:33:20.178+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:33:20.208+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:33:20.432+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:33:20.432+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:33:20.455+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:33:20.455+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:33:20.478+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 306.761 seconds
+[2026-02-28T17:36:07.453+0800] {processor.py:186} INFO - Started process (PID=23607) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:36:07.456+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:36:07.457+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:36:07.457+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:36:07.518+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:36:07.788+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:36:07.788+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:36:07.810+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:36:07.810+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:36:07.832+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 382.028 seconds
+[2026-02-28T17:38:34.642+0800] {processor.py:186} INFO - Started process (PID=23743) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:38:34.645+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:38:34.646+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:38:34.646+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:38:34.680+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:38:34.819+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:38:34.819+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:38:34.846+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:38:34.846+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:38:34.867+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 228.171 seconds
+[2026-02-28T17:40:52.787+0800] {processor.py:186} INFO - Started process (PID=23815) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:40:52.790+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:40:52.791+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:40:52.791+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:40:52.820+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:40:52.941+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:40:52.940+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:40:52.962+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:40:52.962+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:40:52.983+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 199.298 seconds
+[2026-02-28T17:43:17.563+0800] {processor.py:186} INFO - Started process (PID=23905) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:43:17.563+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:43:17.564+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:43:17.564+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:43:17.597+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:43:17.715+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:43:17.715+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:43:17.739+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:43:17.738+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:43:17.761+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 201.263 seconds
+[2026-02-28T17:45:34.317+0800] {processor.py:186} INFO - Started process (PID=23954) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:45:34.318+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:45:34.319+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:45:34.319+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:45:34.348+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:45:34.466+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:45:34.465+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:45:34.488+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:45:34.488+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:45:34.509+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 195.065 seconds
+[2026-02-28T17:47:59.133+0800] {processor.py:186} INFO - Started process (PID=24022) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:47:59.133+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:47:59.134+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:47:59.134+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:47:59.165+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:47:59.292+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:47:59.291+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:47:59.315+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:47:59.315+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:47:59.335+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 205.478 seconds
+[2026-02-28T17:51:08.628+0800] {processor.py:186} INFO - Started process (PID=24171) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:51:08.629+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:51:08.630+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:51:08.630+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:51:08.659+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:51:08.665+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:51:08.665+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:51:08.783+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:51:08.783+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:51:08.806+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 180.553 seconds
+[2026-02-28T17:53:27.484+0800] {processor.py:186} INFO - Started process (PID=24324) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:53:27.485+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:53:27.486+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:53:27.486+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:53:27.518+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:53:27.746+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:53:27.745+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:53:27.773+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:53:27.773+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:53:27.794+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 313.574 seconds
+[2026-02-28T17:56:20.148+0800] {processor.py:186} INFO - Started process (PID=24458) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:56:20.151+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:56:20.152+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:56:20.151+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:56:20.181+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:56:20.312+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:56:20.312+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:56:20.336+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:56:20.336+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:56:20.358+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 213.031 seconds
+[2026-02-28T17:58:56.505+0800] {processor.py:186} INFO - Started process (PID=24556) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:58:56.506+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T17:58:56.507+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:58:56.506+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:58:56.535+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T17:58:56.761+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:58:56.761+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T17:58:56.783+0800] {logging_mixin.py:190} INFO - [2026-02-28T17:58:56.783+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T17:58:56.807+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 304.504 seconds
+[2026-02-28T18:02:28.806+0800] {processor.py:186} INFO - Started process (PID=24730) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T18:02:28.808+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py for tasks to queue
+[2026-02-28T18:02:28.809+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:02:28.809+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T18:02:28.846+0800] {processor.py:925} INFO - DAG(s) 'branch_task_data_quality' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py
+[2026-02-28T18:02:29.118+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:02:29.117+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T18:02:29.139+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:02:29.139+0800] {dag.py:4180} INFO - Setting next_dagrun for branch_task_data_quality to 2026-02-14 16:00:00+00:00, run_after=2026-02-21 16:00:00+00:00
+[2026-02-28T18:02:29.163+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/分支任务动态下游/branchDAG.py took 359.552 seconds

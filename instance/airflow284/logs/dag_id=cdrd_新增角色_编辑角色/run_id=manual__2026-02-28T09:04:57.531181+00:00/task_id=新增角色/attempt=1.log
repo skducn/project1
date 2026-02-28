@@ -1,0 +1,121 @@
+[2026-02-28T17:05:14.683+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T17:05:14.701+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:04:57.531181+00:00 [queued]>
+[2026-02-28T17:05:14.709+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:04:57.531181+00:00 [queued]>
+[2026-02-28T17:05:14.709+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T17:05:14.722+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增角色> on 2026-02-28 09:04:57.531181+00:00
+[2026-02-28T17:05:14.726+0800] {standard_task_runner.py:72} INFO - Started process 22456 to run task
+[2026-02-28T17:05:14.733+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色', '新增角色', 'manual__2026-02-28T09:04:57.531181+00:00', '--job-id', '691', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpew4_9sdu']
+[2026-02-28T17:05:14.738+0800] {standard_task_runner.py:105} INFO - Job 691: Subtask 新增角色
+[2026-02-28T17:05:14.788+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色.新增角色 manual__2026-02-28T09:04:57.531181+00:00 [running]> on host localhost-2.local
+[2026-02-28T17:05:14.876+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色' AIRFLOW_CTX_TASK_ID='新增角色' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T09:04:57.531181+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T09:04:57.531181+00:00'
+[2026-02-28T17:05:14.878+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T17:05:14.897+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T17:05:14.898+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-角色管理测试用例...
+[2026-02-28T17:05:14.898+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T17:05:14.904+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 2 条
+[2026-02-28T17:05:14.904+0800] {logging_mixin.py:190} INFO - 
+1, 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-28T17:05:15.281+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['刘林', '451110', '624061', '贵州省桂荣县白云辛集路H座 593052']]
+[2026-02-28T17:05:22.454+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'role_name': '刘林', 'role_sort': '451110', 'remark': '624061'}
+[2026-02-28T17:05:22.456+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_role where role_name='刘林'", 'v': 1}]
+[2026-02-28T17:05:22.460+0800] {logging_mixin.py:190} INFO - ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='刘林'", 'v': 1}
+[2026-02-28T17:05:22.517+0800] {logging_mixin.py:190} INFO - 192 [["delete from sys_role where role_name='刘林' and role_sort='451110'"]]
+[2026-02-28T17:05:22.518+0800] {logging_mixin.py:190} INFO - 解析后置数据: [["delete from sys_role where role_name='刘林' and role_sort='451110'"]]
+[2026-02-28T17:05:22.522+0800] {logging_mixin.py:190} INFO - ✅ 后置操作 delete from sys_role where role_name='刘林' and role_sort='451110'
+[2026-02-28T17:05:22.578+0800] {logging_mixin.py:190} INFO - 
+2, 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-28T17:05:27.619+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: {'role_name': '555', 'remark': '1234'}
+[2026-02-28T17:05:27.620+0800] {logging_mixin.py:190} INFO - 解析验证数据: [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}]
+[2026-02-28T17:05:27.622+0800] {logging_mixin.py:190} INFO - ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}
+[2026-02-28T17:05:27.666+0800] {logging_mixin.py:190} INFO - ❌ 消费者1任务执行失败: expected string or bytes-like object
+[2026-02-28T17:05:27.668+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-02-28T17:05:27.669+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 263, in consumer1_task
+    test_execution(l_col_values[i], i)
+[2026-02-28T17:05:27.669+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 221, in test_execution
+    _updateStatus(status_count, errorLog, replace_variable, l_col_values)
+[2026-02-28T17:05:27.669+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 144, in _updateStatus
+    s_postposition_re = re.sub(r"\{result\['([^']+)'\]\}", replace_variable, l_col_values[6])
+[2026-02-28T17:05:27.670+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/re.py", line 209, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+[2026-02-28T17:05:27.671+0800] {logging_mixin.py:190} WARNING - TypeError: expected string or bytes-like object
+[2026-02-28T17:05:27.671+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 269, in consumer1_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 263, in consumer1_task
+    test_execution(l_col_values[i], i)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 221, in test_execution
+    _updateStatus(status_count, errorLog, replace_variable, l_col_values)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 144, in _updateStatus
+    s_postposition_re = re.sub(r"\{result\['([^']+)'\]\}", replace_variable, l_col_values[6])
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/re.py", line 209, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+TypeError: expected string or bytes-like object
+[2026-02-28T17:05:27.680+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=cdrd_新增角色_编辑角色, task_id=新增角色, run_id=manual__2026-02-28T09:04:57.531181+00:00, execution_date=20260228T090457, start_date=20260228T090514, end_date=20260228T090527
+[2026-02-28T17:05:27.700+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T17:05:27.700+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 691 for task 新增角色 (expected string or bytes-like object; 22456)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 269, in consumer1_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 263, in consumer1_task
+    test_execution(l_col_values[i], i)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 221, in test_execution
+    _updateStatus(status_count, errorLog, replace_variable, l_col_values)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色.py", line 144, in _updateStatus
+    s_postposition_re = re.sub(r"\{result\['([^']+)'\]\}", replace_variable, l_col_values[6])
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/re.py", line 209, in sub
+    return _compile(pattern, flags).sub(repl, string, count)
+TypeError: expected string or bytes-like object
+[2026-02-28T17:05:27.739+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-28T17:05:27.767+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T17:05:27.771+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
