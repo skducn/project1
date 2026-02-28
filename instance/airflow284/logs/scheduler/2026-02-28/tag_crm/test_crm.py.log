@@ -1692,3 +1692,507 @@
 [2026-02-28T18:00:55.405+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:00:55.404+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-28T18:00:55.519+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:00:55.519+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
 [2026-02-28T18:00:55.545+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 807.057 seconds
+[2026-02-28T18:04:08.001+0800] {processor.py:186} INFO - Started process (PID=24918) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T18:04:08.001+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T18:04:08.002+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:04:08.002+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T18:04:08.049+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T18:04:08.239+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:04:08.238+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T18:04:08.329+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:04:08.329+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T18:04:08.349+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 351.278 seconds
+[2026-02-28T19:49:16.845+0800] {processor.py:186} INFO - Started process (PID=1393) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:49:16.846+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T19:49:16.847+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:49:16.846+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:49:16.902+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:49:17.038+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:49:17.037+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:49:17.059+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:49:17.058+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T19:49:17.086+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 244.129 seconds
+[2026-02-28T19:51:53.198+0800] {processor.py:186} INFO - Started process (PID=1533) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:51:53.199+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T19:51:53.200+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:51:53.200+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:51:53.240+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:51:53.348+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:51:53.347+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:51:53.365+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:51:53.365+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T19:51:53.383+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 187.446 seconds
+[2026-02-28T19:54:12.827+0800] {processor.py:186} INFO - Started process (PID=1593) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:54:12.828+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T19:54:12.828+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:54:12.828+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:54:12.870+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:54:12.976+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:54:12.976+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:54:12.994+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:54:12.994+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T19:54:13.014+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 190.434 seconds
+[2026-02-28T19:56:41.353+0800] {processor.py:186} INFO - Started process (PID=1648) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:56:41.353+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T19:56:41.354+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:56:41.354+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:56:41.394+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:56:41.502+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:56:41.502+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:56:41.519+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:56:41.519+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T19:56:41.540+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 190.155 seconds
+[2026-02-28T19:59:40.335+0800] {processor.py:186} INFO - Started process (PID=1789) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:59:40.336+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T19:59:40.337+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:59:40.336+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:59:40.378+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T19:59:40.481+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:59:40.481+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:59:40.498+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:59:40.498+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T19:59:40.516+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 184.252 seconds
+[2026-02-28T20:03:59.279+0800] {processor.py:186} INFO - Started process (PID=2072) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:03:59.280+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:03:59.281+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:03:59.281+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:03:59.321+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:03:59.511+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:03:59.511+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:03:59.608+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:03:59.607+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:03:59.628+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 351.562 seconds
+[2026-02-28T20:07:55.689+0800] {processor.py:186} INFO - Started process (PID=2296) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:07:55.690+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:07:55.691+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:07:55.690+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:07:55.739+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:07:55.977+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:07:55.977+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:07:56.087+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:07:56.086+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:07:56.109+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 424.101 seconds
+[2026-02-28T20:10:34.498+0800] {processor.py:186} INFO - Started process (PID=2388) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:10:34.499+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:10:34.501+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:10:34.500+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:10:34.547+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:10:34.648+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:10:34.647+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:10:34.664+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:10:34.664+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:10:34.686+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 191.237 seconds
+[2026-02-28T20:12:49.576+0800] {processor.py:186} INFO - Started process (PID=2463) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:12:49.577+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:12:49.578+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:12:49.577+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:12:49.618+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:12:49.719+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:12:49.719+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:12:49.736+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:12:49.736+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:12:49.757+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 183.821 seconds
+[2026-02-28T20:15:08.026+0800] {processor.py:186} INFO - Started process (PID=2544) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:15:08.027+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:15:08.027+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:15:08.027+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:15:08.067+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:15:08.165+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:15:08.164+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:15:08.181+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:15:08.181+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:15:08.201+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 177.583 seconds
+[2026-02-28T20:17:23.106+0800] {processor.py:186} INFO - Started process (PID=2602) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:17:23.106+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:17:23.108+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:17:23.107+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:17:23.148+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:17:23.256+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:17:23.255+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:17:23.278+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:17:23.278+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:17:23.298+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 195.333 seconds
+[2026-02-28T20:19:42.199+0800] {processor.py:186} INFO - Started process (PID=2656) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:19:42.199+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:19:42.200+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:19:42.200+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:19:42.240+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:19:42.346+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:19:42.345+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:19:42.362+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:19:42.362+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:19:42.380+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 183.446 seconds
+[2026-02-28T20:22:01.477+0800] {processor.py:186} INFO - Started process (PID=2745) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:22:01.477+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:22:01.478+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:22:01.478+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:22:01.522+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:22:01.622+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:22:01.622+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:22:01.638+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:22:01.638+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:22:01.656+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 182.438 seconds
+[2026-02-28T20:24:19.306+0800] {processor.py:186} INFO - Started process (PID=2821) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:24:19.307+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:24:19.308+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:24:19.308+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:24:19.358+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:24:19.482+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:24:19.482+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:24:19.504+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:24:19.504+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:24:19.526+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 223.424 seconds
+[2026-02-28T20:26:51.326+0800] {processor.py:186} INFO - Started process (PID=2924) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:26:51.326+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:26:51.327+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:26:51.327+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:26:51.374+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:26:51.493+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:26:51.493+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:26:51.511+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:26:51.510+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:26:51.531+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 208.567 seconds
+[2026-02-28T20:29:13.182+0800] {processor.py:186} INFO - Started process (PID=3032) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:29:13.182+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:29:13.183+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:29:13.183+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:29:13.223+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:29:13.325+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:29:13.325+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:29:13.341+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:29:13.340+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:29:13.359+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 179.818 seconds
+[2026-02-28T20:31:29.081+0800] {processor.py:186} INFO - Started process (PID=3100) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:31:29.081+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:31:29.082+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:31:29.082+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:31:29.128+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:31:29.234+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:31:29.234+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:31:29.254+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:31:29.253+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:31:29.275+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 197.196 seconds
+[2026-02-28T20:33:46.592+0800] {processor.py:186} INFO - Started process (PID=3161) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:33:46.593+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:33:46.594+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:33:46.594+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:33:46.676+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:33:46.822+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:33:46.821+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:33:46.839+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:33:46.839+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:33:46.859+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 271.827 seconds
+[2026-02-28T20:36:47.073+0800] {processor.py:186} INFO - Started process (PID=3297) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:36:47.074+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:36:47.075+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:36:47.074+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:36:47.123+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:36:47.308+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:36:47.308+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:36:47.393+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:36:47.393+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:36:47.414+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 344.502 seconds
+[2026-02-28T20:39:34.231+0800] {processor.py:186} INFO - Started process (PID=3446) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:39:34.234+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:39:34.235+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:39:34.235+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:39:34.280+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:39:34.469+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:39:34.469+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:39:34.562+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:39:34.562+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:39:34.581+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 352.637 seconds
+[2026-02-28T20:42:31.319+0800] {processor.py:186} INFO - Started process (PID=3568) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:42:31.320+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:42:31.321+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:42:31.321+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:42:31.376+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:42:31.586+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:42:31.585+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:42:31.667+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:42:31.667+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:42:31.687+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 370.710 seconds
+[2026-02-28T20:45:37.096+0800] {processor.py:186} INFO - Started process (PID=3725) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:45:37.098+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:45:37.100+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:45:37.100+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:45:37.150+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:45:37.352+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:45:37.351+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:45:37.449+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:45:37.449+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:45:37.468+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 375.544 seconds
+[2026-02-28T20:47:55.499+0800] {processor.py:186} INFO - Started process (PID=3816) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:47:55.500+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:47:55.501+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:47:55.501+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:47:55.539+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:47:55.638+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:47:55.638+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:47:55.654+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:47:55.654+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:47:55.676+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 178.774 seconds
+[2026-02-28T20:50:33.306+0800] {processor.py:186} INFO - Started process (PID=3958) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:50:33.308+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:50:33.310+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:50:33.309+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:50:33.369+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:50:33.591+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:50:33.591+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:50:33.704+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:50:33.704+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:50:33.723+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 420.096 seconds
+[2026-02-28T20:53:36.165+0800] {processor.py:186} INFO - Started process (PID=4094) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:53:36.166+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:53:36.167+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:53:36.166+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:53:36.216+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:53:36.402+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:53:36.401+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:53:36.487+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:53:36.487+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:53:36.506+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 343.290 seconds
+[2026-02-28T20:55:52.063+0800] {processor.py:186} INFO - Started process (PID=4197) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:55:52.064+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:55:52.066+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:55:52.065+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:55:52.109+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:55:52.216+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:55:52.216+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:55:52.232+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:55:52.232+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:55:52.250+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 191.638 seconds
+[2026-02-28T20:58:50.626+0800] {processor.py:186} INFO - Started process (PID=4346) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:58:50.627+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T20:58:50.628+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:58:50.627+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:58:50.671+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T20:58:50.873+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:58:50.873+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:58:50.968+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:58:50.967+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T20:58:50.988+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 365.051 seconds
+[2026-02-28T21:01:39.885+0800] {processor.py:186} INFO - Started process (PID=4562) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:01:39.888+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:01:39.889+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:01:39.889+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:01:39.934+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:01:40.138+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:01:40.138+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:01:40.233+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:01:40.233+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:01:40.255+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 373.670 seconds
+[2026-02-28T21:04:03.594+0800] {processor.py:186} INFO - Started process (PID=4624) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:04:03.595+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:04:03.596+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:04:03.595+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:04:03.633+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:04:03.734+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:04:03.733+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:04:03.750+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:04:03.749+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:04:03.769+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 177.033 seconds
+[2026-02-28T21:06:44.431+0800] {processor.py:186} INFO - Started process (PID=4735) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:06:44.432+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:06:44.433+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:06:44.432+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:06:44.473+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:06:44.671+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:06:44.671+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:06:44.754+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:06:44.754+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:06:44.774+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 346.551 seconds
+[2026-02-28T21:10:16.214+0800] {processor.py:186} INFO - Started process (PID=4950) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:10:16.217+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:10:16.218+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:10:16.218+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:10:16.265+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:10:16.481+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:10:16.481+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:10:16.583+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:10:16.583+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:10:16.604+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 393.442 seconds
+[2026-02-28T21:13:03.766+0800] {processor.py:186} INFO - Started process (PID=5077) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:13:03.767+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:13:03.768+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:13:03.768+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:13:03.811+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:13:04.023+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:13:04.023+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:13:04.122+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:13:04.122+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:13:04.143+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 378.911 seconds
+[2026-02-28T21:15:55.630+0800] {processor.py:186} INFO - Started process (PID=5185) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:15:55.633+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:15:55.634+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:15:55.634+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:15:55.674+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:15:55.861+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:15:55.860+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:15:55.959+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:15:55.959+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:15:55.978+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 351.296 seconds
+[2026-02-28T21:18:22.323+0800] {processor.py:186} INFO - Started process (PID=5289) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:18:22.323+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:18:22.324+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:18:22.324+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:18:22.363+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:18:22.464+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:18:22.463+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:18:22.480+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:18:22.480+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:18:22.498+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 178.449 seconds
+[2026-02-28T21:21:10.372+0800] {processor.py:186} INFO - Started process (PID=5428) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:21:10.372+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:21:10.373+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:21:10.373+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:21:10.420+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:21:10.617+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:21:10.617+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:21:10.717+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:21:10.717+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:21:10.736+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 367.571 seconds
+[2026-02-28T21:23:36.967+0800] {processor.py:186} INFO - Started process (PID=5494) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:23:36.968+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:23:36.969+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:23:36.969+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:23:37.012+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:23:37.114+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:23:37.114+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:23:37.131+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:23:37.131+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:23:37.150+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 185.809 seconds
+[2026-02-28T21:26:04.480+0800] {processor.py:186} INFO - Started process (PID=5587) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:26:04.482+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:26:04.484+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:26:04.484+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:26:04.528+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:26:04.636+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:26:04.635+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:26:04.654+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:26:04.654+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:26:04.675+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 198.214 seconds
+[2026-02-28T21:28:52.983+0800] {processor.py:186} INFO - Started process (PID=5732) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:28:52.984+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:28:52.985+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:28:52.985+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:28:53.036+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:28:53.161+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:28:53.161+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:28:53.179+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:28:53.179+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:28:53.196+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 216.202 seconds
+[2026-02-28T21:31:21.509+0800] {processor.py:186} INFO - Started process (PID=5881) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:31:21.511+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:31:21.512+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:31:21.512+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:31:21.556+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:31:21.666+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:31:21.665+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:31:21.686+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:31:21.685+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:31:21.704+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 198.396 seconds
+[2026-02-28T21:33:46.623+0800] {processor.py:186} INFO - Started process (PID=5954) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:33:46.625+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:33:46.627+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:33:46.626+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:33:46.668+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:33:46.773+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:33:46.772+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:33:46.791+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:33:46.790+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:33:46.809+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 189.425 seconds
+[2026-02-28T21:36:15.707+0800] {processor.py:186} INFO - Started process (PID=6057) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:36:15.710+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:36:15.711+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:36:15.711+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:36:15.769+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:36:15.774+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:36:15.774+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:36:15.884+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:36:15.884+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:36:15.905+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 200.384 seconds
+[2026-02-28T21:40:09.505+0800] {processor.py:186} INFO - Started process (PID=6262) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:40:09.508+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:40:09.509+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:40:09.509+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:40:09.551+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:40:09.762+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:40:09.761+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:40:09.899+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:40:09.898+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:40:09.921+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 418.718 seconds
+[2026-02-28T21:42:38.251+0800] {processor.py:186} INFO - Started process (PID=6347) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:42:38.252+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:42:38.252+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:42:38.252+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:42:38.301+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:42:38.421+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:42:38.420+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:42:38.439+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:42:38.438+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:42:38.457+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 209.964 seconds
+[2026-02-28T21:45:52.091+0800] {processor.py:186} INFO - Started process (PID=6493) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:45:52.092+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:45:52.094+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:45:52.093+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:45:52.136+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:45:52.328+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:45:52.327+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:45:52.427+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:45:52.426+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:45:52.446+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 357.992 seconds
+[2026-02-28T21:48:40.155+0800] {processor.py:186} INFO - Started process (PID=6659) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:48:40.156+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:48:40.156+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:48:40.156+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:48:40.197+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:48:40.390+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:48:40.390+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:48:40.484+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:48:40.484+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:48:40.506+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 354.002 seconds
+[2026-02-28T21:51:05.602+0800] {processor.py:186} INFO - Started process (PID=6743) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:51:05.603+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:51:05.604+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:51:05.604+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:51:05.649+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:51:05.771+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:51:05.770+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:51:05.789+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:51:05.789+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:51:05.808+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 209.206 seconds
+[2026-02-28T21:54:10.455+0800] {processor.py:186} INFO - Started process (PID=6917) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:54:10.455+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:54:10.456+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:54:10.456+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:54:10.501+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:54:10.728+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:54:10.728+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:54:10.822+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:54:10.822+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:54:10.841+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 388.471 seconds
+[2026-02-28T21:57:06.442+0800] {processor.py:186} INFO - Started process (PID=7059) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:57:06.443+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T21:57:06.444+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:57:06.444+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:57:06.500+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T21:57:06.713+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:57:06.713+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:57:06.799+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:57:06.798+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T21:57:06.821+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 381.777 seconds
+[2026-02-28T22:00:17.062+0800] {processor.py:186} INFO - Started process (PID=7194) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:00:17.063+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:00:17.064+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:00:17.064+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:00:17.110+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:00:17.296+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:00:17.296+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:00:17.384+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:00:17.384+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:00:17.404+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 344.202 seconds
+[2026-02-28T22:03:16.245+0800] {processor.py:186} INFO - Started process (PID=7361) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:03:16.245+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:03:16.246+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:16.246+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:03:16.292+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:03:16.570+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:16.570+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:03:16.663+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:16.663+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:03:16.683+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 440.998 seconds
+[2026-02-28T22:06:15.296+0800] {processor.py:186} INFO - Started process (PID=7508) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:06:15.297+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:06:15.298+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:06:15.298+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:06:15.343+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:06:15.538+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:06:15.538+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:06:15.632+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:06:15.632+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:06:15.651+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 357.173 seconds
+[2026-02-28T22:09:22.219+0800] {processor.py:186} INFO - Started process (PID=7680) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:09:22.220+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:09:22.221+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:09:22.221+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:09:22.264+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:09:22.464+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:09:22.464+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:09:22.566+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:09:22.565+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:09:22.589+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 372.208 seconds
+[2026-02-28T22:11:54.538+0800] {processor.py:186} INFO - Started process (PID=7756) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:11:54.539+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:11:54.540+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:11:54.540+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:11:54.580+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:11:54.585+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:11:54.585+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:11:54.696+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:11:54.696+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:11:54.715+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 179.642 seconds
+[2026-02-28T22:15:22.925+0800] {processor.py:186} INFO - Started process (PID=7981) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:15:22.926+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:15:22.927+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:15:22.926+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:15:22.985+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:15:23.228+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:15:23.227+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:15:23.327+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:15:23.327+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:15:23.365+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 442.987 seconds
+[2026-02-28T22:18:11.389+0800] {processor.py:186} INFO - Started process (PID=8077) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:18:11.390+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:18:11.391+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:18:11.391+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:18:11.436+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:18:11.545+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:18:11.544+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:18:11.562+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:18:11.561+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:18:11.582+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 194.996 seconds
+[2026-02-28T22:20:27.416+0800] {processor.py:186} INFO - Started process (PID=8125) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:20:27.419+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:20:27.420+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:20:27.420+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:20:27.461+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:20:27.572+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:20:27.572+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:20:27.592+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:20:27.591+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:20:27.611+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 197.520 seconds
+[2026-02-28T22:22:41.841+0800] {processor.py:186} INFO - Started process (PID=8195) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:22:41.841+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:22:41.842+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:22:41.842+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:22:41.885+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:22:41.992+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:22:41.991+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:22:42.011+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:22:42.011+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:22:42.029+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 191.169 seconds
+[2026-02-28T22:25:06.975+0800] {processor.py:186} INFO - Started process (PID=8259) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:25:06.976+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:25:06.977+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:25:06.977+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:25:07.036+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:25:07.172+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:25:07.171+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:25:07.192+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:25:07.192+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:25:07.214+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 241.726 seconds
+[2026-02-28T22:27:36.755+0800] {processor.py:186} INFO - Started process (PID=8333) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:27:36.757+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:27:36.758+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:27:36.758+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:27:36.800+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:27:36.805+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:27:36.805+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:27:36.915+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:27:36.914+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:27:36.933+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 181.748 seconds
+[2026-02-28T22:30:24.248+0800] {processor.py:186} INFO - Started process (PID=8457) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:30:24.250+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:30:24.252+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:30:24.251+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:30:24.291+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:30:24.478+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:30:24.477+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:30:24.569+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:30:24.569+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:30:24.586+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 341.547 seconds
+[2026-02-28T22:32:33.284+0800] {processor.py:186} INFO - Started process (PID=8515) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:32:33.285+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:32:33.286+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:32:33.286+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:32:33.326+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:32:33.429+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:32:33.428+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:32:33.445+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:32:33.445+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:32:33.463+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 181.074 seconds
+[2026-02-28T22:34:38.903+0800] {processor.py:186} INFO - Started process (PID=8576) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:34:38.904+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:34:38.905+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:34:38.904+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:34:38.946+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:34:39.057+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:34:39.056+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:34:39.075+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:34:39.074+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:34:39.091+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 190.602 seconds
+[2026-02-28T22:36:49.532+0800] {processor.py:186} INFO - Started process (PID=8644) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:36:49.533+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:36:49.534+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:36:49.534+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:36:49.578+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:36:49.680+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:36:49.679+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:36:49.696+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:36:49.696+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:36:49.715+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 185.559 seconds
+[2026-02-28T22:39:09.484+0800] {processor.py:186} INFO - Started process (PID=8718) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:39:09.485+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:39:09.486+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:39:09.486+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:39:09.531+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:39:09.640+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:39:09.640+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:39:09.658+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:39:09.658+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:39:09.679+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 197.091 seconds
+[2026-02-28T22:41:41.606+0800] {processor.py:186} INFO - Started process (PID=8788) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:41:41.607+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:41:41.608+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:41:41.608+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:41:41.654+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:41:41.792+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:41:41.792+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:41:41.809+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:41:41.809+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:41:41.825+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 221.683 seconds
+[2026-02-28T22:44:07.828+0800] {processor.py:186} INFO - Started process (PID=8870) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:44:07.829+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:44:07.830+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:44:07.830+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:44:07.872+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:44:07.976+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:44:07.976+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:44:07.994+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:44:07.994+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:44:08.015+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 189.591 seconds
+[2026-02-28T22:46:35.181+0800] {processor.py:186} INFO - Started process (PID=8980) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:46:35.182+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:46:35.183+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:46:35.182+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:46:35.222+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:46:35.325+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:46:35.324+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:46:35.342+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:46:35.341+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:46:35.362+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 183.720 seconds
+[2026-02-28T22:49:04.102+0800] {processor.py:186} INFO - Started process (PID=9107) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:49:04.103+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:49:04.104+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:49:04.104+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:49:04.149+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:49:04.261+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:49:04.261+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:49:04.278+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:49:04.278+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:49:04.297+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 197.633 seconds
+[2026-02-28T22:51:32.787+0800] {processor.py:186} INFO - Started process (PID=9189) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:51:32.787+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:51:32.788+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:51:32.788+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:51:32.832+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:51:32.954+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:51:32.953+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:51:32.972+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:51:32.972+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:51:32.995+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 211.270 seconds
+[2026-02-28T22:53:57.979+0800] {processor.py:186} INFO - Started process (PID=9268) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:53:57.980+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:53:57.981+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:53:57.980+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:53:58.024+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:53:58.129+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:53:58.129+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:53:58.146+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:53:58.145+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:53:58.165+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 188.510 seconds
+[2026-02-28T22:56:52.289+0800] {processor.py:186} INFO - Started process (PID=9431) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:56:52.291+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py for tasks to queue
+[2026-02-28T22:56:52.292+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:56:52.292+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:56:52.358+0800] {processor.py:925} INFO - DAG(s) 'test_crm' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py
+[2026-02-28T22:56:52.602+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:56:52.602+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:56:52.699+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:56:52.698+0800] {dag.py:4180} INFO - Setting next_dagrun for test_crm to None, run_after=None
+[2026-02-28T22:56:52.719+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_crm/test_crm.py took 432.587 seconds

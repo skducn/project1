@@ -152,7 +152,6 @@ def _execute_playwright_script(file):
         import traceback
         traceback.print_exc()
         return None
-
 def _updateStatus(status_count, errorLog, replace_variable, l_col_values):
     # 依据状态更新
 
@@ -188,7 +187,6 @@ def _updateStatus(status_count, errorLog, replace_variable, l_col_values):
 
     # 更新时间
     Openpyxl_PO.setCell(l_col_values[0], 15, Time_PO.getDateTimeByMinus(), Configparser_PO.EXCEL("sheet"))  # 完成时间
-
 def test_execution(l_col_values):
     """执行单个测试用例并进行验证"""
     # l_col_value.append(Openpyxl_PO.getCell(i + 1, 2, Configparser_PO.EXCEL("sheet")))  # 1 模块

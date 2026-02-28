@@ -1,0 +1,133 @@
+[2026-02-28T21:58:24.017+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T21:58:24.035+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T13:58:04.684635+00:00 [queued]>
+[2026-02-28T21:58:24.042+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T13:58:04.684635+00:00 [queued]>
+[2026-02-28T21:58:24.042+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T21:58:24.056+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并行执行消费者> on 2026-02-28 13:58:04.684635+00:00
+[2026-02-28T21:58:24.059+0800] {standard_task_runner.py:72} INFO - Started process 7090 to run task
+[2026-02-28T21:58:24.066+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并行执行消费者', 'manual__2026-02-28T13:58:04.684635+00:00', '--job-id', '768', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpmv4l4o3q']
+[2026-02-28T21:58:24.070+0800] {standard_task_runner.py:105} INFO - Job 768: Subtask 并行执行消费者
+[2026-02-28T21:58:24.118+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T13:58:04.684635+00:00 [running]> on host localhost-2.local
+[2026-02-28T21:58:24.199+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并行执行消费者' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T13:58:04.684635+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T13:58:04.684635+00:00'
+[2026-02-28T21:58:24.201+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T21:58:24.218+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T21:58:24.219+0800] {logging_mixin.py:190} INFO - 【并行消费者】开始执行测试任务...
+[2026-02-28T21:58:24.219+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T21:58:24.224+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-28T21:58:24.225+0800] {logging_mixin.py:190} INFO - 发现 3 种不同的任务类型: ['编辑角色', '编辑222角色', '新增角色']
+[2026-02-28T21:58:24.225+0800] {logging_mixin.py:190} INFO - 提交任务: 编辑角色
+[2026-02-28T21:58:24.226+0800] {logging_mixin.py:190} INFO - ===================== 编辑角色 消费者开始执行 ====================
+[2026-02-28T21:58:24.226+0800] {logging_mixin.py:190} INFO - 提交任务: 编辑222角色
+[2026-02-28T21:58:24.227+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 新增角色
+[2026-02-28T21:58:24.227+0800] {logging_mixin.py:190} INFO - ===================== 编辑222角色 消费者开始执行 ====================
+[2026-02-28T21:58:24.228+0800] {logging_mixin.py:190} INFO - 提交任务: 新增角色
+[2026-02-28T21:58:24.228+0800] {logging_mixin.py:190} INFO - [编辑角色] 找到匹配的测试用例: 编辑角色
+[2026-02-28T21:58:24.229+0800] {logging_mixin.py:190} INFO - [编辑222角色] 跳过不匹配的测试用例: 新增角色
+[2026-02-28T21:58:24.229+0800] {logging_mixin.py:190} INFO - ===================== 新增角色 消费者开始执行 ====================
+[2026-02-28T21:58:24.229+0800] {logging_mixin.py:190} INFO - 开始等待 3 个任务完成...
+[2026-02-28T21:58:24.230+0800] {logging_mixin.py:190} INFO - [Consumer_0] 开始执行测试用例: 系统管理/角色管理/编辑角色.py
+[2026-02-28T21:58:24.230+0800] {logging_mixin.py:190} INFO - [编辑222角色] 跳过不匹配的测试用例: 编辑角色
+[2026-02-28T21:58:24.231+0800] {logging_mixin.py:190} INFO - [新增角色] 找到匹配的测试用例: 新增角色
+[2026-02-28T21:58:24.231+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-28T21:58:24.232+0800] {logging_mixin.py:190} INFO - [编辑222角色] 找到匹配的测试用例: 编辑222角色
+[2026-02-28T21:58:24.232+0800] {logging_mixin.py:190} INFO - [Consumer_2] 开始执行测试用例: 系统管理/角色管理/新增角色.py
+[2026-02-28T21:58:24.233+0800] {logging_mixin.py:190} INFO - [Consumer_1] 开始执行测试用例: 系统管理/角色管理/编辑222角色.py
+[2026-02-28T21:58:24.234+0800] {logging_mixin.py:190} INFO - [线程 Consumer_2] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-28T21:58:24.234+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑222角色.py
+[2026-02-28T21:58:24.644+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T21:58:24.644+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['罗雪梅', '426516', '566510', '内蒙古自治区瑜市新城合山路C座 106675']]
+[2026-02-28T21:58:24.645+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['四川省建县静安成都路H座 313214']]
+[2026-02-28T21:58:24.647+0800] {logging_mixin.py:190} INFO - [线程 Consumer_2] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T21:58:24.655+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T21:58:33.438+0800] {logging_mixin.py:190} INFO - 步骤[编辑角色]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/screenshots/编辑角色/20260228_215833_编辑角色.png
+[2026-02-28T21:58:33.512+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] ✅ Playwright执行完成，返回结果: {'remark': '四川省建县静安成都路H座 313214'}
+[2026-02-28T21:58:33.513+0800] {logging_mixin.py:190} INFO - [Consumer_1] Playwright执行结果: {'remark': '四川省建县静安成都路H座 313214'}
+[2026-02-28T21:58:33.514+0800] {logging_mixin.py:190} INFO - [Consumer_1] 正则替换结果: [{"k": "select count(*) as qty from sys_role where remark='四川省建县静安成都路H座 313214'", "v": 1}]
+[2026-02-28T21:58:33.515+0800] {logging_mixin.py:190} INFO - [Consumer_1] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where remark='四川省建县静安成都路H座 313214'", 'v': 1}]
+[2026-02-28T21:58:33.531+0800] {logging_mixin.py:190} INFO - [Consumer_1] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where remark='四川省建县静安成都路H座 313214'", 'v': 1}
+[2026-02-28T21:58:33.800+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] ✅ Playwright执行完成，返回结果: {'role_name': '7566', 'remark': 'today'}
+[2026-02-28T21:58:33.801+0800] {logging_mixin.py:190} INFO - [Consumer_0] Playwright执行结果: {'role_name': '7566', 'remark': 'today'}
+[2026-02-28T21:58:33.802+0800] {logging_mixin.py:190} INFO - [Consumer_0] 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='7566'", "v": 1}]
+[2026-02-28T21:58:33.802+0800] {logging_mixin.py:190} INFO - [Consumer_0] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='7566'", 'v': 1}]
+[2026-02-28T21:58:33.812+0800] {logging_mixin.py:190} INFO - [Consumer_0] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='7566'", 'v': 1}
+[2026-02-28T21:58:33.947+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 编辑222角色
+[2026-02-28T21:58:34.024+0800] {logging_mixin.py:190} INFO - [线程 Consumer_2] ✅ Playwright执行完成，返回结果: {'role_name': '罗雪梅', 'role_key': '426516', 'role_sort': '566510', 'remark': '内蒙古自治区瑜市新城合山路C座 106675'}
+[2026-02-28T21:58:34.024+0800] {logging_mixin.py:190} INFO - [Consumer_2] Playwright执行结果: {'role_name': '罗雪梅', 'role_key': '426516', 'role_sort': '566510', 'remark': '内蒙古自治区瑜市新城合山路C座 106675'}
+[2026-02-28T21:58:34.025+0800] {logging_mixin.py:190} INFO - [Consumer_2] 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='罗雪梅'", "v": 1}]
+[2026-02-28T21:58:34.025+0800] {logging_mixin.py:190} INFO - [Consumer_2] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='罗雪梅'", 'v': 1}]
+[2026-02-28T21:58:34.035+0800] {logging_mixin.py:190} INFO - [Consumer_2] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='罗雪梅'", 'v': 1}
+[2026-02-28T21:58:34.109+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑角色
+[2026-02-28T21:58:34.110+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑222角色
+[2026-02-28T21:58:34.110+0800] {logging_mixin.py:190} INFO - ❌ 并行消费者任务执行失败: 'tuple' object has no attribute 'result'
+[2026-02-28T21:58:34.111+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-02-28T21:58:34.112+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 497, in parallel_consumers_task
+    future.result(timeout=300)  # 5分钟超时
+[2026-02-28T21:58:34.112+0800] {logging_mixin.py:190} WARNING - AttributeError: 'tuple' object has no attribute 'result'
+[2026-02-28T21:58:34.113+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 534, in parallel_consumers_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 497, in parallel_consumers_task
+    future.result(timeout=300)  # 5分钟超时
+AttributeError: 'tuple' object has no attribute 'result'
+[2026-02-28T21:58:34.124+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=cdrd_并发, task_id=并行执行消费者, run_id=manual__2026-02-28T13:58:04.684635+00:00, execution_date=20260228T135804, start_date=20260228T135824, end_date=20260228T135834
+[2026-02-28T21:58:34.142+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T21:58:34.143+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 768 for task 并行执行消费者 ('tuple' object has no attribute 'result'; 7090)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 534, in parallel_consumers_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发.py", line 497, in parallel_consumers_task
+    future.result(timeout=300)  # 5分钟超时
+AttributeError: 'tuple' object has no attribute 'result'
+[2026-02-28T21:58:34.178+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-02-28T21:58:34.212+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T21:58:34.219+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

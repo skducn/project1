@@ -1,0 +1,73 @@
+[2026-02-28T22:07:29.411+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T22:07:29.557+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T14:07:08.608449+00:00 [queued]>
+[2026-02-28T22:07:29.564+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T14:07:08.608449+00:00 [queued]>
+[2026-02-28T22:07:29.565+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T22:07:29.578+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并行执行消费者> on 2026-02-28 14:07:08.608449+00:00
+[2026-02-28T22:07:29.581+0800] {standard_task_runner.py:72} INFO - Started process 7557 to run task
+[2026-02-28T22:07:29.588+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并行执行消费者', 'manual__2026-02-28T14:07:08.608449+00:00', '--job-id', '750', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmprukbg9kd']
+[2026-02-28T22:07:29.592+0800] {standard_task_runner.py:105} INFO - Job 750: Subtask 并行执行消费者
+[2026-02-28T22:07:29.639+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并行执行消费者 manual__2026-02-28T14:07:08.608449+00:00 [running]> on host localhost-2.local
+[2026-02-28T22:07:29.711+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并行执行消费者' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T14:07:08.608449+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T14:07:08.608449+00:00'
+[2026-02-28T22:07:29.712+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T22:07:29.729+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T22:07:29.730+0800] {logging_mixin.py:190} INFO - 【并行消费者】开始执行测试任务...
+[2026-02-28T22:07:29.730+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T22:07:29.735+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 3 条
+[2026-02-28T22:07:29.736+0800] {logging_mixin.py:190} INFO - 发现 3 种不同的任务类型: ['编辑角色', '新增角色', '编辑222角色']
+[2026-02-28T22:07:29.736+0800] {logging_mixin.py:190} INFO - 提交任务: 编辑角色
+[2026-02-28T22:07:29.737+0800] {logging_mixin.py:190} INFO - ===================== 编辑角色 消费者开始执行 ====================
+[2026-02-28T22:07:29.737+0800] {logging_mixin.py:190} INFO - 提交任务: 新增角色
+[2026-02-28T22:07:29.738+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 新增角色
+[2026-02-28T22:07:29.738+0800] {logging_mixin.py:190} INFO - ===================== 新增角色 消费者开始执行 ====================
+[2026-02-28T22:07:29.739+0800] {logging_mixin.py:190} INFO - 提交任务: 编辑222角色
+[2026-02-28T22:07:29.739+0800] {logging_mixin.py:190} INFO - [编辑角色] 找到匹配的测试用例: 编辑角色
+[2026-02-28T22:07:29.739+0800] {logging_mixin.py:190} INFO - [新增角色] 找到匹配的测试用例: 新增角色
+[2026-02-28T22:07:29.740+0800] {logging_mixin.py:190} INFO - ===================== 编辑222角色 消费者开始执行 ====================
+[2026-02-28T22:07:29.740+0800] {logging_mixin.py:190} INFO - 开始等待 3 个任务完成...
+[2026-02-28T22:07:29.741+0800] {logging_mixin.py:190} INFO - [Consumer_0] 开始执行测试用例: 系统管理/角色管理/编辑角色.py
+[2026-02-28T22:07:29.741+0800] {logging_mixin.py:190} INFO - [Consumer_1] 开始执行测试用例: 系统管理/角色管理/新增角色.py
+[2026-02-28T22:07:29.742+0800] {logging_mixin.py:190} INFO - [编辑222角色] 跳过不匹配的测试用例: 新增角色
+[2026-02-28T22:07:29.742+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-28T22:07:29.743+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-28T22:07:29.743+0800] {logging_mixin.py:190} INFO - [编辑222角色] 跳过不匹配的测试用例: 编辑角色
+[2026-02-28T22:07:29.745+0800] {logging_mixin.py:190} INFO - [编辑222角色] 找到匹配的测试用例: 编辑222角色
+[2026-02-28T22:07:29.746+0800] {logging_mixin.py:190} INFO - [Consumer_2] 开始执行测试用例: 系统管理/角色管理/编辑222角色.py
+[2026-02-28T22:07:29.747+0800] {logging_mixin.py:190} INFO - [线程 Consumer_2] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑222角色.py
+[2026-02-28T22:07:30.141+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['湖北省哈尔滨市牧野栗路G座 514768']]
+[2026-02-28T22:07:30.141+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T22:07:30.142+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['关建', '954171', '234227', '澳门特别行政区桂英县大兴潜江路b座 230342']]
+[2026-02-28T22:07:30.142+0800] {logging_mixin.py:190} INFO - [线程 Consumer_2] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T22:07:30.144+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T22:07:38.117+0800] {logging_mixin.py:190} INFO - 步骤[编辑角色]截图已保存：/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/screenshots/编辑角色/20260228_220737_编辑角色.png
+[2026-02-28T22:07:38.345+0800] {logging_mixin.py:190} INFO - [线程 Consumer_2] ✅ Playwright执行完成，返回结果: {'remark': '湖北省哈尔滨市牧野栗路G座 514768'}
+[2026-02-28T22:07:38.356+0800] {logging_mixin.py:190} INFO - [Consumer_2] Playwright执行结果: {'remark': '湖北省哈尔滨市牧野栗路G座 514768'}
+[2026-02-28T22:07:38.367+0800] {logging_mixin.py:190} INFO - [Consumer_2] 正则替换结果: [{"k": "select count(*) as qty from sys_role where remark='湖北省哈尔滨市牧野栗路G座 514768'", "v": 1}]
+[2026-02-28T22:07:38.378+0800] {logging_mixin.py:190} INFO - [Consumer_2] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where remark='湖北省哈尔滨市牧野栗路G座 514768'", 'v': 1}]
+[2026-02-28T22:07:38.389+0800] {logging_mixin.py:190} INFO - [Consumer_2] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where remark='湖北省哈尔滨市牧野栗路G座 514768'", 'v': 1}
+[2026-02-28T22:07:38.597+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] ✅ Playwright执行完成，返回结果: {'role_name': '7566', 'remark': 'today'}
+[2026-02-28T22:07:38.598+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] ✅ Playwright执行完成，返回结果: {'role_name': '关建', 'role_key': '954171', 'role_sort': '234227', 'remark': '澳门特别行政区桂英县大兴潜江路b座 230342'}
+[2026-02-28T22:07:38.598+0800] {logging_mixin.py:190} INFO - [Consumer_0] Playwright执行结果: {'role_name': '7566', 'remark': 'today'}
+[2026-02-28T22:07:38.599+0800] {logging_mixin.py:190} INFO - [Consumer_1] Playwright执行结果: {'role_name': '关建', 'role_key': '954171', 'role_sort': '234227', 'remark': '澳门特别行政区桂英县大兴潜江路b座 230342'}
+[2026-02-28T22:07:38.599+0800] {logging_mixin.py:190} INFO - [Consumer_0] 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='7566'", "v": 1}]
+[2026-02-28T22:07:38.600+0800] {logging_mixin.py:190} INFO - [Consumer_1] 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='关建'", "v": 1}]
+[2026-02-28T22:07:38.600+0800] {logging_mixin.py:190} INFO - [Consumer_0] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='7566'", 'v': 1}]
+[2026-02-28T22:07:38.601+0800] {logging_mixin.py:190} INFO - [Consumer_1] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='关建'", 'v': 1}]
+[2026-02-28T22:07:38.602+0800] {logging_mixin.py:190} INFO - OperationalError(0, b'Unknown error')
+[2026-02-28T22:07:38.602+0800] {logging_mixin.py:190} INFO - Consumer_1] 验证过程出错2: 'NoneType' object is not subscriptable
+[2026-02-28T22:07:38.603+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑角色
+[2026-02-28T22:07:38.603+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑222角色
+[2026-02-28T22:07:38.611+0800] {logging_mixin.py:190} INFO - OperationalError(3980, b'The request failed to run because the batch is aborted, this can be caused by abort signal sent from client, or another request is running in the same session, which makes the session busy.DB-Lib error message 20018, severity 16:\nGeneral SQL Server error: Check messages from the SQL Server\n')
+[2026-02-28T22:07:38.612+0800] {logging_mixin.py:190} INFO - Consumer_0] 验证过程出错2: 'NoneType' object is not subscriptable
+[2026-02-28T22:07:38.613+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 编辑222角色
+[2026-02-28T22:07:38.613+0800] {logging_mixin.py:190} INFO - ❌ 编辑角色 执行失败55: 'NoneType' object is not subscriptable
+[2026-02-28T22:07:38.614+0800] {logging_mixin.py:190} INFO - ❌ 新增角色 执行失败55: 'NoneType' object is not subscriptable
+[2026-02-28T22:07:38.614+0800] {logging_mixin.py:190} INFO - ❌ 编辑222角色 执行失败55: 'NoneType' object is not subscriptable
+[2026-02-28T22:07:38.615+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T22:07:38.615+0800] {logging_mixin.py:190} INFO - 【并行消费者】所有测试执行完成
+[2026-02-28T22:07:38.616+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T22:07:38.616+0800] {python.py:240} INFO - Done. Returned value was: {'编辑角色': {'module': '系统管理-角色管理-编辑角色', 'success_count': 0, 'fail_count': 0, 'total_count': 0, 'error': "'NoneType' object is not subscriptable"}, '新增角色': {'module': '系统管理-角色管理-新增角色', 'success_count': 0, 'fail_count': 0, 'total_count': 0, 'error': "'NoneType' object is not subscriptable"}, '编辑222角色': {'module': '系统管理-角色管理-编辑222角色', 'success_count': 0, 'fail_count': 0, 'total_count': 0, 'error': "'NoneType' object is not subscriptable"}}
+[2026-02-28T22:07:38.633+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T22:07:38.634+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_并发, task_id=并行执行消费者, run_id=manual__2026-02-28T14:07:08.608449+00:00, execution_date=20260228T140708, start_date=20260228T140729, end_date=20260228T140738
+[2026-02-28T22:07:38.703+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T22:07:38.724+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T22:07:38.725+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

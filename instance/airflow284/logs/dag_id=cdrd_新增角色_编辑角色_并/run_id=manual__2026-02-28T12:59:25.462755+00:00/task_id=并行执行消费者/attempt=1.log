@@ -1,0 +1,52 @@
+[2026-02-28T20:59:47.849+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-02-28T20:59:47.867+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色_并.并行执行消费者 manual__2026-02-28T12:59:25.462755+00:00 [queued]>
+[2026-02-28T20:59:47.876+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增角色_编辑角色_并.并行执行消费者 manual__2026-02-28T12:59:25.462755+00:00 [queued]>
+[2026-02-28T20:59:47.876+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-02-28T20:59:47.889+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并行执行消费者> on 2026-02-28 12:59:25.462755+00:00
+[2026-02-28T20:59:47.893+0800] {standard_task_runner.py:72} INFO - Started process 4446 to run task
+[2026-02-28T20:59:47.900+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增角色_编辑角色_并', '并行执行消费者', 'manual__2026-02-28T12:59:25.462755+00:00', '--job-id', '729', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_新增角色_编辑角色_并.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp30eh0raf']
+[2026-02-28T20:59:47.904+0800] {standard_task_runner.py:105} INFO - Job 729: Subtask 并行执行消费者
+[2026-02-28T20:59:47.952+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增角色_编辑角色_并.并行执行消费者 manual__2026-02-28T12:59:25.462755+00:00 [running]> on host localhost-2.local
+[2026-02-28T20:59:48.032+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增角色_编辑角色_并' AIRFLOW_CTX_TASK_ID='并行执行消费者' AIRFLOW_CTX_EXECUTION_DATE='2026-02-28T12:59:25.462755+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-02-28T12:59:25.462755+00:00'
+[2026-02-28T20:59:48.033+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-02-28T20:59:48.051+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T20:59:48.052+0800] {logging_mixin.py:190} INFO - 【并行消费者】开始同时执行新增角色和编辑角色测试...
+[2026-02-28T20:59:48.052+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T20:59:48.058+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 2 条
+[2026-02-28T20:59:48.059+0800] {logging_mixin.py:190} INFO - ===================== 新增角色 消费者开始执行 ====================
+[2026-02-28T20:59:48.059+0800] {logging_mixin.py:190} INFO - ===================== 编辑角色 消费者开始执行 ====================
+[2026-02-28T20:59:48.059+0800] {logging_mixin.py:190} INFO - [新增角色] 找到测试用例: 新增角色
+[2026-02-28T20:59:48.060+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 新增角色
+[2026-02-28T20:59:48.060+0800] {logging_mixin.py:190} INFO - [Consumer_0] 开始执行测试用例: 系统管理/角色管理/新增角色.py
+[2026-02-28T20:59:48.061+0800] {logging_mixin.py:190} INFO - [编辑角色] 找到测试用例: 编辑角色
+[2026-02-28T20:59:48.061+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/新增角色.py
+[2026-02-28T20:59:48.062+0800] {logging_mixin.py:190} INFO - [Consumer_1] 开始执行测试用例: 系统管理/角色管理/编辑角色.py
+[2026-02-28T20:59:48.063+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] 准备执行Playwright脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py
+[2026-02-28T20:59:48.435+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['刘杰', '207172', '346035', '西藏自治区宁县海港台北路V座 947851']]
+[2026-02-28T20:59:48.435+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T20:59:48.436+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] ✅ 找到run_playwright函数，开始执行...
+[2026-02-28T20:59:54.936+0800] {logging_mixin.py:190} INFO - [线程 Consumer_1] ✅ Playwright执行完成，返回结果: {'role_name': '555', 'remark': '1234'}
+[2026-02-28T20:59:54.937+0800] {logging_mixin.py:190} INFO - [Consumer_1] Playwright执行结果: {'role_name': '555', 'remark': '1234'}
+[2026-02-28T20:59:54.937+0800] {logging_mixin.py:190} INFO - [Consumer_1] 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='555'", "v": 1}]
+[2026-02-28T20:59:54.938+0800] {logging_mixin.py:190} INFO - [Consumer_1] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}]
+[2026-02-28T20:59:54.953+0800] {logging_mixin.py:190} INFO - [Consumer_1] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='555'", 'v': 1}
+[2026-02-28T20:59:55.049+0800] {logging_mixin.py:190} INFO - ===================== 编辑角色 消费者执行完成 ====================
+[2026-02-28T20:59:55.470+0800] {logging_mixin.py:190} INFO - [线程 Consumer_0] ✅ Playwright执行完成，返回结果: {'role_name': '刘杰', 'role_key': '207172', 'role_sort': '346035', 'remark': '西藏自治区宁县海港台北路V座 947851'}
+[2026-02-28T20:59:55.471+0800] {logging_mixin.py:190} INFO - [Consumer_0] Playwright执行结果: {'role_name': '刘杰', 'role_key': '207172', 'role_sort': '346035', 'remark': '西藏自治区宁县海港台北路V座 947851'}
+[2026-02-28T20:59:55.471+0800] {logging_mixin.py:190} INFO - [Consumer_0] 正则替换结果: [{"k": "select count(*) as qty from sys_role where role_name='刘杰'", "v": 1}]
+[2026-02-28T20:59:55.472+0800] {logging_mixin.py:190} INFO - [Consumer_0] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='刘杰'", 'v': 1}]
+[2026-02-28T20:59:55.482+0800] {logging_mixin.py:190} INFO - [Consumer_0] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='刘杰'", 'v': 1}
+[2026-02-28T20:59:55.524+0800] {logging_mixin.py:190} INFO - [Consumer_0] 正则替换结果: [["delete from sys_role where role_name='刘杰' and role_sort='346035'"]]
+[2026-02-28T20:59:55.524+0800] {logging_mixin.py:190} INFO - [Consumer_0] 解析后的验证数据: [["delete from sys_role where role_name='刘杰' and role_sort='346035'"]]
+[2026-02-28T20:59:55.537+0800] {logging_mixin.py:190} INFO - [Consumer_0] ✅ 后置操作 delete from sys_role where role_name='刘杰' and role_sort='346035'
+[2026-02-28T20:59:55.574+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑角色
+[2026-02-28T20:59:55.574+0800] {logging_mixin.py:190} INFO - ===================== 新增角色 消费者执行完成 ====================
+[2026-02-28T20:59:55.575+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T20:59:55.576+0800] {logging_mixin.py:190} INFO - 【并行消费者】所有测试执行完成
+[2026-02-28T20:59:55.576+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-02-28T20:59:55.576+0800] {python.py:240} INFO - Done. Returned value was: {'新增角色': None, '编辑角色': None}
+[2026-02-28T20:59:55.592+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-02-28T20:59:55.593+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增角色_编辑角色_并, task_id=并行执行消费者, run_id=manual__2026-02-28T12:59:25.462755+00:00, execution_date=20260228T125925, start_date=20260228T125947, end_date=20260228T125955
+[2026-02-28T20:59:55.640+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-02-28T20:59:55.660+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-02-28T20:59:55.661+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

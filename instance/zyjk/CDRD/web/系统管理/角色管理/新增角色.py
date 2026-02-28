@@ -58,7 +58,7 @@ file_name_no_ext = os.path.splitext(file_name)[0]  # 提取无扩展名的文件
 
 # 生成默认数据
 test_data = Fake_PO.genTest(['genName', 'genPostcode', 'genPostcode', 'genAddress'], 1)
-print(f"随机生成测试数据: {test_data}")
+print(f"新增角色，生成随机数据: {test_data}")
 
 
 

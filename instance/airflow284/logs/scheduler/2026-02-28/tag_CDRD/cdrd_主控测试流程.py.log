@@ -3386,3 +3386,1088 @@
 [2026-02-28T18:01:30.346+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:01:30.346+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-02-28T18:01:30.358+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:01:30.357+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
 [2026-02-28T18:01:30.382+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 186.759 seconds
+[2026-02-28T18:03:19.815+0800] {processor.py:186} INFO - Started process (PID=24899) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:03:19.816+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T18:03:19.816+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:03:19.816+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:03:19.830+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:03:20.032+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:03:20.031+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T18:03:20.044+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:03:20.044+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T18:03:20.064+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 251.601 seconds
+[2026-02-28T18:04:38.937+0800] {processor.py:186} INFO - Started process (PID=24947) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:04:38.937+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T18:04:38.938+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:04:38.938+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:04:38.947+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:04:39.062+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:04:39.062+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T18:04:39.074+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:04:39.074+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T18:04:39.095+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 161.056 seconds
+[2026-02-28T18:05:45.304+0800] {processor.py:186} INFO - Started process (PID=24977) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:05:45.305+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T18:05:45.305+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:05:45.305+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:05:45.314+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T18:05:45.414+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:05:45.414+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T18:05:45.424+0800] {logging_mixin.py:190} INFO - [2026-02-28T18:05:45.424+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T18:05:45.443+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 141.729 seconds
+[2026-02-28T19:47:37.650+0800] {processor.py:186} INFO - Started process (PID=1304) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:47:37.651+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:47:37.653+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:47:37.652+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:47:37.671+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:47:38.007+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:47:38.007+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:47:38.028+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:47:38.028+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:47:38.056+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 412.597 seconds
+[2026-02-28T19:49:54.723+0800] {processor.py:186} INFO - Started process (PID=1420) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:49:54.724+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:49:54.725+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:49:54.725+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:49:54.736+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:49:54.896+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:49:54.896+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:49:54.910+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:49:54.909+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:49:54.927+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 207.977 seconds
+[2026-02-28T19:51:15.805+0800] {processor.py:186} INFO - Started process (PID=1514) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:51:15.805+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:51:15.806+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:51:15.806+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:51:15.817+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:51:15.927+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:51:15.926+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:51:15.939+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:51:15.939+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:51:15.956+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 153.750 seconds
+[2026-02-28T19:52:24.787+0800] {processor.py:186} INFO - Started process (PID=1547) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:52:24.787+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:52:24.788+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:52:24.788+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:52:24.797+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:52:24.912+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:52:24.912+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:52:24.924+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:52:24.924+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:52:24.941+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 157.769 seconds
+[2026-02-28T19:53:32.436+0800] {processor.py:186} INFO - Started process (PID=1578) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:53:32.437+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:53:32.438+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:53:32.438+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:53:32.447+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:53:32.554+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:53:32.554+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:53:32.565+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:53:32.565+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:53:32.584+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 150.390 seconds
+[2026-02-28T19:54:47.378+0800] {processor.py:186} INFO - Started process (PID=1606) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:54:47.379+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:54:47.380+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:54:47.379+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:54:47.388+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:54:47.496+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:54:47.496+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:54:47.507+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:54:47.506+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:54:47.522+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 146.698 seconds
+[2026-02-28T19:56:00.923+0800] {processor.py:186} INFO - Started process (PID=1632) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:56:00.924+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:56:00.925+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:56:00.924+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:56:00.936+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:56:01.071+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:56:01.070+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:56:01.086+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:56:01.085+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:56:01.102+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 183.462 seconds
+[2026-02-28T19:57:15.582+0800] {processor.py:186} INFO - Started process (PID=1677) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:57:15.584+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:57:15.585+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:57:15.585+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:57:15.600+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:57:15.767+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:57:15.766+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:57:15.785+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:57:15.785+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:57:15.811+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 234.231 seconds
+[2026-02-28T19:58:47.353+0800] {processor.py:186} INFO - Started process (PID=1754) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:58:47.353+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T19:58:47.354+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:58:47.354+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:58:47.364+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T19:58:47.475+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:58:47.474+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T19:58:47.486+0800] {logging_mixin.py:190} INFO - [2026-02-28T19:58:47.485+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T19:58:47.506+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 156.177 seconds
+[2026-02-28T20:00:40.760+0800] {processor.py:186} INFO - Started process (PID=1843) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:00:40.761+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:00:40.762+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:00:40.762+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:00:40.771+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:00:40.888+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:00:40.887+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:00:40.900+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:00:40.899+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:00:40.919+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 162.238 seconds
+[2026-02-28T20:02:58.735+0800] {processor.py:186} INFO - Started process (PID=2005) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:02:58.735+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:02:58.736+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:02:58.736+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:02:58.745+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:02:58.751+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:02:58.750+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:02:58.860+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:02:58.859+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:02:58.878+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 146.498 seconds
+[2026-02-28T20:04:40.630+0800] {processor.py:186} INFO - Started process (PID=2097) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:04:40.631+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:04:40.632+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:04:40.632+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:04:40.642+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:04:40.646+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:04:40.646+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:04:40.748+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:04:40.748+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:04:40.767+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 139.099 seconds
+[2026-02-28T20:06:42.896+0800] {processor.py:186} INFO - Started process (PID=2213) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:06:42.896+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:06:42.897+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:06:42.897+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:06:42.906+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:06:43.144+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:06:43.144+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:06:43.164+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:06:43.163+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:06:43.191+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 298.389 seconds
+[2026-02-28T20:08:30.576+0800] {processor.py:186} INFO - Started process (PID=2318) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:08:30.577+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:08:30.578+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:08:30.578+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:08:30.592+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:08:30.867+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:08:30.867+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:08:30.881+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:08:30.881+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:08:30.901+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 329.762 seconds
+[2026-02-28T20:09:55.373+0800] {processor.py:186} INFO - Started process (PID=2370) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:09:55.374+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:09:55.374+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:09:55.374+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:09:55.384+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:09:55.498+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:09:55.498+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:09:55.510+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:09:55.510+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:09:55.529+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 158.805 seconds
+[2026-02-28T20:11:07.810+0800] {processor.py:186} INFO - Started process (PID=2411) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:11:07.810+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:11:07.811+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:11:07.811+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:11:07.821+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:11:07.931+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:11:07.931+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:11:07.943+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:11:07.943+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:11:07.963+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 156.098 seconds
+[2026-02-28T20:12:14.515+0800] {processor.py:186} INFO - Started process (PID=2451) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:12:14.515+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:12:14.516+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:12:14.516+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:12:14.525+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:12:14.626+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:12:14.626+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:12:14.637+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:12:14.637+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:12:14.657+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 145.112 seconds
+[2026-02-28T20:13:20.482+0800] {processor.py:186} INFO - Started process (PID=2475) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:13:20.483+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:13:20.484+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:13:20.484+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:13:20.494+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:13:20.604+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:13:20.604+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:13:20.614+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:13:20.614+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:13:20.632+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 152.803 seconds
+[2026-02-28T20:14:31.062+0800] {processor.py:186} INFO - Started process (PID=2518) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:14:31.063+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:14:31.063+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:14:31.063+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:14:31.072+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:14:31.177+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:14:31.177+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:14:31.188+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:14:31.188+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:14:31.209+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 149.437 seconds
+[2026-02-28T20:15:39.794+0800] {processor.py:186} INFO - Started process (PID=2554) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:15:39.795+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:15:39.796+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:15:39.795+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:15:39.805+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:15:39.908+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:15:39.908+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:15:39.919+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:15:39.919+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:15:39.939+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 147.305 seconds
+[2026-02-28T20:16:48.585+0800] {processor.py:186} INFO - Started process (PID=2588) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:16:48.585+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:16:48.586+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:16:48.586+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:16:48.596+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:16:48.707+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:16:48.707+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:16:48.722+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:16:48.722+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:16:48.745+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 163.219 seconds
+[2026-02-28T20:17:54.685+0800] {processor.py:186} INFO - Started process (PID=2612) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:17:54.685+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:17:54.686+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:17:54.686+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:17:54.695+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:17:54.799+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:17:54.799+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:17:54.809+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:17:54.809+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:17:54.827+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 145.292 seconds
+[2026-02-28T20:19:04.514+0800] {processor.py:186} INFO - Started process (PID=2644) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:19:04.515+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:19:04.516+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:19:04.515+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:19:04.524+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:19:04.630+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:19:04.630+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:19:04.641+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:19:04.640+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:19:04.662+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 150.059 seconds
+[2026-02-28T20:20:16.390+0800] {processor.py:186} INFO - Started process (PID=2691) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:20:16.391+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:20:16.392+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:20:16.392+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:20:16.401+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:20:16.509+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:20:16.509+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:20:16.520+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:20:16.520+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:20:16.539+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 150.933 seconds
+[2026-02-28T20:21:24.758+0800] {processor.py:186} INFO - Started process (PID=2727) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:21:24.759+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:21:24.760+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:21:24.759+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:21:24.769+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:21:24.884+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:21:24.884+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:21:24.896+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:21:24.896+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:21:24.914+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 158.381 seconds
+[2026-02-28T20:22:32.239+0800] {processor.py:186} INFO - Started process (PID=2763) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:22:32.240+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:22:32.241+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:22:32.241+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:22:32.251+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:22:32.362+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:22:32.362+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:22:32.373+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:22:32.373+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:22:32.390+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.118 seconds
+[2026-02-28T20:23:42.084+0800] {processor.py:186} INFO - Started process (PID=2796) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:23:42.084+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:23:42.085+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:23:42.085+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:23:42.096+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:23:42.215+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:23:42.214+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:23:42.227+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:23:42.227+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:23:42.247+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 166.315 seconds
+[2026-02-28T20:24:54.010+0800] {processor.py:186} INFO - Started process (PID=2838) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:24:54.011+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:24:54.012+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:24:54.011+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:24:54.021+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:24:54.124+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:24:54.124+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:24:54.135+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:24:54.134+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:24:54.154+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 147.056 seconds
+[2026-02-28T20:26:08.723+0800] {processor.py:186} INFO - Started process (PID=2895) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:26:08.724+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:26:08.725+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:26:08.724+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:26:08.735+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:26:08.839+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:26:08.838+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:26:08.851+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:26:08.850+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:26:08.869+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 149.916 seconds
+[2026-02-28T20:27:24.240+0800] {processor.py:186} INFO - Started process (PID=2945) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:27:24.241+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:27:24.243+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:27:24.243+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:27:24.259+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:27:24.384+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:27:24.384+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:27:24.395+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:27:24.395+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:27:24.417+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 181.741 seconds
+[2026-02-28T20:28:36.563+0800] {processor.py:186} INFO - Started process (PID=2995) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:28:36.564+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:28:36.565+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:28:36.564+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:28:36.573+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:28:36.675+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:28:36.675+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:28:36.686+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:28:36.686+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:28:36.703+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 142.612 seconds
+[2026-02-28T20:29:43.270+0800] {processor.py:186} INFO - Started process (PID=3041) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:29:43.270+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:29:43.271+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:29:43.271+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:29:43.281+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:29:43.386+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:29:43.385+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:29:43.396+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:29:43.396+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:29:43.411+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 144.050 seconds
+[2026-02-28T20:30:51.328+0800] {processor.py:186} INFO - Started process (PID=3072) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:30:51.328+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:30:51.329+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:30:51.329+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:30:51.340+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:30:51.461+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:30:51.460+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:30:51.474+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:30:51.474+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:30:51.493+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 167.902 seconds
+[2026-02-28T20:32:01.072+0800] {processor.py:186} INFO - Started process (PID=3120) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:32:01.072+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:32:01.073+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:32:01.073+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:32:01.082+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:32:01.186+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:32:01.185+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:32:01.198+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:32:01.198+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:32:01.217+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 148.026 seconds
+[2026-02-28T20:33:10.865+0800] {processor.py:186} INFO - Started process (PID=3147) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:33:10.866+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:33:10.867+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:33:10.866+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:33:10.875+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:33:10.988+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:33:10.988+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:33:10.999+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:33:10.999+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:33:11.019+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 157.165 seconds
+[2026-02-28T20:34:24.464+0800] {processor.py:186} INFO - Started process (PID=3188) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:34:24.465+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:34:24.466+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:34:24.465+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:34:24.476+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:34:24.481+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:34:24.481+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:34:24.592+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:34:24.592+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:34:24.611+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 150.071 seconds
+[2026-02-28T20:36:08.258+0800] {processor.py:186} INFO - Started process (PID=3283) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:36:08.259+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:36:08.260+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:36:08.260+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:36:08.271+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:36:08.463+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:36:08.463+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:36:08.476+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:36:08.475+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:36:08.493+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 237.221 seconds
+[2026-02-28T20:37:18.297+0800] {processor.py:186} INFO - Started process (PID=3309) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:37:18.298+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:37:18.299+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:37:18.299+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:37:18.309+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:37:18.414+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:37:18.414+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:37:18.425+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:37:18.425+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:37:18.444+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 149.263 seconds
+[2026-02-28T20:38:29.402+0800] {processor.py:186} INFO - Started process (PID=3355) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:38:29.402+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:38:29.403+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:38:29.403+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:38:29.414+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:38:29.420+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:38:29.420+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:38:29.543+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:38:29.543+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:38:29.564+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 165.201 seconds
+[2026-02-28T20:40:09.182+0800] {processor.py:186} INFO - Started process (PID=3465) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:40:09.183+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:40:09.185+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:40:09.184+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:40:09.198+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:40:09.439+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:40:09.439+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:40:09.454+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:40:09.454+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:40:09.477+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 297.415 seconds
+[2026-02-28T20:41:29.107+0800] {processor.py:186} INFO - Started process (PID=3495) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:41:29.108+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:41:29.108+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:41:29.108+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:41:29.119+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:41:29.222+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:41:29.222+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:41:29.233+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:41:29.233+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:41:29.251+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 146.912 seconds
+[2026-02-28T20:43:06.508+0800] {processor.py:186} INFO - Started process (PID=3598) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:43:06.509+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:43:06.510+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:43:06.510+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:43:06.519+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:43:06.720+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:43:06.720+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:43:06.732+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:43:06.732+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:43:06.752+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 246.078 seconds
+[2026-02-28T20:44:50.710+0800] {processor.py:186} INFO - Started process (PID=3709) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:44:50.710+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:44:50.711+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:44:50.711+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:44:50.723+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:44:50.917+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:44:50.917+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:44:50.931+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:44:50.931+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:44:50.954+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 246.846 seconds
+[2026-02-28T20:46:10.140+0800] {processor.py:186} INFO - Started process (PID=3760) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:46:10.141+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:46:10.142+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:46:10.142+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:46:10.151+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:46:10.255+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:46:10.254+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:46:10.265+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:46:10.265+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:46:10.286+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 148.479 seconds
+[2026-02-28T20:47:18.077+0800] {processor.py:186} INFO - Started process (PID=3801) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:47:18.077+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:47:18.078+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:47:18.078+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:47:18.088+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:47:18.197+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:47:18.197+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:47:18.209+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:47:18.209+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:47:18.225+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 151.367 seconds
+[2026-02-28T20:48:26.253+0800] {processor.py:186} INFO - Started process (PID=3831) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:48:26.254+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:48:26.255+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:48:26.255+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:48:26.264+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:48:26.371+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:48:26.371+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:48:26.383+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:48:26.383+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:48:26.405+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.234 seconds
+[2026-02-28T20:49:36.054+0800] {processor.py:186} INFO - Started process (PID=3878) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:49:36.055+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:49:36.056+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:49:36.055+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:49:36.066+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:49:36.285+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:49:36.285+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:49:36.298+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:49:36.297+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:49:36.319+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 268.018 seconds
+[2026-02-28T20:51:07.058+0800] {processor.py:186} INFO - Started process (PID=3973) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:51:07.058+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:51:07.060+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:51:07.059+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:51:07.075+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:51:07.190+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:51:07.190+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:51:07.201+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:51:07.200+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:51:07.220+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 166.277 seconds
+[2026-02-28T20:52:56.394+0800] {processor.py:186} INFO - Started process (PID=4080) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:52:56.395+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:52:56.396+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:52:56.396+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:52:56.405+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:52:56.633+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:52:56.633+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:52:56.644+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:52:56.644+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:52:56.665+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 273.341 seconds
+[2026-02-28T20:54:06.935+0800] {processor.py:186} INFO - Started process (PID=4106) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:54:06.936+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:54:06.937+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:54:06.937+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:54:06.946+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:54:07.055+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:54:07.055+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:54:07.066+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:54:07.066+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:54:07.085+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 152.730 seconds
+[2026-02-28T20:55:15.097+0800] {processor.py:186} INFO - Started process (PID=4139) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:55:15.097+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:55:15.098+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:55:15.098+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:55:15.108+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:55:15.215+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:55:15.214+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:55:15.226+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:55:15.225+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:55:15.241+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 147.142 seconds
+[2026-02-28T20:56:26.862+0800] {processor.py:186} INFO - Started process (PID=4221) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:56:26.863+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:56:26.864+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:56:26.863+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:56:26.873+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:56:26.879+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:56:26.878+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:56:26.999+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:56:26.998+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:56:27.019+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 160.161 seconds
+[2026-02-28T20:57:59.606+0800] {processor.py:186} INFO - Started process (PID=4318) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:57:59.607+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:57:59.608+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:57:59.607+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:57:59.617+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:57:59.817+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:57:59.817+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:57:59.829+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:57:59.829+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:57:59.850+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 246.318 seconds
+[2026-02-28T20:59:24.049+0800] {processor.py:186} INFO - Started process (PID=4370) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:59:24.049+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T20:59:24.050+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:59:24.050+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:59:24.061+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T20:59:24.067+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:59:24.067+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T20:59:24.207+0800] {logging_mixin.py:190} INFO - [2026-02-28T20:59:24.206+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T20:59:24.228+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 184.192 seconds
+[2026-02-28T21:01:00.947+0800] {processor.py:186} INFO - Started process (PID=4537) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:01:00.948+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:01:00.949+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:01:00.949+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:01:00.964+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:01:01.163+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:01:01.162+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:01:01.174+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:01:01.174+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:01:01.192+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 247.164 seconds
+[2026-02-28T21:02:14.142+0800] {processor.py:186} INFO - Started process (PID=4580) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:02:14.143+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:02:14.144+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:02:14.143+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:02:14.153+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:02:14.257+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:02:14.256+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:02:14.267+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:02:14.267+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:02:14.288+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 148.885 seconds
+[2026-02-28T21:03:25.852+0800] {processor.py:186} INFO - Started process (PID=4608) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:03:25.853+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:03:25.854+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:03:25.853+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:03:25.865+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:03:25.984+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:03:25.984+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:03:25.996+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:03:25.996+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:03:26.017+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 168.313 seconds
+[2026-02-28T21:04:43.279+0800] {processor.py:186} INFO - Started process (PID=4647) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:04:43.279+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:04:43.280+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:04:43.280+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:04:43.289+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:04:43.294+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:04:43.294+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:04:43.393+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:04:43.393+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:04:43.411+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 135.405 seconds
+[2026-02-28T21:06:06.725+0800] {processor.py:186} INFO - Started process (PID=4722) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:06:06.726+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:06:06.727+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:06:06.727+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:06:06.736+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:06:06.923+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:06:06.923+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:06:06.934+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:06:06.934+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:06:06.957+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 234.163 seconds
+[2026-02-28T21:07:41.438+0800] {processor.py:186} INFO - Started process (PID=4810) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:07:41.440+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:07:41.441+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:07:41.441+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:07:41.455+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:07:41.953+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:07:41.952+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:07:41.979+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:07:41.979+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:07:42.000+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 570.031 seconds
+[2026-02-28T21:09:17.431+0800] {processor.py:186} INFO - Started process (PID=4919) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:09:17.432+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:09:17.433+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:09:17.432+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:09:17.444+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:09:17.759+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:09:17.758+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:09:17.770+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:09:17.770+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:09:17.793+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 364.677 seconds
+[2026-02-28T21:11:11.259+0800] {processor.py:186} INFO - Started process (PID=5023) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:11:11.260+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:11:11.261+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:11:11.261+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:11:11.275+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:11:11.513+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:11:11.513+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:11:11.524+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:11:11.524+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:11:11.546+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 290.072 seconds
+[2026-02-28T21:12:24.109+0800] {processor.py:186} INFO - Started process (PID=5048) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:12:24.109+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:12:24.110+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:12:24.110+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:12:24.120+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:12:24.226+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:12:24.226+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:12:24.237+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:12:24.236+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:12:24.257+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 150.744 seconds
+[2026-02-28T21:13:36.353+0800] {processor.py:186} INFO - Started process (PID=5088) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:13:36.354+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:13:36.355+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:13:36.355+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:13:36.364+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:13:36.474+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:13:36.474+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:13:36.486+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:13:36.486+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:13:36.510+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 159.140 seconds
+[2026-02-28T21:14:59.163+0800] {processor.py:186} INFO - Started process (PID=5126) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:14:59.163+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:14:59.164+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:14:59.164+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:14:59.174+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:14:59.179+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:14:59.179+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:14:59.280+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:14:59.280+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:14:59.298+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 138.809 seconds
+[2026-02-28T21:16:30.194+0800] {processor.py:186} INFO - Started process (PID=5205) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:16:30.196+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:16:30.198+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:16:30.197+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:16:30.209+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:16:30.436+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:16:30.436+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:16:30.448+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:16:30.447+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:16:30.468+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 277.884 seconds
+[2026-02-28T21:17:42.655+0800] {processor.py:186} INFO - Started process (PID=5264) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:17:42.656+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:17:42.657+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:17:42.657+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:17:42.668+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:17:42.790+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:17:42.790+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:17:42.803+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:17:42.802+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:17:42.822+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 169.231 seconds
+[2026-02-28T21:18:56.883+0800] {processor.py:186} INFO - Started process (PID=5301) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:18:56.884+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:18:56.885+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:18:56.885+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:18:56.894+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:18:57.003+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:18:57.003+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:18:57.016+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:18:57.016+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:18:57.035+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.794 seconds
+[2026-02-28T21:20:28.550+0800] {processor.py:186} INFO - Started process (PID=5405) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:20:28.551+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:20:28.552+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:20:28.552+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:20:28.564+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:20:28.830+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:20:28.829+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:20:28.842+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:20:28.842+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:20:28.862+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 314.862 seconds
+[2026-02-28T21:21:43.669+0800] {processor.py:186} INFO - Started process (PID=5453) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:21:43.670+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:21:43.671+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:21:43.671+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:21:43.680+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:21:43.787+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:21:43.786+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:21:43.797+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:21:43.797+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:21:43.815+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 148.829 seconds
+[2026-02-28T21:22:57.661+0800] {processor.py:186} INFO - Started process (PID=5477) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:22:57.662+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:22:57.663+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:22:57.663+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:22:57.673+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:22:57.786+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:22:57.786+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:22:57.798+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:22:57.797+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:22:57.817+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 158.281 seconds
+[2026-02-28T21:24:14.076+0800] {processor.py:186} INFO - Started process (PID=5527) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:24:14.076+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:24:14.078+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:24:14.077+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:24:14.089+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:24:14.219+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:24:14.219+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:24:14.231+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:24:14.231+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:24:14.255+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 182.074 seconds
+[2026-02-28T21:25:25.248+0800] {processor.py:186} INFO - Started process (PID=5572) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:25:25.250+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:25:25.251+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:25:25.251+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:25:25.260+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:25:25.376+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:25:25.376+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:25:25.387+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:25:25.387+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:25:25.405+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 160.912 seconds
+[2026-02-28T21:26:37.187+0800] {processor.py:186} INFO - Started process (PID=5600) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:26:37.188+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:26:37.189+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:26:37.189+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:26:37.202+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:26:37.321+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:26:37.321+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:26:37.333+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:26:37.333+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:26:37.353+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 168.477 seconds
+[2026-02-28T21:28:01.292+0800] {processor.py:186} INFO - Started process (PID=5679) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:28:01.293+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:28:01.294+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:28:01.294+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:28:01.305+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:28:01.419+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:28:01.419+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:28:01.431+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:28:01.430+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:28:01.447+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 157.805 seconds
+[2026-02-28T21:29:25.922+0800] {processor.py:186} INFO - Started process (PID=5796) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:29:25.923+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:29:25.924+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:29:25.923+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:29:25.941+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:29:26.136+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:29:26.136+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:29:26.155+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:29:26.154+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:29:26.180+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 260.969 seconds
+[2026-02-28T21:30:38.689+0800] {processor.py:186} INFO - Started process (PID=5851) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:30:38.690+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:30:38.691+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:30:38.691+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:30:38.703+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:30:38.814+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:30:38.814+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:30:38.825+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:30:38.825+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:30:38.845+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 158.977 seconds
+[2026-02-28T21:31:53.097+0800] {processor.py:186} INFO - Started process (PID=5893) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:31:53.098+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:31:53.099+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:31:53.099+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:31:53.111+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:31:53.227+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:31:53.227+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:31:53.259+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:31:53.259+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:31:53.303+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 208.311 seconds
+[2026-02-28T21:33:05.823+0800] {processor.py:186} INFO - Started process (PID=5941) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:33:05.825+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:33:05.826+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:33:05.826+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:33:05.838+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:33:05.960+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:33:05.960+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:33:05.972+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:33:05.972+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:33:05.992+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 173.074 seconds
+[2026-02-28T21:34:18.285+0800] {processor.py:186} INFO - Started process (PID=5969) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:34:18.288+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:34:18.290+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:34:18.289+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:34:18.301+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:34:18.414+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:34:18.413+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:34:18.426+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:34:18.425+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:34:18.448+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 165.309 seconds
+[2026-02-28T21:35:29.938+0800] {processor.py:186} INFO - Started process (PID=6028) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:35:29.939+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:35:29.940+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:35:29.940+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:35:29.953+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:35:30.076+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:35:30.076+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:35:30.089+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:35:30.089+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:35:30.111+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 176.910 seconds
+[2026-02-28T21:37:11.118+0800] {processor.py:186} INFO - Started process (PID=6131) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:37:11.121+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:37:11.122+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:37:11.122+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:37:11.133+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:37:11.358+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:37:11.358+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:37:11.371+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:37:11.371+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:37:11.392+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 277.899 seconds
+[2026-02-28T21:39:23.216+0800] {processor.py:186} INFO - Started process (PID=6244) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:39:23.218+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:39:23.219+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:39:23.219+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:39:23.231+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:39:23.494+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:39:23.494+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:39:23.507+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:39:23.507+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:39:23.530+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 316.554 seconds
+[2026-02-28T21:40:43.535+0800] {processor.py:186} INFO - Started process (PID=6283) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:40:43.536+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:40:43.537+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:40:43.537+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:40:43.548+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:40:43.677+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:40:43.677+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:40:43.690+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:40:43.690+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:40:43.711+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 179.279 seconds
+[2026-02-28T21:41:57.333+0800] {processor.py:186} INFO - Started process (PID=6332) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:41:57.334+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:41:57.335+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:41:57.335+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:41:57.344+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:41:57.451+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:41:57.450+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:41:57.461+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:41:57.461+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:41:57.480+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 149.145 seconds
+[2026-02-28T21:43:17.235+0800] {processor.py:186} INFO - Started process (PID=6365) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:43:17.236+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:43:17.237+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:43:17.236+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:43:17.246+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:43:17.378+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:43:17.378+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:43:17.390+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:43:17.390+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:43:17.430+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 198.071 seconds
+[2026-02-28T21:44:58.965+0800] {processor.py:186} INFO - Started process (PID=6472) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:44:58.967+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:44:58.969+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:44:58.968+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:44:58.981+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:44:59.235+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:44:59.235+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:44:59.246+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:44:59.246+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:44:59.325+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 362.827 seconds
+[2026-02-28T21:46:24.025+0800] {processor.py:186} INFO - Started process (PID=6532) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:46:24.026+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:46:24.027+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:46:24.027+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:46:24.038+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:46:24.044+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:46:24.044+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:46:24.170+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:46:24.170+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:46:24.190+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 169.019 seconds
+[2026-02-28T21:47:58.655+0800] {processor.py:186} INFO - Started process (PID=6629) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:47:58.658+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:47:58.659+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:47:58.659+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:47:58.669+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:47:58.890+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:47:58.889+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:47:58.903+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:47:58.903+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:47:58.927+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 275.470 seconds
+[2026-02-28T21:49:13.707+0800] {processor.py:186} INFO - Started process (PID=6684) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:49:13.707+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:49:13.708+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:49:13.708+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:49:13.719+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:49:13.841+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:49:13.841+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:49:13.854+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:49:13.854+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:49:13.872+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 168.554 seconds
+[2026-02-28T21:50:26.309+0800] {processor.py:186} INFO - Started process (PID=6724) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:50:26.310+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:50:26.311+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:50:26.310+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:50:26.320+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:50:26.438+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:50:26.437+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:50:26.449+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:50:26.449+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:50:26.473+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 166.812 seconds
+[2026-02-28T21:51:39.553+0800] {processor.py:186} INFO - Started process (PID=6781) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:51:39.554+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:51:39.555+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:51:39.555+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:51:39.566+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:51:39.805+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:51:39.805+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:51:39.820+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:51:39.820+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:51:39.841+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 291.091 seconds
+[2026-02-28T21:53:18.835+0800] {processor.py:186} INFO - Started process (PID=6882) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:53:18.835+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:53:18.836+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:53:18.836+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:53:18.846+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:53:18.954+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:53:18.954+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:53:18.965+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:53:18.965+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:53:18.985+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 153.298 seconds
+[2026-02-28T21:54:45.141+0800] {processor.py:186} INFO - Started process (PID=6935) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:54:45.141+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:54:45.142+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:54:45.142+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:54:45.152+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:54:45.280+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:54:45.280+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:54:45.294+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:54:45.294+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:54:45.314+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 175.913 seconds
+[2026-02-28T21:56:00.086+0800] {processor.py:186} INFO - Started process (PID=6975) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:56:00.087+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:56:00.087+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:56:00.087+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:56:00.097+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:56:00.311+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:56:00.310+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:56:00.324+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:56:00.324+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:56:00.345+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 262.097 seconds
+[2026-02-28T21:57:40.489+0800] {processor.py:186} INFO - Started process (PID=7071) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:57:40.492+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:57:40.493+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:57:40.493+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:57:40.503+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:57:40.696+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:57:40.696+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:57:40.709+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:57:40.708+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:57:40.728+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 241.385 seconds
+[2026-02-28T21:59:28.980+0800] {processor.py:186} INFO - Started process (PID=7175) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:59:28.980+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T21:59:28.981+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:59:28.981+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:59:28.992+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T21:59:29.196+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:59:29.196+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T21:59:29.208+0800] {logging_mixin.py:190} INFO - [2026-02-28T21:59:29.208+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T21:59:29.228+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 251.680 seconds
+[2026-02-28T22:00:57.956+0800] {processor.py:186} INFO - Started process (PID=7230) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:00:57.957+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:00:57.958+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:00:57.958+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:00:57.967+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:00:57.972+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:00:57.972+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:00:58.079+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:00:58.079+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:00:58.099+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 145.922 seconds
+[2026-02-28T22:02:35.386+0800] {processor.py:186} INFO - Started process (PID=7333) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:02:35.386+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:02:35.387+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:02:35.387+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:02:35.401+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:02:35.624+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:02:35.624+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:02:35.637+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:02:35.636+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:02:35.656+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 273.801 seconds
+[2026-02-28T22:03:50.160+0800] {processor.py:186} INFO - Started process (PID=7385) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:03:50.160+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:03:50.161+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:50.161+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:03:50.171+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:03:50.418+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:50.417+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:03:50.432+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:50.432+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:03:50.713+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:50.707+0800] {dagbag.py:698} ERROR - Failed to write serialized DAG: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 686, in _serialize_dag_capturing_errors
+    dag_was_updated = SerializedDagModel.write_dag(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/serialized_dag.py", line 160, in write_dag
+    if session.scalar(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1747, in scalar
+    return self.execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 724, in _connection_for_bind
+    self._assert_active()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 604, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.IntegrityError) UNIQUE constraint failed: serialized_dag.dag_id
+[SQL: INSERT INTO serialized_dag (dag_id, fileloc, fileloc_hash, data, data_compressed, last_updated, dag_hash, processor_subdir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('主控_系统管理', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py', 68612610294738888, '{"__version": 1, "dag": {"schedule_interval": null, "edge_info": {}, "tags": ["cdrd", "\\u4e3b\\u63a7", "\\u7cfb\\u7edf\\u7ba1\\u7406"], "timezone":  ... (4464 characters truncated) ... \u89d2\\u8272\\u7ba1\\u7406\\u6d4b\\u8bd5\\u89e6\\u53d1\\u5b8c\\u6210\\"\\n        "}, "__type": "operator"}], "dag_dependencies": [], "params": []}}', None, '2026-02-28 14:03:50.293611', 'e8e58d74d6dce6c8822609c1017110b2', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+[2026-02-28T22:03:50.714+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:03:50.713+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:03:50.715+0800] {processor.py:211} ERROR - Got an exception! Propagating...
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 207, in _run_file_processor
+    _handle_dag_file_processing()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 188, in _handle_dag_file_processing
+    result: tuple[int, int, int] = dag_file_processor.process_file(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 942, in process_file
+    serialize_errors = DagFileProcessor.save_dag_to_db(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/api_internal/internal_api_call.py", line 166, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/dag_processing/processor.py", line 982, in save_dag_to_db
+    import_errors = DagBag._sync_to_db(dags=dags, processor_subdir=dag_directory, session=session)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 708, in _sync_to_db
+    for attempt in run_with_db_retries(logger=log):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/tenacity/__init__.py", line 347, in __iter__
+    do = self.iter(retry_state=retry_state)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/tenacity/__init__.py", line 314, in iter
+    return fut.result()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/concurrent/futures/_base.py", line 439, in result
+    return self.__get_result()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/concurrent/futures/_base.py", line 391, in __get_result
+    raise self._exception
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dagbag.py", line 724, in _sync_to_db
+    DAG.bulk_write_to_db(dags.values(), processor_subdir=processor_subdir, session=session)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 94, in wrapper
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/dag.py", line 3252, in bulk_write_to_db
+    orm_dags: list[DagModel] = session.scalars(query).unique().all()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1778, in scalars
+    return self.execute(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1716, in execute
+    conn = self._connection_for_bind(bind)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 1555, in _connection_for_bind
+    return self._transaction._connection_for_bind(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 724, in _connection_for_bind
+    self._assert_active()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/sqlalchemy/orm/session.py", line 604, in _assert_active
+    raise sa_exc.PendingRollbackError(
+sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled back due to a previous exception during flush. To begin a new transaction with this Session, first issue Session.rollback(). Original exception was: (sqlite3.IntegrityError) UNIQUE constraint failed: serialized_dag.dag_id
+[SQL: INSERT INTO serialized_dag (dag_id, fileloc, fileloc_hash, data, data_compressed, last_updated, dag_hash, processor_subdir) VALUES (?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: ('主控_系统管理', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py', 68612610294738888, '{"__version": 1, "dag": {"schedule_interval": null, "edge_info": {}, "tags": ["cdrd", "\\u4e3b\\u63a7", "\\u7cfb\\u7edf\\u7ba1\\u7406"], "timezone":  ... (4464 characters truncated) ... \u89d2\\u8272\\u7ba1\\u7406\\u6d4b\\u8bd5\\u89e6\\u53d1\\u5b8c\\u6210\\"\\n        "}, "__type": "operator"}], "dag_dependencies": [], "params": []}}', None, '2026-02-28 14:03:50.293611', 'e8e58d74d6dce6c8822609c1017110b2', '/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags')]
+(Background on this error at: https://sqlalche.me/e/14/gkpj) (Background on this error at: https://sqlalche.me/e/14/7s2a)
+[2026-02-28T22:05:30.695+0800] {processor.py:186} INFO - Started process (PID=7473) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:05:30.696+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:05:30.697+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:05:30.696+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:05:30.708+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:05:30.906+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:05:30.906+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:05:30.920+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:05:30.920+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:05:30.945+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 253.283 seconds
+[2026-02-28T22:06:48.991+0800] {processor.py:186} INFO - Started process (PID=7529) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:06:48.992+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:06:48.993+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:06:48.993+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:06:49.006+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:06:49.155+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:06:49.154+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:06:49.189+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:06:49.188+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:06:49.212+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 224.969 seconds
+[2026-02-28T22:08:29.031+0800] {processor.py:186} INFO - Started process (PID=7643) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:08:29.032+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:08:29.033+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:08:29.032+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:08:29.042+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:08:29.277+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:08:29.276+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:08:29.290+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:08:29.289+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:08:29.309+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 280.515 seconds
+[2026-02-28T22:09:55.062+0800] {processor.py:186} INFO - Started process (PID=7689) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:09:55.063+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:09:55.064+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:09:55.064+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:09:55.076+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:09:55.215+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:09:55.214+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:09:55.230+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:09:55.230+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:09:55.258+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 198.416 seconds
+[2026-02-28T22:11:11.106+0800] {processor.py:186} INFO - Started process (PID=7721) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:11:11.106+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:11:11.107+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:11:11.107+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:11:11.117+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:11:11.241+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:11:11.241+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:11:11.253+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:11:11.253+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:11:11.274+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 171.556 seconds
+[2026-02-28T22:12:48.381+0800] {processor.py:186} INFO - Started process (PID=7830) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:12:48.383+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:12:48.385+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:12:48.384+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:12:48.394+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:12:48.589+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:12:48.589+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:12:48.601+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:12:48.601+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:12:48.621+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 243.317 seconds
+[2026-02-28T22:14:17.072+0800] {processor.py:186} INFO - Started process (PID=7885) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:14:17.073+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:14:17.073+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:14:17.073+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:14:17.082+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:14:17.199+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:14:17.199+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:14:17.211+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:14:17.211+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:14:17.231+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 161.312 seconds
+[2026-02-28T22:15:54.141+0800] {processor.py:186} INFO - Started process (PID=7992) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:15:54.143+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:15:54.145+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:15:54.144+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:15:54.154+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:15:54.352+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:15:54.352+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:15:54.364+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:15:54.364+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:15:54.381+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 243.489 seconds
+[2026-02-28T22:17:32.400+0800] {processor.py:186} INFO - Started process (PID=8053) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:17:32.401+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:17:32.402+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:17:32.402+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:17:32.415+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:17:32.542+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:17:32.542+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:17:32.554+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:17:32.553+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:17:32.572+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 174.877 seconds
+[2026-02-28T22:18:44.243+0800] {processor.py:186} INFO - Started process (PID=8087) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:18:44.244+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:18:44.245+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:18:44.244+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:18:44.255+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:18:44.371+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:18:44.370+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:18:44.383+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:18:44.383+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:18:44.401+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 161.436 seconds
+[2026-02-28T22:19:52.352+0800] {processor.py:186} INFO - Started process (PID=8110) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:19:52.353+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:19:52.353+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:19:52.353+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:19:52.363+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:19:52.495+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:19:52.494+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:19:52.506+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:19:52.506+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:19:52.524+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 174.956 seconds
+[2026-02-28T22:20:57.506+0800] {processor.py:186} INFO - Started process (PID=8134) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:20:57.507+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:20:57.508+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:20:57.508+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:20:57.519+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:20:57.635+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:20:57.635+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:20:57.646+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:20:57.646+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:20:57.662+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 159.124 seconds
+[2026-02-28T22:22:06.914+0800] {processor.py:186} INFO - Started process (PID=8179) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:22:06.914+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:22:06.915+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:22:06.915+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:22:06.925+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:22:07.049+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:22:07.048+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:22:07.061+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:22:07.061+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:22:07.080+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 169.315 seconds
+[2026-02-28T22:23:14.098+0800] {processor.py:186} INFO - Started process (PID=8217) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:23:14.099+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:23:14.101+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:23:14.100+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:23:14.110+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:23:14.243+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:23:14.242+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:23:14.255+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:23:14.255+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:23:14.275+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 179.988 seconds
+[2026-02-28T22:24:26.727+0800] {processor.py:186} INFO - Started process (PID=8243) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:24:26.728+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:24:26.729+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:24:26.729+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:24:26.738+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:24:26.848+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:24:26.848+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:24:26.859+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:24:26.859+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:24:26.878+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 153.719 seconds
+[2026-02-28T22:25:40.081+0800] {processor.py:186} INFO - Started process (PID=8268) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:25:40.082+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:25:40.083+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:25:40.083+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:25:40.092+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:25:40.198+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:25:40.198+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:25:40.209+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:25:40.208+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:25:40.229+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 150.158 seconds
+[2026-02-28T22:26:57.268+0800] {processor.py:186} INFO - Started process (PID=8303) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:26:57.269+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:26:57.270+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:26:57.270+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:26:57.281+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:26:57.401+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:26:57.400+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:26:57.412+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:26:57.412+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:26:57.430+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 164.879 seconds
+[2026-02-28T22:28:33.734+0800] {processor.py:186} INFO - Started process (PID=8418) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:28:33.737+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:28:33.738+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:28:33.738+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:28:33.748+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:28:33.951+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:28:33.951+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:28:33.963+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:28:33.963+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:28:33.983+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 251.341 seconds
+[2026-02-28T22:29:49.023+0800] {processor.py:186} INFO - Started process (PID=8442) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:29:49.024+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:29:49.025+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:29:49.024+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:29:49.035+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:29:49.146+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:29:49.145+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:29:49.157+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:29:49.156+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:29:49.175+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.552 seconds
+[2026-02-28T22:30:55.197+0800] {processor.py:186} INFO - Started process (PID=8466) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:30:55.197+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:30:55.198+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:30:55.198+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:30:55.207+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:30:55.314+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:30:55.314+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:30:55.327+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:30:55.326+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:30:55.348+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.333 seconds
+[2026-02-28T22:31:59.089+0800] {processor.py:186} INFO - Started process (PID=8497) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:31:59.089+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:31:59.090+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:31:59.090+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:31:59.100+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:31:59.209+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:31:59.209+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:31:59.220+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:31:59.220+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:31:59.240+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 153.916 seconds
+[2026-02-28T22:33:02.879+0800] {processor.py:186} INFO - Started process (PID=8536) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:33:02.879+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:33:02.880+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:33:02.880+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:33:02.889+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:33:03.001+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:33:03.001+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:33:03.013+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:33:03.013+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:33:03.032+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 155.599 seconds
+[2026-02-28T22:34:05.981+0800] {processor.py:186} INFO - Started process (PID=8563) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:34:05.982+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:34:05.983+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:34:05.982+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:34:05.992+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:34:06.161+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:34:06.161+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:34:06.172+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:34:06.172+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:34:06.192+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 213.634 seconds
+[2026-02-28T22:35:09.499+0800] {processor.py:186} INFO - Started process (PID=8590) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:35:09.499+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:35:09.500+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:35:09.500+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:35:09.510+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:35:09.621+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:35:09.621+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:35:09.633+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:35:09.632+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:35:09.653+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 157.583 seconds
+[2026-02-28T22:36:13.733+0800] {processor.py:186} INFO - Started process (PID=8618) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:36:13.734+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:36:13.735+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:36:13.735+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:36:13.744+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:36:13.862+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:36:13.861+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:36:13.874+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:36:13.874+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:36:13.891+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 160.770 seconds
+[2026-02-28T22:37:19.168+0800] {processor.py:186} INFO - Started process (PID=8660) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:37:19.169+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:37:19.170+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:37:19.170+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:37:19.181+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:37:19.293+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:37:19.293+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:37:19.304+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:37:19.304+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:37:19.320+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.853 seconds
+[2026-02-28T22:38:29.826+0800] {processor.py:186} INFO - Started process (PID=8698) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:38:29.827+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:38:29.828+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:38:29.828+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:38:29.837+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:38:29.959+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:38:29.959+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:38:29.970+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:38:29.970+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:38:29.989+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 165.651 seconds
+[2026-02-28T22:39:44.594+0800] {processor.py:186} INFO - Started process (PID=8730) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:39:44.595+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:39:44.596+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:39:44.596+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:39:44.606+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:39:44.719+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:39:44.719+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:39:44.730+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:39:44.729+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:39:44.749+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 157.339 seconds
+[2026-02-28T22:40:58.781+0800] {processor.py:186} INFO - Started process (PID=8761) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:40:58.781+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:40:58.782+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:40:58.782+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:40:58.792+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:40:58.916+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:40:58.916+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:40:58.929+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:40:58.928+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:40:58.951+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 172.709 seconds
+[2026-02-28T22:42:16.459+0800] {processor.py:186} INFO - Started process (PID=8805) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:42:16.460+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:42:16.461+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:42:16.460+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:42:16.474+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:42:16.635+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:42:16.634+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:42:16.648+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:42:16.647+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:42:16.668+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 213.620 seconds
+[2026-02-28T22:43:33.554+0800] {processor.py:186} INFO - Started process (PID=8853) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:43:33.555+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:43:33.556+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:43:33.556+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:43:33.566+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:43:33.683+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:43:33.682+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:43:33.697+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:43:33.697+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:43:33.715+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 163.637 seconds
+[2026-02-28T22:44:45.231+0800] {processor.py:186} INFO - Started process (PID=8894) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:44:45.232+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:44:45.233+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:44:45.233+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:44:45.243+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:44:45.356+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:44:45.355+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:44:45.366+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:44:45.366+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:44:45.385+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 156.416 seconds
+[2026-02-28T22:45:58.638+0800] {processor.py:186} INFO - Started process (PID=8930) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:45:58.639+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:45:58.640+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:45:58.639+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:45:58.651+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:45:58.780+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:45:58.780+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:45:58.792+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:45:58.791+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:45:58.812+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 177.445 seconds
+[2026-02-28T22:47:12.931+0800] {processor.py:186} INFO - Started process (PID=9005) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:47:12.932+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:47:12.933+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:47:12.933+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:47:12.944+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:47:13.065+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:47:13.065+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:47:13.076+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:47:13.076+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:47:13.093+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 165.133 seconds
+[2026-02-28T22:48:26.418+0800] {processor.py:186} INFO - Started process (PID=9076) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:48:26.419+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:48:26.420+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:48:26.419+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:48:26.429+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:48:26.543+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:48:26.542+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:48:26.557+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:48:26.557+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:48:26.576+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 160.876 seconds
+[2026-02-28T22:49:40.985+0800] {processor.py:186} INFO - Started process (PID=9125) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:49:40.985+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:49:40.986+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:49:40.986+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:49:40.995+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:49:41.106+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:49:41.105+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:49:41.117+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:49:41.117+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:49:41.136+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 153.632 seconds
+[2026-02-28T22:50:57.595+0800] {processor.py:186} INFO - Started process (PID=9169) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:50:57.595+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:50:57.596+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:50:57.596+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:50:57.606+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:50:57.717+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:50:57.717+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:50:57.729+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:50:57.728+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:50:57.749+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 156.944 seconds
+[2026-02-28T22:52:08.883+0800] {processor.py:186} INFO - Started process (PID=9209) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:52:08.883+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:52:08.884+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:52:08.884+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:52:08.894+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:52:09.022+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:52:09.022+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:52:09.036+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:52:09.036+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:52:09.058+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 179.329 seconds
+[2026-02-28T22:53:21.563+0800] {processor.py:186} INFO - Started process (PID=9253) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:53:21.563+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:53:21.564+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:53:21.564+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:53:21.575+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:53:21.688+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:53:21.688+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:53:21.699+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:53:21.699+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:53:21.719+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 159.126 seconds
+[2026-02-28T22:54:36.462+0800] {processor.py:186} INFO - Started process (PID=9304) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:54:36.462+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:54:36.463+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:54:36.463+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:54:36.473+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:54:36.677+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:54:36.677+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:54:36.689+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:54:36.689+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:54:36.710+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 251.248 seconds
+[2026-02-28T22:55:50.650+0800] {processor.py:186} INFO - Started process (PID=9342) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:55:50.651+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:55:50.652+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:55:50.651+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:55:50.664+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:55:50.823+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:55:50.823+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:55:50.841+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:55:50.841+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:55:50.872+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 225.727 seconds
+[2026-02-28T22:57:30.076+0800] {processor.py:186} INFO - Started process (PID=9459) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:57:30.077+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-02-28T22:57:30.078+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:57:30.078+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:57:30.096+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-02-28T22:57:30.359+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:57:30.359+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-02-28T22:57:30.380+0800] {logging_mixin.py:190} INFO - [2026-02-28T22:57:30.380+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-02-28T22:57:30.406+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 334.442 seconds

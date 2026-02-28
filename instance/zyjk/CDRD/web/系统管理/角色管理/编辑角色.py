@@ -57,7 +57,8 @@ file_name_no_ext = os.path.splitext(file_name)[0]  # 提取无扩展名的文件
 
 
 # 数据
-test_data = {"role_name": "555", "remark": "1234"}
+test_data = {"role_name": "7566", "remark": "today"}
+print(f"编辑角色，生成指定数据: {test_data}")
 
 
 
