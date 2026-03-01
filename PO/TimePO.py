@@ -439,7 +439,7 @@ if __name__ == "__main__":
     # print(l_fridays)
 
 
-    # print(Time_PO.getDate())  # 20200319
+    print(Time_PO.getDate())  # 20200319
     # print(Time_PO.getDateByMinus())  # 2020-03-19  # <class 'datetime.date'>
     # print(str(Time_PO.getDateByMinus()))  # 2020-03-19
     # print(Time_PO.getDateByDivide())  # 2020/03/19
@@ -496,13 +496,13 @@ if __name__ == "__main__":
     # print(date_end - date_start)  # 0 days 00:00:06.010230
     #
     #
-    print("求时间差，输出秒".center(100, "-"))
-    time_start = time.time()
-    sleep(6)  # ----这里是程序执行部分----
-    time_end = time.time()
-    time = time_end - time_start
-    # print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
-    print(f"\n耗时: {time:.4f} 秒")  # 6.0036 秒
+    # print("求时间差，输出秒".center(100, "-"))
+    # time_start = time.time()
+    # sleep(6)  # ----这里是程序执行部分----
+    # time_end = time.time()
+    # time = time_end - time_start
+    # # print('耗时：%s 秒' % time)  # 耗时：6.003570795059204 秒
+    # print(f"\n耗时: {time:.4f} 秒")  # 6.0036 秒
 
     #
 
