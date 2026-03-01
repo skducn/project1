@@ -13466,3 +13466,15 @@ subprocess.CalledProcessError: Command '['sudo', '-n', 'kill', '-15', '861']' re
 2026-03-01 21:33:42,977 INFO - Sending TaskInstanceKey(dag_id='master_system_management_with_logs', task_id='execute_role_management_test', run_id='manual__2026-03-01T13:32:22.906075+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
 2026-03-01 21:33:42,977 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T13:32:22.906075+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
 2026-03-01 21:33:42,980 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T13:32:22.906075+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 21:42:22,795 INFO - Exiting gracefully upon receiving signal 15
+2026-03-01 21:42:23,822 INFO - Sending Signals.SIGTERM to group 11478. PIDs of all processes in the group: [11478]
+2026-03-01 21:42:23,825 INFO - Sending the signal Signals.SIGTERM to group 11478
+2026-03-01 21:42:23,856 INFO - Process psutil.Process(pid=11478, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='21:33:28') (11478) terminated with exit code Negsignal.SIGTERM
+2026-03-01 21:42:23,883 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T13:32:22.906075+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 21:42:28,289 ERROR - Failed to execute task Command '['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T13:32:22.906075+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']' returned non-zero exit status 1..
+2026-03-01 21:42:28,291 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T13:32:22.906075+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 21:42:32,715 ERROR - Failed to execute task Command '['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T13:32:22.906075+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']' returned non-zero exit status 1..
+2026-03-01 21:42:32,738 INFO - Sending Signals.SIGTERM to group 11478. PIDs of all processes in the group: []
+2026-03-01 21:42:32,739 INFO - Sending the signal Signals.SIGTERM to group 11478
+2026-03-01 21:42:32,741 INFO - Sending the signal Signals.SIGTERM to process 11478 as process group is missing.
+2026-03-01 21:42:32,741 INFO - Exited execute loop

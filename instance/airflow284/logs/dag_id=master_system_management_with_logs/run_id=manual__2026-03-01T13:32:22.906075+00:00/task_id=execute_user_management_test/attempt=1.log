@@ -21,3 +21,7 @@
 [2026-03-01T21:33:45.995+0800] {logging_mixin.py:190} INFO - ⚠️ 获取Airflow配置失败: section/key [core/airflow_home] not found in config
 [2026-03-01T21:33:45.995+0800] {logging_mixin.py:190} INFO - 🌐 API配置获取完成: http://localhost:8080
 [2026-03-01T21:33:45.996+0800] {logging_mixin.py:190} INFO - 🔍 验证API连接...
+[2026-03-01T21:42:14.284+0800] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-03-01T21:42:14.285+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-03-01T21:42:14.298+0800] {process_utils.py:132} INFO - Sending 15 to group 11486. PIDs of all processes in the group: [11486]
+[2026-03-01T21:42:14.299+0800] {process_utils.py:87} INFO - Sending the signal 15 to group 11486
