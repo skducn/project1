@@ -1,0 +1,47 @@
+{
+  "name": "系统管理测试套件",
+  "children": [
+    {
+      "name": "用户管理测试",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1772368361761,
+      "stop": 1772368391761,
+      "steps": [
+        {
+          "name": "触发用户管理DAG",
+          "status": "passed",
+          "start": 1772368361762,
+          "stop": 1772368376762
+        },
+        {
+          "name": "等待执行完成",
+          "status": "passed",
+          "start": 1772368376762,
+          "stop": 1772368391763
+        }
+      ]
+    },
+    {
+      "name": "角色管理测试",
+      "status": "passed",
+      "stage": "finished",
+      "start": 1772368361764,
+      "stop": 1772368391764,
+      "steps": [
+        {
+          "name": "触发角色管理DAG",
+          "status": "passed",
+          "start": 1772368361764,
+          "stop": 1772368376765
+        },
+        {
+          "name": "等待执行完成",
+          "status": "passed",
+          "start": 1772368376765,
+          "stop": 1772368391765
+        }
+      ]
+    }
+  ]
+}

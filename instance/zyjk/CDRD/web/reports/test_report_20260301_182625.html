@@ -1,0 +1,190 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试执行报告</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        .summary {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        .metric {
+            text-align: center;
+        }
+        .metric-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .metric-success { color: #28a745; }
+        .metric-fail { color: #dc3545; }
+        .metric-total { color: #007bff; }
+        .metric-rate { color: #ffc107; }
+        .details {
+            padding: 30px;
+        }
+        .module-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .module-table th, .module-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .module-table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        .success-row { background-color: #d4edda; }
+        .fail-row { background-color: #f8d7da; }
+        .partial-row { background-color: #fff3cd; }
+        .chart-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #343a40;
+            color: white;
+        }
+        .progress-bar {
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745, #20c997);
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 测试执行报告</h1>
+            <p>生成时间: 2026-03-01 18:26:29</p>
+        </div>
+
+        <div class="summary">
+            <div class="metric">
+                <div class="metric-value metric-total">3</div>
+                <div>总测试数</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value metric-success">3</div>
+                <div>成功数</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value metric-fail">0</div>
+                <div>失败数</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value metric-rate">100.0%</div>
+                <div>成功率</div>
+            </div>
+        </div>
+
+        <div class="details">
+            <h2>📋 详细执行结果</h2>
+            <table class="module-table">
+                <thead>
+                    <tr>
+                        <th>模块名称</th>
+                        <th>总测试数</th>
+                        <th>成功数</th>
+                        <th>失败数</th>
+                        <th>成功率</th>
+                        <th>进度</th>
+                    </tr>
+                </thead>
+                <tbody>
+        
+                    <tr class="success-row">
+                        <td>新增角色</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>100.0%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100.0%"></div>
+                            </div>
+                        </td>
+                    </tr>
+            
+                    <tr class="success-row">
+                        <td>编辑角色</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>100.0%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100.0%"></div>
+                            </div>
+                        </td>
+                    </tr>
+            
+                    <tr class="success-row">
+                        <td>编辑222角色</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>0</td>
+                        <td>100.0%</td>
+                        <td>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 100.0%"></div>
+                            </div>
+                        </td>
+                    </tr>
+            
+                </tbody>
+            </table>
+
+            <div class="chart-container">
+                <h2>📈 执行概览</h2>
+                <img src="test_report.png" alt="测试报告图表" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2026 测试报告自动生成 | 执行引擎: Airflow</p>
+        </div>
+    </div>
+</body>
+</html>
+        

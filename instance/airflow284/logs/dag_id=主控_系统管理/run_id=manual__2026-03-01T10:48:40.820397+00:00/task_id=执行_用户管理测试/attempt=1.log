@@ -1,0 +1,30 @@
+[2026-03-01T18:48:48.869+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T18:48:48.890+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: 主控_系统管理.执行_用户管理测试 manual__2026-03-01T10:48:40.820397+00:00 [queued]>
+[2026-03-01T18:48:48.897+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: 主控_系统管理.执行_用户管理测试 manual__2026-03-01T10:48:40.820397+00:00 [queued]>
+[2026-03-01T18:48:48.898+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T18:48:48.914+0800] {taskinstance.py:2907} INFO - Executing <Task(BashOperator): 执行_用户管理测试> on 2026-03-01 10:48:40.820397+00:00
+[2026-03-01T18:48:48.917+0800] {standard_task_runner.py:72} INFO - Started process 3699 to run task
+[2026-03-01T18:48:48.925+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', '主控_系统管理', '执行_用户管理测试', 'manual__2026-03-01T10:48:40.820397+00:00', '--job-id', '828', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/cdrd_主控测试流程.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpyb3b_q8n']
+[2026-03-01T18:48:48.928+0800] {standard_task_runner.py:105} INFO - Job 828: Subtask 执行_用户管理测试
+[2026-03-01T18:48:48.978+0800] {task_command.py:467} INFO - Running <TaskInstance: 主控_系统管理.执行_用户管理测试 manual__2026-03-01T10:48:40.820397+00:00 [running]> on host localhost-2.local
+[2026-03-01T18:48:49.240+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='主控_系统管理' AIRFLOW_CTX_TASK_ID='执行_用户管理测试' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T10:48:40.820397+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T10:48:40.820397+00:00'
+[2026-03-01T18:48:49.241+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T18:48:49.260+0800] {subprocess.py:78} INFO - Tmp dir root location: /var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T
+[2026-03-01T18:48:49.261+0800] {subprocess.py:88} INFO - Running command: ['/bin/bash', '-c', '\n            echo "🚀 开始执行用户管理测试..."\n            echo "🎯 触发DAG: cdrd_用户管理"\n            airflow dags trigger cdrd_用户管理\n            echo "✅ 用户管理测试触发完成"\n        ']
+[2026-03-01T18:48:49.270+0800] {subprocess.py:99} INFO - Output:
+[2026-03-01T18:48:49.273+0800] {subprocess.py:106} INFO - 🚀 开始执行用户管理测试...
+[2026-03-01T18:48:49.273+0800] {subprocess.py:106} INFO - 🎯 触发DAG: cdrd_用户管理
+[2026-03-01T18:48:51.865+0800] {subprocess.py:106} INFO - [2026-03-01T18:48:51.864+0800] {__init__.py:43} INFO - Loaded API auth backend: airflow.api.auth.backend.session
+[2026-03-01T18:48:52.089+0800] {subprocess.py:106} INFO -      |               |                      |                      |                       |          |                  | last_scheduling_deci |                       |          |            |
+[2026-03-01T18:48:52.090+0800] {subprocess.py:106} INFO - conf | dag_id        | dag_run_id           | data_interval_start  | data_interval_end     | end_date | external_trigger | sion                 | logical_date          | run_type | start_date | state
+[2026-03-01T18:48:52.091+0800] {subprocess.py:106} INFO - =====+===============+======================+======================+=======================+==========+==================+======================+=======================+==========+============+=======
+[2026-03-01T18:48:52.091+0800] {subprocess.py:106} INFO - {}   | cdrd_用户管理 | manual__2026-03-01T1 | 2026-03-01           | 2026-03-01            | None     | True             | None                 | 2026-03-01            | manual   | None       | queued
+[2026-03-01T18:48:52.092+0800] {subprocess.py:106} INFO -      |               | 0:48:52+00:00        | 10:48:52+00:00       | 10:48:52+00:00        |          |                  |                      | 10:48:52+00:00        |          |            |
+[2026-03-01T18:48:52.092+0800] {subprocess.py:106} INFO - 
+[2026-03-01T18:48:52.550+0800] {subprocess.py:106} INFO - ✅ 用户管理测试触发完成
+[2026-03-01T18:48:52.550+0800] {subprocess.py:110} INFO - Command exited with return code 0
+[2026-03-01T18:48:52.571+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-01T18:48:52.572+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=主控_系统管理, task_id=执行_用户管理测试, run_id=manual__2026-03-01T10:48:40.820397+00:00, execution_date=20260301T104840, start_date=20260301T104848, end_date=20260301T104852
+[2026-03-01T18:48:52.623+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-01T18:48:52.649+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-01T18:48:52.650+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

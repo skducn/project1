@@ -1,0 +1,69 @@
+{
+  "uuid": "d7edaa73-f122-49f5-a91f-8a6ee69746cc",
+  "name": "用户管理测试",
+  "fullName": "系统管理.用户管理测试",
+  "historyId": "d7edaa73-f122-49f5-a91f-8a6ee69746cc",
+  "status": "passed",
+  "stage": "finished",
+  "description": "测试DAG: cdrd_用户管理_并发\n运行ID: mock_user_run_1772371544\n执行状态: success\n执行时间: 3.50秒\n",
+  "start": 1772371436772,
+  "stop": 1772371440272,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "系统管理测试套件"
+    },
+    {
+      "name": "subSuite",
+      "value": "主控测试"
+    },
+    {
+      "name": "host",
+      "value": "localhost"
+    },
+    {
+      "name": "thread",
+      "value": "main"
+    },
+    {
+      "name": "framework",
+      "value": "Airflow"
+    },
+    {
+      "name": "language",
+      "value": "python"
+    },
+    {
+      "name": "tag",
+      "value": "success"
+    }
+  ],
+  "links": [],
+  "parameters": [
+    {
+      "name": "dag_id",
+      "value": "cdrd_用户管理_并发"
+    },
+    {
+      "name": "dag_run_id",
+      "value": "mock_user_run_1772371544"
+    }
+  ],
+  "attachments": [
+    {
+      "name": "读取测试用例_log.txt",
+      "source": "logs/读取测试用例_log.txt",
+      "type": "text/plain"
+    },
+    {
+      "name": "并行执行消费者_log.txt",
+      "source": "logs/并行执行消费者_log.txt",
+      "type": "text/plain"
+    },
+    {
+      "name": "生成测试报告_log.txt",
+      "source": "logs/生成测试报告_log.txt",
+      "type": "text/plain"
+    }
+  ]
+}

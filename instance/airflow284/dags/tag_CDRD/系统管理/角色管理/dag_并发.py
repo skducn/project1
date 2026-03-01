@@ -2,10 +2,11 @@
 # # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> >>
 # # Author     : John
 # # Created on : 2026-2-26
-# # Description: 单个DAG内串行执行
-# # airflow UI：cdrd_新增用户
-# # 设置依赖关系
-# #     start >> producer >> [新增用户] >> final >> end
+# # Description: 并发，可设置最大并发数 MaximumConcurrency ，在config.ini 中设置
+# # 假设您有5个不同的任务类型：
+# # 第1批（并发）：任务1 + 任务2
+# # 第2批（并发）：任务3 + 任务4
+# # 第3批（单独）：任务5
 # # *****************************************************************
 #
 # import os, sys, subprocess
@@ -60,6 +61,8 @@
 # print("✓ 成功导入配置解析器")
 #
 # from PO.SqlserverPO import *
+#
+# from typing import List, Dict, Any
 #
 #
 # # 注意：这里不再创建全局的Sqlserver_PO实例，改为在线程中动态创建
@@ -345,8 +348,10 @@
 #         "fail_count": fail_count,
 #         "total_count": success_count + fail_count
 #     }
+#
+#
 # def parallel_consumers_task(**context):
-#     """并行执行多个消费者任务（支持动态任务数量和test_type）"""
+#     """并行执行多个消费者任务（支持动态任务数量和test_type，限制最大并发数）"""
 #     print("=" * 50)
 #     print("【并行消费者】开始执行测试任务...")
 #     print("=" * 50)
@@ -361,67 +366,97 @@
 #             return {}
 #
 #         # 动态提取所有唯一的任务类型
-#         unique_tasks = set()
+#         unique_tasks = list()
+#         task_set = set()
 #         for item in l_col_values:
 #             if len(item) >= 6 and item[5]:  # 确保有足够的列且第6列不为空
 #                 task_name = str(item[5]).strip()
-#                 if task_name:
-#                     unique_tasks.add(task_name)
+#                 if task_name and task_name not in task_set:
+#                     task_set.add(task_name)
+#                     unique_tasks.append(task_name)
 #
-#         print(f"发现 {len(unique_tasks)} 种不同的任务类型: {list(unique_tasks)}")
+#         print(f"发现 {len(unique_tasks)} 种不同的任务类型: {unique_tasks}")
 #
-#         # 设置合理的最大工作线程数
-#         max_workers = min(len(unique_tasks), len(l_col_values))
+#         # 设置最大并发数（可根据需要调整）
+#         MAX_CONCURRENT_WORKERS = int(Configparser_PO.EXCEL("MaximumConcurrency"))  # 限制最大并发数为2
 #
-#         # 存储Future对象和结果
-#         futures_dict = {}
-#         results_dict = {}
 #
-#         # 使用线程池并行执行所有任务
-#         with concurrent.futures.ThreadPoolExecutor(
-#                 max_workers=max_workers,
-#                 thread_name_prefix="Consumer"
-#         ) as executor:
+#         # 存储所有批次的结果
+#         all_results = {}
 #
-#             # 动态提交所有任务到线程池
-#             for task_name in unique_tasks:
-#                 print(f"提交任务: {task_name}")
-#                 future = executor.submit(_consumer_task_wrapper, task_name, l_col_values)
-#                 futures_dict[task_name] = future
+#         # 将任务分批执行
+#         batch_size = MAX_CONCURRENT_WORKERS
+#         total_batches = (len(unique_tasks) + batch_size - 1) // batch_size  # 向上取整计算批次数
 #
-#             # 异步等待所有任务完成并收集结果
-#             print(f"开始等待 {len(futures_dict)} 个任务完成...")
+#         print(f"任务将分为 {total_batches} 批执行，每批最多 {batch_size} 个任务并发")
 #
-#             for task_name, future in futures_dict.items():
-#                 try:
-#                     result = future.result(timeout=300)  # 5分钟超时
-#                     results_dict[task_name] = result
-#                     print(f"✅ {task_name} 执行完成 - 成功:{result['success_count']}, 失败:{result['fail_count']}")
-#                 except concurrent.futures.TimeoutError:
-#                     print(f"❌ {task_name} 执行超时")
-#                     results_dict[task_name] = {
-#                         "module": f"系统管理-角色管理-{task_name}",
-#                         "success_count": 0,
-#                         "fail_count": 0,
-#                         "total_count": 0,
-#                         "error": "执行超时"
-#                     }
-#                 except Exception as e:
-#                     print(f"❌ {task_name} 执行失败: {str(e)}")
-#                     results_dict[task_name] = {
-#                         "module": f"系统管理-角色管理-{task_name}",
-#                         "success_count": 0,
-#                         "fail_count": 0,
-#                         "total_count": 0,
-#                         "error": str(e)
-#                     }
+#         for batch_index in range(total_batches):
+#             start_index = batch_index * batch_size
+#             end_index = min((batch_index + 1) * batch_size, len(unique_tasks))
+#             current_batch = unique_tasks[start_index:end_index]
+#
+#             print(f"\n开始执行第 {batch_index + 1}/{total_batches} 批任务: {current_batch}")
+#
+#             # 存储当前批次的Future对象和结果
+#             futures_dict = {}
+#             results_dict = {}
+#
+#             # 使用线程池执行当前批次的任务
+#             with concurrent.futures.ThreadPoolExecutor(
+#                     max_workers=len(current_batch),  # 当前批次的任务数
+#                     thread_name_prefix=f"Consumer_Batch{batch_index + 1}"
+#             ) as executor:
+#
+#                 # 提交当前批次的所有任务到线程池
+#                 for task_name in current_batch:
+#                     print(f"提交任务: {task_name}")
+#                     future = executor.submit(_consumer_task_wrapper, task_name, l_col_values)
+#                     futures_dict[task_name] = future
+#
+#                 # 等待当前批次所有任务完成并收集结果
+#                 print(f"开始等待第 {batch_index + 1} 批 {len(futures_dict)} 个任务完成...")
+#
+#                 for task_name, future in futures_dict.items():
+#                     try:
+#                         result = future.result(timeout=300)  # 5分钟超时
+#                         results_dict[task_name] = result
+#                         print(f"✅ {task_name} 执行完成 - 成功:{result['success_count']}, 失败:{result['fail_count']}")
+#                     except concurrent.futures.TimeoutError:
+#                         print(f"❌ {task_name} 执行超时")
+#                         results_dict[task_name] = {
+#                             "module": f"系统管理-角色管理-{task_name}",
+#                             "success_count": 0,
+#                             "fail_count": 0,
+#                             "total_count": 0,
+#                             "error": "执行超时"
+#                         }
+#                     except Exception as e:
+#                         print(f"❌ {task_name} 执行失败: {str(e)}")
+#                         results_dict[task_name] = {
+#                             "module": f"系统管理-角色管理-{task_name}",
+#                             "success_count": 0,
+#                             "fail_count": 0,
+#                             "total_count": 0,
+#                             "error": str(e)
+#                         }
+#
+#             # 将当前批次结果合并到总结果中
+#             all_results.update(results_dict)
+#
+#             print(f"第 {batch_index + 1} 批任务执行完成")
+#
+#             # 如果不是最后一批，可以添加短暂延迟（可选）
+#             if batch_index < total_batches - 1:
+#                 print("等待2秒后开始下一批任务...")
+#                 import time
+#                 time.sleep(2)
 #
 #         print("=" * 50)
 #         print("【并行消费者】所有测试执行完成")
 #         print("=" * 50)
 #
 #         # 返回所有任务的执行结果
-#         return results_dict
+#         return all_results
 #
 #     except Exception as e:
 #         print(f"❌ 并行消费者任务执行失败: {str(e)}")
@@ -430,51 +465,7 @@
 #         raise e
 #
 #
-# # def final_task(**context):
-# #     """收尾工作：汇总结果并更新Excel"""
-# #     print("=" * 50)
-# #     print("【收尾工作】开始汇总测试结果...")
-# #     print("=" * 50)
-# #
-# #     try:
-# #         # 获取并行消费者的结果
-# #         consumer_results = context['task_instance'].xcom_pull(task_ids='并行执行消费者')
-# #
-# #         print(f"消费者结果: {consumer_results}")
-# #
-# #         # 汇总统计
-# #         total_success = 0
-# #         total_fail = 0
-# #         total_tests = 0
-# #
-# #         if consumer_results:
-# #             for task_name, result in consumer_results.items():
-# #                 if isinstance(result, dict):
-# #                     total_success += result.get('success_count', 0)
-# #                     total_fail += result.get('fail_count', 0)
-# #                     total_tests += result.get('total_count', 0)
-# #                     print(f"{task_name} - 成功: {result.get('success_count')}, 失败: {result.get('fail_count')}")
-# #
-# #         # 更新Excel汇总信息
-# #         summary_info = f"总计:{total_tests},通过:{total_success},失败:{total_fail}"
-# #         Openpyxl_PO.setCell(1, 15, summary_info, Configparser_PO.EXCEL("sheet"))
-# #         Openpyxl_PO.setCell(1, 16, Time_PO.getDateTimeByMinus(), Configparser_PO.EXCEL("sheet"))
-# #
-# #         print("=" * 50)
-# #         print(f"【收尾工作】测试执行汇总 - {summary_info}")
-# #         print("=" * 50)
-# #
-# #         return {
-# #             "summary": summary_info,
-# #             "total_tests": total_tests,
-# #             "total_success": total_success,
-# #             "total_fail": total_fail,
-# #             "execution_time": Time_PO.getDateTimeByMinus(),
-# #             "detailed_results": consumer_results
-# #         }
-# #     except Exception as e:
-# #         print(f"❌ 收尾工作执行失败: {str(e)}")
-# #         raise e
+#
 #
 #
 # # 单个DAG，真正的并行执行

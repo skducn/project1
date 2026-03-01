@@ -1,0 +1,54 @@
+[2026-03-01T21:25:56.376+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T21:25:56.395+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: master_system_management_with_logs.generate_allure_report manual__2026-03-01T13:25:24.861637+00:00 [queued]>
+[2026-03-01T21:25:56.406+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: master_system_management_with_logs.generate_allure_report manual__2026-03-01T13:25:24.861637+00:00 [queued]>
+[2026-03-01T21:25:56.406+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T21:25:56.421+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): generate_allure_report> on 2026-03-01 13:25:24.861637+00:00
+[2026-03-01T21:25:56.424+0800] {standard_task_runner.py:72} INFO - Started process 11217 to run task
+[2026-03-01T21:25:56.432+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'generate_allure_report', 'manual__2026-03-01T13:25:24.861637+00:00', '--job-id', '867', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpdgsmmxq4']
+[2026-03-01T21:25:56.436+0800] {standard_task_runner.py:105} INFO - Job 867: Subtask generate_allure_report
+[2026-03-01T21:25:56.485+0800] {task_command.py:467} INFO - Running <TaskInstance: master_system_management_with_logs.generate_allure_report manual__2026-03-01T13:25:24.861637+00:00 [running]> on host localhost-2.local
+[2026-03-01T21:25:56.748+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='master_system_management_with_logs' AIRFLOW_CTX_TASK_ID='generate_allure_report' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T13:25:24.861637+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T13:25:24.861637+00:00'
+[2026-03-01T21:25:56.749+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T21:25:56.763+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T21:25:56.763+0800] {logging_mixin.py:190} INFO - 📊 开始生成包含子DAG日志的Allure测试报告...
+[2026-03-01T21:25:56.764+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T21:25:56.772+0800] {logging_mixin.py:190} INFO - 💾 已保存日志文件: 读取测试用例_log.txt
+[2026-03-01T21:25:56.773+0800] {logging_mixin.py:190} INFO - 💾 已保存日志文件: 并行执行消费者_log.txt
+[2026-03-01T21:25:56.774+0800] {logging_mixin.py:190} INFO - 💾 已保存日志文件: 生成测试报告_log.txt
+[2026-03-01T21:25:56.775+0800] {logging_mixin.py:190} INFO - 💾 已保存日志文件: 读取测试用例_log.txt
+[2026-03-01T21:25:56.775+0800] {logging_mixin.py:190} INFO - 💾 已保存日志文件: 并行执行消费者_log.txt
+[2026-03-01T21:25:56.778+0800] {configuration.py:1185} WARNING - section/key [core/airflow_home] not found in config
+[2026-03-01T21:25:56.778+0800] {logging_mixin.py:190} INFO - ⚠️ 获取Airflow配置失败: section/key [core/airflow_home] not found in config
+[2026-03-01T21:25:56.779+0800] {configuration.py:1185} WARNING - section/key [core/airflow_home] not found in config
+[2026-03-01T21:25:56.779+0800] {logging_mixin.py:190} INFO - ⚠️ 获取Airflow配置失败: section/key [core/airflow_home] not found in config
+[2026-03-01T21:25:56.781+0800] {logging_mixin.py:190} INFO - ✅ Allure结果数据已生成到: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/allure-results
+[2026-03-01T21:25:56.781+0800] {logging_mixin.py:190} INFO - 📊 生成了 2 个测试结果文件
+[2026-03-01T21:25:56.782+0800] {logging_mixin.py:190} INFO - 📝 保存了 5 个日志文件
+[2026-03-01T21:25:56.782+0800] {logging_mixin.py:190} INFO - 
+🔍 验证生成的文件:
+[2026-03-01T21:25:56.783+0800] {logging_mixin.py:190} INFO -    ✓ 0d17b0ce-56a8-4b31-b87f-e8772e71f241-result.json
+[2026-03-01T21:25:56.783+0800] {logging_mixin.py:190} INFO -    ✓ d2073ce0-061c-4344-9546-ff635ae2336b-result.json
+[2026-03-01T21:25:56.784+0800] {logging_mixin.py:190} INFO -    ✓ 499ce1a3-c3bd-4421-b262-86573275bbd2-result.json
+[2026-03-01T21:25:56.784+0800] {logging_mixin.py:190} INFO -    ✓ d7edaa73-f122-49f5-a91f-8a6ee69746cc-result.json
+[2026-03-01T21:25:56.785+0800] {logging_mixin.py:190} INFO -    ✓ 32528394-ccc9-45d6-ba78-8672aec249dd-result.json
+[2026-03-01T21:25:56.785+0800] {logging_mixin.py:190} INFO -    ✓ badf5ff4-8459-487b-87a4-150de44e6f9d-container.json
+[2026-03-01T21:25:56.786+0800] {logging_mixin.py:190} INFO -    ✓ af01ae68-cd60-49c3-b18b-a3a78d1a5018-result.json
+[2026-03-01T21:25:56.786+0800] {logging_mixin.py:190} INFO -    ✓ b187a800-3eb2-416b-a70f-a5cf91ceb88d-container.json
+[2026-03-01T21:25:56.786+0800] {logging_mixin.py:190} INFO -    ✓ 01513204-36dc-4665-b5b0-4a695d2e02dc-container.json
+[2026-03-01T21:25:56.787+0800] {logging_mixin.py:190} INFO -    ✓ 日志文件 (3 个): ['读取测试用例_log.txt', '并行执行消费者_log.txt', '生成测试报告_log.txt']
+[2026-03-01T21:26:09.785+0800] {logging_mixin.py:190} INFO - 🚀 生成Allure HTML报告...
+Report successfully generated to /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/allure-report
+✅ Allure报告生成成功: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/allure-report/index.html
+[2026-03-01T21:26:09.788+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T21:26:09.788+0800] {logging_mixin.py:190} INFO - 🎉 包含子DAG日志的Allure测试报告生成完成!
+[2026-03-01T21:26:09.788+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T21:26:09.789+0800] {logging_mixin.py:190} INFO - 📁 结果目录: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/allure-results
+[2026-03-01T21:26:09.789+0800] {logging_mixin.py:190} INFO - 🌐 报告目录: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/allure-report
+[2026-03-01T21:26:09.790+0800] {logging_mixin.py:190} INFO - ⏰ 生成时间: 2026-03-01 21:26:09
+[2026-03-01T21:26:09.791+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T21:26:09.792+0800] {python.py:240} INFO - Done. Returned value was: True
+[2026-03-01T21:26:09.815+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-01T21:26:09.816+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=master_system_management_with_logs, task_id=generate_allure_report, run_id=manual__2026-03-01T13:25:24.861637+00:00, execution_date=20260301T132524, start_date=20260301T132556, end_date=20260301T132609
+[2026-03-01T21:26:09.882+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-01T21:26:09.903+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-01T21:26:09.904+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,30 @@
+[2026-03-01T08:37:08.786+0800] {processor.py:186} INFO - Started process (PID=1426) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:37:08.787+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py for tasks to queue
+[2026-03-01T08:37:08.788+0800] {logging_mixin.py:190} INFO - [2026-03-01T08:37:08.787+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:37:08.789+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:37:08.887+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py took 104.026 seconds
+[2026-03-01T08:39:05.156+0800] {processor.py:186} INFO - Started process (PID=1690) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:39:05.157+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py for tasks to queue
+[2026-03-01T08:39:05.158+0800] {logging_mixin.py:190} INFO - [2026-03-01T08:39:05.158+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:39:05.161+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:39:05.259+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py took 105.793 seconds
+[2026-03-01T08:41:40.286+0800] {processor.py:186} INFO - Started process (PID=1831) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:41:40.289+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py for tasks to queue
+[2026-03-01T08:41:40.290+0800] {logging_mixin.py:190} INFO - [2026-03-01T08:41:40.290+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:41:40.292+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:41:40.389+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py took 105.522 seconds
+[2026-03-01T08:43:36.880+0800] {processor.py:186} INFO - Started process (PID=1895) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:43:36.880+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py for tasks to queue
+[2026-03-01T08:43:36.882+0800] {logging_mixin.py:190} INFO - [2026-03-01T08:43:36.881+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:43:36.883+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:43:37.027+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py took 151.932 seconds
+[2026-03-01T08:45:24.134+0800] {processor.py:186} INFO - Started process (PID=1947) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:45:24.135+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py for tasks to queue
+[2026-03-01T08:45:24.135+0800] {logging_mixin.py:190} INFO - [2026-03-01T08:45:24.135+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:45:24.137+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:45:24.245+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py took 113.644 seconds
+[2026-03-01T08:47:34.057+0800] {processor.py:186} INFO - Started process (PID=2053) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:47:34.058+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py for tasks to queue
+[2026-03-01T08:47:34.059+0800] {logging_mixin.py:190} INFO - [2026-03-01T08:47:34.058+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:47:34.059+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py
+[2026-03-01T08:47:34.153+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发3.py took 98.447 seconds

@@ -1,0 +1,89 @@
+[2026-03-01T14:41:43.965+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T14:41:44.105+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发123.并行执行消费者 manual__2026-03-01T06:41:26.276151+00:00 [queued]>
+[2026-03-01T14:41:44.112+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发123.并行执行消费者 manual__2026-03-01T06:41:26.276151+00:00 [queued]>
+[2026-03-01T14:41:44.113+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T14:41:44.126+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并行执行消费者> on 2026-03-01 06:41:26.276151+00:00
+[2026-03-01T14:41:44.129+0800] {standard_task_runner.py:72} INFO - Started process 7393 to run task
+[2026-03-01T14:41:44.136+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发123', '并行执行消费者', 'manual__2026-03-01T06:41:26.276151+00:00', '--job-id', '781', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发test.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp62n7cexu']
+[2026-03-01T14:41:44.140+0800] {standard_task_runner.py:105} INFO - Job 781: Subtask 并行执行消费者
+[2026-03-01T14:41:44.187+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发123.并行执行消费者 manual__2026-03-01T06:41:26.276151+00:00 [running]> on host localhost-2.local
+[2026-03-01T14:41:44.254+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发123' AIRFLOW_CTX_TASK_ID='并行执行消费者' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T06:41:26.276151+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T06:41:26.276151+00:00'
+[2026-03-01T14:41:44.255+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T14:41:44.272+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T14:41:44.273+0800] {logging_mixin.py:190} INFO - 【优化版并行消费者】开始执行测试任务...
+[2026-03-01T14:41:44.273+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-01T14:41:44.279+0800] {logging_mixin.py:190} INFO - 📊 从XCom获取到的测试用例数据: 3 条
+[2026-03-01T14:41:44.279+0800] {logging_mixin.py:190} INFO - ❌ 优化版并行消费者任务执行失败: eval() arg 1 must be a string, bytes or code object
+[2026-03-01T14:41:44.280+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-03-01T14:41:44.281+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发test.py", line 692, in parallel_consumers_task
+    d_precondition = eval(l_col_values[0][3])  # 修复：使用正确的索引访问前置条件
+[2026-03-01T14:41:44.281+0800] {logging_mixin.py:190} WARNING - TypeError: eval() arg 1 must be a string, bytes or code object
+[2026-03-01T14:41:44.282+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发test.py", line 772, in parallel_consumers_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发test.py", line 692, in parallel_consumers_task
+    d_precondition = eval(l_col_values[0][3])  # 修复：使用正确的索引访问前置条件
+TypeError: eval() arg 1 must be a string, bytes or code object
+[2026-03-01T14:41:44.289+0800] {taskinstance.py:1242} INFO - Marking task as FAILED. dag_id=cdrd_并发123, task_id=并行执行消费者, run_id=manual__2026-03-01T06:41:26.276151+00:00, execution_date=20260301T064126, start_date=20260301T064144, end_date=20260301T064144
+[2026-03-01T14:41:44.304+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-01T14:41:44.304+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 781 for task 并行执行消费者 (eval() arg 1 must be a string, bytes or code object; 7393)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发test.py", line 772, in parallel_consumers_task
+    raise e
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_并发test.py", line 692, in parallel_consumers_task
+    d_precondition = eval(l_col_values[0][3])  # 修复：使用正确的索引访问前置条件
+TypeError: eval() arg 1 must be a string, bytes or code object
+[2026-03-01T14:41:44.324+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-03-01T14:41:44.350+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-01T14:41:44.356+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

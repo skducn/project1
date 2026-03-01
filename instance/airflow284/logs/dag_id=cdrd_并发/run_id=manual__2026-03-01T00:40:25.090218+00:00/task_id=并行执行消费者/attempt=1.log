@@ -1,0 +1,43 @@
+[2026-03-01T08:41:30.415+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T08:41:30.433+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-03-01T00:40:25.090218+00:00 [queued]>
+[2026-03-01T08:41:30.441+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_并发.并行执行消费者 manual__2026-03-01T00:40:25.090218+00:00 [queued]>
+[2026-03-01T08:41:30.441+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T08:41:30.454+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并行执行消费者> on 2026-03-01 00:40:25.090218+00:00
+[2026-03-01T08:41:30.457+0800] {standard_task_runner.py:72} INFO - Started process 1811 to run task
+[2026-03-01T08:41:30.464+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_并发', '并行执行消费者', 'manual__2026-03-01T00:40:25.090218+00:00', '--job-id', '770', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/角色管理/dag_并发2.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpc3u0db6d']
+[2026-03-01T08:41:30.468+0800] {standard_task_runner.py:105} INFO - Job 770: Subtask 并行执行消费者
+[2026-03-01T08:41:30.528+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_并发.并行执行消费者 manual__2026-03-01T00:40:25.090218+00:00 [running]> on host localhost-2.local
+[2026-03-01T08:41:30.602+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_并发' AIRFLOW_CTX_TASK_ID='并行执行消费者' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T00:40:25.090218+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T00:40:25.090218+00:00'
+[2026-03-01T08:41:30.603+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T08:41:30.620+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T08:41:30.621+0800] {logging_mixin.py:190} INFO - 【并行消费者】开始执行测试任务...
+[2026-03-01T08:41:30.621+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T08:41:30.627+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 1 条
+[2026-03-01T08:41:30.627+0800] {logging_mixin.py:190} INFO - 发现 1 种不同的任务类型: ['编辑222角色']
+[2026-03-01T08:41:30.628+0800] {logging_mixin.py:190} INFO - 任务将分为 1 批执行，每批最多 2 个任务并发
+[2026-03-01T08:41:30.629+0800] {logging_mixin.py:190} INFO - 
+开始执行第 1/1 批任务: ['编辑222角色']
+[2026-03-01T08:41:30.629+0800] {logging_mixin.py:190} INFO - 提交任务: 编辑222角色
+[2026-03-01T08:41:30.630+0800] {logging_mixin.py:190} INFO - ===================== 编辑222角色 消费者开始执行 ====================
+[2026-03-01T08:41:30.630+0800] {logging_mixin.py:190} INFO - 开始等待第 1 批 1 个任务完成...
+[2026-03-01T08:41:30.739+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] 开始执行测试用例: 系统管理/角色管理/编辑222角色.py
+[2026-03-01T08:41:31.149+0800] {logging_mixin.py:190} INFO - 编辑222角色，生成随机数据: [['黑龙江省桂芝县沈河姚街y座 781424']]
+[2026-03-01T08:41:37.582+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] Playwright执行结果: {'remark': '黑龙江省桂芝县沈河姚街y座 781424'}
+[2026-03-01T08:41:37.583+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where remark='黑龙江省桂芝县沈河姚街y座 781424'", 'v': 1}]
+[2026-03-01T08:41:37.596+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] 数据库查询结果: [{'qty': 1}]
+[2026-03-01T08:41:37.597+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where remark='黑龙江省桂芝县沈河姚街y座 781424'", 'v': 1}
+[2026-03-01T08:41:37.650+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] ✅ 测试用例执行通过
+[2026-03-01T08:41:37.686+0800] {logging_mixin.py:190} INFO - [Consumer_Batch1_0] ✅ 数据库连接已关闭
+[2026-03-01T08:41:37.686+0800] {logging_mixin.py:190} INFO - [编辑222角色] ✅ 测试执行成功
+[2026-03-01T08:41:37.687+0800] {logging_mixin.py:190} INFO - ===================== 编辑222角色 消费者执行完成 ====================
+[2026-03-01T08:41:37.687+0800] {logging_mixin.py:190} INFO - ✅ 编辑222角色 执行完成 - 成功:1, 失败:0
+[2026-03-01T08:41:37.688+0800] {logging_mixin.py:190} INFO - 第 1 批任务执行完成
+[2026-03-01T08:41:37.689+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T08:41:37.689+0800] {logging_mixin.py:190} INFO - 【并行消费者】所有测试执行完成
+[2026-03-01T08:41:37.689+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T08:41:37.690+0800] {python.py:240} INFO - Done. Returned value was: {'编辑222角色': {'module': '系统管理-角色管理-编辑222角色', 'success_count': 1, 'fail_count': 0, 'total_count': 1}}
+[2026-03-01T08:41:37.707+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-01T08:41:37.708+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_并发, task_id=并行执行消费者, run_id=manual__2026-03-01T00:40:25.090218+00:00, execution_date=20260301T004025, start_date=20260301T004130, end_date=20260301T004137
+[2026-03-01T08:41:37.740+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-01T08:41:37.759+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-01T08:41:37.760+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

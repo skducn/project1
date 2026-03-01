@@ -2814,3 +2814,11 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-03-01T00:05:17.291+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:05:17.291+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
 [2026-03-01T00:05:17.295+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:05:17.294+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
 [2026-03-01T00:05:17.312+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 186.719 seconds
+[2026-03-01T00:07:36.563+0800] {processor.py:186} INFO - Started process (PID=10715) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-03-01T00:07:36.574+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py for tasks to queue
+[2026-03-01T00:07:36.575+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:36.575+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-03-01T00:07:36.605+0800] {processor.py:925} INFO - DAG(s) 'dynamic_dag_store_002', 'dynamic_dag_store_001' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py
+[2026-03-01T00:07:36.711+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:36.711+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-01T00:07:36.732+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:36.731+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_001 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-03-01T00:07:36.735+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:36.735+0800] {dag.py:4180} INFO - Setting next_dagrun for dynamic_dag_store_002 to 2026-02-13 16:00:00+00:00, run_after=2026-02-14 16:00:00+00:00
+[2026-03-01T00:07:36.750+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/动态生成 DAG/generateDAG.py took 189.157 seconds

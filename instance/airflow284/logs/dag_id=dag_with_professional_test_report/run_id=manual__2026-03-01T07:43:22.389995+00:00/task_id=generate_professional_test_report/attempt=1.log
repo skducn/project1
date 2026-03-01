@@ -1,0 +1,76 @@
+[2026-03-01T15:43:35.736+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T15:43:35.755+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: dag_with_professional_test_report.generate_professional_test_report manual__2026-03-01T07:43:22.389995+00:00 [queued]>
+[2026-03-01T15:43:35.763+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: dag_with_professional_test_report.generate_professional_test_report manual__2026-03-01T07:43:22.389995+00:00 [queued]>
+[2026-03-01T15:43:35.764+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 2
+[2026-03-01T15:43:35.776+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): generate_professional_test_report> on 2026-03-01 07:43:22.389995+00:00
+[2026-03-01T15:43:35.779+0800] {standard_task_runner.py:72} INFO - Started process 10115 to run task
+[2026-03-01T15:43:35.785+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'dag_with_professional_test_report', 'generate_professional_test_report', 'manual__2026-03-01T07:43:22.389995+00:00', '--job-id', '801', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/report/dag_report.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmprvkbgwbe']
+[2026-03-01T15:43:35.788+0800] {standard_task_runner.py:105} INFO - Job 801: Subtask generate_professional_test_report
+[2026-03-01T15:43:35.835+0800] {task_command.py:467} INFO - Running <TaskInstance: dag_with_professional_test_report.generate_professional_test_report manual__2026-03-01T07:43:22.389995+00:00 [running]> on host localhost-2.local
+[2026-03-01T15:43:36.085+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='dag_with_professional_test_report' AIRFLOW_CTX_TASK_ID='generate_professional_test_report' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T07:43:22.389995+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T07:43:22.389995+00:00'
+[2026-03-01T15:43:36.086+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T15:43:36.113+0800] {taskinstance.py:3336} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py", line 84, in generate_test_report
+    report_content = f"""# Airflow DAG 执行测试报告
+TypeError: unsupported format string passed to NoneType.__format__
+[2026-03-01T15:43:36.126+0800] {taskinstance.py:1242} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_professional_test_report, task_id=generate_professional_test_report, run_id=manual__2026-03-01T07:43:22.389995+00:00, execution_date=20260301T074322, start_date=20260301T074335, end_date=20260301T074336
+[2026-03-01T15:43:36.144+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-01T15:43:36.145+0800] {standard_task_runner.py:124} ERROR - Failed to execute job 801 for task generate_professional_test_report (unsupported format string passed to NoneType.__format__; 10115)
+Traceback (most recent call last):
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/task/task_runner/standard_task_runner.py", line 117, in _start_by_fork
+    ret = args.func(args, dag=self.dag)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/cli_config.py", line 49, in command
+    return func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/cli.py", line 116, in wrapper
+    return f(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 483, in task_run
+    task_return_code = _run_task_by_selected_method(args, _dag, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 256, in _run_task_by_selected_method
+    return _run_raw_task(args, ti)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/cli/commands/task_command.py", line 341, in _run_raw_task
+    return ti._run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/session.py", line 97, in wrapper
+    return func(*args, session=session, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3029, in _run_raw_task
+    return _run_raw_task(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 282, in _run_raw_task
+    TaskInstance._execute_task_with_callbacks(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3184, in _execute_task_with_callbacks
+    result = self._execute_task(context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 3208, in _execute_task
+    return _execute_task(self, context, task_orig)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 776, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/taskinstance.py", line 742, in _execute_callable
+    return ExecutionCallableRunner(
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/models/baseoperator.py", line 424, in wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 238, in execute
+    return_value = self.execute_callable()
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/operators/python.py", line 256, in execute_callable
+    return runner.run(*self.op_args, **self.op_kwargs)
+  File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/airflow/utils/operator_helpers.py", line 252, in run
+    return self.func(*args, **kwargs)
+  File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py", line 84, in generate_test_report
+    report_content = f"""# Airflow DAG 执行测试报告
+TypeError: unsupported format string passed to NoneType.__format__
+[2026-03-01T15:43:36.194+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 1
+[2026-03-01T15:43:36.219+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-01T15:43:36.220+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

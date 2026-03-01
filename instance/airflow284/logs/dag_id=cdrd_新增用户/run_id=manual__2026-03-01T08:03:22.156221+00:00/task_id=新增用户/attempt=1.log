@@ -1,0 +1,46 @@
+[2026-03-01T16:03:39.324+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T16:03:39.464+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-03-01T08:03:22.156221+00:00 [queued]>
+[2026-03-01T16:03:39.473+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_新增用户.新增用户 manual__2026-03-01T08:03:22.156221+00:00 [queued]>
+[2026-03-01T16:03:39.474+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T16:03:39.487+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 新增用户> on 2026-03-01 08:03:22.156221+00:00
+[2026-03-01T16:03:39.491+0800] {standard_task_runner.py:72} INFO - Started process 10954 to run task
+[2026-03-01T16:03:39.498+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_新增用户', '新增用户', 'manual__2026-03-01T08:03:22.156221+00:00', '--job-id', '811', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_新增用户.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpes_ieo5n']
+[2026-03-01T16:03:39.502+0800] {standard_task_runner.py:105} INFO - Job 811: Subtask 新增用户
+[2026-03-01T16:03:39.552+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_新增用户.新增用户 manual__2026-03-01T08:03:22.156221+00:00 [running]> on host localhost-2.local
+[2026-03-01T16:03:39.625+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_新增用户' AIRFLOW_CTX_TASK_ID='新增用户' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T08:03:22.156221+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T08:03:22.156221+00:00'
+[2026-03-01T16:03:39.626+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T16:03:39.643+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T16:03:39.643+0800] {logging_mixin.py:190} INFO - 【消费者1】开始执行系统管理-用户管理测试用例...
+[2026-03-01T16:03:39.644+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T16:03:39.649+0800] {logging_mixin.py:190} INFO - 从XCom获取到的测试用例数据: 2 条
+[2026-03-01T16:03:39.755+0800] {logging_mixin.py:190} INFO - ✅ 数据库连接成功 (尝试 1/3)
+[2026-03-01T16:03:39.757+0800] {logging_mixin.py:190} INFO - 执行脚本: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py
+[2026-03-01T16:03:40.111+0800] {logging_mixin.py:190} INFO - 随机生成测试数据: [['徐凯', '18891905501', 'wei08@example.com', '711098', '781142']]
+[2026-03-01T16:04:11.959+0800] {logging_mixin.py:190} INFO - ❌ 执行失败: Timeout 30000ms exceeded.
+[2026-03-01T16:04:11.960+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-03-01T16:04:11.961+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_新增用户.py", line 169, in _execute_playwright_script
+    result = module.run_playwright()
+[2026-03-01T16:04:11.962+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/用户管理/新增用户.py", line 95, in run_playwright
+    page.goto(Configparser_PO.HTTP("url"))
+[2026-03-01T16:04:11.962+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 9312, in goto
+    self._sync(
+[2026-03-01T16:04:11.963+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+[2026-03-01T16:04:11.963+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_page.py", line 475, in goto
+    return await self._main_frame.goto(**locals_to_params(locals()))
+[2026-03-01T16:04:11.964+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_frame.py", line 139, in goto
+    await self._channel.send("goto", locals_to_params(locals()))
+[2026-03-01T16:04:11.964+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 62, in send
+    return await self._connection.wrap_api_call(
+[2026-03-01T16:04:11.965+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 492, in wrap_api_call
+    return await cb()
+[2026-03-01T16:04:11.965+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 100, in inner_send
+    result = next(iter(done)).result()
+[2026-03-01T16:04:11.965+0800] {logging_mixin.py:190} WARNING - playwright._impl._errors.TimeoutError: Timeout 30000ms exceeded.
+[2026-03-01T16:04:11.966+0800] {logging_mixin.py:190} INFO - 脚本执行成功，返回值: None
+[2026-03-01T16:04:11.966+0800] {logging_mixin.py:190} INFO - ❌ Playwright执行失败，测试用例失败
+[2026-03-01T16:04:11.976+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-01T16:04:11.977+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_新增用户, task_id=新增用户, run_id=manual__2026-03-01T08:03:22.156221+00:00, execution_date=20260301T080322, start_date=20260301T080339, end_date=20260301T080411
+[2026-03-01T16:04:12.046+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-01T16:04:12.067+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-01T16:04:12.067+0800] {local_task_job_runner.py:245} INFO - ::endgroup::

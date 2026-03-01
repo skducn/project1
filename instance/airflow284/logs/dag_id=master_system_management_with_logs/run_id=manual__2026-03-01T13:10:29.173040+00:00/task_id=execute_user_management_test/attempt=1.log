@@ -1,0 +1,22 @@
+[2026-03-01T21:10:44.404+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T21:10:44.423+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T13:10:29.173040+00:00 [queued]>
+[2026-03-01T21:10:44.430+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T13:10:29.173040+00:00 [queued]>
+[2026-03-01T21:10:44.431+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T21:10:44.443+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): execute_user_management_test> on 2026-03-01 13:10:29.173040+00:00
+[2026-03-01T21:10:44.446+0800] {standard_task_runner.py:72} INFO - Started process 10526 to run task
+[2026-03-01T21:10:44.453+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T13:10:29.173040+00:00', '--job-id', '857', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpxsur_smg']
+[2026-03-01T21:10:44.456+0800] {standard_task_runner.py:105} INFO - Job 857: Subtask execute_user_management_test
+[2026-03-01T21:10:44.503+0800] {task_command.py:467} INFO - Running <TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T13:10:29.173040+00:00 [running]> on host localhost-2.local
+[2026-03-01T21:10:44.750+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='master_system_management_with_logs' AIRFLOW_CTX_TASK_ID='execute_user_management_test' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T13:10:29.173040+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T13:10:29.173040+00:00'
+[2026-03-01T21:10:44.751+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T21:10:44.766+0800] {configuration.py:1185} WARNING - section/key [core/airflow_home] not found in config
+[2026-03-01T21:10:44.767+0800] {logging_mixin.py:190} INFO - ⚠️ 获取Airflow配置失败: section/key [core/airflow_home] not found in config
+[2026-03-01T21:10:44.767+0800] {logging_mixin.py:190} INFO - 🚀 开始执行 用户管理测试 (DAG: cdrd_用户管理_并发)
+[2026-03-01T21:15:36.610+0800] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-03-01T21:15:36.611+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-03-01T21:15:36.619+0800] {process_utils.py:132} INFO - Sending 15 to group 10526. PIDs of all processes in the group: [10526]
+[2026-03-01T21:15:36.620+0800] {process_utils.py:87} INFO - Sending the signal 15 to group 10526
+[2026-03-01T21:16:36.662+0800] {process_utils.py:150} WARNING - process psutil.Process(pid=10526, name='python3.10', status='running', started='21:10:44') did not respond to SIGTERM. Trying SIGKILL
+[2026-03-01T21:16:36.664+0800] {process_utils.py:87} INFO - Sending the signal 9 to group 10526
+[2026-03-01T21:16:36.695+0800] {process_utils.py:80} INFO - Process psutil.Process(pid=10526, name='python3.10', status='terminated', exitcode=<Negsignal.SIGKILL: -9>, started='21:10:44') (10526) terminated with exit code -9
+[2026-03-01T21:16:36.696+0800] {standard_task_runner.py:190} ERROR - ('Job 857 was killed before it finished (likely due to running out of memory)', 'For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed')

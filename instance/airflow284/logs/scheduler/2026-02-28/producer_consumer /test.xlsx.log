@@ -3243,3 +3243,13 @@
 [2026-03-01T00:06:11.594+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:06:11.593+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
 [2026-03-01T00:06:11.595+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
 [2026-03-01T00:06:11.696+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx took 106.569 seconds
+[2026-03-01T00:07:21.762+0800] {processor.py:186} INFO - Started process (PID=10691) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
+[2026-03-01T00:07:21.763+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx for tasks to queue
+[2026-03-01T00:07:21.764+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:21.763+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
+[2026-03-01T00:07:21.765+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
+[2026-03-01T00:07:21.857+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx took 97.869 seconds
+[2026-03-01T00:08:27.117+0800] {processor.py:186} INFO - Started process (PID=10758) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
+[2026-03-01T00:08:27.118+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx for tasks to queue
+[2026-03-01T00:08:27.119+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:08:27.119+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
+[2026-03-01T00:08:27.120+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx
+[2026-03-01T00:08:27.211+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /test.xlsx took 95.923 seconds

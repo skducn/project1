@@ -1,0 +1,64 @@
+{
+  "uuid": "af01ae68-cd60-49c3-b18b-a3a78d1a5018",
+  "name": "角色管理测试",
+  "fullName": "系统管理.角色管理测试",
+  "historyId": "af01ae68-cd60-49c3-b18b-a3a78d1a5018",
+  "status": "passed",
+  "stage": "finished",
+  "description": "测试DAG: cdrd_角色管理_并发\n运行ID: mock_role_run_1772371550\n执行状态: success\n执行时间: 2.80秒\n",
+  "start": 1772371466772,
+  "stop": 1772371469572,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "系统管理测试套件"
+    },
+    {
+      "name": "subSuite",
+      "value": "主控测试"
+    },
+    {
+      "name": "host",
+      "value": "localhost"
+    },
+    {
+      "name": "thread",
+      "value": "main"
+    },
+    {
+      "name": "framework",
+      "value": "Airflow"
+    },
+    {
+      "name": "language",
+      "value": "python"
+    },
+    {
+      "name": "tag",
+      "value": "success"
+    }
+  ],
+  "links": [],
+  "parameters": [
+    {
+      "name": "dag_id",
+      "value": "cdrd_角色管理_并发"
+    },
+    {
+      "name": "dag_run_id",
+      "value": "mock_role_run_1772371550"
+    }
+  ],
+  "attachments": [
+    {
+      "name": "读取测试用例_log.txt",
+      "source": "logs/读取测试用例_log.txt",
+      "type": "text/plain"
+    },
+    {
+      "name": "并行执行消费者_log.txt",
+      "source": "logs/并行执行消费者_log.txt",
+      "type": "text/plain"
+    }
+  ]
+}

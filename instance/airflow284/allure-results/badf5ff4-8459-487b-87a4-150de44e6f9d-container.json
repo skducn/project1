@@ -1,0 +1,12 @@
+{
+  "uuid": "badf5ff4-8459-487b-87a4-150de44e6f9d",
+  "name": "系统管理测试套件",
+  "children": [
+    "d7edaa73-f122-49f5-a91f-8a6ee69746cc",
+    "af01ae68-cd60-49c3-b18b-a3a78d1a5018"
+  ],
+  "befores": [],
+  "afters": [],
+  "start": 1772371436772,
+  "stop": 1772371500272
+}

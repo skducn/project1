@@ -4611,3 +4611,17 @@ sqlalchemy.exc.PendingRollbackError: This Session's transaction has been rolled 
 [2026-03-01T00:06:08.342+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:06:08.341+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-03-01T00:06:08.353+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:06:08.353+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
 [2026-03-01T00:06:08.372+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 154.173 seconds
+[2026-03-01T00:07:18.481+0800] {processor.py:186} INFO - Started process (PID=10689) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-03-01T00:07:18.482+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-03-01T00:07:18.483+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:18.483+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-03-01T00:07:18.492+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-03-01T00:07:18.644+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:18.644+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-01T00:07:18.656+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:07:18.656+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-03-01T00:07:18.674+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 195.370 seconds
+[2026-03-01T00:08:24.222+0800] {processor.py:186} INFO - Started process (PID=10757) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-03-01T00:08:24.223+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py for tasks to queue
+[2026-03-01T00:08:24.224+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:08:24.224+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-03-01T00:08:24.233+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py
+[2026-03-01T00:08:24.349+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:08:24.349+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-01T00:08:24.360+0800] {logging_mixin.py:190} INFO - [2026-03-01T00:08:24.360+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理 to None, run_after=None
+[2026-03-01T00:08:24.377+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/cdrd_主控测试流程.py took 157.765 seconds

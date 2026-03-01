@@ -1,0 +1,54 @@
+{
+  "uuid": "32528394-ccc9-45d6-ba78-8672aec249dd",
+  "name": "用户管理测试",
+  "fullName": "系统管理.用户管理测试",
+  "historyId": "32528394-ccc9-45d6-ba78-8672aec249dd",
+  "status": "passed",
+  "stage": "finished",
+  "start": 1772368784058,
+  "stop": 1772368814058,
+  "labels": [
+    {
+      "name": "suite",
+      "value": "系统管理测试套件"
+    },
+    {
+      "name": "subSuite",
+      "value": "主控测试"
+    },
+    {
+      "name": "host",
+      "value": "localhost"
+    },
+    {
+      "name": "thread",
+      "value": "main"
+    },
+    {
+      "name": "framework",
+      "value": "Airflow"
+    },
+    {
+      "name": "language",
+      "value": "python"
+    }
+  ],
+  "links": [],
+  "parameters": [],
+  "steps": [
+    {
+      "name": "触发用户管理DAG",
+      "status": "passed",
+      "start": 1772368784058,
+      "stop": 1772368799058,
+      "stage": "finished"
+    },
+    {
+      "name": "等待DAG执行完成",
+      "status": "passed",
+      "start": 1772368799058,
+      "stop": 1772368814058,
+      "stage": "finished"
+    }
+  ]
+}

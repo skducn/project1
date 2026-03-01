@@ -1,0 +1,29 @@
+[2026-03-01T21:29:27.653+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T21:29:27.669+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T13:29:11.184382+00:00 [queued]>
+[2026-03-01T21:29:27.677+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T13:29:11.184382+00:00 [queued]>
+[2026-03-01T21:29:27.677+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-01T21:29:27.690+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): execute_user_management_test> on 2026-03-01 13:29:11.184382+00:00
+[2026-03-01T21:29:27.693+0800] {standard_task_runner.py:72} INFO - Started process 11398 to run task
+[2026-03-01T21:29:27.700+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T13:29:11.184382+00:00', '--job-id', '869', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmp43k9fcsl']
+[2026-03-01T21:29:27.704+0800] {standard_task_runner.py:105} INFO - Job 869: Subtask execute_user_management_test
+[2026-03-01T21:29:27.762+0800] {task_command.py:467} INFO - Running <TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T13:29:11.184382+00:00 [running]> on host localhost-2.local
+[2026-03-01T21:29:28.032+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='master_system_management_with_logs' AIRFLOW_CTX_TASK_ID='execute_user_management_test' AIRFLOW_CTX_EXECUTION_DATE='2026-03-01T13:29:11.184382+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-01T13:29:11.184382+00:00'
+[2026-03-01T21:29:28.033+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-01T21:29:28.082+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T21:29:28.082+0800] {logging_mixin.py:190} INFO - 📝 开始执行用户管理测试任务...
+[2026-03-01T21:29:28.083+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-01T21:29:28.084+0800] {configuration.py:1185} WARNING - section/key [core/airflow_home] not found in config
+[2026-03-01T21:29:28.084+0800] {logging_mixin.py:190} INFO - ⚠️ 获取Airflow配置失败: section/key [core/airflow_home] not found in config
+[2026-03-01T21:29:28.085+0800] {logging_mixin.py:190} INFO - 🚀 开始执行 用户管理测试 (DAG: cdrd_用户管理_并发)
+[2026-03-01T21:29:28.085+0800] {logging_mixin.py:190} INFO - 🌐 使用API地址: http://localhost:8080
+[2026-03-01T21:29:28.086+0800] {logging_mixin.py:190} INFO - 📤 正在触发DAG...
+[2026-03-01T21:29:28.087+0800] {logging_mixin.py:190} INFO - 📍 触发URL: http://localhost:8080/api/v1/dags/cdrd_用户管理_并发/dagRuns
+[2026-03-01T21:29:28.087+0800] {logging_mixin.py:190} INFO - 📦 请求数据: {'dag_run_id': 'cdrd_用户管理_并发_run_1772371768', 'conf': {}}
+[2026-03-01T21:32:23.827+0800] {local_task_job_runner.py:346} WARNING - State of this instance has been externally set to None. Terminating instance.
+[2026-03-01T21:32:23.830+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2026-03-01T21:32:23.851+0800] {process_utils.py:132} INFO - Sending 15 to group 11398. PIDs of all processes in the group: [11398]
+[2026-03-01T21:32:23.852+0800] {process_utils.py:87} INFO - Sending the signal 15 to group 11398
+[2026-03-01T21:33:23.890+0800] {process_utils.py:150} WARNING - process psutil.Process(pid=11398, name='python3.10', status='running', started='21:29:27') did not respond to SIGTERM. Trying SIGKILL
+[2026-03-01T21:33:23.892+0800] {process_utils.py:87} INFO - Sending the signal 9 to group 11398
+[2026-03-01T21:33:23.907+0800] {process_utils.py:80} INFO - Process psutil.Process(pid=11398, name='python3.10', status='terminated', exitcode=<Negsignal.SIGKILL: -9>, started='21:29:27') (11398) terminated with exit code -9
+[2026-03-01T21:33:23.908+0800] {standard_task_runner.py:190} ERROR - ('Job 869 was killed before it finished (likely due to running out of memory)', 'For more information, see https://airflow.apache.org/docs/apache-airflow/stable/troubleshooting.html#LocalTaskJob-killed')

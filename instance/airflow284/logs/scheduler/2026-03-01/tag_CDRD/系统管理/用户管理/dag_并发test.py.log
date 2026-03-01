@@ -1,0 +1,28 @@
+[2026-03-01T18:33:56.440+0800] {processor.py:186} INFO - Started process (PID=2976) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py
+[2026-03-01T18:33:56.441+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py for tasks to queue
+[2026-03-01T18:33:56.442+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:33:56.442+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py
+[2026-03-01T18:33:56.444+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py
+[2026-03-01T18:33:56.554+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py took 118.554 seconds
+[2026-03-01T18:34:29.084+0800] {processor.py:186} INFO - Started process (PID=2998) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py
+[2026-03-01T18:34:29.085+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py for tasks to queue
+[2026-03-01T18:34:29.086+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:29.085+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py
+[2026-03-01T18:34:29.112+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理
+[2026-03-01T18:34:29.112+0800] {logging_mixin.py:190} INFO - Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-01T18:34:29.112+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-01T18:34:29.112+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-01T18:34:29.738+0800] {logging_mixin.py:190} INFO - 项目配置路径 /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+[2026-03-01T18:34:29.738+0800] {logging_mixin.py:190} INFO - Added web project root to sys.path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+[2026-03-01T18:34:29.977+0800] {logging_mixin.py:190} INFO - Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini
+[2026-03-01T18:34:29.979+0800] {logging_mixin.py:190} INFO - ✓ 成功导入配置解析器
+[2026-03-01T18:34:30.015+0800] {processor.py:925} INFO - DAG(s) 'cdrd_用户管理_并发' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py
+[2026-03-01T18:34:30.318+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.317+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG:cdrd_用户管理_并发
+[2026-03-01T18:34:30.327+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.326+0800] {override.py:1930} INFO - Created Permission View: can edit on DAG:cdrd_用户管理_并发
+[2026-03-01T18:34:30.333+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.333+0800] {override.py:1930} INFO - Created Permission View: can read on DAG:cdrd_用户管理_并发
+[2026-03-01T18:34:30.342+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.342+0800] {override.py:1930} INFO - Created Permission View: menu access on DAG Run:cdrd_用户管理_并发
+[2026-03-01T18:34:30.348+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.348+0800] {override.py:1930} INFO - Created Permission View: can create on DAG Run:cdrd_用户管理_并发
+[2026-03-01T18:34:30.355+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.354+0800] {override.py:1930} INFO - Created Permission View: can read on DAG Run:cdrd_用户管理_并发
+[2026-03-01T18:34:30.360+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.360+0800] {override.py:1930} INFO - Created Permission View: can delete on DAG Run:cdrd_用户管理_并发
+[2026-03-01T18:34:30.361+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.361+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-01T18:34:30.373+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.373+0800] {dag.py:3262} INFO - Creating ORM DAG for cdrd_用户管理_并发
+[2026-03-01T18:34:30.374+0800] {logging_mixin.py:190} INFO - [2026-03-01T18:34:30.374+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_用户管理_并发 to None, run_after=None
+[2026-03-01T18:34:30.394+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_并发test.py took 1313.353 seconds

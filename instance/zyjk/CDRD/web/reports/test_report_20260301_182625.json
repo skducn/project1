@@ -1,0 +1,20 @@
+{
+  "新增角色": {
+    "module": "系统管理-角色管理-新增角色",
+    "success_count": 1,
+    "fail_count": 0,
+    "total_count": 1
+  },
+  "编辑角色": {
+    "module": "系统管理-角色管理-编辑角色",
+    "success_count": 1,
+    "fail_count": 0,
+    "total_count": 1
+  },
+  "编辑222角色": {
+    "module": "系统管理-角色管理-编辑222角色",
+    "success_count": 1,
+    "fail_count": 0,
+    "total_count": 1
+  }
+}
