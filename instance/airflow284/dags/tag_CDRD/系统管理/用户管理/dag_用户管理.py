@@ -113,10 +113,6 @@ def producer_task(**context):
 
         print(f"【生产者】共找到 {len(l_col_values)} 条自动化测试用例")
 
-        # print(274, l_col_values)
-        # [[6, '系统管理', '用户管理', None, '[{"k": "select count(*) as qty from sys_user where job_num=\'{result[\'job_num\']}\'", "v": 1}]',
-        # '新增用户', '[["delete from sys_user where user_name=\'{result[\'user_name\']}\' and job_num=\'{result[\'job_num\']}\'"]]']]
-
         # 将结果存储到XCom供后续任务使用
         return l_col_values
     except Exception as e:

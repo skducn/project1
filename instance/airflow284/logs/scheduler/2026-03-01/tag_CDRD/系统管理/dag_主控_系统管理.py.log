@@ -429,3 +429,10 @@ airflow.exceptions.AirflowException: The key '主控_系统管理——集成日
 [2026-03-01T21:33:33.303+0800] {logging_mixin.py:190} INFO - [2026-03-01T21:33:33.302+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-03-01T21:33:33.314+0800] {logging_mixin.py:190} INFO - [2026-03-01T21:33:33.313+0800] {dag.py:4180} INFO - Setting next_dagrun for master_system_management_with_logs to None, run_after=None
 [2026-03-01T21:33:33.334+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py took 273.268 seconds
+[2026-03-01T22:27:53.719+0800] {processor.py:186} INFO - Started process (PID=14193) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-01T22:27:53.720+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py for tasks to queue
+[2026-03-01T22:27:53.721+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:27:53.721+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-01T22:27:53.748+0800] {processor.py:925} INFO - DAG(s) 'master_system_management_with_logs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-01T22:27:53.871+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:27:53.870+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-01T22:27:53.883+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:27:53.883+0800] {dag.py:4180} INFO - Setting next_dagrun for master_system_management_with_logs to None, run_after=None
+[2026-03-01T22:27:53.904+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py took 187.879 seconds

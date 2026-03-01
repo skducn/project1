@@ -13478,3 +13478,33 @@ subprocess.CalledProcessError: Command '['sudo', '-n', 'kill', '-15', '861']' re
 2026-03-01 21:42:32,739 INFO - Sending the signal Signals.SIGTERM to group 11478
 2026-03-01 21:42:32,741 INFO - Sending the signal Signals.SIGTERM to process 11478 as process group is missing.
 2026-03-01 21:42:32,741 INFO - Exited execute loop
+2026-03-01 22:27:41,782 INFO - Loaded executor: SequentialExecutor
+2026-03-01 22:27:42,523 INFO - Starting the scheduler
+2026-03-01 22:27:42,524 INFO - Processing each file at most -1 times
+2026-03-01 22:27:42,533 INFO - Launched DagFileProcessorManager with pid: 14179
+2026-03-01 22:27:42,540 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-01 22:28:14,896 INFO - 1 tasks up for execution:
+	<TaskInstance: master_system_management_with_logs.cleanup_old_reports manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>
+2026-03-01 22:28:14,898 INFO - DAG master_system_management_with_logs has 0/16 running and queued tasks
+2026-03-01 22:28:14,898 INFO - Setting the following tasks to queued state:
+	<TaskInstance: master_system_management_with_logs.cleanup_old_reports manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>
+2026-03-01 22:28:14,902 INFO - Trying to enqueue tasks: [<TaskInstance: master_system_management_with_logs.cleanup_old_reports manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-03-01 22:28:14,903 INFO - Sending TaskInstanceKey(dag_id='master_system_management_with_logs', task_id='cleanup_old_reports', run_id='manual__2026-03-01T14:28:04.926625+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 5 and queue default
+2026-03-01 22:28:14,904 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'cleanup_old_reports', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 22:28:14,907 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'cleanup_old_reports', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 22:28:18,973 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='master_system_management_with_logs', task_id='cleanup_old_reports', run_id='manual__2026-03-01T14:28:04.926625+00:00', try_number=1, map_index=-1)
+2026-03-01 22:28:18,991 INFO - TaskInstance Finished: dag_id=master_system_management_with_logs, task_id=cleanup_old_reports, run_id=manual__2026-03-01T14:28:04.926625+00:00, map_index=-1, run_start_date=2026-03-01 14:28:17.962745+00:00, run_end_date=2026-03-01 14:28:18.390874+00:00, run_duration=0.428129, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=873, pool=default_pool, queue=default, priority_weight=5, operator=PythonOperator, queued_dttm=2026-03-01 14:28:14.900637+00:00, queued_by_job_id=872, pid=14485
+2026-03-01 22:28:25,562 INFO - 2 tasks up for execution:
+	<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>
+	<TaskInstance: master_system_management_with_logs.execute_role_management_test manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>
+2026-03-01 22:28:25,563 INFO - DAG master_system_management_with_logs has 0/16 running and queued tasks
+2026-03-01 22:28:25,564 INFO - DAG master_system_management_with_logs has 1/16 running and queued tasks
+2026-03-01 22:28:25,565 INFO - Setting the following tasks to queued state:
+	<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>
+	<TaskInstance: master_system_management_with_logs.execute_role_management_test manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>
+2026-03-01 22:28:25,567 INFO - Trying to enqueue tasks: [<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>, <TaskInstance: master_system_management_with_logs.execute_role_management_test manual__2026-03-01T14:28:04.926625+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-03-01 22:28:25,568 INFO - Sending TaskInstanceKey(dag_id='master_system_management_with_logs', task_id='execute_user_management_test', run_id='manual__2026-03-01T14:28:04.926625+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-03-01 22:28:25,569 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 22:28:25,570 INFO - Sending TaskInstanceKey(dag_id='master_system_management_with_logs', task_id='execute_role_management_test', run_id='manual__2026-03-01T14:28:04.926625+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-03-01 22:28:25,572 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 22:28:25,576 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']

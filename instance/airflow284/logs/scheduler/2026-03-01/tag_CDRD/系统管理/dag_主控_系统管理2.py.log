@@ -88,3 +88,8 @@
 [2026-03-01T21:33:42.531+0800] {logging_mixin.py:190} INFO - [2026-03-01T21:33:42.530+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
 [2026-03-01T21:33:42.532+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
 [2026-03-01T21:33:42.647+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py took 121.669 seconds
+[2026-03-01T22:28:01.888+0800] {processor.py:186} INFO - Started process (PID=14202) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-01T22:28:01.889+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py for tasks to queue
+[2026-03-01T22:28:01.890+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:28:01.890+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-01T22:28:01.892+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-01T22:28:02.018+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py took 133.541 seconds

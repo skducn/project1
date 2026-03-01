@@ -973,3 +973,18 @@
 [2026-03-01T21:28:20.531+0800] {logging_mixin.py:190} INFO - [2026-03-01T21:28:20.530+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-03-01T21:28:20.554+0800] {logging_mixin.py:190} INFO - [2026-03-01T21:28:20.553+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_角色管理_并发_报表 to None, run_after=None
 [2026-03-01T21:28:20.576+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_角色管理_并发_报表.py took 3285.381 seconds
+[2026-03-01T22:28:21.370+0800] {processor.py:186} INFO - Started process (PID=14487) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_角色管理_并发_报表.py
+[2026-03-01T22:28:21.371+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_角色管理_并发_报表.py for tasks to queue
+[2026-03-01T22:28:21.373+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:28:21.372+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_角色管理_并发_报表.py
+[2026-03-01T22:28:24.058+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理
+[2026-03-01T22:28:24.059+0800] {logging_mixin.py:190} INFO - Calculated project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-01T22:28:24.059+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-01T22:28:24.059+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-01T22:28:24.060+0800] {logging_mixin.py:190} INFO - 项目配置路径 /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+[2026-03-01T22:28:24.061+0800] {logging_mixin.py:190} INFO - Added web project root to sys.path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
+[2026-03-01T22:28:24.376+0800] {logging_mixin.py:190} INFO - Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini
+[2026-03-01T22:28:24.379+0800] {logging_mixin.py:190} INFO - ✓ 成功导入配置解析器
+[2026-03-01T22:28:24.441+0800] {processor.py:925} INFO - DAG(s) 'cdrd_角色管理_并发_报表' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_角色管理_并发_报表.py
+[2026-03-01T22:28:24.707+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:28:24.706+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-01T22:28:24.720+0800] {logging_mixin.py:190} INFO - [2026-03-01T22:28:24.719+0800] {dag.py:4180} INFO - Setting next_dagrun for cdrd_角色管理_并发_报表 to None, run_after=None
+[2026-03-01T22:28:24.746+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/角色管理/dag_角色管理_并发_报表.py took 3379.058 seconds
