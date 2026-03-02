@@ -35,3 +35,17 @@
 [2026-03-01T22:28:25.576+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
 [2026-03-01T22:28:28.413+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
 [2026-03-01T22:28:29.397+0800] {task_command.py:467} INFO - Running <TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [queued]> on host localhost-2.local
+[2026-03-01T23:04:26.041+0800] {scheduler_job_runner.py:272} INFO - Exiting gracefully upon receiving signal 15
+[2026-03-01T23:04:27.080+0800] {process_utils.py:132} INFO - Sending Signals.SIGTERM to group 14179. PIDs of all processes in the group: [14179]
+[2026-03-01T23:04:27.081+0800] {process_utils.py:87} INFO - Sending the signal Signals.SIGTERM to group 14179
+[2026-03-01T23:04:27.110+0800] {process_utils.py:80} INFO - Process psutil.Process(pid=14179, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='22:27:42') (14179) terminated with exit code Negsignal.SIGTERM
+[2026-03-01T23:04:27.132+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+[2026-03-01T23:04:31.464+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-01T23:04:32.391+0800] {task_command.py:467} INFO - Running <TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]> on host localhost-2.local
+[2026-03-01T23:04:32.958+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+[2026-03-01T23:04:35.026+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-01T23:04:35.585+0800] {task_command.py:467} INFO - Running <TaskInstance: master_system_management_with_logs.execute_role_management_test manual__2026-03-01T14:28:04.926625+00:00 [queued]> on host localhost-2.local
+[2026-03-01T23:04:35.810+0800] {scheduler_job_runner.py:272} INFO - Exiting gracefully upon receiving signal 15
+[2026-03-01T23:04:35.826+0800] {process_utils.py:132} INFO - Sending Signals.SIGTERM to group 14179. PIDs of all processes in the group: []
+[2026-03-01T23:04:35.828+0800] {process_utils.py:87} INFO - Sending the signal Signals.SIGTERM to group 14179
+[2026-03-01T23:04:35.829+0800] {process_utils.py:101} INFO - Sending the signal Signals.SIGTERM to process 14179 as process group is missing.

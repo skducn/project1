@@ -176,7 +176,7 @@ class RequirementParser:
             "design_method": "场景法"
         }
 
-    def export_to_excel(self, output_file: str = "test_cases.xlsx") -> None:
+    def export_to_excel(self, output_file: str = "testcase.xlsx") -> None:
         """导出测试用例和RTM到Excel"""
         df_cases = pd.DataFrame(self.test_cases)
         df_rtm = pd.DataFrame(self.rtm)

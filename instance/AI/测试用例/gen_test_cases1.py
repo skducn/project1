@@ -107,7 +107,7 @@ def generate_test_cases_with_llm(requirement_text):
 
 
 # -------------------------- 第三步：用例写入Excel（可导入禅道） --------------------------
-def write_cases_to_excel(test_cases_text, excel_path="test_cases.xlsx"):
+def write_cases_to_excel(test_cases_text, excel_path="testcase.xlsx"):
     """将生成的用例写入Excel，适配禅道导入格式"""
     wb = openpyxl.Workbook()
     ws = wb.active
@@ -261,6 +261,6 @@ if __name__ == "__main__":
 #     await page.select("#export_range", "all")
 #     await page.click("#export_button")
 #     assert "导出成功" in await page.text_content("#message")
-# 测试用例已写入Excel：test_cases.xlsx
+# 测试用例已写入Excel：testcase.xlsx
 #
 # Process finished with exit code 0

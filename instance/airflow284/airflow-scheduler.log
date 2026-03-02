@@ -13508,3 +13508,13 @@ subprocess.CalledProcessError: Command '['sudo', '-n', 'kill', '-15', '861']' re
 2026-03-01 22:28:25,570 INFO - Sending TaskInstanceKey(dag_id='master_system_management_with_logs', task_id='execute_role_management_test', run_id='manual__2026-03-01T14:28:04.926625+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
 2026-03-01 22:28:25,572 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
 2026-03-01 22:28:25,576 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 23:04:26,041 INFO - Exiting gracefully upon receiving signal 15
+2026-03-01 23:04:27,080 INFO - Sending Signals.SIGTERM to group 14179. PIDs of all processes in the group: [14179]
+2026-03-01 23:04:27,081 INFO - Sending the signal Signals.SIGTERM to group 14179
+2026-03-01 23:04:27,110 INFO - Process psutil.Process(pid=14179, status='terminated', exitcode=<Negsignal.SIGTERM: -15>, started='22:27:42') (14179) terminated with exit code Negsignal.SIGTERM
+2026-03-01 23:04:27,132 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_user_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 23:04:32,958 INFO - Executing command: ['airflow', 'tasks', 'run', 'master_system_management_with_logs', 'execute_role_management_test', 'manual__2026-03-01T14:28:04.926625+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/dag_主控_系统管理.py']
+2026-03-01 23:04:35,810 INFO - Exiting gracefully upon receiving signal 15
+2026-03-01 23:04:35,826 INFO - Sending Signals.SIGTERM to group 14179. PIDs of all processes in the group: []
+2026-03-01 23:04:35,828 INFO - Sending the signal Signals.SIGTERM to group 14179
+2026-03-01 23:04:35,829 INFO - Sending the signal Signals.SIGTERM to process 14179 as process group is missing.

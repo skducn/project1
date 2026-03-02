@@ -21,3 +21,10 @@
 [2026-03-01T22:28:29.944+0800] {logging_mixin.py:190} INFO - ⚠️ 获取Airflow配置失败: section/key [core/airflow_home] not found in config
 [2026-03-01T22:28:29.944+0800] {logging_mixin.py:190} INFO - 🌐 API配置获取完成: http://localhost:8080
 [2026-03-01T22:28:29.945+0800] {logging_mixin.py:190} INFO - 🔍 验证API连接...
+[2026-03-01T23:04:26.012+0800] {local_task_job_runner.py:127} ERROR - Received SIGTERM. Terminating subprocesses
+[2026-03-01T23:04:26.061+0800] {process_utils.py:132} INFO - Sending 15 to group 14498. PIDs of all processes in the group: [14498]
+[2026-03-01T23:04:26.062+0800] {process_utils.py:87} INFO - Sending the signal 15 to group 14498
+[2026-03-01T23:04:32.462+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-01T23:04:32.475+0800] {taskinstance.py:2621} INFO - Dependencies not met for <TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]>, dependency 'Task Instance Not Running' FAILED: Task is in the running state
+[2026-03-01T23:04:32.486+0800] {taskinstance.py:2621} INFO - Dependencies not met for <TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]>, dependency 'Task Instance State' FAILED: Task is in the 'running' state.
+[2026-03-01T23:04:32.487+0800] {local_task_job_runner.py:166} INFO - Task is not able to be run

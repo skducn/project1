@@ -48,5 +48,5 @@ if __name__ == "__main__":
     
     # 3. 输出到Excel
     df = pd.DataFrame(testcases)
-    df.to_excel("test_cases.xlsx", index=False)
-    print("已生成测试用例文件：test_cases.xlsx")
+    df.to_excel("testcase.xlsx", index=False)
+    print("已生成测试用例文件：testcase.xlsx")
