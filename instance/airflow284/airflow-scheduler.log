@@ -13518,3 +13518,48 @@ subprocess.CalledProcessError: Command '['sudo', '-n', 'kill', '-15', '861']' re
 2026-03-01 23:04:35,826 INFO - Sending Signals.SIGTERM to group 14179. PIDs of all processes in the group: []
 2026-03-01 23:04:35,828 INFO - Sending the signal Signals.SIGTERM to group 14179
 2026-03-01 23:04:35,829 INFO - Sending the signal Signals.SIGTERM to process 14179 as process group is missing.
+2026-03-05 17:27:25,883 INFO - Loaded executor: SequentialExecutor
+2026-03-05 17:27:26,588 INFO - Starting the scheduler
+2026-03-05 17:27:26,589 INFO - Processing each file at most -1 times
+2026-03-05 17:27:26,597 INFO - Launched DagFileProcessorManager with pid: 15857
+2026-03-05 17:27:26,603 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-05 17:27:26,628 INFO - Reset the following 2 orphaned TaskInstances:
+	<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]>
+	<TaskInstance: master_system_management_with_logs.execute_role_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]>
+2026-03-05 17:27:44,399 INFO - Run manual__2026-03-01T14:28:04.926625+00:00 of master_system_management_with_logs has timed-out
+2026-03-05 17:27:53,057 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
+2026-03-05 17:27:53,058 INFO - DAG cdrd_用户管理_并发 has 0/16 running and queued tasks
+2026-03-05 17:27:53,059 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
+2026-03-05 17:27:53,064 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-03-05 17:27:53,065 INFO - Sending TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='读取测试用例', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
+2026-03-05 17:27:53,066 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '读取测试用例', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
+2026-03-05 17:27:53,068 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '读取测试用例', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
+2026-03-05 17:27:58,154 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='读取测试用例', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1)
+2026-03-05 17:27:58,168 INFO - TaskInstance Finished: dag_id=cdrd_用户管理_并发, task_id=读取测试用例, run_id=manual__2026-03-05T09:27:48.185771+00:00, map_index=-1, run_start_date=2026-03-05 09:27:57.215666+00:00, run_end_date=2026-03-05 09:27:57.418015+00:00, run_duration=0.202349, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=878, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-03-05 09:27:53.060827+00:00, queued_by_job_id=877, pid=15892
+2026-03-05 17:28:01,946 INFO - 1 tasks up for execution:
+	<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
+2026-03-05 17:28:01,947 INFO - DAG cdrd_用户管理_并发 has 0/16 running and queued tasks
+2026-03-05 17:28:01,948 INFO - Setting the following tasks to queued state:
+	<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
+2026-03-05 17:28:01,951 INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
+2026-03-05 17:28:01,952 INFO - Sending TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='并行执行消费者', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
+2026-03-05 17:28:01,953 INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '并行执行消费者', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
+2026-03-05 17:28:01,955 INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '并行执行消费者', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
+2026-03-05 17:28:52,437 INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='并行执行消费者', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1)
+2026-03-05 17:28:52,451 INFO - TaskInstance Finished: dag_id=cdrd_用户管理_并发, task_id=并行执行消费者, run_id=manual__2026-03-05T09:27:48.185771+00:00, map_index=-1, run_start_date=2026-03-05 09:28:05.644154+00:00, run_end_date=2026-03-05 09:28:51.611414+00:00, run_duration=45.96726, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=879, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-03-05 09:28:01.949726+00:00, queued_by_job_id=877, pid=15898
+2026-03-05 17:28:52,464 ERROR - DagFileProcessorManager (PID=15857) last sent a heartbeat 50.56 seconds ago! Restarting it
+2026-03-05 17:28:52,475 INFO - Sending Signals.SIGTERM to group 15857. PIDs of all processes in the group: [15857]
+2026-03-05 17:28:52,475 INFO - Sending the signal Signals.SIGTERM to group 15857
+2026-03-05 17:28:53,059 INFO - Process psutil.Process(pid=15857, status='terminated', exitcode=0, started='17:27:26') (15857) terminated with exit code 0
+2026-03-05 17:28:53,067 INFO - Launched DagFileProcessorManager with pid: 15955
+2026-03-05 17:28:53,082 INFO - Heartbeat recovered after 54.90 seconds
+2026-03-05 17:29:03,286 INFO - Marking run <DagRun cdrd_用户管理_并发 @ 2026-03-05 09:27:48.185771+00:00: manual__2026-03-05T09:27:48.185771+00:00, state:running, queued_at: 2026-03-05 09:27:48.209181+00:00. externally triggered: True> successful
+2026-03-05 17:29:03,287 INFO - DagRun Finished: dag_id=cdrd_用户管理_并发, execution_date=2026-03-05 09:27:48.185771+00:00, run_id=manual__2026-03-05T09:27:48.185771+00:00, run_start_date=2026-03-05 09:27:50.657777+00:00, run_end_date=2026-03-05 09:29:03.287226+00:00, run_duration=72.629449, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-03-05 09:27:48.185771+00:00, data_interval_end=2026-03-05 09:27:48.185771+00:00, dag_hash=d27c3cd74537b479a07537c60c47be1b
+2026-03-05 17:32:29,063 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-05 17:37:31,790 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-05 17:42:34,405 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-05 17:56:32,263 INFO - Heartbeat recovered after 793.55 seconds
+2026-03-05 18:01:58,167 INFO - Heartbeat recovered after 136.51 seconds
+2026-03-05 18:02:53,559 INFO - Adopting or resetting orphaned tasks for active dag runs

@@ -1,0 +1,114 @@
+[2026-03-05T17:28:05.627+0800] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2026-03-05T17:28:05.643+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [queued]>
+[2026-03-05T17:28:05.651+0800] {taskinstance.py:2631} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [queued]>
+[2026-03-05T17:28:05.651+0800] {taskinstance.py:2884} INFO - Starting attempt 1 of 1
+[2026-03-05T17:28:05.664+0800] {taskinstance.py:2907} INFO - Executing <Task(PythonOperator): 并行执行消费者> on 2026-03-05 09:27:48.185771+00:00
+[2026-03-05T17:28:05.668+0800] {standard_task_runner.py:72} INFO - Started process 15898 to run task
+[2026-03-05T17:28:05.675+0800] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '并行执行消费者', 'manual__2026-03-05T09:27:48.185771+00:00', '--job-id', '879', '--raw', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py', '--cfg-path', '/var/folders/f7/4z7jtb213fs0mtgbw_0vs2600000gn/T/tmpuutfltxn']
+[2026-03-05T17:28:05.679+0800] {standard_task_runner.py:105} INFO - Job 879: Subtask 并行执行消费者
+[2026-03-05T17:28:05.726+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [running]> on host localhost-2.local
+[2026-03-05T17:28:05.800+0800] {taskinstance.py:3157} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='cdrd_用户管理_并发' AIRFLOW_CTX_TASK_ID='并行执行消费者' AIRFLOW_CTX_EXECUTION_DATE='2026-03-05T09:27:48.185771+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-03-05T09:27:48.185771+00:00'
+[2026-03-05T17:28:05.801+0800] {taskinstance.py:740} INFO - ::endgroup::
+[2026-03-05T17:28:05.818+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-05T17:28:05.818+0800] {logging_mixin.py:190} INFO - 【优化版并行消费者】开始执行测试任务...
+[2026-03-05T17:28:05.819+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-05T17:28:05.824+0800] {logging_mixin.py:190} INFO - 📊 从XCom获取到的测试用例数据: 3 条
+[2026-03-05T17:28:05.825+0800] {logging_mixin.py:190} INFO - ⚙️ 优先执行任务配置: []
+[2026-03-05T17:28:05.825+0800] {logging_mixin.py:190} INFO - ⚠️ 优先任务列表为空，将直接执行所有任务为普通任务
+[2026-03-05T17:28:05.826+0800] {logging_mixin.py:190} INFO - ⚙️ 最大并发数配置: 3
+[2026-03-05T17:28:05.826+0800] {logging_mixin.py:190} INFO - 📝 任务: 新增角色
+[2026-03-05T17:28:05.826+0800] {logging_mixin.py:190} INFO - 📝 任务: 编辑角色
+[2026-03-05T17:28:05.827+0800] {logging_mixin.py:190} INFO - 📝 任务: 编辑222角色
+[2026-03-05T17:28:05.827+0800] {logging_mixin.py:190} INFO - 📊 任务分类结果 - 优先任务: 0个, 普通任务: 3个
+[2026-03-05T17:28:05.828+0800] {logging_mixin.py:190} INFO - 🎯 识别的优先任务: []
+[2026-03-05T17:28:05.828+0800] {logging_mixin.py:190} INFO - ⏭️ 无优先任务需要执行
+[2026-03-05T17:28:05.828+0800] {logging_mixin.py:190} INFO - 
+==================================================
+[2026-03-05T17:28:05.829+0800] {logging_mixin.py:190} INFO - 🔄 执行任务（普通模式）
+[2026-03-05T17:28:05.829+0800] {logging_mixin.py:190} INFO - ==================================================
+[2026-03-05T17:28:05.830+0800] {logging_mixin.py:190} INFO - 💡 检测到优先任务为空，将所有任务按普通任务模式执行
+[2026-03-05T17:28:05.830+0800] {logging_mixin.py:190} INFO - 🔄 开始执行普通任务（按原模式）
+[2026-03-05T17:28:05.831+0800] {logging_mixin.py:190} INFO - 📋 普通任务列表: ['新增角色', '编辑角色', '编辑222角色']
+[2026-03-05T17:28:05.831+0800] {logging_mixin.py:190} INFO - 📊 普通任务将分为 1 批执行，每批最多 3 个任务并发
+[2026-03-05T17:28:05.831+0800] {logging_mixin.py:190} INFO - 
+🔄 开始执行普通任务第 1/1 批: ['新增角色', '编辑角色', '编辑222角色']
+[2026-03-05T17:28:05.832+0800] {logging_mixin.py:190} INFO - 📥 提交普通任务: 新增角色
+[2026-03-05T17:28:05.833+0800] {logging_mixin.py:190} INFO - ===================== 新增角色 消费者开始执行 ====================
+[2026-03-05T17:28:05.833+0800] {logging_mixin.py:190} INFO - 📥 提交普通任务: 编辑角色
+[2026-03-05T17:28:05.834+0800] {logging_mixin.py:190} INFO - ===================== 编辑角色 消费者开始执行 ====================
+[2026-03-05T17:28:05.834+0800] {logging_mixin.py:190} INFO - 📥 提交普通任务: 编辑222角色
+[2026-03-05T17:28:05.835+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 新增角色
+[2026-03-05T17:28:05.836+0800] {logging_mixin.py:190} INFO - ⏳ 等待普通任务批次 1 完成...
+[2026-03-05T17:28:05.836+0800] {logging_mixin.py:190} INFO - ===================== 编辑222角色 消费者开始执行 ====================
+[2026-03-05T17:28:05.837+0800] {logging_mixin.py:190} INFO - [编辑222角色] 跳过不匹配的测试用例: 新增角色
+[2026-03-05T17:28:05.838+0800] {logging_mixin.py:190} INFO - [编辑222角色] 跳过不匹配的测试用例: 编辑角色
+[2026-03-05T17:28:05.868+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] 开始执行测试用例: 系统管理/角色管理/新增角色.py
+[2026-03-05T17:28:05.871+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] 开始执行测试用例: 系统管理/角色管理/编辑222角色.py
+[2026-03-05T17:28:05.871+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_1] 开始执行测试用例: 系统管理/角色管理/编辑角色.py
+[2026-03-05T17:28:06.334+0800] {logging_mixin.py:190} INFO - 编辑222角色，生成随机数据: [['黑龙江省张家港县浔阳刘路r座 610646']]
+[2026-03-05T17:28:06.334+0800] {logging_mixin.py:190} INFO - 新增角色，生成随机数据: [['罗兰英', '806097', '467565', '宁夏回族自治区龙县双滦田街f座 538223']]
+[2026-03-05T17:28:06.334+0800] {logging_mixin.py:190} INFO - 编辑角色，生成指定数据: {'role_name': '7566', 'remark': 'today'}
+[2026-03-05T17:28:24.395+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] Playwright执行结果: {'remark': '黑龙江省张家港县浔阳刘路r座 610646'}
+[2026-03-05T17:28:24.397+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where remark='黑龙江省张家港县浔阳刘路r座 610646'", 'v': 1}]
+[2026-03-05T17:28:24.410+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] 数据库查询结果: [{'qty': 1}]
+[2026-03-05T17:28:24.411+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where remark='黑龙江省张家港县浔阳刘路r座 610646'", 'v': 1}
+[2026-03-05T17:28:24.555+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] ✅ 测试用例执行通过
+[2026-03-05T17:28:24.597+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_2] ✅ 数据库连接已关闭
+[2026-03-05T17:28:24.598+0800] {logging_mixin.py:190} INFO - [编辑222角色] ✅ 测试执行成功
+[2026-03-05T17:28:24.598+0800] {logging_mixin.py:190} INFO - ===================== 编辑222角色 消费者执行完成 ====================
+[2026-03-05T17:28:24.910+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] Playwright执行结果: {'role_name': '罗兰英', 'role_key': '806097', 'role_sort': '467565', 'remark': '宁夏回族自治区龙县双滦田街f座 538223'}
+[2026-03-05T17:28:24.911+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] 解析后的验证数据: [{'k': "select count(*) as qty from sys_role where role_name='罗兰英'", 'v': 1}]
+[2026-03-05T17:28:24.915+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] 数据库查询结果: [{'qty': 1}]
+[2026-03-05T17:28:24.916+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] ✅ 通过校验 {'k': "select count(*) as qty from sys_role where role_name='罗兰英'", 'v': 1}
+[2026-03-05T17:28:24.993+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] ✅ 测试用例执行通过
+[2026-03-05T17:28:25.031+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_0] ✅ 数据库连接已关闭
+[2026-03-05T17:28:25.032+0800] {logging_mixin.py:190} INFO - [新增角色] ✅ 测试执行成功
+[2026-03-05T17:28:25.032+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑角色
+[2026-03-05T17:28:25.033+0800] {logging_mixin.py:190} INFO - [新增角色] 跳过不匹配的测试用例: 编辑222角色
+[2026-03-05T17:28:25.033+0800] {logging_mixin.py:190} INFO - ===================== 新增角色 消费者执行完成 ====================
+[2026-03-05T17:28:25.034+0800] {logging_mixin.py:190} INFO - ✅ 普通任务 新增角色 执行完成 - 成功:1, 失败:0
+[2026-03-05T17:28:51.558+0800] {logging_mixin.py:190} INFO - [线程 Normal_Batch1_1] ❌ 执行失败: Timeout 30000ms exceeded.
+[2026-03-05T17:28:51.559+0800] {logging_mixin.py:190} WARNING - Traceback (most recent call last):
+[2026-03-05T17:28:51.560+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py", line 151, in _execute_playwright_script
+    result = module.run_playwright()
+[2026-03-05T17:28:51.561+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/系统管理/角色管理/编辑角色.py", line 100, in run_playwright
+    page.get_by_text("系统管理").click()
+[2026-03-05T17:28:51.561+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 15784, in click
+    self._sync(
+[2026-03-05T17:28:51.562+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+[2026-03-05T17:28:51.562+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_locator.py", line 159, in click
+    return await self._frame.click(self._selector, strict=True, **params)
+[2026-03-05T17:28:51.563+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_frame.py", line 484, in click
+    await self._channel.send("click", locals_to_params(locals()))
+[2026-03-05T17:28:51.563+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 62, in send
+    return await self._connection.wrap_api_call(
+[2026-03-05T17:28:51.564+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 492, in wrap_api_call
+    return await cb()
+[2026-03-05T17:28:51.565+0800] {logging_mixin.py:190} WARNING -   File "/Users/linghuchong/miniconda3/envs/py310/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 100, in inner_send
+    result = next(iter(done)).result()
+[2026-03-05T17:28:51.565+0800] {logging_mixin.py:190} WARNING - playwright._impl._errors.TimeoutError: Timeout 30000ms exceeded.
+[2026-03-05T17:28:51.566+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_1] Playwright执行结果: None
+[2026-03-05T17:28:51.566+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_1] ❌ Playwright执行失败，测试用例失败
+[2026-03-05T17:28:51.567+0800] {logging_mixin.py:190} INFO - [Normal_Batch1_1] ✅ 数据库连接已关闭
+[2026-03-05T17:28:51.568+0800] {logging_mixin.py:190} INFO - [编辑角色] ❌ 测试执行失败
+[2026-03-05T17:28:51.569+0800] {logging_mixin.py:190} INFO - [编辑角色] 跳过不匹配的测试用例: 编辑222角色
+[2026-03-05T17:28:51.570+0800] {logging_mixin.py:190} INFO - ===================== 编辑角色 消费者执行完成 ====================
+[2026-03-05T17:28:51.571+0800] {logging_mixin.py:190} INFO - ✅ 普通任务 编辑角色 执行完成 - 成功:0, 失败:1
+[2026-03-05T17:28:51.572+0800] {logging_mixin.py:190} INFO - ✅ 普通任务 编辑222角色 执行完成 - 成功:1, 失败:0
+[2026-03-05T17:28:51.573+0800] {logging_mixin.py:190} INFO - 🏁 普通任务批次 1 执行完成
+[2026-03-05T17:28:51.574+0800] {logging_mixin.py:190} INFO - 
+============================================================
+[2026-03-05T17:28:51.574+0800] {logging_mixin.py:190} INFO - 🎉 【优化版并行消费者】所有测试执行完成
+[2026-03-05T17:28:51.575+0800] {logging_mixin.py:190} INFO - ============================================================
+[2026-03-05T17:28:51.576+0800] {logging_mixin.py:190} INFO - 📈 总体统计:
+[2026-03-05T17:28:51.576+0800] {logging_mixin.py:190} INFO -    • 总执行任务数: 3
+[2026-03-05T17:28:51.577+0800] {logging_mixin.py:190} INFO -    • 成功: 2
+[2026-03-05T17:28:51.577+0800] {logging_mixin.py:190} INFO -    • 失败: 1
+[2026-03-05T17:28:51.578+0800] {logging_mixin.py:190} INFO -    • 成功率: 66.7%
+[2026-03-05T17:28:51.579+0800] {python.py:240} INFO - Done. Returned value was: {'新增角色': {'module': '系统管理-角色管理-新增角色', 'success_count': 1, 'fail_count': 0, 'total_count': 1}, '编辑角色': {'module': '系统管理-角色管理-编辑角色', 'success_count': 0, 'fail_count': 1, 'total_count': 1}, '编辑222角色': {'module': '系统管理-角色管理-编辑222角色', 'success_count': 1, 'fail_count': 0, 'total_count': 1}}
+[2026-03-05T17:28:51.609+0800] {taskinstance.py:349} INFO - ::group::Post task execution logs
+[2026-03-05T17:28:51.613+0800] {taskinstance.py:361} INFO - Marking task as SUCCESS. dag_id=cdrd_用户管理_并发, task_id=并行执行消费者, run_id=manual__2026-03-05T09:27:48.185771+00:00, execution_date=20260305T092748, start_date=20260305T092805, end_date=20260305T092851
+[2026-03-05T17:28:51.664+0800] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2026-03-05T17:28:51.689+0800] {taskinstance.py:3924} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-03-05T17:28:51.690+0800] {local_task_job_runner.py:245} INFO - ::endgroup::
