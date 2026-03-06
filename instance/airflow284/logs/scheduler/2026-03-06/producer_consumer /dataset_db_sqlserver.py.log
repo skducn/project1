@@ -830,3 +830,8 @@
 [2026-03-06T15:37:14.652+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:37:14.651+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_sqlserver to None, run_after=None
 [2026-03-06T15:37:14.655+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:37:14.654+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_sqlserver to None, run_after=None
 [2026-03-06T15:37:14.676+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 268.683 seconds
+[2026-03-06T15:41:12.311+0800] {processor.py:186} INFO - Started process (PID=16431) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-03-06T15:41:12.314+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py for tasks to queue
+[2026-03-06T15:41:12.315+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:41:12.315+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-03-06T15:41:12.316+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py
+[2026-03-06T15:41:12.430+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_db_sqlserver.py took 121.414 seconds

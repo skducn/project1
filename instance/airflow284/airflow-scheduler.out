@@ -76,3 +76,65 @@
 [2026-03-06T15:26:32.652+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
 [2026-03-06T15:31:36.091+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
 [2026-03-06T15:36:38.484+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:41:33.976+0800] {manager.py:537} INFO - DAG producer_variable_sync is missing and will be deactivated.
+[2026-03-06T15:41:33.980+0800] {manager.py:537} INFO - DAG consumer_variable is missing and will be deactivated.
+[2026-03-06T15:41:33.980+0800] {manager.py:537} INFO - DAG producer_xcom_sync is missing and will be deactivated.
+[2026-03-06T15:41:33.981+0800] {manager.py:537} INFO - DAG consumer_xcom1 is missing and will be deactivated.
+[2026-03-06T15:41:33.981+0800] {manager.py:537} INFO - DAG consumer_xcom2 is missing and will be deactivated.
+[2026-03-06T15:41:33.981+0800] {manager.py:537} INFO - DAG consumer2_order_stat is missing and will be deactivated.
+[2026-03-06T15:41:33.981+0800] {manager.py:537} INFO - DAG producer_DIPOA_dw_order_raw_sync is missing and will be deactivated.
+[2026-03-06T15:41:33.981+0800] {manager.py:537} INFO - DAG consumer1_order_clean is missing and will be deactivated.
+[2026-03-06T15:41:33.981+0800] {manager.py:537} INFO - DAG producer_order_mysql is missing and will be deactivated.
+[2026-03-06T15:41:33.982+0800] {manager.py:537} INFO - DAG consumer_order_mysql is missing and will be deactivated.
+[2026-03-06T15:41:33.982+0800] {manager.py:537} INFO - DAG consumer_order_sqlserver is missing and will be deactivated.
+[2026-03-06T15:41:33.982+0800] {manager.py:537} INFO - DAG producer_order_sqlserver is missing and will be deactivated.
+[2026-03-06T15:41:33.982+0800] {manager.py:537} INFO - DAG p_1p1n1n_DAGs is missing and will be deactivated.
+[2026-03-06T15:41:33.983+0800] {manager.py:537} INFO - DAG p_1p2n_DAGs is missing and will be deactivated.
+[2026-03-06T15:41:33.983+0800] {manager.py:537} INFO - DAG c_1p2n_DAG1 is missing and will be deactivated.
+[2026-03-06T15:41:33.983+0800] {manager.py:537} INFO - DAG c_1p2n_DAG2 is missing and will be deactivated.
+[2026-03-06T15:41:33.983+0800] {manager.py:537} INFO - DAG c_1p1n1n_DAG2 is missing and will be deactivated.
+[2026-03-06T15:41:33.983+0800] {manager.py:537} INFO - DAG consumer_multi_source_analysis is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG producer_product_dag is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG producer_user_dag is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG producer_order_dag is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG c_1p1n1n_DAG1 is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG c_1p1n1n_DAG3 is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG p_1p1n_DAGs is missing and will be deactivated.
+[2026-03-06T15:41:33.984+0800] {manager.py:537} INFO - DAG p_2p1n_dw_order_sync is missing and will be deactivated.
+[2026-03-06T15:41:33.985+0800] {manager.py:537} INFO - DAG c_2p1n_order_user_analysis is missing and will be deactivated.
+[2026-03-06T15:41:33.985+0800] {manager.py:537} INFO - DAG p_2p1n_dw_user_sync is missing and will be deactivated.
+[2026-03-06T15:41:33.985+0800] {manager.py:537} INFO - DAG c_1p1n is missing and will be deactivated.
+[2026-03-06T15:41:33.985+0800] {manager.py:537} INFO - DAG c_1p1n2t is missing and will be deactivated.
+[2026-03-06T15:41:33.985+0800] {manager.py:537} INFO - DAG p_1p1n2t_DAGs is missing and will be deactivated.
+[2026-03-06T15:41:33.993+0800] {manager.py:549} INFO - Deactivated 30 DAGs which are no longer present in file.
+[2026-03-06T15:41:33.998+0800] {manager.py:553} INFO - Deleted DAG consumer_xcom2 in serialized_dag table
+[2026-03-06T15:41:34.002+0800] {manager.py:553} INFO - Deleted DAG producer_order_mysql in serialized_dag table
+[2026-03-06T15:41:34.006+0800] {manager.py:553} INFO - Deleted DAG producer_xcom_sync in serialized_dag table
+[2026-03-06T15:41:34.010+0800] {manager.py:553} INFO - Deleted DAG consumer_xcom1 in serialized_dag table
+[2026-03-06T15:41:34.013+0800] {manager.py:553} INFO - Deleted DAG p_1p1n2t_DAGs in serialized_dag table
+[2026-03-06T15:41:34.016+0800] {manager.py:553} INFO - Deleted DAG c_1p1n1n_DAG2 in serialized_dag table
+[2026-03-06T15:41:34.020+0800] {manager.py:553} INFO - Deleted DAG producer_DIPOA_dw_order_raw_sync in serialized_dag table
+[2026-03-06T15:41:34.023+0800] {manager.py:553} INFO - Deleted DAG producer_order_sqlserver in serialized_dag table
+[2026-03-06T15:41:34.027+0800] {manager.py:553} INFO - Deleted DAG consumer_order_sqlserver in serialized_dag table
+[2026-03-06T15:41:34.031+0800] {manager.py:553} INFO - Deleted DAG producer_product_dag in serialized_dag table
+[2026-03-06T15:41:34.034+0800] {manager.py:553} INFO - Deleted DAG c_1p1n1n_DAG3 in serialized_dag table
+[2026-03-06T15:41:34.037+0800] {manager.py:553} INFO - Deleted DAG p_1p1n1n_DAGs in serialized_dag table
+[2026-03-06T15:41:34.040+0800] {manager.py:553} INFO - Deleted DAG c_1p2n_DAG1 in serialized_dag table
+[2026-03-06T15:41:34.043+0800] {manager.py:553} INFO - Deleted DAG c_1p2n_DAG2 in serialized_dag table
+[2026-03-06T15:41:34.046+0800] {manager.py:553} INFO - Deleted DAG consumer2_order_stat in serialized_dag table
+[2026-03-06T15:41:34.050+0800] {manager.py:553} INFO - Deleted DAG p_1p1n_DAGs in serialized_dag table
+[2026-03-06T15:41:34.053+0800] {manager.py:553} INFO - Deleted DAG p_1p2n_DAGs in serialized_dag table
+[2026-03-06T15:41:34.056+0800] {manager.py:553} INFO - Deleted DAG consumer1_order_clean in serialized_dag table
+[2026-03-06T15:41:34.059+0800] {manager.py:553} INFO - Deleted DAG producer_user_dag in serialized_dag table
+[2026-03-06T15:41:34.062+0800] {manager.py:553} INFO - Deleted DAG producer_order_dag in serialized_dag table
+[2026-03-06T15:41:34.065+0800] {manager.py:553} INFO - Deleted DAG consumer_variable in serialized_dag table
+[2026-03-06T15:41:34.068+0800] {manager.py:553} INFO - Deleted DAG p_2p1n_dw_user_sync in serialized_dag table
+[2026-03-06T15:41:34.071+0800] {manager.py:553} INFO - Deleted DAG c_2p1n_order_user_analysis in serialized_dag table
+[2026-03-06T15:41:34.075+0800] {manager.py:553} INFO - Deleted DAG c_1p1n2t in serialized_dag table
+[2026-03-06T15:41:34.078+0800] {manager.py:553} INFO - Deleted DAG consumer_order_mysql in serialized_dag table
+[2026-03-06T15:41:34.081+0800] {manager.py:553} INFO - Deleted DAG c_1p1n in serialized_dag table
+[2026-03-06T15:41:34.085+0800] {manager.py:553} INFO - Deleted DAG c_1p1n1n_DAG1 in serialized_dag table
+[2026-03-06T15:41:34.088+0800] {manager.py:553} INFO - Deleted DAG producer_variable_sync in serialized_dag table
+[2026-03-06T15:41:34.091+0800] {manager.py:553} INFO - Deleted DAG consumer_multi_source_analysis in serialized_dag table
+[2026-03-06T15:41:34.094+0800] {manager.py:553} INFO - Deleted DAG p_2p1n_dw_order_sync in serialized_dag table
+[2026-03-06T15:41:41.049+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
