@@ -1,70 +1,48 @@
-[2026-03-05T17:27:25.883+0800] {executor_loader.py:258} INFO - Loaded executor: SequentialExecutor
-[2026-03-05T17:27:26.588+0800] {scheduler_job_runner.py:950} INFO - Starting the scheduler
-[2026-03-05T17:27:26.589+0800] {scheduler_job_runner.py:957} INFO - Processing each file at most -1 times
-[2026-03-05T17:27:26.597+0800] {manager.py:174} INFO - Launched DagFileProcessorManager with pid: 15857
-[2026-03-05T17:27:26.603+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
-[2026-03-05T17:27:26.628+0800] {scheduler_job_runner.py:2012} INFO - Reset the following 2 orphaned TaskInstances:
-	<TaskInstance: master_system_management_with_logs.execute_user_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]>
-	<TaskInstance: master_system_management_with_logs.execute_role_management_test manual__2026-03-01T14:28:04.926625+00:00 [running]>
-[2026-03-05T17:27:28.599+0800] {settings.py:63} INFO - Configured default timezone Asia/Shanghai
-[2026-03-05T17:27:28.650+0800] {manager.py:406} WARNING - Because we cannot use more than 1 thread (parsing_processes = 2) when using sqlite. So we set parallelism to 1.
-[2026-03-05T17:27:28.910+0800] {core.py:50} INFO - Starting log server on http://[::]:8793
-[2026-03-05T17:27:44.399+0800] {scheduler_job_runner.py:1672} INFO - Run manual__2026-03-01T14:28:04.926625+00:00 of master_system_management_with_logs has timed-out
-[2026-03-05T17:27:53.057+0800] {scheduler_job_runner.py:435} INFO - 1 tasks up for execution:
-	<TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
-[2026-03-05T17:27:53.058+0800] {scheduler_job_runner.py:507} INFO - DAG cdrd_用户管理_并发 has 0/16 running and queued tasks
-[2026-03-05T17:27:53.059+0800] {scheduler_job_runner.py:646} INFO - Setting the following tasks to queued state:
-	<TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
-[2026-03-05T17:27:53.064+0800] {scheduler_job_runner.py:748} INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
-[2026-03-05T17:27:53.065+0800] {scheduler_job_runner.py:692} INFO - Sending TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='读取测试用例', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 3 and queue default
-[2026-03-05T17:27:53.066+0800] {base_executor.py:169} INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '读取测试用例', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
-[2026-03-05T17:27:53.068+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '读取测试用例', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
-[2026-03-05T17:27:55.300+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py
-Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理
-Calculated project root: /Users/linghuchong/Downloads/51/Python/project
-Added /Users/linghuchong/Downloads/51/Python/project to sys.path
-PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
-项目配置路径 /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
-Added web project root to sys.path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
-Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini
-✓ 成功导入配置解析器
-[2026-03-05T17:27:57.030+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_用户管理_并发.读取测试用例 manual__2026-03-05T09:27:48.185771+00:00 [queued]> on host localhost-2.local
-[2026-03-05T17:27:58.154+0800] {scheduler_job_runner.py:776} INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='读取测试用例', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1)
-[2026-03-05T17:27:58.168+0800] {scheduler_job_runner.py:813} INFO - TaskInstance Finished: dag_id=cdrd_用户管理_并发, task_id=读取测试用例, run_id=manual__2026-03-05T09:27:48.185771+00:00, map_index=-1, run_start_date=2026-03-05 09:27:57.215666+00:00, run_end_date=2026-03-05 09:27:57.418015+00:00, run_duration=0.202349, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=878, pool=default_pool, queue=default, priority_weight=3, operator=PythonOperator, queued_dttm=2026-03-05 09:27:53.060827+00:00, queued_by_job_id=877, pid=15892
-[2026-03-05T17:28:01.946+0800] {scheduler_job_runner.py:435} INFO - 1 tasks up for execution:
-	<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
-[2026-03-05T17:28:01.947+0800] {scheduler_job_runner.py:507} INFO - DAG cdrd_用户管理_并发 has 0/16 running and queued tasks
-[2026-03-05T17:28:01.948+0800] {scheduler_job_runner.py:646} INFO - Setting the following tasks to queued state:
-	<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>
-[2026-03-05T17:28:01.951+0800] {scheduler_job_runner.py:748} INFO - Trying to enqueue tasks: [<TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [scheduled]>] for executor: SequentialExecutor(parallelism=32)
-[2026-03-05T17:28:01.952+0800] {scheduler_job_runner.py:692} INFO - Sending TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='并行执行消费者', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1) to SequentialExecutor with priority 2 and queue default
-[2026-03-05T17:28:01.953+0800] {base_executor.py:169} INFO - Adding to queue: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '并行执行消费者', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
-[2026-03-05T17:28:01.955+0800] {sequential_executor.py:84} INFO - Executing command: ['airflow', 'tasks', 'run', 'cdrd_用户管理_并发', '并行执行消费者', 'manual__2026-03-05T09:27:48.185771+00:00', '--local', '--subdir', 'DAGS_FOLDER/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py']
-[2026-03-05T17:28:04.055+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理/dag_用户管理_并发.py
-Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/用户管理
-Calculated project root: /Users/linghuchong/Downloads/51/Python/project
-Added /Users/linghuchong/Downloads/51/Python/project to sys.path
-PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
-项目配置路径 /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
-Added web project root to sys.path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web
-Config file path: /Users/linghuchong/Downloads/51/Python/project/instance/zyjk/CDRD/web/config/config.ini
-✓ 成功导入配置解析器
-[2026-03-05T17:28:05.444+0800] {task_command.py:467} INFO - Running <TaskInstance: cdrd_用户管理_并发.并行执行消费者 manual__2026-03-05T09:27:48.185771+00:00 [queued]> on host localhost-2.local
-[2026-03-05T17:28:52.437+0800] {scheduler_job_runner.py:776} INFO - Received executor event with state success for task instance TaskInstanceKey(dag_id='cdrd_用户管理_并发', task_id='并行执行消费者', run_id='manual__2026-03-05T09:27:48.185771+00:00', try_number=1, map_index=-1)
-[2026-03-05T17:28:52.451+0800] {scheduler_job_runner.py:813} INFO - TaskInstance Finished: dag_id=cdrd_用户管理_并发, task_id=并行执行消费者, run_id=manual__2026-03-05T09:27:48.185771+00:00, map_index=-1, run_start_date=2026-03-05 09:28:05.644154+00:00, run_end_date=2026-03-05 09:28:51.611414+00:00, run_duration=45.96726, state=success, executor=SequentialExecutor(parallelism=32), executor_state=success, try_number=1, max_tries=0, job_id=879, pool=default_pool, queue=default, priority_weight=2, operator=PythonOperator, queued_dttm=2026-03-05 09:28:01.949726+00:00, queued_by_job_id=877, pid=15898
-[2026-03-05T17:28:52.464+0800] {manager.py:293} ERROR - DagFileProcessorManager (PID=15857) last sent a heartbeat 50.56 seconds ago! Restarting it
-[2026-03-05T17:28:52.475+0800] {process_utils.py:132} INFO - Sending Signals.SIGTERM to group 15857. PIDs of all processes in the group: [15857]
-[2026-03-05T17:28:52.475+0800] {process_utils.py:87} INFO - Sending the signal Signals.SIGTERM to group 15857
-[2026-03-05T17:28:53.059+0800] {process_utils.py:80} INFO - Process psutil.Process(pid=15857, status='terminated', exitcode=0, started='17:27:26') (15857) terminated with exit code 0
-[2026-03-05T17:28:53.067+0800] {manager.py:174} INFO - Launched DagFileProcessorManager with pid: 15955
-[2026-03-05T17:28:53.082+0800] {job.py:229} INFO - Heartbeat recovered after 54.90 seconds
-[2026-03-05T17:28:55.661+0800] {settings.py:63} INFO - Configured default timezone Asia/Shanghai
-[2026-03-05T17:28:55.714+0800] {manager.py:406} WARNING - Because we cannot use more than 1 thread (parsing_processes = 2) when using sqlite. So we set parallelism to 1.
-[2026-03-05T17:29:03.286+0800] {dagrun.py:854} INFO - Marking run <DagRun cdrd_用户管理_并发 @ 2026-03-05 09:27:48.185771+00:00: manual__2026-03-05T09:27:48.185771+00:00, state:running, queued_at: 2026-03-05 09:27:48.209181+00:00. externally triggered: True> successful
-[2026-03-05T17:29:03.287+0800] {dagrun.py:905} INFO - DagRun Finished: dag_id=cdrd_用户管理_并发, execution_date=2026-03-05 09:27:48.185771+00:00, run_id=manual__2026-03-05T09:27:48.185771+00:00, run_start_date=2026-03-05 09:27:50.657777+00:00, run_end_date=2026-03-05 09:29:03.287226+00:00, run_duration=72.629449, state=success, external_trigger=True, run_type=manual, data_interval_start=2026-03-05 09:27:48.185771+00:00, data_interval_end=2026-03-05 09:27:48.185771+00:00, dag_hash=d27c3cd74537b479a07537c60c47be1b
-[2026-03-05T17:32:29.063+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
-[2026-03-05T17:37:31.790+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
-[2026-03-05T17:42:34.405+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
-[2026-03-05T17:56:32.263+0800] {job.py:229} INFO - Heartbeat recovered after 793.55 seconds
-[2026-03-05T18:01:58.167+0800] {job.py:229} INFO - Heartbeat recovered after 136.51 seconds
-[2026-03-05T18:02:53.559+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:16:08.488+0800] {executor_loader.py:258} INFO - Loaded executor: SequentialExecutor
+[2026-03-06T09:16:09.121+0800] {scheduler_job_runner.py:950} INFO - Starting the scheduler
+[2026-03-06T09:16:09.123+0800] {scheduler_job_runner.py:957} INFO - Processing each file at most -1 times
+[2026-03-06T09:16:09.130+0800] {manager.py:174} INFO - Launched DagFileProcessorManager with pid: 1534
+[2026-03-06T09:16:09.134+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:16:11.076+0800] {settings.py:63} INFO - Configured default timezone Asia/Shanghai
+[2026-03-06T09:16:11.125+0800] {manager.py:406} WARNING - Because we cannot use more than 1 thread (parsing_processes = 2) when using sqlite. So we set parallelism to 1.
+[2026-03-06T09:16:11.431+0800] {core.py:50} INFO - Starting log server on http://[::]:8793
+[2026-03-06T09:21:10.784+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:26:17.817+0800] {job.py:229} INFO - Heartbeat recovered after 181.96 seconds
+[2026-03-06T09:29:09.859+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:31:09.804+0800] {job.py:229} INFO - Heartbeat recovered after 88.19 seconds
+[2026-03-06T09:36:29.504+0800] {job.py:229} INFO - Heartbeat recovered after 105.29 seconds
+[2026-03-06T09:37:09.857+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:42:12.226+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:47:12.407+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:52:15.273+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T09:57:17.007+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:02:17.452+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:07:18.839+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:12:18.958+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:17:19.753+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:22:19.885+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:27:22.216+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:32:23.451+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:37:25.229+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:42:25.539+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:47:27.704+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:52:30.983+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T10:57:34.686+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:02:35.364+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:07:37.706+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:12:40.037+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:17:42.663+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:22:44.846+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:27:47.209+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:32:49.701+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:37:50.868+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:42:53.437+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:47:55.630+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:52:56.630+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T11:57:57.108+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T12:02:59.421+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T12:08:01.997+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T12:32:12.451+0800] {job.py:229} INFO - Heartbeat recovered after 1415.97 seconds
+[2026-03-06T13:04:06.459+0800] {job.py:229} INFO - Heartbeat recovered after 1879.08 seconds
+[2026-03-06T13:07:42.163+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:08:44.322+0800] {job.py:229} INFO - Heartbeat recovered after 65.60 seconds

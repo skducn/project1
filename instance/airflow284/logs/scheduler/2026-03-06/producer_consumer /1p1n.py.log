@@ -1,0 +1,793 @@
+[2026-03-06T09:17:18.183+0800] {processor.py:186} INFO - Started process (PID=1598) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:17:18.184+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:17:18.185+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:17:18.185+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:17:18.186+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:17:18.187+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:17:18.187+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:17:18.187+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:17:18.188+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:17:18.966+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:17:19.090+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:17:19.090+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:17:19.113+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:17:19.112+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:17:19.116+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:17:19.116+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:17:19.136+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 956.801 seconds
+[2026-03-06T09:19:19.791+0800] {processor.py:186} INFO - Started process (PID=1649) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:19:19.793+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:19:19.795+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:19:19.794+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:19:19.796+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:19:19.797+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:19:19.797+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:19:19.797+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:19:19.797+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:19:20.488+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:19:20.603+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:19:20.602+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:19:20.622+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:19:20.621+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:19:20.625+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:19:20.624+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:19:20.644+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 856.210 seconds
+[2026-03-06T09:22:19.275+0800] {processor.py:186} INFO - Started process (PID=1714) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:22:19.277+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:22:19.279+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:22:19.278+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:22:19.280+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:22:19.280+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:22:19.280+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:22:19.281+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:22:19.281+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:22:19.972+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:22:20.080+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:22:20.079+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:22:20.098+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:22:20.098+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:22:20.102+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:22:20.101+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:22:20.122+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 850.459 seconds
+[2026-03-06T09:28:21.003+0800] {processor.py:186} INFO - Started process (PID=1824) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:28:21.005+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:28:21.006+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:28:21.006+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:28:21.008+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:28:21.008+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:28:21.008+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:28:21.008+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:28:21.008+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:28:21.704+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:28:21.808+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:28:21.808+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:28:21.827+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:28:21.826+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:28:21.830+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:28:21.829+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:28:21.852+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 852.260 seconds
+[2026-03-06T09:32:45.858+0800] {processor.py:186} INFO - Started process (PID=1932) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:32:45.859+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:32:45.860+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:32:45.860+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:32:45.861+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:32:45.861+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:32:45.862+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:32:45.862+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:32:45.862+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:32:46.581+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:32:46.689+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:32:46.688+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:32:46.708+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:32:46.707+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:32:46.711+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:32:46.711+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:32:46.732+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 876.966 seconds
+[2026-03-06T09:37:25.026+0800] {processor.py:186} INFO - Started process (PID=2037) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:37:25.026+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:37:25.027+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:37:25.027+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:37:25.029+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:37:25.029+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:37:25.029+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:37:25.029+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:37:25.029+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:37:25.752+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:37:25.865+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:37:25.864+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:37:25.885+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:37:25.884+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:37:25.888+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:37:25.887+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:37:25.911+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 888.680 seconds
+[2026-03-06T09:40:29.878+0800] {processor.py:186} INFO - Started process (PID=2140) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:40:29.879+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:40:29.880+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:40:29.880+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:40:29.882+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:40:29.882+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:40:29.882+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:40:29.882+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:40:29.883+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:40:30.590+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:40:30.702+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:40:30.701+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:40:30.720+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:40:30.720+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:40:30.723+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:40:30.722+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:40:30.744+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 868.644 seconds
+[2026-03-06T09:43:24.632+0800] {processor.py:186} INFO - Started process (PID=2315) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:43:24.635+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:43:24.636+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:43:24.636+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:43:24.638+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:43:24.638+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:43:24.638+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:43:24.638+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:43:24.639+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:43:25.331+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:43:25.437+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:43:25.436+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:43:25.457+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:43:25.457+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:43:25.460+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:43:25.460+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:43:25.483+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 853.366 seconds
+[2026-03-06T09:46:20.893+0800] {processor.py:186} INFO - Started process (PID=2397) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:46:20.894+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:46:20.895+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:46:20.894+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:46:20.898+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:46:20.898+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:46:20.898+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:46:20.899+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:46:20.899+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:46:21.593+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:46:21.700+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:46:21.700+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:46:21.719+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:46:21.719+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:46:21.722+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:46:21.722+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:46:21.745+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 854.546 seconds
+[2026-03-06T09:49:13.076+0800] {processor.py:186} INFO - Started process (PID=2463) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:49:13.076+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:49:13.077+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:49:13.077+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:49:13.078+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:49:13.079+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:49:13.079+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:49:13.079+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:49:13.079+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:49:13.771+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:49:13.876+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:49:13.876+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:49:13.895+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:49:13.895+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:49:13.898+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:49:13.898+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:49:13.922+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 848.980 seconds
+[2026-03-06T09:52:13.942+0800] {processor.py:186} INFO - Started process (PID=2541) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:52:13.945+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:52:13.946+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:52:13.946+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:52:13.948+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:52:13.949+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:52:13.949+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:52:13.949+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:52:13.949+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:52:14.660+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:52:14.770+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:52:14.770+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:52:14.789+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:52:14.789+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:52:14.792+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:52:14.792+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:52:14.814+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 874.407 seconds
+[2026-03-06T09:55:09.104+0800] {processor.py:186} INFO - Started process (PID=2612) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:55:09.105+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:55:09.106+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:55:09.106+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:55:09.109+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:55:09.109+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:55:09.109+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:55:09.110+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:55:09.110+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:55:09.800+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:55:09.905+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:55:09.905+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:55:09.924+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:55:09.924+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:55:09.927+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:55:09.926+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:55:09.949+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 847.533 seconds
+[2026-03-06T09:57:23.974+0800] {processor.py:186} INFO - Started process (PID=2998) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:57:23.975+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T09:57:23.976+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:57:23.975+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:57:23.977+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T09:57:23.977+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T09:57:23.977+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T09:57:23.978+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T09:57:23.978+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T09:57:24.715+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T09:57:24.829+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:57:24.829+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T09:57:24.848+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:57:24.848+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T09:57:24.851+0800] {logging_mixin.py:190} INFO - [2026-03-06T09:57:24.851+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T09:57:24.870+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 898.545 seconds
+[2026-03-06T10:00:32.496+0800] {processor.py:186} INFO - Started process (PID=3152) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:00:32.499+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:00:32.500+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:00:32.499+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:00:32.501+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:00:32.502+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:00:32.502+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:00:32.502+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:00:32.502+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:00:33.243+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:00:33.358+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:00:33.357+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:00:33.377+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:00:33.377+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:00:33.381+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:00:33.381+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:00:33.402+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 908.329 seconds
+[2026-03-06T10:03:39.096+0800] {processor.py:186} INFO - Started process (PID=3463) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:03:39.099+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:03:39.100+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:03:39.100+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:03:39.101+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:03:39.101+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:03:39.102+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:03:39.102+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:03:39.102+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:03:39.830+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:03:39.943+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:03:39.943+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:03:39.964+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:03:39.964+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:03:39.967+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:03:39.967+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:03:39.987+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 893.292 seconds
+[2026-03-06T10:06:40.472+0800] {processor.py:186} INFO - Started process (PID=3613) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:06:40.473+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:06:40.474+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:06:40.473+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:06:40.475+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:06:40.475+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:06:40.475+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:06:40.475+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:06:40.476+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:06:41.222+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:06:41.332+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:06:41.332+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:06:41.352+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:06:41.351+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:06:41.355+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:06:41.355+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:06:41.375+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 905.971 seconds
+[2026-03-06T10:08:14.966+0800] {processor.py:186} INFO - Started process (PID=3706) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:08:14.966+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:08:14.967+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:08:14.967+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:08:14.969+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:08:14.969+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:08:14.969+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:08:14.970+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:08:14.970+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:08:15.692+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:08:15.807+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:08:15.807+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:08:15.827+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:08:15.827+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:08:15.830+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:08:15.830+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:08:15.850+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 886.575 seconds
+[2026-03-06T10:11:20.364+0800] {processor.py:186} INFO - Started process (PID=3787) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:11:20.365+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:11:20.366+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:11:20.366+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:11:20.367+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:11:20.367+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:11:20.367+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:11:20.368+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:11:20.368+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:11:21.097+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:11:21.209+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:11:21.208+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:11:21.229+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:11:21.228+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:11:21.231+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:11:21.231+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:11:21.251+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 889.242 seconds
+[2026-03-06T10:14:15.467+0800] {processor.py:186} INFO - Started process (PID=3879) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:14:15.468+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:14:15.468+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:14:15.468+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:14:15.470+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:14:15.470+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:14:15.470+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:14:15.470+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:14:15.470+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:14:16.182+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:14:16.288+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:14:16.288+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:14:16.307+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:14:16.307+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:14:16.310+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:14:16.310+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:14:16.331+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 866.999 seconds
+[2026-03-06T10:17:11.638+0800] {processor.py:186} INFO - Started process (PID=3958) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:17:11.639+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:17:11.640+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:17:11.640+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:17:11.641+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:17:11.641+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:17:11.641+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:17:11.642+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:17:11.642+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:17:12.349+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:17:12.456+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:17:12.455+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:17:12.474+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:17:12.474+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:17:12.477+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:17:12.477+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:17:12.498+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 862.888 seconds
+[2026-03-06T10:20:10.267+0800] {processor.py:186} INFO - Started process (PID=4026) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:20:10.268+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:20:10.269+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:20:10.269+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:20:10.270+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:20:10.271+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:20:10.271+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:20:10.271+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:20:10.271+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:20:11.125+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:20:11.266+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:20:11.266+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:20:11.298+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:20:11.298+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:20:11.305+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:20:11.305+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:20:11.336+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 1071.806 seconds
+[2026-03-06T10:23:09.651+0800] {processor.py:186} INFO - Started process (PID=4102) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:23:09.652+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:23:09.653+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:23:09.652+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:23:09.654+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:23:09.654+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:23:09.654+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:23:09.654+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:23:09.655+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:23:10.370+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:23:10.482+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:23:10.482+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:23:10.502+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:23:10.501+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:23:10.505+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:23:10.505+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:23:10.528+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 880.457 seconds
+[2026-03-06T10:26:10.172+0800] {processor.py:186} INFO - Started process (PID=4186) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:26:10.173+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:26:10.174+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:26:10.174+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:26:10.175+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:26:10.175+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:26:10.175+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:26:10.176+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:26:10.176+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:26:10.899+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:26:11.013+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:26:11.012+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:26:11.034+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:26:11.033+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:26:11.037+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:26:11.036+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:26:11.059+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 890.050 seconds
+[2026-03-06T10:29:07.074+0800] {processor.py:186} INFO - Started process (PID=4254) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:29:07.075+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:29:07.076+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:29:07.076+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:29:07.077+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:29:07.078+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:29:07.078+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:29:07.078+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:29:07.078+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:29:07.830+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:29:07.939+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:29:07.938+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:29:07.958+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:29:07.958+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:29:07.961+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:29:07.961+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:29:07.983+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 911.861 seconds
+[2026-03-06T10:32:17.567+0800] {processor.py:186} INFO - Started process (PID=4367) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:32:17.567+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:32:17.568+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:32:17.568+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:32:17.569+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:32:17.570+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:32:17.570+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:32:17.570+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:32:17.570+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:32:18.409+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:32:18.567+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:32:18.566+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:32:18.595+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:32:18.594+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:32:18.598+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:32:18.598+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:32:18.620+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 1055.757 seconds
+[2026-03-06T10:35:18.403+0800] {processor.py:186} INFO - Started process (PID=4539) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:35:18.404+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:35:18.404+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:35:18.404+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:35:18.406+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:35:18.406+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:35:18.406+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:35:18.406+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:35:18.407+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:35:19.135+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:35:19.245+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:35:19.244+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:35:19.265+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:35:19.265+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:35:19.268+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:35:19.268+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:35:19.290+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 889.827 seconds
+[2026-03-06T10:38:19.146+0800] {processor.py:186} INFO - Started process (PID=4714) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:38:19.147+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:38:19.148+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:38:19.148+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:38:19.149+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:38:19.149+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:38:19.149+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:38:19.150+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:38:19.150+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:38:19.879+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:38:19.990+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:38:19.990+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:38:20.012+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:38:20.012+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:38:20.016+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:38:20.015+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:38:20.040+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 896.378 seconds
+[2026-03-06T10:41:19.133+0800] {processor.py:186} INFO - Started process (PID=4786) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:41:19.134+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:41:19.135+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:41:19.135+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:41:19.136+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:41:19.136+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:41:19.137+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:41:19.137+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:41:19.137+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:41:19.866+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:41:19.981+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:41:19.981+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:41:20.001+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:41:20.001+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:41:20.005+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:41:20.005+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:41:20.029+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 898.617 seconds
+[2026-03-06T10:44:21.190+0800] {processor.py:186} INFO - Started process (PID=4885) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:44:21.191+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:44:21.192+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:44:21.192+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:44:21.193+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:44:21.193+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:44:21.194+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:44:21.194+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:44:21.194+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:44:21.924+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:44:22.040+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:44:22.040+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:44:22.062+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:44:22.061+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:44:22.065+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:44:22.065+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:44:22.085+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 897.390 seconds
+[2026-03-06T10:47:22.323+0800] {processor.py:186} INFO - Started process (PID=4948) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:47:22.324+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:47:22.325+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:47:22.324+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:47:22.327+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:47:22.327+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:47:22.327+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:47:22.328+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:47:22.328+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:47:23.074+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:47:23.199+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:47:23.199+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:47:23.219+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:47:23.218+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:47:23.222+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:47:23.222+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:47:23.243+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 922.387 seconds
+[2026-03-06T10:48:58.197+0800] {processor.py:186} INFO - Started process (PID=4985) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:48:58.197+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:48:58.198+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:48:58.198+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:48:58.199+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:48:58.200+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:48:58.200+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:48:58.200+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:48:58.200+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:48:58.925+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:48:59.108+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:48:59.108+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:48:59.127+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:48:59.127+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:48:59.131+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:48:59.131+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:48:59.152+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 958.703 seconds
+[2026-03-06T10:51:58.725+0800] {processor.py:186} INFO - Started process (PID=5060) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:51:58.725+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:51:58.726+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:51:58.726+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:51:58.728+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:51:58.728+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:51:58.728+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:51:58.728+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:51:58.728+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:51:59.468+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:51:59.580+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:51:59.579+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:51:59.600+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:51:59.600+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:51:59.604+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:51:59.603+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:51:59.626+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 904.283 seconds
+[2026-03-06T10:53:36.587+0800] {processor.py:186} INFO - Started process (PID=5132) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:53:36.588+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:53:36.589+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:53:36.588+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:53:36.590+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:53:36.590+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:53:36.590+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:53:36.590+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:53:36.591+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:53:37.323+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:53:37.430+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:53:37.429+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:53:37.450+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:53:37.449+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:53:37.453+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:53:37.453+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:53:37.475+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 890.765 seconds
+[2026-03-06T10:56:31.991+0800] {processor.py:186} INFO - Started process (PID=5278) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:56:31.992+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:56:31.993+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:56:31.992+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:56:31.994+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:56:31.994+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:56:31.995+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:56:31.995+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:56:31.995+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:56:32.725+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:56:32.837+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:56:32.837+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:56:32.859+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:56:32.858+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:56:32.862+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:56:32.861+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:56:32.884+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 895.284 seconds
+[2026-03-06T10:59:27.968+0800] {processor.py:186} INFO - Started process (PID=5343) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:59:27.968+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T10:59:27.969+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:59:27.969+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:59:27.970+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T10:59:27.971+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T10:59:27.971+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T10:59:27.971+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T10:59:27.971+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T10:59:28.695+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T10:59:28.806+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:59:28.805+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T10:59:28.825+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:59:28.825+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T10:59:28.828+0800] {logging_mixin.py:190} INFO - [2026-03-06T10:59:28.828+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T10:59:28.852+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 887.186 seconds
+[2026-03-06T11:02:30.042+0800] {processor.py:186} INFO - Started process (PID=5441) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:02:30.042+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:02:30.043+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:02:30.043+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:02:30.044+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:02:30.045+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:02:30.045+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:02:30.045+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:02:30.045+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:02:30.770+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:02:30.880+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:02:30.880+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:02:30.901+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:02:30.901+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:02:30.904+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:02:30.904+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:02:30.927+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 888.329 seconds
+[2026-03-06T11:05:27.664+0800] {processor.py:186} INFO - Started process (PID=5512) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:05:27.665+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:05:27.666+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:05:27.666+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:05:27.667+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:05:27.667+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:05:27.668+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:05:27.668+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:05:27.668+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:05:28.385+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:05:28.496+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:05:28.495+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:05:28.516+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:05:28.515+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:05:28.519+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:05:28.519+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:05:28.540+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 878.652 seconds
+[2026-03-06T11:08:29.688+0800] {processor.py:186} INFO - Started process (PID=5588) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:08:29.688+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:08:29.689+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:08:29.689+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:08:29.690+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:08:29.691+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:08:29.691+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:08:29.691+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:08:29.691+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:08:30.414+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:08:30.524+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:08:30.523+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:08:30.543+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:08:30.543+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:08:30.546+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:08:30.546+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:08:30.570+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 885.122 seconds
+[2026-03-06T11:11:28.403+0800] {processor.py:186} INFO - Started process (PID=5665) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:11:28.404+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:11:28.405+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:11:28.405+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:11:28.406+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:11:28.406+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:11:28.406+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:11:28.407+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:11:28.407+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:11:29.168+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:11:29.284+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:11:29.283+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:11:29.305+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:11:29.304+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:11:29.308+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:11:29.308+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:11:29.333+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 932.216 seconds
+[2026-03-06T11:13:05.076+0800] {processor.py:186} INFO - Started process (PID=5704) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:13:05.077+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:13:05.078+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:13:05.077+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:13:05.079+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:13:05.079+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:13:05.079+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:13:05.080+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:13:05.080+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:13:05.805+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:13:05.920+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:13:05.919+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:13:05.940+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:13:05.939+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:13:05.943+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:13:05.943+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:13:05.965+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 891.576 seconds
+[2026-03-06T11:16:02.378+0800] {processor.py:186} INFO - Started process (PID=5773) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:16:02.378+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:16:02.379+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:16:02.379+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:16:02.380+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:16:02.381+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:16:02.381+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:16:02.381+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:16:02.381+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:16:03.110+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:16:03.219+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:16:03.219+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:16:03.239+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:16:03.238+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:16:03.242+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:16:03.242+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:16:03.267+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 892.005 seconds
+[2026-03-06T11:18:58.119+0800] {processor.py:186} INFO - Started process (PID=5848) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:18:58.120+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:18:58.121+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:18:58.121+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:18:58.122+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:18:58.123+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:18:58.123+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:18:58.123+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:18:58.123+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:18:58.845+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:18:58.954+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:18:58.954+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:18:58.973+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:18:58.973+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:18:58.976+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:18:58.976+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:18:58.998+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 881.138 seconds
+[2026-03-06T11:21:57.471+0800] {processor.py:186} INFO - Started process (PID=5924) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:21:57.472+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:21:57.473+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:21:57.473+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:21:57.474+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:21:57.474+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:21:57.474+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:21:57.474+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:21:57.475+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:21:58.252+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:21:58.408+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:21:58.408+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:21:58.429+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:21:58.429+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:21:58.433+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:21:58.432+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:21:58.455+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 986.364 seconds
+[2026-03-06T11:24:55.723+0800] {processor.py:186} INFO - Started process (PID=5988) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:24:55.723+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:24:55.724+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:24:55.724+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:24:55.726+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:24:55.726+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:24:55.726+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:24:55.726+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:24:55.726+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:24:56.446+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:24:56.558+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:24:56.557+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:24:56.578+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:24:56.578+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:24:56.582+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:24:56.582+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:24:56.605+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 884.933 seconds
+[2026-03-06T11:27:54.345+0800] {processor.py:186} INFO - Started process (PID=6066) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:27:54.346+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:27:54.347+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:27:54.347+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:27:54.348+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:27:54.349+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:27:54.349+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:27:54.349+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:27:54.349+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:27:55.070+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:27:55.177+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:27:55.176+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:27:55.198+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:27:55.198+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:27:55.201+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:27:55.201+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:27:55.224+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 880.940 seconds
+[2026-03-06T11:30:50.414+0800] {processor.py:186} INFO - Started process (PID=6134) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:30:50.414+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:30:50.415+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:30:50.415+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:30:50.416+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:30:50.417+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:30:50.417+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:30:50.417+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:30:50.417+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:30:51.137+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:30:51.247+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:30:51.247+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:30:51.267+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:30:51.266+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:30:51.270+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:30:51.270+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:30:51.291+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 880.169 seconds
+[2026-03-06T11:33:49.300+0800] {processor.py:186} INFO - Started process (PID=6204) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:33:49.301+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:33:49.302+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:33:49.302+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:33:49.303+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:33:49.303+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:33:49.303+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:33:49.303+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:33:49.303+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:33:50.017+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:33:50.129+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:33:50.128+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:33:50.149+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:33:50.148+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:33:50.151+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:33:50.151+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:33:50.173+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 875.547 seconds
+[2026-03-06T11:36:49.076+0800] {processor.py:186} INFO - Started process (PID=6288) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:36:49.077+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:36:49.078+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:36:49.078+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:36:49.079+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:36:49.079+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:36:49.079+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:36:49.080+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:36:49.080+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:36:49.808+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:36:49.919+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:36:49.918+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:36:49.938+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:36:49.937+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:36:49.941+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:36:49.940+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:36:49.961+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 888.343 seconds
+[2026-03-06T11:39:46.840+0800] {processor.py:186} INFO - Started process (PID=6359) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:39:46.840+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:39:46.841+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:39:46.841+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:39:46.842+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:39:46.843+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:39:46.843+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:39:46.843+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:39:46.843+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:39:47.564+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:39:47.676+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:39:47.675+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:39:47.697+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:39:47.696+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:39:47.700+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:39:47.700+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:39:47.722+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 885.179 seconds
+[2026-03-06T11:42:45.749+0800] {processor.py:186} INFO - Started process (PID=6433) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:42:45.750+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:42:45.751+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:42:45.751+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:42:45.752+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:42:45.752+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:42:45.752+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:42:45.752+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:42:45.753+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:42:46.478+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:42:46.591+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:42:46.591+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:42:46.613+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:42:46.613+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:42:46.616+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:42:46.616+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:42:46.638+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 891.489 seconds
+[2026-03-06T11:45:39.083+0800] {processor.py:186} INFO - Started process (PID=6499) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:45:39.084+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:45:39.085+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:45:39.085+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:45:39.086+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:45:39.087+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:45:39.087+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:45:39.087+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:45:39.087+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:45:39.804+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:45:39.911+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:45:39.910+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:45:39.930+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:45:39.929+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:45:39.933+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:45:39.933+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:45:39.954+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 873.226 seconds
+[2026-03-06T11:48:36.474+0800] {processor.py:186} INFO - Started process (PID=6569) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:48:36.475+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:48:36.476+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:48:36.476+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:48:36.477+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:48:36.477+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:48:36.477+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:48:36.478+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:48:36.478+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:48:37.213+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:48:37.322+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:48:37.321+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:48:37.342+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:48:37.341+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:48:37.345+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:48:37.345+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:48:37.366+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 894.258 seconds
+[2026-03-06T11:51:34.634+0800] {processor.py:186} INFO - Started process (PID=6635) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:51:34.634+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:51:34.635+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:51:34.635+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:51:34.636+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:51:34.637+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:51:34.637+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:51:34.637+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:51:34.637+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:51:35.345+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:51:35.454+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:51:35.454+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:51:35.473+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:51:35.473+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:51:35.477+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:51:35.477+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:51:35.499+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 868.223 seconds
+[2026-03-06T11:54:32.202+0800] {processor.py:186} INFO - Started process (PID=6694) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:54:32.202+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:54:32.203+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:54:32.203+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:54:32.205+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:54:32.205+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:54:32.205+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:54:32.205+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:54:32.205+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:54:32.917+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:54:33.030+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:54:33.029+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:54:33.051+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:54:33.051+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:54:33.054+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:54:33.054+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:54:33.077+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 878.203 seconds
+[2026-03-06T11:57:28.451+0800] {processor.py:186} INFO - Started process (PID=6769) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:57:28.452+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T11:57:28.453+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:57:28.453+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:57:28.454+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T11:57:28.454+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T11:57:28.454+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T11:57:28.455+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T11:57:28.455+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T11:57:29.169+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T11:57:29.278+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:57:29.278+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T11:57:29.299+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:57:29.298+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T11:57:29.302+0800] {logging_mixin.py:190} INFO - [2026-03-06T11:57:29.301+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T11:57:29.325+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 876.139 seconds
+[2026-03-06T12:00:26.299+0800] {processor.py:186} INFO - Started process (PID=6850) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:00:26.299+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T12:00:26.301+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:00:26.300+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:00:26.302+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T12:00:26.302+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T12:00:26.302+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T12:00:26.303+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T12:00:26.303+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T12:00:27.016+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:00:27.129+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:00:27.128+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T12:00:27.149+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:00:27.148+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T12:00:27.151+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:00:27.151+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T12:00:27.174+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 878.545 seconds
+[2026-03-06T12:03:23.656+0800] {processor.py:186} INFO - Started process (PID=6964) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:03:23.656+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T12:03:23.657+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:03:23.657+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:03:23.658+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T12:03:23.659+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T12:03:23.659+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T12:03:23.659+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T12:03:23.659+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T12:03:24.382+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:03:24.496+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:03:24.495+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T12:03:24.517+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:03:24.517+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T12:03:24.520+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:03:24.520+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T12:03:24.541+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 887.973 seconds
+[2026-03-06T12:06:19.914+0800] {processor.py:186} INFO - Started process (PID=7141) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:06:19.914+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T12:06:19.915+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:06:19.915+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:06:19.916+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T12:06:19.916+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T12:06:19.917+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T12:06:19.917+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T12:06:19.917+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T12:06:20.628+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:06:20.737+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:06:20.736+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T12:06:20.756+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:06:20.756+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T12:06:20.759+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:06:20.759+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T12:06:20.781+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 870.223 seconds
+[2026-03-06T12:32:50.255+0800] {processor.py:186} INFO - Started process (PID=7326) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:32:50.255+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T12:32:50.256+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:32:50.256+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:32:50.257+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T12:32:50.257+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T12:32:50.257+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T12:32:50.258+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T12:32:50.258+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T12:32:50.952+0800] {processor.py:925} INFO - DAG(s) 'c_1p1n', 'p_1p1n_DAGs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T12:32:51.062+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:32:51.061+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T12:32:51.080+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:32:51.080+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T12:32:51.083+0800] {logging_mixin.py:190} INFO - [2026-03-06T12:32:51.083+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T12:32:51.104+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 853.175 seconds
+[2026-03-06T13:05:41.764+0800] {processor.py:186} INFO - Started process (PID=7398) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T13:05:41.764+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T13:05:41.765+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:05:41.765+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T13:05:41.768+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T13:05:41.769+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T13:05:41.769+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T13:05:41.769+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T13:05:41.770+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T13:05:42.497+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T13:05:42.608+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:05:42.607+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T13:05:42.627+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:05:42.627+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T13:05:42.630+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:05:42.630+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T13:05:42.655+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 893.672 seconds
+[2026-03-06T13:09:46.779+0800] {processor.py:186} INFO - Started process (PID=7526) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T13:09:46.782+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py for tasks to queue
+[2026-03-06T13:09:46.783+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:09:46.783+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T13:09:46.785+0800] {logging_mixin.py:190} INFO - Current directory: /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer 
+[2026-03-06T13:09:46.785+0800] {logging_mixin.py:190} INFO - Project root: /Users/linghuchong/Downloads/51/Python/project
+[2026-03-06T13:09:46.785+0800] {logging_mixin.py:190} INFO - Added /Users/linghuchong/Downloads/51/Python/project to sys.path
+[2026-03-06T13:09:46.785+0800] {logging_mixin.py:190} INFO - PO module path: /Users/linghuchong/Downloads/51/Python/project/PO
+[2026-03-06T13:09:46.786+0800] {logging_mixin.py:190} INFO - PO module exists: True
+[2026-03-06T13:09:47.498+0800] {processor.py:925} INFO - DAG(s) 'p_1p1n_DAGs', 'c_1p1n' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py
+[2026-03-06T13:09:47.607+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:09:47.606+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T13:09:47.626+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:09:47.626+0800] {dag.py:4180} INFO - Setting next_dagrun for c_1p1n to None, run_after=None
+[2026-03-06T13:09:47.629+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:09:47.629+0800] {dag.py:4180} INFO - Setting next_dagrun for p_1p1n_DAGs to None, run_after=None
+[2026-03-06T13:09:47.653+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /1p1n.py took 876.196 seconds

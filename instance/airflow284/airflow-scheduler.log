@@ -13563,3 +13563,56 @@ subprocess.CalledProcessError: Command '['sudo', '-n', 'kill', '-15', '861']' re
 2026-03-05 17:56:32,263 INFO - Heartbeat recovered after 793.55 seconds
 2026-03-05 18:01:58,167 INFO - Heartbeat recovered after 136.51 seconds
 2026-03-05 18:02:53,559 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-05 18:07:53,614 INFO - Exiting gracefully upon receiving signal 15
+2026-03-05 18:07:54,406 INFO - Sending Signals.SIGTERM to group 15955. PIDs of all processes in the group: []
+2026-03-05 18:07:54,408 INFO - Sending the signal Signals.SIGTERM to group 15955
+2026-03-05 18:07:54,409 INFO - Sending the signal Signals.SIGTERM to process 15955 as process group is missing.
+2026-03-05 18:07:54,424 INFO - Sending Signals.SIGTERM to group 15955. PIDs of all processes in the group: []
+2026-03-05 18:07:54,426 INFO - Sending the signal Signals.SIGTERM to group 15955
+2026-03-05 18:07:54,427 INFO - Sending the signal Signals.SIGTERM to process 15955 as process group is missing.
+2026-03-05 18:07:54,428 INFO - Exited execute loop
+2026-03-06 09:16:08,488 INFO - Loaded executor: SequentialExecutor
+2026-03-06 09:16:09,121 INFO - Starting the scheduler
+2026-03-06 09:16:09,123 INFO - Processing each file at most -1 times
+2026-03-06 09:16:09,130 INFO - Launched DagFileProcessorManager with pid: 1534
+2026-03-06 09:16:09,134 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:21:10,784 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:26:17,817 INFO - Heartbeat recovered after 181.96 seconds
+2026-03-06 09:29:09,859 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:31:09,804 INFO - Heartbeat recovered after 88.19 seconds
+2026-03-06 09:36:29,504 INFO - Heartbeat recovered after 105.29 seconds
+2026-03-06 09:37:09,857 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:42:12,226 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:47:12,407 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:52:15,273 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 09:57:17,007 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:02:17,452 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:07:18,839 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:12:18,958 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:17:19,753 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:22:19,885 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:27:22,216 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:32:23,451 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:37:25,229 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:42:25,539 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:47:27,704 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:52:30,983 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 10:57:34,686 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:02:35,364 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:07:37,706 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:12:40,037 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:17:42,663 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:22:44,846 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:27:47,209 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:32:49,701 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:37:50,868 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:42:53,437 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:47:55,630 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:52:56,630 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 11:57:57,108 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 12:02:59,421 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 12:08:01,997 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 12:32:12,451 INFO - Heartbeat recovered after 1415.97 seconds
+2026-03-06 13:04:06,459 INFO - Heartbeat recovered after 1879.08 seconds
+2026-03-06 13:07:42,163 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 13:08:44,322 INFO - Heartbeat recovered after 65.60 seconds

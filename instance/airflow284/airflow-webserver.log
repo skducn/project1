@@ -39,3 +39,7 @@
 2026-03-01 21:42:22,830 INFO - Received signal: 15. Closing gunicorn.
 2026-03-01 22:27:37,449 INFO - Received signal: 15. Closing gunicorn.
 2026-03-01 23:04:35,806 INFO - Received signal: 15. Closing gunicorn.
+2026-03-05 18:08:01,045 INFO - Received signal: 15. Closing gunicorn.
+2026-03-06 09:26:15,054 ERROR - [3 / 3] Some workers seem to have died and gunicorn did not restart them as expected
+2026-03-06 12:32:08,204 ERROR - [0 / 0] Some workers seem to have died and gunicorn did not restart them as expected
+2026-03-06 13:04:04,062 ERROR - [2 / 2] Some workers seem to have died and gunicorn did not restart them as expected
