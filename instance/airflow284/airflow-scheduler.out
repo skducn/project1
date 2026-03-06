@@ -138,3 +138,4 @@
 [2026-03-06T15:41:34.091+0800] {manager.py:553} INFO - Deleted DAG consumer_multi_source_analysis in serialized_dag table
 [2026-03-06T15:41:34.094+0800] {manager.py:553} INFO - Deleted DAG p_2p1n_dw_order_sync in serialized_dag table
 [2026-03-06T15:41:41.049+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:46:43.904+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
