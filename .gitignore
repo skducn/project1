@@ -1,0 +1,1 @@
+echo "instance/airflow284/logs/" >> .gitignore
