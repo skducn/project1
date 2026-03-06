@@ -520,3 +520,417 @@
 [2026-03-06T13:10:25.031+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:10:25.030+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
 [2026-03-06T13:10:25.032+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:10:25.031+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
 [2026-03-06T13:10:25.055+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 281.598 seconds
+[2026-03-06T13:13:21.481+0800] {processor.py:186} INFO - Started process (PID=7775) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:13:21.482+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:13:21.483+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:21.482+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:13:21.601+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:13:21.715+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:21.714+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:13:21.734+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:21.734+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:13:21.737+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:21.737+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:13:21.738+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:21.738+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:13:21.761+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 282.868 seconds
+[2026-03-06T13:16:28.339+0800] {processor.py:186} INFO - Started process (PID=7907) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:16:28.342+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:16:28.343+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:16:28.343+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:16:28.466+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:16:28.580+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:16:28.580+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:16:28.598+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:16:28.598+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:16:28.602+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:16:28.601+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:16:28.603+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:16:28.602+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:16:28.625+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 289.453 seconds
+[2026-03-06T13:19:30.341+0800] {processor.py:186} INFO - Started process (PID=8037) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:19:30.344+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:19:30.345+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:30.345+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:19:30.460+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'producer_xcom_sync', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:19:30.573+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:30.573+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:19:30.591+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:30.591+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:19:30.595+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:30.594+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:19:30.596+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:30.595+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:19:30.617+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 279.245 seconds
+[2026-03-06T13:22:33.329+0800] {processor.py:186} INFO - Started process (PID=8187) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:22:33.332+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:22:33.334+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:22:33.333+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:22:33.455+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:22:33.565+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:22:33.565+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:22:33.582+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:22:33.582+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:22:33.585+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:22:33.585+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:22:33.586+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:22:33.586+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:22:33.609+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 282.111 seconds
+[2026-03-06T13:25:35.657+0800] {processor.py:186} INFO - Started process (PID=8252) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:25:35.658+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:25:35.659+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:25:35.659+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:25:35.778+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'producer_xcom_sync', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:25:35.891+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:25:35.891+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:25:35.916+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:25:35.916+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:25:35.920+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:25:35.920+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:25:35.921+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:25:35.921+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:25:35.945+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 290.604 seconds
+[2026-03-06T13:28:38.502+0800] {processor.py:186} INFO - Started process (PID=8326) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:28:38.503+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:28:38.504+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:28:38.504+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:28:38.624+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:28:38.741+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:28:38.740+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:28:38.759+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:28:38.759+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:28:38.762+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:28:38.762+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:28:38.763+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:28:38.763+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:28:38.787+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 287.428 seconds
+[2026-03-06T13:32:48.056+0800] {processor.py:186} INFO - Started process (PID=8444) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:32:48.057+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:32:48.058+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:32:48.058+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:32:48.199+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:32:48.334+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:32:48.334+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:32:48.356+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:32:48.356+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:32:48.359+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:32:48.359+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:32:48.360+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:32:48.360+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:32:48.388+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 334.971 seconds
+[2026-03-06T13:36:12.631+0800] {processor.py:186} INFO - Started process (PID=8608) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:36:12.633+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:36:12.634+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:12.634+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:36:12.835+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'producer_xcom_sync', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:36:12.968+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:12.967+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:36:12.989+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:12.989+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:36:12.994+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:12.993+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:36:12.995+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:12.994+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:36:13.019+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 390.899 seconds
+[2026-03-06T13:39:16.837+0800] {processor.py:186} INFO - Started process (PID=8681) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:39:16.837+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:39:16.838+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:16.838+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:39:16.979+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:39:17.109+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:17.108+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:39:17.130+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:17.129+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:39:17.133+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:17.133+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:39:17.134+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:17.134+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:39:17.156+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 322.823 seconds
+[2026-03-06T13:42:41.713+0800] {processor.py:186} INFO - Started process (PID=8788) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:42:41.714+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:42:41.715+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:42:41.715+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:42:41.929+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:42:42.076+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:42:42.075+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:42:42.100+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:42:42.099+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:42:42.104+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:42:42.104+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:42:42.106+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:42:42.106+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:42:42.141+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 432.830 seconds
+[2026-03-06T13:46:18.501+0800] {processor.py:186} INFO - Started process (PID=8872) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:46:18.503+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:46:18.505+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:18.504+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:46:18.634+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:46:18.758+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:18.758+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:46:18.779+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:18.779+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:46:18.782+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:18.782+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:46:18.783+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:18.783+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:46:18.808+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 310.268 seconds
+[2026-03-06T13:49:44.912+0800] {processor.py:186} INFO - Started process (PID=8945) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:49:44.915+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:49:44.916+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:49:44.916+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:49:45.054+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:49:45.187+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:49:45.187+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:49:45.207+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:49:45.206+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:49:45.210+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:49:45.210+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:49:45.211+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:49:45.211+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:49:45.234+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 324.433 seconds
+[2026-03-06T13:53:01.801+0800] {processor.py:186} INFO - Started process (PID=9015) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:53:01.804+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:53:01.805+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:01.805+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:53:01.930+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'producer_xcom_sync', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:53:02.048+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:02.048+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:53:02.067+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:02.067+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:53:02.071+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:02.070+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:53:02.072+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:02.071+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:53:02.095+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 296.805 seconds
+[2026-03-06T13:56:00.426+0800] {processor.py:186} INFO - Started process (PID=9099) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:56:00.427+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:56:00.428+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:00.428+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:56:00.574+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:56:00.751+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:00.751+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:56:00.772+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:00.771+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:56:00.775+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:00.775+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:56:00.776+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:00.776+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:56:00.798+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 374.585 seconds
+[2026-03-06T13:58:59.842+0800] {processor.py:186} INFO - Started process (PID=9171) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:58:59.843+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T13:58:59.844+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:58:59.844+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:58:59.956+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T13:59:00.090+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:00.090+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T13:59:00.108+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:00.108+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T13:59:00.111+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:00.111+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T13:59:00.112+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:00.112+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T13:59:00.135+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 296.086 seconds
+[2026-03-06T14:02:05.827+0800] {processor.py:186} INFO - Started process (PID=9269) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:02:05.829+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:02:05.830+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:05.830+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:02:05.952+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'producer_xcom_sync', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:02:06.078+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:06.077+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:02:06.097+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:06.096+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:02:06.099+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:06.099+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:02:06.100+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:06.100+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:02:06.123+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 298.854 seconds
+[2026-03-06T14:05:09.559+0800] {processor.py:186} INFO - Started process (PID=9420) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:05:09.559+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:05:09.560+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:09.560+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:05:09.683+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'producer_xcom_sync', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:05:09.800+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:09.799+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:05:09.818+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:09.818+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:05:09.821+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:09.821+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:05:09.822+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:09.822+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:05:09.845+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 289.645 seconds
+[2026-03-06T14:08:35.447+0800] {processor.py:186} INFO - Started process (PID=9511) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:08:35.449+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:08:35.451+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:08:35.450+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:08:35.572+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:08:35.682+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:08:35.682+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:08:35.701+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:08:35.701+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:08:35.704+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:08:35.704+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:08:35.705+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:08:35.705+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:08:35.729+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 284.991 seconds
+[2026-03-06T14:11:34.020+0800] {processor.py:186} INFO - Started process (PID=9587) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:11:34.020+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:11:34.021+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:34.021+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:11:34.135+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:11:34.244+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:34.244+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:11:34.262+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:34.261+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:11:34.265+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:34.265+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:11:34.266+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:34.266+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:11:34.289+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 271.718 seconds
+[2026-03-06T14:14:34.560+0800] {processor.py:186} INFO - Started process (PID=9714) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:14:34.561+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:14:34.561+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:14:34.561+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:14:34.679+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:14:34.799+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:14:34.798+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:14:34.819+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:14:34.818+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:14:34.823+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:14:34.822+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:14:34.824+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:14:34.823+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:14:34.849+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 292.271 seconds
+[2026-03-06T14:17:52.246+0800] {processor.py:186} INFO - Started process (PID=9804) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:17:52.248+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:17:52.249+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:17:52.249+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:17:52.377+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:17:52.497+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:17:52.496+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:17:52.517+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:17:52.517+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:17:52.520+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:17:52.520+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:17:52.521+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:17:52.521+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:17:52.547+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 304.843 seconds
+[2026-03-06T14:20:51.883+0800] {processor.py:186} INFO - Started process (PID=9889) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:20:51.884+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:20:51.885+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:20:51.884+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:20:51.998+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:20:52.109+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:20:52.109+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:20:52.127+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:20:52.126+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:20:52.129+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:20:52.129+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:20:52.130+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:20:52.130+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:20:52.153+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 272.140 seconds
+[2026-03-06T14:23:48.683+0800] {processor.py:186} INFO - Started process (PID=9965) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:23:48.684+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:23:48.685+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:23:48.685+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:23:48.805+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'producer_xcom_sync', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:23:48.918+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:23:48.918+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:23:48.937+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:23:48.937+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:23:48.940+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:23:48.940+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:23:48.941+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:23:48.941+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:23:48.965+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 284.972 seconds
+[2026-03-06T14:26:44.648+0800] {processor.py:186} INFO - Started process (PID=10029) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:26:44.648+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:26:44.649+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:26:44.649+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:26:44.766+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:26:44.879+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:26:44.879+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:26:44.898+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:26:44.897+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:26:44.901+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:26:44.900+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:26:44.902+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:26:44.902+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:26:44.927+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 282.009 seconds
+[2026-03-06T14:29:42.214+0800] {processor.py:186} INFO - Started process (PID=10099) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:29:42.215+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:29:42.216+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:29:42.216+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:29:42.355+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:29:42.474+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:29:42.473+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:29:42.492+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:29:42.492+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:29:42.496+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:29:42.495+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:29:42.496+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:29:42.496+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:29:42.520+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 308.901 seconds
+[2026-03-06T14:32:46.182+0800] {processor.py:186} INFO - Started process (PID=10170) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:32:46.182+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:32:46.183+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:32:46.183+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:32:46.302+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:32:46.422+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:32:46.422+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:32:46.440+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:32:46.439+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:32:46.442+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:32:46.442+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:32:46.443+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:32:46.443+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:32:46.466+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 287.614 seconds
+[2026-03-06T14:36:00.943+0800] {processor.py:186} INFO - Started process (PID=10308) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:36:00.945+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:36:00.947+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:00.947+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:36:01.076+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'producer_xcom_sync', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:36:01.190+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:01.190+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:36:01.210+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:01.209+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:36:01.212+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:01.212+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:36:01.214+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:01.213+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:36:01.238+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 298.609 seconds
+[2026-03-06T14:39:05.198+0800] {processor.py:186} INFO - Started process (PID=10396) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:39:05.199+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:39:05.200+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:05.199+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:39:05.329+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:39:05.458+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:05.458+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:39:05.478+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:05.478+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:39:05.482+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:05.481+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:39:05.483+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:05.483+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:39:05.509+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 314.491 seconds
+[2026-03-06T14:42:13.166+0800] {processor.py:186} INFO - Started process (PID=10694) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:42:13.167+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:42:13.168+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:13.168+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:42:13.308+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'producer_xcom_sync', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:42:13.439+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:13.438+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:42:13.461+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:13.461+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:42:13.465+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:13.465+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:42:13.466+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:13.466+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:42:13.490+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 327.157 seconds
+[2026-03-06T14:45:27.580+0800] {processor.py:186} INFO - Started process (PID=10779) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:45:27.581+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:45:27.582+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:27.582+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:45:27.707+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'producer_xcom_sync', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:45:27.838+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:27.837+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:45:27.858+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:27.857+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:45:27.861+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:27.861+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:45:27.862+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:27.862+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:45:27.886+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 308.638 seconds
+[2026-03-06T14:48:33.226+0800] {processor.py:186} INFO - Started process (PID=10845) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:48:33.227+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:48:33.228+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:48:33.228+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:48:33.352+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:48:33.469+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:48:33.469+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:48:33.488+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:48:33.488+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:48:33.491+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:48:33.491+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:48:33.492+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:48:33.492+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:48:33.516+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 293.550 seconds
+[2026-03-06T14:51:49.188+0800] {processor.py:186} INFO - Started process (PID=11091) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:51:49.190+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:51:49.192+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:51:49.192+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:51:49.344+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:51:49.473+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:51:49.473+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:51:49.492+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:51:49.491+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:51:49.495+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:51:49.494+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:51:49.496+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:51:49.495+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:51:49.520+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 335.143 seconds
+[2026-03-06T14:55:28.611+0800] {processor.py:186} INFO - Started process (PID=11453) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:55:28.614+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:55:28.615+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:28.615+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:55:28.758+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'producer_xcom_sync', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:55:28.889+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:28.889+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:55:28.912+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:28.912+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:55:28.916+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:28.915+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:55:28.917+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:28.917+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:55:28.948+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 340.967 seconds
+[2026-03-06T14:59:04.521+0800] {processor.py:186} INFO - Started process (PID=11808) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:59:04.523+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T14:59:04.524+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:04.524+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:59:04.666+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom1', 'consumer_xcom2' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T14:59:04.797+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:04.797+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T14:59:04.818+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:04.817+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T14:59:04.821+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:04.821+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T14:59:04.822+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:04.822+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T14:59:04.855+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 337.565 seconds
+[2026-03-06T15:02:30.143+0800] {processor.py:186} INFO - Started process (PID=12142) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:02:30.146+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:02:30.147+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:30.146+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:02:30.280+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:02:30.412+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:30.412+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:02:30.432+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:30.432+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:02:30.436+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:30.436+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:02:30.437+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:30.437+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:02:30.463+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 322.776 seconds
+[2026-03-06T15:05:54.402+0800] {processor.py:186} INFO - Started process (PID=12469) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:05:54.405+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:05:54.406+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:05:54.406+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:05:54.541+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:05:54.672+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:05:54.671+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:05:54.694+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:05:54.694+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:05:54.698+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:05:54.698+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:05:54.699+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:05:54.699+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:05:54.725+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 325.537 seconds
+[2026-03-06T15:09:18.978+0800] {processor.py:186} INFO - Started process (PID=12794) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:09:18.980+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:09:18.981+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:18.981+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:09:19.193+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:09:19.321+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:19.321+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:09:19.340+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:19.340+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:09:19.345+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:19.344+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:09:19.346+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:19.346+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:09:19.370+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 397.563 seconds
+[2026-03-06T15:12:42.977+0800] {processor.py:186} INFO - Started process (PID=13110) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:12:42.979+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:12:42.980+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:12:42.980+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:12:43.117+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:12:43.259+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:12:43.259+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:12:43.279+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:12:43.278+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:12:43.283+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:12:43.282+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:12:43.285+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:12:43.284+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:12:43.308+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 334.372 seconds
+[2026-03-06T15:16:06.757+0800] {processor.py:186} INFO - Started process (PID=13445) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:16:06.759+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:16:06.761+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:06.761+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:16:06.893+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:16:07.030+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:07.030+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:16:07.050+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:07.049+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:16:07.053+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:07.052+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:16:07.054+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:07.053+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:16:07.080+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 326.104 seconds
+[2026-03-06T15:19:32.973+0800] {processor.py:186} INFO - Started process (PID=13746) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:19:32.974+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:19:32.975+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:19:32.975+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:19:33.109+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'producer_xcom_sync', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:19:33.237+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:19:33.237+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:19:33.258+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:19:33.258+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:19:33.262+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:19:33.261+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:19:33.263+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:19:33.262+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:19:33.288+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 321.912 seconds
+[2026-03-06T15:22:55.381+0800] {processor.py:186} INFO - Started process (PID=14117) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:22:55.384+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:22:55.384+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:22:55.384+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:22:55.527+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:22:55.652+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:22:55.652+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:22:55.671+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:22:55.671+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:22:55.674+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:22:55.674+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:22:55.676+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:22:55.676+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:22:55.702+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 325.734 seconds
+[2026-03-06T15:26:18.178+0800] {processor.py:186} INFO - Started process (PID=14456) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:26:18.178+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:26:18.179+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:18.179+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:26:18.312+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom2', 'consumer_xcom1', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:26:18.436+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:18.435+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:26:18.455+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:18.454+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:26:18.458+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:18.458+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:26:18.459+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:18.459+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:26:18.483+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 308.923 seconds
+[2026-03-06T15:29:25.032+0800] {processor.py:186} INFO - Started process (PID=14867) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:29:25.033+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:29:25.034+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:25.033+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:29:25.157+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:29:25.269+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:25.268+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:29:25.289+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:25.288+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:29:25.291+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:25.291+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:29:25.292+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:25.292+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:29:25.313+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 284.457 seconds
+[2026-03-06T15:32:32.311+0800] {processor.py:186} INFO - Started process (PID=15281) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:32:32.312+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:32:32.313+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:32.313+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:32:32.435+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:32:32.548+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:32.547+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:32:32.567+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:32.567+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:32:32.570+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:32.570+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:32:32.571+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:32.571+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:32:32.595+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 286.683 seconds
+[2026-03-06T15:35:36.421+0800] {processor.py:186} INFO - Started process (PID=15681) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:35:36.422+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:35:36.422+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:35:36.422+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:35:36.541+0800] {processor.py:925} INFO - DAG(s) 'consumer_xcom1', 'consumer_xcom2', 'producer_xcom_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:35:36.657+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:35:36.657+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:35:36.676+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:35:36.676+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:35:36.679+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:35:36.678+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:35:36.680+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:35:36.679+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:35:36.706+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 288.253 seconds
+[2026-03-06T15:38:58.162+0800] {processor.py:186} INFO - Started process (PID=16097) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:38:58.163+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py for tasks to queue
+[2026-03-06T15:38:58.165+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:38:58.165+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:38:58.647+0800] {processor.py:925} INFO - DAG(s) 'producer_xcom_sync', 'consumer_xcom2', 'consumer_xcom1' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py
+[2026-03-06T15:38:59.033+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:38:59.032+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T15:38:59.091+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:38:59.090+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom1 to None, run_after=None
+[2026-03-06T15:38:59.098+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:38:59.098+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_xcom2 to None, run_after=None
+[2026-03-06T15:38:59.114+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:38:59.113+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_xcom_sync to None, run_after=None
+[2026-03-06T15:38:59.188+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer /dataset_xcom.py took 1030.614 seconds

@@ -803,3 +803,640 @@
 [2026-03-06T13:10:53.197+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:10:53.197+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-03-06T13:10:53.208+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:10:53.208+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
 [2026-03-06T13:10:53.229+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 173.461 seconds
+[2026-03-06T13:12:21.704+0800] {processor.py:186} INFO - Started process (PID=7752) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:12:21.705+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:12:21.706+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:12:21.706+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:12:21.737+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:12:21.852+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:12:21.851+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:12:21.863+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:12:21.863+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:12:21.885+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 183.259 seconds
+[2026-03-06T13:13:49.532+0800] {processor.py:186} INFO - Started process (PID=7783) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:13:49.533+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:13:49.534+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:49.534+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:13:49.561+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:13:49.665+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:49.664+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:13:49.676+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:13:49.675+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:13:49.696+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 166.445 seconds
+[2026-03-06T13:15:22.737+0800] {processor.py:186} INFO - Started process (PID=7843) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:15:22.739+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:15:22.741+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:15:22.740+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:15:22.771+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:15:22.896+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:15:22.895+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:15:22.908+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:15:22.908+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:15:22.932+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 197.807 seconds
+[2026-03-06T13:17:00.257+0800] {processor.py:186} INFO - Started process (PID=7926) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:17:00.259+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:17:00.260+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:17:00.260+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:17:00.288+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:17:00.408+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:17:00.408+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:17:00.422+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:17:00.422+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:17:00.443+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 189.092 seconds
+[2026-03-06T13:18:31.090+0800] {processor.py:186} INFO - Started process (PID=7979) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:18:31.090+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:18:31.091+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:18:31.091+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:18:31.116+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:18:31.226+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:18:31.225+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:18:31.237+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:18:31.237+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:18:31.257+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 170.429 seconds
+[2026-03-06T13:19:59.180+0800] {processor.py:186} INFO - Started process (PID=8062) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:19:59.181+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:19:59.182+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:59.181+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:19:59.207+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:19:59.313+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:59.313+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:19:59.325+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:19:59.324+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:19:59.346+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 168.327 seconds
+[2026-03-06T13:21:29.684+0800] {processor.py:186} INFO - Started process (PID=8147) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:21:29.685+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:21:29.686+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:21:29.685+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:21:29.713+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:21:29.823+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:21:29.823+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:21:29.834+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:21:29.834+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:21:29.855+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 174.239 seconds
+[2026-03-06T13:23:01.805+0800] {processor.py:186} INFO - Started process (PID=8195) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:23:01.807+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:23:01.809+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:23:01.808+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:23:01.836+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:23:01.945+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:23:01.944+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:23:01.956+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:23:01.956+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:23:01.976+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 173.920 seconds
+[2026-03-06T13:24:32.326+0800] {processor.py:186} INFO - Started process (PID=8230) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:24:32.326+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:24:32.328+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:24:32.327+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:24:32.353+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:24:32.466+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:24:32.466+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:24:32.478+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:24:32.477+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:24:32.498+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 175.779 seconds
+[2026-03-06T13:26:03.738+0800] {processor.py:186} INFO - Started process (PID=8265) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:26:03.738+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:26:03.740+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:26:03.739+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:26:03.768+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:26:03.877+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:26:03.876+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:26:03.887+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:26:03.887+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:26:03.909+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 175.088 seconds
+[2026-03-06T13:27:33.710+0800] {processor.py:186} INFO - Started process (PID=8303) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:27:33.711+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:27:33.712+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:27:33.712+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:27:33.738+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:27:33.849+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:27:33.849+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:27:33.862+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:27:33.861+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:27:33.884+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 176.883 seconds
+[2026-03-06T13:31:11.979+0800] {processor.py:186} INFO - Started process (PID=8367) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:31:11.980+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:31:11.981+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:31:11.981+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:31:12.010+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:31:12.123+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:31:12.123+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:31:12.135+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:31:12.135+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:31:12.157+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 180.638 seconds
+[2026-03-06T13:33:16.656+0800] {processor.py:186} INFO - Started process (PID=8483) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:33:16.657+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:33:16.658+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:33:16.657+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:33:16.685+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:33:16.804+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:33:16.804+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:33:16.823+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:33:16.823+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:33:16.849+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 195.922 seconds
+[2026-03-06T13:34:59.402+0800] {processor.py:186} INFO - Started process (PID=8582) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:34:59.405+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:34:59.406+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:34:59.406+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:34:59.435+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:34:59.578+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:34:59.578+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:34:59.591+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:34:59.591+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:34:59.613+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 214.030 seconds
+[2026-03-06T13:36:39.283+0800] {processor.py:186} INFO - Started process (PID=8616) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:36:39.284+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:36:39.285+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:39.284+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:36:39.312+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:36:39.422+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:39.421+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:36:39.433+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:36:39.433+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:36:39.455+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 174.750 seconds
+[2026-03-06T13:38:13.145+0800] {processor.py:186} INFO - Started process (PID=8649) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:38:13.146+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:38:13.147+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:38:13.147+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:38:13.175+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:38:13.291+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:38:13.291+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:38:13.304+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:38:13.304+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:38:13.324+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 182.159 seconds
+[2026-03-06T13:39:42.382+0800] {processor.py:186} INFO - Started process (PID=8693) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:39:42.383+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:39:42.384+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:42.384+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:39:42.412+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:39:42.563+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:42.562+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:39:42.575+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:39:42.575+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:39:42.596+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 217.337 seconds
+[2026-03-06T13:41:21.289+0800] {processor.py:186} INFO - Started process (PID=8739) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:41:21.290+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:41:21.291+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:41:21.291+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:41:21.320+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:41:21.441+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:41:21.441+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:41:21.453+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:41:21.453+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:41:21.474+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 187.189 seconds
+[2026-03-06T13:43:10.619+0800] {processor.py:186} INFO - Started process (PID=8807) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:43:10.622+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:43:10.624+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:43:10.623+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:43:10.670+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:43:10.898+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:43:10.898+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:43:10.911+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:43:10.911+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:43:10.933+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 320.211 seconds
+[2026-03-06T13:44:55.872+0800] {processor.py:186} INFO - Started process (PID=8844) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:44:55.875+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:44:55.876+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:44:55.876+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:44:55.906+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:44:56.025+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:44:56.025+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:44:56.037+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:44:56.037+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:44:56.059+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 188.932 seconds
+[2026-03-06T13:46:47.804+0800] {processor.py:186} INFO - Started process (PID=8879) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:46:47.807+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:46:47.808+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:47.807+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:46:47.836+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:46:47.953+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:47.953+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:46:47.965+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:46:47.965+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:46:47.986+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 185.693 seconds
+[2026-03-06T13:48:30.103+0800] {processor.py:186} INFO - Started process (PID=8915) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:48:30.106+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:48:30.107+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:48:30.107+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:48:30.134+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:48:30.243+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:48:30.242+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:48:30.254+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:48:30.254+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:48:30.276+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 175.564 seconds
+[2026-03-06T13:50:13.390+0800] {processor.py:186} INFO - Started process (PID=8955) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:50:13.393+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:50:13.394+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:50:13.394+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:50:13.425+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:50:13.551+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:50:13.551+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:50:13.563+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:50:13.563+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:50:13.582+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 194.943 seconds
+[2026-03-06T13:51:53.805+0800] {processor.py:186} INFO - Started process (PID=8989) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:51:53.807+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:51:53.809+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:51:53.808+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:51:53.836+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:51:53.943+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:51:53.943+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:51:53.954+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:51:53.954+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:51:53.975+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 173.206 seconds
+[2026-03-06T13:53:26.698+0800] {processor.py:186} INFO - Started process (PID=9025) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:53:26.699+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:53:26.700+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:26.700+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:53:26.728+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:53:26.840+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:26.839+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:53:26.851+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:53:26.851+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:53:26.872+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 176.402 seconds
+[2026-03-06T13:54:57.516+0800] {processor.py:186} INFO - Started process (PID=9074) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:54:57.519+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:54:57.520+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:54:57.520+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:54:57.546+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:54:57.653+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:54:57.652+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:54:57.664+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:54:57.663+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:54:57.684+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 170.313 seconds
+[2026-03-06T13:56:26.469+0800] {processor.py:186} INFO - Started process (PID=9110) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:56:26.469+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:56:26.470+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:26.470+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:56:26.495+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:56:26.602+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:26.602+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:56:26.613+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:56:26.613+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:56:26.634+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 168.425 seconds
+[2026-03-06T13:57:57.096+0800] {processor.py:186} INFO - Started process (PID=9141) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:57:57.097+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:57:57.098+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:57:57.098+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:57:57.123+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:57:57.235+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:57:57.235+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:57:57.246+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:57:57.246+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:57:57.266+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 172.779 seconds
+[2026-03-06T13:59:24.070+0800] {processor.py:186} INFO - Started process (PID=9182) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:59:24.070+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T13:59:24.071+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:24.071+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:59:24.097+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T13:59:24.210+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:24.210+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T13:59:24.222+0800] {logging_mixin.py:190} INFO - [2026-03-06T13:59:24.221+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T13:59:24.242+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 174.927 seconds
+[2026-03-06T14:00:53.153+0800] {processor.py:186} INFO - Started process (PID=9233) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:00:53.153+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:00:53.154+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:00:53.154+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:00:53.179+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:00:53.286+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:00:53.285+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:00:53.297+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:00:53.296+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:00:53.316+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 166.458 seconds
+[2026-03-06T14:02:31.355+0800] {processor.py:186} INFO - Started process (PID=9294) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:02:31.357+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:02:31.359+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:31.359+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:02:31.385+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:02:31.495+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:31.495+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:02:31.508+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:02:31.507+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:02:31.563+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 210.902 seconds
+[2026-03-06T14:04:00.135+0800] {processor.py:186} INFO - Started process (PID=9386) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:04:00.135+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:04:00.136+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:04:00.136+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:04:00.163+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:04:00.273+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:04:00.273+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:04:00.285+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:04:00.285+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:04:00.307+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 175.246 seconds
+[2026-03-06T14:05:38.210+0800] {processor.py:186} INFO - Started process (PID=9435) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:05:38.212+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:05:38.214+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:38.214+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:05:38.242+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:05:38.357+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:38.357+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:05:38.369+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:05:38.369+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:05:38.391+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 183.505 seconds
+[2026-03-06T14:07:29.865+0800] {processor.py:186} INFO - Started process (PID=9475) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:07:29.866+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:07:29.867+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:07:29.867+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:07:29.896+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:07:30.032+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:07:30.032+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:07:30.045+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:07:30.044+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:07:30.076+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 215.331 seconds
+[2026-03-06T14:09:01.080+0800] {processor.py:186} INFO - Started process (PID=9530) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:09:01.081+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:09:01.082+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:09:01.082+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:09:01.108+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:09:01.229+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:09:01.229+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:09:01.243+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:09:01.242+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:09:01.264+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 187.328 seconds
+[2026-03-06T14:10:32.314+0800] {processor.py:186} INFO - Started process (PID=9566) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:10:32.315+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:10:32.316+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:10:32.315+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:10:32.340+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:10:32.446+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:10:32.446+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:10:32.458+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:10:32.457+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:10:32.478+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 167.493 seconds
+[2026-03-06T14:11:59.168+0800] {processor.py:186} INFO - Started process (PID=9595) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:11:59.168+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:11:59.169+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:59.169+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:11:59.194+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:11:59.305+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:59.304+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:11:59.316+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:11:59.315+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:11:59.336+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 170.804 seconds
+[2026-03-06T14:13:27.689+0800] {processor.py:186} INFO - Started process (PID=9646) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:13:27.690+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:13:27.690+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:13:27.690+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:13:27.717+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:13:27.829+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:13:27.829+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:13:27.840+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:13:27.839+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:13:27.861+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 175.587 seconds
+[2026-03-06T14:15:02.261+0800] {processor.py:186} INFO - Started process (PID=9734) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:15:02.263+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:15:02.264+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:15:02.264+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:15:02.294+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:15:02.425+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:15:02.425+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:15:02.439+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:15:02.438+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:15:02.460+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 201.954 seconds
+[2026-03-06T14:16:43.025+0800] {processor.py:186} INFO - Started process (PID=9778) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:16:43.027+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:16:43.028+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:16:43.028+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:16:43.055+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:16:43.176+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:16:43.176+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:16:43.188+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:16:43.188+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:16:43.209+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 187.118 seconds
+[2026-03-06T14:18:17.271+0800] {processor.py:186} INFO - Started process (PID=9814) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:18:17.272+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:18:17.273+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:18:17.272+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:18:17.300+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:18:17.414+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:18:17.414+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:18:17.426+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:18:17.426+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:18:17.447+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 179.152 seconds
+[2026-03-06T14:19:47.691+0800] {processor.py:186} INFO - Started process (PID=9848) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:19:47.692+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:19:47.693+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:19:47.693+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:19:47.719+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:19:47.830+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:19:47.830+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:19:47.842+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:19:47.842+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:19:47.864+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 176.328 seconds
+[2026-03-06T14:21:16.528+0800] {processor.py:186} INFO - Started process (PID=9899) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:21:16.529+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:21:16.530+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:21:16.529+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:21:16.557+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:21:16.666+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:21:16.666+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:21:16.678+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:21:16.678+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:21:16.697+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 171.942 seconds
+[2026-03-06T14:22:46.801+0800] {processor.py:186} INFO - Started process (PID=9935) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:22:46.802+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:22:46.802+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:22:46.802+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:22:46.827+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:22:46.942+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:22:46.942+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:22:46.954+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:22:46.954+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:22:46.973+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 175.106 seconds
+[2026-03-06T14:24:13.085+0800] {processor.py:186} INFO - Started process (PID=9977) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:24:13.086+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:24:13.087+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:24:13.087+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:24:13.113+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:24:13.220+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:24:13.219+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:24:13.230+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:24:13.230+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:24:13.252+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 169.506 seconds
+[2026-03-06T14:25:43.699+0800] {processor.py:186} INFO - Started process (PID=10008) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:25:43.699+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:25:43.700+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:25:43.700+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:25:43.725+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:25:43.835+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:25:43.834+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:25:43.846+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:25:43.846+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:25:43.867+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 170.728 seconds
+[2026-03-06T14:27:09.887+0800] {processor.py:186} INFO - Started process (PID=10040) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:27:09.888+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:27:09.889+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:27:09.889+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:27:09.916+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:27:10.045+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:27:10.045+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:27:10.056+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:27:10.056+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:27:10.074+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 189.151 seconds
+[2026-03-06T14:28:36.435+0800] {processor.py:186} INFO - Started process (PID=10074) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:28:36.436+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:28:36.437+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:28:36.437+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:28:36.463+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:28:36.571+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:28:36.571+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:28:36.582+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:28:36.582+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:28:36.603+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 169.916 seconds
+[2026-03-06T14:30:07.677+0800] {processor.py:186} INFO - Started process (PID=10113) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:30:07.677+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:30:07.678+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:30:07.678+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:30:07.708+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:30:07.823+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:30:07.823+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:30:07.834+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:30:07.834+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:30:07.856+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 182.162 seconds
+[2026-03-06T14:31:43.379+0800] {processor.py:186} INFO - Started process (PID=10146) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:31:43.380+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:31:43.381+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:31:43.381+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:31:43.408+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:31:43.512+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:31:43.512+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:31:43.523+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:31:43.523+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:31:43.545+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 168.073 seconds
+[2026-03-06T14:33:11.256+0800] {processor.py:186} INFO - Started process (PID=10180) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:33:11.257+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:33:11.258+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:33:11.258+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:33:11.283+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:33:11.388+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:33:11.387+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:33:11.398+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:33:11.398+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:33:11.419+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 165.450 seconds
+[2026-03-06T14:34:42.140+0800] {processor.py:186} INFO - Started process (PID=10241) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:34:42.141+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:34:42.142+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:34:42.142+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:34:42.171+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:34:42.318+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:34:42.318+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:34:42.336+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:34:42.336+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:34:42.365+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 228.074 seconds
+[2026-03-06T14:36:26.633+0800] {processor.py:186} INFO - Started process (PID=10320) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:36:26.634+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:36:26.636+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:26.635+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:36:26.664+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:36:26.782+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:26.781+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:36:26.794+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:36:26.794+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:36:26.816+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 185.472 seconds
+[2026-03-06T14:37:56.359+0800] {processor.py:186} INFO - Started process (PID=10349) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:37:56.360+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:37:56.361+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:37:56.361+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:37:56.388+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:37:56.501+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:37:56.501+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:37:56.513+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:37:56.512+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:37:56.532+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 176.169 seconds
+[2026-03-06T14:39:30.356+0800] {processor.py:186} INFO - Started process (PID=10404) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:39:30.357+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:39:30.357+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:30.357+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:39:30.387+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:39:30.513+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:30.513+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:39:30.527+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:39:30.527+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:39:30.551+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 197.929 seconds
+[2026-03-06T14:41:04.972+0800] {processor.py:186} INFO - Started process (PID=10457) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:41:04.973+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:41:04.974+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:41:04.973+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:41:05.000+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:41:05.115+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:41:05.115+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:41:05.127+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:41:05.127+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:41:05.146+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 177.733 seconds
+[2026-03-06T14:42:41.638+0800] {processor.py:186} INFO - Started process (PID=10718) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:42:41.638+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:42:41.639+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:41.639+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:42:41.670+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:42:41.796+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:41.796+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:42:41.809+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:42:41.809+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:42:41.831+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 196.753 seconds
+[2026-03-06T14:44:17.055+0800] {processor.py:186} INFO - Started process (PID=10756) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:44:17.056+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:44:17.057+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:44:17.057+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:44:17.086+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:44:17.200+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:44:17.200+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:44:17.212+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:44:17.211+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:44:17.230+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 177.937 seconds
+[2026-03-06T14:45:54.431+0800] {processor.py:186} INFO - Started process (PID=10786) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:45:54.432+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:45:54.432+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:54.432+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:45:54.462+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:45:54.578+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:54.577+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:45:54.589+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:45:54.589+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:45:54.610+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 181.885 seconds
+[2026-03-06T14:47:30.388+0800] {processor.py:186} INFO - Started process (PID=10822) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:47:30.389+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:47:30.390+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:47:30.390+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:47:30.417+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:47:30.537+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:47:30.537+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:47:30.549+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:47:30.549+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:47:30.571+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 185.767 seconds
+[2026-03-06T14:48:59.886+0800] {processor.py:186} INFO - Started process (PID=10859) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:48:59.886+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:48:59.887+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:48:59.887+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:48:59.915+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:49:00.037+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:49:00.037+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:49:00.050+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:49:00.050+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:49:00.073+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 190.273 seconds
+[2026-03-06T14:50:37.269+0800] {processor.py:186} INFO - Started process (PID=10983) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:50:37.272+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:50:37.273+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:50:37.273+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:50:37.302+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:50:37.433+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:50:37.433+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:50:37.447+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:50:37.447+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:50:37.469+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 203.115 seconds
+[2026-03-06T14:52:16.471+0800] {processor.py:186} INFO - Started process (PID=11129) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:52:16.474+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:52:16.476+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:52:16.475+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:52:16.516+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:52:16.650+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:52:16.649+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:52:16.671+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:52:16.670+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:52:16.706+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 240.416 seconds
+[2026-03-06T14:54:09.146+0800] {processor.py:186} INFO - Started process (PID=11339) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:54:09.147+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:54:09.148+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:54:09.147+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:54:09.180+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:54:09.311+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:54:09.310+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:54:09.324+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:54:09.324+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:54:09.345+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 202.704 seconds
+[2026-03-06T14:55:59.349+0800] {processor.py:186} INFO - Started process (PID=11510) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:55:59.352+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:55:59.353+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:59.353+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:55:59.384+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:55:59.518+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:59.517+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:55:59.531+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:55:59.531+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:55:59.550+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 204.057 seconds
+[2026-03-06T14:57:47.890+0800] {processor.py:186} INFO - Started process (PID=11672) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:57:47.890+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:57:47.892+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:57:47.891+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:57:47.932+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:57:48.125+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:57:48.124+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:57:48.147+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:57:48.147+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:57:48.176+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 290.270 seconds
+[2026-03-06T14:59:32.914+0800] {processor.py:186} INFO - Started process (PID=11848) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:59:32.917+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T14:59:32.918+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:32.918+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:59:32.948+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T14:59:33.086+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:33.086+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T14:59:33.099+0800] {logging_mixin.py:190} INFO - [2026-03-06T14:59:33.098+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T14:59:33.120+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 210.179 seconds
+[2026-03-06T15:01:16.210+0800] {processor.py:186} INFO - Started process (PID=12022) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:01:16.213+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:01:16.216+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:01:16.215+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:01:16.244+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:01:16.371+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:01:16.370+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:01:16.384+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:01:16.384+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:01:16.407+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 199.194 seconds
+[2026-03-06T15:02:58.547+0800] {processor.py:186} INFO - Started process (PID=12185) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:02:58.548+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:02:58.549+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:58.549+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:02:58.577+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:02:58.710+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:58.710+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:02:58.722+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:02:58.722+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:02:58.745+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 200.673 seconds
+[2026-03-06T15:04:39.981+0800] {processor.py:186} INFO - Started process (PID=12349) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:04:39.988+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:04:39.990+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:04:39.989+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:04:40.039+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:04:40.173+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:04:40.172+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:04:40.184+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:04:40.184+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:04:40.209+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 230.012 seconds
+[2026-03-06T15:06:21.718+0800] {processor.py:186} INFO - Started process (PID=12513) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:06:21.721+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:06:21.723+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:06:21.722+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:06:21.751+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:06:21.882+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:06:21.881+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:06:21.895+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:06:21.895+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:06:21.915+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 199.801 seconds
+[2026-03-06T15:08:05.041+0800] {processor.py:186} INFO - Started process (PID=12677) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:08:05.042+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:08:05.043+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:08:05.042+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:08:05.072+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:08:05.209+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:08:05.209+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:08:05.222+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:08:05.221+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:08:05.242+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 204.241 seconds
+[2026-03-06T15:09:46.498+0800] {processor.py:186} INFO - Started process (PID=12830) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:09:46.499+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:09:46.500+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:46.500+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:09:46.531+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:09:46.659+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:46.659+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:09:46.672+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:09:46.672+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:09:46.695+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 200.618 seconds
+[2026-03-06T15:11:26.229+0800] {processor.py:186} INFO - Started process (PID=12987) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:11:26.230+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:11:26.231+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:11:26.230+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:11:26.259+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:11:26.403+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:11:26.403+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:11:26.416+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:11:26.415+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:11:26.439+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 212.843 seconds
+[2026-03-06T15:13:11.226+0800] {processor.py:186} INFO - Started process (PID=13157) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:13:11.227+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:13:11.228+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:13:11.228+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:13:11.257+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:13:11.387+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:13:11.386+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:13:11.400+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:13:11.400+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:13:11.422+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 198.772 seconds
+[2026-03-06T15:14:53.690+0800] {processor.py:186} INFO - Started process (PID=13329) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:14:53.691+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:14:53.692+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:14:53.691+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:14:53.719+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:14:53.884+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:14:53.884+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:14:53.897+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:14:53.896+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:14:53.922+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 234.950 seconds
+[2026-03-06T15:16:34.835+0800] {processor.py:186} INFO - Started process (PID=13480) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:16:34.836+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:16:34.837+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:34.836+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:16:34.865+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:16:35.008+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:35.007+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:16:35.022+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:16:35.022+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:16:35.047+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 215.651 seconds
+[2026-03-06T15:18:15.633+0800] {processor.py:186} INFO - Started process (PID=13629) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:18:15.634+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:18:15.635+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:18:15.635+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:18:15.663+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:18:15.793+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:18:15.793+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:18:15.805+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:18:15.805+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:18:15.830+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 200.064 seconds
+[2026-03-06T15:20:01.816+0800] {processor.py:186} INFO - Started process (PID=13796) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:20:01.819+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:20:01.820+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:20:01.820+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:20:01.847+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:20:01.985+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:20:01.985+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:20:01.999+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:20:01.999+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:20:02.020+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 207.056 seconds
+[2026-03-06T15:21:41.259+0800] {processor.py:186} INFO - Started process (PID=13984) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:21:41.260+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:21:41.261+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:21:41.261+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:21:41.289+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:21:41.406+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:21:41.406+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:21:41.418+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:21:41.418+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:21:41.440+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 183.893 seconds
+[2026-03-06T15:23:22.902+0800] {processor.py:186} INFO - Started process (PID=14161) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:23:22.903+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:23:22.904+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:23:22.904+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:23:22.934+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:23:23.079+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:23:23.079+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:23:23.091+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:23:23.091+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:23:23.114+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 214.992 seconds
+[2026-03-06T15:25:05.403+0800] {processor.py:186} INFO - Started process (PID=14329) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:25:05.404+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:25:05.404+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:25:05.404+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:25:05.434+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:25:05.562+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:25:05.562+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:25:05.574+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:25:05.574+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:25:05.596+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 196.742 seconds
+[2026-03-06T15:26:43.292+0800] {processor.py:186} INFO - Started process (PID=14511) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:26:43.293+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:26:43.294+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:43.293+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:26:43.320+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:26:43.435+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:43.434+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:26:43.446+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:26:43.445+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:26:43.467+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 177.655 seconds
+[2026-03-06T15:28:15.379+0800] {processor.py:186} INFO - Started process (PID=14714) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:28:15.379+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:28:15.380+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:28:15.380+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:28:15.405+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:28:15.524+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:28:15.524+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:28:15.535+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:28:15.535+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:28:15.558+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 181.717 seconds
+[2026-03-06T15:29:50.527+0800] {processor.py:186} INFO - Started process (PID=14916) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:29:50.528+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:29:50.529+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:50.529+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:29:50.557+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:29:50.672+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:50.672+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:29:50.684+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:29:50.683+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:29:50.707+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 183.155 seconds
+[2026-03-06T15:31:22.485+0800] {processor.py:186} INFO - Started process (PID=15125) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:31:22.486+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:31:22.487+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:31:22.487+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:31:22.512+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:31:22.621+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:31:22.620+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:31:22.633+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:31:22.633+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:31:22.655+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 172.009 seconds
+[2026-03-06T15:32:57.903+0800] {processor.py:186} INFO - Started process (PID=15328) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:32:57.903+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:32:57.904+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:57.904+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:32:57.931+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:32:58.047+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:58.046+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:32:58.059+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:32:58.058+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:32:58.079+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 179.272 seconds
+[2026-03-06T15:34:30.359+0800] {processor.py:186} INFO - Started process (PID=15541) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:34:30.359+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:34:30.360+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:34:30.360+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:34:30.389+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:34:30.504+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:34:30.504+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:34:30.516+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:34:30.515+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:34:30.537+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 181.336 seconds
+[2026-03-06T15:36:02.250+0800] {processor.py:186} INFO - Started process (PID=15736) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:36:02.251+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:36:02.252+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:36:02.252+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:36:02.279+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:36:02.398+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:36:02.398+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:36:02.410+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:36:02.409+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:36:02.430+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 183.421 seconds
+[2026-03-06T15:37:32.618+0800] {processor.py:186} INFO - Started process (PID=15937) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:37:32.618+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:37:32.619+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:37:32.619+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:37:32.646+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:37:32.757+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:37:32.756+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:37:32.768+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:37:32.768+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:37:32.791+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 176.049 seconds
+[2026-03-06T15:39:50.907+0800] {processor.py:186} INFO - Started process (PID=16175) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:39:50.908+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py for tasks to queue
+[2026-03-06T15:39:50.909+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:39:50.909+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:39:50.945+0800] {processor.py:925} INFO - DAG(s) '主控_系统管理_allure' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py
+[2026-03-06T15:39:51.183+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:39:51.182+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T15:39:51.200+0800] {logging_mixin.py:190} INFO - [2026-03-06T15:39:51.199+0800] {dag.py:4180} INFO - Setting next_dagrun for 主控_系统管理_allure to None, run_after=None
+[2026-03-06T15:39:51.234+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理_allure.py took 331.066 seconds

@@ -46,3 +46,33 @@
 [2026-03-06T13:04:06.459+0800] {job.py:229} INFO - Heartbeat recovered after 1879.08 seconds
 [2026-03-06T13:07:42.163+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
 [2026-03-06T13:08:44.322+0800] {job.py:229} INFO - Heartbeat recovered after 65.60 seconds
+[2026-03-06T13:13:36.070+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:18:39.190+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:23:40.805+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:28:42.712+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:31:00.524+0800] {job.py:229} INFO - Heartbeat recovered after 131.19 seconds
+[2026-03-06T13:35:49.122+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:40:51.570+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:45:54.241+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:50:56.815+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T13:55:57.425+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:00:57.661+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:06:01.849+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:11:03.582+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:16:04.308+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:21:06.257+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:26:08.592+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:31:09.493+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:36:11.766+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:41:13.728+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:46:17.391+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:51:18.790+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T14:56:21.370+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:01:25.335+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:06:25.956+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:11:27.182+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:16:27.952+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:21:30.547+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:26:32.652+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:31:36.091+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
+[2026-03-06T15:36:38.484+0800] {scheduler_job_runner.py:1949} INFO - Adopting or resetting orphaned tasks for active dag runs
