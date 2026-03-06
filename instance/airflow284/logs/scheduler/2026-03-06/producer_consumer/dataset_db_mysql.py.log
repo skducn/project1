@@ -14,6 +14,7 @@
 [2026-03-06T16:04:57.127+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:04:57.127+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
 [2026-03-06T16:04:57.131+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:04:57.131+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
 [2026-03-06T16:04:57.156+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py took 295.223 seconds
+<<<<<<< Updated upstream
 [2026-03-06T16:07:58.958+0800] {processor.py:186} INFO - Started process (PID=19692) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
 [2026-03-06T16:07:58.961+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py for tasks to queue
 [2026-03-06T16:07:58.962+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:07:58.962+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
@@ -102,3 +103,21 @@
 [2026-03-06T16:36:47.259+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:36:47.259+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
 [2026-03-06T16:36:47.262+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:36:47.262+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
 [2026-03-06T16:36:47.282+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py took 334.102 seconds
+=======
+[2026-03-06T16:43:03.058+0800] {processor.py:186} INFO - Started process (PID=23891) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
+[2026-03-06T16:43:03.060+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py for tasks to queue
+[2026-03-06T16:43:03.061+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:43:03.061+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
+[2026-03-06T16:43:03.184+0800] {processor.py:925} INFO - DAG(s) 'producer_order_mysql', 'consumer_order_mysql' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
+[2026-03-06T16:43:03.490+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:43:03.490+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T16:43:03.510+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:43:03.510+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
+[2026-03-06T16:43:03.513+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:43:03.513+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
+[2026-03-06T16:43:03.539+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py took 484.301 seconds
+[2026-03-06T16:46:13.215+0800] {processor.py:186} INFO - Started process (PID=24326) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
+[2026-03-06T16:46:13.217+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py for tasks to queue
+[2026-03-06T16:46:13.219+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:46:13.218+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
+[2026-03-06T16:46:13.336+0800] {processor.py:925} INFO - DAG(s) 'producer_order_mysql', 'consumer_order_mysql' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py
+[2026-03-06T16:46:13.442+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:46:13.442+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T16:46:13.460+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:46:13.460+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_order_mysql to None, run_after=None
+[2026-03-06T16:46:13.463+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:46:13.462+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_order_mysql to None, run_after=None
+[2026-03-06T16:46:13.484+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_db_mysql.py took 271.887 seconds
+>>>>>>> Stashed changes
