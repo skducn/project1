@@ -1,0 +1,20 @@
+[2026-03-06T16:00:49.319+0800] {processor.py:186} INFO - Started process (PID=18769) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:00:49.320+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py for tasks to queue
+[2026-03-06T16:00:49.321+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:49.321+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:00:49.324+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:00:49.427+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py took 110.984 seconds
+[2026-03-06T16:02:20.393+0800] {processor.py:186} INFO - Started process (PID=18921) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:02:20.394+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py for tasks to queue
+[2026-03-06T16:02:20.394+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:20.394+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:02:20.396+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:02:20.502+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py took 112.228 seconds
+[2026-03-06T16:03:52.103+0800] {processor.py:186} INFO - Started process (PID=19177) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:03:52.104+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py for tasks to queue
+[2026-03-06T16:03:52.105+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:52.105+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:03:52.108+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:03:52.212+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py took 112.477 seconds
+[2026-03-06T16:05:27.065+0800] {processor.py:186} INFO - Started process (PID=19335) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:05:27.066+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py for tasks to queue
+[2026-03-06T16:05:27.067+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:05:27.067+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:05:27.069+0800] {processor.py:927} WARNING - No viable dags retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py
+[2026-03-06T16:05:27.215+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理2.py took 153.103 seconds

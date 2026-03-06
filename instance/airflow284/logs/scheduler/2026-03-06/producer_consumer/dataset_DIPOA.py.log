@@ -1,0 +1,18 @@
+[2026-03-06T16:00:23.436+0800] {processor.py:186} INFO - Started process (PID=18707) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py
+[2026-03-06T16:00:23.437+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py for tasks to queue
+[2026-03-06T16:00:23.438+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:23.437+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py
+[2026-03-06T16:00:23.557+0800] {processor.py:925} INFO - DAG(s) 'consumer2_order_stat', 'consumer1_order_clean', 'producer_DIPOA_dw_order_raw_sync' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py
+[2026-03-06T16:00:23.669+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:23.669+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T16:00:23.692+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:23.692+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer1_order_clean to None, run_after=None
+[2026-03-06T16:00:23.695+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:23.695+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer2_order_stat to None, run_after=None
+[2026-03-06T16:00:23.697+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:23.696+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_DIPOA_dw_order_raw_sync to None, run_after=None
+[2026-03-06T16:00:23.719+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py took 285.733 seconds
+[2026-03-06T16:03:25.482+0800] {processor.py:186} INFO - Started process (PID=19126) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py
+[2026-03-06T16:03:25.483+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py for tasks to queue
+[2026-03-06T16:03:25.484+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:25.484+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py
+[2026-03-06T16:03:25.585+0800] {processor.py:925} INFO - DAG(s) 'producer_DIPOA_dw_order_raw_sync', 'consumer2_order_stat', 'consumer1_order_clean' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py
+[2026-03-06T16:03:25.699+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:25.699+0800] {dag.py:3239} INFO - Sync 3 DAGs
+[2026-03-06T16:03:25.720+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:25.719+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer1_order_clean to None, run_after=None
+[2026-03-06T16:03:25.722+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:25.722+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer2_order_stat to None, run_after=None
+[2026-03-06T16:03:25.723+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:25.723+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_DIPOA_dw_order_raw_sync to None, run_after=None
+[2026-03-06T16:03:25.745+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_DIPOA.py took 265.570 seconds

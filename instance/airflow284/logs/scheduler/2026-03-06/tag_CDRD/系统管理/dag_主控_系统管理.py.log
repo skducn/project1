@@ -1,0 +1,28 @@
+[2026-03-06T16:00:42.258+0800] {processor.py:186} INFO - Started process (PID=18757) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:00:42.259+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py for tasks to queue
+[2026-03-06T16:00:42.260+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:42.260+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:00:42.292+0800] {processor.py:925} INFO - DAG(s) 'master_system_management_with_logs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:00:42.408+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:42.407+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:00:42.420+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:00:42.419+0800] {dag.py:4180} INFO - Setting next_dagrun for master_system_management_with_logs to None, run_after=None
+[2026-03-06T16:00:42.440+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py took 184.542 seconds
+[2026-03-06T16:02:13.307+0800] {processor.py:186} INFO - Started process (PID=18911) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:02:13.307+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py for tasks to queue
+[2026-03-06T16:02:13.308+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:13.308+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:02:13.337+0800] {processor.py:925} INFO - DAG(s) 'master_system_management_with_logs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:02:13.449+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:13.449+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:02:13.460+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:13.460+0800] {dag.py:4180} INFO - Setting next_dagrun for master_system_management_with_logs to None, run_after=None
+[2026-03-06T16:02:13.480+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py took 176.056 seconds
+[2026-03-06T16:03:44.690+0800] {processor.py:186} INFO - Started process (PID=19164) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:03:44.691+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py for tasks to queue
+[2026-03-06T16:03:44.692+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:44.692+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:03:44.748+0800] {processor.py:925} INFO - DAG(s) 'master_system_management_with_logs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:03:44.902+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:44.902+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:03:44.914+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:44.914+0800] {dag.py:4180} INFO - Setting next_dagrun for master_system_management_with_logs to None, run_after=None
+[2026-03-06T16:03:44.933+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py took 248.007 seconds
+[2026-03-06T16:05:19.513+0800] {processor.py:186} INFO - Started process (PID=19319) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:05:19.514+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py for tasks to queue
+[2026-03-06T16:05:19.515+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:05:19.515+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:05:19.545+0800] {processor.py:925} INFO - DAG(s) 'master_system_management_with_logs' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py
+[2026-03-06T16:05:19.679+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:05:19.679+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:05:19.693+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:05:19.692+0800] {dag.py:4180} INFO - Setting next_dagrun for master_system_management_with_logs to None, run_after=None
+[2026-03-06T16:05:19.715+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/系统管理/dag_主控_系统管理.py took 205.276 seconds

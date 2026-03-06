@@ -1,0 +1,21 @@
+[2026-03-06T16:01:13.103+0800] {processor.py:186} INFO - Started process (PID=18816) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:01:13.104+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py for tasks to queue
+[2026-03-06T16:01:13.105+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:01:13.105+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:01:13.131+0800] {processor.py:925} INFO - DAG(s) 'dag_with_professional_test_report' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:01:13.242+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:01:13.242+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:01:13.263+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:01:13.263+0800] {dag.py:4180} INFO - Setting next_dagrun for dag_with_professional_test_report to 2026-03-05 00:00:00+00:00, run_after=2026-03-06 00:00:00+00:00
+[2026-03-06T16:01:13.281+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py took 180.613 seconds
+[2026-03-06T16:02:42.950+0800] {processor.py:186} INFO - Started process (PID=18955) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:02:42.950+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py for tasks to queue
+[2026-03-06T16:02:42.951+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:42.951+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:02:42.976+0800] {processor.py:925} INFO - DAG(s) 'dag_with_professional_test_report' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:02:43.097+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:43.097+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:02:43.120+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:02:43.120+0800] {dag.py:4180} INFO - Setting next_dagrun for dag_with_professional_test_report to 2026-03-05 00:00:00+00:00, run_after=2026-03-06 00:00:00+00:00
+[2026-03-06T16:02:43.138+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py took 191.022 seconds
+[2026-03-06T16:04:16.649+0800] {processor.py:186} INFO - Started process (PID=19219) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:04:16.650+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py for tasks to queue
+[2026-03-06T16:04:16.651+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:04:16.651+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:04:16.678+0800] {processor.py:925} INFO - DAG(s) 'dag_with_professional_test_report' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py
+[2026-03-06T16:04:16.803+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:04:16.803+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:04:16.825+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:04:16.825+0800] {dag.py:4180} INFO - Setting next_dagrun for dag_with_professional_test_report to 2026-03-05 00:00:00+00:00, run_after=2026-03-06 00:00:00+00:00
+[2026-03-06T16:04:16.844+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_CDRD/report/dag_report.py took 197.923 seconds

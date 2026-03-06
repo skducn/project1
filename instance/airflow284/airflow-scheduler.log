@@ -13650,3 +13650,4 @@ subprocess.CalledProcessError: Command '['sudo', '-n', 'kill', '-15', '861']' re
 2026-03-06 15:46:43,904 INFO - Adopting or resetting orphaned tasks for active dag runs
 2026-03-06 15:51:46,298 INFO - Adopting or resetting orphaned tasks for active dag runs
 2026-03-06 15:56:47,687 INFO - Adopting or resetting orphaned tasks for active dag runs
+2026-03-06 16:01:50,144 INFO - Adopting or resetting orphaned tasks for active dag runs
