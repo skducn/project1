@@ -12,3 +12,80 @@
 [2026-03-06T16:03:36.546+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:36.546+0800] {dag.py:3239} INFO - Sync 1 DAGs
 [2026-03-06T16:03:36.567+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:03:36.567+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
 [2026-03-06T16:03:36.584+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 199.788 seconds
+[2026-03-06T16:06:45.929+0800] {processor.py:186} INFO - Started process (PID=19593) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:06:45.930+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:06:45.931+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:06:45.930+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:06:46.050+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:06:46.063+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:06:46.062+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:06:46.081+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:06:46.081+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:06:46.103+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 176.560 seconds
+[2026-03-06T16:09:38.192+0800] {processor.py:186} INFO - Started process (PID=19841) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:09:38.193+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:09:38.194+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:09:38.194+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:09:38.320+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:09:38.334+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:09:38.334+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:09:38.353+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:09:38.353+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:09:38.371+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 181.714 seconds
+[2026-03-06T16:12:28.538+0800] {processor.py:186} INFO - Started process (PID=20102) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:12:28.539+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:12:28.540+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:12:28.539+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:12:28.654+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:12:28.667+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:12:28.667+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:12:28.686+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:12:28.686+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:12:28.705+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 169.974 seconds
+[2026-03-06T16:15:20.126+0800] {processor.py:186} INFO - Started process (PID=20497) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:15:20.126+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:15:20.127+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:15:20.127+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:15:20.250+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:15:20.266+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:15:20.266+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:15:20.287+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:15:20.287+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:15:20.305+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 182.293 seconds
+[2026-03-06T16:18:17.240+0800] {processor.py:186} INFO - Started process (PID=20926) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:18:17.241+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:18:17.241+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:18:17.241+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:18:17.361+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:18:17.375+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:18:17.375+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:18:17.395+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:18:17.395+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:18:17.418+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 180.394 seconds
+[2026-03-06T16:21:09.309+0800] {processor.py:186} INFO - Started process (PID=21195) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:21:09.310+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:21:09.311+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:21:09.310+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:21:09.425+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:21:09.438+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:21:09.438+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:21:09.456+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:21:09.456+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:21:09.476+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 169.610 seconds
+[2026-03-06T16:23:58.392+0800] {processor.py:186} INFO - Started process (PID=21477) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:23:58.393+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:23:58.393+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:23:58.393+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:23:58.515+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:23:58.528+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:23:58.527+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:23:58.546+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:23:58.546+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:23:58.565+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 175.162 seconds
+[2026-03-06T16:26:47.821+0800] {processor.py:186} INFO - Started process (PID=21735) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:26:47.821+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:26:47.822+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:26:47.822+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:26:47.941+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:26:47.954+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:26:47.954+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:26:47.973+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:26:47.973+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:26:47.993+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 175.689 seconds
+[2026-03-06T16:29:38.143+0800] {processor.py:186} INFO - Started process (PID=21998) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:29:38.144+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:29:38.145+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:29:38.145+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:29:38.268+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:29:38.281+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:29:38.281+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:29:38.299+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:29:38.299+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:29:38.317+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 177.494 seconds
+[2026-03-06T16:32:30.516+0800] {processor.py:186} INFO - Started process (PID=22268) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:32:30.516+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:32:30.517+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:32:30.517+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:32:30.651+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:32:30.668+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:32:30.667+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:32:30.689+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:32:30.688+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:32:30.705+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 192.328 seconds
+[2026-03-06T16:35:25.791+0800] {processor.py:186} INFO - Started process (PID=22570) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:35:25.792+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py for tasks to queue
+[2026-03-06T16:35:25.793+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:35:25.793+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:35:25.924+0800] {processor.py:925} INFO - DAG(s) 'mk_campaign' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py
+[2026-03-06T16:35:25.938+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:35:25.938+0800] {dag.py:3239} INFO - Sync 1 DAGs
+[2026-03-06T16:35:25.961+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:35:25.961+0800] {dag.py:4180} INFO - Setting next_dagrun for mk_campaign to 2026-02-21 16:00:00+00:00, run_after=2026-02-28 16:00:00+00:00
+[2026-03-06T16:35:25.980+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/tag_marketing/mk_campaign.py took 192.076 seconds
