@@ -94,3 +94,11 @@
 [2026-03-06T16:33:46.741+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:33:46.741+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_variable to None, run_after=None
 [2026-03-06T16:33:46.744+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:33:46.744+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_variable_sync to None, run_after=None
 [2026-03-06T16:33:46.764+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_variable.py took 241.610 seconds
+[2026-03-06T16:36:50.479+0800] {processor.py:186} INFO - Started process (PID=22844) to work on /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_variable.py
+[2026-03-06T16:36:50.480+0800] {processor.py:914} INFO - Processing file /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_variable.py for tasks to queue
+[2026-03-06T16:36:50.480+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:36:50.480+0800] {dagbag.py:588} INFO - Filling up the DagBag from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_variable.py
+[2026-03-06T16:36:50.580+0800] {processor.py:925} INFO - DAG(s) 'producer_variable_sync', 'consumer_variable' retrieved from /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_variable.py
+[2026-03-06T16:36:50.691+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:36:50.691+0800] {dag.py:3239} INFO - Sync 2 DAGs
+[2026-03-06T16:36:50.709+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:36:50.709+0800] {dag.py:4180} INFO - Setting next_dagrun for consumer_variable to None, run_after=None
+[2026-03-06T16:36:50.712+0800] {logging_mixin.py:190} INFO - [2026-03-06T16:36:50.711+0800] {dag.py:4180} INFO - Setting next_dagrun for producer_variable_sync to None, run_after=None
+[2026-03-06T16:36:50.731+0800] {processor.py:208} INFO - Processing /Users/linghuchong/Downloads/51/Python/project/instance/airflow284/dags/producer_consumer/dataset_variable.py took 255.294 seconds
